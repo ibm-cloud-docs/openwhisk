@@ -32,7 +32,7 @@ Both have similar capabilities for developing applications; the CLI provides mor
 ## Develop in your Browser
 {: #openwhisk_start_editor}
 
-Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create actions, automate actions using triggers, and explore public packages. 
+Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create actions, automate actions using triggers, and explore public packages.
 Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a quick tour of the OpenWhisk User Interface.
 
 ## Develop using the CLI
@@ -40,6 +40,7 @@ Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a 
 
 You can use the {{site.data.keyword.openwhisk_short}} command line interface (CLI) to set up your namespace and authorization key.
 Go to [Configure CLI](https://console.{DomainName}/openwhisk/cli) and follow the instructions to install it.
+
 
 ## Overview
 {: #openwhisk_start_overview}
@@ -106,7 +107,7 @@ To use this example, follow these steps:
         "payload": "Hello, World!"
     }
     ```
-    
+
     ```
     wsk action invoke hello --blocking --result --param name Fred
     ```
