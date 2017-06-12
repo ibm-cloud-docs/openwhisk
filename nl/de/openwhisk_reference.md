@@ -2,12 +2,11 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-01-04"
+lastupdated: "2017-04-24"
 
 ---
 
 {:shortdesc: .shortdesc}
-{:new_window: target="_blank"}
 {:codeblock:.codeblock}
 {:screen:.screen}
 {:pre: .pre}
@@ -56,7 +55,7 @@ Sie verwenden dieses Benennungsschema unter anderem zum Beispiel, wenn Sie die {
 
 Die Namen aller Entitäten, zu denen Aktionen, Auslöser, Regeln, Pakete und Namensbereiche gehören, sind eine Folge von Zeichen mit dem folgenden Format:
 
-* Das erste Zeichen muss ein alphanumerisches Zeichen oder ein Unterstreichungszeichen sein. 
+* Das erste Zeichen muss ein alphanumerisches Zeichen oder ein Unterstreichungszeichen sein.
 * Die nachfolgenden Zeichen können alphanumerische Zeichen, Leerzeichen oder die folgenden Zeichen sein: `_`, `@`, `.`, `-`.
 * Das letzte Zeichen kann kein Leerzeichen sein.
 
@@ -281,7 +280,7 @@ In der Node.js Version 6.9.1-Umgebung können die folgenden Pakete verwendet wer
 - underscore v1.8.3
 - uuid v3.0.0
 - validator v6.1.0
-- watson-developer-cloud v2.9.0
+- watson-developer-cloud v2.29.0
 - when v3.7.7
 - winston v2.3.0
 - ws v1.1.1
@@ -293,12 +292,12 @@ In der Node.js Version 6.9.1-Umgebung können die folgenden Pakete verwendet wer
 ## Python-Laufzeitumgebungen
 {: #openwhisk_ref_python_environments}
 
-OpenWhisk unterstützt die Ausführung von Python-Aktionen mit zwei verschiedenen Laufzeitversionen. 
+OpenWhisk unterstützt die Ausführung von Python-Aktionen mit zwei verschiedenen Laufzeitversionen.
 
 ### Python 3-Aktionen
 
 Python 3-Aktionen werden mit Python 3.6.1 ausgeführt. Zur Verwendung dieser Laufzeit geben Sie den Parameter `--kind python:3` in der `wsk`-Befehlszeilenschnittstelle an, wenn Sie eine Aktion erstellen oder aktualisieren.
-Die folgenden Pakete sind neben den Standardbibliotheken von Python 3.6 zur Verwendung durch Python-Aktionen verfügbar: 
+Die folgenden Pakete sind neben den Standardbibliotheken von Python 3.6 zur Verwendung durch Python-Aktionen verfügbar:
 
 - aiohttp v1.3.3
 - appdirs v1.4.3
@@ -345,7 +344,7 @@ Die folgenden Pakete sind neben den Standardbibliotheken von Python 3.6 zur Verw
 
 ### Python 2-Aktionen
 
-Python 2-Aktionen werden mit Python 2.7.12 ausgeführt. Dies ist die Standardlaufzeit für Python-Aktionen, sofern Sie nicht das Flag `--kind` beim Erstellen oder Aktualisieren einer Aktion angeben. Wenn Sie diese Laufzeit explizit auswählen wollen, verwenden Sie das Flag `--kind python:2`. Die folgenden Pakete sind neben der Standardbibliothek von Python 2.7 zur Verwendung durch Python 2-Aktionen verfügbar: 
+Python 2-Aktionen werden mit Python 2.7.12 ausgeführt. Dies ist die Standardlaufzeit für Python-Aktionen, sofern Sie nicht das Flag `--kind` beim Erstellen oder Aktualisieren einer Aktion angeben. Wenn Sie diese Laufzeit explizit auswählen wollen, verwenden Sie das Flag `--kind python:2`. Die folgenden Pakete sind neben der Standardbibliothek von Python 2.7 zur Verwendung durch Python 2-Aktionen verfügbar:
 
 - appdirs v1.4.3
 - asn1crypto v0.21.1
@@ -395,73 +394,14 @@ Docker-Aktionen werden in einer vom Benutzer bereitgestellten Binärdatei in ein
 
 Das Docker-Gerüst (Skeleton) ist eine bequeme Methode, OpenWhisk-kompatible Docker-Images zu erstellen. Sie können das Gerüst mit dem CLI-Befehl `wsk sdk install docker` installieren.
 
-Das Hauptbinärprogramm muss sich in `/action/exec` im Container befinden. Die ausführbare Datei empfängt die Eingabeargumente über `stdin` und muss über `stdout` ein Ergebnis zurückgeben.
+Das Hauptbinärprogramm muss sich in `/action/exec` im Container befinden. Die ausführbare Datei empfängt die Eingabeargumente durch eine einzelne Befehlszeilenargumentzeichenfolge, die als `JSON`-Objekt deserialisiert werden kann. Es muss ein Ergebnis über `stdout` in Form einer einzeiligen Zeichenfolge aus serialisierten `JSON`-Daten zurückgeben.
 
 Sie können darüber hinaus auch Kompilierungsschritte oder Abhängigkeiten einbeziehen, indem Sie die `Dockerfile` in `dockerSkeleton` ändern.
 
 ## REST-API
 {: #openwhisk_ref_restapi}
+Informationen zur REST-API finden Sie [hier](openwhisk_rest_api.html).
 
-Alle Funktionen im System stehen über eine REST-API zur Verfügung. Es gibt Sammlungs- und Entitätsendpunkte für Aktionen, Auslöser, Regeln, Pakete, Aktivierungen und Namensbereiche.
-
-Die Sammlungsendpunkte lauten wie folgt:
-
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/actions`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/triggers`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/rules`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/packages`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/activations`
-
-`openwhisk.`<span class="keyword" data-hd-keyref="DomainName">DomainName</span>` ist der OpenWhisk-API-Hostname (z. B. openwhisk.ng.bluemix.net, 172.17.0.1 usw.).
-
-Für `{namespace}` kann das Zeichen `_` zum Angeben des *Standardnamensbereichs* (d.h. einer E-Mail-Adresse) verwendet werden.
-
-Sie können eine GET-Anforderung für die Sammlungsendpunkte ausführen, um eine Liste der Entitäten in der Sammlung abzurufen.
-
-Für jeden Entitätstyp gibt es Entitätsendpunkte:
-
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/actions/[{packageName}/]{actionName}`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/triggers/{triggerName}`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/rules/{ruleName}`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/packages/{packageName}`
-- `https://`openwhisk.<span class="keyword" data-hd-keyref="DomainName">DomainName</span>`/api/v1/namespaces/{namespace}/activations/{activationName}`
-
-
-Die Endpunkte für Namensbereiche und Aktivierungen unterstützen nur GET-Anforderungen. Die Endpunkte für Aktionen, Auslöser, Regeln und Pakete unterstützen GET-, PUT- und DELETE-Anforderungen. Die Endpunkte für Aktionen, Auslöser und Regeln unterstützen auch POST-Anforderungen, die zum Aufrufen von Aktionen und Auslösern sowie zum Aktivieren und Inaktivieren von Regeln verwendet werden. Weitere Details hierzu finden Sie in der [API-Referenz](https://new-console.{DomainName}/apidocs/98).
-
-Alle APIs sind mit der HTTP-Basisauthentifizierung geschützt. Die durch einen Doppelpunkt voneinander getrennten Basic-Berechtigungsnachweise zur Authentifizierung befinden sich in der Eigenschaft `AUTH` in der `~/.wskprops`-Datei. Sie finden diese Berechtigungsnachweise auch in den [Konfigurationsschritten der Befehlszeilenschnittstelle (CLI)](./index.html#openwhisk_start_configure_cli).
-
-Das folgende Beispiel zeigt, wie Sie mit dem Befehl 'cURL' eine Liste aller Pakete im Namensbereich `whisk.system` abrufen können:
-
-```
-curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/packages
-```
-{: pre}
-```
-[
-  {
-    "name": "slack",
-    "binding": false,
-    "publish": true,
-    "annotations": [
-      {
-        "key": "description",
-        "value": "Package that contains actions to interact with the Slack messaging service"
-      }
-    ],
-    "version": "0.0.9",
-    "namespace": "whisk.system"
-  },
-  ...
-]
-```
-{: screen}
-
-Von der OpenWhisk-API werden Anforderung/Antwort-Aufrufe von Web-Clients unterstützt. Von OpenWhisk wird auf `OPTIONS`-Anforderungen mit CORS-Headern (CORS - Cross-Origin Resource Sharing) geantwortet. Derzeit sind alle Ursprünge zulässig (d. h. Access-Control-Allow-Origin ist "`*`") und Access-Control-Allow-Header sorgen für die Autorisierung und den Inhaltstyp.
-
-**Achtung:** Da von OpenWhisk derzeit nur ein Schlüssel pro Konto unterstützt wird, wird empfohlen, CORS nur für einfache Experimente und nicht darüber hinaus zu verwenden. Der Schlüssel müsste sonst in clientseitigen Code eingebettet werden, was ihn öffentlich zugänglich machen würde. Verwenden Sie ihn mit Sorgfalt.
 
 ## Systembegrenzungen
 {: #openwhisk_syslimits}
