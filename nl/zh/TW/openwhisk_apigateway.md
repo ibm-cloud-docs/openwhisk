@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -32,7 +32,7 @@ lastupdated: "2017-04-26"
 若要可以使用 `wsk api`，CLI 配置檔 `~/.wskprops` 需要包含「Bluemix 存取記號」。
 若要取得存取記號，請使用 CLI 指令 `wsk bluemix login`。如需該指令的相關資訊，請執行 `wsk bluemix login -h`
 
-**附註：**如果發生需要單一登入 (sso) 的指令錯誤，則這目前不予支援。暫行解決方法是搭配使用 Bluemix CLI 與 `bluemix login` 進行登入，然後將「存取記號」從 HOME 目錄配置檔 `~/.bluemix/.cf/config.json` 複製到 `~/.wskprops` 檔案，以作為內容 `APIGW_ACCESS_TOKEN="value of AccessToken`。複製存取記號字串時，請移除字首 `Bearer`。
+**附註：**如果 `wsk bluemix login` 指令失敗，且錯誤為 `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`，請利用 `bluemix login` 使用 Bluemix CLI 登入，然後發出 `wsk bluemix login --sso`。
 
 **附註：**您使用 `wsk api-experimental` 所建立的 API 將會繼續運作一小段期間，但您應該要開始將 API 移轉至 Web 動作，並使用新的 CLI 指令 `wsk api` 來重新配置現有 API。
 

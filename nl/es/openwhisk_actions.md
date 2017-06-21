@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -174,23 +174,22 @@ cómo los parámetros `name` y `place` se recuperan del objeto `params` en este 
 
   Para pasar los parámetros directamente a través de la línea de mandatos, especifique un par clave/valor para el distintivo `--param`:
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
   Para poder utilizar un archivo que contenga parámetros, crear un archivo que contenga los parámetros en formato JSON. Luego se debe pasar el nombre del archivo al distintivo `param-file`:
 
   Archivo de parámetros de ejemplo denominado parameters.json:
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -202,8 +201,30 @@ cómo los parámetros `name` y `place` se recuperan del objeto `params` en este 
 
   Fíjese en el uso de la opción `--result`: implica una invocación con bloqueo donde la interfaz de línea de mandatos espera que se complete la activación y, a continuación, solo visualiza el resultado. Para su comodidad, esta opción se puede utilizar sin `--blocking` que se infiere de forma automática.
 
+  Además, si los valores de parámetro especificados en una línea de mandatos tienen un formato JSON válido, serán analizados y enviados con su acción como un objeto estructurado. Por ejemplo, si se actualiza la acción hello como: 
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  Ahora la acción espera un único parámetro `person` con los campos `name` y `place`. Si la acción se invoca con un único parámetro `person` con un formato JSON válido: 
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  El resultado es el mismo porque la interfaz de línea de mandatos analiza de forma automática el valor del parámetro `person` en un objeto estructurado que la acción ahora espera: 
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### Configuración de los parámetros predeterminados
-{: #openwhisk_binding_actions}
 
 Las acciones se pueden invocar con varios parámetros con nombre. Recuerde que la acción `hello`
 del ejemplo anterior espera dos parámetros: *name* (nombre) de una persona y *place* (lugar) del que es.
@@ -239,7 +260,7 @@ el parámetro *place* para que el valor predeterminado de la acción sea el luga
 2. Invocar la acción, pasando solo el parámetro `name` esta vez.
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -257,7 +278,7 @@ valor enlazado a la acción.
   Utilización del distintivo `--param`:
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -272,10 +293,10 @@ valor enlazado a la acción.
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
   {  
       "payload": "Hello, Bernie from Washington, DC"
@@ -315,7 +336,7 @@ Las funciones de JavaScript que se ejecutan de forma asíncrona podrían necesit
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -403,11 +424,11 @@ argumento a la función `resolve()`.
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
+{
       "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
@@ -461,8 +482,7 @@ Para crear una acción OpenWhisk desde este paquete:
   ```
   {: pre}
 
-    > Tenga en cuenta que el uso de la acción de Windows Explorer para crear el archivo zip da lugar a una estructura incorrecta. Las acciones zip de OpenWhisk deben tener `package.json` como raíz del zip, mientras que Windows Explorer las coloca dentro de una carpeta anidada. La opción más segura consiste en utilizar el mandato `zip` desde la línea de mandatos tal como se ha mostrado anteriormente.
-
+  > Tenga en cuenta que el uso de la acción de Windows Explorer para crear el archivo zip da lugar a una estructura incorrecta. Las acciones zip de OpenWhisk deben tener `package.json` como raíz del zip, mientras que Windows Explorer las coloca dentro de una carpeta anidada. La opción más segura consiste en utilizar el mandato `zip` desde la línea de mandatos tal como se ha mostrado anteriormente.
 
 3. Cree la acción:
 
@@ -476,7 +496,7 @@ Para crear una acción OpenWhisk desde este paquete:
 4. Puede invocar la acción como cualquier otra:
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -488,7 +508,6 @@ Para crear una acción OpenWhisk desde este paquete:
       ]
   }
   ```
-
 
 Finalmente, tenga en cuenta que mientras que la mayoría de los paquetes de `npm` instalan orígenes JavaScript en `npm install`, algunos también instalan y compilan artefactos binarios. La carga del archivo de archivado no da soporte en este momento a las dependencias binarias, sino únicamente a las dependencias de JavaScript. Las invocaciones de acción pueden fallar si el archivo incluye dependencias binarias.
 
@@ -516,7 +535,6 @@ primera secuencia. Puede obtener más información sobre los paquetes en la secc
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
 
-
   En este ejemplo utilizará las acciones `split` y `sort`.
 
 2. Crear una secuencia de acciones para que el resultado de una acción se pase como argumento a la acción siguiente.
@@ -531,7 +549,7 @@ primera secuencia. Puede obtener más información sobre los paquetes en la secc
 3. Invoque la acción:
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -544,7 +562,6 @@ primera secuencia. Puede obtener más información sobre los paquetes en la secc
       ]
   }
   ```
-
 
   En el resultado, puede ver que las líneas se ordenan.
 
@@ -583,12 +600,12 @@ Puede crear una acción OpenWhisk denominada `helloPython` a partir de esta func
 wsk action create helloPython hello.py
 ```
 {: pre}
-La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.py`, la acción se ejecuta utilizando el tiempo de ejecución Python 2.7. También puede crear una acción que se ejecute con Python 3.6 especificando de forma explícita el parámetro `--kind python:3`. Consulte la documentación de [referencia](./openwhisk_reference.html#openwhisk_ref_python_environments) de Python para obtener más información sobre Python 2.7 frente a 3.6.
+La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.py`, la acción se ejecuta utilizando el tiempo de ejecución Python 2.7. También puede crear una acción que se ejecute con Python 3.6 especificando de forma explícita el parámetro `--kind python:3`. Consulte la documentación de [referencia](./reference.md#python-actions) de Python para obtener más información sobre Python 2.7 frente a 3.6.
 
 La invocación de la acción es la misma para acciones Python que para acciones JavaScript:
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -605,8 +622,6 @@ Puede empaquetar una acción Python y los módulos dependientes en un archivo zi
 El nombre del archivo fuente con el punto de entrada (por ejemplo, `main`) debe ser `__main__.py`.
 Por ejemplo, para crear una acción con un módulo de ayudante denominado `helper.py`, primero cree un archivador con sus archivos fuente:
 
-
-
 ```bash
 zip -r helloPython.zip __main__.py helper.py
 ```
@@ -622,16 +637,14 @@ wsk action create helloPython --kind python:3 helloPython.zip
 ### Empaquetamiento de acciones de Python con un entorno virtual en archivos zip
 {: #openwhisk_actions_python_virtualenv}
 
-Otra forma de empaquetar dependencias de Python es utilizando un entorno virtual (`virtualenv`). 
-Esto permite enlazar a paquetes adicionales que, por ejemplo, se pueden instalar a través de [`pip`](https://packaging.python.org/installing/).
+Otra forma de empaquetar dependencias de Python es utilizando un entorno virtual (`virtualenv`). Esto permite enlazar a paquetes adicionales que, por ejemplo, se pueden instalar a través de [`pip`](https://packaging.python.org/installing/).
 Para asegurar la compatibilidad con el contenedor OpenWhisk, las instalaciones de paquetes dentro de un virtualenv deben realizarse en el entorno de destino.
 Por lo tanto, la imagen de docker `openwhisk/python2action` u `openwhisk/python3action` se deberían utilizar para crear un directorio virtualenv para su acción.
 
-
-Como con el soporte al archivo zip básico, el nombre para el archivo fuente con el punto de entrada principal debe ser `__main__.py`. Además, el directorio virtualenv debe denominarse `virtualenv`. A continuación se muestra un escenario de ejemplo para instalar dependencias, empaquetándolas en un virtualenv, y creando una acción compatible con OpenWhisk.
+Como con el soporte al archivo zip básico, el nombre para el archivo fuente con el punto de entrada principal debe ser `__main__.py`. Además, el directorio virtualenv debe denominarse `virtualenv`.
+A continuación se muestra un escenario de ejemplo para instalar dependencias, empaquetándolas en un virtualenv, y creando una acción compatible con OpenWhisk.
 
 1. Dado un archivo `requirements.txt` con las versiones y módulos `pip` a instalar, ejecute lo siguiente para instalar las dependencias y crear un virtualenv utilizando una imagen Docker compatible:
- 
  ```bash
  docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \
    -c "cd tmp; virtualenv virtualenv; source virtualenv/bin/activate; pip install -r requirements.txt;"
@@ -639,17 +652,16 @@ Como con el soporte al archivo zip básico, el nombre para el archivo fuente con
  {: pre}
 
 2. Archive el directorio virtualenv y todos los archivos Python adicionales:
-
  ```bash
  zip -r helloPython.zip virtualenv __main__.py
  ```
  {: pre}
 
 3. Cree la acción:
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 A pesar de que los pasos anteriores se mostraron para Python 3.6, puede hacerlo también para Python 2.7.
 
@@ -691,7 +703,7 @@ a partir de la extensión de archivo.
 La invocación de la acción es la misma para acciones Swift que para acciones JavaScript:
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -757,7 +769,7 @@ docker run --rm -it -v "$(pwd):/owexec" openwhisk/swift3action bash
   exit
   ```
   {: pre}
-Se ha creado el archivo hello.zip en el mismo directorio que hello.swift.
+Se ha creado el archivo hello.zip en el mismo directorio que hello.swift. 
 -Cárguelo en OpenWhisk con el nombre de acción helloSwifty:
   ```
   wsk action update helloSwiftly hello.zip --kind swift:3
@@ -769,7 +781,7 @@ Se ha creado el archivo hello.zip en el mismo directorio que hello.swift.
   ``` 
   {: pre}
 
-El tiempo que se ha tardado en ejecutar la acción está en la propiedad "duration" y se compara con el tiempo que se tarda en ejecutar con un paso de compilación en la acción hello. 
+El tiempo que se ha tardado en ejecutar la acción está en la propiedad "duration" y se compara con el tiempo que se tarda en ejecutar con un paso de compilación en la acción hello.
 
 ## Creación de acciones de Java
 {: #openwhisk_actions_java}
@@ -831,7 +843,7 @@ Tiene que especificar el nombre de la clase principal con `--main`. Una clase pr
 La invocación de la acción es la misma para acciones Java que para acciones Swift y JavaScript:
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -927,7 +939,7 @@ la CLI ya se ha configurado, son necesarios tres pasos para configurar un binari
   La acción se puede invocar como cualquier otra acción {{site.data.keyword.openwhisk_short}}.
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -947,7 +959,6 @@ la CLI ya se ha configurado, son necesarios tres pasos para configurar un binari
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1031,7 +1042,6 @@ Puede realizar una limpieza mediante la supresión de acciones que no quiera usa
   ```
   actions
   ```
-  {: pre}
 
 ## Acceso a metadatos de acción dentro del cuerpo de la acción
 {: #openwhisk_action_metadata}

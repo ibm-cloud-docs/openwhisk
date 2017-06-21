@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ lastupdated: "2017-02-23"
 | `/whisk.system/cloudant` | 包 | dbname、host、username 和 password | 使用 Cloudant 数据库 |
 | `/whisk.system/cloudant/read` | 操作 | dbname 和 id | 从数据库中读取文档 |
 | `/whisk.system/cloudant/write` | 操作 | dbname、overwrite 和 doc | 将文档写入数据库 |
-| `/whisk.system/cloudant/changes` | 订阅源 | dbname、maxTriggers | 对数据库进行更改时触发触发器事件 |
+| `/whisk.system/cloudant/changes` | 订阅源 | dbname、filter、query_params、maxTriggers | 对数据库进行更改时触发触发器事件 |
 
 以下主题将指导您设置 Cloudant 数据库，配置关联的包以及使用 `/whisk.system/cloudant` 包中的操作和订阅源。
 
@@ -101,6 +101,7 @@ wsk package refresh
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
+  
 
 2. 验证包绑定是否存在。
 
@@ -117,16 +118,55 @@ packages
 ## 侦听对 Cloudant 数据库的更改
 {: #openwhisk_catalog_cloudant_listen}
 
+### 过滤数据库更改事件
+
+您可以定义过滤函数，以避免不必要的更改事件触发您的触发器。
+
+要创建新的过滤函数，您可以使用操作。
+
+使用以下过滤函数，创建 json 文档文件 `design_doc.json`
+```json
+{
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+使用过滤函数，在数据库上创建新的设计文档
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+新设计文档的信息会在屏幕上打印出来。
+```json
+  {
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### 使用过滤函数创建触发器
+
 可以使用 `changes` 订阅源来配置服务，以在每次对 Cloudant 数据库进行更改时都触发触发器。参数如下所示：
 
 - `dbname`：Cloudant 数据库的名称。
 - `maxTriggers`：达到此限制时，停止触发触发器。缺省值为无限。
+- `filter`：在设计文档上定义的过滤函数。
+- `query_params`：过滤函数的可选查询参数。
 
 
-1. 使用先前创建的包绑定中的 `changes` 订阅源来创建触发器。确保将 `/myNamespace/myCloudant` 替换为您的包名。
+1. 使用先前创建的包绑定中的 `changes` 订阅源来创建触发器（其中包括 `filter` 和 `query_params`），以仅在状态为 `new` 的情况下添加或修改文档时触发触发器。确保将 `/_/myCloudant` 替换为您的包名。
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -142,7 +182,7 @@ wsk activation poll
 
 3. 在 Cloudant 仪表板中，修改现有文档或创建新文档。
 
-4. 观察针对每次文档更改的 `myCloudantTrigger` 触发器的新激活。
+4. 根据过滤函数和查询参数，仅在文档状态为 `new` 时，观察针对每次文档更改的 `myCloudantTrigger` 触发器的新激活。
   
   **注**：如果无法观察到新激活，请查看有关对 Cloudant 数据库执行读写操作的后续各部分。测试以下读写步骤将帮助验证 Cloudant 凭证是否正确。
   
@@ -158,7 +198,7 @@ wsk activation poll
   
   ```json
   {
-      "id": "6ca436c44074c4c2aa6a40c9a188b348",
+    "id": "6ca436c44074c4c2aa6a40c9a188b348",
       "seq": "2-g1AAAAL9aJyV-GJCaEuqx4-BktQkYp_dmIfC",
       "changes": [
           {
@@ -173,14 +213,13 @@ wsk activation poll
 
 可以使用操作将文档存储在名为 `testdb` 的 Cloudant 数据库中。确保此数据库在 Cloudant 帐户中存在。
 
-1. 使用先前创建的包绑定中的 `write` 操作来存储文档。确保将 `/myNamespace/myCloudant` 替换为您的包名。
+1. 使用先前创建的包绑定中的 `write` 操作来存储文档。确保将 `/_/myCloudant` 替换为您的包名。
 
   ```
-  wsk action invoke /myNamespace/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
   {
@@ -200,10 +239,10 @@ wsk activation poll
 
 可以使用操作从名为 `testdb` 的 Cloudant 数据库中访存文档。确保此数据库在 Cloudant 帐户中存在。
 
-- 使用先前创建的包绑定中的 `read` 操作来访存文档。确保将 `/myNamespace/myCloudant` 替换为您的包名。
+- 使用先前创建的包绑定中的 `read` 操作来访存文档。确保将 `/_/myCloudant` 替换为您的包名。
 
   ```
-  wsk action invoke /myNamespace/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -216,6 +255,7 @@ wsk activation poll
 
 ## 使用操作序列和更改触发器处理 Cloudant 数据库中的文档
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 您可以使用规则中的操作序列来访存和处理与 Cloudant 更改事件相关联的文档。
 
 以下是处理文档的操作的样本代码：
@@ -233,7 +273,7 @@ wsk action create myAction myAction.js
 
 要从数据库读取文档，您可以使用 Cloudant 包中的 `read` 操作。`read` 操作可随 `myAction` 一起编写以创建操作序列。
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -250,7 +290,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

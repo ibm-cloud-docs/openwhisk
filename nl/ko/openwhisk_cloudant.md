@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ lastupdated: "2017-02-23"
 | `/whisk.system/cloudant` | 패키지 | dbname, host, username, password | Cloudant 데이터베이스와 함께 작동 |
 | `/whisk.system/cloudant/read` | 조치 | dbname, id | 데이터베이스에서 문서 읽기 |
 | `/whisk.system/cloudant/write` | 조치 | dbname, overwrite, doc | 데이터베이스에 문서 쓰기 |
-| `/whisk.system/cloudant/changes` | 피드 | dbname, maxTriggers | 데이터베이스에 대한 변경 시 트리거 이벤트 실행 |
+| `/whisk.system/cloudant/changes` | 피드 | dbname, filter, query_params, maxTriggers | 데이터베이스에 대한 변경 시 트리거 이벤트 실행 |
 
 다음 주제에서는 `/whisk.system/cloudant` 패키지 내에서의 Cloudant 데이터베이스 설정, 연관된 패키지 구성 및 조치 및 피드 사용에 대해 설명합니다.
 
@@ -101,6 +101,7 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
+  
 
 2. 패키지 바인딩이 있는지 확인하십시오.
 
@@ -117,16 +118,55 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 
 ## Cloudant 데이터베이스에 대한 변경 청취
 {: #openwhisk_catalog_cloudant_listen}
 
+### 데이터베이스 변경 이벤트 필터링
+
+불필요한 변경 이벤트가 트리거를 실행하지 않도록 필터 함수를 정의할 수 있습니다. 
+
+조치를 사용하여 새 필터 함수를 작성할 수 있습니다. 
+
+다음 필터 함수를 사용하여 JSON 문서 파일 `design_doc.json` 작성
+```json
+{
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+필터 함수를 사용하여 데이터베이스에 새 디자인 문서 작성
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+새 디자인 문서의 정보가 화면에 출력됩니다.
+```json
+{
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### 필터 함수를 사용한 트리거 작성
+
 `changes` 피드를 사용하여 Cloudant 데이터베이스에 대한 모든 변경 시 트리거를 실행하도록 서비스를 구성할 수 있습니다.매개변수는 다음과 같습니다.
 
 - `dbname`: Cloudant 데이터베이스의 이름입니다.
 - `maxTriggers`: 이 한계에 도달하면 트리거 실행이 중지됩니다. 기본값은 무한(infinite)입니다.
+- `filter`: 디자인 문서에 정의된 필터 함수입니다. 
+- `query_params`: 필터 함수의 선택적 조회 매개변수입니다. 
 
 
-1. 앞에서 작성한 패키지 바인딩의 `changes`를 사용하여 트리거를 작성하십시오. `/myNamespace/myCloudant`를 사용자의 패키지 이름으로 대체하십시오.
+1. 이전에 작성한 패키지 바인딩에 있는 `changes` 피드를 사용하여 트리거를 작성하면서, 상태가 `new`일 때 문서가 추가되거나 수정되는 경우에만 트리거를 실행하도록 하기 위해 `filter` 및 `query_params`를 포함시키십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -142,7 +182,7 @@ wsk activation poll
 
 3. Cloudant 대시보드에서 기존 문서를 수정하거나 새 문서를 작성하십시오.
 
-4. 각 문서 변경에 대한 `myCloudantTrigger` 트리거의 새 활성화를 관찰하십시오.
+4. 필터 함수 및 조회 매개변수에 따라 문서 상태가 `new` 인 경우에만 실행되는, 각 문서 변경에 대한 `myCloudantTrigger` 트리거의 새 활성화를 관찰하십시오. 
   
   **참고**: 새 활성화를 관찰할 수 없으면 Cloudant 데이터베이스에 대한 읽기 및 쓰기에 관한 후속 절을 참조하십시오. 아래의 읽기 단계와 쓰기 단계를 테스트하면 Cloudant 신임 정보가 올바른지 확인하는 데 유용합니다. 
   
@@ -173,14 +213,13 @@ wsk activation poll
 
 조치를 사용하여 `testdb`라는 Cloudant 데이터베이스에 문서를 저장할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
 
-1. 앞에서 작성한 패키지 바인딩 내의 `write` 조치를 사용하여 문서를 저장하십시오. `/myNamespace/myCloudant`를 사용자의 패키지 이름으로 대체하십시오.
+1. 앞에서 작성한 패키지 바인딩 내의 `write` 조치를 사용하여 문서를 저장하십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
 
   ```
-  wsk action invoke /myNamespace/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
   {
@@ -200,10 +239,10 @@ wsk activation poll
 
 조치를 사용하여 `testdb`라는 Cloudant 데이터베이스에서 문서를 페치할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
 
-- 앞에서 작성한 패키지 바인딩 내의 `read` 조치를 사용하여 문서를 페치하십시오. `/myNamespace/myCloudant`를 사용자의 패키지 이름으로 대체하십시오.
+- 앞에서 작성한 패키지 바인딩 내의 `read` 조치를 사용하여 문서를 페치하십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
 
   ```
-  wsk action invoke /myNamespace/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -216,6 +255,7 @@ wsk activation poll
 
 ## 조치 시퀀스와 변경 트리거를 사용하여 Cloudant 데이터베이스에서 문서 처리
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 규치에서 조치 시퀀스를 사용하여 Cloudant 변경 이벤트와 관련된 문서를 페치하여 처리할 수 있습니다.
 
 문서를 처리하는 조치의 샘플 코드입니다.
@@ -234,7 +274,7 @@ wsk action create myAction myAction.js
 데이터베이스에서 문서를 읽기 위해 Cloudant 패키지의 `read` 조치를 사용할 수 있습니다.
 `read` 조치는 조치 시퀀스를 작성하기 위해 `myAction`으로 구성될 수 있습니다. 
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -251,7 +291,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

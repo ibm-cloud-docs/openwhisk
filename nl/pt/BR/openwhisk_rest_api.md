@@ -50,7 +50,8 @@ terminais de ações, acionadores e regras também suportam solicitações POST,
 usadas para chamar ações e acionadores e ativar ou desativar as regras. 
 
 Todas as APIs são protegidas com autenticação Básica de HTTP. 
-É possível usar a ferramenta [wskadmin](../tools/admin/wskadmin) para gerar um novo namespace e autenticação. As credenciais de
+É possível usar a ferramenta [wskadmin](../tools/admin/wskadmin) para gerar um novo namespace e autenticação.
+As credenciais de
 autenticação Básica estão na propriedade `AUTH` em seu arquivo
 `~/.wskprops`, delimitadas por dois pontos. 
 Também será possível recuperar essas credenciais usando a CLI ao executar `wsk property get --auth`.
@@ -121,7 +122,7 @@ Response body received:
 ["john@example.com_dev"]
 ```
 
-Como você pode ver, as informações impressas fornecem as propriedades da solicitação de HTTP, executam um método de HTTP `GET` na URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` usando um cabeçalho de Autorização básica `Basic XXXYYYY`.
+Como você pode ver, as informações impressas fornecem as propriedades da solicitação de HTTP, executam um método de HTTP `GET` na URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` usando um cabeçalho de Autorização básica `Basic XXXYYYY`. 
 Observe que o valor de autorização é a sequência de autorização codificada com base64 do OpenWhisk.
 A resposta é do tipo de conteúdo `application/json`.
 

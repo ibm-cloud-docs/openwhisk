@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -32,7 +32,7 @@ API 网关充当 [Web 操作](webactions.md)的代理，并为这些操作提供
 为了能使用 `wsk api`，CLI 配置文件 `~/.wskprops` 需要包含 Bluemix 访问令牌。
 要获取访问令牌，请使用 CLI 命令 `wsk bluemix login`；有关该命令的更多信息，请运行 `wsk bluemix login -h`
 
-**注：**如果该命令在要求单点登录 (SSO) 时出错，说明目前不支持此功能。作为变通方法，请使用 `bluemix login` 登录 Bluemix CLI，然后将 HOME 目录配置文件 `~/.bluemix/.cf/config.json` 中的访问令牌复制到 `~/.wskprops` 文件作为属性 `APIGW_ACCESS_TOKEN="value of AccessToken`。复制访问令牌字符串时，请除去前缀 `Bearer`。
+**注：**如果 `wsk bluemix login` 命令失败，且错误为 `BMXLS0202E：您正在使用联合的用户标识，请使用一次性密码并搭配选项 --sso 登录`，请使用 Bluemix CLI 的 `bluemix login` 登录，然后发出 `wsk bluemix login --sso`。
 
 **注：**使用 `wsk api-experimental` 创建的 API 将继续运行一段较短的时间，但您应该开始将 API 迁移到 Web 操作，并使用新的 CLI 命令 `wsk api` 重新配置现有 API。
 

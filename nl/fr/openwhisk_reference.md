@@ -441,7 +441,7 @@ Vous pouvez inclure des étapes de compilation ou des dépendances en modifiant 
 
 ## API REST
 {: #openwhisk_ref_restapi}
-Vous trouverez des informations sur l'API REST [ici](openwhisk_rest_api.html). 
+Vous trouverez des informations sur l'API REST [ici](openwhisk_rest_api.html).
 
 
 ## Limites du système

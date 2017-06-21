@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -25,6 +25,48 @@ lastupdated: "2017-02-21"
 
 建议使用 `username` 和 `password` 值创建包绑定。这样就无需在每次调用包中的操作时指定这些凭证。
 
+## 在 Bluemix 中设置 Weather 包
+
+如果是在 Bluemix 中使用 OpenWhisk，那么 OpenWhisk 将为 Bluemix Weather 服务实例自动创建包绑定。
+
+1. 在 Bluemix [仪表板](http://console.ng.Bluemix.net)中创建 Weather Company Data 服务实例。
+  
+  确保记住服务实例的名称以及您所在的 Bluemix 组织和空间的名称。
+  
+2. 刷新名称空间中的包。刷新操作将自动为已创建的 Weather Company Data 服务实例创建包绑定。
+  
+  ```
+wsk package refresh
+  ```
+  {: pre}
+  
+  
+  ```
+  created bindings:
+  Bluemix_Weather_Company_Data_Credentials-1
+  ```
+  ```
+  wsk package list
+  ```
+  {: pre}
+  ```
+  packages
+  /myBluemixOrg_myBluemixSpace/Weather Bluemix_Weather_Company_Data_Credentials-1 private
+  ```
+  
+ 
+## 在 Bluemix 外设置 Weather 包
+
+如果不是在 Bluemix 中使用 OpenWhisk，或者如果要在 Bluemix 外部设置 Weather Company Data 服务，那么必须为您的 Weather Company Data 服务手动创建包绑定。您需要 Weather Company Data 服务用户名和密码。
+
+- 创建为您的 Watson Translator 服务配置的包绑定。
+
+  ```
+  wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+  ```
+  {: pre}
+
+
 ## 获取某个位置的天气预报
 {: #openwhisk_catalog_weather_forecast}
 
@@ -34,25 +76,28 @@ lastupdated: "2017-02-21"
 - `password`：The Weather Company Data for IBM Bluemix 的密码，此密码有权调用预测 API。
 - `latitude`：位置的纬度坐标。
 - `longitude`：位置的经度坐标。
-- `timePeriod`：预报的时间段。有效选项为：'10day' -（缺省值）返回 10 天的每日预报，'48hour' - 返回 2 天的每小时预报，'current' - 返回当前天气状况，'timeseries' - 返回当前观察数据和过去长达 24 小时（从当前日期和时间开始）的观察数据。
+- `timePeriod`：预报的时间段。有效的选项为：
+  - `10day` -（缺省值）返回每日 10 天的预测
+  - `48hour` - 返回每小时 2 天的预测
+  - `current` - 返回当前的天气条件
+  - `timeseries` - 返回当前观察数据和过去长达 24 小时（从当前日期和时间开始）的观察数据。
 
 
-以下是创建包绑定并获取 10 天天气预报的示例。
-
-1. 使用 API 密钥创建包绑定。
+- 以下是创建包绑定并获取 10 天天气预报的示例。1. 使用 API 密钥创建包绑定。
   
   ```
   wsk package bind /whisk.system/weather myWeather --param username MY_USERNAME --param password MY_PASSWORD
   ```
   {: pre}
-  
-2. 调用包绑定中的 `forecast` 操作来获取天气预报。
+
+- 调用包绑定中的 `forecast` 操作来获取天气预报。
   
   ```
-  wsk action invoke myWeather/forecast --blocking --result --param latitude 43.7 --param longitude -79.4
+  wsk action invoke myWeather/forecast --result \
+  --param latitude 43.7 \
+  --param longitude -79.4
   ```
   {: pre}
-  
   ```json
   {
       "forecasts": [

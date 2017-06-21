@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer Clouda
 | `/whisk.system/cloudant` | Paket | dbname, host, username, password | Dient zur Arbeit mit einer Cloudant-Datenbank. |
 | `/whisk.system/cloudant/read` | Aktion | dbname, id | Liest ein Dokument aus einer Datenbank. |
 | `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreibt ein Dokument in eine Datenbank. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, maxTriggers | Aktiviert Auslöserereignisse bei Änderungen an einer Datenbank. |
+| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktiviert Auslöserereignisse bei Änderungen an einer Datenbank. |
 
 In den folgenden Abschnitten werden die Einrichtung einer Cloudant-Datenbank, die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` schrittweise erläutert.
 
@@ -101,6 +101,7 @@ Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie Ihre Cloudant-Datenb
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
+  
 
 2. Prüfen Sie, ob die Paketbindung vorhanden ist.
 
@@ -117,16 +118,56 @@ Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie Ihre Cloudant-Datenb
 ## Änderungen an einer Cloudant-Datenbank empfangen
 {: #openwhisk_catalog_cloudant_listen}
 
+### Änderungsereignisse in der Filterdatenbank
+
+Sie können eine Filterfunktion definieren, um unnötige Änderungsereignisse zu verhindern, die Ihren Auslöser aktivieren.
+
+Zum Erstellen einer neuen Filterfunktion können Sie eine Aktion verwenden.
+
+Erstellen Sie eine JSON-Dokumentdatei `design_doc.json` mit der folgenden Filterfunktion:
+```json
+{
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+Erstellen Sie ein neues Entwurfsdokument für die Datenbank mit der Filterfunktion:
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+Die Informationen für das neue Entwurfsdokument werden auf dem Bildschirm angezeigt.
+```json
+{
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### Auslöser mithilfe der Filterfunktion erstellen
+
 Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Änderung an Ihrer Cloudant-Datenbank einen Auslöser aktiviert. Die folgenden Parameter sind verfügbar:
 
 - `dbname`: Name der Cloudant-Datenbank.
 - `maxTriggers`: Stoppt die Aktivierung von Auslösern, wenn dieser Grenzwert erreicht wird. Standardwert: unbegrenzt.
+- `filter`: Für ein Entwurfsdokument definierte Filterfunktion.
+- `query_params`: Optionale Abfrageparameter für die Filterfunktion.
 
 
-1. Erstellen Sie einen Auslöser mit dem Feed `changes` in der Paketbindung, die Sie zuvor erstellt haben. Stellen Sie sicher, dass Sie `/myNamespace/myCloudant` durch Ihren Paketnamen ersetzen.
+1. Erstellen Sie einen Auslöser mit dem Feed `changes` in der Paketbindung, die Sie zuvor mit `filter` und `query_params` erstellt haben, sodass der Auslöser nur angewendet wird, wenn ein Dokument hinzugefügt oder geändert wird und der Status `new` ist.
+Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -142,7 +183,7 @@ Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Ä
 
 3. Ändern Sie in Ihrem Cloudant-Dashboard ein vorhandenes Dokument oder erstellen Sie ein neues Dokument.
 
-4. Beobachten Sie die neuen Aktivierungen für den Auslöser `myCloudantTrigger` für jede Dokumentänderung.
+4. Beobachten Sie die neuen Aktivierungen für den Auslöser `myCloudantTrigger` für jede Dokumentänderung nur dann, wenn das Dokument auf Basis der Filterfunktion und des Abfrageparameters den Status `new` hat.
   
   **Hinweis:** Wenn Sie keine neuen Aktivierungen beobachten können, lesen Sie die nachfolgenden Abschnitte über das Lesen und Schreiben in einer Cloudant-Datenbank. Durch Testen der nachfolgenden Schritte zum Lesen und Schreiben können Sie prüfen, ob Ihre Cloudant-Berechtigungsnachweise korrekt sind.
   
@@ -173,14 +214,13 @@ Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Ä
 
 Sie können eine Aktion verwenden, um ein Dokument in einer Cloudant-Datenbank mit dem Namen `testdb` speichern. Stellen Sie sicher, dass diese Datenbank in Ihrem Cloudant-Konto vorhanden ist.
 
-1. Speichern Sie ein Dokument mit der Aktion `write` in der Paketbindung, die Sie zuvor erstellt haben. Stellen Sie sicher, dass Sie `/myNamespace/myCloudant` durch Ihren Paketnamen ersetzen.
+1. Speichern Sie ein Dokument mit der Aktion `write` in der Paketbindung, die Sie zuvor erstellt haben. Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
   ```
-  wsk action invoke /myNamespace/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
   {
@@ -200,10 +240,10 @@ Sie können eine Aktion verwenden, um ein Dokument in einer Cloudant-Datenbank m
 
 Sie können eine Aktion verwenden, um ein Dokument aus einer Cloudant-Datenbank mit dem Namen `testdb` abzurufen. Stellen Sie sicher, dass diese Datenbank in Ihrem Cloudant-Konto vorhanden ist.
 
-- Rufen Sie ein Dokument mit der Aktion `read` in der Paketbindung ab, die Sie zuvor erstellt haben. Stellen Sie sicher, dass Sie `/myNamespace/myCloudant` durch Ihren Paketnamen ersetzen.
+- Rufen Sie ein Dokument mit der Aktion `read` in der Paketbindung ab, die Sie zuvor erstellt haben. Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
   ```
-  wsk action invoke /myNamespace/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -216,6 +256,7 @@ Sie können eine Aktion verwenden, um ein Dokument aus einer Cloudant-Datenbank 
 
 ## Aktionssequenz und Änderungsauslöser zur Verarbeitung eines Dokuments aus einer Cloudant-Datenbank verwenden
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 Sie können eine Aktionssequenz in einer Regel verwenden, um das Dokument, das einem Cloudant-Änderungsereignis zugeordnet ist, abzurufen und zu verarbeiten.
 
 Im Folgenden ist ein Beispielcode einer Aktion aufgeführt, die zur Verarbeitung eines Dokuments dient:
@@ -234,7 +275,7 @@ wsk action create myAction myAction.js
 Um ein Dokument aus der Datenbank zu lesen, können Sie die Aktion `read` aus dem Cloudant-Paket verwenden.
 Die Aktion `read` kann mit `myAction` zusammengesetzt werden, um eine Aktionsfolge zu erstellen.
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -251,7 +292,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

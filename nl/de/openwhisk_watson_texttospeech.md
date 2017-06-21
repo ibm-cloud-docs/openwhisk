@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -38,7 +38,6 @@ Wenn Sie OpenWhisk von Bluemix verwenden, dann erstellt OpenWhisk automatisch Pa
   ```
   wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -60,14 +59,14 @@ Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie den Watson-Service '
 - Erstellen Sie eine Paketbindung, die für Ihren Watson-Service 'Text to Speech' konfiguriert ist.
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## Umsetzung von Text in Sprache
 
-Mit der Aktion `/whisk.system/watson-speechToText/textToSpeech` kann Text in eine Audioansage konvertiert werden. Die folgenden Parameter sind verfügbar:
+Die Aktion `/whisk.system/watson-textToSpeech/textToSpeech` wandelt Text in eine Audioansage um. Die folgenden Parameter sind verfügbar:
 
 - `username`: Der Benutzername für die Watson-API.
 - `password`: Das Kennwort für die Watson-API.

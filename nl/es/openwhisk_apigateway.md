@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -32,9 +32,9 @@ En el panel de control de OpenWhisk, pulse el [separador API](https://console.ng
 Configure la interfaz de línea de mandatos de OpenWhisk con la apihost `wsk property set --apihost openwhisk.ng.bluemix.net`. Para poder utilizar la `wsk api`, el archivo de configuración de interfaz de línea de mandatos `~/.wskprops` debe contener la señal de acceso de Bluemix.
 Para obtener la señal de acceso utilice el mandato de interfaz de línea de mandatos `wsk bluemix login`. Para obtener más información sobre el mandato, ejecute `wsk bluemix login -h`
 
-**Nota:** Si el mandato produce errores indicando que es necesario el inicio de sesión único (sso), tenga en cuenta que actualmente no se da soporte a esta característica. Como método alternativo inicie una sesión con la interfaz de línea de mandatos de Bluemix utilizando `bluemix login` y, a continuación, copie la señal de acceso desde el archivo de configuración del directorio HOME `~/.bluemix/.cf/config.json` en el archivo `~/.wskprops` como la propiedad `APIGW_ACCESS_TOKEN="valor de AccessToken"`. Elimine el prefijo `Bearer ` al copiar la serie de la señal de acceso.
+**Nota:** Si el mandato `wsk bluemix login` falla con el error `BMXLS0202E: Está utilizando un ID de usuario federado, utilice un código de acceso de una vez para iniciar una sesión con la opción --sso`, inicie una sesión con la interfaz de línea de mandatos de Bluemix con `bluemix login` y, a continuación, especifique `wsk bluemix login --sso`. 
 
-**Nota:** Las API que haya creado con `wsk api-experimental` seguirán funcionando por un periodo breve, aunque debe empezar a migrar sus API a acciones web y reconfigurar sus api existentes con el nuevo mandato de interfaz de línea de mandatos `wsk api`.
+**Nota:** Las API que haya creado con `wsk api-experimental` seguirán funcionando por un periodo breve, aunque debe empezar a migrar sus API a acciones web y reconfigurar sus API existentes con el nuevo mandato de interfaz de línea de mandatos `wsk api`.
 
 ### Creación de su primera API utilizando la interfaz de línea de mandatos
 

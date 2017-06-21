@@ -77,7 +77,7 @@ notification"`.
 
 - `gcmCollapseKey` : ce paramètre identifie un groupe de messages
 - `gcmCategory` : identificateur de catégorie à utiliser pour les notifications push interactives.
-- `gcmIcon` : spécifiez le nom de l'icône à afficher pour la notification. Assurez-vous que l'icône est déjà conditionnée avec l'application client. 
+- `gcmIcon` : spécifiez le nom de l'icône à afficher pour la notification. Assurez-vous que l'icône est déjà conditionnée avec l'application client.
 - `gcmDelayWhileIdle` : lorsque ce paramètre a pour valeur true, il indique que le message ne doit pas être envoyé tant que le périphérique n'est pas actif.
 - `gcmSync` : la messagerie de groupe de périphériques permet à chaque instance d'application d'un groupe de refléter le dernier état de messagerie.
 - `gcmVisibility` : privé/public - visibilité de cette notification, qui affecte comment et quand les notifications sont révélées sur un écran verrouillé.
@@ -100,14 +100,14 @@ notification"`.
 - `apnsPayload` : contenu JSON personnalisé qui sera envoyé dans le cadre du message de notification.
 - `apnsType` : ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound` : nom du fichier son dans l'ensemble d'applications. Le son de ce fichier est utilisé pour une alerte.
-- `apnsTitleLocKey` : clé d'une chaîne de titre dans le fichier Localizable.strings pour la localisation en cours. La chaîne de clé peut être formatée avec les spécificateurs %@ et %n$@ pour inclure les variables spécifiées dans le tableau `titleLocArgs`. 
-- `apnsLocKey` : clé d'une chaîne de message d'alerte dans un fichier Localizable.strings pour la localisation en cours (définie par la préférence de langue de l'utilisateur). La chaîne de clé peut être formatée avec les spécificateurs %@ et %n$@ pour inclure les variables spécifiées dans le tableau locArgs. 
+- `apnsTitleLocKey` : clé d'une chaîne de titre dans le fichier Localizable.strings pour la localisation en cours. La chaîne de clé peut être formatée avec les spécificateurs %@ et %n$@ pour inclure les variables spécifiées dans le tableau `titleLocArgs`.
+- `apnsLocKey` : clé d'une chaîne de message d'alerte dans un fichier Localizable.strings pour la localisation en cours (définie par la préférence de langue de l'utilisateur). La chaîne de clé peut être formatée avec les spécificateurs %@ et %n$@ pour inclure les variables spécifiées dans le tableau locArgs.
 - `apnsLaunchImage` : nom d'un fichier image dans le bundle d'application, avec ou sans extension de nom de fichier. L'image est utilisée comme image de lancement lorsque les utilisateurs appuient sur le bouton d'action ou déplacement le curseur d'action.
 - `pnsTitleLocArgs` : valeurs de chaîne variables devant apparaître à la place des spécificateurs de format dans `title-loc-key`.
 - `apnsLocArgs` : valeurs de chaîne variables devant apparaître à la place des spécificateurs de format dans `locKey`.
-- `apnstitle` : titre des notifications push Rich (pris en charge sous iOS 10 et versions ultérieures uniquement). 
-- `apnsSubtitle` : sous-titre des notifications push riches (pris en charge sous iOS 10 et versions ultérieures uniquement). 
-- `apnsAttachmentUrl` : lien vers le support des notifications iOS (vidéo, audio, GIF, images - pris en charge sous iOS 10 et versions ultérieures uniquement). 
+- `apnstitle` : titre des notifications push Rich (pris en charge sous iOS 10 et versions ultérieures uniquement).
+- `apnsSubtitle` : sous-titre des notifications push riches (pris en charge sous iOS 10 et versions ultérieures uniquement).
+- `apnsAttachmentUrl` : lien vers le support des notifications iOS (vidéo, audio, GIF, images - pris en charge sous iOS 10 et versions ultérieures uniquement).
 
 - `fireFoxTitle` : spécifie le titre qui doit être défini pour WebPush Notification.
 - `fireFoxIconUrl` : URL de l'icône qui doit être définie pour WebPush Notification.
@@ -119,9 +119,9 @@ notification"`.
 - `chromeTimeToLive` : ce paramètre spécifie la durée de conservation (exprimée en secondes) du message dans le stockage GCM si le périphérique est hors ligne.
 - `chromePayload` : contenu JSON personnalisé qui est envoyé dans le cadre du message de notification.
 
-- `safariTitle` : spécifie le titre à définir pour les notifications push Safari. 
-- `safariUrlArgs` : arguments d'URL à utiliser avec cette notification. Ils doivent être fournis sous la forme d'un tableau JSON. 
-- `safariAction` : libellé du bouton d'action. 
+- `safariTitle` : spécifie le titre à définir pour les notifications push Safari.
+- `safariUrlArgs` : arguments d'URL à utiliser avec cette notification. Ils doivent être fournis sous la forme d'un tableau JSON.
+- `safariAction` : libellé du bouton d'action.
 
 - `chromeAppExtTitle` : spécifie le titre qui doit être défini pour WebPush Notification.
 - `chromeAppExtCollapseKey` : ce paramètre identifie un groupe de messages.

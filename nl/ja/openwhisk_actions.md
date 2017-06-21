@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -165,23 +165,22 @@ copyright:
 
   コマンド・ラインを使用して直接パラメーターを渡すには、以下に示すように、`--param` フラグにキー/値のペアを指定します。
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
   パラメーターの内容を含むファイルを使用するには、JSON フォーマットでそれらのパラメーターを含むファイルを作成します。次に、以下に示すように、ファイル名を `param-file` フラグに渡す必要があります。
 
   parameters.json という名前のサンプル・パラメーター・ファイル
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -193,8 +192,30 @@ copyright:
 
   `--result` オプションの使用に注意してください。アクティベーションが完了するのを CLI が待機するブロッキング呼び出しを意味し、結果のみを表示します。便宜上、自動的に推論される `--blocking` を指定せずにこのオプションを使用することができます。
 
+  また、コマンド・ラインで指定されたパラメーター値が有効な JSON である場合、それらのパラメーター値は構文解析され、構造化された 1 つのオブジェクトとしてアクションに送信されます。例えば、hello アクションを次のように変更するとします。
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  これで、アクションは単一の `person` パラメーターに `name` フィールドと `place` フィールドがあることを予期するようになります。このアクションを、有効な JSON である単一の `person` パラメーターを指定して起動します。
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  CLI が自動的に `person` パラメーター値を構文解析して、アクションが予期するようになった構造化オブジェクトにするため、結果は同じです。
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### デフォルト・パラメーターの設定
-{: #openwhisk_binding_actions}
 
 複数の名前付きパラメーターを指定してアクションを起動できます。前の例では `hello` アクションは、個人を表す *name* パラメーターと出身地を表す *place* の 2 つのパラメーターを予期していました。
 
@@ -227,7 +248,7 @@ copyright:
 2. 今回は `name` パラメーターのみを渡してアクションを起動します。
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -243,7 +264,7 @@ copyright:
   `--param` フラグを使用した場合
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -258,10 +279,10 @@ copyright:
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
   {
       "payload": "Hello, Bernie from Washington, DC"
@@ -301,7 +322,7 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -382,12 +403,12 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+{
+  "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
 
@@ -440,7 +461,7 @@ exports.main = myAction;
   ```
   {: pre}
 
-    > 注意: Windows Explorer の操作を使用して zip ファイルを作成すると、誤った構造になります。OpenWhisk zip アクションでは、`package.json` が zip のルートに存在する必要がありますが、Windows Explorer はこれをネストされたフォルダー内に置きます。最も安全な方法は、上記のようにコマンド・ラインで `zip` コマンドを使用することです。
+  > 注意: Windows Explorer の操作を使用して zip ファイルを作成すると、誤った構造になります。OpenWhisk zip アクションでは、`package.json` が zip のルートに存在する必要がありますが、Windows Explorer はこれをネストされたフォルダー内に置きます。最も安全な方法は、上記のようにコマンド・ラインで `zip` コマンドを使用することです。
 3. 以下のように、アクションを作成します。
 
   ```
@@ -453,7 +474,7 @@ exports.main = myAction;
 4. 以下のように、アクションの起動は、他と同様に行うことができます。
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -465,7 +486,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
 最後に、ほとんどの `npm` パッケージは `npm install` で JavaScript ソースをインストールしますが、一部のパッケージはバイナリー成果物をインストールおよびコンパイルすることにも注意してください。現在、アーカイブ・ファイルのアップロードでは、バイナリー依存関係はサポートされず、JavaScript 依存関係のみがサポートされます。アーカイブにバイナリーの依存関係が含まれている場合、アクションの起動が失敗することがあります。
 
@@ -492,7 +512,6 @@ exports.main = myAction;
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
 
-
   この例では、`split` アクションと `sort` アクションを使用します。
 
 2. アクション・シーケンスを作成して、1 つのアクションの結果が次のアクションに引数として渡されるようにします。
@@ -507,7 +526,7 @@ exports.main = myAction;
 3. アクションを起動します。
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -520,7 +539,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
   結果では行がソートされていることが分かります。
 
@@ -558,12 +576,12 @@ Python アクションは常にディクショナリーを取り込み、ディ�
 wsk action create helloPython hello.py
 ```
 {: pre}
-CLI は、ソース・ファイルの拡張子からアクションのタイプを自動的に推定します。`.py` のソース・ファイルには、Python 2.7 ランタイムを使用してアクションが実行されます。また、パラメーター `--kind python:3` を明示的に指定することで、Python 3.6 で実行されるアクションを作成することも可能です。Python 2.7 と 3.6 の比較について詳しくは、Python の[リファレンス](./openwhisk_reference.html#openwhisk_ref_python_environments)を参照してください。
+CLI は、ソース・ファイルの拡張子からアクションのタイプを自動的に推定します。`.py` のソース・ファイルには、Python 2.7 ランタイムを使用してアクションが実行されます。また、パラメーター `--kind python:3` を明示的に指定することで、Python 3.6 で実行されるアクションを作成することも可能です。Python 2.7 と 3.6 の比較について詳しくは、Python の[リファレンス](./reference.md#python-actions)を参照してください。
 
 アクション起動は、Python アクションの場合と JavaScript アクションの場合で同じです。
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -620,10 +638,10 @@ OpenWhisk コンテナーとの互換性を確保するには、virtualenv 内�
  {: pre}
 
 3. 以下のように、アクションを作成します。
-  ```bash
+```bash
 wsk action create helloPython --kind python:3 helloPython.zip
 ```
-  {: pre}
+{: pre}
 
 上記のステップは Python 3.6 で示しましたが、Python 2.7 でも同じことができます。
 
@@ -664,7 +682,7 @@ wsk action create helloSwift hello.swift
 アクション起動は、Swift アクションの場合と JavaScript アクションの場合で同じです。
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -808,7 +826,7 @@ wsk action create helloJava hello.jar --main Hello
 Java アクションのアクション呼び出しは、Swift アクションおよび JavaScript アクションの場合と同じです。
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -899,7 +917,7 @@ wsk action invoke --blocking --result helloJava --param name World
   このアクションは他の任意の {{site.data.keyword.openwhisk_short}} アクションとして起動される可能性があります。
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -918,7 +936,6 @@ wsk action invoke --blocking --result helloJava --param name World
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1004,7 +1021,6 @@ wsk action list [PACKAGE NAME]
   ```
   actions
   ```
-  {: pre}
 
 ## アクション・ボディー内のアクション・メタデータへのアクセス
 {: #openwhisk_action_metadata}

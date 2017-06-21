@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ Le package `/whisk.system/cloudant` permet d'utiliser une base de données Cloud
 | `/whisk.system/cloudant` | package | dbname, host, username, password | Utiliser une base de données Cloudant |
 | `/whisk.system/cloudant/read` | action | dbname, id | Lire un document à partir d'une base de données |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Ecrire un document dans une base de données |
-| `/whisk.system/cloudant/changes` | flux | dbname, maxTriggers | Exécuter des événements déclencheurs en cas de modification dans une base de données |
+| `/whisk.system/cloudant/changes` | flux | dbname, filter, query_params, maxTriggers | Exécuter des événements déclencheurs en cas de modification dans une base de données |
 
 Les rubriques ci-après expliquent comment configurer une base de données Cloudant, comment configurer un package associé, et comment utiliser les actions et les flux du package `/whisk.system/cloudant`.
 
@@ -102,6 +102,7 @@ Si vous n'utilisez pas OpenWhisk dans Bluemix ou si vous souhaitez configurer vo
 MON_COMPTE_CLOUDANT.cloudant.com
   ```
   {: pre}
+  
 
 2. Vérifiez que la liaison de package existe.
 
@@ -118,16 +119,56 @@ MON_COMPTE_CLOUDANT.cloudant.com
 ## Ecoute des modifications apportées dans une base de données Cloudant
 {: #openwhisk_catalog_cloudant_listen}
 
+### Filtrage des événements de modification de la base de données
+
+Vous pouvez définir une fonction de filtrage pour éviter que des événements de modification indésirables ne lancent votre déclencheur.
+
+Pour créer une nouvelle fonction de filtrage, vous pouvez utiliser une action.
+
+Créez un fichier de document json nommé `design_doc.json` et contenant la fonction de filtrage suivante
+```json
+    {
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+Créez un nouveau document de conception sur la base de données avec la fonction de filtrage
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+Les informations pour le nouveau document de conception sont affichées à l'écran.
+```json
+    {
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### Créez le déclencheur à l'aide de la fonction de filtrage
+
 Vous pouvez utiliser le flux `changes` pour configurer un service afin d'exécuter un déclencheur à chaque fois qu'une modification est apportée dans votre base de données Cloudant. Les paramètres sont les suivants :
 
 - `dbname` : nom de la base de données Cloudant.
 - `maxTriggers` : l'exécution de déclencheurs s'arrête lorsque cette limite est atteinte. Par défaut, cette valeur est infinie.
+- `filter` : fonction de filtrage définie sur un document de conception.
+- `query_params` : paramètres de requête facultatifs pour la fonction de filtrage.
 
 
-1. Créez un déclencheur avec le flux `changes` dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/monEspaceNom/monCloudant` par votre nom de package.
+1. Créez un déclencheur avec les `modifications` alimentées dans la liaison de package créée auparavant, y-compris les éléments `filter` et `query_params`, pour ne lancer le déclencheur que lorsque un document est ajouté ou modifié alors que son statut indique `new` (nouveau).
+Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -143,7 +184,7 @@ Vous pouvez utiliser le flux `changes` pour configurer un service afin d'exécut
 
 3. Dans votre tableau de bord Cloudant, modifiez un document existant ou créez-en un.
 
-4. Observez les nouvelles activations pour le déclencheur `monDéclencheurCloudant` pour chaque modification de document.
+4. Observez que, compte tenu de la fonction de filtrage et des paramètres de requête, les nouvelles activations du déclencheur `myCloudantTrigger` pour chaque modification de document n'interviennent plus que si le statut du document indique `new`.
   
   **Remarque** : si vous ne parvenez pas à observer de nouvelles activations, reportez-vous aux sections suivantes relatives à la lecture et à l'écriture dans une base de données Cloudant. Les tests de lecture et d'écriture ci-après vous aideront à vérifier que vos données d'identification Cloudant sont correctes.
   
@@ -174,15 +215,13 @@ Vous pouvez utiliser le flux `changes` pour configurer un service afin d'exécut
 
 Vous pouvez utiliser une action pour stocker un document dans une base de données Cloudant appelée `bdtest`. Assurez-vous que cette base de données existe sur votre compte Cloudant.
 
-1. Stockez un document en utilisant l'action `write` dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/monEspaceNom/monCloudant` par votre nom de package.
+1. Stockez un document en utilisant l'action `write` dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
 
   ```
-  wsk action invoke /monEspaceNom/monCloudant/write --blocking --result --param nom_bd bd_test --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter
-White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
     {
@@ -203,10 +242,10 @@ White\"}"
 
 Vous pouvez utiliser une action pour extraire un document depuis une base de données Cloudant appelée `bdtest`. Assurez-vous que cette base de données existe sur votre compte Cloudant.
 
-- Procédez à l'extraction d'un document en utilisant l'action `read` dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/monEspaceNom/monCloudant` par votre nom de package.
+- Procédez à l'extraction d'un document en utilisant l'action `read` dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
 
   ```
-  wsk action invoke /monEspaceNom/monCloudant/read --blocking --result --param dbname bdtest --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -219,6 +258,7 @@ Vous pouvez utiliser une action pour extraire un document depuis une base de don
 
 ## Utilisation d'une séquence d'actions et d'un déclencheur de changement pour traiter un document provenant d'une base de données Cloudant
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 Vous pouvez utiliser une séquence d'actions dans une règle pour extraire et traiter le document associé à un événement de changement Cloudant.
 
 Voici un exemple de code d'une action qui traite un document :
@@ -237,7 +277,7 @@ wsk action create myAction myAction.js
 Pour lire un document à partir de la base de données, vous pouvez utiliser l'action `read` dans le package Cloudant.
 L'action `read` peut être associée à `myAction` pour créer une séquence d'actions.
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -254,7 +294,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

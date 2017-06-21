@@ -75,8 +75,8 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones p
 - `tagNames` Enviar una notificación a los dispositivos que se han suscrito a cualquiera de estas etiquetas. Por ejemplo `-p tagNames "[\"tag1\"]" `.
 
 - `gcmCollapseKey`: este parámetro identifica un grupo de mensajes
-- `gcmCategory`: identificador de categoría a utilizar para las notificaciones push interactivas. 
-- `gcmIcon`: especifica el nombre del icono a visualizar en la notificación. Asegúrese de que el icono ya está empaquetado con la aplicación de cliente. 
+- `gcmCategory`: identificador de categoría a utilizar para las notificaciones push interactivas.
+- `gcmIcon`: especifica el nombre del icono a visualizar en la notificación. Asegúrese de que el icono ya está empaquetado con la aplicación de cliente.
 - `gcmDelayWhileIdle`: cuando este parámetro se establece en true, indica que el mensaje no se enviará hasta que el dispositivo esté activo.
 - `gcmSync`: la mensajería del grupo de dispositivos facilita que cada instancia de app de un grupo refleje el estado actualizado de mensajería.
 - `gcmVisibility`: private/public - visibilidad de esta notificación, que afecta a cómo y cuándo se muestran las notificaciones en una pantalla bloqueada segura.
@@ -99,13 +99,13 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones p
 - `apnsPayload`: carga útil JSON personalizada que se enviará como parte del mensaje de notificación.
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: nombre del archivo de sonido del paquete de aplicación. El sonido de este archivo se reproduce como una alerta.
-- `apnsTitleLocKey` - Clave a una serie de título en el archivo Localizable.strings con la localización actual. La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz `titleLocArgs`. 
-- `apnsLocKey` - Clave a una serie de mensaje de alerta en el archivo Localizable.strings para la localización actual (que se establece en las preferencias de idioma del usuario). La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz locArgs.  
-- `apnsLaunchImage` - Nombre de un archivo de imagen en el paquete de la aplicación, con o sin la extensión del nombre de archivo. La imagen se utiliza como imagen de lanzamiento cuando los usuarios pulsan en el botón de acción o mueven el control deslizante de acción.
+- `apnsTitleLocKey` - Clave a una serie de título en el archivo Localizable.strings con la localización actual. La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz `titleLocArgs`.
+- `apnsLocKey` - Clave a una serie de mensaje de alerta en el archivo Localizable.strings para la localización actual (que se establece en las preferencias de idioma del usuario). La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz locArgs.
+- `apnsLaunchImage` - Nombre de un archivo de imagen en el paquete de la app, con o sin la extensión del nombre de archivo. La imagen se utiliza como imagen de lanzamiento cuando los usuarios pulsan en el botón de acción o mueven el control deslizante de acción.
 - `pnsTitleLocArgs` - Valores de serie de variable que aparecerán en lugar de los especificadores de formato en `title-loc-key`.
 - `apnsLocArgs` - Valores de serie de variable que aparecerán en lugar de los especificadores de formato en `locKey`.
-- `apnstitle` - Título de las notificaciones push completas (soportado únicamente en iOS 10 y superior). 
-- `apnsSubtitle` - Subtítulo de las notificaciones completas. (Soportado únicamente en iOS 10 y superior). 
+- `apnstitle` - Título de las notificaciones push completas (soportado únicamente en iOS 10 y superior).
+- `apnsSubtitle` - Subtítulo de las notificaciones completas. (Soportado únicamente en iOS 10 y superior).
 - `apnsAttachmentUrl` - Enlace al medio de las notificaciones iOS (vídeo, audio, GIF, imágenes - soportado únicamente en iOS 10 y superior).
 
 - `fireFoxTitle`: especifica el título que se debe definir para la notificación WebPush.
@@ -118,9 +118,9 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones p
 - `chromeTimeToLive`: este parámetro especifica cuánto tiempo (en segundos) se debe conservar el mensaje en el almacenamiento GCM si el dispositivo está fuera de línea.
 - `chromePayload`: carga útil JSON personalizada que se enviará como parte del mensaje de notificación.
 
-- `safariTitle` - Especifica el título a establecer para las notificaciones push de Safari. 
-- `safariUrlArgs` - Argumentos de URL que se necesitan utilizar con esta notificación. Se han de proporcionar como una matriz JSON. 
-- `safariAction` - Etiqueta del botón de acción. 
+- `safariTitle` - Especifica el título a establecer para las notificaciones push de Safari.
+- `safariUrlArgs` - Argumentos de URL que se necesitan utilizar con esta notificación. Se han de proporcionar como una matriz JSON.
+- `safariAction` - Etiqueta del botón de acción.
 
 - `chromeAppExtTitle`: especifica el título que se debe definir para la notificación WebPush.
 - `chromeAppExtCollapseKey`: este parámetro identifica un grupo de mensajes.

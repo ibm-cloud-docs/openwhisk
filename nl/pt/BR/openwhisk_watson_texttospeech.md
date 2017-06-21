@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -39,7 +39,6 @@ do Bluemix.
   ```
   wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -62,14 +61,14 @@ de pacote para o seu serviço de Texto do Watson para Fala. Você precisa do nom
 - Crie uma ligação de pacote que esteja configurada para o seu serviço de Fala do Watson para Texto.
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## Converter algum texto para fala
 
-A ação `/whisk.system/watson-speechToText/textToSpeech` converte algum texto em uma fala de áudio. Os parâmetros são como segue:
+A ação `/whisk.system/watson-textToSpeech/textToSpeech` converte texto em um discurso de áudio. Os parâmetros são como segue:
 
 - `username`: o nome do usuário da API do Watson.
 - `password`: a senha da API do Watson.

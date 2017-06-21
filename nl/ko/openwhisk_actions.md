@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -164,7 +164,7 @@ lastupdated: "2017-04-21"
 
   명령행을 통해 직접 매개변수를 전달하려면 `--param` 플래그에 키/값 쌍을 제공하십시오. 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
@@ -172,16 +172,15 @@ lastupdated: "2017-04-21"
   이름은 `param-file` 플래그에 전달되어야 합니다.
 
   parameters.json이라는 예제 매개변수 파일: 
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -194,8 +193,30 @@ lastupdated: "2017-04-21"
   `--result` 옵션 사용 주목: 이 옵션은 CLI가 활성화가 완료되기를 기다린 다음 결과만 표시하는
   블로킹 호출을 포함합니다. 편의를 위해 이 옵션은 자동으로 추정되는 `--blocking` 없이 사용할 수 있습니다.
 
+  또한, 명령행에 지정된 매개변수 값이 유효한 JSON인 경우 이는 구문 분석되어 사용자의 조치에 구조화된 오브젝트로 전송됩니다. 예를 들어, hello 조치를 다음과 같이 업데이트하면, 
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  이제 이 조치에서 필드 `name` 및 `place`가 있는 하나의 `person` 매개변수를 기대합니다. 이 조치를 유효한 JSON인 하나의 `person` 매개변수를 사용하여 호출하면, 
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  CLI에서 이 조치가 기대하는 구조화된 오브젝트로 `person` 매개변수 값을 자동으로 구문 분석하므로 결과가 동일합니다. 
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### 기본 매개변수 설정
-{: #openwhisk_binding_actions}
 
 다중으로 이름 지정된 매개변수를 사용하여 조치를 호출할 수 있습니다. 이전 예에서 `hello` 조치를 호출하려면 두 개의 매개변수, 즉, 개인의 *name* 및 출신 *place*가 필요합니다.
 
@@ -229,7 +250,7 @@ lastupdated: "2017-04-21"
 2. 이번에는 `name` 매개변수만 전달하여 조치를 호출하십시오. 
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -245,7 +266,7 @@ lastupdated: "2017-04-21"
   `--param` 플래그 사용:
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -260,10 +281,10 @@ lastupdated: "2017-04-21"
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
   {  
       "payload": "Hello, Bernie from Washington, DC"
@@ -303,7 +324,7 @@ lastupdated: "2017-04-21"
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -384,12 +405,12 @@ lastupdated: "2017-04-21"
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+{
+  "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
 
@@ -442,7 +463,7 @@ exports.main = myAction;
   ```
   {: pre}
 
-    > 참고: Zip 파일 작성을 위해 Windows Explorer 조치를 사용하면 구조가 올바르지 않게 됩니다. OpenWhisk zip 조치에서 `package.json`은 zip의 루트에 있어야 하지만 Windows Explorer에서는 이를 중첩된 폴더 안에 넣습니다. 가장 안전한 옵션은 위에 표시된 명령행 `zip` 명령을 사용하는 것입니다.
+  > 참고: Zip 파일 작성을 위해 Windows Explorer 조치를 사용하면 구조가 올바르지 않게 됩니다. OpenWhisk zip 조치에서 `package.json`은 zip의 루트에 있어야 하지만 Windows Explorer에서는 이를 중첩된 폴더 안에 넣습니다. 가장 안전한 옵션은 위에 표시된 명령행 `zip` 명령을 사용하는 것입니다.
 
 
 3. 조치를 작성하십시오.
@@ -457,7 +478,7 @@ exports.main = myAction;
 4. 조치를 다른 조치와 같이 호출할 수 있습니다.
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -469,7 +490,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
 마지막으로, 대부분의 `npm` 패키지가 `npm install`에 JavaScript 소스를 설치하는 동안 일부 패키지도 바이너리 아티팩트를 설치하고 컴파일하는 점에 유의하십시오. 현재 아카이브 파일 업로드는 바이너리 종속 항목이 아닌 JavaScript 종속 항목만 지원합니다. 조치 호출은 아카이브에 바이너리 종속 항목이 포함된 경우 실패할 수 있습니다.
 
@@ -496,7 +516,6 @@ exports.main = myAction;
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
 
-
   이 예에서는 `split` 및 `sort` 조치를 사용합니다. 
 
 2. 한 조치의 결과가 다음 조치에 인수로 전달되도록 조치 시퀀스를 작성하십시오.
@@ -511,7 +530,7 @@ exports.main = myAction;
 3. 조치 호출:
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -524,7 +543,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
   결과에서 행이 정렬된 것을 볼 수 있습니다.
 
@@ -562,12 +580,12 @@ Python 조치에서는 항상 사전을 이용하고 사전을 생성합니다. 
 wsk action create helloPython hello.py
 ```
 {: pre}
-CLI는 자동으로 소스 파일 확장자에서 조치 유형을 추론합니다. `.py` 소스 파일에서 Python 2.7 런타임을 사용하여 조치가 실행됩니다. 명시적으로 `--kind python:3` 매개변수를 지정하여 Python 3.6과 함께 실행하는 조치도 작성할 수 있습니다. Python 2.7과 3.6을 비교한 내용에 대한 자세한 정보는 Python [참조](./openwhisk_reference.html#openwhisk_ref_python_environments)를 확인하십시오.
+CLI는 자동으로 소스 파일 확장자에서 조치 유형을 추론합니다. `.py` 소스 파일에서 Python 2.7 런타임을 사용하여 조치가 실행됩니다. 명시적으로 `--kind python:3` 매개변수를 지정하여 Python 3.6과 함께 실행하는 조치도 작성할 수 있습니다. Python 2.7과 3.6을 비교한 내용에 대한 자세한 정보는 Python [참조](./reference.md#python-actions)를 확인하십시오.
 
 Python 조치에 대한 조치 호출은 JavaScript 조치에 대한 조치 호출과 동일합니다. 
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -624,10 +642,10 @@ OpenWhisk 컨테이너와의 호환성을 확인하려면 대상 환경에서 vi
  {: pre}
 
 3. 조치를 작성하십시오.
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 Python 3.6의 경우 위의 단계가 표시되면 Python 2.7의 경우와 동일하게 수행할 수 있습니다.
 
@@ -670,7 +688,7 @@ wsk action create helloSwift hello.swift
 조치 호출은 JavaScript 호출과 마찬가지로 Swift 호출에 대해서도 동일합니다.
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -819,7 +837,7 @@ wsk action create helloJava hello.jar --main Hello
 Java 조치에 대한 조치 호출은 Swift 및 JavaScript 조치에 대한 조치 호출과 동일합니다. 
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -912,7 +930,7 @@ wsk action invoke --blocking --result helloJava --param name World
   이 조치는 다른 {{site.data.keyword.openwhisk_short}} 조치로서 호출할 수 있습니다. 
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -932,7 +950,6 @@ wsk action invoke --blocking --result helloJava --param name World
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1015,7 +1032,6 @@ wsk action list [PACKAGE NAME]
   ```
   actions
   ```
-  {: pre}
 
 ## 조치 본문 내 조치 메타데이터에 액세스
 {: #openwhisk_action_metadata}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -38,7 +38,6 @@ Si utiliza OpenWhisk desde Bluemix, OpenWhisk crea automáticamente enlaces de p
   ```
   wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -60,14 +59,14 @@ Si no utiliza OpenWhisk en Bluemix o si quiere configurar Watson Text to Speech 
 - Cree un enlace de paquete configurado para el servicio de Watson Speech to Text.
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## Conversión de texto a habla
 
-La acción `/whisk.system/watson-speechToText/textToSpeech` convierte texto en un texto hablado. Los parámetros son según se indica a continuación:
+La acción `/whisk.system/watson-textToSpeech/textToSpeech` convierte texto en un texto hablado. Los parámetros son según se indica a continuación:
 
 - `username`: el nombre de usuario de la API de Watson.
 - `password`: contraseña de la API de Watson.

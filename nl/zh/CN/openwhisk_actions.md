@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -166,23 +166,22 @@ copyright:
 
   要直接通过命令行来传递参数，请向 `--param` 标志提供键/值对：
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
   为了使用包含参数内容的文件，请创建 JSON 格式的包含参数的文件。然后，必须将文件名传递到 `param-file` 标志：
 
   名为 parameters.json 的示例参数文件：
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -194,8 +193,30 @@ copyright:
 
   使用 `--result` 选项时请注意：此选项暗含 CLI 等待激活完成并随后仅显示激活结果的阻塞性调用。为了方便起见，使用此选项时可不带 `--blocking`，系统会自动推断出阻塞性。
 
+  此外，如果在命令行上指定的参数值是有效的 JSON，那么会将它们解析为结构化对象并发送到操作。例如，如果将 hello 操作更新为：
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  现在，操作期望单个 `person` 参数具有 `name` 和 `place` 字段。如果我们使用作为有效 JSON 的单个 `person` 参数调用操作：
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  结果是相同的，因为 CLI 会自动将 `person` 参数值解析为操作现在期望的结构化对象：
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### 设置缺省参数
-{: #openwhisk_binding_actions}
 
 操作可以通过多个指定参数进行调用。重新调用上面示例中的 `hello` 操作需要两个参数：*name*（人员的姓名）和 *place*（人员所在位置）。
 
@@ -228,7 +249,7 @@ copyright:
 2. 调用操作，但这次只传递 `name` 参数。
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -246,7 +267,7 @@ copyright:
   使用 `--param` 标志：
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -255,18 +276,18 @@ copyright:
   文件 parameters.json：
   ```json
   {
-    "name": "Bernie",
+      "name": "Bernie",
     "place": "Vermont"
   }
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
-  {  
+  {
       "payload": "Hello, Bernie from Washington, DC"
   }
   ```
@@ -304,7 +325,7 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -391,12 +412,12 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+{
+  "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
 
@@ -449,7 +470,7 @@ exports.main = myAction;
   ```
   {: pre}
 
-    > 请注意：使用 Windows 资源管理器操作来创建 zip 文件将导致结构不正确。OpenWhisk zip 操作必须在 zip 的根目录中具有 `package.json`，而 Windows 资源管理器会将其放入嵌套文件夹内。最安全的选项是如上所示，在命令行上使用 `zip` 命令。
+  > 请注意：使用 Windows 资源管理器操作来创建 zip 文件将导致结构不正确。OpenWhisk zip 操作必须在 zip 的根目录中具有 `package.json`，而 Windows 资源管理器会将其放入嵌套文件夹内。最安全的选项是如上所示，在命令行上使用 `zip` 命令。
 
 
 3. 创建操作：
@@ -464,7 +485,7 @@ exports.main = myAction;
 4. 可以像调用其他任何操作一样来调用此操作：
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -476,7 +497,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
 最后，请注意，虽然大部分 `npm` 包会在执行 `npm install` 时安装 JavaScript 源代码，但还有些 npm 包会安装并编译二进制工件。目前，归档文件上传不支持二进制依赖关系，而只支持 JavaScript 依赖关系。如果归档包含二进制依赖关系，那么操作调用可能会失败。
 
@@ -503,7 +523,6 @@ exports.main = myAction;
    action /whisk.system/utils/cat：将输入连接成一个字符串
   ```
 
-
   您将使用此示例中的 `split` 和 `sort` 操作。
 
 2. 创建操作序列，使一个操作的结果作为自变量传递给下一个操作。
@@ -518,7 +537,7 @@ exports.main = myAction;
 3. 调用操作：
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -531,7 +550,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
   在结果中，您会看到这些行已排序。
 
@@ -564,11 +582,11 @@ Python 操作始终会使用一个字典并生成一个字典。缺省情况下�
 wsk action create helloPython hello.py
 ```
 {: pre}
-CLI 会根据源文件扩展名自动推断操作类型。对于 `.py` 源文件，操作会使用 Python 2.7 运行时运行。还可以通过显式指定参数 `--kind python:3`，创建使用 Python 3.6 运行的操作。请参阅 Python [参考](./openwhisk_reference.html#openwhisk_ref_python_environments)，以获取有关 Python 2.7 与 3.6 比较情况的更多信息。
+CLI 会根据源文件扩展名自动推断操作类型。对于 `.py` 源文件，操作会使用 Python 2.7 运行时运行。还可以通过显式指定参数 `--kind python:3`，创建使用 Python 3.6 运行的操作。请参阅 Python [参考](./reference.md#python-actions)，以获取有关 Python 2.7 与 3.6 比较情况的更多信息。
 Python 操作的操作调用与 JavaScript 操作的操作调用相同：
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -622,10 +640,10 @@ wsk action create helloPython --kind python:3 helloPython.zip
  {: pre}
 
 3. 创建操作：
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 虽然上面显示的步骤是针对 Python 3.6 的，但也同样适用于 Python 2.7。
 
@@ -667,13 +685,13 @@ Swift 操作的操作调用与 JavaScript 操作的操作调用相同：
 
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
 ```json
   {
-    "greeting": "Hello World!"
+      "greeting": "Hello World!"
   }
 ```
 
@@ -812,13 +830,13 @@ Java 操作的操作调用与 Swift 和 JavaScript 操作的操作调用相同�
 
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
 ```json
   {
-    "greeting": "Hello World!"
+      "greeting": "Hello World!"
   }
 ```
 
@@ -903,12 +921,12 @@ wsk action invoke --blocking --result helloJava --param name World
   请注意，创建操作时使用 `--docker`。目前，假定所有 Docker 映像都在 Docker Hub 上进行托管。该操作可能会作为其他任何 {{site.data.keyword.openwhisk_short}} 操作进行调用。
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
   {
-    "args": {
+      "args": {
           "payload": "Rey"
       },
       "msg": "Hello from arbitrary C program!"
@@ -923,7 +941,6 @@ wsk action invoke --blocking --result helloJava --param name World
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1011,7 +1028,6 @@ wsk action list [PACKAGE NAME]
   ```
   actions
   ```
-  {: pre}
 
 ## 访问操作体中的操作元数据
 {: #openwhisk_action_metadata}

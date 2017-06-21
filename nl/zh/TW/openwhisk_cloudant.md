@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ lastupdated: "2017-02-23"
 | `/whisk.system/cloudant` | 套件 | dbname、host、username、password | 使用 Cloudant 資料庫 |
 | `/whisk.system/cloudant/read` | 動作 | dbname、id | 讀取資料庫中的文件 |
 | `/whisk.system/cloudant/write` | 動作 | dbname、overwrite、doc | 將文件寫入資料庫 |
-| `/whisk.system/cloudant/changes` | 資訊來源 | dbname、maxTriggers | 在資料庫變更時發動觸發程式事件 |
+| `/whisk.system/cloudant/changes` | 資訊來源 | dbname、filter、query_params、maxTriggers | 在資料庫變更時發動觸發程式事件 |
 
 下列各主題逐步說明如何設定 Cloudant 資料庫、配置關聯的套件，以及使用 `/whisk.system/cloudant` 套件中的動作及資訊來源。
 
@@ -101,6 +101,7 @@ wsk package list
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
+  
 
 2. 驗證套件連結已存在。
 
@@ -117,16 +118,56 @@ packages
 ## 接聽 Cloudant 資料庫的變更
 {: #openwhisk_catalog_cloudant_listen}
 
+### 過濾資料庫變更事件
+
+您可以定義過濾器函數，避免不必要的變更事件激發觸發程式。
+
+若要建立新的過濾器函數，您可以使用動作。
+
+使用下列過濾器函數建立 json 文件檔案 `design_doc.json`
+```json
+{
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+使用過濾器函數，在資料庫上建立新的設計文件
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+畫面上會列印新設計文件的資訊。
+```json
+{
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### 使用過濾器函數建立觸發程式
+
 您可以使用 `changes` 資訊來源，配置服務在每次變更 Cloudant 資料庫時發動觸發程式。參數如下所示：
 
 - `dbname`：Cloudant 資料庫的名稱。
 - `maxTriggers`：在達到此限制時停止發動觸發程式。預設值為無限。
+- `filter`：設計文件上所定義的過濾器函數。
+- `query_params`：過濾器函數的選用查詢參數。
 
 
-1. 使用您先前建立的套件連結中的 `changes` 資訊來源，來建立觸發程式。請務必將 `/myNamespace/myCloudant` 取代為套件名稱。
+1. 在先前建立的套件連結中，建立具有 `changes` 資訊來源的觸發程式（包括 `filter` 及 `query_params`），只在狀態為 `new` 並且新增或修改文件時才會激發觸發程式。
+請務必將 `/_/myCloudant` 取代為套件名稱。
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -142,7 +183,7 @@ packages
 
 3. 在 Cloudant 儀表板中，修改現有文件，或建立新文件。
 
-4. 觀察每一個文件變更的 `myCloudantTrigger` 觸發程式的新啟動。
+4. 根據過濾器函數及查詢參數，只有在文件狀態為 `new` 時，才會觀察每一個文件變更的 `myCloudantTrigger` 觸發程式的新啟動。
   
   **附註**：如果您無法觀察到新啟動，請參閱有關在 Cloudant 資料庫中讀取及寫入的後續各節。測試下列讀取及寫入步驟，有助於驗證 Cloudant 認證正確無誤。
   
@@ -173,14 +214,13 @@ packages
 
 您可以使用動作，將文件儲存至稱為 `testdb` 的 Cloudant 資料庫。請確定此資料庫存在於 Cloudant 帳戶中。
 
-1. 使用您先前建立的套件連結中的 `write` 動作，來儲存文件。請務必將 `/myNamespace/myCloudant` 取代為套件名稱。
+1. 使用您先前建立的套件連結中的 `write` 動作，來儲存文件。請務必將 `/_/myCloudant` 取代為套件名稱。
 
   ```
-  wsk action invoke /myNamespace/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
   {
@@ -200,10 +240,10 @@ packages
 
 您可以使用動作，從稱為 `testdb` 的 Cloudant 資料庫中提取文件。請確定此資料庫存在於 Cloudant 帳戶中。
 
-- 使用您先前建立的套件連結中的 `read` 動作，來提取文件。請務必將 `/myNamespace/myCloudant` 取代為套件名稱。
+- 使用您先前建立的套件連結中的 `read` 動作，來提取文件。請務必將 `/_/myCloudant` 取代為套件名稱。
 
   ```
-  wsk action invoke /myNamespace/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -216,6 +256,7 @@ packages
 
 ## 使用動作序列及變更觸發程式來處理 Cloudant 資料庫中的文件
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 您可以在規則中使用動作序列，來提取及處理與 Cloudant 變更事件相關聯的文件。
 
 以下是可處理文件的動作的範例程式碼：
@@ -234,7 +275,7 @@ wsk action create myAction myAction.js
 若要從資料庫中讀取文件，您可以使用 Cloudant 套件中的 `read` 動作。
 可以使用 `myAction` 來組合 `read` 動作，以建立動作序列。
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -251,7 +292,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

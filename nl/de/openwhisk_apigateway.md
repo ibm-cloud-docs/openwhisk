@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -33,7 +33,7 @@ Konfigurieren Sie die OpenWhisk-CLI mit dem API-Host mit dem Befehl `wsk propert
 Um den CLI-Befehl `wsk api` verwenden zu können, muss die Datei `~/.wskprops` das Bluemix-Zugriffstoken enthalten.
 Zum Abrufen des Zugriffstokens verwenden Sie den CLI-Befehl `wsk bluemix login`. Weitere Informationen zu dem Befehl können Sie durch den Befehl `wsk bluemix login -h` anzeigen.
 
-**Hinweis:** Wenn der Befehl fehlschlägt, weil für ihn Single Sign-on (SSO) erforderlich ist, wird diese Ausführung gegenwärtig nicht unterstützt. Als Ausweichlösung können Sie sich über die Bluemix-CLI mit dem Befehl `bluemix login` anmelden und das Zugriffstoken aus der Konfigurationsdatei `~/.bluemix/.cf/config.json` im Ausgangsverzeichnis in die Datei `~/.wskprops` als Eigenschaft `APIGW_ACCESS_TOKEN="Wert des Zugriffstokens"` kopieren. Entfernen Sie beim Kopieren des Zugriffstokens das Präfix `Bearer`.
+**Hinweis:** Wenn der Befehl `wsk bluemix login` mit dem Fehler `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso` fehlschlägt, melden Sie sich mit `bluemix login` bei der Bluemix-CLI an und geben Sie `wsk bluemix login --sso` aus.
 
 **Hinweis:** Die APIs, die Sie mit dem Befehl `wsk api-experimental` erstellt haben, werden für einen Zeitraum noch weiter funktionieren. Sie sollten jedoch damit beginnen, Ihre APIs in Webaktionen zu migrieren und Ihre vorhandenen APIs mithilfe des neuen CLI-Befehls `wsk api` neu zu konfigurieren.
 
@@ -74,7 +74,7 @@ Zum Abrufen des Zugriffstokens verwenden Sie den CLI-Befehl `wsk bluemix login`.
   $ curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/hello/world?name=OpenWhisk
   ```
   ```json
-{
+  {
   "payload": "Hello world OpenWhisk"
   }
   ```

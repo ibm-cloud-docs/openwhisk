@@ -45,7 +45,8 @@ Für jeden Entitätstyp gibt es Entitätsendpunkte:
 Die Endpunkte für Namensbereiche und Aktivierungen unterstützen nur GET-Anforderungen. Die Endpunkte für Aktionen, Auslöser, Regeln und Pakete unterstützen GET-, PUT- und DELETE-Anforderungen. Die Endpunkte für Aktionen, Auslöser und Regeln unterstützen auch POST-Anforderungen, die zum Aufrufen von Aktionen und Auslösern sowie zum Aktivieren und Inaktivieren von Regeln verwendet werden. 
 
 Alle APIs sind mit der HTTP-Basisauthentifizierung geschützt. 
-Sie können das Tool [wskadmin](../tools/admin/wskadmin) verwenden, um einen neuen Namensbereich und eine neue Authentifizierung zu generieren. Die durch einen Doppelpunkt voneinander getrennten Basic-Berechtigungsnachweise zur Authentifizierung befinden sich in der Eigenschaft `AUTH` in der `~/.wskprops`-Datei. 
+Sie können das Tool [wskadmin](../tools/admin/wskadmin) verwenden, um einen neuen Namensbereich und eine neue Authentifizierung zu generieren.
+Die durch einen Doppelpunkt voneinander getrennten Basic-Berechtigungsnachweise zur Authentifizierung befinden sich in der Eigenschaft `AUTH` in der `~/.wskprops`-Datei. 
 Sie können diese Berechtigungsnachweise auch über die Befehlszeilenschnittstelle (CLI) abrufen, indem Sie `wsk property get --auth` ausführen.
 
 
@@ -111,7 +112,7 @@ Response body received:
 ["john@example.com_dev"]
 ```
 
-Wie Sie sehen, stellen die gedruckten Informationen die Eigenschaften der HTTP-Anforderung bereit. Außerdem wird die HTTP-Methode `GET` mithilfe des BASIC-Berechtigungsheaders `Basic XXXYYYY` auf die URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` angewendet.
+Wie Sie sehen, stellen die gedruckten Informationen die Eigenschaften der HTTP-Anforderung bereit. Außerdem wird die HTTP-Methode `GET` mithilfe des BASIC-Berechtigungsheaders `Basic XXXYYYY` auf die URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` angewendet. 
 Beachten Sie, dass der Berechtigungswert die base64-codierte OpenWhisk-Berechtigungszeichenfolge ist.
 Die Antwort weist den Inhaltstyp `application/json` auf.
 
@@ -119,7 +120,7 @@ Die Antwort weist den Inhaltstyp `application/json` auf.
 {: #openwhisk_rest_api_actions}
 Zum Erstellen oder Aktualisieren einer Aktion senden Sie eine HTTP-Anforderung mit der Methode `PUT` für die Aktionssammlung. Verwenden Sie beispielsweise den folgenden Code, um eine Aktion des Typs `nodejs:6` mit dem Namen `hello` mithilfe des Inhalts einer einzelnen Datei zu erstellen:
 ```bash
-curl -u $AUTH -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"}}' -X PUT -H "Content-Type: application/json" https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true
+curl -u $AUTH -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"}}' -X PUT -H "Content-Type: application/json" https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true 
 ```
 {: pre}
 

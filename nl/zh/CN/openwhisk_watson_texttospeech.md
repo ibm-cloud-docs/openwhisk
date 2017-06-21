@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -38,7 +38,6 @@ lastupdated: "2017-02-21"
   ```
 wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -60,14 +59,14 @@ wsk package refresh
 - 创建为您的 Watson Speech to Text 服务配置的包绑定。
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## 将某些文本转换为语音
 
-`/whisk.system/watson-speechToText/textToSpeech` 操作可将某些文本转换为音频语音。参数如下所示：
+`/whisk.system/watson-textToSpeech/textToSpeech` 操作可将某些文本转换为音频语音。参数如下所示：
 
 - `username`：Watson API 用户名。
 - `password`：Watson API 密码。

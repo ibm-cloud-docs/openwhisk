@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -164,23 +164,22 @@ copyright:
 
   若要透過指令行直接傳遞參數，請提供一對索引鍵/值給 `--param` 旗標：
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
   若要使用包含參數內容的檔案，請以 JSON 格式建立包含參數的檔案。然後，必須將檔名傳遞至 `param-file` 旗標：
 
   稱為 parameters.json 的範例參數檔案：
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -192,8 +191,30 @@ copyright:
 
   請注意，使用 `--result` 選項：這表示 CLI 等待呼叫完成後僅顯示結果的封鎖呼叫。為方便起見，可以在沒有自動推斷的 `--blocking` 的情況下使用此選項。
 
+  此外，如果指令行上所指定的參數值是有效的 JSON，則會對其進行剖析，並以結構化物件形式將其傳送至動作。例如，如果將 hello 動作更新為：
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  現在，動作預期單一 `person` 參數具有欄位 `name` 及 `place`。如果我們呼叫的動作具有本身為有效 JSON 的單一 `person` 參數：
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  結果會相同，因為 CLI 會自動將 `person` 參數值剖析為動作現在預期的結構化物件：
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### 設定預設參數
-{: #openwhisk_binding_actions}
 
 您可以使用多個具名參數來呼叫動作。請記住，前一個範例中的 `hello` 動作預期會有兩個參數：人員的名稱 (*name*) 及其所在位置 (*place*)。
 
@@ -226,12 +247,12 @@ copyright:
 2. 呼叫動作，但這次只傳遞 `name` 參數。
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
   {
-      "payload": "Hello, Bernie from Vermont"
+    "payload": "Hello, Bernie from Vermont"
   }
   ```
 
@@ -242,7 +263,7 @@ copyright:
   使用 `--param` 旗標：
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -257,10 +278,10 @@ copyright:
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
   {
       "payload": "Hello, Bernie from Washington, DC"
@@ -300,7 +321,7 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -381,12 +402,12 @@ copyright:
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+{
+  "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
 
@@ -439,7 +460,7 @@ exports.main = myAction;
   ```
   {: pre}
 
-    > 請注意：使用 Windows 檔案總管動作來建立 zip 檔案會導致結構不正確。OpenWhisk zip 動作必須將 `package.json` 置於 zip 的根目錄，而 Windows 檔案總管會將它放在巢狀資料夾中。最安全的選項是使用上述指令行的 `zip` 指令。
+  > 請注意：使用 Windows 檔案總管動作來建立 zip 檔案會導致結構不正確。OpenWhisk zip 動作必須將 `package.json` 置於 zip 的根目錄，而 Windows 檔案總管會將它放在巢狀資料夾中。最安全的選項是使用上述指令行的 `zip` 指令。
 
 
 3. 建立動作：
@@ -454,7 +475,7 @@ exports.main = myAction;
 4. 您可以呼叫任何其他動作：
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -466,7 +487,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
 最後，請注意，雖然大部分 `npm` 套件都會在 `npm install` 上安裝 JavaScript 原始檔，但是有一部分也會安裝及編譯二進位構件。保存檔上傳目前不支援二進位相依關係，而只支援 JavaScript 相依關係。如果保存檔包括二進位相依關係，則動作呼叫可能會失敗。
 
@@ -493,7 +513,6 @@ exports.main = myAction;
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
 
-
   在此範例中，您將使用 `split` 及 `sort` 動作。
 
 2. 建立動作序列，以將某個動作的結果當作下一個動作的引數來傳遞。
@@ -508,7 +527,7 @@ exports.main = myAction;
 3. 呼叫動作：
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -521,7 +540,6 @@ exports.main = myAction;
       ]
   }
   ```
-
 
   在結果中，會排序這些行。
 
@@ -554,12 +572,12 @@ Python 動作一律會使用某個字典，並產生一個字典。動作的輸�
 wsk action create helloPython hello.py
 ```
 {: pre}
-CLI 會從原始檔副檔名自動推斷動作類型。對於 `.py` 原始檔，動作會使用 Python 2.7 運行環境來執行。您也可以明確地指定參數 `--kind python:3`，來建立與 Python 3.6 一起執行的動作。如需 Python 2.7 與 3.6 的相關資訊，請參閱 Python [參照](./openwhisk_reference.html#openwhisk_ref_python_environments)。
+CLI 會從原始檔副檔名自動推斷動作類型。對於 `.py` 原始檔，動作會使用 Python 2.7 運行環境來執行。您也可以明確地指定參數 `--kind python:3`，來建立與 Python 3.6 一起執行的動作。如需 Python 2.7 與 3.6 的相關資訊，請參閱 Python [參照](./reference.md#python-actions)。
 
 Python 動作與 JavaScript 動作的動作呼叫相同：
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -616,10 +634,10 @@ wsk action create helloPython --kind python:3 helloPython.zip
  {: pre}
 
 3. 建立動作：
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 雖然上述步驟是針對 Python 3.6 所顯示，但是您也可以針對 Python 2.7 進行相同步驟。
 
@@ -660,7 +678,7 @@ wsk action create helloSwift hello.swift
 Swift 動作與 JavaScript 動作的動作呼叫相同：
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -795,7 +813,7 @@ wsk action create helloJava hello.jar --main Hello
 對於 Java 動作，動作呼叫是相同的，因為其適用於 Swift 及 JavaScript 動作：
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -883,7 +901,7 @@ wsk action invoke --blocking --result helloJava --param name World
   動作可能會呼叫為任何其他 {{site.data.keyword.openwhisk_short}} 動作。
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -901,7 +919,6 @@ wsk action invoke --blocking --result helloJava --param name World
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -984,7 +1001,6 @@ wsk action list [PACKAGE NAME]
   ```
   actions
   ```
-  {: pre}
 
 ## 存取動作內文內的動作 meta 資料
 {: #openwhisk_action_metadata}

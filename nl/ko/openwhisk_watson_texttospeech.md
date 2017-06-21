@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -38,7 +38,6 @@ Bluemix에서 OpenWhisk를 사용하는 경우, OpenWhisk가 Bluemix Watson 서�
   ```
   wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -60,14 +59,14 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix의 외부에서 Watson
 - Watson Speech to Text 서비스에 대해 구성된 패키지 바인딩을 작성하십시오. 
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## 일부 문자-음성 변환
 
-`/whisk.system/watson-speechToText/textToSpeech` 조치는 일부 텍스트를 오디오 음성으로 변환합니다. 매개변수는 다음과 같습니다.
+`/whisk.system/watson-textToSpeech/textToSpeech` 조치는 일부 텍스트를 오디오 음성으로 변환합니다. 매개변수는 다음과 같습니다.
 
 - `username`: Watson API 사용자 이름입니다. 
 - `password`: Watson API 비밀번호입니다.

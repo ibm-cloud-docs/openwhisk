@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-06-01"
 
 ---
 
@@ -38,7 +38,6 @@ Bluemix から OpenWhisk を使用している場合、Bluemix Watson サービ�
   ```
 wsk package refresh
   ```
-  {: pre}
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
@@ -60,15 +59,14 @@ Bluemix で OpenWhisk を使用していない場合、または Bluemix の外�
 - Watson Speech to Text サービス用に構成されるパッケージ・バインディングを作成します。
   
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
 
 ## テキストをスピーチに変換
 
-`/whisk.system/watson-speechToText/textToSpeech` アクショ
-ンはテキストを音声スピーチに変換します。パラメーターは次のとおりです。
+`/whisk.system/watson-textToSpeech/textToSpeech` アクションは、テキストを音声スピーチに変換します。パラメーターは次のとおりです。
 
 
 - `username`: Watson API ユーザー名。

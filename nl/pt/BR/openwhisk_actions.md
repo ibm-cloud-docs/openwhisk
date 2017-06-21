@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -164,7 +164,7 @@ Os parâmetros podem ser passados para a ação quando for chamada.
 
   Para passar os parâmetros diretamente pela linha de comandos, forneça um par de chave/valor para a sinalização `--param`:
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
@@ -172,16 +172,15 @@ Os parâmetros podem ser passados para a ação quando for chamada.
   nome do arquivo deve então ser passado para a sinalização `param-file`:
 
   Exemplo de arquivo de parâmetro chamado parameters.json:
-  ```json
-     {
+  ```
+  {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -194,8 +193,30 @@ Os parâmetros podem ser passados para a ação quando for chamada.
   Observe o uso da opção `--result`: isso significa uma chamada de bloqueio em que a CLI aguarda a ativação ser concluída e, em seguida,
   exibe somente o resultado. Por conveniência, essa opção pode ser usada sem `--blocking` que é inferido automaticamente.
 
+  Além disso, se os valores de parâmetro especificados na linha de comandos forem JSON válidos, eles serão analisados e enviados para a sua ação como um objeto estruturado. Por exemplo, se atualizarmos nossa ação hello para:
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  Agora a ação espera que um único parâmetro `person` tenha os campos `name` e `place`. Se chamarmos a ação com um único parâmetro `person` que seja JSON válido:
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  O resultado será o mesmo porque a CLI analisará automaticamente o valor de parâmetro `person` para o objeto estruturado que a ação agora espera:
+  ```json
+     {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### Configurando parâmetros padrão
-{: #openwhisk_binding_actions}
 
 Ações podem ser chamadas com vários parâmetros denominados. Lembre-se de que a ação `hello` do exemplo anterior espera dois parâmetros: *name* de uma pessoa e *place* de onde ela é.
 
@@ -229,7 +250,7 @@ Em vez de passar todos os parâmetros para uma ação toda vez, é possível faz
 2. Chame a ação, passando somente o parâmetro `name` desta vez.
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -245,7 +266,7 @@ Em vez de passar todos os parâmetros para uma ação toda vez, é possível faz
   Usando a sinalização `--param`:
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -260,10 +281,10 @@ Em vez de passar todos os parâmetros para uma ação toda vez, é possível faz
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
      {  
       "payload": "Hello, Bernie from Washington, DC"
@@ -303,7 +324,7 @@ As funções JavaScript que são executadas de forma assíncrona podem precisar 
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  Chamar a ação wsk -- asyncAction resultado
   ```
   {: pre}
   ```json
@@ -384,7 +405,7 @@ Este exemplo chama um serviço Yahoo Weather para obter as condições atuais em
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
@@ -443,8 +464,7 @@ Para criar uma ação do OpenWhisk a partir deste pacote:
   ```
   {: pre}
 
-    > Observe: usar a ação do Windows Explorer para criar o arquivo zip resultará em uma estrutura incorreta. As ações zip do OpenWhisk deverão ter o `package.json` na raiz do zip, enquanto o Windows Explorer o colocará dentro de uma pasta aninhada. A opção mais segura é usar o comando `zip` da linha de comandos, conforme mostrado acima.
-
+  > Observe: usar a ação do Windows Explorer para criar o arquivo zip resultará em uma estrutura incorreta. As ações zip do OpenWhisk deverão ter o `package.json` na raiz do zip, enquanto o Windows Explorer o colocará dentro de uma pasta aninhada. A opção mais segura é usar o comando `zip` da linha de comandos, conforme mostrado acima.
 
 3. Crie a ação:
 
@@ -458,7 +478,7 @@ Para criar uma ação do OpenWhisk a partir deste pacote:
 4. É possível chamar a ação como qualquer outra:
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -470,7 +490,6 @@ Para criar uma ação do OpenWhisk a partir deste pacote:
       ]
   }
   ```
-
 
 Finalmente, observe que enquanto a maioria dos pacotes `npm` instala fontes JavaScript em `npm install`, alguns também instalam e compilam os artefatos binários. O upload do archive atualmente não suporta dependências binárias, mas apenas as dependências JavaScript. As chamadas de ação poderão falhar se o archive incluir dependências binárias.
 
@@ -497,7 +516,6 @@ Várias ações do utilitário são fornecidas em um pacote chamado `/whisk.syst
    action /whisk.system/utils/cat: concatena a entrada em uma sequência
   ```
 
-
   Você estará usando as ações `split` e `sort` neste exemplo.
 
 2. Crie uma sequência de ações de modo que o resultado de uma ação seja passado como um argumento para a próxima ação.
@@ -512,7 +530,7 @@ Várias ações do utilitário são fornecidas em um pacote chamado `/whisk.syst
 3. Chame a ação:
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -525,7 +543,6 @@ Várias ações do utilitário são fornecidas em um pacote chamado `/whisk.syst
       ]
   }
   ```
-
 
   No resultado, você vê que as linhas estão classificadas.
 
@@ -571,13 +588,13 @@ A CLI infere automaticamente o tipo da ação na extensão do arquivo de origem.
 `.py`, a ação é executada usando um tempo de execução Python 2.7. Também é possível criar uma
 ação que é executada com o Python 3.6 especificando explicitamente o parâmetro
 `-- kind python:3`. Consulte a
-[referência](./openwhisk_reference.html#openwhisk_ref_python_environments) do Python para obter
+[referência](./reference.md#python-actions) do Python para obter
 mais informações sobre o Python 2.7 versus 3.6.
 
 A chamada da ação é a mesma para ações do Python que é para ações do JavaScript:
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -631,10 +648,10 @@ Abaixo há um cenário de exemplo para instalar dependências, empacotando-as em
  {: pre}
 
 3. Crie a ação:
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 Embora as etapas acima sejam mostradas para o Python 3.6, também é possível fazer o mesmo para o Python 2.7.
 
@@ -677,7 +694,7 @@ JavaScript); a ferramenta determina isso a partir da extensão do arquivo.
 A chamada da ação é a mesma para as ações Swift que das ações JavaScript:
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -821,7 +838,7 @@ por exemplo, `--main com.example.MyMain`.
 A chamada de ação para as ações Java é a mesma que para as ações Swift e JavaScript:
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -914,7 +931,7 @@ Para as instruções a seguir, suponha que o ID do usuário do Docker seja `jane
   A ação pode ser chamada como qualquer outra ação do {{site.data.keyword.openwhisk_short}}.
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -934,7 +951,6 @@ Para as instruções a seguir, suponha que o ID do usuário do Docker seja `jane
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1017,7 +1033,6 @@ wsk action list [PACKAGE NAME]
   ```
   actions
   ```
-  {: pre}
 
 ## Acessando metadados de ação dentro do corpo de ação
 {: #openwhisk_action_metadata}

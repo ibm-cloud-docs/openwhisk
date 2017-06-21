@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-  lastupdated: "2017-04-21"
+  lastupdated: "2017-06-01"
 
 ---
 
@@ -166,7 +166,7 @@ einer Datei bereitgestellt werden, die die gewünschten Parameter enthält.
   Um Parameter direkt in der Befehlszeile zu übergeben, geben Sie für das
 Flag `--param` ein Schlüssel/Wert-Paar an:
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place Vermont
+  wsk action invoke --result hello --param name Bernie --param place Vermont
   ```
   {: pre}
 
@@ -175,16 +175,15 @@ eine Datei mit den Parametern im JSON-Format. Anschließend muss der Dateiname a
 das Flag `param-file` übergeben werden:
 
   Beispielparameterdatei namens 'parameters.json':
-  ```json
+  ```
   {
       "name": "Bernie",
       "place": "Vermont"
   }
   ```
-  {: codeblock}
 
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
 
@@ -196,8 +195,30 @@ das Flag `param-file` übergeben werden:
 
   Beachten Sie die Verwendung der Option `--result`: Sie bewirkt einen blockierenden Aufruf, bei dem die Befehlszeilenschnittstelle auf den Abschluss der Aktivierung wartet und dann nur das Ergebnis anzeigt. Aus Gründen des Bedienungskomforts kann diese Option ohne die Option `--blocking` verwendet werden, die automatisch abgeleitet wird.
 
+  Darüber hinaus gilt: Wenn die in der Befehlszeile angegebenen Parameterwerte gültige JSON-Werte sind, dann werden sie analysiert und als strukturiertes Objekt an Ihre Aktion gesendet. Wenn zum Beispiel unsere Aktion "hello" folgendermaßen aktualisiert wird:
+
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+  }
+  ```
+  {: codeblock}
+
+  Jetzt erwartet die Aktion, dass ein einzelner Parameter `Person` die Felder `name` und `place` aufweist. Wenn wir die Aktion mit einem einzelnen Parameter `person` aufrufen, der ein gültiger JSON-Wert ist:
+
+  ```
+  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
+  ```
+  {: pre}
+
+  Das Ergebnis ist dasselbe, weil die CLI automatisch den Parameter `person` in das strukturierte Objekt analysiert, das jetzt von der Aktion erwartet wird:
+  ```json
+  {
+      "payload": "Hello, Bernie from Vermont"
+  }
+  ```
+
 ### Standardparameter festlegen
-{: #openwhisk_binding_actions}
 
 Aktionen können mit mehreren benannten Parameter aufgerufen werden. Die Aktion `hello` aus dem vorherigen Beispiel erwartet beispielsweise zwei Parameter: den Namen (*name*) einer Person und den Ort (*place*), aus dem sie kommt.
 
@@ -237,7 +258,7 @@ werden, die den gewünschten Inhalt im JSON-Format enthält.
 2. Rufen Sie die Aktion auf, indem Sie diesmal nur den Parameter `name` übergeben.
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie
+  wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
   ```json
@@ -253,7 +274,7 @@ werden, die den gewünschten Inhalt im JSON-Format enthält.
   Verwendung des Flags `--param`:
 
   ```
-  wsk action invoke --blocking --result hello --param name Bernie --param place "Washington, DC"
+  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
   ```
   {: pre}
 
@@ -268,10 +289,10 @@ werden, die den gewünschten Inhalt im JSON-Format enthält.
   ```
   {: codeblock}
   ```
-  wsk action invoke --blocking --result hello --param-file parameters.json
+  wsk action invoke --result hello --param-file parameters.json
   ```
   {: pre}
-  
+
   ```json
   {  
       "payload": "Hello, Bernie from Washington, DC"
@@ -312,7 +333,7 @@ diesem Beispiel zwei Sekunden ab, bevor die Callback-Funktion aufgerufen wird.  
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result asyncAction
+  wsk action invoke --result asyncAction
   ```
   {: pre}
   ```json
@@ -393,11 +414,11 @@ Im folgenden Beispiel wird ein Yahoo Weather-Services aufgerufen, um die aktuell
   ```
   {: pre}
   ```
-  wsk action invoke --blocking --result weather --param location "Brooklyn, NY"
+  wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
   ```json
-  {
+{
       "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
   }
   ```
@@ -451,8 +472,7 @@ Gehen Sie wie folgt vor, um aus diesem Paket eine OpenWhisk-Aktion zu erstellen:
   ```
   {: pre}
 
-    > Hinweis: Die Verwendung der Windows Explorer-Aktion zur Erstellung der ZIP-Datei führt zu einer falschen Struktur. OpenWhisk-ZIP-Aktionen müssen `package.json` am Stammelement der ZIP-Datei aufweisen, während Windows Explorer die Datei in einem verschachtelten Ordner ablegt. Am sichersten ist die Verwendung des oben gezeigten Befehlszeilenbefehls `zip`.
-
+  > Hinweis: Die Verwendung der Windows Explorer-Aktion zur Erstellung der ZIP-Datei führt zu einer falschen Struktur. OpenWhisk-ZIP-Aktionen müssen `package.json` am Stammelement der ZIP-Datei aufweisen, während Windows Explorer die Datei in einem verschachtelten Ordner ablegt. Am sichersten ist die Verwendung des oben gezeigten Befehlszeilenbefehls `zip`.
 
 3. Erstellen Sie die Aktion:
 
@@ -466,7 +486,7 @@ Gehen Sie wie folgt vor, um aus diesem Paket eine OpenWhisk-Aktion zu erstellen:
 4. Sie können die Aktion wie jede andere aufrufen:
 
   ```
-  wsk action invoke --blocking --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
   ```json
@@ -478,7 +498,6 @@ Gehen Sie wie folgt vor, um aus diesem Paket eine OpenWhisk-Aktion zu erstellen:
       ]
   }
   ```
-
 
 Zum Schluss beachten Sie, dass zwar die meisten `npm`-Pakete JavaScript-Quellen mit `npm install` installieren, andere jedoch auch Binärartefakte installieren und kompilieren. Der Upload von Archivdateien unterstützt derzeit keine binären Abhängigkeiten, sondern nur JavaScript-Abhängigkeiten. Wenn im Archiv binäre Abhängigkeiten eingeschlossen sind, können Aktionsaufrufe fehlschlagen.
 
@@ -505,7 +524,6 @@ Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
 
-
   Sie werden die Aktionen `split` (Aufteilen) und `sort` (Sortieren) in diesem Beispiel verwenden.
 
 2. Erstellen Sie eine Aktionssequenz, sodass das Ergebnis der einen Aktion als Argument an die nächste Aktion übergeben wird.
@@ -520,7 +538,7 @@ Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.
 3. Rufen Sie die Aktion auf:
 
   ```
-  wsk action invoke --blocking --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
   ```json
@@ -533,7 +551,6 @@ Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.
       ]
   }
   ```
-
 
   Wie leicht zu erkennen ist, sind die Zeilen im Ergebnis sortiert.
 
@@ -571,12 +588,12 @@ Sie können eine OpenWhisk-Aktion mit dem Namen `helloPython` wie folgt aus dies
 wsk action create helloPython hello.py
 ```
 {: pre}
-Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.py`-Quellendateien wird die Aktion in einer Laufzeit mit Python 2.7 ausgeführt. Sie können auch eine Aktion erstellen, die mit Python 3.6 ausgeführt wird, indem Sie den Parameter `--kind python:3` explizit angeben. Weitere Informationen zu Python 2.7 im Vergleich zu Python 3.6 finden Sie in den [Referenzinformationen zu Phyton](./openwhisk_reference.html#openwhisk_ref_python_environments).
+Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.py`-Quellendateien wird die Aktion in einer Laufzeit mit Python 2.7 ausgeführt. Sie können auch eine Aktion erstellen, die mit Python 3.6 ausgeführt wird, indem Sie den Parameter `--kind python:3` explizit angeben. Weitere Informationen zu Python 2.7 im Vergleich zu Python 3.6 finden Sie in den [Referenzinformationen zu Phyton](./reference.md#python-actions).
 
 Der Aktionsaufruf für Python-Aktionen stimmt mit dem für JavaScript-Aktionen überein:
 
 ```
-wsk action invoke --blocking --result helloPython --param name World
+wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -615,7 +632,7 @@ Daher sollte das Docker-Image `openwhisk/python2action` oder `openwhisk/python3a
 Wie bei der grundlegenden ZIP-Dateiunterstützung muss der Name der Quellendatei, die den Haupteingangspunkt enthält, `__main__.py` sein. Außerdem muss das virtualenv-Verzeichnis den Namen `virtualenv` haben.
 Das nachfolgende Beispielszenario zeigt die Installation von Abhängigkeiten, das Paketieren in einem Verzeichnis für die virtuelle Umgebung (virtualenv) sowie das Erstellen einer kompatiblen OpenWhisk-Aktion.
 
-1. Bei einer angegebenen Datei mit dem Namen `requirements.txt`, die die `pip`-Module und -Versionen für die Installation enthält, führen Sie den folgenden Befehl aus, um die Abhängigkeiten zu installieren und eine virtuelle Umgebung (virtualenv) unter Verwendung eines vollständigen Docker-Image zu erstellen: 
+1. Bei einer angegebenen Datei mit dem Namen `requirements.txt`, die die `pip`-Module und -Versionen für die Installation enthält, führen Sie den folgenden Befehl aus, um die Abhängigkeiten zu installieren und eine virtuelle Umgebung (virtualenv) unter Verwendung eines vollständigen Docker-Image zu erstellen:
  ```bash
  docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \
    -c "cd tmp; virtualenv virtualenv; source virtualenv/bin/activate; pip install -r requirements.txt;"
@@ -629,10 +646,10 @@ Das nachfolgende Beispielszenario zeigt die Installation von Abhängigkeiten, da
  {: pre}
 
 3. Erstellen Sie die Aktion:
-  ```bash
-  wsk action create helloPython --kind python:3 helloPython.zip
-  ```
-  {: pre}
+```bash
+wsk action create helloPython --kind python:3 helloPython.zip
+```
+{: pre}
 
 Die oben für Python 3.6 gezeigten Schritte können in gleicher Weise auch für Python 2.7 ausgeführt werden.
 
@@ -658,7 +675,7 @@ func main(args: [String:Any]) -> [String:Any] {
 ```
 {: codeblock}
 
-Swift-Aktionen lesen stets ein Wörterverzeichnis (Dictionary) und generieren ein Wörterverzeichnis. 
+Swift-Aktionen lesen stets ein Wörterverzeichnis (Dictionary) und generieren ein Wörterverzeichnis.
 
 Sie können eine {{site.data.keyword.openwhisk_short}}-Aktion mit dem Namen `helloSwift` wie folgt aus dieser Funktion erstellen:
 
@@ -674,7 +691,7 @@ das Tool entnimmt diese Information der Dateierweiterung.
 Der Aktionsaufruf für Swift-Aktionen stimmt mit dem für JavaScript-Aktionen überein:
 
 ```
-wsk action invoke --blocking --result helloSwift --param name World
+wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -733,12 +750,12 @@ docker run --rm -it -v "$(pwd):/owexec" openwhisk/swift3action bash
   ```
   zip /owexec/hello.zip .build/release/Action
   ```
-- Beenden Sie den Docker-Container. 
+- Beenden Sie den Docker-Container.
   ```
   exit
   ```
   {: pre}
-Hierdurch wurde eine Datei 'hello.zip' in demselben Verzeichnis wie 'hello.swift' erstellt.
+Hierdurch wurde eine Datei 'hello.zip' in demselben Verzeichnis wie 'hello.swift' erstellt. 
 - Laden Sie die Datei mit dem Aktionsnamen 'helloSwifty' in OpenWhisk hoch:
   ```
   wsk action update helloSwiftly hello.zip --kind swift:3
@@ -816,7 +833,7 @@ z. B. `--main com.example.MyMain`.
 Der Aktionsaufruf für Java-Aktionen stimmt mit dem für Swift- und JavaScript-Aktionen überein:
 
 ```
-wsk action invoke --blocking --result helloJava --param name World
+wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -832,9 +849,9 @@ Bei {{site.data.keyword.openwhisk_short}} Docker-Aktionen können Sie Ihre Aktio
 
 Ihr Code wird in eine ausführbare Binärdatei kompiliert und in ein Docker-Image eingebettet. Das Binärprogramm interagiert mit dem System durch den Empfang von Eingaben über `stdin` und Ausgabe von Antworten über `stdout`.
 
-Voraussetzung ist, dass Sie über ein Docker Hub-Konto verfügen. Rufen Sie zur Einrichtung einer kostenlosen Docker-ID und eines Kontos [Docker Hub](https://hub.docker.com) auf.
+Voraussetzung ist, dass Sie über ein Docker Hub-Konto verfügen.  Rufen Sie zur Einrichtung einer kostenlosen Docker-ID und eines Kontos [Docker Hub](https://hub.docker.com) auf.
 
-In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das Kennwort `janes_password` verwendet. Wenn die CLI bereits eingerichtet ist, sind drei Schritte erforderlich, um eine angepasste Binärdatei zur Verwendung durch {{site.data.keyword.openwhisk_short}} einzurichten. Anschließend kann das hochgeladene Docker-Image als Aktion verwendet werden.
+In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das Kennwort `janes_password` verwendet.  Wenn die CLI bereits eingerichtet ist, sind drei Schritte erforderlich, um eine angepasste Binärdatei zur Verwendung durch {{site.data.keyword.openwhisk_short}} einzurichten. Anschließend kann das hochgeladene Docker-Image als Aktion verwendet werden.
 
 1. Laden Sie das Docker-Gerüst (Skeleton) herunter. Sie können es über die CLI wie folgt herunterladen:
 
@@ -909,7 +926,7 @@ In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das
   Die Aktion wird wie alle anderen {{site.data.keyword.openwhisk_short}}-Aktionen aufgerufen.
 
   ```
-  wsk action invoke --blocking --result example --param payload Rey
+  wsk action invoke --result example --param payload Rey
   ```
   {: pre}
   ```json
@@ -929,7 +946,6 @@ In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
-
   ```
   wsk action update --docker example janesmith/blackboxdemo
   ```
@@ -1012,7 +1028,6 @@ Sie können eine Bereinigung durchführen, indem Sie Aktionen löschen, die nich
   ```
   actions
   ```
-  {: pre}
 
 ## In der Aktionskomponente auf Aktionsmetadaten zugreifen
 {: #openwhisk_action_metadata}

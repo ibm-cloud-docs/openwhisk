@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -33,7 +33,7 @@ apihost `wsk property set --apihost openwhisk.ng.bluemix.net`을 사용하여 Op
 `wsk api`를 사용하려면 CLI 구성 파일 `~/.wskprops`에 Bluemix 액세스 토큰이 있어야 합니다.
 액세스 토큰을 가져오려면 CLI 명령 `wsk bluemix login`을 사용하십시오. 명령에 대한 자세한 정보를 보려면 `wsk bluemix login -h`를 실행하십시오.
 
-**참고:** 명령 오류에 싱글 사인온(sso)이 필요한 경우 현재 지원되지 않습니다. 임시 해결책으로 `bluemix login`을 사용하여 Bluemix CLI로 로그인한 후에 HOME 디렉토리 구성 파일 `~/.bluemix/.cf/config.json`의 액세스 토큰을 `APIGW_ACCESS_TOKEN="value of AccessToken` 특성으로 `~/.wskprops` 파일에 복사하십시오. 액세스 토큰 문자열을 복사할 때 접두부 `Bearer`를 제거하십시오.
+**참고:** `wsk bluemix login` 명령이 `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso` 오류가 발생하며 실패하는 경우에는 `bluemix login`을 사용하여 Bluemix CLI로 로그인한 후 `wsk bluemix login --sso`를 실행하십시오. 
 
 **참고:** `wsk api-experimental`을 사용하여 작성한 API는 계속 짧은 기간 동안 작동하지만 웹 조치로 API 마이그레이션을 시작하고 새 CLI 명령 `wsk api`를 사용하여 기존 apis를 재구성해야 합니다.
 

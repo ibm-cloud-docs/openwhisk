@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-23"
+lastupdated: "2017-06-02"
 
 ---
 
@@ -20,7 +20,7 @@ El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos Cl
 | `/whisk.system/cloudant` | paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant |
 | `/whisk.system/cloudant/read` | acción | dbname, id | Leer un documento de la base de datos |
 | `/whisk.system/cloudant/write` | acción | dbname, overwrite, doc | Escribir un documento en la base de datos |
-| `/whisk.system/cloudant/changes` | canal de información | dbname, maxTriggers | Activar sucesos desencadenantes para cambios en la BD |
+| `/whisk.system/cloudant/changes` | canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en la BD |
 
 En los temas siguientes se muestra la configuración de una base de datos Cloudant, la configuración de un paquete asociado y el uso de acciones e información de entrada (feeds) en el paquete `/whisk.system/cloudant`.
 
@@ -107,6 +107,7 @@ para su cuenta Cloudant. Necesita el nombre de host, nombre de usuario y contras
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
+  
 
 2. Comprobar que el enlace de paquete existe.
 
@@ -123,19 +124,58 @@ para su cuenta Cloudant. Necesita el nombre de host, nombre de usuario y contras
 ## Atender a cambios en una base de datos Cloudant
 {: #openwhisk_catalog_cloudant_listen}
 
+### Filtrado de sucesos de cambio de base de datos
+
+Es posible definir una función de filtro para evitar que sucesos de cambio innecesarios activen su desencadenante. 
+
+Para crear una nueva función de filtro, utilice una acción. 
+
+Cree un archivo de documento json `design_doc.json` con la siguiente función de filtro: 
+```json
+{
+  "doc": {
+    "_id": "_design/mailbox",
+    "filters": {
+      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+    }
+  }
+}
+```
+
+Cree un nuevo documento de diseño en la base de datos con la función de filtro
+
+```
+wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+```
+La información para el nuevo documento de diseño se imprime en la pantalla.
+```json
+{
+    "id": "_design/mailbox",
+    "ok": true,
+    "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
+}
+```
+
+### Creación de un desencadenante utilizando la función de filtro
+
 Puede utilizar la información de entrada `changes` para configurar un servicio para que active un desencadenante
 para cada cambio de su base de datos Cloudant. Los parámetros son según se indica a continuación:
 
 - `dbname`: nombre de la base de datos Cloudant.
 - `maxTriggers`: dejar de activar desencadenantes cuando se alcanza este límite. El valor predeterminado es infinite.
+- `filter`: Función de filtro definida en un documento de diseño. 
+- `query_params`: Parámetros de consulta opcionales para la función de filtro. 
 
 
-1. Crear un desencadenante con la información de entrada `changes` en el enlace de paquete que ha
-creado anteriormente. Asegúrese de sustituir
-`/myNamespace/myCloudant` por el nombre de paquete.
+1. Cree un desencadenante con la información de entrada `changes` en el enlace de paquete que ha
+creado anteriormente con `filter` y `query_params` para únicamente activar el desencadenante cuando un documento se añada o modifique cuando el estado sea `new`.
+Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
 
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
+  --param dbname testdb /
+  --param filter "mailbox/by_status" /
+  --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
@@ -151,7 +191,7 @@ creado anteriormente. Asegúrese de sustituir
 
 3. En su panel de control de Cloudant, modifique un documento existente o cree uno nuevo.
 
-4. Observe las nuevas activaciones para el desencadenante `myCloudantTrigger` en busca de los cambios de documento.
+4. Observe las nuevas activaciones para el desencadenante `myCloudantTrigger` para cada cambio de documento únicamente si el estado del documento es `new` en base a la función de filtro y los parámetros de consulta. 
   
   **Nota**: si no detecta nuevas activaciones, consulte las secciones siguientes sobre la lectura y escritura
 en una base de datos Cloudant. Probar los siguientes pasos de lectura y escritura le ayudará a comprobar si sus credenciales de Cloudant son correctas.
@@ -185,15 +225,13 @@ el ID de revisión del documento.
 Puede utilizar una acción para almacenar un documento en una base de datos Cloudant llamada `testdb`. Asegúrese de que
 esta base de datos exista en su cuenta Cloudant.
 
-1. Almacenar un documento usando la acción `write` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir
-`/myNamespace/myCloudant` por el nombre de paquete.
+1. Almacenar un documento usando la acción `write` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
 
   ```
-  wsk action invoke /myNamespace/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
-  {: pre}
   ```
-  ok: invoked /myNamespace/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
+  ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
   {
@@ -214,11 +252,10 @@ esta base de datos exista en su cuenta Cloudant.
 Puede utilizar una acción para obtener un documento de una base de datos Cloudant llamada `testdb`. Asegúrese de que
 esta base de datos exista en su cuenta Cloudant.
 
-- Obtener un documento usando la acción `read` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir
-`/myNamespace/myCloudant` por el nombre de paquete.
+- Obtener un documento usando la acción `read` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
 
   ```
-  wsk action invoke /myNamespace/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
   ```json
@@ -231,6 +268,7 @@ esta base de datos exista en su cuenta Cloudant.
 
 ## Utilización de una secuencia de acciones y de un desencadenante de cambios para procesar un documento desde una base de datos Cloudant
 {: #openwhisk_catalog_cloudant_read_change notoc}
+
 Puede utilizar una secuencia de acciones en una regla para captar y procesar el documento asociado a un suceso de cambio Cloudant.
 
 A continuación se muestra un código de ejemplo de una acción que maneja un documento:
@@ -249,7 +287,7 @@ wsk action create myAction myAction.js
 Para leer un documento desde la base de datos, puede utilizar la acción `read` del paquete de Cloudant.
 La acción `read` puede estar compuesta de `myAction` para crear una secuencia de acciones.
 ```
-wsk action create sequenceAction --sequence /myNamespace/myCloudant/read,myAction
+wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
@@ -266,7 +304,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
   ```
-  wsk trigger create myCloudantTrigger --feed /myNamespace/myCloudant/changes --param dbname testdb
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
   ```
   {: pre}
 

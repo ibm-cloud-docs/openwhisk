@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -32,7 +32,7 @@ Dans le tableau de bord OpenWhisk, cliquez sur l'onglet [API](https://console.ng
 Configurez l'interface de ligne de commande OpenWhisk avec `wsk property set --apihost openwhisk.ng.bluemix.net`. Pour pouvoir utiliser l'API `wsk api`,  le fichier de configuration d'interface de ligne de commande `~/.wskprops` doit contenir le jeton d'accès Bluemix.
 Pour obtenir le jeton d'accès, utilisez la commande d'interface de ligne de commande `wsk bluemix login`. Pour plus d'informations sur la commande, exécutez `wsk bluemix login -h`
 
-**Remarque :** si les erreurs de commande requièrent l'utilisation d'un code d'accès unique, cela n'est pas pris en charge pour l'instant. Une solution de contournement consiste à vous connecter à l'interface de ligne de commande Bluemix à l'aide de `bluemix login`, puis à copier le jeton d'accès depuis le fichier de configuration du répertoire de base `~/.cf/config.json` dans le fichier `~/.wskprops` comme propriété `APIGW_ACCESS_TOKEN="valeur du jeton d'accès`. Retirez le préfixe `Bearer ` lors de la copie de la chaîne de jeton d'accès.
+**Remarque :** si la commande `wsk bluemix login` échoue en renvoyant l'erreur `BMXLS0202E: vous utilisez un ID utilisateur fédéré. Utilisez un code à utilisation unique pour vous connecter avec l'option --sso`, connectez-vous à l'interface CLI de Bluemix via la commande `bluemix login`, puis lancez la commande `wsk bluemix login --sso`.
 
 **Remarque :** les API que vous avez créées à l'aide de `wsk api-experimental` continueront à fonctionner pendant une durée limitée. Toutefois, vous devriez commencer à les migrer vers les actions Web et à reconfigurer vos API existantes à l'aide de la nouvelle commande d'interface de ligne de commande `wsk api`.
 

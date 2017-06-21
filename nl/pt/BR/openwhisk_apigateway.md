@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -33,7 +33,7 @@ Configure a CLI do OpenWhisk com o apihost `wsk property set --apihost openwhisk
 Para poder usar o `wsk api`, o arquivo de configuração da CLI `~/.wskprops` precisa conter o Token de acesso do Bluemix.
 Para obter o token de acesso, use o comando da CLI `wsk bluemix login`; para obter mais informações sobre o comando, execute `wsk bluemix login -h`
 
-**Nota:** se os erros do comando requerem conexão única (sso), isso não é suportado atualmente. Como alternativa, efetue login com a CLI do Bluemix usando `bluemix login` e, em seguida, copie o Token de acesso do arquivo de configuração do diretório INICIAL `~/.bluemix/.cf/config.json` para o arquivo `~/.wskprops` como a propriedade `APIGW_ACCESS_TOKEN="value of AccessToken`. Remova o prefixo `Bearer` ao copiar a sequência de token de acesso.
+**Nota:** se o comando `wsk bluemix login` falha com o erro `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, efetue login com a CLI do Bluemix usando `bluemix login`, em seguida, emita `wsk bluemix login --sso`.
 
 **Nota:** as APIs criadas usando o `wsk api-experimental` continuarão funcionando por um curto período, no entanto, é necessário começar a migrar suas APIs para ações da web e reconfigurar suas APIs existentes usando o novo comando da CLI `wsk api`.
 
