@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-01"
+lastupdated: "2017-06-20"
 
 ---
 
@@ -39,8 +39,6 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
   wsk package refresh
   ```
   {: pre}
-  
-  
   ```
   created bindings:
   Bluemix_Weather_Company_Data_Credentials-1
@@ -83,12 +81,7 @@ The `/whisk.system/weather/forecast` action returns a weather forecast for a loc
   - `timeseries` - Returns both the current observations and up to 24 hours of past observations, from the current date and time.
 
 
-- The following is an example of creating a package binding and then getting a 10-day forecast.1. Create a package binding with your API key.
-  
-  ```
-  wsk package bind /whisk.system/weather myWeather --param username MY_USERNAME --param password MY_PASSWORD
-  ```
-  {: pre}
+The following is an example of creating a package binding and then getting a 10-day forecast.
 
 - Invoke the `forecast` action in your package binding to get the weather forecast.
   

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-01"
+lastupdated: "2017-06-20"
 
 ---
 
@@ -172,7 +172,7 @@ Parameters can be passed to the action when it is invoked.
   filename must then be passed to the `param-file` flag:
 
   Example parameter file called parameters.json:
-  ```
+  ```json
   {
       "name": "Bernie",
       "place": "Vermont"
@@ -713,8 +713,8 @@ To avoid the cold-start delay, you can compile your Swift file into a binary and
   {: pre}
   This puts you in a bash shell within the Docker container. 
 
-  Execute the following commands within it:
-- Install zip for convenience, to package the binary
+- Execute the following commands within it:
+  Install zip for convenience, to package the binary
   ```
   apt-get install -y zip
   ```
@@ -766,7 +766,7 @@ To avoid the cold-start delay, you can compile your Swift file into a binary and
 - To check how much faster it is, run 
   ```
   wsk action invoke helloSwiftly --blocking
-  ``` 
+  ```
   {: pre}
 
 The time it took for the action to run is in the "duration" property and compare to the time it takes to run with a compilation step in the hello action.
@@ -846,6 +846,7 @@ wsk action invoke --result helloJava --param name World
 ```
 
 ## Creating Docker actions
+{: #openwhisk_actions_docker}
 
 With {{site.data.keyword.openwhisk_short}} Docker actions, you can write your actions in any language.
 
@@ -917,10 +918,11 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   Notice that part of the example.c file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
   In fact, unless you are compiling the binary on a compatible host machine, it may not run inside the container since formats will not match.
 
-  Your Docker container may now be used as an {{site.data.keyword.openwhisk_short}} action.
+  Your Docker container may now be used as an OpenWhisk action.
+
 
   ```
-  wsk action create --docker example janesmith/blackboxdemo
+  wsk action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -949,11 +951,32 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
   ```
-  wsk action update --docker example janesmith/blackboxdemo
+  wsk action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
-  You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
+  You can find more information about creating Docker actions in the [References](./reference.md#docker-actions) section.
+
+  *Note:* Previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument.
+  In order to allow Docker actions to accept initialization data via a (zip) file, similar to other actions kinds, we have
+  normalized the user experience for Docker actions so that a positional argument if present must be a file (e.g., a zip file)
+  instead. The image name must be specified following the `--docker` option. Furthermore, due to user feedback, we have added
+  `--native` as shorthand for `--docker openwhisk/dockerskeleton` so that executables that run inside the standard Docker action
+  SDK are more convenient to create and deploy.
+
+  For example, the tutorial above created a binary executable inside the container locate at `/action/exec`. If you copy this file
+  to your local file system and zip it into `exec.zip` then you can use the following commands to create a docker action which receives
+  the executable as initialization data.
+
+  ```bash
+  wsk action create example exec.zip --native
+  ```
+  {: pre}
+  which is equivalent to the following command.
+  ```bash
+  wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ```
+  {: pre}
 
 ## Watching action output
 {: #openwhisk_actions_polling}
