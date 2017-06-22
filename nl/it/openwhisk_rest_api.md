@@ -16,7 +16,7 @@ lastupdated: "2017-05-04"
 
 Una volta abilitato il tuo ambiente OpenWhisk, puoi utilizzare OpenWhisk con le tue applicazioni web o mobili utilizzando le chiamate API REST.
 
-Per ulteriori dettagli sull'utilizzo delle API per azioni, attivazioni, pacchetti, regole e trigger, consulta la [documentazione API OpenWhisk](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
+Per ulteriori dettagli sull'utilizzo delle API per azioni, attivazioni, pacchetti, regole e trigger, vedi la [documentazione API OpenWhisk](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
 
 
 Tutte le capacità nel sistema sono disponibili mediante un'API REST. Sono presenti endpoint di raccolta e di entità per le azioni, i trigger, le regole, i pacchetti, le attivazioni e gli spazi dei nomi.
@@ -113,7 +113,7 @@ Response body received:
 ["john@example.com_dev"]
 ```
 
-Come puoi vedere, le informazioni stampate forniscono le proprietà della richiesta HTTP, viene eseguito il metodo HTTP `GET` sull'URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` utilizzando un'intestazione di autorizzazione di base `Basic XXXYYYY`.
+Come puoi vedere, le informazioni stampate forniscono le proprietà della richiesta HTTP, viene eseguito il metodo HTTP `GET` sull'URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` utilizzando un'intestazione di autorizzazione di base `Basic XXXYYYY`. 
 Nota che il valore dell'autorizzazione è la tua stringa di autorizzazione OpenWhisk codificata in base64.
 La risposta è di tipo di contenuto `application/json`.
 
@@ -243,7 +243,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/even
 
 ### Trigger con azioni di feed
 {: #openwhisk_rest_api_triggers_feed}
-Esistono dei trigger speciali che possono essere creati utilizzando un'azione di feed. L'azione di feed è un'azione che aiuta a configurare un provider di feed che sarà incaricato di attivare il trigger ogni volta che c'è un evento per il trigger. Per ulteriori informazioni su questi provider di feed, consulta la documentazione [feeds.md].
+Esistono dei trigger speciali che possono essere creati utilizzando un'azione di feed. L'azione di feed è un'azione che aiuta a configurare un provider di feed che sarà incaricato di attivare il trigger ogni volta che c'è un evento per il trigger. Per ulteriori informazioni su questi provider di feed, vedi la documentazione [feeds.md].
 
 Alcuni dei trigger disponibili che sfruttano un'azione di feed sono periodic/alarms, Slack, Github, Cloudant/Couchdb e messageHub/Kafka. Puoi anche creare la tua propria azione di feed e il tuo provider di feed.
 

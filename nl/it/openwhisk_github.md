@@ -59,5 +59,5 @@ Il seguente è un esempio di creazione di un trigger che verrà attivato ogni vo
   
   Un commit al repository GitHub mediante `git push` comporta l'attivazione del trigger da parte del webhook. Se è presente una regola che corrisponde al trigger, sarà richiamata l'azione associata.
   L'azione riceve il payload del webhook GitHub come parametro di input. Ogni evento webhook Github ha uno schema JSON simile, ma è un oggetto payload univoco che è determinato dal proprio tipo di evento.
-  Per ulteriori informazioni sul contenuto del payload, consulta la documentazione API [GitHub events and payload](https://developer.github.com/v3/activity/events/types/).
+  Per ulteriori informazioni sul contenuto del payload, vedi la documentazione API [GitHub events and payload](https://developer.github.com/v3/activity/events/types/).
   

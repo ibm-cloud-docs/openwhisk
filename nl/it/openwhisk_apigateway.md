@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-26"
+lastupdated: "2017-05-31"
 
 ---
 
@@ -33,7 +33,7 @@ Configura la CLI OpenWhisk CLI con l'apihost `wsk property set --apihost openwhi
 Per poter utilizzare `wsk api`, il file di configurazione della CLI `~/.wskprops` deve contenere il token di accesso Bluemix.
 Per ottenere il token di accesso, utilizza il comando CLI `wsk bluemix login`, per ulteriori informazioni sul comando esegui `wsk bluemix login -h`
 
-**Nota:** se si verifica un errore di comando che richiede il sso (single sign on), questo non è attualmente supportato. Come soluzione temporanea, accedi con la CLI Bluemix utilizzando `bluemix login`, quindi copia il token di accesso dal file di configurazione della directory HOME `~/.bluemix/.cf/config.json` nel file `~/.wskprops` come proprietà `APIGW_ACCESS_TOKEN="value of AccessToken`. Rimuovi il prefisso `Bearer ` quando copi la stringa del token di accesso.
+**Nota:** se il comando `wsk bluemix login` non riesce con l'errore `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, accedi con la CLI Bluemix utilizzando `bluemix login` e immetti quindi `wsk bluemix login --sso`.
 
 **Nota:** le API che crei utilizzando `wsk api-experimental` continueranno a funzionare per un breve periodo, tuttavia dovresti iniziare a migrare le API alle azioni web e riconfigurare le tue API esistenti utilizzando il nuovo comando CLI `wsk api`.
 
@@ -86,7 +86,7 @@ Per ottenere il token di accesso, utilizza il comando CLI `wsk bluemix login`, p
   
   Una volta iniziato, vuoi avere il controllo completo sulle proprietà di risposta HTTP come `statusCode`, `headers` e restituire diversi tipi di contenuto nel `body`. Puoi farlo utilizzando `--response-type http`, che ti permette di configurare l'URL di destinazione dell'azione web con l'estensione `http`.
 
-  Puoi scegliere di modificare il codice dell'azione per rispettare la restituzione delle azioni web con estensione `http` o includere l'azione in una sequenza che passa il suo risultato a una nuova azione che trasforma il risultato in modo da essere formattato correttamente per una risposta HTTP. Per ulteriori informazioni sui tipi di risposta e sulle estensioni delle azioni web, consulta la documentazione [Azioni web](webactions.md).
+  Puoi scegliere di modificare il codice dell'azione per rispettare la restituzione delle azioni web con estensione `http` o includere l'azione in una sequenza che passa il suo risultato a una nuova azione che trasforma il risultato in modo da essere formattato correttamente per una risposta HTTP. Per ulteriori informazioni sui tipi di risposta e sulle estensioni delle azioni web, vedi la documentazione [Azioni web](webactions.md).
 
   Modifica il codice per `hello.js` che restituisce le proprietà JSON `body`, `statusCode` e `headers`
   ```javascript

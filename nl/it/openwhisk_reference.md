@@ -477,13 +477,13 @@ La seguente tabella elenca i limiti predefiniti per le azioni.
 {: #openwhisk_syslimits_openulimit}
 * Il numero massimo di file aperti è 64 (per i limiti hard e soft).
 * Il comando docker run utilizza l'argomento `--ulimit nofile=64:64`.
-* Per ulteriori informazioni sul numero limite di file aperti, consulta la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
+* Per ulteriori informazioni sul numero limite di file aperti, vedi la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
 
 ### Limite dei processi per azione Docker (valore fisso: 512:512)
 {: #openwhisk_syslimits_proculimit}
 * Il numero massimo di processi disponibili per un utente è 512 (per i limiti hard e soft).
 * Il comando docker run utilizza l'argomento `--ulimit nproc=512:512`.
-* Per ulteriori informazioni sul limite del numero massimo di processi, consulta la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
+* Per ulteriori informazioni sul limite del numero massimo di processi, vedi la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
 
 ### Trigger
 
