@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-20"
+lastupdated: "2017-06-29"
 
 ---
 
@@ -626,23 +626,22 @@ As with basic zip file support, the name of the source file containing the main 
 Below is an example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
 1. Given a `requirements.txt` file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
- ```bash
- docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \
-   -c "cd tmp; virtualenv virtualenv; source virtualenv/bin/activate; pip install -r requirements.txt;"
- ```
- {: pre}
+    ```
+    docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \ -c "cd tmp; virtualenv virtualenv; source  virtualenv/bin/activate; pip install -r requirements.txt;"
+    ```
+    {: pre}
 
 2. Archive the virtualenv directory and any additional Python files:
- ```bash
- zip -r helloPython.zip virtualenv __main__.py
- ```
- {: pre}
+    ```
+    zip -r helloPython.zip virtualenv __main__.py
+    ```
+    {: pre}
 
 3. Create the action:
-```bash
-wsk action create helloPython --kind python:3 helloPython.zip
-```
-{: pre}
+    ```
+    wsk action create helloPython --kind python:3 helloPython.zip
+    ```
+    {: pre}
 
 While the steps above are shown for Python 3.6, you can do the same for Python 2.7 as well.
 
