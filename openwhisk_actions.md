@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-29"
+lastupdated: "2017-06-30"
 
 ---
 
@@ -707,54 +707,80 @@ To avoid the cold-start delay, you can compile your Swift file into a binary and
 
 - Run an interactive Swift action container.
   ```
-  docker run --rm -it -v "$(pwd):/owexec" openwhisk/swift3action bash
+  docker run --rm -it -v "$(pwd):/owexec" openwhisk/action-swift-v3.1.1 bash
   ```
   {: pre}
-  This puts you in a bash shell within the Docker container. 
+  
+  This puts you in a bash shell within the Docker container.
 
-- Execute the following commands within it:
-  Install zip for convenience, to package the binary
-  ```
-  apt-get install -y zip
-  ```
-  {: pre}
-
-- Copy the source code and prepare to build it
+- Copy the source code and prepare to build it.
   ```
   cp /owexec/hello.swift /swift3Action/spm-build/main.swift 
   ```
   {: pre}
+
   ```
   cat /swift3Action/epilogue.swift >> /swift3Action/spm-build/main.swift
   ```
   {: pre}
+
   ```
   echo '_run_main(mainFunction:main)' >> /swift3Action/spm-build/main.swift
   ```
   {: pre}
 
-- Build and link
+- (Optional) Create the `Package.swift` file to add dependencies.
+   ```
+   swift import PackageDescription
+   
+   let package = Package(
+     name: "Action",
+         dependencies: [
+             .Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 3),
+             .Package(url: "https://github.com/IBM-Swift/CCurl.git", "0.2.3"),
+             .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", "1.7.10"),
+             .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", "15.0.1"),
+             .Package(url: "https://github.com/watson-developer-cloud/swift-sdk.git", "0.16.0")
+         ]
+   )
+   ```
+   {: pre}
+
+  As you can see this example adds `swift-watson-sdk` and `example-package-deckofplayingcards` dependencies.
+  Notice that `CCurl`, `Kitura-net` and `SwiftyJSON` are provided in the standard Swift action
+  and so you should include them in your own `Package.swift`.
+
+- Copy Package.swift to spm-build directory
   ```
-  /swift3Action/spm-build/swiftbuildandlink.sh
+  cp /owexec/Package.swift /swift3Action/spm-build/Package.swift
   ```
   {: pre}
 
-- Create the zip archive
+- Change to the spm-build directory
   ```
   cd /swift3Action/spm-build
   ```
   {: pre}
+
+- Compile your Swift Action.
+  ```
+  swift build -c release
+  ```
+  {: pre}
+
+- Create the zip archive.
   ```
   zip /owexec/hello.zip .build/release/Action
   ```
   {: pre}
 
-- Exit the Docker container
+- Exit the Docker container.
   ```
   exit
   ```
   {: pre}
-  This has created hello.zip in the same directory as hello.swift. 
+
+This has created hello.zip in the same directory as hello.swift. 
 
 - Upload it to OpenWhisk with the action name helloSwifty:
   ```
