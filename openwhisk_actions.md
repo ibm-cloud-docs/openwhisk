@@ -341,17 +341,18 @@ JavaScript functions that run asynchronously may need to return the activation r
   wsk activation list --limit 1 asyncAction
   ```
   {: pre}
+
   ```
   activations
   b066ca51e68c4d3382df2d8033265db0             asyncAction
   ```
 
-
   ```
   wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
- ```json
+
+  ```json
   {
       "start": 1455881628103,
       "end":   1455881648126,
