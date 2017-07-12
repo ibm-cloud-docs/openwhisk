@@ -351,7 +351,7 @@ JavaScript functions that run asynchronously may need to return the activation r
   wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
- 
+
   ```json
   {
       "start": 1455881628103,
