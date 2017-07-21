@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-25"
+lastupdated: "2017-07-21"
 
 ---
 
@@ -25,12 +25,31 @@ There are two required properties to configure in order to use the CLI:
 1. **API host** (name or IP address) for the {{site.data.keyword.openwhisk_short}} deployment you want to use.
 2. **Authorization key** (username and password) which grants you access to the {{site.data.keyword.openwhisk_short}} API.
 
-Run the following command to set the API host:
+There are two available Bluemix regions which require their own unique API host and Authorization key.
 
+* US South
+  * API host: `openwhisk.ng.bluemix.net`
+
+* United Kingdom
+  * API host: `openwhisk.eu-gb.bluemix.net`
+
+Run the following command to set the API host for your desired Bluemix region:
+
+US South:
 ```
 wsk property set --apihost openwhisk.ng.bluemix.net
 ```
 {: pre} 
+
+United Kingdom:
+```
+wsk property set --apihost openwhisk.eu-gb.bluemix.net
+```
+{: pre}
+
+**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the apihost and authorization key as the authorization key is specific per region.
+
+Artifacts (i.e. actions, rules, packages) are also region specific, so if you use the same artifact in multiple regions you must deploy it to each desired region.
 
 If you know your authorization key, you can configure the CLI to use it. 
 
