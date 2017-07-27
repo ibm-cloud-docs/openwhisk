@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-05-31"
+lastupdated: "2017-07-21"
 
 ---
 
@@ -29,9 +29,48 @@ In the OpenWhisk Dashboard, click the [APIs tab](https://console.ng.bluemix.net/
 
 ### OpenWhisk CLI configuration
 
-Configure the OpenWhisk CLI with the apihost `wsk property set --apihost openwhisk.ng.bluemix.net`
-To be able to use the `wsk api` the CLI configuration file `~/.wskprops` needs to contain the Bluemix Access Token.
-To get the access token use the CLI command `wsk bluemix login`, for more information about the command run `wsk bluemix login -h`
+Configure the OpenWhisk CLI with the apihost.
+
+There are two available Bluemix regions which require their own unique API host and Authorization key.
+
+* US South
+  * API host: `openwhisk.ng.bluemix.net`
+
+* United Kingdom
+  * API host: `openwhisk.eu-gb.bluemix.net`
+
+Run the following command to set the API host for your desired Bluemix region:
+
+US South:
+```
+wsk property set --apihost openwhisk.ng.bluemix.net
+```
+{: pre} 
+
+United Kingdom:
+```
+wsk property set --apihost openwhisk.eu-gb.bluemix.net
+```
+{: pre}
+
+**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the apihost and authorization key as the authorization key is specific per region.
+
+Artifacts (i.e. actions, rules, packages) are also region specific,
+so if you use the same artifact in multiple regions you must deploy it to each desired region.
+
+To be able to use the `wsk api` command, the CLI configuration file `~/.wskprops` needs to contain the Bluemix Access Token.
+
+To get the access token use the following CLI command:
+```
+wsk bluemix login
+```
+{: pre}
+
+For more information about this command run:
+```
+wsk bluemix login -h
+```
+{: pre}
 
 **Note:** If the `wsk bluemix login` command fails with the error `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, login with the Bluemix CLI using `bluemix login`, then issue `wsk bluemix login --sso`.
 
