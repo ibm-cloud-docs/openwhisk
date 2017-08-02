@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-30"
+lastupdated: "2017-07-28"
 
 ---
 
@@ -17,25 +17,27 @@ lastupdated: "2017-06-30"
 
 Actions are stateless code snippets that run on the {{site.data.keyword.openwhisk}} platform. An action can be written as a JavaScript, Swift, or Python function, a Java method, or a custom executable program packaged in a Docker container. For example, an action can be used to detect the faces in an image, respond to a database change, aggregate a set of API calls, or post a Tweet.
 {:shortdesc}
+
 Actions can be explicitly invoked, or run in response to an event. In either case, each run of an action results in an activation record that is identified by a unique activation ID. The input to an action and the result of an action are a dictionary of key-value pairs, where the key is a string and the value a valid JSON value. Actions can also be composed of calls to other actions or a defined sequence of actions.
 
 Learn how to create, invoke, and debug actions in your preferred development environment:
-* [JavaScript](#openwhisk_create_action_js)
-* [Swift](#openwhisk_actions_swift)
-* [Python](#openwhisk_actions_python)
-* [Java](#openwhisk_actions_java)
-* [Docker](#openwhisk_actions_docker)
+* [JavaScript](#creating-and-invoking-javascript-actions)
+* [Swift](#creating-swift-actions)
+* [Python](#creating-python-actions)
+* [Java](#creating-java-actions)
+* [PHP](#creating-php-actions)
+* [Docker](#creating-docker-actions)
 
 In addition, learn about:
 
-* [Watching action output](#openwhisk_actions_polling)
-* [Listing actions](#openwhisk_listing_actions)
-* [Deleting actions](#openwhisk_delete_action)
-* [Accessing action metadata within the action body](#openwhisk_action_metadata)
+* [Watching action output](#watching-action-output)
+* [Listing actions](#listing-actions)
+* [Deleting actions](#deleting-actions)
+* [Accessing action metadata within the action body](#accessing-action-metadata-within-the-action-body)
 
 
 ## Creating and invoking JavaScript actions
-{: #openwhisk_create_action_js}
+{: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with actions in JavaScript. You begin with the creation and invocation of a simple action. Then, you move on to adding parameters to an action and invoking that action with parameters. Next is setting default parameters and invoking them. Then, you create asynchronous actions and, finally, work with action sequences.
 
@@ -351,7 +353,7 @@ JavaScript functions that run asynchronously may need to return the activation r
   wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
-
+ 
   ```json
   {
       "start": 1455881628103,
@@ -555,7 +557,7 @@ Input parameters to an action are merged with the action's default parameters, w
 For more information about invoking action sequences with multiple named parameters, see [Setting default parameters](./openwhisk_actions.html#openwhisk_binding_actions).
 
 ## Creating Python actions
-{: #openwhisk_actions_python}
+{: #creating-python-actions}
 
 The process of creating Python actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single Python action, and adding parameters to that action.
 
@@ -646,8 +648,67 @@ Below is an example scenario for installing dependencies, packaging them in a vi
 
 While the steps above are shown for Python 3.6, you can do the same for Python 2.7 as well.
 
+
+## Creating PHP actions
+
+The process of creating PHP actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single PHP action, and adding parameters to that action.
+
+### Creating and invoking a PHP action
+
+An action is simply a top-level PHP function. For example, create a file called `hello.php` with the following source code:
+
+```php
+<?php
+function main(array $args) : array
+{
+    $name = $args["name"] ?? "stranger";
+    $greeting = "Hello $name!";
+    echo $greeting;
+    return ["greeting" => $greeting];
+}
+```
+
+PHP actions always consume an associative array and return an associative array. The entry method for the action is `main` by default but may be specified explicitly when creating the action with the `wsk` CLI using `--main`, as with any other action type.
+
+You can create an OpenWhisk action called `helloPHP` from this function as follows:
+
+```
+wsk action create helloPHP hello.php
+```
+
+The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs using a PHP 7.1 runtime. See the PHP [reference](./reference.md#php-actions) for more information.
+
+Action invocation is the same for PHP actions as it is for JavaScript actions:
+
+```
+wsk action invoke --result helloPHP --param name World
+```
+
+```json
+  {
+      "greeting": "Hello World!"
+  }
+```
+
+### Packaging PHP actions in zip files
+
+You can package a PHP action along with other files and dependent packages in a zip file.
+The filename of the source file containing the entry point (e.g., `main`) must be `index.php`.
+For example, to create an action that includes a second file called `helper.php`, first create an archive containing your source files:
+
+```bash
+zip -r helloPHP.zip index.php helper.php
+```
+
+and then create the action:
+
+```bash
+wsk action create helloPHP --kind php:7.1 helloPHP.zip
+```
+
+
 ## Creating Swift actions
-{: #openwhisk_actions_swift}
+{: #creating-swift-actions}
 
 The process of creating Swift actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single swift action, and adding parameters to that action.
 
@@ -798,7 +859,7 @@ This has created hello.zip in the same directory as hello.swift.
 The time it took for the action to run is in the "duration" property and compare to the time it takes to run with a compilation step in the hello action.
 
 ## Creating Java actions
-{: #openwhisk_actions_java}
+{: #creating-java-actions}
 
 The process of creating Java actions is similar to that of JavaScript and Swift actions. The following sections guide you through creating and invoking a single Java action, and adding parameters to that action.
 
@@ -872,7 +933,7 @@ wsk action invoke --result helloJava --param name World
 ```
 
 ## Creating Docker actions
-{: #openwhisk_actions_docker}
+{: #creating-docker-actions}
 
 With {{site.data.keyword.openwhisk_short}} Docker actions, you can write your actions in any language.
 
@@ -1005,7 +1066,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   {: pre}
 
 ## Watching action output
-{: #openwhisk_actions_polling}
+{: #watching-action-output}
 
 {{site.data.keyword.openwhisk_short}} actions might be invoked by other users, in response to various events, or as part of an action sequence. In such cases it can be useful to monitor the invocations.
 
@@ -1040,7 +1101,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
 
 ## Listing actions
-{: #openwhisk_listing_actions}
+{: #listing-actions}
 
 You can list all the actions that you have created using:
 
@@ -1058,7 +1119,7 @@ wsk action list [PACKAGE NAME]
 
 
 ## Deleting actions
-{: #openwhisk_delete_action}
+{: #deleting-actions}
 
 You can clean up by deleting actions that you do not want to use.
 
@@ -1081,7 +1142,7 @@ You can clean up by deleting actions that you do not want to use.
   ```
 
 ## Accessing action metadata within the action body
-{: #openwhisk_action_metadata}
+{: #accessing-action-metadata-within-the-action-body}
 
 The action environment contains several properties that are specific to the running action.
 These allow the action to programmatically work with OpenWhisk assets via the REST API,
