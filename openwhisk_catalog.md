@@ -33,5 +33,6 @@ The catalog is available as packages in the `/whisk.system` namespace. See [Brow
 | [/whisk.system/watson-translator](./openwhisk_watson_translator.html) | Package for [text translation and language identification](https://www.ibm.com/watson/developercloud/language-translator.html) |
 | [/whisk.system/watson-speechToText](./openwhisk_watson_speechtotext.html) | Package to convert [speech into text](https://www.ibm.com/watson/developercloud/speech-to-text.html) |
 | [/whisk.system/watson-textToSpeech](./openwhisk_watson_texttospeech.html) | Package to convert [text into speech](https://www.ibm.com/watson/developercloud/text-to-speech.html) |
+| [/watson/iot-gateway](https://github.com/ibm-watson-iot/openwhisk-package-watsoniotp/blob/master/README.md) | Package to work with [Watson IoT Platform Gateway](https://console.stage1.bluemix.net/docs/services/IoT/index.html) service |
 | [/whisk.system/weather](./openwhisk_weather.html) | Package to work with [Weather Company Data](https://console.ng.bluemix.net/docs/services/Weather/index.html) service |
 | [/whisk.system/websocket](./openwhisk_websocket.html) | Package to work with a [Web Socket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server |
