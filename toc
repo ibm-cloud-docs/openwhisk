@@ -38,9 +38,14 @@ IBM OpenWhisk
     openwhisk_cloudant.md
     openwhisk_alarms.md
     openwhisk_weather.md
-    openwhisk_watson_translator.md
-    openwhisk_watson_texttospeech.md
-    openwhisk_watson_speechtotext.md
+
+    {: .topicgroup}
+    Watson
+        openwhisk_watson_translator.md
+        openwhisk_watson_texttospeech.md
+        openwhisk_watson_speechtotext.md
+        [Watson IoT Platform Gateway](https://console.bluemix.net/docs/services/IoT/gateways/iotgw.html)
+
     openwhisk_messagehub.md
     openwhisk_pushnotifications.md
     openwhisk_slack.md
