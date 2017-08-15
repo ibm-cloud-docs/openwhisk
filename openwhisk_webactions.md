@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-07-06"
+lastupdated: "2017-08-09"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2017-07-06"
 Web actions are OpenWhisk actions annotated to quickly enable you to build web based applications. This allows you to program backend logic which your web application can access anonymously without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (i.e. OAuth flow).
 {: shortdesc}
 
-Web action activations will be associated with the user that created the action. This actions defers the cost of an action activation from the caller to the owner of the action.
+Web action activations will be associated with the user that created the action. This action defers the cost of an action activation from the caller to the owner of the action.
 
 Let's take the following JavaScript action `hello.js`,
 ```javascript
@@ -81,6 +81,23 @@ function main() {
 ```
 {: codeblock}  
 
+Or sets multiple cookies:
+```javascript
+function main() {
+  return { 
+    headers: { 
+      'Set-Cookie': [
+        'UserID=Jane; Max-Age=3600; Version=',
+        'SessionID=asdfgh123456; Path = /'
+      ],
+      'Content-Type': 'text/html'
+    }, 
+    statusCode: 200,
+    body: '<html><body><h3>hello</h3></body></html>' }
+}
+```
+{: codeblock}
+
 Or returns an `image/png`:
 ```javascript
 function main() {
@@ -111,7 +128,7 @@ It is important to be aware of the [response size limit](./openwhisk_reference.h
 
 An OpenWhisk action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions may be invoked without authentication, and may be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must still return a JSON object, but the OpenWhisk system (namely the `controller`) will treat a web action differently if its result includes one or more of the following as top level JSON properties:
 
-- `headers`: a JSON object where the keys are header-names and the values are string values for those headers (default is no headers).
+- `headers`: a JSON object where the keys are header-names and the values are string, number, or boolean values for those headers (default is no headers). To send multiple values for a single header, the header's value should be a JSON array of values.
 - `statusCode`: a valid HTTP status code (default is 200 OK).
 - `body`: a string which is either plain text or a base64 encoded string (for binary data).
 
@@ -282,14 +299,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 A content extension is generally required when invoking a web action; the absence of an extension assumes `.http` as the default. The `.json` and `.http` extensions do not require a projection path. The `.html`, `.svg` and `.text` extensions do, however for convenience, the default path is assumed to match the extension name. So to invoke a web action and receive an `.html` response, the action must respond with a JSON object that contains a top level property called `html` (or the response must be in the explicitly given path). In other words, `/guest/demo/hello.html` is equivalent to projecting the `html` property explicitly, as in `/guest/demo/hello.html/html`. The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package.
 
-
 ## Protected parameters
 {: #openwhisk_webactions_protected}
-
-A content extension is generally required when invoking a web action; the absence of an extension assumes `.http` as the default. The `.json` and `.http` extensions do not require a projection path. The `.html`, `.svg` and `.text` extensions do, however for convenience, the default path is assumed to match the extension name. So to invoke a web action and receive an `.html` response, the action must respond with a JSON object that contains a top level property called `html` (or the response must be in the explicitly given path). In other words, `/guest/demo/hello.html` is equivalent to projecting the `html` property explicitly, as in `/guest/demo/hello.html/html`. The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package.
-
-
-## Protected parameters
 
 Action parameters are protected and treated as immutable. Parameters are automatically finalized when enabling web actions.
 

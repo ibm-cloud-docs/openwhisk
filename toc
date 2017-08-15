@@ -1,8 +1,8 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="openwhisk" audience="compute" href="/docs/openwhisk/index.html}
-IBM OpenWhisk
+{: .toc subcollection="cloud-functions" audience="compute" href="/docs/openwhisk/index.html}
+IBM Cloud Functions
 
     {: .navgroup id="learn"}
     index.md
@@ -22,7 +22,11 @@ IBM OpenWhisk
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    openwhisk_cli.md
+    {: .topicgroup}
+    Cloud Functions CLI
+        bluemix_cli.md
+        openwhisk_cli.md
+    
     openwhisk_use_cases.md
     openwhisk_actions.md
     openwhisk_triggers_rules.md
