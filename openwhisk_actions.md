@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-07-28"
+lastupdated: "2017-08-17"
 
 ---
 
@@ -583,7 +583,7 @@ You can create an OpenWhisk action called `helloPython` from this function as fo
 wsk action create helloPython hello.py
 ```
 {: pre}
-The CLI automatically infers the type of the action from the source file extension. For `.py` source files, the action runs using a Python 2.7 runtime. You can also create an action that runs with Python 3.6 by explicitly specifying the parameter `--kind python:3`. See the Python [reference](./reference.md#python-actions) for more information about Python 2.7 vs. 3.6.
+The CLI automatically infers the type of the action from the source file extension. For `.py` source files, the action runs using a Python 2.7 runtime. You can also create an action that runs with Python 3.6 by explicitly specifying the parameter `--kind python:3`. See the Python [reference](./openwhisk_reference.html#openwhisk_ref_python_environments) for more information about Python 2.7 vs. 3.6.
 
 Action invocation is the same for Python actions as it is for JavaScript actions:
 
@@ -676,7 +676,7 @@ You can create an OpenWhisk action called `helloPHP` from this function as follo
 wsk action create helloPHP hello.php
 ```
 
-The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs using a PHP 7.1 runtime. See the PHP [reference](./reference.md#php-actions) for more information.
+The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs using a PHP 7.1 runtime. See the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php) for more information.
 
 Action invocation is the same for PHP actions as it is for JavaScript actions:
 
@@ -1042,7 +1042,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
 
-  You can find more information about creating Docker actions in the [References](./reference.md#docker-actions) section.
+  You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
 
   *Note:* Previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument.
   In order to allow Docker actions to accept initialization data via a (zip) file, similar to other actions kinds, we have
