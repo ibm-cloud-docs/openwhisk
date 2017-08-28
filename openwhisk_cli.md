@@ -11,11 +11,9 @@ lastupdated: "2017-08-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# OpenWhisk CLI (deprecated)
+# OpenWhisk CLI
 
-The OpenWhisk command line interface allows management of all OpenWhisk entities.
-
-**NOTE: ** The OpenWhisk CLI is deprecated and you should start using the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html)
+The OpenWhisk command line interface allows management of all OpenWhisk entities and works with IBM Cloud Functions. We recommend using the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html) however for better integration with the IBM Cloud.
 
 ## Setting up the OpenWhisk CLI 
 {: #openwhisk_cli_setup}
