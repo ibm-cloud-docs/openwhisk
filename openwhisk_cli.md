@@ -11,22 +11,35 @@ lastupdated: "2017-08-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# OpenWhisk CLI (deprecated)
+# {{site.data.keyword.openwhisk_short}} standalone CLI
 
-The OpenWhisk command line interface allows management of all OpenWhisk entities.
+The {{site.data.keyword.openwhisk_short}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 
-**NOTE: ** The OpenWhisk CLI is deprecated and you should start using the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html)
+**NOTE: ** IBM recommends you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html) when managing {{site.data.keyword.openwhisk_short}} entities. The following management tasks will be easier if you use the plugin.
 
-## Setting up the OpenWhisk CLI 
+* Configuration of the {{site.data.keyword.openwhisk_short}} authentication key
+  * No need to access the {{site.data.keyword.openwhisk_short}} console to obtain the authentication key
+  * Automatic authentication key generation when switching between regions, orgs and spaces
+* Refreshing an expired {{site.data.keyword.openwhisk_short}} authentication key
+* Updating the CLI to a later version
+
+
+The following management tasks require you to use the plugin.
+
+* API management
+  * Configuration of the API GW access token
+  * Refreshing an expired API GW access token
+
+## Setting up the {{site.data.keyword.openwhisk_short}} CLI 
 {: #openwhisk_cli_setup}
 
-You can use the OpenWhisk command line interface (CLI) to set up your namespace and authorization key.
+You can use the {{site.data.keyword.openwhisk_short}} command line interface (CLI) to set up your namespace and authorization key.
 Go to [Configure CLI](https://console.{DomainName}/openwhisk/cli) and follow the instructions to install it.
 
 There are two required properties to configure in order to use the CLI:
 
-1. **API host** (name or IP address) for the OpenWhisk deployment you want to use.
-2. **Authorization key** (username and password) which grants you access to the OpenWhisk API.
+1. **API host** (name or IP address) for the {{site.data.keyword.openwhisk_short}} deployment you want to use.
+2. **Authorization key** (username and password) which grants you access to the {{site.data.keyword.openwhisk_short}} API.
 
 There are two available {{site.data.keyword.Bluemix_notm}} regions which require their own unique API host and Authorization key.
 
@@ -63,19 +76,19 @@ wsk property set --auth <authorization_key>
 ```
 {: pre}
 
-**Tip:** The OpenWhisk CLI stores the properties set in `~/.wskprops` by default. The location of this file can be altered by setting the `WSK_CONFIG_FILE` environment variable. 
+**Tip:** The {{site.data.keyword.openwhisk_short}} CLI stores the properties set in `~/.wskprops` by default. The location of this file can be altered by setting the `WSK_CONFIG_FILE` environment variable. 
 
 To verify your CLI setup, try [creating and running an action](./index.html#openwhisk_start_hello_world).
 
-## Using the OpenWhisk CLI
+## Using the {{site.data.keyword.openwhisk_short}} CLI
 {: #using_openwhisk_cli}
 
-After you have configured your environment, you can begin using the OpenWhisk CLI to do the following:
+After you have configured your environment, you can begin using the {{site.data.keyword.openwhisk_short}} CLI to do the following:
 
-* Run your code snippets, or actions, on OpenWhisk. See [Creating and invoking actions](./openwhisk_actions.html).
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
 * Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
 * Learn how packages bundle actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Using OpenWhisk-enabled services](./openwhisk_catalog.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Using {{site.data.keyword.openwhisk_short}}-enabled services](./openwhisk_catalog.html).
 
 ## Configure the CLI to use an HTTPS proxy
 {: #cli_https_proxy}
