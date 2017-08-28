@@ -11,12 +11,24 @@ lastupdated: "2017-08-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.openwhisk_short}} wsk CLI
+# {{site.data.keyword.openwhisk_short}} standalone CLI
 
-The {{site.data.keyword.openwhisk_short}} **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
+The {{site.data.keyword.openwhisk_short}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 
-**NOTE: ** IBM recommends you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html)
-when managing {{site.data.keyword.openwhisk_short}} entities. 
+**NOTE: ** IBM recommends you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI.](./bluemix_cli.html) when managing {{site.data.keyword.openwhisk_short}} entities. The following management tasks will be easier if you use the plugin.
+
+* Configuration of the {{site.data.keyword.openwhisk_short}} authentication key
+  * No need to access the {{site.data.keyword.openwhisk_short}} console to obtain the authentication key
+  * Automatic authentication key generation when switching between regions, orgs and spaces
+* Refreshing an expired {{site.data.keyword.openwhisk_short}} authentication key
+* Updating the CLI to a later version
+
+
+The following management tasks require you to use the plugin.
+
+* API management
+  * Configuration of the API GW access token
+  * Refreshing an expired API GW access token
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} CLI 
 {: #openwhisk_cli_setup}
