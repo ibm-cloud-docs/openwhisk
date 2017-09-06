@@ -94,7 +94,7 @@ bx iam api-key-create MyKey
 {: pre}
 
 
-Then, use the API key generated value to login, like in the following example:
+Then, use the API key generated value to log in, like in the following example:
 ```
 bx login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
 ```
@@ -221,7 +221,7 @@ bx wsk property get --apihost
 
 The OpenWhisk CLI currently requires you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command.
 
-With the {{site.data.keyword.openwhisk}} CLI plug-in, there is no longer a need to run `wsk bluemix login`. Instead, use the `bx login` command to log in to {{site.data.keyword.Bluemix_notm}}, and the {{site.data.keyword.openwhisk}} plug-in will automatically utilize your current login and target information. Now you can manage your APIs by using the `bx wsk api` command.
+With the {{site.data.keyword.openwhisk}} CLI plug-in, there is no longer a need to run `wsk bluemix login`. Instead, use the `bx login` command to log in to {{site.data.keyword.Bluemix_notm}}, and the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `bx wsk api` command.
 
 ### Migrating deployment scripts
 {: #migrating_deploy_scripts}
