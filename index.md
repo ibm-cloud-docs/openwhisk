@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-04-25"
+lastupdated: "2017-09-06"
 
 ---
 
@@ -14,13 +14,13 @@ lastupdated: "2017-04-25"
 # Getting started with {{site.data.keyword.openwhisk_short}}
 
 
-{{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS), {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from Bluemix services like Cloudant and from external sources. Developers can focus on writing application logic, and creating actions that are executed on demand.
-The benefits of this new paradigm are that you do not explicitly provision servers and worry about auto-scaling, or worry about high availability, updates, maintenance and pay for hours of processor time when your server is running but not serving requests.
-Your code executes whenever there is an HTTP call, database state change, or other type of event that triggers the execution of your code.
-You get billed by millisecond of execution time (rounded up to the nearest 100ms), not per hour of VM utilization regardless whether that VM was doing useful work or not.
+{{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from Bluemix services like Cloudant and from external sources. Developers can focus on writing application logic, and creating actions that are executed on demand.
+The key benefit of this new paradigm is that you do not explicitly provision servers. Thus, eliminating worry about auto-scaling, high availability, updates, maintenance, and cost for hours of processor time when your server is running but not serving requests.
+Your code executes when there is an HTTP call, database state change, or other type of event that triggers the execution of your code.
+You get billed by millisecond of execution time (rounded up to the nearest 100 ms), not per hour of VM utilization regardless whether that VM was doing useful work or not.
 {: shortdesc}
 
-This programming model is a perfect match for microservices, mobile, IoT and many other apps – you get inherent auto-scaling and load balancing out of the box without having to manually configure clusters, load balancers, http plugins, etc. If you happen to run on {{site.data.keyword.openwhisk}}, you also get a benefit of zero administration - meaning that all of the hardware, networking and software is maintaned by IBM. All you need to do is to provide the code you want to execute and give it to {{site.data.keyword.openwhisk}}. The rest is “magic”. A good introduction into the serverless programming model is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
+This programming model is a perfect match for microservices, mobile, IoT, and many other apps. You get inherent auto-scaling and load balancing out of the box, without having to manually configure clusters, load balancers, http plugins, etc. If you happen to run on {{site.data.keyword.openwhisk}}, you also get a benefit of zero administration - meaning that all of the hardware, networking, and software are maintained by IBM. All that you need to do is to provide the code you want to execute and give it to {{site.data.keyword.openwhisk}}. The rest is “magic”. A good introduction into the serverless programming model is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
 
 You can also get the [Apache OpenWhisk source code](https://github.com/openwhisk/openwhisk) and run the system yourself.
 
@@ -32,10 +32,10 @@ Both have similar capabilities for developing applications; the CLI provides mor
 ## Develop in your Browser
 {: #openwhisk_start_editor}
 
-Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create actions, automate actions using triggers, and explore public packages. 
+Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create actions, automate actions by using triggers, and explore public packages. 
 Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a quick tour of the OpenWhisk User Interface.
 
-## Develop using the CLI
+## Develop by using the CLI
 {: #openwhisk_start_configure_cli}
 
 You can use the {{site.data.keyword.openwhisk_short}} command line interface (CLI) to set up your namespace and authorization key.
@@ -122,7 +122,7 @@ To use this example, follow these steps:
 
 You can also use the event-driven capabilities in {{site.data.keyword.openwhisk_short}} to invoke this action in response to events. Follow the [alarm service example](./openwhisk_packages.html#openwhisk_packages_trigger) to configure an event source to invoke the `hello` action every time a periodic event is generated.
 
-A complete list of [OpenWhisk Tutorials and Samples can be found here](https://github.com/openwhisk/openwhisk-external-resources#sample-applications). In addition to samples this repository contains links to articles, presentations, podcasts, videos and other {{site.data.keyword.openwhisk_short}} related resources.
+A complete list of [OpenWhisk Tutorials and Samples can be found here](https://github.com/openwhisk/openwhisk-external-resources#sample-applications). In addition to samples, this repository contains links to articles, presentations, podcasts, videos, and other {{site.data.keyword.openwhisk_short}} related resources.
 
 ## API Reference
 {: #openwhisk_start_api notoc}
