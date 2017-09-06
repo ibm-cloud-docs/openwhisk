@@ -622,8 +622,7 @@ Another way of packaging Python dependencies is by using a virtual environment (
 To ensure compatibility with the OpenWhisk container, package installations inside a virtualenv must be done in the target environment.
 So the docker image `openwhisk/python2action` or `openwhisk/python3action` are used to create a virtualenv directory for your action.
 
-As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. In addition, the virtualenv directory must be named `virtualenv`.
-See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
+As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
 1. Given a `requirements.txt` file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
     ```
