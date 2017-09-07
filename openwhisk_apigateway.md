@@ -31,7 +31,7 @@ In the OpenWhisk Dashboard, click the [APIs tab](https://console.ng.bluemix.net/
 
 Configure the OpenWhisk CLI with the API host.
 
-Two Bluemix regions are available that require their own unique API host and Authorization key.
+Two {{site.data.keyword.Bluemix_notm}} regions are available that require their own unique API host and Authorization key.
 
 * US South
   * API host: `openwhisk.ng.bluemix.net`
