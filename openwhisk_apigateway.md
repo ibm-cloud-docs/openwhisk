@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-08-16"
+lastupdated: "2017-09-07"
 
 ---
 
@@ -16,22 +16,22 @@ lastupdated: "2017-08-16"
 
 OpenWhisk actions can benefit from being managed by API management.
 
-The API Gateway acts as a proxy to [Web Actions](webactions.md) and provides them with additional features including HTTP method routing , client id/secrets, rate limiting, CORS, view API usage and response logs, and define API sharing policies.
-For more information on API Gateway feature you can read the [api management documentation](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis)
+The API Gateway acts as a proxy to [Web Actions](webactions.md), and provides them with additional features. The extra features include: HTTP method routing, client id/secrets, rate limits, CORS, view API usage, view response logs, and API sharing policies.
+For more information about API management, you can read the [API management documentation](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis).
 
-## Create APIs from OpenWhisk web actions using your Browser.
+## Create APIs from OpenWhisk web actions by using your Browser.
 
-With API Gateway, you can expose an OpenWhisk action as an API. After you define the API, you can apply security and rate limiting policies, view API usage and response logs, and define API sharing policies.
+With API Gateway, you can expose an OpenWhisk action as an API. After you define the API, you can apply security and rate limit policies, view API usage and response logs, and define API sharing policies.
 In the OpenWhisk Dashboard, click the [APIs tab](https://console.ng.bluemix.net/openwhisk/apimanagement).
 
 
-## Create APIs from OpenWhisk web actions using the CLI
+## Create APIs from OpenWhisk web actions by using the CLI
 
 ### OpenWhisk CLI configuration
 
-Configure the OpenWhisk CLI with the apihost.
+Configure the OpenWhisk CLI with the API host.
 
-There are two available Bluemix regions which require their own unique API host and Authorization key.
+Two Bluemix regions are available that require their own unique API host and Authorization key.
 
 * US South
   * API host: `openwhisk.ng.bluemix.net`
@@ -53,14 +53,13 @@ wsk property set --apihost openwhisk.eu-gb.bluemix.net
 ```
 {: pre}
 
-**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the apihost and authorization key as the authorization key is specific per region.
+**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the API host, and authorization key because the authorization key is specific per region.
 
-Artifacts (i.e. actions, rules, packages) are also region specific,
-so if you use the same artifact in multiple regions you must deploy it to each desired region.
+Artifacts such as actions, rules, and packages are region-specific. So if you use the same artifact in multiple regions you must deploy it to each desired region.
 
 To be able to use the `wsk api` command, the CLI configuration file `~/.wskprops` needs to contain the Bluemix Access Token.
 
-To get the access token use the following CLI command:
+To get the access token, use the following CLI command:
 ```
 wsk bluemix login
 ```
@@ -74,7 +73,7 @@ wsk bluemix login -h
 
 **Note:** If the `wsk bluemix login` command fails with the error `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, login with the Bluemix CLI using `bluemix login`, then issue `wsk bluemix login --sso`.
 
-### Create your first API using the CLI
+### Create your first API by using the CLI
 
 1. Create a JavaScript file with the following content. For this example, the file name is 'hello.js'.
   ```javascript
@@ -84,7 +83,7 @@ wsk bluemix login -h
   ```
   {: codeblock}
   
-2. Create a web action from the following JavaScript function. For this example, the action is called 'hello'. Make sure to add the flag `--web true`
+2. Create a web action from the following JavaScript function. For this example, the action is called 'hello'. Make sure to add the flag `--web true`.
   
   ```
   wsk action create hello hello.js --web true
@@ -94,7 +93,7 @@ wsk bluemix login -h
   ok: created action hello
   ```
   
-3. Create an API with base path `/hello`, path `/world` and method `get` with response type `json`
+3. Create an API with base path `/hello`, path `/world`, and method `get`, with response type `json`:
   
   ```
   wsk api create /hello /world get hello --response-type json
@@ -105,7 +104,7 @@ wsk bluemix login -h
   ```
   A new URL is generated exposing the `hello` action via a __GET__ HTTP method.
   
-4. Let's give it a try by sending a HTTP request to the URL.
+4. Finally, send an HTTP request to the URL.
   
   ```
   $ curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/hello/world?name=OpenWhisk
@@ -115,17 +114,17 @@ wsk bluemix login -h
   "payload": "Hello world OpenWhisk"
   }
   ```
-  The web action `hello` was invoked, returning back a JSON object including the parameter `name` sent via query parameter. You can pass parameters to the action via simple query parameters, or via the request body. Web actions allow you to invoke an action in a public way without the OpenWhisk authorization API key.
+  The web action `hello` is invoked, which returns back a JSON object that includes the parameter `name` sent via query parameter. You can pass parameters to the action via simple query parameters, or via the request body. Web actions can invoke an action in a public way without the OpenWhisk authorization API key.
   
 ### Full control over the HTTP response
   
-  The `--response-type` flag controls the target URL of the web action to be proxied by the API Gateway. Using `--response-type json` as above returns the full result of the action in JSON format and automatically sets the Content-Type header to `application/json` which enables you to easily get started. 
+  The `--response-type` flag controls the target URL of the web action to be proxied by the API Gateway. Using `--response-type json` returns the full result of the action in JSON format, and automatically sets the Content-Type header to `application/json`. 
   
-  Once you get started you want to have full control over the HTTP response properties like `statusCode`, `headers` and return different content types in the `body`. You can do this by using `--response-type http`, this will configure the target URL of the web action with the `http` extension.
+  Once you get started, you want to have full control over the HTTP response properties like `statusCode`, `headers`, and return different content types in the `body`. The flag `--response-type http` makes this possible by configuring the target URL of the web action with the `http` extension.
 
-  You can choose to change the code of the action to comply with the return of web actions with `http` extension or include the action in a sequence passing its result to a new action that transforms the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [Web Actions](webactions.md) documentation.
+  You can choose to change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [Web Actions](webactions.md) documentation.
 
-  Change the code for the `hello.js` returning the JSON properties `body`, `statusCode` and `headers`
+  Change the code for the `hello.js` returning the JSON properties `body`, `statusCode`, and `headers`
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
@@ -138,32 +137,34 @@ wsk bluemix login -h
   {: codeblock}
   Notice that the body needs to be return encoded in `base64` and not a string.
   
-  Update the action with the modified result
+  Update the action with the modified result: 
   ```
   wsk action update hello hello.js --web true
   ```
   {: pre}
-  Update the API with `--response-type http`
+
+  Update the API with `--response-type http`: 
   ```
   wsk api create /hello /world get hello --response-type http
   ```
   {: pre}
-  Let's call the updated API
+  
+  Call the updated API: 
   ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/hello/world
   ```
   {: pre}
-  ```json
+
+  ```
   {
   "payload": "Hello world Serverless API"
   }
   ```
-  Now you are in full control of your APIs, can control the content like returning HTML, or set the status code for things like Not Found (404), or Unauthorized (401), or even Internal Error (500).
+  Now, you are in full control of your APIs, and can control the content. Like returning HTML, or set the status code for things like Not Found (404), Unauthorized (401), or even Internal Error (500).
 
 ### Exposing multiple web actions
 
-Let's say you want to expose a set of actions for a book club for your friends.
-You have a series of actions to implement your backend for the book club:
+For example, if you want to expose a set of actions for a book club, you can use a series of actions to implement your backend for the book club:
 
 | action | HTTP method | description |
 | ----------- | ----------- | ------------ |
@@ -172,7 +173,7 @@ You have a series of actions to implement your backend for the book club:
 | putBooks    | PUT | updates book details |
 | deleteBooks | DELETE | deletes a book |
 
-Let's create an API for the book club, named `Book Club`, with `/club` as its HTTP URL base path and `books` as its resource.
+Create an API for the book club, named `Book Club`, with `/club` as its HTTP URL base path, and `books` as its resource.
 ```
 wsk api create -n "Book Club" /club /books get getBooks --response-type http
 wsk api create /club /books post postBooks              --response-type http
@@ -180,13 +181,14 @@ wsk api create /club /books put putBooks                --response-type http
 wsk api create /club /books delete deleteBooks          --response-type http
 ```
 
-Notice that the first action exposed with base path `/club` gets the API label with name `Book Club` any other actions exposed under `/club` will be associated with `Book Club`
+Notice that the first action that is exposed with the base path `/club` gets the API label with name `Book Club`. Any other actions that are exposed under `/club` are associated with `Book Club`.
 
-Let's list all the actions that we just exposed.
-
+List all the actions that are exposed by using the following command:
 ```
 wsk api list -f
 ```
+{: pre}
+
 ```
 ok: APIs
 Action: getBooks
@@ -215,7 +217,7 @@ Action: deleteBooks
   URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/club/books
 ```
 
-Now just for fun let's add a new book `JavaScript: The Good Parts` with a HTTP __POST__
+For fun, you can add a book, `JavaScript: The Good Parts`, with an HTTP __POST__:
 ```
 curl -X POST -d '{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}' https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/club/books
 ```
@@ -225,7 +227,7 @@ curl -X POST -d '{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}'
 }
 ```
 
-Let's get a list of books using our action `getBooks` via HTTP __GET__
+Get a list of by using the action `getBooks` via HTTP __GET__
 ```
 curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/club/books
 ```
@@ -235,30 +237,33 @@ curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef03
 }
 ```
 
-### Exporting configuration
-Let's export API named `Book Club` into a file that we can use as a base to to re-create the APIs using a file as input. 
+### Export the configuration
+Export the API named `Book Club` into a file that can be used as a base to re-create the APIs by using a file as input. 
 ```
 wsk api get "Book Club" > club-swagger.json
 ```
+{: pre}
 
-Let's test the swagger file by first deleting all exposed URLs under a common base path.
-You can delete all of the exposed URLs using either the base path `/club` or API name label `"Book Club"`:
+Test the swagger file by first deleting all exposed URLs under a common base path.
+You can delete all of the exposed by using either the base path `/club` or API name label `"Book Club"`:
 ```
 wsk api delete /club
 ```
 ```
 ok: deleted API /club
 ```
-### Changing the configuration
+### Change the configuration
 
-You can edit the configuration in the OpenWhisk Dashboard, click the [APIs tab](https://console.ng.bluemix.net/openwhisk/apimanagement) to setup security, rate limiting and other features.
+You can edit the configuration in the OpenWhisk Dashboard, click the [APIs tab](https://console.ng.bluemix.net/openwhisk/apimanagement) to set up security, rate limits, and other features.
 
-### Importing the configuration
+### Import the configuration
 
-Now let's restore the API named `Book Club` by using the file `club-swagger.json`
+Now, restore the API named `Book Club` by using the file `club-swagger.json`
 ```
 wsk api create --config-file club-swagger.json
 ```
+{: pre}
+
 ```
 ok: created api /books delete for action deleteBook
 https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/club/books
@@ -270,10 +275,12 @@ ok: created api /books put for action deleteBook
 https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/21ef035/club/books
 ```
 
-We can verify that the API has been re-created
+Verify that the API is re-created:
 ```
 wsk api list /club
 ```
+{: pre}
+
 ```
 ok: apis
 Action                    Verb         API Name        URL
