@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-08-24"
+lastupdated: "2017-09-07"
 
 ---
 
@@ -22,7 +22,7 @@ The `/whisk.system/cloudant` package enables you to work with a Cloudant databas
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database |
 | `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database |
 
-The following topics walk through setting up a Cloudant database, configuring an associated package, and using the actions and feeds in the `/whisk.system/cloudant` package.
+The following topics walk through setting up a Cloudant database, configuring an associated package, and how to use the actions and feeds in the `/whisk.system/cloudant` package.
 
 ## Setting up a Cloudant database in Bluemix
 {: #openwhisk_catalog_cloudant_in}
@@ -31,9 +31,9 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
 
 1. Create a Cloudant service instance in your Bluemix [dashboard](http://console.ng.Bluemix.net).
 
-  Be sure to create a Credential key after creating a new service instance.
+  Be sure to create a Credential key for each new service instance.
 
-2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each Cloudant service instance that has a credential key defined.
+2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each Cloudant service instance with a credential key defined.
 
   ```
   wsk package refresh
@@ -53,7 +53,7 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Your package binding now contains the credentials associated with your Cloudant service instance.
+  Your package binding now contains the credentials that are associated with your Cloudant service instance.
 
 3. Check to see that the package binding that was created previously is configured with your Cloudant Bluemix service instance host and credentials.
 
@@ -111,9 +111,9 @@ If you're not using OpenWhisk in Bluemix or if you want to set up your Cloudant 
 
 ### Filter database change events
 
-You can define a filter function, to avoid having unnecessary change events firing your trigger.
+You can define a filter function to avoid having unnecessary change events that fire your trigger.
 
-To create a new filter function you can use an action.
+To create a new filter function, you can use an action.
 
 Create a json document file `design_doc.json` with the following filter function
 ```json
@@ -127,8 +127,7 @@ Create a json document file `design_doc.json` with the following filter function
 }
 ```
 
-Create a new design document on the database with the filter function
-
+Create a design document on the database with the filter function
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
@@ -141,17 +140,17 @@ The information for the new design document is printed on the screen.
 }
 ```
 
-### Create the trigger using the filter function
+### Create the trigger by using the filter function
 
 You can use the `changes` feed to configure a service to fire a trigger on every change to your Cloudant database. The parameters are as follows:
 
 - `dbname`: Name of Cloudant database.
 - `maxTriggers`: Stop firing triggers when this limit is reached. Defaults to infinite.
-- `filter`: Filter function defined on a design document.
-- `query_params`: Optional query parameters for the filter function.
+- `filter`: Filter function that is defined on a design document.
+- `query_params`: Extra query parameters for the filter function.
 
 
-1. Create a trigger with the `changes` feed in the package binding that you created previously including `filter` and `query_params` to only fire the trigger when a document is added or modified when the status is `new`.
+1. Create a trigger with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the trigger when a document is added or modified when the status is `new`.
 Be sure to replace `/_/myCloudant` with your package name.
 
   ```
@@ -176,7 +175,7 @@ Be sure to replace `/_/myCloudant` with your package name.
 
 4. Observe new activations for the `myCloudantTrigger` trigger for each document change only if the document status is `new` based on the filter function and query parameter.
   
-  **Note**: If you are unable to observe new activations, see the subsequent sections on reading from and writing to a Cloudant database. Testing the following reading and writing steps will help verify that your Cloudant credentials are correct.
+  **Note**: If you are unable to observe new activations, see the subsequent sections on reading from and writing to a Cloudant database. Testing the following reading and writing steps help to verify that your Cloudant credentials are correct.
   
   You can now create rules and associate them to actions to react to the document updates.
   
@@ -248,9 +247,9 @@ You can use an action to fetch a document from a Cloudant database called `testd
 ## Using an action sequence and a change trigger to process a document from a Cloudant database
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-You can use an action sequence in a rule to fetch and process the document associated with a Cloudant change event.
+You can use an action sequence in a rule to fetch and process the document that is associated with a Cloudant change event.
 
-Here is a sample code of an action that handles a document:
+Sample code of an action that handles a document:
 ```javascript
 function main(doc){
   return { "isWalter:" : doc.name === "Walter White"};
@@ -264,20 +263,20 @@ wsk action create myAction myAction.js
 {: pre}
 
 To read a document from the database, you can use the `read` action from the Cloudant package.
-The `read` action may be composed with `myAction` to create an action sequence.
+The `read` action can be composed with `myAction` to create an action sequence.
 ```
 wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
-The action `sequenceAction` may be used in a rule that activates the action on new Cloudant trigger events.
+The action `sequenceAction` can be used in a rule that activates the action on new Cloudant trigger events.
 ```
 wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
 **Note** The Cloudant `changes` trigger used to support the parameter `includeDoc` which is not longer supported.
-  You will need to recreate triggers previously created with `includeDoc`. Follow these steps to recreate the trigger:
+  You can recreate triggers previously created with `includeDoc`. Follow these steps to recreate the trigger: 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -287,6 +286,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  The example illustrated above may be used to create an action sequence to read the changed document and call your existing actions.
-  Remember to disable any rules that may no longer be valid and create new ones using the action sequence pattern.
+  The example can be used to create an action sequence to read the changed document and call your existing actions.
+  Remember to disable any rules that are no longer valid and create new ones by using the action sequence pattern.
 
