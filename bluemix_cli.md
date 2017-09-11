@@ -127,7 +127,7 @@ After you configure your environment, you can use the {{site.data.keyword.openwh
 * Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
 * Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
 * Learn how packages bundle actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Using OpenWhisk-enabled services](./openwhisk_catalog.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Using OpenWhisk enabled services](./openwhisk_catalog.html).
 
 To get a list of commands for the {{site.data.keyword.openwhisk_short}} plug-in run `bx wsk` with no arguments.
 

@@ -14,7 +14,7 @@ lastupdated: "2017-09-07"
 # Pre-installed OpenWhisk Packages
 {: #openwhisk_ecosystem}
 
-In {{site.data.keyword.openwhisk}}, a catalog of packages gives you an easy way to enhance your app with useful capabilities, and to access external services in the ecosystem. Examples of external services that are {{site.data.keyword.openwhisk_short}}-enabled include Cloudant, Message Hub, Watson, The Weather Company, Slack, GitHub, and others.
+In {{site.data.keyword.openwhisk}}, a catalog of packages gives you an easy way to enhance your app with useful capabilities, and to access external services in the ecosystem. Examples of external services that are {{site.data.keyword.openwhisk_short}} enabled include Cloudant, Message Hub, Watson, The Weather Company, Slack, GitHub, and others.
 {: shortdesc}
 
 The catalog is available as packages in the `/whisk.system` and `/watson-iot` namespaces. For more information, see [Browsing packages](./packages.md#browsing-packages).
@@ -33,6 +33,6 @@ The catalog is available as packages in the `/whisk.system` and `/watson-iot` na
 | [/whisk.system/watson-translator](./openwhisk_watson_translator.html) | Package for [text translation and language identification](https://www.ibm.com/watson/developercloud/language-translator.html) |
 | [/whisk.system/watson-speechToText](./openwhisk_watson_speechtotext.html) | Package to convert [speech into text](https://www.ibm.com/watson/developercloud/speech-to-text.html) |
 | [/whisk.system/watson-textToSpeech](./openwhisk_watson_texttospeech.html) | Package to convert [text into speech](https://www.ibm.com/watson/developercloud/text-to-speech.html) |
-| [/watson-iot/iot-gateway](https://console.bluemix.net/docs/services/IoT/gateways/iotgw.html) | Package to work with [Watson IoT Platform Gateway](https://console.bluemix.net/docs/services/IoT/index.html) service |
+| [/watson-iot/iot-gateway](https://console.stage1.bluemix.net/docs/services/IoT/gateways/iotgw.html) | Package to work with [Watson IoT Platform Gateway](https://console.stage1.bluemix.net/docs/services/IoT/index.html) service |
 | [/whisk.system/weather](./openwhisk_weather.html) | Package to work with [Weather Company Data](https://console.ng.bluemix.net/docs/services/Weather/index.html) service |
 | [/whisk.system/websocket](./openwhisk_websocket.html) | Package to work with a [Web Socket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) server |
