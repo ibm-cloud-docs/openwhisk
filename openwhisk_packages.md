@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-27"
+lastupdated: "2017-09-11"
 
 ---
 
@@ -20,7 +20,7 @@ A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the Cloudant package includes actions to read and write records to a Cloudant database.
 - A feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a feed that can fire a trigger at a specified frequency.
 
-Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs in a *namespace*, and the fully qualified name of an entity is `/namespaceName[/packageName]/entityName`. Refer to the [naming guidelines](./openwhisk_reference.html#openwhisk_entities) for more information.
+Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs in a *namespace*, and the fully qualified name of an entity is `/namespaceName[/packageName]/entityName`. For more information, refer to the [naming guidelines](./openwhisk_reference.html#openwhisk_entities).
 
 The following sections describe how to browse packages and use the triggers and feeds in them. In addition, if you are interested in contributing your own packages to the catalog, read the sections on creating and sharing packages.
 
@@ -85,7 +85,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 ## Invoking actions in a package
 {: #openwhisk_package_invoke}
 
-You can invoke actions in a package, just as with other actions. The next few steps show how to invoke the `greeting` action in the `/whisk.system/samples` package with different parameters.
+You can invoke actions in a package, as with other actions. The next few steps show how to invoke the `greeting` action in the `/whisk.system/samples` package with different parameters.
 
 1. Get a description of the `/whisk.system/samples/greeting` action.
 
@@ -129,10 +129,10 @@ You can invoke actions in a package, just as with other actions. The next few st
   Notice that the output uses the `name` and `place` parameters that were passed to the action.
 
 
-## Creating and using package bindings
+## Create and use package bindings
 {: #openwhisk_package_bind}
 
-Although you can use the entities in a package directly, you might find yourself passing the same parameters to the action every time. You can avoid this by binding to a package and specifying default parameters. These parameters are inherited by the actions in the package.
+Although you can use the entities in a package directly, you might find yourself passing the same parameters to the action every time. You can simplify the process by binding to a package and specifying default parameters, which are inherited by the actions in the package.
 
 For example, in the `/whisk.system/cloudant` package, you can set default `username`, `password`, and `dbname` values in a package binding and these values are automatically passed to any actions in the package.
 
@@ -176,7 +176,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   }
   ```
 
-  Notice from the result that the action inherits the `place` parameter you set when you created the `valhallaSamples` package binding.
+  Notice from the result that the action inherits the `place` parameter that you set when you created the `valhallaSamples` package binding.
 
 4. Invoke an action and overwrite the default parameter value.
 
@@ -193,7 +193,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   Notice that the `place` parameter value that is specified with the action invocation overwrites the default value set in the `valhallaSamples` package binding.
 
 
-## Creating and using trigger feeds
+## Create and use trigger feeds
 {: #openwhisk_package_trigger}
 
 Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger every second, and how to use a rule to invoke an action every second.
@@ -222,7 +222,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   - `cron`: A crontab specification of when to fire the trigger.
   - `trigger_payload`: The payload parameter value to set in each trigger event.
 
-2. Create a trigger that fires every eight seconds.
+2. Create a trigger that fires every 8 seconds.
 
   ```
   wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
@@ -265,7 +265,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-  You should see activations every eight seconds for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+  You can see that the activations are observed every 8 seconds for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
 
 
 ## Creating a package
@@ -298,7 +298,7 @@ To create a custom package with a simple action in it, try the following example
 
   Notice that the package is empty.
 
-3. Create a file called `identity.js` that contains the following action code. This action returns all input parameters.
+3. Create a file that is called `identity.js` that contains the following action code. This action returns all input parameters.
 
   ```javascript
   function main(args) { return args; }
@@ -341,7 +341,7 @@ To create a custom package with a simple action in it, try the following example
   ```
 
 
-You can set default parameters for all the entities in a package. You do this by setting package-level parameters that are inherited by all actions in the package. To see how this works, try the following example:
+You can set default parameters for all the entities in a package by setting package-level parameters that are inherited by all actions in the package. To see how this inheritance works, try the following example:
 
 1. Update the `custom` package with two parameters: `city` and `country`.
 
