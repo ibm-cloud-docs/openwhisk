@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-05-04"
+lastupdated: "2017-09-11"
 
 ---
 
@@ -99,6 +99,9 @@ Req Headers
 {
   "Authorization": [
     "Basic XXXYYYY"
+  ],
+  "User-Agent": [
+    "OpenWhisk-CLI/1.0 (2017-08-10T20:09:30+00:00)"
   ]
 }
 RESPONSE:Got response with code 200
@@ -113,7 +116,7 @@ Response body received:
 ["john@example.com_dev"]
 ```
 
-As you can see you the printed information provides the properties of the HTTP request, it performs a HTTP method `GET` on the URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` using a Basic Authorization header `Basic XXXYYYY`. 
+As you can see you the printed information provides the properties of the HTTP request, it performs a HTTP method `GET` on the URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` by using a User-Agent header `OpenWhisk-CLI/1.0 (<CLI-Build-version>)`, and a Basic Authorization header `Basic XXXYYYY`. 
 Notice that the authorization value is your base64-encoded OpenWhisk authorization string.
 The response is of content type `application/json`.
 
