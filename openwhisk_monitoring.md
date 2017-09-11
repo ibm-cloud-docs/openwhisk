@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016
-lastupdated: "2016-08-02"
+lastupdated: "2016-09-11"
 
 ---
 
@@ -21,8 +21,8 @@ Click **Reload** at any time to update the dashboard with the latest activation 
 ## Activity Summary
 {: #summary}
 
-This view provides a high-level summary of your {{site.data.keyword.openwhisk_short}} environment. Use the **Activity Summary** view to monitor the overall health and performance of your {{site.data.keyword.openwhisk_short}}-enabled service. From the metrics in this view, you can do the following:
-* Determine the usage rate of your service's {{site.data.keyword.openwhisk_short}}-enabled actions by viewing the number of times that they were invoked.
+This view provides a high-level summary of your {{site.data.keyword.openwhisk_short}} environment. Use the **Activity Summary** view to monitor the overall health and performance of your {{site.data.keyword.openwhisk_short}} enabled service. From the metrics in this view, you can do the following:
+* Determine the usage rate of your service's {{site.data.keyword.openwhisk_short}} enabled actions by viewing the number of times that they were invoked.
 * Determine the overall rate of failure across all actions. If you spot an error, you can isolate which services or actions had errors by viewing the **Activity Histogram** view. Isolate the errors themselves by viewing the **Activity Log**.
 * Determine how well your actions are performing by viewing the average completion time that is associated with each action.
 
@@ -52,6 +52,6 @@ This view displays a formatted version of the activation log. It shows the detai
 ## Filtering options
 {: #filtering}
 
-Select which action log you want to view, and select the time frame of the activity logged.
+Select which action logs you want to view, and select the time frame of the activity logged.
 
 **Note:** These filters are applied to all views on the dashboard.
