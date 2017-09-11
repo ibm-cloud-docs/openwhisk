@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-06"
+lastupdated: "2017-09-11"
 
 ---
 
@@ -13,9 +13,9 @@ lastupdated: "2017-06-06"
 
 # Using the OpenWhisk mobile SDK
 
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote triggers and invoke remote actions. A version for Android is currently not available; Android developers can use the OpenWhisk REST API directly.
+OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote triggers and invoke remote actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
 
-The mobile SDK is written in Swift 3.0 and supports iOS 10 and later releases. You can build the mobile SDK using Xcode 8.0. Legacy Swift 2.2/Xcode 7 versions of the SDK are available up to 0.1.7, though this is now deprecated.
+The mobile SDK is written in Swift 3.0 and supports iOS 10 and later releases. You can build the mobile SDK by using Xcode 8.0. Legacy Swift 2.2/Xcode 7 versions of the SDK are available up to 0.1.7, though it is now deprecated.
 
 ## Adding the SDK to your app
 
@@ -39,9 +39,9 @@ end
 ```
 {: codeblock}
 
-From the command line, type `pod install`. This command installs the SDK for an iOS app with a watchOS extension.  Use the workspace file CocoaPods creates for your app to open the project in Xcode. 
+From the command line, type `pod install`. This command installs the SDK for an iOS app with a watchOS extension. Use the workspace file CocoaPods creates for your app to open the project in Xcode. 
 
-After installation, open your project workspace.  You may get the following warning when building:
+After installation, open your project workspace. You might get the following warning when building:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
 This is caused if Cocoapods does not update the Swift version in the Pods project.  To fix, select the Pods project and the OpenWhisk target.  Go to Build Settings and change the setting `Use Legacy Swift Language Version` to `no`. Alternatively, you can add the following post installation instructions at the end of you Podfile:
 
@@ -64,14 +64,14 @@ github "openwhisk/openwhisk-client-swift.git" ~> 0.2.2 # Or latest version
 ```
 {: pre}
 
-From the command line, type `carthage update --platform ios`. Carthage downloads and builds the SDK, creates a directory called Carthage in your app's project directory, and puts an OpenWhisk.framework file inside Carthage/build/iOS.
+From the command line, type `carthage update --platform ios`. Carthage downloads and builds the SDK, creates a directory that is called Carthage in your app's project directory, and puts an `OpenWhisk.framework` file inside Carthage/build/iOS.
 
 You must then add OpenWhisk.framework to the embedded frameworks in your Xcode project
 
 ### Installing from source code
 
 Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.git.
-Open the project by using the `OpenWhisk.xcodeproj` using Xcode.
+Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
 The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
 Build the project for the targets that you need and add the resulting frameworks to your app (usually in ~/Library/Developer/Xcode/DerivedData/your app name).
 
@@ -121,7 +121,7 @@ The strings before the colon is your key, and the string after the colon is your
 ## Invoking an OpenWhisk action
 
 
-To invoke a remote action, you can call `invokeAction` with the action name. You can specify the namespace that the action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the action as required.
+To invoke a remote action, you can call `invokeAction` with the action name. You can specify the namespace that the action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the action as needed.
 
 For example:
 
@@ -148,7 +148,7 @@ In the previous example, you invoke the `helloConsole` action by using the defau
 
 ## Firing an OpenWhisk trigger
 
-To fire a remote trigger, you can call the `fireTrigger` method. Pass in parameters as required by using a dictionary.
+To fire a remote trigger, you can call the `fireTrigger` method, and pass in parameters as needed by using a dictionary.
 
 ```swift
 // In this example we are firing a trigger when our location has changed by a certain amount
@@ -207,7 +207,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-In this example, you use an installation that is running at localhost:8080. If you do not specify the baseUrl, the mobile SDK uses the instance that is running at https://openwhisk.ng.bluemix.net.
+In this example, you use an installation that is running at http://localhost:8080. If you do not specify the baseUrl, the mobile SDK uses the instance that is running at https://openwhisk.ng.bluemix.net.
 
 You can pass in a custom NSURLSession in case you require special network handling. For example, you might have your own OpenWhisk installation that uses self-signed certificates:
 
