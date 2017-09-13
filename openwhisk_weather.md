@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-06-20"
+lastupdated: "2017-09-13"
 
 ---
 
@@ -25,13 +25,13 @@ The package includes the following action.
 
 Creating a package binding with the `username` and `password` values is suggested. This way, you don't need to specify the credentials every time you invoke the actions in the package.
 
-## Setting up the Weather package in Bluemix
+## Setting up the Weather package in {{site.data.keyword.Bluemix}}
 
-If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package bindings for your Bluemix Weather service instances.
+If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Weather service instances.
 
-1. Create a Weather Company Data service instance in your Bluemix [dashboard](http://console.ng.Bluemix.net).
+1. Create a Weather Company Data service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.ng.Bluemix.net).
   
-  Be sure to remember the name of the service instance and the Bluemix organization and space you're in.
+  Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Weather Company Data service instance that you created.
   
@@ -53,9 +53,9 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
   ```
   
  
-## Setting up a Weather package outside Bluemix
+## Setting up a Weather package outside {{site.data.keyword.Bluemix_notm}}
 
-If you're not using OpenWhisk in Bluemix or if you want to set up your Weather Company Data service outside of Bluemix, you must manually create a package binding for your WWeather Company Data service. You need the Weather Company Data service user name, and password.
+If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Weather Company Data service outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your WWeather Company Data service. You need the Weather Company Data service user name, and password.
 
 - Create a package binding that is configured for your Watson Translator service.
 
@@ -81,7 +81,7 @@ The `/whisk.system/weather/forecast` action returns a weather forecast for a loc
   - `timeseries` - Returns both the current observations and up to 24 hours of past observations, from the current date and time.
 
 
-The following is an example of creating a package binding and then getting a 10-day forecast.
+The following example shows how to create a package binding and then getting a 10-day forecast.
 
 - Invoke the `forecast` action in your package binding to get the weather forecast.
   
