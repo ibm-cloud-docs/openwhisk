@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-08-17"
+lastupdated: "2017-09-13"
 
 ---
 
@@ -14,12 +14,12 @@ lastupdated: "2017-08-17"
 # Web Actions
 {: #openwhisk_webactions}
 
-Web actions are OpenWhisk actions annotated to quickly enable you to build web based applications. This allows you to program backend logic which your web application can access anonymously without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (i.e. OAuth flow).
+Web actions are OpenWhisk actions, which are annotated, to quickly enable developers to build web-based applications. These annotated actions allow developers to program backend logic that your web application can access anonymously, without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (that is, OAuth flow).
 {: shortdesc}
 
-Web action activations will be associated with the user that created the action. This action defers the cost of an action activation from the caller to the owner of the action.
+Web action activations are associated with the user that created the action. This action defers the cost of an action activation from the caller to the owner of the action.
 
-Let's take the following JavaScript action `hello.js`,
+Look at the following JavaScript action `hello.js`,
 ```javascript
 function main({name}) {
   var msg = 'you did not tell me who you are.';
@@ -31,24 +31,23 @@ function main({name}) {
 ```
 {: codeblock}  
 
-You may create a _web action_ `hello` in the package `demo` for the namespace `guest` using the CLI's `--web` flag with a value of `true` or `yes`:
+You can create a _web action_ `hello` in the package `demo` for the namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
 ```
 wsk package create demo
 ```
 {: pre}
+
 ```
 wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-Using the `--web` flag with a value of `true` or `yes` allows an action to be accessible via REST interface without the
-need for credentials. A web action can be invoked using a URL that is structured as follows:
-`https://{APIHOST}/api/v1/web/{QUALIFIED ACTION NAME}.{EXT}`. The fully qualified name of an action consists of three
-parts: the namespace, the package name, and the action name.
+Using the `--web` flag with a value of `true` or `yes` allows an action to be accessible via REST interface without the need for credentials. A web action can be invoked by using a URL that is structured as follows:
+`https://{APIHOST}/api/v1/web/{QUALIFIED ACTION NAME}.{EXT}`. The fully qualified name of an action consists of three parts: the namespace, the package name, and the action name.
 
 *The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package.*
 
-An example is `guest/demo/hello`. The web action API path may be used with `curl` or `wget` without an API key. It may even be entered directly in your browser.
+An example is `guest/demo/hello`. The web action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
 Try opening [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the action via `curl`:
 ```
@@ -56,7 +55,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
-Here is an example of a web action that performs an HTTP redirect:
+In the following example, a web action performs an HTTP redirect:
 ```javascript
 function main() {
   return { 
@@ -67,7 +66,7 @@ function main() {
 ```
 {: codeblock}    
 
-Or sets a cookie:
+In the following example, a web action sets a single cookie:
 ```javascript
 function main() {
   return { 
@@ -81,7 +80,7 @@ function main() {
 ```
 {: codeblock}  
 
-Or sets multiple cookies:
+In the following example, a web action sets multiple cookies:
 ```javascript
 function main() {
   return { 
@@ -98,7 +97,7 @@ function main() {
 ```
 {: codeblock}
 
-Or returns an `image/png`:
+The following example returns an `image/png`:
 ```javascript
 function main() {
     let png = <base 64 encoded string>
@@ -109,7 +108,7 @@ function main() {
 ```
 {: codeblock}  
 
-Or returns `application/json`:
+The following example returns `application/json`:
 ```javascript
 function main(params) { 
     return {
@@ -121,37 +120,39 @@ function main(params) {
 ```
 {: codeblock}  
 
-The default content-type for an HTTP response is `application/json` and the body may be any allowed JSON value. The default content-type may be omitted from the headers.
+The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [response size limit](./openwhisk_reference.html) for actions since a response that exceeds the predefined system limits will fail. Large objects should not be sent inline through OpenWhisk, but instead deferred to an object store, for example.
+It is important to be aware of the [response size limit](./openwhisk_reference.html) for actions since a response that exceeds the predefined system limits fail. Large objects are not sent inline through OpenWhisk, but instead deferred to an object store, for example.
 
 ## Handling HTTP requests with actions
 {: #openwhisk_webactions_http}
 
-An OpenWhisk action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions may be invoked without authentication, and may be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must still return a JSON object, but the OpenWhisk system (namely the `controller`) will treat a web action differently if its result includes one or more of the following as top level JSON properties:
+An OpenWhisk action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions can be invoked without authentication, and can be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must return a JSON object. However, the OpenWhisk system (namely the `controller`), treats a web action differently if its result includes one or more of the following top-level JSON properties:
 
-- `headers`: a JSON object where the keys are header-names and the values are string, number, or boolean values for those headers (default is no headers). To send multiple values for a single header, the header's value should be a JSON array of values.
-- `statusCode`: a valid HTTP status code (default is 200 OK).
-- `body`: a string which is either plain text or a base64 encoded string (for binary data).
+- `headers`: A JSON object where the keys are header-names and the values are string, number, or boolean values for those headers (default is no headers). To send multiple values for a single header, the header's value is a JSON array of values.
+- `statusCode`: A valid HTTP status code (default is 200 OK).
+- `body`: A string that is either plain text or a base64 encoded string (for binary data).
 
-The controller will pass along the action-specified headers, if any, to the HTTP client when terminating the request/response. Similarly the controller will respond with the given status code when present. Lastly, the body is passed along as the body of the response. Unless a `content-type header` is declared in the action result’s `headers`, the body is passed along as is if it’s a string (or results in an error otherwise). When the `content-type` is defined, the controller will determine if the response is binary data or plain text and decode the string using a base64 decoder as needed. Should the body fail to decoded correctly, an error is returned to the caller.
+The controller is to pass along the action-specified headers, if any, to the HTTP client that terminates the request/response. Similarly, the controller responds with the status code when present. Lastly, the body is passed along as the body of the response. Unless a `Content-Type` header is declared in the action result’s `headers`, the body is passed along as is if it’s a string (or results in an error otherwise). When the `Content-Type` is defined, the controller determines whether the response is binary data or plain text and decode the string by using a base64 decoder as needed. If the body fails to decode correctly, an error is returned to the caller.
 
-_Note_: A JSON object or array is treated as binary data and must be base64 encoded as shown in the example above.
+_Note_: A JSON object or array is treated as binary data, and must be base64 encoded.
 
 ## HTTP Context
 
-All web actions, when invoked, receives additional HTTP request details as parameters to the action input argument. They are:
+All web actions, when invoked, receive HTTP request details as parameters to the action input argument. 
 
-- `__ow_method` (type: string). the HTTP method of the request.
-- `__ow_headers` (type: map string to string): A the request headers.
-- `__ow_path` (type: string): the unmatched path of the request (matching stops after consuming the action extension).
-- `__ow_user` (type: string): the namespace identifying the OpenWhisk authenticated subject
-- `__ow_body` (type: string): the request body entity, as a base64 encoded string when content is binary, or plain string otherwise
-- `__ow_query` (type: string): the query parameters from the request as an unparsed string
+See the following HTTP parameters:
 
-A request may not override any of the named `__ow_` parameters above; doing so will result in a failed request with status equal to 400 Bad Request.
+- `__ow_method` (type: string). The HTTP method of the request.
+- `__ow_headers` (type: map string to string): The request headers.
+- `__ow_path` (type: string): The unmatched path of the request (matching stops once the action extension is consumed).
+- `__ow_user` (type: string): The namespace that identifies the OpenWhisk authenticated subject
+- `__ow_body` (type: string): The request body entity, as a base64 encoded string when content is binary, or plain string otherwise
+- `__ow_query` (type: string): The query parameters from the request as an unparsed string
 
-The `__ow_user` is only present when the web action is [annotated to require authentication](./openwhisk_annotations.html#openwhisk_annotations_webactions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string containing the query parameters parsed from the URI (separated by `&`). The `__ow_body` property is present either when handling "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Web actions otherwise receive query and body parameters as first class properties in the action arguments with body parameters taking precedence over query parameters, which in turn take precedence over action and package parameters.
+A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
+
+The `__ow_user` is only present when the web action is [annotated to require authentication](./openwhisk_annotations.html#openwhisk_annotations_webactions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web actions receive query and body parameters as first class properties in the action argument. Body parameters take precedence over query parameters, which in turn take precedence over action and package parameters.
 
 ## HTTPS Endpoint support
 
@@ -159,17 +160,17 @@ Supported SSL protocols: TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3 ([draft version 18](
 
 Unsupported SSL protocols: SSLv2, SSLv3
 
-## Additional features
+## Extra features
 
-Web actions bring some additional features that include:
+Web actions provide extra features that include:
 
-- `Content extensions`: the request must specify its desired content type as one of `.json`, `.html`, `.http`, `.svg` or `.text`. This is done by adding an extension to the action name in the URI, so that an action `/guest/demo/hello` is referenced as `/guest/demo/hello.http` for example to receive an HTTP response back. For convenience, the `.http` extension is assumed when no extension is detected.
-- `Projecting fields from the result`: the path that follows the action name is used to project out one or more levels of the response. For example, 
-`/guest/demo/hello.html/body`. This allows an action which returns a dictionary `{body: "..." }` to project the `body` property and directly return its string value instead. The projected path follows an absolute path model (as in XPath).
-- `Query and body parameters as input`: the action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, body parameters with each of these overriding any previous values in case of overlap . As an example `/guest/demo/hello.http?name=Jane` will pass the argument `{name: "Jane"}` to the action.
-- `Form data`: in addition to the standard `application/json`, web actions may receive URL encoded from data `application/x-www-form-urlencoded data` as input.
-- `Activation via multiple HTTP verbs`: a web action may be invoked via any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
-- `Non JSON body and raw HTTP entity handling`: A web action may accept an HTTP request body other than a JSON object, and may elect to always receive such values as opaque values (plain text when not binary, or base64 encoded string otherwise).
+- `Content extensions`: The request must specify its desired content type as `.json`, `.html`, `.http`, `.svg`, or `.text`. The type is specified by adding an extension to the action name in the URI so that an action `/guest/demo/hello` is referenced as `/guest/demo/hello.http`, for example, to receive an HTTP response back. For convenience, the `.http` extension is assumed when no extension is detected.
+- `Projecting fields from the result`: The path that follows the action name is used to project out one or more levels of the response. 
+`/guest/demo/hello.html/body`. This feature allows an action that returns a dictionary `{body: "..." }` to project the `body` property, and directly return its string value instead. The projected path follows an absolute path model (as in XPath).
+- `Query and body parameters as input`: The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/guest/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action.
+- `Form data`: In addition to the standard `application/json`, web actions can receive URL encoded from data `application/x-www-form-urlencoded data` as input.
+- `Activation via multiple HTTP verbs`: A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
+- `Non JSON body and raw HTTP entity handling`: A web action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary, or base64 encoded string otherwise).
 
 The example below briefly sketches how you might use these features in a web action. Consider an action `/guest/demo/hello` with the following body:
 ```javascript
@@ -200,7 +201,7 @@ For example, to return the entire object, and see what arguments the action rece
 }
 ```
 
-and with a query parameter:
+To run with a query parameter, see the following example command:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
  ```
@@ -221,7 +222,7 @@ and with a query parameter:
 }
 ```
 
-or form data:
+You can also run with form data:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
  ```
@@ -244,7 +245,7 @@ or form data:
 }
 ```
 
-or JSON object:
+Run the following command for a JSON object:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
@@ -267,7 +268,7 @@ or JSON object:
 }
 ```
 
-and to project just the name (as text):
+Run the following command to project the name (as text):
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
@@ -276,9 +277,9 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/
 Jane
 ```
 
-You see above that for convenience, query parameters, form data, and JSON object body entities are all treated as dictionaries are their values are directly accessible as action input properties. This is not the case for web actions which opt to instead handle HTTP request entities more directly, or when the web action receives an entity that is not a JSON object.
+For convenience, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which opt to handle HTTP request entities more directly, or when the web action receives an entity that is not a JSON object.
 
-Here is an example of using a "text" content-type with the same example shown above:
+See the following example that uses a "text" content-type, as was shown previously.
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
@@ -305,12 +306,12 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 ## Content extensions
 {: #openwhisk_webactions_extensions}
 
-A content extension is generally required when invoking a web action; the absence of an extension assumes `.http` as the default. The `.json` and `.http` extensions do not require a projection path. The `.html`, `.svg` and `.text` extensions do, however for convenience, the default path is assumed to match the extension name. So to invoke a web action and receive an `.html` response, the action must respond with a JSON object that contains a top level property called `html` (or the response must be in the explicitly given path). In other words, `/guest/demo/hello.html` is equivalent to projecting the `html` property explicitly, as in `/guest/demo/hello.html/html`. The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package.
+A content extension is usually necessary to invoke a web action. The absence of an extension assumes `.http` as the default. The `.json` and `.http` extensions do not require a projection path, whereas the `.html`, `.svg`, and `.text` extensions do. For convenience, the default path is assumed to match the extension name. To invoke a web action and receive an `.html` response, the action must respond with a JSON object that contains a top-level property called `html` (or the response must be in the explicit path). In other words, `/guest/demo/hello.html` is equivalent to projecting the `html` property explicitly, as in `/guest/demo/hello.html/html`. The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package.
 
 ## Protected parameters
 {: #openwhisk_webactions_protected}
 
-Action parameters are protected and treated as immutable. Parameters are automatically finalized when enabling web actions.
+Action parameters are protected and treated as immutable. Parameters are automatically finalized to enable web actions.
 
 ```
  wsk action create /guest/demo/hello hello.js \
@@ -318,11 +319,11 @@ Action parameters are protected and treated as immutable. Parameters are automat
       --web true
 ```
 
-The result of these changes is that the `name` is bound to `Jane` and may not be overridden by query or body parameters because of the final annotation. This secures the action against query or body parameters that try to change this value whether by accident or intentionally. 
+The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally. 
 
 ## Disabling web actions
 
-To disable a web action from being invoked via web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag while updating an action with the CLI.
+To disable a web action from being invoked via web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an action with the CLI.
 
 ```
  wsk action update /guest/demo/hello hello.js --web false
@@ -331,7 +332,7 @@ To disable a web action from being invoked via web API (`https://openwhisk.ng.bl
 
 ## Raw HTTP handling
 
-A web action may elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the action input (e.g., `args.name` vs parsing `args.__ow_query`). This is done via a `raw-http` [annotation](annotations.md). Using the same example show earlier, but now as a "raw" HTTP web action receiving `name` both as a query parameters and as JSON value in the HTTP request body:
+A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](annotations.md). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
 ```
@@ -359,7 +360,7 @@ OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/h
 
 ### Enabling raw HTTP handling
 
-Raw HTTP web actions are enabled via the `--web` flag using a value of `raw`.
+Raw HTTP web actions are enabled through the `--web` flag by using a value of `raw`.
 
 ```
  wsk action create /guest/demo/hello hello.js --web raw
@@ -375,9 +376,8 @@ Disabling raw HTTP can be accomplished by passing a value of `false` or `no` to 
 
 ### Decoding binary body content from Base64
 
-When using raw HTTP handling, the `__ow_body` content will be encoded in Base64 when the request content-type is binary.
-Below are functions demonstrating how to decode the body content in Node, Python, and Swift. Simply save a method shown
-below to file, create a raw HTTP web action utilizing the saved artifact, and invoke the web action.
+When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is binary.
+The following functions demonstrate how to decode the body content in Node, Python, and Swift. Simply save a method to a file, create a raw HTTP web action that utilizes the saved artifact, and then invoke the web action.
 
 #### Node
 
@@ -446,9 +446,9 @@ curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwh
 
 ## Options Requests
 
-By default, an OPTIONS request made to a web action will result in CORS headers being automatically added to the
-response headers. These headers allow all origins and the options, get, delete, post, put, head, and patch HTTP verbs.
-The headers are shown below:
+By default, an OPTIONS request made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the options, get, delete, post, put, head, and patch HTTP verbs.
+
+See the following headers:
 
 ```
 Access-Control-Allow-Origin: *
@@ -456,10 +456,8 @@ Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
 Access-Control-Allow-Headers: Authorization, Content-Type
 ```
 
-Alternatively, OPTIONS requests can be handled manually by a web action. To enable this option add a
-`web-custom-options` annotation with a value of `true` to a web action. When this feature is enabled, CORS headers will
-not automatically be added to the request response. Instead, it is the developer's responsibility to append their
-desired headers programmatically. Below is an example of creating custom responses to OPTIONS requests.
+Alternatively, OPTIONS requests can be handled manually by a web action. To enable this option, add a
+`web-custom-options` annotation with a value of `true` to a web action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, it is the developer's responsibility to append their desired headers programmatically. See the following example to create custom responses to OPTIONS requests.
 
 ```
 function main(params) {
@@ -475,7 +473,7 @@ function main(params) {
 }
 ```
 
-Save the above function to `custom-options.js` and execute the following commands:
+Save the function to `custom-options.js` and execute the following commands:
 
 ```
 $ wsk action create custom-option custom-options.js --web true -a web-custom-options true
@@ -491,11 +489,10 @@ $ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTI
 ## Error Handling
 {: #openwhisk_webactions_errors}
 
-When an OpenWhisk action fails, there are two different failure modes. The first is known as an _application error_ and is analogous to a caught exception: the action returns a JSON object containing a top level `error` property. The second is a _developer error_ which occurs when the action fails catastrophically and does not produce a response (this is similar to an uncaught exception). For web actions, the controller handles application errors as follows:
+An OpenWhisk action fails in two different possible failure modes. The first is known as an _application error_, and is analogous to a caught exception: the action returns a JSON object that contains a top level `error` property. The second is a _developer error_, which occurs when the action fails catastrophically, and does not produce a response (similar to an uncaught exception). For web actions, the controller handles application errors as follows:
 
 - Any specified path projection is ignored and the controller projects the `error` property instead.
-- The controller applies the content handling implied by the action extension to the value of the `error` property.
+- The controller applies the content handling that is implied by the action extension to the value of the `error` property.
 
-Developers should be aware of how web actions might be used and generate error responses accordingly. For example, a web action that is used with the `.http` extension
-should return an HTTP response, for example: `{error: { statusCode: 400 }`. Failing to do so will in a mismatch between the implied content-type from the extension and the action content-type in the error response. Special consideration must be given to web actions that are sequences, so that components that make up a sequence can generate adequate errors when necessary.
+Developers must know how web actions might be used, and generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response like `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
 
