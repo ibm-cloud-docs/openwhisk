@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-02-21"
+lastupdated: "2017-09-13"
 
 ---
 
@@ -25,13 +25,13 @@ The package includes the following actions.
 
 **Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/speechToText`.
 
-## Setting up the Watson Speech to Text package in Bluemix
+## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix}}
 
-If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package bindings for your Bluemix Watson service instances.
+If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
 1. Create a Watson Speech to Text service instance in your Bluemix [dashboard](http://console.ng.Bluemix.net).
   
-  Be sure to remember the name of the service instance and the Bluemix organization and space you're in.
+  Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   
@@ -53,9 +53,9 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
   ```
   
 
-## Setting up a Watson Speech to Text package outside Bluemix
+## Setting up a Watson Speech to Text package outside {{site.data.keyword.Bluemix_notm}}
 
-If you're not using OpenWhisk in Bluemix or if you want to set up your Watson Speech to Text outside of Bluemix, you must manually create a package binding for your Watson Speech to Text service. You need the Watson Speech to Text service user name, and password.
+If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}}, or if you want to set up your Watson Speech to Text outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Speech to Text service. You need the Watson Speech to Text service user name, and password.
 
 - Create a package binding that is configured for your Watson Speech to Text service.
   
