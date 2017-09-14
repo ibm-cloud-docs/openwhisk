@@ -15,6 +15,7 @@ lastupdated: "2017-09-11"
 {: #openwhisk_catalog_pushnotifications}
 
 The `/whisk.system/pushnotifications` package provides you with the ability to work with a push service.
+{: shortdesc}
 
 The package includes the following action and feed:
 

@@ -14,6 +14,7 @@ lastupdated: "2017-09-07"
 # {{site.data.keyword.openwhisk_short}} stand-alone CLI
 
 The {{site.data.keyword.openwhisk_short}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
+{: shortdesc}
 
 **NOTE:** IBM recommends that you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI](./bluemix_cli.html) to manage {{site.data.keyword.openwhisk_short}} entities. The following management tasks are easier if you use the plugin.
 

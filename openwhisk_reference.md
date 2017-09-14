@@ -13,7 +13,6 @@ lastupdated: "2017-09-12"
 # {{site.data.keyword.openwhisk_short}} system details
 {: #openwhisk_reference}
 
-
 The following sections provide more details about the {{site.data.keyword.openwhisk}} system.
 {: shortdesc}
 

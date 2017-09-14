@@ -15,6 +15,7 @@ lastupdated: "2017-09-12"
 {: #openwhisk_catalog_slack}
 
 The `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
+{: shortdesc}
 
 The package includes the following actions:
 

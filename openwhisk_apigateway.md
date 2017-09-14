@@ -18,6 +18,7 @@ OpenWhisk actions can benefit from being managed by API management.
 
 The API Gateway acts as a proxy to [Web Actions](webactions.md), and provides them with additional features. The extra features include: HTTP method routing, client id/secrets, rate limits, CORS, view API usage, view response logs, and API sharing policies.
 For more information about API management, you can read the [API management documentation](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+{: shortdesc}
 
 ## Create APIs from OpenWhisk web actions by using your Browser.
 

@@ -15,6 +15,7 @@ lastupdated: "2017-09-13"
 {: #openwhisk_catalog_watson_texttospeech}
 
 The `/whisk.system/watson-textToSpeech` package offers a convenient way to call Watson APIs to convert the text into speech.
+{: shortdesc}
 
 The package includes the following actions.
 

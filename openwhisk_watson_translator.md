@@ -15,6 +15,7 @@ lastupdated: "2017-09-13"
 {: #openwhisk_catalog_watson_translator}
 
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.
+{: shortdesc}
 
 The package includes the following actions.
 

@@ -15,6 +15,7 @@ lastupdated: "2017-09-14"
 {: #openwhisk_packages}
 
 In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a set of related actions, and share them with others.
+{: shortdesc}
 
 A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the Cloudant package includes actions to read and write records to a Cloudant database.

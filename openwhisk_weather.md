@@ -15,6 +15,7 @@ lastupdated: "2017-09-13"
 {: #openwhisk_catalog_weather}
 
 The `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for IBM Bluemix API.
+{: shortdesc}
 
 The package includes the following action.
 

@@ -21,6 +21,7 @@ The `/whisk.system/cloudant` package enables you to work with a Cloudant databas
 | `/whisk.system/cloudant/read` | action | dbname, id | Read a document from a database |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database |
 | `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database |
+{: shortdesc}
 
 The following topics walk through setting up a Cloudant database, configuring an associated package, and how to use the actions and feeds in the `/whisk.system/cloudant` package.
 

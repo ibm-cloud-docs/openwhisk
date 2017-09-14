@@ -15,6 +15,7 @@ lastupdated: "2017-09-11"
 {: #openwhisk_catalog_github}
 
 The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/).
+{: shortdesc}
 
 The package includes the following feed:
 

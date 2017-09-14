@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-13"
+lastupdated: "2017-09-14"
 
 ---
 
@@ -14,7 +14,8 @@ lastupdated: "2017-09-13"
 # Using the WebSocket package
 {: #openwhisk_catalog_websocket}
 
-The `/whisk.system/websocket` package offers a convenient way post messages to a WebSocket.
+The `/whisk.system/websocket` package offers a convenient way to post messages to a WebSocket.
+{: shortdesc}
 
 The package includes the following actions:
 
@@ -25,7 +26,7 @@ The package includes the following actions:
 
 If you plan to send many messages to the same WebSocket URI, creating a package binding with the `uri` value is suggested.  With binding, you don't need to specify the value each time that you use the `send` action.
 
-## Sending a message to a WebSocket
+## Send a message to a WebSocket
 
 The `/whisk.system/websocket/send` action sends a payload to a WebSocket URI. The parameters are as follows:
 

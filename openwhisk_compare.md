@@ -15,6 +15,7 @@ lastupdated: 2017-09-07
 {: #openwhisk_faas_compared}
 
 Serverless architecture is not a panacea to all computing problems, but it does solve some. There are [many uses cases](./openwhisk_use_cases.html) when serverless design can be a good choice. The following architectures are compared:
+{: shortdesc}
 
 1. **Function as a Service (FaaS)** - managed OpenWhisk. IBM is the only vendor to offer managed [OpenWhisk on Bluemix](https://console.ng.bluemix.net/openwhisk).
 
