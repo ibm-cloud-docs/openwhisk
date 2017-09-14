@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-11"
+lastupdated: "2017-09-14"
 
 ---
 
@@ -17,11 +17,11 @@ OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile 
 
 The mobile SDK is written in Swift 3.0 and supports iOS 10 and later releases. You can build the mobile SDK by using Xcode 8.0. Legacy Swift 2.2/Xcode 7 versions of the SDK are available up to 0.1.7, though it is now deprecated.
 
-## Adding the SDK to your app
+## Add the SDK to your app
 
 You can install the mobile SDK by using CocoaPods, Carthage, or from the source directory.
 
-### Installing by using CocoaPods
+### Install with CocoaPods
 
 The OpenWhisk SDK for mobile is available for public distribution through CocoaPods. Assuming CocoaPods is installed, put the following lines into a file called 'Podfile' inside the starter app project directory.
 
@@ -56,7 +56,7 @@ end
 ```
 {: codeblock}
 
-### Installing by using Carthage
+### Install with Carthage
 
 Create a file in your app's project directory and name it 'Cartfile'. Put the following line in the file:
 ```
@@ -68,14 +68,14 @@ From the command line, type `carthage update --platform ios`. Carthage downloads
 
 You must then add OpenWhisk.framework to the embedded frameworks in your Xcode project
 
-### Installing from source code
+### Install from source code
 
 Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.git.
 Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
 The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
 Build the project for the targets that you need and add the resulting frameworks to your app (usually in ~/Library/Developer/Xcode/DerivedData/your app name).
 
-## Installing the starter app example
+## Install the starter app example
 
 You can use the OpenWhisk CLI to download example code that embeds the OpenWhisk SDK framework.  
 
@@ -118,8 +118,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 The strings before the colon is your key, and the string after the colon is your token.
 
-## Invoking an OpenWhisk action
-
+## Invoke an OpenWhisk action
 
 To invoke a remote action, you can call `invokeAction` with the action name. You can specify the namespace that the action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the action as needed.
 
@@ -146,7 +145,7 @@ do {
 
 In the previous example, you invoke the `helloConsole` action by using the default namespace.
 
-## Firing an OpenWhisk trigger
+## Fire an OpenWhisk trigger
 
 To fire a remote trigger, you can call the `fireTrigger` method, and pass in parameters as needed by using a dictionary.
 
@@ -170,7 +169,7 @@ do {
 
 In the previous example, you are firing a trigger that is called `locationChanged`.
 
-## Using actions that return a result
+## Use actions that return a result
 
 If the action returns a result, set hasResult to true in the invokeAction call. The result of the action is returned in the reply dictionary, for example:
 

@@ -11,13 +11,13 @@ lastupdated: "2017-09-12"
 {:screen: .screen}
 {:pre: .pre}
 
-# Creating triggers and rules
+# Create triggers and rules
 {: #openwhisk_triggers}
 
 {{site.data.keyword.openwhisk_short}} triggers and rules bring event-driven capabilities to the platform. Events from external and internal event sources are channeled through a trigger, and rules allow your actions to react to these events.
 {: shortdesc}
 
-## Creating triggers
+## Create triggers
 {: #openwhisk_triggers_create}
 
 Triggers are a named channel for a class of events. The following are examples of triggers:
@@ -59,7 +59,7 @@ The three rules establish the following behavior:
 - Uploaded images are classified
 - A thumbnail version is generated.
 
-## Creating and firing triggers
+## Create and fire triggers
 {: #openwhisk_triggers_fire}
 
 Triggers can be fired when certain events occur, or can be fired manually.
@@ -105,7 +105,7 @@ As an example, create a trigger to send user location updates, and manually fire
 A trigger that is fired without an accompanying rule to match against has no visible effect.
 Triggers cannot be created inside a package; they must be created directly under a namespace.
 
-## Associating triggers and actions by using rules
+## Associate triggers and actions by using rules
 {: #openwhisk_rules_assoc}
 
 Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the event parameters.

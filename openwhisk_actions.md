@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-06"
+lastupdated: "2017-09-14"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2017-09-06"
 {:screen: .screen}
 {:pre: .pre}
 
-# Creating and invoking {{site.data.keyword.openwhisk_short}} actions
+# Create and invoke actions
 {: #openwhisk_actions}
 
 
@@ -36,13 +36,13 @@ In addition, learn about:
 * [Accessing action metadata within the action body](#accessing-action-metadata-within-the-action-body)
 
 
-## Creating and invoking JavaScript actions
+## Create and invoke JavaScript actions
 {: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with actions in JavaScript. You begin with the creation and invocation of a simple action. Then, you move on to adding parameters to an action and invoking that action with parameters. Next, is setting default parameters and invoking them. Then, you create asynchronous actions, and finally work with action sequences.
 
 
-### Creating and invoking a simple JavaScript action
+### Create and invoke a simple JavaScript action
 {: #openwhisk_single_action_js}
 
 Review the following steps and examples to create your first JavaScript action.
@@ -140,7 +140,7 @@ Review the following steps and examples to create your first JavaScript action.
   6bf1f670ee614a7eb5af3c9fde813043         hello
   ```
 
-### Passing parameters to an action
+### Pass parameters to an action
 
 Parameters can be passed to the action when it is invoked.
 
@@ -217,7 +217,7 @@ Parameters can be passed to the action when it is invoked.
   }
   ```
 
-### Setting default parameters
+### Set default parameters
 
 Actions can be invoked with multiple named parameters. Recall that the `hello` action from the previous example expects two parameters: the *name* of a person, and the *place* where they're from.
 
@@ -291,7 +291,7 @@ Rather than pass all the parameters to an action every time, you can bind certai
   }
   ```
 
-### Creating asynchronous actions
+### Create asynchronous actions
 {: #openwhisk_asynchrony_js}
 
 JavaScript functions that run asynchronously can return the activation result after the `main` function returns by returning a Promise in your action.
@@ -362,7 +362,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
   Comparing the `start` and `end` time stamps in the activation record, you can see that this activation took slightly over 2 seconds to complete.
 
-### Using actions to call an external API
+### Use actions to call an external API
 {: #openwhisk_apicall_action}
 
 The examples so far are self-contained JavaScript functions. You can also create an action that calls an external API.
@@ -416,7 +416,7 @@ This example invokes a Yahoo Weather service to get the current conditions at a 
   }
   ```
 
-### Packaging an action as a Node.js module
+### Package an action as a Node.js module
 {: #openwhisk_js_packaged_action}
 
 As an alternative to writing all your action code in a single JavaScript source file, you can write an action as a `npm` package. Consider as an example a directory with the following files:
@@ -494,7 +494,7 @@ To create an OpenWhisk action from this package:
 
 Finally, while most `npm` packages install JavaScript sources on `npm install`, some also install, and compile binary artifacts. The archive file upload currently does not support binary dependencies but rather only JavaScript dependencies. Action invocations can fail if the archive includes binary dependencies.
 
-## Creating action sequences
+## Create action sequences
 {: #openwhisk_create_action_sequence}
 
 You can create an action that chains together a sequence of actions.
@@ -554,12 +554,12 @@ This object does not include any of the parameters that are originally passed to
 Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
 For more information about invoking action sequences with multiple named parameters, see [Setting default parameters](./openwhisk_actions.html#openwhisk_binding_actions).
 
-## Creating Python actions
+## Create Python actions
 {: #creating-python-actions}
 
 The process of creating Python actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single Python action, and adding parameters to that action.
 
-### Creating and invoking a Python action
+### Create and invoke a Python action
 {: #openwhisk_actions_python_invoke}
 
 An action is simply a top-level Python function. For example, create a file called `hello.py` with the following source code:
@@ -581,6 +581,7 @@ You can create an OpenWhisk action called `helloPython` from this function as fo
 wsk action create helloPython hello.py
 ```
 {: pre}
+
 The CLI automatically infers the type of the action from the source file extension. For `.py` source files, the action runs by using a Python 2.7 runtime. You can also create an action that runs with Python 3.6 by explicitly specifying the parameter `--kind python:3`. For more information, see the Python 2.7 vs 3.6 [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
 
 Action invocation is the same for Python actions as it is for JavaScript actions:
@@ -596,7 +597,7 @@ wsk action invoke --result helloPython --param name World
   }
 ```
 
-### Packaging Python actions in zip files
+### Package Python actions in zip files
 {: #openwhisk_actions_python_zip}
 
 You can package a Python action and dependent modules in a zip file.
@@ -615,7 +616,7 @@ wsk action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
-### Packaging Python actions with a virtual environment in zip files
+### Package Python actions with a virtual environment in zip files
 {: #openwhisk_actions_python_virtualenv}
 
 Another way of packaging Python dependencies is by using a virtual environment (`virtualenv`) which allows you to link additional packages that can be installed via [`pip`](https://packaging.python.org/installing/) for example.
@@ -645,11 +646,11 @@ As with basic zip file support, the name of the source file that contains the ma
 While these steps are shown for Python 3.6, you can do the same for Python 2.7 as well.
 
 
-## Creating PHP actions
+## Create PHP actions
 
 The process of creating PHP actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single PHP action, and adding parameters to that action.
 
-### Creating and invoking a PHP action
+### Create and invoke a PHP action
 
 An action is simply a top-level PHP function. For example, create a file called `hello.php` with the following source code:
 
@@ -686,7 +687,7 @@ wsk action invoke --result helloPHP --param name World
   }
 ```
 
-### Packaging PHP actions in zip files
+### Package PHP actions in zip files
 
 You can package a PHP action along with other files and dependent packages in a zip file.
 The filename of the source file that contains the entry point (for example, `main`) must be `index.php`.
@@ -703,14 +704,14 @@ wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 
 
-## Creating Swift actions
+## Create Swift actions
 {: #creating-swift-actions}
 
 The process of creating Swift actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single swift action, and adding parameters to that action.
 
 You can also use the online [Swift Sandbox](https://swiftlang.ng.bluemix.net) to test your Swift code without having to install Xcode on your machine.
 
-### Creating and invoking an action
+### Create and invoke an action
 
 An action is simply a top-level Swift function. For example, create a file called
 `hello.swift` with the following content:
@@ -755,7 +756,7 @@ wsk action invoke --result helloSwift --param name World
 
 **Attention:** Swift actions that are run in a Linux environment is still in development, and {{site.data.keyword.openwhisk_short}} usually uses the latest available release, which is not necessarily stable. In addition, the version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of XCode on MacOS.
 
-### Packaging an action as a Swift executable
+### Package an action as a Swift executable
 {: #openwhisk_actions_swift_zip}
 
 When you create an OpenWhisk Swift action with a Swift source file, it has to be compiled into a binary before the action is run. Once done, subsequent calls to the action are much faster until the container that holds your action is purged. This delay is known as the cold-start delay.
@@ -850,14 +851,14 @@ You can see that hello.zip is created in the same directory as hello.swift.
 
 The time that it took for the action to run is in the "duration" property and compare to the time it takes to run with a compilation step in the hello action.
 
-## Creating Java actions
+## Create Java actions
 {: #creating-java-actions}
 
 The process of creating Java actions is similar to that of JavaScript and Swift actions. The following sections guide you through creating and invoking a single Java action, and adding parameters to that action.
 
 In order to compile, test, and archive Java files, you must have a [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed locally.
 
-### Creating and invoking an action
+### Create and invoke an action
 {: #openwhisk_actions_java_invoke}
 
 A Java action is a Java program with a method called `main` that has the exact signature as follows:
@@ -922,7 +923,7 @@ wsk action invoke --result helloJava --param name World
   }
 ```
 
-## Creating Docker actions
+## Create Docker actions
 {: #creating-docker-actions}
 
 With {{site.data.keyword.openwhisk_short}} Docker actions, you can write your actions in any language.
@@ -1050,7 +1051,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
 
-## Watching action output
+## Monitor action output
 {: #watching-action-output}
 
 {{site.data.keyword.openwhisk_short}} actions might be invoked by other users, in response to various events, or as part of an action sequence. In such cases, it can be useful to monitor the invocations.
@@ -1085,7 +1086,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
   Similarly, whenever you run the poll utility, you see in real time the logs for any actions that are run on your behalf in OpenWhisk.
 
 
-## Listing actions
+## List actions
 {: #listing-actions}
 
 You can list all the actions created using the following command:
@@ -1103,7 +1104,7 @@ wsk action list [PACKAGE NAME]
 {: pre}
 
 
-## Deleting actions
+## Delete actions
 {: #deleting-actions}
 
 You can clean up by deleting actions that you do not want to use.
@@ -1126,7 +1127,7 @@ You can clean up by deleting actions that you do not want to use.
   actions
   ```
 
-## Accessing action metadata within the action body
+## Access action metadata within the action body
 {: #accessing-action-metadata-within-the-action-body}
 
 The action environment contains several properties that are specific to the running action.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-11"
+lastupdated: "2017-09-14"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2017-09-11"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using and creating {{site.data.keyword.openwhisk_short}} packages
+# Create and use packages
 {: #openwhisk_packages}
 
-In {{site.data.keyword.openwhisk_short}}, you can use packages to bundle together a set of related actions, and share them with others.
+In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a set of related actions, and share them with others.
 
 A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the Cloudant package includes actions to read and write records to a Cloudant database.
@@ -24,7 +24,7 @@ Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs 
 
 The following sections describe how to browse packages and use the triggers and feeds in them. In addition, if you are interested in contributing your own packages to the catalog, read the sections on creating and sharing packages.
 
-## Browsing packages
+## Browse packages
 {: #openwhisk_packagedisplay}
 
 Several packages are registered with {{site.data.keyword.openwhisk_short}}. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
@@ -82,7 +82,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   This output shows that the Cloudant `read` action requires three parameters, including the database and document ID to retrieve.
 
 
-## Invoking actions in a package
+## Invoke actions in a package
 {: #openwhisk_package_invoke}
 
 You can invoke actions in a package, as with other actions. The next few steps show how to invoke the `greeting` action in the `/whisk.system/samples` package with different parameters.
@@ -268,7 +268,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   You can see that the activations are observed every 8 seconds for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
 
 
-## Creating a package
+## Create a package
 {: #openwhisk_packages_create}
 
 A package is used to organize a set of related actions and feeds.
@@ -423,7 +423,7 @@ You can set default parameters for all the entities in a package by setting pack
   ```
 
 
-## Sharing a package
+## Share a package
 {: #openwhisk_packages_share}
 
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions.

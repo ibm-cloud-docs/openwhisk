@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016
-lastupdated: "2016-09-11"
+lastupdated: "2016-09-14"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2016-09-11"
 {:screen: .screen}
 {:pre: .pre}
 
-# Monitoring your {{site.data.keyword.openwhisk_short}} activity with the {{site.data.keyword.openwhisk_short}} Dashboard
+# Monitor activity with the {{site.data.keyword.openwhisk_short}} Dashboard
 
 The [{{site.data.keyword.openwhisk}} Dashboard](https://{DomainName}/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
 {:shortdesc}
@@ -49,7 +49,7 @@ This view displays a formatted version of the activation log. It shows the detai
   ```
   {: pre}
 
-## Filtering options
+## Filter options
 {: #filtering}
 
 Select which action logs you want to view, and select the time frame of the activity logged.
