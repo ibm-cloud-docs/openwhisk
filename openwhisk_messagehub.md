@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-11"
+lastupdated: "2017-09-15"
 
 ---
 
@@ -68,9 +68,9 @@ While this list of parameters can seem daunting, they can be automatically set f
   ```
   {: pre}
 
-## Setting up a Message Hub package outside Bluemix
+## Setting up a Message Hub package outside {{site.data.keyword.Bluemix_notm}}
 
-If you want to set up your Message Hub outside of Bluemix, you must manually create a package binding for your Message Hub service. You need the Message Hub service credentials and connection information.
+If you want to set up your Message Hub outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Message Hub service. You need the Message Hub service credentials and connection information.
 
 1. Create a package binding that is configured for your Message Hub service.
 

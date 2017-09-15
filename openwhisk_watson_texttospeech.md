@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-13"
+lastupdated: "2017-09-15"
 
 ---
 
@@ -26,7 +26,7 @@ The package includes the following actions.
 
 **Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`.
 
-## Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix}}
+## Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
@@ -53,7 +53,7 @@ If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk aut
   ```
   
   
-## Setting up a Watson Text to Speech package outside Bluemix
+## Setting up a Watson Text to Speech package outside {{site.data.keywrod.Bluemix_notm}}
 
 If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Watson Text to Speech outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Text to Speech service. You need the Watson Text to Speech service user name, and password.
 

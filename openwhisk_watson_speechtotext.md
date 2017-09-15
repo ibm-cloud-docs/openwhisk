@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-13"
+lastupdated: "2017-09-15"
 
 ---
 
@@ -26,7 +26,7 @@ The package includes the following actions.
 
 **Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/speechToText`.
 
-## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix}}
+## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
