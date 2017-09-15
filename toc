@@ -12,7 +12,7 @@ IBM Cloud Functions
     Related links
         [Discover: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
         [OpenWhisk on IBM developerWorks](https://developer.ibm.com/openwhisk/)
-        [Apache OpenWhisk project website](http://openwhisk.org)
+        [Apache OpenWhisk project website](http://openwhisk.org/)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
