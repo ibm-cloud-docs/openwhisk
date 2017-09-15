@@ -13,12 +13,6 @@ IBM Cloud Functions
         [Discover: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
         [OpenWhisk on IBM developerWorks](https://developer.ibm.com/openwhisk/)
         [Apache OpenWhisk project website](http://openwhisk.org)
-        [Native API management in Bluemix](https://console.ng.bluemix.net/docs/apis/management/index.html)
-    {: .navgroup-end}
-
-    {: .navgroup id="reference"}
-    [REST API Documentation](./openwhisk_rest_api.html)
-    [REST API Reference](https://console.ng.bluemix.net/apidocs/98)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -27,10 +21,25 @@ IBM Cloud Functions
         bluemix_cli.md
         openwhisk_cli.md
     
+    {: .topicgroup}
+    Package help
+        openwhisk_packages.md
+        openwhisk_catalog.md
+
+    {: .topicgroup}
+    Using packages
+        openwhisk_alarms.md
+        openwhisk_cloudant.md
+        openwhisk_messagehub.md
+        openwhisk_github.md
+        openwhisk_pushnotifications.md
+        openwhisk_slack.md
+        openwhisk_weather.md
+        openwhisk_websocket.md
+
     openwhisk_use_cases.md
     openwhisk_actions.md
     openwhisk_triggers_rules.md
-    openwhisk_packages.md
     openwhisk_webactions.md
     openwhisk_reference.md
     openwhisk_monitoring.md
@@ -38,23 +47,19 @@ IBM Cloud Functions
     openwhisk_apigateway.md
     openwhisk_feeds.md
     openwhisk_annotations.md
-    openwhisk_catalog.md
-    openwhisk_cloudant.md
-    openwhisk_alarms.md
-    openwhisk_weather.md
+    openwhisk_goserverless.md
+    openwhisk_compare.md
 
     {: .topicgroup}
-    Watson
+    Watson integration
         openwhisk_watson_translator.md
         openwhisk_watson_texttospeech.md
         openwhisk_watson_speechtotext.md
         [Watson IoT Platform Gateway](https://console.bluemix.net/docs/services/IoT/gateways/iotgw.html)
+    {: .navgroup-end}
 
-    openwhisk_messagehub.md
-    openwhisk_pushnotifications.md
-    openwhisk_slack.md
-    openwhisk_github.md
-    openwhisk_websocket.md
-    openwhisk_goserverless.md
-    openwhisk_compare.md
+    {: .navgroup id="reference"}
+    [REST API Documentation](./openwhisk_rest_api.html)
+    [REST API Reference](https://console.ng.bluemix.net/apidocs/98)
+    [Native API management in Bluemix](https://console.ng.bluemix.net/docs/apis/management/index.html)
     {: .navgroup-end}
