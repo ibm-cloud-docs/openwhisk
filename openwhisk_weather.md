@@ -26,7 +26,7 @@ The package includes the following action.
 
 Creating a package binding with the `username` and `password` values is suggested. This way, you don't need to specify the credentials every time you invoke the actions in the package.
 
-## Setting up the Weather package in {{site.data.keyword.Bluemix}}
+## Setting up the Weather package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Weather service instances.
 
