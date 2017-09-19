@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-06"
+lastupdated: "2017-09-19"
 
 ---
 
@@ -57,7 +57,7 @@ wsk action create myAction action.js
 
 Now, run the following command to invoke that action:
 ```
-wsk action invoke myAction
+wsk action invoke myAction --result
 ```
 {: pre}
 
