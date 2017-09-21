@@ -2,13 +2,14 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-07"
+lastupdated: "2017-09-21"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
 # {{site.data.keyword.openwhisk_short}} stand-alone CLI
@@ -16,7 +17,8 @@ lastupdated: "2017-09-07"
 The {{site.data.keyword.openwhisk_short}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 {: shortdesc}
 
-**NOTE:** IBM recommends that you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI](./bluemix_cli.html) to manage {{site.data.keyword.openwhisk_short}} entities. The following management tasks are easier if you use the plugin.
+IBM recommends that you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI](./bluemix_cli.html) to manage {{site.data.keyword.openwhisk_short}} entities. The following management tasks are easier if you use the plugin.
+{: tip}
 
 * Configuration of the {{site.data.keyword.openwhisk_short}} authentication key
   * No need to access the {{site.data.keyword.openwhisk_short}} console to obtain the authentication key
@@ -64,7 +66,8 @@ wsk property set --apihost openwhisk.eu-gb.bluemix.net
 ```
 {: pre}
 
-**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the API host and authorization key as the authorization key is specific per region.
+If you ever need to switch regions, you must reconfigure the CLI with both the API host and authorization key as the authorization key is specific per region.
+{: tip}
 
 Artifacts such as actions, rules, and packages are region-specific. So if you use the same artifact in multiple regions you must deploy it to each desired region.
 

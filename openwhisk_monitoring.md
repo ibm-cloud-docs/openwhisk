@@ -2,13 +2,14 @@
 
 copyright:
   years: 2016
-lastupdated: "2016-09-14"
+lastupdated: "2016-09-21"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
 # Monitor activity with the {{site.data.keyword.openwhisk_short}} Dashboard
@@ -42,7 +43,9 @@ The **Activity Histogram** view displays a horizontal bar graph for viewing the 
 {: #log}
 
 This view displays a formatted version of the activation log. It shows the details of every activation, but polls once a minute for new activations. Click an action to display a detailed log.
-**Note:** To get the output displayed in the Activity Log by using CLI, use the following command:
+
+To get the output displayed in the Activity Log by using CLI, use the following command:
+{: tip}
 
   ```
   wsk activation poll
@@ -54,4 +57,5 @@ This view displays a formatted version of the activation log. It shows the detai
 
 Select which action logs you want to view, and select the time frame of the activity logged.
 
-**Note:** These filters are applied to all views on the dashboard.
+These filters are applied to all views on the dashboard.
+{: tip}

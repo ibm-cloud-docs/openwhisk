@@ -2,13 +2,14 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-07"
+lastupdated: "2017-09-21"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
 # API Gateway
@@ -54,7 +55,8 @@ wsk property set --apihost openwhisk.eu-gb.bluemix.net
 ```
 {: pre}
 
-**Note:** If you ever need to switch regions, you must reconfigure the CLI with both the API host, and authorization key because the authorization key is specific per region.
+If you ever need to switch regions, you must reconfigure the CLI with both the API host, and authorization key because the authorization key is specific per region.
+{: tip}
 
 Artifacts such as actions, rules, and packages are region-specific. So if you use the same artifact in multiple regions you must deploy it to each desired region.
 
@@ -72,7 +74,8 @@ wsk bluemix login -h
 ```
 {: pre}
 
-**Note:** If the `wsk bluemix login` command fails with the error `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, login with the Bluemix CLI using `bluemix login`, then issue `wsk bluemix login --sso`.
+If the `wsk bluemix login` command fails with the error `BMXLS0202E: You are using a federated user ID, please use one time code to login with option --sso`, login with the {{site.data.keyword.Bluemix_notm}} CLI using `bluemix login`, then issue `wsk bluemix login --sso`.
+{: tip}
 
 ### Create your first API by using the CLI
 

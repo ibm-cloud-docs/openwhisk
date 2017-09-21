@@ -2,13 +2,14 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-14"
+lastupdated: "2017-09-21"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
 # Create and invoke actions
@@ -465,7 +466,8 @@ To create an OpenWhisk action from this package:
   ```
   {: pre}
 
-  > Please note: Using the Windows Explorer action for creating the zip file results in an incorrect structure. OpenWhisk zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
+  Using the Windows Explorer action for creating the zip file results in an incorrect structure. OpenWhisk zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
+  {: tip}
 
 3. Create the action:
 
@@ -482,6 +484,7 @@ To create an OpenWhisk action from this package:
   wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
+  
   ```json
   {
       "padded": [
@@ -894,7 +897,8 @@ jar cvf hello.jar Hello.class
 ```
 {: pre}
 
-**Note:** [google-gson](https://github.com/google/gson) must exist in your Java CLASSPATH to compile the Java file.
+[google-gson](https://github.com/google/gson) must exist in your Java CLASSPATH to compile the Java file.
+{: tip}
 
 You can create a OpenWhisk action called `helloJava` from this JAR file as
 follows:
@@ -1010,6 +1014,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   wsk action invoke --result example --param payload Rey
   ```
   {: pre}
+
   ```json
   {
       "args": {
@@ -1019,14 +1024,13 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   }
   ```
 
-  To update the Docker action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action.
-  If there are no warm containers, new invocations use the new Docker image.
-  However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
+  To update the Docker action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there are no warm containers, new invocations use the new Docker image. However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
 
   ```
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
+
   ```
   wsk action update example --docker janesmith/blackboxdemo
   ```
@@ -1034,11 +1038,9 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
   You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
 
-  *Note:* Previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument.
-  In order to allow Docker actions to accept initialization data via a (zip) file, normalize the user experience for Docker actions so that a positional argument, if present, must be a file (for example, a zip file) instead. The image name must be specified following the `--docker` option. Thanks to user feedback, the `--native` argument is included as shorthand for `--docker openwhisk/dockerskeleton`, so that executables that run inside the standard Docker action SDK are more convenient to create and deploy.
-
-  For example, this tutorial creates a binary executable inside the container located at `/action/exec`. If you copy this file to your local file system and zip it into `exec.zip`, then you can use the following commands to create a docker action that receives
-  the executable as initialization data. 
+  The previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument. In order to allow Docker actions to accept initialization data via a (zip) file, normalize the user experience for Docker actions so that a positional argument, if present, must be a file (for example, a zip file) instead. The image name must be specified following the `--docker` option. Thanks to user feedback, the `--native` argument is included as shorthand for `--docker openwhisk/dockerskeleton`, so that executables that run inside the standard Docker action SDK are more convenient to create and deploy.
+  
+  For example, this tutorial creates a binary executable inside the container located at `/action/exec`. If you copy this file to your local file system and zip it into `exec.zip`, then you can use the following commands to create a docker action that receives the executable as initialization data. 
 
   ```
   wsk action create example exec.zip --native

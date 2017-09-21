@@ -2,19 +2,21 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-06"
+lastupdated: "2017-09-21"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
 # {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
 
 {{site.data.keyword.openwhisk_short}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system.
+{: shortdesc}
 
 ## Setting up the {{site.data.keyword.Bluemix_notm}} CLI
 {: #bluemix_cli_setup}
@@ -156,7 +158,10 @@ For more information about the `bx iam` command, refer to the following document
 If you are already logged in, you can run the `bx target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
 
 Use the following command to display all of the {{site.data.keyword.Bluemix_notm}} regions.
-**Note:** {{site.data.keyword.openwhisk_short}} is only supported in the `us-south` and `eu-gb` regions.
+
+{{site.data.keyword.openwhisk_short}} is only supported in the `us-south` and `eu-gb` regions.
+{: tip}
+
 ```
 bx regions
 
@@ -214,7 +219,8 @@ bx wsk property get --apihost
 {: pre}
 
 
-**Note:** The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
+The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
+{: tip}
 
 ### API Gateway authentication
 {: #apigw_authentication}
