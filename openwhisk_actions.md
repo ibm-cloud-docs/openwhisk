@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-21"
+lastupdated: "2017-10-03"
 
 ---
 
@@ -65,6 +65,7 @@ Review the following steps and examples to create your first JavaScript action.
   wsk action create hello hello.js
   ```
   {: pre}
+
   ```
   ok: created action hello
   ```
@@ -75,6 +76,7 @@ Review the following steps and examples to create your first JavaScript action.
   wsk action list
   ```
   {: pre}
+
   ```
   actions
   hello       private
@@ -90,9 +92,11 @@ Review the following steps and examples to create your first JavaScript action.
   wsk action invoke --blocking hello
   ```
   {: pre}
+
   ```
   ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
   ```
+
   ```json
   {
       "result": {
@@ -115,6 +119,7 @@ Review the following steps and examples to create your first JavaScript action.
   wsk action invoke hello
   ```
   {: pre}
+
   ```
   ok: invoked hello with id 6bf1f670ee614a7eb5af3c9fde813043
   ```
@@ -123,6 +128,7 @@ Review the following steps and examples to create your first JavaScript action.
   wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
+
   ```json
   {
       "payload": "Hello world"
@@ -135,6 +141,7 @@ Review the following steps and examples to create your first JavaScript action.
   wsk activation list
   ```
   {: pre}
+
   ```
   activations
   44794bd6aab74415b4e42a308d880e5b         hello
@@ -254,6 +261,7 @@ Rather than pass all the parameters to an action every time, you can bind certai
   wsk action invoke --result hello --param name Bernie
   ```
   {: pre}
+
   ```json
   {
       "payload": "Hello, Bernie from Vermont"
@@ -324,10 +332,12 @@ JavaScript functions that run asynchronously can return the activation result af
   wsk action create asyncAction asyncAction.js
   ```
   {: pre}
+
   ```
   wsk action invoke --result asyncAction
   ```
   {: pre}
+
   ```json
   {
       "done": true
@@ -407,10 +417,12 @@ This example invokes a Yahoo Weather service to get the current conditions at a 
   wsk action create weather weather.js
   ```
   {: pre}
+
   ```
   wsk action invoke --result weather --param location "Brooklyn, NY"
   ```
   {: pre}
+
   ```json
   {
       "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
@@ -510,6 +522,7 @@ Several utility actions are provided in a package that is called `/whisk.system/
   wsk package get --summary /whisk.system/utils
   ```
   {: pre}
+
   ```
   package /whisk.system/utils: Building blocks that format and assemble data
    action /whisk.system/utils/head: Extract prefix of an array
@@ -537,6 +550,7 @@ Several utility actions are provided in a package that is called `/whisk.system/
   wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
+
   ```json
   {
       "length": 3,
@@ -650,10 +664,12 @@ While these steps are shown for Python 3.6, you can do the same for Python 2.7 a
 
 
 ## Create PHP actions
+{: #creating-php-actions}
 
 The process of creating PHP actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single PHP action, and adding parameters to that action.
 
 ### Create and invoke a PHP action
+{: #openwhisk_actions_php_invoke}
 
 An action is simply a top-level PHP function. For example, create a file called `hello.php` with the following source code:
 
@@ -675,6 +691,7 @@ You can create an OpenWhisk action called `helloPHP` from this function as follo
 ```
 wsk action create helloPHP hello.php
 ```
+{: pre}
 
 The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
 
@@ -683,6 +700,7 @@ Action invocation is the same for PHP actions as it is for JavaScript actions:
 ```
 wsk action invoke --result helloPHP --param name World
 ```
+{: pre}
 
 ```json
   {
@@ -691,6 +709,7 @@ wsk action invoke --result helloPHP --param name World
 ```
 
 ### Package PHP actions in zip files
+{: #openwhisk_actions_php_zip}
 
 You can package a PHP action along with other files and dependent packages in a zip file.
 The filename of the source file that contains the entry point (for example, `main`) must be `index.php`.
@@ -699,13 +718,14 @@ For example, to create an action that includes a second file that is called `hel
 ```bash
 zip -r helloPHP.zip index.php helper.php
 ```
+{: pre}
 
 Then create the action:
 
 ```bash
 wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ```
-
+{: pre}
 
 ## Create Swift actions
 {: #creating-swift-actions}
@@ -892,6 +912,7 @@ Then, compile `Hello.java` into a JAR file `hello.jar` as follows:
 javac Hello.java
 ```
 {: pre}
+
 ```
 jar cvf hello.jar Hello.class
 ```
@@ -906,6 +927,7 @@ follows:
 ```
 wsk action create helloJava hello.jar --main Hello
 ```
+{: pre}
 
 When you use the command line and a `.jar` source file, you do not need to
 specify that you are creating a Java action;
@@ -938,20 +960,20 @@ As a prerequisite, you must have a Docker Hub account.  To set up a free Docker 
 
 For the instructions that follow, assume that the Docker user ID is `janesmith` and the password is `janes_password`.  Assuming that the CLI is set up, three steps remain to set up a custom binary for use by {{site.data.keyword.openwhisk_short}}. After that, the uploaded Docker image can be used as an action.
 
-1. Download the Docker skeleton. You can download it by using the CLI as follows:
+1. Download the Docker skeleton. You can download and install it by using the CLI as follows:
 
   ```
   wsk sdk install docker
   ```
   {: pre}
-  ```
-  The Docker skeleton is now installed at the current directory.
-  ```
 
+  The Docker skeleton is now installed at the current directory.
+  
   ```
   ls dockerSkeleton/
   ```
   {: pre}
+
   ```
   Dockerfile      README.md       buildAndPush.sh example.c
   ```
@@ -964,6 +986,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   cat dockerSkeleton/example.c
   ```
   {: pre}
+
   ```c
   #include <stdio.h>
   int main(int argc, char *argv[]) {
@@ -987,10 +1010,12 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   docker login -u janesmith -p janes_password
   ```
   {: pre}
+
   ```
   cd dockerSkeleton
   ```
   {: pre}
+
   ```
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
@@ -1074,6 +1099,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
   wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
+
   ```
   ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
   ```
@@ -1116,6 +1142,7 @@ You can clean up by deleting actions that you do not want to use.
   wsk action delete hello
   ```
   {: pre}
+
   ```
   ok: deleted hello
   ```
@@ -1125,6 +1152,7 @@ You can clean up by deleting actions that you do not want to use.
   wsk action list
   ```
   {: pre}
+
   ```
   actions
   ```
