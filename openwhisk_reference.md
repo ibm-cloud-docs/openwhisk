@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-12"
+lastupdated: "2017-10-18"
 ---
 
 {:shortdesc: .shortdesc}
@@ -502,6 +502,11 @@ The following table lists the default limits for actions.
 * The size limit for the parameters on creating or updating of an action/package/trigger is 1 MB.
 * The limit cannot be changed by the user.
 * An entity with too large parameters is rejected on trying to create or update it.
+
+### Limit the maximum number of actions on a sequence (Default: Not set)
+{: #openwhisk_max_actions_sequence}
+* `LIMITS_ACTIONS_SEQUENCE_MAXLENGTH`= The maximum number of actions you can set on a sequence.
+* Maximum value is 50.
 
 ### Per Docker action open files ulimit (Fixed: 64:64)
 {: #openwhisk_syslimits_openulimit}
