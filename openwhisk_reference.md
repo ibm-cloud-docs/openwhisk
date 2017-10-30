@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-18"
+lastupdated: "2017-10-26"
 ---
 
 {:shortdesc: .shortdesc}
@@ -230,8 +230,8 @@ For the `whisk.error()`, you can return a rejected Promise (that is, Promise.rej
 ### JavaScript runtime environments
 {: #openwhisk_ref_javascript_environments}
 
-JavaScript actions are executed by default in a Node.js version 6.9.1 environment.  The 6.9.1 environment is also used for an action if the `--kind` flag is explicitly specified with a value of 'nodejs:6' when you create or update the action.
-The following packages are available to be used in the Node.js 6.9.1 environment:
+JavaScript actions are executed by default in a Node.js version 6.11.4 environment.  The 6.11.4 environment is also used for an action if the `--kind` flag is explicitly specified with a value of 'nodejs:6' when you create or update the action.
+The following packages are available to be used in the Node.js 6.11.4 environment:
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
 - [async v2.1.4](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
@@ -257,7 +257,7 @@ The following packages are available to be used in the Node.js 6.9.1 environment
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - Deprecated UUID packaged. 
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Complete, , and heavily tested module for implementing an OAuth2 Server/Provider with express in Node.js.
-- [openwhisk v3.3.2](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+- [openwhisk v3.9.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud is a standard library for Node.js that abstracts away differences among multiple cloud providers.
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); just like any other module.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
@@ -388,7 +388,10 @@ Python 2 actions are executed with Python 2.7.12, which is the default runtime f
 {: #openwhisk_ref_swift3}
 
 ### Swift 3
-Swift 3 actions are executed with Swift 3.0.2  `--kind swift:3` or Swift 3.1.1 `--kind swift:3.1.1`, respectively. The default `--kind swift:default` is Swift 3.0.2.
+Swift 3 actions are executed with Swift 3.0.2  `--kind swift:3` or Swift 3.1.1 `--kind swift:3.1.1`, respectively. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
+
+Actions that specify the kind `swift:3` will no longer be invoked after November 30, 2017. You must migrate all Swift actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update actions.
+{: tip}
 
 Swift 3.0.2 actions can use the following packages:
 - KituraNet version 1.0.1, https://github.com/IBM-Swift/Kitura-net
@@ -448,15 +451,27 @@ Information about the REST API can be found [here](openwhisk_rest_api.html)
 
 The following table lists the default limits for actions.
 
-| limit | description | configurable | unit | default |
-| ----- | ----------- | ------------ | -----| ------- |
-| timeout | A container is not allowed to run longer than N milliseconds. | Per action |  Milliseconds | 60000 |
-| memory | A container is not allowed to allocate more than N MB of memory. | Per action | MB | 256 |
-| logs | A container is not allowed to write more than N MB to stdout. | Per action | MB | 10 |
-| concurrent | No more than N activations can be submitted per namespace either executing or queued for execution. | Per namespace | Number | 1000 |
-| minuteRate | No more than N activations can be submitted per namespace per minute. | Per user | Number | 5000 |
-| codeSize | The maximum size of the actioncode. | Not configurable, limit per action. | MB | 48 |
-| parameters | The maximum size of the parameters that can be attached. | Not configurable, limit per action, package, or trigger. | MB | 1 |
+<!--
+| Limit | Description | Configurable | Unit | Default | Min | Max | 
+| ----- | ----------- | ------------ | ---- | -------: | ---: | ---: |
+| timeout | A container is not allowed to run longer than N milliseconds. | Per action |  ms | 60000 | 100 | 300000 |
+| memory | A container is not allowed to allocate more than N MB of memory. | Per action | MB | 256 | 128 | 512 |
+| logs | A container is not allowed to write more than N MB to stdout. | Per action | MB | 10 | 0 | 10 |
+| concurrent | No more than N activations can be submitted per namespace either executing or queued for execution. | Per namespace | Number | 1000 | 1 | 1000 |
+| minuteRate | No more than N activations can be submitted per namespace per minute. | Per user | Number | 5000 | 1 | 5000 |
+| codeSize | The maximum size of the actioncode. | Not configurable, limit per action. | MB | 48 | 1 | 48 |
+| parameters | The maximum size of the parameters that can be attached. | Not configurable, limit per action, package, or trigger. | MB | 1 | 0 | 1 |
+-->
+
+| Limit | Description | Default | Min | Max | 
+| ----- | ----------- | :-------: | :---: | :---: |
+| timeout | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
+| memory | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
+| logs | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| concurrent | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000 |
+| minuteRate | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000 |
+| codeSize | The maximum size of the actioncode in MB. | 48 | 1 | 48 |
+| parameters | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
 
 ### Per action timeout (ms) (Default: 60s)
 {: #openwhisk_syslimits_timeout}
@@ -474,34 +489,34 @@ The following table lists the default limits for actions.
 {: #openwhisk_syslimits_logs}
 * The log limit N is in the range [0 MB..10 MB] and is set per action.
 * A user can change the action log limit when an action is created or updated.
-* Logs that exceed the set limit are truncated and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
+* Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
 
 ### Per action artifact (MB) (Fixed: 48 MB)
 {: #openwhisk_syslimits_artifact}
 * The maximum code size for the action is 48 MB.
 * It is recommended for a JavaScript action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
+* This limit is fixed and cannot be changed.
 
 ### Per activation payload size (MB) (Fixed: 1 MB)
 {: #openwhisk_syslimits_activationsize}
 * The maximum POST content size plus any curried parameters for an action invocation or trigger firing is 1 MB.
 
-### Per namespace concurrent invocation (Default: 1000)
+### Per namespace concurrent invocation (Fixed: 1000)
 {: #openwhisk_syslimits_concur}
 * The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000.
-* The default limit can be statically configured by whisk in consul kvstore.
-* A user cannot change the limits.
+* This limit is fixed and cannot be changed.
 
 ### Invocations per minute (Fixed: 5000)
 {: #openwhisk_syslimits_invocations}
 * The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
-* A user cannot change the invocation limit when an action is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
+* This limit is fixed and cannot be changed.
 
 ### Size of the parameters (Fixed: 1 MB)
 {: #openwhisk_syslimits_parameters}
 * The size limit for the parameters on creating or updating of an action/package/trigger is 1 MB.
-* The limit cannot be changed by the user.
 * An entity with too large parameters is rejected on trying to create or update it.
+* This limit is fixed and cannot be changed.
 
 ### Limit the maximum number of actions on a sequence (Default: Not set)
 {: #openwhisk_max_actions_sequence}
@@ -511,13 +526,13 @@ The following table lists the default limits for actions.
 ### Per Docker action open files ulimit (Fixed: 64:64)
 {: #openwhisk_syslimits_openulimit}
 * The maximum number of open files is 64 (for both hard and soft limits).
-* The docker run command use the argument `--ulimit nofile=64:64`.
+* The docker run command uses the argument `--ulimit nofile=64:64`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 ### Per Docker action processes ulimit (Fixed: 512:512)
 {: #openwhisk_syslimits_proculimit}
 * The maximum number of processes available to a user is 512 (for both hard and soft limits).
-* The docker run command use the argument `--ulimit nproc=512:512`.
+* The docker run command uses the argument `--ulimit nproc=512:512`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 ### Triggers

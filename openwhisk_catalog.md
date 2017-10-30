@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-26"
+lastupdated: "2017-10-30"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2017-10-26"
 In {{site.data.keyword.openwhisk}}, a catalog of packages gives you an easy way to enhance your app with useful capabilities, and to access external services in the ecosystem. Examples of external services that are {{site.data.keyword.openwhisk_short}} enabled include Cloudant, Message Hub, Watson, The Weather Company, Slack, GitHub, and others.
 {: shortdesc}
 
-The catalog is available as packages in the `/whisk.system` and `/watson-iot` namespaces. For more information, see [Browsing packages](./openwhisk_packages.md#browsing-packages).
+The catalog is available as packages in the `/whisk.system` and `/watson-iot` namespaces. For more information, see [Browsing packages](openwhisk_packages.html#browsing-packages).
 
 ## Catalog packages
 {: notoc}

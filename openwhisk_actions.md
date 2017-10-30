@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-03"
+lastupdated: "2017-10-30"
 
 ---
 
@@ -149,6 +149,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
 
 ### Pass parameters to an action
+{: #openwhisk_pass_params}
 
 Parameters can be passed to the action when it is invoked.
 
@@ -169,6 +170,9 @@ Parameters can be passed to the action when it is invoked.
   wsk action update hello hello.js
   ```
   {: pre}
+
+  If you need to modify your non-service credential parameters, be aware that doing an `action update` command with new parameters removes any parameters that currently exist, but are not specified in the `action update` command. For example, if there are two parameters aside from the `__bx_creds`, with keys named key1 and key2.  If you run an `action update` command with `-p key1 new-value -p key2 new-value` but omit the `__bx_creds` parameter, the `__bx_creds` parameter will no longer exist after the `action update` completes successfully. You then must re-bind the service credentials. This is a known limitation without a workaround.
+  {: tip}  
 
 3.  Parameters can be provided explicitly on the command line, or by supplying a file that contains the desired parameters.
 
@@ -199,8 +203,7 @@ Parameters can be passed to the action when it is invoked.
   }
   ```
 
-  Notice the use of the `--result` option: it implies a blocking invocation where the CLI waits for the activation to complete and then
-  displays only the result. For convenience, this option can be used without `--blocking` which is automatically inferred.
+  Notice the use of the `--result` option: it implies a blocking invocation where the CLI waits for the activation to complete and then displays only the result. For convenience, this option can be used without `--blocking` which is automatically inferred.
 
   Additionally, if parameter values that are specified on the command line are valid JSON, then they are parsed and sent to your action as a structured object. For example, update the hello action to the following:
 
@@ -298,6 +301,48 @@ Rather than pass all the parameters to an action every time, you can bind certai
   {  
       "payload": "Hello, Bernie from Washington, DC"
   }
+  ```
+
+### Get an action URL
+
+An action can be invoked through the REST interface via an HTTPS request. To get an action URL, execute the following command:
+
+```
+wsk action get actionName --url
+```
+{: pre}
+
+```
+ok: got action actionName
+https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
+```
+
+Authentication must be provided when invoking an action via an HTTPS request. For more information regarding
+action invocations using the REST interface, see [Using REST APIs with OpenWhisk](openwhisk_rest_api.md#actions).
+{: tip}
+
+### Save action code
+
+Code associated with an existing action is fetched and saved locally. Saving is performed on all actions except sequences and docker actions. When saving action code to a file, the code is saved in the current working directory, and the saved file path is displayed.
+
+1. Save action code to a filename that corresponds with an existing action name. A file extension that corresponds to the action kind is used, or an extension of type `.zip` will be used for action code that is a zip file.
+  ```
+  wsk action get actionName --save
+  ```
+  {: pre}
+
+  ```
+  ok: saved action code to /absolutePath/currentDirectory/actionName.js
+  ```
+
+2. Instead of allowing the CLI to determine the filename and extension of the saved code, a custom filename and extension can be provided by using the `--save-as` flag.
+  ```
+  wsk action get actionName --save-as codeFile.js
+  ```
+  {: pre}
+
+  ```
+  ok: saved action code to /absolutePath/currentDirectory/codeFile.js
   ```
 
 ### Create asynchronous actions
@@ -642,9 +687,9 @@ So the docker image `openwhisk/python2action` or `openwhisk/python3action` are u
 
 As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
-1. Given a `requirements.txt` file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
+1. Given a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
     ```
-    docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \ -c "cd tmp; virtualenv virtualenv; source  virtualenv/bin/activate; pip install -r requirements.txt;"
+    docker run --rm -v "$PWD:/tmp" openwhisk/python3action sh \ -c "cd tmp; virtualenv virtualenv; source virtualenv/bin/activate; pip install -r requirements.txt;"
     ```
     {: pre}
 
@@ -756,13 +801,13 @@ You can create a {{site.data.keyword.openwhisk_short}} action called `helloSwift
 follows:
 
 ```
-wsk action create helloSwift hello.swift
+wsk action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
+ 
 
-When you use the command line and a `.swift` source file, you do not need to
-specify that you are creating a Swift action (as opposed to a JavaScript action);
-the tool determines that from the file extension.
+Always specify `swift:3.1.1` as previous Swift versions are not supported.
+{: tip}
 
 Action invocation is the same for Swift actions as it is for JavaScript actions:
 
@@ -929,12 +974,11 @@ wsk action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
-When you use the command line and a `.jar` source file, you do not need to
-specify that you are creating a Java action;
-the tool determines that from the file extension.
+When you use the command line and a `.jar` source file, you do not need to specify that you are creating a Java action; the tool determines that from the file extension.
 
-You need to specify the name of the main class by using `--main`. An eligible main
-class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
+You need to specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
+
+If needed, you can also customize the method name of your Java action. This is done by specifying the Java fully-qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
 
 Action invocation is the same for Java actions as it is for Swift and JavaScript actions:
 
