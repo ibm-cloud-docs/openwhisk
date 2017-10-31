@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-30"
+lastupdated: "2017-10-31"
 
 ---
 
@@ -135,7 +135,7 @@ After you configure your environment, you can use the {{site.data.keyword.openwh
 To get a list of commands for the {{site.data.keyword.openwhisk_short}} plug-in run `bx wsk` with no arguments.
 
 <!--Feature go live estimated 10/31/2017-->
-### How to bind a service to an action
+## How to bind a service to an action
 {: #cli_bind}
 
 Bind a service to an action by using the `bx wsk service bind` command.
@@ -316,7 +316,7 @@ ok: got action Hello World
 
 That is the jist of the `bx wsk service bind` command. The normal debug flags are supported, and print out response headers from calls.
 
-### How to unbind a service from an action
+## How to unbind a service from an action
 {: #cli_unbind}
 
 Unbind a service from an action by using the `bx wsk service unbind`. The `service unbind` command removes bindings created by the `service bind` action.
