@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-13"
+lastupdated: "2017-11-02"
 
 ---
 
@@ -33,11 +33,11 @@ Another important argument in favor of {{site.data.keyword.openwhisk_short}} is 
 
 Given {{site.data.keyword.openwhisk_short}}’s event-driven nature, it offers several benefits for user-facing applications, whereas the HTTP requests coming from the user’s browser serve as the events. {{site.data.keyword.openwhisk_short}} applications use compute capacity and billed only when they are serving user requests. Idle standby or waiting mode is nonexistent. This feature makes {{site.data.keyword.openwhisk_short}} considerably less expensive when compared to traditional containers or CloudFoundry applications. Both of which can spend most of their time idle, waiting for inbound user requests, and being billed for all that “sleeping” time. 
 
-Full web application can be built and run with {{site.data.keyword.openwhisk_short}}. Combining serverless APIs with static file hosting for site resources such as HTML, JavaScript, and CSS, means that you can build entirely serverless web applications. The simplicity of operating a hosted {{site.data.keyword.openwhisk_short}} environment is not having to operate anything at all. Since {{site.data.keyword.openwhisk_short}} is hosted on Bluemix, it is a great benefit when compared to standing up, and operating a Node.js Express or other traditional server runtime. 
+Full web application can be built and run with {{site.data.keyword.openwhisk_short}}. Combining serverless APIs with static file hosting for site resources such as HTML, JavaScript, and CSS, means that you can build entirely serverless web applications. The simplicity of operating a hosted {{site.data.keyword.openwhisk_short}} environment is not having to operate anything at all. Since {{site.data.keyword.openwhisk_short}} is hosted on {{site.data.keyword.Bluemix_notm}}, it is a great benefit when compared to standing up, and operating a Node.js Express or other traditional server runtime. 
 
 See the following examples on how to use {{site.data.keyword.openwhisk_short}} to build a web app:
 - [Web Actions: Serverless Web Apps with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/web-actions-serverless-web-apps-with-openwhisk-f21db459f9ba).
-- [Build a user-facing {{site.data.keyword.openwhisk_short}} application with Bluemix and Node.js](https://www.ibm.com/developerworks/cloud/library/cl-openwhisk-node-bluemix-user-facing-app/index.html)
+- [Build a user-facing {{site.data.keyword.openwhisk_short}} application with {{site.data.keyword.Bluemix_notm}} and Node.js](https://www.ibm.com/developerworks/cloud/library/cl-openwhisk-node-bluemix-user-facing-app/index.html)
 - [Serverless HTTP handlers with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-http-handlers-with-openwhisk-90a986cc7cdd)
 
 ## IoT

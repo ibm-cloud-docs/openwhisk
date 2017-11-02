@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-11"
+lastupdated: "2017-11-02"
 
 ---
 
@@ -31,18 +31,18 @@ Creating a package binding with the `appId` and `appSecret` values is suggested.
 
 To create a Push Notifications package binding, you must specify the following parameters,
 
--  `appId`: The Bluemix app GUID.
--  `appSecret`: The Bluemix push notification service appSecret.
+-  `appId`: The {{site.data.keyword.Bluemix_notm}} app GUID.
+-  `appSecret`: The {{site.data.keyword.Bluemix_notm}} push notification service appSecret.
 
 To create a package binding, see the following example steps:
 
-1. Create a Bluemix application in [Bluemix Dashboard](http://console.ng.bluemix.net).
+1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://console.ng.bluemix.net).
 
-2. Initialize the Push Notification Service and bind the service to the Bluemix application
+2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application
 
 3. Configure the [Push Notification application](https://console.ng.bluemix.net/docs/services/mobilepush/index.html).
 
-  Be sure to remember the `App GUID` and the `App Secret` of the Bluemix app you created.
+  Be sure to remember the `App GUID` and the `App Secret` of the {{site.data.keyword.Bluemix_notm}} app you created.
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
 
@@ -174,8 +174,8 @@ The `/whisk.system/pushnotifications/webhook` configures the Push service to fir
 
 The parameters are as follows:
 
-- `appId:` The Bluemix app GUID.
-- `appSecret:` The Bluemix push notification service appSecret.
+- `appId:` The {{site.data.keyword.Bluemix_notm}} app GUID.
+- `appSecret:` The {{site.data.keyword.Bluemix_notm}} push notification service appSecret.
 - `events:` Supported events are `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, and `onUnsubscribe`. You can use the wildcard character `*` to be notified for all events.
 
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
@@ -203,7 +203,7 @@ To create a trigger that is fired each time a new device registers with the Push
 
   Check the results in the `wsk activation poll`.
 
-  Register a device in your Bluemix application. You can see the `rule`, `trigger`, and  `action` are executed in the OpenWhisk [dashboard] (https://console.{Domain}/openwhisk/dashboard).
+  Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and  `action` are executed in the OpenWhisk [dashboard] (https://console.{Domain}/openwhisk/dashboard).
 
   The action sends a push notification.
 

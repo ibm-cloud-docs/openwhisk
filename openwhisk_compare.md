@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: 2017-09-07
+lastupdated: 2017-11-02
 
 ---
 
@@ -17,15 +17,15 @@ lastupdated: 2017-09-07
 Serverless architecture is not a panacea to all computing problems, but it does solve some. There are [many uses cases](./openwhisk_use_cases.html) when serverless design can be a good choice. The following architectures are compared:
 {: shortdesc}
 
-1. **Function as a Service (FaaS)** - managed OpenWhisk. IBM is the only vendor to offer managed [OpenWhisk on Bluemix](https://console.ng.bluemix.net/openwhisk).
+1. **Function as a Service (FaaS)** - managed OpenWhisk. IBM is the only vendor to offer managed [OpenWhisk on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/openwhisk).
 
-2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). End users can download OpenWhisk from Apache Incubation Project and install and run it on [Bluemix IaaS](https://console.ng.bluemix.net/catalog/?category=devices), or other [IaaS cloud](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29).
+2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). End users can download OpenWhisk from Apache Incubation Project and install and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices), or other [IaaS cloud](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29).
 
-3. **Platform as a Service (PaaS)** - managed application runtime. A good example is [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) runtime that is managed by IBM Bluemix CloudFoundry implementation.
+3. **Platform as a Service (PaaS)** - managed application runtime. A good example is [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} CloudFoundry implementation.
 
-4. **Container as a Service (CaaS)** - managed container environment. A good example is IBM’s [Containers on Bluemix](https://console.ng.bluemix.net/catalog/?category=containerImages).
+4. **Container as a Service (CaaS)** - managed container environment. A good example is IBM’s [Containers on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/?category=containerImages).
 
-5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is [WebSphere Application Server VM on Bluemix](https://console.ng.bluemix.net/catalog/services/websphere-application-server) from IBM.
+5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server) from IBM.
 
 A summary of pros and cons for each architecture is provided from the **perspective of an end user** who is developing, and operating applications on these different runtimes:
 

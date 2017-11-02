@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-31"
+lastupdated: "2017-11-01"
 
 ---
 
@@ -29,7 +29,7 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html
 
 To install the {{site.data.keyword.openwhisk_short}} plug-in, run the following command:
 ```
-bx plugin install cloud-functions -r Bluemix
+bx plugin install cloud-functions
 ```
 {: pre}
 
@@ -134,7 +134,6 @@ After you configure your environment, you can use the {{site.data.keyword.openwh
 
 To get a list of commands for the {{site.data.keyword.openwhisk_short}} plug-in run `bx wsk` with no arguments.
 
-<!--Feature go live estimated 10/31/2017-->
 ## How to bind a service to an action
 {: #cli_bind}
 

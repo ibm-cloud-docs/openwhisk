@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-07"
+lastupdated: "2017-11-02"
 
 ---
 
@@ -25,12 +25,12 @@ The `/whisk.system/cloudant` package enables you to work with a Cloudant databas
 
 The following topics walk through setting up a Cloudant database, configuring an associated package, and how to use the actions and feeds in the `/whisk.system/cloudant` package.
 
-## Setting up a Cloudant database in Bluemix
+## Setting up a Cloudant database in the {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_in}
 
-If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package bindings for your Bluemix Cloudant service instances. If you're not using OpenWhisk and Cloudant from Bluemix, skip to the next step.
+If you're using OpenWhisk from the {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your Cloudant service instances. If you're not using OpenWhisk and Cloudant from {{site.data.keyword.Bluemix_notm}}, skip to the next step.
 
-1. Create a Cloudant service instance in your Bluemix [dashboard](http://console.ng.Bluemix.net).
+1. Create a Cloudant service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.ng.Bluemix.net).
 
   Be sure to create a Credential key for each new service instance.
 
@@ -56,7 +56,7 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
 
   Your package binding now contains the credentials that are associated with your Cloudant service instance.
 
-3. Check to see that the package binding that was created previously is configured with your Cloudant Bluemix service instance host and credentials.
+3. Check to see that the package binding that was created previously is configured with your Cloudant {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -82,10 +82,10 @@ If you're using OpenWhisk from Bluemix, OpenWhisk automatically creates package 
   ]
   ```
 
-## Setting up a Cloudant database outside Bluemix
+## Setting up a Cloudant database outside the {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_outside}
 
-If you're not using OpenWhisk in Bluemix or if you want to set up your Cloudant database outside of Bluemix, you must manually create a package binding for your Cloudant account. You need the Cloudant account host name, user name, and password.
+If you're not using OpenWhisk in the {{site.data.keyword.Bluemix_notm}} or if you want to set up your Cloudant database outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Cloudant account. You need the Cloudant account host name, user name, and password.
 
 1. Create a package binding that is configured for your Cloudant account.
 
