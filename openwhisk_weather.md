@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-13"
+lastupdated: "2017-11-02"
 
 ---
 
@@ -14,21 +14,21 @@ lastupdated: "2017-09-13"
 # Using the Weather package
 {: #openwhisk_catalog_weather}
 
-The `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for IBM Bluemix API.
+The `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.Bluemix}} API.
 {: shortdesc}
 
 The package includes the following action.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/weather` | package | username, password | Services from the Weather Company Data for IBM Bluemix API  |
+| `/whisk.system/weather` | package | username, password | Services from the Weather Company Data for the {{site.data.keyword.Bluemix_notm}} API  |
 | `/whisk.system/weather/forecast` | action | latitude, longitude, timePeriod | forecast for specified time period|
 
 Creating a package binding with the `username` and `password` values is suggested. This way, you don't need to specify the credentials every time you invoke the actions in the package.
 
 ## Setting up the Weather package in {{site.data.keyword.Bluemix_notm}}
 
-If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Weather service instances.
+If you're using OpenWhisk from the {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Weather service instances.
 
 1. Create a Weather Company Data service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.ng.Bluemix.net).
   
@@ -71,8 +71,8 @@ If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}} or if you wa
 
 The `/whisk.system/weather/forecast` action returns a weather forecast for a location by calling an API from The Weather Company. The parameters are as follows:
 
-- `username`: Username for The Weather Company Data for IBM Bluemix that is entitled to invoke the forecast API.
-- `password`: Password for The Weather Company Data for IBM Bluemix that is entitled to invoke the forecast API.
+- `username`: Username for The Weather Company Data for {{site.data.keyword.Bluemix_notm}} that is entitled to invoke the forecast API.
+- `password`: Password for The Weather Company Data for {{site.data.keyword.Bluemix_notm}} that is entitled to invoke the forecast API.
 - `latitude`: The latitude coordinate of the location.
 - `longitude`: The longitude coordinate of the location.
 - `timePeriod`: Time period for the forecast. Valid options are:
