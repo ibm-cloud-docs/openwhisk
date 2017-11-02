@@ -61,5 +61,5 @@ IBM Cloud Functions
     {: .navgroup id="reference"}
     [REST API Documentation](./openwhisk_rest_api.html)
     [REST API Reference](https://console.ng.bluemix.net/apidocs/98)
-    [Native API management in Bluemix](https://console.ng.bluemix.net/docs/apis/management/index.html)
+    [Native API management in {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/docs/apis/management/index.html)
     {: .navgroup-end}
