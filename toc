@@ -10,9 +10,9 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Related links
-        [Discover: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
-        [OpenWhisk on IBM developerWorks](https://developer.ibm.com/openwhisk/)
-        [Apache OpenWhisk project website](http://openwhisk.org/)
+        [Discover: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/){: new_window}
+        [OpenWhisk on IBM developerWorks](https://developer.ibm.com/openwhisk/){: new_window}
+        [Apache OpenWhisk project website](http://openwhisk.org/){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -30,8 +30,8 @@ IBM Cloud Functions
     Using packages
         openwhisk_alarms.md
         openwhisk_cloudant.md
-        openwhisk_messagehub.md
         openwhisk_github.md
+        openwhisk_messagehub.md
         openwhisk_pushnotifications.md
         openwhisk_slack.md
         openwhisk_weather.md
@@ -59,7 +59,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    [REST API Documentation](./openwhisk_rest_api.html)
-    [REST API Reference](https://console.ng.bluemix.net/apidocs/98)
-    [Native API management in {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/docs/apis/management/index.html)
+    [REST API Documentation](./openwhisk_rest_api.html){: new_window}
+    [REST API Reference](https://console.ng.bluemix.net/apidocs/98){: new_window}
+    [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
     {: .navgroup-end}
