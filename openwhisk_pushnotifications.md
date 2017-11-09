@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-02"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -66,7 +66,7 @@ To create a package binding, see the following example steps:
 ## Sending push notifications
 {: #openwhisk_catalog_pushnotifications_send}
 
-The `/whisk.system/pushnotifications/sendMessage` action sends push notifications to registered devices. The parameters are as follows:
+The `/whisk.system/pushnotifications/sendMessage` Action sends push notifications to registered devices. The parameters are as follows:
 
 - `text`: The notification message to be shown to the user. For example, `-p text "Hi ,OpenWhisk send a notification"`.
 - `url`: A URL that can be sent along with the alert. For example, `-p url "https:\\www.w3.ibm.com"`.
@@ -132,12 +132,12 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 
 See the following example to send a push notification from the Push Notification package.
 
-- Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
-
+- Send a push notification by using the `sendMessage` Action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
   ```
   wsk action invoke /myNamespace/myPush/sendMessage --blocking --result  -p url https://example.com -p text "this is my message"  -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
   ```
   {: pre}
+
   ```json
   {
     "result": {
@@ -167,10 +167,10 @@ See the following example to send a push notification from the Push Notification
   ```
 
 
-## Firing a trigger event on Push Notifications service activity
+## Firing a Trigger event on Push Notifications service activity
 {: #openwhisk_catalog_pushnotifications_fire}
 
-The `/whisk.system/pushnotifications/webhook` configures the Push service to fire a trigger when there is a device activity such as device registration / unregistration or subscription / unsubscription in a specified application
+The `/whisk.system/pushnotifications/webhook` configures the Push service to fire a Trigger when there is a device activity such as device registration / unregistration or subscription / unsubscription in a specified application
 
 The parameters are as follows:
 
@@ -181,21 +181,18 @@ The parameters are as follows:
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
 
 1. Create a package binding that is configured for your Push Notifications service with your appId and appSecret.
-
   ```
   wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
-
   ```
   wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. You could create a rule that sends a message every time a new device gets register. Create a rule by using the previous action and trigger.
-
   ```
   wsk rule create --enable myRule myPushTrigger sendMessage
   ```
@@ -203,7 +200,7 @@ To create a trigger that is fired each time a new device registers with the Push
 
   Check the results in the `wsk activation poll`.
 
-  Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and  `action` are executed in the OpenWhisk [dashboard] (https://console.{Domain}/openwhisk/dashboard).
+  Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `Rule`, `Trigger`, and  `Action` are executed in the OpenWhisk [dashboard] (https://console.{Domain}/openwhisk/dashboard).
 
-  The action sends a push notification.
+  The Action sends a push notification.
 

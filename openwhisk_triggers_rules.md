@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-12"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -11,63 +11,61 @@ lastupdated: "2017-09-12"
 {:screen: .screen}
 {:pre: .pre}
 
-# Create triggers and rules
+# Create Triggers and Rules
 {: #openwhisk_triggers}
 
-{{site.data.keyword.openwhisk_short}} triggers and rules bring event-driven capabilities to the platform. Events from external and internal event sources are channeled through a trigger, and rules allow your actions to react to these events.
+{{site.data.keyword.openwhisk_short}} Triggers and Rules bring event-driven capabilities to the platform. Events from external and internal event sources are channeled through a Trigger, and Rules allow your Actions to react to these events.
 {: shortdesc}
 
-## Create triggers
+## Create Triggers
 {: #openwhisk_triggers_create}
 
-Triggers are a named channel for a class of events. The following are examples of triggers:
-- A trigger of location update events.
-- A trigger of document uploads to a website.
-- A trigger of incoming emails.
+Triggers are a named channel for a class of events. The following are examples of Triggers:
+- A Trigger of location update events.
+- A Trigger of document uploads to a website.
+- A Trigger of incoming emails.
 
-Triggers can be *fired* (activated) by using a dictionary of key-value pairs. Sometimes this dictionary is referred to as the *event*. As with actions, each firing of a trigger results in an activation ID.
+Triggers can be *fired* (activated) by using a dictionary of key-value pairs. Sometimes this dictionary is referred to as the *event*. As with Actions, each firing of a Trigger results in an activation ID.
 
 Triggers can be explicitly fired by a user or fired on behalf of a user by an external event source.
-A *feed* is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. Refer to the following example feeds:
-- Cloudant data change feed that fires a trigger event each time a document in a database is added or modified.
-- A Git feed that fires a trigger event for every commit to a Git repository.
+A *Feed* is a convenient way to configure an external event source to fire Trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. Refer to the following example Feeds:
+- Cloudant data change feed that fires a Trigger event each time a document in a database is added or modified.
+- A Git feed that fires a Trigger event for every commit to a Git repository.
 
-## Using rules
+## Using Rules
 {: #openwhisk_rules_use}
 
-A rule associates one trigger with one action, with every firing of the trigger that causes the corresponding action to be invoked with the trigger event as input.
+A Rule associates one Trigger with one Action, with every firing of the Trigger that causes the corresponding Action to be invoked with the Trigger event as input.
 
-With the appropriate set of rules, it's possible for a single trigger event to
-invoke multiple actions, or for an action to be invoked as a response to events
-from multiple triggers.
+With the appropriate set of Rules, it's possible for a single Trigger event to
+invoke multiple Actions, or for an Action to be invoked as a response to events
+from multiple Triggers.
 
-For example, consider a system with the following actions:
-- `classifyImage` - An action that detects the objects in an image and classifies them.
-- `thumbnailImage` - An action that creates a thumbnail version of an image.
+For example, consider a system with the following Actions:
+- `classifyImage` - An Action that detects the objects in an image and classifies them.
+- `thumbnailImage` - An Action that creates a thumbnail version of an image.
 
-Also, suppose that two event sources are firing the following triggers:
-- `newTweet` - A trigger that is fired when a new tweet is posted.
-- `imageUpload` - A trigger that is fired when an image is uploaded to a website.
+Also, suppose that two event sources are firing the following Triggers:
+- `newTweet` - A Trigger that is fired when a new tweet is posted.
+- `imageUpload` - A Trigger that is fired when an image is uploaded to a website.
 
-You can set up rules so that a single trigger event invokes multiple actions, and have multiple triggers invoke the same action:
-- `newTweet -> classifyImage` rule.
-- `imageUpload -> classifyImage` rule.
-- `imageUpload -> thumbnailImage` rule.
+You can set up rules so that a single Trigger event invokes multiple Actions, and have multiple Triggers invoke the same Action:
+- `newTweet -> classifyImage` Rule.
+- `imageUpload -> classifyImage` Rule.
+- `imageUpload -> thumbnailImage` Rule.
 
-The three rules establish the following behavior: 
+The three Rules establish the following behavior: 
 - Images in both tweets are classified.
 - Uploaded images are classified
 - A thumbnail version is generated.
 
-## Create and fire triggers
+## Create and fire Triggers
 {: #openwhisk_triggers_fire}
 
 Triggers can be fired when certain events occur, or can be fired manually.
 
-As an example, create a trigger to send user location updates, and manually fire the trigger.
-
-1. Enter the following command to create the trigger:
-
+As an example, create a Trigger to send user location updates, and manually fire the Trigger.
+1. Enter the following command to create the Trigger:
   ```
   wsk trigger create locationUpdate
   ```
@@ -77,8 +75,7 @@ As an example, create a trigger to send user location updates, and manually fire
   ok: created trigger locationUpdate
   ```
 
-2. Check that you created the trigger by listing the set of triggers.
-
+2. Check that you created the trigger by listing the set of Triggers.
   ```
   wsk trigger list
   ```
@@ -91,8 +88,7 @@ As an example, create a trigger to send user location updates, and manually fire
 
   Now a named "channel" is created to which events can be fired.
 
-3. Next, fire a trigger event by specifying the trigger name and parameters:
-
+3. Next, fire a Trigger event by specifying the Trigger name and parameters:
   ```
   wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
@@ -102,17 +98,16 @@ As an example, create a trigger to send user location updates, and manually fire
   ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
   ```
 
-A trigger that is fired without an accompanying rule to match against has no visible effect.
-Triggers cannot be created inside a package; they must be created directly under a namespace.
+A Trigger that is fired without an accompanying Rule to match against has no visible effect.
+Triggers cannot be created inside a Package; they must be created directly under a Namespace.
 
-## Associate triggers and actions by using rules
+## Associate Triggers and Actions by using Rules
 {: #openwhisk_rules_assoc}
 
-Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the event parameters.
+Rules are used to associate a Trigger with an Action. Each time a Trigger event is fired, the Action is invoked with the event parameters.
 
-As an example, create a rule that calls the hello action whenever a location update is posted.
-
-1. Create a 'hello.js' file with the action code like so:
+As an example, create a rule that calls the `hello` Action whenever a location update is posted.
+1. Create a 'hello.js' file with the Action code like so:
   ```javascript
   function main(params) {
      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -120,7 +115,7 @@ As an example, create a rule that calls the hello action whenever a location upd
   ```
   {: codeblock}
 
-2. Make sure that the trigger and action exist.
+2. Make sure that the Trigger and Action exist.
   ```
   wsk trigger update locationUpdate
   ```
@@ -131,19 +126,19 @@ As an example, create a rule that calls the hello action whenever a location upd
   ```
   {: pre}
 
-3. The next step is to create the rule. The rule is enabled upon creation, meaning that it is immediately available to respond to activations of your trigger. The three parameters are: the name of the rule, the trigger, and the action.
+3. The next step is to create the rule. The rule is enabled upon creation, meaning that it is immediately available to respond to Activations of your Trigger. The three parameters are: the name of the Rule, the Trigger, and the Action.
   ```
   wsk rule create myRule locationUpdate hello
   ```
   {: pre}
 
-  At any time, you can choose to disable a rule.
+  At any time, you can choose to disable a Rule.
   ```
   wsk rule disable myRule
   ```
   {: pre}
 
-4. Fire the locationUpdate trigger. Each time that you fire an event, the hello action is called with the event parameters.
+4. Fire the `locationUpdate` Trigger. Each time that you fire an event, the `hello` Action is called with the event parameters.
   ```
   wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
@@ -153,7 +148,7 @@ As an example, create a rule that calls the hello action whenever a location upd
   ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
   ```
 
-5. Verify that the action was invoked by checking the most recent activation.
+5. Verify that the Action was invoked by checking the most recent Activation.
   ```
   wsk activation list --limit 1 hello
   ```
@@ -174,17 +169,17 @@ As an example, create a rule that calls the hello action whenever a location upd
   }
   ```
 
-  You see that the hello action received the event payload and returned the expected string.
+  You see that the `hello` Action received the event payload and returned the expected string.
 
-You can create multiple rules that associate the same trigger with different actions.
-Triggers and rules cannot belong to a package. The rule can be associated with an action
-that belongs to a package however, for example:
+You can create multiple Rules that associate the same Trigger with different Actions.
+Triggers and Rules cannot belong to a Package. The Rule can be associated with an Action
+that belongs to a Package however, for example:
   ```
   wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
-You can also use rules with sequences. For example, one can create an action
+You can also use Rules with sequences. For example, one can create an Action
 sequence `recordLocationAndHello` that is activated by the rule `anotherRule`.
   ```
   wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello

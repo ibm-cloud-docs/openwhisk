@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-10-30"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -24,9 +24,9 @@ The catalog is available as packages in the `/whisk.system` and `/watson-iot` na
 
 | Package | Description |
 | --- | --- |
-| [/whisk.system/alarms](./openwhisk_alarms.html) | Package to create periodic triggers |
+| [/whisk.system/alarms](./openwhisk_alarms.html) | Package to create periodic Triggers |
 | [/whisk.system/cloudant](./openwhisk_cloudant.html) | Package to work with [Cloudant noSQL DB](https://console.ng.bluemix.net/docs/services/Cloudant/index.html) service |
-| [/whisk.system/github](./openwhisk_github.html) | Package to create webhook triggers for [GitHub](https://developer.github.com/) |
+| [/whisk.system/github](./openwhisk_github.html) | Package to create webhook Triggers for [GitHub](https://developer.github.com/) |
 | [/whisk.system/messaging](./openwhisk_messagehub.html) | Package to work with [Message Hub](https://console.ng.bluemix.net/docs/services/MessageHub/index.html) service |
 | [/whisk.system/pushnotifications](./openwhisk_pushnotifications.html) | Package to work with [Push Notification](https://console.ng.bluemix.net/docs/services/mobilepush/index.html) service |
 | [/whisk.system/slack](./openwhisk_slack.html) | Package to post to the [Slack APIs](https://api.slack.com/) |

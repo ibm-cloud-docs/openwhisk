@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-15"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -17,15 +17,15 @@ lastupdated: "2017-09-15"
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.
 {: shortdesc}
 
-The package includes the following actions.
+The package includes the following Actions.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-translator` | package | username, password | Package for text translation and language identification  |
-| `/whisk.system/watson-translator/translator` | action | payload, translateFrom, translateTo, translateParam, username, password | Translate text |
-| `/whisk.system/watson-translator/languageId` | action | payload, username, password | Identify language |
+| `/whisk.system/watson-translator` | Package | username, password | Package for text translation and language identification  |
+| `/whisk.system/watson-translator/translator` | Action | payload, translateFrom, translateTo, translateParam, username, password | Translate text |
+| `/whisk.system/watson-translator/languageId` | Action | payload, username, password | Identify language |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`.
+**Note**: The package `/whisk.system/watson` is deprecated including the Actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`.
 
 ## Setting up the Watson Translator package in {{site.data.keyword.Bluemix_notm}}
 
@@ -36,19 +36,21 @@ If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk aut
   Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
-  
   ```
   wsk package refresh
   ```
   {: pre}
+  
   ```
   created bindings:
   Bluemix_Watson_Translator_Credentials-1
   ```
+  
   ```
   wsk package list
   ```
   {: pre}
+  
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_Translator_Credentials-1 private
@@ -69,17 +71,16 @@ If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}} or if you wa
 
 ## Translating text
 
-The `/whisk.system/watson-translator/translator` action translates text from one language to another. The parameters are as follows:
+The `/whisk.system/watson-translator/translator` Action translates text from one language to another. The parameters are as follows:
 
 - `username`: The Watson API user name.
 - `password`: The Watson API password.
 - `payload`: The text to be translated.
-- `translateParam`: The input parameter that indicates the text to translate. For example, if `translateParam=payload`, then the value of the `payload` parameter that is passed to the action is translated.
+- `translateParam`: The input parameter that indicates the text to translate. For example, if `translateParam=payload`, then the value of the `payload` parameter that is passed to the Action is translated.
 - `translateFrom`: A two-digit code of the source language.
 - `translateTo`: A two-digit code of the target language.
 
-- Invoke the `translator` action in your package binding to translate some text from English to French.
-  
+- Invoke the `translator` Action in your package binding to translate some text from English to French.
   ```
   wsk action invoke myWatsonTranslator/translator \
   --blocking --result \
@@ -87,6 +88,7 @@ The `/whisk.system/watson-translator/translator` action translates text from one
   --param translateTo "fr"
   ```
   {: pre}
+  
   ```json
   {
       "payload": "Ciel bleu a venir"
@@ -96,20 +98,20 @@ The `/whisk.system/watson-translator/translator` action translates text from one
   
 ## Identifying the language of some text
 
-The `/whisk.system/watson-translator/languageId` action identifies the language of some text. The parameters are as follows:
+The `/whisk.system/watson-translator/languageId` Action identifies the language of some text. The parameters are as follows:
 
 - `username`: The Watson API user name.
 - `password`: The Watson API password.
 - `payload`: The text to identify.
 
-- Invoke the `languageId` action in your package binding to identify the language.
-  
+- Invoke the `languageId` Action in your package binding to identify the language.
   ```
   wsk action invoke myWatsonTranslator/languageId \
   --blocking --result \
   --param payload "Ciel bleu a venir"
   ```
   {: pre}
+  
   ```json
   {
     "payload": "Ciel bleu a venir",

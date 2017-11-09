@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-21"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -69,7 +69,7 @@ wsk property set --apihost openwhisk.eu-gb.bluemix.net
 If you ever need to switch regions, you must reconfigure the CLI with both the API host and authorization key as the authorization key is specific per region.
 {: tip}
 
-Artifacts such as actions, rules, and packages are region-specific. So if you use the same artifact in multiple regions you must deploy it to each desired region.
+Artifacts such as Actions, Rules, and packages are region-specific. So if you use the same artifact in multiple regions you must deploy it to each desired region.
 
 If you know your authorization key, you can configure the CLI to use it. 
 
@@ -82,16 +82,16 @@ wsk property set --auth <authorization_key>
 
 **Tip:** The {{site.data.keyword.openwhisk_short}} CLI stores the properties set in `~/.wskprops` by default. The location of this file can be altered by setting the `WSK_CONFIG_FILE` environment variable. 
 
-To verify your CLI setup, try [creating and running an action](./index.html#openwhisk_start_hello_world).
+To verify your CLI setup, try [creating and running an Action](./index.html#openwhisk_start_hello_world).
 
 ## Using the {{site.data.keyword.openwhisk_short}} CLI
 {: #using_openwhisk_cli}
 
 Once the environment is configured, you can use the {{site.data.keyword.openwhisk_short}} CLI to perform the following tasks:
 
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
-* Learn how packages bundle actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
+* Run your code snippets, or Actions, on {{site.data.keyword.openwhisk_short}}. See [Create and invoke Actions](./openwhisk_actions.html).
+* Use Triggers and Rules to enable your Actions to respond to events. See [Create Triggers and Rules](./openwhisk_triggers_rules.html).
+* Learn how packages bundle Actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
 * Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Pre-installed {{site.data.keyword.openwhisk_short}} packages](./openwhisk_catalog.html).
 
 ## Configure the CLI to use an HTTPS proxy

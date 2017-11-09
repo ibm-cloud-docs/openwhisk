@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-02"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -127,17 +127,17 @@ See the following example output:
 
 After you configure your environment, you can use the {{site.data.keyword.openwhisk_short}} CLI to perform the following tasks:
 
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
-* Learn how packages bundle actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
+* Run your code snippets, or Actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking Actions](./openwhisk_actions.html).
+* Use Triggers and Rules to enable your Actions to respond to events. See [Creating Triggers and Rules](./openwhisk_triggers_rules.html).
+* Learn how packages bundle Actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
 * Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Using {{site.data.keyword.openwhisk_short}} enabled services](./openwhisk_catalog.html).
 
 To get a list of commands for the {{site.data.keyword.openwhisk_short}} plug-in run `bx wsk` with no arguments.
 
-## How to bind a service to an action
+## How to bind a service to an Action
 {: #cli_bind}
 
-Bind a service to an action by using the `bx wsk service bind` command.
+Bind a service to an Action by using the `bx wsk service bind` command.
 
 Usage syntax:
 ```
@@ -145,7 +145,7 @@ bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyna
 ```
 {: pre}
 
-The `service bind` command requires a service type and an action name to bind to. For example, if you want to bind a Watson conversation service to an action named "hello", then your invocation would look similar to the following command:
+The `service bind` command requires a service type and an Action name to bind to. For example, if you want to bind a Watson conversation service to an Action named "hello", then your invocation would look similar to the following command:
 ```
 bx wsk service bind conversation "hello"
 ```
@@ -156,7 +156,7 @@ Which produces the following output:
 Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
 ```
 
-This command searches your current space for existing Watson conversation services, takes the first conversation service it finds, and then retrieves all of the credentials that belong to this service. Using the first set of credentials that belong to this service, it binds those credentials as a parameter to the hello action specified. The output shows you exactly which service the action is bound to, and which set of credentials from that service were used to bind with.
+This command searches your current space for existing Watson conversation services, takes the first conversation service it finds, and then retrieves all of the credentials that belong to this service. Using the first set of credentials that belong to this service, it binds those credentials as a parameter to the hello Action specified. The output shows you exactly which service the Action is bound to, and which set of credentials from that service were used to bind with.
 
 To verify that credentials are successfully bound, issue the following command:
 ```
@@ -212,9 +212,9 @@ ok: got action Hello World
 }
 ```
 
-From here, you can see that the credentials for this conversation service (along with any other credentials for other service types) belong to a parameter named `__bx_creds`, that can now be used from within the action code as any other bound parameter can be used. The action picks the first available conversation service which includes the first set of credentials defined in that service. 
+From here, you can see that the credentials for this conversation service (along with any other credentials for other service types) belong to a parameter named `__bx_creds`, that can now be used from within the Action code as any other bound parameter can be used. The Action picks the first available conversation service which includes the first set of credentials defined in that service. 
 
-For further information about passing parameters to an action, and how credentials are affected when performing an `action update` operation, see the following document [Create and invoke actions](openwhisk_actions.html#openwhisk_pass_params).
+For further information about passing parameters to an Action, and how credentials are affected when performing an `action update` operation, see the following document [Create and invoke Actions](openwhisk_actions.html#openwhisk_pass_params).
 
 The `wsk service` command supports the following two flags:
 
@@ -225,7 +225,7 @@ The `wsk service` command supports the following two flags:
     <dd>The name of the specific credentials within the service that you wish to use.</dd>
 </dl>
 
-To undertand how to use these flags, see the following example. By using the previous `bx wsk service bind` command, assume there were actually two conversation services, and the action default ended up binding the incorrect service/credentials. You could rerun the command with the `--instance` and `--keyname` flags to ensure that you bind the correct service to the correct action. First, look at what services are available, and what credentials are bound to them. If we were to list our services we should see output like the following:
+To undertand how to use these flags, see the following example. By using the previous `bx wsk service bind` command, assume there were actually two conversation services, and the Action default ended up binding the incorrect service/credentials. You could rerun the command with the `--instance` and `--keyname` flags to ensure that you bind the correct service to the correct Action. First, look at what services are available, and what credentials are bound to them. If we were to list our services we should see output like the following:
 
 ```
 bx service list
@@ -248,7 +248,7 @@ Credentials-1
 Credentials-2
 ```
 
-You want to bind to "Credentials-2" from this service. To make sure the action performs the desired behavior, run the following command:
+You want to bind to "Credentials-2" from this service. To make sure the Action performs the desired behavior, run the following command:
 ```
 bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
@@ -259,7 +259,7 @@ Which produces the following output:
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-From the output, you can see that the correct set of credentials are bound to the action. Again, to verfiy, you can look at the following `bx wsk action get` command.
+From the output, you can see that the correct set of credentials are bound to the Action. Again, to verfiy, you can look at the following `bx wsk action get` command.
 ```
 bx wsk action get "hello"
 ```
@@ -315,10 +315,10 @@ ok: got action Hello World
 
 That is the jist of the `bx wsk service bind` command. The normal debug flags are supported, and print out response headers from calls.
 
-## How to unbind a service from an action
+## How to unbind a service from an Action
 {: #cli_unbind}
 
-Unbind a service from an action by using the `bx wsk service unbind`. The `service unbind` command removes bindings created by the `service bind` action.
+Unbind a service from an Action by using the `bx wsk service unbind`. The `service unbind` command removes bindings created by the `service bind` command.
 
 Usage syntax:
 ```
@@ -326,9 +326,9 @@ bx wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 
-The `service` action does not support any custom flags, but does support the usual debug, and verbose flags. The action looks for the `__bx_creds` bound parameter, and removes the reference to the service type listed. If that service type is the only one listed, the action nulls out the `__bx_creds` parameter's value. If more than one service is bound to the action, the `__bx_creds` parameter remains with whatever services are still bound.
+The `service` Action does not support any custom flags, but does support the usual debug, and verbose flags. The Action looks for the `__bx_creds` bound parameter, and removes the reference to the service type listed. If that service type is the only one listed, the Action nulls out the `__bx_creds` parameter's value. If more than one service is bound to the Action, the `__bx_creds` parameter remains with whatever services are still bound.
 
-You can only bind one service of each type to an action. Binding multiple services of the same type within a single action is not supported.
+You can only bind one service of each type to an Action. Binding multiple services of the same type within a single Action is not supported.
 {: tip}
 
 

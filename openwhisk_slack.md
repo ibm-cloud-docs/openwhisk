@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-12"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -17,18 +17,18 @@ lastupdated: "2017-09-12"
 The `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
 {: shortdesc}
 
-The package includes the following actions:
+The package includes the following Actions:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/slack` | package | url, channel, username | Interact with the Slack API |
-| `/whisk.system/slack/post` | action | text, url, channel, username | Posts a message to a Slack channel |
+| `/whisk.system/slack` | Package | url, channel, username | Interact with the Slack API |
+| `/whisk.system/slack/post` | Action | text, url, channel, username | Posts a message to a Slack channel |
 
-Creating a package binding with the `username`, `url`, and `channel` values is suggested. With binding, you don't need to specify the values each time that you invoke the action in the package.
+Creating a package binding with the `username`, `url`, and `channel` values is suggested. With binding, you don't need to specify the values each time that you invoke the Action in the Package.
 
 ## Posting a message to a Slack channel
 
-The `/whisk.system/slack/post` action posts a message to a specified Slack channel. The parameters are as follows:
+The `/whisk.system/slack/post` Action posts a message to a specified Slack channel. The parameters are as follows:
 
 - `url`: The Slack webhook URL.
 - `channel`: The Slack channel to post the message to.
@@ -52,7 +52,7 @@ The following example shows how to configure Slack, create a package binding, an
   ```
   {: pre}
   
-3. Invoke the `post` action in your package binding to post a message to your Slack channel.
+3. Invoke the `post` Action in your package binding to post a message to your Slack channel.
   
   ```
   wsk action invoke mySlack/post --blocking --result \

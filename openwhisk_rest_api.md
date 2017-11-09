@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-09-12"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -17,10 +17,10 @@ lastupdated: "2017-09-12"
 After your OpenWhisk environment is enabled, you can use OpenWhisk with your web apps or mobile apps with REST API calls.
 {: shortdesc}
 
-For more information about the APIs for actions, activations, packages, rules, and triggers, see the [OpenWhisk API documentation](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
+For more information about the APIs for Actions, Activations, Packages, Rules, and Triggers, see the [OpenWhisk API documentation](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
 
 
-All the capabilities in the system are available through a REST API. Collection and entity endpoints are available for actions, triggers, rules, packages, activations, and namespaces.
+All the capabilities in the system are available through a REST API. Collection and entity endpoints are available for Actions, Triggers, Rules, Packages, Activations, and Namespaces.
 
 Available collection endpoints:
 - `https://{APIHOST}/api/v1/namespaces`
@@ -44,16 +44,15 @@ The following entity endpoints are available for each type of entity:
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/packages/{packageName}`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/activations/{activationName}`
 
-The namespace and activation endpoints support GET requests. The actions, triggers, rules, and packages endpoints support GET, PUT, and DELETE requests. The endpoints of actions, triggers, and rules also support POST requests, which are used to invoke actions and triggers and enable or disable rules. 
+The Namespace and Activation endpoints support GET requests. The Actions, Triggers, Rules, and Packages endpoints support GET, PUT, and DELETE requests. The endpoints of Actions, Triggers, and Rules also support POST requests, which are used to invoke Actions and Triggers and enable or disable Rules. 
 
 All APIs are protected with HTTP Basic authentication. 
-You can use the [wskadmin](../tools/admin/wskadmin) tool to generate a new namespace and authentication.
+You can use the [wskadmin](../tools/admin/wskadmin) tool to generate a new Namespace and authentication.
 The Basic authentication credentials are in the `AUTH` property in your `~/.wskprops` file, delimited by a colon. 
 You can also retrieve these credentials by using the CLI running `wsk property get --auth`.
 
 
-In the following example, the [cURL](https://curl.haxx.se) command tool is used to get the list of all packages in the `whisk.system` namespace:
-
+In the following example, the [cURL](https://curl.haxx.se) command tool is used to get the list of all Packages in the `whisk.system` Namespace:
 ```bash
 curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/packages
 ```
@@ -81,7 +80,7 @@ In this example, the authentication was passed by using the `-u` flag. You can a
 
 The OpenWhisk API supports request-response calls from web clients. OpenWhisk responds to `OPTIONS` requests with Cross-Origin Resource Sharing headers. Currently, all origins are allowed (that is, Access-Control-Allow-Origin is "`*`") and Access-Control-Allow-Headers yield Authorization and Content-Type.
 
-**Attention:** Because OpenWhisk currently supports only one key per namespace, it is not recommended to use CORS beyond simple experiments. Use [Web Actions](webactions.md) or [API Gateway](apigateway.md) to expose your actions to the public and not use the OpenWhisk authorization key for client applications that require CORS.
+**Attention:** Because OpenWhisk currently supports only one key per Namespace, it is not recommended to use CORS beyond simple experiments. Use [Web Actions](webactions.md) or [API Gateway](apigateway.md) to expose your Actions to the public and not use the OpenWhisk authorization key for client applications that require CORS.
 
 ## Using the CLI verbose mode
 {: #openwhisk_rest_api_cli_v}
@@ -89,11 +88,12 @@ The OpenWhisk API supports request-response calls from web clients. OpenWhisk re
 The OpenWhisk CLI is an interface to the OpenWhisk REST API.
 You can run the CLI in verbose mode with the flag `-v`, which prints all the information about the HTTP request and response.
 
-Display the namespace value for the current user by running the following command:
+Display the Namespace value for the current user by running the following command:
 ```
 wsk namespace list -v
 ```
 {: pre}
+
 ```
 REQUEST:
 [GET]	https://openwhisk.ng.bluemix.net/api/v1/namespaces
@@ -124,7 +124,8 @@ The response is of content type `application/json`.
 
 ## Actions
 {: #openwhisk_rest_api_actions}
-To create or update an action, send an HTTP request with method `PUT` on the actions collection. For example, to create a `nodejs:6` action with the name `hello` by using a single file content, use the following command:
+
+To create or update an Action, send an HTTP request with method `PUT` on the Actions collection. For example, to create a `nodejs:6` Action with the name `hello` by using a single file content, use the following command:
 ```bash
 curl -u $AUTH -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"}}' -X PUT -H "Content-Type: application/json" https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true 
 ```
@@ -137,6 +138,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello
 -d '{"name":"John"}'  
 ```
 {: pre}
+
 You get the following response:
 ```json
 {
@@ -187,35 +189,38 @@ You get the following response:
 ## Annotations and Web Actions
 {: #openwhisk_rest_api_webactions}
 
-To create an action as a web action, you need to add an [annotation](annotations.md) of `web-export=true` for web actions. Since web-actions are publicly accessible, you want to protect pre-defined parameters (that is, treat them as final) using the annotation `final=true`. If you create or update an action that uses the CLI flag `--web true`, the command adds both annotations `web-export=true` and `final=true`.
+To create an Action as a web Action, you need to add an [annotation](annotations.md) of `web-export=true` for web Actions. Since web Actions are publicly accessible, you want to protect pre-defined parameters (that is, treat them as final) using the annotation `final=true`. If you create or update an Action that uses the CLI flag `--web true`, the command adds both annotations `web-export=true` and `final=true`.
 
-Run the following curl command to provide the complete list of annotations to set on the action.
+Run the following curl command to provide the complete list of annotations to set on the Action.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
 -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"},"annotations":[{"key":"web-export","value":true},{"key":"raw-http","value":false},{"key":"final","value":true}]}'
 ```
 {: pre}
-You can now invoke this action as a public URL with no OpenWhisk authorization. Try to invoke by using the web action public URL, and including an extension like `.json` or `.http`, for example, at the end of the URL.
+
+You can now invoke this Action as a public URL with no OpenWhisk authorization. Try to invoke by using the web Action public URL, and including an extension like `.json` or `.http`, for example, at the end of the URL.
 ```bash
 curl https://openwhisk.ng.bluemix.net/api/v1/web/john@example.com_dev/default/hello.json?name=John
 ```
 {: pre}
+
 ```json
 {
   "payload": "Hello John"
 }
 ```
-This example source code does not work with `.http`, see [web actions](webactions.md) documentation on how to modify.
+
+This example source code does not work with `.http`, see [Web Actions](webactions.md) documentation on how to modify.
 
 ## Sequences
 {: #openwhisk_rest_api_sequences}
 
-To create an action sequence, provide the names of the actions that compose the sequence in the desired order. So that the output from the first action is passed as input to the next action.
+To create an Action sequence, provide the names of the Actions that compose the sequence in the desired order. So that the output from the first Action is passed as input to the next Action.
 
 $ wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
 
-Create a sequence with the actions `/whisk.system/utils/split` and `/whisk.system/utils/sort`.
+Create a sequence with the Actions `/whisk.system/utils/split` and `/whisk.system/utils/sort`.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/sequenceAction?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -223,14 +228,14 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/seque
 ```
 {: pre}
 
-When you specify the names of the actions, they must be full qualified.
+When you specify the names of the Actions, they must be full qualified.
 
 ## Triggers
 {: #openwhisk_rest_api_triggers}
 
-To create a trigger, the minimum information you need is a name for the trigger. You could also include default parameters that get passed to the action through a rule when the trigger gets fired.
+To create a Trigger, the minimum information you need is a name for the Trigger. You could also include default parameters that get passed to the Action through a Tule when the Trigger gets fired.
 
-Create a trigger with name `events` with a default parameter `type` with value `webhook` set.
+Create a Trigger with name `events` with a default parameter `type` with value `webhook` set.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/events?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -238,10 +243,9 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/even
 ```
 {: pre}
 
-Now whenever you have an event that needs to fire this trigger it just takes an HTTP request with a method `POST` by using the OpenWhisk Authorization key.
+Now whenever you have an event that needs to fire this Trigger it just takes an HTTP request with a method `POST` by using the OpenWhisk Authorization key.
 
-To fire the trigger `events` with a parameter `temperature`, send the following HTTP request.
-
+To fire the Trigger `events` with a parameter `temperature`, send the following HTTP request.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/events \
 -X POST -H "Content-Type: application/json" \
@@ -252,20 +256,20 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/even
 ### Triggers with Feed Actions
 {: #openwhisk_rest_api_triggers_feed}
 
-Special triggers can be created by using a feed action. The feed action is an action that helps with the configuration of a feed provider that is in charge of firing the trigger whenever an event for the trigger occurs. Learn more about these feed providers in the [feeds.md] documentation.
+Special Triggers can be created by using a Feed Action. The Feed Action is an Action that helps with the configuration of a Feed provider that is in charge of firing the Trigger whenever an event for the Trigger occurs. Learn more about these feed providers in the [feeds.md] documentation.
 
-Some of the available triggers that leverage a feed action are periodic/alarms, Slack, Github, Cloudant/Couchdb, and messageHub/Kafka. You also can create your own feed action and feed provider.
+Some of the available Triggers that leverage a Feed Action are periodic/alarms, Slack, Github, Cloudant/Couchdb, and messageHub/Kafka. You also can create your own Feed Action and Feed provider.
 
-Create a trigger with name `periodic` to be fired at a specified frequency, every 2 hours (for example, 02:00:00, 04:00:00, ...).
+Create a Trigger with name `periodic` to be fired at a specified frequency, every 2 hours (for example, 02:00:00, 04:00:00, ...).
 
-Using the CLI, run the following command to create the trigger:
+Using the CLI, run the following command to create the Trigger:
 ```bash
 wsk trigger create periodic --feed /whisk.system/alarms/alarm \
   --param cron "0 */2 * * *" -v
 ```
 {: pre}
 
-Since the `-v` flag is used, two HTTP requests are sent. One is to create a trigger that is called `periodic`, and the other is to invoke the feed action. The feed action, `/whisk.system/alarms/alarm`, is sent the parameters to configure the feed provider to fire the trigger every 2 hours.
+Since the `-v` flag is used, two HTTP requests are sent. One is to create a Trigger that is called `periodic`, and the other is to invoke the Feed Action. The Feed Action, `/whisk.system/alarms/alarm`, is sent the parameters to configure the Feed provider to fire the Trigger every 2 hours.
 
 To achieve this activity with the REST API, create the trigger first like so:
 ```bash
@@ -275,9 +279,9 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/peri
 ```
 {: pre}
 
-As you can see, the annotation `feed` is stored in the trigger. Later, this annotation can be used to know which feed action to use to delete the trigger.
+As you can see, the annotation `Feed` is stored in the Trigger. Later, this annotation can be used to know which Feed Action to use to delete the Trigger.
 
-Now that the trigger is created, lets invoke the feed action
+Now that the Trigger is created, lets invoke the Feed Action
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/actions/alarms/alarm?blocking=true&result=false" \
 -X POST -H "Content-Type: application/json" \
@@ -285,9 +289,9 @@ curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/a
 ```
 {: pre}
 
-Deleting the trigger is similar to creating the trigger. So this time, delete the trigger by using the feed action in order to configure the feed provider to also delete the handler for the trigger.
+Deleting the Trigger is similar to creating the Trigger. So this time, delete the Trigger by using the Feed Action in order to configure the Feed provider to also delete the handler for the Trigger.
 
-Invoke the feed action to delete the trigger handler from the feed provider by running the following command:
+Invoke the Feed Action to delete the Trigger handler from the feed provider by running the following command:
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/actions/alarms/alarm?blocking=true&result=false" \
 -X POST -H "Content-Type: application/json" \
@@ -295,7 +299,7 @@ curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/a
 ```
 {: pre}
 
-Now delete the trigger with an HTTP request by using the `DELETE` method:
+Now delete the Trigger with an HTTP request by using the `DELETE` method:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/periodic \
 -X DELETE -H "Content-Type: application/json" 
@@ -305,7 +309,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/peri
 ## Rules
 {: #openwhisk_rest_api_rules}
 
-To create a rule that associates a trigger with an action, send an HTTP request with a `PUT` method to provide the trigger and action in the body of the request.
+To create a rule that associates a Trigger with an Action, send an HTTP request with a `PUT` method to provide the Trigger and Action in the body of the request.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -313,7 +317,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?ove
 ```
 {: pre}
 
-Rules can be enabled or disabled, and you can change the status of the rule by updating its status property. For example, to disable the rule `t2a` send in the body of the request `status: "inactive"` with a `POST` method.
+Rules can be enabled or disabled, and you can change the status of the Rule by updating its status property. For example, to disable the rule `t2a`, send in the body of the request `status: "inactive"` with a `POST` method.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?overwrite=true \
 -X POST -H "Content-Type: application/json" \
@@ -324,7 +328,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?ove
 ## Packages
 {: #openwhisk_rest_api_packages}
 
-To create an action in a package, you have to create a package first. Create a package with the name `iot` and send an HTTP request with a `PUT` method by running the following command:
+To create an Action in a Package, you have to create a Package first. Create a Package with the name `iot` and send an HTTP request with a `PUT` method by running the following command:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/packages/iot?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -335,13 +339,13 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/packages/iot?
 ## Activations
 {: #openwhisk_rest_api_activations}
 
-To get the list of the last three activations, use an HTTP request with a `GET` method by passing the query parameter `limit=3` like so:
+To get the list of the last three Activations, use an HTTP request with a `GET` method by passing the query parameter `limit=3` like so:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/activations?limit=3
 ```
 {: pre}
 
-To get all the details of an activation that include results and logs, send an HTTP request with a `GET` method by passing the activation identifier as a path parameter like so:
+To get all the details of an Activation that include results and logs, send an HTTP request with a `GET` method by passing the Activation identifier as a path parameter like so:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/activations/f81dfddd7156401a8a6497f2724fec7b
 ```

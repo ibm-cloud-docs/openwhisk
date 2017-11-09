@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-02"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2017-11-02"
 # Getting started with {{site.data.keyword.openwhisk_short}}
 
 
-{{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from {{site.data.keyword.Bluemix}} services like Cloudant and from external sources. Developers can focus on writing application logic, and creating actions that are executed on demand.
+{{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from {{site.data.keyword.Bluemix}} services like Cloudant and from external sources. Developers can focus on writing application logic, and creating Actions that are executed on demand.
 The key benefit of this new paradigm is that you do not explicitly provision servers. Thus, eliminating worry about auto-scaling, high availability, updates, maintenance, and cost for hours of processor time when your server is running but not serving requests.
 Your code executes when there is an HTTP call, database state change, or other type of event that triggers the execution of your code.
 You get billed by millisecond of execution time (rounded up to the nearest 100 ms), not per hour of VM utilization regardless whether that VM was doing useful work or not.
@@ -32,7 +32,7 @@ Both have similar capabilities for developing applications; the CLI provides mor
 ## Develop in your Browser
 {: #openwhisk_start_editor}
 
-Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create actions, automate actions by using triggers, and explore public packages. 
+Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/editor) to create Actions, automate Actions by using Triggers, and explore public packages. 
 Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a quick tour of the OpenWhisk User Interface.
 
 ## Develop by using the CLI
@@ -85,22 +85,19 @@ To use this example, follow these steps:
 
 1. Save the code to a file. For example, *hello.js*.
 
-2. From the {{site.data.keyword.openwhisk_short}} CLI command line, create the action by entering this command:
-
+2. From the {{site.data.keyword.openwhisk_short}} CLI command line, create the Action by entering this command:
     ```
     wsk action create hello hello.js
     ```
     {: pre}
 
-3. Then, invoke the action by entering the following commands.
-
+3. Then, invoke the Action by entering the following commands.
     ```
     wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
     This command outputs:
-
     ```json
     {
         "payload": "Hello, World!"
@@ -113,14 +110,13 @@ To use this example, follow these steps:
     {: pre}  
 
     This command outputs:
-
     ```json
     {
         "payload": "Hello, Fred!"
     }
     ```
 
-You can also use the event-driven capabilities in {{site.data.keyword.openwhisk_short}} to invoke this action in response to events. Follow the [alarm service example](./openwhisk_packages.html#openwhisk_packages_trigger) to configure an event source to invoke the `hello` action every time a periodic event is generated.
+You can also use the event-driven capabilities in {{site.data.keyword.openwhisk_short}} to invoke this Action in response to events. Follow the [alarm service example](./openwhisk_packages.html#openwhisk_packages_trigger) to configure an event source to invoke the `hello` Action every time a periodic event is generated.
 
 A complete list of [OpenWhisk Tutorials and Samples can be found here](https://github.com/openwhisk/openwhisk-external-resources#sample-applications). In addition to samples, this repository contains links to articles, presentations, podcasts, videos, and other {{site.data.keyword.openwhisk_short}} related resources.
 

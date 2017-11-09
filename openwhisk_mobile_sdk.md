@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-09-14"
+lastupdated: "2017-11-09"
 
 ---
 
@@ -13,7 +13,7 @@ lastupdated: "2017-09-14"
 
 # Using the OpenWhisk mobile SDK
 
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote triggers and invoke remote actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
+OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote Triggers and invoke remote Actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
 
 The mobile SDK is written in Swift 3.0 and supports iOS 10 and later releases. You can build the mobile SDK by using Xcode 8.0. Legacy Swift 2.2/Xcode 7 versions of the SDK are available up to 0.1.7, though it is now deprecated.
 {: shortdesc}
@@ -119,21 +119,21 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 The strings before the colon is your key, and the string after the colon is your token.
 
-## Invoke an OpenWhisk action
+## Invoke an OpenWhisk Action
 
-To invoke a remote action, you can call `invokeAction` with the action name. You can specify the namespace that the action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the action as needed.
+To invoke a remote Action, you can call `invokeAction` with the Action name. You can specify the namespace that the Action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the Action as needed.
 
 For example:
 
 ```swift
-// In this example, we are invoking an action to print a message to the OpenWhisk Console
+// In this example, we are invoking an Action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()
 params["payload"] = "Hi from mobile"
 do {
     try whisk.invokeAction(name: "helloConsole", package: "mypackage", namespace: "mynamespace", parameters: params, hasResult: false, callback: {(reply, error) -> Void in
         if let error = error {
             //do something
-            print("Error invoking action \(error.localizedDescription)")
+            print("Error invoking Action \(error.localizedDescription)")
         } else {
             print("Action invoked!")
         }
@@ -144,14 +144,14 @@ do {
 ```
 {: codeblock}
 
-In the previous example, you invoke the `helloConsole` action by using the default namespace.
+In the previous example, you invoke the `helloConsole` Action by using the default namespace.
 
-## Fire an OpenWhisk trigger
+## Fire an OpenWhisk Trigger
 
-To fire a remote trigger, you can call the `fireTrigger` method, and pass in parameters as needed by using a dictionary.
+To fire a remote Trigger, you can call the `fireTrigger` method, and pass in parameters as needed by using a dictionary.
 
 ```swift
-// In this example we are firing a trigger when our location has changed by a certain amount
+// In this example we are firing a Trigger when our location has changed by a certain amount
 var locationParams = Dictionary<String, String>()
 locationParams["payload"] = "{\"lat\":41.27093, \"lon\":-73.77763}"
 do {
@@ -168,18 +168,18 @@ do {
 ```
 {: codeblock}
 
-In the previous example, you are firing a trigger that is called `locationChanged`.
+In the previous example, you are firing a Trigger that is called `locationChanged`.
 
-## Use actions that return a result
+## Use Actions that return a result
 
-If the action returns a result, set hasResult to true in the invokeAction call. The result of the action is returned in the reply dictionary, for example:
+If the action returns a result, set hasResult to true in the invokeAction call. The result of the Action is returned in the reply dictionary, for example:
 
 ```swift
 do {
     try whisk.invokeAction(name: "actionWithResult", package: "mypackage", namespace: "mynamespace", parameters: params, hasResult: true, callback: {(reply, error) -> Void in
         if let error = error {
             //do something
-            print("Error invoking action \(error.localizedDescription)")
+            print("Error invoking Action \(error.localizedDescription)")
         } else {
             var result = reply["result"]
             print("Got result \(result)")
@@ -191,7 +191,7 @@ do {
 ```
 {: codeblock}
 
-By default, the SDK returns only the activation ID and any result that is produced by the invoked action. To get metadata of the entire response object, which includes the HTTP response status code, use the following setting:
+By default, the SDK returns only the activation ID and any result that is produced by the invoked Action. To get metadata of the entire response object, which includes the HTTP response status code, use the following setting:
 
 ```swift
 whisk.verboseReplies = true
@@ -227,7 +227,7 @@ whisk.urlSession = session
 
 ### Support for qualified names
 
-All actions and triggers have a fully qualified name that is made up of a namespace, a package, and an action or trigger name. The SDK can accept these elements as parameters when you are invoking an action or firing a trigger. The SDK also provides a function that accepts a fully qualified name that looks like `/mynamespace/mypackage/nameOfActionOrTrigger`. The qualified name string supports unnamed default values for namespaces and packages that all OpenWhisk users have, so the following parsing rules apply:
+All Actions and Triggers have a fully qualified name that is made up of a namespace, a package, and an Action or Trigger name. The SDK can accept these elements as parameters when you are invoking an Action or Firing a Trigger. The SDK also provides a function that accepts a fully qualified name that looks like `/mynamespace/mypackage/nameOfActionOrTrigger`. The qualified name string supports unnamed default values for namespaces and packages that all OpenWhisk users have, so the following parsing rules apply:
 
 - qName = "foo" results in namespace = default, package = default, action/trrigger = "foo"
 - qName = "mypackage/foo" results in namespace = default, package = mypackage, action/trigger = "foo"
@@ -238,13 +238,13 @@ All other combinations issue a WhiskError.QualifiedName error. Therefore, when y
 
 ### SDK button
 
-For convenience, the SDK includes a `WhiskButton`, which extends the `UIButton` to allow it to invoke actions.  To use the `WhiskButton`, follow this example:
+For convenience, the SDK includes a `WhiskButton`, which extends the `UIButton` to allow it to invoke Actions.  To use the `WhiskButton`, follow this example:
 
 ```swift
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButton.setupWhiskAction("helloConsole", package: "mypackage", namespace: "_", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
 let myParams = ["name":"value"]
-// Call this when you detect a press event, e.g. in an IBAction, to invoke the action
+// Call this when you detect a press event, e.g. in an IBAction, to invoke the Action
 whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
     if let error = error {
         print("Oh no, error: \(error)")
@@ -252,7 +252,7 @@ whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
         print("Success: \(reply)")
     }
 })
-// or alternatively you can set up a "self contained" button that listens for press events on itself and invokes an action
+// or alternatively you can set up a "self contained" button that listens for press events on itself and invokes an Action
 var whiskButtonSelfContained = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButtonSelfContained.listenForPressEvents = true
 do {
