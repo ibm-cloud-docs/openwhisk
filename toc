@@ -56,7 +56,7 @@ IBM Cloud Functions
         openwhisk_watson_translator.md
         openwhisk_watson_texttospeech.md
         openwhisk_watson_speechtotext.md
-        [Using the Watson IoT Platform Gateway](https://console.bluemix.net/docs/services/IoT/gateways/iotgw.html){: new_window}
+        ../services/IoT/gateways/iotgw.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
