@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-15"
+lastupdated: "2017-11-16"
 ---
 
 {:shortdesc: .shortdesc}
@@ -545,9 +545,10 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Configurable | Unit | Default |
 | ----- | ----------- | ------------ | -----| ------- |
-| minuteRate | No more than N Triggers can be fired per namespace per minute. | Per user | Number | 5000 |
+| minuteRate | No more than N Triggers can be fired per namespace per minute. | Per user | Number | 5000* |
 
-### Triggers per minute (Fixed: 5000)
+### Triggers per minute (Fixed: 5000*)
 * The rate limit N is set to 5000 and limits the number of Triggers that can be fired in 1-minute windows.
 * A user cannot change the Trigger limit when a Trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
