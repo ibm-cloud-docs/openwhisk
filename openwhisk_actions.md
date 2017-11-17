@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-09"
+lastupdated: "2017-11-17"
 
 ---
 
@@ -69,7 +69,8 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   ok: created action hello
   ```
-
+  The CLI automatically infers the type of the action by using the source file extension. For `.js` source files, the action runs by using a Node.js 6 runtime. You can also create an action that runs with Node.js 8 by explicitly specifying the parameter `--kind nodejs:8`. For more information, see the Node.js 6 vs 8 [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
+  
 3. List the Actions that you created:
 
   ```
@@ -533,7 +534,7 @@ To create an OpenWhisk action from this package:
   ```
   {: pre}
 
-  When creating an action from a `.zip` archive by using the CLI tool, you must explicitly provide a value for the `--kind` flag.
+  When creating an action from a `.zip` archive with the CLI tool, you must explicitly provide a value for the `--kind` flag by using `nodejs:6` or `nodejs:8`.
 
 4. You can invoke the action like any other:
 
@@ -552,7 +553,101 @@ To create an OpenWhisk action from this package:
   }
   ```
 
-Finally, while most `npm` packages install JavaScript sources on `npm install`, some also install, and compile binary artifacts. The archive file upload currently does not support binary dependencies but rather only JavaScript dependencies. Action invocations can fail if the archive includes binary dependencies.
+Finally, note that while most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload currently does not support binary dependencies but rather only JavaScript dependencies. Action invocations may fail if the archive includes binary dependencies.
+
+### Package an action as a single bundle
+{: #openwhisk_js_webpack_action}
+
+It is convenient to only include the minimal code into a single `.js` file that includes dependencies. This approach allows for faster deployments, and in some circumstances where packaging the action as a zip might be too large because it includes unnecessary files.
+
+You can use a JavaScript module bundler such as [webpack](https://webpack.js.org/concepts/). When webpack processes your code, it recursively builds a dependency graph that includes every module that your action needs.
+
+Here is a quick example using webpack:
+
+Taking the previous example `package.json` add `webpack` as a development depency and add some npm script commands.
+```json
+{
+  "name": "my-action",
+  "main": "dist/bundle.js",
+  "scripts": {
+    "build": "webpack --config webpack.config.js",
+    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
+  },
+  "dependencies": {
+    "left-pad": "1.1.3"
+  },
+  "devDependencies": {
+    "webpack": "^3.8.1"
+  }
+}
+```
+{: codeblock}
+
+Create the webpack configuration file `webpack.config.js`.
+```javascript
+var path = require('path');
+module.exports = {
+  entry: './index.js',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'bundle.js'
+  },
+  target: 'node'
+};
+```
+{: codeblock}
+
+Set the variable `global.main` to the main function of the action.
+From the previous example:
+```javascript
+function myAction(args) {
+    const leftPad = require("left-pad")
+    const lines = args.lines || [];
+    return { padded: lines.map(l => leftPad(l, 30, ".")) }
+}
+global.main = myAction;
+```
+{: codeblock}
+
+If your function name is `main`, use this syntax instead:
+```javascript
+global.main = main;
+```
+{: codeblock}
+
+
+To build and deploy an OpenWhisk Action using `npm` and `webpack`:
+
+1. First, install dependencies locally:
+
+  ```
+  npm install
+  ```
+  {: pre}
+
+2. Build the webpack bundle:
+
+  ```
+  npm run build
+  ```
+  {: pre}
+
+  The file `dist/bundle.js` is created, and is used to deploy as the Action source code.
+
+3. Create the Action using the `npm` script or the CLI.
+  Using `npm` script:
+  ```
+  npm run deploy
+  ```
+  {: pre}
+  Using the CLI:
+  ```
+  bx wsk action update my-action dist/bundle.js
+  ```
+  {: pre}
+
+
+Finally, the bundle file that is built by `webpack` doesn't support binary dependencies but rather JavaScript dependencies. So Action invocations will fail if the bundle depends on binary dependencies, because this is not included with the file `bundle.js`.
 
 ## Create action sequences
 {: #openwhisk_create_action_sequence}
