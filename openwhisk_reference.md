@@ -233,7 +233,7 @@ Currently Actions are executed by default in a Node.js version 6.11.4 environmen
 
 ### Node.js version 6 environment
 {: #openwhisk_ref_javascript_environments_6}
-The Node.js 6.11.4 environment is used if the `--kind` flag is explicitly specified with a value of 'nodejs:6' when creating or updating an Action.
+The Node.js 6.11.4 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:6` when creating or updating an Action.
 
 The following packages are available to be used in the Node.js 6.11.4 environment:
 
@@ -291,7 +291,7 @@ The following packages are available to be used in the Node.js 6.11.4 environmen
 
 ### Node.js version 8 environment
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.9.1 environment is used if the `--kind` flag is explicitly specified with a value of 'nodejs:8' when creating or updating an Action.
+The Node.js version 8.9.1 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
 
 The following packages are pre-installed in the Node.js version 8.9.1 environment:
 
