@@ -456,15 +456,10 @@ Python 2 Actions are executed with Python 2.7.12, which is the default runtime f
 {: #openwhisk_ref_swift3}
 
 ### Swift 3
-Swift 3 Actions are executed with Swift 3.0.2  `--kind swift:3` or Swift 3.1.1 `--kind swift:3.1.1`, respectively. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
+Swift 3 Actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
 
-Actions that specify the kind `swift:3` will no longer be invoked after November 30, 2017. You must migrate all Swift Actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update Actions.
+You must migrate all Swift Actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update Actions.
 {: tip}
-
-Swift 3.0.2 Actions can use the following packages:
-- KituraNet version 1.0.1, https://github.com/IBM-Swift/Kitura-net
-- SwiftyJSON version 14.2.0, https://github.com/IBM-Swift/SwiftyJSON
-- IBM Swift Watson SDK version 0.4.1, https://github.com/IBM-Swift/swift-watson-sdk
 
 Swift 3.1.1 Actions can use the following packages:
 - KituraNet version 1.7.6, https://github.com/IBM-Swift/Kitura-net
@@ -540,6 +535,7 @@ The following table lists the default limits for Actions.
 | minuteRate | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
 | codeSize | The maximum size of the actioncode in MB. | 48 | 1 | 48 |
 | parameters | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
+| result | The maximum size of the action result. | 1 | 0 | 1 |
 
 ### Increasing fixed limits
 {: #increase_fixed_limit}
