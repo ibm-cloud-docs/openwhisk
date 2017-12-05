@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-09"
+lastupdated: "2017-12-05"
 
 ---
 
@@ -111,7 +111,7 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_l
 ## Using the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_plugin_usage}
 
-Verify your setup. Perform a blocking (synchronous) invocation of echo, passing it "hello" as an argument like in the following example:
+Verify your setup. Perform a blocking (synchronous) invocation of echo, passing it `hello` as an argument like in the following example:
 ```
 bx wsk action invoke /whisk.system/utils/echo -p message hello --result
 ```
@@ -145,9 +145,9 @@ bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyna
 ```
 {: pre}
 
-The `service bind` command requires a service type and an Action name to bind to. For example, if you want to bind a Watson conversation service to an Action named "hello", then your invocation would look similar to the following command:
+The `service bind` command requires a service type and an Action name to bind to. For example, if you want to bind a Watson conversation service to an Action named `hello`, then your invocation would look similar to the following command:
 ```
-bx wsk service bind conversation "hello"
+bx wsk service bind conversation hello
 ```
 {: pre}
 
@@ -156,7 +156,7 @@ Which produces the following output:
 Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
 ```
 
-This command searches your current space for existing Watson conversation services, takes the first conversation service it finds, and then retrieves all of the credentials that belong to this service. Using the first set of credentials that belong to this service, it binds those credentials as a parameter to the hello Action specified. The output shows you exactly which service the Action is bound to, and which set of credentials from that service were used to bind with.
+This command searches your current space for existing Watson conversation services, takes the first conversation service it finds, and then retrieves all of the credentials that belong to this service. Using the first set of credentials that belong to this service, it binds those credentials as a parameter to the `hello` Action specified. The output shows you exactly which service the Action is bound to, and which set of credentials from that service were used to bind with.
 
 To verify that credentials are successfully bound, issue the following command:
 ```
@@ -168,19 +168,6 @@ Sample output:
 ```
 ok: got action Hello World
 {
-    "namespace": "user@domain.com",
-    "name": "Hello World",
-    "version": "0.0.2",
-    "exec": {
-        "kind": "nodejs:6",
-        "code": "/**\\n  *\\n  * main() will be invoked when you Run This Action.\\n  * \\n  * @param Whisk actions accept a single parameter,\\n  *        which must be a JSON object.\\n  *\\n  * @return which must be a JSON object.\\n  *         It will be the output of this action.\\n  *\\n  */\\nfunction main() {\\n\\treturn { \\\"message\\\": \\\"hello world\\\" };\\n}\\n\\n/* Hint: To invoke this action, click Run This Action */\n"
-    },
-    "annotations": [
-        {
-            "key": "exec",
-            "value": "nodejs:6"
-        }
-    ],
     "parameters": [
         {
             "key": "var1",
@@ -203,12 +190,6 @@ ok: got action Hello World
             }
         }
     ],
-    "limits": {
-        "timeout": 60000,
-        "memory": 256,
-        "logs": 10
-    },
-    "publish": false
 }
 ```
 
@@ -235,7 +216,7 @@ Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-From this output we see that "Conversation-qp" is the first of two services listed, and it is the one that the initial "bx wsk service bind conversation hello" command ended up binding to. Perhaps you want to bind to the "Conversation-uc" service instead. So to be absolutely sure, you can check what credentials "Conversation-uc" contains, to ensure that you bind by using the right set of credentials.
+From this output we see that **Conversation-qp** is the first of two services listed, and it is the one that the initial `bx wsk service bind conversation hello` command ended up binding to. Perhaps you want to bind to the **Conversation-uc** service instead. So to be absolutely sure, you can check what credentials **Conversation-uc** contains, to ensure that you bind by using the right set of credentials.
 
 ```
 bx service keys Conversation-uc
@@ -261,7 +242,7 @@ Service credentials 'Credentials-2' from service 'Conversation-uc' bound to acti
 
 From the output, you can see that the correct set of credentials are bound to the Action. Again, to verfiy, you can look at the following `bx wsk action get` command.
 ```
-bx wsk action get "hello"
+bx wsk action get hello
 ```
 {: pre}
 
@@ -269,19 +250,6 @@ Which produces the following results:
 ```
 ok: got action Hello World
 {
-    "namespace": "jalva@us.ibm.com_dev",
-    "name": "Hello World",
-    "version": "0.0.2",
-    "exec": {
-        "kind": "nodejs:6",
-        "code": "/**\\n  *\\n  * main() will be invoked when you Run This Action.\\n  * \\n  * @param Whisk actions accept a single parameter,\\n  *        which must be a JSON object.\\n  *\\n  * @return which must be a JSON object.\\n  *         It will be the output of this action.\\n  *\\n  */\\nfunction main() {\\n\\treturn { \\\"message\\\": \\\"hello world\\\" };\\n}\\n\\n/* Hint: To invoke this action, click Run This Action */\n"
-    },
-    "annotations": [
-        {
-            "key": "exec",
-            "value": "nodejs:6"
-        }
-    ],
     "parameters": [
         {
             "key": "var1",
@@ -304,12 +272,6 @@ ok: got action Hello World
             }
         }
     ],
-    "limits": {
-        "timeout": 60000,
-        "memory": 256,
-        "logs": 10
-    },
-    "publish": false
 }
 ```
 
