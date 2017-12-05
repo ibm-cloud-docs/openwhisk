@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-09"
+lastupdated: "2017-12-05"
 
 ---
 
@@ -52,7 +52,7 @@ Feeds and Triggers are closely related, but technically distinct concepts.
 ##  Implementing Feed Actions
 
 The *Feed Action* is a normal {{site.data.keyword.openwhisk_short}} *Action*, and accepts the following parameters:
-* **lifecycleEvent**: One of 'CREATE', 'DELETE', 'PAUSE', or 'UNPAUSE'.
+* **lifecycleEvent**: One of 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE', or 'UNPAUSE'.
 * **triggerName**: The fully qualified name of the Trigger, which contains events that are produced from this Feed.
 * **authKey**: The Basic auth credentials of the {{site.data.keyword.openwhisk_short}} user who owns the Trigger.
 
@@ -72,7 +72,7 @@ The Feed Action that is named *changes* takes these parameters, and is expected 
 
 For the Cloudant *changes* Feed, the Action happens to talk directly to a *cloudant Trigger* service that is implemented with a connection-based architecture.
 
-A similar Feed Action protocol occurs for `wsk trigger delete`.    
+A similar Feed Action protocol occurs for `wsk trigger delete`, `wsk trigger update` and `wsk trigger get`.    
 
 ## Implementing Feeds with Hooks
 
