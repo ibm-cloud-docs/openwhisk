@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017
-lastupdated: "2017-11-09"
+lastupdated: "2017-12-05"
 
 ---
 
@@ -47,7 +47,7 @@ The following entity endpoints are available for each type of entity:
 The Namespace and Activation endpoints support GET requests. The Actions, Triggers, Rules, and Packages endpoints support GET, PUT, and DELETE requests. The endpoints of Actions, Triggers, and Rules also support POST requests, which are used to invoke Actions and Triggers and enable or disable Rules. 
 
 All APIs are protected with HTTP Basic authentication. 
-You can use the [wskadmin](../tools/admin/wskadmin) tool to generate a new Namespace and authentication.
+You can use the [wskadmin ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) tool to generate a new Namespace and authentication.
 The Basic authentication credentials are in the `AUTH` property in your `~/.wskprops` file, delimited by a colon. 
 You can also retrieve these credentials by using the CLI running `wsk property get --auth`.
 
