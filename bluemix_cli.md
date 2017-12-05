@@ -160,7 +160,7 @@ This command searches your current space for existing Watson conversation servic
 
 To verify that credentials are successfully bound, issue the following command:
 ```
-bx wsk action get hello
+bx wsk action get hello parameters
 ```
 {: pre}
 
@@ -242,7 +242,7 @@ Service credentials 'Credentials-2' from service 'Conversation-uc' bound to acti
 
 From the output, you can see that the correct set of credentials are bound to the Action. Again, to verfiy, you can look at the following `bx wsk action get` command.
 ```
-bx wsk action get hello
+bx wsk action get hello parameters
 ```
 {: pre}
 
