@@ -9,6 +9,11 @@ IBM Cloud Functions
     openwhisk_about.md
 
     {: .topicgroup}
+    Tutorials
+        ../tutorials/serverless-mobile-backend.md
+        ../tutorials/serverless-api-webapp.md
+
+    {: .topicgroup}
     Related links
         [Discover: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/){: new_window}
         [OpenWhisk on IBM developerWorks](https://developer.ibm.com/openwhisk/){: new_window}
@@ -49,7 +54,6 @@ IBM Cloud Functions
     openwhisk_annotations.md
     openwhisk_goserverless.md
     openwhisk_compare.md
-    ../tutorials/serverless-api-webapp.md
     
     {: .topicgroup}
     Watson integration
