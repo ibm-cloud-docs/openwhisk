@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-11-17"
+lastupdated: "2017-12-07"
 
 ---
 
@@ -528,14 +528,16 @@ The following table lists the default limits for Actions.
 
 | Limit | Description | Default | Min | Max | 
 | ----- | ----------- | :-------: | :---: | :---: |
-| timeout | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
-| memory | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
-| logs | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
-| concurrent | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
-| minuteRate | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
-| codeSize | The maximum size of the actioncode in MB. | 48 | 1 | 48 |
-| parameters | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
-| result | The maximum size of the action result. | 1 | 0 | 1 |
+| [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | The maximum size of the Action code in MB. | 48 | 1 | 48 |
+| [concurrent](openwhisk_reference.html#openwhisk_syslimits_concurrent) | No more than N activations can be submitted per Namespace either executing or queued for execution. | 1000 | 1 | 1000* |
+| [logs](openwhisk_reference.html#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per Namespace per minute. | 5000 | 1 | 5000* |
+| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for a Docker Action. | 64 | 0 | 64 |
+| [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
+| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to a Docker Action. | 512 | 0 | 512 |
+| [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
+| [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
 
 ### Increasing fixed limits
 {: #increase_fixed_limit}
@@ -546,65 +548,65 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
-### Per Action timeout (ms) (Default: 60s)
-{: #openwhisk_syslimits_timeout}
-* The timeout limit N is in the range [100 ms..300000 ms], and is set per Action in milliseconds.
-* A user can change the timeout limit when an Action is created.
-* A container that runs longer than N milliseconds is terminated.
+#### codeSize (MB) (Fixed: 48 MB)
+{: #openwhisk_syslimits_codesize}
+* The maximum code size for the Action is 48 MB.
+* It is recommended for a JavaScript Action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
+* This limit is fixed and cannot be changed.
 
-### Per Action memory (MB) (Default: 256 MB)
-{: #openwhisk_syslimits_memory}
-* The memory limit M is in the range from [128 MB..512 MB] and is set per Action in MB.
-* A user can change the memory limit when an Action is created.
-* A container cannot use more memory than is allocated by the limit.
+#### concurrent (Fixed: 1000*)
+{: #openwhisk_syslimits_concurrent}
+* The number of activations that are either executing or queued for execution for a Namespace cannot exceed 1000.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
-### Per Action logs (MB) (Default: 10 MB)
+#### logs (MB) (Default: 10 MB)
 {: #openwhisk_syslimits_logs}
 * The log limit N is in the range [0 MB..10 MB] and is set per Action.
 * A user can change the Action log limit when an Action is created or updated.
 * Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
 
-### Per Action artifact (MB) (Fixed: 48 MB)
-{: #openwhisk_syslimits_artifact}
-* The maximum code size for the Action is 48 MB.
-* It is recommended for a JavaScript Action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
-* This limit is fixed and cannot be changed.
+#### memory (MB) (Default: 256 MB)
+{: #openwhisk_syslimits_memory}
+* The memory limit M is in the range from [128 MB..512 MB] and is set per Action in MB.
+* A user can change the memory limit when an Action is created.
+* A container cannot use more memory than is allocated by the limit.
 
-### Per activation payload size (MB) (Fixed: 1 MB)
-{: #openwhisk_syslimits_activationsize}
-* The maximum POST content size plus any curried parameters for an Action invocation or Trigger firing is 1 MB.
-* This limit is fixed and cannot be changed.
-
-### Per Namespace concurrent invocation (Fixed: 1000*)
-{: #openwhisk_syslimits_concur}
-* The number of activations that are either executing or queued for execution for a Namespace cannot exceed 1000.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
-
-### Invocations per minute (Fixed: 5000*)
-{: #openwhisk_syslimits_invocations}
+#### minuteRate (Fixed: 5000*)
+{: #openwhisk_syslimits_minuterate}
 * The rate limit N is set to 5000 and limits the number of Action invocations in 1-minute windows.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
-### Size of the parameters (Fixed: 1 MB)
-{: #openwhisk_syslimits_parameters}
-* The size limit for the parameters on creating or updating of an Action/Package/Trigger is 1 MB.
-* An entity with too large parameters is rejected on trying to create or update it.
-* This limit is fixed and cannot be changed.
-
-### Per Docker Action open files ulimit (Fixed: 64:64)
+#### openulimit (Fixed: 64:64)
 {: #openwhisk_syslimits_openulimit}
-* The maximum number of open files is 64 (for both hard and soft limits).
+* The maximum number of open files for a Docker Action is 64 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
 * The docker run command uses the argument `--ulimit nofile=64:64`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
-### Per Docker Action processes ulimit (Fixed: 512:512)
+#### parameters (Fixed: 1 MB)
+{: #openwhisk_syslimits_parameters}
+* The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 1 MB.
+* An entity with too large parameters is rejected on trying to create or update it.
+* This limit is fixed and cannot be changed.
+
+#### proculimit (Fixed: 512:512)
 {: #openwhisk_syslimits_proculimit}
-* The maximum number of processes available to a user is 512 (for both hard and soft limits).
+* The maximum number of processes available to a Docker Action for a user is 512 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
 * The docker run command uses the argument `--ulimit nproc=512:512`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
+
+#### result (Fixed: 1 MB)
+{: #openwhisk_syslimits_result}
+* The maximum output size of an Action invocation result in MB.
+* This limit is fixed and cannot be changed.
+
+#### timeout (ms) (Default: 60s)
+{: #openwhisk_syslimits_timeout}
+* The timeout limit N is in the range [100 ms..300000 ms], and is set per Action in milliseconds.
+* A user can change the timeout limit when an Action is created.
+* A container that runs longer than N milliseconds is terminated.
 
 ### Triggers
 
@@ -612,10 +614,21 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Configurable | Unit | Default |
 | ----- | ----------- | ------------ | -----| ------- |
-| minuteRate | No more than N Triggers can be fired per namespace per minute. | Per user | Number | 5000* |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N Triggers can be fired per Namespace per minute. | Per user | Number | 5000* |
 
-### Triggers per minute (Fixed: 5000*)
+### Increasing fixed limits
+{: #increase_fixed_tlimit}
+
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://console.bluemix.net/openwhisk/).
+  1. Select **Support**
+  2. Select **Add Ticket** from the drop down menu.
+  3. Select **Technical** for the ticket type.
+  4. Select **Functions** for Technical area of support.
+
+#### minuteRate (Fixed: 5000*)
+{: #openwhisk_syslimits_tminuterate}
+
 * The rate limit N is set to 5000 and limits the number of Triggers that can be fired in 1-minute windows.
 * A user cannot change the Trigger limit when a Trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_tlimit) for detailed instructions on how to increase this limit.
