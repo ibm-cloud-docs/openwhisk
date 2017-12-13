@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2017
-lastupdated: "2017-12-08"
+lastupdated: "2017-12-09"
 
 ---
 
@@ -612,9 +612,15 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 Triggers are subject to a firing rate per minute as documented in the following table.
 
+<!--
 | Limit | Description | Configurable | Unit | Default |
 | ----- | ----------- | ------------ | -----| ------- |
 | [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N Triggers can be fired per Namespace per minute. | Per user | Number | 5000* |
+-->
+
+| Limit | Description | Default | Min | Max | 
+| ----- | ----------- | :-------: | :---: | :---: |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N Triggers can be fired per Namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #increase_fixed_tlimit}
@@ -628,7 +634,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 #### minuteRate (Fixed: 5000*)
 {: #openwhisk_syslimits_tminuterate}
 
-* The rate limit N is set to 5000 and limits the number of Triggers that can be fired in 1-minute windows.
+* The rate limit N is set to 5000 and limits the number of Triggers that a user can fire in 1-minute windows.
 * A user cannot change the Trigger limit when a Trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_tlimit) for detailed instructions on how to increase this limit.
