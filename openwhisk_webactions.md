@@ -332,7 +332,7 @@ To disable a Web Action from being invoked via web API (`https://openwhisk.ng.bl
 
 ## Raw HTTP handling
 
-A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](annotations.md). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
+A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
 ```

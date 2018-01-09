@@ -173,5 +173,5 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 
 * [Entity names](./openwhisk_reference.html#openwhisk_entities)
 * [Action semantics](./openwhisk_reference.html#openwhisk_semantics)
-* [Limits](./openwhisk_reference.md#openwhisk_syslimits)
-* [REST API](./openwhisk_reference.md#openwhisk_ref_restapi)
+* [Limits](./openwhisk_reference.html#openwhisk_syslimits)
+* [REST API](./openwhisk_reference.html#openwhisk_ref_restapi)
