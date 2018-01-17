@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-01-17"
 
 ---
 
@@ -43,9 +43,9 @@ wsk action create /guest/demo/hello hello.js --web true
 {: pre}
 
 Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible via REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
-`https://{APIHOST}/api/v1/web/{QUALIFIED ACTION NAME}.{EXT}`. The fully qualified name of an Action consists of three parts: the Namespace, the Package name, and the Action name.
+`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
-*The fully qualified name of the Action must include its package name, which is `default` if the Action is not in a named package.*
+The Package name is `default` if the Action is not in a named Package.
 
 An example is `guest/demo/hello`. The web Action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
