@@ -161,6 +161,7 @@ Supported SSL protocols: TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3 ([draft version 18](
 Unsupported SSL protocols: SSLv2, SSLv3
 
 ## Extra features
+{: #extra-features}
 
 Web Actions provide extra features that include:
 
