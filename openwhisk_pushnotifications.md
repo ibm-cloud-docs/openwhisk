@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-11-09"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -36,11 +36,11 @@ To create a Push Notifications package binding, you must specify the following p
 
 To create a package binding, see the following example steps:
 
-1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://console.ng.bluemix.net).
+1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://console.bluemix.net).
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application
 
-3. Configure the [Push Notification application](https://console.ng.bluemix.net/docs/services/mobilepush/index.html).
+3. Configure the [Push Notification application](https://console.bluemix.net/docs/services/mobilepush/index.html).
 
   Be sure to remember the `App GUID` and the `App Secret` of the {{site.data.keyword.Bluemix_notm}} app you created.
 
@@ -200,7 +200,7 @@ To create a trigger that is fired each time a new device registers with the Push
 
   Check the results in the `wsk activation poll`.
 
-  Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `Rule`, `Trigger`, and  `Action` are executed in the OpenWhisk [dashboard] (https://console.{Domain}/openwhisk/dashboard).
+  Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `Rule`, `Trigger`, and  `Action` are executed in the OpenWhisk [dashboard](https://console.{Domain}/openwhisk/dashboard).
 
   The Action sends a push notification.
 

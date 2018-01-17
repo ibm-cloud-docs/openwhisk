@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-11-09"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -34,7 +34,7 @@ The `/whisk.system/slack/post` Action posts a message to a specified Slack chann
 - `channel`: The Slack channel to post the message to.
 - `username`: The name to post the message as.
 - `text`: A message to post.
-- `token`: (optional) A Slack [access token](https://api.slack.com/tokens). See the [OpenWhisk Package Guide](./catalog.md#using-the-slack-token-based-api) for more detail on how to use Slack access tokens.
+- `token`: (optional) A Slack [access token](https://api.slack.com/tokens). See the [OpenWhisk Package Guide](./openwhisk_catalog.html) for more detail on how to use Slack access tokens.
 
 The following example shows how to configure Slack, create a package binding, and post a message to a channel.
 

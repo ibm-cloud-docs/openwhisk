@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-29-12"
+  years: 2016, 2018
+lastupdated: "2018-01-17"
 
 ---
 
@@ -45,7 +45,7 @@ wsk action create /guest/demo/hello hello.js --web true
 Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible via REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
-Package name is `default` if the Action is not in a named package.
+The Package name is `default` if the Action is not in a named Package.
 
 An example is `guest/demo/hello`. The web Action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
@@ -332,7 +332,7 @@ To disable a Web Action from being invoked via web API (`https://openwhisk.ng.bl
 
 ## Raw HTTP handling
 
-A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](annotations.md). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
+A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
 ```

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-12-15"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -291,36 +291,36 @@ The following packages are available to be used in the Node.js 6.12.2 environmen
 
 ### Node.js version 8 environment
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.9.1 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
+The Node.js version 8.9.3 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
 
-The following packages are pre-installed in the Node.js version 8.9.1 environment:
+The following packages are pre-installed in the Node.js version 8.9.3 environment:
 
   - [apn v2.1.5](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
   - [async v2.6.0](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
   - [bent v1.1.0](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
   - [btoa v1.1.2](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
-  - [commander v2.11.2](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
+  - [commander v2.12.2](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
   - [consul v0.30.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - A high-level, caching, CouchDB client for Node.js.
   - [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
   - [glob v7.1.2](https://www.npmjs.com/package/glob) - Match files by using patterns that the shell uses, like stars and stuff.
   - [gm v1.23.0](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-  - [ibm-cos-sdk v1.0.2](https://www.npmjs.com/package/ibm-cos-sdk) - IBM Cloud Object Storage SDK for Node.js
+  - [ibm-cos-sdk v1.1.1](https://www.npmjs.com/package/ibm-cos-sdk) - IBM Cloud Object Storage SDK for Node.js
   - [ibm_db v2.2.1](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for node.js to IBM DB2 and IBM Informix. 
   - [lodash v4.17.4](https://www.npmjs.com/package/lodash) - The Lodash library exported as Node.js modules.
-  - [log4js v2.3.11](https://www.npmjs.com/package/log4js) - A conversion of the log4js framework designed to work with Node.
+  - [log4js v2.3.12](https://www.npmjs.com/package/log4js) - A conversion of the log4js framework designed to work with Node.
   - [iconv-lite v0.4.19](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-  - [marked v0.3.6](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, which is written in JavaScript. Built for speed.
+  - [marked v0.3.7](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, which is written in JavaScript. Built for speed.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
-  - [moment v2.19.1](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
+  - [moment v2.19.3](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
   - [mongodb v2.2.33](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - Mustache.js is an implementation of the mustache template system in JavaScript.
   - [nano v6.4.2](https://www.npmjs.com/package/nano) - Minimalistic couchdb driver for Node.js.
-  - [nodemailer v4.3.1](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
+  - [nodemailer v4.4.1](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and well tested module for implementing an OAuth2 Server/Provider with express in Node.js
-  - [openwhisk v3.9.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+  - [openwhisk v3.11.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
   - [process v0.11.10](https://www.npmjs.com/package/process) - require('process'); just like any other module.
   - [pug v2.0.0-rc.4](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
   - [redis v2.8.0](https://www.npmjs.com/package/redis) - This is a complete and feature-rich Redis client for Node.js.
@@ -332,14 +332,14 @@ The following packages are pre-installed in the Node.js version 8.9.1 environmen
   - [serve-favicon v2.4.5](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
   - [socket.io v2.0.4](https://www.npmjs.com/package/socket.io) - Socket.IO enables real-time bidirectional event-based communication.
   - [socket.io-client v2.0.4](https://www.npmjs.com/package/socket.io-client) - Client-side support for Socket.IO.
-  - [superagent v3.8.1](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
+  - [superagent v3.8.2](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
   - [swagger-tools v0.10.3](https://www.npmjs.com/package/swagger-tools) - Tools that are related to working with Swagger, a way to document APIs.
   - [tmp v0.0.33](https://www.npmjs.com/package/tmp) - A simple temporary file and directory creator for node.js.
-  - [twilio v3.9.2](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
+  - [twilio v3.10.1](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
   - [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
   - [uuid v3.1.0](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
-  - [validator v9.1.1](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-  - [watson-developer-cloud v2.42.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
+  - [validator v9.2.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
+  - [watson-developer-cloud v3.0.2](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
   - [winston v2.4.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
   - [ws v3.3.1](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
@@ -359,98 +359,168 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 
 OpenWhisk supports running Python Actions by using two different runtime versions.
 
-### Python 3 Actions
+### Python 3 Actions (Alpine based)
 
 Python 3 Actions are executed with Python 3.6.1. To use this runtime, specify the `wsk` CLI parameter `--kind python:3` when you create or update an Action.
+When creating python actions using virtualenv, use the docker image `openwhisk/python3action`.
 The following packages are available for use by Python Actions, in addition to the Python 3.6 standard libraries.
 
-- aiohttp v1.3.3
-- appdirs v1.4.3
-- asn1crypto v0.21.1
-- async-timeout v1.2.0
-- attrs v16.3.0
-- beautifulsoup4 v4.5.1
-- cffi v1.9.1
-- chardet v2.3.0
-- click v6.7
-- cryptography v1.8.1
-- cssselect v1.0.1
-- Flask v0.12
-- gevent v1.2.1
-- greenlet v0.4.12
-- httplib2 v0.9.2
-- idna v2.5
-- itsdangerous v0.24
-- Jinja2 v2.9.5
-- kafka-python v1.3.1
-- lxml v3.6.4
-- MarkupSafe v1.0
-- multidict v2.1.4
-- packaging v16.8
-- parsel v1.1.0
-- pyasn1 v0.2.3
-- pyasn1-modules v0.0.8
-- pycparser v2.17
-- PyDispatcher v2.0.5
-- pyOpenSSL v16.2.0
-- pyparsing v2.2.0
-- python-dateutil v2.5.3
-- queuelib v1.4.2
-- requests v2.11.1
-- Scrapy v1.1.2
-- service-identity v16.0.0
-- simplejson v3.8.2
-- six v1.10.0
-- Twisted v16.4.0
-- w3lib v1.17.0
-- Werkzeug v0.12
-- yarl v0.9.8
-- zope.interface v4.3.3
+- asn1crypto (0.23.0)
+- attrs (17.3.0)
+- Automat (0.6.0)
+- beautifulsoup4 (4.5.3)
+- cffi (1.11.2)
+- click (6.7)
+- constantly (15.1.0)
+- cryptography (2.1.3)
+- cssselect (1.0.1)
+- Flask (0.12)
+- gevent (1.2.1)
+- greenlet (0.4.12)
+- httplib2 (0.10.3)
+- idna (2.6)
+- incremental (17.5.0)
+- itsdangerous (0.24)
+- Jinja2 (2.9.6)
+- kafka-python (1.3.4)
+- lxml (3.7.3)
+- MarkupSafe (1.0)
+- parsel (1.2.0)
+- pip (9.0.1)
+- pyasn1 (0.3.7)
+- pyasn1-modules (0.1.5)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.3.0)
+- python-dateutil (2.6.0)
+- queuelib (1.4.2)
+- requests (2.13.0)
+- Scrapy (1.3.3)
+- service-identity (17.0.0)
+- setuptools (36.5.0)
+- simplejson (3.10.0)
+- six (1.11.0)
+- Twisted (17.1.0)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- Werkzeug (0.12.2)
+- wheel (0.29.0)
+- zope.interface (4.4.3)
+
+### Python 3 Actions (Jessie based)
+
+Python 3 Actions are executed with Python 3.6.4. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an Action.
+When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
+The runtime contains SDK packages for IBM Cloud services available for use by Python Actions, in addition to the Python 3.6 standard libraries.
+
+Python version:
+- [3.6.4](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
+
+Python Packages:
+- asn1crypto (0.24.0)
+- attrs (17.4.0)
+- Automat (0.6.0)
+- beautifulsoup4 (4.6.0)
+- certifi (2017.11.5)
+- cffi (1.11.4)
+- chardet (3.0.4)
+- click (6.7)
+- cloudant (2.7.0)
+- constantly (15.1.0)
+- cryptography (2.1.4)
+- cssselect (1.0.3)
+- docutils (0.14)
+- Flask (0.12.2)
+- gevent (1.2.2)
+- greenlet (0.4.12)
+- httplib2 (0.10.3)
+- hyperlink (17.3.1)
+- ibm-cos-sdk (2.0.0)
+- ibm-db (2.0.8a0)
+- idna (2.6)
+- incremental (17.5.0)
+- itsdangerous (0.24)
+- Jinja2 (2.10)
+- jmespath (0.9.3)
+- kafka-python (1.3.5)
+- lxml (4.1.1)
+- MarkupSafe (1.0)
+- numpy (1.14.0)
+- pandas (0.22.0)
+- parsel (1.3.1)
+- pip (9.0.1)
+- pyasn1 (0.4.2)
+- pyasn1-modules (0.2.1)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.5.0)
+- pysolr (3.7.0)
+- python-dateutil (2.6.1)
+- pytz (2017.3)
+- queuelib (1.4.2)
+- requests (2.18.4)
+- scikit-learn (0.19.1)
+- scipy (1.0.0)
+- Scrapy (1.5.0)
+- service-identity (17.0.0)
+- setuptools (38.4.0)
+- simplejson (3.13.2)
+- six (1.11.0)
+- Twisted (17.9.0)
+- urllib3 (1.22)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- watson-developer-cloud (1.0.2)
+- Werkzeug (0.14.1)
+- wheel (0.30.0)
+- zope.interface (4.4.3)
 
 ### Python 2 Actions
 
-Python 2 Actions are executed with Python 2.7.12, which is the default runtime for Python Actions. Unless you specify the `--kind` flag when you create or update an Action. To explicitly select this runtime, use `--kind python:2`. The following packages are available for use by Python 2 Actions, in addition to the Python 2.7 standard library.
+Python 2 Actions are executed with Python 2.7.12, which is the default runtime for Python Actions. Unless you specify the `--kind` flag when you create or update an Action. To explicitly select this runtime, use `--kind python:2`. 
+When creating python actions using virtualenv, use the docker image `openwhisk/python2action`.
+The following packages are available for use by Python 2 Actions, in addition to the Python 2.7 standard library.
 
-- appdirs v1.4.3
-- asn1crypto v0.21.1
-- attrs v16.3.0
-- beautifulsoup4 v4.5.1
-- cffi v1.9.1
-- click v6.7
-- cryptography v1.8.1
-- cssselect v1.0.1
-- enum34 v1.1.6
-- Flask v0.11.1
-- gevent v1.1.2
-- greenlet v0.4.12
-- httplib2 v0.9.2
-- idna v2.5
-- ipaddress v1.0.18
-- itsdangerous v0.24
-- Jinja2 v2.9.5
-- kafka-python v1.3.1
-- lxml v3.6.4
-- MarkupSafe v1.0
-- packaging v16.8
-- parsel v1.1.0
-- pyasn1 v0.2.3
-- pyasn1-modules v0.0.8
-- pycparser v2.17
-- PyDispatcher v2.0.5
-- pyOpenSSL v16.2.0
-- pyparsing v2.2.0
-- python-dateutil v2.5.3
-- queuelib v1.4.2
-- requests v2.11.1
-- Scrapy v1.1.2
-- service-identity v16.0.0
-- simplejson v3.8.2
-- six v1.10.0
-- Twisted v16.4.0
-- virtualenv v15.1.0
-- w3lib v1.17.0
-- Werkzeug v0.12
-- zope.interface v4.3.3
+- asn1crypto (0.23.0)
+- attrs (17.2.0)
+- beautifulsoup4 (4.5.1)
+- cffi (1.11.1)
+- click (6.7)
+- cryptography (2.0.3)
+- cssselect (1.0.1)
+- enum34 (1.1.6)
+- Flask (0.11.1)
+- gevent (1.1.2)
+- greenlet (0.4.12)
+- httplib2 (0.9.2)
+- idna (2.6)
+- ipaddress (1.0.18)
+- itsdangerous (0.24)
+- Jinja2 (2.9.6)
+- kafka-python (1.3.1)
+- lxml (3.6.4)
+- MarkupSafe (1.0)
+- parsel (1.2.0)
+- pip (9.0.1)
+- pyasn1 (0.3.7)
+- pyasn1-modules (0.1.4)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.3.0)
+- python-dateutil (2.5.3)
+- queuelib (1.4.2)
+- requests (2.11.1)
+- Scrapy (1.1.2)
+- service-identity (17.0.0)
+- setuptools (36.5.0)
+- simplejson (3.8.2)
+- six (1.11.0)
+- Twisted (16.4.0)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- Werkzeug (0.12.2)
+- wheel (0.29.0)
+- zope.interface (4.4.3)
 
 ## Swift Actions
 {: #openwhisk_ref_swift3}

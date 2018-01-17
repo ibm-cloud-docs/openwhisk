@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-11-09"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -54,7 +54,7 @@ Look at the following sample IoT application that uses {{site.data.keyword.openw
 ## API backend
 {: #openwhisk_common_use_cases_iot}
 
-Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for Actions. The [experimental feature](./apigateway.md) of {{site.data.keyword.openwhisk_short}} can invoke an Action with HTTP methods other than POST and without the Action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
+Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for Actions. The [experimental feature](./openwhisk_apigateway.html) of {{site.data.keyword.openwhisk_short}} can invoke an Action with HTTP methods other than POST and without the Action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
 
 Additionally, {{site.data.keyword.openwhisk_short}} Actions can be connected to an API Management tool of choice (such as [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) or other). Similar to other use cases, all considerations for scalability, and other Qualities of Services (QoS) apply. 
 
@@ -72,7 +72,7 @@ Many mobile applications require server-side logic. However, mobile developers u
 [BluePic](https://github.com/IBM-Swift/BluePic) is a photo and image sharing application that can be used to take photos, and share them with other BluePic users. This application demonstrates how to leverage, in a mobile iOS 10 application, a Kitura-based server application that is written in Swift, uses {{site.data.keyword.openwhisk_short}}, Cloudant, Object Storage for image data. AlchemyAPI is also used in the {{site.data.keyword.openwhisk_short}} sequence to analyze the image, extract text tags based on the content of the image, and finally send a push notification to the user.
 
 ## Data processing
-{: #openwhisk_common_use_cases_data}
+{: #data-processing}
 
 With the amount of data now available, application development requires the ability to process new data, and potentially react to it. This requirement includes processing both structured database records as well as unstructured documents, images, or videos. {{site.data.keyword.openwhisk_short}} can be configured by system provided or custom feeds to react to changes in data, and automatically execute Actions on the incoming feeds of data. Actions can be programmed to process changes, transform data formats, send and receive messages, invoke other Actions, and update various data stores. Supported data stores include SQL based relational databases, in-memory data grids, NoSQL database, files, messaging brokers, and various other systems. {{site.data.keyword.openwhisk_short}} rules and sequences provide flexibility to make changes in the processing pipeline without programming, and is performed through simple configuration updates. The data store options and low admin overhead make a {{site.data.keyword.openwhisk_short}} based system highly agile, and easily adaptable to changing requirements.
 

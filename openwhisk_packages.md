@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-11-09"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -26,7 +26,7 @@ Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs 
 The following sections describe how to browse packages and use the Triggers and feeds in them. In addition, if you are interested in contributing your own packages to the catalog, read the sections on creating and sharing packages.
 
 ## Browse packages
-{: #openwhisk_packagedisplay}
+{: #browse-packages}
 
 Several packages are registered with {{site.data.keyword.openwhisk_short}}. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
 

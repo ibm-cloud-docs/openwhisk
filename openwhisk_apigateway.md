@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-11-09"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2017-11-09"
 
 OpenWhisk Actions can benefit from being managed by API management.
 
-The API Gateway acts as a proxy to [Web Actions](webactions.md), and provides them with additional features. The extra features include: HTTP method routing, client id/secrets, rate limits, CORS, view API usage, view response logs, and API sharing policies.
+The API Gateway acts as a proxy to [Web Actions](./openwhisk_webactions.html), and provides them with additional features. The extra features include: HTTP method routing, client id/secrets, rate limits, CORS, view API usage, view response logs, and API sharing policies.
 For more information about API management, you can read the [API management documentation](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis).
 {: shortdesc}
 
@@ -127,7 +127,7 @@ If the `wsk bluemix login` command fails with the error `BMXLS0202E: You are usi
   
   Once you get started, you want to have full control over the HTTP response properties like `statusCode`, `headers`, and return different content types in the `body`. The flag `--response-type http` makes this possible by configuring the target URL of the web Action with the `http` extension.
 
-  You can choose to change the code of the Action to comply with the return of web Actions with the `http` extension, or include the Action in a sequence to pass its result to a new Action. The new Action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web Actions extensions in the [Web Actions](webactions.md) documentation.
+  You can choose to change the code of the Action to comply with the return of web Actions with the `http` extension, or include the Action in a sequence to pass its result to a new Action. The new Action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web Actions extensions in the [Web Actions](./openwhisk_webactions.html) documentation.
 
   Change the code for the `hello.js` returning the JSON properties `body`, `statusCode`, and `headers`
   ```javascript

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-12-05"
+  years: 2017, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -80,7 +80,7 @@ In this example, the authentication was passed by using the `-u` flag. You can a
 
 The OpenWhisk API supports request-response calls from web clients. OpenWhisk responds to `OPTIONS` requests with Cross-Origin Resource Sharing headers. Currently, all origins are allowed (that is, Access-Control-Allow-Origin is "`*`") and Access-Control-Allow-Headers yield Authorization and Content-Type.
 
-**Attention:** Because OpenWhisk currently supports only one key per Namespace, it is not recommended to use CORS beyond simple experiments. Use [Web Actions](webactions.md) or [API Gateway](apigateway.md) to expose your Actions to the public and not use the OpenWhisk authorization key for client applications that require CORS.
+**Attention:** Because OpenWhisk currently supports only one key per Namespace, it is not recommended to use CORS beyond simple experiments. Use [Web Actions](./openwhisk_webactions.html) or [API Gateway](./openwhisk_apigateway.html) to expose your Actions to the public and not use the OpenWhisk authorization key for client applications that require CORS.
 
 ## Using the CLI verbose mode
 {: #openwhisk_rest_api_cli_v}
@@ -189,7 +189,7 @@ You get the following response:
 ## Annotations and Web Actions
 {: #openwhisk_rest_api_webactions}
 
-To create an Action as a web Action, you need to add an [annotation](annotations.md) of `web-export=true` for web Actions. Since web Actions are publicly accessible, you want to protect pre-defined parameters (that is, treat them as final) using the annotation `final=true`. If you create or update an Action that uses the CLI flag `--web true`, the command adds both annotations `web-export=true` and `final=true`.
+To create an Action as a web Action, you need to add an [annotation](./openwhisk_annotations.html) of `web-export=true` for web Actions. Since web Actions are publicly accessible, you want to protect pre-defined parameters (that is, treat them as final) using the annotation `final=true`. If you create or update an Action that uses the CLI flag `--web true`, the command adds both annotations `web-export=true` and `final=true`.
 
 Run the following curl command to provide the complete list of annotations to set on the Action.
 ```bash
@@ -211,7 +211,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/john@example.com_dev/default/he
 }
 ```
 
-This example source code does not work with `.http`, see [Web Actions](webactions.md) documentation on how to modify.
+This example source code does not work with `.http`, see [Web Actions](./openwhisk_webactions.html) documentation on how to modify.
 
 ## Sequences
 {: #openwhisk_rest_api_sequences}
