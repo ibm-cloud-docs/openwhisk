@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-01-18"
 
 ---
 
@@ -15,11 +15,10 @@ lastupdated: "2018-01-09"
 # Create and invoke Actions
 {: #openwhisk_actions}
 
-
-Actions are stateless code snippets that run on the {{site.data.keyword.openwhisk}} platform. An action can be written as a JavaScript, Swift, or Python function, a Java method, or a custom executable program packaged in a Docker container. For example, an action can be used to detect the faces in an image, respond to a database change, aggregate a set of API calls, or post a Tweet.
+Actions are stateless code snippets that run on the {{site.data.keyword.openwhisk}} platform. For example, an Action can be used to detect the faces in an image, respond to a database change, aggregate a set of API calls, or post a Tweet. An Action can be written as a JavaScript, Swift, Python, PHP function, Java method, or any binary-compatible executable, including Go programs and custom executables packaged as Docker containers.
 {:shortdesc}
 
-Actions can be explicitly invoked, or run in response to an event. In either case, each run of an action results in an activation record that is identified by a unique activation ID. The input to an action and the result of an action are a dictionary of key-value pairs, where the key is a string and the value a valid JSON value. Actions can also be composed of calls to other Actions or a defined sequence of Actions.
+Actions can be explicitly invoked, or run in response to an event. In either case, each run of an Action results in an activation record that is identified by a unique activation ID. The input to an Action and the result of an Action are a dictionary of key-value pairs, where the key is a string and the value a valid JSON value. Actions can also be composed of calls to other Actions or a defined sequence of Actions.
 
 Learn how to create, invoke, and debug Actions in your preferred development environment:
 * [JavaScript](#creating-and-invoking-javascript-actions)
@@ -28,9 +27,10 @@ Learn how to create, invoke, and debug Actions in your preferred development env
 * [Java](#creating-java-actions)
 * [PHP](#creating-php-actions)
 * [Docker](#creating-docker-actions)
+* [Go](#creating-go-actions)
+* [Native binaries](#creating-native-actions)
 
 In addition, learn about:
-
 * [Watching Action output](#watching-action-output)
 * [Listing Actions](#listing-actions)
 * [Deleting Actions](#deleting-actions)
@@ -1217,6 +1217,72 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   wsk action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
+
+## Creating Go actions
+{: #creating-go-actions}
+
+The `--native` option allows for packaging of any executable as an action. This works for Go as an example.
+As with Docker actions, the Go executable receives a single argument from the command line.
+It is a string serialization of the JSON object representing the arguments to the action.
+The program may log to `stdout` or `stderr`.
+By convention, the last line of output _must_ be a stringified JSON object which represents the result of the action.
+
+Here is an example Go action.
+```go
+package main
+
+import "encoding/json"
+import "fmt"
+import "os"
+
+func main() {
+    //program receives one argument: the JSON object as a string
+    arg := os.Args[1]
+   
+    // unmarshal the string to a JSON object
+    var obj map[string]interface{}
+    json.Unmarshal([]byte(arg), &obj)
+
+    // can optionally log to stdout (or stderr)
+    fmt.Println("hello Go action")
+
+    name, ok := obj["name"].(string)
+    if !ok { name = "Stranger" }
+
+    // last line of stdout is the result JSON object as a string
+    msg := map[string]string{"msg": ("Hello, " + name + "!")}
+    res, _ := json.Marshal(msg)
+    fmt.Println(string(res))
+}
+```
+
+Save the code above to a file `sample.go` and cross compile it for OpenWhisk. The executable must be called `exec`.
+```bash
+GOOS=linux GOARCH=amd64 go build -o exec
+zip exec.zip exec
+wsk action create helloGo --native exec.zip
+```
+
+The action may be run as any other action.
+```bash
+wsk action invoke helloGo -r -p name gopher
+{
+    "msg": "Hello, gopher!"
+}
+```
+
+Logs are retrieved in a similar way as well.
+```bash
+wsk activation logs --last --strip
+my first Go action.
+```
+
+## Creating native actions
+{: #creating-native-actions}
+
+Using `--native`, you can see that any executable may be run as an OpenWhisk action. This includes `bash` scripts,
+or cross compiled binaries. For the latter, the constraint is that the binary must be compatible with the
+`openwhisk/dockerskeleton` image.
 
 ## Monitor action output
 {: #watching-action-output}
