@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-01-22"
 
 ---
 
@@ -113,7 +113,7 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_l
 
 Verify your setup. Perform a blocking (synchronous) invocation of echo, passing it `hello` as an argument like in the following example:
 ```
-bx wsk action invoke /whisk.system/utils/echo -p message hello --result
+bx wsk action invoke whisk.system/utils/echo -p message hello --result
 ```
 {: pre}
 
