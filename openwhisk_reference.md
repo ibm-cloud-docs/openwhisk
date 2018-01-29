@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-01-29"
 
 ---
 
@@ -580,11 +580,11 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
-#### openulimit (Fixed: 64:64)
+#### openulimit (Fixed: 1024:1024)
 {: #openwhisk_syslimits_openulimit}
-* The maximum number of open files for a Docker Action is 64 (for both hard and soft limits).
+* The maximum number of open files for a Docker Action is 1024 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
-* The docker run command uses the argument `--ulimit nofile=64:64`.
+* The docker run command uses the argument `--ulimit nofile=1024:1024`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### parameters (Fixed: 1 MB)
@@ -593,11 +593,11 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * An entity with too large parameters is rejected on trying to create or update it.
 * This limit is fixed and cannot be changed.
 
-#### proculimit (Fixed: 512:512)
+#### proculimit (Fixed: 1024:1024)
 {: #openwhisk_syslimits_proculimit}
-* The maximum number of processes available to a Docker Action for a user is 512 (for both hard and soft limits).
+* The maximum number of processes available to the Docker Action container is 1024.
 * This limit is fixed and cannot be changed.
-* The docker run command uses the argument `--ulimit nproc=512:512`.
+* The docker run command uses the argument `--pids-limit 1024`.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### result (Fixed: 1 MB)
