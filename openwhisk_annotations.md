@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-01-29"
 
 ---
 
@@ -59,8 +59,57 @@ The annotations are _not_ checked. So while it is conceivable to use the annotat
 
 Recently, the core API was extended with new features. To enable packages and Actions to participate in these features, new annotations are introduced that are semantically meaningful. These annotations must be explicitly set to `true` to have effect. Changing the value from `true` to `false` excludes the attached asset from the new API. The annotations have no meaning otherwise in the system. See the following annotations:
 
-- `final`: Applies only to an Action. It makes all of the Action parameters that are already defined immutable. A parameter of an Action that carries the annotation cannot be overridden by invoke-time parameters once the parameters value is defined through its enclosing package or the Action definition.
 - `web-export`: Applies only to an Action. If present, it makes its corresponding Action accessible to REST calls _without_ authentication. These are called [_web Actions_](openwhisk_webactions.html) because they allow one to use OpenWhisk Actions from a browser for example. It is important to note that the _owner_ of the web Action incurs the cost of running them in the system. In other words, the _owner_ of the Action also owns the activations record.
-- `require-whisk-auth`: Applies onto to an Action. If an Action carries the `web-export` annotation, and this annotation is also `true`, the route is only accessible to an authenticated subject. It is important to note that the _owner_ of the web Action incurs the cost of running them in the system. In other words, the _owner_ of the Action also owns the activations record.
+- `final`: Applies only to an Action. It makes all of the Action parameters that are already defined immutable. A parameter of an Action that carries the annotation cannot be overridden by invoke-time parameters once the parameters value is defined through its enclosing package or the Action definition.
 - `raw-http`: Applies only to an Action in the presence of a `web-export` annotation. If present, the HTTP request query and body parameters are passed to the Action as reserved properties.
+- `web-custom-options`: When set, this annotation enables a web action to respond to OPTIONS requests with customized headers, otherwise a [default CORS response](webactions.md#options-requests) applies.
+- `require-whisk-auth`: Applies onto to an Action. If an Action carries the `web-export` annotation, and this annotation is also `true`, the route is only accessible to an authenticated subject. It is important to note that the _owner_ of the web Action incurs the cost of running them in the system. In other words, the _owner_ of the Action also owns the activations record.
 
+## Annotations specific to activations
+
+The system decorates activation records with annotations as well. They are:
+
+- `path`: the fully qualified path name of the action that generated the activation. Note that if this activation was the result of an action in a package binding, the path refers to the parent package.
+- `kind`: the kind of action executed, and one of the support OpenWhisk runtime kinds.
+- `limits`: the time, memory and log limits that this activation were subject to.
+
+For sequence related activations, the system generates the following annotations:
+
+- `topmost`: this is only present for an outermost sequence action.
+- `causedBy`: this is only present for actions that are contained in a sequence.
+
+Lastly, and in order to provide performance transparency, activations also record:
+
+- `waitTime`: the time spent waiting in the internal OpenWhisk system. This is roughly the time spent between the controller receiving the activation request and when the invoker provisioned a container for the action. This value is currently only present for non-sequence related activations. For sequences, this information can be derived from the `topmost` sequence activation record.
+- `initTime`: the time spent initializing the function. If this value is present, the action required initialization and represents a cold start. A warm activation skips initialization, and in this case, the annotation is not generated.
+
+An example of these annotations as they would appear in an activation record is shown below.
+
+```javascript
+"annotations": [
+  {
+    "key": "path",
+    "value": "guest/echo"
+  },
+  {
+    "key": "waitTime",
+    "value": 66
+  },
+  {
+    "key": "kind",
+    "value": "nodejs:6"
+  },
+  {
+    "key": "initTime",
+    "value": 50
+  },
+  {
+    "key": "limits",
+    "value": {
+      "logs": 10,
+      "memory": 256,
+      "timeout": 60000
+    }
+  }
+]
+```
