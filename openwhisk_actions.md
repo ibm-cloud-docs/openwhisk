@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-18"
+lastupdated: "2018-01-31"
 
 ---
 
@@ -320,7 +320,7 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 
 Authentication must be provided when invoking an action via an HTTPS request. For more information regarding
-action invocations using the REST interface, see [Using REST APIs with OpenWhisk](./openwhisk_rest_api.html#actions).
+action invocations using the REST interface, see [Using REST APIs with OpenWhisk](./openwhisk_rest_api.html#openwhisk_rest_api).
 {: tip}
 
 ### Save Action code

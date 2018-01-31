@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-17"
+lastupdated: "2018-01-31"
 
 ---
 
@@ -449,6 +449,7 @@ curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwh
 ```
 
 ## Options Requests
+{: #options-requests}
 
 By default, an OPTIONS request made to a Web Action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the options, get, delete, post, put, head, and patch HTTP verbs.
 
