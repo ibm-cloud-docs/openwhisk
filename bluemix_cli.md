@@ -399,9 +399,10 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 ## Version history
 {: #version_history}
 
+<!--Wait for go live!
 1.0.7 (2018-02-02)
 * `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html)
 * Bug fixed to work with https proxy.
-
+-->
 1.0.6 (2018-01-30)
 * Bug fixed for command `bx wsk service bind` for actions inside a package.
