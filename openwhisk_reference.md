@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-29"
+lastupdated: "2018-01-09"
 
 ---
 
@@ -353,13 +353,84 @@ For any `npm` packages that are not pre-installed in the Node.js environment, yo
 For more information, see [Packaging an action as a Node.js module](./openwhisk_actions.html#openwhisk_js_packaged_action) or [Packaging an action as a single bundle](./openwhisk_actions.html#openwhisk_js_webpack_action).
 
 
-
 ## Python runtime environments
 {: #openwhisk_ref_python_environments}
 
 OpenWhisk supports running Python Actions by using two different runtime versions.
 
+
+### Python 3 Actions (Jessie based)
+{: #openwhisk_ref_python_environments_jessie}
+
+Python 3 Actions are executed with Python 3.6.4. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an Action.
+When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
+The runtime contains SDK packages for IBM Cloud services available for use by Python Actions, in addition to the Python 3.6 standard libraries.
+
+Python version:
+- [3.6.4](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
+
+Python Packages:
+- asn1crypto (0.24.0)
+- attrs (17.4.0)
+- Automat (0.6.0)
+- beautifulsoup4 (4.6.0)
+- certifi (2017.11.5)
+- cffi (1.11.4)
+- chardet (3.0.4)
+- click (6.7)
+- cloudant (2.7.0)
+- constantly (15.1.0)
+- cryptography (2.1.4)
+- cssselect (1.0.3)
+- docutils (0.14)
+- Flask (0.12.2)
+- gevent (1.2.2)
+- greenlet (0.4.12)
+- httplib2 (0.10.3)
+- hyperlink (17.3.1)
+- ibm-cos-sdk (2.0.0)
+- ibm-db (2.0.8a0)
+- idna (2.6)
+- incremental (17.5.0)
+- itsdangerous (0.24)
+- Jinja2 (2.10)
+- jmespath (0.9.3)
+- kafka-python (1.3.5)
+- lxml (4.1.1)
+- MarkupSafe (1.0)
+- numpy (1.14.0)
+- pandas (0.22.0)
+- parsel (1.3.1)
+- pip (9.0.1)
+- pyasn1 (0.4.2)
+- pyasn1-modules (0.2.1)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.5.0)
+- pysolr (3.7.0)
+- python-dateutil (2.6.1)
+- pytz (2017.3)
+- queuelib (1.4.2)
+- requests (2.18.4)
+- scikit-learn (0.19.1)
+- scipy (1.0.0)
+- Scrapy (1.5.0)
+- service-identity (17.0.0)
+- setuptools (38.4.0)
+- simplejson (3.13.2)
+- six (1.11.0)
+- Twisted (17.9.0)
+- urllib3 (1.22)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- watson-developer-cloud (1.0.2)
+- Werkzeug (0.14.1)
+- wheel (0.30.0)
+- zope.interface (4.4.3)
+
+
 ### Python 3 Actions (Alpine based)
+{: #openwhisk_ref_python_environments_alpine}
 
 Python 3 Actions are executed with Python 3.6.1. To use this runtime, specify the `wsk` CLI parameter `--kind python:3` when you create or update an Action.
 When creating python actions using virtualenv, use the docker image `openwhisk/python3action`.

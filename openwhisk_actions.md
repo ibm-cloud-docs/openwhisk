@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-31"
+lastupdated: "2018-01-25"
 
 ---
 
@@ -32,6 +32,7 @@ Learn how to create, invoke, and debug Actions in your preferred development env
 
 In addition, learn about:
 * [Watching Action output](#watching-action-output)
+* [Large application support](#large-app-support)
 * [Listing Actions](#listing-actions)
 * [Deleting Actions](#deleting-actions)
 * [Accessing Action metadata within the Action body](#accessing-action-metadata-within-the-action-body)
@@ -740,7 +741,9 @@ wsk action create helloPython hello.py
 ```
 {: pre}
 
-The CLI automatically infers the type of the action from the source file extension. For `.py` source files, the action runs by using a Python 2.7 runtime. You can also create an action that runs with Python 3.6 by explicitly specifying the parameter `--kind python:3`. For more information, see the Python 2.7 vs 3.6 [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
+The CLI automatically infers the type of the action from the source file extension. For `.py` source files, the action runs by using a Python 2 runtime. You can also create an action that runs with Python 3 by explicitly specifying the parameter `--kind python:3`. 
+In addition there is a Python 3 runtime with kind `python-jessie:3` that contains additional packages for IBM Cloud Services like IBM Cloudant, IBM DB2, IBM COS, and IBM Watson.
+For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
 
 Action invocation is the same for Python Actions as it is for JavaScript Actions:
 
@@ -774,18 +777,25 @@ wsk action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
+While these steps are shown for Python 3 (with kind `python:3`), you can do the same with alternative Python kinds `python:2` or `python-jessie:3`.
+
+
 ### Package Python Actions with a virtual environment in zip files
 {: #openwhisk_actions_python_virtualenv}
 
 Another way of packaging Python dependencies is by using a virtual environment (`virtualenv`) which allows you to link additional packages that can be installed via [`pip`](https://packaging.python.org/installing/) for example.
-To ensure compatibility with the OpenWhisk container, package installations inside a virtualenv must be done in the target environment.
-So the docker image `openwhisk/python2action` or `openwhisk/python3action` are used to create a virtualenv directory for your action.
+
 
 As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
+To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtualenv must be done in the target environment using the corresponding image to the kind.
+- For kind `python:2` use the docker image `openwhisk/python2action`.
+- For kind `python:3` use the docker image `openwhisk/python3action`.
+- For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
+
 1. Given a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
     ```
-    docker run --rm -v "$PWD:/tmp" openwhisk/python3action bash -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+    docker run --rm -v "$PWD:/tmp" openwhisk/python3action bash \ -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
     ```
     {: pre}
 
@@ -800,8 +810,6 @@ As with basic zip file support, the name of the source file that contains the ma
     wsk action create helloPython --kind python:3 helloPython.zip
     ```
     {: pre}
-
-While these steps are shown for Python 3.6, you can do the same for Python 2.7 as well.
 
 
 ## Create PHP Actions
@@ -1319,6 +1327,38 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
   Similarly, whenever you run the poll utility, you see in real time the logs for any Actions that are run on your behalf in OpenWhisk.
 
+## Large application support
+{: #large-app-support}
+
+The maximum code size for an Action is 48 MB. Applications that contain many third-party modules, native libraries, or external tools may run into this limit.
+
+If you happen to create a package Action (zip or jar) that is larger than 48 MB, the solution is to extend the runtime image with dependencies, and then use a single source file or smaller archive than 48 MB.
+
+For example, by building a custom Docker runtime, which includes necessary shared libraries, these dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
+
+Another benefit to reducing archive file sizes, is that deployment times are also improved.
+
+### Python example
+
+In the following Python example, opencv can include the library `opencv-python`, and then install the opencv binary into the OS image. You can then use `requirements.txt` and run `pip install requirements.txt` to augment the image with more Python libraries. You can then use `action.py` with the new image.
+
+### Node.js example
+
+In the following Node.js example, you can install extra packages to the OS image:
+
+Install opencv by using `npm`:
+```
+npm install opencv
+```
+{: pre}
+
+Similarly, if you have a `package.json`, install that by using `npm`:
+```
+npm install package.json
+```
+{: pre}
+
+Then, proceed to use `action.js` with the new image.
 
 ## List Actions
 {: #listing-actions}
@@ -1336,7 +1376,6 @@ As you write more Actions, this list gets longer and it can be helpful to group 
 wsk action list [PACKAGE NAME]
 ```
 {: pre}
-
 
 ## Delete Actions
 {: #deleting-actions}
