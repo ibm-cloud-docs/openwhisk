@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-22"
+lastupdated: "2018-02-01"
 
 ---
 
@@ -394,3 +394,14 @@ With the {{site.data.keyword.openwhisk}} CLI plug-in, there is no longer a need 
 {: #migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `bx wsk`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current executions of `wsk` get translated to `bx wsk`. The `bx login` and `bx target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before executing `bx wsk` commands to deploy, and manage your {{site.data.keyword.openwhisk_short}} entities.
+
+
+## Version history
+{: #version_history}
+
+1.0.7 (2018-02-02)
+* `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html)
+* Bug fixed to work with https proxy.
+
+1.0.6 (2018-01-30)
+* Bug fixed for command `bx wsk service bind` for actions inside a package.
