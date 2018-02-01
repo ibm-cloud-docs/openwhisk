@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-01"
 
 ---
 
@@ -37,7 +37,7 @@ The following management tasks require you to use the plugin.
 {: #openwhisk_cli_setup}
 
 You can use the {{site.data.keyword.openwhisk_short}} command line interface (CLI) to set up your namespace and authorization key.
-Go to [Configure CLI](https://console.{DomainName}/openwhisk/cli) and follow the instructions to install it.
+Go to [Configure CLI](https://console.bluemix.net/openwhisk/cli?loadWsk=true) and follow the instructions to install it.
 
 First, configure the following two properties:
 
