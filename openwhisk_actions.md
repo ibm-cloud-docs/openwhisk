@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-25"
+lastupdated: "2018-02-01"
 
 ---
 
@@ -789,13 +789,14 @@ Another way of packaging Python dependencies is by using a virtual environment (
 As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
 To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtualenv must be done in the target environment using the corresponding image to the kind.
-- For kind `python:2` use the docker image `openwhisk/python2action`.
-- For kind `python:3` use the docker image `openwhisk/python3action`.
-- For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
+- For kind `python:2` use the docker image `openwhisk/python2action` .
+- For kind `python:3` use the docker image `openwhisk/python3action` .
+- For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3` .
 
 1. Given a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
     ```
-    docker run --rm -v "$PWD:/tmp" openwhisk/python3action bash \ -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+    docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
+      bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
     ```
     {: pre}
 
