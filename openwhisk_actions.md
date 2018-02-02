@@ -735,7 +735,6 @@ def main(args):
 Python Actions always consume a dictionary and produce a dictionary. The entry method for the action is `main` by default but can be specified explicitly to create the action with the `wsk` CLI by using `--main`, as with any other action type.
 
 You can create an OpenWhisk action called `helloPython` from this function as follows:
-
 ```
 wsk action create helloPython hello.py
 ```
@@ -746,7 +745,6 @@ In addition there is a Python 3 runtime with kind `python-jessie:3` that contain
 For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
 
 Action invocation is the same for Python Actions as it is for JavaScript Actions:
-
 ```
 wsk action invoke --result helloPython --param name World
 ```
@@ -789,9 +787,9 @@ Another way of packaging Python dependencies is by using a virtual environment (
 As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
 To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtualenv must be done in the target environment using the corresponding image to the kind.
-- For kind `python:2` use the docker image `openwhisk/python2action` .
-- For kind `python:3` use the docker image `openwhisk/python3action` .
-- For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3` .
+- For kind `python:2` use the docker image `openwhisk/python2action`.
+- For kind `python:3` use the docker image `openwhisk/python3action`.
+- For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
 
 1. Given a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install, run the following to install the dependencies and create a virtualenv using a compatible Docker image:
     ```
