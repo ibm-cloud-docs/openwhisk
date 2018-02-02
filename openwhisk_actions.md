@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-01"
+lastupdated: "2018-02-02"
 
 ---
 
@@ -808,7 +808,7 @@ To ensure compatibility with the OpenWhisk runtime container, package installati
 
 3. Create the action:
     ```
-    wsk action create helloPython --kind python:3 helloPython.zip
+    wsk action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
