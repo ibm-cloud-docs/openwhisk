@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-02"
+lastupdated: "2018-02-05"
 
 ---
 
@@ -1168,7 +1168,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
 
-  Notice that part of the example.c file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
+  Notice that part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
   In fact, unless you are compiling the binary on a compatible host machine, it can not run inside the container since the formats do not match.
 
   Your Docker container can now be used as an OpenWhisk action.
@@ -1224,6 +1224,11 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   wsk action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
+
+## Creating actions using arbitrary executables
+{: #creating-actions-arbitrary}
+
+Using `--native`, you can see that any executable may be run as an OpenWhisk action. This includes `bash` scripts, or cross compiled binaries. For the latter, the constraint is that the binary must be compatible with the `openwhisk/dockerskeleton` image.
 
 ## Creating Go actions
 {: #creating-go-actions}
@@ -1283,13 +1288,6 @@ Logs are retrieved in a similar way as well.
 wsk activation logs --last --strip
 my first Go action.
 ```
-
-## Creating native actions
-{: #creating-native-actions}
-
-Using `--native`, you can see that any executable may be run as an OpenWhisk action. This includes `bash` scripts,
-or cross compiled binaries. For the latter, the constraint is that the binary must be compatible with the
-`openwhisk/dockerskeleton` image.
 
 ## Monitor action output
 {: #watching-action-output}
