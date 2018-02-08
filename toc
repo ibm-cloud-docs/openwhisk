@@ -10,6 +10,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Tutorials
+        deploy_templates.md
         ../tutorials/serverless-mobile-backend.md
         ../tutorials/serverless-api-webapp.md
 
