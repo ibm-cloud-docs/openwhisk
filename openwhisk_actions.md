@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-05"
+lastupdated: "2018-02-09"
 
 ---
 
@@ -28,7 +28,7 @@ Learn how to create, invoke, and debug Actions in your preferred development env
 * [PHP](#creating-php-actions)
 * [Docker](#creating-docker-actions)
 * [Go](#creating-go-actions)
-* [Native binaries](#creating-native-actions)
+* [Arbitrary executables](#creating-actions-arbitrary)
 
 In addition, learn about:
 * [Watching Action output](#watching-action-output)
