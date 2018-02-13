@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-01"
+lastupdated: "2018-02-13"
 
 ---
 
@@ -14,11 +14,18 @@ lastupdated: "2018-02-01"
 
 # {{site.data.keyword.openwhisk_short}} stand-alone CLI
 
-The {{site.data.keyword.openwhisk_short}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
+**On March 9th, 2018, the {{site.data.keyword.openwhisk_short}} stand-alone CLI will no longer be available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities after this date, use the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
+
+The {{site.data.keyword.openwhisk}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 {: shortdesc}
+
+<!--
+This service is deprecated: All instances of this service are deprecated. Existing instances can be used until 09 December 2016. For more information, see the [deprecation announcement blog](http://www.com){: new_window}.
+{:deprecated}
 
 IBM recommends that you use the new [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.Bluemix_notm}} CLI](./bluemix_cli.html) to manage {{site.data.keyword.openwhisk_short}} entities. The following management tasks are easier if you use the plugin.
 {: tip}
+-->
 
 * Configuration of the {{site.data.keyword.openwhisk_short}} authentication key
   * No need to access the {{site.data.keyword.openwhisk_short}} console to obtain the authentication key
