@@ -4,7 +4,7 @@ copyright:
 
   years: 2018
 
-lastupdated: "2018-02-02"
+lastupdated: "2018-02-13"
 
 ---
 
@@ -22,7 +22,19 @@ lastupdated: "2018-02-02"
 This tutorial steps you through deploying the Cloudant Template.
 {: shortdesc}
 
-## Deploying the Cloudant Template
+## Available Templates
+{: #available-templates}
+
+| Name | Description | Supported Runtimes | 
+|:-----------------|:-----------------|:-----------------|
+| Cloudant Events | When a Cloudant DB has a documented edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
+| Get HTTP Resource | A web action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
+| Hello World | This action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
+| Message Hub Events | When a Message Hub topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP | 
+| Periodic Slack Reminder | An action that will post to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+
+## Deploying the Cloudant Events template
+{: #cloudant-template}
 
 The Cloudant Template creates a sequence of Actions, and a Trigger that will kick off that Sequence. The Trigger is fired when there is a change in the connected Cloudant DB, which should be a database of cats, with a name and a color. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database, or a current cat edited, the data will be logged to the console.
 
