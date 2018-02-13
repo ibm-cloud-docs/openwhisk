@@ -405,8 +405,6 @@ A historical record of versions that show highlights and bug fixes.
 * `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html)
 * Restore proxy support.
 * Remove swift:3.
-* Add s390x architecture support.
-* Add i18n process to build.gradle.
 
 1.0.6 (2018-01-30)
 * Bug fixed for command `bx wsk service bind` for actions inside a package.
