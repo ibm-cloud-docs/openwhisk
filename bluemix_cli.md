@@ -399,7 +399,7 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 ## Version history
 {: #version_history}
 
-A historical record of versions that show hightlights and
+A historical record of versions that show highlights and bug fixes.
 
 1.0.7 (2018-02-02)
 * `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html)
