@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-14"
 
 ---
 
@@ -12,7 +12,6 @@ lastupdated: "2018-01-09"
 {:pre: .pre}
 
 # Getting started with {{site.data.keyword.openwhisk_short}}
-
 
 {{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from {{site.data.keyword.Bluemix}} services like Cloudant and from external sources. Developers can focus on writing application logic, and creating Actions that are executed on demand.
 The key benefit of this new paradigm is that you do not explicitly provision servers. Thus, eliminating worry about auto-scaling, high availability, updates, maintenance, and cost for hours of processor time when your server is running but not serving requests.
@@ -32,8 +31,7 @@ Both have similar capabilities for developing applications; the CLI provides mor
 ## Develop in your Browser
 {: #openwhisk_start_editor}
 
-Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/actions) to create Actions, automate Actions by using Triggers, and explore public packages. 
-Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a quick tour of the OpenWhisk User Interface.
+Try out {{site.data.keyword.openwhisk_short}} in your [Browser](https://console.{DomainName}/openwhisk/actions) to create Actions, automate Actions by using Triggers, and explore public packages. Visit the [learn more](https://console.{DomainName}/openwhisk/learn) page for a quick tour of the {{site.data.keyword.openwhisk_short}} User Interface.
 
 ## Develop by using the CLI
 {: #openwhisk_start_configure_cli}
