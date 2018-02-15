@@ -43,6 +43,7 @@ IBM Cloud Functions
         openwhisk_weather.md
         openwhisk_websocket.md
 
+    binding_services.md
     openwhisk_use_cases.md
     openwhisk_actions.md
     openwhisk_triggers_rules.md
