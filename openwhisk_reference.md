@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-15"
 
 ---
 
@@ -588,18 +588,6 @@ Information about the REST API can be found [here](openwhisk_rest_api.html)
 
 The following table lists the default limits for Actions.
 
-<!--
-| Limit | Description | Configurable | Unit | Default | Min | Max | 
-| ----- | ----------- | ------------ | ---- | -------: | ---: | ---: |
-| timeout | A container is not allowed to run longer than N milliseconds. | Per action |  ms | 60000 | 100 | 300000 |
-| memory | A container is not allowed to allocate more than N MB of memory. | Per action | MB | 256 | 128 | 512 |
-| logs | A container is not allowed to write more than N MB to stdout. | Per action | MB | 10 | 0 | 10 |
-| concurrent | No more than N activations can be submitted per namespace either executing or queued for execution. | Per namespace | Number | 1000 | 1 | 1000 |
-| minuteRate | No more than N activations can be submitted per namespace per minute. | Per user | Number | 5000 | 1 | 5000 |
-| codeSize | The maximum size of the actioncode. | Not configurable, limit per action. | MB | 48 | 1 | 48 |
-| parameters | The maximum size of the parameters that can be attached. | Not configurable, limit per action, package, or trigger. | MB | 1 | 0 | 1 |
--->
-
 | Limit | Description | Default | Min | Max | 
 | ----- | ----------- | :-------: | :---: | :---: |
 | [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | The maximum size of the Action code in MB. | 48 | 1 | 48 |
@@ -685,12 +673,6 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 ### Triggers
 
 Triggers are subject to a firing rate per minute as documented in the following table.
-
-<!--
-| Limit | Description | Configurable | Unit | Default |
-| ----- | ----------- | ------------ | -----| ------- |
-| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N Triggers can be fired per Namespace per minute. | Per user | Number | 5000* |
--->
 
 | Limit | Description | Default | Min | Max | 
 | ----- | ----------- | :-------: | :---: | :---: |
