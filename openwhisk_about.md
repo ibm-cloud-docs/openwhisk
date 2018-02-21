@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# About {{site.data.keyword.openwhisk_short}}
+# Platform architecture
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. The following figure shows the high-level {{site.data.keyword.openwhisk}} architecture.
 {: shortdesc}

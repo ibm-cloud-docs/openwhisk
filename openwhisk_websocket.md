@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the WebSocket package
+# WebSocket
 {: #openwhisk_catalog_websocket}
 
 The `/whisk.system/websocket` package offers a convenient way to post messages to a WebSocket.

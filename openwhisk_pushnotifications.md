@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-02"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-02-02"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the Push Notifications package
+# Mobile push device events
 {: #openwhisk_catalog_pushnotifications}
 
 The `/whisk.system/pushnotifications` package provides you with the ability to work with a push service.

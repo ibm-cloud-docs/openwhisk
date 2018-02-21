@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,9 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the Cloudant package
+# Cloudant events source
 {: #openwhisk_catalog_cloudant}
-The `/whisk.system/cloudant` package enables you to work with a Cloudant database. It includes the following Actions and Feeds.
+
+The `/whisk.system/cloudant` package enables you to work with a Cloudant database, and includes the following Actions and Feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |

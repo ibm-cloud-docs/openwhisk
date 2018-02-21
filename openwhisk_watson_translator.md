@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the Watson Translator package
+# Watson: Translator
 {: #openwhisk_catalog_watson_translator}
 
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.

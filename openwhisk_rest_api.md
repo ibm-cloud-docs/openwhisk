@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the OpenWhisk REST APIs
+# REST APIs
 {: #openwhisk_rest_api}
 
 After your OpenWhisk environment is enabled, you can use OpenWhisk with your web apps or mobile apps with REST API calls.

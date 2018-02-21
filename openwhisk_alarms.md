@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-01"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-02-01"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the Alarm package
+# Alarms
 {: #openwhisk_catalog_alarm}
 
 The `/whisk.system/alarms` package can be used to fire a trigger at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system backup Action every hour.

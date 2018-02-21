@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the Slack package
+# Slack
 {: #openwhisk_catalog_slack}
 
 The `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).

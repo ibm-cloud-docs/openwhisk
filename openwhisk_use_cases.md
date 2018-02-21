@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-21"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.openwhisk_short}} common use cases
+# Common use cases
 {: #openwhisk_common_use_cases}
 
 The execution model that is offered by {{site.data.keyword.openwhisk_short}} supports various use cases. The following sections include typical examples. For a more detailed discussion of Serverless architecture, example use cases, pros and cons discussion, and implementation best practices, read the excellent [Mike Roberts article on Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
@@ -52,7 +52,7 @@ Look at the following sample IoT application that uses {{site.data.keyword.openw
 ![IoT solution architecture example](images/IoT_solution_architecture_example.png)
 
 ## API backend
-{: #openwhisk_common_use_cases_iot}
+{: #openwhisk_api_backend}
 
 Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for Actions. The [experimental feature](./openwhisk_apigateway.html) of {{site.data.keyword.openwhisk_short}} can invoke an Action with HTTP methods other than POST and without the Action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
 

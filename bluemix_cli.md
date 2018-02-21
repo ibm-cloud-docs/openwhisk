@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -15,7 +15,7 @@ lastupdated: "2018-02-14"
 # {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
 
-{{site.data.keyword.openwhisk_short}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system.
+{{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system.
 {: shortdesc}
 
 ## Setting up the {{site.data.keyword.Bluemix_notm}} CLI

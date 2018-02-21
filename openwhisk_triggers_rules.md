@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Create Triggers and Rules
+# General concepts
 {: #openwhisk_triggers}
 
 {{site.data.keyword.openwhisk_short}} Triggers and Rules bring event-driven capabilities to the platform. Events from external and internal event sources are channeled through a Trigger, and Rules allow your Actions to react to these events.

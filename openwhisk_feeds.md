@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-21"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Implementing feeds
+# Custom event providers
 {: #openwhisk_feeds}
 
-{{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a **feed** in a **package**. The following section describes architectural, and implementation options for providing your own feed.
+{{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a **feed** in a **package**. The following section describes architectural, and implementation options for providing your own custom feed.
 {: shortdesc}
 
 This material is intended for advanced {{site.data.keyword.openwhisk_short}} users who intend to publish their own feeds. Most {{site.data.keyword.openwhisk_short}} users can safely skip the following architecture section.

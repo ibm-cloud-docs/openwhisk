@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-09"
+lastupdated: "2018-02-13"
 
 ---
 
@@ -1333,29 +1333,34 @@ If you happen to create a package Action (zip or jar) that is larger than 48 MB,
 
 For example, by building a custom Docker runtime, which includes necessary shared libraries, these dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
 
-Another benefit to reducing archive file sizes, is that deployment times are also improved.
+Another benefit to reducing archive file sizes, is that deployment times are also improved. Two runtime examples are provided in the following sections to demonstrate how application sizes can be reduced by leveraging this technique.
 
 ### Python example
 
-In the following Python example, opencv can include the library `opencv-python`, and then install the opencv binary into the OS image. You can then use `requirements.txt` and run `pip install requirements.txt` to augment the image with more Python libraries. You can then use `action.py` with the new image.
+For a Python application, refer to the following steps to reduce it's code size.
+
+1. Place the library `opencv-python` into opencv.
+2. Then install the opencv binary into the OS image.
+3. You can then use `requirements.txt` and run `pip install requirements.txt` to augment the image with more Python libraries.
+4. You can then use `action.py` with the new image.
 
 ### Node.js example
 
-In the following Node.js example, you can install extra packages to the OS image:
+In efforts to reduce application size for a Node.js application, see the following steps to install extra packages into the OS image:
 
-Install opencv by using `npm`:
-```
-npm install opencv
-```
-{: pre}
+1. Install opencv by using `npm`:
+   ```
+   npm install opencv
+   ```
+   {: pre}
 
-Similarly, if you have a `package.json`, install that by using `npm`:
-```
-npm install package.json
-```
-{: pre}
+2. Similarly, if you have a `package.json`, install that by using `npm`:
+   ```
+   npm install package.json
+   ```
+   {: pre}
 
-Then, proceed to use `action.js` with the new image.
+3. Then, proceed to use `action.js` with the new image.
 
 ## List Actions
 {: #listing-actions}

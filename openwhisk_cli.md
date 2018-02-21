@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-13"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-02-13"
 {:tip: .tip}
 {:pre: .pre}
 
-# {{site.data.keyword.openwhisk_short}} stand-alone CLI
+# Stand-alone CLI
 
 **On March 9th, 2018, the {{site.data.keyword.openwhisk_short}} stand-alone CLI will no longer be available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities after this date, use the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
 

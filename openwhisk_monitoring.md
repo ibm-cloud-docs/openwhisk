@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-01-09"
 {:tip: .tip}
 {:pre: .pre}
 
-# Monitor activity with the {{site.data.keyword.openwhisk_short}} Dashboard
+# Monitor activity with Dashboard
 
 The [{{site.data.keyword.openwhisk}} Dashboard](https://{DomainName}/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} Actions.
 {:shortdesc}

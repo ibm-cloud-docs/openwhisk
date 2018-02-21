@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Using the OpenWhisk mobile SDK
+# Mobile SDK
 
 OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote Triggers and invoke remote Actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
 
