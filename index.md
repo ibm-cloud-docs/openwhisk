@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-17"
+lastupdated: "2018-02-21"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-02-17"
 {:screen: .screen}
 {:pre: .pre}
 
-# Overview
+# Getting started
 
 {{site.data.keyword.openwhisk}} is a distributed, event-driven compute service also referred to as Serverless computing or as Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} runs application logic in response to events or direct invocations from web or mobile apps over HTTP. Events can be provided from {{site.data.keyword.Bluemix}} services like Cloudant and from external sources. Developers can focus on writing application logic, and creating Actions that are executed on demand.
 The key benefit of this new paradigm is that you do not explicitly provision servers. Thus, eliminating worry about auto-scaling, high availability, updates, maintenance, and cost for hours of processor time when your server is running but not serving requests.

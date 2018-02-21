@@ -5,11 +5,13 @@
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
+    index.md
+
     {: .topicgroup}
-    Getting started
-        index.md
-        openwhisk_about.md
+    Overview
         openwhisk_use_cases.md
+        openwhisk_compare.md
+        openwhisk_about.md
     
     {: .topicgroup}
     Tutorials
@@ -75,7 +77,6 @@ IBM Cloud Functions
 
     {: .navgroup id="reference"}
     openwhisk_reference.md
-    openwhisk_compare.md
     
     {: .topicgroup}
     API Documentation
