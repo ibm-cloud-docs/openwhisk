@@ -173,14 +173,15 @@ Be sure to replace `/_/myCloudant` with your package name.
   ```
   {: pre}
 
-3. In your Cloudant dashboard, either modify an existing document or create a new one.
+3. Create actions and a rule which associates the actions to the myCloudantTrigger trigger.
 
-4. Observe new activations for the `myCloudantTrigger` Trigger for each document change only if the document status is `new` based on the filter function and query parameter.
+
+4. In your Cloudant dashboard, either modify an existing document or create a new one. The document should have a `status` field, which is set to `new`
+
+5. Observe new activations for the `myCloudantTrigger` Trigger for each document change only if the document status is `new` based on the filter function and query parameter.
   
   **Note**: If you are unable to observe new activations, see the subsequent sections on reading from and writing to a Cloudant database. Testing the following reading and writing steps help to verify that your Cloudant credentials are correct.
-  
-  You can now create Rules and associate them to Actions to react to the document updates.
-  
+    
   The content of the generated events has the following parameters:
   
   - `id`: The document ID.
