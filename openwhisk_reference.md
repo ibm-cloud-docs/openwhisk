@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-02-28"
 
 ---
 
@@ -595,7 +595,7 @@ The following table lists the default limits for Actions.
 | [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per Namespace per minute. | 5000 | 1 | 5000* |
 | [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for a Docker Action. | 64 | 0 | 64 |
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
-| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to a Docker Action. | 512 | 0 | 512 |
+| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to a Docker Action. | 1024 | 0 | 1024 |
 | [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
 | [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
 
