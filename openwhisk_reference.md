@@ -593,9 +593,9 @@ The following table lists the default limits for Actions.
 | [logs](openwhisk_reference.html#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
 | [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
 | [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per Namespace per minute. | 5000 | 1 | 5000* |
-| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for a Docker Action. | 1024 | 0 | 1024 |
+| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for an Action. | 1024 | 0 | 1024 |
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
-| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to a Docker Action. | 1024 | 0 | 1024 |
+| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to an Action. | 1024 | 0 | 1024 |
 | [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
 | [sequenceMaxLength](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of Actions that comprise a given sequence. | 50 | 0 | 50* |
 | [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
@@ -642,7 +642,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 {: #openwhisk_syslimits_openulimit}
 * The maximum number of open files for an Action is 1024 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
-* The docker run command uses the argument `--ulimit nofile=1024:1024`.
+* When an Action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### parameters (Fixed: 1 MB)
@@ -655,7 +655,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 {: #openwhisk_syslimits_proculimit}
 * The maximum number of processes available to the Action container is 1024.
 * This limit is fixed and cannot be changed.
-* The docker run command uses the argument `--pids-limit 1024`.
+* When an Action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### result (Fixed: 1 MB)
