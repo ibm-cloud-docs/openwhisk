@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-02-23"
 
 ---
 
@@ -149,23 +149,11 @@ The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS pro
 ## Working with regions, organizations and spaces
 {: #region_info}
 
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you.
-
-You can use the `bx iam space-create` to create more spaces under your organization such "staging" and "production". See the following example:
-```
-bx iam space-create "staging"
-bx iam space-create "production"
-```
-
-For more information about the `bx iam` command, refer to the following documentation: https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
-
-{{site.data.keyword.openwhisk_short}} has restrictions on the namespace names. For more information about these restrictions, refer to the following documentation: https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities
-
 If you are already logged in, you can run the `bx target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
 
 Use the following command to display all of the {{site.data.keyword.Bluemix_notm}} regions.
 
-{{site.data.keyword.openwhisk_short}} is only supported in the `us-south` and `eu-gb` regions.
+{{site.data.keyword.openwhisk_short}} is supported in the following regions: `us-south`, `eu-gb`, and `eu-fra`.
 {: tip}
 
 ```
@@ -182,16 +170,26 @@ bx target -r eu-gb -s staging
 ```
 {: pre}
 
-
 If you need to change spaces within the same region, like from staging to production, run the following command:
 ```
 bx target -s production
 ```
 {: pre}
 
-
 For more information about the `target` command, use `bx target --help` or review the following documentation:
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_target
+
+You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you.
+
+You can use the `bx iam space-create` to create more spaces under your organization such "staging" and "production". See the following example:
+```
+bx iam space-create "staging"
+bx iam space-create "production"
+```
+
+For more information about the `bx iam` command, refer to the following documentation: https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
+
+{{site.data.keyword.openwhisk_short}} has restrictions on the namespace names. For more information about these restrictions, refer to the following documentation: https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities
 
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migration}
@@ -246,8 +244,11 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
+1.0.8 (2018-02-22)
+* Added support for IAM service bind.
+
 1.0.7 (2018-02-02)
-* `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html)
+* `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html).
 * Restore proxy support.
 * Remove `swift:3`.
 
