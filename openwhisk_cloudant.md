@@ -191,6 +191,7 @@ Be sure to replace `/_/myCloudant` with your package name.
   
   ```json
   {
+      "dbname": "testdb",
       "id": "6ca436c44074c4c2aa6a40c9a188b348",
       "seq": "2-g1AAAAL9aJyV-GJCaEuqx4-BktQkYp_dmIfC",
       "changes": [
