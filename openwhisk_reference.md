@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-01"
+lastupdated: "2018-03-07"
 
 ---
 
@@ -598,7 +598,7 @@ The following table lists the default limits for Actions.
 | [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to an Action. | 1024 | 0 | 1024 |
 | [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
 | [sequenceMaxLength](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of Actions that comprise a given sequence. | 50 | 0 | 50* |
-| [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 300000 |
+| [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
 {: #increase_fixed_limit}
@@ -670,7 +670,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 #### timeout (ms) (Default: 60s)
 {: #openwhisk_syslimits_timeout}
-* The timeout limit N is in the range [100 ms..300000 ms], and is set per Action in milliseconds.
+* The timeout limit N is in the range [100 ms..600000 ms], and is set per Action in milliseconds.
 * A user can change the timeout limit when an Action is created.
 * A container that runs longer than N milliseconds is terminated.
 
