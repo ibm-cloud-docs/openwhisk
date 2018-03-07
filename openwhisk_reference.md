@@ -597,7 +597,7 @@ The following table lists the default limits for Actions.
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
 | [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to an Action. | 1024 | 0 | 1024 |
 | [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
-| [sequenceMaxLength](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of Actions that comprise a given sequence. | 50 | 0 | 50* |
+| [sequenceMaxActions](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of Actions that comprise a given sequence. | 50 | 0 | 50* |
 | [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
@@ -663,7 +663,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The maximum output size of an Action invocation result in MB.
 * This limit is fixed and cannot be changed.
 
-#### sequenceMaxLength (Fixed: 50*)
+#### sequenceMaxActions (Fixed: 50*)
 {: #openwhisk_syslimits_sequencemax}
 * The maximum number of Actions that comprise a given sequence.
 * This limit is fixed and cannot be changed.
