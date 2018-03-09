@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-09"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2018-02-16"
 
 # Stand-alone CLI
 
-**On March 9th, 2018, the {{site.data.keyword.openwhisk_short}} stand-alone CLI will no longer be available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities after this date, use the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
+**The {{site.data.keyword.openwhisk_short}} stand-alone CLI is no longer available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities using a CLI, upgrade to the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
 
 The {{site.data.keyword.openwhisk}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 {: shortdesc}
@@ -34,7 +34,7 @@ IBM recommends that you use the new [{{site.data.keyword.openwhisk_short}} plug-
 * Updating the CLI to a later version
 
 
-The following management tasks require you to use the plugin.
+The following management tasks require you to use the plug-in.
 
 * API management
   * Configuration of the API GW access token
