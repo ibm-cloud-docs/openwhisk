@@ -14,7 +14,7 @@ lastupdated: "2018-03-09"
 
 # Stand-alone CLI
 
-**The {{site.data.keyword.openwhisk_short}} stand-alone CLI is no longer available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities using a CLI, upgrade to the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
+**The {{site.data.keyword.openwhisk_short}} stand-alone CLI is no longer available for download. To continue managing {{site.data.keyword.openwhisk_short}} entities using a CLI, migrate to the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) for the {{site.data.keyword.Bluemix}} CLI.**
 
 The {{site.data.keyword.openwhisk}} distributed **wsk** command line interface allows management of all {{site.data.keyword.openwhisk_short}} entities. 
 {: shortdesc}
