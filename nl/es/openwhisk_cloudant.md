@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -17,35 +17,24 @@ El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos Cl
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant |
-| `/whisk.system/cloudant/read` | acción | dbname, id | Leer un documento de la base de datos |
-| `/whisk.system/cloudant/write` | acción | dbname, overwrite, doc | Escribir un documento en la base de datos |
-| `/whisk.system/cloudant/changes` | canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en la BD |
+| `/whisk.system/cloudant` | Paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant |
+| `/whisk.system/cloudant/read` | Acción | dbname, id | Leer un documento de la base de datos |
+| `/whisk.system/cloudant/write` | Acción | dbname, overwrite, doc | Escribir un documento en la base de datos |
+| `/whisk.system/cloudant/changes` | Canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en la BD |
+{: shortdesc}
 
-En los temas siguientes se muestra la configuración de una base de datos Cloudant, la configuración de un paquete asociado y el uso de acciones e información de entrada (feeds) en el paquete `/whisk.system/cloudant`.
+En los temas siguientes se muestra la configuración de una base de datos Cloudant, la configuración de un paquete asociado y cómo utilizar acciones e información de entrada (Feeds) en el paquete `/whisk.system/cloudant`.
 
-## Configuración de una base de datos Cloudant en Bluemix
+## Configuración de una base de datos Cloudant en {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_in}
 
-Si utiliza OpenWhisk desde Bluemix, OpenWhisk crea automáticamente enlaces de paquete para sus instancias de servicio de Bluemix Cloudant. Si no utiliza OpenWhisk y Cloudant desde
-Bluemix, continúe en el paso siguiente.
+Si utiliza OpenWhisk desde {{site.data.keyword.Bluemix_notm}}, OpenWhisk crea automáticamente enlaces de paquete para sus instancias de servicio de Cloudant. Si no utiliza OpenWhisk y Cloudant desde {{site.data.keyword.Bluemix_notm}}, continúe en el paso siguiente.
 
-1. Cree una instancia de servicio de Cloudant en su [panel de control](http://console.ng.Bluemix.net) de Bluemix.
+1. Crear una instancia de servicio de Cloudant en su [panel de control](http://console.ng.Bluemix.net) de {{site.data.keyword.Bluemix_notm}}.
 
-  Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de Bluemix en el que se encuentra.
+  Asegúrese de crear una clave de credenciales para cada nueva instancia de servicio.
 
-2. Asegúrese de que su CLI de OpenWhisk esté en el espacio de nombres correspondiente para la organización y espacio de Bluemix que ha utilizado en el paso anterior.
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  Si quiere puede utilizar `wsk property set --namespace` para establecer un espacio de nombres de una lista de
-aquellos que tenga accesibles.
-
-3. Actualizar los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para
-la instancia de servicio de Cloudant que ha creado.
+2. Actualizar los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para cada instancia de servicio Cloudant con una clave de credencial definida.
 
   ```
   wsk package refresh
@@ -65,10 +54,9 @@ la instancia de servicio de Cloudant que ha creado.
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Verá el nombre completo del enlace de paquete que corresponde a su instancia de servicio Cloudant de Bluemix.
+  Ahora su enlace de paquete contiene credenciales que están asociadas a la instancia de servicio de Cloudant.
 
-4. Compruebe si el enlace de paquete creado anteriormente está configurado con su host de instancia de servicio de
-Bluemix de Cloudant y las credenciales.
+3. Compruebe si el enlace de paquete creado anteriormente está configurado con su host de instancia de servicio de {{site.data.keyword.Bluemix_notm}} de Cloudant y las credenciales.
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -94,14 +82,12 @@ Bluemix de Cloudant y las credenciales.
   ]
   ```
 
-## Configuración de una base de datos Cloudant fuera de Bluemix
+## Configuración de una base de datos Cloudant fuera de {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_outside}
 
-Si no utiliza OpenWhisk en Bluemix o si quiere configurar
-su base de datos Cloudant fuera de Bluemix, debe crear manualmente un enlace de paquete
-para su cuenta Cloudant. Necesita el nombre de host, nombre de usuario y contraseña de la cuenta Cloudant.
+Si no utiliza OpenWhisk en {{site.data.keyword.Bluemix_notm}} o si quiere configurar su base de datos Cloudant fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para su cuenta Cloudant. Necesita el nombre de host, nombre de usuario y contraseña de la cuenta Cloudant.
 
-1. Crear un enlace de paquete configurado para su cuenta Cloudant.
+1. Cree un enlace de paquete configurado para su cuenta Cloudant.
 
   ```
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
@@ -126,11 +112,11 @@ para su cuenta Cloudant. Necesita el nombre de host, nombre de usuario y contras
 
 ### Filtrado de sucesos de cambio de base de datos
 
-Es posible definir una función de filtro para evitar que sucesos de cambio innecesarios activen su desencadenante. 
+Es posible definir una función de filtro para evitar que sucesos de cambio innecesarios activen su desencadenante.
 
-Para crear una nueva función de filtro, utilice una acción. 
+Para crear una nueva función de filtro, puede utilizar una acción.
 
-Cree un archivo de documento json `design_doc.json` con la siguiente función de filtro: 
+Cree un archivo de documento json `design_doc.json` con la siguiente función de filtro:
 ```json
 {
   "doc": {
@@ -142,8 +128,7 @@ Cree un archivo de documento json `design_doc.json` con la siguiente función de
 }
 ```
 
-Cree un nuevo documento de diseño en la base de datos con la función de filtro
-
+Cree un documento de diseño en la base de datos con la función de filtro
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
@@ -158,23 +143,21 @@ La información para el nuevo documento de diseño se imprime en la pantalla.
 
 ### Creación de un desencadenante utilizando la función de filtro
 
-Puede utilizar la información de entrada `changes` para configurar un servicio para que active un desencadenante
-para cada cambio de su base de datos Cloudant. Los parámetros son según se indica a continuación:
+Puede utilizar la información de entrada `changes` para configurar un servicio para que active un desencadenante para cada cambio de su base de datos Cloudant. Los parámetros son según se indica a continuación:
 
 - `dbname`: nombre de la base de datos Cloudant.
 - `maxTriggers`: dejar de activar desencadenantes cuando se alcanza este límite. El valor predeterminado es infinite.
-- `filter`: Función de filtro definida en un documento de diseño. 
-- `query_params`: Parámetros de consulta opcionales para la función de filtro. 
+- `filter`: Función de filtro que está definida en un documento de diseño.
+- `query_params`: Parámetros de consulta adicionales para la función de filtro.
 
 
-1. Cree un desencadenante con la información de entrada `changes` en el enlace de paquete que ha
-creado anteriormente con `filter` y `query_params` para únicamente activar el desencadenante cuando un documento se añada o modifique cuando el estado sea `new`.
-Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
+1. Cree un desencadenante con la información de entrada `changes` en el enlace de paquete que ha creado anteriormente. Incluyendo `filter` y `query_params` para activar el desencadenante cuando un documento se añada o modifique cuando el estado sea `new`.
+Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
@@ -191,10 +174,10 @@ Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete.
 
 3. En su panel de control de Cloudant, modifique un documento existente o cree uno nuevo.
 
-4. Observe las nuevas activaciones para el desencadenante `myCloudantTrigger` para cada cambio de documento únicamente si el estado del documento es `new` en base a la función de filtro y los parámetros de consulta. 
+4. Observe las nuevas activaciones para el desencadenante `myCloudantTrigger` para cada cambio de documento únicamente si el estado del documento es `new` en base a la función de filtro y los parámetros de consulta.
   
   **Nota**: si no detecta nuevas activaciones, consulte las secciones siguientes sobre la lectura y escritura
-en una base de datos Cloudant. Probar los siguientes pasos de lectura y escritura le ayudará a comprobar si sus credenciales de Cloudant son correctas.
+en una base de datos Cloudant. Probar los siguientes pasos de lectura y escritura le ayuda a comprobar si sus credenciales de Cloudant son correctas.
   
   Ahora puede crear reglas y asociarlas a acciones para reaccionar a actualizaciones de documento.
   
@@ -225,7 +208,7 @@ el ID de revisión del documento.
 Puede utilizar una acción para almacenar un documento en una base de datos Cloudant llamada `testdb`. Asegúrese de que
 esta base de datos exista en su cuenta Cloudant.
 
-1. Almacenar un documento usando la acción `write` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
+1. Almacenar un documento usando la acción `write` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete.
 
   ```
   wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
@@ -252,7 +235,7 @@ esta base de datos exista en su cuenta Cloudant.
 Puede utilizar una acción para obtener un documento de una base de datos Cloudant llamada `testdb`. Asegúrese de que
 esta base de datos exista en su cuenta Cloudant.
 
-- Obtener un documento usando la acción `read` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete. 
+- Obtener un documento usando la acción `read` en el enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/_/myCloudant` con el nombre de su paquete.
 
   ```
   wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
@@ -269,9 +252,9 @@ esta base de datos exista en su cuenta Cloudant.
 ## Utilización de una secuencia de acciones y de un desencadenante de cambios para procesar un documento desde una base de datos Cloudant
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-Puede utilizar una secuencia de acciones en una regla para captar y procesar el documento asociado a un suceso de cambio Cloudant.
+Puede utilizar una secuencia de acciones en una regla para captar y procesar el documento que está asociado a un suceso de cambio Cloudant.
 
-A continuación se muestra un código de ejemplo de una acción que maneja un documento:
+Código de ejemplo de una acción que maneja un documento:
 ```javascript
 function main(doc){
   return { "isWalter:" : doc.name === "Walter White"};
@@ -298,7 +281,7 @@ wsk rule create myRule myCloudantTrigger sequenceAction
 {: pre}
 
 **Nota**: el desencadenante de `cambios` de Cloudant utilizado para dar soporte al parámetro `includeDoc` ya no recibe soporte.
-  Tendrá que volver a crear desencadenantes creados anteriormente con `includeDoc`. Siga estos pasos para volver a crear el desencadenante:
+  Puede volver a crear desencadenantes creados anteriormente con `includeDoc`. Siga estos pasos para volver a crear el desencadenante: 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -308,6 +291,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  Puede utilizar el ejemplo anterior para crear una secuencia de acciones para leer el documento modificado e invocar las acciones existentes.
+  Puede utilizar el ejemplo para crear una secuencia de acciones para leer el documento modificado e invocar las acciones existentes.
   No olvide inhabilitar las reglas que ya no sean válidas y crear nuevas utilizando el patrón de la secuencia de acciones.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -13,36 +13,28 @@ lastupdated: "2017-06-02"
 
 # Cloudant パッケージの使用
 {: #openwhisk_catalog_cloudant}
-`/whisk.system/cloudant` パッケージを使用すると、Cloudant データベースを処理することができます。これには、以下のアクションおよびフィードが含まれます。
+`/whisk.system/cloudant` パッケージを使用すると、Cloudant データベースを処理することができます。これには、以下のアクションおよびフィードが含まれています。
 
-| エンティティー | タイプ  | パラメーター | 説明 |
+| エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | パッケージ | dbname、host、username、password | Cloudant データベースを処理 |
-| `/whisk.system/cloudant/read` | アクション | dbname、id | データベースから文書を読み取る |
-| `/whisk.system/cloudant/write` | アクション | dbname、overwrite、doc | データベースに文書を書き込む |
-| `/whisk.system/cloudant/changes` | フィード | dbname、filter、query_params、maxTriggers | データベースの変更時にトリガー・イベントを発生させる |
+| `/whisk.system/cloudant` | パッケージ | dbname、host、username、password| Cloudant データベースを処理|
+| `/whisk.system/cloudant/read` | アクション | dbname、id| データベースから文書を読み取る|
+| `/whisk.system/cloudant/write` | アクション | dbname、overwrite、doc| データベースに文書を書き込む|
+| `/whisk.system/cloudant/changes` | フィード | dbname、filter、query_params、maxTriggers| データベース変更時のトリガー・イベントの起動|
+{: shortdesc}
 
-以降のトピックでは、Cloudant データベースのセットアップ、関連付けられたパッケージの構成、および `/whisk.system/cloudant` パッケージのアクションとフィードの使用をウォークスルーします。
+以降のトピックでは、Cloudant データベースのセットアップ、関連付けられたパッケージの構成、および `/whisk.system/cloudant` パッケージ内のアクションとフィードの使用方法をウォークスルーします。
 
-## Bluemix での Cloudant データベースのセットアップ
+## {{site.data.keyword.Bluemix_notm}} での Cloudant データベースのセットアップ
 {: #openwhisk_catalog_cloudant_in}
 
-Bluemix から OpenWhisk を使用している場合、Bluemix Cloudant サービス・インスタンスのパッケージ・バインディングは OpenWhisk が自動的に作成します。Bluemix から OpenWhisk および Cloudant を使用していない場合は、次のステップにスキップします。
+{{site.data.keyword.Bluemix_notm}} から OpenWhisk を使用する場合、Cloudant サービス・インスタンス用のパッケージ・バインディングを OpenWhisk が自動的に作成します。OpenWhisk および Cloudant を {{site.data.keyword.Bluemix_notm}} から使用しない場合は、次のステップまでスキップしてください。
 
-1. Bluemix [ ダッシュボード](http://console.ng.Bluemix.net)で Cloudant サービス・インスタンスを作成します。
+1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.ng.Bluemix.net)で Cloudant サービス・インスタンスを作成します。
 
-  サービス・インスタンスの名前、およびユーザーが所属している Bluemix の組織とスペースの名前を忘れないようにしてください。
+  新規サービス・インスタンスごとに 1 つの資格情報キーを作成するように注意してください。
 
-2. ご使用の OpenWhisk CLI が、前のステップで使用した Bluemix 組織とスペースに対応する名前空間に存在するようにします。
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  あるいは、`wsk property set --namespace` を使用して、アクセス可能な名前空間のリストから名前空間を設定することができます。
-
-3. 名前空間でパッケージを最新表示します。最新表示により、ユーザーが作成した Cloudant サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
+2. 名前空間内のパッケージをリフレッシュします。このリフレッシュにより、資格情報キーが定義された各 Cloudant サービス・インスタンスごとに 1 つのパッケージ・バインディングが自動的に作成されます。
 
   ```
   wsk package refresh
@@ -62,9 +54,9 @@ Bluemix から OpenWhisk を使用している場合、Bluemix Cloudant サー�
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Bluemix Cloudant サービス・インスタンスに対応するパッケージ・バインディングの完全修飾名が表示されます。
+  これで、パッケージ・バインディングには、Cloudant サービス・インスタンスと関連付けられた資格情報が含まれるようになります。
 
-4. 前に作成されたパッケージ・バインディングが Cloudant Bluemix サービス・インスタンスのホストと資格情報で構成されているかどうかを確認します。
+3. 前に作成されたパッケージ・バインディングが Cloudant {{site.data.keyword.Bluemix_notm}} サービス・インスタンスのホストと資格情報で構成されていることを確認します。
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -87,13 +79,13 @@ Bluemix から OpenWhisk を使用している場合、Bluemix Cloudant サー�
           "key": "password",
           "value": "c9088667484a9ac827daf8884972737"
       }
-      ]
+  ]
   ```
 
-## Bluemix 外部の Cloudant データベースのセットアップ
+## {{site.data.keyword.Bluemix_notm}} 外部での Cloudant データベースのセットアップ
 {: #openwhisk_catalog_cloudant_outside}
 
-Bluemix で OpenWhisk を使用していない場合、または Bluemix の外部の Cloudant データベースをセットアップしたい場合は、Cloudant アカウントのパッケージ・バインディングを手動で作成する必要があります。Cloudant のアカウント・ホスト名、ユーザー名、パスワードが必要です。
+OpenWhisk を {{site.data.keyword.Bluemix_notm}} で使用しない場合、または、Cloudant データベースを {{site.data.keyword.Bluemix_notm}} の外部でセットアップしたい場合は、ご使用の Cloudant アカウント用のパッケージ・バインディングを手動で作成する必要があります。Cloudant アカウントのホスト名、ユーザー名、およびパスワードが必要です。
 
 1. Cloudant アカウント用に構成されるパッケージ・バインディングを作成します。
 
@@ -103,7 +95,7 @@ Bluemix で OpenWhisk を使用していない場合、または Bluemix の外�
   {: pre}
   
 
-2. パッケージ・バインディングが存在することを確認します。
+2. このパッケージ・バインディングが存在することを確認します。
 
   ```
   wsk package list
@@ -120,11 +112,11 @@ Bluemix で OpenWhisk を使用していない場合、または Bluemix の外�
 
 ### データベース変更イベントのフィルタリング
 
-フィルター関数を定義して、不必要な変更イベントがトリガーを発生させるのを回避できます。
+フィルター関数を定義して、不必要な変更イベントがトリガーを起動するのを回避できます。
 
 新規フィルター関数を作成するために、アクションを使用できます。
 
-以下のフィルター関数を使用して json 文書ファイル `design_doc.json` を作成します。
+以下のフィルター関数を含む json 文書ファイル `design_doc.json` を作成します。
 ```json
 {
   "doc": {
@@ -136,15 +128,14 @@ Bluemix で OpenWhisk を使用していない場合、または Bluemix の外�
 }
 ```
 
-このフィルター関数を使用してデータベースの新規設計文書を作成します。
-
+このフィルター関数を使用してデータベースに設計文書を作成します。
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 新規設計文書の情報が画面に表示されます。
 ```json
- {
-   "id": "_design/mailbox",
+{
+    "id": "_design/mailbox",
     "ok": true,
     "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
 }
@@ -152,22 +143,21 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
 
 ### フィルター関数を使用したトリガーの作成
 
-`changes` フィードを使用して、Cloudant データベースが変更されるたびにトリガーを発生させるサービスを構成することができます。パラメーターは次のとおりです。
-
+`changes` フィードを使用して、Cloudant データベースへの変更があるたびにトリガーを起動するサービスを構成できます。パラメーターは次のとおりです。
 
 - `dbname`: Cloudant データベースの名前。
-- `maxTriggers`: この限界に達するとトリガーの発生を停止します。デフォルトは無限です。
+- `maxTriggers`: この制限に達するとトリガー起動を停止します。デフォルトは無限です。
 - `filter`: 設計文書に定義されたフィルター関数。
-- `query_params`: フィルター関数の照会パラメーター (オプション)。
+- `query_params`: フィルター関数の追加の照会パラメーター。
 
 
-1. 前に作成したパッケージ・バインディングの `changes` フィードを使用してトリガーを作成し、状況が `new` の場合に文書が追加または修正されたときのみトリガーを発生させるように、`filter` および `query_params` を含めます。
-`/_/myCloudant` を、ご使用のパッケージ名に置き換えてください。
+1. 前に作成したパッケージ・バインディング内で `changes` フィードを使用してトリガーを作成します。状況が `new` のときに文書が追加または変更されたらトリガーを起動するように、`filter` 関数および `query_params` 関数を組み込みます。
+`/_/myCloudant` は実際のパッケージ名に置き換えてください。
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
@@ -184,19 +174,19 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
 
 3. Cloudant ダッシュボードで、既存の文書を変更するか、新しい文書を作成します。
 
-4. フィルター関数および照会パラメーターに基づいて、文書の状況が `new` である場合のみ、文書変更ごとに `myCloudantTrigger` トリガーの新規アクティベーションを監視します。
+4. フィルター関数および照会パラメーターに基づいて、文書の状況が `new` の場合のみ、文書変更のたびに `myCloudantTrigger` トリガーの新規アクティベーションがあることを確認します。
   
-  **注**: 新規アクティベーションを監視できない場合は、Cloudant データベースからの読み取りと Cloudant データベースへの書き込みに関する後続のセクションを参照してください。以下の読み取りおよび書き込みのステップを試してみると、Cloudant 資格情報が正しいことを確認するのに役立ちます。
+  **注:** 新規アクティベーションを確認できない場合は、Cloudant データベースの読み取りおよび書き込みに関する後続のセクションを参照してください。以降の読み取りおよび書き込みのステップを試すと、Cloudant 資格情報が正しいことを検証するのに役立ちます。
   
-  これで、ルールを作成してアクションに関連付け、文書の更新に対応することができるようになります。
+  これで、文書更新に反応できるようにするために、ルールを作成し、それらをアクションに関連付けられるようになりました。
   
-  生成されるイベントの内容には、以下のパラメーターがあります。
+  生成されるイベントの内容には以下のパラメーターが含まれます。
   
   - `id`: 文書 ID。
   - `seq`: Cloudant によって生成されるシーケンス ID。
-  - `changes`: オブジェクトの配列。それぞれに文書の改訂 ID が含まれる `rev` フィールドがあります。
+  - `changes`: オブジェクトの配列。各オブジェクトに `rev` フィールドがあり、文書の改訂 ID が含まれます。
   
-  トリガー・イベントの JSON 表記は、以下のようになります。
+  トリガー・イベントの JSON 表記は次のとおりです。
   
   ```json
   {
@@ -213,10 +203,9 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
 ## Cloudant データベースへの書き込み
 {: #openwhisk_catalog_cloudant_write}
 
-アクションを使用して `testdb` という Cloudant データベースに文書を格納することができます。このデータベースが、ご使用の Cloudant アカウントに必ず存在するようにしてください。
+アクションを使用して、`testdb` という名前の Cloudant データベース内に文書を保管できます。このデータベースが、ご使用の Cloudant アカウントに必ず存在するようにしてください。
 
-1. 前に作成したパッケージ・バインディングの `write` アクションを使用して、文書を格納します。
-`/_/myCloudant` を、ご使用のパッケージ名に置き換えてください。
+1. 前に作成したパッケージ・バインディング内で `write` アクションを使用して文書を保管します。`/_/myCloudant` は実際のパッケージ名に置き換えてください。
 
   ```
   wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
@@ -232,19 +221,17 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
   }
   ```
 
-2. Cloudant ダッシュボードで参照して、文書が存在していることを確認します。
+2. Cloudant ダッシュボードで文書を参照して、文書が存在していることを確認します。
 
-  `testdb` データベースのダッシュボード URL は、
-`https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100` のようになります。
+  `testdb` データベースのダッシュボード URL は、`https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100` のようになります。
 
 
 ## Cloudant データベースからの読み取り
 {: #openwhisk_catalog_cloudant_read}
 
-アクションを使用して `testdb` という Cloudant データベースから文書を取り出すことができます。このデータベースが、ご使用の Cloudant アカウントに必ず存在するようにしてください。
+アクションを使用して、`testdb` という名前の Cloudant データベースから文書を取り出すことができます。このデータベースが、ご使用の Cloudant アカウントに必ず存在するようにしてください。
 
-- 前に作成したパッケージ・バインディングの `read` アクションを使用して、文書を取り出します。
-`/_/myCloudant` を、ご使用のパッケージ名に置き換えてください。
+- 前に作成したパッケージ・バインディング内で `read` アクションを使用して文書を取り出します。`/_/myCloudant` は実際のパッケージ名に置き換えてください。
 
   ```
   wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
@@ -258,10 +245,10 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
   }
   ```
 
-## Cloudant データベースからの文書の処理を行うためのアクション・シーケンスおよび変更トリガーの使用
+## アクション・シーケンスと変更トリガーを使用して Cloudant データベースからの文書を処理する
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-ルールでアクション・シーケンスを使用して、Cloudant 変更イベントに関連する文書をフェッチして処理することができます。
+ルール内のアクション・シーケンスを使用して、Cloudant 変更イベントに関連付けられた文書を取り出して処理することができます。
 
 以下は、文書を処理するアクションのサンプル・コードです。
 ```javascript
@@ -270,27 +257,26 @@ function main(doc){
 }
 ```
 
-Cloudant からの文書を処理するアクションを作成します。
+Cloudant からの文書を処理するためのアクションを作成します。
 ```
 wsk action create myAction myAction.js
 ```
 {: pre}
 
-データベースから文書を読み取るには、Cloudant パッケージから `read` アクションを使用できます。
-`read` アクションを `myAction` と組み合わせてアクション・シーケンスを作成することもできます。
+データベースから文書を読み取るために、Cloudant パッケージから `read` アクションを使用できます。
+`read` アクションを `myAction` と組み合わせて、アクション・シーケンスを作成できます。
 ```
 wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
-新規 Cloudant トリガー・イベントでアクションを活動化するルール内で、アクション `sequenceAction` を使用できます。
+`sequenceAction` アクションを、新規 Cloudant トリガー・イベントでこのアクションを活動化するルール内で使用できます。
 ```
 wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
-**注:** Cloudant `changes` トリガーは、以前はパラメーター `includeDoc` を使用していましたが、これはもうサポートされなくなりました。
-  `includeDoc` を使用して以前に作成されたトリガーは作成し直す必要があります。トリガーを作成し直すには、以下のステップを実行してください。
+**注:** Cloudant `changes` トリガーでサポートされていた `includeDoc` パラメーターはもうサポートされていません。`includeDoc` を使用して以前に作成されたトリガーを作成し直すことができます。トリガーを作成し直すには、以下のステップを実行します。 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -300,6 +286,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  上の例を使用して、変更された文書を読み取って既存のアクションを呼び出すアクション・シーケンスを作成できます。
-  もう有効ではない可能性のあるすべてのルールを忘れずに使用不可にし、アクション・シーケンス・パターンを使用して新しく作成するようにしてください。
+  この例を使用して、変更された文書を読み取って既存のアクションを呼び出すアクション・シーケンスを作成できます。
+  もう有効ではないルールがあれば忘れずに使用不可にし、アクション・シーケンス・パターンを使用して新しく作成するようにしてください。
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-21"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -14,49 +14,52 @@ lastupdated: "2017-02-21"
 # Watson Translator-Paket verwenden
 {: #openwhisk_catalog_watson_translator}
 
-Das Paket `/whisk.system/watson-translator` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für die Übersetzung.
+Das Paket `/whisk.system/watson-translator` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für Übersetzungen.
+{: shortdesc}
 
 Das Paket enthält die folgenden Aktionen.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-translator` | Paket | username, password | Paket für Textübersetzung und Spracherkennung  |
+| `/whisk.system/watson-translator` | Paket | username, password | Paket für Textübersetzung und Spracherkennung |
 | `/whisk.system/watson-translator/translator` | Aktion | payload, translateFrom, translateTo, translateParam, username, password | Übersetzung von Text |
 | `/whisk.system/watson-translator/languageId` | Aktion | payload, username, password | Ermittlung einer Sprache |
 
-**Hinweis:** Das Paket `/whisk.system/watson` wird einschließlich der Aktionen `/whisk.system/watson/translate` und `/whisk.system/watson/languageId` nicht mehr verwendet.
+**Hinweis:** Das Paket `/whisk.system/watson` ist einschließlich der Aktionen `/whisk.system/watson/translate` und `/whisk.system/watson/languageId` veraltet.
 
-## Watson Translator-Paket in Bluemix einrichten
+## Watson Translator-Paket in {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk von Bluemix verwenden, dann erstellt OpenWhisk automatisch Paketbindungen für Ihre Bluemix-Watson-Serviceinstanzen.
+Wenn Sie OpenWhisk über {{site.data.keyword.Bluemix_notm}} verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre {{site.data.keyword.Bluemix_notm}}-Watson-Serviceinstanzen.
 
-1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem Bluemix-[Dashboard](http://console.ng.Bluemix.net).
+1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
   
-  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der Bluemix-Organisation und den Bereich merken, in dem Sie sich befinden.
+  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
   
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Watson-Serviceinstanz, die Sie erstellt haben.
-  
   ```
   wsk package refresh
   ```
   {: pre}
+  
   ```
   created bindings:
   Bluemix_Watson_Translator_Credentials-1
   ```
+  
   ```
   wsk package list
   ```
   {: pre}
+  
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_Translator_Credentials-1 private
   ```
   
   
-## Watson Translator-Paket außerhalb von Bluemix einrichten
+## Watson Translator-Paket außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie Watson Translator außerhalb von Bluemix einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson Translator-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson Translator-Service.
+Wenn Sie OpenWhisk nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie Watson Translator außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson Translator-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson Translator-Service.
 
 - Erstellen Sie eine Paketbindung, die für Ihren Watson Translator-Service konfiguriert ist.
 
@@ -78,7 +81,6 @@ Die Aktion `/whisk.system/watson-translator/translator` übersetzt Text aus eine
 - `translateTo`: Ein zweistelliger Code für die Zielsprache.
 
 - Rufen Sie die Aktion `translator` in Ihrer Paketbindung auf, um einen Text aus dem Englischen ins Französische zu übersetzen.
-  
   ```
   wsk action invoke myWatsonTranslator/translator \
   --blocking --result \
@@ -86,6 +88,7 @@ Die Aktion `/whisk.system/watson-translator/translator` übersetzt Text aus eine
   --param translateTo "fr"
   ```
   {: pre}
+  
   ```json
   {
       "payload": "Ciel bleu a venir"
@@ -102,13 +105,13 @@ Die Aktion `/whisk.system/watson-translator/languageId` ermittelt die Sprache ei
 - `payload`: Der zu ermittelnde Text.
 
 - Rufen Sie die Aktion `languageId` in Ihrer Paketbindung auf, um die Sprache zu ermitteln.
-  
   ```
   wsk action invoke myWatsonTranslator/languageId \
   --blocking --result \
   --param payload "Ciel bleu a venir"
   ```
   {: pre}
+  
   ```json
   {
     "payload": "Ciel bleu a venir",

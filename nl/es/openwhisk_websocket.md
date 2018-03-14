@@ -1,14 +1,28 @@
+---
+
+copyright:
+  years: 2016, 2018
+lastupdated: "2018-01-09"
+
+---
+
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:screen: .screen}
+{:pre: .pre}
+
 # Utilización del paquete WebSocket
 {: #openwhisk_catalog_websocket}
 
 El paquete `/whisk.system/websocket` proporciona un método cómodo para publicar mensajes en un WebSocket.
+{: shortdesc}
 
 El paquete incluye las acciones siguientes:
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/websocket` | paquete | uri | Programas de utilidad para comunicar con WebSockets |
-| `/whisk.system/websocket/send` | acción | uri, payload | Enviar la carga útil al URI de WebSocket |
+| `/whisk.system/websocket` | Paquete | uri | Programas de utilidad para comunicar con WebSockets |
+| `/whisk.system/websocket/send` | Acción | uri, payload | Enviar la carga útil al URI de WebSocket |
 
 Si tiene intención de enviar varios mensajes al mismo URI de WebSocket, se recomienda crear un enlace de paquete con el valor `uri`.  Con enlace, no necesita especificar el valor cada vez que utilice la acción `send`.
 
@@ -16,5 +30,5 @@ Si tiene intención de enviar varios mensajes al mismo URI de WebSocket, se reco
 
 La acción `/whisk.system/websocket/enviar` envía una carga útil a un URI de WebSocket. Los parámetros son según se indica a continuación:
 
-- `uri`: el URI del servidor websocket (por ejemplo, ws://mywebsockethost:80)
-- `payload`: el mensaje que desea enviar a WebSocket
+- `uri`: el URI del servidor websocket (por ejemplo, ws://mywebsockethost:80).
+- `payload`: el mensaje que desea enviar a WebSocket.

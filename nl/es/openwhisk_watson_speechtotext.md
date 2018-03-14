@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-21"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,47 +15,51 @@ lastupdated: "2017-02-21"
 {: #openwhisk_catalog_watson_texttospeech}
 
 El paquete `/whisk.system/watson-speechToText` ofrece una forma cómoda de invocar API Watson para convertir la voz a texto.
+{: shortdesc}
 
 El paquete incluye las acciones siguientes.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-speechToText` | paquete | usuario, contraseña | Paquete para convertir habla en texto |
-| `/whisk.system/watson-speechToText/speechToText` | acción | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convertir audio en texto |
+| `/whisk.system/watson-speechToText` | Paquete | usuario, contraseña | Paquete para convertir habla en texto |
+| `/whisk.system/watson-speechToText/speechToText` | Acción | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convertir audio en texto |
 
 **Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/speechToText`.
 
-## Configuración del paquete Watson Speech to Text en Bluemix
+## Configuración del paquete Watson Speech to Text en {{site.data.keyword.Bluemix_notm}}
 
-Si utiliza OpenWhisk desde Bluemix, OpenWhisk crea automáticamente enlaces de paquete para sus instancias de servicio de Bluemix Watson.
+Si utiliza OpenWhisk desde {{site.data.keyword.Bluemix_notm}}, OpenWhisk crea automáticamente enlaces de paquete para sus instancias de servicio de {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Cree una instancia de servicio de Watson Speech to Text en el [panel de control](http://console.ng.Bluemix.net) de Bluemix.
+1. Cree una instancia de servicio de Watson Speech to Text en el [panel de control](http://console.ng.Bluemix.net) de {{site.data.keyword.Bluemix_notm}}.
   
-  Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de Bluemix en el que se encuentra.
+  Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de
+{{site.data.keyword.Bluemix_notm}} en el que se encuentra.
   
 2. Actualizar los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia de servicio de Watson que ha creado.
-  
   ```
   wsk package refresh
   ```
   {: pre}
+  
   ```
   created bindings:
   Bluemix_Watson_SpeechToText_Credentials-1
   ```
+  
   ```
   wsk package list
   ```
   {: pre}
+  
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_SpeechToText_Credentials-1 private
   ```
   
 
-## Configuración de un paquete Watson Speech to Text fuera de Bluemix
+## Configuración de un paquete Watson Speech to Text fuera de {{site.data.keyword.Bluemix_notm}}
 
-Si no utiliza OpenWhisk en Bluemix o si quiere configurar Watson Speech to Text fuera de Bluemix, debe crear manualmente un enlace de paquete para el servicio de Watson Speech to Text. Necesita el nombre de usuario del servicio de Watson Speech to Text y la contraseña.
+Si no utiliza OpenWhisk en {{site.data.keyword.Bluemix_notm}} o si quiere configurar Watson Speech to Text fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para el servicio de Watson Speech to Text. Necesita el nombre de usuario del servicio de Watson Speech to Text y la contraseña.
 
 - Cree un enlace de paquete configurado para el servicio de Watson Speech to Text.
   
@@ -89,11 +93,11 @@ La acción `/whisk.system/watson-speechToText/speechToText` convierte el audio e
  
 
 - Invoque la acción `speechToText` en el enlace de paquete para convertir el audio codificado.
-  
   ```
   wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
   ```
   {: pre}
+
   ```json
   {
     "data": "Hello Watson"

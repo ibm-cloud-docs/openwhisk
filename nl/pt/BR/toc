@@ -1,32 +1,52 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="openwhisk" audience="compute" href="/docs/openwhisk/index.html}
-IBM OpenWhisk
+{: .toc subcollection="cloud-functions" audience="compute" href="/docs/openwhisk/index.html"}
+IBM Cloud Functions
 
     {: .navgroup id="learn"}
     index.md
     openwhisk_about.md
 
     {: .topicgroup}
-    Links relacionados
-        [Descobrir: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
-        [OpenWhisk no IBM developerWorks](https://developer.ibm.com/openwhisk/)
-        [Website do projeto Apache OpenWhisk](http://openwhisk.org)
-        [Gerenciamento de API nativa no Bluemix](https://console.ng.bluemix.net/docs/apis/management/index.html)
-    {: .navgroup-end}
+    Tutoriais
+        deploy_templates.md
+        ../tutorials/serverless-mobile-backend.md
+        ../tutorials/serverless-api-webapp.md
 
-    {: .navgroup id="reference"}
-    [Documentação da API de REST](./openwhisk_rest_api.html)
-    [Referência da API de REST](https://console.ng.bluemix.net/apidocs/98)
+    {: .topicgroup}
+    Links relacionados
+        [Descobrir: OpenWhisk](http://www.ibm.com/cloud-computing/bluemix/openwhisk/){: new_window}
+        [OpenWhisk no IBM developerWorks](https://developer.ibm.com/openwhisk/){: new_window}
+        [Website de projeto do Apache OpenWhisk](http://openwhisk.org/){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    openwhisk_cli.md
+    {: .topicgroup}
+    CLI do Cloud Functions
+        bluemix_cli.md
+        openwhisk_cli.md
+    
+    {: .topicgroup}
+    Ajuda do pacote
+        openwhisk_packages.md
+        openwhisk_catalog.md
+
+    {: .topicgroup}
+    Usando pacotes
+        openwhisk_alarms.md
+        openwhisk_cloudant.md
+        openwhisk_github.md
+        openwhisk_messagehub.md
+        openwhisk_pushnotifications.md
+        openwhisk_slack.md
+        openwhisk_weather.md
+        openwhisk_websocket.md
+
+    binding_services.md
     openwhisk_use_cases.md
     openwhisk_actions.md
     openwhisk_triggers_rules.md
-    openwhisk_packages.md
     openwhisk_webactions.md
     openwhisk_reference.md
     openwhisk_monitoring.md
@@ -34,18 +54,19 @@ IBM OpenWhisk
     openwhisk_apigateway.md
     openwhisk_feeds.md
     openwhisk_annotations.md
-    openwhisk_catalog.md
-    openwhisk_cloudant.md
-    openwhisk_alarms.md
-    openwhisk_weather.md
-    openwhisk_watson_translator.md
-    openwhisk_watson_texttospeech.md
-    openwhisk_watson_speechtotext.md
-    openwhisk_messagehub.md
-    openwhisk_pushnotifications.md
-    openwhisk_slack.md
-    openwhisk_github.md
-    openwhisk_websocket.md
     openwhisk_goserverless.md
     openwhisk_compare.md
+    
+    {: .topicgroup}
+    Integração do Watson
+        openwhisk_watson_translator.md
+        openwhisk_watson_texttospeech.md
+        openwhisk_watson_speechtotext.md
+        ../services/IoT/gateways/iotgw.md
+    {: .navgroup-end}
+
+    {: .navgroup id="reference"}
+    [Documentação da API de REST](./openwhisk_rest_api.html)
+    [Referência da API de REST](https://console.ng.bluemix.net/apidocs/98){: new_window}
+    [Gerenciamento de API nativa no IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
     {: .navgroup-end}

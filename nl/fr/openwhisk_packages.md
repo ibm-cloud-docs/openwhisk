@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-27"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -11,21 +11,22 @@ lastupdated: "2017-02-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Utilisation et création de packages {{site.data.keyword.openwhisk_short}}
+# Création et utilisation de packages
 {: #openwhisk_packages}
 
-Dans {{site.data.keyword.openwhisk_short}}, vous pouvez utiliser des packages afin de regrouper des actions connexes et de les partager.
+Dans {{site.data.keyword.openwhisk}}, vous pouvez utiliser des packages dans le but de regrouper des actions connexes et de les partager.
+{: shortdesc}
 
 Un package peut inclure des *actions* et des *flux*.
 - Une action est un élément de code qui s'exécute sur {{site.data.keyword.openwhisk_short}}. Par exemple, le package Cloudant inclut des actions permettant de lire et d'écrire des enregistrements dans une base de données Cloudant.
-- Un flux est utilisé pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs. Par exemple, le package Alarm inclut un flux qui peut exécuter un déclencheur à la fréquence spécifiée.
+- Un flux est utilisé pour configurer une source d'événement externe afin d'exécuter des événements déclencheurs. Par exemple, le package Alarm inclut un flux qui peut exécuter un déclencheur à la fréquence spécifiée.
 
-Chaque entité {{site.data.keyword.openwhisk_short}}, notamment les packages, appartient à un *espace de nom*, et le nom qualifié complet d'une entité est `/nom_espace_nom[/nom_package]/nom_entité`. Reportez-vous aux [conventions de dénomination](./openwhisk_reference.html#openwhisk_entities) pour plus d'informations.
+Chaque entité {{site.data.keyword.openwhisk_short}}, notamment les packages, appartient à un *espace de nom*, et le nom qualifié complet d'une entité est `/nom_espace_nom[/nom_package]/nom_entité`. Pour plus d'informations, voir les [instructions de désignation](./openwhisk_reference.html#openwhisk_entities).
 
 Les sections ci-après expliquent comment parcourir les packages et utiliser les déclencheurs et les flux qu'ils contiennent. De plus, si vous souhaitez ajouter vos propres packages au catalogue, lisez les sections relatives à la création et au partage de packages.
 
-## Parcours des packages
-{: #openwhisk_packagedisplay}
+## Exploration des packages
+{: #browse-packages}
 
 Plusieurs packages sont enregistrés dans {{site.data.keyword.openwhisk_short}}. Vous pouvez obtenir la liste des packages qui se trouvent dans un espace de nom, répertorier les entités qui se trouvent dans un package, et obtenir la description de chaque entité d'un package.
 
@@ -69,11 +70,11 @@ Plusieurs packages sont enregistrés dans {{site.data.keyword.openwhisk_short}}.
   Le package Cloudant définit également les paramètres `username`, `password`, `host` et `port`. Ceux-ci doivent être spécifiés pour que les actions et les flux aient un sens. Par exemple, les paramètres autorisent les actions sur un compte Cloudant spécifique.
 
 3. Obtenez une description de l'action `/whisk.system/cloudant/read`.
-
   ```
   wsk action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
+
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -85,29 +86,29 @@ Plusieurs packages sont enregistrés dans {{site.data.keyword.openwhisk_short}}.
 ## Appel d'actions dans un package
 {: #openwhisk_package_invoke}
 
-Vous pouvez appeler des actions dans un package, à l'instar des autres actions. Les quelques étapes suivantes expliquent comment appeler l'action `greeting` dans le package `/whisk.system/samples` avec différents paramètres.
+Vous pouvez appeler des actions dans un package, à l'instar des autres actions. Les quelques étapes suivantes expliquent comment appeler l'action `greeting` qui se trouve dans le package `/whisk.system/samples` avec différents paramètres.
 
 1. Obtenez une description de l'action `/whisk.system/samples/greeting`.
-
   ```
   wsk action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
+  
   ```
   action /whisk.system/samples/greeting: Print a friendly greeting
      (params: name place)
   ```
 
-  Remarquez que l'action `greeting` admet deux paramètres : `name` et `place`.
+  Vous constaterez que l'action `greeting` admet deux paramètres : `name` et `place`.
 
-2. Appelez l'action sans paramètre.
-
+2. Appelez l'action sans aucun paramètre.
   ```
   wsk action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
+
   ```json
-    {
+  {
       "payload": "Hello, stranger from somewhere!"
   }
   ```
@@ -115,24 +116,24 @@ Vous pouvez appeler des actions dans un package, à l'instar des autres actions.
   La sortie est un message générique car aucun paramètre n'a été spécifié.
 
 3. Appelez l'action avec des paramètres.
-
   ```
   wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
+
   ```json
-    {
+  {
       "payload": "Hello, Mork from Ork!"
   }
   ```
 
-  Remarquez que la sortie utilise les paramètres `name` et `place` qui ont été transmis à l'action.
+  Vous constaterez que la sortie utilise les paramètres `name` et `place` qui ont été transmis à l'action.
 
 
 ## Création et utilisation de liaisons de package
 {: #openwhisk_package_bind}
 
-Vous pouvez utiliser les entités d'un package directement, mais il se peut que vous transmettiez les mêmes paramètres à l'action à chaque fois. Dans ce cas, établissez une liaison à un package et spécifiez des paramètres par défaut. Ces paramètres sont hérités par les actions du package.
+Vous pouvez utiliser les entités d'un package directement, mais il se peut que vous transmettiez les mêmes paramètres à l'action à chaque fois. Vous pouvez simplifier le processus en liant un package et spécifiant les paramètres par défaut, qui sont hérités par les actions qui se trouvent dans le package.
 
 Par exemple, dans le package `/whisk.system/cloudant`, vous pouvez définir les valeurs par défaut `username`, `password` et `dbname` dans une liaison de package ; elles seront transmises automatiquement aux actions du package.
 
@@ -162,7 +163,7 @@ Dans l'exemple simple ci-dessous, vous établissez une liaison au package `/whis
    action /myNamespace/valhallaSamples/curl: Curl a host url
   ```
 
-  Remarquez que toutes les actions dans le package `/whisk.system/samples` sont disponibles dans la liaison de package `valhallaSamples`.
+  Vous constaterez que toutes les actions du package `/whisk.system/samples` sont disponibles dans la liaison de package `valhallaSamples`.
 
 3. Appelez une action dans la liaison de package.
 
@@ -176,34 +177,34 @@ Dans l'exemple simple ci-dessous, vous établissez une liaison au package `/whis
   }
   ```
 
-  Remarquez dans le résultat que l'action hérite du paramètre `place` que vous avez défini lorsque vous avez créé la liaison de package `valhallaSamples`.
+  Vous constaterez que dans le résultat, l'action hérite du paramètre `place` que vous avez défini lorsque vous avez créé la liaison de package `valhallaSamples`.
 
 4. Appelez une action et remplacez la valeur de paramètre par défaut.
-
   ```
   wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
+
   ```
   {
       "payload": "Hello, Odin from Asgard!"
   }
   ```
 
-  Remarquez que la valeur de paramètre `place` qui est spécifiée avec l'appel d'action remplace la valeur par défaut définie dans la liaison de package `valhallaSamples`.
+  Vous constaterez que la valeur de paramètre `place` qui est spécifiée avec l'appel d'action remplace la valeur par défaut définie dans la liaison de package `valhallaSamples`.
 
 
-## Création et utilisation d'un flux de déclencheur
+## Création et utilisation de liaisons de déclencheur
 {: #openwhisk_package_trigger}
 
-Les flux sont pratiques pour configurer une source d'événements externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exécuter un déclencheur toutes les secondes, et comment utiliser une règle permettant d'appeler une action toutes les secondes.
+Les flux sont pratiques pour configurer une source d'événement externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple montre comment utiliser un flux dans le package Alarms afin d'exécuter un déclencheur toutes les secondes, et comment utiliser une règle permettant d'appeler une action toutes les secondes.
 
 1. Obtenez une description du flux dans le package `/whisk.system/alarms`.
-
   ```
   wsk package get --summary /whisk.system/alarms
   ```
   {: pre}
+
   ```
   package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -213,8 +214,9 @@ Les flux sont pratiques pour configurer une source d'événements externe afin d
   wsk action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
+
   ```
-  action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
+  action /whisk.system/alarms/alarm: Fire Trigger when alarm occurs
      (params: cron trigger_payload)
   ```
 
@@ -223,17 +225,16 @@ Les flux sont pratiques pour configurer une source d'événements externe afin d
   - `trigger_payload` : valeur de paramètre de contenu à définir dans chaque événement déclencheur.
 
 2. Créez un déclencheur qui s'exécute toutes les huit secondes.
-
   ```
   wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
+
   ```
   ok: created trigger feed everyEightSeconds
   ```
 
 3. Créez un fichier 'hello.js' avec le code d'action suivant :
-
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -242,14 +243,12 @@ Les flux sont pratiques pour configurer une source d'événements externe afin d
   {: codeblock}
 
 4. Vérifiez que l'action existe.
-
   ```
   wsk action update hello hello.js
   ```
   {: pre}
 
 5. Créez une règle qui appelle l'action `hello` à chaque fois que le déclencheur `everyEightSeconds` s'exécute.
-
   ```
   wsk rule create myRule everyEightSeconds hello
   ```
@@ -265,7 +264,7 @@ Les flux sont pratiques pour configurer une source d'événements externe afin d
   ```
   {: pre}
 
-  Vous devriez voir des activations toutes les huit secondes pour le déclencheur, la règle et l'action. L'action reçoit les paramètres `{"name":"Mork", "place":"Ork"}` à chaque appel.
+  Comme vous pouvez le constater, les activations sont observées toutes les huit secondes pour le déclencheur, la règle et l'action. L'action reçoit les paramètres `{"name":"Mork", "place":"Ork"}` à chaque appel.
 
 
 ## Création d'un package
@@ -274,43 +273,42 @@ Les flux sont pratiques pour configurer une source d'événements externe afin d
 Un package est utilisé pour organiser un ensemble d'actions et de flux connexes.
 Il permet également de partager des paramètres entre toutes les entités du package.
 
-Pour créer un package personnalisé contenant une action simple, procédez comme suit.
+Pour créer un package personnalisé contenant une action simple, procédez comme suit :
 
 1. Créez un package appelé "custom".
-
   ```
   wsk package create custom
   ```
   {: pre}
+
   ```
   ok: created package custom
   ```
 
 2. Obtenez un récapitulatif du package.
-
   ```
   wsk package get --summary custom
   ```
   {: pre}
+
   ```
-  package /monEspaceNom/custom
+  package /myNamespace/custom
   ```
 
   Remarquez que le package est vide.
 
 3. Créez un fichier appelé `identity.js` contenant le code d'action ci-après. Cette action renvoie tous les paramètres d'entrée.
-
   ```javascript
   function main(args) { return args; }
   ```
   {: codeblock}
 
 4. Créez une action `identity` dans le package `custom`.
-
   ```
   wsk action create custom/identity identity.js
   ```
   {: pre}
+  
   ```
   ok: created action custom/identity
   ```
@@ -318,50 +316,51 @@ Pour créer un package personnalisé contenant une action simple, procédez comm
   La création d'une action dans un package requiert que vous ajoutiez le nom de package comme préfixe au nom d'action. L'imbrication de package n'est pas autorisée. Un package ne peut contenir que des actions et ne peut pas comporter d'autres packages.
 
 5. Obtenez à nouveau un récapitulatif du package.
-
   ```
   wsk package get --summary custom
   ```
   {: pre}
+
   ```
-  package /monEspaceNom/custom
-   action /monEspaceNom/custom/identity
+  package /myNamespace/custom
+   action /myNamespace/custom/identity
   ```
 
   A présent, vous pouvez voir l'action `custom/identity` dans votre espace de nom.
 
-6. Appelez l'action dans le package.
-
+6. Appelez l'action du package.
   ```
   wsk action invoke --blocking --result custom/identity
   ```
   {: pre}
+
   ```json
   {}
   ```
 
 
-Vous pouvez définir des paramètres par défaut pour toutes les entités d'un package. Pour ce faire, définissez des paramètres au niveau du package, qui sont hérités par toutes les actions dans le package. Voici un exemple :
+Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un package en définissant des paramètres au niveau du package qui sont hérités par toutes les actions du package. L'exemple suivant montre comment cet héritage fonctionne :
 
 1. Mettez à jour le package `custom` avec deux paramètres : `city` et `country`.
-
   ```
   wsk package update custom --param city Austin --param country USA
   ```
   {: pre}
+
   ```
   ok: updated package custom
   ```
 
-2. Affichez les paramètres dans le package et l'action, et remarquez comment l'action `identity` dans le package hérite des paramètres du package.
-
+2. Affichez les paramètres dans le package et l'action, et remarquez comment l'action `identity` du package hérite des paramètres du package.
   ```
   wsk package get custom parameters
   ```
   {: pre}
+
   ```
   ok: got package custom, displaying field parameters
   ```
+
   ```json
   [
       {
@@ -379,9 +378,11 @@ Vous pouvez définir des paramètres par défaut pour toutes les entités d'un p
   wsk action get custom/identity parameters
   ```
   {: pre}
+
   ```
   ok: got action custom/identity, , displaying field parameters
   ```
+
   ```json
   [
       {
@@ -402,26 +403,25 @@ Vous pouvez définir des paramètres par défaut pour toutes les entités d'un p
   ```
   {: pre}
   ```json
-    {
+  {
       "city": "Austin",
       "country": "USA"
   }
   ```
 
 4. Appelez l'action identity avec des paramètres. Les paramètres d'appel sont fusionnés avec les paramètres du package ; ils les remplacent.
-
   ```
   wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
+
   ```json
-    {
+  {
       "city": "Dallas",
       "country": "USA",
       "state": "Texas"
   }
   ```
-
 
 ## Partage d'un package
 {: #openwhisk_packages_share}
@@ -429,30 +429,31 @@ Vous pouvez définir des paramètres par défaut pour toutes les entités d'un p
 Une fois que les actions et les flux qui constituent un package ont été débogués et testés, le package peut être partagé avec tous les utilisateurs d'{{site.data.keyword.openwhisk_short}}. Le partage du package permet aux utilisateurs de lier le package, d'appeler des actions du package et de créer des actions de séquence et des règles {{site.data.keyword.openwhisk_short}}.
 
 1. Partagez le package avec tous les utilisateurs :
-
   ```
   wsk package update custom --shared yes
   ```
   {: pre}
+
   ```
   ok: updated package custom
   ```
 
 2. Affichez la propriété `publish` du package pour vérifier qu'elle est désormais associée à la valeur true.
-
   ```
   wsk package get custom publish
   ```
   {: pre}
+
   ```
   ok: got package custom, displaying field publish
   ```
+
   ```json
   true
   ```
 
 
-Désormais, d'autres utilisateurs peuvent se servir de votre package `custom`, et notamment établir une liaison au package ou appeler directement une action qu'il contient. Pour ce faire, ils doivent connaître les noms qualifiés complets du package. Les actions et les flux qui se trouvent dans un package partagé sont *publics*. Si le package est privé, son contenu est également privé.
+Désormais, d'autres utilisateurs peuvent se servir de votre package `custom`, et notamment établir une liaison au package ou appeler directement une action qu'il contient. Pour ce faire, ils doivent connaître les noms qualifiés complets du package. Les actions et les flux qui se trouvent dans un package partagé sont _publics_. Si le package est privé, son contenu est également privé.
 
 1. Obtenez une description du package pour afficher les noms qualifiés complets du package et de l'action.
 
@@ -461,8 +462,8 @@ Désormais, d'autres utilisateurs peuvent se servir de votre package `custom`, e
   ```
   {: pre}
   ```
-  package /monEspaceNom/custom
-   action /monEspaceNom/custom/identity
+  package /myNamespace/custom
+   action /myNamespace/custom/identity
   ```
 
-  Dans l'exemple précédent, vous utilisiez l'espace de nom `monEspaceNom` et cet espace de nom figure dans le nom qualifié complet.
+  Dans l'exemple précédent, vous utilisiez l'espace de nom `myNamespace` et cet espace de nom figure dans le nom qualifié complet.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017
-lastupdated: "2017-05-04"
+  years: 2017, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,13 +15,14 @@ lastupdated: "2017-05-04"
 {: #openwhisk_rest_api}
 
 Nachdem Ihre OpenWhisk-Umgebung aktiviert ist, können Sie OpenWhisk mit den Web-Apps oder mobilen Apps mit REST-API-Aufrufen verwenden.
+{: shortdesc}
 
 Weitere Informationen zu den APIs für Aktionen, Aktivierungen, Pakete, Regeln und Auslöser finden Sie in der [OpenWhisk-API-Dokumentation](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
 
 
-Alle Funktionen im System stehen über eine REST-API zur Verfügung. Es gibt Sammlungs- und Entitätsendpunkte für Aktionen, Auslöser, Regeln, Pakete, Aktivierungen und Namensbereiche.
+Alle Funktionen im System stehen über eine REST-API zur Verfügung. Sammlungs- und Entitätsendpunkte sind für Aktionen, Auslöser, Regeln, Pakete, Aktivierungen und Namensbereiche verfügbar.
 
-Die Sammlungsendpunkte lauten wie folgt:
+Verfügbare Sammlungsendpunkte:
 - `https://{APIHOST}/api/v1/namespaces`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/actions`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/triggers`
@@ -34,7 +35,7 @@ Für `{namespace}` kann das Zeichen `_` verwendet werden, um den *Standardnamens
 
 Sie können eine GET-Anforderung für die Sammlungsendpunkte ausführen, um eine Liste der Entitäten in der Sammlung abzurufen.
 
-Für jeden Entitätstyp gibt es Entitätsendpunkte:
+Die folgenden Entitätsendpunkte sind für die einzelnen Typen von Entität verfügbar:
 - `https://{APIHOST}/api/v1/namespaces/{namespace}`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/actions/[{packageName}/]{actionName}`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/triggers/{triggerName}`
@@ -42,23 +43,22 @@ Für jeden Entitätstyp gibt es Entitätsendpunkte:
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/packages/{packageName}`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/activations/{activationName}`
 
-Die Endpunkte für Namensbereiche und Aktivierungen unterstützen nur GET-Anforderungen. Die Endpunkte für Aktionen, Auslöser, Regeln und Pakete unterstützen GET-, PUT- und DELETE-Anforderungen. Die Endpunkte für Aktionen, Auslöser und Regeln unterstützen auch POST-Anforderungen, die zum Aufrufen von Aktionen und Auslösern sowie zum Aktivieren und Inaktivieren von Regeln verwendet werden. 
+Die Endpunkte für Namensbereiche und Aktivierungen unterstützen GET-Anforderungen. Die Endpunkte für Aktionen, Auslöser, Regeln und Pakete unterstützen GET-, PUT- und DELETE-Anforderungen. Die Endpunkte für Aktionen, Auslöser und Regeln unterstützen auch POST-Anforderungen, die zum Aufrufen von Aktionen und Auslösern sowie zum Aktivieren und Inaktivieren von Regeln verwendet werden. 
 
-Alle APIs sind mit der HTTP-Basisauthentifizierung geschützt. 
-Sie können das Tool [wskadmin](../tools/admin/wskadmin) verwenden, um einen neuen Namensbereich und eine neue Authentifizierung zu generieren.
-Die durch einen Doppelpunkt voneinander getrennten Basic-Berechtigungsnachweise zur Authentifizierung befinden sich in der Eigenschaft `AUTH` in der `~/.wskprops`-Datei. 
-Sie können diese Berechtigungsnachweise auch über die Befehlszeilenschnittstelle (CLI) abrufen, indem Sie `wsk property get --auth` ausführen.
+Alle APIs sind mit der HTTP-Basisauthentifizierung geschützt.
+Sie können das Tool [wskadmin ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) verwenden, um einen neuen Namensbereich und eine neue Authentifizierung zu generieren.
+Die durch einen Doppelpunkt voneinander getrennten Basic-Berechtigungsnachweise zur Authentifizierung befinden sich in der Eigenschaft `AUTH` in Ihrer Datei `~/.wskprops`.
+Sie können diese Berechtigungsnachweise auch über die Befehlszeilenschnittstelle (CLI) abrufen, indem Sie den Befehl `wsk property get --auth` ausführen.
 
 
-Das folgende Beispiel zeigt, wie Sie mit dem Befehlstool [cURL](https://curl.haxx.se) eine Liste aller Pakete im Namensbereich `whisk.system` abrufen können:
-
+Im folgenden Beispiel wird das Befehlstool [cURL](https://curl.haxx.se) verwendet, um eine Liste aller Pakete im Namensbereich `whisk.system` abzurufen.
 ```bash
 curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/packages
 ```
 {: pre}
 
 ```json
-  [
+[
   {
     "name": "slack",
     "binding": false,
@@ -75,22 +75,24 @@ curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whi
 ]
 ```
 
-In diesem Beispiel wurde die Authentifizierung mithilfe des Flags `-u` übergeben; Sie können diesen Wert auch als Teil der URL als `https://$AUTH@{APIHOST}` übergeben.
+In diesem Beispiel wurde die Authentifizierung mithilfe des Flags `-u` übergeben. Sie können diesen Wert auch als Teil der URL, zum Beispiel als `https://$AUTH@{APIHOST}`, übergeben.
 
 Von der OpenWhisk-API werden Anforderung/Antwort-Aufrufe von Web-Clients unterstützt. Von OpenWhisk wird auf `OPTIONS`-Anforderungen mit CORS-Headern (CORS - Cross-Origin Resource Sharing) geantwortet. Derzeit sind alle Ursprünge zulässig (d. h. Access-Control-Allow-Origin ist "`*`") und Access-Control-Allow-Header sorgen für die Autorisierung und den Inhaltstyp.
 
-**Achtung:** Da von OpenWhisk derzeit nur ein Schlüssel pro Namensbereich unterstützt wird, wird empfohlen, CORS nur für einfache Experimente und nicht darüber hinaus zu verwenden. Verwenden Sie [Webaktionen](webactions.md) oder das [API-Gateway](apigateway.md), um Ihre Aktionen der Öffentlichkeit zugänglich zu machen und nicht die OpenWhisk-Berechtigungsschlüssel für Clientanwendungen zu verwenden, für die CORS erforderlich ist.
+**Achtung:** Da von OpenWhisk derzeit nur ein Schlüssel pro Namensbereich unterstützt wird, wird empfohlen, CORS nur für einfache Experimente und nicht darüber hinaus zu verwenden. Verwenden Sie [Webaktionen](./openwhisk_webactions.html) oder das [API-Gateway](./openwhisk_apigateway.html), um Ihre Aktionen der Öffentlichkeit zugänglich zu machen und nicht die OpenWhisk-Berechtigungsschlüssel für Clientanwendungen zu verwenden, für die CORS erforderlich ist.
 
 ## Ausführlichen CLI-Modus verwenden
 {: #openwhisk_rest_api_cli_v}
-Die OpenWhisk-Befehlszeilenschnittstelle (CLI) ist eine Schnittstelle zur OpenWhisk-REST-API.
-Sie können die Befehlszeilenschnittstelle im ausführlichen Modus mit dem Flag `-v` ausführen. Dadurch werden alle Informationen zur HTTP-Anforderung und Antwort gedruckt.
 
-Lassen Sie uns nun versuchen, den Wert des Namensbereichs für den aktuellen Benutzer abzurufen.
+Die OpenWhisk-Befehlszeilenschnittstelle (CLI) ist eine Schnittstelle zur OpenWhisk-REST-API.
+Sie können die Befehlszeilenschnittstelle im ausführlichen Modus mit dem Flag `-v` ausführen. Dadurch werden alle Informationen zur HTTP-Anforderung und Antwort ausgegeben.
+
+Zeigen Sie den Wert des Namensbereichs für den aktuellen Benutzer an, indem Sie den folgenden Befehl ausführen:
 ```
 wsk namespace list -v
 ```
 {: pre}
+
 ```
 REQUEST:
 [GET]	https://openwhisk.ng.bluemix.net/api/v1/namespaces
@@ -98,6 +100,9 @@ Req Headers
 {
   "Authorization": [
     "Basic XXXYYYY"
+  ],
+  "User-Agent": [
+    "OpenWhisk-CLI/1.0 (2017-08-10T20:09:30+00:00)"
   ]
 }
 RESPONSE:Got response with code 200
@@ -112,25 +117,27 @@ Response body received:
 ["john@example.com_dev"]
 ```
 
-Wie Sie sehen, stellen die gedruckten Informationen die Eigenschaften der HTTP-Anforderung bereit. Außerdem wird die HTTP-Methode `GET` mithilfe des BASIC-Berechtigungsheaders `Basic XXXYYYY` auf die URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` angewendet. 
+Die ausgegebenen Informationen geben die Eigenschaften der HTTP-Anforderung an. Außerdem wird die HTTP-Methode `GET` für die URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` unter Verwendung eines User-Agent-Headers `OpenWhisk-CLI/1.0 (<CLI-Buildversion>)` und eines mit dem BASIC-Berechtigungsheaders `Basic XXXYYYY` ausgeführt.
 Beachten Sie, dass der Berechtigungswert die base64-codierte OpenWhisk-Berechtigungszeichenfolge ist.
-Die Antwort weist den Inhaltstyp `application/json` auf.
+Die Antwort hat den Inhaltstyp `application/json`.
 
 ## Aktionen
 {: #openwhisk_rest_api_actions}
-Zum Erstellen oder Aktualisieren einer Aktion senden Sie eine HTTP-Anforderung mit der Methode `PUT` für die Aktionssammlung. Verwenden Sie beispielsweise den folgenden Code, um eine Aktion des Typs `nodejs:6` mit dem Namen `hello` mithilfe des Inhalts einer einzelnen Datei zu erstellen:
+
+Zum Erstellen oder Aktualisieren einer Aktion senden Sie eine HTTP-Anforderung mit der Methode `PUT` für die Aktionssammlung. Verwenden Sie beispielsweise den folgenden Befehl, um eine Aktion des Typs `nodejs:6` mit dem Namen `hello` mithilfe des Inhalts einer einzelnen Datei zu erstellen:
 ```bash
 curl -u $AUTH -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"}}' -X PUT -H "Content-Type: application/json" https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true 
 ```
 {: pre}
 
-Um einen Blockierungsaufruf für eine Aktion durchzuführen, senden Sie folgendermaßen eine HTTP-Anforderung mit der Methode `POST` und einem Hauptteil mit dem Eingabeparameter `name`:
+Führen Sie zum Durchführen eines Blockierungsaufrufs für eine Aktion den folgenden Befehl aus, um eine HTTP-Anforderung mit der Methode `POST` und einem Hauptteil mit dem Eingabeparameter `name` zu senden:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?blocking=true \
 -X POST -H "Content-Type: application/json" \
 -d '{"name":"John"}'  
 ```
 {: pre}
+
 Sie erhalten die folgende Antwort:
 ```json
 {
@@ -164,7 +171,7 @@ Sie erhalten die folgende Antwort:
   "namespace": "john@example.com_dev"
 }
 ```
-Wenn Sie nur die Antwort (`response.result`) abrufen möchten, führen Sie den Befehl erneut mit dem Abfrageparameter `result=true` aus:
+Zum Abrufen der Antwort (`response.result`) führen Sie den Befehl erneut mit dem Abfrageparameter `result=true` wie im folgenden Beispiel aus:
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?blocking=true&result=true" \
 -X POST -H "Content-Type: application/json" \
@@ -180,30 +187,35 @@ Sie erhalten die folgende Antwort:
 
 ## Annotationen und Webaktionen
 {: #openwhisk_rest_api_webactions}
-Um eine Aktion als Webaktion zu erstellen, müssen Sie eine [Annotation](annotations.md) des Typs `web-export=true` für Webaktionen hinzufügen. Da Webaktionen öffentlich zugänglich sind, sollten Sie vordefinierte Parameter mithilfe der Annotation `final=true` schützen (d. h., sie als final behandeln). Wenn Sie eine Aktion mithilfe des CLI-Flags `--web true` erstellen oder aktualisieren, werden mit diesem Befehl sowohl die Annotation `web-export=true` als auch die Annotation `final=true` hinzugefügt.
 
-Führen Sie den curl-Befehl aus und stellen Sie eine vollständige Liste der Annotationen bereit, die für die Aktion festgelegt werden sollen:
+Zum Erstellen einer Aktion als Webaktion müssen Sie eine [Annotation](./openwhisk_annotations.html) des Typs `web-export=true` für Webaktionen hinzufügen. Da Webaktionen öffentlich zugänglich sind, sollten Sie vordefinierte Parameter mithilfe der Annotation `final=true` schützen (d. h., sie als final behandeln). Wenn Sie eine Aktion mithilfe des CLI-Flags `--web true` erstellen oder aktualisieren, werden mit diesem Befehl sowohl die Annotation `web-export=true` als auch die Annotation `final=true` hinzugefügt.
+
+Führen Sie den curl-Befehl aus und geben Sie die vollständige Liste der Annotationen an, die für die Aktion festgelegt werden sollen:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
 -d '{"namespace":"_","name":"hello","exec":{"kind":"nodejs:6","code":"function main(params) { return {payload:\"Hello \"+params.name}}"},"annotations":[{"key":"web-export","value":true},{"key":"raw-http","value":false},{"key":"final","value":true}]}'
 ```
 {: pre}
-Sie können diese Aktion jetzt als öffentliche URL ohne OpenWhisk-Berechtigung aufrufen. Verwenden Sie dabei die öffentliche URL der Webaktion einschließlich einer optionalen Erweiterung wie `.json` oder `.http` am Ende der URL:
+
+Sie können diese Aktion jetzt als öffentliche URL ohne OpenWhisk-Berechtigung aufrufen. Verwenden Sie dabei die öffentliche URL der Webaktion, einschließlich einer Erweiterung wie `.json` oder `.http`, am Ende der URL.
 ```bash
 curl https://openwhisk.ng.bluemix.net/api/v1/web/john@example.com_dev/default/hello.json?name=John
 ```
 {: pre}
+
 ```json
 {
   "payload": "Hello John"
 }
 ```
-Beachten Sie, dass dieser Beispielquellcode nicht mit `.http` funktioniert. Informationen über entsprechende Änderungen finden Sie in der Dokumentation zu [Webaktionen](webactions.md).
+
+Dieser Beispielquellcode funktioniert nicht mit `.http`. Informationen über entsprechende Änderungen finden Sie in der Dokumentation zu [Webaktionen](./openwhisk_webactions.html).
 
 ## Sequenzen
 {: #openwhisk_rest_api_sequences}
-Um eine Aktionssequenz zu erstellen, geben Sie die Namen der Aktionen, aus denen sich die Sequenz zusammensetzt, in der gewünschten Reihenfolge an, sodass die Ausgabe der ersten Aktion als Eingabe an die nächste Aktion übergeben wird.
+
+Zum Erstellen einer Aktionssequenz geben Sie die Namen der Aktionen, aus denen sich die Sequenz zusammensetzt, in der gewünschten Reihenfolge an. Dabei wird die Ausgabe der ersten Aktion als Eingabe an die nächste Aktion übergeben.
 
 $ wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
 
@@ -215,11 +227,12 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/seque
 ```
 {: pre}
 
-Berücksichtigen Sie bei der Angabe der Namen der Aktionen, dass diese vollständig qualifiziert sein müssen.
+Wenn Sie die Namen der Aktionen angeben, müssen Sie sie vollständig qualifiziert angeben.
 
 ## Auslöser
 {: #openwhisk_rest_api_triggers}
-Um einen Auslöser zu erstellen, müssen Sie als Mindestanforderung einen Namen für den Auslöser angeben. Sie können auch Standardparameter einschließen, die beim Aktivieren des Auslösers anhand einer Regel an die Aktion übergeben werden.
+
+Um einen Auslöser zu erstellen, müssen Sie als Mindestanforderung einen Namen für den Auslöser angeben. Sie können auch Standardparameter einschließen, die bei Aktivierung des Auslösers durch eine Regel an die Aktion übergeben werden.
 
 Erstellen Sie einen Auslöser mit dem Namen `events` mit einem Standardparameter `type`, für den der Wert `webhook` festgelegt ist.
 ```bash
@@ -229,10 +242,9 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/even
 ```
 {: pre}
 
-Wann immer Sie ein Ereignis haben, das diesen Auslöser anwenden muss, benötigen Sie jetzt nur eine HTTP-Anforderung mit einer Methode `POST`, die den OpenWhisk-Berechtigungsschlüssel verwendet.
+Wann immer Sie ein Ereignis haben, das diesen Auslöser aktivieren muss, benötigen Sie jetzt nur eine HTTP-Anforderung mit einer Methode `POST`, die den OpenWhisk-Berechtigungsschlüssel verwendet.
 
-Senden Sie die folgende HTTP-Anforderung, um den Auslöser `events` mit dem Parameter `temperature` anzuwenden.
-
+Senden Sie die folgende HTTP-Anforderung, um den Auslöser `events` mit dem Parameter `temperature` zu aktivieren.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/events \
 -X POST -H "Content-Type: application/json" \
@@ -242,21 +254,23 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/even
 
 ### Auslöser mit Feedaktionen
 {: #openwhisk_rest_api_triggers_feed}
-Es gibt spezielle Auslöser, die mit einer Feedaktion erstellt werden können. Die Feedaktion ist eine Aktion, mit der die Konfiguration eines Feedanbieters unterstützt wird, der beim Auftreten eines Ereignisses für den Auslöser für die Aktivierung des Auslösers verantwortlich ist. Weitere Informationen zu diesen Feedanbietern finden Sie in der Dokumentation zu [feeds.md].
 
-Einige der verfügbaren Auslöser, die eine Feedaktion nutzen, sind regelmäßige Auslöser bzw. Alarme, Slack, Github, Cloudant/Couchdb und messageHub/Kafka. Sie können auch Ihre eigenen Feedaktionen und Feedanbieter erstellen.
+Spezielle Auslöser können mithilfe einer Feedaktion erstellt werden. Die Feedaktion ist eine Aktion, mit der die Konfiguration eines Feedanbieters unterstützt wird, der beim Auftreten eines Ereignisses für den Auslöser für die Aktivierung des Auslösers verantwortlich ist. Weitere Informationen zu diesen Feedanbietern finden Sie in der Dokumentation zu Feeds [feeds.md].
 
-Erstellen Sie einen Auslöser namens `periodic`, der alle zwei Stunden (z. B. 02:00:00, 04:00:00, ...) aktiviert werden soll.
+Einige der verfügbaren Auslöser, die eine Feedaktion nutzen, sind regelmäßige Auslöser bzw. Alarme, Slack, Github, Cloudant/Couchdb und Message Hub/Kafka. Sie können auch eigene Feedaktionen und Feedanbieter erstellen.
 
-Über die Befehlszeilenschnittstelle können Sie dies mit einem einzigen Befehl erreichen.
+Erstellen Sie einen Auslöser mit dem Namen `periodic` und einer festgelegten Häufigkeit, der alle zwei Stunden (z. B. 02:00:00, 04:00:00, ...) aktiviert werden soll.
+
+Führen Sie den folgenden Befehl über die Befehlszeilenschnittstelle aus, um den Auslöser zu erstellen:
 ```bash
 wsk trigger create periodic --feed /whisk.system/alarms/alarm \
   --param cron "0 */2 * * *" -v
 ```
 {: pre}
-Da das Flag `-v` verwendet wird, werden zwei HTTP-Anforderungen gesendet: Eine ist zum Erstellen des Auslösers `periodic` und die andere zum Aufrufen einer Feedaktion `/whisk.system/alarms/alarm` mit den erforderlichen Parametern zum Konfigurieren des Feedanbieters, um den Auslöser alle zwei Stunden anzuwenden.
 
-Für das gleiche Szenario mit der REST-API erstellen Sie zunächst den Auslöser:
+Da das Flag `-v` verwendet wird, werden zwei HTTP-Anforderungen gesendet. Die eine dient zum Erstellen eines Auslösers mit dem Namen `periodic` und die andere zum Aufrufen der Feedaktion. An die Feedaktion `/whisk.system/alarms/alarm` werden die Parameter gesendet, um den Feedanbieter so zu konfigurieren, dass der Auslöser alle zwei Stunden aktiviert wird.
+
+Wenn diese Aktivität mit der REST-API erzielt werden soll, erstellen Sie den Auslöser zunächst wie folgt:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/periodic?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -264,9 +278,9 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/peri
 ```
 {: pre}
 
-Wie Sie sehen, ist die Annotation `feed` im Auslöser gespeichert. Sie verwenden diese Annotation später, um zu ermitteln, mit welcher Feedaktion Sie den Auslöser löschen können.
+Wie Sie sehen, wird die Annotation `Feed` in dem Auslöser gespeichert. Später kann über diese Annotation ermittelt werden, welche Feedaktion zum Löschen des Auslösers zu verwenden ist.
 
-Nachdem Sie den Auslöser erstellt haben, können Sie die Feedaktion aufrufen.
+Nach dem Erstellen des Auslösers können Sie die Feedaktion aufrufen.
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/actions/alarms/alarm?blocking=true&result=false" \
 -X POST -H "Content-Type: application/json" \
@@ -274,9 +288,9 @@ curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/a
 ```
 {: pre}
 
-Sie können den Auslöser in ähnlicher Form löschen, wie Sie ihn erstellt haben. Löschen Sie den Auslöser und konfigurieren Sie mithilfe der Feedaktion den Feedanbieter zum Löschen des Handlers für den Auslöser.
+Das Löschen eines Auslösers ist dem Erstellen eines Auslösers ähnlich. Löschen Sie den Auslöser mithilfe der Feedaktion, um den Feedanbieter so konfigurieren, dass auch der Handler für den Auslöser gelöscht wird.
 
-Rufen Sie die Feedaktion zum Löschen des Auslösehandlers aus dem Feedanbieter auf.
+Rufen Sie die Feedaktion zum Löschen des Auslösehandlers über den Feedanbieter mithilfe des folgenden Befehls auf:
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/actions/alarms/alarm?blocking=true&result=false" \
 -X POST -H "Content-Type: application/json" \
@@ -284,7 +298,7 @@ curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/whisk.system/a
 ```
 {: pre}
 
-Löschen Sie nun den Auslöser mit einer HTTP-Anforderung mit der Methode `DELETE`.
+Löschen Sie nun den Auslöser mit einer HTTP-Anforderung mit der Methode `DELETE`:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/periodic \
 -X DELETE -H "Content-Type: application/json" 
@@ -293,7 +307,8 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/peri
 
 ## Regeln
 {: #openwhisk_rest_api_rules}
-Um eine Regel zu erstellen, die einen Auslöser zu einer Aktion zuordnet, senden Sie eine HTTP-Anforderung mit einer Methode `PUT`, die den Auslöser und die Aktion im Hauptteil der Anforderung angibt.
+
+Zum Erstellen einer Regel, die einen Auslöser einer Aktion zuordnet, senden Sie eine HTTP-Anforderung mit einer Methode `PUT`, die den Auslöser und die Aktion im Hauptteil der Anforderung angibt.
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -311,8 +326,8 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/rules/t2a?ove
 
 ## Pakete
 {: #openwhisk_rest_api_packages}
-Um eine Aktion in einem Paket zu erstellen, müssen Sie zuerst das Paket erstellen. Senden Sie zum Erstellen eines Pakets namens `iot` eine HTTP-Anforderung mit einer Methode `PUT`.
 
+Zum Erstellen einer Aktion in einem Paket müssen sie zunächst ein Paket erstellen. Erstellen Sie ein Paket mit dem Namen `iot` und senden Sie eine HTTP-Anforderung mit einer Methode `PUT` an dieses Paket, indem Sie den folgenden Befehl verwenden:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/packages/iot?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
@@ -322,13 +337,14 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/packages/iot?
 
 ## Aktivierungen
 {: #openwhisk_rest_api_activations}
-Um die Liste der letzten drei Aktivierungen abzurufen, verwenden Sie eine HTTP-Anforderung mit einer Methode `GET` und übergeben Sie den Abfrageparameter `limit=3`.
+
+Zum Abrufen der Liste der letzten drei Aktivierungen verwenden Sie wie folgt eine HTTP-Anforderung mit einer Methode `GET` und übergeben Sie den Abfrageparameter `limit=3`:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/activations?limit=3
 ```
 {: pre}
 
-Um alle Details einer Aktivierung, einschließlich Ergebnisse und Protokolle, abzurufen, senden Sie eine HTTP-Anforderung mit einer Methode `GET` und übergeben Sie die Aktivierungskennung als Pfadparameter.
+Zum Abrufen aller Details einer Aktivierung, die Ergebnisse und Protokolle mit einschließen, senden Sie wie folgt eine HTTP-Anforderung mit einer Methode `GET` und übergeben Sie die Aktivierungskennung als Pfadparameter:
 ```bash
 curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/activations/f81dfddd7156401a8a6497f2724fec7b
 ```

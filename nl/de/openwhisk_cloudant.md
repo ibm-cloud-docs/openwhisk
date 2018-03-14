@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -13,36 +13,28 @@ lastupdated: "2017-06-02"
 
 # Cloudant-Paket verwenden
 {: #openwhisk_catalog_cloudant}
-Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer Cloudant-Datenbank. Es enthält die folgenden Aktionen und Feeds.
+Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer Cloudant-Datenbank. Sie enthält die folgenden Aktionen und Feeds.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | Paket | dbname, host, username, password | Dient zur Arbeit mit einer Cloudant-Datenbank. |
-| `/whisk.system/cloudant/read` | Aktion | dbname, id | Liest ein Dokument aus einer Datenbank. |
-| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreibt ein Dokument in eine Datenbank. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktiviert Auslöserereignisse bei Änderungen an einer Datenbank. |
+| `/whisk.system/cloudant` | Paket | dbname, host, username, password | Für die Arbeit mit einer Cloudant-Datenbank |
+| `/whisk.system/cloudant/read` | Aktion | dbname, id | Lesen eines Dokuments aus einer Datenbank |
+| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreiben eines Dokuments in eine Datenbank |
+| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank |
+{: shortdesc}
 
 In den folgenden Abschnitten werden die Einrichtung einer Cloudant-Datenbank, die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` schrittweise erläutert.
 
-## Cloudant-Datenbank in Bluemix einrichten
+## Cloudant-Datenbank in {{site.data.keyword.Bluemix_notm}} einrichten
 {: #openwhisk_catalog_cloudant_in}
 
-Wenn Sie OpenWhisk über Bluemix verwenden, dann erstellt OpenWhisk automatisch Paketbindungen für Ihre Bluemix-Cloudant-Serviceinstanzen. Verwenden Sie OpenWhisk und Cloudant nicht über Bluemix, fahren Sie mit dem nächsten Schritt fort.
+Wenn Sie OpenWhisk über {{site.data.keyword.Bluemix_notm}} verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre Cloudant-Serviceinstanzen. Verwenden Sie OpenWhisk und Cloudant nicht über {{site.data.keyword.Bluemix_notm}}, fahren Sie mit dem nächsten Schritt fort.
 
-1. Erstellen Sie eine Cloudant-Serviceinstanz in Ihrem Bluemix-[Dashboard](http://console.ng.Bluemix.net).
+1. Erstellen Sie eine Cloudant-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
 
-  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der Bluemix-Organisation und den Bereich merken, in dem Sie sich befinden.
+  Stellen Sie sicher, dass Sie für jede neue Serviceinstanz einen Berechtigungsnachweisschlüssel erstellen.
 
-2. Stellen Sie sicher, dass sich Ihre OpenWhisk-Befehlszeilenschnittstelle (CLI, Command-Line Interface) in dem Namensbereich befindet, der der Bluemix-Organisation und dem Bereich entspricht, die Sie im vorherigen Schritt verwendet haben.
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  Alternativ können Sie mit dem Befehl `wsk property set --namespace` den Namensbereich mithilfe einer Liste der für sie zugänglichen Namensbereiche festlegen.
-
-3. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Cloudant-Serviceinstanz, die Sie erstellt haben.
+2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für jede Cloudant-Serviceinstanz mit einem definierten Berechtigungsnachweisschlüssel.
 
   ```
   wsk package refresh
@@ -62,9 +54,9 @@ Wenn Sie OpenWhisk über Bluemix verwenden, dann erstellt OpenWhisk automatisch 
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Es wird der vollständig qualifizierte Name der Paketbindung angezeigt, die Ihrer Bluemix-Cloudant-Serviceinstanz entspricht.
+  Ihre Paketbindung enthält nun die Ihrer Cloudant-Serviceinstanz zugeordneten Berechtigungsnachweise.
 
-4. Prüfen Sie, ob die zuvor erstellte Paketbindung mit dem Host und den Berechtigungsnachweisen für Ihre Bluemix-Cloudant-Serviceinstanz konfiguriert ist.
+3. Prüfen Sie, ob die zuvor erstellte Paketbindung mit dem Host und den Berechtigungsnachweisen für Ihre Cloudant-{{site.data.keyword.Bluemix_notm}}-Serviceinstanz konfiguriert ist.
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -90,10 +82,10 @@ Wenn Sie OpenWhisk über Bluemix verwenden, dann erstellt OpenWhisk automatisch 
   ]
   ```
 
-## Cloudant-Datenbank außerhalb von Bluemix einrichten
+## Cloudant-Datenbank außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten
 {: #openwhisk_catalog_cloudant_outside}
 
-Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie Ihre Cloudant-Datenbank außerhalb von Bluemix einrichten möchten, müssen Sie manuell eine Paketbindung für Ihr Cloudant-Konto erstellen. Sie benötigen den Hostnamen, den Benutzernamen und das Kennwort des Cloudant-Kontos.
+Wenn Sie OpenWhisk nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie Ihre Cloudant-Datenbank außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihr Cloudant-Konto erstellen. Sie benötigen den Hostnamen, den Benutzernamen und das Kennwort des Cloudant-Kontos.
 
 1. Erstellen Sie eine Paketbindung, die für Ihr Cloudant-Konto konfiguriert ist.
 
@@ -118,7 +110,7 @@ Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie Ihre Cloudant-Datenb
 ## Änderungen an einer Cloudant-Datenbank empfangen
 {: #openwhisk_catalog_cloudant_listen}
 
-### Änderungsereignisse in der Filterdatenbank
+### Datenbankänderungsereignisse filtern
 
 Sie können eine Filterfunktion definieren, um unnötige Änderungsereignisse zu verhindern, die Ihren Auslöser aktivieren.
 
@@ -136,8 +128,7 @@ Erstellen Sie eine JSON-Dokumentdatei `design_doc.json` mit der folgenden Filter
 }
 ```
 
-Erstellen Sie ein neues Entwurfsdokument für die Datenbank mit der Filterfunktion:
-
+Erstellen Sie ein Entwurfsdokument für die Datenbank mit der Filterfunktion:
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
@@ -156,17 +147,17 @@ Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Ä
 
 - `dbname`: Name der Cloudant-Datenbank.
 - `maxTriggers`: Stoppt die Aktivierung von Auslösern, wenn dieser Grenzwert erreicht wird. Standardwert: unbegrenzt.
-- `filter`: Für ein Entwurfsdokument definierte Filterfunktion.
-- `query_params`: Optionale Abfrageparameter für die Filterfunktion.
+- `filter`: Die für ein Entwurfsdokument definierte Filterfunktion.
+- `query_params`: Zusätzliche Abfrageparameter für die Filterfunktion.
 
 
-1. Erstellen Sie einen Auslöser mit dem Feed `changes` in der Paketbindung, die Sie zuvor mit `filter` und `query_params` erstellt haben, sodass der Auslöser nur angewendet wird, wenn ein Dokument hinzugefügt oder geändert wird und der Status `new` ist.
+1. Erstellen Sie einen Auslöser mit dem Feed `changes` in der Paketbindung, die Sie zuvor erstellt haben. Schließen Sie dabei die Funktionen `filter` und `query_params` ein, um den Auslöser zu aktivieren, wenn ein Dokument hinzugefügt oder geändert wird, wenn der Status `new` ist.
 Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
@@ -174,7 +165,7 @@ Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
   ok: created trigger feed myCloudantTrigger
   ```
 
-2. Fragen Sie Aktivierungen mit der Pollingfunktion ab.
+2. Fragen Sie Aktivierungen mit der Polling-Funktion ab.
 
   ```
   wsk activation poll
@@ -183,7 +174,7 @@ Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
 3. Ändern Sie in Ihrem Cloudant-Dashboard ein vorhandenes Dokument oder erstellen Sie ein neues Dokument.
 
-4. Beobachten Sie die neuen Aktivierungen für den Auslöser `myCloudantTrigger` für jede Dokumentänderung nur dann, wenn das Dokument auf Basis der Filterfunktion und des Abfrageparameters den Status `new` hat.
+4. Beobachten Sie die neuen Aktivierungen für den Auslöser `myCloudantTrigger` für jede Dokumentänderung mithilfe der Filterfunktion und des Abfrageparameters nur dann, wenn das Dokument den Status `new` hat.
   
   **Hinweis:** Wenn Sie keine neuen Aktivierungen beobachten können, lesen Sie die nachfolgenden Abschnitte über das Lesen und Schreiben in einer Cloudant-Datenbank. Durch Testen der nachfolgenden Schritte zum Lesen und Schreiben können Sie prüfen, ob Ihre Cloudant-Berechtigungsnachweise korrekt sind.
   
@@ -212,7 +203,7 @@ Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 ## In eine Cloudant-Datenbank schreiben
 {: #openwhisk_catalog_cloudant_write}
 
-Sie können eine Aktion verwenden, um ein Dokument in einer Cloudant-Datenbank mit dem Namen `testdb` speichern. Stellen Sie sicher, dass diese Datenbank in Ihrem Cloudant-Konto vorhanden ist.
+Sie können eine Aktion verwenden, um ein Dokument in einer Cloudant-Datenbank mit dem Namen `testdb` zu speichern. Stellen Sie sicher, dass diese Datenbank in Ihrem Cloudant-Konto vorhanden ist.
 
 1. Speichern Sie ein Dokument mit der Aktion `write` in der Paketbindung, die Sie zuvor erstellt haben. Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
 
@@ -259,7 +250,7 @@ Sie können eine Aktion verwenden, um ein Dokument aus einer Cloudant-Datenbank 
 
 Sie können eine Aktionssequenz in einer Regel verwenden, um das Dokument, das einem Cloudant-Änderungsereignis zugeordnet ist, abzurufen und zu verarbeiten.
 
-Im Folgenden ist ein Beispielcode einer Aktion aufgeführt, die zur Verarbeitung eines Dokuments dient:
+Beispielcode einer Aktion, die ein Dokument verarbeitet:
 ```javascript
 function main(doc){
   return { "isWalter:" : doc.name === "Walter White"};
@@ -272,7 +263,7 @@ wsk action create myAction myAction.js
 ```
 {: pre}
 
-Um ein Dokument aus der Datenbank zu lesen, können Sie die Aktion `read` aus dem Cloudant-Paket verwenden.
+Zum Lesen eines Dokuments aus der Datenbank können Sie die Aktion `read` aus dem Cloudant-Paket verwenden.
 Die Aktion `read` kann mit `myAction` zusammengesetzt werden, um eine Aktionsfolge zu erstellen.
 ```
 wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
@@ -285,8 +276,8 @@ wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
-**Hinweis:** Mit dem Cloudant-Auslöser `changes` wurde der Parameter `includeDoc` unterstützt, der nun nicht mehr unterstützt wird.
-  Sie müssen Auslöser, die zuvor mit `includeDoc` erstellt wurden, erneut erstellen. Führen Sie die folgenden Schritte aus, um den Auslöser erneut zu erstellen:
+**Hinweis:** Der Cloudant-Auslöser `changes` hat in der Vergangenheit den Parameter `includeDoc` unterstützt, der nun nicht mehr unterstützt wird.
+  Sie können Auslöser, die zuvor mit `includeDoc` erstellt wurden, erneut erstellen. Führen Sie die folgenden Schritte aus, um den Auslöser erneut zu erstellen: 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -296,6 +287,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  Das oben dargestellte Beispiel kann verwendet werden, um eine Aktionsfolge zu erstellen, um das geänderte Dokument zu lesen und die vorhandenen Aktionen aufzurufen.
-  Denken Sie daran, Regeln zu inaktivieren, die möglicherweise nicht mehr gültig sind, und erstellen Sie mit dem Aktionsfolgemuster neue Regeln.
+  Das Beispiel kann verwendet werden, um eine Aktionssequenz zu erstellen, um das geänderte Dokument zu lesen und die vorhandenen Aktionen aufzurufen.
+  Denken Sie daran, Regeln zu inaktivieren, die nicht mehr gültig sind, und erstellen Sie neue Regeln mit dem Aktionssequenzmuster.
 

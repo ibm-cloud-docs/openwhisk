@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-21"
+  years: 2016, 2018
+lastupdated: "2018-02-01"
 
 ---
 
@@ -14,47 +14,100 @@ lastupdated: "2017-02-21"
 # Paket für Alarme verwenden
 {: #openwhisk_catalog_alarm}
 
-Das Paket `/whisk.system/alarms` kann verwendet werden, um einen Auslöser in einer angegebenen Häufigkeit zu aktivieren. Dies ist nützlich, um sich wiederholende Jobs oder Tasks einzurichten, wie zum Beispiel das stündliche Aufrufen einer Systemsicherungsaktion.
+Das Paket `/whisk.system/alarms` kann verwendet werden, um einen Auslöser mit einer angegebenen Häufigkeit zu aktivieren. Alarme sind nützlich, um sich wiederholende Jobs oder Tasks einzurichten, wie zum Beispiel das stündliche Aufrufen einer Systemsicherungsaktion.
+{: shortdesc}
 
-Das Paket enthält den folgenden Feed.
+Das Paket enthält die folgenden Feeds.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/alarms` | Paket | - | Dienstprogramm für Alarme und periodisch wiederkehrende Aktionen |
-| `/whisk.system/alarms/alarm` | Feed | cron, trigger_payload, maxTriggers | Auslöserereignis regelmäßig aktivieren |
+| `/whisk.system/alarms` | Paket | - | Alarme und Dienstprogramm für regelmäßige Ausführung. |
+| `/whisk.system/alarms/interval` | Feed | minutes, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem intervallbasierten Zeitplan. |
+| `/whisk.system/alarms/once` | Feed | date, trigger_payload | Einmaliges Aktivieren eines Auslöserereignisses an einem bestimmten Datum. |
+| `/whisk.system/alarms/alarm` | Feed | cron, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem zeitbasierten Zeitplan unter Verwendung von Cron. |
 
 
-## Auslöserereignis regelmäßig aktivieren
+## Auslöserereignis regelmäßig nach einem intervallbasierten Zeitplan aktivieren
 {: #openwhisk_catalog_alarm_fire}
+
+Durch den Feed `/whisk.system/alarms/interval` wird der Alarmservice so konfiguriert, dass ein Auslöserereignis nach einem intervallbasierten Zeitplan aktiviert wird. Die folgenden Parameter sind verfügbar:
+
+- `minutes`: Eine ganze Zahl, die die Länge des Intervalls (in Minuten) zwischen Auslöseraktivierungen angibt.
+
+- `trigger_payload`: Der Wert dieses Parameters wird jedes Mal zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird.
+
+- `startDate`: Das Datum, an dem der erste Auslöser aktiviert wird. Nachfolgende Aktivierungen erfolgen entsprechend der Intervalllänge, die durch den Parameter `minutes` angegeben wird.   
+
+- `stopDate`: Das Datum, an dem die Ausführung des Auslösers gestoppt wird. Nach Erreichen dieses Datums werden keine Auslöser mehr aktiviert.
+
+  **Hinweis:** Die Parameter `startDate` und `stopDate` unterstützen einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden seit dem 1. Januar 1970, 00:00:00 Uhr (UTC), dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
+
+Im folgenden Beispiel wird ein Auslöser erstellt, der alle 2 Minuten einmal aktiviert wird. Der Auslöser wird so bald, wie möglich, aktiviert und die Aktivierung wird am 31. Januar 2019 um 23:59:00 Uhr (UTC) gestoppt.
+
+  ```
+  wsk trigger create interval \
+    --feed /whisk.system/alarms/interval \
+    --param minutes 2 \
+    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+    --param stopDate "2019-01-31T23:59:00.000Z"
+  ```
+  {: pre}
+
+Jedes generierte Ereignis enthält Parameter, die die Eigenschaften sind, die durch den Wert `trigger_payload` angegeben werden. In diesem Fall erhält jedes Auslöserereignis die Parameter `name=Odin` und `place=Asgard`.
+
+## Auslöserereignis einmal aktivieren  
+
+Der Feed `/whisk.system/alarms/once` konfiguriert den Alarm-Service so, dass er ein Auslöserereignis an einem angegebenen Datum aktiviert. Die folgenden Parameter sind verfügbar:
+
+- `date`: Das Datum, an dem der Auslöser aktiviert wird. Der Auslöser wird zu dem bestimmten Zeitpunkt nur einmal aktiviert. 
+
+  **Hinweis:** Der Parameter `date` unterstützt einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden
+seit dem 1. Januar 1970 00:00:00 Uhr (UTC) dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
+
+- `trigger_payload`: Der Wert dieses Parameters wird zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird. 
+
+Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal am 25. Dezember 2017 um 12:30:00 Uhr (UTC) aktiviert wird .
+
+  ```
+  wsk trigger create fireOnce \
+    --feed /whisk.system/alarms/once \
+    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+    --param date "2017-12-25T12:30:00.000Z"
+  ```
+  {: pre}
+    
+## Auslöser nach zeitbasiertem Zeitplan mit 'cron' aktivieren
 
 Der Feed `/whisk.system/alarms/alarm` konfiguriert den Alarm-Service so, dass er ein Auslöserereignis mit einer angegebenen Häufigkeit aktiviert. Die folgenden Parameter sind verfügbar:
 
 - `cron`: Eine Zeichenfolge auf der Basis der UNIX-Syntax 'crontab', die angibt, wann der Auslöser zu aktivieren ist (angegeben in koordinierter Weltzeit, UTC). Die Zeichenfolge besteht aus einer Reihe von fünf durch Leerzeichen getrennten Feldern: `X X X X X`.
-Weitere Informationen zur Verwendung der cron-Syntax finden Sie unter 'http://crontab.org'. Beispiele für die von der Zeichenfolge angegebene Häufigkeit:
+Weitere Informationen finden Sie unter: http://crontab.org. Die folgenden Beispiele zeigen Zeichenfolgen, die unterschiedliche Zeitdauern für die Häufigkeit angeben.
 
-  - `* * * * *`: zu Beginn jeder Minute.
-  - `0 * * * *`: zu Beginn jeder Stunde.
-  - `0 */2 * * *`: alle zwei Stunden (z. B. 02:00:00, 04:00:00, ...).
-  - `0 9 8 * *`: um 9:00:00 (UTC) am achten Tag jeden Monats.
+  - `* * * * *`: Der Auslöser wird zu Beginn jeder Minute aktiviert.
+  - `0 * * * *`: Der Auslöser wird zu Beginn jeder Stunde aktiviert.
+  - `0 */2 * * *`: Der Auslöser wird alle 2 Stunden (d. h. 02:00:00, 04:00:00, ...) aktiviert.
+  - `0 9 8 * *`: Der Auslöser wird um 9:00:00 Uhr (UTC) am achten Tag jedes Monats ausgelöst.
 
+  **Hinweis:** Der Parameter `cron` unterstützt nur fünf Felder.
+    
 - `trigger_payload`: Der Wert dieses Parameters wird jedes Mal zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird.
 
-- `maxTriggers`: Stoppt die Aktivierung von Auslösern, wenn dieser Grenzwert erreicht wird. Standardwert: 1.000.000. Der Wert -1 (unbegrenzt) kann verwendet werden.
+- `startDate`: Das Datum, an dem die Ausführung des Auslösers gestartet wird. Der Auslöser wird nach dem Zeitplan aktiviert, der durch den Parameter 'cron' angegeben wird.  
 
-Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal alle 2 Minuten aktiviert wird, wobei das Auslöserereignis die Werte für `name` und `place` enthält.
+- `stopDate`: Das Datum, an dem die Ausführung des Auslösers gestoppt wird. Wenn dieses Datum erreicht wird, werden keine Auslöser mehr aktiviert.
+
+  **Hinweis:** Die Parameter `startDate` und `stopDate` unterstützen einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden seit dem 1. Januar 1970, 00:00:00 Uhr (UTC), dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
+
+Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal alle 2 Minuten aktiviert wird, wobei das Auslöserereignis die Werte für `name` und `place` enthält. Der Auslöser beginnt die Ausführung der Aktivierungen erst am 01. Januar 2019 um 00:00:00 Uhr (UTC) und stoppt sie am 31. Januar 23:59:00 Uhr (UTC).
 
   ```
   wsk trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}"
+    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+    --param startDate "2019-01-01T00:00:00.000Z" \
+    --param stopDate "2019-01-31T23:59:00.000Z"
   ```
   {: pre}
 
-Jedes generierte Ereignis enthält die im Wert von `trigger_payload` angegebenen Eigenschaften als Parameter. In diesem Fall erhält jedes Auslöserereignis die Parameter `name=Odin` und `place=Asgard`.
-
-**Hinweis:** Der Parameter `cron` bietet auch Unterstützung für eine angepasste Syntax mit sechs Feldern, wobei das erste Feld für Sekunden steht. 
-Weitere Informationen zur Verwendung dieser angepassten cron-Syntax finden Sie unter 'https://github.com/ncb000gt/node-cron'. 
-Im Folgenden ist ein Beispiel für die Notation mit sechs Feldern aufgeführt:
-  - `*/30 * * * * *`: alle 30 Sekunden.
-
+ **Hinweis:** Der Parameter `maxTriggers` ist veraltet und wird in Zukunft entfernt. Verwenden Sie zum Stoppen des Auslösers den Parameter `stopDate`.

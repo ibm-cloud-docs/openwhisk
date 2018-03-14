@@ -1,19 +1,20 @@
 ---
 
 copyright:
-  years: 2016
-lastupdated: "2016-08-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
 {:shortdesc: .shortdesc}
 {:codeblock: .codeblock}
 {:screen: .screen}
+{:tip: .tip}
 {:pre: .pre}
 
-# 使用 {{site.data.keyword.openwhisk_short}}“仪表板”监视 {{site.data.keyword.openwhisk_short}} 活动
+# 使用 {{site.data.keyword.openwhisk_short}}“仪表板”监视活动
 
-[{{site.data.keyword.openwhisk}}“仪表板”](https://{DomainName}/whisk/dashboard/)提供了对您活动的图形化摘要。使用该仪表板可确定您的 {{site.data.keyword.openwhisk_short}} 操作的性能和运行状况。
+[{{site.data.keyword.openwhisk}}“仪表板”](https://{DomainName}/openwhisk/dashboard/)提供了对您活动的图形化摘要。使用该仪表板可确定您的 {{site.data.keyword.openwhisk_short}} 操作的性能和运行状况。
 {:shortdesc}
 
 随时单击**重新装入**可使用最新的活动日志数据更新该仪表板。
@@ -42,16 +43,19 @@ lastupdated: "2016-08-02"
 {: #log}
 
 此视图显示已设置格式的活动日志版本。其中显示每个活动的详细信息，但一分钟只会轮询一次，以确定是否有新的活动。单击某个操作可显示详细日志。
-**注**：要使用 CLI 获取“活动日志”中显示的输出，请使用以下命令：
+
+要使用 CLI 获取“活动日志”中显示的输出，请使用以下命令：
+{: tip}
 
   ```
 wsk activation poll
   ```
   {: pre}
 
-## 过滤选项
+## 过滤器选项
 {: #filtering}
 
 选择要查看的操作日志，然后选择记录的活动的时间范围。
 
-**注**：这些过滤器会应用于仪表板上的所有视图。
+这些过滤器会应用于仪表板上的所有视图。
+{: tip}

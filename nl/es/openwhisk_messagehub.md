@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-03-04"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2017-03-04"
 # Utilización del paquete Message Hub
 {: #openwhisk_catalog_message_hub}
 
-Este paquete le permite comunicarse con instancias de [Message Hub](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa de alto rendimiento.
+Un paquete que permite la comunicación con las instancias de [Message Hub](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.
 {: shortdesc}
 
 ## Creación de un desencadenante que escuche una instancia de IBM MessageHub
@@ -25,19 +25,19 @@ Para crear un desencadenante que reaccione cuando se publican mensajes en una in
 |Nombre|Tipo|Descripción|
 |---|---|---|
 |kafka_brokers_sasl|Matriz JSON de series|Este parámetro es una matriz de series de caracteres `<host>:<port>` que comprenden los intermediarios de la instancia de Message Hub|
-|user|Serie|Su nombre de usuario de Message Hub|
+|usuario|Serie|Su nombre de usuario de Message Hub|
 |password|Serie|Su contraseña de Message Hub|
 |topic|Serie|El tema que desea que escuche el desencadenante|
 |kafka_admin_url|Serie de URL|El URL de la interfaz REST de administración de Message Hub|
-|isJSONData|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor intentará analizar el valor del mensaje como JSON antes de pasarlo como carga útil del desencadenante.|
-|isBinaryKey|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codificará el valor de la clave como Base64 antes de pasarlo como carga útil del desencadenante.|
-|isBinaryValue|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codificará el valor del mensaje como Base64 antes de pasarlo como carga útil del desencadenante.|
+|isJSONData|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor intenta analizar el valor del mensaje como JSON antes de pasarlo como carga útil del desencadenante.|
+|isBinaryKey|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor de la clave como Base64 antes de pasarlo como carga útil del desencadenante.|
+|isBinaryValue|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor del mensaje como Base64 antes de pasarlo como carga útil del desencadenante.|
 
 Aunque esta lista de parámetros puede parecer larga, se pueden establecer automáticamente mediante el mandato de CLI package refresh:
 
 1. Cree una instancia del servicio Message Hub bajo su organización actual y el espacio que utiliza para OpenWhisk.
 
-2. Compruebe que el tema que desea escuchar ya existe en Message Hub o cree un tema nuevo, como por ejemplo `mytopic`.
+2. Compruebe que el tema que desea escuchar está disponible en Message Hub o cree un tema nuevo, como por ejemplo `mytopic`.
 
 3. Actualizar los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia del servicio Message Hub que ha creado.
 
@@ -59,7 +59,7 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
   /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
   ```
 
-  Ahora su enlace de paquete contiene credenciales asociadas a la instancia de Message Hub.
+  Ahora su enlace de paquete contiene credenciales que están asociadas a la instancia de Message Hub.
 
 4. Ahora todo lo que tiene que hacer es crear un desencadenante que se active cuando se publiquen mensajes nuevos en el tema Message Hub.
 
@@ -68,9 +68,9 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
   ```
   {: pre}
 
-## Configuración de un paquete de Message Hub fuera de Bluemix
+## Configuración de un paquete de Message Hub fuera de {{site.data.keyword.Bluemix_notm}}
 
-Si quiere configurar Message Hub fuera de Bluemix, debe crear manualmente un enlace de paquete para el servicio Message Hub. Necesita la información sobre conexión y credenciales del servicio Message Hub.
+Si quiere configurar Message Hub fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para el servicio Message Hub. Necesita la información sobre conexión y credenciales del servicio Message Hub.
 
 1. Cree un enlace de paquete configurado para el servicio de Message Hub.
 
@@ -90,20 +90,20 @@ Si quiere configurar Message Hub fuera de Bluemix, debe crear manualmente un enl
 ## Escucha de mensajes
 {: #openwhisk_catalog_message_hub_listen}
 
-Después de crear un desencadenante, el sistema supervisará el tema específico en el servicio de mensajería. Cuando se publiquen nuevos mensajes, se activará el desencadenante.
+Después de crear un desencadenante, el sistema supervisa el tema específico en el servicio de mensajería. Cuando se publiquen nuevos mensajes, se activa el desencadenante.
 
-La carga útil del desencadenante contendrá un campo `messages`, que es una matriz de mensajes publicados desde la última vez que se activó el desencadenante. Cada objeto de mensaje de la matriz contendrá los siguientes campos:
+La carga útil del desencadenante contiene un campo `messages`, que es una matriz de los mensajes que se han publicado desde la última vez que se activó el desencadenante. Cada objeto de mensaje de la matriz contiene los siguientes campos:
 - topic
 - partition
 - offset
-- key
-- value
+- clave
+- valor
 
-En términos de Kafka, estos campos deberían resultar evidentes. Sin embargo, `key` tiene una función opcional `isBinaryKey` que permite que `key` transmita datos binarios. Además, el campo `value` requiere una especial consideración. Dispone de los campos opcionales `isJSONData` e `isBinaryValue` para gestionar los mensajes binarios y JSON. Estos campos, `isJSONData` e `isBinaryValue`, no se pueden utilizar juntos.
+En términos de Kafka, los campos deberían resultar evidentes. Sin embargo, `key` tiene una función denominada `isBinaryKey` que permite que `key` transmita datos binarios. Además, el campo `value` requiere una especial consideración. Dispone de los campos `isJSONData` e `isBinaryValue` para gestionar los mensajes binarios y JSON. Estos campos, `isJSONData` e `isBinaryValue`, no se pueden utilizar juntos.
 
-Por ejemplo, si `isBinaryKey` se ha establecido en `true` al crear el desencadenante, `key` se codificará como una serie Base64 cuando se devuelva de su carga útil de un desencadenante activado.
+Por ejemplo, si `isBinaryKey` se ha establecido en `true` al crear el desencadenante, `key` se codifica como una serie Base64 cuando se devuelva de su carga útil de un desencadenante activado.
 
-Por ejemplo, su se publica el valor de `key` `Some key` con `isBinaryKey` establecido en `true`, la carga útil del desencadenante será como la siguiente:
+Si se publica el valor de `key` `Some key` con `isBinaryKey` establecido en `true`, la carga útil del desencadenante es similar a la siguiente:
 
 ```json
 {
@@ -119,14 +119,14 @@ Por ejemplo, su se publica el valor de `key` `Some key` con `isBinaryKey` establ
 }
 ```
 
-Si el parámetro `isJSONData` se ha establecido `false` (o no se ha establecido) al crear el desencadenante, el campo `value` será el valor sin formato del mensaje publicado. Sin embargo, si `isJSONData` se ha establecido en `true` al crear el desencadenante, el sistema intentará analizar este valor como objeto JSON en la medida de lo posible. Si el análisis se realiza correctamente, `value` en la carga útil del desencadenante será el objeto JSON resultante.
+Si el parámetro `isJSONData` se ha establecido `false` (o no se ha establecido) al crear el desencadenante, el campo `value` es el valor sin formato del mensaje publicado. Sin embargo, si `isJSONData` se ha establecido en `true` al crear el desencadenante, el sistema intenta analizar este valor como objeto JSON en la medida de lo posible. Si el análisis se realiza correctamente, `value` en la carga útil del desencadenante es el objeto JSON resultante.
 
-Por ejemplo, si se publica el mensaje `{"title": "Some string", "amount": 5, "isAwesome": true}` con `isJSONData` establecido en `true`, la carga útil del desencadenante se parecerá a la siguiente:
+Si se publica el mensaje `{"title": "Some string", "amount": 5, "isAwesome": true}` con `isJSONData` establecido en `true`, la carga útil del desencadenante puede ser similar al ejemplo siguiente:
 
 ```json
 {
   "messages": [
-    {
+       {
       "partition": 0,
         "key": null,
         "offset": 421760,
@@ -141,12 +141,12 @@ Por ejemplo, si se publica el mensaje `{"title": "Some string", "amount": 5, "is
 }
 ```
 
-Sin embargo, si se publica el mismo contenido de mensaje con `isJSONData` establecido en `false`, la carga útil del desencadenante se parecerá a esta:
+Sin embargo, si se publica el mismo contenido de mensaje con `isJSONData` establecido en `false`, la carga útil del desencadenante sería similar al ejemplo siguiente:
 
 ```json
 {
   "messages": [
-    {
+       {
       "partition": 0,
       "key": null,
       "offset": 421761,
@@ -157,14 +157,14 @@ Sin embargo, si se publica el mismo contenido de mensaje con `isJSONData` establ
 }
 ```
 
-Al igual que sucede con `isJSONData`, si `isBinaryValue` se ha establecido en `true` durante la creación del desencadenante, el `value` resultante en la carga útil del desencadenante se codificará como una serie Base64.
+Al igual que sucede con `isJSONData`, si `isBinaryValue` se ha establecido en `true` durante la creación del desencadenante, el `value` resultante en la carga útil del desencadenante se codifica como una serie Base64.
 
-Por ejemplo, su se publica el valor de `value` `Some data` con `isBinaryValue` establecido en `true`, la carga útil del desencadenante se parecerá a la siguiente:
+Si se publica el valor de `value` `Some data` con `isBinaryValue` establecido en `true`, la carga útil del desencadenante puede ser similar al ejemplo siguiente:
 
 ```json
 {
   "messages": [
-    {
+       {
       "partition": 0,
       "key": null,
       "offset": 421760,
@@ -180,7 +180,7 @@ Si se publica el mismo mensaje sin `isBinaryData` establecido en `true`, la carg
 ```json
 {
   "messages": [
-    {
+       {
       "partition": 0,
       "key": null,
       "offset": 421760,
@@ -192,9 +192,9 @@ Si se publica el mismo mensaje sin `isBinaryData` establecido en `true`, la carg
 ```
 
 ### Los mensajes se colocan por lotes
-Habrá notado que la carga útil del desencadenante contiene una matriz de mensajes. Esto significa que si genera mensajes destinados al sistema de mensajería con rapidez, el canal de información intentará colocar por lotes los mensajes publicados en una sola activación del desencadenante. Esto permite publicar los mensajes en el desencadenante de forma más rápida y eficiente.
+Observe que la carga útil del desencadenante contiene una matriz de mensajes. Si estos mensajes se producen rápidamente en su sistema de mensajería, el canal de información intenta colocar por lotes los mensajes publicados en una sola activación del desencadenante. El proceso por lotes permite publicar los mensajes en el desencadenante de forma más rápida y eficiente.
 
-Tenga en cuenta que, si el desencadenante activa acciones de codificación, el número de mensajes de la carga útil no está técnicamente enlazado, aunque siempre será mayor que 0. A continuación se muestra un ejemplo de un mensaje por lotes (observe el campo en el valor *offset*):
+Tenga en cuenta que, si el desencadenante activa acciones de codificación, el número de mensajes de la carga útil no está técnicamente enlazado, aunque siempre es mayor que 0. Consulte el siguiente ejemplo de un mensaje por lotes (observe el campo en el valor *offset*):
  
  ```json
  {
@@ -236,13 +236,13 @@ Si desea utilizar una acción de OpenWhisk para generar un mensaje en Message Hu
 |Nombre|Tipo|Descripción|
 |---|---|---|
 |kafka_brokers_sasl|Matriz JSON de series|Este parámetro es una matriz de series de caracteres `<host>:<port>` que comprenden los intermediarios de la instancia de Message Hub|
-|user|Serie|Su nombre de usuario de Message Hub|
+|usuario|Serie|Su nombre de usuario de Message Hub|
 |password|Serie|Su contraseña de Message Hub|
 |topic|Serie|El tema que desea que escuche el desencadenante|
-|value|Serie|El valor del mensaje que desea generar|
-|key|Serie (opcional)|La clave del mensaje que desea generar|
+|valor|Serie|El valor del mensaje que desea generar|
+|clave|Serie (opcional)|La clave del mensaje que desea generar|
 
-Aunque los tres primeros parámetros se pueden enlazar automáticamente mediante `wsk package refresh`, a continuación se muestra un ejemplo de cómo invocar la acción con todos los parámetros necesarios:
+Aunque los tres primeros parámetros se pueden enlazar automáticamente mediante `wsk package refresh`, consulte el siguiente ejemplo que invoca la acción con todos los parámetros necesarios:
 
 ```
 wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your Message Hub user> -p password <your Message Hub password> -p value "Este es el contenido de mi mensaje"

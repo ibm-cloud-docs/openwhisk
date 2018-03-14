@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,10 +15,11 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_github}
 
 O pacote `/whisk.system/github` oferece uma maneira conveniente de usar as [APIs do GitHub](https://developer.github.com/).
+{: shortdesc}
 
 O pacote inclui o feed a seguir:
 
-| Entidade | Tipo | Parâmetros | Descrição |
+| Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
 | `/whisk.system/github` | pacote | username, repository, accessToken | Interagir com a API do GitHub |
 | `/whisk.system/github/webhook` | alimentação | events, username, repository, accessToken | Disparar eventos acionadores na atividade do GitHub |
@@ -28,15 +29,14 @@ O pacote inclui o feed a seguir:
 
 ## Disparando um evento acionador com atividade do GitHub
 
-O feed `/whisk.system/github/webhook` configura um serviço para disparar um acionador quando houver atividade em um repositório do GitHub especificado. Os parâmetros são como segue:
+O feed `/whisk.system/github/webhook` configura um serviço para disparar um acionador quando houver atividade em um repositório GitHub especificado. Os parâmetros são os seguintes:
 
 - `username`: o nome do usuário do repositório GitHub.
-- `repository`: o repositório do GitHub.
-- `accessToken`: seu token de acesso pessoal do GitHub. Ao [criar seu token](https://github.com/settings/tokens), certifique-se de que sejam selecionados os escopos repo:status epublic_repo. Além
-disso, certifique-se de que não tenha nenhum webhook já definido para seu repositório.
+- `repository`: o repositório GitHub.
+- `accessToken`: seu token de acesso pessoal do GitHub. Ao [criar o seu token](https://github.com/settings/tokens), certifique-se de selecionar os escopos **repo:status** e **public_repo**. Além disso, certifique-se de que você não tenha nenhum webhook já definido para seu repositório.
 - `events`: o [tipo de evento do GitHub](https://developer.github.com/v3/activity/events/types/) de interesse.
 
-A seguir está um exemplo de criação de um acionador que será disparado toda vez que houver uma nova confirmação em um repositório do GitHub.
+No exemplo a seguir, um acionador é criado que dispara a cada nova confirmação em um repositório GitHub.
 
 1. Gere um [token de acesso pessoal](https://github.com/settings/tokens) do GitHub.
   
@@ -59,9 +59,7 @@ A seguir está um exemplo de criação de um acionador que será disparado toda 
   ```
   {: pre}
   
-  Uma confirmação para o repositório GitHub usando um `git push` faz
-com que o acionador seja disparado pelo webhook. Se houver uma regra que corresponda ao acionador, então, a
-ação associada será chamada.
+  Uma confirmação para o repositório GitHub usando um `git push` faz com que o acionador seja disparado pelo webhook. Se uma regra corresponde ao acionador, a ação associada é chamada.
   A ação recebe a carga útil de webhook do GitHub como um parâmetro de entrada. Cada evento
 de webhook do GitHub tem um esquema JSON semelhante, mas é um objeto de carga útil
 exclusivo que é determinado por seu tipo de evento.

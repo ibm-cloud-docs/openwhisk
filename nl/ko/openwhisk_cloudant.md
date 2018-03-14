@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -13,36 +13,29 @@ lastupdated: "2017-06-02"
 
 # Cloudant 패키지 사용
 {: #openwhisk_catalog_cloudant}
-`/whisk.system/cloudant` 패키지를 사용하면 Cloudant 데이터베이스를 사용하여 작업할 수 있습니다. 다음 조치 및 피드를 포함합니다.
+`/whisk.system/cloudant` 패키지를 사용하면 Cloudant 데이터베이스 관련 작업을 수행할 수 있습니다. 여기에는 다음의 조치 및 피드가 포함됩니다. 
 
 | 엔티티 | 유형 | 매개변수 | 설명 |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | 패키지 | dbname, host, username, password | Cloudant 데이터베이스와 함께 작동 |
+| `/whisk.system/cloudant` | 패키지 | dbname, host, username, password | Cloudant 데이터베이스 관련 작업 |
 | `/whisk.system/cloudant/read` | 조치 | dbname, id | 데이터베이스에서 문서 읽기 |
 | `/whisk.system/cloudant/write` | 조치 | dbname, overwrite, doc | 데이터베이스에 문서 쓰기 |
-| `/whisk.system/cloudant/changes` | 피드 | dbname, filter, query_params, maxTriggers | 데이터베이스에 대한 변경 시 트리거 이벤트 실행 |
+| `/whisk.system/cloudant/changes` | 피드 | dbname, filter, query_params, maxTriggers | 데이터베이스에 대한 변경 시에 트리거 이벤트 실행 |
+{: shortdesc}
 
-다음 주제에서는 `/whisk.system/cloudant` 패키지 내에서의 Cloudant 데이터베이스 설정, 연관된 패키지 구성 및 조치 및 피드 사용에 대해 설명합니다.
+다음 주제에서는 Cloudant 데이터베이스 설정, 연관 패키지 구성 및 `/whisk.system/cloudant` 패키지에서 조치 및 피드의 사용법에 대해 안내합니다. 
 
-## Bluemix에서 Cloudant 데이터베이스 설정
+## {{site.data.keyword.Bluemix_notm}}에서 Cloudant 데이터베이스에서 설정
 {: #openwhisk_catalog_cloudant_in}
 
-Bluemix의 OpenWhisk를 사용하는 경우, OpenWhisk는 Bluemix Cloudant 서비스 인스턴스에 대한 패키지 바인딩을 자동으로 작성합니다. Bluemix의 OpenWhisk 및 Cloudant를 사용하지 않는 경우에는 다음 단계로 건너뛰십시오.
+{{site.data.keyword.Bluemix_notm}}에서 OpenWhisk를 사용 중인 경우, OpenWhisk는 Cloudant 서비스 인스턴스에 대한 패키지 바인딩을 자동으로 작성합니다. 
+{{site.data.keyword.Bluemix_notm}}에서 OpenWhisk 및 Cloudant를 사용 중이지 않으면 다음 단계로 건너뛰십시오. 
 
-1. Bluemix [대시보드](http://console.ng.Bluemix.net)에서 Cloudant 서비스 인스턴스를 작성하십시오.
+1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://console.ng.Bluemix.net)에서 Cloudant 서비스 인스턴스를 작성하십시오.
 
-  서비스 인스턴스의 이름, 사용자가 속한 Bluemix 조직 및 영역을 기억하십시오.
+  각각의 새 서비스 인스턴스에 대한 신임 정보 키를 반드시 작성하십시오. 
 
-2. 사용자가 이전 단계에서 사용한 Bluemix 조직 및 영역에 해당되는 네임스페이스에 OpenWhisk CLI가 있는지 확인하십시오.
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  또는 `wsk property set --namespace`를 사용하여 액세스 가능한 목록에서 네임스페이스를 설정할 수 있습니다.
-
-3. 네임스페이스 내의 패키지를 새로 고치십시오. 일반적으로 새로 고치기는 사용자가 작성한 Cloudant 서비스 인스턴스에 대한 패키지 바인딩을 작성합니다.
+2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치기를 수행하면 정의된 신임 정보 키를 사용하여 각각의 Cloudant 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다. 
 
   ```
   wsk package refresh
@@ -62,9 +55,9 @@ Bluemix의 OpenWhisk를 사용하는 경우, OpenWhisk는 Bluemix Cloudant 서�
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Bluemix Cloudant 서비스 인스턴스에 해당하는 패키지 바인딩의 완전한 이름이 표시됩니다.
+  이제 패키지 바인딩에 Cloudant 서비스 인스턴스와 연관된 신임 정보가 포함되어 있습니다. 
 
-4. 이전에 작성된 패키지 바인딩이 Cloudant Bluemix 서비스 인스턴스 호스트 및 신임 정보로 구성되었는지 확인하십시오.
+3. 이전에 작성된 패키지 바인딩이 Cloudant {{site.data.keyword.Bluemix_notm}} 서비스 인스턴스 호스트 및 신임 정보로 구성되었는지 확인하십시오. 
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -87,13 +80,13 @@ Bluemix의 OpenWhisk를 사용하는 경우, OpenWhisk는 Bluemix Cloudant 서�
           "key": "password",
           "value": "c9088667484a9ac827daf8884972737"
       }
-      ]
+  ]
   ```
 
-## Bluemix 외부에서 Cloudant 데이터베이스 설정
+## {{site.data.keyword.Bluemix_notm}} 외부의 Cloudant 데이터베이스에서 설정
 {: #openwhisk_catalog_cloudant_outside}
 
-Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 데이터베이스를 설정하려면 Cloudant 계정의 패키지 바인딩을 수동으로 작성해야 합니다. Cloudant 계정 호스트 이름, 사용자 이름, 비밀번호가 필요합니다. 
+{{site.data.keyword.Bluemix_notm}}에서 OpenWhisk를 사용하지 않거나 {{site.data.keyword.Bluemix_notm}} 외부에서 Cloudant 데이터베이스를 설정하고자 하는 경우에는 Cloudant 계정에 대한 패키지 바인딩을 수동으로 작성해야 합니다. Cloudant 계정 호스트 이름, 사용자 이름 및 비밀번호가 필요합니다. 
 
 1. Cloudant 계정에 대해 구성된 패키지 바인딩을 작성하십시오. 
 
@@ -103,7 +96,7 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 
   {: pre}
   
 
-2. 패키지 바인딩이 있는지 확인하십시오.
+2. 패키지 바인딩이 존재하는지 확인하십시오. 
 
   ```
   wsk package list
@@ -120,11 +113,11 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 
 
 ### 데이터베이스 변경 이벤트 필터링
 
-불필요한 변경 이벤트가 트리거를 실행하지 않도록 필터 함수를 정의할 수 있습니다. 
+트리거를 실행하는 불필요한 변경 이벤트를 피하기 위한 필터 함수를 정의할 수 있습니다. 
 
-조치를 사용하여 새 필터 함수를 작성할 수 있습니다. 
+새 필터 함수를 작성하기 위해 조치를 사용할 수 있습니다. 
 
-다음 필터 함수를 사용하여 JSON 문서 파일 `design_doc.json` 작성
+다음의 필터 함수로 json 문서 파일 `design_doc.json` 작성
 ```json
 {
   "doc": {
@@ -136,12 +129,11 @@ Bluemix에서 OpenWhisk를 사용하지 않거나 Bluemix 외부에서 Cloudant 
 }
 ```
 
-필터 함수를 사용하여 데이터베이스에 새 디자인 문서 작성
-
+필터 함수로 데이터베이스에서 디자인 문서 작성
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
-새 디자인 문서의 정보가 화면에 출력됩니다.
+새 디자인 문서에 대한 정보가 화면에 출력됩니다.
 ```json
 {
     "id": "_design/mailbox",
@@ -150,22 +142,23 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
 }
 ```
 
-### 필터 함수를 사용한 트리거 작성
+### 필터 함수를 사용하여 트리거 작성
 
-`changes` 피드를 사용하여 Cloudant 데이터베이스에 대한 모든 변경 시 트리거를 실행하도록 서비스를 구성할 수 있습니다.매개변수는 다음과 같습니다.
+`changes` 피드를 사용하여 Cloudant 데이터베이스에 대한 변경 시마다 트리거를 실행하도록 서비스를 구성할 수 있습니다. 매개변수는 다음과 같습니다. 
 
 - `dbname`: Cloudant 데이터베이스의 이름입니다.
-- `maxTriggers`: 이 한계에 도달하면 트리거 실행이 중지됩니다. 기본값은 무한(infinite)입니다.
-- `filter`: 디자인 문서에 정의된 필터 함수입니다. 
-- `query_params`: 필터 함수의 선택적 조회 매개변수입니다. 
+- `maxTriggers`: 이 한계에 도달하면 트리거 실행을 중지합니다. 기본값은 무제한입니다. 
+- `filter`: 디자인 문서에서 정의된 필터 함수입니다. 
+- `query_params`: 필터 함수에 대한 추가 조회 매개변수입니다. 
 
 
-1. 이전에 작성한 패키지 바인딩에 있는 `changes` 피드를 사용하여 트리거를 작성하면서, 상태가 `new`일 때 문서가 추가되거나 수정되는 경우에만 트리거를 실행하도록 하기 위해 `filter` 및 `query_params`를 포함시키십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
+1. 이전에 작성한 패키지 바인딩의 `changes` 피드로 트리거를 작성하십시오. 상태가 `new`인 경우 문서가 추가되거나 수정될 때 트리거를 실행하려면 `filter` 및 `query_params` 함수를 포함하십시오.
+반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오. 
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
@@ -173,28 +166,28 @@ wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P desi
   ok: created trigger feed myCloudantTrigger
   ```
 
-2. 활성화를 위해 폴링하십시오.
+2. 활성화에 대해 폴링하십시오. 
 
   ```
-wsk activation poll
+  wsk activation poll
   ```
   {: pre}
 
-3. Cloudant 대시보드에서 기존 문서를 수정하거나 새 문서를 작성하십시오.
+3. Cloudant 대시보드에서 기존 문서를 수정하거나 새 문서를 작성하십시오. 
 
-4. 필터 함수 및 조회 매개변수에 따라 문서 상태가 `new` 인 경우에만 실행되는, 각 문서 변경에 대한 `myCloudantTrigger` 트리거의 새 활성화를 관찰하십시오. 
+4. 필터 함수 및 조회 매개변수를 기반으로 문서 상태가 `new`인 경우에만 각 문서 변경에 대해 `myCloudantTrigger` 트리거에 대한 새 활성화를 관찰하십시오. 
   
-  **참고**: 새 활성화를 관찰할 수 없으면 Cloudant 데이터베이스에 대한 읽기 및 쓰기에 관한 후속 절을 참조하십시오. 아래의 읽기 단계와 쓰기 단계를 테스트하면 Cloudant 신임 정보가 올바른지 확인하는 데 유용합니다. 
+  **참고**: 새 활성화를 관찰할 수 없는 경우에는 Cloudant 데이터베이스에 대한 읽기 및 쓰기 관련 후속 절을 참조하십시오. 다음의 읽기 및 쓰기 단계를 테스트하면 Cloudant 신임 정보가 올바른지 여부를 확인하는 데 도움이 됩니다. 
   
-  이제 규칙을 작성하고 규칙을 조치에 연관시켜 문서 업데이트에 반응할 수 있습니다.
+  이제 규칙을 작성하고 이를 조치에 연관시켜서 문서 업데이트에 반응할 수 있습니다. 
   
-  생성된 이벤트의 컨텐츠에 다음 매개변수가 있습니다.
+  생성된 이벤트의 컨텐츠에는 다음 매개변수가 있습니다. 
   
-  - `id`: 문서 ID입니다.
-  - `seq`: Cloudant에서 생성한 시퀀스 ID입니다. 
-  - `changes`: 오브젝트의 배열이며 각각 문서의 개정 ID를 포함하는 `rev` 필드를 가집니다.
+  - `id`: 문서 ID입니다. 
+  - `seq`: Cloudant에 의해 생성된 시퀀스 ID입니다. 
+  - `changes`: 오브젝트의 배열이며, 각각에는 문서의 개정 ID를 포함하는 `rev` 필드가 있습니다. 
   
-  트리거 이벤트의 JSON 표시는 다음과 같습니다.
+  트리거 이벤트의 JSON 표시는 다음과 같습니다. 
   
   ```json
   {
@@ -211,9 +204,9 @@ wsk activation poll
 ## Cloudant 데이터베이스에 쓰기
 {: #openwhisk_catalog_cloudant_write}
 
-조치를 사용하여 `testdb`라는 Cloudant 데이터베이스에 문서를 저장할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
+조치를 사용하여 `testdb`라고 하는 Cloudant 데이터베이스에 문서를 저장할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
 
-1. 앞에서 작성한 패키지 바인딩 내의 `write` 조치를 사용하여 문서를 저장하십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
+1. 이전에 작성한 패키지 바인딩의 `write` 조치를 사용하여 문서를 저장하십시오. 반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오. 
 
   ```
   wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
@@ -229,17 +222,17 @@ wsk activation poll
   }
   ```
 
-2. 문서를 Cloudant 대시보드에서 찾아서 문서가 존재하는지 확인하십시오.
+2. Cloudant 대시보드에서 문서를 찾아보고 해당 문서가 존재하는지 확인하십시오. 
 
-  `testdb`에 대한 대시보드 URL은 다음과 유사합니다. `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
+  `testdb` 데이터베이스에 대한 대시보드 URL은 다음과 유사합니다. `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
 
 
 ## Cloudant 데이터베이스에서 읽기
 {: #openwhisk_catalog_cloudant_read}
 
-조치를 사용하여 `testdb`라는 Cloudant 데이터베이스에서 문서를 페치할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
+조치를 사용하여 `testdb`라고 하는 Cloudant 데이터베이스의 문서를 페치할 수 있습니다. 이 데이터베이스가 Cloudant 계정에 존재하는지 확인하십시오.
 
-- 앞에서 작성한 패키지 바인딩 내의 `read` 조치를 사용하여 문서를 페치하십시오. `/_/myCloudant`는 사용자의 패키지 이름으로 대체해야 합니다. 
+- 이전에 작성한 패키지 바인딩의 `read` 조치를 사용하여 문서를 페치하십시오. 반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오. 
 
   ```
   wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
@@ -253,39 +246,38 @@ wsk activation poll
   }
   ```
 
-## 조치 시퀀스와 변경 트리거를 사용하여 Cloudant 데이터베이스에서 문서 처리
+## 조치 시퀀스 및 변경 트리거를 사용하여 Cloudant 데이터베이스의 문서 처리
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-규치에서 조치 시퀀스를 사용하여 Cloudant 변경 이벤트와 관련된 문서를 페치하여 처리할 수 있습니다.
+규칙의 조치 시퀀스를 사용하여 Cloudant 변경 이벤트와 연관된 문서를 페치하고 처리할 수 있습니다. 
 
-문서를 처리하는 조치의 샘플 코드입니다.
+문서를 처리하는 조치의 샘플 코드: 
 ```javascript
 function main(doc){
   return { "isWalter:" : doc.name === "Walter White"};
 }
 ```
 
-Cloudant에서 문서를 처리하는 조치를 작성하십시오. 
+Cloudant에서 문서를 처리하기 위한 조치를 작성하십시오. 
 ```
 wsk action create myAction myAction.js
 ```
 {: pre}
 
-데이터베이스에서 문서를 읽기 위해 Cloudant 패키지의 `read` 조치를 사용할 수 있습니다.
-`read` 조치는 조치 시퀀스를 작성하기 위해 `myAction`으로 구성될 수 있습니다. 
+데이터베이스에서 문서를 읽기 위해 Cloudant 패키지에서 `read` 조치를 사용할 수 있습니다.
+`read` 조치는 조치 시퀀스를 작성하기 위한 `myAction`으로 작성될 수 있습니다. 
 ```
 wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
-`sequenceAction` 조치는 새 Cloudant 트리거 이벤트에서 조치를 활성화하는 규칙에 사용될 수 있습니다. 
+`sequenceAction` 조치는 새 Cloudant 트리거 이벤트에서 조치를 활성화하는 규칙에서 사용될 수 있습니다. 
 ```
 wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
-**참고**: Cloudant `changes` 트리거는 더 이상 지원되지 않는 `includeDoc` 매개변수를 지원하는 데 사용되었습니다.
-  `includeDoc`으로 이전에 작성했던 트리거를 다시 작성해야 합니다. 트리거를 다시 작성하려면 다음 단계를 수행하십시오. 
+**참고**: `includeDoc` 매개변수 지원에 사용되던 Cloudant `changes` 트리거는 더 이상 지원되지 않습니다. `includeDoc`로 이전에 작성된 트리거를 재작성할 수 있습니다. 트리거를 재작성하려면 다음 단계를 수행하십시오.  
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -295,6 +287,5 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  위에서 설명된 예제를 사용하여 변경된 문서를 읽고 기존 조치를 호출하기 위한 조치 시퀀스를 작성할 수 있습니다.
-  더 이상 유효하지 않은 모든 규칙을 사용 안함으로 설정하고 조치 시퀀스 패턴을 사용하여 새 규칙을 작성하십시오. 
+  예제를 사용하여 변경된 문서를 읽고 기존 조치를 호출하는 조치 시퀀스를 작성할 수 있습니다. 반드시 더 이상 유효하지 않은 규칙을 사용 중지하고 조치 시퀀스 패턴을 사용하여 새로 규칙을 작성하십시오. 
 

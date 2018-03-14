@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,33 +15,34 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_slack}
 
 O pacote `/whisk.system/slack` oferece uma maneira conveniente de usar as [APIs do Slack](https://api.slack.com/).
+{: shortdesc}
 
-O pacote inclui as ações a seguir:
+O pacote inclui as Ações a seguir:
 
-| Entidade | Tipo | Parâmetros | Descrição |
+| Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/whisk.system/slack` | pacote | url, channel, username | Interagir com a API do Slack |
-| `/whisk.system/slack/post` | ação | text, url, channel, username | Posta uma mensagem para um canal do Slack |
+| `/whisk.system/slack` | Pacote | url, channel, username | Interagir com a API do Slack |
+| `/whisk.system/slack/post` | Ação | text, url, channel, username | Posta uma mensagem para um canal do Slack |
 
 É sugerido criar uma ligação de pacote com os valores `username`, `url` e
 `channel`. Com a ligação, não será necessário especificar os valores toda vez que você chamar a ação no pacote.
 
 ## Postando uma mensagem para um canal do Slack
 
-A ação `/whisk.system/slack/post` posta uma mensagem para um canal do Slack especificado. Os parâmetros são como segue:
+A ação `/whisk.system/slack/post` posta uma mensagem para um canal do Slack especificado. Os parâmetros são os seguintes:
 
 - `url`: a URL do webhook do Slack.
 - `channel`: o canal do Slack no qual postar a mensagem.
 - `username`: o nome com o qual postar a mensagem.
 - `text`: uma mensagem para postar.
-- `token`: (opcional) um [token de acesso](https://api.slack.com/tokens) de Slack. Consulte [abaixo](./catalog.md#using-the-slack-token-based-api) para obter mais detalhes sobre o uso dos tokens de acesso de Folga.
+- `token`: (opcional) um [token de acesso](https://api.slack.com/tokens) de Slack. Veja o [Guia do Pacote do OpenWhisk](./openwhisk_catalog.html) para obter mais detalhes sobre como usar tokens de acesso do Slack.
 
-A seguir há um exemplo de configuração do Slack, criação de uma ligação de pacote e postagem de uma mensagem para um canal.
+O exemplo a seguir mostra como configurar o Slack, criar uma ligação de pacote e postar uma mensagem em um canal.
 
 1. Configure um [webhook recebido](https://api.slack.com/incoming-webhooks) do Slack para sua equipe.
   
   Após a configuração do Slack, você obtém uma URL de webhook semelhante a
-`https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Precisará dela na próxima etapa.
+`https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. O webhook será necessário na próxima etapa.
   
 2. Crie uma ligação de pacote com suas credenciais do Slack, o canal no qual deseja postar e o nome de usuário com o qual postar.
   
@@ -53,7 +54,7 @@ A seguir há um exemplo de configuração do Slack, criação de uma ligação d
   ```
   {: pre}
   
-3. Chame a ação `post` em sua ligação do pacote para postar uma mensagem em seu canal do Slack.
+3. Chame a ação `post` em sua ligação de pacote para postar uma mensagem em seu canal do Slack.
   
   ```
   wsk action invoke mySlack/post --blocking --result \
@@ -64,4 +65,4 @@ A seguir há um exemplo de configuração do Slack, criação de uma ligação d
 
 ## Usando a API baseada no token de Slack
 
-Se você preferir, será possível escolher, opcionalmente, usar uma API baseada no token de Slack, em vez de a API do webhook. Se você assim escolher, então, passe em um parâmetro `token` que contém o seu [token de acesso](https://api.slack.com/tokens) do Slack. É possível, então, usar qualquer dos [métodos de API Slack](https://api.slack.com/methods) como o seu parâmetro `url`. Por exemplo, para postar uma mensagem, você utilizaria um valor de parâmetro `url` [slack.postMessage](https://api.slack.com/methods/chat.postMessage).
+Se preferir, é possível escolher usar uma API baseada em token do Slack, em vez da API do webhook. Se você assim escolher, então, passe em um parâmetro `token` que contém o seu [token de acesso](https://api.slack.com/tokens) do Slack. Em seguida, é possível usar qualquer um dos [Métodos de API do Slack](https://api.slack.com/methods) como seu parâmetro `url`. Por exemplo, para postar uma mensagem, você utilizaria um valor de parâmetro `url` [slack.postMessage](https://api.slack.com/methods/chat.postMessage).

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-04-25"
+  years: 2016, 2018
+lastupdated: "2018-02-14"
 
 ---
 
@@ -13,14 +13,13 @@ lastupdated: "2017-04-25"
 
 # Initiation à {{site.data.keyword.openwhisk_short}}
 
-
-{{site.data.keyword.openwhisk}} est un service de traitement distribué et géré par des événements, également appelé traitement sans serveur ou Function as a Service (FaaS). {{site.data.keyword.openwhisk_short}} exécute une logique d'application en réponse à des événements ou à des appels directs provenant d'applications Web ou mobiles via HTTP. Les événements peuvent être fournis par des services Bluemix tels que Cloudant et par des sources externes. Les développeurs peuvent se consacrer à l'écriture de la logique d'application et à la création d'actions qui sont exécutées à la demande.
-Les avantages de ce nouveau paradigme résident dans le fait que vous ne mettez pas à disposition des serveurs de manière explicite et vous n'avez pas à vous préoccuper de la mise à l'échelle automatique ni à vous soucier de la haute disponibilité, des mises à jour, de la maintenance, d'avoir à payer pour des heures de temps de processeur lorsque votre serveur est actif mais qu'il ne traite aucune demande.
+{{site.data.keyword.openwhisk}} est un service de traitement distribué géré par des événements également appelé traitement sans serveur ou FaaS (Function as a Service). {{site.data.keyword.openwhisk_short}} exécute une logique d'application en réponse à des événements ou des appels directs d'applications Web ou mobiles sur HTTP. Les événements peuvent être fournis par des services {{site.data.keyword.Bluemix}}, tels que Cloudant, et par des sources externes. Les développeurs peuvent se consacrer à l'écriture de la logique d'application et à la création d'actions qui sont exécutées à la demande.
+Le principal avantage de ce nouveau paradigme réside dans le fait que vous ne mettez pas à disposition des serveurs de manière explicite. Par conséquent, vous n'avez pas à vous préoccuper de la mise à l'échelle automatique, vous soucier de la haute disponibilité, des mises à jour, de la maintenance ou d'avoir à payer pour des heures de temps de processeur lorsque votre serveur est actif mais qu'il ne traite aucune demande.
 Votre code s'exécute chaque fois que se produit un appel HTTP, un changement d'état de base de données ou tout autre type d'événement qui déclenche l'exécution de votre code.
 Vous êtes facturé à la milliseconde de temps d'exécution (arrondie aux 100 ms supérieurs) et non à l'heure d'utilisation de machine virtuelle, que le travail effectué par celle-ci ait été utile ou non.
 {: shortdesc}
 
-Ce modèle de programmation convient particulièrement bien pour les applications de microservices, de mobiles, IoT, et beaucoup d'autres. La mise à l'échelle automatique et l'équilibrage de charge y sont inhérents, sans que vous ayez à configurer manuellement des clusters, des équilibreurs de charge, des plug-ins HTTP, etc. Si vous utilisez {{site.data.keyword.openwhisk}}, vous êtes également déchargé de toutes les tâches d'administration, la maintenance du matériel, du réseau et des logiciels étant assurée par IBM. Tout ce que vous avez à faire est fournir le code que vous souhaitez exécuter et le donner à {{site.data.keyword.openwhisk}}. Le reste se fait par magie. Vous trouverez une excellente présentation du modèle de programmation sans serveur sur le [blogue de Martin Fowler](https://martinfowler.com/articles/serverless.html).
+Ce modèle de programmation convient particulièrement bien pour les applications de microservices, de mobiles, IoT, et beaucoup d'autres. La mise à l'échelle automatique et l'équilibrage de charge y sont inhérents, sans que vous ayez à configurer manuellement des clusters, des équilibreurs de charge, des plug-ins HTTP, etc. Si vous utilisez {{site.data.keyword.openwhisk}}, vous êtes également déchargé de toutes les tâches d'administration, la maintenance du matériel, du réseau et des logiciels étant assurée par IBM.  Tout ce que vous avez à faire est fournir le code que vous souhaitez exécuter et le donner à {{site.data.keyword.openwhisk}}. Le reste se fait par magie. Vous trouverez une excellente présentation du modèle de programmation sans serveur sur le [blogue de Martin Fowler](https://martinfowler.com/articles/serverless.html).
 
 Vous pouvez également obtenir le [code source Apache OpenWhisk](https://github.com/openwhisk/openwhisk) et exécuter le système vous-même.
 
@@ -32,8 +31,8 @@ Ces deux fonctions sont dotées de capacités similaires pour le développement 
 ## Développer dans votre navigateur
 {: #openwhisk_start_editor}
 
-Essayez {{site.data.keyword.openwhisk_short}} dans votre [navigateur](https://console.{DomainName}/openwhisk/editor) pour créer des actions, automatiser les actions à l'aide de déclencheurs et explorer des packages publics. 
-Consultez la page [En savoir plus](https://console.{DomainName}/openwhisk/learn) pour un tour d'horizon de l'interface utilisateur d'OpenWhisk.
+Essayez {{site.data.keyword.openwhisk_short}} dans votre [navigateur](https://console.{DomainName}/openwhisk/actions) pour créer des Actions, automatiser les actions à l'aide de déclencheurs et explorer des packages publics.
+Consultez la page [En savoir plus](https://console.{DomainName}/openwhisk/learn) pour un tour d'horizon de l'interface utilisateur d'{{site.data.keyword.openwhisk_short}}. 
 
 ## Développement à l'aide de l'interface de ligne de commande
 {: #openwhisk_start_configure_cli}
@@ -72,7 +71,7 @@ Pour vous initier à {{site.data.keyword.openwhisk_short}}, essayez l'exemple de
 
 ```javascript
 /**
- * Hello world as an OpenWhisk action.
+ * Hello world sous forme d'action OpenWhisk.
  */
 function main(params) {
     var name = params.name || 'World';
@@ -85,23 +84,19 @@ Pour utiliser cet exemple, procédez comme suit :
 
 1. Sauvegardez le code dans un fichier, par exemple *hello.js*.
 
-2. Sur la ligne de commande de l'interface de ligne de commande d'{{site.data.keyword.openwhisk_short}}, créez l'action en entrant la
-commande suivante :
-
+2. Sur la ligne de commande de l'interface de ligne de commande d'{{site.data.keyword.openwhisk_short}}, créez l'action en entrant la commande suivante :
     ```
     wsk action create hello hello.js
     ```
     {: pre}
 
 3. Ensuite, appelez l'action en entrant les commandes suivantes :
-
     ```
     wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
     Cette commande génère :
-
     ```json
     {
         "payload": "Hello, World!"
@@ -114,14 +109,13 @@ commande suivante :
     {: pre}  
 
     Cette commande génère :
-
     ```json
     {
         "payload": "Hello, Fred!"
     }
     ```
 
-Vous pouvez aussi utiliser les fonctions gérées par des événements dans {{site.data.keyword.openwhisk_short}} pour appeler cette action en réponse à des événements. Suivez l'[exemple de service Alarm](./openwhisk_packages.html#openwhisk_packages_trigger) afin de configurer une source d'événements pour appeler l'action `hello` à chaque fois qu'un événement régulier est généré.
+Vous pouvez aussi utiliser les fonctions gérées par des événements dans {{site.data.keyword.openwhisk_short}} pour appeler cette action en réponse à des événements. Suivez l'[exemple de service Alarm](./openwhisk_packages.html#openwhisk_package_trigger) afin de configurer une source d'événements pour appeler l'action `hello` à chaque fois qu'un événement régulier est généré.
 
 Cliquez [ici](https://github.com/openwhisk/openwhisk-external-resources#sample-applications) pour la liste complète des tutoriels et exemples OpenWhisk. Outre des exemples, ce référentiel comporte des liens vers des articles, des présentations, des podcasts, des vidéos et d'autres ressources {{site.data.keyword.openwhisk_short}} associées.
 

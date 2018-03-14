@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -17,32 +17,24 @@ Le package `/whisk.system/cloudant` permet d'utiliser une base de données Cloud
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | package | dbname, host, username, password | Utiliser une base de données Cloudant |
-| `/whisk.system/cloudant/read` | action | dbname, id | Lire un document à partir d'une base de données |
-| `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Ecrire un document dans une base de données |
-| `/whisk.system/cloudant/changes` | flux | dbname, filter, query_params, maxTriggers | Exécuter des événements déclencheurs en cas de modification dans une base de données |
+| `/whisk.system/cloudant` | Package | dbname, host, username, password | Utiliser une base de données Cloudant |
+| `/whisk.system/cloudant/read` | Action | dbname, id | Lire un document à partir d'une base de données |
+| `/whisk.system/cloudant/write` | Action | dbname, overwrite, doc | Ecrire un document dans une base de données |
+| `/whisk.system/cloudant/changes` | Flux | dbname, filter, query_params, maxTriggers | Exécuter des événements déclencheurs en cas de modification d'une base de données |
+{: shortdesc}
 
-Les rubriques ci-après expliquent comment configurer une base de données Cloudant, comment configurer un package associé, et comment utiliser les actions et les flux du package `/whisk.system/cloudant`.
+Les rubriques ci-après expliquent comment configurer une base de données Cloudant, comment configurer un package associé et comment utiliser les actions et les flux du package `/whisk.system/cloudant`.
 
-## Configuration d'une base de données Cloudant dans Bluemix
+## Configuration d'une base de données Cloudant dans {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_in}
 
-Si vous utilisez OpenWhisk depuis Bluemix, OpenWhisk crée automatiquement des liaisons de package pour vos instances de service Bluemix Cloudant. Si vous n'utilisez pas OpenWhisk et Cloudant depuis Bluemix, passez à l'étape suivante.
+Si vous utilisez OpenWhisk depuis {{site.data.keyword.Bluemix_notm}}, OpenWhisk crée automatiquement des liaisons de package pour vos instances de service Cloudant. Si vous n'utilisez pas OpenWhisk et Cloudant depuis {{site.data.keyword.Bluemix_notm}}, passez à l'étape suivante.
 
-1. Créez une instance de service Cloudant dans votre [tableau de bord](http://console.ng.Bluemix.net) Bluemix.
+1. Créez une instance de service Cloudant dans votre [tableau de bord](http://console.ng.Bluemix.net) {{site.data.keyword.Bluemix_notm}}.
 
-  Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace Bluemix dans lesquels vous vous trouvez.
+  Prenez soin de créer une clé de données d'identification pour chaque nouvelle instance de service. 
 
-2. Assurez-vous que votre interface de ligne de commande OpenWhisk se trouve dans l'espace de nom qui correspond à l'organisation et à l'espace Bluemix que vous avez utilisés à l'étape précédente.
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  Vous pouvez aussi utiliser `wsk property set --namespace` pour définir un espace de nom à partir d'une liste des espaces de nom auxquels vous pouvez accéder.
-
-3. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour l'instance de service Cloudant que vous avez créée.
+2. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour chaque instance de service Cloudant ayant une clé de données d'identification définie. 
 
   ```
   wsk package refresh
@@ -62,9 +54,10 @@ Si vous utilisez OpenWhisk depuis Bluemix, OpenWhisk crée automatiquement des l
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Le nom qualifié complet de la liaison de package qui correspond à votre instance de service Bluemix Cloudant apparaît.
+  Votre liaison de package contient désormais les données d'identification associées à votre instance de service Cloudant. 
 
-4. Vérifiez que la liaison de package qui a été créée précédemment est configurée avec l'hôte et les données d'identification de votre instance de service Cloudant Bluemix.
+3. Vérifiez que la liaison de package qui a été créée précédemment est configurée avec l'hôte et les données d'identification de votre instance de service
+{{site.data.keyword.Bluemix_notm}} Cloudant.
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -90,16 +83,15 @@ Si vous utilisez OpenWhisk depuis Bluemix, OpenWhisk crée automatiquement des l
   ]
   ```
 
-## Configuration d'une base de données Cloudant hors de Bluemix
+## Configuration d'une base de données Cloudant en dehors de {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_outside}
 
-Si vous n'utilisez pas OpenWhisk dans Bluemix ou si vous souhaitez configurer votre base de données Cloudant hors de Bluemix, vous devez créer manuellement une liaison de package pour votre compte Cloudant. Vous avez besoin du nom d'hôte, du nom d'utilisateur et du mot de passe du compte Cloudant.
+Si vous n'utilisez pas OpenWhisk dans {{site.data.keyword.Bluemix_notm}} ou si vous souhaitez configurer votre base de données Cloudant en dehors de {{site.data.keyword.Bluemix_notm}}, vous devez créer manuellement une liaison de package pour votre compte Cloudant. Vous avez besoin du nom d'hôte, du nom d'utilisateur et du mot de passe du compte Cloudant.
 
 1. Créez une liaison de package qui est configurée pour votre compte Cloudant.
 
   ```
-  wsk package bind /whisk.system/cloudant monCloudant -p username MON_NOM_UTILISATEUR -p password MON_MOT_DE_PASSE -p host
-MON_COMPTE_CLOUDANT.cloudant.com
+  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
   
@@ -127,7 +119,7 @@ Pour créer une nouvelle fonction de filtrage, vous pouvez utiliser une action.
 
 Créez un fichier de document json nommé `design_doc.json` et contenant la fonction de filtrage suivante
 ```json
-    {
+{
   "doc": {
     "_id": "_design/mailbox",
     "filters": {
@@ -137,14 +129,13 @@ Créez un fichier de document json nommé `design_doc.json` et contenant la fonc
 }
 ```
 
-Créez un nouveau document de conception sur la base de données avec la fonction de filtrage
-
+Créez un document de conception sur la base de données avec la fonction de filtrage
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 Les informations pour le nouveau document de conception sont affichées à l'écran.
 ```json
-    {
+{
     "id": "_design/mailbox",
     "ok": true,
     "rev": "1-5c361ed5141bc7856d4d7c24e4daddfd"
@@ -157,22 +148,22 @@ Vous pouvez utiliser le flux `changes` pour configurer un service afin d'exécut
 
 - `dbname` : nom de la base de données Cloudant.
 - `maxTriggers` : l'exécution de déclencheurs s'arrête lorsque cette limite est atteinte. Par défaut, cette valeur est infinie.
-- `filter` : fonction de filtrage définie sur un document de conception.
-- `query_params` : paramètres de requête facultatifs pour la fonction de filtrage.
+- `filter` : fonction de filtrage qui est définie sur un document de conception.
+- `query_params` : paramètres de requête supplémentaires pour la fonction de filtrage.
 
 
-1. Créez un déclencheur avec les `modifications` alimentées dans la liaison de package créée auparavant, y-compris les éléments `filter` et `query_params`, pour ne lancer le déclencheur que lorsque un document est ajouté ou modifié alors que son statut indique `new` (nouveau).
+1. Créez un déclencheur avec le flux `changes` dans la liaison de package que vous avez créée précédemment. Incluez les éléments `filter` et `query_params` pour lancer le déclencheur lorsqu'un document est ajouté ou modifié alors que son statut indique `new`.
 Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
   ```
-  ok: created trigger feed monDéclencheurCloudant
+  ok: created trigger feed myCloudantTrigger
   ```
 
 2. Recherchez les activations.
@@ -184,9 +175,9 @@ Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
 
 3. Dans votre tableau de bord Cloudant, modifiez un document existant ou créez-en un.
 
-4. Observez que, compte tenu de la fonction de filtrage et des paramètres de requête, les nouvelles activations du déclencheur `myCloudantTrigger` pour chaque modification de document n'interviennent plus que si le statut du document indique `new`.
+4. Vous constaterez que compte tenu de la fonction de filtrage et des paramètres de requête, les nouvelles activations du déclencheur `myCloudantTrigger` pour chaque modification de document n'interviennent plus que si le statut du document indique `new`.
   
-  **Remarque** : si vous ne parvenez pas à observer de nouvelles activations, reportez-vous aux sections suivantes relatives à la lecture et à l'écriture dans une base de données Cloudant. Les tests de lecture et d'écriture ci-après vous aideront à vérifier que vos données d'identification Cloudant sont correctes.
+  **Remarque** : si vous ne parvenez pas à observer de nouvelles activations, reportez-vous aux sections suivantes relatives à la lecture et à l'écriture dans une base de données Cloudant. Les tests de lecture et d'écriture ci-après vous permettent de vérifier que vos données d'identification Cloudant sont correctes.
   
   A présent, vous pouvez créer des règles et les associer à des actions afin de réagir aux mises à jour de document.
   
@@ -199,7 +190,7 @@ Prenez soin de remplacer `/_/myCloudant` par le nom de vote package.
   La représentation JSON de l'événement déclencheur est la suivante :
   
   ```json
-    {
+  {
       "id": "6ca436c44074c4c2aa6a40c9a188b348",
       "seq": "2-g1AAAAL9aJyV-GJCaEuqx4-BktQkYp_dmIfC",
       "changes": [
@@ -224,7 +215,7 @@ Vous pouvez utiliser une action pour stocker un document dans une base de donné
   ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
   ```
   ```json
-    {
+  {
     "id": "heisenberg",
     "ok": true,
     "rev": "1-9a94fb93abc88d8863781a248f63c8c3"
@@ -249,7 +240,7 @@ Vous pouvez utiliser une action pour extraire un document depuis une base de don
   ```
   {: pre}
   ```json
-    {
+  {
     "_id": "heisenberg",
     "_rev": "1-9a94fb93abc88d8863781a248f63c8c3",
     "name": "Walter White"
@@ -287,8 +278,8 @@ wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
-**Remarque** : Le déclencheur Cloudant `changes` prenait en charge le paramètre `includeDoc`, mais cela n'est plus le cas.
-  Vous devez recréer les déclencheurs précédemment créés avec `includeDoc`. Pour recréer le déclencheur, procédez comme suit :
+**Remarque** : le déclencheur Cloudant `changes` prenait en charge le paramètre `includeDoc`, mais cela n'est plus le cas.
+  Vous pouvez recréer les déclencheurs précédemment créés avec `includeDoc`. Pour recréer le déclencheur, procédez comme suit : 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -298,6 +289,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  Vous pouvez utiliser l'exemple illustré ci-dessus pour créer une séquence d'actions permettant de lire le document modifié et appeler les actions existantes.
+  Vous pouvez utiliser l'exemple illustré ci-dessus pour créer une séquence d'actions permettant de lire le document modifié et d'appeler vos actions existantes.
   N'oubliez pas de désactiver les règles qui ne sont plus valides et d'en créer de nouvelles avec le modèle de séquence d'actions.
 

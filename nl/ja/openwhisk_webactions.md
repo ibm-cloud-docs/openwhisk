@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-  lastupdated: "2017-04-21"
+  years: 2016, 2018
+lastupdated: "2018-01-31"
 
 ---
 
@@ -14,12 +14,12 @@ copyright:
 # Web アクション
 {: #openwhisk_webactions}
 
-Web アクションは、Web ベースのアプリケーションを迅速に作成することを可能にするためにアノテーションを付けた OpenWhisk アクションです。これを使用すると、Web アプリケーションが OpenWhisk 認証鍵を必要とせずに匿名でアクセスできるバックエンド・ロジックをプログラムできます。アクション開発者は、自由に独自の認証および許可 (つまり OAuth フロー) を実装できます。
+Web アクションは、迅速に開発者が Web ベースのアプリケーションを構築することを可能にするために、アノテーションが付けられた OpenWhisk アクションです。アノテーションが付けられたこれらのアクションにより、OpenWhisk 認証キーを必要とせずに Web アプリケーションが匿名でアクセスできるバックエンド・ロジックを、開発者がプログラムできます。アクション開発者は、自由に独自の認証および許可 (つまり OAuth フロー) を実装できます。
 {: shortdesc}
 
-Web アクションのアクティベーションは、アクションを作成したユーザーと関連付けられます。この処理により、アクションのアクティベーションのコストは呼び出し元ではなく所有者が負うことになります。
+Web アクションのアクティベーションは、アクションを作成したユーザーと関連付けられます。このアクションでは、アクションのアクティベーションのコストが、呼び出し元からアクションの所有者に移り、委ねられます。
 
-以下の JavaScript アクション `hello.js` を見てみましょう。
+以下に、JavaScript アクション `hello.js` の例を示します。
 ```javascript
 function main({name}) {
   var msg = 'you did not tell me who you are.';
@@ -31,35 +31,34 @@ function main({name}) {
 ```
 {: codeblock}  
 
-以下のように、CLI の `--web` フラグを値 `true` または `yes` で指定し、*Web アクション* `hello` を、名前空間 `guest` のパッケージ `demo` 内に作成できます。
+以下のように、CLI の `--web` フラグを値 `true` または `yes` で指定し、_Web アクション_ `hello` を、名前空間 `guest` のパッケージ `demo` 内に作成できます。
 ```
 wsk package create demo
 ```
 {: pre}
+
 ```
 wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-`--web` フラグを値 `true` または `yes` で指定することで、資格情報がなくても REST インターフェースでアクションにアクセス可能になります。
-Web アクションは、`https://{APIHOST}/api/v1/web/{QUALIFIED ACTION NAME}.{EXT}` と構造化された URL を使用して呼び出すことができます。
-アクションの完全修飾名は、名前空間、パッケージ名、およびアクション名の 3 つの部分からなります。
+値が `true` または `yes` の `--web` フラグを使用すると、資格情報を必要とせずに、REST インターフェース経由でアクションにアクセスできます。Web アクションは、以下のように構造化された URL を使用して呼び出すことができます。
+`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`
 
-*アクションの完全修飾名には、そのアクションのパッケージ名が含まれている必要があり、指定されたパッケージ内にアクションがない場合は「default」になります。*
+アクションが名前付きパッケージ内にない場合、パッケージ名は `default` になります。
 
 例えば、`guest/demo/hello` などです。API キーなしで Web アクション API パスを `curl` または `wget` で使用できます。ブラウザーに直接入力することも可能です。
 
-[https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) を、ご使用の Web ブラウザーで開いてみてください。あるいは、次のように `curl` を介してこのアクションを起動してみてください。
+[https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) を、ご使用の Web ブラウザーで開いてみてください。または、次のようにして、`curl` でアクションを呼び出してみてください。
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
-以下の Web アクション例は、HTTP リダイレクトを実行します。
-
+次の例では、Web アクションが HTTP リダイレクトを実行します。
 ```javascript
 function main() {
-  return { 
+  return {
     headers: { location: 'http://openwhisk.org' },
     statusCode: 302
   }
@@ -67,21 +66,38 @@ function main() {
 ```
 {: codeblock}    
 
-以下は、Cookie を設定する例です。
+次の例では、Web アクションが単一の Cookie を設定します。
 ```javascript
 function main() {
-  return { 
-    headers: { 
+  return {
+    headers: {
       'Set-Cookie': 'UserID=Jane; Max-Age=3600; Version=',
       'Content-Type': 'text/html'
-    }, 
+    },
     statusCode: 200,
     body: '<html><body><h3>hello</h3></body></html>' }
 }
 ```
 {: codeblock}  
 
-`image/png` を返す例は、次のようになります。
+次の例では、Web アクションが複数の Cookie を設定します。
+```javascript
+function main() {
+  return {
+    headers: {
+      'Set-Cookie': [
+        'UserID=Jane; Max-Age=3600; Version=',
+        'SessionID=asdfgh123456; Path = /'
+      ],
+      'Content-Type': 'text/html'
+    },
+    statusCode: 200,
+    body: '<html><body><h3>hello</h3></body></html>' }
+}
+```
+{: codeblock}
+
+次の例は、`image/png` を返します。
 ```javascript
 function main() {
     let png = <base 64 encoded string>
@@ -92,72 +108,84 @@ function main() {
 ```
 {: codeblock}  
 
-Or returns `application/json`:
+次の例は、`application/json` を返します。
 ```javascript
-function main(params) { 
+function main(params) {
     return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: new Buffer(JSON.stringify(params)).toString('base64'),
+        body: params
     };
 }
 ```
 {: codeblock}  
 
-It is important to be aware of the [応答サイズ制限](./openwhisk_reference.html)を知っておくことが重要です。事前定義されたシステムしきい値を超える応答は失敗するからです。例えば、ラージ・オブジェクトは OpenWhisk を通してインラインで送信するのではなく、オブジェクト・ストアに置くようにする必要があります。
+HTTP 応答のデフォルトの `Content-Type` は `application/json` で、body には許容される任意の JSON 値が可能です。デフォルトの `Content-Type` は headers から省略可能です。
 
-## アクションを使用した HTTP 要求の処理
+事前定義されたシステム制限を超える応答は失敗するため、アクションの[応答サイズの制限](./openwhisk_reference.html)を把握しておくことが重要です。例えば、ラージ・オブジェクトは OpenWhisk を通じてインラインで送信するのではなく、オブジェクト・ストアに置きます。
+
+## アクションによる HTTP 要求の処理
 {: #openwhisk_webactions_http}
 
-Web アクションでない OpenWhisk アクションは、認証を必要とし、JSON オブジェクトで応答することも必要です。対照的に、Web アクションは認証なしで起動でき、Web アクションを使用して、さまざまなタイプの *headers*、*statusCode*、および *body* コンテンツを使用して応答する HTTP ハンドラーを実装できます。Web アクションはやはり JSON オブジェクトを返さなければなりませんが、OpenWhisk システム (つまり `Controller`) は、Web アクションの結果に最上位 JSON プロパティーとして以下のうち 1 つ以上が含まれている場合は、Web アクションを違う方法で処理します。
+Web アクションではない OpenWhisk アクションは、認証が必要で、また、JSON オブジェクトで応答する必要があります。対照的に、Web アクションは認証なしで起動でき、さまざまなタイプの _headers_、_statusCode_、および _body_ コンテンツで応答する HTTP ハンドラーを実装するために使用できます。Web アクションは JSON オブジェクトを返す必要があります。ただし、OpenWhisk システム (つまり、`コントローラー`) は、結果に以下の最上位 JSON プロパティーの 1 つ以上が含まれる場合、Web アクションを別の方法で処理します。
 
-- `headers`: キーがヘッダー名であり、値がそれらのヘッダーのストリング値である、JSON オブジェクト (デフォルトはヘッダーなし)。
-- `statusCode`: 有効な HTTP 状況コード (デフォルトは 200 OK)。
+- `headers`: キーがヘッダー名であり、値がそれらのヘッダーのストリング値、数値、またはブール値である、JSON オブジェクト (デフォルトはヘッダーなし)。1 つのヘッダーで複数の値を送信する場合、ヘッダーの値は、値の JSON 配列になります。
+- `statusCode`: 有効な HTTP 状況コード (デフォルトは 200 の OK です )。
 - `body`: プレーン・テキストまたは Base64 エンコードのストリング (バイナリー・データの場合) のいずれかであるストリング。
 
-コントローラーは、アクションが指定したヘッダーがあれば、要求/応答を終了するときに HTTP クライアントに渡します。同様に、コントローラーは、状況コードがあればそれを付けて応答します。最後に、本体が応答本体として渡されます。アクション結果の `headers` 内に `content-type header` が宣言されている場合を除いて、本体がストリングであるかのように渡されます (そうでない場合はエラーになります)。`content-type` が定義されている場合、コントローラーは応答がバイナリー・データなのかプレーン・テキストなのかを判別し、必要に応じて base64 デコーダーを使用してストリングをデコードします。本体を正しくデコードできない場合、呼び出し元にエラーが返されます。
+コントローラーは、アクションが指定したヘッダーがあれば、要求/応答を終了する HTTP クライアントにそれを渡します。同様に、コントローラーは状況コード (存在する場合) で応答します。最後に、本体が応答本体として渡されます。アクション結果の `headers` で `Content-Type` ヘッダーが宣言されていない限り、本体は、ストリングであればそのまま渡されます (それ以外の場合はエラーになります)。`Content-Type` が定義されている場合、コントローラーは応答がバイナリー・データなのかプレーン・テキストなのかを判別し、必要に応じて base64 デコーダーを使用してストリングをデコードします。本体を正しくデコードできない場合、呼び出し元にエラーが返されます。
 
-*注:* JSON オブジェクトまたは配列は、バイナリー・データとして処理され、上の例のように base64 でエンコードされる必要があります。
+_注_ : JSON オブジェクトまたは配列はバイナリー・データとして扱われます。これは、base64 エンコードでなければなりません。
 
 ## HTTP コンテキスト
 
-すべての Web アクションは、起動されると、アクション入力引数へのパラメーターとして、追加の HTTP 要求詳細を受け取ります。それらは以下のとおりです。
+すべての Web アクションは、起動されると、アクション入力引数へのパラメーターとして、HTTP 要求の詳細を受け取ります。 
+
+以下の HTTP パラメーターを参照してください。
 
 - `__ow_method` (タイプ: ストリング): 要求の HTTP メソッド。
 - `__ow_headers` (タイプ: ストリング間マップ): 要求ヘッダー。
-- `__ow_path` (タイプ: ストリング): マッチングされていない要求のパス (マッチングはアクションの拡張子を取り込んだ後に停止します)。
+- `__ow_path` (タイプ: ストリング): マッチングされていない要求パス (マッチングは、アクションの拡張子が取り込まれると停止します)。
 - `__ow_user` (タイプ: ストリング): OpenWhisk 認証済みサブジェクトを識別する名前空間
-- `__ow_body` (タイプ: ストリング): 要求本体エンティティー (コンテンツがバイナリーの場合は base64 エンコード・ストリング、バイナリーではない場合はプレーン・ストリングとして)
-- `__ow_query` (タイプ: ストリング): 要求からの照会パラメーター (解析対象外ストリングとして)
+- `__ow_body` (タイプ: ストリング): コンテンツがバイナリーの場合は base64 エンコード・ストリング、それ以外の場合はプレーン・ストリングの要求本体エンティティー。
+- `__ow_query` (タイプ: ストリング): 構文解析されていないストリングである、要求からの照会パラメーター。
 
-上記の `__ow_` パラメーターの指定を要求がオーバーライドすることはできません。それを行うと、要求は 400 Bad Request と等しい状況で失敗します。
+要求は、指定された `__ow_` パラメーターのいずれもオーバーライドできません。これを行うと、要求は失敗し、状況は 400 の Bad Request になります。
 
-`__ow_user` は、Web アクションが[認証を必要とするためにアノテーションを付けている](./openwhisk_annotations.html#openwhisk_annotations_webactions)場合にのみ存在し、Web アクションが独自の許可ポリシーを実装できるようになります。`__ow_query` は、Web アクションが [「未加工」HTTP 要求](#raw-http-handling)を処理することを選択した場合にのみ使用できます。これは、URI から解析された照会パラメーターを含むストリングです (`&` で分離)。`__ow_body` プロパティーは、「未加工」HTTP 要求を処理する場合、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。その他の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会パラメーターおよび本体パラメーターを受け取ります。本体パラメーターが照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
+`__ow_user` は、Web アクションが[認証を必要とするものとしてアノテーションが付けられている](./openwhisk_annotations.html#openwhisk_annotations_webactions)場合にのみ存在し、これにより、Web アクションは独自の許可ポリシーを実装することができます。`__ow_query` は、Web アクションが[「未加工」 HTTP 要求 ](#raw-http-handling)を処理することを選択した場合にのみ使用可能です。これは、URI からの解析される照会パラメーターを含むストリングです (`&` で分離)。`__ow_body` プロパティーは、「未加工」HTTP 要求の中、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。それ以外の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会および本体のパラメーターを受け取ります。本体パラメーターは照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
 
-## 追加フィーチャー
+## HTTPS エンドポイント・サポート
 
-Web アクション用に次のようなフィーチャーが追加されました。
+サポートされる SSL プロトコル: TLS 1.0、TLS 1.1、TLS 1.2、TLS 1.3 ([ドラフト・バージョン 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
 
-- `コンテンツ拡張子`: 要求は、その要求にとって望ましいコンテンツ・タイプを、`.json`、`.html`、`.http`、`.svg` または `.text` のいずれかで指定する必要があります。これは、URI 内のアクション名に拡張子を追加することで行われます。これによって、例えば、アクション `/guest/demo/hello` は `/guest/demo/hello.http` として参照されて、HTTP 応答を受け取ります。便宜上、拡張子が検出されない場合は `.http` 拡張子が想定されます。
-- `結果からのフィールドの射影`: アクション名の後に続くパスを使用して、応答の 1 つ以上のレベルが射影されます。例えば、`/guest/demo/hello.html/body` です。これによって、ディクショナリー `{body: "..." }` を返すアクションは、`body` プロパティーを射影して、代わりにそのストリング値を直接返すことができます。射影されたパスは、絶対パス・モデル (例: XPath) に従います。
-- `入力としての照会パラメーターおよび本体パラメーター`: アクションは、照会パラメーターと、要求本体内のパラメーターを受け取ります。パラメーターをマージする際の優先順位は、パッケージ・パラメーター、アクション・パラメーター、照会パラメーター、本体パラメーターの順序であり、重なり合っている場合は、前の値がオーバーライドされます。例えば、`/guest/demo/hello.http?name=Jane` は、引数 `{name: "Jane"}` をアクションに渡します。
-- `形式データ`: 標準 `application/json` に加えて、Web アクションは、入力としてデータ `application/x-www-form-urlencoded data` からエンコードされた URL を受け取ることができます。
+サポートされない SSL プロトコル: SSLv2、SSLv3
+
+## 追加の機能
+{: #extra-features}
+
+Web アクションは、以下を含む追加機能を提供します。
+
+- `コンテンツ拡張子`: 要求は、その要求にとって望ましいコンテンツ・タイプを、`.json`、`.html`、`.http`、`.svg`、または `.text` として指定する必要があります。タイプは、URI 内のアクション名に拡張子を追加することで指定されます。これによって、例えば、アクション `/guest/demo/hello` は `/guest/demo/hello.http` として示され、HTTP 応答を受け取ります。便宜上、拡張子が検出されない場合は `.http` 拡張子が想定されます。
+- `結果からのフィールドの射影`: アクション名に続くパスを使用して、応答の 1 つ以上のレベルを射影します。
+`/guest/demo/hello.html/body`。この機能により、ディクショナリー `{body: "..." }` を返すアクションは `body` プロパティーを射影して、代わりにそのストリング値を直接戻すことができます。射影パスは、絶対パス・モデル (例: XPath) に従います。
+- `入力としての照会および本体のパラメーター`: アクションは、照会パラメーターと要求本体のパラメーターを受け取ります。パラメーターをマージするときの優先順位は、パッケージ・パラメーター、アクション・パラメーター、照会パラメーター、および本体パラメーターです。これらの各パラメーターは、オーバーラップが発生すると、前の値をオーバーライドできます。例えば、`/guest/demo/hello.http?name=Jane` は、引数 `{name: "Jane"}` をアクションに渡します。
+- `形式データ`: 標準 `application/json` に加えて、Web アクションは、入力としてデータ `application/x-www-form-urlencoded data` から、エンコードされた URL を受け取ることができます。
 - `複数の HTTP 動詞を介したアクティベーション`: Web アクションは、HTTP メソッド (`GET`、`POST`、`PUT`、`PATCH`、および `DELETE`、ならびに `HEAD` および `OPTIONS`) のいずれかを介して起動できます。
 - `非 JSON 本体および未加工 HTTP エンティティーの処理`: Web アクションは、JSON オブジェクト以外の HTTP 要求本体を受け入れることができ、不透明値のような値 (バイナリーではない場合はプレーン・テキスト、バイナリーの場合は base64 エンコード・ストリング) を常に受け取ることを選択できます。
 
-以下の例は、Web アクションでこれらのフィーチャーを使用する方法を簡単に示しています。以下のような本体を持つアクション `/guest/demo/hello` を考えてみます。
+以下の例では、Web アクションでこれらの機能を使用する方法を簡単に説明します。以下の本体を持つアクション `/guest/demo/hello` を考えてみます。
 ```javascript
 function main(params) {
     return { response: params };
 }
 ```
 
-このアクションが Web アクションとして起動された場合、結果から異なるパスを射影することで、Web アクションの応答を変更できます。
-例えば、オブジェクト全体を返して、どの引数をアクションが受け取るかを確認するには、次のようにします。
+このアクションが Web アクションとして呼び出されるときに、結果と異なるパスを射影することによって、Web アクションの応答を変更できます。
+例えば、オブジェクト全体を返し、アクションが受け取る引数を確認するには、以下のようにします。
 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
+ ```
 {: pre}
 ```json
 {
@@ -174,10 +202,10 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
 }
 ```
 
-さらに、照会パラメーターを使用する場合は、次のようになります。
+照会パラメーターで実行するには、以下のコマンド例を参照してください。
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
+ ```
 {: pre}
 ```json
 {
@@ -195,10 +223,10 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 }
 ```
 
-または、形式データの場合は、次のようになります。
+次のように形式データを使用して実行することもできます。
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ ```
 {: pre}
 ```json
 {
@@ -208,8 +236,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name"
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "10",      
-      "content-type": "application/x-www-form-urlencoded",      
+      "content-length": "10",
+      "content-type": "application/x-www-form-urlencoded",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
     },
@@ -218,9 +246,9 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name"
 }
 ```
 
-または、JSON オブジェクトの場合は、次のようになります。
+JSON オブジェクトの場合、以下のコマンドを実行します。
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 ```json
@@ -231,7 +259,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "15",      
+      "content-length": "15",
       "content-type": "application/json",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
@@ -241,7 +269,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 }
 ```
 
-名前 (テキストとして) のみを射影する場合は、次のようになります。
+名前を (テキストとして) 射影するには、以下のコマンドを実行します。
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
@@ -250,9 +278,9 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/
 Jane
 ```
 
-上記の例では、便宜上、照会パラメーター、形式データ、および JSON オブジェクト本体エンティティーはすべてディクショナリーとして扱われ、それぞれの値は、アクション入力プロパティーとして直接アクセス可能です。そうではなく、より直接的に HTTP 要求エンティティーを処理しようとする Web アクションの場合、あるいは Web アクションが JSON オブジェクトではないエンティティーを受け取る場合には、この例は当てはまりません。
+便宜上、照会パラメーター、形式データ、および JSON オブジェクト本体エンティティーはすべてディクショナリーとして扱われ、それぞれの値は、アクション入力プロパティーとして直接アクセス可能です。より直接的に HTTP 要求エンティティーを処理しようとする Web アクションの場合、あるいは Web アクションが JSON オブジェクトではないエンティティーを受け取る場合には、この動作は当てはまりません。
 
-上記と同じ例を使って、「text」コンテンツ・タイプを使用する例を以下に示します。
+前に示したように、「text」の content-type を使用した以下の例を参照してください。
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
@@ -264,7 +292,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "4",      
+      "content-length": "4",
       "content-type": "text/plain",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
@@ -279,20 +307,12 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 ## コンテンツ拡張子
 {: #openwhisk_webactions_extensions}
 
-Web アクションを起動する際には、通常、コンテンツ拡張子が必要です。拡張子がない場合は、デフォルトとして `.http` が想定されます。拡張子 `.json` および `.http` は、射影パスを必要としません。拡張子 `.html`、`.svg` および `.text` では必要ですが、簡便にするため、デフォルト・パスが拡張子名に一致すると想定されます。したがって、Web アクションを起動して、`.html` 応答を受け取るには、アクションは、`html` という名前の最上位プロパティーを含む JSON オブジェクトを用いて応答する必要があります (または、応答は明示的に指定されるパスに存在する必要があります)。 言い換えると、`/guest/demo/hello.html` は、`/guest/demo/hello.html/html` のように、`html` プロパティーを明示的に射影することと等価です。
-アクションの完全修飾名にはそのアクションのパッケージ名が組み込まれている必要があり、指定されたパッケージ内にアクションがない場合は `default` になります。
-
+Web アクションを呼び出すには通常、コンテンツ拡張子が必要です。拡張子がない場合は、デフォルトとして `.http` が想定されます。射影パスは、`.json` と `.http` の拡張子には必要ありませんが、`.html`、`.svg`、`.text` の拡張子には必要です。便宜上、デフォルトのパスは、拡張子名と一致すると想定されます。Web アクションを起動して、`.html` 応答を受け取るには、アクションは、`html` という名前の最上位プロパティーを含む JSON オブジェクトを用いて応答する必要があります (または、応答は明示的パスに存在する必要があります)。言い換えると、`/guest/demo/hello.html` は、`/guest/demo/hello.html/html` のように、`html` プロパティーを明示的に射影することと等価です。アクションの完全修飾名には、そのパッケージ名が含まれている必要があります。このパッケージ名は、アクションが名前付きパッケージ内にない場合は `default` になります。
 
 ## 保護されたパラメーター
 {: #openwhisk_webactions_protected}
 
-Web アクションを起動する際には、通常、コンテンツ拡張子が必要です。拡張子がない場合は、デフォルトとして `.http` が想定されます。拡張子 `.json` および `.http` は、射影パスを必要としません。拡張子 `.html`、`.svg` および `.text` では必要ですが、簡便にするため、デフォルト・パスが拡張子名に一致すると想定されます。したがって、Web アクションを起動して、`.html` 応答を受け取るには、アクションは、`html` という名前の最上位プロパティーを含む JSON オブジェクトを用いて応答する必要があります (または、応答は明示的に指定されるパスに存在する必要があります)。 言い換えると、`/guest/demo/hello.html` は、`/guest/demo/hello.html/html` のように、`html` プロパティーを明示的に射影することと等価です。
-アクションの完全修飾名にはそのアクションのパッケージ名が組み込まれている必要があり、指定されたパッケージ内にアクションがない場合は `default` になります。
-
-
-## 保護されたパラメーター
-
-アクション・パラメーターは保護され、変更不可能として処理されます。Web アクションを有効にしたとき、パラメーターは自動的にファイナライズされます。
+アクション・パラメーターは保護され、変更不可能として処理されます。Web アクションを有効にするために、パラメーターは自動的にファイナライズされます。
 
 ```
  wsk action create /guest/demo/hello hello.js \
@@ -300,11 +320,11 @@ Web アクションを起動する際には、通常、コンテンツ拡張子�
       --web true
 ```
 
-これらの変更の結果は、`name` が `Jane` にバインドされ、final アノテーションがあるため照会パラメーターまたは本体パラメーターでオーバーライドされないことです。これは、意図的または偶発的にこの値を変更しようとする照会パラメーターまたは本体パラメーターからアクションを保護します。 
+これらの変更の結果、`name` が `Jane` にバインドされ、final アノテーションがあるため照会パラメーターまたは本体パラメーターでオーバーライドすることはできません。この設計は、意図的または偶発的にこの値を変更しようとする照会パラメーターまたは本体パラメーターからアクションを保護します。 
 
 ## Web アクションの無効化
 
-Web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`) を介した Web アクションの起動を無効にするには、CLI でアクションを更新するときに `--web` フラグに値 `false` または `no` を渡します。
+Web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`) を介した Web アクションの起動を無効にするには、`--web` フラグに値 `false` または `no` を渡して、CLI で アクションを更新します。
 
 ```
  wsk action update /guest/demo/hello hello.js --web false
@@ -313,14 +333,14 @@ Web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`) を介した Web アク
 
 ## 未加工 HTTP 処理
 
-Web アクションは、アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。これは、`raw-http` [アノテーション](annotations.md)を介して行います。前述と同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
+Web アクションは、アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。この処理は、`raw-http` [アノテーション](./openwhisk_annotations.html)を介して行います。前述の同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと、HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
-```json
+```json 
 {
-    "response": {
+  "response": {
     "__ow_method": "post",
     "__ow_query": "name=Jane",
     "__ow_body": "eyJuYW1lIjoiSmFuZSJ9",
@@ -330,19 +350,18 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
       "content-length": "15",
       "content-type": "application/json",
       "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"      
+      "user-agent": "curl/7.43.0"
     },
     "__ow_path": ""
   }
 }
 ```
 
-この場合、JSON コンテンツはバイナリー値として扱われるので、base64 でエンコードされます。アクションは base64 をデコードし、JSON はこの値を解析して JSON オブジェクトをリカバリーする必要があります。OpenWhisk は、[Spray](https://github.com/spray/spray) フレームワークを使用して、どのコンテンツ・タイプがバイナリーであり、どれがプレーン・テキストであるかを[判別](https://github.com/spray/spray/blob/master/spray-http/src/main/scala/spray/http/MediaType.scala#L282)します。
-
+OpenWhisk は、[Akka HTTP](http://doc.akka.io/docs/akka-http/current/scala/http/) フレームワークを使用して、どのコンテンツ・タイプがバイナリーであり、どれがプレーン・テキストであるかを[判別](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)します。
 
 ### 未加工 HTTP 処理の有効化
 
-未加工 HTTP Web アクションは、`--web` フラグに値 `raw` を指定して有効化します。
+未加工 HTTP Web アクションは、`--web` フラグで値 `raw` を使用して有効化します。
 
 ```
  wsk action create /guest/demo/hello hello.js --web raw
@@ -356,11 +375,10 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
  wsk update create /guest/demo/hello hello.js --web false
 ```
 
-### バイナリーのボディー・コンテンツを Base64 からデコード
+### バイナリーの本体コンテンツを Base64 からデコード
 
-未加工 HTTP 処理を使用する場合、要求の content-type がバイナリーのとき、`__ow_body` コンテンツは Base64 でエンコードされます。
-以下は、Node、Python、および Swift でボディー・コンテンツをデコードする方法を示した関数です。以下に示したメソッドをファイルにただ保存し、
-保存された成果物を利用して未加工 HTTP Web アクションを作成し、Web アクションを起動してください。
+未加工 HTTP コンテンツが処理されるとき、要求の `Content-Type` がバイナリーの場合、`__ow_body` コンテンツは、Base64 でエンコードされます。
+以下の関数は、Node、Python、および Swift で本体コンテンツをデコードする方法を示しています。単純に、メソッドをファイルに保存し、保存された成果物を使用する未加工 HTTP Web アクションを作成し、その後、Web アクションを起動します。
 
 #### Node
 
@@ -414,26 +432,72 @@ func main(args: [String:Any]) -> [String:Any] {
  wsk action create decode decode.js --web raw
 ```
 {: pre}
+
 ```
 ok: created action decode
 ```
+
 ```
 curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
+
 ```json
 {
   "body": "Decoded body"
 }
 ```
 
+## OPTIONS 要求
+{: #options-requests}
+
+デフォルトで、Web アクションに対して OPTIONS 要求を行うと、自動的に CORS ヘッダーが応答ヘッダーに追加されます。これらのヘッダーにより、すべてのオリジン、および options、get、delete、post、put、head、および patch の各 HTTP 動詞が可能になります。
+
+以下のヘッダーを参照してください。
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
+Access-Control-Allow-Headers: Authorization, Content-Type
+```
+
+あるいは、OPTIONS 要求は、Web アクションによって手動で処理することもできます。このオプションを有効にするには、`web-custom-options` アノテーションを `true` の値に設定して Web アクションに追加します。
+このフィーチャーが有効になると、CORS ヘッダーは自動的に要求応答に追加されません。代わりに、開発者の責任で、希望するヘッダーをプログラマチックに追加することになります。OPTIONS 要求に対するカスタム応答を作成するには、次の例を参照してください。
+
+```
+function main(params) {
+  if (params.__ow_method == "options") {
+    return {
+      headers: {
+        'Access-Control-Allow-Methods': 'OPTIONS, GET',
+        'Access-Control-Allow-Origin': 'example.com'
+      },
+      statusCode: 200
+    }
+  }
+}
+```
+
+この関数を `custom-options.js` に保存し、以下のコマンドを実行します。
+
+```
+$ wsk action create custom-option custom-options.js --web true -a web-custom-options true
+$ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTIONS
+< HTTP/1.1 200 OK
+< Server: nginx/1.11.13
+< Content-Length: 0
+< Connection: keep-alive
+< Access-Control-Allow-Methods: OPTIONS, GET
+< Access-Control-Allow-Origin: example.com
+```
+
 ## エラー処理
 {: #openwhisk_webactions_errors}
 
-OpenWhisk アクションで障害が起こるときには、2 つの障害モードがあります。1 つは*アプリケーション・エラー*と呼ばれるものであり、キャッチされた例外に似ています。アクションが返す JSON オブジェクトには、最上位に `error` プロパティーが含まれます。もう 1 つは *開発者エラー*であり、これはアクションで壊滅的な障害が起こって、応答が生成されない場合に発生します (これはキャッチされていない例外に似ています)。Web アクションに対して、コントローラーは以下のようにアプリケーション・エラーを処理します。
+OpenWhisk アクションは、2 つの異なる障害モードで失敗します。1 つは_アプリケーション・エラー_ と呼ばれるものであり、キャッチされた例外に似ています。アクションが返す JSON オブジェクトには、最上位に `error` プロパティーが含まれます。もう 1 つは _開発者エラー_ であり、これはアクションで壊滅的な障害が起こって、応答が生成されない場合に発生します (キャッチされていない例外に似ています)。Web アクションの場合、コントローラーは次のようにアプリケーション・エラーを処理します。
 
 - 指定されたパス射影はすべて無視され、コントローラーは代わりに `error` プロパティーを射影します。
 - コントローラーはアクションの拡張子で暗黙に示されるコンテンツ処理を `error` プロパティーの値に適用します。
 
-開発者は Web アクションの使用方法としてどのようなものが考えられるのかを検討して、対応するエラー応答を生成しておく必要があります。例えば、`.http` 拡張子と共に使用される Web アクションは HTTP 応答 (例: `{error: { statusCode: 400 }`) を返す必要があります。これを行わないと、拡張子で暗黙に示されるコンテンツ・タイプと、エラー応答内のアクション・コンテンツ・タイプとが一致しないことになります。Web アクションがシーケンスになっている場合は、シーケンスを形成しているコンポーネントが必要に応じて適切なエラーを生成できるように、特別な考慮が必要です。
+開発者は、Web アクションの使用方法を認識し、適切なエラー応答を生成する必要があります。例えば、`.http` 拡張子と共に使用される Web アクションは、`{error: { statusCode: 400 }` のような HTTP 応答を返します。適切にエラーが生成されないと、拡張子で暗黙に示される `Content-Type` と、エラー応答内のアクション `Content-Type` とが一致しません。Web アクションがシーケンスになっている場合は、シーケンスを形成しているコンポーネントが必要に応じて適切なエラーを生成できるように、特別な考慮が必要です。
 

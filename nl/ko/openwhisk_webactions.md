@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-04-21"
+  years: 2016, 2018
+lastupdated: "2018-01-31"
 
 ---
 
@@ -14,12 +14,12 @@ lastupdated: "2017-04-21"
 # 웹 조치
 {: #openwhisk_webactions}
 
-웹 조치는 사용자가 웹 기반 애플리케이션을 빠르게 빌드할 수 있도록 어노테이션이 지정된 OpenWhisk 조치입니다. 이렇게 하면 OpenWhisk 인증 키 없이 웹 애플리케이션이 익명으로 액세스할 수 있는 백엔드 로직을 프로그래밍할 수 있습니다. 조치 개발자는 원하는 자신의 인증 및 권한(예: OAuth 플로우)을 구현해야 합니다.
+웹 조치는 빠르게 개발자가 웹 기반 애플리케이션을 빌드할 수 있도록 하기 위한 어노테이션이 작성된 OpenWhisk 액션입니다. 이러한 어노테이션이 있는 조치로 개발자는 OpenWhisk 인증 키를 요구하지 않고도 웹 애플리케이션이 익명으로 액세스할 수 있는 백엔드 로직을 프로그래밍할 수 있습니다. 원하는 인증과 권한(즉, OAuth 플로우)을 구현하는 것은 조치 개발자의 역할입니다.
 {: shortdesc}
 
-웹 조치 활성화는 조치를 작성한 사용자와 연관됩니다. 이 조치로 인해 조치 활성화 비용이 호출자에게서 조치 소유자로 넘어갑니다.
+웹 조치 활성화는 조치를 작성한 사용자와 연관되어 있습니다. 이 조치는 호출자의 조치 활성화 비용을 조치의 소유자에게 위임합니다. 
 
-다음 JavaScript 조치 `hello.js`를 수행합니다.
+다음의 Javascript 조치 `hello.js`를 보십시오. 
 ```javascript
 function main({name}) {
   var msg = 'you did not tell me who you are.';
@@ -31,31 +31,30 @@ function main({name}) {
 ```
 {: codeblock}  
 
-값이 `true` 또는 `yes`인 CLI의 `--web` 플래그를 사용하여 `guest` 네임스페이스의 `demo` 패키지에 *웹 조치* `hello`를 작성할 수 있습니다.
+`true` 또는 `yes` 값으로 CLI `--web` 플래그를 사용하여 `guest` 네임스페이스에 대한 `demo` 패키지에서 _웹 조치_ `hello`를 작성할 수 있습니다. 
 ```
 wsk package create demo
 ```
 {: pre}
+
 ```
 wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-값이 `true` 또는 `yes`인 `--web` 플래그를 사용하면 신임 정보가 없어도 REST 인터페이스를 통해 조치에 액세스할 수 있습니다. 다음과 같은 구조의 URL을 사용하여 웹 조치를 호출할 수 있습니다.
-`https://{APIHOST}/api/v1/web/{QUALIFIED ACTION NAME}.{EXT}`. 조치의 완전한 이름은 세 가지 파트, 즉 네임스페이스, 패키지 이름 및 조치 이름으로 구성됩니다. 
+`true` 또는 `yes` 값으로 `--web` 플래그를 사용하면 신임 정보를 요구하지 않고도 REST 인터페이스를 통해 조치에 액세스할 수 있습니다. 웹 조치는 다음과 같이 구성된 URL을 사용하여 호출될 수 있습니다. `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
-*조치의 완전한 이름에는 해당 패키지 이름이 포함되어야 하며, 조치가 이름 지정된 패키지에 없는 경우 패키지 이름은 `default`입니다.*
+조치가 이름 지정된 패키지에 없는 경우, 패키지 이름은 `default`입니다. 
 
-예는 `guest/demo/hello`입니다. 웹 조치 API 경로는 API 키 없이 `curl` 또는 `wget`과 함께 사용될 수 있습니다. 이 경로는 브라우저에 직접 입력할 수도 있습니다.
+`guest/demo/hello`가 예입니다. 웹 조치 API 경로는 API 키 없이 `curl` 또는 `wget`에서 사용될 수 있습니다. 브라우저에서 이를 직접 입력할 수도 있습니다. 
 
-웹 브라우저에서 [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) 열기를 시도하십시오. 또는 `curl`을 통해 조치 호출을 시도하십시오.
+웹 브라우저에서 [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane)을 열어 보십시오. 또는 `curl`을 통해 조치를 호출해 보십시오. 
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
-다음은 HTTP 경로 재지정을 수행하는 웹 조치 예입니다.
-
+다음 예제에서 웹 조치는 HTTP 경로 재지정을 수행합니다. 
 ```javascript
 function main() {
   return { 
@@ -66,10 +65,10 @@ function main() {
 ```
 {: codeblock}    
 
-또는 쿠키를 설정합니다.
+다음 예제에서 웹 조치는 단일 쿠키를 설정합니다. 
 ```javascript
 function main() {
-  return { 
+  return {
     headers: { 
       'Set-Cookie': 'UserID=Jane; Max-Age=3600; Version=',
       'Content-Type': 'text/html'
@@ -80,7 +79,24 @@ function main() {
 ```
 {: codeblock}  
 
-또는 `image/png`를 리턴합니다.
+다음 예제에서 웹 조치는 다중 쿠키를 설정합니다. 
+```javascript
+function main() {
+  return {
+    headers: {
+      'Set-Cookie': [
+        'UserID=Jane; Max-Age=3600; Version=',
+        'SessionID=asdfgh123456; Path = /'
+      ],
+      'Content-Type': 'text/html'
+    },
+    statusCode: 200,
+    body: '<html><body><h3>hello</h3></body></html>' }
+}
+```
+{: codeblock}
+
+다음 예제는 `image/png`를 리턴합니다. 
 ```javascript
 function main() {
     let png = <base 64 encoded string>
@@ -91,73 +107,84 @@ function main() {
 ```
 {: codeblock}  
 
-Or returns `application/json`:
+The following example returns `application/json`:
 ```javascript
 function main(params) { 
     return {
         statusCode: 200,
         headers: { 'Content-Type': 'application/json' },
-        body: new Buffer(JSON.stringify(params)).toString('base64'),
+        body: params
     };
 }
 ```
 {: codeblock}  
 
-It is important to be aware of the [응답 크기 한계](./openwhisk_reference.html)를 파악해야 합니다. 사전 정의된 시스템 한계를 초과하는 응답은 실패하기 때문입니다. 대형 오브젝트는 OpenWhisk를 통해 인라인으로 전송하면 안 되고 대신 예를 들어 오브젝트 저장소에 보류됩니다.
+The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-## 조치를 사용하여 HTTP 요청 처리
+It is important to be aware of the [조치에 대한 응답 크기 한계](./openwhisk_reference.html)를 인지하는 것이 중요합니다. 사전 정의된 시스템 한계를 초과하는 응답은 실패하기 때문입니다. 대형 오브젝트는 OpenWhisk를 통해 인라인으로 전송되지 않지만, 대신 오브젝트 저장소를 따릅니다. 예를 들면, 다음과 같습니다. 
+
+## 조치에서 HTTP 요청 처리
 {: #openwhisk_webactions_http}
 
-웹 조치가 아닌 OpenWhisk 조치에는 두 가지 인증이 모두 필요하며 JSON 오브젝트로 응답해야 합니다. 이와 반대로 웹 조치를 인증 없이 호출할 수 있으며 이 웹 조치를 사용하여 여러 유형의 *헤더*, *상태 코드* 및 *본문* 컨텐츠로 응답하는 HTTP 핸들러를 구현할 수 있습니다. 웹 조치가 여전히 JSON 오브젝트를 리턴해야 하지만, 해당 결과에 다음 중 하나 이상이 최상위 레벨 JSON 특성으로 포함되는 경우 OpenWhisk 시스템(즉, `제어기`)이 웹 조치를 다르게 처리합니다.
+웹 조치가 아닌 OpenWhisk 액션은 두 인증을 모두 요구하며 JSON 오브젝트로 응답해야 합니다. 이와는 대조적으로 웹 조치는 인증 없이 호출될 수 있으며, 다양한 유형의 _headers_, _statusCode_ 및 _body_ 컨텐츠로 응답하는 HTTP 핸들러를 구현하는 데 사용될 수 있습니다. 웹 조치는 JSON 오브젝트를 리턴해야 합니다. 그러나 해당 결과에 하나 이상의 다음 최상위 레벨 JSON 특성이 포함된 경우에는 OpenWhisk 시스템(즉, `controller`)이 웹 조치를 다르게 처리합니다. 
 
-- `headers`: 키가 헤더-이름이고 값이 해당 헤더(기본값은 헤더 없음)의 문자열 값인 JSON 오브젝트입니다.
-- `statusCode`: 올바른 HTTP 상태 코드입니다(기본값 200 OK).
-- `body`: 일반 텍스트인 문자열 또는 base64 인코딩 문자열(바이너리 데이터의 경우)입니다.
+- `headers`: 키가 header-name이며 값이 해당 헤더(기본값은 헤더 없음)에 대해 문자열, 숫자 또는 부울 값인 JSON 오브젝트입니다. 단일 헤더에 대해 다중 값을 전송하려면 헤더의 값이 JSON 배열 값이어야 합니다. 
+- `statusCode`: 유효한 HTTP 상태 코드입니다(기본값: 200 OK).
+- `body`: 일반 텍스트 또는 base64 인코딩된 문자열(2진 데이터의 경우)인 문자열입니다. 
 
-요청/응답 종료 시 제어기가 조치 지정 헤더를 HTTP 클라이언트에 전달합니다. 이와 유사하게 제어기는 지정된 상태 코드(있는 경우)로 응답합니다. 마지막으로 본문은 응답 본문으로 전달됩니다. `컨텐츠-유형 헤더`가 조치 결과의 `헤더`에 선언되지 않는 한, 본문은 문자열인 것처럼 전달됩니다(그렇지 않으면 오류 발생). `컨텐츠-유형`이 정의되어 있으면 제어기는 응답이 바이너리 데이터인지 아니면 일반 텍스트인지를 판별하고 필요에 따라 base64 디코더를 사용하여 문자열을 디코딩합니다. 본문이 올바르게 디코딩되지 않으면 오류가 호출자에게 리턴됩니다.
+제어기는 요청/응답을 종료하는 HTTP 클라이언트에 조치 특정 헤더(있는 경우)를 전달합니다. 이와 유사하게 제어기는 상태 코드로 응답합니다(존재하는 경우). 마지막으로, 본문은 응답의 본문으로 전달됩니다. `Content-Type` 헤더가 조치 결과의 `headers`에 선언되지 않는 한, 문자열인 경우 본문은 있는 그대로 전달됩니다(그 외의 경우에는 결과적으로 오류가 발생함). `Content-Type`이 정의된 경우, 제어기는 응답이 2진 데이터인지 또는 일반 텍스트인지 여부를 판별하며 필요에 따라 base64 디코더를 사용하여 문자열을 디코드합니다. 본문의 올바른 디코드에 실패하면 오류가 호출자에게 리턴됩니다. 
 
-*참고*: JSON 오브젝트 또는 배열은 바이너리 데이터로 처리되며 위의 예에 표시된 대로 base64로 인코딩되어야 합니다.
+_참고_: JSON 오브젝트 또는 배열은 2진 데이터로서 처리되며 base64 인코딩되어야 합니다. 
 
 ## HTTP 컨텍스트
 
-호출 시 모든 웹 조치는 추가 HTTP 요청 세부사항을 조치 입력 인수에 대한 매개변수로 수신합니다. 다음과 같습니다.
+호출 시에 모든 웹 조치는 조치 입력 매개변수에 대한 매개변수로서 HTTP 요청 세부사항을 수신합니다.  
 
-- `__ow_method`(유형: 문자열). 요청의 HTTP 메소드.
-- `__ow_headers`(유형: 문자열에 대한 맵 문자열): 요청 헤더.
-- `__ow_path`(유형: 문자열): 요청의 불일치 경로(조치 확장을 이용한 후 일치 중단).
-- `__ow_user`(유형: 문자열): OpenWhisk 인증 주제를 식별하는 네임스페이스
-- `__ow_body`(유형: 문자열): 요청 본문 엔티티(컨텐츠가 바이너리인 경우 base64 인코딩 문자열, 바이너리가 아닌 경우 일반 문자열)
-- `__ow_query`(유형: 문자열): 구문 분석되지 않은 문자열로서 요청의 조회 매개변수
+다음과 같은 HTTP 매개변수를 참조하십시오. 
 
-요청은 위에서 이름 지정된 `__ow_` 매개변수를 대체할 수 없습니다. 대체하면 요청이 실패하며 400 잘못된 요청이라는 상태가 나타납니다.
+- `__ow_method`(유형: 문자열). 요청의 HTTP 메소드입니다. 
+- `__ow_headers`(유형: 문자열 대 문자열 맵핑): 요청 헤더입니다. 
+- `__ow_path`(유형: 문자열): 요청의 일치하지 않는 경로입니다(일단 조치 확장자가 이용되면 일치가 중지됨). 
+- `__ow_user`(유형: 문자열): OpenWhisk 인증 제목을 식별하는 네임스페이스입니다. 
+- `__ow_body`(유형: 문자열): base64 인코딩된 문자열(컨텐츠가 2진인 경우) 또는 일반 문자열(그 외의 경우)로서의 요청 본문 엔티티입니다. 
+- `__ow_query`(유형: 문자열): 구문 분석되지 않은 문자열로서의 요청의 조회 매개변수입니다. 
 
-`__ow_user`는 웹 조치가 [인증을 요구하도록 어노테이션이 지정된](./openwhisk_annotations.html#openwhisk_annotations_webactions) 경우에만 존재하며 웹 조치가 고유 권한 정책을 구현할 수 있도록 합니다. `__ow_query`는 웹 조치가 ["원시" HTTP 요청](#raw-http-handling)을 처리하도록 선택된 경우에만 사용 가능합니다. 이는 URI에서 구문 분석된 조회 매개변수가 포함된 문자열입니다(`&`으로 구분됨). `__ow_body` 특성은 "원시" HTTP 요청을 처리하거나 HTTP 요청 엔티티가 JSON 오브젝트 또는 양식 데이터가 아닌 경우에 존재합니다. 그렇지 않은 경우 웹 조치는 본문 매개변수가 조회 매개변수보다 우선하는(결국 조치 및 패키지 매개변수보다 우선하는) 조치 인수의 첫 번째 클래스 특성으로 조회 및 본문 매개변수를 수신합니다.
+요청은 이름 지정된 `__ow_` 매개변수를 대체할 수 없습니다. 이를 수행하면 결과적으로 "400 잘못된 요청"과 동일한 상태로 요청이 실패합니다. 
+
+`__ow_user`는 웹 조치에 [인증을 요구하는 어노테이션이 있는](./openwhisk_annotations.html#openwhisk_annotations_webactions) 경우에만 존재하며, 웹 조치가 자체 권한 부여 정책을 구현할 수 있도록 허용합니다. `__ow_query`는 웹 조치가 ["원시" HTTP 요청](#raw-http-handling)을 처리하도록 선택한 경우에만 사용 가능합니다. 이는 (`&`로 분리된) URI에서 구문 분석된 조회 매개변수가 포함된 문자열입니다. `__ow_body` 특성은 "원시" HTTP 요청에 존재하거나 HTTP 요청 엔티티가 JSON 오브젝트 또는 양식 데이터가 아닌 경우에 존재합니다. 그렇지 않으면, 웹 조치가 조치 인수의 첫 번째 클래스 특성으로서 조회 및 본문 매개변수를 수신합니다. 본문 매개변수는 조회 매개변수에 우선하며, 조회 매개변수는 다시 조치 및 패키지 매개변수에 우선합니다. 
+
+## HTTPS 엔드포인트 지원
+
+지원되는 SSL 프로토콜: TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3([드래프트 버전 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+
+미지원 SSL 프로토콜: SSLv2, SSLv3
 
 ## 추가 기능
+{: #extra-features}
 
-웹 조치는 다음과 같은 몇 가지 추가 기능을 가져옵니다.
+웹 조치는 다음을 포함하는 추가 기능을 제공합니다. 
 
-- `컨텐츠 확장자`: 요청은 `.json`, `.html`, `.http`, `.svg` 또는 `.text` 중 하나로 원하는 컨텐츠 유형을 지정해야 합니다. 이는 URI의 조치 이름에 확장자를 추가하여 수행하므로, 조치 `/guest/demo/hello`가 예를 들어 HTTP 응답을 다시 수신하도록 `/guest/demo/hello.http`로 참조됩니다. 확장자가 발견되지 않으면 편의를 위해 `.http` 확장자를 가정합니다.
-- `결과에서 필드 추정`: 조치 이름을 따르는 경로는 응답의 하나 이상의 레벨을 추정하는 데 사용됩니다. 예를 들어,  
-`/guest/demo/hello.html/body`입니다. 이를 통해 사전 `{body: "..." }`를 리턴하는 조치가 `body` 특성을 추정하고 대신 해당 문자열 값을 직접 리턴합니다. 추정된 경로는 절대 경로 모델을 따릅니다(XPath에서와 같이).
-- `입력인 조회 및 본문 매개변수`: 조치는 조회 매개변수 및 요청 본문의 매개변수를 수신합니다. 매개변수 병합을 위한 우선 순위는 패키지 매개변수, 조치 매개변수, 조회 매개변수, 본문 매개변수이며 겹치는 경우 각각 이전 값을 대체합니다. 예를 들어 `/guest/demo/hello.http?name=Jane`은 인수 `{name: "Jane"}`을 조치로 전달합니다.
-- `양식 데이터`: 표준 `application/json` 외에 웹 조치는 데이터 `application/x-www-form-urlencoded data`에서 인코딩된 URL을 입력으로 수신할 수 있습니다.
-- `여러 HTTP verb를 통한 활성화`: 웹 조치는 HTTP 메소드, 즉 `HEAD` 및 `OPTIONS` 뿐만 아니라 `GET`, `POST`, `PUT`, `PATCH` 또는 `DELETE` 중 하나를 통해 호출할 수 있습니다.
-- `비JSON 본문 및 원시 HTTP 엔티티 처리`: 웹 조치는 JSON 오브젝트가 아닌 HTTP 요청 본문을 채택하고 불분명한 값과 같은 값(바이너리가 아닌 경우 일반 텍스트, 바이너리인 경우 base64 인코딩 문자열)을 항상 수신하도록 선택할 수 있습니다.
+- `컨텐츠 확장자`: 요청이 원하는 컨텐츠 유형을 `.json`, `.html`, `.http`, `.svg` 또는 `.text`로 지정해야 합니다. `/guest/demo/hello` 조치가 `/guest/demo/hello.http`로서 참조되도록(예: HTTP 응답을 다시 수신하기 위해) 유형은 확장자를 URI의 조치 이름에 추가하여 지정됩니다.  편의상, 확장자를 찾을 수 없으면 `.http` 확장자가 가정됩니다. 
+- `결과에서 필드 투영`: 조치 이름을 따르는 경로를 사용하여 응답의 레벨을 하나 이상 투영합니다.
+`/guest/demo/hello.html/body`. 이 기능은 `{body: "..." }` 사전을 리턴하는 조치가 `body` 특성을 보호하고 해당 문자열 값을 대신 직접 리턴하도록 허용합니다. 투영된 경로는 절대 경로 모델(XPath에서와 같이)을 따릅니다. 
+- `입력으로서의 조회 및 본문 매개변수`: 조치가 요청 본문에서 매개변수는 물론 조회 매개변수를 수신합니다. 매개변수 병합의 우선순위: 패키지 매개변수, 조치 매개변수, 조회 매개변수 및 본문 매개변수. 이러한 각 매개변수는 겹침이 발생할 때 이전 값을 대체할 수 있습니다. 예를 들어, `/guest/demo/hello.http?name=Jane`은 `{name: "Jane"}` 인수를 조치에 전달할 수 있습니다. 
+- `양식 데이터`: 표준 `application/json`에 추가하여, 웹 조치는 입력으로서 `application/x-www-form-urlencoded data` 데이터에서 인코딩된 URL을 수신할 수 있습니다. 
+- `다중 HTTP 동사를 통한 활성화`: 웹 조치가 `GET`, `POST`, `PUT`, `PATCH` 및 `DELETE`는 물론 `HEAD` 및 `OPTIONS` 등의 HTTP 메소드를 통해 호출될 수 있습니다. 
+- `비-JSON 본문 및 원시 HTTP 엔티티 처리`: 웹 조치는 JSON 오브젝트가 아닌 HTTP 요청 본문을 수락할 수 있으며, 항상 해당 값을 오파크 값으로 수신하도록 선택할 수 있습니다(2진이 아닌 경우에는 일반 텍스트고 그 외의 경우에는 base64 인코딩된 문자열). 
 
-다음 예에는 웹 조치에서 이러한 기능을 사용하는 방법이 있습니다. 다음 본문을 포함한 `/guest/demo/hello` 조치를 고려하십시오.
+아래의 예제는 웹 조치에서 이러한 기능을 사용할 수 있는 방법을 간략하게 보여줍니다. 다음 본문의 `/guest/demo/hello` 조치를 고려하십시오. 
 ```javascript
 function main(params) { 
     return { response: params };
 }
 ```
 
-이 조치를 웹 조치로 호출하면 결과와 다른 경로를 추정하여 웹 조치의 응답을 변경할 수 있습니다.
-예를 들어, 전체 오브젝트를 리턴하고 조치가 수신하는 인수를 확인하려면 다음을 수행하십시오.
+이 조치가 웹 조치로서 호출된 경우, 결과에서 서로 다른 경로를 투영하여 웹 조치의 응답을 변경할 수 있습니다.
+예를 들어, 전체 오브젝트를 리턴하고 조치가 수신하는 인수를 보려면 다음을 수행하십시오. 
 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
+ ```
 {: pre}
 ```json
 {
@@ -174,10 +201,10 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
 }
 ```
 
-조회 매개변수 포함:
+조회 매개변수로 실행하려면 다음 예제 명령을 참조하십시오. 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
+ ```
 {: pre}
 ```json
 {
@@ -195,10 +222,10 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 }
 ```
 
-또는 양식 데이터:
+양식 데이터로 실행할 수도 있습니다. 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
-```
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ ```
 {: pre}
 ```json
 {
@@ -218,9 +245,9 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name"
 }
 ```
 
-또는 JSON 오브젝트:
+JSON 오브젝트에 대해 다음 명령을 실행하십시오. 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 ```json
@@ -241,7 +268,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 }
 ```
 
-이름(텍스트) 추정:
+다음 명령을 실행하여 (텍스트로서) 이름을 투영하십시오. 
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
@@ -250,9 +277,9 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/
 Jane
 ```
 
-편의를 위해 조회 매개변수, 양식 데이터 및 JSON 오브젝트 본문 엔티티가 모두 사전으로 처리되며 해당 값은 조치 입력 특성으로 직접 액세스 가능함을 위에서 볼 수 있습니다. 대신 HTTP 요청 엔티티를 직접적으로 처리하도록 선택한 웹 조치의 경우 또는 웹 조치가 JSON 오브젝트가 아닌 엔티티를 수신하는 경우는 해당하지 않습니다.
+편의상 조회 매개변수, 양식 데이터 및 JSON 오브젝트 본문 엔티티는 모두 사전으로서 처리되며, 해당 값은 조치 입력 특성으로서 바로 액세스가 가능합니다. 이 작동은 HTTP 요청 엔티티의 보다 직접적인 처리를 선택하는 웹 조치의 경우 또는 웹 조치가 JSON 오브젝트가 아닌 엔티티를 수신하는 경우에는 해당되지 않습니다. 
 
-다음은 위에 표시된 동일한 예를 포함해 "텍스트" 컨텐츠-유형을 사용하는 예입니다.
+이전에 표시된 대로 "텍스트" 컨텐츠 유형을 사용하는 다음 예제를 참조하십시오. 
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
@@ -276,21 +303,15 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 ```
 
 
-## 컨텐츠 확장
+## 컨텐츠 확장자
 {: #openwhisk_webactions_extensions}
 
-컨텐츠 확장자는 일반적으로 웹 조치를 호출할 때 필요합니다. 확장자가 없는 경우 `.http`를 기본값으로 가정합니다. `.json` 및 `.http` 확장자에는 추정 경로가 필요하지 않습니다. `.html`, `.svg` 및 `.text` 확장자에는 필요하지만 편의를 위해 기본 경로가 확장자 이름과 일치하는 것으로 가정합니다. 따라서 웹 조치를 호출하고 `.html` 응답을 수신하려면 조치가 최상위 레벨 특성 `html`이 포함된 JSON 오브젝트로 응답해야 합니다(또는 응답이 명시적으로 지정된 경로에 있어야 함). 즉, `/guest/demo/hello.html`은 `/guest/demo/hello.html/html`의 경우와 같이 `html` 특성의 명시적 추정에 해당합니다. 조치의 완전한 이름에는 해당 패키지 이름이 포함되어야 하며, 조치가 이름 지정된 패키지에 없는 경우 패키지 이름은 `default`입니다.
-
+컨텐츠 확장자는 일반적으로 웹 조치를 호출하는 데 필요합니다. 확장자가 없으면 기본적으로 `.http`라고 가정합니다. `.json` 및 `.http` 확장자에서는 투영 경로가 필요하지 않지만, `.html`, `.svg` 및 `.text` 확장자에서는 필요합니다. 편의상 기본 경로는 확장자 이름과 일치한다고 가정합니다. 웹 조치를 호출하고 `.html` 응답을 수신하려면, 조치가 `html`이라고 하는 최상위 레벨 특성이 포함된 JSON 오브젝트로 응답해야 합니다(또는 응답이 명시된 경로에 있어야 함). 다시 말하면, `/guest/demo/hello.html`은 `/guest/demo/hello.html/html`에서와 같이 `html` 특성의 명시적 투영과 동등합니다. 조치의 완전한 이름에는 해당 패키지 이름이 포함되어야 합니다. 조치가 이름 지정된 패키지에 없는 경우, 이 이름은 `default`입니다. 
 
 ## 보호된 매개변수
 {: #openwhisk_webactions_protected}
 
-컨텐츠 확장자는 일반적으로 웹 조치를 호출할 때 필요합니다. 확장자가 없는 경우 `.http`를 기본값으로 가정합니다. `.json` 및 `.http` 확장자에는 추정 경로가 필요하지 않습니다. `.html`, `.svg` 및 `.text` 확장자에는 필요하지만 편의를 위해 기본 경로가 확장자 이름과 일치하는 것으로 가정합니다. 따라서 웹 조치를 호출하고 `.html` 응답을 수신하려면 조치가 최상위 레벨 특성 `html`이 포함된 JSON 오브젝트로 응답해야 합니다(또는 응답이 명시적으로 지정된 경로에 있어야 함). 즉, `/guest/demo/hello.html`은 `/guest/demo/hello.html/html`의 경우와 같이 `html` 특성의 명시적 추정에 해당합니다. 조치의 완전한 이름에는 해당 패키지 이름이 포함되어야 하며, 조치가 이름 지정된 패키지에 없는 경우 패키지 이름은 `default`입니다.
-
-
-## 보호된 매개변수
-
-조치 매개변수는 보호되고 불변으로 취급됩니다. 매개변수는 웹 조치를 사용할 때 자동으로 완료됩니다.
+조치 매개변수는 불변으로서 처리되고 보호됩니다. 매개변수는 웹 조치를 사용하도록 자동으로 최종 처리됩니다. 
 
 ```
  wsk action create /guest/demo/hello hello.js \
@@ -298,11 +319,11 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
       --web true
 ```
 
-이러한 변경 결과에서는 `name`이 `Jane`으로 바인드되고 마지막 어노테이션으로 인해 조회 또는 본문 매개변수로 대체될 수 없습니다. 이 경우 의도적인지 여부에 관계없이 이 값을 변경하려는 조회 또는 본문 매개변수에 대해 조치가 보호됩니다. 
+이러한 변경의 결과로 `name`은 `Jane`에 바인드되며. 이는 최종 어노테이션 때문에 조회 또는 본문 매개변수로 대체될 수 없습니다. 이 디자인은 우연하든 또는 의도적이든 여부와 무관하게 이 값의 변경을 시도하는 조회 또는 본문 매개변수에 대해 조치를 보호합니다.  
 
 ## 웹 조치 사용 안함
 
-웹 API(`https://openwhisk.ng.bluemix.net/api/v1/web/`)를 통해 웹 조치를 호출하지 않게 설정하려면 CLI로 조치를 업데이트하는 동안 `false` 또는 `no` 값을 `--web` 플래그에 전달하십시오.
+웹 API(`https://openwhisk.ng.bluemix.net/api/v1/web/`)를 통해 웹 조치가 호출되지 않도록 하려면, CLI에서 조치를 업데이트할 수 있도록 `false` 또는 `no` 값을 `--web` 플래그에 전달하십시오. 
 
 ```
  wsk action update /guest/demo/hello hello.js --web false
@@ -311,14 +332,14 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 ## 원시 HTTP 처리
 
-웹 조치는 JSON 오브젝트를 조치 입력에 사용 가능한 첫 번째 클래스 특성으로 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` 대 `args.__ow_query` 구문 분석). 이는 `raw-http` [어노테이션](annotations.md)을 통해 수행됩니다. 동일한 예제 사용이 이전에 표시되었지만 이제 `name`을 HTTP 요청 본문의 조회 매개변수 및 JSON 값으로 수신하는 "원시" HTTP 웹 조치로 표시됩니다.
+웹 조치는 조치 입력에 사용 가능한 첫 번째 클래스 특성으로 JSON 오브젝트를 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` 대 `args.__ow_query` 구문 분석). 이 프로세스는 `raw-http` [어노테이션](./openwhisk_annotations.html)을 통해 수행됩니다. 이전에 나타난 동일한 예제를 사용하되 이제는 `name`을 수신하는 "원시" HTTP 웹 조치로서(둘 다 조회 매개변수로서), 그리고 HTTP 요청 본문의 JSON 값으로서 다음을 수행하십시오. 
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
 ```
 {: pre}
-```json
+```json 
 {
-    "response": {
+  "response": {
     "__ow_method": "post",
     "__ow_query": "name=Jane",
     "__ow_body": "eyJuYW1lIjoiSmFuZSJ9",
@@ -335,12 +356,11 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 }
 ```
 
-이 경우 JSON 컨텐츠는 바이너리 값으로 처리되므로 base64로 인코딩됩니다. 조치는 이 값을 base64 디코딩 및 JSON 구문 분석하여 JSON 오브젝트를 복구해야 합니다. OpenWhisk는 [Spray](https://github.com/spray/spray) 프레임워크를 사용하여 바이너리인 컨텐츠 유형과 일반 텍스트인 컨텐츠 유형을 [판별](https://github.com/spray/spray/blob/master/spray-http/src/main/scala/spray/http/MediaType.scala#L282)합니다.
-
+OpenWhisk는 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) 프레임워크를 사용하여 2진인 컨텐츠 유형과 일반 텍스트인 컨텐츠 유형을 [판별](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)합니다. 
 
 ### 원시 HTTP 처리 사용
 
-원시 HTTP 웹 조치는 `원시`의 값을 사용하는 `--web` 플래그를 통해 사용됩니다.
+원시 HTTP 웹 조치는 `raw` 값을 사용하여 `--web` 플래그를 통해 사용됩니다. 
 
 ```
  wsk action create /guest/demo/hello hello.js --web raw
@@ -348,22 +368,22 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 
 ### 원시 HTTP 처리 사용 안함
 
-`false` 또는 `no` 값을 `--web` 플래그에 전달하여 원시 HTTP를 사용하지 않게 설정할 수 있습니다.
+원시 HTTP 사용 안함은 `false` 또는 `no` 값을 `--web` 플래그에 전달하여 완료됩니다. 
 
 ```
  wsk update create /guest/demo/hello hello.js --web false
 ```
 
-### Base64에서 바이너리 본문 컨텐츠 디코딩
+### Base64에서 2진 본문 컨텐츠 디코드
 
-원시 HTTP 처리를 사용하면 요청 content-type이 바이너리일 때 `__ow_body` 컨텐츠가 Base64로 인코딩됩니다. 다음은 Node, Python 및 Swift에서 본문 컨텐츠를 디코딩하는 방법을 보여주는 함수입니다. 아래 표시된 메소드를 파일에 저장하고,
-저장된 아티팩트를 활용하는 원시 HTTP 웹 조치를 작성한 다음, 웹 조치를 호출하기만 하면 됩니다.
+원시 HTTP 컨텐츠가 처리되는 경우, 요청 `Content-Type`이 2진이면 `__ow_body` 컨텐츠는 Base64로 인코딩됩니다.
+다음 함수는 Node, Python 및 Swift에서 본문 컨텐츠를 디코드하는 방법을 보여줍니다. 단순히 메소드를 파일에 저장하고 저장된 아티팩트를 활용하는 HTTP 웹 조치를 작성한 후에 웹 조치를 호출합니다. 
 
-#### Node
+#### 노드
 
 ```javascript
-  function main(args) {
-       decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
+function main(args) {
+    decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
     return {body: decoded}
 }
 ```
@@ -406,32 +426,76 @@ func main(args: [String:Any]) -> [String:Any] {
 ```
 {: codeblock}
 
-예를 들어, Node 함수를 `decode.js`로 저장하고 다음 명령을 실행하십시오.
+예를 들어, Node 함수를 `decode.js`로서 저장하고 다음 명령을 실행하십시오. 
 ```
  wsk action create decode decode.js --web raw
 ```
 {: pre}
+
 ```
 ok: created action decode
 ```
+
 ```
 curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
+
 ```json
 {
   "body": "Decoded body"
 }
 ```
 
-## 오류 처리
+## 옵션 요청
+{: #options-requests}
+
+기본적으로, 웹 조치에 대해 작성된 OPTIONS 요청의 결과로 응답 헤더에 자동으로 추가되는 CORS 헤더가 생성됩니다. 이러한 헤더는 모든 원본 및 options, get, delete, post, put, head 및 patch HTTP verb를 허용합니다. 
+
+다음 헤더를 참조하십시오. 
+
+```
+Access-Control-Allow-Origin: *
+Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
+Access-Control-Allow-Headers: Authorization, Content-Type
+```
+
+또는 OPTIONS 요청이 웹 조치에 의해 수동으로 처리될 수 있습니다. 이 옵션을 사용하려면 `true` 값의 `web-custom-options` 어노테이션을 웹 조치에 추가하십시오. 이 기능을 사용하면 CORS 헤더가 요청 응답에 자동으로 추가되지 않습니다. 그 대신, 원하는 헤더를 프로그래밍 방식으로 추가하는 것은 개발자의 책임입니다. 다음 예제를 참조하여 OPTIONS 요청에 대한 사용자 정의 응답을 작성하십시오. 
+
+```
+function main(params) {
+  if (params.__ow_method == "options") {
+    return {
+      headers: {
+        'Access-Control-Allow-Methods': 'OPTIONS, GET',
+        'Access-Control-Allow-Origin': 'example.com'
+      },
+      statusCode: 200
+    }
+  }
+}
+```
+
+함수를 `custom-options.js`에 저장하고 다음 명령을 실행하십시오. 
+
+```
+$ wsk action create custom-option custom-options.js --web true -a web-custom-options true
+$ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTIONS
+< HTTP/1.1 200 OK
+< Server: nginx/1.11.13
+< Content-Length: 0
+< Connection: keep-alive
+< Access-Control-Allow-Methods: OPTIONS, GET
+< Access-Control-Allow-Origin: example.com
+```
+
+## 오류 핸들링
 {: #openwhisk_webactions_errors}
 
-OpenWhisk 조치가 실패하는 경우 서로 다른 두 가지 실패 모드가 있습니다. 첫 번째는 *애플리케이션 오류*로 알려져 있으며 발견된 예외와 비슷합니다. 즉, 조치가 최상위 레벨 `오류` 특성이 포함된 JSON 오브젝트를 리턴합니다. 두 번째는 조치가 크게 실패하고 응답을 생성하지 않는 경우에 발생하는 *개발자 오류*입니다(미발견 예외와 유사함). 웹 조치의 경우 제어기는 다음과 같이 애플리케이션 오류를 처리합니다.
+OpenWhisk는 두 개의 서로 다른 가능한 실패 모드로 실패합니다. 첫 번째는 _애플리케이션 오류_라고 하며, 이는 발견된 예외와 유사합니다. 조치에서 최상위 레벨 `error` 특성이 포함된 JSON 오브젝트를 리턴합니다. 두 번째는 _개발자 오류_입니다. 이는 조치의 갑작스런 실패 시에 발생하며 응답을 생성하지 않습니다(미발견 예외와 유사함). 웹 조치의 경우, 제어기는 애플리케이션 오류를 다음과 같이 처리합니다. 
 
-- 지정된 경로 추정은 무시되고 대신 제어기가 `오류` 특성을 추정합니다.
-- 제어기가 `오류` 특성 값에 조치 확장이 나타내는 컨텐츠 처리를 적용합니다.
+- 지정된 경로 투영은 무시되며 제어기가 `error` 특성을 대신 투영합니다. 
+- 제어기가 조치 확장자에 내재된 컨텐츠 처리를 `error` 특성의 값에 적용합니다. 
 
-개발자는 웹 조치를 사용하는 방법을 파악하고 이에 따라 오류 응답을 생성해야 합니다. 예를 들어, `.http` 확장자와 함께 사용되는 웹 조치는
-HTTP 응답을 리턴해야 합니다(예: `{error: { statusCode: 400 }`). 이렇게 하지 못하면 확장을 통해 나타낸 컨텐츠-유형과 오류 응답의 조치 컨텐츠-유형 간에 불일치가 발생합니다. 시퀀스인 웹 조치를 특별히 고려해야 하므로 시퀀스를 구성하는 컴포넌트가 필요에 따라 적절한 오류를 생성할 수 있습니다.
+개발자는 웹 조치가 사용되고 적합한 오류 응답을 생성하는 방법을 알아야 합니다. 예를 들어, `.http` 확장자로 사용된 웹 조치는 `{error: { statusCode: 400 }`과 같은 HTTP 응답을 리턴합니다. 이렇게 되지 못하면, 확장자에 내재된 `Content-Type` 및 오류 응답의 조치 `Content-Type` 간에 불일치가 발생합니다. 필요할 때 시퀀스를 구성하는 컴포넌트가 적절한 오류를 생성할 수 있도록 시퀀스인 웹 조치에 대해 특별한 고려가 필요합니다. 
 

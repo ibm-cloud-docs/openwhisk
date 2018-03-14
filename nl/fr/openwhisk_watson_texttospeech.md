@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-  lastupdated: "2017-06-01"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,51 +15,55 @@ copyright:
 {: #openwhisk_catalog_watson_texttospeech}
 
 Le package `/whisk.system/watson-textToSpeech` permet d'appeler diverses API Watson pour convertir le texte en parole.
+{: shortdesc}
 
-Le package inclut les actions ci-dessous.
+Le package comprend les actions suivantes :
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-textToSpeech` | package | username, password | Package pour la conversion de texte en paroles |
-| `/whisk.system/watson-textToSpeech/textToSpeech` | action | payload, voice, accept, encoding, username, password | Convertir le texte en contenu audio |
+| `/whisk.system/watson-textToSpeech` | Package | username, password | Package pour la conversion de texte en paroles |
+| `/whisk.system/watson-textToSpeech/textToSpeech` | Action | payload, voice, accept, encoding, username, password | Convertir le texte en contenu audio |
 
-**Remarque** : Le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/textToSpeech`.
+**Remarque** : le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/textToSpeech`.
 
-## Configuration du package Watson Text to Speech dans Bluemix
+## Configuration du package Watson Text to Speech dans {{site.data.keyword.Bluemix_notm}}
 
-Si vous utilisez OpenWhisk depuis Bluemix, OpenWhisk crée automatiquement des liaisons de package pour vos instances de service Bluemix Watson.
+Si vous utilisez OpenWhisk depuis {{site.data.keyword.Bluemix_notm}}, OpenWhisk crée automatiquement des liaisons de package pour vos instances de service {{site.data.keyword.Bluemix_notm}} Watson. 
 
-1. Créez une instance de service Watson Text to Speech dans votre [tableau de bord](http://console.ng.Bluemix.net) Bluemix.
+1. Créez une instance de service Watson Text to Speech dans votre [tableau de bord](http://console.ng.Bluemix.net) {{site.data.keyword.Bluemix_notm}}. 
   
-  Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace Bluemix dans lesquels vous vous trouvez.
+  Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous
+trouvez.
   
 2. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour l'instance de service Watson que vous avez créée.
-  
   ```
   wsk package refresh
   ```
+  
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
   ```
+  
   ```
   wsk package list
   ```
   {: pre}
+  
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_TextToSpeec_Credentials-1 private
   ```
   
   
-## Configuration d'un package Watson Text to Speech hors de Bluemix
+## Configuration d'un package Watson Text to Speech en dehors de {{site.data.keywrod.Bluemix_notm}} 
 
-Si vous n'utilisez pas OpenWhisk dans Bluemix ou si vous voulez configurer Watson Text to Speech hors de Bluemix, vous devez créer une liaison de package manuellement pour votre service Watson Text to Speech. Vous avez besoin du nom d'utilisateur du service et du mot de passe du service Watson Text to Speech.
+Si vous n'utilisez pas OpenWhisk dans {{site.data.keyword.Bluemix_notm}} ou si vous voulez configurer Watson Text to Speech en dehors de {{site.data.keyword.Bluemix_notm}}, vous devez créer une liaison de package manuellement pour votre service Watson Text to Speech. Vous avez besoin du nom d'utilisateur du service et du mot de passe du service Watson Text to Speech.
 
 - Créez une liaison de package configurée pour votre service Watson Speech to Text.
   
   ```
-  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username NOM_UTILISATEUR -p password MOT_DE_PASSE
+  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
@@ -82,9 +86,10 @@ L'action `/whisk.system/watson-textToSpeech/textToSpeech` convertit un texte en 
   wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
   ```
   {: pre}
+  
   ```json
-    {
-    "payload": "<Codage en base 64 d'un fichier .wav>"
+  {
+    "payload": "<base64 encoding of a .wav file>"
   }
   ```
   

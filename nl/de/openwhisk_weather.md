@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-01"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -14,33 +14,32 @@ lastupdated: "2017-06-01"
 # Weather-Paket verwenden
 {: #openwhisk_catalog_weather}
 
-Das Paket `/whisk.system/weather` bietet eine komfortable Methode zum Aufrufen der Weather Company Data for IBM Bluemix-API.
+Das Paket `/whisk.system/weather` bietet eine komfortable Methode zum Aufrufen der Weather Company Data für die {{site.data.keyword.Bluemix}}-API.
+{: shortdesc}
 
 Das Paket enthält die folgende Aktion.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/weather` | Paket | username, password | Services der Weather Company Data for IBM Bluemix-API  |
+| `/whisk.system/weather` | Paket | username, password | Services der Weather Company Data für die {{site.data.keyword.Bluemix_notm}}-API |
 | `/whisk.system/weather/forecast` | Aktion | latitude, longitude, timePeriod | Vorhersage für angegebenen Zeitraum|
 
 Es wird empfohlen, eine Paketbindung mit den Werten `username` und `password` zu erstellen. Auf diese Weise brauchen Sie die Berechtigungsnachweise nicht jedes Mal anzugeben, wenn Sie die Aktionen im Paket aufrufen.
 
-## Weather-Paket in Bluemix einrichten
+## Weather-Paket in {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk von Bluemix verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre Bluemix Weather-Serviceinstanzen.
+Wenn Sie OpenWhisk von {{site.data.keyword.Bluemix_notm}} verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre {{site.data.keyword.Bluemix_notm}} Weather-Serviceinstanzen.
 
-1. Erstellen Sie eine Serviceinstanz von Weather Company Data in Ihrem Bluemix-[Dashboard](http://console.ng.Bluemix.net).
+1. Erstellen Sie eine Serviceinstanz von Weather Company Data in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
   
-  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der Bluemix-Organisation und den Bereich merken, in dem Sie sich befinden.
+  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
   
-2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Serviceinstanz von Weather Companty Data, die Sie erstellt haben.
+2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Serviceinstanz von Weather Company Data, die Sie erstellt haben.
   
   ```
   wsk package refresh
   ```
   {: pre}
-  
-  
   ```
   created bindings:
   Bluemix_Weather_Company_Data_Credentials-1
@@ -55,11 +54,11 @@ Wenn Sie OpenWhisk von Bluemix verwenden, erstellt OpenWhisk automatisch Paketbi
   ```
   
  
-## Weather-Paket außerhalb von Bluemix einrichten
+## Weather-Paket außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie den Weather Company Data-Service außerhalb von Bluemix einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Weather Company Data-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort für den Weather Company Data-Service.
+Wenn Sie OpenWhisk nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie den Weather Company Data-Service außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Weather Company Data-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort für den Weather Company Data-Service.
 
-- Erstellen Sie eine Paketbindung, die für Ihren Watson Translator-Service konfiguriert ist.
+- Erstellen Sie eine Paketbindung, die für Ihren Weather-Service konfiguriert ist.
 
   ```
   wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
@@ -72,8 +71,8 @@ Wenn Sie OpenWhisk nicht in Bluemix verwenden oder wenn Sie den Weather Company 
 
 Die Aktion `/whisk.system/weather/forecast` gibt eine Wettervorhersage für einen Standort durch einen Aufruf der API für The Weather Company zurück. Die folgenden Parameter sind verfügbar:
 
-- `username`: Der Benutzername für Weather Company Data for IBM Bluemix, der berechtigt ist, die API für die Vorhersage aufzurufen.
-- `password`: Das Kennwort für Weather Company Data for IBM Bluemix, das berechtigt ist, die API für die Vorhersage aufzurufen.
+- `username`: Der Benutzername für The Weather Company Data für {{site.data.keyword.Bluemix_notm}}, der berechtigt ist, die API für die Vorhersage aufzurufen.
+- `password`: Das Kennwort für The Weather Company Data für {{site.data.keyword.Bluemix_notm}}, das berechtigt ist, die API für die Vorhersage aufzurufen.
 - `latitude`: Die Breitengradkoordinate des Standorts.
 - `longitude`: Die Längengradkoordinate des Standorts.
 - `timePeriod`: Der Zeitraum für die Vorhersage. Gültige Optionen sind:
@@ -83,21 +82,16 @@ Die Aktion `/whisk.system/weather/forecast` gibt eine Wettervorhersage für eine
   - `timeseries` - Gibt sowohl die aktuellen Beobachtungen als auch vergangene Beobachtungen rückwirkend bis zu 24 Stunden ab dem aktuellen Zeitpunkt (Datum und Uhrzeit) zurück.
 
 
-- Das folgende Beispiel zeigt die Erstellung einer Paketbindung und den anschließenden Abruf einer 10-Tage-Vorhersage. 1. Erstellen Sie eine Paketbindung mit Ihrem API-Schlüssel.
-  
-  ```
-  wsk package bind /whisk.system/weather myWeather --param username MY_USERNAME --param password MY_PASSWORD
-  ```
-  {: pre}
+Das folgende Beispiel zeigt die Erstellung einer Paketbindung und den anschließenden Abruf einer 10-Tage-Vorhersage.
 
 - Rufen Sie die Aktion `forecast` in Ihrer Paketbindung auf, um die Wettervorhersage abzurufen.
-  
   ```
   wsk action invoke myWeather/forecast --result \
   --param latitude 43.7 \
   --param longitude -79.4
   ```
   {: pre}
+  
   ```json
   {
       "forecasts": [

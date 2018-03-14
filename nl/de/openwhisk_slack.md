@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,6 +15,7 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_slack}
 
 Das Paket `/whisk.system/slack` bietet eine komfortable Methode zur Verwendung der [Slack-APIs](https://api.slack.com/).
+{: shortdesc}
 
 Das Paket enthält die folgenden Aktionen:
 
@@ -29,17 +30,17 @@ Es wird empfohlen, eine Paketbindung mit den Werten `username`, `url` und `chann
 
 Die Aktion `/whisk.system/slack/post` sendet eine Nachricht an einen angegebenen Slack-Kanal. Die folgenden Parameter sind verfügbar:
 
-- `url`: Die URL für den Slack-Web-Hook.
+- `url`: Die URL für den Slack-Webhook.
 - `channel`: Der Slack-Kanal, an den die Nachricht zu senden ist.
 - `username`: Der Name, unter dem die Nachricht gesendet werden soll.
 - `text`: Ein zu sendender Nachrichtentext.
-- `token`: (optional) Ein Slack-[Zugriffstoken](https://api.slack.com/tokens). Weitere Informationen zur Verwendung des Slack-Zugriffstokens finden Sie [unten](./catalog.md#using-the-slack-token-based-api).
+- `token`: (optional) Ein Slack-[Zugriffstoken](https://api.slack.com/tokens). Weitere Informationen zur Verwendung von Slack-Zugriffstokens finden Sie in der [Übersicht über die OpenWhisk-Pakete](./openwhisk_catalog.html).
 
-Das folgende Beispiel zeigt die Konfiguration von Slack, die Erstellung einer Paketbindung und das Senden einer Nachricht an einen Kanal.
+Im folgenden Beispiel wird gezeigt, wie Slack konfiguriert wird, eine Paketbindung erstellt wird und eine Nachricht an einen Kanal gesendet wird.
 
-1. Konfigurieren Sie für Ihr Team einen [eingehenden Web-Hook](https://api.slack.com/incoming-webhooks) für Slack.
+1. Konfigurieren Sie für Ihr Team einen [eingehenden Webhook](https://api.slack.com/incoming-webhooks) für Slack.
   
-  Nach der Konfiguration von Slack erhalten Sie eine Web-Hook-URL, die ungefähr wie folgt aussieht: `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Sie benötigen diese im nächsten Schritt.
+  Nach der Konfiguration von Slack erhalten Sie eine Webhook-URL, die ungefähr wie folgt aussieht: `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Der Webhook wird im nächsten Schritt benötigt.
   
 2. Erstellen Sie eine Paketbindung mit Ihren Slack-Berechtigungsnachweisen, mit dem Kanal, an den gesendet werden soll, sowie mit dem Benutzernamen, unter dem gesendet werden soll.
   
@@ -62,4 +63,4 @@ Das folgende Beispiel zeigt die Konfiguration von Slack, die Erstellung einer Pa
 
 ## Slack-Token-basierte API verwenden
 
-Sie können auf Wunsch auch die Slack-Token-basierte API statt der Web-Hook-API verwenden. Übergeben Sie in einem solchen Fall in einem `Token` die Parameter, die Ihr Slack-[Zugriffstoken](https://api.slack.com/tokens) enthalten. Sie können dann eine beliebige [Slack-API-Methode](https://api.slack.com/methods) als Parameter `url` verwenden. Um beispielsweise eine Nachricht zu senden, verwenden Sie den Parameterwert `url` von [slack.postMessage](https://api.slack.com/methods/chat.postMessage).
+Sie können außerdem auch die Slack-Token-basierte API anstelle der Webhook-API verwenden. Übergeben Sie in diesem Fall einen Parameter `token`, der Ihr [Slack-Zugriffstoken](https://api.slack.com/tokens) enthält. Sie können dann eine beliebige [Slack-API-Methode](https://api.slack.com/methods) als Parameter `url` verwenden. Um beispielsweise eine Nachricht zu senden, verwenden Sie den Parameterwert `url` von [slack.postMessage](https://api.slack.com/methods/chat.postMessage).

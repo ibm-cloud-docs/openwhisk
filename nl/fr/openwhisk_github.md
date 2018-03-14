@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,6 +15,7 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_github}
 
 Le package `/whisk.system/github` permet d'utiliser les [API GitHub](https://developer.github.com/).
+{: shortdesc}
 
 Le package inclut le flux suivant :
 
@@ -26,7 +27,7 @@ Le package inclut le flux suivant :
 Il est recommandé de créer une liaison de package avec les valeurs `username`, `repository` et `accessToken`.  Grâce à la liaison, il n'est pas nécessaire de spécifier les valeurs à chaque fois que
 vous utilisez le flux dans le package.
 
-## Exécution d'un événement déclencheur avec une activité GitHub
+## Exécution d'un événement déclencheur en cas d'activité GitHub
 
 Le flux `/whisk.system/github/webhook` configure un service pour qu'il exécute un déclencheur lorsqu'il existe une activité dans un référentiel GitHub spécifié. Les paramètres sont les suivants :
 
@@ -36,7 +37,7 @@ Le flux `/whisk.system/github/webhook` configure un service pour qu'il exécute 
 jeton](https://github.com/settings/tokens), veillez à sélectionner les portées repo:status et public_repo. De plus, vérifiez qu'aucun webhook n'est défini pour votre référentiel.
 - `events` : [type d'événement GitHub](https://developer.github.com/v3/activity/events/types/) qui vous intéresse.
 
-Voici un exemple de création de déclencheur qui sera exécuté à chaque fois qu'une nouvelle validation est effectuée dans un référentiel GitHub.
+L'exemple suivant illustre la création d'un déclencheur qui s'exécute chaque fois qu'une nouvelle validation est effectuée dans un référentiel GitHub. 
 
 1. Générez un [jeton d'accès personnel](https://github.com/settings/tokens) GitHub.
   
@@ -55,11 +56,11 @@ Voici un exemple de création de déclencheur qui sera exécuté à chaque fois 
 3. Créez un déclencheur pour le type d'événement `push` GitHub à l'aide de votre flux `myGit/webhook`.
   
   ```
-  wsk trigger create monDéclencheurGit --feed monGit/webhook --param events push
+  wsk trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
   
-  Une validation au référentiel GitHub via une commande `git push` provoque l'exécution du déclencheur par le webhook. Si une règle correspond au déclencheur, l'action associée sera appelée.
+  Une validation au référentiel GitHub via une commande `git push` provoque l'exécution du déclencheur par le webhook. Si une règle correspond au déclencheur, l'action associée est appelée.
   L'action reçoit le contenu de webhook GitHub comme paramètre d'entrée. Chaque événement de webhook GitHub comporte un schéma JSON similaire, mais un objet de contenu unique qui est déterminé par son type d'événement.
   Pour plus d'informations sur le contenu, voir la documentation de l'API des [événements et de contenu GitHub](https://developer.github.com/v3/activity/events/types/).
   

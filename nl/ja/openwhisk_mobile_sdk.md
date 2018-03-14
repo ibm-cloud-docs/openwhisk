@@ -1,41 +1,52 @@
+---
+
+copyright:
+  years: 2016, 2018
+lastupdated: "2018-01-09"
+
+---
+
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:screen: .screen}
+{:pre: .pre}
 
 # OpenWhisk モバイル SDK の使用
 
-OpenWhisk は、モバイル・アプリが簡単にリモート・トリガーを発生させてリモート・アクションを起動できるようにする、iOS デバイスおよび watchOS デバイス用のモバイル SDK を提供します。Android 用のバージョンは、現時点では使用できません。Android 開発者は、直接、OpenWhisk REST API を使用することができます。
+OpenWhisk は、iOS デバイスおよび watchOS デバイス向けのモバイル SDK を提供しています。これを使用すると、モバイル・アプリは、リモート・トリガーの起動およびリモート・アクションの呼び出しを簡単に行うことができます。Android 用のバージョンはありませんが、Android 開発者は、直接、OpenWhisk REST API を使用できます。
 
-モバイル SDK は、Swift 3.0 で作成されており、iOS 10 以降のリリースをサポートしています。Xcode 8.0 を使用してモバイル SDK をビルドできます。レガシー Swift 2.2/Xcode 7 バージョンの SDK は、 0.1.7 まで使用可能です (これは非推奨になっています)。
+モバイル SDK は、Swift 3.0 で作成されており、iOS 10 以降のリリースをサポートしています。Xcode 8.0 を使用してモバイル SDK をビルドできます。既存の Swift 2.2/Xcode 7 バージョンの SDK は 0.1.7 までは使用可能ですが、現在は非推奨です。
+{: shortdesc}
 
 ## アプリへの SDK の追加
 
-モバイル SDK は、CocoaPods または Carthage を使用するか、あるいはソース・ディレクトリーから、インストールすることができます。
+モバイル SDK は、CocoaPods または Carthage を使用してインストールするか、ソース・ディレクトリーからインストールすることができます。
 
 ### CocoaPods を使用したインストール
 
-モバイル用 OpenWhisk SDK は、CocoaPods を通して公開配布で入手できます。CocoaPods がインストールされていることを前
-提として、スターター・アプリのプロジェクト・ディレクトリー内部の
-「Podfile」というファイルに以下の行を追加します。
+モバイル用 OpenWhisk SDK は、CocoaPods を通して公開配布で入手できます。CocoaPods がインストールされていることを前提として、スターター・アプリのプロジェクト・ディレクトリー内部の「Podfile」という名前のファイルに以下の行を入れます。
 
-```
+```ruby
 install! 'cocoapods', :deterministic_uuids => false
 use_frameworks!
 
 target 'MyApp' do
-     pod 'OpenWhisk', :git => 'https://github.com/openwhisk/openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
 end
-target 'MyApp WatchKit Extension' do
-     pod 'OpenWhisk', :git => 'https://github.com/openwhisk/openwhisk-client-swift.git', :tag => '0.2.2'
+
+target 'MyApp WatchKit Extension' do 
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
 end
 ```
+{: codeblock}
 
-コマンド・ラインから、`「pod
-install」`と入力します。このコマンドにより、watchOS 拡張機能が付いた iOS アプリ用の SDK がインストールされます。
-プロジェクトを Xcode で開くために CocoaPods によってアプリ用に作成さ
-れたワークスペース・ファイルを使用します。 
+コマンド・ラインから `pod install` と入力します。 このコマンドにより、watchOS 拡張機能が付いた iOS アプリ用の SDK がインストールされます。CocoaPods によってアプリ用に作成されるワークスペース・ファイルを使用して、プロジェクトを Xcode で開きます。 
 
-インストール後に、プロジェクト・ワークスペースを開きます。ビルド時に以下の警告を受け取ることがあります。`Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
-これは、Cocoapods が Pods プロジェクトで Swift バージョンを更新しなかった場合に発生します。修正するには、Pods プロジェクトおよび OpenWhisk ターゲットを選択します。「Build Settings」に移動し、設定`「Use Legacy Swift Language Version」`を`「no」`に変更します。あるいは、Podfile の末尾に以下のインストール後の指示を追加できます。
+インストール後に、プロジェクト・ワークスペースを開きます。ビルド時に次のような警告を受け取ることがあります。
+`Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
+これは、Cocoapods が Pods プロジェクトで Swift バージョンを更新しない場合に発生します。修正するには、Pods プロジェクトおよび OpenWhisk ターゲットを選択します。「Build Settings」に移動し、設定 `Use Legacy Swift Language Version`を `no` に変更します。あるいは、Podfile の末尾に以下のインストール後の指示を追加します。
 
-```
+```ruby
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
@@ -44,46 +55,48 @@ post_install do |installer|
   end
 end
 ```
+{: codeblock}
 
 ### Carthage を使用したインストール
 
-アプリのプロジェクト・ディレクトリーにファイルを作成して「Cartfile」という名前を付けます。ファイルに次の行を追加します。
+アプリのプロジェクト・ディレクトリー内にファイルを作成して「Cartfile」という名前を付けます。そのファイルに以下の行を入れます。
 ```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.2.2 # Or latest version
 ```
+{: pre}
 
-コマンド・ラインから、`「carthage update
---platform ios」`と入力します。Carthage は、SDK をダウンロードおよびビルドして、アプリのプロジェクト・ディレクトリーに「Carthage」というディレクトリーを作成し、
-Carthage/build/iOS 内部に OpenWhisk.framework ファイルを置きます。
+コマンド・ラインから `carthage update --platform ios` と入力します。Carthage は、SDK をダウンロードおよびビルドし、Carthage という名前のディレクトリーをアプリのプロジェクト・ディレクトリー内に作成し、Carthage/build/iOS 内に `OpenWhisk.framework` ファイルを置きます。
 
 次に、Xcode プロジェクトの組み込みフレームワークに OpenWhisk.framework を追加する必要があります。
 
 ### ソース・コードからのインストール
 
-ソース・コードは
-https://github.com/openwhisk/openwhisk-client-swift.git で入手可能です。Xcode を使用して `OpenWhisk.xcodeproj` でプロジェクトを開きます。プロジェクトには、「OpenWhisk」 (iOS を対象とする) と「OpenWhiskWatch」 (watchOS 2 を対象とする) の 2 つのスキームが含まれます。
-必要なターゲットのプロジェクトをビルドし、結果のフレームワークをご使用のアプリに追加します (通常は ~/Library/Developer/Xcode/DerivedData/ご使用のアプリ名)。
+ソース・コードは https://github.com/apache/incubator-openwhisk-client-swift.git で入手可能です。
+Xcode で `OpenWhisk.xcodeproj` を使用することによって、プロジェクトを開きます。
+プロジェクトには、「OpenWhisk」 (iOS がターゲット) と「OpenWhiskWatch」 (watchOS 2 がターゲット) の 2 つのスキームが含まれます。
+必要なターゲット用にプロジェクトをビルドし、結果のフレームワークをご使用のアプリに追加します (通常は ~/Library/Developer/Xcode/DerivedData/ご使用のアプリ名)。
 
 ## スターター・アプリ・サンプルのインストール
 
-OpenWhisk CLI　を使用して、OpenWhisk SDK フレームワークを組み込むサンプル・コードをダウンロードします。  
+OpenWhisk CLI を使用して、OpenWhisk SDK フレームワークを組み込むサンプル・コードをダウンロードできます。  
 
 スターター・アプリ・サンプルをインストールするには、次のコマンドを入力します。
-
 ```
-$ wsk sdk install iOS
+wsk sdk install iOS
 ```
+{: pre}
 
 このコマンドにより、スターター・アプリが入った圧縮ファイルがダウンロードされます。プロジェクト・ディレクトリー内に podfile があります。 
 
 SDK をインストールするには、次のコマンドを入力します。
 ```
-$ pod install
+pod install
 ```
+{: pre}
 
-## SDK 概説
+## SDK 入門
 
-迅速に立ち上げて稼動させるためには、OpenWhisk API 資格情報を使用して WhiskCredentials オブジェクトを作成し、オブジェクトから OpenWhisk インスタンスを作成します。
+迅速に稼働中にするためには、OpenWhisk API 資格情報を使用して WhiskCredentials オブジェクトを作成し、そのオブジェクトから OpenWhisk インスタンスを作成します。
 
 例えば、次のサンプル・コードを使用して資格情報オブジェクトを作成します。
 
@@ -91,53 +104,54 @@ $ pod install
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
 ```
+{: pre}
 
-前述の例で、OpenWhisk から取得した `myKey` と `myToken` を受け渡します。次の CLI コマンドでキーとトークンを検索します。
+上の例では、OpenWhisk から取得した `myKey` と `myToken` を受け渡します。次の CLI コマンドでキーとトークンを取得できます。
 
 ```
-$ wsk property get --auth
+wsk property get --auth
 ```
+{: pre}
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
+{: pre}
 
 コロンの前のストリングがキーで、コロンの後のストリングがトークンです。
 
-## OpenWhisk アクションの起動
+## OpenWhisk アクションの呼び出し
 
-
-リモート・アクションを起動するために、アクション名を使用して `invokeAction` を呼び出すことができます。アクションが属する名前空間を指定するか、ブランクのままにしてデフォルトの名前空間を受け入れます。必要に応じて、ディクショナリーを使用して、パラメーターをアクションに渡します。
+リモート・アクションを呼び出すために、アクション名を指定して `invokeAction` を呼び出すことができます。アクションが属している名前空間を指定するか、またはブランクのままにしてデフォルト名前空間を受け入れることができます。必要に応じて、ディクショナリーを使用してパラメーターをアクションに渡します。
 
 例えば次のようにします。
 
 ```swift
-// In this example, we are invoking an action to print a message to the OpenWhisk Console
+// In this example, we are invoking an Action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()
 params["payload"] = "Hi from mobile"
 do {
     try whisk.invokeAction(name: "helloConsole", package: "mypackage", namespace: "mynamespace", parameters: params, hasResult: false, callback: {(reply, error) -> Void in
         if let error = error {
             //do something
-            print("Error invoking action \(error.localizedDescription)")
+            print("Error invoking Action \(error.localizedDescription)")
         } else {
             print("Action invoked!")
         }
-
     })
 } catch {
     print("Error \(error)")
 }
 ```
+{: codeblock}
 
-前述の例では、デフォルトの名前空間を使用して `helloConsole` アクションを起動します。
+前の例では、デフォルト名前空間を使用して `helloConsole` アクションを呼び出しています。
 
-## OpenWhisk トリガーの発生
+## OpenWhisk トリガーの起動
 
-リモート・トリガーを発生させるために、
-`fireTrigger` メソッドを呼び出すことができます。ディクショナリーを使用して、必要に応じてパラメーターを受け渡します。
+リモート・トリガーを起動するために、`fireTrigger` メソッドを呼び出し、必要に応じてディクショナリーを使用してパラメーターを渡すことができます。
 
 ```swift
-// In this example we are firing a trigger when our location has changed by a certain amount
+// In this example we are firing a Trigger when our location has changed by a certain amount
 var locationParams = Dictionary<String, String>()
 locationParams["payload"] = "{\"lat\":41.27093, \"lon\":-73.77763}"
 do {
@@ -152,50 +166,50 @@ do {
     print("Error \(error)")
 }
 ```
+{: codeblock}
 
-前述の例では、`locationChanged` というトリガーを発生させています。
+前の例では、`locationChanged` という名前のトリガーを起動しています。
 
 ## 結果を返すアクションの使用
 
-アクションが結果を返す場合、invokeAction 呼び出しで hasResult を true に設定します。アクションの結果は、次のように応答ディクショナリーに返され
-ます。
+アクションが結果を返す場合、invokeAction 呼び出しで hasResult を true に設定します。アクションの結果は、次の例に示すように、reply ディクショナリーに返されます。
 
 ```swift
 do {
     try whisk.invokeAction(name: "actionWithResult", package: "mypackage", namespace: "mynamespace", parameters: params, hasResult: true, callback: {(reply, error) -> Void in
         if let error = error {
             //do something
-            print("Error invoking action \(error.localizedDescription)")
+            print("Error invoking Action \(error.localizedDescription)")
         } else {
             var result = reply["result"]
             print("Got result \(result)")
         }
-
-
     })
 } catch {
     print("Error \(error)")
 }
 ```
+{: codeblock}
 
-デフォルトでは、SDK は、アクティベーション ID と起動されたアクションによって生成された結果のみを返します。HTTP 応答状況コードを含む完全な応答オブジェクトのメタデータを取得するには、次のような設定を使用します。
+デフォルトでは、SDK はアクティベーション ID と、呼び出されたアクションによって生成された結果のみを返します。HTTP 応答状況コードを含む完全な応答オブジェクトのメタデータを取得するには、次の設定を使用します。
 
 ```swift
 whisk.verboseReplies = true
 ```
+{: codeblock}
 
 ## SDK の構成
 
-baseURL パラメーターを使用して、SDK を構成し、OpenWhisk の異なるインストール済み環境で作業することができます。以下に例を示します。
+baseURL パラメーターを使用することによって、異なる OpenWhisk インストール済み環境で作業するように SDK を構成できます。以下に例を示します。
 
 ```swift
 whisk.baseURL = "http://localhost:8080"
 ```
+{: codeblock}
 
-この例では、localhost:8080 で実行されているインストール済み環境を使用します。baseUrl を指定しない場合は、モバイル SDK は https://openwhisk.ng.bluemix.net で実行されるインスタンスを使用します。
+この例では、http://localhost:8080 で実行されているインストール済み環境が使用されます。baseUrl を指定しない場合、モバイル SDK は https://openwhisk.ng.bluemix.net で実行されているインスタンスを使用します。
 
-特殊なネットワーク・ハンドリングが必要な場合、
-カスタム NSURLSession を受け渡すことができます。例えば、自己署名証明書を使用する独自の OpenWhisk インストール済み環境がある場合などです。
+特殊なネットワーク処理が必要な場合、カスタム NSURLSession を渡すことができます。例えば、自己署名証明書を使用する独自の OpenWhisk インストール済み環境がある場合などです。
 
 ```swift
 // create a network delegate that trusts everything
@@ -209,30 +223,28 @@ let session = NSURLSession(configuration: NSURLSessionConfiguration.defaultSessi
 // set the SDK to use this urlSession instead of the default shared one
 whisk.urlSession = session
 ```
+{: codeblock}
 
 ### 修飾名のサポート
 
-すべてのアクションとトリガーには、名前空間、パッケージ、およびアクション名またはトリガー名から構成される完全修飾名があります。SDK は、アクションを起動する時またはトリガーを発生させる時に、これらのエレメントをパラメーターとして受け入れることができます。SDK は、
-`/mynamespace/mypackage/nameOfActionOrTrigger` のような完全修飾名を受け入れる関数も提供します。修飾名のストリングは、すべての OpenWhisk ユーザーが所有する名前空間とパッケージに対して名前なしのデフォルト値をサポートするため、以下の構文解析規則が適用されます。
+すべてのアクションおよびトリガーには完全修飾名があり、完全修飾名は、名前空間、パッケージ、およびアクション名またはトリガー名からなります。アクションが呼び出されるか、トリガーが起動されるときに、SDK はこれらの要素をパラメーターとして受け入れることができます。SDK では、`/mynamespace/mypackage/nameOfActionOrTrigger` のような完全修飾名を受け入れる関数も提供されています。修飾名のストリングは、すべての OpenWhisk ユーザーが持つ名前空間およびパッケージの未指定のデフォルト値をサポートします。したがって、以下の構文解析規則が適用されます。
 
 - qName = "foo" の場合は、名前空間 = デフォルト、パッケージ = デフォルト、アクション/トリガー = "foo" となります。
 - qName = "mypackage/foo" の場合は、名前空間 = デフォルト、パッケージ = mypackage、アクション/トリガー = "foo" となります。
 - qName = "/mynamespace/foo" の場合は、名前空間 = mynamespace、パッケージ = デフォルト、アクション/トリガー = "foo" となります。
 - qName = "/mynamespace/mypackage/foo" の場合は、名前空間 = mynamespace、パッケージ = mypackage、アクション/トリガー = "foo" となります。
 
-他のすべての組み合わせでは WhiskError.QualifiedName エラーが発行されます。
-そのため、修飾名を使用する際は、「`do/try/catch`」構成で呼び出しをラップする必要があります。
+他のすべての組み合わせでは WhiskError.QualifiedName エラーが発行されます。そのため、修飾名を使用する際は、`do/try/catch` 構造で呼び出しをラップする必要があります。
 
 ### SDK ボタン
 
-利便性を図るため、SDK には `WhiskButton` が含まれています。これにより `UIButton` が拡張され、アクションを起動することが可能になります。`WhiskButton` を使用するには、次の例に従います。
+利便性のため、SDK には `WhiskButton` が含まれています。これはアクションの呼び出しを可能にするために `UIButton` を拡張したものです。`WhiskButton` を使用するには、次の例に従います。
 
 ```swift
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))
-
 whiskButton.setupWhiskAction("helloConsole", package: "mypackage", namespace: "_", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
 let myParams = ["name":"value"]
-// Call this when you detect a press event, e.g. in an IBAction, to invoke the action
+// Call this when you detect a press event, e.g. in an IBAction, to invoke the Action
 whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
     if let error = error {
         print("Oh no, error: \(error)")
@@ -240,11 +252,10 @@ whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
         print("Success: \(reply)")
     }
 })
-// or alternatively you can set up a "self contained" button that listens for press events on itself and invokes an action
+// or alternatively you can set up a "self contained" button that listens for press events on itself and invokes an Action
 var whiskButtonSelfContained = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButtonSelfContained.listenForPressEvents = true
 do {
-
    // use qualified name API which requires do/try/catch
    try whiskButtonSelfContained.setupWhiskAction("mypackage/helloConsole", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
    whiskButtonSelfContained.actionButtonCallback = { reply, error in
@@ -258,3 +269,4 @@ do {
    print("Error setting up button \(error)")
 }
 ```
+{: codeblock}

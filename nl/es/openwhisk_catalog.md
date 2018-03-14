@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -11,17 +11,15 @@ lastupdated: "2017-02-23"
 {:screen: .screen}
 {:pre: .pre}
 
-# Paquetes OpenWhisk preinstalados
+# Paquetes preinstalados
 {: #openwhisk_ecosystem}
 
-En {{site.data.keyword.openwhisk}}, un catálogo de paquetes le ofrece una forma rápida de mejorar sus apps con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que están habilitados para
-{{site.data.keyword.openwhisk_short}} son Cloudant, Message Hub, Watson, The Weather Company, Slack, GitHub y otros.
+En {{site.data.keyword.openwhisk}}, un catálogo de paquetes le ofrece una forma rápida de mejorar sus apps con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que están habilitados para {{site.data.keyword.openwhisk_short}} son Cloudant, Message Hub, Watson, The Weather Company, Slack, GitHub y otros.
 {: shortdesc}
 
-El catálogo está disponible como paquetes en el espacio de nombres `/whisk.system`. Consulte [Revisión de paquetes](./packages.md#browsing-packages) para obtener información sobre
-cómo explorar el catálogo usando la herramienta de línea de mandatos.
+El catálogo está disponible como paquetes en el espacio de nombres `/whisk.system` y `/watson-iot`. Para obtener más información, consulte [Examinar paquetes](openwhisk_packages.html#browse-packages).
 
-## Paquetes existentes en el catálogo
+## Paquetes del catálogo
 {: notoc}
 
 | Paquete | Descripción |
@@ -35,5 +33,6 @@ cómo explorar el catálogo usando la herramienta de línea de mandatos.
 | [/whisk.system/watson-translator](./openwhisk_watson_translator.html) | Paquete para la [traducción de texto e identificación de idioma](https://www.ibm.com/watson/developercloud/language-translator.html) |
 | [/whisk.system/watson-speechToText](./openwhisk_watson_speechtotext.html) | Paquete para convertir [habla en texto](https://www.ibm.com/watson/developercloud/speech-to-text.html) |
 | [/whisk.system/watson-textToSpeech](./openwhisk_watson_texttospeech.html) | Paquete para convertir [texto en habla](https://www.ibm.com/watson/developercloud/text-to-speech.html) |
+| [/watson-iot/iot-gateway](https://console.stage1.bluemix.net/docs/services/IoT/gateways/iotgw.html) | Paquete para trabajar con el servicio de [Watson IoT Platform Gateway](https://console.stage1.bluemix.net/docs/services/IoT/index.html) |
 | [/whisk.system/weather](./openwhisk_weather.html) | Paquete para trabajar con el servicio [Weather Company Data](https://console.ng.bluemix.net/docs/services/Weather/index.html) |
 | [/whisk.system/websocket](./openwhisk_websocket.html) | Paquete para trabajar con un servidor [Web Socket](https://developer.mozilla.org/en-US/docs/Web/API/WebSockets_API) |

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-03-04"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -14,32 +14,32 @@ lastupdated: "2017-03-04"
 # Message Hub パッケージの使用
 {: #openwhisk_catalog_message_hub}
 
-このパッケージを使用すると、ハイパフォーマンスのネイティブ Kafka API を使用してコンシューム・メッセージをパブリッシュするために、[Message Hub](https://developer.ibm.com/messaging/message-hub) インスタンスと通信できます。
+ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームと行うための [Message Hub](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にするパッケージ。
 {: shortdesc}
 
 ## IBM MessageHub インスタンスを listen するトリガーの作成
 {: #openwhisk_catalog_message_hub_trigger}
 
-Message Hub インスタンスにメッセージがポストされたときに反応するトリガーを作成するためには、`/messaging/messageHubFeed` という名前のフィードを使用する必要があります。このフィード・アクションは、以下のパラメーターをサポートします。
+Message Hub インスタンスにメッセージがポストされると反応するトリガーを作成するためには、`/messaging/messageHubFeed` という名前のフィードを使用する必要があります。 このフィード・アクションは、以下のパラメーターをサポートします。
 
-|名前|タイプ |説明|
+|名前|タイプ|説明|
 |---|---|---|
-|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、Message Hub インスタンス内のブローカーを構成する `<host>:<port>` ストリングの配列です。|
+|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、Message Hub インスタンス内のブローカーからなる `<host>:<port>` ストリングの配列です。|
 |user|ストリング|Message Hub ユーザー名|
 |password|ストリング|Message Hub パスワード|
-|topic|ストリング|トリガーを listen したいトピック|
+|topic|ストリング|トリガーが listen するようにしたいトピック|
 |kafka_admin_url|URL ストリング|Message Hub 管理 REST インターフェースの URL|
-|isJSONData|ブール (オプション - デフォルトは false)|`true` に設定されると、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に JSON として構文解析しようとします。|
-|isBinaryKey|ブール (オプション - デフォルトは false)|`true` に設定されると、プロバイダーは、キー値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
-|isBinaryValue|ブール (オプション - デフォルトは false)|`true` に設定されると、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
+|isJSONData|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に JSON として構文解析しようとします。|
+|isBinaryKey|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、キー値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
+|isBinaryValue|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
 
 このパラメーター・リストは難しそうに見えるかもしれませんが、package refresh CLI コマンドを使用して自動的に設定できます。
 
 1. OpenWhisk 用に使用している現行の組織およびスペースの下に、Message Hub サービスのインスタンスを作成します。
 
-2. listen したいトピックが既に Message Hub にあることを検証するか、新規トピック (例: `mytopic`) を作成します。
+2. listen したいトピックが Message Hub にあることを検証するか、新規トピック (例: `mytopic`) を作成します。
 
-3. 名前空間でパッケージを最新表示します。このリフレッシュにより、作成した Message Hub サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
+3. 名前空間内のパッケージをリフレッシュします。このリフレッシュにより、作成した Message Hub サービス・インスタンス用のパッケージ・バインディングが自動的に作成されます。
 
   ```
   wsk package refresh
@@ -61,16 +61,16 @@ Message Hub インスタンスにメッセージがポストされたときに�
 
   これで、パッケージ・バインディングには、Message Hub インスタンスと関連付けられた資格情報が含まれるようになります。
 
-4. 残っている作業は、新規メッセージが Message Hub トピックにポストされたら発生するトリガーを作成することだけです。
+4. 残っている作業は、新規メッセージが Message Hub トピックにポストされたら起動されるトリガーを作成することだけです。
 
   ```
   wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
-## Bluemix 外部での Message Hub パッケージのセットアップ
+## {{site.data.keyword.Bluemix_notm}} 外部での Message Hub パッケージのセットアップ
 
-Message Hub を Bluemix の外部でセットアップしたい場合は、Message Hub サービスのパッケージ・バインディングを手動で作成する必要があります。Message Hub サービス資格情報と接続情報が必要です。
+Message Hub を {{site.data.keyword.Bluemix_notm}} の外部でセットアップしたい場合は、Message Hub サービス用のパッケージ・バインディングを手動で作成する必要があります。Message Hub サービス資格情報と接続情報が必要です。
 
 1. Message Hub サービス用に構成されたパッケージ・バインディングを作成します。
 
@@ -79,7 +79,7 @@ Message Hub を Bluemix の外部でセットアップしたい場合は、Messa
   ```
   {: pre}
 
-2. 次に、新規パッケージを使用して、新規メッセージが Message Hub トピックにポストされたら発生するトリガーを作成できます。
+2. 次に、新規パッケージを使用して、新規メッセージが Message Hub トピックにポストされたら起動されるトリガーを作成できます。
 
   ```
   wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
@@ -90,26 +90,26 @@ Message Hub を Bluemix の外部でセットアップしたい場合は、Messa
 ## メッセージの listen
 {: #openwhisk_catalog_message_hub_listen}
 
-トリガー作成後、システムはメッセージング・サービス内で指定されたトピックをモニターするようになります。新規メッセージがポストされると、トリガーが発生します。
+トリガーが作成されると、システムはメッセージング・サービス内の指定されたトピックをモニターします。新規メッセージがポストされると、トリガーが起動されます。
 
-そのトリガーのペイロードには、トリガーが最後に発生した以降にポストされたメッセージの配列である `messages` フィールドが含まれます。配列内の各メッセージ・オブジェクトには以下のフィールドが含まれます。
+そのトリガーのペイロードには、`messages` フィールドが含まれています。これは、トリガーの前回の起動以降にポストされたメッセージの配列です。配列内の各メッセージ・オブジェクトには以下のフィールドが含まれています。
 - topic
 - partition
 - offset
 - key
 - value
 
-Kafka 用語では、これらのフィールドは自明です。ただし、`key` にはオプション・フィーチャー `isBinaryKey` があり、これを使用すると `key` をバイナリー・データとして送信できます。また、`value` には特別な考慮が必要です。JSON メッセージとバイナリー・メッセージを処理するために、オプション・フィールドとして `isJSONData` と `isBinaryValue` が用意されています。これらのフィールド (`isJSONData` と `isBinaryValue`) は、互いに一緒に使用することはできません。
+これらのフィールドは Kafka 用語では自明です。ただし、`key` には、`key` がバイナリー・データを伝送するのを許可する `isBinaryKey` というフィーチャーがあります。また、`value` には特別な考慮が必要です。JSON メッセージおよびバイナリー・メッセージを処理するために `isJSONData` フィールドおよび `isBinaryValue` フィールドが使用可能です。`isJSONData` フィールドと `isBinaryValue` フィールドを同時に使用することはできません。
 
-一例として、トリガーの作成時に `isBinaryKey` が `true` に設定された場合、`key` は、起動されたトリガーのペイロードから返されるときに Base64 ストリングとしてエンコードされます。
+一例として、トリガーが作成されたときに `isBinaryKey` が `true` に設定された場合、`key` は、起動されたトリガーのペイロードから返されるときに Base64 ストリングとしてエンコードされます。
 
-例えば、`isBinaryKey` を `true` に設定して、`Some key` という `key` がポストされた場合、トリガー・ペイロードは次のようになります。
+`isBinaryKey` を `true` に設定して `Some key` という `key` がポストされる場合、トリガー・ペイロードは次の例のようになります。
 
 ```json
- {
-   "messages": [
-       {
-         "partition": 0,
+{
+    "messages": [
+        {
+            "partition": 0,
             "key": "U29tZSBrZXk=",
             "offset": 421760,
             "topic": "mytopic",
@@ -119,29 +119,29 @@ Kafka 用語では、これらのフィールドは自明です。ただし、`k
 }
 ```
 
-トリガーが作成されたときに `isJSONData` パラメーターが `false` に設定された (またはまったく設定されなかった) 場合、`value` フィールドは、ポストされたメッセージの未加工値になります。しかし、トリガーが作成されたときに `isJSONData` が `true` に設定された場合は、システムはこの値をできる限り JSON オブジェクトとして構文解析しようとします。構文解析が成功すると、その結果の JSON オブジェクトがトリガー・ペイロード内の `value` になります。
+トリガーが作成されたときに `isJSONData` パラメーターが `false` に設定された (またはまったく設定されなかった) 場合、`value` フィールドは、ポストされたメッセージの未加工値です。しかし、トリガーが作成されたときに `isJSONData` が `true` に設定された場合、システムはこの値をできる限り JSON オブジェクトとして構文解析しようとします。構文解析が成功すると、その結果の JSON オブジェクトがトリガー・ペイロード内の `value` になります。
 
-例えば、`isJSONData` を `true` に設定して、`{"title": "Some string", "amount": 5, "isAwesome": true}` のメッセージがポストされた場合、トリガー・ペイロードは次のようになります。
+`isJSONData` を `true` に設定して、`{"title": "Some string", "amount": 5, "isAwesome": true}` というメッセージがポストされた場合、トリガー・ペイロードは次の例のようになります。
 
 ```json
 {
   "messages": [
     {
       "partition": 0,
-        "key": null,
-        "offset": 421760,
-        "topic": "mytopic",
-        "value": {
-            "amount": 5,
-            "isAwesome": true,
-            "title": "Some string"
-        }
+      "key": null,
+      "offset": 421760,
+      "topic": "mytopic",
+      "value": {
+          "amount": 5,
+          "isAwesome": true,
+          "title": "Some string"
       }
+    }
   ]
 }
 ```
 
-しかし、`isJSONData` を `false` に設定して、同じメッセージ内容がポストされた場合は、トリガー・ペイロードは次のようになります。
+しかし、`isJSONData` を `false` に設定して、同じメッセージ内容がポストされた場合、トリガー・ペイロードは次の例のようになります。
 
 ```json
 {
@@ -157,9 +157,9 @@ Kafka 用語では、これらのフィールドは自明です。ただし、`k
 }
 ```
 
-`isJSONData` と同様に、トリガーの作成時に `isBinaryValue` が `true` に設定された場合、トリガー・ペイロード内の結果の `value` は、Base64 ストリングとしてエンコードされます。
+`isJSONData` と同様に、トリガーが作成されたときに `isBinaryValue` が `true` に設定された場合、トリガー・ペイロード内の結果の `value` は Base64 ストリングとしてエンコードされます。
 
-例えば、`isBinaryValue` を `true` に設定して、`Some data` という `value` がポストされた場合、トリガー・ペイロードは次のようになります。
+`isBinaryValue` を `true` に設定して `Some data` という `value` がポストされた場合、トリガー・ペイロードは次の例のようになります。
 
 ```json
 {
@@ -175,7 +175,7 @@ Kafka 用語では、これらのフィールドは自明です。ただし、`k
 }
 ```
 
-`isBinaryData` を `true` に設定せずに、同じメッセージがポストされた場合、トリガー・ペイロードは以下の例のようになります。
+`isBinaryData` を `true` に設定せずに、同じメッセージがポストされた場合、トリガー・ペイロードは次の例のようになります。
 
 ```json
 {
@@ -192,7 +192,7 @@ Kafka 用語では、これらのフィールドは自明です。ただし、`k
 ```
 
 ### メッセージのバッチ処理
-トリガー・ペイロードにはメッセージの配列が含まれます。これは、非常に高速でメッセージング・システムにメッセージが生成されている場合には、フィードはポストされたメッセージをひとまとめにして 1 回のトリガー発生にしようとすることを意味します。これによって、メッセージがトリガーにポストされるのが、より高速かつ効率的になります。
+トリガー・ペイロードにはメッセージの配列が含まれることに注意してください。これらのメッセージがメッセージング・システムに対して迅速に生成される場合、フィードは、ポストされたメッセージを単一のトリガー起動にまとめようとします。このバッチ処理によって、メッセージがトリガーにポストされるのが、より高速かつ効率的になります。
 
 トリガーによって起動されるアクションをコーディングするときには、ペイロード内のメッセージの数は技術的には無制限であっても、常に 0 より大きいことに留意してください。以下に、バッチ処理されたメッセージの例を示します (*offset* 値の変化に注意してください)。
  
@@ -231,18 +231,18 @@ Kafka 用語では、これらのフィールドは自明です。ただし、`k
  ```
 
 ## Message Hub へのメッセージの生成
-OpenWhisk アクションを使用して Message Hub へのメッセージを都合よく生成したい場合は、`/messaging/messageHubProduce` アクションを使用できます。このアクションでは、以下のパラメーターを使用します。
+Message Hub へのメッセージの生成を OpenWhisk アクションを使用して便利に行いたい場合、`/messaging/messageHubProduce` アクションを使用できます。このアクションには以下のパラメーターがあります。
 
-|名前|タイプ |説明|
+|名前|タイプ|説明|
 |---|---|---|
-|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、Message Hub インスタンス内のブローカーを構成する `<host>:<port>` ストリングの配列です。|
+|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、Message Hub インスタンス内のブローカーからなる `<host>:<port>` ストリングの配列です。|
 |user|ストリング|Message Hub ユーザー名|
 |password|ストリング|Message Hub パスワード|
-|topic|ストリング|トリガーを listen したいトピック|
+|topic|ストリング|トリガーが listen するようにしたいトピック|
 |value|ストリング|生成したいメッセージの値|
 |key|ストリング (オプション)|生成したいメッセージのキー|
 
-最初の 3 つのパラメーターは `wsk package refresh` を使用して自動的にバインドできますが、必要なすべてのパラメーターを指定してアクションを起動する例を以下に示します。
+最初の 3 つのパラメーターは `wsk package refresh` を使用して自動的にバインドできますが、すべての必要なパラメーターを指定してアクションを呼び出す以下の例を参照してください。
 
 ```
 wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your Message Hub user> -p password <your Message Hub password> -p value "This is the content of my message"
@@ -254,6 +254,6 @@ wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01
 ### OpenWhisk と IBM Message Hub、Node Red、IBM Watson IoT、IBM Object Storage、および IBM Data Science Experience の統合
 OpenWhisk と IBM Message Hub、Node Red、IBM Watson IoT、IBM Object Storage、IBM Data Science Experience (Spark) サービスを統合する例は、[ここにあります](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)。
 
-## リファレンス
+## 参照
 - [IBM Message Hub](https://developer.ibm.com/messaging/message-hub/)
 - [Apache Kafka](https://kafka.apache.org/)

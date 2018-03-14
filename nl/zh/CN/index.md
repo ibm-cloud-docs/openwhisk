@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-04-25"
+  years: 2016, 2018
+lastupdated: "2018-02-14"
 
 ---
 
@@ -13,13 +13,10 @@ lastupdated: "2017-04-25"
 
 # {{site.data.keyword.openwhisk_short}} 入门
 
-
-{{site.data.keyword.openwhisk}} 是一种分布式事件驱动型计算服务，也称为无服务器计算或功能即服务 (FaaS)。{{site.data.keyword.openwhisk_short}} 从 Web 或移动应用程序通过 HTTP 运行应用程序逻辑来响应事件或直接调用。事件可以通过 Bluemix 服务（如 Cloudant）提供，也可以从外部源提供。开发者可以专注于编写应用程序逻辑，以及创建按需执行的操作。这种新规范的优点是无需显式供应服务器，也不必担心自动扩展或担心高可用性、更新、维护以及在服务器运行但不进行请求服务时为处理器时间（小时）付费。
-只要存在 HTTP 调用、数据库状态更改或触发代码执行的其他类型的事件，就会执行代码。
-您将获得按执行时间（毫秒，向上舍入到最接近的 100 毫秒）计费，而不是按每小时虚拟机使用率计费，与该 VM 是否正在执行有用的工作无关。
+{{site.data.keyword.openwhisk}} 是一种分布式事件驱动型计算服务，也称为无服务器计算或功能即服务 (FaaS)。{{site.data.keyword.openwhisk_short}} 从 Web 或移动应用程序通过 HTTP 运行应用程序逻辑来响应事件或直接调用。事件可以通过 {{site.data.keyword.Bluemix}} 服务（如 Cloudant）提供，也可以从外部源提供。开发者可以专注于编写应用程序逻辑，以及创建按需执行的操作。这种新范例的主要优点是无需显式供应服务器。这样一来，就不必担心自动扩展、高可用性、更新和维护，也不用担心服务器在运行但未处理请求时产生处理器时间（小时）成本。只要存在 HTTP 调用、数据库状态更改或触发代码执行的其他类型的事件，就会执行代码。您将按执行时间（毫秒，向上舍入到最接近的 100 毫秒）计费，而不是按每小时 VM 利用率计费，与该 VM 是否在执行有用的工作无关。
 {: shortdesc}
 
-此编程模型是微服务、移动、IoT 和其他许多应用程序的完美搭档 - 您能获得开箱即用的固有自动缩放和负载均衡功能，而不必手动配置集群、负载均衡器、HTTP 插件等。如果碰巧在 {{site.data.keyword.openwhisk}} 上运行，那么还将获得零管理的好处 - 这意味着所有的硬件、联网和软件都由 IBM 进行维护。您只需要提供要执行的代码，并将其提供给 {{site.data.keyword.openwhisk}} 即可。剩余工作像“变魔术一样”。[Martin Fowler 的博客](https://martinfowler.com/articles/serverless.html)上提供了对无服务器编程模型的详细介绍.
+此编程模型是微服务、移动、IoT 和其他许多应用程序的完美搭档。您能获得开箱即用的固有自动扩展和负载均衡功能，而不必手动配置集群、负载均衡器、HTTP 插件等。如果恰好在 {{site.data.keyword.openwhisk}} 上运行，那么还将获得零管理的好处 - 这意味着所有的硬件、联网和软件都由 IBM 进行维护。您只需要提供要执行的代码，并将其提供给 {{site.data.keyword.openwhisk}} 即可。剩余工作像“变魔术一样”。[Martin Fowler 的博客](https://martinfowler.com/articles/serverless.html)上提供了对无服务器编程模型的详细介绍.
 
 您也可以获取 [Apache OpenWhisk 源代码](https://github.com/openwhisk/openwhisk)，然后自行运行系统。
 
@@ -31,8 +28,7 @@ lastupdated: "2017-04-25"
 ## 在浏览器中开发
 {: #openwhisk_start_editor}
 
-在[浏览器](https://console.{DomainName}/openwhisk/editor)中尝试使用 {{site.data.keyword.openwhisk_short}} 来创建操作、使用触发器自动化操作，并探索公共包。
-请访问[了解更多信息](https://console.{DomainName}/openwhisk/learn)页面，以快速浏览 OpenWhisk 用户界面。
+在[浏览器](https://console.{DomainName}/openwhisk/actions)中尝试使用 {{site.data.keyword.openwhisk_short}} 来创建操作，使用触发器自动执行操作，并探索公共包。请访问[了解更多信息](https://console.{DomainName}/openwhisk/learn)页面，以快速浏览 {{site.data.keyword.openwhisk_short}} 用户界面。
 
 ## 使用 CLI 进行开发
 {: #openwhisk_start_configure_cli}
@@ -84,21 +80,18 @@ function main(params) {
 1. 将代码保存到文件。例如，*hello.js*。
 
 2. 在 {{site.data.keyword.openwhisk_short}} CLI 命令行中，通过输入以下命令来创建操作：
-
     ```
 wsk action create hello hello.js
     ```
     {: pre}
 
 3. 然后，通过输入以下命令来调用操作。
-
     ```
 wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
     此命令的输出为：
-
     ```json
     {
         "payload": "Hello, World!"
@@ -111,14 +104,13 @@ wsk action invoke hello --blocking --result --param name Fred
     {: pre}  
 
     此命令的输出为：
-
     ```json
     {
         "payload": "Hello, Fred!"
     }
     ```
 
-您还可以使用 {{site.data.keyword.openwhisk_short}} 中的事件驱动型功能来调用此操作以响应事件。遵循[警报服务示例](./openwhisk_packages.html#openwhisk_packages_trigger)，以将事件源配置为每次生成定期事件时都调用 `hello` 操作。
+您还可以使用 {{site.data.keyword.openwhisk_short}} 中的事件驱动型功能来调用此操作以响应事件。遵循[警报服务示例](./openwhisk_packages.html#openwhisk_package_trigger)，以将事件源配置为每次生成定期事件时都调用 `hello` 操作。
 
 [OpenWhisk 教程和样本的完整列表位于此处](https://github.com/openwhisk/openwhisk-external-resources#sample-applications)。除了样本外，此存储库还包含指向文章、演示文稿、播客、视频和其他 {{site.data.keyword.openwhisk_short}} 相关资源的链接。
 

@@ -1,21 +1,34 @@
+---
+
+copyright:
+  years: 2016, 2018
+lastupdated: "2018-01-09"
+
+---
+
+{:shortdesc: .shortdesc}
+{:codeblock: .codeblock}
+{:screen: .screen}
+{:pre: .pre}
+
 # WebSocket パッケージの使用
 {: #openwhisk_catalog_websocket}
 
-`/whisk.system/websocket` パッケージは、WebSocket にメッセージを送るための便利な方法を提供します。
+`/whisk.system/websocket` パッケージを利用して、WebSocket にメッセージを簡単に送ることができます。
+{: shortdesc}
 
 このパッケージには、以下のアクションが含まれています。
 
-| エンティティー | タイプ  | パラメーター | 説明 |
+| エンティティー | タイプ | パラメーター| 説明 |
 | --- | --- | --- | --- |
-| `/whisk.system/websocket` | パッケージ | uri | WebSocket との通信のためのユーティリティー |
-| `/whisk.system/websocket/send` | アクション | uri、payload | ペイロードを WebSocket URI に送信 |
+| `/whisk.system/websocket` | パッケージ| uri | WebSocket との通信のためのユーティリティー|
+| `/whisk.system/websocket/send` | アクション | uri、payload| ペイロードを WebSocket URI に送信|
 
 多数のメッセージを同じ WebSocket URI に送信する予定の場合、`uri` 値を指定してパッケージ・バインディングを作成することをお勧めします。バインディングを使用すると、`send` アクションを使用するたびに値を指定する必要がありません。
 
-## WebSocket にメッセージを送信する
+## WebSocket にメッセージを送信
 
-`/whisk.system/websocket/send` アクションは、WebSocket URI にペイロードを送信します。 パラメーターは次のとおりです。
+`/whisk.system/websocket/send` アクションは、WebSocket URI にペイロードを送信します。パラメーターは次のとおりです。
 
-
-- `uri`: WebSocket サーバーの URI (例: ws://mywebsockethost:80)
-- `payload`: WebSocket に送信したいメッセージ
+- `uri`: WebSocket サーバーの URI (例: ws://mywebsockethost:80)。
+- `payload`: WebSocket に送信したいメッセージ。

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,15 +15,16 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_github}
 
 Das Paket `/whisk.system/github` bietet eine komfortable Methode zur Verwendung der [GitHub-APIs](https://developer.github.com/).
+{: shortdesc}
 
 Das Paket enthält den folgenden Feed:
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
 | `/whisk.system/github` | Paket | username, repository, accessToken | Interaktion mit der GitHub-API |
-| `/whisk.system/github/webhook` | Feed | events, username, repository, accessToken | Aktivieren von Auslöserereignissen für GitHub-Aktivitäten |
+| `/whisk.system/github/webhook` | Feed | events, username, repository, accessToken | Aktivieren eines Auslöserereignisses bei GitHub-Aktivität |
 
-Es wird empfohlen, eine Paketbindung mit den Werten `username`, `repository` und `accessToken` zu erstellen.  Mit der Bindung brauchen Sie die Werte nicht jedes Mal anzugeben, wenn Sie den Feed im Paket verwenden.
+Es wird empfohlen, eine Paketbindung mit den Werten `username`, `repository` und `accessToken` zu erstellen. Mit der Bindung brauchen Sie die Werte nicht jedes Mal anzugeben, wenn Sie den Feed im Paket verwenden.
 
 ## Auslöserereignis für GitHub-Aktivität aktivieren
 
@@ -31,10 +32,10 @@ Der Feed `/whisk.system/github/webhook` konfiguriert einen Service so, dass ein 
 
 - `username`: Der Benutzername für das GitHub-Repository.
 - `repository`: Das GitHub-Repository.
-- `accessToken`: Ihr persönliches GitHub-Zugriffstoken. Wenn Sie Ihr [Token erstellen](https://github.com/settings/tokens), stellen Sie sicher, dass Sie die Geltungsbereiche 'repo:status' und 'public_repo' auswählen. Stellen Sie außerdem sicher, dass noch keine Web-Hooks für Ihr Repository definiert sind.
+- `accessToken`: Ihr persönliches GitHub-Zugriffstoken. Wenn Sie Ihr [Token erstellen](https://github.com/settings/tokens), stellen Sie sicher, dass Sie die Geltungsbereiche **repo:status** und **public_repo** auswählen. Stellen Sie außerdem sicher, dass noch keine Webhooks für Ihr Repository definiert sind.
 - `events`: Der interessierende [GitHub-Ereignistyp](https://developer.github.com/v3/activity/events/types/).
 
-Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der jedes Mal aktiviert wird, wenn eine neue Festschreibung (Commit) in einem GitHub-Repository erfolgt.
+Im folgenden Beispiel wird ein Auslöser erstellt, der bei jeder neuen Festschreibung im GitHub-Repository aktiviert wird.
 
 1. Generieren Sie ein [persönliches Zugriffstoken](https://github.com/settings/tokens) für GitHub.
   
@@ -57,7 +58,7 @@ Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der jedes Mal akti
   ```
   {: pre}
   
-  Ein Commit für ein Github-Repository mithilfe von `git push` führt dazu, dass der Auslöser durch den Web-Hook ausgelöst wird. Falls eine Regel zutrifft, die mit dem Auslöser übereinstimmt, wird die zugeordnete Aktion aufgerufen.
-  Von der Aktion werden die Nutzdaten für den GitHub-Web-Hook als Eingabeparameter empfangen. Jedes GitHub-Web-Hook-Ereignis weist ein ähnliches JSON-Schema und ein eindeutiges Nutzdatenobjekt auf, das vom jeweiligen Ereignistyp abhängt.
+  Eine Festschreibung (Commit) im GitHub-Repository durch `git push` führt dazu, dass der Auslöser durch den Webhook aktiviert wird. Wenn eine Regel auf den Auslöser zutrifft, wird die zugeordnete Aktion aufgerufen.
+  Von der Aktion werden die Nutzdaten für den GitHub-Webhook als Eingabeparameter empfangen. Jedes GitHub-Webhook-Ereignis weist ein ähnliches JSON-Schema auf, stellt jedoch ein eindeutiges Nutzdatenobjekt dar, das vom jeweiligen Ereignistyp abhängt.
   Weitere Informationen zum Nutzdateninhalt finden Sie in der API-Dokumentation unter [GitHub-Ereignisse und -Nutzdaten](https://developer.github.com/v3/activity/events/types/).
   

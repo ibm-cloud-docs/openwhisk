@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-23"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -15,16 +15,16 @@ lastupdated: "2017-02-23"
 {: #openwhisk_catalog_slack}
 
 Le package `/whisk.system/slack` permet d'utiliser les [API Slack](https://api.slack.com/).
+{: shortdesc}
 
-Le package inclut les actions suivantes :
+Le package comprend les actions suivantes :
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/slack` | package | url, channel, username | Interagir avec l'API Slack |
-| `/whisk.system/slack/post` | action | text, url, channel, username | Publier un message dans un canal Slack |
+| `/whisk.system/slack` | Package | url, channel, username | Interagir avec l'API Slack |
+| `/whisk.system/slack/post` | Action | text, url, channel, username | Publier un message dans un canal Slack |
 
-Il est recommandé de créer une liaison de package avec les valeurs `username`, `url` et `channel`. Grâce à la liaison, il n'est pas nécessaire de spécifier les valeurs à chaque fois que vous appelez l'action dans le
-package.
+Il est recommandé de créer une liaison de package avec les valeurs `username`, `url` et `channel`. Grâce à la liaison, il n'est pas nécessaire de spécifier les valeurs à chaque fois que vous appelez l'action dans le package.
 
 ## Publication d'un message dans un canal Slack
 
@@ -34,13 +34,13 @@ L'action `/whisk.system/slack/post` publie un message dans un canal Slack spéci
 - `channel` : canal Slack dans lequel publier le message.
 - `username` : nom sous lequel publier le message.
 - `text` : message à publier.
-- `token` : (facultatif) [Jeton d'accès](https://api.slack.com/tokens) Slack. Voir [ci-après](./catalog.md#using-the-slack-token-based-api) pour plus de détails sur l'utilisation de jetons d'accès Slack.
+- `token` : (facultatif) [Jeton d'accès](https://api.slack.com/tokens) Slack. Pour en savoir plus sur l'utilisation de jetons d'accès Slack, voir [OpenWhisk Package Guide](./openwhisk_catalog.html). 
 
-L'exemple ci-dessous explique comment configurer Slack, créer une liaison de package et publier un message dans un canal.
+L'exemple suivant montre comment configurer Slack, créer une liaison de package et publier un message sur un canal :
 
 1. Configurez un [webhook entrant](https://api.slack.com/incoming-webhooks) Slack pour votre équipe.
   
-  Une fois Slack configuré, vous obtenez une adresse URL de webhook similaire à `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Vous en aurez besoin à l'étape suivante.
+  Une fois Slack configuré, vous obtenez une adresse URL de webhook similaire à `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Vous aurez besoin de cette adresse URL de webhook à l'étape suivante.
   
 2. Créez une liaison de package avec vos données d'identification Slack, le canal dans lequel publier le message, et le nom d'utilisateur sous
 lequel publier le message.
