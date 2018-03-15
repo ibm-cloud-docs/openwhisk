@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-07"
+lastupdated: "2018-03-15"
 
 ---
 
@@ -368,63 +368,71 @@ Python version:
 - [3.6.4](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
 
 Python Packages:
-- asn1crypto (0.24.0)
-- attrs (17.4.0)
-- Automat (0.6.0)
-- beautifulsoup4 (4.6.0)
-- certifi (2017.11.5)
-- cffi (1.11.4)
-- chardet (3.0.4)
-- click (6.7)
-- cloudant (2.7.0)
-- constantly (15.1.0)
-- cryptography (2.1.4)
-- cssselect (1.0.3)
-- docutils (0.14)
-- Flask (0.12.2)
-- gevent (1.2.2)
-- greenlet (0.4.12)
-- httplib2 (0.10.3)
-- hyperlink (17.3.1)
-- ibm-cos-sdk (2.0.0)
-- ibm-db (2.0.8a0)
-- idna (2.6)
-- incremental (17.5.0)
-- itsdangerous (0.24)
-- Jinja2 (2.10)
-- jmespath (0.9.3)
-- kafka-python (1.3.5)
-- lxml (4.1.1)
-- MarkupSafe (1.0)
-- numpy (1.14.0)
-- pandas (0.22.0)
-- parsel (1.3.1)
-- pip (9.0.1)
-- pyasn1 (0.4.2)
-- pyasn1-modules (0.2.1)
-- pycparser (2.18)
-- PyDispatcher (2.0.5)
-- pyOpenSSL (17.5.0)
-- pysolr (3.7.0)
-- python-dateutil (2.6.1)
-- pytz (2017.3)
-- queuelib (1.4.2)
-- requests (2.18.4)
-- scikit-learn (0.19.1)
-- scipy (1.0.0)
-- Scrapy (1.5.0)
-- service-identity (17.0.0)
-- setuptools (38.4.0)
-- simplejson (3.13.2)
-- six (1.11.0)
-- Twisted (17.9.0)
-- urllib3 (1.22)
-- virtualenv (15.1.0)
-- w3lib (1.18.0)
-- watson-developer-cloud (1.0.2)
-- Werkzeug (0.14.1)
-- wheel (0.30.0)
-- zope.interface (4.4.3)
+- asn1crypto==0.24.0
+- attrs==17.4.0
+- Automat==0.6.0
+- beautifulsoup4==4.6.0
+- botocore==1.9.4
+- cassandra-driver==3.13.0
+- certifi==2018.1.18
+- cffi==1.11.5
+- chardet==3.0.4
+- click==6.7
+- cloudant==2.8.1
+- constantly==15.1.0
+- cryptography==2.1.4
+- cssselect==1.0.3
+- docutils==0.14
+- elasticsearch==5.5.2
+- Flask==0.12.2
+- gevent==1.2.2
+- greenlet==0.4.13
+- httplib2==0.10.3
+- hyperlink==18.0.0
+- ibm-cos-sdk==2.0.2
+- ibm-cos-sdk-core==2.0.2
+- ibm-cos-sdk-s3transfer==2.0.2
+- ibm-db==2.0.8a0
+- ibmcloudsql==0.2.5
+- idna==2.6
+- incremental==17.5.0
+- itsdangerous==0.24
+- Jinja2==2.10
+- jmespath==0.9.3
+- kafka-python==1.4.1
+- lxml==4.1.1
+- MarkupSafe==1.0
+- numpy==1.14.1
+- pandas==0.22.0
+- parsel==1.4.0
+- pika==0.11.2
+- psycopg2==2.7.4
+- pyasn1==0.4.2
+- pyasn1-modules==0.2.1
+- pycparser==2.18
+- PyDispatcher==2.0.5
+- pymongo==3.6.1
+- pyOpenSSL==17.5.0
+- pysolr==3.7.0
+- python-dateutil==2.6.1
+- pytz==2018.3
+- queuelib==1.4.2
+- redis==2.10.6
+- requests==2.18.4
+- scikit-learn==0.19.1
+- scipy==1.0.0
+- Scrapy==1.5.0
+- service-identity==17.0.0
+- simplejson==3.13.2
+- six==1.11.0
+- tornado==5.0
+- Twisted==17.9.0
+- urllib3==1.22
+- virtualenv==15.1.0
+- w3lib==1.19.0
+- watson-developer-cloud==1.0.2
+- Werkzeug==0.14.1
+- zope.interface==4.4.3
 
 
 ### Python 3 Actions (Alpine based)
@@ -434,47 +442,45 @@ Python 3 Actions are executed with Python 3.6.1. To use this runtime, specify th
 When creating python actions using virtualenv, use the docker image `openwhisk/python3action`.
 The following packages are available for use by Python Actions, in addition to the Python 3.6 standard libraries.
 
-- asn1crypto (0.23.0)
-- attrs (17.3.0)
-- Automat (0.6.0)
-- beautifulsoup4 (4.5.3)
-- cffi (1.11.2)
-- click (6.7)
-- constantly (15.1.0)
-- cryptography (2.1.3)
-- cssselect (1.0.1)
-- Flask (0.12)
-- gevent (1.2.1)
-- greenlet (0.4.12)
-- httplib2 (0.10.3)
-- idna (2.6)
-- incremental (17.5.0)
-- itsdangerous (0.24)
-- Jinja2 (2.9.6)
-- kafka-python (1.3.4)
-- lxml (3.7.3)
-- MarkupSafe (1.0)
-- parsel (1.2.0)
-- pip (9.0.1)
-- pyasn1 (0.3.7)
-- pyasn1-modules (0.1.5)
-- pycparser (2.18)
-- PyDispatcher (2.0.5)
-- pyOpenSSL (17.3.0)
-- python-dateutil (2.6.0)
-- queuelib (1.4.2)
-- requests (2.13.0)
-- Scrapy (1.3.3)
-- service-identity (17.0.0)
-- setuptools (36.5.0)
-- simplejson (3.10.0)
-- six (1.11.0)
-- Twisted (17.1.0)
-- virtualenv (15.1.0)
-- w3lib (1.18.0)
-- Werkzeug (0.12.2)
-- wheel (0.29.0)
-- zope.interface (4.4.3)
+Python Packages:
+- asn1crypto==0.23.0
+- attrs==17.3.0
+- Automat==0.6.0
+- beautifulsoup4==4.5.3
+- cffi==1.11.2
+- click==6.7
+- constantly==15.1.0
+- cryptography==2.1.3
+- cssselect==1.0.1
+- Flask==0.12
+- gevent==1.2.1
+- greenlet==0.4.12
+- httplib2==0.10.3
+- idna==2.6
+- incremental==17.5.0
+- itsdangerous==0.24
+- Jinja2==2.9.6
+- kafka-python==1.3.4
+- lxml==3.7.3
+- MarkupSafe==1.0
+- parsel==1.2.0
+- pyasn1==0.3.7
+- pyasn1-modules==0.1.5
+- pycparser==2.18
+- PyDispatcher==2.0.5
+- pyOpenSSL==17.3.0
+- python-dateutil==2.6.0
+- queuelib==1.4.2
+- requests==2.13.0
+- Scrapy==1.3.3
+- service-identity==17.0.0
+- simplejson==3.10.0
+- six==1.11.0
+- Twisted==17.1.0
+- virtualenv==15.1.0
+- w3lib==1.18.0
+- Werkzeug==0.12.2
+- zope.interface==4.4.3
 
 
 ### Python 2 Actions
@@ -483,49 +489,47 @@ Python 2 Actions are executed with Python 2.7.12, which is the default runtime f
 When creating python actions using virtualenv, use the docker image `openwhisk/python2action`.
 The following packages are available for use by Python 2 Actions, in addition to the Python 2.7 standard library.
 
-- asn1crypto (0.23.0)
-- attrs (17.2.0)
-- beautifulsoup4 (4.5.1)
-- cffi (1.11.1)
-- click (6.7)
-- cryptography (2.0.3)
-- cssselect (1.0.1)
-- enum34 (1.1.6)
-- Flask (0.11.1)
-- gevent (1.1.2)
-- greenlet (0.4.12)
-- httplib2 (0.9.2)
-- idna (2.6)
-- ipaddress (1.0.18)
-- itsdangerous (0.24)
-- Jinja2 (2.9.6)
-- kafka-python (1.3.1)
-- lxml (3.6.4)
-- MarkupSafe (1.0)
-- parsel (1.2.0)
-- pip (9.0.1)
-- pyasn1 (0.3.7)
-- pyasn1-modules (0.1.4)
-- pycparser (2.18)
-- PyDispatcher (2.0.5)
-- pyOpenSSL (17.3.0)
-- python-dateutil (2.5.3)
-- queuelib (1.4.2)
-- requests (2.11.1)
-- Scrapy (1.1.2)
-- service-identity (17.0.0)
-- setuptools (36.5.0)
-- simplejson (3.8.2)
-- six (1.11.0)
-- Twisted (16.4.0)
-- virtualenv (15.1.0)
-- w3lib (1.18.0)
-- Werkzeug (0.12.2)
-- wheel (0.29.0)
-- zope.interface (4.4.3)
+Python Packages:
+- asn1crypto==0.23.0
+- attrs==17.2.0
+- beautifulsoup4==4.5.1
+- cffi==1.11.1
+- click==6.7
+- cryptography==2.0.3
+- cssselect==1.0.1
+- enum34==1.1.6
+- Flask==0.11.1
+- gevent==1.1.2
+- greenlet==0.4.12
+- httplib2==0.9.2
+- idna==2.6
+- ipaddress==1.0.18
+- itsdangerous==0.24
+- Jinja2==2.9.6
+- kafka-python==1.3.1
+- lxml==3.6.4
+- MarkupSafe==1.0
+- parsel==1.2.0
+- pyasn1==0.3.7
+- pyasn1-modules==0.1.4
+- pycparser==2.18
+- PyDispatcher==2.0.5
+- pyOpenSSL==17.3.0
+- python-dateutil==2.5.3
+- queuelib==1.4.2
+- requests==2.11.1
+- Scrapy==1.1.2
+- service-identity==17.0.0
+- simplejson==3.8.2
+- six==1.11.0
+- Twisted==16.4.0
+- virtualenv==15.1.0
+- w3lib==1.18.0
+- Werkzeug==0.12.2
+- zope.interface==4.4.3
 
 ## Swift Actions
-{: #openwhisk_ref_swift3}
+{: #swift-actions}
 
 ### Swift 3
 Swift 3 Actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
@@ -533,10 +537,23 @@ Swift 3 Actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always speci
 You must migrate all Swift Actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update Actions.
 {: tip}
 
-Swift 3.1.1 Actions can use the following packages:
+Swift 3.1.1 Actions can use the following packages when using a single Swift source file:
 - KituraNet version 1.7.6, https://github.com/IBM-Swift/Kitura-net
 - SwiftyJSON version 15.0.1, https://github.com/IBM-Swift/SwiftyJSON
 - Watson Developer Cloud SDK version 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
+
+### Swift 4
+Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.  
+
+Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
+
+Swift 4.1 Actions can use the following packages when using single swift source file:
+- Watson Developer Cloud SDK version 0.21.0, https://github.com/watson-developer-cloud/swift-sdk
+
+### Migrating Swift 3.1.1 to Swift 4.1
+
+#### SwiftyJSON using a single source Action file
+If you have a `swift:3.1.1` Action that is not compiled, just as a source file using the **SwiftyJSON** package, you need to pre-compile your Action, and specify the version of SwiftyJSON you want to use for `swift:4.1` kind Action. Take into account that starting with Swift 4.1, there is better support to manage JSON data natively.
 
 ## PHP Actions
 {: #openwhisk_ref_php}
