@@ -547,7 +547,7 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
-Swift 4.1 Actions can use the following packages when using single swift source file:
+Swift 4.1 Actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 0.21.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
