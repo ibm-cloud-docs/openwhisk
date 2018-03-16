@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-14"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -163,8 +163,8 @@ In this example, the API is defined with a **path parameter**. When using path p
   bx wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
   bx wsk api create /club /books get postBooks                      --response-type http
   bx wsk api create /club /books post postBooks                     --response-type http
-  bx wsk api create /club /books put postBooks                      --response-type http
-  bx wsk api create /club /books delete postBooks                   --response-type http
+  bx wsk api create /club /books/{isbn} put postBooks               --response-type http
+  bx wsk api create /club /books/{isbn} delete postBooks            --response-type http
   ```
   {: codeblock}
 
