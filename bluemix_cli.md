@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-23"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -244,8 +244,11 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
+1.0.9 (2018-03-16)
+* Enables support for service bind at the package level.
+
 1.0.8 (2018-02-22)
-* Added support for IAM service bind.
+* Add support for IAM service bind.
 
 1.0.7 (2018-02-02)
 * `bx wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html).
