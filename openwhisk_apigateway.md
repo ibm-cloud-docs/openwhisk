@@ -161,10 +161,10 @@ In this example, the API is defined with a **path parameter**. When using path p
 1. Create an API for the book club, named **Book Club**, with `/club` as its HTTP URL base path, `books` as its resource, and `{isbn}` as a path parameter that is used to identify a specific book by using it's International Standard Book Number (ISBN).
   ```
   bx wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  bx wsk api create /club /books get postBooks                      --response-type http
+  bx wsk api create /club /books get getBooks                       --response-type http
   bx wsk api create /club /books post postBooks                     --response-type http
-  bx wsk api create /club /books/{isbn} put postBooks               --response-type http
-  bx wsk api create /club /books/{isbn} delete postBooks            --response-type http
+  bx wsk api create /club /books/{isbn} put putBooks                --response-type http
+  bx wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
