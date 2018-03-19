@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-14"
 
 ---
 
@@ -13,17 +13,16 @@ lastupdated: "2018-02-16"
 
 # Annotations
 
-OpenWhisk Actions, Triggers, Rules, and packages (collectively referred to as assets) can be decorated with `annotations`. Annotations are attached to assets just like parameters with a `key` that defines a name and `value` that defines the value. It is convenient to set them from the command line interface (CLI) via `--annotation` or `-a` for short.
+{{site.data.keyword.openwhisk}} Actions, Triggers, Rules, and packages (collectively referred to as assets) can be decorated with `annotations`. Annotations are attached to assets just like parameters with a `key` that defines a name and `value` that defines the value. It is convenient to set them from the command line interface (CLI) via `--annotation` or `-a` for short.
 {: shortdesc}
 
-Rationale: Annotations were added to OpenWhisk to allow for experimentation without changing the underlying asset schema. Until the writing of this document, there was deliberate effort to not define what `annotations` are permitted. However, as annotations are more heavily used to impart semantic changes, it's important to start documenting them.
+Rationale: Annotations were added to {{site.data.keyword.openWhisk_short}} to allow for experimentation without changing the underlying asset schema. Until the writing of this document, there was deliberate effort to not define what `annotations` are permitted. However, as annotations are more heavily used to impart semantic changes, it's important to start documenting them.
 
-The most prevalent use of annotations to date is to document Actions and packages. Many of the packages in the OpenWhisk catalog carry annotations, such as: a description of the functionality that is offered by its Actions, parameters to use at package binding time, invoke-time parameters, or if a parameter is a "secret" (for example, password) or not. Annotations are invented as needed, for example, to allow for UI integration.
+The most prevalent use of annotations to date is to document Actions and packages. Many of the packages in the {{site.data.keyword.openwhisk_short}} catalog carry annotations, such as: a description of the functionality that is offered by its Actions, parameters to use at package binding time, invoke-time parameters, or if a parameter is a "secret" (for example, password) or not. Annotations are invented as needed, for example, to allow for UI integration.
 
 Here is a sample set of annotations for an `echo` Action, which returns its input arguments unmodified (for example, `function main(args) { return args }`). This Action is useful for logging input parameters, for example, as part of a Sequence or Rule.
-
 ```
-wsk action create echo echo.js \
+bx wsk action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \
@@ -113,3 +112,4 @@ An example of these annotations as they would appear in an activation record is 
   }
 ]
 ```
+{: codeblock}

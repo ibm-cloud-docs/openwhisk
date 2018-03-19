@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-31"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -31,21 +31,21 @@ function main({name}) {
 ```
 {: codeblock}  
 
-You can create a _web Action_ `hello` in the Package `demo` for the Namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
+You can create a _web Action_ **hello**  in the Package `demo` for the Namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
 ```
-wsk package create demo
+bx wsk package create demo
 ```
 {: pre}
 
 ```
-wsk action create /guest/demo/hello hello.js --web true
+bx wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
 Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible via REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
-The Package name is `default` if the Action is not in a named Package.
+The Package name is **default** if the Action is not in a named Package.
 
 An example is `guest/demo/hello`. The web Action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
@@ -138,6 +138,7 @@ The controller is to pass along the Action-specified headers, if any, to the HTT
 _Note_: A JSON object or array is treated as binary data, and must be base64 encoded.
 
 ## HTTP Context
+{: #http-context}
 
 All web Actions, when invoked, receive HTTP request details as parameters to the Action input argument. 
 
@@ -251,6 +252,8 @@ Run the following command for a JSON object:
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
+
+Output:
 ```json
 {
   "response": {
@@ -268,12 +271,15 @@ Run the following command for a JSON object:
   }
 }
 ```
+{: codeblock}
 
 Run the following command to project the name (as text):
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
 {: pre}
+
+Output:
 ```
 Jane
 ```
@@ -285,6 +291,8 @@ See the following example that uses a "text" content-type, as was shown previous
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
 {: pre}
+
+Output:
 ```json
 {
   "response": {
@@ -302,7 +310,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
   }
 }
 ```
-
+{: codeblock}
 
 ## Content extensions
 {: #openwhisk_webactions_extensions}
@@ -313,21 +321,18 @@ A content extension is usually necessary to invoke a Web Action. The absence of 
 {: #openwhisk_webactions_protected}
 
 Action parameters are protected and treated as immutable. Parameters are automatically finalized to enable Web Actions.
-
 ```
- wsk action create /guest/demo/hello hello.js \
-      --parameter name Jane \
-      --web true
+bx wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
+{: pre}
 
 The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally. 
 
 ## Disabling Web Actions
 
-To disable a Web Action from being invoked via web API (`https://openwhisk.ng.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an Action with the CLI.
-
+To disable a Web Action from being invoked via web API (`https://openwhisk.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an Action with the CLI.
 ```
- wsk action update /guest/demo/hello hello.js --web false
+bx wsk action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -335,9 +340,11 @@ To disable a Web Action from being invoked via web API (`https://openwhisk.ng.bl
 
 A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
+curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
 ```
 {: pre}
+
+Output:
 ```json 
 {
   "response": {
@@ -356,29 +363,29 @@ A Web Action can elect to interpret and process an incoming HTTP body directly, 
   }
 }
 ```
+{: codeblock}
 
 OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) framework to [determine](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary and which are plain text.
 
 ### Enabling raw HTTP handling
 
 Raw HTTP Web Actions are enabled through the `--web` flag by using a value of `raw`.
-
 ```
- wsk action create /guest/demo/hello hello.js --web raw
+bx wsk action create /guest/demo/hello hello.js --web raw
 ```
+{: pre}
 
 ### Disabling raw HTTP handling
 
 Disabling raw HTTP can be accomplished by passing a value of `false` or `no` to the `--web` flag.
-
 ```
- wsk update create /guest/demo/hello hello.js --web false
+bx wsk update create /guest/demo/hello hello.js --web false
 ```
+{: pre}
 
 ### Decoding binary body content from Base64
 
-When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is binary.
-The following functions demonstrate how to decode the body content in Node, Python, and Swift. Simply save a method to a file, create a raw HTTP Web Action that utilizes the saved artifact, and then invoke the Web Action.
+When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is binary. The following functions demonstrate how to decode the body content in Node, Python, and Swift. Simply save a method to a file, create a raw HTTP Web Action that utilizes the saved artifact, and then invoke the Web Action.
 
 #### Node
 
@@ -429,10 +436,11 @@ func main(args: [String:Any]) -> [String:Any] {
 
 As an example, save the Node function as `decode.js` and execute the following commands:
 ```
- wsk action create decode decode.js --web raw
+bx wsk action create decode decode.js --web raw
 ```
 {: pre}
 
+Output:
 ```
 ok: created action decode
 ```
@@ -442,11 +450,13 @@ curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwh
 ```
 {: pre}
 
+Output:
 ```json
 {
   "body": "Decoded body"
 }
 ```
+{: codeblock}
 
 ## Options Requests
 {: #options-requests}
@@ -454,7 +464,6 @@ curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwh
 By default, an OPTIONS request made to a Web Action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the options, get, delete, post, put, head, and patch HTTP verbs.
 
 See the following headers:
-
 ```
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
@@ -464,7 +473,7 @@ Access-Control-Allow-Headers: Authorization, Content-Type
 Alternatively, OPTIONS requests can be handled manually by a Web Action. To enable this option, add a
 `web-custom-options` annotation with a value of `true` to a Web Action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, it is the developer's responsibility to append their desired headers programmatically. See the following example to create custom responses to OPTIONS requests.
 
-```
+```js
 function main(params) {
   if (params.__ow_method == "options") {
     return {
@@ -477,12 +486,21 @@ function main(params) {
   }
 }
 ```
+{: codeblock}
 
 Save the function to `custom-options.js` and execute the following commands:
+```
+bx wsk action create custom-option custom-options.js --web true -a web-custom-options true
+```
+{: pre}
 
 ```
-$ wsk action create custom-option custom-options.js --web true -a web-custom-options true
 $ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTIONS
+```
+{: pre}
+
+Output:
+```
 < HTTP/1.1 200 OK
 < Server: nginx/1.11.13
 < Content-Length: 0
@@ -494,7 +512,7 @@ $ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTI
 ## Error Handling
 {: #openwhisk_webactions_errors}
 
-An OpenWhisk Action fails in two different possible failure modes. The first is known as an _application error_, and is analogous to a caught exception: the Action returns a JSON object that contains a top level `error` property. The second is a _developer error_, which occurs when the Action fails catastrophically, and does not produce a response (similar to an uncaught exception). For Web Actions, the controller handles application errors as follows:
+A {{site.data.keyword.openwhisk_short}} Action fails in two different possible failure modes. The first is known as an _application error_, and is analogous to a caught exception: the Action returns a JSON object that contains a top level `error` property. The second is a _developer error_, which occurs when the Action fails catastrophically, and does not produce a response (similar to an uncaught exception). For Web Actions, the controller handles application errors as follows:
 
 - Any specified path projection is ignored and the controller projects the `error` property instead.
 - The controller applies the content handling that is implied by the Action extension to the value of the `error` property.

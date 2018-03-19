@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -82,7 +82,7 @@ You can use the OpenWhisk CLI to download example code that embeds the OpenWhisk
 
 To install the starter app example, enter the following command:
 ```
-wsk sdk install iOS
+bx wsk sdk install iOS
 ```
 {: pre}
 
@@ -99,7 +99,6 @@ pod install
 To get up and running quickly, create a WhiskCredentials object with your OpenWhisk API credentials and create an OpenWhisk instance from the object.
 
 For example, use the following example code to create a credentials object:
-
 ```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
@@ -107,11 +106,12 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 {: pre}
 
 In previous example, you pass in the `myKey` and `myToken` that you get from OpenWhisk. You can retrieve the key and token with the following CLI command:
-
 ```
-wsk property get --auth
+bx wsk property get --auth
 ```
 {: pre}
+
+Output:
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -124,7 +124,6 @@ The strings before the colon is your key, and the string after the colon is your
 To invoke a remote Action, you can call `invokeAction` with the Action name. You can specify the namespace that the Action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the Action as needed.
 
 For example:
-
 ```swift
 // In this example, we are invoking an Action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()

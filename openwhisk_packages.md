@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -11,8 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Create and use packages
-{: #openwhisk_packages}
+# Organizing Actions in packages
 
 In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a set of related Actions, and share them with others.
 {: shortdesc}
@@ -31,11 +30,12 @@ The following sections describe how to browse packages and use the Triggers and 
 Several packages are registered with {{site.data.keyword.openwhisk_short}}. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
 
 1. Get a list of packages in the `/whisk.system` namespace.
-
   ```
-  wsk package list /whisk.system
+  bx wsk package list /whisk.system
   ```
   {: pre}
+
+  Package list output:
   ```
   packages
   /whisk.system/cloudant                                                 shared
@@ -52,11 +52,12 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   ```
 
 2. Get a list of entities in the `/whisk.system/cloudant` package.
-
   ```
-  wsk package get --summary /whisk.system/cloudant
+  bx wsk package get --summary /whisk.system/cloudant
   ```
   {: pre}
+
+  Entity list output:
   ```
   package /whisk.system/cloudant: Cloudant database service
      (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
@@ -71,17 +72,17 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 
 3. Get a description of the `/whisk.system/cloudant/read` Action.
   ```
-  wsk action get --summary /whisk.system/cloudant/read
+  bx wsk action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
+  Description output:
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
   ```
 
   This output shows that the Cloudant `read` Action requires three parameters, including the database and document ID to retrieve.
-
 
 ## Invoke Actions in a package
 {: #openwhisk_package_invoke}
@@ -90,10 +91,11 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 1. Get a description of the `/whisk.system/samples/greeting` Action.
   ```
-  wsk action get --summary /whisk.system/samples/greeting
+  bx wsk action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
   
+  Output:
   ```
   action /whisk.system/samples/greeting: Print a friendly greeting
      (params: name place)
@@ -103,10 +105,11 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 2. Invoke the Action without any parameters.
   ```
-  wsk action invoke --blocking --result /whisk.system/samples/greeting
+  bx wsk action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
+  Output:
   ```json
   {
       "payload": "Hello, stranger from somewhere!"
@@ -117,10 +120,11 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 3. Invoke the Action with parameters.
   ```
-  wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  bx wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
+  Output:
   ```json
   {
       "payload": "Hello, Mork from Ork!"
@@ -128,7 +132,6 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
   ```
 
   Notice that the output uses the `name` and `place` parameters that were passed to the Action.
-
 
 ## Create and use package bindings
 {: #openwhisk_package_bind}
@@ -140,21 +143,23 @@ For example, in the `/whisk.system/cloudant` package, you can set default `usern
 In the following simple example, you bind to the `/whisk.system/samples` package.
 
 1. Bind to the `/whisk.system/samples` package and set a default `place` parameter value.
-
   ```
-  wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  bx wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
+
+  Output:
   ```
   ok: created binding valhallaSamples
   ```
 
 2. Get a description of the package binding.
-
   ```
-  wsk package get --summary valhallaSamples
+  bx wsk package get --summary valhallaSamples
   ```
   {: pre}
+
+  Description output:
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -166,11 +171,12 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   Notice that all the Actions in the `/whisk.system/samples` package are available in the `valhallaSamples` package binding.
 
 3. Invoke an Action in the package binding.
-
   ```
-  wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  bx wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
+
+  Output:
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -181,10 +187,11 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 4. Invoke an Action and overwrite the default parameter value.
   ```
-  wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  bx wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
+  Output:
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -193,7 +200,6 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
   Notice that the `place` parameter value that is specified with the Action invocation overwrites the default value set in the `valhallaSamples` package binding.
 
-
 ## Create and use Trigger Feeds
 {: #openwhisk_package_trigger}
 
@@ -201,20 +207,22 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 1. Get a description of the Feed in the `/whisk.system/alarms` package.
   ```
-  wsk package get --summary /whisk.system/alarms
+  bx wsk package get --summary /whisk.system/alarms
   ```
   {: pre}
 
+  Output:
   ```
   package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
   ```
 
   ```
-  wsk action get --summary /whisk.system/alarms/alarm
+  bx wsk action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
+  Output:
   ```
   action /whisk.system/alarms/alarm: Fire Trigger when alarm occurs
      (params: cron trigger_payload)
@@ -226,10 +234,11 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 2. Create a Trigger that fires every 8 seconds.
   ```
-  wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  bx wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
+  Output:
   ```
   ok: created trigger feed everyEightSeconds
   ```
@@ -244,28 +253,28 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 4. Make sure that the Action exists.
   ```
-  wsk action update hello hello.js
+  bx wsk action update hello hello.js
   ```
   {: pre}
 
-5. Create a rule that invokes the `hello` action every time the `everyEightSeconds` Trigger fires.
+5. Create a rule that invokes the **hello** Action every time the `everyEightSeconds` Trigger fires.
   ```
-  wsk rule create myRule everyEightSeconds hello
+  bx wsk rule create myRule everyEightSeconds hello
   ```
   {: pre}
+
+  Output:
   ```
   ok: created rule myRule
   ```
 
 6. Check that the Action is being invoked by polling for activation logs.
-
   ```
-  wsk activation poll
+  bx wsk activation poll
   ```
   {: pre}
 
   You can see that the activations are observed every 8 seconds for the Trigger, the rule, and the Action. The Action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
-
 
 ## Create a package
 {: #openwhisk_packages_create}
@@ -275,22 +284,24 @@ It also allows for parameters to be shared across all entities in the package.
 
 To create a custom package with a simple Action in it, try the following example:
 
-1. Create a package called "custom".
+1. Create a package called **custom**.
   ```
-  wsk package create custom
+  bx wsk package create custom
   ```
   {: pre}
 
+  Output:
   ```
   ok: created package custom
   ```
 
 2. Get a summary of the package.
   ```
-  wsk package get --summary custom
+  bx wsk package get --summary custom
   ```
   {: pre}
 
+  Output:
   ```
   package /myNamespace/custom
   ```
@@ -303,12 +314,13 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: codeblock}
 
-4. Create an `identity` Action in the `custom` package.
+4. Create an Action called **identity** in the `custom` package.
   ```
-  wsk action create custom/identity identity.js
+  bx wsk action create custom/identity identity.js
   ```
   {: pre}
   
+  Output:
   ```
   ok: created action custom/identity
   ```
@@ -317,46 +329,49 @@ To create a custom package with a simple Action in it, try the following example
 
 5. Get a summary of the package again.
   ```
-  wsk package get --summary custom
+  bx wsk package get --summary custom
   ```
   {: pre}
 
+  Output:
   ```
   package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
 
-  You can see the `custom/identity` Action in your namespace now.
+  You can see the **custom/identity** Action in your namespace now.
 
 6. Invoke the Action in the package.
   ```
-  wsk action invoke --blocking --result custom/identity
+  bx wsk action invoke --blocking --result custom/identity
   ```
   {: pre}
 
+  Output:
   ```json
   {}
   ```
 
-
 You can set default parameters for all the entities in a package by setting package-level parameters that are inherited by all Actions in the package. To see how this inheritance works, try the following example:
 
-1. Update the `custom` package with two parameters: `city` and `country`.
+1. Update the **custom** package with two parameters: `city` and `country`.
   ```
-  wsk package update custom --param city Austin --param country USA
+  bx wsk package update custom --param city Austin --param country USA
   ```
   {: pre}
 
+  Output:
   ```
   ok: updated package custom
   ```
 
-2. Display the parameters in the package and Action, and see how the `identity` Action in the package inherits parameters from the package.
+2. Display the parameters in the **custom** package and **identidy** Action, and see how the **identity** Action in the package inherits parameters from the package.
   ```
-  wsk package get custom parameters
+  bx wsk package get custom parameters
   ```
   {: pre}
 
+  Output:
   ```
   ok: got package custom, displaying field parameters
   ```
@@ -373,14 +388,16 @@ You can set default parameters for all the entities in a package by setting pack
       }
   ]
   ```
+  {: codeblock}
 
   ```
-  wsk action get custom/identity parameters
+  bx wsk action get custom/identity parameters
   ```
   {: pre}
 
+  Output:
   ```
-  ok: got action custom/identity, , displaying field parameters
+  ok: got action custom/identity, displaying field parameters
   ```
 
   ```json
@@ -395,13 +412,15 @@ You can set default parameters for all the entities in a package by setting pack
       }
   ]
   ```
+  {: codeblock}
 
-3. Invoke the identity action without any parameters to verify that the action indeed inherits the parameters.
-
+3. Invoke the **identity** Action without any parameters to verify that the action indeed inherits the parameters.
   ```
-  wsk action invoke --blocking --result custom/identity
+  bx wsk action invoke --blocking --result custom/identity
   ```
   {: pre}
+
+  Output:
   ```json
   {
       "city": "Austin",
@@ -409,12 +428,13 @@ You can set default parameters for all the entities in a package by setting pack
   }
   ```
 
-4. Invoke the identity Action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
+4. Invoke the **identity** Action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
   ```
-  wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  bx wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
+  Output:
   ```json
   {
       "city": "Dallas",
@@ -422,6 +442,7 @@ You can set default parameters for all the entities in a package by setting pack
       "state": "Texas"
   }
   ```
+  {: codeblock}
 
 ## Share a package
 {: #openwhisk_packages_share}
@@ -430,20 +451,22 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
 
 1. Share the package with all users:
   ```
-  wsk package update custom --shared yes
+  bx wsk package update custom --shared yes
   ```
   {: pre}
 
+  Output:
   ```
   ok: updated package custom
   ```
 
 2. Display the `publish` property of the package to verify that it is now true.
   ```
-  wsk package get custom publish
+  bx wsk package get custom publish
   ```
   {: pre}
 
+  Output:
   ```
   ok: got package custom, displaying field publish
   ```
@@ -452,18 +475,18 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
   true
   ```
 
-
-Others can now use your `custom` package, including binding to the package or directly invoking an Action in it. Other users must know the fully qualified names of the package to bind it or invoke Actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
+Others can now use your **custom** package, including binding to the package or directly invoking an Action in it. Other users must know the fully qualified names of the package to bind it or invoke Actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 
 1. Get a description of the package to show the fully qualified names of the package and Action.
-
   ```
-  wsk package get --summary custom
+  bx wsk package get --summary custom
   ```
   {: pre}
+
+  Output:
   ```
   package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
 
-  In the previous example, you're working with the `myNamespace` namespace, and this namespace appears in the fully qualified name.
+  In the previous example, you're working with the **myNamespace** namespace, and this namespace appears in the fully qualified name.

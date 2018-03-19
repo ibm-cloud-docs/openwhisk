@@ -236,38 +236,47 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.9.4 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
+The Node.js version 8.10.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
 
-The following packages are pre-installed in the Node.js version 8.9.4 environment:
+The following packages are pre-installed in the Node.js version 8.10.0 environment:
 
+  - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
   - [async v2.6.0](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
-  - [bent v1.1.0](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
+  - [bent v1.1.0](https://www.npmjs.com/package/bent) - Functional HTTP client for Node.js w/ async/await.
   - [btoa v1.1.2](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
+  - [cassandra-driver v3.4.1](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
-  - [commander v2.14.0](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
+  - [commander v2.15.0](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
+  - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
   - [consul v0.30.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - A high-level, caching, CouchDB client for Node.js.
+  - [elasticsearch v14.1.0](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
   - [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
+  - [etcd3 v0.2.9](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
   - [glob v7.1.2](https://www.npmjs.com/package/glob) - Match files using the patterns the shell uses, like stars and stuff.
   - [gm v1.23.1](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-  - [ibm-cos-sdk v1.1.2](https://www.npmjs.com/package/ibm-cos-sdk) - IBM Cloud Object Storage SDK for Node.js
+  - [ibm-cos-sdk v1.1.4](https://www.npmjs.com/package/ibm-cos-sdk) - IBM Cloud Object Storage SDK for Node.js
   - [ibm_db v2.2.1](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for node.js to IBM DB2 and IBM Informix. 
   - [lodash v4.17.5](https://www.npmjs.com/package/lodash) - The Lodash library exported as Node.js modules.
-  - [log4js v2.5.2](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
+  - [log4js v2.5.3](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
   - [iconv-lite v0.4.19](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-  - [marked v0.3.12](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
+  - [jsdom v11.6.2](https://www.npmjs.com/package/jsdom) - jsdom is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
+  - [jsonwebtoken v8.2.0](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
+  - [marked v0.3.17](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
-  - [moment v2.20.1](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-  - [mongodb v3.0.2](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
+  - [moment v2.21.0](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
+  - [mongodb v3.0.4](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
+  - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
-  - [nano v6.4.2](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
-  - [nodemailer v4.4.2](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
+  - [nano v6.4.3](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
+  - [nodemailer v4.6.2](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
   - [openwhisk v3.12.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+  - [pg v7.4.1](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for node.js. Pure JavaScript and optional native libpq bindings.
   - [process v0.11.10](https://www.npmjs.com/package/process) - require('process'); just like any other module.
-  - [pug v2.0.0-rc.4](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
+  - [pug v2.0.0](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
   - [redis v2.8.0](https://www.npmjs.com/package/redis) - This is a complete and feature rich Redis client for Node.js.
   - [request v2.83.0](https://www.npmjs.com/package/request) - Request is designed to be the simplest way possible to make HTTP calls.
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
@@ -280,14 +289,14 @@ The following packages are pre-installed in the Node.js version 8.9.4 environmen
   - [superagent v3.8.2](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
   - [swagger-tools v0.10.3](https://www.npmjs.com/package/swagger-tools) - Tools related to working with Swagger, a way to document APIs.
   - [tmp v0.0.33](https://www.npmjs.com/package/tmp) - A simple temporary file and directory creator for node.js.
-  - [twilio v3.11.2](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
+  - [twilio v3.13.0](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
   - [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
-  - [validator v9.4.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-  - [watson-developer-cloud v3.0.5](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
+  - [validator v9.4.1](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
+  - [watson-developer-cloud v3.0.7](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
   - [winston v2.4.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
-  - [ws v4.0.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
+  - [ws v5.0.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
   - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
@@ -322,7 +331,7 @@ The following packages are available to be used in the Node.js 6.12.2 environmen
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - Deprecated UUID packaged. 
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
-- [openwhisk v3.11.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+- [openwhisk v3.12.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud is a standard library for Node.js that abstracts away differences among multiple cloud providers.
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); just like any other module.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
@@ -585,7 +594,7 @@ The following Composer packages are also available:
 
 Docker Actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
 
-The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `wsk sdk install docker` CLI command.
+The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `bx wsk sdk install docker` CLI plug-in command.
 
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments via a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result via `stdout` as a single-line string of serialized `JSON`.
 

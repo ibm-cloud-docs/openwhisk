@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -30,8 +30,7 @@ Available collection endpoints:
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/packages`
 - `https://{APIHOST}/api/v1/namespaces/{namespace}/activations`
 
-The `{APIHOST}` is the OpenWhisk API hostname (for example, openwhisk.ng.bluemix.net, 172.17.0.1, 192.168.99.100, 192.168.33.13, and so on).
-For the `{namespace}`, the character `_` can be used to specify the user's *default
+The `{APIHOST}` is the OpenWhisk API hostname (for example, openwhisk.ng.bluemix.net, 172.17.0.1, 192.168.99.100, 192.168.33.13, and so on). For the `{namespace}`, the character `_` can be used to specify the user's *default
 namespace*.
 
 You can perform a GET request on the collection endpoints to fetch a list of entities in the collection.
@@ -46,11 +45,7 @@ The following entity endpoints are available for each type of entity:
 
 The Namespace and Activation endpoints support GET requests. The Actions, Triggers, Rules, and Packages endpoints support GET, PUT, and DELETE requests. The endpoints of Actions, Triggers, and Rules also support POST requests, which are used to invoke Actions and Triggers and enable or disable Rules. 
 
-All APIs are protected with HTTP Basic authentication. 
-You can use the [wskadmin ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) tool to generate a new Namespace and authentication.
-The Basic authentication credentials are in the `AUTH` property in your `~/.wskprops` file, delimited by a colon. 
-You can also retrieve these credentials by using the CLI running `wsk property get --auth`.
-
+All APIs are protected with HTTP Basic authentication. You can use the [wskadmin ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) tool to generate a new Namespace and authentication. The Basic authentication credentials are in the `AUTH` property in your `~/.wskprops` file, delimited by a colon. You can also retrieve these credentials by using the CLI running `bx wsk property get --auth`.
 
 In the following example, the [cURL](https://curl.haxx.se) command tool is used to get the list of all Packages in the `whisk.system` Namespace:
 ```bash
@@ -58,6 +53,7 @@ curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whi
 ```
 {: pre}
 
+Output:
 ```json
 [
   {
@@ -75,6 +71,7 @@ curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whi
   }
 ]
 ```
+{: codeblock}
 
 In this example, the authentication was passed by using the `-u` flag. You can also pass this value also as part of the URL, such as, `https://$AUTH@{APIHOST}`.
 
@@ -85,12 +82,11 @@ The OpenWhisk API supports request-response calls from web clients. OpenWhisk re
 ## Using the CLI verbose mode
 {: #openwhisk_rest_api_cli_v}
 
-The OpenWhisk CLI is an interface to the OpenWhisk REST API.
-You can run the CLI in verbose mode with the flag `-v`, which prints all the information about the HTTP request and response.
+The OpenWhisk CLI is an interface to the OpenWhisk REST API. You can run the CLI in verbose mode with the flag `-v`, which prints all the information about the HTTP request and response.
 
 Display the Namespace value for the current user by running the following command:
 ```
-wsk namespace list -v
+bx wsk namespace list -v
 ```
 {: pre}
 
@@ -205,11 +201,13 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/john@example.com_dev/default/he
 ```
 {: pre}
 
+Output:
 ```json
 {
   "payload": "Hello John"
 }
 ```
+{: codeblock}
 
 This example source code does not work with `.http`, see [Web Actions](./openwhisk_webactions.html) documentation on how to modify.
 
@@ -218,11 +216,13 @@ This example source code does not work with `.http`, see [Web Actions](./openwhi
 
 To create an Action sequence, provide the names of the Actions that compose the sequence in the desired order. So that the output from the first Action is passed as input to the next Action.
 
-$ wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+```
+bx wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+```
 
 Create a sequence with the Actions `/whisk.system/utils/split` and `/whisk.system/utils/sort`.
 ```bash
-curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/sequenceAction?overwrite=true \
+curl -u $AUTH https://openwhisk.bluemix.net/api/v1/namespaces/_/actions/sequenceAction?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
 -d '{"namespace":"_","name":"sequenceAction","exec":{"kind":"sequence","components":["/whisk.system/utils/split","/whisk.system/utils/sort"]},"annotations":[{"key":"web-export","value":true},{"key":"raw-http","value":false},{"key":"final","value":true}]}' 
 ```
@@ -233,11 +233,11 @@ When you specify the names of the Actions, they must be full qualified.
 ## Triggers
 {: #openwhisk_rest_api_triggers}
 
-To create a Trigger, the minimum information you need is a name for the Trigger. You could also include default parameters that get passed to the Action through a Tule when the Trigger gets fired.
+To create a Trigger, the minimum information you need is a name for the Trigger. You could also include default parameters that get passed to the Action through a Rule when the Trigger gets fired.
 
 Create a Trigger with name `events` with a default parameter `type` with value `webhook` set.
 ```bash
-curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/events?overwrite=true \
+curl -u $AUTH https://openwhisk.bluemix.net/api/v1/namespaces/_/triggers/events?overwrite=true \
 -X PUT -H "Content-Type: application/json" \
 -d '{"name":"events","parameters":[{"key":"type","value":"webhook"}]}' 
 ```
@@ -247,7 +247,7 @@ Now whenever you have an event that needs to fire this Trigger it just takes an 
 
 To fire the Trigger `events` with a parameter `temperature`, send the following HTTP request.
 ```bash
-curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/triggers/events \
+curl -u $AUTH https://openwhisk.bluemix.net/api/v1/namespaces/_/triggers/events \
 -X POST -H "Content-Type: application/json" \
 -d '{"temperature":60}' 
 ```
@@ -264,7 +264,7 @@ Create a Trigger with name `periodic` to be fired at a specified frequency, ever
 
 Using the CLI, run the following command to create the Trigger:
 ```bash
-wsk trigger create periodic --feed /whisk.system/alarms/alarm \
+bx wsk trigger create periodic --feed /whisk.system/alarms/alarm \
   --param cron "0 */2 * * *" -v
 ```
 {: pre}

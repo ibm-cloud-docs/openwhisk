@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -28,7 +28,7 @@ The package includes the following Actions.
 
 ## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix_notm}}
 
-If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk automatically creates package bindings for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
+If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
 1. Create a Watson Speech to Text service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.ng.Bluemix.net).
   
@@ -36,38 +36,38 @@ If you're using OpenWhisk from {{site.data.keyword.Bluemix_notm}}, OpenWhisk aut
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
-  wsk package refresh
+  bx wsk package refresh
   ```
   {: pre}
   
+  Refresh output:
   ```
   created bindings:
   Bluemix_Watson_SpeechToText_Credentials-1
   ```
   
+  List packages to see that the binding was created:
   ```
-  wsk package list
+  bx wsk package list
   ```
   {: pre}
   
+  Package list output:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_SpeechToText_Credentials-1 private
   ```
-  
 
 ## Setting up a Watson Speech to Text package outside {{site.data.keyword.Bluemix_notm}}
 
-If you're not using OpenWhisk in {{site.data.keyword.Bluemix_notm}}, or if you want to set up your Watson Speech to Text outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Speech to Text service. You need the Watson Speech to Text service user name, and password.
+If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}, or if you want to set up your Watson Speech to Text outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Speech to Text service. You need the Watson Speech to Text service user name, and password.
 
 - Create a package binding that is configured for your Watson Speech to Text service.
-  
   ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+  bx wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
   
-
 ## Converting speech to text
 
 The `/whisk.system/watson-speechToText/speechToText` Action converts audio speech into text. The parameters are as follows:
@@ -91,15 +91,17 @@ The `/whisk.system/watson-speechToText/speechToText` Action converts audio speec
 - `X-Watson-Learning-Opt-Out`: Indicates whether to opt out of data collection for the call.
  
 
-- Invoke the `speechToText` Action in your package binding to convert the encoded audio.
+- Invoke the **speechToText** Action in your package binding to convert the encoded audio.
   ```
-  wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+  bx wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
   ```
   {: pre}
 
+  Output:
   ```json
   {
     "data": "Hello Watson"
   }
   ```
+  {: codeblock}
   

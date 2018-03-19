@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -30,7 +30,6 @@ Integrations with services and event providers can be added with packages. A pac
 
 An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that are {{site.data.keyword.openwhisk_short}} enabled include Cloudant, The Weather Company, Slack, and GitHub.
 
-
 ## How {{site.data.keyword.openwhisk_short}} works
 {: #openwhisk_how}
 
@@ -38,9 +37,9 @@ Being an open-source project, OpenWhisk stands on the shoulders of giants, inclu
 
 ### Creating the Action
 
-To give the explanation some context, we can create an Action in the system first. Then, use that Action to explain the concepts while tracing through the system. The following commands assume that the [OpenWhisk CLI is set up properly](https://github.com/openwhisk/openwhisk/tree/master/docs#setting-up-the-openwhisk-cli).
+To give the explanation some context, we can create an Action in the system first. Then, use that Action to explain the concepts while tracing through the system. The following commands assume that the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) is set up properly.
 
-First, create a file *action.js* containing the following code, which prints “Hello World” to stdout, and returns a JSON object containing “world” under the key “hello”.
+First, create a file named **action.js**, that contains the following code and prints “Hello World” to stdout, and returns a JSON object containing “world” under the key “hello”.
 ```javascript
 function main() {
     console.log('Hello World');
@@ -51,13 +50,13 @@ function main() {
 
 Create the Action by running the following command:
 ```
-wsk action create myAction action.js
+bx wsk action create myAction action.js
 ```
 {: pre}
 
 Now, run the following command to invoke that Action:
 ```
-wsk action invoke myAction --result
+bx wsk action invoke myAction --result
 ```
 {: pre}
 
@@ -137,7 +136,6 @@ In this case, having a *Node.js* based Action at hand, the Invoker starts a Node
 As the result is obtained by the Invoker, it is stored into the **whisks** database as an activation under the ActivationId. The **whisks** database lives in **CouchDB**.
 
 In this specific case, the Invoker gets the resulting JSON object back from the Action, grabs the log written by Docker, puts them all into the activation record, and stores it into the database. Refer to the following example:
-
 ```json
 {
    "activationId": "31809ddca6f64cfc9de2937ebd44fbb9",
@@ -161,13 +159,13 @@ Note how the record contains both the returned result and the logs written. It a
 Now you can use the REST API again (start from step 1 again) to obtain your activation and thus the result of your Action. To do so,run this command:
 
 ```bash
-wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+bx wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre} 
 
 ### Summary
 
-You can see how a simple **wsk action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open-source community.
+You can see how a simple **bx wsk action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open-source community.
 
 You can find additional information about {{site.data.keyword.openwhisk_short}} in the following topics:
 

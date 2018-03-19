@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -67,20 +67,22 @@ Triggers can be fired when certain events occur, or can be fired manually.
 As an example, create a Trigger to send user location updates, and manually fire the Trigger.
 1. Enter the following command to create the Trigger:
   ```
-  wsk trigger create locationUpdate
+  bx wsk trigger create locationUpdate
   ```
   {: pre}
 
+  Output:
   ```
   ok: created trigger locationUpdate
   ```
 
 2. Check that you created the trigger by listing the set of Triggers.
   ```
-  wsk trigger list
+  bx wsk trigger list
   ```
   {: pre}
 
+  Output:
   ```
   triggers
   /someNamespace/locationUpdate                            private
@@ -90,10 +92,11 @@ As an example, create a Trigger to send user location updates, and manually fire
 
 3. Next, fire a Trigger event by specifying the Trigger name and parameters:
   ```
-  wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  bx wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
+  Output:
   ```
   ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
   ```
@@ -117,76 +120,82 @@ As an example, create a rule that calls the `hello` Action whenever a location u
 
 2. Make sure that the Trigger and Action exist.
   ```
-  wsk trigger update locationUpdate
+  bx wsk trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  wsk action update hello hello.js
+  bx wsk action update hello hello.js
   ```
   {: pre}
 
 3. The next step is to create the rule. The rule is enabled upon creation, meaning that it is immediately available to respond to Activations of your Trigger. The three parameters are: the name of the Rule, the Trigger, and the Action.
   ```
-  wsk rule create myRule locationUpdate hello
+  bx wsk rule create myRule locationUpdate hello
   ```
   {: pre}
 
   At any time, you can choose to disable a Rule.
   ```
-  wsk rule disable myRule
+  bx wsk rule disable myRule
   ```
   {: pre}
 
-4. Fire the `locationUpdate` Trigger. Each time that you fire an event, the `hello` Action is called with the event parameters.
+4. Fire the **locationUpdate** Trigger. Each time that you fire an event, the **hello** Action is called with the event parameters.
   ```
-  wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  bx wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
+  Output:
   ```
   ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
   ```
 
-5. Verify that the Action was invoked by checking the most recent Activation.
+5. Verify that the **hello** Action was invoked by checking the most recent Activation.
   ```
-  wsk activation list --limit 1 hello
+  bx wsk activation list --limit 1 hello
   ```
   {: pre}
 
+  Output:
   ```
   activations
   9c98a083b924426d8b26b5f41c5ebc0d             hello
   ```
+
+  Now query the activation ID listed in the previous command output:
   ```
-  wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  bx wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
+  Output:
   ```json
   {
      "payload": "Hello, Donald from Washington, D.C."
   }
   ```
+  {: codeblock}
 
-  You see that the `hello` Action received the event payload and returned the expected string.
+  You see that the **hello** Action received the event payload and returned the expected string.
 
 You can create multiple Rules that associate the same Trigger with different Actions.
 Triggers and Rules cannot belong to a Package. The Rule can be associated with an Action
 that belongs to a Package however, for example:
   ```
-  wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  bx wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 You can also use Rules with sequences. For example, one can create an Action
 sequence `recordLocationAndHello` that is activated by the rule `anotherRule`.
   ```
-  wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  bx wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  wsk rule create anotherRule locationUpdate recordLocationAndHello
+  bx wsk rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

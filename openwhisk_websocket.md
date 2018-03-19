@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -24,11 +24,11 @@ The package includes the following Actions:
 | `/whisk.system/websocket` | Package | uri | Utilities for communicating with WebSockets |
 | `/whisk.system/websocket/send` | Action | uri, payload | Send the payload to the WebSocket URI |
 
-If you plan to send many messages to the same WebSocket URI, creating a package binding with the `uri` value is suggested.  With binding, you don't need to specify the value each time that you use the `send` action.
+If you plan to send many messages to the same WebSocket URI, creating a package binding with the `uri` value is suggested. With binding, you don't need to specify the value each time that you use the `send` Action.
 
 ## Send a message to a WebSocket
 
-The `/whisk.system/websocket/send` action sends a payload to a WebSocket URI. The parameters are as follows:
+The `/whisk.system/websocket/send` Action sends a payload to a WebSocket URI. The parameters are as follows:
 
 - `uri`: The URI of the websocket server (for example, ws://mywebsockethost:80).
 - `payload`: The message that you wish to send to the WebSocket.

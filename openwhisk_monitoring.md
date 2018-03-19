@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2018-02-16"
 
 # Monitor activity with Dashboard
 
-The [{{site.data.keyword.openwhisk}} Dashboard](https://{DomainName}/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} Actions.
+The [{{site.data.keyword.openwhisk}} Dashboard](https://console.bluemix.net/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} Actions.
 {:shortdesc}
 
 Click **Reload** at any time to update the dashboard with the latest activation log data.
@@ -45,12 +45,10 @@ The **Activity Histogram** view displays a horizontal bar graph for viewing the 
 This view displays a formatted version of the activation log. It shows the details of every activation, but polls once a minute for new activations. Click an Action to display a detailed log.
 
 To get the output displayed in the Activity Log by using CLI, use the following command:
-{: tip}
-
-  ```
-  wsk activation poll
-  ```
-  {: pre}
+```
+bx wsk activation poll
+```
+{: pre}
 
 ## Filter options
 {: #filtering}

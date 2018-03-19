@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-16"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -43,23 +43,20 @@ The following example shows how to configure Slack, create a package binding, an
   After Slack is configured, you get a webhook URL that looks like `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. The webhook is needed in the next step.
   
 2. Create a package binding with your Slack credentials, the channel that you want to post to, and the user name to post as.
-  
   ```
-  wsk package bind /whisk.system/slack mySlack \
+  bx wsk package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
   ```
   {: pre}
   
-3. Invoke the `post` Action in your package binding to post a message to your Slack channel.
-  
+3. Invoke the **post** Action in your package binding to post a message to your Slack channel.
   ```
-  wsk action invoke mySlack/post --blocking --result \
+  bx wsk action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}
-  
 
 ## Using the Slack token-based API
 
