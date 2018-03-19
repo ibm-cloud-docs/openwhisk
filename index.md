@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-14"
+lastupdated: "2018-03-19"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2018-03-14"
 Your code executes when there is an HTTP call, database state change, or other type of event that triggers the execution of your code. You get billed by millisecond of execution time (rounded up to the nearest 100 ms), not per hour of VM utilization regardless whether that VM was doing useful work or not.
 {: shortdesc}
 
-This programming model is a perfect match for microservices, mobile, IoT, and many other apps. You get inherent auto-scaling and load balancing out of the box, without having to manually configure clusters, load balancers, http plugins, etc. If you happen to run on {{site.data.keyword.openwhisk}}, you also get a benefit of zero administration - meaning that all of the hardware, networking, and software are maintained by IBM. All that you need to do is to provide the code you want to execute and give it to {{site.data.keyword.openwhisk}}. The rest is “magic”. A good introduction into the serverless programming model is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
+This programming model is a perfect match for microservices, mobile, IoT, and many other apps. You get inherent auto-scaling and load balancing out of the box, without having to manually configure clusters, load balancers, http plugins, etc. If you happen to run on {{site.data.keyword.openwhisk_short}}, you also get a benefit of zero administration - meaning that all of the hardware, networking, and software are maintained by IBM. All that you need to do is to provide the code you want to execute and give it to {{site.data.keyword.openwhisk_short}}. The rest is “magic”. A good introduction into the serverless programming model is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
 
 You can also get the [Apache OpenWhisk source code](https://github.com/openwhisk/openwhisk) and run the system yourself.
 
