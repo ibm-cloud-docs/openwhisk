@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -40,11 +40,12 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: pre}
   
-  Refresh output:
+  **Output:**
   ```
   created bindings:
   Bluemix_Watson_SpeechToText_Credentials-1
   ```
+  {: screen}
   
   List packages to see that the binding was created:
   ```
@@ -52,21 +53,22 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: pre}
   
-  Package list output:
+  **Output:**
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_SpeechToText_Credentials-1 private
   ```
+  {: screen}
 
 ## Setting up a Watson Speech to Text package outside {{site.data.keyword.Bluemix_notm}}
 
 If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}, or if you want to set up your Watson Speech to Text outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Speech to Text service. You need the Watson Speech to Text service user name, and password.
 
-- Create a package binding that is configured for your Watson Speech to Text service.
-  ```
-  bx wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
-  ```
-  {: pre}
+Create a package binding that is configured for your Watson Speech to Text service.
+```
+bx wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+```
+{: pre}
   
 ## Converting speech to text
 
@@ -89,19 +91,18 @@ The `/whisk.system/watson-speechToText/speechToText` Action converts audio speec
 - `word_alternatives_threshold`: A confidence value that is the lower bound for identifying a hypothesis as a possible word alternative.
 - `word_confidence`: Indicates whether a confidence measure in the range of 0 to 1 is to be returned for each word.
 - `X-Watson-Learning-Opt-Out`: Indicates whether to opt out of data collection for the call.
- 
 
-- Invoke the **speechToText** Action in your package binding to convert the encoded audio.
-  ```
-  bx wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
-  ```
-  {: pre}
+Invoke the **speechToText** Action in your package binding to convert the encoded audio.
+```
+bx wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+```
+{: pre}
 
-  Output:
-  ```json
-  {
-    "data": "Hello Watson"
-  }
-  ```
-  {: codeblock}
+**Output:**
+```
+{
+  "data": "Hello Watson"
+}
+```
+{: screen}
   

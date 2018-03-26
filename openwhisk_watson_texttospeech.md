@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -38,12 +38,14 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   bx wsk package refresh
   ```
-  
-  Refresh output:
+  {: pre}
+
+  **Output:**
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
   ```
+  {: screen}
   
   List packages to see that the package binding was created:
   ```
@@ -51,21 +53,22 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: pre}
   
-  List output:
+  **Output:**
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_TextToSpeec_Credentials-1 private
   ```
+  {: screen}
   
 ## Setting up a Watson Text to Speech package outside {{site.data.keywrod.Bluemix_notm}}
 
 If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Watson Text to Speech outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Text to Speech service. You need the Watson Text to Speech service user name, and password.
 
-- Create a package binding that is configured for your Watson Speech to Text service.
-  ```
-  bx wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
-  ```
-  {: pre}
+Create a package binding that is configured for your Watson Speech to Text service.
+```
+bx wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+```
+{: pre}
   
 ## Converting some text to speech
 
@@ -78,18 +81,16 @@ The `/whisk.system/watson-textToSpeech/textToSpeech` Action converts some text i
 - `accept`: The format of the speech file.
 - `encoding`: The encoding of the speech binary data.
 
+Invoke the **textToSpeech** Action in your package binding to convert the text.
+```
+bx wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+```
+{: pre}
 
-- Invoke the **textToSpeech** Action in your package binding to convert the text.
-  ```
-  bx wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
-  ```
-  {: pre}
-  
-  Output:
-  ```json
-  {
-    "payload": "<base64 encoding of a .wav file>"
-  }
-  ```
-  {: codeblock}
-  
+**Output:**
+```
+{
+  "payload": "<base64 encoding of a .wav file>"
+}
+```
+{: screen}

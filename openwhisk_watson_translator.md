@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -31,21 +31,20 @@ The package includes the following Actions.
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
-1. Create a Watson Translator service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.bluemix.net).
-  
-  Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
-  
+1. Create a Watson Translator service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.bluemix.net). Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
+
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
   bx wsk package refresh
   ```
   {: pre}
   
-  Refresh output:
+  **Output:**
   ```
   created bindings:
   Bluemix_Watson_Translator_Credentials-1
   ```
+  {: screen}
   
   List packages to see that the package binding was created:
   ```
@@ -53,11 +52,12 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: pre}
   
-  List output:
+  **Output:**
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_Translator_Credentials-1 private
   ```
+  {: screen}
  
 ## Setting up a Watson Translator package outside {{site.data.keyword.Bluemix_notm}}
 
@@ -80,22 +80,22 @@ The `/whisk.system/watson-translator/translator` Action translates text from one
 - `translateFrom`: A two-digit code of the source language.
 - `translateTo`: A two-digit code of the target language.
 
-- Invoke the **translator** Action in your package binding to translate some text from English to French.
-  ```
-  bx wsk action invoke myWatsonTranslator/translator \
-  --blocking --result \
-  --param payload "Blue skies ahead" --param translateFrom "en" \
-  --param translateTo "fr"
-  ```
-  {: pre}
+Invoke the **translator** Action in your package binding to translate some text from English to French.
+```
+bx wsk action invoke myWatsonTranslator/translator \
+--blocking --result \
+--param payload "Blue skies ahead" --param translateFrom "en" \
+--param translateTo "fr"
+```
+{: pre}
   
-  Output:
-  ```json
-  {
-      "payload": "Ciel bleu a venir"
-  }
-  ```
-  {: codeblock}
+**Output:**
+```
+{
+    "payload": "Ciel bleu a venir"
+}
+```
+{: screen}
   
 ## Identifying the language of some text
 
@@ -105,21 +105,21 @@ The `/whisk.system/watson-translator/languageId` Action identifies the language 
 - `password`: The Watson API password.
 - `payload`: The text to identify.
 
-- Invoke the **languageId** Action in your package binding to identify the language.
-  ```
-  bx wsk action invoke myWatsonTranslator/languageId \
-  --blocking --result \
-  --param payload "Ciel bleu a venir"
-  ```
-  {: pre}
+Invoke the **languageId** Action in your package binding to identify the language.
+```
+bx wsk action invoke myWatsonTranslator/languageId \
+--blocking --result \
+--param payload "Ciel bleu a venir"
+```
+{: pre}
   
-  Output:
-  ```json
-  {
-    "payload": "Ciel bleu a venir",
-    "language": "fr",
-    "confidence": 0.710906
-  }
-  ```
-  {: codeblock}
+**Output:**
+```
+{
+  "payload": "Ciel bleu a venir",
+  "language": "fr",
+  "confidence": 0.710906
+}
+```
+{: screen}
   

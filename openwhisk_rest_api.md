@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -18,7 +18,6 @@ After your OpenWhisk environment is enabled, you can use OpenWhisk with your web
 {: shortdesc}
 
 For more information about the APIs for Actions, Activations, Packages, Rules, and Triggers, see the [OpenWhisk API documentation](http://petstore.swagger.io/?url=https://raw.githubusercontent.com/openwhisk/openwhisk/master/core/controller/src/main/resources/apiv1swagger.json).
-
 
 All the capabilities in the system are available through a REST API. Collection and entity endpoints are available for Actions, Triggers, Rules, Packages, Activations, and Namespaces.
 
@@ -53,8 +52,8 @@ curl -u USERNAME:PASSWORD https://openwhisk.ng.bluemix.net/api/v1/namespaces/whi
 ```
 {: pre}
 
-Output:
-```json
+**Output:**
+```
 [
   {
     "name": "slack",
@@ -71,7 +70,7 @@ Output:
   }
 ]
 ```
-{: codeblock}
+{: screen}
 
 In this example, the authentication was passed by using the `-u` flag. You can also pass this value also as part of the URL, such as, `https://$AUTH@{APIHOST}`.
 
@@ -90,6 +89,7 @@ bx wsk namespace list -v
 ```
 {: pre}
 
+**Output:**
 ```
 REQUEST:
 [GET]	https://openwhisk.ng.bluemix.net/api/v1/namespaces
@@ -113,10 +113,9 @@ Response body size is 28 bytes
 Response body received:
 ["john@example.com_dev"]
 ```
+{: screen}
 
-The printed information provides the properties of the HTTP request, and performs an HTTP method `GET` on the URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` by using a User-Agent header `OpenWhisk-CLI/1.0 (<CLI-Build-version>)`, and a Basic Authorization header `Basic XXXYYYY`. 
-Notice that the authorization value is your base64-encoded OpenWhisk authorization string.
-The response is of content type `application/json`.
+The printed information provides the properties of the HTTP request, and performs an HTTP method `GET` on the URL `https://openwhisk.ng.bluemix.net/api/v1/namespaces` by using a User-Agent header `OpenWhisk-CLI/1.0 (<CLI-Build-version>)`, and a Basic Authorization header `Basic XXXYYYY`. Notice that the authorization value is your base64-encoded OpenWhisk authorization string. The response is of content-type `application/json`.
 
 ## Actions
 {: #openwhisk_rest_api_actions}
@@ -136,7 +135,7 @@ curl -u $AUTH https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello
 {: pre}
 
 You get the following response:
-```json
+```
 {
   "duration": 2,
   "name": "hello",
@@ -168,6 +167,8 @@ You get the following response:
   "namespace": "john@example.com_dev"
 }
 ```
+{: screen}
+
 To get the `response.result`, run the command again with the query parameter `result=true` like in the following example:
 ```bash
 curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hello?blocking=true&result=true" \
@@ -175,12 +176,14 @@ curl -u $AUTH "https://openwhisk.ng.bluemix.net/api/v1/namespaces/_/actions/hell
 -d '{"name":"John"}' 
 ```
 {: pre}
+
 You get the following response:
-```json
+```
 {
   "payload": "hello John"
 }
 ```
+{: screen}
 
 ## Annotations and Web Actions
 {: #openwhisk_rest_api_webactions}
@@ -201,13 +204,13 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/john@example.com_dev/default/he
 ```
 {: pre}
 
-Output:
-```json
+**Output:**
+```
 {
   "payload": "Hello John"
 }
 ```
-{: codeblock}
+{: screen}
 
 This example source code does not work with `.http`, see [Web Actions](./openwhisk_webactions.html) documentation on how to modify.
 
@@ -215,10 +218,10 @@ This example source code does not work with `.http`, see [Web Actions](./openwhi
 {: #openwhisk_rest_api_sequences}
 
 To create an Action sequence, provide the names of the Actions that compose the sequence in the desired order. So that the output from the first Action is passed as input to the next Action.
-
 ```
 bx wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
 ```
+{: pre}
 
 Create a sequence with the Actions `/whisk.system/utils/split` and `/whisk.system/utils/sort`.
 ```bash
