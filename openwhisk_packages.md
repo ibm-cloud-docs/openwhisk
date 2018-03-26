@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -50,6 +50,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   /whisk.system/github                                                   shared
   /whisk.system/pushnotifications                                        shared
   ```
+  {: screen}
 
 2. Get a list of entities in the `/whisk.system/cloudant` package.
   ```
@@ -65,6 +66,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
   ```
+  {: screen}
 
   This output shows that the Cloudant package provides two Actions, `read` and `write`, and one Trigger feed called `changes`. The `changes` Feed causes Triggers to be fired when documents are added to the specified Cloudant database.
 
@@ -76,11 +78,12 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   ```
   {: pre}
 
-  Description output:
+  **Output:**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
   ```
+  {: screen}
 
   This output shows that the Cloudant `read` Action requires three parameters, including the database and document ID to retrieve.
 
@@ -95,11 +98,12 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
   ```
   {: pre}
   
-  Output:
+  **Output:**
   ```
   action /whisk.system/samples/greeting: Print a friendly greeting
      (params: name place)
   ```
+  {: screen}
 
   Notice that the `greeting` Action takes two parameters: `name` and `place`.
 
@@ -109,12 +113,13 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```json
   {
       "payload": "Hello, stranger from somewhere!"
   }
   ```
+  {: screen}
 
   The output is a generic message because no parameters were specified.
 
@@ -191,12 +196,13 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
   }
   ```
+  {: screen}
 
   Notice that the `place` parameter value that is specified with the Action invocation overwrites the default value set in the `valhallaSamples` package binding.
 
@@ -211,22 +217,24 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
   ```
+  {: screen}
 
   ```
   bx wsk action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   action /whisk.system/alarms/alarm: Fire Trigger when alarm occurs
      (params: cron trigger_payload)
   ```
+  {: screen}
 
   The `/whisk.system/alarms/alarm` Feed takes two parameters:
   - `cron`: A crontab specification of when to fire the Trigger.
@@ -238,10 +246,11 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: created trigger feed everyEightSeconds
   ```
+  {: screen}
 
 3. Create a 'hello.js' file with the following Action code.
   ```javascript
@@ -263,10 +272,11 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: created rule myRule
   ```
+  {: screen}
 
 6. Check that the Action is being invoked by polling for activation logs.
   ```
@@ -290,10 +300,11 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: created package custom
   ```
+  {: screen}
 
 2. Get a summary of the package.
   ```
@@ -301,10 +312,11 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   package /myNamespace/custom
   ```
+  {: screen}
 
   Notice that the package is empty.
 
@@ -320,10 +332,11 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: pre}
   
-  Output:
+  **Output:**
   ```
   ok: created action custom/identity
   ```
+  {: screen}
 
   Creating an Action in a package requires that you prefix the Action name with a package name. Package nesting is not allowed. A package can contain only Actions and can't contain another package.
 
@@ -333,11 +346,12 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
+  {: screen}
 
   You can see the **custom/identity** Action in your namespace now.
 
@@ -347,10 +361,11 @@ To create a custom package with a simple Action in it, try the following example
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```json
   {}
   ```
+  {: screen}
 
 You can set default parameters for all the entities in a package by setting package-level parameters that are inherited by all Actions in the package. To see how this inheritance works, try the following example:
 
@@ -360,10 +375,11 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: updated package custom
   ```
+  {: screen}
 
 2. Display the parameters in the **custom** package and **identidy** Action, and see how the **identity** Action in the package inherits parameters from the package.
   ```
@@ -371,12 +387,10 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: got package custom, displaying field parameters
-  ```
-
-  ```json
+  
   [
       {
           "key": "city",
@@ -388,19 +402,17 @@ You can set default parameters for all the entities in a package by setting pack
       }
   ]
   ```
-  {: codeblock}
+  {: screen}
 
   ```
   bx wsk action get custom/identity parameters
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: got action custom/identity, displaying field parameters
-  ```
-
-  ```json
+  
   [
       {
           "key": "city",
@@ -412,7 +424,7 @@ You can set default parameters for all the entities in a package by setting pack
       }
   ]
   ```
-  {: codeblock}
+  {: screen}
 
 3. Invoke the **identity** Action without any parameters to verify that the action indeed inherits the parameters.
   ```
@@ -420,13 +432,14 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
       "city": "Austin",
       "country": "USA"
   }
   ```
+  {: screen}
 
 4. Invoke the **identity** Action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
   ```
@@ -434,15 +447,15 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
       "city": "Dallas",
       "country": "USA",
       "state": "Texas"
   }
   ```
-  {: codeblock}
+  {: screen}
 
 ## Share a package
 {: #openwhisk_packages_share}
@@ -455,10 +468,11 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: updated package custom
   ```
+  {: screen}
 
 2. Display the `publish` property of the package to verify that it is now true.
   ```
@@ -466,14 +480,13 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: got package custom, displaying field publish
-  ```
-
-  ```json
+  
   true
   ```
+  {: screen}
 
 Others can now use your **custom** package, including binding to the package or directly invoking an Action in it. Other users must know the fully qualified names of the package to bind it or invoke Actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 
@@ -483,10 +496,11 @@ Others can now use your **custom** package, including binding to the package or 
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
+  {: screen}
 
   In the previous example, you're working with the **myNamespace** namespace, and this namespace appears in the fully qualified name.
