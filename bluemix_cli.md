@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -32,19 +32,18 @@ bx plugin install cloud-functions
 ```
 {: pre}
 
-
 To validate successful {{site.data.keyword.openwhisk_short}} plug-in installation, run the following command:
 ```
 bx plugin list cloud-functions
 ```
 {: pre}
 
-
 The output displays the installed {{site.data.keyword.openwhisk_short}} version information:
 ```
 Plugin Name          Version
 Cloud-Functions      1.0.0
 ```
+{: screen}
 
 You can upgrade the {{site.data.keyword.openwhisk_short}} plug-in by running the following command:
 ```
@@ -52,9 +51,7 @@ bx plugin update Cloud-Functions
 ```
 {: pre}
 
-
-For more information about the plug-in command, use `bx plugin --help` or check out the following documentation:
-https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_plugin_list
+For more information about the `bx plugin` command, use `bx plugin --help` or check out the official [IBM Cloud (bx) commands](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_plugin_list) topic.
 
 ## {{site.data.keyword.Bluemix_notm}} CLI authentication
 {: #bluemix_cli_auth}
@@ -69,13 +66,11 @@ bx login -a api.ng.bluemix.net
 ```
 {: pre}
 
-
 To log in to the United Kingdom region:
 ```
 bx login -a api.eu-gb.bluemix.net
 ```
 {: pre}
-
 
 The `-a` flag specifies the {{site.data.keyword.Bluemix_notm}} API endpoint to use. If the API endpoint is  specified, the `-a` option is not necessary. You can use the `bx api` command to explicitly set the {{site.data.keyword.Bluemix_notm}} API endpoint. To display the current API endpoint setting, use the `bx target` command."
 
@@ -85,9 +80,7 @@ bx login -o <MY_ORG> -s <MY_SPACE>
 ```
 {: pre}
 
-
-You can also use a {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a Federated Login requiring you to log in with the flag `--sso`. Using an API key is also beneficial if you want to set a Continue Integration (CI), and want to configure an unattended pipeline.
-https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key
+You can also use a {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a Federated Login requiring you to log in with the flag `--sso`. [Using an API key](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) is also beneficial if you want to set up Continuous Integration (CI), and want to configure an unattended pipeline.
 
 To create a new API key by using the {{site.data.keyword.Bluemix_notm}} CLI, run the following command:
 ```
@@ -95,27 +88,22 @@ bx iam api-key-create MyKey
 ```
 {: pre}
 
-
 Then, use the API key generated value to log in, like in the following example:
 ```
 bx login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
 ```
 {: pre}
 
-
-For more information about the login command, use `bx login --help` or review the following documentation:
-https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login
-
+For more information about the `bx login` command, use `bx login --help` or review the [IBM Cloud (bx) commands](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) topic.
 
 ## Using the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_plugin_usage}
 
-Verify your setup. Perform a blocking (synchronous) invocation of echo, passing it `hello` as an argument like in the following example:
+Verify your setup. Perform a blocking (synchronous) invocation of `echo`, passing it **hello** as an argument like in the following example:
 ```
 bx wsk action invoke whisk.system/utils/echo -p message hello --result
 ```
 {: pre}
-
 
 See the following example output:
 ```
@@ -123,6 +111,7 @@ See the following example output:
     "message":"hello"
 }
 ```
+{: screen}
 
 After you configure your environment, you can use the {{site.data.keyword.openwhisk_short}} CLI to perform the following tasks:
 
@@ -181,20 +170,23 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_t
 
 You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you.
 
-You can use the `bx iam space-create` to create more spaces under your organization such "staging" and "production". See the following example:
+You can use the `bx iam space-create` to create more spaces under your organization such "staging" and "production".
+
+See the following example:
 ```
 bx iam space-create "staging"
 bx iam space-create "production"
 ```
 
-For more information about the `bx iam` command, refer to the following documentation: https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
+For more information about the `bx iam` command, refer to the [IBM Cloud (bx) commands](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) documentation.
 
-{{site.data.keyword.openwhisk_short}} has restrictions on the namespace names. For more information about these restrictions, refer to the following documentation: https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
+{: tip}
 
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migration}
 
-With the introduction of the {{site.data.keyword.openwhisk_short}} CLI plug-in, the OpenWhisk CLI is no longer needed.
+With the introduction of the {{site.data.keyword.openwhisk_short}} CLI plug-in, the OpenWhisk stand-alone CLI is no longer needed.
 
 ### Command Syntax
 {: #command_syntax}
@@ -215,13 +207,11 @@ bx wsk property get --auth
 ```
 {: pre}
 
-
 To get the current API host, run the following command:
 ```
 bx wsk property get --apihost
 ```
 {: pre}
-
 
 The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
 {: tip}
@@ -237,7 +227,6 @@ With the {{site.data.keyword.openwhisk}} CLI plug-in, there is no longer a need 
 {: #migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `bx wsk`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current executions of `wsk` get translated to `bx wsk`. The `bx login` and `bx target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before executing `bx wsk` commands to deploy, and manage your {{site.data.keyword.openwhisk_short}} entities.
-
 
 ## Version history
 {: #version_history}
