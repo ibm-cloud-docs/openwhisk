@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-14"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -30,19 +30,19 @@ bx wsk action create echo echo.js \
 ```
 {: pre}
 
-Annotations that describe packages include:
+Annotations that describe **packages** include:
 
 - `description`: A pithy description of the package.
 - `parameters`: An array that describes parameters that are scoped to the package.
 
-Annotations that describe Actions include:
+Annotations that describe **Actions** include:
 
 - `description`: A pithy description of the Action.
 - `parameters`: An array that describes Actions that are required to execute the Action.
 - `sampleInput`: An example that shows the input schema with typical values.
 - `sampleOutput`: An example that shows the output schema, usually for the `sampleInput`.
 
-Annotations that describe parameters include:
+Annotations that describe **parameters** include:
 
 - `name`: The name of the parameter.
 - `description`: A pithy description of the parameter.
@@ -53,7 +53,7 @@ Annotations that describe parameters include:
 
 The annotations are _not_ checked. So while it is conceivable to use the annotations to infer if a composition of two Actions into a sequence is legal, for example, the system does not yet do that.
 
-## Annotations specific to web Actions
+## Annotations specific to Web Actions
 {: #openwhisk_annotations_webactions}
 
 Recently, the core API was extended with new features. To enable packages and Actions to participate in these features, new annotations are introduced that are semantically meaningful. These annotations must be explicitly set to `true` to have effect. Changing the value from `true` to `false` excludes the attached asset from the new API. The annotations have no meaning otherwise in the system. See the following annotations:
@@ -66,7 +66,7 @@ Recently, the core API was extended with new features. To enable packages and Ac
 
 ## Annotations specific to activations
 
-The system decorates activation records with annotations as well. They are:
+The system can decorate activation records with the following annotations:
 
 - `path`: the fully qualified path name of the action that generated the activation. Note that if this activation was the result of an action in a package binding, the path refers to the parent package.
 - `kind`: the kind of action executed, and one of the support OpenWhisk runtime kinds.
