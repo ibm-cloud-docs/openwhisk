@@ -10,9 +10,9 @@ IBM Cloud Functions
     {: .topicgroup}
     Overview
         openwhisk_use_cases.md
-        openwhisk_compare.md
         openwhisk_about.md
-    
+        openwhisk_compare.md
+            
     {: .topicgroup}
     Tutorials
         ../tutorials/slack-chatbot-database-watson.md
@@ -27,54 +27,53 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    openwhisk_apigateway.md
-
     {: .topicgroup}
     Command Line Interface (CLI)
         bluemix_cli.md
         openwhisk_cli.md
 
     {: .topicgroup}
-    Package help
-        openwhisk_packages.md
-        openwhisk_catalog.md
-
-    {: .topicgroup}
-    Actions
+    Managing Actions
         openwhisk_actions.md
         binding_services.md
-        openwhisk_annotations.md
         openwhisk_webactions.md
+        openwhisk_packages.md
+        openwhisk_annotations.md
 
     {: .topicgroup}
-    Invoking actions with events
+    Invoking Actions with events
         openwhisk_triggers_rules.md
         openwhisk_alarms.md
         openwhisk_cloudant.md
-        openwhisk_github.md
         openwhisk_messagehub.md
         openwhisk_pushnotifications.md
+        openwhisk_github.md
         openwhisk_feeds.md
+
+    openwhisk_apigateway.md
+
+    {: .topicgroup}
+    Operating serverless apps
+        openwhisk_logs.md
+        openwhisk_monitoring.md
 
     {: .topicgroup}
     Pre-installed Actions
-        openwhisk_slack.md
-        openwhisk_weather.md
-        openwhisk_websocket.md
+        cloudant_actions.md
+        messagehub_actions.md
+        mobile_push_actions.md
         openwhisk_watson_translator.md
         openwhisk_watson_texttospeech.md
         openwhisk_watson_speechtotext.md
         ../services/IoT/gateways/iotgw.md
-  
+        openwhisk_weather.md
+        openwhisk_slack.md
+        openwhisk_websocket.md
+
     {: .topicgroup}
-    Management
-        openwhisk_logs.md
-        openwhisk_monitoring.md
-        
-    {: .topicgroup}
-    SDK Framework support
-        openwhisk_mobile_sdk.md
+    SDK and Frameworks
         openwhisk_goserverless.md
+        openwhisk_mobile_sdk.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -83,6 +82,6 @@ IBM Cloud Functions
     {: .topicgroup}
     API Documentation
         openwhisk_rest_api.md
-        [REST API Reference](https://console.ng.bluemix.net/apidocs/98){: new_window}
-        [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
+        [REST API Reference](https://console.bluemix.net/apidocs/98){: new_window}
+        [Native API management in IBM Cloud](https://console.bluemix.net/docs/apis/management/index.html){: new_window}
     {: .navgroup-end}
