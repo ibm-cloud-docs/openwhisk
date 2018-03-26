@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -19,7 +19,7 @@ Web Actions are OpenWhisk Actions, which are annotated, to quickly enable develo
 
 Web Action activations are associated with the user that created the Action. This Action defers the cost of an Action activation from the caller to the owner of the Action.
 
-Look at the following JavaScript Action `hello.js`,
+Look at the following JavaScript Action `hello.js`:
 ```javascript
 function main({name}) {
   var msg = 'you did not tell me who you are.';
@@ -182,13 +182,15 @@ function main(params) {
 ```
 
 When this Action is invoked as a Web Action, you can alter the response of the Web Action by projecting different paths from the result.
-For example, to return the entire object, and see what arguments the Action receives:
 
+For example, to return the entire object, and see what arguments the Action receives:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
  ```
 {: pre}
-```json
+
+**Output:**
+```
 {
   "response": {
     "__ow_method": "get",
@@ -202,13 +204,16 @@ For example, to return the entire object, and see what arguments the Action rece
   }
 }
 ```
+{: screen}
 
 To run with a query parameter, see the following example command:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
  ```
 {: pre}
-```json
+
+**Output:**
+```
 {
   "response": {
     "name": "Jane",
@@ -223,13 +228,16 @@ To run with a query parameter, see the following example command:
   }
 }
 ```
+{: screen}
 
 You can also run with form data:
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
  ```
 {: pre}
-```json
+
+**Output:**
+```
 {
   "response": {
     "name": "Jane",
@@ -246,6 +254,7 @@ You can also run with form data:
   }
 }
 ```
+{: screen}
 
 Run the following command for a JSON object:
 ```
@@ -253,8 +262,8 @@ Run the following command for a JSON object:
 ```
 {: pre}
 
-Output:
-```json
+**Output:**
+```
 {
   "response": {
     "name": "Jane",
@@ -271,7 +280,7 @@ Output:
   }
 }
 ```
-{: codeblock}
+{: screen}
 
 Run the following command to project the name (as text):
 ```
@@ -279,10 +288,11 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/
 ```
 {: pre}
 
-Output:
+**Output:**
 ```
 Jane
 ```
+{: screen}
 
 For convenience, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as Action input properties. This behavior is not the case for Web Actions, which opt to handle HTTP request entities more directly, or when the Web Action receives an entity that is not a JSON object.
 
@@ -292,8 +302,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 ```
 {: pre}
 
-Output:
-```json
+**Output:**
+```
 {
   "response": {
     "__ow_method": "post",
@@ -310,7 +320,7 @@ Output:
   }
 }
 ```
-{: codeblock}
+{: screen}
 
 ## Content extensions
 {: #openwhisk_webactions_extensions}
@@ -344,8 +354,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 ```
 {: pre}
 
-Output:
-```json 
+**Output:**
+```
 {
   "response": {
     "__ow_method": "post",
@@ -363,7 +373,7 @@ Output:
   }
 }
 ```
-{: codeblock}
+{: screen}
 
 OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) framework to [determine](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary and which are plain text.
 
@@ -440,23 +450,24 @@ bx wsk action create decode decode.js --web raw
 ```
 {: pre}
 
-Output:
+**Output:**
 ```
 ok: created action decode
 ```
+{: screen}
 
 ```
 curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
 
-Output:
-```json
+**Output:**
+```
 {
   "body": "Decoded body"
 }
 ```
-{: codeblock}
+{: screen}
 
 ## Options Requests
 {: #options-requests}
@@ -471,8 +482,9 @@ Access-Control-Allow-Headers: Authorization, Content-Type
 ```
 
 Alternatively, OPTIONS requests can be handled manually by a Web Action. To enable this option, add a
-`web-custom-options` annotation with a value of `true` to a Web Action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, it is the developer's responsibility to append their desired headers programmatically. See the following example to create custom responses to OPTIONS requests.
+`web-custom-options` annotation with a value of `true` to a Web Action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, it is the developer's responsibility to append their desired headers programmatically. 
 
+See the following example to create custom responses to OPTIONS requests:
 ```js
 function main(params) {
   if (params.__ow_method == "options") {
@@ -499,7 +511,7 @@ $ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTI
 ```
 {: pre}
 
-Output:
+**Output:**
 ```
 < HTTP/1.1 200 OK
 < Server: nginx/1.11.13
@@ -508,6 +520,7 @@ Output:
 < Access-Control-Allow-Methods: OPTIONS, GET
 < Access-Control-Allow-Origin: example.com
 ```
+{: screen}
 
 ## Error Handling
 {: #openwhisk_webactions_errors}
