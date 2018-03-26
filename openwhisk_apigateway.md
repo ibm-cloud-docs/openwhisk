@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -58,11 +58,11 @@ For convenience, the steps are broken down into smaller subtopics which you can 
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: created action hello
   ```
-  {: codeblock}
+  {: screen}
 
 3. Create an API with base path `/hello`, path `/world`, and method `get`, with response type `json`:
   ```
@@ -70,12 +70,12 @@ For convenience, the steps are broken down into smaller subtopics which you can 
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: created API /hello/world GET for action /_/hello
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
-  {: codeblock}
+  {: screen}
 
   A new URL is generated exposing the `hello` Action by using a __GET__ HTTP method.
   
@@ -85,21 +85,21 @@ For convenience, the steps are broken down into smaller subtopics which you can 
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
   "payload": "Hello world OpenWhisk"
   }
   ```
-  {: codeblock}
+  {: screen}
 
 The web Action **hello** is invoked, which returns back a JSON object that includes the parameter **name** sent through the query parameter. You can pass parameters to the Action with simple query parameters, or by using the request body. Web Actions can invoke an Action in a public way without using the OpenWhisk authorization API key.
-  
+
 ### Full control over the HTTP response
 {: #full_control}
 
-The `--response-type` flag controls the target URL of the web Action to be proxied by the API Gateway. Using `--response-type json` returns the full result of the Action in JSON format, and automatically sets the Content-Type header to `application/json`. 
-  
+The `--response-type` flag controls the target URL of the web Action to be proxied by the API Gateway. Using `--response-type json` returns the full result of the Action in JSON format, and automatically sets the Content-Type header to `application/json`.
+
 You want to have full control over the HTTP response properties like `statusCode` and `headers`, so you can return different content types in the `body`. The flag `--response-type http` makes this possible by configuring the target URL of the web Action with the `http` extension.
 
 You can choose to change the code of the Action to comply with the return of web Actions with the `http` extension, or include the Action in a sequence to pass its result to a new Action. The new Action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web Actions extensions in the [Web Actions](./openwhisk_webactions.html) documentation.
@@ -108,7 +108,7 @@ You can choose to change the code of the Action to comply with the return of web
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
-        body: {payload:`Hello world ${name}`}, 
+        body: {payload:`Hello world ${name}`},
         statusCode:200, 
         headers:{ 'Content-Type': 'application/json'}
       };
@@ -128,19 +128,19 @@ You can choose to change the code of the Action to comply with the return of web
   ```
   {: pre}
  
-4. Call the updated API by using the following **curl** command: 
-  ```
+4. Call the updated API by using the following **curl** command:
+  ```bash
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
   "payload": "Hello world Serverless API"
   }
   ```
-  {: codeblock}
+  {: screen}
 
 Now, you are in full control of your APIs, and can control the content. Like returning HTML, or set the status code for things like Not Found (404), Unauthorized (401), or even Internal Error (500).
 
@@ -159,7 +159,7 @@ For example, if you want to expose a set of Actions for a book club, you can use
 In this example, the API is defined with a **path parameter**. When using path parameters, the API must be defined with a response type of `http`. The path value, starting with the base path and including the actual path parameter value(s), is available in the `__ow_path` field of the action's JSON parameter. Refer to the [Web Actions HTTP Context](./openwhisk_webactions.html#http-context) documentation for more details, including info about more HTTP context fields that are available to Web Actions invoked with an `http` response type.
 
 1. Create an API for the book club, named **Book Club**, with `/club` as its HTTP URL base path, `books` as its resource, and `{isbn}` as a path parameter that is used to identify a specific book by using it's International Standard Book Number (ISBN).
-  ```
+  ```bash
   bx wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
   bx wsk api create /club /books get getBooks                       --response-type http
   bx wsk api create /club /books post postBooks                     --response-type http
@@ -176,8 +176,8 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: APIs
   Action: getBooks
     API Name: Book Club
@@ -210,7 +210,7 @@ In this example, the API is defined with a **path parameter**. When using path p
     Verb: delete
     URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
   ```
-  {: codeblock}
+  {: screen}
 
 3. For fun, you can add a book titled, **JavaScript: The Good Parts**, with an HTTP __POST__:
   ```
@@ -218,30 +218,30 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
     "result": "success"
   }
   ```
-  {: codeblock}
+  {: screen}
 
 4. Get a list of books by using the Action **getBooks** via HTTP __GET__:
-  ```
+  ```bash
   curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
     "result": [{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}]
   }
   ```
-  {: codeblock}
+  {: screen}
 
 5. You can delete a specific book by using the Action **deleteBooks** via HTTP __DELETE__. In this example, the **deleteBooks** action's `__ow_path` field value is `/club/books/978-0596517748`, where `978-0596517748` is the path's `{isbn}` actual value.
-  ```
+  ```bash
   curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
   ```
   {: pre}
@@ -261,11 +261,11 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: deleted API /club
   ```
-  {: codeblock}
+  {: screen}
 
   You can delete all of the exposed URLs by using either the base path `/club` or API name label **"Book Club"**:
   {: tip}
@@ -279,8 +279,8 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: created api /club/books/{isbn} get for action deleteBooks
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ok: created api /club/books/{isbn} put for action deleteBooks
@@ -292,6 +292,7 @@ In this example, the API is defined with a **path parameter**. When using path p
   ok: created api /club/books post for action deleteBooks
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
+  {: screen}
 
 2. Verify that the **Book Club** API is re-created:
   ```
@@ -299,8 +300,8 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   ok: apis
   Action                    Verb         API Name        URL
   getBooks                   get         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
@@ -309,6 +310,7 @@ In this example, the API is defined with a **path parameter**. When using path p
   putBooks                   put         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
   deleteBooks             delete         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
   ```
+  {: screen}
 
 ### Modify the configuration by using the UI
 {: #modify_config}

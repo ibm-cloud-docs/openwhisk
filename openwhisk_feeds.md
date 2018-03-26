@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -60,19 +60,23 @@ The Feed Action can also accept any other parameters that it needs to manage the
 
 When the user creates a Trigger from the CLI with the **--feed** parameter, the system automatically invokes the Feed Action with the appropriate parameters.
 
-For example, assume that the user creates a `mycloudant` binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
-
-`bx wsk trigger create T --feed mycloudant/changes -p dbName myTable`
+For example, assume that the user creates a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+```
+bx wsk trigger create T --feed mycloudant/changes -p dbName myTable
+```
+{: pre}
 
 Then, under the covers the system does something equivalent to the following command:
+```
+bx wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+```
+{: pre}
 
-`bx wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype`
-
-The Feed Action that is named *changes* takes these parameters, and is expected to perform whatever action is necessary to set up a stream of events from Cloudant. The Feed Action occurs by using the appropriate configuration, which is directed to the Trigger *T*.    
+The Feed Action that is named *changes* takes these parameters, and is expected to perform whatever action is necessary to set up a stream of events from Cloudant. The Feed Action occurs by using the appropriate configuration, which is directed to the Trigger *T*.
 
 For the Cloudant *changes* Feed, the Action happens to talk directly to a *cloudant Trigger* service that is implemented with a connection-based architecture.
 
-A similar Feed Action protocol occurs for `bx wsk trigger delete`, `bx wsk trigger update` and `bx wsk trigger get`.    
+A similar Feed Action protocol occurs for `bx wsk trigger delete`, `bx wsk trigger update` and `bx wsk trigger get`.
 
 ## Implementing Feeds with Hooks
 
@@ -115,4 +119,4 @@ The Cloudant *changes* Feed is the canonical example as it stands up a `cloudant
 
 The *alarm* Feed is implemented with a similar pattern.
 
-The connection-based architecture is the highest performance option, but imposes more overhead on operations that are compared to the polling and hook architectures.   
+The connection-based architecture is the highest performance option, but imposes more overhead on operations that are compared to the polling and hook architectures.

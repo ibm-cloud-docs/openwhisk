@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -120,7 +120,6 @@ An activation record contains the following fields:
   - *success*: Is `true` if and only if the status is `"success"`
 - *result*: A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the Action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure.
 
-
 ## JavaScript Actions
 {: #openwhisk_ref_javascript}
 
@@ -142,7 +141,6 @@ function helper() {
 {: codeblock}
 
 The Action input parameters are passed as a JSON object as a parameter to the `main` function. The result of a successful activation is also a JSON object but is returned differently depending on whether the Action is synchronous or asynchronous as described in the following section.
-
 
 ### Synchronous and asynchronous behavior
 {: #openwhisk_ref_javascript_synchasynch}
@@ -365,7 +363,6 @@ The following packages are available to be used in the Node.js 6.12.2 environmen
 
 OpenWhisk supports running Python Actions by using two different runtime versions.
 
-
 ### Python 3 Actions (Jessie based)
 {: #openwhisk_ref_python_environments_jessie}
 
@@ -443,7 +440,6 @@ Python Packages:
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
-
 ### Python 3 Actions (Alpine based)
 {: #openwhisk_ref_python_environments_alpine}
 
@@ -490,7 +486,6 @@ Python Packages:
 - w3lib==1.18.0
 - Werkzeug==0.12.2
 - zope.interface==4.4.3
-
 
 ### Python 2 Actions
 

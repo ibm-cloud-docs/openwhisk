@@ -58,7 +58,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   ```
   {: pre}
 
-  Entity list output:
+  **Output:**
   ```
   package /whisk.system/cloudant: Cloudant database service
      (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
@@ -114,7 +114,7 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
   {: pre}
 
   **Output:**
-  ```json
+  ```
   {
       "payload": "Hello, stranger from somewhere!"
   }
@@ -129,12 +129,13 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
       "payload": "Hello, Mork from Ork!"
   }
   ```
+  {: screen}
 
   Notice that the output uses the `name` and `place` parameters that were passed to the Action.
 
@@ -153,10 +154,11 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: created binding valhallaSamples
   ```
+  {: screen}
 
 2. Get a description of the package binding.
   ```
@@ -164,7 +166,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   ```
   {: pre}
 
-  Description output:
+  **Output:**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -172,6 +174,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
    action /myNamespace/valhallaSamples/helloWorld: Demonstrates logging facilities
    action /myNamespace/valhallaSamples/curl: Curl a host url
   ```
+  {: screen}
 
   Notice that all the Actions in the `/whisk.system/samples` package are available in the `valhallaSamples` package binding.
 
@@ -181,12 +184,13 @@ In the following simple example, you bind to the `/whisk.system/samples` package
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
   }
   ```
+  {: screen}
 
   Notice from the result that the Action inherits the `place` parameter that you set when you created the `valhallaSamples` package binding.
 
@@ -252,7 +256,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: screen}
 
-3. Create a 'hello.js' file with the following Action code.
+3. Create a file named **hello.js** with the following Action code:
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -362,7 +366,7 @@ To create a custom package with a simple Action in it, try the following example
   {: pre}
 
   **Output:**
-  ```json
+  ```
   {}
   ```
   {: screen}

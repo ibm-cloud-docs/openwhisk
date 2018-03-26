@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -20,7 +20,7 @@ Activation logs can be viewed directly from the [{{site.data.keyword.openwhisk}}
 ## Querying logs
 {: #query-logs}
 
-When using [IBM Cloud Log Analysis](https://console.bluemix.net/docs/services/CloudLogAnalysis/kibana/analyzing_logs_Kibana.html#analyzing_logs_Kibana) hosted Kibana, querying your logs is straightforward. Use Kibana's query syntax to find logs you are looking for. 
+When using [IBM Cloud Log Analysis](https://console.bluemix.net/docs/services/CloudLogAnalysis/kibana/analyzing_logs_Kibana.html#analyzing_logs_Kibana) hosted Kibana, querying your logs is straightforward. Use Kibana's query syntax to find logs you are looking for.
 
 The {{site.data.keyword.openwhisk_short}} UI allows you to directly navigate to the logs and results of your Actions in Kibana. The **Logs** link is found on the interior left navigation from the [{{site.data.keyword.openwhisk}} Monitoring page](https://console.bluemix.net/openwhisk/dashboard/). When accessing the details page of a specific Action, the **Logs** link takes you to the results (activation records) of that particular Action. The default value of the time frame to show logs for is set to 15 minutes. You can change this value directly in Kibana in the upper right corner if you would like to display older records.
 
@@ -51,7 +51,7 @@ type: activation_record AND NOT status_str: 0
 ```
 {: codeblock}
 
-Like in Unix commands, a `0` indicates a successfully exited Action while everything else is considered an error.
+Like in Unix commands, a "`0`" indicates a successfully exited Action while everything else is considered an error.
 
 <!--
 ### Finding all activations that took longer than 30 seconds:
