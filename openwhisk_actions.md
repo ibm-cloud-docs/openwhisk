@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-23"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -87,7 +87,7 @@ Review the following steps and examples to create your first JavaScript action.
 
   You can see the **hello** Action you created.
 
-4. After you create your Action, you can run it in the cloud in with the **invoke** command. You can invoke Actions with a *blocking* invocation (that is, request/response style) or a *non-blocking* invocation by specifying a flag in the command. A blocking invocation request _waits_ for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits). The result of the activation is returned if it is available within the wait period. Otherwise, the activation continues processing in the system, and an activation ID is returned so that one can check for the result later, as with non-blocking requests (see [here](#watching-action-output) for tips on monitoring activations).
+4. After you create your Action, you can run it in the cloud in with the **invoke** command. You can invoke Actions with a *blocking* invocation (that is, request/response style) or a *non-blocking* invocation by specifying a flag in the command. A blocking invocation request _waits_ for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits). The result of the activation is returned if it is available within the wait period. Otherwise, the activation continues processing in the system, and an activation ID is returned so that one can check for the result later, as with non-blocking requests (see [here](#monitor-action-output) for tips on monitoring activations).
 
   This example uses the blocking parameter, `--blocking`:
   ```
