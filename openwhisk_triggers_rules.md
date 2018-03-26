@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2018-03-16"
 {{site.data.keyword.openwhisk_short}} Triggers and Rules bring event-driven capabilities to the platform. Events from external and internal event sources are channeled through a Trigger, and Rules allow your Actions to react to these events.
 {: shortdesc}
 
-## Create Triggers
+## What is a Trigger?
 {: #openwhisk_triggers_create}
 
 Triggers are a named channel for a class of events. The following are examples of Triggers:
@@ -25,21 +25,19 @@ Triggers are a named channel for a class of events. The following are examples o
 - A Trigger of document uploads to a website.
 - A Trigger of incoming emails.
 
-Triggers can be *fired* (activated) by using a dictionary of key-value pairs. Sometimes this dictionary is referred to as the *event*. As with Actions, each firing of a Trigger results in an activation ID.
+Triggers can be *fired* (activated) by using a dictionary of key-value pairs. Sometimes this dictionary is referred to as the *event*. As with Actions, each firing of a Trigger results in an **activation ID**.
 
 Triggers can be explicitly fired by a user or fired on behalf of a user by an external event source.
 A *Feed* is a convenient way to configure an external event source to fire Trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. Refer to the following example Feeds:
 - Cloudant data change feed that fires a Trigger event each time a document in a database is added or modified.
 - A Git feed that fires a Trigger event for every commit to a Git repository.
 
-## Using Rules
+## How do Rules affect Triggers?
 {: #openwhisk_rules_use}
 
-A Rule associates one Trigger with one Action, with every firing of the Trigger that causes the corresponding Action to be invoked with the Trigger event as input.
+A Rule associates one Trigger with one Action, for every firing of the Trigger that causes the corresponding Action to be invoked with the Trigger event as input.
 
-With the appropriate set of Rules, it's possible for a single Trigger event to
-invoke multiple Actions, or for an Action to be invoked as a response to events
-from multiple Triggers.
+With the appropriate set of Rules, it's possible for a single Trigger event to invoke multiple Actions, or for an Action to be invoked as a response to events from multiple Triggers.
 
 For example, consider a system with the following Actions:
 - `classifyImage` - An Action that detects the objects in an image and classifies them.
@@ -71,22 +69,24 @@ As an example, create a Trigger to send user location updates, and manually fire
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: created trigger locationUpdate
   ```
+  {: screen}
 
-2. Check that you created the trigger by listing the set of Triggers.
+2. Check that you created the Trigger by listing the set of Triggers.
   ```
   bx wsk trigger list
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   triggers
   /someNamespace/locationUpdate                            private
   ```
+  {: screen}
 
   Now a named "channel" is created to which events can be fired.
 
@@ -96,21 +96,22 @@ As an example, create a Trigger to send user location updates, and manually fire
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
   ```
+  {: screen}
 
 A Trigger that is fired without an accompanying Rule to match against has no visible effect.
-Triggers cannot be created inside a Package; they must be created directly under a Namespace.
+Triggers cannot be created inside a Package; they must be created directly under a **Namespace**.
 
-## Associate Triggers and Actions by using Rules
+## Using Rules to associate Triggers with Actions
 {: #openwhisk_rules_assoc}
 
 Rules are used to associate a Trigger with an Action. Each time a Trigger event is fired, the Action is invoked with the event parameters.
 
 As an example, create a rule that calls the `hello` Action whenever a location update is posted.
-1. Create a 'hello.js' file with the Action code like so:
+1. Create a file named 'hello.js' with the following Action code:
   ```javascript
   function main(params) {
      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -118,7 +119,7 @@ As an example, create a rule that calls the `hello` Action whenever a location u
   ```
   {: codeblock}
 
-2. Make sure that the Trigger and Action exist.
+2. Make sure that the Trigger and Action exist:
   ```
   bx wsk trigger update locationUpdate
   ```
@@ -129,13 +130,13 @@ As an example, create a rule that calls the `hello` Action whenever a location u
   ```
   {: pre}
 
-3. The next step is to create the rule. The rule is enabled upon creation, meaning that it is immediately available to respond to Activations of your Trigger. The three parameters are: the name of the Rule, the Trigger, and the Action.
+3. The next step is to create the Rule. The rule is enabled upon creation, meaning that it is immediately available to respond to Activations of your Trigger. The three parameters are: _Rule name_, _Trigger name_, and the _Action name_.
   ```
   bx wsk rule create myRule locationUpdate hello
   ```
   {: pre}
 
-  At any time, you can choose to disable a Rule.
+  At any time, you can choose to disable a Rule:
   ```
   bx wsk rule disable myRule
   ```
@@ -147,10 +148,11 @@ As an example, create a rule that calls the `hello` Action whenever a location u
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
   ```
+  {: screen}
 
 5. Verify that the **hello** Action was invoked by checking the most recent Activation.
   ```
@@ -158,11 +160,12 @@ As an example, create a rule that calls the `hello` Action whenever a location u
   ```
   {: pre}
 
-  Output:
+  **Output:**
   ```
   activations
   9c98a083b924426d8b26b5f41c5ebc0d             hello
   ```
+  {: screen}
 
   Now query the activation ID listed in the previous command output:
   ```
@@ -170,13 +173,13 @@ As an example, create a rule that calls the `hello` Action whenever a location u
   ```
   {: pre}
 
-  Output:
-  ```json
+  **Output:**
+  ```
   {
      "payload": "Hello, Donald from Washington, D.C."
   }
   ```
-  {: codeblock}
+  {: screen}
 
   You see that the **hello** Action received the event payload and returned the expected string.
 
