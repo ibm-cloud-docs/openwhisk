@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -39,6 +39,7 @@ Which produces the following output:
 ``` 
 Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
 ```
+{: screen}
 
 This command searches your current space for existing Watson conversation services, takes the first conversation service it finds, and then retrieves all of the credentials that belong to this service. Using the first set of credentials that belong to this service, it binds those credentials as a parameter to the `hello` Action specified. The output shows you exactly which service the Action is bound to, and which set of credentials from that service were used to bind with.
 
@@ -76,12 +77,13 @@ ok: got action Hello World
     ],
 }
 ```
+{: screen}
 
 From here, you can see that the credentials for this conversation service (along with any other credentials for other service types) belong to a parameter named `__bx_creds`, that can now be used from within the Action code as any other bound parameter can be used. The Action picks the first available conversation service which includes the first set of credentials defined in that service. 
 
-For further information about passing parameters to an Action, and how credentials are affected when performing an `action update` operation, see the following document [Create and invoke Actions](openwhisk_actions.html#openwhisk_pass_params).
+For further information about passing parameters to an Action, and how credentials are affected when performing an `action update` operation, see the following document [Create and invoke Actions](./openwhisk_actions.html#openwhisk_pass_params).
 
-The `wsk service` command supports the following two flags:
+The `bx wsk service` command supports the following two flags:
 
 <dl>
     <dt>--instance</dt>
@@ -90,8 +92,7 @@ The `wsk service` command supports the following two flags:
     <dd>The name of the specific credentials within the service that you wish to use.</dd>
 </dl>
 
-To undertand how to use these flags, see the following example. By using the previous `bx wsk service bind` command, assume there were actually two conversation services, and the Action default ended up binding the incorrect service/credentials. You could rerun the command with the `--instance` and `--keyname` flags to ensure that you bind the correct service to the correct Action. First, look at what services are available, and what credentials are bound to them. If we were to list our services we should see output like the following:
-
+To undertand how to use these flags, see the following example. By using the previous `bx wsk service bind` command, assume there were actually two conversation services, and the Action default ended up binding the incorrect service/credentials. You could rerun the command with the `--instance` and `--keyname` flags to ensure that you bind the correct service to the correct Action. First, look at what services are available, and what credentials are bound to them by running `bx service list` to see output like the following:
 ```
 bx service list
 name              service        plan   bound apps   last operation
@@ -99,11 +100,16 @@ Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
+{: screen}
 
-From this output we see that **Conversation-qp** is the first of two services listed, and it is the one that the initial `bx wsk service bind conversation hello` command ended up binding to. Perhaps you want to bind to the **Conversation-uc** service instead. So to be absolutely sure, you can check what credentials **Conversation-uc** contains, to ensure that you bind by using the right set of credentials.
-
+From this output we see that **Conversation-qp** is the first of two services listed, and it is the one that the initial `bx wsk service bind conversation hello` command ended up binding to. Perhaps you want to bind to the **Conversation-uc** service instead. So to be absolutely sure, you can check what credentials **Conversation-uc** contains, to ensure that you bind by using the right set of credentials by running `bx service keys Conversation-uc` as shown in the following example:
 ```
 bx service keys Conversation-uc
+```
+{: pre}
+
+**Output:**
+```
 Invoking 'cf service-keys Conversation-uc'...
 
 Getting keys for service instance Conversation-uc as [your id]...
@@ -112,6 +118,7 @@ name
 Credentials-1
 Credentials-2
 ```
+{: screen}
 
 You want to bind to "Credentials-2" from this service. To make sure the Action performs the desired behavior, run the following command:
 ```
@@ -123,6 +130,7 @@ Which produces the following output:
 ```
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
+{: screen}
 
 From the output, you can see that the correct set of credentials are bound to the Action. Again, to verfiy, you can look at the following `bx wsk action get` command.
 ```
@@ -158,6 +166,7 @@ ok: got action Hello World
     ],
 }
 ```
+{: screen}
 
 The normal debug flags are supported, and print out response headers from calls.
 
