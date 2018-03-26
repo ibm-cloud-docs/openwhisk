@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -161,7 +161,7 @@ Now you can use the REST API again (start from step 1 again) to obtain your acti
 ```bash
 bx wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
-{: pre} 
+{: pre}
 
 ### Summary
 

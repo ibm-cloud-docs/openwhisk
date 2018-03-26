@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-14"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -33,11 +33,8 @@ The package includes the following feeds.
 The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a Trigger event on an interval based schedule. The parameters are as follows:
 
 - `minutes` (*required*): An integer representing the length of the interval (in minutes) between trigger fires.
-
 - `trigger_payload` (*optional*): The value of this parameter becomes the content of the Trigger every time the Trigger is fired.
-
-- `startDate` (*optional*): The date when the first trigger will be fired.  Subsequent fires will occur based on the interval length specified by the `minutes` parameter.   
-
+- `startDate` (*optional*): The date when the first trigger will be fired.  Subsequent fires will occur based on the interval length specified by the `minutes` parameter.
 - `stopDate` (*optional*): The date when the Trigger will stop running.  Triggers will no longer be fired once this date has been reached.
 
   **Note**: The `startDate` and `stopDate` parameters support an integer or string value.  The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value should be in the ISO 8601 format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15).
@@ -55,7 +52,7 @@ The following example creates a trigger that is fired once every 2 minutes. The 
 
 Each generated event includes parameters, which are the properties that are specified by the `trigger_payload` value. In this case, each Trigger event has the parameters `name=Odin` and `place=Asgard`.
 
-## Firing a trigger event once  
+## Firing a trigger event once
 
 The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event on a specified date. The parameters are as follows:
 
@@ -66,12 +63,12 @@ The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trig
 
 - `trigger_payload` (*optional*): The value of this parameter becomes the content of the Trigger when the Trigger is fired. 
 
-- `deleteAfterFire` (*optional*, default: false): The value of this parameter determines whether the Trigger and potentially all of its associated rules will be deleted after the Trigger is fired.  
+- `deleteAfterFire` (*optional*, default:false): The value of this parameter determines whether the Trigger and potentially all of its associated rules will be deleted after the Trigger is fired.
   - `false`: No action will be taken after the Trigger fires. 
   - `true`: The Trigger will be deleted after it fires. 
   - `rules`: The Trigger and all of its associated rules will be deleted after it fires.
 
-The following is an example of creating a trigger that will be fired once on December 25, 2019, 12:30:00 UTC.  After the Trigger fires it will be deleted as well as all of its associated rules.  
+The following is an example of creating a trigger that will be fired once on December 25, 2019, 12:30:00 UTC.  After the Trigger fires it will be deleted as well as all of its associated rules.
 
   ```
   bx wsk trigger create fireOnce \
@@ -98,7 +95,7 @@ For more information, see: http://crontab.org. The following strings are example
     
 - `trigger_payload` (*optional*): The value of this parameter becomes the content of the Trigger every time the Trigger is fired.
 
-- `startDate` (*optional*): The date when the Trigger will start running. The Trigger fires based on the schedule specified by the cron parameter.  
+- `startDate` (*optional*): The date when the Trigger will start running. The Trigger fires based on the schedule specified by the cron parameter.
 
 - `stopDate` (*optional*): The date when the Trigger will stop running. Triggers are no longer fired once this date is reached.
 

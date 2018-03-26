@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-19"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -81,35 +81,37 @@ To use this example, follow these steps:
 1. Save the code to a file named **hello.js**.
 
 2. From the {{site.data.keyword.openwhisk_short}} CLI command line, create the Action by entering this command:
-    ```
-    bx wsk action create hello hello.js
-    ```
-    {: pre}
+  ```
+  bx wsk action create hello hello.js
+  ```
+  {: pre}
 
 3. Then, invoke the Action by entering the following commands.
-    ```
-    bx wsk action invoke hello --blocking --result
-    ```
-    {: pre}  
+  ```
+  bx wsk action invoke hello --blocking --result
+  ```
+  {: pre}  
 
-    This command outputs:
-    ```json
-    {
-        "payload": "Hello, World!"
-    }
-    ```
+  **Output:**
+  ```
+  {
+      "payload": "Hello, World!"
+  }
+  ```
+  {: screen}
     
-    ```
-    bx wsk action invoke hello --blocking --result --param name Fred
-    ```
-    {: pre}  
+  ```
+  bx wsk action invoke hello --blocking --result --param name Fred
+  ```
+  {: pre}  
 
-    This command outputs:
-    ```json
-    {
-        "payload": "Hello, Fred!"
-    }
-    ```
+  **Output:**
+  ```
+  {
+      "payload": "Hello, Fred!"
+  }
+  ```
+  {: screen}
 
 You can also use the event-driven capabilities in {{site.data.keyword.openwhisk_short}} to invoke this Action in response to events. Follow the [alarm service example](./openwhisk_packages.html#openwhisk_package_trigger) to configure an event source to invoke the **hello** Action every time a periodic event is generated.
 
