@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-27"
 
 ---
 
@@ -162,7 +162,7 @@ function main(params) {
   } else if (params.payload == 1) {
      return {payload: 'Hello, World!'};
   } else if (params.payload == 2) {
-    return {error: 'payload must be 0 or 1'};
+     return {error: 'payload must be 0 or 1'};
   }
 }
 ```
@@ -178,8 +178,8 @@ function main(args) {
        setTimeout(function() {
          resolve({ done: true });
        }, 100);
-    })
- }
+     })
+}
 ```
 {: codeblock}
 
@@ -190,26 +190,26 @@ function main(args) {
        setTimeout(function() {
          reject({ done: true });
        }, 100);
-    })
- }
+     })
+}
 ```
 {: codeblock}
 
 It is possible for an Action to be synchronous on some inputs and asynchronous on others as shown in the following example. 
 ```javascript
-  function main(params) {
-      if (params.payload) {
-         // asynchronous activation
-         return new Promise(function(resolve, reject) {
-                setTimeout(function() {
-                  resolve({ done: true });
-                }, 100);
-             })
-      }  else {
-         // synchronous activation
-         return {done: true};
-      }
-  }
+function main(params) {
+     if (params.payload) {
+        // asynchronous activation
+        return new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            resolve({ done: true });
+          }, 100);
+        })
+     }  else {
+        // synchronous activation
+        return {done: true};
+     }
+}
 ```
 {: codeblock}
 
