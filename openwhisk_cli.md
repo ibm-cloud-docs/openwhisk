@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-09"
+lastupdated: "2018-03-27"
 
 ---
 
@@ -99,7 +99,7 @@ Once the environment is configured, you can use the {{site.data.keyword.openwhis
 * Run your code snippets, or Actions, on {{site.data.keyword.openwhisk_short}}. See [Create and invoke Actions](./openwhisk_actions.html).
 * Use Triggers and Rules to enable your Actions to respond to events. See [Create Triggers and Rules](./openwhisk_triggers_rules.html).
 * Learn how packages bundle Actions and configure external events sources. See [Using and creating packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html). See [Pre-installed {{site.data.keyword.openwhisk_short}} packages](./openwhisk_catalog.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html).
 
 ## Configure the CLI to use an HTTPS proxy
 {: #cli_https_proxy}

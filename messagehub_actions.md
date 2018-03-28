@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-27"
 
 ---
 
@@ -69,7 +69,7 @@ For detailed information about how to use Triggers in Message Hub to listen for 
 * [Creating a Trigger that listens to an IBM Message Hub instance](./openwhisk_messagehub.html#create_message_hub_trigger)
 * [Creating a Trigger for a Message Hub package outside {{site.data.keyword.Bluemix_notm}}](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
 * [Listening for messages](./openwhisk_messagehub.html#message_hub_listen)
-* [Examples](./openwhisk_messagehub.html#)
+* [Examples](./openwhisk_messagehub.html#examples)
 
 ## Producing messages to Message Hub
 {: #producing_messages}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-27"
 
 ---
 
@@ -19,7 +19,7 @@ You can create a Trigger that reacts when messages are posted to a Message Hub i
 
 ## Message Hub package 
 
-This package enables communication with [Message Hub](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API. For more information about the Message Hub package, how to set it up, and how to produce messages see the [Message Hub package](./openwhisk_messagehub_actions.html) topic.
+This package enables communication with [Message Hub](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API. For more information about the Message Hub package, how to set it up, and how to produce messages see the [Message Hub package](./messagehub_actions.html) topic.
 
 ## Creating a Trigger that listens to an IBM Message Hub instance
 {: #create_message_hub_trigger}
@@ -237,6 +237,7 @@ Keep in mind when coding Actions that are fired by your Trigger, that the number
 ```
 
 ## Examples
+{: #examples}
 
 ### Integrating OpenWhisk with IBM Message Hub, Node Red, IBM Watson IoT, IBM Object Storage, and IBM Data Science Experience
 Example that integrates OpenWhisk with IBM Message Hub, Node Red, IBM Watson IoT, IBM Object Storage, IBM Data Science Experience (Spark) service can be [found here](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).

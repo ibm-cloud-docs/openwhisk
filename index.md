@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-27"
 
 ---
 
@@ -49,7 +49,6 @@ You can use the {{site.data.keyword.openwhisk_short}} command line interface (CL
 ## Programming model
 {: #openwhisk_start_programming}
 - [System details](./openwhisk_reference.html)
-- [Catalog of OpenWhisk provided services](./openwhisk_catalog.html)
 - [Actions](./openwhisk_actions.html)
 - [Triggers and Rules](./openwhisk_triggers_rules.html)
 - [Feeds](./openwhisk_feeds.html)
