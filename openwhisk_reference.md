@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-27"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -280,7 +280,7 @@ The following packages are pre-installed in the Node.js version 8.10.0 environme
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - Supports semantic versioning.
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
+  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support with the SendGrid API.
   - [serve-favicon v2.4.5](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
   - [socket.io v2.0.4](https://www.npmjs.com/package/socket.io) - Socket.IO enables real-time bidirectional event-based communication.
   - [socket.io-client v2.0.4](https://www.npmjs.com/package/socket.io-client) - Client-side support for Socket.IO.
@@ -338,7 +338,7 @@ The following packages are available to be used in the Node.js 6.12.2 environmen
 - [request-promise v4.1.1](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
 - [rimraf v2.5.4](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
 - [semver v5.3.0](https://www.npmjs.com/package/semver) - Supports semantic versioning.
-- [sendgrid v4.7.1](https://www.npmjs.com/package/sendgrid) - Provides email support via the SendGrid API.
+- [sendgrid v4.7.1](https://www.npmjs.com/package/sendgrid) - Provides email support with the SendGrid API.
 - [serve-favicon v2.3.2](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
 - [socket.io v1.6.0](https://www.npmjs.com/package/socket.io) - Socket.IO enables real-time bidirectional event-based communication.
 - [socket.io-client v1.6.0](https://www.npmjs.com/package/socket.io-client) - Client-side support for Socket.IO.
@@ -591,7 +591,7 @@ Docker Actions run a user-supplied binary in a Docker container. The binary runs
 
 The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `bx wsk sdk install docker` CLI plug-in command.
 
-The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments via a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result via `stdout` as a single-line string of serialized `JSON`.
+The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 

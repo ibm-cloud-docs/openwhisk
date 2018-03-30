@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -13,7 +13,7 @@ lastupdated: "2018-03-26"
 
 # Annotations
 
-{{site.data.keyword.openwhisk}} Actions, Triggers, Rules, and packages (collectively referred to as assets) can be decorated with `annotations`. Annotations are attached to assets just like parameters with a `key` that defines a name and `value` that defines the value. It is convenient to set them from the command line interface (CLI) via `--annotation` or `-a` for short.
+{{site.data.keyword.openwhisk}} Actions, Triggers, Rules, and packages (collectively referred to as assets) can be decorated with `annotations`. Annotations are attached to assets just like parameters with a `key` that defines a name and `value` that defines the value. It is convenient to set them from the command line interface (CLI) by using the `--annotation` flag or `-a` for short.
 {: shortdesc}
 
 Rationale: Annotations were added to {{site.data.keyword.openWhisk_short}} to allow for experimentation without changing the underlying asset schema. Until the writing of this document, there was deliberate effort to not define what `annotations` are permitted. However, as annotations are more heavily used to impart semantic changes, it's important to start documenting them.

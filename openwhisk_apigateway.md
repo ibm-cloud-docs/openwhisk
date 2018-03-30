@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -226,7 +226,7 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: screen}
 
-4. Get a list of books by using the Action **getBooks** via HTTP __GET__:
+4. Get a list of books by using the Action **getBooks** with HTTP __GET__:
   ```bash
   curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
@@ -240,7 +240,7 @@ In this example, the API is defined with a **path parameter**. When using path p
   ```
   {: screen}
 
-5. You can delete a specific book by using the Action **deleteBooks** via HTTP __DELETE__. In this example, the **deleteBooks** action's `__ow_path` field value is `/club/books/978-0596517748`, where `978-0596517748` is the path's `{isbn}` actual value.
+5. You can delete a specific book by using the Action **deleteBooks** with HTTP __DELETE__. In this example, the **deleteBooks** action's `__ow_path` field value is `/club/books/978-0596517748`, where `978-0596517748` is the path's `{isbn}` actual value.
   ```bash
   curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
   ```

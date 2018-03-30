@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -67,7 +67,7 @@ What happens behind the scenes in OpenWhisk?
 
 ### Entering the system: nginx
 
-First, OpenWhisk’s user-facing API is completely HTTP-based and follows a RESTful design. As a consequence, the command that is sent via the wsk-CLI is essentially an HTTP request against the OpenWhisk system. The specific command translates roughly to:
+First, OpenWhisk’s user-facing API is completely HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to:
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint

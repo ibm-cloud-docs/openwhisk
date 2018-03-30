@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-29"
 
 ---
 
@@ -81,7 +81,7 @@ ok: got action Hello World
 
 From here, you can see that the credentials for this conversation service (along with any other credentials for other service types) belong to a parameter named `__bx_creds`, that can now be used from within the Action code as any other bound parameter can be used. The Action picks the first available conversation service which includes the first set of credentials defined in that service. 
 
-For further information about passing parameters to an Action, and how credentials are affected when performing an `action update` operation, see the following document [Create and invoke Actions](./openwhisk_actions.html#openwhisk_pass_params).
+For further information about passing parameters to an Action, and how credentials are affected when performing an `action update` operation, see the following document [Working with parameters](./parameters.html#pass-params-action).
 
 The `bx wsk service` command supports the following two flags:
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-21"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -58,7 +58,7 @@ Serverless computing platforms give developers a rapid way to build APIs without
 
 Additionally, {{site.data.keyword.openwhisk_short}} Actions can be connected to an API Management tool of choice (such as [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) or other). Similar to other use cases, all considerations for scalability, and other Qualities of Services (QoS) apply. 
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) is a sample app that uses {{site.data.keyword.openwhisk_short}} Actions via REST API.
+[Emoting](https://github.com/l2fprod/openwhisk-emoting) is a sample app that uses {{site.data.keyword.openwhisk_short}} Actions through a REST API.
 
 See the following example that includes a discussion of [using Serverless as an API backend](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples).
 

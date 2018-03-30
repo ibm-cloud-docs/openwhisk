@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -42,14 +42,14 @@ bx wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible via REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
+Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible through a REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
 The Package name is **default** if the Action is not in a named Package.
 
 An example is `guest/demo/hello`. The web Action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
-Try opening [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the Action via `curl`:
+Try opening [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the Action by using `curl`:
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
 ```
@@ -171,7 +171,7 @@ Web Actions provide extra features that include:
 `/guest/demo/hello.html/body`. This feature allows an Action that returns a dictionary `{body: "..." }` to project the `body` property, and directly return its string value instead. The projected path follows an absolute path model (as in XPath).
 - `Query and body parameters as input`: The Action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, Action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/guest/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the Action.
 - `Form data`: In addition to the standard `application/json`, web Actions can receive URL encoded from data `application/x-www-form-urlencoded data` as input.
-- `Activation via multiple HTTP verbs`: A Web Action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
+- `Activation using multiple HTTP verbs`: A Web Action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
 - `Non JSON body and raw HTTP entity handling`: A Web Action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary, or base64 encoded string otherwise).
 
 The example below briefly sketches how you might use these features in a Web Action. Consider an Action `/guest/demo/hello` with the following body:

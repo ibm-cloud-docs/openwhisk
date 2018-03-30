@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-03-30"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-03-26"
 {:tip: .tip}
 {:pre: .pre}
 
-# Create and invoke Actions
+# Creating and invoking Actions
 {: #openwhisk_actions}
 
 Actions are stateless code snippets that run on the {{site.data.keyword.openwhisk}} platform. For example, an Action can be used to detect the faces in an image, respond to a database change, aggregate a set of API calls, or post a Tweet. An Action can be written as a JavaScript, Swift, Python, PHP function, Java method, or any binary-compatible executable, including Go programs and custom executables packaged as Docker containers.
@@ -38,12 +38,12 @@ In addition, learn about:
 * [Large application support](#large-app-support)
 * [Accessing Action metadata within the Action body](#accessing-action-metadata-within-the-action-body)
 
-## Create and invoke JavaScript Actions
+## Creating and invoking JavaScript actions
 {: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with Actions in JavaScript. You begin with the creation and invocation of a simple action. Then, you move on to adding parameters to an action and invoking that action with parameters. Next, is setting default parameters and invoking them. Then, you create asynchronous Actions, and finally work with action sequences.
 
-### Create and invoke a simple JavaScript action
+### Creating and invoking a simple JavaScript action
 {: #openwhisk_single_action_js}
 
 Review the following steps and examples to create your first JavaScript action.
@@ -163,162 +163,6 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-### Passing parameters to an Action
-{: #openwhisk_pass_params}
-
-Parameters can be passed to the Action when it is invoked.
-
-1. Use parameters in the Action. For example, update the **hello.js** file with the following content:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
-
-  The input parameters are passed as a JSON object parameter to the `main` function. Notice how the `name` and `place` parameters are retrieved from the `params` object in this example.
-
-2. Update and invoke the **hello** Action, while passing it the `name` and `place` parameter values as shown in the following command:
-  ```
-  bx wsk action update hello hello.js
-  ```
-  {: pre}
-
-  If you need to modify your non-service credential parameters, be aware that doing an `action update` command with new parameters removes any parameters that currently exist, but are not specified in the `action update` command. For example, if there are two parameters aside from the `__bx_creds`, with keys named key1 and key2.  If you run an `action update` command with `-p key1 new-value -p key2 new-value` but omit the `__bx_creds` parameter, the `__bx_creds` parameter will no longer exist after the `action update` completes successfully. You then must re-bind the service credentials. This is a known limitation without a workaround.
-  {: tip}  
-
-3.  Parameters can be provided explicitly on the command line, or by supplying a file that contains the desired parameters. To pass parameters directly through the command line, supply a key/value pair to the `--param` flag:
-  ```
-  bx wsk action invoke --result hello --param name Bernie --param place Vermont
-  ```
-  {: pre}
-
-  In order to use a file that contains parameter content, create a file that contains the parameters in **JSON** format. See the following example parameter file called **parameters.json**:
-  ```json
-  {
-      "name": "Bernie",
-      "place": "Vermont"
-  }
-  ```
-  {: codeblock}
-
-  The explicit file name must then be passed by using the `param-file` flag:
-  ```
-  bx wsk action invoke --result hello --param-file parameters.json
-  ```
-  {: pre}
-
-  Output:
-  ```
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-  {: screen}
-
-  Notice the use of the `--result` option: it implies a blocking invocation where the CLI waits for the activation to complete and then displays only the result. For convenience, this option can be used without `--blocking` which is automatically inferred.
-
-  Additionally, if parameter values that are specified on the command line are valid JSON, then they are parsed and sent to your action as a structured object. For example, update the hello action to the following:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
-  }
-  ```
-  {: codeblock}
-
-  Now the Action expects a single `person` parameter to have fields `name` and `place`.
-  
-  Next, invoke the Action with a single `person` parameter that is a valid JSON, like in the following example:
-  ```
-  bx wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
-  ```
-  {: pre}
-
-  The result is the same because the CLI automatically parses the `person` parameter value into the structured object that the Action now expects:
-  ```
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-  {: screen}
-
-### Setting default parameters
-{: #openwhisk_binding_actions}
-
-Actions can be invoked with multiple named parameters. Recall that the **hello** Action from the previous example expects two parameters: the *name* of a person, and the *place* where they're from.
-
-Rather than pass all the parameters to an action every time, you can bind certain parameters. The following example binds the *place* parameter so that the action defaults to the place "Vermont":
-
-1. Update the action by using the `--param` option to bind parameter values, or by passing a file that contains the parameters to `--param-file`. To specify default parameters explicitly on the command-line, provide a key/value pair to the `param` flag:
-  ```
-  bx wsk action update hello --param place Vermont
-  ```
-  {: pre}
-
-  Passing parameters from a file requires the creation of a file that contains the desired content in JSON format.
-
-  See the following example parameter file called **parameters.json**:
-  ```json
-  {
-      "place": "Vermont"
-  }
-  ```
-  {: codeblock}
-
-  The explicit file name must then be passed by using the `param-file` flag:
-  ```
-  bx wsk action update hello --param-file parameters.json
-  ```
-  {: pre}
-
-2. Invoke the Action, passing only the `name` parameter this time.
-  ```
-  bx wsk action invoke --result hello --param name Bernie
-  ```
-  {: pre}
-
-  Output:
-  ```
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-  {: screen}
-
-  Notice that you did not need to specify the place parameter when you invoked the Action. Bound parameters can still be overwritten by specifying the parameter value at invocation time.
-
-3. Invoke the Action, passing both `name` and `place` values. The latter overwrites the value that is bound to the 
-Action.
-
-  Invoke the Action using the `--param` flag:
-  ```
-  bx wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
-  ```
-  {: pre}
-
-  Additionally, you can invoke the Action using the `--param-file` flag with the following `parameters.json` file contents:
-  ```json
-  {
-    "name": "Bernie",
-    "place": "Vermont"
-  }
-  ```
-  {: codeblock}
-
-  Command syntax using `--param-file` flag:
-  ```
-  bx wsk action invoke --result hello --param-file parameters.json
-  ```
-  {: pre}
-
-  Output:
-  ```
-  {  
-      "payload": "Hello, Bernie from Washington, DC"
-  }
-  ```
-  {: screen}
-
 ### Creating asynchronous Actions
 {: #openwhisk_asynchrony_js}
 
@@ -400,66 +244,76 @@ JavaScript functions that run asynchronously can return the activation result af
 
   Comparing the `start` and `end` time stamps in the activation record, you can see that this activation took slightly over 2 seconds to complete.
 
-### Use Actions to call an external API
+### Using Actions to call an external API
 {: #openwhisk_apicall_action}
 
-The examples so far are self-contained JavaScript functions. You can also create an action that calls an external API.
+The examples provided so far are self-contained JavaScript functions. You can also create an Action that calls an external API.
 
-This example invokes a Yahoo Weather service to get the current conditions at a specific location.
+The following example invokes the NASA Astronomy Picture of the Day (APOD) service which provides a unique image of our universe every day.
 
-1. Save the following content in a file called **weather.js**.
+1. Save the following content in a file named **apod.js**.
   ```javascript
-  var request = require('request');
+  var url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
 
-  function main(params) {
-      var location = params.location || 'Vermont';
-      var url = 'https://query.yahooapis.com/v1/public/yql?q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '")&format=json';
+  $.ajax({
+    url: url,
+    success: function(result){
+    if("copyright" in result) {
+      $("#copyright").text("Image Credits: " + result.copyright);
+    }
+    else {
+      $("#copyright").text("Image Credits: " + "Public Domain");
+    }
 
-      return new Promise(function(resolve, reject) {
-          request.get(url, function(error, response, body) {
-              if (error) {
-                  reject(error);
-              }
-              else {
-                  var condition = JSON.parse(body).query.results.channel.item.condition;
-                  var text = condition.text;
-                  var temperature = condition.temp;
-                  var output = 'It is ' + temperature + ' degrees in ' + location + ' and ' + text;
-                  resolve({msg: output});
-              }
-          });
-      });
+    if(result.media_type == "video") {
+      $("#apod_img_id").css("display", "none");
+      $("#apod_vid_id").attr("src", result.url);
+    }
+    else {
+      $("#apod_vid_id").css("display", "none");
+      $("#apod_img_id").attr("src", result.url);
+    }
+    $("#reqObject").text(url);
+    $("#returnObject").text(JSON.stringify(result, null, 4));
+    $("#apod_explaination").text(result.explanation);
+    $("#apod_title").text(result.title);
   }
+  });
   ```
   {: codeblock}
 
-  The Action in the example uses the JavaScript `request` library to make an HTTP request to the Yahoo Weather API, and extracts fields from the JSON result. The [References](./openwhisk_reference.html#openwhisk_ref_javascript_environments) detail the Node.js packages that you can use in your Actions.
-
-  This example also shows the need for asynchronous Actions. The Action returns a Promise to indicate that the result of this action is not available yet when the function returns. Instead, the result is available in the `request` callback after the HTTP call completes, and is passed as an argument to the `resolve()` function.
+  A call is made to the NASA APOD API, and extracts fields from the JSON result. The [References](./openwhisk_reference.html#openwhisk_ref_javascript_environments) topic details the Node.js packages that you can use in your Actions.
 
 2. Run the following commands to create the Action and invoke it.
 
-  Create the Action named **weather**:
+  Create the Action named **apod**:
   ```
-  bx wsk action create weather weather.js
-  ```
-  {: pre}
-
-  Invoke the **weather** Action:
-  ```
-  bx wsk action invoke --result weather --param location "Brooklyn, NY"
+  bx wsk action create apod apod.js
   ```
   {: pre}
 
-  **Output:**
+  Invoke the **apod** Action:
+  ```
+  bx wsk action invoke --result apod
+  ```
+  {: pre}
+
+  **Return Object:**
   ```
   {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+    "copyright": "Eric Houck",
+    "date": "2018-03-28",
+    "explanation": "Does an alignment like this occur only once in a blue moon? No, although it was during a blue moon that this single-shot image was taken.  During a full moon that happened to be the second of the month -- the situation that defines a blue moon -- the photographer created the juxtaposition in late January by quickly moving around to find just the right spot to get the background Moon superposed behind the arc of a foreground tree.  Unfortunately, in this case, there seemed no other way than getting bogged down in mud and resting the camera on a barbed-wire fence.  The arc in the oak tree was previously created by hungry cows in Knight's Ferry, California, USA.  Quirky Moon-tree juxtapositions like this can be created during any full moon though, given enough planning and time.  Another opportunity will arise this weekend, coincidently during another blue moon. Then, the second blue moon in 2018 will occur, meaning that for the second month this year, two full moons will appear during a single month (moon-th).  Double blue-moon years are relatively rare, with the last occurring in 1999, and the next in 2037.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Blue Moon Tree",
+    "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
   }
   ```
   {: screen}
 
-### Package an action as a Node.js module
+### Packaging an Action as a Node.js module
 {: #openwhisk_js_packaged_action}
 
 As an alternative to writing all your Action code in a single JavaScript source file, you can write an Action as a `npm` package. Consider as an example, a directory with the following files:
@@ -535,7 +389,7 @@ To create a {{site.data.keyword.openwhisk_short}} Action from this package:
 
 Finally, note that while most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload currently does not support binary dependencies but rather only JavaScript dependencies. Action invocations may fail if the archive includes binary dependencies.
 
-### Package an Action as a single bundle
+### Packaging an Action as a single bundle
 {: #openwhisk_js_webpack_action}
 
 It is convenient to only include the minimal code into a single `.js` file that includes dependencies. This approach allows for faster deployments, and in some circumstances where packaging the action as a zip might be too large because it includes unnecessary files.
@@ -628,7 +482,7 @@ To build and deploy an OpenWhisk Action using `npm` and `webpack`:
 
 Finally, the bundle file that is built by `webpack` doesn't support binary dependencies but rather JavaScript dependencies. So Action invocations will fail if the bundle depends on binary dependencies, because this is not included with the file `bundle.js`.
 
-## Create action sequences
+## Creating Action sequences
 {: #openwhisk_create_action_sequence}
 
 You can create an Action that chains together a sequence of Actions.
@@ -653,7 +507,7 @@ Several utility Actions are provided in a package that is called `/whisk.system/
   ```
   {: screen}
 
-  You are using the `split` and `sort` Actions in this example.
+  You will be using the `split` and `sort` Actions in this example.
 
 2. Create an Action sequence so that the result of one Action is passed as an argument to the next Action.
   ```
@@ -685,14 +539,14 @@ Several utility Actions are provided in a package that is called `/whisk.system/
   In the result, you see that the lines are sorted.
 
 **Note**: Parameters that are passed between Actions in the sequence are explicit, except for default parameters.
-Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence (and so on). This object does not include any of the parameters that are originally passed to the sequence unless the first action explicitly includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters. For more information about invoking action sequences with multiple named parameters, see [Setting default parameters](./openwhisk_actions.html#openwhisk_binding_actions).
+Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence (and so on). This object does not include any of the parameters that are originally passed to the sequence unless the first action explicitly includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters. For more information about invoking action sequences with multiple named parameters, see [Setting default parameters on an Action](./parameters.html#default-params-action).
 
-## Create Python Actions
+## Creating Python actions
 {: #creating-python-actions}
 
 The process of creating Python Actions is similar to that of JavaScript Actions. The following sections guide you through creating and invoking a single Python action, and adding parameters to that action.
 
-### Create and invoke a Python action
+### Creating and invoking a Python action
 {: #openwhisk_actions_python_invoke}
 
 An Action is simply a top-level Python function. For example, create a file called **hello.py** with the following source code:
@@ -730,7 +584,7 @@ bx wsk action invoke --result helloPython --param name World
 ```
 {: screen}
 
-### Package Python Actions in zip files
+### Packaging Python actions in zip files
 {: #openwhisk_actions_python_zip}
 
 You can package a Python Action and dependent modules in a zip file.
@@ -749,10 +603,10 @@ bx wsk action create helloPython --kind python:3 helloPython.zip
 
 While these steps are shown for Python 3 (with kind `python:3`), you can do the same with alternative Python kinds `python:2` or `python-jessie:3`.
 
-### Package Python Actions with a virtual environment in zip files
+### Packaging Python actions with a virtual environment in zip files
 {: #openwhisk_actions_python_virtualenv}
 
-Another way of packaging Python dependencies is by using a virtual environment (`virtualenv`) which allows you to link additional packages that can be installed via [`pip`](https://packaging.python.org/installing/) for example.
+Another way of packaging Python dependencies is by using a virtual environment (`virtualenv`) which allows you to link additional packages that can be installed by using [`pip`](https://packaging.python.org/installing/) for example.
 
 As with basic zip file support, the name of the source file that contains the main entry point must be `__main__.py`. To clarify, the contents of `__main__.py` is the main function, so for this example you can rename `hello.py` to `__main__.py` from the previous section. In addition, the virtualenv directory must be named `virtualenv`. See the following example scenario for installing dependencies, packaging them in a virtualenv, and creating a compatible OpenWhisk action.
 
@@ -783,12 +637,12 @@ To ensure compatibility with the OpenWhisk runtime container, package installati
 Only add those modules to the `requirements.txt` that are not part of the selected runtime environment. This helps to keep the virtualenv to a minimum size.
 {: tip}
 
-## Create PHP Actions
+## Creating PHP actions
 {: #creating-php-actions}
 
 The process of creating PHP Actions is similar to that of JavaScript Actions. The following sections guide you through creating and invoking a single PHP action, and adding parameters to that action.
 
-### Create and invoke a PHP action
+### Creating and invoking a PHP action
 {: #openwhisk_actions_php_invoke}
 
 An action is simply a top-level PHP function. For example, create a file called `hello.php` with the following source code:
@@ -829,7 +683,7 @@ bx wsk action invoke --result helloPHP --param name World
 ```
 {: screen}
 
-### Package PHP Actions in zip files
+### Packaging PHP actions in zip files
 {: #openwhisk_actions_php_zip}
 
 You can package a PHP Action along with other files and dependent packages in a zip file.
@@ -847,7 +701,7 @@ bx wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
-## Create Swift Actions
+## Creating Swift actions
 {: #creating-swift-actions}
 
 The process of creating Swift actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single Swift action, and packaging an Action in a zip file. 
@@ -857,7 +711,7 @@ You can also use the online [Online Swift Playground](http://online.swiftplaygro
 **Attention:** Swift actions run in a Linux environment. Swift on Linux is still in
 development, and OpenWhisk generally uses the latest available release, which is not necessarily stable. In addition, the version of Swift that is used with OpenWhisk might be inconsistent with versions of Swift from stable releases of Xcode on MacOS.
 
-### Create and invoke an Action
+### Creating and invoking an Action
 
 #### Swift 3
 An Action is simply a top-level Swift function. For example, create a file called
@@ -939,7 +793,7 @@ bx wsk action invoke --result helloSwift --param name World
 ```
 {: screen}
 
-Find out more about parameters in the [Working with parameters](./openwhisk_actions.html#openwhisk_pass_params) section.
+Find out more about parameters in the [Working with parameters](./parameters.html) topic.
 
 ### Packaging an Action as a Swift executable
 {: #packaging-an-action-as-a-swift-executable}
@@ -1137,14 +991,14 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 ```
 {: codeblock}
 
-## Create Java Actions
+## Creating Java actions
 {: #creating-java-actions}
 
 The process of creating Java Actions is similar to that of JavaScript and Swift Actions. The following sections guide you through creating and invoking a single Java action, and adding parameters to that Action.
 
 In order to compile, test, and archive Java files, you must have a [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed locally.
 
-### Create and invoke an action
+### Creating and invoking a Java action
 {: #openwhisk_actions_java_invoke}
 
 A Java action is a Java program with a method called `main` that has the exact signature as follows:
@@ -1211,7 +1065,7 @@ bx wsk action invoke --result helloJava --param name World
 ```
 {: screen}
 
-## Create Docker Actions
+## Creating Docker actions
 {: #creating-docker-actions}
 
 With {{site.data.keyword.openwhisk_short}} Docker Actions, you can write your Actions in any language.
@@ -1306,7 +1160,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: screen}
 
-  To update the Docker Action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there are no warm containers, new invocations use the new Docker image. However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `bx wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
+  To update the Docker action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there are no warm containers, new invocations use the new Docker image. However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `bx wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
 
   **Upload latest image to Docker Hub:**
   ```
@@ -1322,7 +1176,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
   You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
 
-  The previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument. In order to allow Docker Actions to accept initialization data via a (zip) file, normalize the user experience for Docker Actions so that a positional argument, if present, must be a file (for example, a zip file) instead. The image name must be specified following the `--docker` option. Thanks to user feedback, the `--native` argument is included as shorthand for `--docker openwhisk/dockerskeleton`, so that executables that run inside the standard Docker action SDK are more convenient to create and deploy.
+  The previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument. In order to allow Docker actions to accept initialization data by using a (zip) file, normalize the user experience for Docker Actions so that a positional argument, if present, must be a file (for example, a zip file) instead. The image name must be specified following the `--docker` option. Thanks to user feedback, the `--native` argument is included as shorthand for `--docker openwhisk/dockerskeleton`, so that executables that run inside the standard Docker action SDK are more convenient to create and deploy.
   
   For example, this tutorial creates a binary executable inside the container located at `/action/exec`. If you copy this file to your local file system and zip it into `exec.zip`, then you can use the following commands to create a Docker action that receives the executable as initialization data. 
 
@@ -1337,11 +1191,6 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   bx wsk action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
-
-## Creating actions using arbitrary executables
-{: #creating-actions-arbitrary}
-
-Using `--native`, you can see that any executable may be run as an OpenWhisk action. This includes `bash` scripts, or cross compiled binaries. For the latter, the constraint is that the binary must be compatible with the `openwhisk/dockerskeleton` image.
 
 ## Creating Go actions
 {: #creating-go-actions}
@@ -1359,7 +1208,7 @@ import "os"
 func main() {
     //program receives one argument: the JSON object as a string
     arg := os.Args[1]
-   
+
     // unmarshal the string to a JSON object
     var obj map[string]interface{}
     json.Unmarshal([]byte(arg), &obj)
@@ -1399,6 +1248,11 @@ Logs are retrieved in a similar way as well.
 bx wsk activation logs --last --strip
 my first Go action.
 ```
+
+## Creating actions using arbitrary executables
+{: #creating-actions-arbitrary}
+
+Using `--native`, you can see that _any_ executable may be run as an OpenWhisk action. This includes `bash` scripts, or cross compiled binaries. For the latter, the constraint is that the binary must be compatible with the `openwhisk/dockerskeleton` image.
 
 ## Monitoring Action output
 {: #monitor-action-output}
@@ -1498,7 +1352,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 **Note:** For standard Actions, authentication must be provided when invoked through an HTTPS request. For more information regarding Action invocations using the REST interface, see [REST APIs](./openwhisk_rest_api.html).
 
-### Saving action code
+### Saving Action code
 {: #save-action}
 
 Code associated with an existing Action may be retrieved and saved locally. Saving can be performed on all Actions except sequences and Docker actions.
@@ -1609,18 +1463,14 @@ In efforts to reduce application size for a Node.js application, see the followi
 
 3. Then, proceed to use `action.js` with the new image.
 
-## Accessing action metadata within the action body
+## Accessing Action metadata within the Action body
 {: #accessing-action-metadata-within-the-action-body}
 
-The action environment contains several properties that are specific to the running Action.
-These allow the action to programmatically work with OpenWhisk assets via the REST API,
-or set an internal alarm when the Action is about to use up its allotted time budget.
-The properties are accessible via the system environment for all supported runtimes:
-Node.js, Python, Swift, Java and Docker Actions when using the OpenWhisk Docker skeleton.
+The Action environment contains several properties that are specific to the running Action. These properties allow the Action to programmatically work with OpenWhisk assets through the REST API, or set an internal alarm when the Action is about to use up its allotted time budget. The properties are accessible in the system environment for all supported runtimes: Node.js, Python, Swift, Java and Docker Actions when using the OpenWhisk Docker skeleton.
 
-* `__OW_API_HOST` the API host for the OpenWhisk deployment running this action
-* `__OW_API_KEY` the API key for the subject invoking the action, this key may be a restricted API key
+* `__OW_API_HOST` the API host for the OpenWhisk deployment running this Action
+* `__OW_API_KEY` the API key for the subject invoking the Action, this key may be a restricted API key
 * `__OW_NAMESPACE` the namespace for the _activation_ (this may not be the same as the namespace for the action)
-* `__OW_ACTION_NAME` the fully qualified name of the running action
-* `__OW_ACTIVATION_ID` the activation id for this running action instance
-* `__OW_DEADLINE` the approximate time when this action will have consumed its entire duration quota (measured in epoch milliseconds)
+* `__OW_ACTION_NAME` the fully qualified name of the running Action
+* `__OW_ACTIVATION_ID` the activation id for this running Action instance
+* `__OW_DEADLINE` the approximate time when this Action will have consumed its entire duration quota (measured in epoch milliseconds)
