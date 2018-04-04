@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-04-04"
 
 ---
 
@@ -222,9 +222,10 @@ You can put parameters into a file in JSON format, and then pass in the paramete
   ```
 
   **Output:**
-  ```json
+  ```
   {
       "payload": "Hello, Dorothy from Kansas"
   }
   ```
   {: screen}
+
