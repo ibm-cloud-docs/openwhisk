@@ -97,6 +97,7 @@ The content of the generated events has the following parameters:
 The JSON representation of the Trigger event is as follows:
 ```json
 {
+    "dbname": "testdb",
     "id": "6ca436c44074c4c2aa6a40c9a188b348",
     "seq": "2-g1AAAAL9aJyV-GJCaEuqx4-BktQkYp_dmIfC",
     "changes": [
