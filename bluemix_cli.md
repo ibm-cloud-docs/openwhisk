@@ -233,6 +233,10 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
+1.0.10 (2018-04-09)
+* A new `--web-secure` option has been added to the `bx wsk action create|update` commands to secure web action endpoints.
+* Fix back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
+
 1.0.9 (2018-03-16)
 * Enables support for service bind at the package level.
 
