@@ -71,7 +71,7 @@ Review the following steps and examples to create your first JavaScript action.
   {: screen}
 
   The CLI automatically infers the type of the action by using the source file extension. For `.js` source files, the action runs by using a Node.js 6 runtime. You can also create an action that runs with Node.js 8 by explicitly specifying the parameter `--kind nodejs:8`. For more information, see the Node.js 6 vs 8 [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
-  
+
 3. List the Actions that you created:
   ```
   bx wsk action list
@@ -117,7 +117,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The result in this case is the string `Hello world` returned by the JavaScript function. The activation ID can be used to retrieve the logs or result of the invocation at a future time.  
+  The result in this case is the string `Hello world` returned by the JavaScript function. The activation ID can be used to retrieve the logs or result of the invocation at a future time.
 
 5. If you don't need the Action result right away, you can omit the `--blocking` flag to make a non-blocking invocation. You can get the result later by using the activation ID.
 
@@ -219,7 +219,7 @@ JavaScript functions that run asynchronously can return the activation result af
   bx wsk activation list --limit 1 asyncAction
   ```
   {: pre}
-  
+
   **Output:**
   ```
   activations
@@ -232,7 +232,7 @@ JavaScript functions that run asynchronously can return the activation result af
   bx wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
- 
+
   ```
   {
       "start": 1455881628103,
@@ -374,7 +374,7 @@ To create a {{site.data.keyword.openwhisk_short}} Action from this package:
   bx wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
-  
+
   **Output:**
   ```
   {
@@ -704,7 +704,7 @@ bx wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ## Creating Swift actions
 {: #creating-swift-actions}
 
-The process of creating Swift actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single Swift action, and packaging an Action in a zip file. 
+The process of creating Swift actions is similar to that of JavaScript actions. The following sections guide you through creating and invoking a single Swift action, and packaging an Action in a zip file.
 
 You can also use the online [Online Swift Playground](http://online.swiftplayground.run) to test your Swift code without having to install Xcode on your machine.
 
@@ -800,7 +800,7 @@ Find out more about parameters in the [Working with parameters](./parameters.htm
 
 When you create an OpenWhisk Swift action with a Swift source file, it has to be compiled into a binary before the action is run. Once done, subsequent calls to the action are much faster until the container holding your action is purged. This delay is known as the cold-start delay.
 
-To avoid the cold-start delay, you can compile your Swift file into a binary and then upload to OpenWhisk in a zip file. As you need the OpenWhisk scaffolding, the easiest way to create the binary is to build it within the same environment as it will be run in. 
+To avoid the cold-start delay, you can compile your Swift file into a binary and then upload to OpenWhisk in a zip file. As you need the OpenWhisk scaffolding, the easiest way to create the binary is to build it within the same environment as it will be run in.
 
 ### Using a script to build Swift packaged Action
 
@@ -814,7 +814,7 @@ if [ -z "$1" ] ; then
     exit 1
 fi
 if [ -z "$2" ] ; then
-    echo 'Error: Missing runtime docker image name, for example openwhisk/action-swift-v4.0'
+    echo 'Error: Missing kind, for example swift:4.1'
     exit 2
 fi
 OUTPUT_DIR="build"
@@ -823,7 +823,7 @@ if [ ${2} == "swift:3.1.1" ]; then
   DEST_SOURCE="$BASE_PATH/spm-build"
   RUNTIME="openwhisk/action-swift-v3.1.1"
 elif [ ${2} == "swift:4.1" ]; then
-  RUNTIME="openwhisk/action-swift-v4.1"
+  RUNTIME="ibmfunctions/action-swift-v4.1"
   BASE_PATH="/swift4Action"
   DEST_SOURCE="/$BASE_PATH/spm-build/Sources/Action"
 else
@@ -872,7 +872,6 @@ echo 'Creating archive $1.zip...'
 #.build/release/Action
 mkdir -p /owexec/$OUTPUT_DIR
 zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
-
 "
 ```
 {: codeblock}
@@ -986,7 +985,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
         throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
     } catch {
         completion(nil, error)
-    } 
+    }
 }
 ```
 {: codeblock}
@@ -1143,7 +1142,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
 
-  Notice the use of `--docker` to create an Action. All Docker images are assumed to be hosted on Docker Hub. The action can be invoked as any other {{site.data.keyword.openwhisk_short}} action. 
+  Notice the use of `--docker` to create an Action. All Docker images are assumed to be hosted on Docker Hub. The action can be invoked as any other {{site.data.keyword.openwhisk_short}} action.
   ```
   bx wsk action invoke --result example --param payload Rey
   ```
@@ -1177,8 +1176,8 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
 
   The previous version of the CLI supported `--docker` without a parameter and the image name was a positional argument. In order to allow Docker actions to accept initialization data by using a (zip) file, normalize the user experience for Docker Actions so that a positional argument, if present, must be a file (for example, a zip file) instead. The image name must be specified following the `--docker` option. Thanks to user feedback, the `--native` argument is included as shorthand for `--docker openwhisk/dockerskeleton`, so that executables that run inside the standard Docker action SDK are more convenient to create and deploy.
-  
-  For example, this tutorial creates a binary executable inside the container located at `/action/exec`. If you copy this file to your local file system and zip it into `exec.zip`, then you can use the following commands to create a Docker action that receives the executable as initialization data. 
+
+  For example, this tutorial creates a binary executable inside the container located at `/action/exec`. If you copy this file to your local file system and zip it into `exec.zip`, then you can use the following commands to create a Docker action that receives the executable as initialization data.
 
   **Create action from zip file:**
   ```
@@ -1186,7 +1185,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: pre}
 
-  Which is equivalent to the following command. 
+  Which is equivalent to the following command.
   ```
   bx wsk action create example exec.zip --docker openwhisk/dockerskeleton
   ```
@@ -1390,7 +1389,7 @@ bx wsk action list
 ```
 {: pre}
 
-As you write more Actions, this list gets longer and it can be helpful to group related Actions into [packages](./openwhisk_packages.html). To filter your list of Actions to just those within a specific package, you can use the following command syntax: 
+As you write more Actions, this list gets longer and it can be helpful to group related Actions into [packages](./openwhisk_packages.html). To filter your list of Actions to just those within a specific package, you can use the following command syntax:
 ```
 bx wsk action list [PACKAGE NAME]
 ```
