@@ -28,14 +28,19 @@ The following sections step you through configuring an associated package, and h
 
 ## Create a Trigger by using the filter function
 
-You can use the `changes` Feed to configure a service to fire a Trigger on every change to your Cloudant database. The parameters are as follows:
+You can use the `changes` Feed to configure a service to fire a Trigger on every change to your Cloudant database.
 
-- `dbname`: Name of Cloudant database _(required)_.
-- `maxTriggers`: Stop firing Triggers when this limit is reached _(optional)_. Defaults to infinite.
-- `filter`: Filter function that is defined on a design document _(optional)_
-- `query_params`: Extra query parameters for the filter function _(optional)_.
+The parameters used in this example are as follows:
 
-1. Create a Trigger named **myCloudantTrigger** with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the Trigger when a document is added or modified when the status is `new`.
+**dbname**: The name of the Cloudant database _(required)_.
+
+**maxTriggers**: Stop firing Triggers when this limit is reached _(optional)_. Defaults to infinite.
+
+**filter**: Filter function that is defined on a design document _(optional)_
+
+**query_params**: Extra query parameters for the filter function _(optional)_.
+
+1. Create a Trigger named **myCloudantTrigger** with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the Trigger when a document is added (or modified) when the status is `new`.
 
   Be sure to replace `/_/myCloudant` with your package name.
   ```
