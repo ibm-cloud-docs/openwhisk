@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-04-09"
 
 ---
 
@@ -35,7 +35,7 @@ You can use the `changes` Feed to configure a service to fire a Trigger on every
 - `filter`: Filter function that is defined on a design document _(optional)_
 - `query_params`: Extra query parameters for the filter function _(optional)_.
 
-1. Create a Trigger named **myCloudantTrigger** with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the Trigger when a document is added or modified when the status is `new`. 
+1. Create a Trigger named **myCloudantTrigger** with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the Trigger when a document is added or modified when the status is `new`.
 
   Be sure to replace `/_/myCloudant` with your package name.
   ```
@@ -72,11 +72,13 @@ You can use the `changes` Feed to configure a service to fire a Trigger on every
   ```
   {: pre}
 
-5. In your Cloudant dashboard, either modify an existing document or create a new one.
+5. Create Actions and a Rule to associate them to the **myCloudantTrigger** Trigger.
 
-6. Observe new activations for the **myCloudantTrigger** Trigger for each document change only if the document status is **new** based on the filter function and query parameter.
+6. In your Cloudant dashboard, either modify an existing document or create a new one. The document should have a _status_ field, which is set to **new**.
 
-If you are unable to observe new activations, see the subsequent sections on reading from and writing to a Cloudant database. Testing the following reading and writing steps help to verify that your Cloudant credentials are correct.
+7. Observe new activations for the **myCloudantTrigger** Trigger for each document change only if the document status is **new** based on the filter function and query parameter.
+
+If you are unable to observe new activations, see the [Cloudant](./cloudant_actions.html) topic which demonstrates how to read from and write to a Cloudant database. Test the reading and writing steps to help to verify that your Cloudant credentials are correct.
 {: tip}
 
 ## Data structure of a Trigger event
