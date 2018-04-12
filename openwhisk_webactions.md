@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-04-12"
 
 ---
 
@@ -42,7 +42,7 @@ bx wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible through a REST interface without the need for credentials. A web Action can be invoked by using a URL that is structured as follows:
+Using the `--web` flag with a value of `true` or `yes` allows an Action to be accessible through a REST interface without the need for credentials. To configure a Web action with credentials see the [Securing web actions](./openwhisk_webactions.html#securing-web-actions) section. A Web action can be invoked by using a URL that is structured as follows:
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
 The Package name is **default** if the Action is not in a named Package.
@@ -336,9 +336,36 @@ bx wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
-The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally. 
+The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally.
 
-## Disabling Web Actions
+## Securing web actions
+{: #securing-web-actions}
+
+By default, a Web action can be invoked by anyone having the Web action's invocation URL. Use the `require-whisk-auth` [Web action annotation](./openwhisk_annotations.html#annotations-specific-to-web-actions) to secure the Web action. When the `require-whisk-auth` annotation is set to `true`, the Action will authenticate the invocation request's Basic Authorization credentials against the Action owner's whisk auth key. When set to a number or a case-sensitive string, the Action's invocation request must include a `X-Require-Whisk-Auth` header having this same value. Secured Web actions will return the message `Not Authorized` when credential validation fails.
+
+Alternatively, use the `--web-secure` flag to automatically set the `require-whisk-auth` annotation.  When set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
+
+Example using **--web-secure**:
+```bash
+bx wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+```
+{: pre}
+
+Example using **require-whisk-auth**:
+```bash
+bx wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+```
+{: pre}
+
+Example using **X-Require-Whisk-Auth**:
+```bash
+curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: my-secret"
+```
+{: pre}
+
+It is important to note that the owner of the Web action owns all of the activations records, and incurs the cost of running the Action in the system regardless of how the Action was invoked.
+
+## Disabling Web actions
 
 To disable a Web Action from being invoked via web API (`https://openwhisk.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an Action with the CLI.
 ```
@@ -350,7 +377,7 @@ bx wsk action update /guest/demo/hello hello.js --web false
 
 A Web Action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the Action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP Web Action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}' 
+curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-04-12"
 
 ---
 
@@ -54,7 +54,7 @@ Annotations that describe **parameters** include:
 The annotations are _not_ checked. So while it is conceivable to use the annotations to infer if a composition of two Actions into a sequence is legal, for example, the system does not yet do that.
 
 ## Annotations specific to Web Actions
-{: #openwhisk_annotations_webactions}
+{: #annotations-specific-to-web-actions}
 
 Recently, the core API was extended with new features. To enable packages and Actions to participate in these features, new annotations are introduced that are semantically meaningful. These annotations must be explicitly set to `true` to have effect. Changing the value from `true` to `false` excludes the attached asset from the new API. The annotations have no meaning otherwise in the system. See the following annotations:
 
@@ -62,7 +62,7 @@ Recently, the core API was extended with new features. To enable packages and Ac
 - `final`: Applies only to an Action. It makes all of the Action parameters that are already defined immutable. A parameter of an Action that carries the annotation cannot be overridden by invoke-time parameters once the parameters value is defined through its enclosing package or the Action definition.
 - `raw-http`: Applies only to an Action in the presence of a `web-export` annotation. If present, the HTTP request query and body parameters are passed to the Action as reserved properties.
 - `web-custom-options`: When set, this annotation enables a web action to respond to OPTIONS requests with customized headers, otherwise a [default CORS response](openwhisk_webactions.html#options-requests) applies.
-- `require-whisk-auth`: Applies onto to an Action. If an Action carries the `web-export` annotation, and this annotation is also `true`, the route is only accessible to an authenticated subject. It is important to note that the _owner_ of the web Action incurs the cost of running them in the system. In other words, the _owner_ of the Action also owns the activations record.
+- `require-whisk-auth`: This annotation protects the Web action so that it is only invoked by requests that provide appropriate authentication credentials. When set to a boolean value, it controls whether or not the request's Basic Authentication value (i.e. Whisk auth key) will be authenticated. A value of `true` authenticates the credentials, and a value of `false` invokes the Action without any authentication. When set to a number or a string, this value must match the request's `X-Require-Whisk-Auth` header value. In both cases, it is important to note that the _owner_ of the Web action incurs the cost of running them in the system (i.e., the _owner_ of the Action also owns the activations record).
 
 ## Annotations specific to activations
 
