@@ -361,12 +361,12 @@ OpenWhisk supports running Python Actions by using two different runtime version
 ### Python 3 Actions (Jessie based)
 {: #openwhisk_ref_python_environments_jessie}
 
-Python 3 Actions are executed with Python 3.6.4. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an Action.
+Python 3 Actions are executed with Python 3.6.5. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an Action.
 When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
 The runtime contains SDK packages for IBM Cloud services available for use by Python Actions, in addition to the Python 3.6 standard libraries.
 
 Python version:
-- [3.6.4](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
+- [3.6.5](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
 
 Python Packages:
 - asn1crypto==0.24.0
@@ -388,22 +388,22 @@ Python Packages:
 - Flask==0.12.2
 - gevent==1.2.2
 - greenlet==0.4.13
-- httplib2==0.10.3
+- httplib2==0.11.3
 - hyperlink==18.0.0
-- ibm-cos-sdk==2.0.2
-- ibm-cos-sdk-core==2.0.2
-- ibm-cos-sdk-s3transfer==2.0.2
+- ibm-cos-sdk==2.1.0
+- ibm-cos-sdk-core==2.1.0
+- ibm-cos-sdk-s3transfer==2.1.0
 - ibm-db==2.0.8a0
-- ibmcloudsql==0.2.5
+- ibmcloudsql==0.2.13
 - idna==2.6
 - incremental==17.5.0
 - itsdangerous==0.24
 - Jinja2==2.10
 - jmespath==0.9.3
-- kafka-python==1.4.1
-- lxml==4.1.1
+- kafka-python==1.4.2
+- lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.1
+- numpy==1.14.2
 - pandas==0.22.0
 - parsel==1.4.0
 - pika==0.11.2
@@ -415,13 +415,13 @@ Python Packages:
 - pymongo==3.6.1
 - pyOpenSSL==17.5.0
 - pysolr==3.7.0
-- python-dateutil==2.6.1
+- python-dateutil==2.7.2
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
 - requests==2.18.4
 - scikit-learn==0.19.1
-- scipy==1.0.0
+- scipy==1.0.1
 - Scrapy==1.5.0
 - service-identity==17.0.0
 - simplejson==3.13.2
@@ -429,9 +429,9 @@ Python Packages:
 - tornado==5.0
 - Twisted==17.9.0
 - urllib3==1.22
-- virtualenv==15.1.0
+- virtualenv==15.2.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.0.2
+- watson-developer-cloud==1.3.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -547,7 +547,7 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 Actions can use the following packages when using single Swift source file:
-- Watson Developer Cloud SDK version 0.23.2, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK version 0.24.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
