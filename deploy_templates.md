@@ -4,7 +4,7 @@ copyright:
 
   years: 2018
 
-lastupdated: "2018-02-13"
+lastupdated: "2018-04-24"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2018-02-13"
 {:new_window: target="_blank"}
 {:tip: .tip}
 
-# Deploying Templates in {{site.data.keyword.openwhisk_short}}
+# Deploying Quickstart Templates
 {: #serviceauth}
 
 {{site.data.keyword.openwhisk}} offers a catalog of Templates to help you get started quickly on your next project. Templates are a combination of Actions, Triggers, Sequences, and can also incorpoate service instances from {{site.data.keyword.Bluemix}}. By using Templates, you can quickly and easily create a project, and start coding right away. 
@@ -22,7 +22,7 @@ lastupdated: "2018-02-13"
 This tutorial steps you through deploying the Cloudant Template.
 {: shortdesc}
 
-## Available Templates
+## Available Quickstart Templates
 {: #available-templates}
 
 | Name | Description | Supported Runtimes | 
@@ -38,9 +38,9 @@ This tutorial steps you through deploying the Cloudant Template.
 
 The Cloudant Template creates a sequence of Actions, and a Trigger that will kick off that Sequence. The Trigger is fired when there is a change in the connected Cloudant DB, which should be a database of cats, with a name and a color. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database, or a current cat edited, the data will be logged to the console.
 
-1. To create a Template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://dev-console.stage1.bluemix.net/openwhisk/), and then click **Start Creating**. 
+1. To create a Template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**. 
 
-2. Click **Deploy Template**.
+2. Click **Quickstart Templates**.
 
 3. Click **New Cloudant Item**.
 
