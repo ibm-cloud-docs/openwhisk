@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-27"
+lastupdated: "2018-04-24"
 
 ---
 
@@ -18,6 +18,9 @@ You can create a Trigger that reacts when messages are posted to a Message Hub i
 {: shortdesc}
 
 ## Message Hub package 
+
+The `/messaging/messageHubProduce` Action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` Action to use a persistent connection when data is produced to Message Hub/Kafka.
+{: tip}
 
 This package enables communication with [Message Hub](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API. For more information about the Message Hub package, how to set it up, and how to produce messages see the [Message Hub package](./messagehub_actions.html) topic.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-27"
+lastupdated: "2018-04-24"
 
 ---
 
@@ -73,6 +73,9 @@ For detailed information about how to use Triggers in Message Hub to listen for 
 
 ## Producing messages to Message Hub
 {: #producing_messages}
+
+The `/messaging/messageHubProduce` Action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` Action to use a persistent connection when data is produced to Message Hub/Kafka.
+{: tip}
 
 If you would like to use a {{site.data.keyword.openwhisk_short}} Action to conveniently produce a message to Message Hub, you can use the `/messaging/messageHubProduce` Action. This Action takes the following parameters:
 
