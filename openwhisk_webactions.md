@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-12"
+lastupdated: "2018-04-30"
 
 ---
 
@@ -153,7 +153,7 @@ See the following HTTP parameters:
 
 A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
 
-The `__ow_user` is only present when the web Action is [annotated to require authentication](./openwhisk_annotations.html#openwhisk_annotations_webactions) and allows a web Action to implement its own authorization policy. The `__ow_query` is available only when a web Action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web Actions receive query and body parameters as first class properties in the Action argument. Body parameters take precedence over query parameters, which in turn take precedence over Action and package parameters.
+The `__ow_user` is only present when the web Action is [annotated to require authentication](./openwhisk_annotations.html#annotations-specific-to-web-actions) and allows a web Action to implement its own authorization policy. The `__ow_query` is available only when a web Action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web Actions receive query and body parameters as first class properties in the Action argument. Body parameters take precedence over query parameters, which in turn take precedence over Action and package parameters.
 
 ## HTTPS Endpoint support
 

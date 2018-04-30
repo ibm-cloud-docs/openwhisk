@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-04-04"
+lastupdated: "2018-04-30"
 
 ---
 
@@ -22,7 +22,7 @@ With serverless Actions, data is supplied by adding parameters to the Actions, w
 ## Passing parameters to an Action during invocation
 {: #pass-params-action}
 
-Parameters can be passed to an Action when it is invoked. The examples that are provided use JavaScript but all the other languages work in the same way. To see detailed examples, check out the following topics on [Javascript actions](./openwhisk_actions.html##creating-and-invoking-javascript-actions), [Swift actions](./openwhisk_actions.html#creating-swift-actions), [Python actions](./openwhisk_actions.html#creating-python-actions), [Java actions](./openwhisk_actions.html#creating-java-actions), [PHP actions](./openwhisk_actions.html#creating-php-actions), [Docker actions](./openwhisk_actions.html#creating-docker-actions) or [Go actions](./openwhisk_actions.html#creating-go-actions).
+Parameters can be passed to an Action when it is invoked. The examples that are provided use JavaScript but all the other languages work in the same way. To see detailed examples, check out the following topics on [Javascript actions](./openwhisk_actions.html#creating-and-invoking-javascript-actions), [Swift actions](./openwhisk_actions.html#creating-swift-actions), [Python actions](./openwhisk_actions.html#creating-python-actions), [Java actions](./openwhisk_actions.html#creating-java-actions), [PHP actions](./openwhisk_actions.html#creating-php-actions), [Docker actions](./openwhisk_actions.html#creating-docker-actions) or [Go actions](./openwhisk_actions.html#creating-go-actions).
 
 1. Use parameters in the Action. For example, create a file that is named **hello.js** with the following content:
   ```javascript
@@ -96,7 +96,7 @@ Actions can be invoked with multiple named parameters. Recall that the **hello**
 
 Rather than pass all the parameters to an Action every time, you can bind certain parameters. The following example binds the *place* parameter so that the Action defaults to the place "Kansas":
 
-1. Update the Action by using the `--param` option to bind parameter values, or by passing a file that contains the parameters to `--param-file`. (For examples that use files, see the section on [working with parameter files](#working-with-parameter-files).
+1. Update the Action by using the `--param` option to bind parameter values, or by passing a file that contains the parameters to `--param-file`. (For examples that use files, see the section on [using parameter files](./parameters.html#using-parameter-files).
 
   To specify default parameters explicitly on the command line, provide a key/value pair to the `param` flag:
   ```
