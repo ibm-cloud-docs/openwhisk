@@ -16,6 +16,7 @@ IBM Cloud Functions
     {: .topicgroup}
     Tutorials
         ../tutorials/slack-chatbot-database-watson.md
+        ../tutorials/serverless-github-traffic-analytics.md
         ../tutorials/serverless-mobile-backend.md
         ../tutorials/serverless-api-webapp.md
                 
