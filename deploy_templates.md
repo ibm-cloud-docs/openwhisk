@@ -4,7 +4,7 @@ copyright:
 
   years: 2018
 
-lastupdated: "2018-04-30"
+lastupdated: "2018-05-01"
 
 ---
 
@@ -111,7 +111,7 @@ This action will accept a single parameter, which must be a JSON object.
 After Template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available Templates.
 
 ## Deploying the Message Hub Events template
-{: #messagehub-events-templates}
+{: #messagehub-events-template}
 
 The Message Hub Events template creates an Action and a Trigger that kicks off that Action. The Trigger is fired whenever there is a new item added to the Message Hub topic that is chosen during template creation.
 
