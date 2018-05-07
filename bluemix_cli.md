@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-23"
+lastupdated: "2018-05-07"
 
 ---
 
@@ -232,6 +232,9 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+1.0.12 (2018-05-07)
+* {{site.data.keyword.Bluemix_notm}} SDK updates for `bx` CLI compatibility.
 
 1.0.11 (2018-04-23)
 * Minor bug fixes and improvements.
