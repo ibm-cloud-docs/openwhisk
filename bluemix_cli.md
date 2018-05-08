@@ -233,7 +233,10 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
-1.0.12 (2018-05-07)
+1.0.13 (2018-05-07)
+* Minor bug fixes and error handling improvements.
+
+1.0.12 (2018-04-30)
 * {{site.data.keyword.Bluemix_notm}} SDK updates to maintain `bx` CLI compatibility.
 
 1.0.11 (2018-04-23)
