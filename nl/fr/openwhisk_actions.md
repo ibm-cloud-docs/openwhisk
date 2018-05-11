@@ -1028,7 +1028,7 @@ Le temps qui a été nécessaire à l'exécution de l'action figure dans la prop
 
 Le processus de création d'actions Java est similaire au processus de création d'actions JavaScript et Swift. Les sections ci-après expliquent comment créer et appeler une action Java unique, et comment ajouter des paramètres à cette action.
 
-Pour pouvoir compiler, tester et archiver des fichiers Java, vous devez avoir installé un logiciel [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) en local. 
+Pour pouvoir compiler, tester et archiver des fichiers Java, vous devez avoir installé un logiciel [JDK 8](http://openjdk.java.net/install) en local. 
 
 ### Création et appel d'une action
 {: #openwhisk_actions_java_invoke}

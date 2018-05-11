@@ -1022,7 +1022,7 @@ wsk action invoke --result helloSwift --param name World
 
 创建 Java 操作的过程与创建 JavaScript 和 Swift 操作的过程类似。以下各部分将指导您创建并调用单个 Java 操作，然后向该操作添加参数。
 
-为了编译、测试和归档 Java 文件，您必须在本地安装 [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
+为了编译、测试和归档 Java 文件，您必须在本地安装 [JDK 8](http://openjdk.java.net/install)。
 
 ### 创建并调用操作
 {: #openwhisk_actions_java_invoke}

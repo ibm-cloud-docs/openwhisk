@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-05-11"
 
 ---
 
@@ -33,7 +33,7 @@ An existing catalog of packages offers a quick way to enhance applications with 
 ## How {{site.data.keyword.openwhisk_short}} works
 {: #openwhisk_how}
 
-Being an open-source project, OpenWhisk stands on the shoulders of giants, including Nginx, Kafka, Consul, Docker, CouchDB. All of these components come together to form a “serverless event-based programming service”. To explain all the components in more detail, lets trace an invocation of an Action through the system as it happens. An invocation in OpenWhisk is the core thing that a serverless-engine does: Execute the code the user fed into the system, and return the results of that execution.
+Being an open-source project, OpenWhisk stands on the shoulders of giants, including Nginx, Kafka, Docker, CouchDB. All of these components come together to form a “serverless event-based programming service”. To explain all the components in more detail, lets trace an invocation of an Action through the system as it happens. An invocation in OpenWhisk is the core thing that a serverless-engine does: Execute the code the user fed into the system, and return the results of that execution.
 
 ### Creating the Action
 
@@ -64,6 +64,7 @@ bx wsk action invoke myAction --result
 What happens behind the scenes in OpenWhisk?
 
 ![OpenWhisk flow of processing](images/OpenWhisk_flow_of_processing.png)
+<img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
 ### Entering the system: nginx
 
@@ -102,13 +103,10 @@ The record of the Action contains mainly the code to execute, and default parame
 
 In this particular case, the Action doesn’t take any parameters (the function’s parameter definition is an empty list). Thus, it is assumed that default parameters are not set, including specific parameters for the Action, making for the most trivial case from this point-of-view.
 
-### Who’s there to invoke the Action: Consul
 
-The Controller (or more specifically the load balancing part of it) has everything in place now to run your code, however, it needs to know who’s available to do so. **Consul**, a service discovery, is used to monitor available executors in the system by checking their health status continuously. Those executors are called **Invokers**.
+### Who’s there to invoke the action: Load Balancer
 
-The Controller, now knowing which Invokers are available, chooses one of them to invoke the Action requested.
-
-Let’s assume for this case, that the system has three Invokers available, Invokers 0 - 2, and that the Controller chose *Invoker 2* to invoke the Action at hand.
+The Load Balancer, which is part of the Controller, has a global view of the executors available in the system by checking their health status continuously. Those executors are called **Invokers**. The Load Balancer, knowing which Invokers are available, chooses one of them to invoke the action requested.
 
 ### Please form a line: Kafka
 
@@ -127,7 +125,7 @@ Once Kafka confirms that it got the message, the HTTP request to the user is res
 
 The **Invoker** is the heart of OpenWhisk. The Invoker’s duty is to invoke an Action. It is also implemented in Scala. But there’s much more to it. To execute Actions in an isolated and safe way it uses **Docker**.
 
-Docker is used to setup a new self-encapsulated environment (called *container*) for each Action that we invoke in a fast, isolated, and controlled way. For each Action invocation, a Docker container is spawned, and the Action code gets injected. The code is then executed by using the parameters that are passed to it, the result is obtained, and the container gets destroyed. Performance optimizations can be done at this stage to reduce overhead, and make low response times possible. 
+Docker is used to setup a new self-encapsulated environment (called *container*) for each Action that we invoke in a fast, isolated, and controlled way. For each Action invocation, a Docker container is spawned, and the Action code gets injected. The code is then executed by using the parameters that are passed to it, the result is obtained, and the container gets destroyed. Performance optimizations can be done at this stage to reduce overhead, and make low response times possible.
 
 In this case, having a *Node.js* based Action at hand, the Invoker starts a Node.js container. Then, injects the code from *myAction*, runs it with no parameters, extracts the result, saves the logs, and destroys the Node.js container again.
 
