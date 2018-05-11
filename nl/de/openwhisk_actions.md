@@ -1026,7 +1026,7 @@ Die Zeit, die zur Ausführung der Aktion benötigt wurde, ist in der Eigenschaft
 
 Das Verfahren zur Erstellung von Java-Aktionen ist dem von JavaScript- und Swift-Aktionen ähnlich. In den folgenden Abschnitten werden die Schritte zum Erstellen und Aufrufen einer einzelnen Java-Aktion sowie zum Übergeben von Parametern an diese Aktion beschrieben.
 
-Damit Sie Java-Dateien kompilieren, testen und archivieren können, muss lokal ein [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installiert sein.
+Damit Sie Java-Dateien kompilieren, testen und archivieren können, muss lokal ein [JDK 8](http://openjdk.java.net/install) installiert sein.
 
 ### Aktion erstellen und aufrufen
 {: #openwhisk_actions_java_invoke}

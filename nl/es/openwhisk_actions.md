@@ -1040,7 +1040,7 @@ El tiempo que se ha tardado en ejecutar la acción está en la propiedad "durati
 
 El proceso de creación de acciones Java es parecido al de las acciones JavaScript y Swift. En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Swift, y se añaden parámetros a dicha acción.
 
-Para compilar, probar y archivar archivos Java, debe tener un [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) instalado localmente.
+Para compilar, probar y archivar archivos Java, debe tener un [JDK 8](http://openjdk.java.net/install) instalado localmente.
 
 ### Creación e invocación de una acción
 {: #openwhisk_actions_java_invoke}

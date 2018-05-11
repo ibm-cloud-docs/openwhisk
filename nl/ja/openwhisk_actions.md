@@ -1025,7 +1025,7 @@ hello.zip が hello.swift と同じディレクトリーに作成されたこと
 
 Java アクションを作成するプロセスは、JavaScript アクションや Swift アクションと似ています。以下のセクションでは、単一 Java アクションの作成と呼び出し、および、そのアクションへのパラメーターの追加について説明します。
 
-Java ファイルをコンパイル、テスト、およびアーカイブするには、[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) がローカルにインストールされている必要があります。
+Java ファイルをコンパイル、テスト、およびアーカイブするには、[JDK 8](http://openjdk.java.net/install) がローカルにインストールされている必要があります。
 
 ### アクションの作成と呼び出し
 {: #openwhisk_actions_java_invoke}

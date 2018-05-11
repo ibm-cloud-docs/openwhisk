@@ -768,7 +768,7 @@ Il tempo impiegato per eseguire l'azione è nella proprietà "duration" e può e
 
 Il processo di creazione di azioni Java è analogo a quello delle azioni JavaScript e Swift. Le seguenti sezioni ti guidano lungo la creazione e la chiamata di una singola azione Java e l'aggiunta di parametri a tale azione.
 
-Per compilare, verificare e archiviare i file Java, devi disporre di [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installato localmente.
+Per compilare, verificare e archiviare i file Java, devi disporre di [JDK 8](http://openjdk.java.net/install) installato localmente.
 
 ### Creazione e chiamata di un'azione
 {: #openwhisk_actions_java_invoke}

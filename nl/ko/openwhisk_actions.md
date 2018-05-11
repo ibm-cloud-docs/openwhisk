@@ -1020,7 +1020,7 @@ hello.zip 파일이 hello.swift 파일과 동일한 디렉토리에 작성되었
 
 Java 조치를 작성하는 프로세스는 Javascript 및 Swift 조치의 경우와 유사합니다. 다음 절에서는 단일 Java 조치를 작성하고, 호출하며 해당 조치에 매개변수를 추가하는 방법에 대해 안내합니다. 
 
-Java 파일을 컴파일하고 테스트하며 아카이브하려면 [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)이 로컬로 설치되어 있어야 합니다. 
+Java 파일을 컴파일하고 테스트하며 아카이브하려면 [JDK 8](http://openjdk.java.net/install)이 로컬로 설치되어 있어야 합니다. 
 
 ### 조치 작성 및 호출
 {: #openwhisk_actions_java_invoke}

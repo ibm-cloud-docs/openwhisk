@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-05-11"
 
 ---
 
@@ -995,7 +995,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 
 The process of creating Java Actions is similar to that of JavaScript and Swift Actions. The following sections guide you through creating and invoking a single Java action, and adding parameters to that Action.
 
-In order to compile, test, and archive Java files, you must have a [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installed locally.
+In order to compile, test, and archive Java files, you must have a [JDK 8](http://openjdk.java.net/install) installed locally.
 
 ### Creating and invoking a Java action
 {: #openwhisk_actions_java_invoke}
