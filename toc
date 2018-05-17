@@ -87,4 +87,3 @@ IBM Cloud Functions
         [REST API Reference](https://console.bluemix.net/apidocs/98){: new_window}
         [Native API management in IBM Cloud](https://console.bluemix.net/docs/apis/management/index.html){: new_window}
     {: .navgroup-end}
-    
