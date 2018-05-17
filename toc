@@ -12,14 +12,14 @@ IBM Cloud Functions
         openwhisk_use_cases.md
         openwhisk_about.md
         openwhisk_compare.md
-            
+
     {: .topicgroup}
     Tutorials
         ../tutorials/slack-chatbot-database-watson.md
         ../tutorials/serverless-github-traffic-analytics.md
         ../tutorials/serverless-mobile-backend.md
         ../tutorials/serverless-api-webapp.md
-                
+
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
@@ -28,7 +28,7 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     {: .topicgroup}
-    Command Line Interface (CLI)
+    Setting up the CLI
         bluemix_cli.md
         openwhisk_cli.md
 
@@ -80,7 +80,7 @@ IBM Cloud Functions
 
     {: .navgroup id="reference"}
     openwhisk_reference.md
-    
+
     {: .topicgroup}
     API Documentation
         openwhisk_rest_api.md
