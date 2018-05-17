@@ -89,7 +89,7 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
     ```
     {: screen}
 
-3. Verify that the {{site.data.keyword.openwhisk_short}} `bx wsk` plugin is installed correctly by performing a blocking (synchronous) invocation of `echo`. Pass `hello` as an argument.
+3. Perform a blocking (synchronous) invocation of `echo`. Pass `hello` as an argument.
     ```
     bx wsk action invoke whisk.system/utils/echo -p message hello --result
     ```
