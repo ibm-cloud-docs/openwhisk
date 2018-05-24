@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-05-17"
+lastupdated: "2018-05-24"
 
 ---
 
@@ -15,23 +15,23 @@ lastupdated: "2018-05-17"
 # Binding services to Actions
 {: #binding_services}
 
-You can leverage the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an Action. The {{site.data.keyword.openwhisk_short}} `bx wsk service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your Cloud Functions code at run time.
+You can leverage the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an Action or Package. The {{site.data.keyword.openwhisk_short}} `bx wsk service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your Cloud Functions code at run time.
 {: shortdesc}
 
 The `bx wsk service bind` command is not to be confused with the `cf bind-service` command that is available in Cloud Foundry.
 
-## Binding a service to an Action
+## Binding a service to an Action or Package
 {: #cli_bind}
 
 Bind any {{site.data.keyword.Bluemix_notm}} service to any Action that is defined in {{site.data.keyword.openwhisk_short}}. Binding a service creates new parameter on your existing Action that contains the service instance credentials.
 
 **Note**:
 * The `bx wsk service bind` command does not support binding user-provided services that are created with the `bx cf create-user-provided-service` command.
-* You can only bind one service of each type to an Action. Binding multiple services of the same type within a single Action is not supported.
+* You can only bind one service of each type to an Action or Package. Binding multiple services of the same type is not supported.
 
-Before you begin, [define credentials](apps/reqnsi.html#accser_external) for the service that you want to bind.
+Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) for the service that you want to bind.
 
-1. Get the name of the service instance that you want to bind to an Action.
+1. Get the name of the service instance that you want to bind to an Action or Package.
     ```
     bx service list
     ```
@@ -82,7 +82,7 @@ Before you begin, [define credentials](apps/reqnsi.html#accser_external) for the
     </tr>
     <tr>
     <td><code>ACTION_NAME</code></td>
-    <td>The name of the action that you want to bind the service to.</td>
+    <td>The name of the Action or Package that you want to bind the service to.</td>
     </tr>
     <tr>
     <td>--instance <code>instance_name</code></td>
@@ -140,13 +140,13 @@ Before you begin, [define credentials](apps/reqnsi.html#accser_external) for the
 
     In this example, the credentials for the conversation service, along with any other credentials for other service types, belong to a parameter named `__bx_creds`. The Action looks for the `__bx_creds` bound parameter, and removes the reference to the service type listed. If that service type is the only one listed, the Action nulls out the `__bx_creds` parameter's value. If more than one service is bound to the Action, the `__bx_creds` parameter remains with whatever services are still bound.
 
-For more information about passing parameters to an Action and how credentials are affected when performing an `action update` operation, see [Working with parameters](./parameters.html#pass-params-action).
+For more information about passing parameters to an Action or Package and how credentials are affected when performing `update` operations, see [Working with parameters](./parameters.html#pass-params-action).
 
 
-## Unbinding a service from an Action
+## Unbinding a service from an Action or Package
 {: #cli_unbind}
 
-Unbind a service from an Action. Unbinding a service removes existing bindings created by the `service bind` command.
+Unbind a service from an Action or Package. Unbinding a service removes existing bindings created by the `service bind` command.
 
 ```
 bx wsk service unbind SERVICE_NAME ACTION_NAME

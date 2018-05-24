@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-11"
+lastupdated: "2018-05-18"
 
 ---
 
@@ -13,8 +13,10 @@ lastupdated: "2018-05-11"
 
 # Platform architecture
 
-{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. The following figure shows the high-level {{site.data.keyword.openwhisk}} architecture.
+{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
 {: shortdesc}
+
+The following figure shows the high-level {{site.data.keyword.openwhisk}} architecture.
 
 ![{{site.data.keyword.openwhisk_short}} architecture](./images/OpenWhisk.png)
 
@@ -63,7 +65,6 @@ bx wsk action invoke myAction --result
 ## The internal flow of processing
 What happens behind the scenes in OpenWhisk?
 
-![OpenWhisk flow of processing](images/OpenWhisk_flow_of_processing.png)
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
 ### Entering the system: nginx
@@ -170,4 +171,4 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Entity names](./openwhisk_reference.html#openwhisk_entities)
 * [Action semantics](./openwhisk_reference.html#openwhisk_semantics)
 * [Limits](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API](./openwhisk_reference.html#openwhisk_ref_restapi)
+* [REST API reference](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-11"
+lastupdated: "2018-05-24"
 
 ---
 
@@ -1349,7 +1349,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Note:** For standard Actions, authentication must be provided when invoked through an HTTPS request. For more information regarding Action invocations using the REST interface, see [REST APIs](./openwhisk_rest_api.html).
+**Note:** For standard Actions, authentication must be provided when invoked through an HTTPS request. For more information regarding Action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
 
 ### Saving Action code
 {: #save-action}
