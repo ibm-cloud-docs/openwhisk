@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-17"
+lastupdated: "2018-05-24"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-05-17"
 {:tip: .tip}
 {:pre: .pre}
 
-# {{site.data.keyword.openwhisk_short}} CLI plug-in
+# Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
 
 {{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system.
@@ -85,11 +85,11 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
     Output:
     ```
     Plugin Name          Version
-    Cloud-Functions      1.0.14
+    Cloud-Functions      1.0.16
     ```
     {: screen}
 
-3. Verify that the {{site.data.keyword.openwhisk_short}} `bx wsk` plugin is installed correctly by performing a blocking (synchronous) invocation of `echo`. Pass `hello` as an argument.
+3. Perform a blocking (synchronous) invocation of `echo`. Pass `hello` as an argument.
     ```
     bx wsk action invoke whisk.system/utils/echo -p message hello --result
     ```
@@ -202,6 +202,12 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+1.0.16 (2018-05-24)
+* Minor bug fixes and improvements.
+
+1.0.15 (2018-05-21)
+* Minor bug fixes and improvements.
 
 1.0.14 (2018-05-17)
 * Enable support for the `&` character in org and space names.

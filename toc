@@ -10,6 +10,7 @@ IBM Cloud Functions
     {: .topicgroup}
     Overview
         openwhisk_use_cases.md
+        cost_considerations.md
         openwhisk_about.md
         openwhisk_compare.md
 
@@ -19,18 +20,10 @@ IBM Cloud Functions
         ../tutorials/serverless-github-traffic-analytics.md
         ../tutorials/serverless-mobile-backend.md
         ../tutorials/serverless-api-webapp.md
-
-    {: .topicgroup}
-    Related links
-        [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
-        [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    {: .topicgroup}
-    Setting up the CLI
-        bluemix_cli.md
-        openwhisk_cli.md
+    bluemix_cli.md
 
     {: .topicgroup}
     Managing Actions
@@ -83,7 +76,15 @@ IBM Cloud Functions
 
     {: .topicgroup}
     API Documentation
-        openwhisk_rest_api.md
-        [REST API Reference](https://console.bluemix.net/apidocs/98){: new_window}
-        [Native API management in IBM Cloud](https://console.bluemix.net/docs/apis/management/index.html){: new_window}
+        [REST API Reference](https://console.stage1.ng.bluemix.net/apidocs/98){: new_window}
+        [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
+
+    {: .topicgroup}
+    Related links
+        [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
+        [Pricing](https://console.ng.bluemix.net/openwhisk/learn/pricing){: new_window}
+        [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
+        [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
+        [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
+
     {: .navgroup-end}
