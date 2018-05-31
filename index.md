@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-24"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -17,8 +17,6 @@ lastupdated: "2018-05-24"
 {: shortdesc}
 
 Because {{site.data.keyword.openwhisk_short}} is a serverless, event-driven platform, you don't need to explicitly provision servers. Developers working with microservices, mobile, IoT, and many other apps can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, and maintenance. Out of the box auto-scaling and load balancing means that you don't have to manually configure clusters, http plugins, and so on! IBM takes care of all of the hardware, networking, and software administration. All you have to do is provide the code.
-
-When not in use, {{site.data.keyword.openwhisk_short}} costs nothing. Your code executes when there is an HTTP call, database state change, or other type of event that triggers the execution of your code. You get billed by millisecond of execution time rounded up to the nearest 100 ms, not per hour of VM utilization regardless of whether that VM was doing useful work.
 
 Click an option to get started:
 
