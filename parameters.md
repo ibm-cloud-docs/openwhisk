@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -40,7 +40,7 @@ Parameters can be passed to an Action when it is invoked. The examples that are 
   ```
   {: pre}
 
-  If you need to modify your non-service credential parameters, be aware that doing an `action update` command with new parameters removes any parameters that currently exist, but are not specified in the `action update` command. For example, if there are two parameters aside from the `__bx_creds`, with keys named key1 and key2.  If you run an `action update` command with `-p key1 new-value -p key2 new-value` but omit the `__bx_creds` parameter, the `__bx_creds` parameter will no longer exist after the `action update` completes successfully. You then must rebind the service credentials.
+  If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the Action are also removed, so after you update other parameters you must [bind services to your Action](./binding_services.html) again.
   {: tip}
 
 3. Parameters can be provided explicitly by using the command line, or by [supplying a file](./parameters.html#using-parameter-files) that contains the desired parameters.
@@ -62,7 +62,7 @@ Parameters can be passed to an Action when it is invoked. The examples that are 
   Notice the use of the `--result` option: it implies a blocking invocation where the CLI waits for the activation to complete and then displays only the result. For convenience, this option can be used without `--blocking` which is automatically inferred.
 
   Additionally, if parameter values that are specified on the command line are valid JSON, then they are parsed and sent to your Action as a structured object.
-  
+
   For example, update the **hello** Action to the following:
   ```javascript
   function main(params) {
@@ -228,4 +228,3 @@ You can put parameters into a file in JSON format, and then pass in the paramete
   }
   ```
   {: screen}
-

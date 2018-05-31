@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-24"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -51,3 +51,28 @@ A summary of pros and cons for each architecture is provided from the **perspect
 |	Sweet spot type of application	|	Event processing, IoT, Mobile backend, microservices. Definitely not for monolithic applications. See [use cases](./openwhisk_use_cases.html)	|	Same as column (1), but when user wants to run on non-IBM cloud or run on-prem.	|	Web applications with 24x7 workload load, stateful services that need to keep the connection open for long periods of time. Can be used to run microservices or monolithic applications	|	Ideal for microservices applications.	|	Traditional enterprise applications that are migrated from on-prem to the cloud. Ideal for monolithic applications	|
 |	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://console.ng.bluemix.net/openwhisk/learn/pricing)	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5)	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space)	|	Similar to column (3)	|	Similar to column (3)	|
 |	Total Cost of Ownership (TCO)	|	For its sweet spot, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on-prem deployment can be cheaper than traditional architectures	|	Relatively low - The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate - The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS	|	Relatively high - Consider that migration of legacy applications into the cloud native model could be prohibitively expensive, this can be a viable and economical choice for those apps.	|
+
+## Cost considerations
+{: #cost_considerations}
+
+The infrastructure for your testing, staging, load testing, and other environments can be costly. It takes time to set them up, and because they usually operate 24x7, they are often underutilized and consume large amounts of capacity. By using a serverless architecture, costs for any number of environments are generated based on load instead of the number of environments defined.
+{: shortdesc}
+
+To estimate costs for a serverless application, you can use the [pricing calculator ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/learn/pricing).
+
+### Limitless capacity
+{: #limitless_capacity}
+
+In traditional architectures, each service consumes the amount of capacity allocated to them, and you are billed for the capacity consumption. {{site.data.keyword.openwhisk_short}}'s serverless architecture reduces the constraint on the granularity of your microservices architecture.
+
+When not in use, {{site.data.keyword.openwhisk_short}} costs nothing. Your code executes when there is an HTTP call, database state change, or other type of event that triggers the execution of your code. You get billed by millisecond of execution time rounded up to the nearest 100ms, not per hour of VM utilization regardless of whether that VM was doing useful work. Because you only pay when events are consumed and not based on the number of environments, you can break down your app into 100, 1000, or even more microservices.
+
+### Run actions in any region
+{: #actions_region}
+
+In traditional architectures, code must be running in each region to be executed there and the infrastructure for that region must also be paid for. With {{site.data.keyword.openwhisk_short}}, Actions can be deployed and made available to run in any region at no extra cost. You can increase the availability and resiliency of your code without the traditional cost restrictions.
+
+### Redundancy by design
+{: #redundancy_design}
+
+In traditional architectures, apps must be redundant. With {{site.data.keyword.openwhisk_short}}, processes don't need to be highly available (HA) because serverless apps are stateless and request-event driven by design. By eliminating the need for explicitly creating redundancy, the stateless nature of serverless apps can significantly reduce infrastructure costs.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-16"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -15,7 +15,7 @@ lastupdated: "2018-03-16"
 
 OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote Triggers and invoke remote Actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
 
-The mobile SDK is written in Swift 3.0 and supports iOS 10 and later releases. You can build the mobile SDK by using Xcode 8.0. Legacy Swift 2.2/Xcode 7 versions of the SDK are available up to 0.1.7, though it is now deprecated.
+The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK using Xcode 9.
 {: shortdesc}
 
 ## Add the SDK to your app
@@ -31,16 +31,16 @@ install! 'cocoapods', :deterministic_uuids => false
 use_frameworks!
 
 target 'MyApp' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 
-target 'MyApp WatchKit Extension' do 
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+target 'MyApp WatchKit Extension' do
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 ```
 {: codeblock}
 
-From the command line, type `pod install`. This command installs the SDK for an iOS app with a watchOS extension. Use the workspace file CocoaPods creates for your app to open the project in Xcode. 
+From the command line, type `pod install`. This command installs the SDK for an iOS app with a watchOS extension. Use the workspace file CocoaPods creates for your app to open the project in Xcode.
 
 After installation, open your project workspace. You might get the following warning when building:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
@@ -50,7 +50,7 @@ This is caused if Cocoapods does not update the Swift version in the Pods projec
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['SWIFT_VERSION'] = '4.0'
     end
   end
 end
@@ -61,7 +61,7 @@ end
 
 Create a file in your app's project directory and name it 'Cartfile'. Put the following line in the file:
 ```
-github "openwhisk/openwhisk-client-swift.git" ~> 0.2.2 # Or latest version
+github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
 {: pre}
 
@@ -86,7 +86,7 @@ bx wsk sdk install iOS
 ```
 {: pre}
 
-This command downloads a compressed file that contains the starter app. Inside the project directory is a podfile. 
+This command downloads a compressed file that contains the starter app. Inside the project directory is a podfile.
 
 To install the SDK, enter the following command:
 ```
