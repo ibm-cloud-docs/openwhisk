@@ -17,7 +17,7 @@ lastupdated: "2018-05-01"
 # Deploying Quickstart Templates
 {: #serviceauth}
 
-{{site.data.keyword.openwhisk}} offers a catalog of Templates to help you get started quickly on your next project. Templates are a combination of Actions, Triggers, Sequences, and can also incorpoate service instances from {{site.data.keyword.Bluemix}}. By using Templates, you can quickly and easily create a project, and start coding right away. 
+{{site.data.keyword.openwhisk}} offers a catalog of Templates to help you get started quickly on your next project. Templates are a combination of Actions, Triggers, Sequences, and can also incorpoate service instances from {{site.data.keyword.Bluemix}}. By using Templates, you can quickly and easily create a project, and start coding right away.
 
 This tutorial steps you through deploying the Cloudant Template.
 {: shortdesc}
@@ -25,13 +25,13 @@ This tutorial steps you through deploying the Cloudant Template.
 ## Available Quickstart Templates
 {: #available-templates}
 
-| Name | Description | Supported Runtimes | 
+| Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
 | [Cloudant Events](./deploy_templates.html#cloudant-template) | When a Cloudant DB has a documented edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | A web action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](./deploy_templates.html#hello-world-template) | This action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
-| [Message Hub Events](./deploy_templates.html#messagehub-events-template) | When a Message Hub topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP | 
-| [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | An action that will post to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | A web Action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
+| [Hello World](./deploy_templates.html#hello-world-template) | This Action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
+| [Message Hub Events](./deploy_templates.html#messagehub-events-template) | When a Message Hub topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | An Action that will post to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the Cloudant Events template
 {: #cloudant-template}
@@ -48,7 +48,7 @@ The Cloudant Template creates a sequence of Actions, and a Trigger that will kic
 
 1. Next, provide a name for your package or use the provided default name `new-cloudant-item`.
 
-2. Under the **Actions** drop-down, select the runtime for the actions you will own (nodejs, swift, python, or php). For this example, select **nodejs**, and click **Next**.
+2. Under the **Actions** drop-down, select the runtime for the Actions you will own (nodejs, swift, python, or php). For this example, select **nodejs**, and click **Next**.
 
 ### Creating the Cloudant trigger
 
@@ -79,7 +79,7 @@ After Template deployment, you can make further edits to the code to customize i
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}
 
-The Get HTTP Resource template creates an Action to fetch an external resource, the Yahoo Weather API, and then returns data. The Action is enabled as a Web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publically available to anyone who may want to call it.
+The Get HTTP Resource template creates an Action to fetch an external resource, the Yahoo Weather API, and then returns data. The Action is enabled as a Web Action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publically available to anyone who may want to call it.
 
 1. To create a Template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
 
@@ -96,7 +96,7 @@ After Template deployment, you can make further edits to the code to customize i
 ## Deploying the Hello World template
 {: #hello-world-template}
 
-This action will accept a single parameter, which must be a JSON object.
+This Action will accept a single parameter, which must be a JSON object.
 
 1. To create a Template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
 

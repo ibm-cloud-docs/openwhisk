@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-18"
+lastupdated: "2018-06-07"
 
 ---
 
@@ -16,54 +16,43 @@ lastupdated: "2018-05-18"
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
 {: shortdesc}
 
-The following figure shows the high-level {{site.data.keyword.openwhisk}} architecture.
+## {{site.data.keyword.openwhisk_short}} technology
+{: #technology}
 
-![{{site.data.keyword.openwhisk_short}} architecture](./images/OpenWhisk.png)
+Learn about some basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
 
-Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a Trigger, and Rules allow Actions to react to these events.
-
-Actions can be small snippets of JavaScript or Swift code, or custom binary code embedded in a Docker container. Actions in {{site.data.keyword.openwhisk_short}} are instantly deployed and executed whenever a Trigger fires. The more Triggers that fire, the more Actions get invoked. If no Trigger fires, no Action code is running, the cost remains zero.
-
-In addition to associating Actions with Triggers, it is possible to directly invoke an Action by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. A set of Actions can also be chained without having to write any code. Each Action in the chain is invoked in sequence with the output of one Action that is passed as input to the next in the sequence.
-
-With traditional long-running virtual machines or containers, it is common practice to deploy multiple VMs or containers to be resilient against outages of a single instance. However, {{site.data.keyword.openwhisk_short}} offers an alternative model with no resiliency-related cost overhead. The on-demand execution of Actions provides inherent scalability and optimal utilization as the number of running Actions always matches the Trigger rate. Additionally, the developer can now focus on code, and does not worry about monitoring, patching, and securing the underlying server, storage, network, and operating system infrastructure.
-
-Integrations with services and event providers can be added with packages. A package is a bundle of feeds and Actions. A feed is a piece of code that configures an external event source to fire Trigger events. For example, a Trigger that is created with a Cloudant change feed configures a service to fire the Trigger every time a document is modified or added to a Cloudant database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
-
-An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that are {{site.data.keyword.openwhisk_short}} enabled include Cloudant, The Weather Company, Slack, and GitHub.
+<dl>
+<dt>Action</dt>
+<dd>An [Action](openwhisk_actions.html) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
+<br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.Bluemix_notm}} services and third party services using a trigger.</dd>
+<dt>Sequence</dt>
+<dd>A set of Actions can be chained together into a [sequence](openwhisk_actions.html#openwhisk_create_action_sequence) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one Action is passed as input to the next Action. This allows you to combine existing actions together for quick and easy re-use. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
+</dd>
+<dt>Event</dt>
+<dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a Trigger, and Rules allow Actions to react to these events.</dd>
+<dt>Trigger</dt>
+<dd>[Triggers](openwhisk_triggers_rules.html#openwhisk_triggers_create) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
+<dt>Rule</dt>
+<dd>A [rule](openwhisk_triggers_rules.html#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule invokes the associated action. With the appropriate set of Rules, it's possible for a single Trigger event to invoke multiple Actions, or for an Action to be invoked as a response to events from multiple Triggers.</dd>
+<dt>Package</dt>
+<dd>Integrations with services and event providers can be added with packages. A [package](openwhisk_packages.html) is a bundle of feeds and Actions. A feed is a piece of code that configures an external event source to fire Trigger events. For example, a Trigger that is created with a Cloudant change feed configures a service to fire the Trigger every time a document is modified or added to a Cloudant database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
+<br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include Cloudant, The Weather Company, Slack, and GitHub.</dd>
+</dl>
 
 ## How {{site.data.keyword.openwhisk_short}} works
 {: #openwhisk_how}
 
-Being an open-source project, OpenWhisk stands on the shoulders of giants, including Nginx, Kafka, Docker, CouchDB. All of these components come together to form a “serverless event-based programming service”. To explain all the components in more detail, lets trace an invocation of an Action through the system as it happens. An invocation in OpenWhisk is the core thing that a serverless-engine does: Execute the code the user fed into the system, and return the results of that execution.
+To explain all the components in more detail, let's trace an invocation of an Action through the {{site.data.keyword.openwhisk_short}} system. An invocation executes the code the user feeds into the system, and returns the results of that execution. The following figure shows the high-level {{site.data.keyword.openwhisk_short}} architecture.
 
-### Creating the Action
+![{{site.data.keyword.openwhisk_short}} architecture](./images/OpenWhisk.png)
 
-To give the explanation some context, we can create an Action in the system first. Then, use that Action to explain the concepts while tracing through the system. The following commands assume that the [{{site.data.keyword.openwhisk_short}} CLI plug-in](./bluemix_cli.html) is set up properly.
 
-First, create a file named **action.js**, that contains the following code and prints “Hello World” to stdout, and returns a JSON object containing “world” under the key “hello”.
-```javascript
-function main() {
-    console.log('Hello World');
-    return { hello: 'world' };
-}
-```
-{: codeblock}
+## How OpenWhisk internal processing works
+{: #openwhisk_internal}
 
-Create the Action by running the following command:
-```
-bx wsk action create myAction action.js
-```
-{: pre}
-
-Now, run the following command to invoke that Action:
-```
-bx wsk action invoke myAction --result
-```
-{: pre}
-
-## The internal flow of processing
 What happens behind the scenes in OpenWhisk?
+
+OpenWhisk is an open-source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 

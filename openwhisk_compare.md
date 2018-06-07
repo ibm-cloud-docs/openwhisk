@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-31"
+lastupdated: "2018-06-07"
 
 ---
 
@@ -14,23 +14,28 @@ lastupdated: "2018-05-31"
 # Function as a Service compared
 {: #openwhisk_faas_compared}
 
-Serverless architecture is not a panacea to all computing problems, but it does solve some. There are [many uses cases](./openwhisk_use_cases.html) when serverless design can be a good choice. The following architectures are compared:
+{{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}}'s serverless architecture and cost-effective computing with other architecture models.
 {: shortdesc}
 
-1. **Function as a Service (FaaS)** - managed OpenWhisk. IBM is the only vendor to offer managed [OpenWhisk on {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk). A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html).
+## Comparison of OpenWhisk architectures
+{: #architecture_comparison}
 
-2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). End users can download OpenWhisk from Apache Incubation Project and install and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices), or other [IaaS cloud](https://en.wikipedia.org/wiki/Cloud_computing#Infrastructure_as_a_service_.28IaaS.29).
+The following OpenWhisk architectures are compared:
 
-3. **Platform as a Service (PaaS)** - managed application runtime. A good example is [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} CloudFoundry implementation.
+1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk). IBM is the only vendor to offer managed OpenWhisk. A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html), and you can see [uses cases](./openwhisk_use_cases.html) for running OpenWhisk with a serverless design.
 
-4. **Container as a Service (CaaS)** - managed container environment. A good example is IBM’s [Containers on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/?category=containerImages).
+2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices).
 
-5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server) from IBM.
+3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} Foundry implementation.
 
-A summary of pros and cons for each architecture is provided from the **perspective of an end user** who is developing, and operating applications on these different runtimes:
+4. **Container as a Service (CaaS)** as a managed container environment. A good example is the [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index).
+
+5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server).
+
+The following table compares elements of each architecture from the perspective of a developer that is creating and operating applications:
 
 
-| Topic | (1) OpenWhisk FaaS | (2) OpenWhisk RYO | (3) PaaS | (4) CaaS | (5) IaaS+Java EE |
+| Topic | (1) FaaS on {{site.data.keyword.openwhisk_short}} | (2) IaaS with OpenWhisk RYO | (3) PaaS | (4) CaaS | (5) IaaS with Java EE |
 | --- | --- | --- | --- | --- | --- |
 |	Application unit	|	Single function (usually small block of code in JavaScript, Swift, or Docker container) - can be less than one Kb, but can be larger. Usually not more than few Kb.	|	Same as column (1)	|	Depends on the runtime used. An EAR or WAR file, or other language-specific application bundle, usually relatively large - Kb or even Mb with many services in a bundle, but can be as small as a single service.	|	Docker container is the unit of deployment.	|	VM with App Server with EAR or WAR file and other dependencies - usually sized at Gb.	|
 |	Resource footprint	|	End user does not pay or care about memory, CPU, or other resources. Although the Action does have some footprint, the user does not need to worry about it	|	High. The end user must first provision IaaS environment and only then install and configure OpenWhisk on top of it	|	Small. End user pays for memory and CPU for running apps, but nothing for apps that are not running	|	Small to Medium	|	High. End user has to pay for disk storage, memory, CPUs, and possibly other components when the app is running. When it is stopped only the storage costs occur	|
