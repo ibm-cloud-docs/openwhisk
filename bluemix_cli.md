@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-24"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -222,7 +222,7 @@ A historical record of versions that show highlights and bug fixes.
 * Minor bug fixes and improvements.
 
 1.0.10 (2018-04-09)
-* Add new `--web-secure` option to the `bx wsk action create|update` commands to secure web action endpoints.
+* Add new `--web-secure` option to the `bx wsk action create|update` commands to secure web Action endpoints.
 * Fix back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
 
 1.0.9 (2018-03-16)
