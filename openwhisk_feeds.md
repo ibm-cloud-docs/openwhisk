@@ -62,13 +62,13 @@ When the user creates a Trigger from the CLI with the **--feed** parameter, the 
 
 For example, assume that the user creates a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
 ```
-bx wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ic wsk trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Then, under the covers the system does something equivalent to the following command:
 ```
-bx wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ic wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ The Feed Action that is named *changes* takes these parameters, and is expected 
 
 For the Cloudant *changes* Feed, the Action happens to talk directly to a *cloudant Trigger* service that is implemented with a connection-based architecture.
 
-A similar Feed Action protocol occurs for `bx wsk trigger delete`, `bx wsk trigger update` and `bx wsk trigger get`.
+A similar Feed Action protocol occurs for `ic wsk trigger delete`, `ic wsk trigger update` and `ic wsk trigger get`.
 
 ## Implementing Feeds with Hooks
 

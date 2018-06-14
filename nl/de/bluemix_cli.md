@@ -28,14 +28,14 @@ Laden Sie die [{{site.data.keyword.Bluemix_notm}}-CLI](https://console.bluemix.n
 
 Führen Sie den folgenden Befehl aus, um das {{site.data.keyword.openwhisk_short}}-Plug-in zu installieren: 
 ```
-bx plugin install cloud-functions
+ic plugin install cloud-functions
 ```
 {: pre}
 
 
 Führen Sie den folgenden Befehl aus, um die erfolgreiche {{site.data.keyword.openwhisk_short}}-Plug-in-Installation zu überprüfen:
 ```
-bx plugin list cloud-functions
+ic plugin list cloud-functions
 ```
 {: pre}
 
@@ -48,12 +48,12 @@ Cloud-Functions      1.0.0
 
 Sie können ein Upgrade für das {{site.data.keyword.openwhisk_short}}-Plug-in mithilfe des folgenden Befehls durchführen:
 ```
-bx plugin update Cloud-Functions
+ic plugin update Cloud-Functions
 ```
 {: pre}
 
 
-Weitere Informationen zum Befehl 'plugin' können Sie durch `bx plugin --help` abrufen oder in der folgenden Dokumentation nachlesen:
+Weitere Informationen zum Befehl 'plugin' können Sie durch `ic plugin --help` abrufen oder in der folgenden Dokumentation nachlesen:
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_plugin_list
 
 ## {{site.data.keyword.Bluemix_notm}}-CLI-Authentifizierung
@@ -65,23 +65,23 @@ Wenn Sie sich an der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstel
 
 Geben Sie den folgenden Befehl ein, um sich an der Region 'Vereinigte Staaten (Süden)' (US South) anzumelden:
 ```
-bx login -a api.ng.bluemix.net
+ic login -a api.ng.bluemix.net
 ```
 {: pre}
 
 
 Geben Sie den folgenden Befehl ein, um sich an der Region 'Vereintes Königreich' (United Kingdom) anzumelden:
 ```
-bx login -a api.eu-gb.bluemix.net
+ic login -a api.eu-gb.bluemix.net
 ```
 {: pre}
 
 
-Das Flag `-a` gibt den zu verwendenden {{site.data.keyword.Bluemix_notm}}-API-Endpunkt an. Wenn der API-Endpunkt festgelegt ist, ist die Option `-a` nicht erforderlich. Sie können den Befehl `bx api` verwenden, um den {{site.data.keyword.Bluemix_notm}}-API-Endpunkt explizit festzulegen. Zum Anzeigen der aktuellen Einstellung für den API-Endpunkt verwenden Sie den Befehl `bx target`.
+Das Flag `-a` gibt den zu verwendenden {{site.data.keyword.Bluemix_notm}}-API-Endpunkt an. Wenn der API-Endpunkt festgelegt ist, ist die Option `-a` nicht erforderlich. Sie können den Befehl `ic api` verwenden, um den {{site.data.keyword.Bluemix_notm}}-API-Endpunkt explizit festzulegen. Zum Anzeigen der aktuellen Einstellung für den API-Endpunkt verwenden Sie den Befehl `ic target`.
 
 Der Befehl `login` fordert Sie zur Eingabe von Informationen an, wie zum Beispiel die Organisation, den Bereich und das Kennwort, falls diese nicht angegeben wurden. Sie können die Organisation und den Bereich in der Befehlszeile angeben, um die Eingabeaufforderungen zu überspringen.
 ```
-bx login -o <MY_ORG> -s <MY_SPACE>
+ic login -o <MY_ORG> -s <MY_SPACE>
 ```
 {: pre}
 
@@ -91,19 +91,19 @@ https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-a
 
 Zum Erstellen eines neuen API-Schlüssels über die {{site.data.keyword.Bluemix_notm}}-CLI führen Sie den folgenden Befehl aus:
 ```
-bx iam api-key-create MyKey
+ic iam api-key-create MyKey
 ```
 {: pre}
 
 
 Verwenden Sie anschließend den generierten Wert des API-Schlüssels wie im folgenden Beispiel, um sich anzumelden:
 ```
-bx login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
+ic login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
 ```
 {: pre}
 
 
-Weitere Informationen zum Befehl 'login' können Sie durch `bx login --help` abrufen oder in der folgenden Dokumentation nachlesen:
+Weitere Informationen zum Befehl 'login' können Sie durch `ic login --help` abrufen oder in der folgenden Dokumentation nachlesen:
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login
 
 
@@ -112,7 +112,7 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_l
 
 Überprüfen Sie Ihre Konfiguration. Führen Sie einen blockierenden (synchronen) Aufruf von 'echo' aus, indem Sie `hello` als Argument wie im folgenden Beispiel übergeben:
 ```
-bx wsk action invoke whisk.system/utils/echo -p message hello --result
+ic wsk action invoke whisk.system/utils/echo -p message hello --result
 ```
 {: pre}
 
@@ -131,7 +131,7 @@ Nach der Konfiguration Ihrer Umgebung können Sie die {{site.data.keyword.openwh
 * Sie können sich informieren, wie Aktionen in Paketen gebündelt und externe Ereignisquellen konfiguriert werden. Siehe [Pakete verwenden und erstellen](./openwhisk_packages.html).
 * Sie können den Katalog der Pakete durchsuchen und Ihre Anwendungen durch externe Services wie zum Beispiel eine [Cloudant-Ereignisquelle](./openwhisk_cloudant.html) erweitern. Siehe [Für {{site.data.keyword.openwhisk_short}} eingerichtete Services verwenden](./openwhisk_catalog.html).
 
-Zum Abrufen einer Liste von Befehlen für das {{site.data.keyword.openwhisk_short}}-Plug-in führen Sie den Befehl `bx wsk` ohne Argumente aus.
+Zum Abrufen einer Liste von Befehlen für das {{site.data.keyword.openwhisk_short}}-Plug-in führen Sie den Befehl `ic wsk` ohne Argumente aus.
 
 ## Services über Aktionen verwenden
 {: #binding_services}
@@ -151,17 +151,17 @@ Die {{site.data.keyword.openwhisk_short}}-CLI kann zur Verwendung eines HTTPS-Pr
 
 Zur Verwaltung Ihrer Bereitstellungen in der Vorproduktionsumgebung (Staging) und in der Produktionsumgebung können Sie Bereiche für beide Zwecke erstellen. Durch diese Bereiche kann {{site.data.keyword.openwhisk_short}} zwei verschiedene für Sie definierte Namensbereiche haben.
 
-Sie können den Befehl `bx iam space-create` verwenden, um weitere Bereiche unter Ihrer Organisation wie "staging" und "production" zu erstellen. Beispiel:
+Sie können den Befehl `ic iam space-create` verwenden, um weitere Bereiche unter Ihrer Organisation wie "staging" und "production" zu erstellen. Beispiel:
 ```
-bx iam space-create "staging"
-bx iam space-create "production"
+ic iam space-create "staging"
+ic iam space-create "production"
 ```
 
-Weitere Informationen zum Befehl `bx iam` finden Sie in der folgenden Dokumentation: https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
+Weitere Informationen zum Befehl `ic iam` finden Sie in der folgenden Dokumentation: https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
 
 {{site.data.keyword.openwhisk_short}} unterliegt Einschränkungen für Namen von Namensbereichen. Weitere Informationen zu diesen Einschränkungen finden Sie in der folgenden Dokumentation: https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities
 
-Wenn Sie bereits angemeldet sind, können Sie den Befehl `bx target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle (CLI) ausführen, um Regionen, Organisationen und Bereiche zu wechseln.
+Wenn Sie bereits angemeldet sind, können Sie den Befehl `ic target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle (CLI) ausführen, um Regionen, Organisationen und Bereiche zu wechseln.
 
 Verwenden Sie den folgenden Befehl, um alle {{site.data.keyword.Bluemix_notm}}-Regionen anzuzeigen.
 
@@ -169,28 +169,28 @@ Verwenden Sie den folgenden Befehl, um alle {{site.data.keyword.Bluemix_notm}}-R
 {: tip}
 
 ```
-bx regions
+ic regions
 
 Name       Geoortung                    Kunde  Bereitstellung  Domäne              CF-API-Endpunkt                  Typ
 us-south   Vereinigte Staaten (Süden)   IBM    Produktion      ng.bluemix.net      https://api.ng.bluemix.net       Öffentlich
 eu-gb      Vereintes Königreich         IBM    Produktion      eu-gb.bluemix.net   https://api.eu-gb.bluemix.net    Öffentlich
 ```
 
-Verwenden Sie den Befehl `bx target` zum Wechseln von Regionen. Wenn Sie zum Beispiel zur Region 'Vereinigtes Königreich' und zum Bereich `staging` wechseln möchten, geben Sie den folgenden Befehl ein:
+Verwenden Sie den Befehl `ic target` zum Wechseln von Regionen. Wenn Sie zum Beispiel zur Region 'Vereinigtes Königreich' und zum Bereich `staging` wechseln möchten, geben Sie den folgenden Befehl ein:
 ```
-bx target -r eu-gb -s staging
+ic target -r eu-gb -s staging
 ```
 {: pre}
 
 
 Wenn Sie Bereiche innerhalb derselben Region wechseln müssen, zum Beispiel von 'staging' zu 'production', führen Sie den folgenden Befehl aus:
 ```
-bx target -s production
+ic target -s production
 ```
 {: pre}
 
 
-Weitere Informationen zum Befehl `target` können Sie durch `bx target --help` abrufen oder in der folgenden Dokumentation nachlesen:
+Weitere Informationen zum Befehl `target` können Sie durch `ic target --help` abrufen oder in der folgenden Dokumentation nachlesen:
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_target
 
 ## Von der OpenWhisk-CLI auf das {{site.data.keyword.openwhisk_short}}-CLI-Plug-in migrieren
@@ -201,26 +201,26 @@ Mit der Einführung des {{site.data.keyword.openwhisk_short}}-CLI-Plug-in wird d
 ### Befehlssyntax
 {: #command_syntax}
 
-Alle `wsk`-Befehle mit Ausnahme des Befehls `wsk bluemix login`, der nicht mehr erforderlich ist, funktionieren auf die gleiche Weise wie bei Verwendung des Befehls `bx wsk`. Alle Befehlsoptionen und -argumente sind gleich.
+Alle `wsk`-Befehle mit Ausnahme des Befehls `wsk bluemix login`, der nicht mehr erforderlich ist, funktionieren auf die gleiche Weise wie bei Verwendung des Befehls `ic wsk`. Alle Befehlsoptionen und -argumente sind gleich.
 
 ### API-Authentifizierung und API-Host
 {: #api_authentication}
 
 Für die OpenWhisk-Befehlszeilenschnittstelle (CLI) müssen Sie den Authentifizierungs-API-Schlüssel und den API-Host konfigurieren.
-Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in brauchen Sie den API-Schlüssel und den API-Host nicht explizit zu konfigurieren. Sie müssen Sie mit dem Befehl `bx login` und Ihre Region und Ihren Namensbereich mit dem Befehl `bx target` als Ziel festlegen. Anschließend beginnen alle weiteren Befehle mit `bx wsk`. Durch diese Art der Authentifizierung lässt sich außerdem ein Zugriff auf die {{site.data.keyword.Bluemix_notm}}-Webseite vermeiden, um bestimmte Informationen zur Konfiguration Ihrer CLI-Umgebung abzurufen.
+Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in brauchen Sie den API-Schlüssel und den API-Host nicht explizit zu konfigurieren. Sie müssen Sie mit dem Befehl `ic login` und Ihre Region und Ihren Namensbereich mit dem Befehl `ic target` als Ziel festlegen. Anschließend beginnen alle weiteren Befehle mit `ic wsk`. Durch diese Art der Authentifizierung lässt sich außerdem ein Zugriff auf die {{site.data.keyword.Bluemix_notm}}-Webseite vermeiden, um bestimmte Informationen zur Konfiguration Ihrer CLI-Umgebung abzurufen.
 
 Wenn Sie den Authentifizierungs-API-Schlüssel für {{site.data.keyword.openwhisk_short}} für die Verwendung über einen externen HTTP-Client wie cURL oder Postman abrufen müssen, können Sie ihn mit den folgenden Befehlen abrufen:
 
 Führen Sie zum Abrufen des aktuellen API-Schlüssels den folgenden Befehl aus:
 ```
-bx wsk property get --auth
+ic wsk property get --auth
 ```
 {: pre}
 
 
 Führen Sie zum Abrufen des aktuellen API-Hosts den folgenden Befehl aus:
 ```
-bx wsk property get --apihost
+ic wsk property get --apihost
 ```
 {: pre}
 
@@ -233,12 +233,12 @@ Der API-Schlüssel ist jeweils für die Region, die Organisation und den Bereich
 
 Gegenwärtig muss für die OpenWhisk-Befehlszeile der Befehl `wsk bluemix login` ausgeführt werden, um die API-Gateway-Berechtigung für das Management Ihrer APIs mit dem Befehl `wsk api` konfigurieren zu können.
 
-Mit dem {{site.data.keyword.openwhisk}}-CLI-Plug-in ist es nicht mehr erforderlich, den Befehl `wsk bluemix login` auszuführen. Stattdessen verwenden Sie den Befehl `bx login`, um sich bei {{site.data.keyword.Bluemix_notm}} anzumelden. Anschließend verwendet das {{site.data.keyword.openwhisk}}-Plug-in automatisch die Informationen zu Ihrer aktuellen Anmeldung und Ihrem aktuellen Bereich. Jetzt können Sie Ihre APIs mit dem Befehl `bx wsk api` verwalten.
+Mit dem {{site.data.keyword.openwhisk}}-CLI-Plug-in ist es nicht mehr erforderlich, den Befehl `wsk bluemix login` auszuführen. Stattdessen verwenden Sie den Befehl `ic login`, um sich bei {{site.data.keyword.Bluemix_notm}} anzumelden. Anschließend verwendet das {{site.data.keyword.openwhisk}}-Plug-in automatisch die Informationen zu Ihrer aktuellen Anmeldung und Ihrem aktuellen Bereich. Jetzt können Sie Ihre APIs mit dem Befehl `ic wsk api` verwalten.
 
 ### Implementierungsscripts migrieren
 {: #migrating_deploy_scripts}
 
-Wenn Sie Scripts haben, die die OpenWhisk-Befehlszeilenschnittstelle mit dem Binärprogramm `wsk` verwenden, funktionieren alle Befehle auf die gleiche Weise wie bei Verwendung des Befehls `bx wsk`. Sie können Ihre Scripts so ändern, dass sie das {{site.data.keyword.Bluemix_notm}}-CLI-Plug-in verwenden, oder einen Alias oder Wrapper erstellen, sodass aktuelle Ausführungen von `wsk` in `bx wsk` übersetzt werden. Die Befehle `bx login` und `bx target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle arbeiten im unbeaufsichtigten Modus. Beim unbeaufsichtigten Modus können Sie Ihre Umgebung konfigurieren, bevor Sie Befehle `bx wsk` ausführen, um Ihre {{site.data.keyword.openwhisk_short}}-Entitäten bereitzustellen und zu verwalten.
+Wenn Sie Scripts haben, die die OpenWhisk-Befehlszeilenschnittstelle mit dem Binärprogramm `wsk` verwenden, funktionieren alle Befehle auf die gleiche Weise wie bei Verwendung des Befehls `ic wsk`. Sie können Ihre Scripts so ändern, dass sie das {{site.data.keyword.Bluemix_notm}}-CLI-Plug-in verwenden, oder einen Alias oder Wrapper erstellen, sodass aktuelle Ausführungen von `wsk` in `ic wsk` übersetzt werden. Die Befehle `ic login` und `ic target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle arbeiten im unbeaufsichtigten Modus. Beim unbeaufsichtigten Modus können Sie Ihre Umgebung konfigurieren, bevor Sie Befehle `ic wsk` ausführen, um Ihre {{site.data.keyword.openwhisk_short}}-Entitäten bereitzustellen und zu verwalten.
 
 
 ## Versionsprotokoll
@@ -247,9 +247,9 @@ Wenn Sie Scripts haben, die die OpenWhisk-Befehlszeilenschnittstelle mit dem Bin
 Hierbei handelt es sich um eine Protokollaufzeichnung der Versionen, die Schwerpunkte und Fehlerkorrekturen aufzeigt.
 
 1.0.7 (2018-02-02)
-* Der Befehl `bx wsk api` akzeptiert jetzt Pfadparameter wie `/api/{id}`. Informationen finden Sie unter [API-Gateway](./openwhisk_apigateway.html).
+* Der Befehl `ic wsk api` akzeptiert jetzt Pfadparameter wie `/api/{id}`. Informationen finden Sie unter [API-Gateway](./openwhisk_apigateway.html).
 * Proxy-Unterstützung wiederhergestellt.
 * `swift:3` entfernt.
 
 1.0.6 (2018-01-30)
-* Fehler für den Befehl `bx wsk service bind` für Aktionen in einem Paket behoben.
+* Fehler für den Befehl `ic wsk service bind` für Aktionen in einem Paket behoben.

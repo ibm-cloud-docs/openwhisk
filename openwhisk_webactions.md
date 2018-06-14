@@ -33,12 +33,12 @@ function main({name}) {
 
 You can create a _web Action_ **hello**  in the Package `demo` for the Namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
 ```
-bx wsk package create demo
+ic wsk package create demo
 ```
 {: pre}
 
 ```
-bx wsk action create /guest/demo/hello hello.js --web true
+ic wsk action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ A content extension is usually necessary to invoke a Web Action. The absence of 
 
 Action parameters are protected and treated as immutable. Parameters are automatically finalized to enable Web Actions.
 ```
-bx wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ic wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ Alternatively, use the `--web-secure` flag to automatically set the `require-whi
 
 Example using **--web-secure**:
 ```bash
-bx wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ic wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Example using **require-whisk-auth**:
 ```bash
-bx wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ic wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ It is important to note that the owner of the Web action owns all of the activat
 
 To disable a Web Action from being invoked via web API (`https://openwhisk.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an Action with the CLI.
 ```
-bx wsk action update /guest/demo/hello hello.js --web false
+ic wsk action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/h
 
 Raw HTTP Web Actions are enabled through the `--web` flag by using a value of `raw`.
 ```
-bx wsk action create /guest/demo/hello hello.js --web raw
+ic wsk action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ bx wsk action create /guest/demo/hello hello.js --web raw
 
 Disabling raw HTTP can be accomplished by passing a value of `false` or `no` to the `--web` flag.
 ```
-bx wsk update create /guest/demo/hello hello.js --web false
+ic wsk update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 As an example, save the Node function as `decode.js` and execute the following commands:
 ```
-bx wsk action create decode decode.js --web raw
+ic wsk action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 Save the function to `custom-options.js` and execute the following commands:
 ```
-bx wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ic wsk action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

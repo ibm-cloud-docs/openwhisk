@@ -35,25 +35,25 @@ To create a Trigger that is fired each time a new device registers with the Push
 
 1. Create a package binding that is configured for your Push Notifications service by using your **appId** and **appSecret**.
   ```
-  bx wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ic wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Create a Trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` Feed.
   ```
-  bx wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ic wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. You can create a Rule that sends a message every time a new device is registered. Create a Rule by using the previous Action and Trigger.
   ```
-  bx wsk rule create --enable myRule myPushTrigger sendMessage
+  ic wsk rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Check the results by using the `bx wsk activation poll` command.
+4. Check the results by using the `ic wsk activation poll` command.
   ```
-  bx wsk activation poll
+  ic wsk activation poll
   ```
   {: pre}
 

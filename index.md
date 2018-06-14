@@ -65,13 +65,13 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
 
 3. Create the `hello` Action.
     ```
-    bx wsk action create hello hello.js
+    ic wsk action create hello hello.js
     ```
     {: pre}
 
 4. Invoke the Action without passing any parameters.
     ```
-    bx wsk action invoke hello --blocking --result
+    ic wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -85,7 +85,7 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
 
 5. Invoke the Action again, passing the name parameter, to test the app logic.
     ```
-    bx wsk action invoke hello --blocking --result --param name Fred
+    ic wsk action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -97,7 +97,7 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
     ```
     {: screen}
 
-Good work! You created your first Action. To clean up this Action, run `bx wsk action delete hello`.
+Good work! You created your first Action. To clean up this Action, run `ic wsk action delete hello`.
 
 **What's next?**
 * [Try out the alarm service example to invoke the **hello** Action every time a periodic event is generated.](./openwhisk_packages.html#openwhisk_package_trigger)

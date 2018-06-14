@@ -31,7 +31,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 
 1. Get a list of packages in the `/whisk.system` namespace.
   ```
-  bx wsk package list /whisk.system
+  ic wsk package list /whisk.system
   ```
   {: pre}
 
@@ -54,7 +54,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 
 2. Get a list of entities in the `/whisk.system/cloudant` package.
   ```
-  bx wsk package get --summary /whisk.system/cloudant
+  ic wsk package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 
 3. Get a description of the `/whisk.system/cloudant/read` Action.
   ```
-  bx wsk action get --summary /whisk.system/cloudant/read
+  ic wsk action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -94,7 +94,7 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 1. Get a description of the `/whisk.system/samples/greeting` Action.
   ```
-  bx wsk action get --summary /whisk.system/samples/greeting
+  ic wsk action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
   
@@ -109,7 +109,7 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 2. Invoke the Action without any parameters.
   ```
-  bx wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ic wsk action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -125,7 +125,7 @@ You can invoke Actions in a package, as with other Actions. The next few steps s
 
 3. Invoke the Action with parameters.
   ```
-  bx wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ic wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -150,7 +150,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 1. Bind to the `/whisk.system/samples` package and set a default `place` parameter value.
   ```
-  bx wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ic wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -162,7 +162,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 2. Get a description of the package binding.
   ```
-  bx wsk package get --summary valhallaSamples
+  ic wsk package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -180,7 +180,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 3. Invoke an Action in the package binding.
   ```
-  bx wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ic wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -196,7 +196,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 4. Invoke an Action and overwrite the default parameter value.
   ```
-  bx wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ic wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -217,7 +217,7 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 1. Get a description of the Feed in the `/whisk.system/alarms` package.
   ```
-  bx wsk package get --summary /whisk.system/alarms
+  ic wsk package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -229,7 +229,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   {: screen}
 
   ```
-  bx wsk action get --summary /whisk.system/alarms/alarm
+  ic wsk action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -246,7 +246,7 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 2. Create a Trigger that fires every 8 seconds.
   ```
-  bx wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ic wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -266,13 +266,13 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 4. Make sure that the Action exists.
   ```
-  bx wsk action update hello hello.js
+  ic wsk action update hello hello.js
   ```
   {: pre}
 
 5. Create a rule that invokes the **hello** Action every time the `everyEightSeconds` Trigger fires.
   ```
-  bx wsk rule create myRule everyEightSeconds hello
+  ic wsk rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -284,7 +284,7 @@ Feeds offer a convenient way to configure an external event source to fire these
 
 6. Check that the Action is being invoked by polling for activation logs.
   ```
-  bx wsk activation poll
+  ic wsk activation poll
   ```
   {: pre}
 
@@ -300,7 +300,7 @@ To create a custom package with a simple Action in it, try the following example
 
 1. Create a package called **custom**.
   ```
-  bx wsk package create custom
+  ic wsk package create custom
   ```
   {: pre}
 
@@ -312,7 +312,7 @@ To create a custom package with a simple Action in it, try the following example
 
 2. Get a summary of the package.
   ```
-  bx wsk package get --summary custom
+  ic wsk package get --summary custom
   ```
   {: pre}
 
@@ -332,7 +332,7 @@ To create a custom package with a simple Action in it, try the following example
 
 4. Create an Action called **identity** in the `custom` package.
   ```
-  bx wsk action create custom/identity identity.js
+  ic wsk action create custom/identity identity.js
   ```
   {: pre}
   
@@ -346,7 +346,7 @@ To create a custom package with a simple Action in it, try the following example
 
 5. Get a summary of the package again.
   ```
-  bx wsk package get --summary custom
+  ic wsk package get --summary custom
   ```
   {: pre}
 
@@ -361,7 +361,7 @@ To create a custom package with a simple Action in it, try the following example
 
 6. Invoke the Action in the package.
   ```
-  bx wsk action invoke --blocking --result custom/identity
+  ic wsk action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -375,7 +375,7 @@ You can set default parameters for all the entities in a package by setting pack
 
 1. Update the **custom** package with two parameters: `city` and `country`.
   ```
-  bx wsk package update custom --param city Austin --param country USA
+  ic wsk package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -387,7 +387,7 @@ You can set default parameters for all the entities in a package by setting pack
 
 2. Display the parameters in the **custom** package and **identidy** Action, and see how the **identity** Action in the package inherits parameters from the package.
   ```
-  bx wsk package get custom parameters
+  ic wsk package get custom parameters
   ```
   {: pre}
 
@@ -409,7 +409,7 @@ You can set default parameters for all the entities in a package by setting pack
   {: screen}
 
   ```
-  bx wsk action get custom/identity parameters
+  ic wsk action get custom/identity parameters
   ```
   {: pre}
 
@@ -432,7 +432,7 @@ You can set default parameters for all the entities in a package by setting pack
 
 3. Invoke the **identity** Action without any parameters to verify that the action indeed inherits the parameters.
   ```
-  bx wsk action invoke --blocking --result custom/identity
+  ic wsk action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -447,7 +447,7 @@ You can set default parameters for all the entities in a package by setting pack
 
 4. Invoke the **identity** Action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
   ```
-  bx wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ic wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -468,7 +468,7 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
 
 1. Share the package with all users:
   ```
-  bx wsk package update custom --shared yes
+  ic wsk package update custom --shared yes
   ```
   {: pre}
 
@@ -480,7 +480,7 @@ After the Actions and Feeds that comprise a package are debugged and tested, the
 
 2. Display the `publish` property of the package to verify that it is now true.
   ```
-  bx wsk package get custom publish
+  ic wsk package get custom publish
   ```
   {: pre}
 
@@ -496,7 +496,7 @@ Others can now use your **custom** package, including binding to the package or 
 
 1. Get a description of the package to show the fully qualified names of the package and Action.
   ```
-  bx wsk package get --summary custom
+  ic wsk package get --summary custom
   ```
   {: pre}
 

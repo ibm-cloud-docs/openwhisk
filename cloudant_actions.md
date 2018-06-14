@@ -38,7 +38,7 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each Cloudant service instance with a credential key defined.
   ```
-  bx wsk package refresh
+  ic wsk package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
   {: screen}
 
   ```
-  bx wsk package list
+  ic wsk package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
 3. Check to see that the package binding that was created previously is configured with your Cloudant {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
 
   ```
-  bx wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ic wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -123,7 +123,7 @@ You can use an Action to fetch a document from a Cloudant database called **test
 
 - Fetch a document by using the **read** Action in the package binding that you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  bx wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ic wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -144,7 +144,7 @@ You can use an Action to store a document in a Cloudant database called **testdb
 
 1. Store a document by using the **write** Action in the package binding you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  bx wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ic wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

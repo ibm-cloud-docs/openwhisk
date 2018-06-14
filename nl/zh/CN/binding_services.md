@@ -21,17 +21,17 @@ lastupdated: "2018-02-14"
 ## 如何将服务绑定到操作
 {: #cli_bind}
 
-使用 [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html) CLI 插件提供的 `bx wsk service bind` 命令可将服务绑定到操作。可以在[限制](./binding_services.html#limitations)部分中找到更多信息。
+使用 [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html) CLI 插件提供的 `ic wsk service bind` 命令可将服务绑定到操作。可以在[限制](./binding_services.html#limitations)部分中找到更多信息。
 
 `bind` 的使用语法：
 ```
-bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
+ic wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
 ```
 {: pre}
 
 `service bind` 命令需要服务类型以及要绑定到的操作名称。例如，如果要将 Watson Conversation 服务绑定到名为 `hello` 的操作，那么调用将类似于以下命令：
 ```
-bx wsk service bind conversation hello
+ic wsk service bind conversation hello
 ```
 {: pre}
 
@@ -44,7 +44,7 @@ Service credentials 'Credentials-1' from service 'Conversation-qp' bound to acti
 
 要验证凭证是否已成功绑定，请发出以下命令：
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -90,20 +90,20 @@ ok: got action Hello World
     <dd>要使用的服务内特定凭证的名称。</dd>
 </dl>
 
-要了解如何使用这两个标志，请参阅以下示例。使用先前的 `bx wsk service bind` 命令时，假定实际有两个 Conversation 服务，而操作缺省值最终绑定了不正确的服务/凭证。您可以使用 `--instance` 和 `--keyname` 标志重新运行该命令，以确保将正确的服务绑定到正确的操作。首先，查看哪些服务可用，以及哪些凭证绑定到这些服务。如果要列出我们的服务，应该会看到类似下面的输出：
+要了解如何使用这两个标志，请参阅以下示例。使用先前的 `ic wsk service bind` 命令时，假定实际有两个 Conversation 服务，而操作缺省值最终绑定了不正确的服务/凭证。您可以使用 `--instance` 和 `--keyname` 标志重新运行该命令，以确保将正确的服务绑定到正确的操作。首先，查看哪些服务可用，以及哪些凭证绑定到这些服务。如果要列出我们的服务，应该会看到类似下面的输出：
 
 ```
-bx service list
+ic service list
 name              service        plan   bound apps   last operation
 Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-在此输出中，我们看到 **Conversation-qp** 是列出的两个服务中的第一个服务，这是初始 `bx wsk service bind conversation hello` 命令最终绑定到的服务。您可能希望改为绑定到 **Conversation-uc** 服务。为了绝对有把握，您可以检查 **Conversation-uc** 包含哪些凭证，以确保使用正确的凭证集进行绑定。
+在此输出中，我们看到 **Conversation-qp** 是列出的两个服务中的第一个服务，这是初始 `ic wsk service bind conversation hello` 命令最终绑定到的服务。您可能希望改为绑定到 **Conversation-uc** 服务。为了绝对有把握，您可以检查 **Conversation-uc** 包含哪些凭证，以确保使用正确的凭证集进行绑定。
 
 ```
-bx service keys Conversation-uc
+ic service keys Conversation-uc
 Invoking 'cf service-keys Conversation-uc'...
 
 Getting keys for service instance Conversation-uc as [your id]...
@@ -115,7 +115,7 @@ Credentials-2
 
 您希望将此服务绑定到“Credentials-2”。要确保操作执行所需行为，请运行以下命令：
 ```
-bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
+ic wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
 {: pre}
 
@@ -124,9 +124,9 @@ bx wsk service bind conversation hello --instance Conversation-uc --keyname Cred
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-在输出中，您可以看到正确的凭证集已绑定到操作。同样，要进行验证，可以查看以下 `bx wsk action get` 命令。
+在输出中，您可以看到正确的凭证集已绑定到操作。同样，要进行验证，可以查看以下 `ic wsk action get` 命令。
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -164,11 +164,11 @@ ok: got action Hello World
 ## 如何取消服务与操作的绑定
 {: #cli_unbind}
 
-使用 `bx wsk service unbind` 可取消服务与操作的绑定。`service unbind` 命令可除去 `service bind` 命令创建的现有绑定。
+使用 `ic wsk service unbind` 可取消服务与操作的绑定。`service unbind` 命令可除去 `service bind` 命令创建的现有绑定。
 
 `unbind` 的使用语法：
 ```
-bx wsk service unbind SERVICE_NAME ACTION_NAME
+ic wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 

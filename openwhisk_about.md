@@ -147,13 +147,13 @@ Note how the record contains both the returned result and the logs written. It a
 Now you can use the REST API again (start from step 1 again) to obtain your activation and thus the result of your Action. To do so,run this command:
 
 ```bash
-bx wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ic wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### Summary
 
-You can see how a simple **bx wsk action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open-source community.
+You can see how a simple **ic wsk action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open-source community.
 
 You can find additional information about {{site.data.keyword.openwhisk_short}} in the following topics:
 

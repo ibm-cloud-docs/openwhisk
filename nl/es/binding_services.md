@@ -21,17 +21,17 @@ Puede utilizar el [plugin de CLI de {{site.data.keyword.openwhisk}}](./bluemix_c
 ## Cómo enlazar un servicio a una acción
 {: #cli_bind}
 
-Para enlazar un servicio a una acción, utilice el mandato `bx wsk service bind` que proporciona el [plugin de CLI de {{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). Encontrará información adicional en la sección [Limitaciones](./binding_services.html#limitations).
+Para enlazar un servicio a una acción, utilice el mandato `ic wsk service bind` que proporciona el [plugin de CLI de {{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). Encontrará información adicional en la sección [Limitaciones](./binding_services.html#limitations).
 
 Sintaxis de uso con `bind`:
 ```
-bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
+ic wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
 ```
 {: pre}
 
 El mandato `service bind` requiere un tipo de servicio y un nombre de acción con el que enlazar. Por ejemplo, si desea enlazar un servicio de conversación de Watson con una acción denominada `hello`, entonces la invocación será similar al siguiente mandato:
 ```
-bx wsk service bind conversation hello
+ic wsk service bind conversation hello
 ```
 {: pre}
 
@@ -44,7 +44,7 @@ Este mandato busca servicios existentes de conversación de Watson en el espacio
 
 Para verificar que las credenciales se hayan enlazado correctamente, emita el mandato siguiente:
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -90,20 +90,20 @@ El mandato `wsk service` admite los dos distintivos siguientes:
     <dd>El nombre de las credenciales específicas dentro del servicio que desea utilizar.</dd>
 </dl>
 
-Para saber cómo utilizar estos distintivos, consulte el ejemplo siguiente. Mediante el mandato anterior `bx wsk service bind`, supongamos que en realidad eran dos servicios de conversación y que el valor predeterminado de la acción acabó enlazando las credenciales/el servicio incorrectos. Podría volver a ejecutar el mandato con los distintivos `--instance` y `--keyname` para asegurarse de enlazar el servicio correcto con la acción correcta. En primer lugar, compruebe qué servicios están disponibles y qué credenciales están enlazadas con ellos. Si quisiéramos listas nuestros servicios, deberíamos ver una salida como la siguiente:
+Para saber cómo utilizar estos distintivos, consulte el ejemplo siguiente. Mediante el mandato anterior `ic wsk service bind`, supongamos que en realidad eran dos servicios de conversación y que el valor predeterminado de la acción acabó enlazando las credenciales/el servicio incorrectos. Podría volver a ejecutar el mandato con los distintivos `--instance` y `--keyname` para asegurarse de enlazar el servicio correcto con la acción correcta. En primer lugar, compruebe qué servicios están disponibles y qué credenciales están enlazadas con ellos. Si quisiéramos listas nuestros servicios, deberíamos ver una salida como la siguiente:
 
 ```
-bx service list
+ic service list
 name              service        plan   bound apps   last operation
 Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-En esta salida vemos que **Conversation-qp** es el primero de dos servicios listados, y es al que acabó enlazando el mandato `bx wsk service bind conversation hello` inicial. Quizá desee enlazar al servicio **Conversation-cu** en su lugar. Para estar absolutamente seguro, puede comprobar qué credenciales contiene **Conversation-uc**, para asegurarse de que realiza el enlace utilizando el conjunto adecuado de credenciales.
+En esta salida vemos que **Conversation-qp** es el primero de dos servicios listados, y es al que acabó enlazando el mandato `ic wsk service bind conversation hello` inicial. Quizá desee enlazar al servicio **Conversation-cu** en su lugar. Para estar absolutamente seguro, puede comprobar qué credenciales contiene **Conversation-uc**, para asegurarse de que realiza el enlace utilizando el conjunto adecuado de credenciales.
 
 ```
-bx service keys Conversation-uc
+ic service keys Conversation-uc
 Invocando 'cf service-keys Conversation-uc'...
 
 Obteniendo claves para la instancia de servicio Conversation-uc como [su ID]...
@@ -115,7 +115,7 @@ Credentials-2
 
 Desea enlazar a "Credentials-2" desde este servicio. Para asegurarse de que la acción aplica el comportamiento deseado, ejecute el mandato siguiente:
 ```
-bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
+ic wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
 {: pre}
 
@@ -124,9 +124,9 @@ Que genera la salida siguiente:
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-En la salida, verá que el conjunto correcto de credenciales está enlazado a la acción. De nuevo, para verificarlo, puede observar el siguiente mandato `bx wsk action get`.
+En la salida, verá que el conjunto correcto de credenciales está enlazado a la acción. De nuevo, para verificarlo, puede observar el siguiente mandato `ic wsk action get`.
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -164,11 +164,11 @@ Se admiten los indicadores de depuración normales están soportados, y se impri
 ## Cómo desenlazar un servicio de una acción
 {: #cli_unbind}
 
-Para desenlazar un servicio de una acción, utilice el mandato `bx wsk service unbind`. El mandato `service unbind` elimina los enlaces existentes creados por el mandato `service bind`.
+Para desenlazar un servicio de una acción, utilice el mandato `ic wsk service unbind`. El mandato `service unbind` elimina los enlaces existentes creados por el mandato `service bind`.
 
 Sintaxis de uso con `unbind`:
 ```
-bx wsk service unbind SERVICE_NAME ACTION_NAME
+ic wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 

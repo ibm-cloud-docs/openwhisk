@@ -65,7 +65,7 @@ Triggers can be fired when certain events occur, or can be fired manually.
 As an example, create a Trigger to send user location updates, and manually fire the Trigger.
 1. Enter the following command to create the Trigger:
   ```
-  bx wsk trigger create locationUpdate
+  ic wsk trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ As an example, create a Trigger to send user location updates, and manually fire
 
 2. Check that you created the Trigger by listing the set of Triggers.
   ```
-  bx wsk trigger list
+  ic wsk trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ As an example, create a Trigger to send user location updates, and manually fire
 
 3. Next, fire a Trigger event by specifying the Trigger name and parameters:
   ```
-  bx wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ic wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ As an example, create a rule that calls the `hello` Action whenever a location u
 
 2. Make sure that the Trigger and Action exist:
   ```
-  bx wsk trigger update locationUpdate
+  ic wsk trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  bx wsk action update hello hello.js
+  ic wsk action update hello hello.js
   ```
   {: pre}
 
 3. The next step is to create the Rule. The rule is enabled upon creation, meaning that it is immediately available to respond to Activations of your Trigger. The three parameters are: _Rule name_, _Trigger name_, and the _Action name_.
   ```
-  bx wsk rule create myRule locationUpdate hello
+  ic wsk rule create myRule locationUpdate hello
   ```
   {: pre}
 
   At any time, you can choose to disable a Rule:
   ```
-  bx wsk rule disable myRule
+  ic wsk rule disable myRule
   ```
   {: pre}
 
 4. Fire the **locationUpdate** Trigger. Each time that you fire an event, the **hello** Action is called with the event parameters.
   ```
-  bx wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ic wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ As an example, create a rule that calls the `hello` Action whenever a location u
 
 5. Verify that the **hello** Action was invoked by checking the most recent Activation.
   ```
-  bx wsk activation list --limit 1 hello
+  ic wsk activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ As an example, create a rule that calls the `hello` Action whenever a location u
 
   Now query the activation ID listed in the previous command output:
   ```
-  bx wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ic wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -187,18 +187,18 @@ You can create multiple Rules that associate the same Trigger with different Act
 Triggers and Rules cannot belong to a Package. The Rule can be associated with an Action
 that belongs to a Package however, for example:
   ```
-  bx wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ic wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 You can also use Rules with sequences. For example, one can create an Action
 sequence `recordLocationAndHello` that is activated by the rule `anotherRule`.
   ```
-  bx wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ic wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  bx wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ic wsk rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

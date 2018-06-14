@@ -22,7 +22,7 @@ The most prevalent use of annotations to date is to document Actions and package
 
 Here is a sample set of annotations for an `echo` Action, which returns its input arguments unmodified (for example, `function main(args) { return args }`). This Action is useful for logging input parameters, for example, as part of a Sequence or Rule.
 ```
-bx wsk action create echo echo.js \
+ic wsk action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

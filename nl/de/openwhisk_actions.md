@@ -573,7 +573,7 @@ Fügen Sie dem vorherigen Beispiel von `package.json` den Bundler `webpack` als 
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -644,7 +644,7 @@ Gehen Sie wie folgt vor, um eine OpenWhisk-Aktion mit `npm` und `webpack` zu ers
   {: pre}
   Über die Befehlszeilenschnittstelle:
   ```
-  bx wsk action update my-action dist/bundle.js
+  ic wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
