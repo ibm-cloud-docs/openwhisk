@@ -82,7 +82,7 @@ You can use the OpenWhisk CLI to download example code that embeds the OpenWhisk
 
 To install the starter app example, enter the following command:
 ```
-bx wsk sdk install iOS
+ic wsk sdk install iOS
 ```
 {: pre}
 
@@ -107,7 +107,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 
 In previous example, you pass in the `myKey` and `myToken` that you get from OpenWhisk. You can retrieve the key and token with the following CLI command:
 ```
-bx wsk property get --auth
+ic wsk property get --auth
 ```
 {: pre}
 

@@ -36,7 +36,7 @@ Parameters can be passed to an Action when it is invoked. The examples that are 
 
 2. Update the **hello** Action so it is ready to use:
   ```
-  bx wsk action update hello hello.js
+  ic wsk action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ Parameters can be passed to an Action when it is invoked. The examples that are 
 
   To pass parameters directly through the command line, supply a key/value pair to the `--param` flag:
   ```
-  bx wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ic wsk action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ Parameters can be passed to an Action when it is invoked. The examples that are 
 
   Next, invoke the Action with a single `person` parameter that is a valid JSON, like in the following example:
   ```
-  bx wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ic wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ Rather than pass all the parameters to an Action every time, you can bind certai
 
   To specify default parameters explicitly on the command line, provide a key/value pair to the `param` flag:
   ```
-  bx wsk action update hello --param place Kansas
+  ic wsk action update hello --param place Kansas
   ```
   {: pre}
 
 2. Invoke the Action by passing only the `name` parameter this time.
   ```
-  bx wsk action invoke --result hello --param name Dorothy
+  ic wsk action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ Rather than pass all the parameters to an Action every time, you can bind certai
 
   Invoke the Action using the `--param` flag:
   ```
-  bx wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ic wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ The following example sets a default parameter of `name` on the **MyApp** packag
 1. Create a package with a parameter set:
 
   ```
-  bx wsk package update MyApp --param name World
+  ic wsk package update MyApp --param name World
   ```
   {: pre}
 
@@ -166,13 +166,13 @@ The following example sets a default parameter of `name` on the **MyApp** packag
 
   Create the Action:
   ```
-  bx wsk action update MyApp/hello hello.js
+  ic wsk action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. Invoke the Action, and observe the default package parameter in use:
   ```
-  bx wsk action invoke --result MyApp/hello
+  ic wsk action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -201,7 +201,7 @@ You can put parameters into a file in JSON format, and then pass in the paramete
 2. Update the Action with the updated contents of `hello.js`:
 
   ```
-  bx wsk action update hello hello.js
+  ic wsk action update hello hello.js
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ You can put parameters into a file in JSON format, and then pass in the paramete
 4. Use the `parameters.json` filename when invoking the **hello** Action, and observe the output:
 
   ```
-  bx wsk action invoke --result hello --param-file parameters.json
+  ic wsk action invoke --result hello --param-file parameters.json
   ```
 
   **Output:**

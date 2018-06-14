@@ -21,17 +21,17 @@ Vous pouvez optimiser le [plug-in d'interface de ligne de commande {{site.data.k
 ## Comment lier un service à une action
 {: #cli_bind}
 
-Liez un service à une action à l'aide de la commande `bx wsk service bind` fournie par le plug-in d'interface de ligne de commande [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). D'autres informations sont fournies dans la section [Limitations](./binding_services.html#limitations). 
+Liez un service à une action à l'aide de la commande `ic wsk service bind` fournie par le plug-in d'interface de ligne de commande [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). D'autres informations sont fournies dans la section [Limitations](./binding_services.html#limitations). 
 
 Syntaxe d'utilisation avec `bind` :
 ```
-bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
+ic wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
 ```
 {: pre}
 
 La commande `service bind` requiert un type de service et un nom d'action pour la liaison. Par exemple, si vous souhaitez lier un service de conversation Watson à une action nommée `hello`, votre appel ressemblera à la commande suivante :
 ```
-bx wsk service bind conversation hello
+ic wsk service bind conversation hello
 ```
 {: pre}
 
@@ -44,7 +44,7 @@ Cette commande recherche les services de conversation Watson existant dans votre
 
 Pour vérifier que la liaison des données d'identification a abouti, exécutez la commande suivante :
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -90,20 +90,20 @@ La commande `wsk service` prend en charge les deux indicateurs suivants :
     <dd>Nom des données d'identification spécifiques dans le service que vous souhaitez utiliser. </dd>
 </dl>
 
-Pour savoir comment utiliser ces indicateurs, voir l'exemple ci-après. En utilisant la commande `bx wsk service bind` précédente, imaginons qu'il existait deux services de conversation et que la valeur par défaut de l'action a fini par lier le service/les données d'identification inappropriés. Vous pouvez relancer l'exécution de la commande avec les indicateurs `--instance` et `--keyname` pour faire en sorte de lier le service approprié à l'action correcte. Tout d'abord, vérifiez les services disponibles et les données d'identification qui sont liées à ces services. Si nous souhaitions afficher la liste de nos services, nous obtiendrions un résultat similaire à ce qui suit :
+Pour savoir comment utiliser ces indicateurs, voir l'exemple ci-après. En utilisant la commande `ic wsk service bind` précédente, imaginons qu'il existait deux services de conversation et que la valeur par défaut de l'action a fini par lier le service/les données d'identification inappropriés. Vous pouvez relancer l'exécution de la commande avec les indicateurs `--instance` et `--keyname` pour faire en sorte de lier le service approprié à l'action correcte. Tout d'abord, vérifiez les services disponibles et les données d'identification qui sont liées à ces services. Si nous souhaitions afficher la liste de nos services, nous obtiendrions un résultat similaire à ce qui suit :
 
 ```
-bx service list
+ic service list
 name              service        plan   bound apps   last operation
 Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-A partir de ce résultat, nous pouvons constater que **Conversation-qp** est le premier des deux services répertoriés, et qu'il s'agit de celui auquel la commande`bx wsk service bind conversation hello` initiale a fini par se lier. Vous souhaitez peut-être établir une liaison plutôt avec le service **Conversation-uc**. Afin d'être sûr, vous pouvez vérifier les données d'identification contenues dans **Conversation-uc** afin d'être certain d'utiliser l'ensemble de données d'identification approprié pour établir la liaison. 
+A partir de ce résultat, nous pouvons constater que **Conversation-qp** est le premier des deux services répertoriés, et qu'il s'agit de celui auquel la commande`ic wsk service bind conversation hello` initiale a fini par se lier. Vous souhaitez peut-être établir une liaison plutôt avec le service **Conversation-uc**. Afin d'être sûr, vous pouvez vérifier les données d'identification contenues dans **Conversation-uc** afin d'être certain d'utiliser l'ensemble de données d'identification approprié pour établir la liaison. 
 
 ```
-bx service keys Conversation-uc
+ic service keys Conversation-uc
 Invoking 'cf service-keys Conversation-uc'...
 
 Getting keys for service instance Conversation-uc as [your id]...
@@ -115,7 +115,7 @@ Credentials-2
 
 Vous souhaitez établir une liaison à "Credentials-2" à partir de ce service. Pour êtes certain que l'action effectue le comportement souhaité, exécutez la commande suivante :
 ```
-bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
+ic wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
 {: pre}
 
@@ -124,9 +124,9 @@ Le résultat produit est le suivant :
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-A partir du résultat, vous pouvez voir que l'ensemble de données d'identification approprié est lié à l'action. Là encore, vous pouvez exécuter la commande `bx wsk action get` pour en être certain. 
+A partir du résultat, vous pouvez voir que l'ensemble de données d'identification approprié est lié à l'action. Là encore, vous pouvez exécuter la commande `ic wsk action get` pour en être certain. 
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -164,11 +164,11 @@ Les indicateurs de débogage normaux sont pris en charge et impriment des en-tê
 ## Comment déconnecter un service d'une action
 {: #cli_unbind}
 
-Déconnectez un service d'une action à l'aide de la commande `bx wsk service unbind`. La commande `service unbind` retire les liaisons existantes créées par la commande `service bind`. 
+Déconnectez un service d'une action à l'aide de la commande `ic wsk service unbind`. La commande `service unbind` retire les liaisons existantes créées par la commande `service bind`. 
 
 Syntaxe d'utilisation avec `unbind` :
 ```
-bx wsk service unbind SERVICE_NAME ACTION_NAME
+ic wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 

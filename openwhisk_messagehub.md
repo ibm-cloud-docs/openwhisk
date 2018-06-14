@@ -40,7 +40,7 @@ In order to create a Trigger that reacts when messages are posted to a Message H
 |isBinaryKey|Boolean (Optional - default=false)|When set to `true`, the provider encodes the key value as Base64 before passing it along as the Trigger payload.|
 |isBinaryValue|Boolean (Optional - default=false)|When set to `true`, the provider encodes the message value as Base64 before passing it along as the Trigger payload.|
 
-While this list of parameters can seem daunting, they can be automatically set for you by using the `bx wsk package refresh` CLI plug-in command.
+While this list of parameters can seem daunting, they can be automatically set for you by using the `ic wsk package refresh` CLI plug-in command.
 
 1. Create an instance of Message Hub service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
 
@@ -48,7 +48,7 @@ While this list of parameters can seem daunting, they can be automatically set f
 
 3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the Message Hub service instance that you created.
   ```
-  bx wsk package refresh
+  ic wsk package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ While this list of parameters can seem daunting, they can be automatically set f
 
 4. List the packages in your Namespace to show that your package binding is now available.
   ```
-  bx wsk package list
+  ic wsk package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ While this list of parameters can seem daunting, they can be automatically set f
 
 5. Now all you need to do is create a Trigger that is fired when new messages are posted to your Message Hub topic.
   ```
-  bx wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ic wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ If you want to set up your Message Hub outside of {{site.data.keyword.Bluemix_no
 
 1. Create a package binding that is configured for your Message Hub service.
   ```
-  bx wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your Message Hub user> -p password <your Message Hub password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ic wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your Message Hub user> -p password <your Message Hub password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. Now you can create a Trigger by using your new package that is fired when new messages are posted to your Message Hub topic.
   ```
-  bx wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ic wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

@@ -46,7 +46,7 @@ This view displays a formatted version of the activation log. It shows the detai
 
 To get the output displayed in the Activity Log by using CLI, use the following command:
 ```
-bx wsk activation poll
+ic wsk activation poll
 ```
 {: pre}
 

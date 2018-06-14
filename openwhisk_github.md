@@ -41,7 +41,7 @@ In the following example, a Trigger is created that fires each time a new commit
   
 2. Create a package binding that is configured for your GitHub repository and with your access token.
   ```
-  bx wsk package bind /whisk.system/github myGit \
+  ic wsk package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ In the following example, a Trigger is created that fires each time a new commit
   
 3. Create a Trigger for the GitHub `push` event type by using your `myGit/webhook` feed.
   ```
-  bx wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ic wsk trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
   

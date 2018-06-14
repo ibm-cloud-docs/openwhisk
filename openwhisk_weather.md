@@ -36,7 +36,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Weather Company Data service instance that you created.
   ```
-  bx wsk package refresh
+  ic wsk package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
 
   List packages to see that the package binding was created:
   ```
-  bx wsk package list
+  ic wsk package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword
 
 Create a package binding that is configured for your Watson Translator service.
 ```
-bx wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ic wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -89,7 +89,7 @@ The following example shows how to create a package binding and then getting a 1
 
 Invoke the **forecast** Action in your package binding to get the weather forecast.
 ```
-bx wsk action invoke myWeather/forecast --result \
+ic wsk action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

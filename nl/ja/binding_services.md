@@ -21,17 +21,17 @@ lastupdated: "2018-02-14"
 ## サービスをアクションにバインドする方法
 {: #cli_bind}
 
-[{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html) CLI プラグインで提供されている `bx wsk service bind` コマンドを使用して、サービスをアクションにバインドします。『[制限](./binding_services.html#limitations)』セクションに、追加情報があります。
+[{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html) CLI プラグインで提供されている `ic wsk service bind` コマンドを使用して、サービスをアクションにバインドします。『[制限](./binding_services.html#limitations)』セクションに、追加情報があります。
 
 `bind` を使用した使用法の構文:
 ```
-bx wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
+ic wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
 ```
 {: pre}
 
 `service bind` コマンドでは、サービス・タイプとバインド先のアクション名が必要です。例えば、Watson 会話サービスを `hello` というアクションにバインドする場合、呼び出しは、以下のようなコマンドになります。
 ```
-bx wsk service bind conversation hello
+ic wsk service bind conversation hello
 ```
 {: pre}
 
@@ -44,7 +44,7 @@ Service credentials 'Credentials-1' from service 'Conversation-qp' bound to acti
 
 資格情報が正常にバインドされたことを確認するために、以下のコマンドを発行します。
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -90,20 +90,20 @@ ok: got action Hello World
     <dd>使用するサービス内の特定の資格情報の名前。</dd>
 </dl>
 
-上記フラグの使用方法の説明については、以下の例を参照してください。前述の `bx wsk service bind` コマンドを使用したときに、実際に 2 つの会話サービスが存在し、アクションのデフォルトで正しくないサービスと資格情報がバインドされたものとします。`--instance` フラグおよび `--keyname` フラグを指定してコマンドを再実行することで、正しいサービスを正しいアクションにバインドできるようになります。まず、どのサービスが使用可能で、どの資格情報が各サービスにバインドされているのかを確認します。サービスをリストすると、以下のような出力が表示されます。
+上記フラグの使用方法の説明については、以下の例を参照してください。前述の `ic wsk service bind` コマンドを使用したときに、実際に 2 つの会話サービスが存在し、アクションのデフォルトで正しくないサービスと資格情報がバインドされたものとします。`--instance` フラグおよび `--keyname` フラグを指定してコマンドを再実行することで、正しいサービスを正しいアクションにバインドできるようになります。まず、どのサービスが使用可能で、どの資格情報が各サービスにバインドされているのかを確認します。サービスをリストすると、以下のような出力が表示されます。
 
 ```
-bx service list
+ic service list
 name              service        plan   bound apps   last operation
 Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-この出力から、**Conversation-qp** が、リストされている 2 つのサービスの最初のものであり、それが最初の `bx wsk service bind conversation hello` コマンドでのバインド先になったことが分かります。そうではなく、**Conversation-uc** サービスにバインドしたいものとします。そのため、念を入れて、どの資格情報が **Conversation-uc** に含まれているのかを確認することで、確実に適切な資格情報セットを使用してバインドが行われるようにすることができます。
+この出力から、**Conversation-qp** が、リストされている 2 つのサービスの最初のものであり、それが最初の `ic wsk service bind conversation hello` コマンドでのバインド先になったことが分かります。そうではなく、**Conversation-uc** サービスにバインドしたいものとします。そのため、念を入れて、どの資格情報が **Conversation-uc** に含まれているのかを確認することで、確実に適切な資格情報セットを使用してバインドが行われるようにすることができます。
 
 ```
-bx service keys Conversation-uc
+ic service keys Conversation-uc
 Invoking 'cf service-keys Conversation-uc'...
 
 Getting keys for service instance Conversation-uc as [your id]...
@@ -115,7 +115,7 @@ Credentials-2
 
 このサービスの「Credentials-2」にバインドしたいと考えています。アクションが目的の動作を確実に実行するように、以下のコマンドを実行します。
 ```
-bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
+ic wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
 {: pre}
 
@@ -124,9 +124,9 @@ bx wsk service bind conversation hello --instance Conversation-uc --keyname Cred
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-出力から、正しい資格情報セットがアクションにバインドされたことが分かります。ここでも、確認するために、以下の `bx wsk action get` コマンドを表示できます。
+出力から、正しい資格情報セットがアクションにバインドされたことが分かります。ここでも、確認するために、以下の `ic wsk action get` コマンドを表示できます。
 ```
-bx wsk action get hello parameters
+ic wsk action get hello parameters
 ```
 {: pre}
 
@@ -164,11 +164,11 @@ ok: got action Hello World
 ## サービスをアクションからアンバインドする方法
 {: #cli_unbind}
 
-サービスをアクションからアンバインドするには、`bx wsk service unbind` を使用します。`service unbind` コマンドは、`service bind` コマンドで作成された既存のバインディングを削除します。
+サービスをアクションからアンバインドするには、`ic wsk service unbind` を使用します。`service unbind` コマンドは、`service bind` コマンドで作成された既存のバインディングを削除します。
 
 `unbind` を使用した使用法の構文:
 ```
-bx wsk service unbind SERVICE_NAME ACTION_NAME
+ic wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 

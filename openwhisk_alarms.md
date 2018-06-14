@@ -42,7 +42,7 @@ The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a 
 The following example creates a trigger that is fired once every 2 minutes. The Trigger fires as soon as possible, and will stop firing January 31, 2019, 23:59:00 UTC.
 
   ```
-  bx wsk trigger create interval \
+  ic wsk trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -71,7 +71,7 @@ The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trig
 The following is an example of creating a trigger that will be fired once on December 25, 2019, 12:30:00 UTC.  After the Trigger fires it will be deleted as well as all of its associated rules.
 
   ```
-  bx wsk trigger create fireOnce \
+  ic wsk trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -105,7 +105,7 @@ The following is an example of creating a trigger that fires once every 2 minute
 January 1, 2019, 00:00:00 UTC and will stop firing January 31, 2019, 23:59:00 UTC.
 
   ```
-  bx wsk trigger create periodic \
+  ic wsk trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

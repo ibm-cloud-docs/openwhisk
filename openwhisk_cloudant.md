@@ -44,7 +44,7 @@ The parameters used in this example are as follows:
 
   Be sure to replace `/_/myCloudant` with your package name.
   ```
-  bx wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  ic wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
   --param dbname testdb \
   --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
@@ -59,7 +59,7 @@ The parameters used in this example are as follows:
 
 2. Start polling for activations to give clear visibility of what is happening.
   ```
-  bx wsk activation poll
+  ic wsk activation poll
   ```
   {: pre}
 
@@ -73,7 +73,7 @@ The parameters used in this example are as follows:
 
 4. Create a Rule to connect the **showCloudantChange** Action to the Trigger created earlier:
   ```
-  bx wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ic wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
   ```
   {: pre}
 
@@ -130,7 +130,7 @@ Create a json document file `design_doc.json` with the following filter function
 
 Create a design document on the database with the following filter function:
 ```
-bx wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ic wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 {: pre}
 
@@ -159,20 +159,20 @@ function main(doc){
 
 Create the Action to process the document from Cloudant:
 ```
-bx wsk action create myAction myAction.js
+ic wsk action create myAction myAction.js
 ```
 {: pre}
 
 To read a document from the database, you can use the `read` Action from the Cloudant package.
 The `read` Action can be composed with `myAction` to create an Action sequence.
 ```
-bx wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
+ic wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
 The Action `sequenceAction` can be used in a Rule that activates the Action on new Cloudant Trigger events.
 ```
-bx wsk rule create myRule myCloudantTrigger sequenceAction
+ic wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
@@ -180,12 +180,12 @@ bx wsk rule create myRule myCloudantTrigger sequenceAction
 
 You can recreate Triggers previously created with `includeDoc`. Follow these steps to recreate the Trigger: 
 ```
-bx wsk trigger delete myCloudantTrigger
+ic wsk trigger delete myCloudantTrigger
 ```
 {: pre}
 
 ```
-bx wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
+ic wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
 ```
 {: pre}
 
