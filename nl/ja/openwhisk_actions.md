@@ -572,7 +572,7 @@ exports.main = myAction;
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -643,7 +643,7 @@ global.main = main;
   {: pre}
   CLI を使用する場合:
   ```
-  ic wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
 

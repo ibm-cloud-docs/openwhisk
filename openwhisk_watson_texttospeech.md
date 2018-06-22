@@ -36,7 +36,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
-  ic wsk package refresh
+  ibmcloud wsk package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   
   List packages to see that the package binding was created:
   ```
-  ic wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
   
@@ -66,7 +66,7 @@ If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword
 
 Create a package binding that is configured for your Watson Speech to Text service.
 ```
-ic wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
   
@@ -83,7 +83,7 @@ The `/whisk.system/watson-textToSpeech/textToSpeech` Action converts some text i
 
 Invoke the **textToSpeech** Action in your package binding to convert the text.
 ```
-ic wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

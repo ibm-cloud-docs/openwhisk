@@ -54,7 +54,7 @@ For convenience, the steps are broken down into smaller subtopics which you can 
   
 2. Create a Web Action named **hello** using the `hello.js` file created in step one. **Note:** Be sure to add the flag `--web true`.
   ```
-  ic wsk action create hello hello.js --web true
+  ibmcloud wsk action create hello hello.js --web true
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ For convenience, the steps are broken down into smaller subtopics which you can 
 
 3. Create an API with base path `/hello`, path `/world`, and method `get`, with response type `json`:
   ```
-  ic wsk api create /hello /world get hello --response-type json
+  ibmcloud wsk api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -118,13 +118,13 @@ You can choose to change the code of the Action to comply with the return of web
 
 2. Update the Action with the modified result: 
   ```
-  ic wsk action update hello hello.js --web true
+  ibmcloud wsk action update hello hello.js --web true
   ```
   {: pre}
 
 3. Update the API response type by using the `--response-type http` flag:
   ```
-  ic wsk api create /hello /world get hello --response-type http
+  ibmcloud wsk api create /hello /world get hello --response-type http
   ```
   {: pre}
  
@@ -160,11 +160,11 @@ In this example, the API is defined with a **path parameter**. When using path p
 
 1. Create an API for the book club, named **Book Club**, with `/club` as its HTTP URL base path, `books` as its resource, and `{isbn}` as a path parameter that is used to identify a specific book by using it's International Standard Book Number (ISBN).
   ```bash
-  ic wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ic wsk api create /club /books get getBooks                       --response-type http
-  ic wsk api create /club /books post postBooks                     --response-type http
-  ic wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ic wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud wsk api create /club /books get getBooks                       --response-type http
+  ibmcloud wsk api create /club /books post postBooks                     --response-type http
+  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -172,7 +172,7 @@ In this example, the API is defined with a **path parameter**. When using path p
 
 2. List all of the **Book Club**  Actions that are exposed by using the following command:
   ```
-  ic wsk api list /club -f
+  ibmcloud wsk api list /club -f
   ```
   {: pre}
 
@@ -251,13 +251,13 @@ In this example, the API is defined with a **path parameter**. When using path p
 
 1. Export the API named **Book Club** into a file that can be used as a base to re-create the APIs by using a file as input. 
   ```
-  ic wsk api get "Book Club" > club-swagger.json
+  ibmcloud wsk api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. Test the swagger file by first deleting all exposed URLs under a common base path by using the following command:
   ```
-  ic wsk api delete /club
+  ibmcloud wsk api delete /club
   ```
   {: pre}
 
@@ -275,7 +275,7 @@ In this example, the API is defined with a **path parameter**. When using path p
 
 1. Now, restore the API named **Book Club** by using the file name `club-swagger.json`:
   ```
-  ic wsk api create --config-file club-swagger.json
+  ibmcloud wsk api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -296,7 +296,7 @@ In this example, the API is defined with a **path parameter**. When using path p
 
 2. Verify that the **Book Club** API is re-created:
   ```
-  ic wsk api list /club
+  ibmcloud wsk api list /club
   ```
   {: pre}
 

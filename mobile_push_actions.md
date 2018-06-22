@@ -47,13 +47,13 @@ To create a package binding, see the following steps:
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
   ```
-  ic wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
-  
+
 5. Verify that the package binding exists:
   ```
-  ic wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ See the following example to send a Push notification from the Push notification
 
 Send a Push notification by using the **sendMessage** Action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
 ```
-ic wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

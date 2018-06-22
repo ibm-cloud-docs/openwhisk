@@ -593,7 +593,7 @@ The following Composer packages are also available:
 
 Docker Actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
 
-The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ic wsk sdk install docker` CLI plug-in command.
+The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud wsk sdk install docker` CLI plug-in command.
 
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 

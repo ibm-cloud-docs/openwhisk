@@ -60,7 +60,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 2. Create an Action from the following JavaScript function. For this example, the Action is called **hello**.
   ```
-  ic wsk action create hello hello.js
+  ibmcloud wsk action create hello hello.js
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 3. List the Actions that you created:
   ```
-  ic wsk action list
+  ibmcloud wsk action list
   ```
   {: pre}
 
@@ -91,7 +91,7 @@ Review the following steps and examples to create your first JavaScript action.
 
   This example uses the blocking parameter, `--blocking`:
   ```
-  ic wsk action invoke --blocking hello
+  ibmcloud wsk action invoke --blocking hello
   ```
   {: pre}
 
@@ -123,7 +123,7 @@ Review the following steps and examples to create your first JavaScript action.
 
   See the following examples:
   ```
-  ic wsk action invoke hello
+  ibmcloud wsk action invoke hello
   ```
   {: pre}
 
@@ -135,7 +135,7 @@ Review the following steps and examples to create your first JavaScript action.
 
   Now that you know the activation ID, you can specify it to obtain the Action result:
   ```
-  ic wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ Review the following steps and examples to create your first JavaScript action.
 
   **List activations:**
   ```
-  ic wsk activation list
+  ibmcloud wsk activation list
   ```
   {: pre}
 
@@ -192,13 +192,13 @@ JavaScript functions that run asynchronously can return the activation result af
 
   Create an Action called **asyncAction**:
   ```
-  ic wsk action create asyncAction asyncAction.js
+  ibmcloud wsk action create asyncAction asyncAction.js
   ```
   {: pre}
 
   Invoke the Action:
   ```
-  ic wsk action invoke --result asyncAction
+  ibmcloud wsk action invoke --result asyncAction
   ```
   {: pre}
 
@@ -216,7 +216,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
   To do this, first list the Action to obtain the activation ID:
   ```
-  ic wsk activation list --limit 1 asyncAction
+  ibmcloud wsk activation list --limit 1 asyncAction
   ```
   {: pre}
 
@@ -229,7 +229,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
   Now get the activation log info using the activation ID:
   ```
-  ic wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
 
@@ -288,13 +288,13 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 
   Create the Action named **apod**:
   ```
-  ic wsk action create apod apod.js
+  ibmcloud wsk action create apod apod.js
   ```
   {: pre}
 
   Invoke the **apod** Action:
   ```
-  ic wsk action invoke --result apod
+  ibmcloud wsk action invoke --result apod
   ```
   {: pre}
 
@@ -363,7 +363,7 @@ To create a {{site.data.keyword.openwhisk_short}} Action from this package:
 
 3. Create the action:
   ```
-  ic wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
@@ -371,7 +371,7 @@ To create a {{site.data.keyword.openwhisk_short}} Action from this package:
 
 4. You can invoke the Action like any other:
   ```
-  ic wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
 
@@ -405,7 +405,7 @@ Taking the previous example `package.json` add `webpack` as a development depenc
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -476,7 +476,7 @@ To build and deploy an OpenWhisk Action using `npm` and `webpack`:
 
   Using the CLI:
   ```
-  ic wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -491,7 +491,7 @@ Several utility Actions are provided in a package that is called `/whisk.system/
 
 1. Display the Actions in the `/whisk.system/utils` package.
   ```
-  ic wsk package get --summary /whisk.system/utils
+  ibmcloud wsk package get --summary /whisk.system/utils
   ```
   {: pre}
 
@@ -511,7 +511,7 @@ Several utility Actions are provided in a package that is called `/whisk.system/
 
 2. Create an Action sequence so that the result of one Action is passed as an argument to the next Action.
   ```
-  ic wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
@@ -519,7 +519,7 @@ Several utility Actions are provided in a package that is called `/whisk.system/
 
 3. Invoke the Action:
   ```
-  ic wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
@@ -563,7 +563,7 @@ Python Actions always consume a dictionary and produce a dictionary. The entry m
 
 You can create {{site.data.keyword.openwhisk_short}} Action called **helloPython** from this function as follows:
 ```
-ic wsk action create helloPython hello.py
+ibmcloud wsk action create helloPython hello.py
 ```
 {: pre}
 
@@ -572,7 +572,7 @@ For more information about packages included in this Python 3 runtime, see the P
 
 Action invocation is the same for Python Actions as it is for JavaScript Actions:
 ```
-ic wsk action invoke --result helloPython --param name World
+ibmcloud wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -597,7 +597,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 Then create the Action:
 ```bash
-ic wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
@@ -630,7 +630,7 @@ To ensure compatibility with the OpenWhisk runtime container, package installati
 
 3. Create the Action **helloPython**:
     ```
-    ic wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -659,11 +659,11 @@ function main(array $args) : array
 ```
 {: codeblock}
 
-PHP Actions always consume an associative array and return an associative array. The entry method for the Action is `main` by default but can be specified explicitly when you create the Action with the `ic wsk` CLI by using `--main`, as with any other action type.
+PHP Actions always consume an associative array and return an associative array. The entry method for the Action is `main` by default but can be specified explicitly when you create the Action with the `ibmcloud wsk` CLI by using `--main`, as with any other action type.
 
 You can create a {{site.data.keyword.openwhisk_short}} Action called **helloPHP** from this function as follows:
 ```
-ic wsk action create helloPHP hello.php
+ibmcloud wsk action create helloPHP hello.php
 ```
 {: pre}
 
@@ -671,7 +671,7 @@ The CLI automatically infers the type of the action from the source file extensi
 
 Action invocation is the same for PHP Actions as it is for JavaScript Actions:
 ```
-ic wsk action invoke --result helloPHP --param name World
+ibmcloud wsk action invoke --result helloPHP --param name World
 ```
 {: pre}
 
@@ -697,7 +697,7 @@ zip -r helloPHP.zip index.php helper.php
 
 Then create the Action **helloPHP**:
 ```bash
-ic wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
@@ -733,7 +733,7 @@ In this example, the Swift action consumes a dictionary and produces a dictionar
 You can create an OpenWhisk action called **helloSwift** from this function as
 follows:
 ```
-ic wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
 
@@ -773,7 +773,7 @@ func main(completion: (Output?, Error?) -> Void) -> Void {
 You can create an OpenWhisk action called `helloSwift` from this function as
 follows:
 ```
-ic wsk action create helloSwift hello.swift --kind swift:4.1
+ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
 ```
 {: pre}
 
@@ -781,7 +781,7 @@ See the Swift [reference](./openwhisk_reference.html#swift-actions) for more inf
 
 Action invocation is the same for Swift actions as it is for JavaScript actions:
 ```
-ic wsk action invoke --result helloSwift --param name World
+ibmcloud wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -949,19 +949,19 @@ actions/
 
 - Upload it to OpenWhisk with the Action name **helloSwifty**. For Swift 3, use the kind `swift:3.1.1`
   ```
-  ic wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
   For Swift 4, use the kind `swift:3.1.1`:
   ```
-  ic wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
 - To check how much faster it is, run the following command:
   ```
-  ic wsk action invoke helloSwiftly --blocking
+  ibmcloud wsk action invoke helloSwiftly --blocking
   ```
   {: pre}
 
@@ -1040,7 +1040,7 @@ jar cvf hello.jar Hello.class
 You can create a {{site.data.keyword.openwhisk_short}} Action called **helloJava** from this JAR file as
 follows:
 ```
-ic wsk action create helloJava hello.jar --main Hello
+ibmcloud wsk action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1052,7 +1052,7 @@ If needed, you can also customize the method name of your Java action. This is d
 
 Action invocation is the same for Java Actions as it is for Swift and JavaScript Actions:
 ```
-ic wsk action invoke --result helloJava --param name World
+ibmcloud wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -1077,7 +1077,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
 1. Download the Docker skeleton. You can download and install it by using the CLI as follows:
   ```
-  ic wsk sdk install docker
+  ibmcloud wsk sdk install docker
   ```
   {: pre}
 
@@ -1138,13 +1138,13 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
   Your Docker container can now be used as a {{site.data.keyword.openwhisk_short}} Action:
   ```
-  ic wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud wsk action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   Notice the use of `--docker` to create an Action. All Docker images are assumed to be hosted on Docker Hub. The action can be invoked as any other {{site.data.keyword.openwhisk_short}} action.
   ```
-  ic wsk action invoke --result example --param payload Rey
+  ibmcloud wsk action invoke --result example --param payload Rey
   ```
   {: pre}
 
@@ -1159,7 +1159,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
   ```
   {: screen}
 
-  To update the Docker action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there are no warm containers, new invocations use the new Docker image. However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `ic wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
+  To update the Docker action, run `buildAndPush.sh` to upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there are no warm containers, new invocations use the new Docker image. However, if there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image unless you run `ibmcloud wsk action update`. This indicates to the system, that for new invocations, to execute a docker pull to get your new Docker image.
 
   **Upload latest image to Docker Hub:**
   ```
@@ -1169,7 +1169,7 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
   **Update the Action so that new invocations begin using the new image:***
   ```
-  ic wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud wsk action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -1181,13 +1181,13 @@ For the instructions that follow, assume that the Docker user ID is `janesmith` 
 
   **Create action from zip file:**
   ```
-  ic wsk action create example exec.zip --native
+  ibmcloud wsk action create example exec.zip --native
   ```
   {: pre}
 
   Which is equivalent to the following command.
   ```
-  ic wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
 
@@ -1230,13 +1230,13 @@ Save the code above to a file `sample.go` and cross compile it for OpenWhisk. Th
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-ic wsk action create helloGo --native exec.zip
+ibmcloud wsk action create helloGo --native exec.zip
 ```
 {: codeblock}
 
 The Action may be run as any other Action.
 ```bash
-ic wsk action invoke helloGo -r -p name gopher
+ibmcloud wsk action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1244,7 +1244,7 @@ ic wsk action invoke helloGo -r -p name gopher
 
 Logs are retrieved in a similar way as well.
 ```bash
-ic wsk activation logs --last --strip
+ibmcloud wsk activation logs --last --strip
 my first Go action.
 ```
 
@@ -1262,7 +1262,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
 1. Issue the following command from a shell:
   ```
-  ic wsk activation poll
+  ibmcloud wsk activation poll
   ```
   {: pre}
 
@@ -1270,7 +1270,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
 2. Switch to another window and invoke an Action:
   ```
-  ic wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
@@ -1292,11 +1292,11 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 ## Getting Actions
 {: #getting-actions}
 
-Metadata that describes existing Actions can be retrieved by using the `ic wsk action` get command.
+Metadata that describes existing Actions can be retrieved by using the `ibmcloud wsk action` get command.
 
 **Command:**
 ```
-ic wsk action get hello
+ibmcloud wsk action get hello
 ```
 
 ***Result:**
@@ -1331,7 +1331,7 @@ ok: got action hello
 
 An Action can be invoked by using the REST interface through an HTTPS request. To get an Action URL, execute the following command:
 ```
-ic wsk action get actionName --url
+ibmcloud wsk action get actionName --url
 ```
 {: pre}
 
@@ -1358,7 +1358,7 @@ Code associated with an existing Action may be retrieved and saved locally. Savi
 
 1. Save Action code to a filename that corresponds with an existing Action name in the current working directory. A file extension that corresponds to the Action kind is used, or an extension of .zip will be used for Action code that is a zip file.
   ```
-  ic wsk action get actionName --save
+  ibmcloud wsk action get actionName --save
   ```
   {: pre}
 
@@ -1370,7 +1370,7 @@ Code associated with an existing Action may be retrieved and saved locally. Savi
 
 2. Instead of allowing the CLI to determine the destination of the code to be saved, a custom file path, filename and extension can be provided by using the `--save-as` flag.
   ```
-  ic wsk action get actionName --save-as codeFile.js
+  ibmcloud wsk action get actionName --save-as codeFile.js
   ```
   {: pre}
 
@@ -1385,13 +1385,13 @@ Code associated with an existing Action may be retrieved and saved locally. Savi
 
 You can list all the Actions created using the following command:
 ```
-ic wsk action list
+ibmcloud wsk action list
 ```
 {: pre}
 
 As you write more Actions, this list gets longer and it can be helpful to group related Actions into [packages](./openwhisk_packages.html). To filter your list of Actions to just those within a specific package, you can use the following command syntax:
 ```
-ic wsk action list [PACKAGE NAME]
+ibmcloud wsk action list [PACKAGE NAME]
 ```
 {: pre}
 
@@ -1402,7 +1402,7 @@ You can clean up by deleting Actions that you do not want to use.
 
 1. Run the following command to delete an Action:
   ```
-  ic wsk action delete hello
+  ibmcloud wsk action delete hello
   ```
   {: pre}
 
@@ -1414,7 +1414,7 @@ You can clean up by deleting Actions that you do not want to use.
 
 2. Verify that the action no longer appears in the list of Actions.
   ```
-  ic wsk action list
+  ibmcloud wsk action list
   ```
   {: pre}
 

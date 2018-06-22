@@ -38,7 +38,7 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each Cloudant service instance with a credential key defined.
   ```
-  ic wsk package refresh
+  ibmcloud wsk package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
   {: screen}
 
   ```
-  ic wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
 
@@ -66,14 +66,14 @@ If you are using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bl
 3. Check to see that the package binding that was created previously is configured with your Cloudant {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
 
   ```
-  ic wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
   **Output:**
   ```
   ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
-  
+
   [
       {
           "key": "username",
@@ -101,7 +101,7 @@ If you're not using {{site.data.keyword.openwhisk_short}} in the {{site.data.key
   wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
   ```
   {: pre}
-  
+
 
 2. Verify that the package binding exists.
   ```
@@ -123,7 +123,7 @@ You can use an Action to fetch a document from a Cloudant database called **test
 
 - Fetch a document by using the **read** Action in the package binding that you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  ic wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -144,14 +144,14 @@ You can use an Action to store a document in a Cloudant database called **testdb
 
 1. Store a document by using the **write** Action in the package binding you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  ic wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 
   **Output:**
   ```
   ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
-  
+
   {
     "id": "heisenberg",
     "ok": true,
@@ -163,4 +163,3 @@ You can use an Action to store a document in a Cloudant database called **testdb
 2. Verify that the document exists by browsing for it in your Cloudant dashboard.
 
   The dashboard URL for the **testdb** database looks something like the following: `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
-

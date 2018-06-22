@@ -573,7 +573,7 @@ En prenant l'exemple `package.json` précédent, ajoutez `webpack` en tant que d
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad" : "1.1.3"
@@ -644,7 +644,7 @@ Pour générer et déployer une action OpenWhisk à l'aide de `npm` et `webpack`
   {: pre}
   Utilisation de l'interface de ligne de commande :
   ```
-  ic wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -791,7 +791,7 @@ Pour assurer la compatibilité avec le conteneur d'exécution OpenWhisk, les ins
 - Pour le type `python:3`, utilisez l'image Docker `openwhisk/python3action`.
 - Pour le type `python-jessie:3`, utilisez l'image Docker `ibmfunctions/action-python-v3`.
 
-1. Avec un fichier [requirements.txt ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) contenant les versions et les modules `pip` à installer, exécutez les commandes suivantes pour installer les dépendances et créer un environnement virtuel à l'aide d'une image Docker compatible :
+1. Avec un fichier [requirements.txt ![ibmcloudône de lien externe](../icons/launch-glyph.svg "ibmcloudône de lien externe")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) contenant les versions et les modules `pip` à installer, exécutez les commandes suivantes pour installer les dépendances et créer un environnement virtuel à l'aide d'une image Docker compatible :
     ```
     docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
       bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"

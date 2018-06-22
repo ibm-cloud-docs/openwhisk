@@ -49,7 +49,7 @@ les packages prennent en charge les demandes GET, PUT et DELETE. Les noeuds fina
 demandes POST, lesquelles sont utilisées pour appeler des Actions et des déclencheurs et pour activer ou désactiver des règles. 
 
 Toutes les API sont protégées via une authentification HTTP de base. 
-Vous pouvez utiliser l'outil [wskadmin ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) pour générer un nouvel espace de nom et une nouvelle authentification.
+Vous pouvez utiliser l'outil [wskadmin ![ibmcloudône de lien externe](../icons/launch-glyph.svg "ibmcloudône de lien externe")](https://github.com/apache/incubator-openwhisk/tree/master/tools/admin) pour générer un nouvel espace de nom et une nouvelle authentification.
 Les données d'identification pour l'authentification de base figurent dans la propriété
 `AUTH` de votre fichier `~/.wskprops` et sont délimitées par un signe deux-points. 
 Vous pouvez également extraire ces données d'identification via l'interface de ligne de commande en exécutant `wsk property get --auth`.
