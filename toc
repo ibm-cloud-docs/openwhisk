@@ -26,7 +26,7 @@ IBM Cloud Functions
     bluemix_cli.md
 
     {: .topicgroup}
-    Managing Actions
+    Managing actions
         openwhisk_actions.md
         deploy_templates.md
         parameters.md
@@ -36,7 +36,7 @@ IBM Cloud Functions
         openwhisk_annotations.md
 
     {: .topicgroup}
-    Invoking Actions with events
+    Invoking actions with events
         openwhisk_triggers_rules.md
         openwhisk_alarms.md
         openwhisk_cloudant.md

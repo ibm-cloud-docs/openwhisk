@@ -574,7 +574,7 @@ Tomando o `package.json` do exemplo anterior, inclua `webpack` como uma dependê
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad" : "1.1.3"
@@ -645,7 +645,7 @@ Para construir e implementar uma Ação do OpenWhisk usando `npm` e `webpack`:
   {: pre}
   Usando a CLI:
   ```
-  ic wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
 

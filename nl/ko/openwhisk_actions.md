@@ -570,7 +570,7 @@ webpack을 사용한 빠른 예제는 다음과 같습니다.
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ic wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -640,7 +640,7 @@ global.main = main;
   {: pre}
   CLI 사용:
   ```
-  ic wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
 

@@ -21,17 +21,17 @@ lastupdated: "2018-02-14"
 ## Como ligar um serviço a uma Ação
 {: #cli_bind}
 
-Ligue um serviço a uma Ação usando o comando `ic wsk service bind` que é fornecido pelo plug-in da CLI do [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). Informações adicionais podem ser localizadas na seção [Limitações](./binding_services.html#limitations).
+Ligue um serviço a uma Ação usando o comando `ibmcloud wsk service bind` que é fornecido pelo plug-in da CLI do [{{site.data.keyword.openwhisk_short}}](./bluemix_cli.html). Informações adicionais podem ser localizadas na seção [Limitações](./binding_services.html#limitations).
 
 Sintaxe de uso com `bind`:
 ```
-ic wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
+ibmcloud wsk service bind SERVICE_NAME ACTION_NAME [--instance instance_name] [--keyname name]
 ```
 {: pre}
 
 O comando `service bind` requer um tipo de serviço e um nome da Ação ao qual ligar. Por exemplo, se você desejasse ligar um serviço de conversa do Watson a uma Ação nomeada `hello`, sua chamada seria semelhante ao comando a seguir:
 ```
-ic wsk service bind conversation hello
+ibmcloud wsk service bind conversation hello
 ```
 {: pre}
 
@@ -44,7 +44,7 @@ Esse comando procura o seu espaço atual para serviços de conversa do Watson ex
 
 Para verificar se as credenciais foram ligadas com êxito, emita o comando a seguir:
 ```
-ic wsk action get hello parameters
+ibmcloud wsk action get hello parameters
 ```
 {: pre}
 
@@ -90,20 +90,20 @@ O comando `wsk service` suporta as duas sinalizações a seguir:
     <dd>O nome das credenciais específicas dentro do serviço que você deseja usar.</dd>
 </dl>
 
-Para entender como usar essas sinalizações, veja o exemplo a seguir. Usando o comando `ic wsk service bind`, suponha que existiam dois serviços de conversa e o padrão de ação acabou ligando o serviço/credenciais incorretas. Você poderia executar novamente o comando com as sinalizações `--instance` e `--keyname` para assegurar que você ligue o serviço correto à ação correta. Primeiro, veja quais serviços estão disponíveis e quais credenciais estão ligadas a eles. Se fôssemos listar nossos serviços, veríamos uma saída como a seguinte:
+Para entender como usar essas sinalizações, veja o exemplo a seguir. Usando o comando `ibmcloud wsk service bind`, suponha que existiam dois serviços de conversa e o padrão de ação acabou ligando o serviço/credenciais incorretas. Você poderia executar novamente o comando com as sinalizações `--instance` e `--keyname` para assegurar que você ligue o serviço correto à ação correta. Primeiro, veja quais serviços estão disponíveis e quais credenciais estão ligadas a eles. Se fôssemos listar nossos serviços, veríamos uma saída como a seguinte:
 
 ```
-ic service list
+ibmcloud service list
 name              service        plan   bound apps   last operation
 Conversation-qp   conversation   free                create succeeded
 Conversation-uc   conversation   free                create succeeded
 Discovery-37      discovery      lite                create succeeded
 ```
 
-Nessa saída, vemos que **Conversation-qp** é o primeiro de dois serviços listados e é aquele ao qual o comando `ic wsk service bind conversation hello` inicial acabou se ligando. Talvez você deseje se ligar ao serviço **Conversation-uc**. Para ter certeza absoluta, é possível verificar quais credenciais o **Conversation-uc** contém, para assegurar que você ligue usando o conjunto correto de credenciais.
+Nessa saída, vemos que **Conversation-qp** é o primeiro de dois serviços listados e é aquele ao qual o comando `ibmcloud wsk service bind conversation hello` inicial acabou se ligando. Talvez você deseje se ligar ao serviço **Conversation-uc**. Para ter certeza absoluta, é possível verificar quais credenciais o **Conversation-uc** contém, para assegurar que você ligue usando o conjunto correto de credenciais.
 
 ```
-ic service keys Conversation-uc
+ibmcloud service keys Conversation-uc
 Invoking 'cf service-keys Conversation-uc'...
 
 Getting keys for service instance Conversation-uc as [your id]...
@@ -115,7 +115,7 @@ Credentials-2
 
 Você deseja ligar-se ao "Credentials-2" por meio desse serviço. Para certificar-se de que a ação execute o comportamento desejado, execute o comando a seguir:
 ```
-ic wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
+ibmcloud wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
 ```
 {: pre}
 
@@ -124,9 +124,9 @@ O que produz a saída a seguir:
 Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
 ```
 
-Na saída, é possível ver se o conjunto correto de credenciais está ligado à ação. Novamente, para verificar, é possível ver o comando `ic wsk action get` a seguir.
+Na saída, é possível ver se o conjunto correto de credenciais está ligado à ação. Novamente, para verificar, é possível ver o comando `ibmcloud wsk action get` a seguir.
 ```
-ic wsk action get hello parameters
+ibmcloud wsk action get hello parameters
 ```
 {: pre}
 
@@ -163,11 +163,11 @@ As sinalizações de depuração normal são suportadas, além de impressão de 
 ## Como desvincular um serviço de uma ação
 {: #cli_unbind}
 
-Desvincule um serviço de uma ação usando o `ic wsk service unbind`. O comando `service unbind` remove as ligações existentes criadas pelo comando `service bind`.
+Desvincule um serviço de uma ação usando o `ibmcloud wsk service unbind`. O comando `service unbind` remove as ligações existentes criadas pelo comando `service bind`.
 
 Sintaxe de uso com `unbind`:
 ```
-ic wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
 

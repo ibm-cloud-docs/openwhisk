@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-14"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -21,12 +21,12 @@ The following sections provide technical details about the {{site.data.keyword.o
 ## {{site.data.keyword.openwhisk_short}} entities
 {: #openwhisk_entities}
 
-### Namespaces and Packages
+### Namespaces and packages
 {: #openwhisk_entities_namespaces}
 
-{{site.data.keyword.openwhisk_short}} Actions, Triggers, and Rules belong in a Namespace, and sometimes a Package.
+{{site.data.keyword.openwhisk_short}} actions, triggers, and rules belong in a Namespace, and sometimes a package.
 
-Packages can contain Actions and Feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
+Packages can contain actions and Feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
 
@@ -36,7 +36,7 @@ You can create your own namespaces if you're entitled to do so. The `/whisk.syst
 {: #openwhisk_entities_fullyqual}
 
 The fully qualified name of an entity is
-`/namespaceName[/packageName]/entityName`. Notice that `/` is used to delimit Namespaces, Packages, and entities. Also, Namespaces must be prefixed with a `/`.
+`/namespaceName[/packageName]/entityName`. Notice that `/` is used to delimit Namespaces, packages, and entities. Also, Namespaces must be prefixed with a `/`.
 
 For convenience, the Namespace can be left off if it is the user's *default namespace*.
 
@@ -53,7 +53,7 @@ You can use this naming scheme when you use the {{site.data.keyword.openwhisk_sh
 ### Entity names
 {: #openwhisk_entities_names}
 
-The names of all entities, including Actions, Triggers, Rules, Packages, and Namespaces, are a sequence of characters that follow the following format:
+The names of all entities, including actions, triggers, rules, packages, and Namespaces, are a sequence of characters that follow the following format:
 
 * The first character must be an alphanumeric character, or an underscore.
 * The subsequent characters can be alphanumeric, spaces, or any of the following values: `_`, `@`, `.`, `-`.
@@ -64,26 +64,26 @@ More precisely, a name must match the following regular expression (expressed wi
 ## Action semantics
 {: #openwhisk_semantics}
 
-The following sections describe details about {{site.data.keyword.openwhisk_short}} Actions.
+The following sections describe details about {{site.data.keyword.openwhisk_short}} actions.
 
 ### Statelessness
 {: #openwhisk_semantics_stateless}
 
-Action implementations are stateless, or *idempotent*. While the system does not enforce this property, it is not guaranteed that any state maintained by an Action is available across invocations.
+Action implementations are stateless, or *idempotent*. While the system does not enforce this property, it is not guaranteed that any state maintained by an action is available across invocations.
 
-Moreover, multiple instantiations of an Action might exist, with each instantiation with its own state. An Action invocation might be dispatched to any of these instantiations.
+Moreover, multiple instantiations of an action might exist, with each instantiation with its own state. An action invocation might be dispatched to any of these instantiations.
 
 ### Invocation input and output
 {: #openwhisk_semantics_invocationio}
 
-The input to and output from an Action is a dictionary of key-value pairs. The key is a string, and the value a valid JSON value.
+The input to and output from an action is a dictionary of key-value pairs. The key is a string, and the value a valid JSON value.
 
-### Invocation ordering of Actions
+### Invocation ordering of actions
 {: #openwhisk_ordering}
 
-Invocations of an Action are not ordered. If the user invokes an Action twice from the command line or the REST API, the second invocation might run before the first. If the Actions have side effects, they might be observed in any order.
+Invocations of an action are not ordered. If the user invokes an action twice from the command line or the REST API, the second invocation might run before the first. If the actions have side effects, they might be observed in any order.
 
-Additionally, it is not guaranteed that Actions execute automatically. Two Actions can run concurrently and their side effects can be interleaved. OpenWhisk does not ensure any particular concurrent consistency model for side effects. Any concurrency side effects are implementation-dependent.
+Additionally, it is not guaranteed that actions execute automatically. Two actions can run concurrently and their side effects can be interleaved. OpenWhisk does not ensure any particular concurrent consistency model for side effects. Any concurrency side effects are implementation-dependent.
 
 ### Action execution guarantees
 {: #openwhisk_atmostonce}
@@ -93,42 +93,42 @@ When an invocation request is received, the system records the request and dispa
 The system returns an activation ID (with a nonblocking invocation) that confirms that it is received.
 If a network failure or other failure that intervenes before you receive an HTTP response, it is possible that {{site.data.keyword.openwhisk_short}} received and processed the request.
 
-The system attempts to invoke the Action once, resulting in one of the following four outcomes:
-- *success*: The Action invocation completed successfully.
-- *application error*: The Action invocation was successful, but the Action returned an error value on purpose, for instance because a precondition on the arguments was not met.
-- *action developer error*: The Action was invoked, but it completed abnormally, for instance the Action did not detect an exception, or a syntax error existed.
-- *whisk internal error*: The system was unable to invoke the Action.
+The system attempts to invoke the action once, resulting in one of the following four outcomes:
+- *success*: The action invocation completed successfully.
+- *application error*: The action invocation was successful, but the action returned an error value on purpose, for instance because a precondition on the arguments was not met.
+- *action developer error*: The action was invoked, but it completed abnormally, for instance the action did not detect an exception, or a syntax error existed.
+- *whisk internal error*: The system was unable to invoke the action.
 The outcome is recorded in the `status` field of the activation record, as document in a following section.
 
 For every invocation that is successfully received, and that the user might be billed for, has an activation record.
 
-When the outcome is *action developer error*, the Action might partially run, and generate external visible side effects. It is the user's responsibility to check whether such side effects happened, and issue retry logic if desired. Certain *whisk internal errors* indicate that an Action starts to run, but fails before the Action registers completion.
+When the outcome is *action developer error*, the action might partially run, and generate external visible side effects. It is the user's responsibility to check whether such side effects happened, and issue retry logic if desired. Certain *whisk internal errors* indicate that an action starts to run, but fails before the action registers completion.
 
 ## Activation record
 {: #openwhisk_ref_activation}
 
-Each Action invocation and Trigger firing results in an activation record.
+Each action invocation and trigger firing results in an activation record.
 
 An activation record contains the following fields:
 
 - *activationId*: The activation ID.
 - *start* and *end*: Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15).
 - *namespace* and `name`: The namespace and name of the entity.
-- *logs*: An array of strings with the logs that are produced by the Action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the Action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`.
+- *logs*: An array of strings with the logs that are produced by the action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`.
 - *response*: A dictionary that defines the keys `success`, `status`, and `result`:
   - *status*: The activation result, which might be one of the following values: "success", "application error", "action developer error", "whisk internal error".
   - *success*: Is `true` if and only if the status is `"success"`
-- *result*: A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the Action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure.
+- *result*: A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure.
 
-## JavaScript Actions
+## JavaScript actions
 {: #openwhisk_ref_javascript}
 
 ### Function prototype
 {: #openwhisk_ref_javascript_fnproto}
 
-{{site.data.keyword.openwhisk_short}} JavaScript Actions run in a Node.js runtime.
+{{site.data.keyword.openwhisk_short}} JavaScript actions run in a Node.js runtime.
 
-Actions that are written in JavaScript must be confined to a single file. The file can contain multiple functions, but by convention, a function that is called `main` must exist, and is the one called when the Action is invoked. For example, the following example shows an Action with multiple functions.
+actions that are written in JavaScript must be confined to a single file. The file can contain multiple functions, but by convention, a function that is called `main` must exist, and is the one called when the action is invoked. For example, the following example shows an action with multiple functions.
 ```javascript
 function main() {
     return { payload: helper() }
@@ -140,22 +140,22 @@ function helper() {
 ```
 {: codeblock}
 
-The Action input parameters are passed as a JSON object as a parameter to the `main` function. The result of a successful activation is also a JSON object but is returned differently depending on whether the Action is synchronous or asynchronous as described in the following section.
+The action input parameters are passed as a JSON object as a parameter to the `main` function. The result of a successful activation is also a JSON object but is returned differently depending on whether the action is synchronous or asynchronous as described in the following section.
 
 ### Synchronous and asynchronous behavior
 {: #openwhisk_ref_javascript_synchasynch}
 
-It is common for JavaScript functions to continue execution in a callback function even after a return. To accommodate this behavior, an activation of a JavaScript Action can be *synchronous* or *asynchronous*.
+It is common for JavaScript functions to continue execution in a callback function even after a return. To accommodate this behavior, an activation of a JavaScript action can be *synchronous* or *asynchronous*.
 
-A JavaScript Action's activation is **synchronous** if the main function exits under one of the following conditions:
+A JavaScript action's activation is **synchronous** if the main function exits under one of the following conditions:
 
 - The main function exits without executing a `return` statement.
 - The main function exits by executing a `return` statement that returns any value *except* a Promise.
 
-See the following example of a synchronous Action:
+See the following example of a synchronous action:
 
 ```javascript
-// an Action in which each path results in a synchronous activation
+// an action in which each path results in a synchronous activation
 function main(params) {
   if (params.payload == 0) {
      return;
@@ -168,7 +168,7 @@ function main(params) {
 ```
 {: codeblock}
 
-A JavaScript Action's activation is **asynchronous** if the main function exits by returning a Promise. In this case, the system assumes that the Action is still running until the Promise is fulfilled or rejected.
+A JavaScript action's activation is **asynchronous** if the main function exits by returning a Promise. In this case, the system assumes that the action is still running until the Promise is fulfilled or rejected.
 Start by instantiating a new Promise object and passing it a callback function. The callback takes two arguments, resolve and reject, which are both functions. All your asynchronous code goes inside that callback.
 
 In the following example, you can see how to fulfill a Promise by calling the resolve function.
@@ -195,7 +195,7 @@ function main(args) {
 ```
 {: codeblock}
 
-It is possible for an Action to be synchronous on some inputs and asynchronous on others as shown in the following example.
+It is possible for an action to be synchronous on some inputs and asynchronous on others as shown in the following example.
 ```javascript
 function main(params) {
      if (params.payload) {
@@ -213,11 +213,11 @@ function main(params) {
 ```
 {: codeblock}
 
-Regardless of whether an activation is synchronous or asynchronous, the invocation of the Action can be blocking or non-blocking.
+Regardless of whether an activation is synchronous or asynchronous, the invocation of the action can be blocking or non-blocking.
 
 ### JavaScript global whisk object removed
 
-The global object `whisk` has been removed; migrate your nodejs Actions to use alternative methods.
+The global object `whisk` has been removed; migrate your nodejs actions to use alternative methods.
 For the functions `whisk.invoke()` and `whisk.trigger()`, use the already installed client library [openwhisk](https://www.npmjs.com/package/openwhisk).
 For the `whisk.getAuthKey()`, you can get the API key value from the environment variable `__OW_API_KEY`.
 For the `whisk.error()`, you can return a rejected Promise (that is, Promise.reject).
@@ -225,8 +225,8 @@ For the `whisk.error()`, you can return a rejected Promise (that is, Promise.rej
 ### JavaScript runtime environments
 {: #openwhisk_ref_javascript_environments}
 
-JavaScript Actions can be executed in Node.js version 6 or Node.js version 8.
-Currently Actions are executed by default in a Node.js version 6 environment.
+JavaScript actions can be executed in Node.js version 6 or Node.js version 8.
+Currently actions are executed by default in a Node.js version 6 environment.
 ### Packaging npm packages with your actions
 For any `npm` packages that are not pre-installed in the Node.js environment, you can bundle them as dependencies when you create or update your action.
 
@@ -234,7 +234,7 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.11.1 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an Action.
+The Node.js version 8.11.1 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
 
 The following packages are pre-installed in the Node.js version 8.11.1 environment:
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
@@ -259,7 +259,7 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
   - [formidable v1.2.1](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
   - [glob v7.1.2](https://www.npmjs.com/package/glob) - Match files using the patterns the shell uses, like stars and stuff.
   - [gm v1.23.1](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-  - [ibm-cos-sdk v1.2.1](https://www.npmjs.com/package/ibm-cos-sdk) - IBM Cloud Object Storage SDK for Node.js
+  - [ibm-cos-sdk v1.2.1](https://www.npmjs.com/package/ibm-cos-sdk) - {{site.data.keyword.cos_full}} SDK for Node.js
   - [ibm_db v2.4.0](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for node.js to IBM DB2 and IBM Informix.
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - The node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
@@ -304,7 +304,7 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
 
 ### Node.js version 6 environment
 {: #openwhisk_ref_javascript_environments_6}
-The Node.js 6.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:6` when creating or updating an Action.
+The Node.js 6.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:6` when creating or updating an action.
 
 The following packages are available to be used in the Node.js 6.14.0 environment:
 
@@ -364,19 +364,19 @@ The following packages are available to be used in the Node.js 6.14.0 environmen
 ## Python runtime environments
 {: #openwhisk_ref_python_environments}
 
-OpenWhisk supports running Python Actions by using two different runtime versions.
+OpenWhisk supports running Python actions by using two different runtime versions.
 
-### Python 3 Actions (Jessie based)
+### Python 3 actions (Jessie based)
 {: #openwhisk_ref_python_environments_jessie}
 
-Python 3 Actions are executed with Python 3.6.5. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an Action.
+Python 3 actions are executed with Python 3.6.5. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an action.
 When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
-The runtime contains SDK packages for IBM Cloud services available for use by Python Actions, in addition to the Python 3.6 standard libraries.
+The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
 Python version:
 - [3.6.5](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
 
-Python Packages:
+Python packages:
 - asn1crypto==0.24.0
 - attrs==17.4.0
 - Automat==0.6.0
@@ -444,14 +444,14 @@ Python Packages:
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
-### Python 3 Actions (Alpine based)
+### Python 3 actions (Alpine based)
 {: #openwhisk_ref_python_environments_alpine}
 
-Python 3 Actions are executed with Python 3.6.1. To use this runtime, specify the `wsk` CLI parameter `--kind python:3` when you create or update an Action.
+Python 3 actions are executed with Python 3.6.1. To use this runtime, specify the `wsk` CLI parameter `--kind python:3` when you create or update an action.
 When creating python actions using virtualenv, use the docker image `openwhisk/python3action`.
-The following packages are available for use by Python Actions, in addition to the Python 3.6 standard libraries.
+The following packages are available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
-Python Packages:
+Python packages:
 - asn1crypto==0.23.0
 - attrs==17.3.0
 - Automat==0.6.0
@@ -491,13 +491,13 @@ Python Packages:
 - Werkzeug==0.12.2
 - zope.interface==4.4.3
 
-### Python 2 Actions
+### Python 2 actions
 
-Python 2 Actions are executed with Python 2.7.12, which is the default runtime for Python Actions. Unless you specify the `--kind` flag when you create or update an Action. To explicitly select this runtime, use `--kind python:2`.
+Python 2 actions are executed with Python 2.7.12, which is the default runtime for Python actions. Unless you specify the `--kind` flag when you create or update an action. To explicitly select this runtime, use `--kind python:2`.
 When creating python actions using virtualenv, use the docker image `openwhisk/python2action`.
-The following packages are available for use by Python 2 Actions, in addition to the Python 2.7 standard library.
+The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
 
-Python Packages:
+Python packages:
 - asn1crypto==0.23.0
 - attrs==17.2.0
 - beautifulsoup4==4.5.1
@@ -536,16 +536,16 @@ Python Packages:
 - Werkzeug==0.12.2
 - zope.interface==4.4.3
 
-## Swift Actions
+## Swift actions
 {: #swift-actions}
 
 ### Swift 3
-Swift 3 Actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
+Swift 3 actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
 
-You must migrate all Swift Actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update Actions.
+You must migrate all Swift actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update actions.
 {: tip}
 
-Swift 3.1.1 Actions can use the following packages when using a single Swift source file:
+Swift 3.1.1 actions can use the following packages when using a single Swift source file:
 - KituraNet version 1.7.6, https://github.com/IBM-Swift/Kitura-net
 - SwiftyJSON version 15.0.1, https://github.com/IBM-Swift/SwiftyJSON
 - Watson Developer Cloud SDK version 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
@@ -555,18 +555,18 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
-Swift 4.1 Actions can use the following packages when using single Swift source file:
+Swift 4.1 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 0.27.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
-#### SwiftyJSON using a single source Action file
-If you have a `swift:3.1.1` Action that is not compiled, just as a source file using the **SwiftyJSON** package, you need to pre-compile your Action, and specify the version of SwiftyJSON you want to use for `swift:4.1` kind Action. Take into account that starting with Swift 4.1, there is better support to manage JSON data natively.
+#### SwiftyJSON using a single source action file
+If you have a `swift:3.1.1` action that is not compiled, just as a source file using the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.1` kind action. Take into account that starting with Swift 4.1, there is better support to manage JSON data natively.
 
-## PHP Actions
+## PHP actions
 {: #openwhisk_ref_php}
 
-PHP Actions are executed with PHP 7.1.18 To use this runtime, specify the `wsk` CLI parameter `--kind php:7.1` when you create or update an Action. This behavior is the default when you create an Action with a file that has a `.php` extension.
+PHP actions are executed with PHP 7.1.18 To use this runtime, specify the `wsk` CLI parameter `--kind php:7.1` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -588,12 +588,12 @@ The following Composer packages are also available:
 - guzzlehttp/guzzle       v6.7.3
 - ramsey/uuid             v3.6.3
 
-## Docker Actions
+## Docker actions
 {: #openwhisk_ref_docker}
 
-Docker Actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
+Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
 
-The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ic wsk sdk install docker` CLI plug-in command.
+The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud wsk sdk install docker` CLI plug-in command.
 
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 
@@ -607,22 +607,22 @@ Information about the {{site.data.keyword.openwhisk_short}} REST API can be foun
 {: #openwhisk_syslimits}
 
 ### Actions
-{{site.data.keyword.openwhisk_short}} has a few system limits, including how much memory an Action can use and how many Action invocations are allowed per minute.
+{{site.data.keyword.openwhisk_short}} has a few system limits, including how much memory an action can use and how many action invocations are allowed per minute.
 
-The following table lists the default limits for Actions.
+The following table lists the default limits for actions.
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | The maximum size of the Action code in MB. | 48 | 1 | 48 |
+| [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
 | [concurrent](openwhisk_reference.html#openwhisk_syslimits_concurrent) | No more than N activations can be submitted per Namespace either executing or queued for execution. | 1000 | 1 | 1000* |
 | [logs](openwhisk_reference.html#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
 | [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
 | [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per Namespace per minute. | 5000 | 1 | 5000* |
-| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for an Action. | 1024 | 0 | 1024 |
+| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
-| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to an Action. | 1024 | 0 | 1024 |
-| [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the Action invocation result in MB. | 1 | 0 | 1 |
-| [sequenceMaxActions](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of Actions that comprise a given sequence. | 50 | 0 | 50* |
+| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
+| [result](openwhisk_reference.html#openwhisk_syslimits_result) | The maximum size of the action invocation result in MB. | 1 | 0 | 1 |
+| [sequenceMaxActions](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
 | [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
@@ -636,8 +636,8 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 #### codeSize (MB) (Fixed: 48 MB)
 {: #openwhisk_syslimits_codesize}
-* The maximum code size for the Action is 48 MB.
-* It is recommended for a JavaScript Action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
+* The maximum code size for the action is 48 MB.
+* It is recommended for a JavaScript action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
 * This limit is fixed and cannot be changed.
 
 #### concurrent (Fixed: 1000*)
@@ -647,27 +647,27 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 #### logs (MB) (Default: 10 MB)
 {: #openwhisk_syslimits_logs}
-* The log limit N is in the range [0 MB..10 MB] and is set per Action.
-* A user can change the Action log limit when an Action is created or updated.
+* The log limit N is in the range [0 MB..10 MB] and is set per action.
+* A user can change the action log limit when an action is created or updated.
 * Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
 
 #### memory (MB) (Default: 256 MB)
 {: #openwhisk_syslimits_memory}
-* The memory limit M is in the range from [128 MB..512 MB] and is set per Action in MB.
-* A user can change the memory limit when an Action is created.
+* The memory limit M is in the range from [128 MB..512 MB] and is set per action in MB.
+* A user can change the memory limit when an action is created.
 * A container cannot use more memory than is allocated by the limit.
 
 #### minuteRate (Fixed: 5000*)
 {: #openwhisk_syslimits_minuterate}
-* The rate limit N is set to 5000 and limits the number of Action invocations in 1-minute windows.
+* The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
 #### openulimit (Fixed: 1024:1024)
 {: #openwhisk_syslimits_openulimit}
-* The maximum number of open files for an Action is 1024 (for both hard and soft limits).
+* The maximum number of open files for an action is 1024 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
-* When an Action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
+* When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### parameters (Fixed: 1 MB)
@@ -678,25 +678,25 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 #### proculimit (Fixed: 1024:1024)
 {: #openwhisk_syslimits_proculimit}
-* The maximum number of processes available to the Action container is 1024.
+* The maximum number of processes available to the action container is 1024.
 * This limit is fixed and cannot be changed.
-* When an Action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
+* When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
 #### result (Fixed: 1 MB)
 {: #openwhisk_syslimits_result}
-* The maximum output size of an Action invocation result in MB.
+* The maximum output size of an action invocation result in MB.
 * This limit is fixed and cannot be changed.
 
 #### sequenceMaxActions (Fixed: 50*)
 {: #openwhisk_syslimits_sequencemax}
-* The maximum number of Actions that comprise a given sequence.
+* The maximum number of actions that comprise a given sequence.
 * This limit is fixed and cannot be changed.
 
 #### timeout (ms) (Default: 60s)
 {: #openwhisk_syslimits_timeout}
-* The timeout limit N is in the range [100 ms..600000 ms], and is set per Action in milliseconds.
-* A user can change the timeout limit when an Action is created.
+* The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds.
+* A user can change the timeout limit when an action is created.
 * A container that runs longer than N milliseconds is terminated.
 
 ### Triggers
@@ -705,7 +705,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N Triggers can be fired per Namespace per minute. | 5000* | 5000* | 5000* |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | No more than N triggers can be fired per Namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #increase_fixed_tlimit}
@@ -719,7 +719,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 #### minuteRate (Fixed: 5000*)
 {: #openwhisk_syslimits_tminuterate}
 
-* The rate limit N is set to 5000 and limits the number of Triggers that a user can fire in 1-minute windows.
-* A user cannot change the Trigger limit when a Trigger is created.
+* The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
+* A user cannot change the trigger limit when a trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](openwhisk_reference.html#increase_fixed_tlimit) for detailed instructions on how to increase this limit.

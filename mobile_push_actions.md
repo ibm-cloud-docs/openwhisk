@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2018-03-26"
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
 {: shortdesc}
 
-The package includes the following Actions and Feeds:
+The package includes the following actions and Feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -47,17 +47,17 @@ To create a package binding, see the following steps:
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
   ```
-  ic wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
-  ```
-  {: pre}
-  
-5. Verify that the package binding exists:
-  ```
-  ic wsk package list
+  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
-  **Output:**
+5. Verify that the package binding exists:
+  ```
+  ibmcloud wsk package list
+  ```
+  {: pre}
+
+  Example output:
   ```
   packages
   /myNamespace/myPush private binding
@@ -67,7 +67,7 @@ To create a package binding, see the following steps:
 ## Push notification parameters
 {: #push_parameters}
 
-The `/whisk.system/pushnotifications/sendMessage` Action sends Push notifications to registered devices. The parameters are as follows:
+The `/whisk.system/pushnotifications/sendMessage` action sends Push notifications to registered devices. The parameters are as follows:
 - `text`: The notification message to be shown to the user. For example, `-p text "Hi, OpenWhisk send a notification"`.
 - `url`: A URL that can be sent along with the alert. For example, `-p url "https:\\www.w3.ibm.com"`.
 - `apiHost`: An optional string that specifies the API host. The default is `mobile.ng.bluemix.net`.  For example: `-p apiHost "mobile.eu-gb.bluemix.net"`
@@ -95,7 +95,7 @@ The `/whisk.system/pushnotifications/sendMessage` Action sends Push notification
 - `gcmLightsLedOffMs`: The number of milliseconds for the LED to be off while it's flashing. The hardware does its best approximation.
 - `apnsBadge`: The number to display as the badge of the application icon.
 - `apnsCategory`: The category identifier to be used for the interactive push notifications.
-- `apnsIosActionKey`: The title for the Action key.
+- `apnsIosActionKey`: The title for the action key.
 - `apnsPayload`: Custom JSON payload that is sent as part of the notification message.
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: The name of the sound file in the application bundle. The sound of this file is played as an alert.
@@ -130,13 +130,13 @@ The `/whisk.system/pushnotifications/sendMessage` Action sends Push notification
 
 See the following example to send a Push notification from the Push notification package.
 
-Send a Push notification by using the **sendMessage** Action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
+Send a Push notification by using the **sendMessage** action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
 ```
-ic wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 
-**Output:**
+Example output:
 ```
 {
   "result": {
