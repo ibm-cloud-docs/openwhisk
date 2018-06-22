@@ -17,43 +17,43 @@ lastupdated: "2018-03-26"
 The `/whisk.system/watson-speechToText` package offers a convenient way to call Watson APIs to convert the speech into text.
 {: shortdesc}
 
-The package includes the following Actions.
+The package includes the following actions.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-speechToText` | Package | username, password | Package to convert speech into text |
-| `/whisk.system/watson-speechToText/speechToText` | Action | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convert audio into text |
+| `/whisk.system/watson-speechToText` | package | username, password | Package to convert speech into text |
+| `/whisk.system/watson-speechToText/speechToText` | action | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convert audio into text |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the Action `/whisk.system/watson/speechToText`.
+**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/speechToText`.
 
 ## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
 1. Create a Watson Speech to Text service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.ng.Bluemix.net).
-  
+
   Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
-  
+
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
   ibmcloud wsk package refresh
   ```
   {: pre}
-  
-  **Output:**
+
+  Example output:
   ```
   created bindings:
   Bluemix_Watson_SpeechToText_Credentials-1
   ```
   {: screen}
-  
+
   List packages to see that the binding was created:
   ```
   ibmcloud wsk package list
   ```
   {: pre}
-  
-  **Output:**
+
+  Example output:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_SpeechToText_Credentials-1 private
@@ -69,10 +69,10 @@ Create a package binding that is configured for your Watson Speech to Text servi
 ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
-  
+
 ## Converting speech to text
 
-The `/whisk.system/watson-speechToText/speechToText` Action converts audio speech into text. The parameters are as follows:
+The `/whisk.system/watson-speechToText/speechToText` action converts audio speech into text. The parameters are as follows:
 
 - `username`: The Watson API user name.
 - `password`: The Watson API password.
@@ -92,17 +92,16 @@ The `/whisk.system/watson-speechToText/speechToText` Action converts audio speec
 - `word_confidence`: Indicates whether a confidence measure in the range of 0 to 1 is to be returned for each word.
 - `X-Watson-Learning-Opt-Out`: Indicates whether to opt out of data collection for the call.
 
-Invoke the **speechToText** Action in your package binding to convert the encoded audio.
+Invoke the **speechToText** action in your package binding to convert the encoded audio.
 ```
 ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 
-**Output:**
+Example output:
 ```
 {
   "data": "Hello Watson"
 }
 ```
 {: screen}
-  

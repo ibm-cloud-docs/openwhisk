@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-24"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,26 +11,26 @@ lastupdated: "2018-04-24"
 {:screen: .screen}
 {:pre: .pre}
 
-# Message Hub
+# {{site.data.keyword.messagehub}}
 {: #openwhisk_catalog_message_hub}
 
-A package that enables communication with [Message Hub](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
+A package that enables communication with [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
 
-## Setting up a Message Hub package using {{site.data.keyword.Bluemix_notm}}
+## Setting up a {{site.data.keyword.messagehub}} package using {{site.data.keyword.Bluemix_notm}}
 {: #create_message_hub_ibm}
 
-1. Create an instance of Message Hub service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
+1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
 
-2. Verify that the topic you want to listen to is available in Message Hub or create a new topic, for example, titled **mytopic**.
+2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled **mytopic**.
 
-3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the Message Hub service instance that you created.
+3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
   ```
   ibmcloud wsk package refresh
   ```
   {: pre}
 
-  **Output:**
+  Example output:
   ```
   created bindings:
   Bluemix_Message_Hub_Credentials-1
@@ -43,57 +43,57 @@ A package that enables communication with [Message Hub](https://developer.ibm.co
   ```
   {: pre}
 
-  **Output:**
+  Example output:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
   ```
   {: screen}
 
-  Your package binding now contains the credentials that are associated with your Message Hub instance.
+  Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
 
-## Setting up a Message Hub package outside {{site.data.keyword.Bluemix_notm}}
+## Setting up a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}
 
-If you want to set up your Message Hub outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Message Hub service. You need the Message Hub service credentials and connection information.
+If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
 
-Create a package binding that is configured for your Message Hub service.
+Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 ```
-ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your Message Hub user> -p password <your Message Hub password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
 
 ## Listening for messages using events
 
-For detailed information about how to use Triggers in Message Hub to listen for messages, see the following
-[Message hub events source](./openwhisk_messagehub.html) topic where the following tasks are covered:
-* [Creating a Trigger that listens to an IBM Message Hub instance](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [Creating a Trigger for a Message Hub package outside {{site.data.keyword.Bluemix_notm}}](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
+For detailed information about how to use triggers in {{site.data.keyword.messagehub}} to listen for messages, see the following
+[{{site.data.keyword.messagehub}} events source](./openwhisk_messagehub.html) topic where the following tasks are covered:
+* [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](./openwhisk_messagehub.html#create_message_hub_trigger)
+* [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
 * [Listening for messages](./openwhisk_messagehub.html#message_hub_listen)
 * [Examples](./openwhisk_messagehub.html#examples)
 
-## Producing messages to Message Hub
+## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-The `/messaging/messageHubProduce` Action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` Action to use a persistent connection when data is produced to Message Hub/Kafka.
+The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
-If you would like to use a {{site.data.keyword.openwhisk_short}} Action to conveniently produce a message to Message Hub, you can use the `/messaging/messageHubProduce` Action. This Action takes the following parameters:
+If you would like to use a {{site.data.keyword.openwhisk_short}} action to conveniently produce a message to {{site.data.keyword.messagehub}}, you can use the `/messaging/messageHubProduce` action. This action takes the following parameters:
 
 |Name|Type|Description|
 |---|---|---|
-|kafka_brokers_sasl|JSON Array of Strings|This parameter is an array of `<host>:<port>` strings that comprise the brokers in your Message Hub instance.|
-|user|String|Your Message Hub username.|
-|password|String|Your Message Hub password.|
-|topic|String|The topic that you would like the Trigger to listen to.|
+|kafka_brokers_sasl|JSON Array of Strings|This parameter is an array of `<host>:<port>` strings that comprise the brokers in your {{site.data.keyword.messagehub}} instance.|
+|user|String|Your {{site.data.keyword.messagehub}} username.|
+|password|String|Your {{site.data.keyword.messagehub}} password.|
+|topic|String|The topic that you would like the trigger to listen to.|
 |value|String|The value for the message you would like to produce.|
 |key|String (Optional)|The key for the message you would like to produce.|
 
-While the first three parameters can be automatically bound by using `ibmcloud wsk package refresh`, see the following example that invokes the Action with all necessary parameters:
+While the first three parameters can be automatically bound by using `ibmcloud wsk package refresh`, see the following example that invokes the action with all necessary parameters:
 ```
-ibmcloud wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your Message Hub user> -p password <your Message Hub password> -p value "This is the content of my message"
+ibmcloud wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```
 {: pre}
 
 ## References
-- [IBM Message Hub](https://developer.ibm.com/messaging/message-hub/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
 - [Apache Kafka](https://kafka.apache.org/)

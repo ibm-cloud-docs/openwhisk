@@ -12,8 +12,9 @@ lastupdated: "2018-03-16"
 {:pre: .pre}
 
 # Mobile push on device events
+{: #openwhisk_pushnotifications}
 
-Learn how to configure the Push service to fire a Trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
+Learn how to configure the Push service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
 {: shortdesc}
 
 For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](./mobile_push_actions.html) topic which covers creating a Push package binding, and sending a Push notification.
@@ -28,10 +29,10 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 
   You can use the wildcard character "`*`" to be notified for all events.
 
-## Firing a Trigger event on Push Notifications service activity
+## Firing a trigger event on Push Notifications service activity
 {: #trigger_push_notify}
 
-To create a Trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
+To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
 
 1. Create a package binding that is configured for your Push Notifications service by using your **appId** and **appSecret**.
   ```
@@ -39,13 +40,13 @@ To create a Trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-2. Create a Trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` Feed.
+2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` Feed.
   ```
   ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
-3. You can create a Rule that sends a message every time a new device is registered. Create a Rule by using the previous Action and Trigger.
+3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
   ```
   ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
   ```
@@ -57,6 +58,6 @@ To create a Trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `Rule`, `Trigger`, and `Action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://console.bluemix.net/openwhisk/dashboard).
+5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://console.bluemix.net/openwhisk/dashboard).
 
-  The Action sends a Push notification.
+  The action sends a Push notification.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -48,7 +48,7 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
   You can specify the organization and space when you log in to skip the prompts for them. Use the following flags: `ibmcloud login -o <ORG> -s <SPACE>`.
   {: tip}
 
-You can also use an {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a Federated Login requiring you to log in with the flag `--sso`. [Using an API key](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) is also beneficial if you want to set up Continuous Integration (CI), and want to configure an unattended pipeline.
+You can also use an {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a federated login that requires you to log in with the flag `--sso`. [Using an API key](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) is also beneficial if you want to set up continuous integration (CI) and want to configure an unattended pipeline.
 
 1. Create a new API key.
     ```
@@ -110,22 +110,22 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
     ```
     {: pre}
 
-You can use the {{site.data.keyword.openwhisk_short}} CLI to perform the following tasks:
+You can use the {{site.data.keyword.openwhisk_short}} CLI to:
 
-* Run your code snippets, or Actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking Actions](./openwhisk_actions.html).
-* Use Triggers and Rules to enable your Actions to respond to events. See [Creating Triggers and Rules](./openwhisk_triggers_rules.html).
-* Learn how packages bundle Actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [Cloudant event source](./openwhisk_cloudant.html).
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
+* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
+* Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
 
 To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud wsk` with no arguments.
 {: tip}
 
-## Using services from Actions
+## Using services from actions
 {: #binding_services}
 
-{{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. The `service bind` command can then be leveraged to allow you to bind any {{site.data.keyword.Bluemix_notm}} service to any Action that is defined in {{site.data.keyword.openwhisk_short}}.
+{{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. You can then use the `service bind` command to bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}.
 
-For detailed steps on how to use services from Actions, see [Binding services to Actions](./binding_services.html).
+For detailed steps on how to use services from actions, see [Binding services to actions](./binding_services.html).
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
 {: #cli_https_proxy}
@@ -169,7 +169,7 @@ All `wsk` commands, except the `wsk bluemix login` command that is no longer nee
 {: #api_authentication}
 
 The OpenWhisk CLI required you to configure the authentication API key and the API host.
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you do not need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all subsequent commands begin with `ibmcloud wsk`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all commands begin with `ibmcloud wsk`.
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:
 
@@ -191,17 +191,21 @@ The API key is specific per region, organization, and space targeted by the {{si
 ### API Gateway authentication
 {: #apigw_authentication}
 
-The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, there is no need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.Bluemix_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud wsk api` command.
+The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.Bluemix_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud wsk api` command.
 
 ### Migrating deployment scripts
 {: #migrating_deploy_scripts}
 
-If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud wsk`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current executions of `wsk` get translated to `ibmcloud wsk`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before executing `ibmcloud wsk` commands to deploy, and manage your {{site.data.keyword.openwhisk_short}} entities.
+If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud wsk`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud wsk`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud wsk` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
 
 ## Version history
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+1.0.18 (2018-06-20)
+* Fix for unbinding user-provided service instances.
+* Performance improvements.
 
 1.0.17 (2018-06-12)
 * Add support for binding (`ibmcloud wsk service bind`) and unbinding (`ibmcloud wsk service unbind`) user-provided service instances that are created by using the `ibmcloud cf create-user-provided-service` command.
@@ -225,7 +229,7 @@ A historical record of versions that show highlights and bug fixes.
 * Minor bug fixes and improvements.
 
 1.0.10 (2018-04-09)
-* Add new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web Action endpoints.
+* Add new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
 * Fix back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
 
 1.0.9 (2018-03-16)

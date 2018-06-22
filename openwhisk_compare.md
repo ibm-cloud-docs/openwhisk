@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-07"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -38,11 +38,11 @@ The following table compares elements of each architecture from the perspective 
 | Topic | (1) FaaS on {{site.data.keyword.openwhisk_short}} | (2) IaaS with OpenWhisk RYO | (3) PaaS | (4) CaaS | (5) IaaS with Java EE |
 | --- | --- | --- | --- | --- | --- |
 |	Application unit	|	Single function (usually small block of code in JavaScript, Swift, or Docker container) - can be less than one Kb, but can be larger. Usually not more than few Kb.	|	Same as column (1)	|	Depends on the runtime used. An EAR or WAR file, or other language-specific application bundle, usually relatively large - Kb or even Mb with many services in a bundle, but can be as small as a single service.	|	Docker container is the unit of deployment.	|	VM with App Server with EAR or WAR file and other dependencies - usually sized at Gb.	|
-|	Resource footprint	|	End user does not pay or care about memory, CPU, or other resources. Although the Action does have some footprint, the user does not need to worry about it	|	High. The end user must first provision IaaS environment and only then install and configure OpenWhisk on top of it	|	Small. End user pays for memory and CPU for running apps, but nothing for apps that are not running	|	Small to Medium	|	High. End user has to pay for disk storage, memory, CPUs, and possibly other components when the app is running. When it is stopped only the storage costs occur	|
+|	Resource footprint	|	End user does not pay or care about memory, CPU, or other resources. Although the action does have some footprint, the user does not need to worry about it	|	High. The end user must first provision IaaS environment and only then install and configure OpenWhisk on top of it	|	Small. End user pays for memory and CPU for running apps, but nothing for apps that are not running	|	Small to Medium	|	High. End user has to pay for disk storage, memory, CPUs, and possibly other components when the app is running. When it is stopped only the storage costs occur	|
 |	Installation and setup	|	None required	|	Hard - all done by the end user	|	None required	|	Moderate - Hardware, networking, OS, container mgmt tools provided by CaaSs vendor, images, connectivity, and instances by end user	|	Hard - Hardware, networking, OS, initial Java EE installation provided by vendor, additional configuration, clustering, scaling by end user	|
 |	Provisioning time	|	Milliseconds	|	See columns (4) and (5)	|	Minutes	|	Minutes	|	Hours	|
 |	Ongoing administration	|	None	|	Hard	|	None	|	Moderate	|	Hard	|
-|	Elastic scaling	|	Each Action is always instantly and inherently scaled depending on the load. No need to provision VMs or other resources in advance	|	Not provided - end user must provide compute capacity on IaaS and manage scaling of VMs. Once VMs are scaled, OpenWhisk scales Actions automatically, but the resources must already be provisioned in advance	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale Action to complete. Auto scaling requires careful tuning	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale Action to complete. Auto scaling requires careful tuning	|	Not provided	|
+|	Elastic scaling	|	Each action is always instantly and inherently scaled depending on the load. No need to provision VMs or other resources in advance	|	Not provided - end user must provide compute capacity on IaaS and manage scaling of VMs. Once VMs are scaled, OpenWhisk scales actions automatically, but the resources must already be provisioned in advance	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale action to complete. Auto scaling requires careful tuning	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale action to complete. Auto scaling requires careful tuning	|	Not provided	|
 |	Capacity planning	|	Not needed. FaaS automatically provides as much capacity as needed	|	Need to provision enough capacity in advance or script it	|	Some capacity planning is needed, but some automatic capacity increase is provided	|	Some capacity planning is needed, but some automatic capacity increase is provided	|	Need to statically provision enough capacity to handle peak workload	|
 |	Persistent connections and state	|	Limited - cannot keep a persistent connection, except in cases of container caching. Generally state must be kept in external resource	|	Same as column (1)	|	Supported - can keep an open socket or connection for long times, can store state in memory between calls	|	Supported - can keep an open socket or connection for long times, can store state in memory between calls	|	Supported - can keep an open socket or connection for long times, can store state in memory between calls	|
 |	Maintenance	|	None - The entire stack is managed by IBM.	|	Significant - Depends on the target environment, User must provision hardware, networking, OS, storage, DB, install and maintain OpenWhisk, and so on.	|	None - The entire stack is managed by vendor.	|	Significant - User must create and maintain custom images, deploy and manage containers, connections between containers, and so on.	|	Significant - User must allocate VMs, manage, and scale Java EE servers individually.	|
@@ -75,7 +75,7 @@ When not in use, {{site.data.keyword.openwhisk_short}} costs nothing. Your code 
 ### Run actions in any region
 {: #actions_region}
 
-In traditional architectures, code must be running in each region to be executed there and the infrastructure for that region must also be paid for. With {{site.data.keyword.openwhisk_short}}, Actions can be deployed and made available to run in any region at no extra cost. You can increase the availability and resiliency of your code without the traditional cost restrictions.
+In traditional architectures, code must be running in each region to be executed there and the infrastructure for that region must also be paid for. With {{site.data.keyword.openwhisk_short}}, actions can be deployed and made available to run in any region at no extra cost. You can increase the availability and resiliency of your code without the traditional cost restrictions.
 
 ### Redundancy by design
 {: #redundancy_design}
