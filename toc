@@ -76,7 +76,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     API Documentation
-        [REST API Reference](https://console.stage1.ng.bluemix.net/apidocs/98){: new_window}
+        [REST API Reference](https://console.ng.bluemix.net/apidocs/98){: new_window}
         [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
     {: .topicgroup}
