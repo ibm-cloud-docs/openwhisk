@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-06-28"
 
 ---
 
@@ -34,7 +34,9 @@ Learn about some basic concepts of the technology behind {{site.data.keyword.ope
 <dt>Trigger</dt>
 <dd>[Triggers](openwhisk_triggers_rules.html#openwhisk_triggers_create) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
 <dt>Rule</dt>
-<dd>A [rule](openwhisk_triggers_rules.html#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.</dd>
+<dd>A [rule](openwhisk_triggers_rules.html#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.</dd>
+<dt>Feed</dt>
+<dd>A feed is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository.</dd>
 <dt>Package</dt>
 <dd>Integrations with services and event providers can be added with packages. A [package](openwhisk_packages.html) is a bundle of feeds and actions. A feed is a piece of code that configures an external event source to fire trigger events. For example, a trigger that is created with a {{site.data.keyword.cloudant}} change feed configures a service to fire the trigger every time a document is modified or added to a {{site.data.keyword.cloudant_short_notm}} database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
 <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
