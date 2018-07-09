@@ -300,7 +300,7 @@ The following packages are pre-installed in the Node.js version 8.11.3 environme
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - Another unzip library for node.
 
 ### Node.js version 6 environment
 {: #openwhisk_ref_javascript_environments_6}
@@ -358,7 +358,7 @@ The following packages are available to be used in the Node.js 6.14.3 environmen
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Yet another unzip library for node. For zipping.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Another unzip library for node.
 
 
 ## Python runtime environments
