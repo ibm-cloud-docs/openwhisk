@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,68 +11,57 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Acerca de {{site.data.keyword.openwhisk_short}}
+# Arquitectura de la plataforma
+{: #openwhisk_about}
 
-{{site.data.keyword.openwhisk}} es una plataforma de cálculo dirigida por sucesos, también conocida como Computación sin servidor o Function as a Service (FaaS), que ejecuta código en respuesta a sucesos o invocaciones directas. La figura siguiente muestra la arquitectura de {{site.data.keyword.openwhisk}} de alto nivel.
+{{site.data.keyword.openwhisk}} es una plataforma de cálculo dirigida por sucesos, también conocida como Computación sin servidor o Function as a Service (FaaS), que ejecuta código en respuesta a sucesos o invocaciones directas.
 {: shortdesc}
 
-![Arquitectura de {{site.data.keyword.openwhisk_short}}](./images/OpenWhisk.png)
+## Tecnología de {{site.data.keyword.openwhisk_short}}
+{: #technology}
 
-Como ejemplos de sucesos se pueden citar cambios en los registros de base de datos, lecturas de sensor IoT que sobrepasen una
-temperatura determinada, nuevas confirmaciones de código en un repositorio GitHub o solicitudes HTTP sencillas desde apps web o de móvil. Los sucesos de orígenes de sucesos externos e internos se ponen en el canal por medio de un desencadenante, y las reglas permiten acciones de respuesta para dichos sucesos.
+Obtenga más información acerca de algunos conceptos básicos de la tecnología subyacente a {{site.data.keyword.openwhisk_short}}:
 
-Las acciones pueden ser pequeños fragmentos de código JavaScript o código Swift, o bien código binario personalizado
-incluido en un contenedor Docker. Las acciones en {{site.data.keyword.openwhisk_short}} se despliegan de forma instantánea y se ejecutan siempre que se active un desencadenante. Cuantos más desencadenantes se activen, más acciones se invocan. Si no se activan desencadenantes, no se ejecuta ningún código de acción, con lo que el coste es cero.
-
-Además de asociar acciones a desencadenantes, es posible invocar directamente una acción utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. También se puede encadenar un conjunto de acciones sin tener que escribir código. Cada acción de la cadena se invoca en secuencia con la salida de una acción pasada como entrada para la siguiente secuencia.
-
-Con los contenedores o máquinas virtuales de larga ejecución tradicionales, se recomienda desplegar varias MV o contenedores
-para que sean resistentes a cortes de una única instancia. No obstante, {{site.data.keyword.openwhisk_short}} ofrece un modelo alternativo sin sobrecarga de coste relacionada con la resistencia. La ejecución de acciones a demanda proporciona escalabilidad inherente y utilización óptima ya que el número de acciones en ejecución siempre coincide con la tasa del desencadenante. Además, el desarrollador ahora puede centrarse en el código, y no se preocupa de la supervisión, parches y seguridad del servidor subyacente, ni de su infraestructura de almacenamiento, de red o del sistema operativo.
-
-Las integraciones con servicios y proveedores de sucesos se pueden añadir con paquetes. Un paquete es una agrupación de información de entrada y acciones. La información de entrada es un segmento de código que configura un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, un desencadenante creado con información de entrada de cambios de Cloudant configura un servicio para que active el desencadenante siempre que se modifique un documento o se añada a una base de datos Cloudant. Las acciones en paquetes representan lógica reutilizable que un proveedor de servicios puede poner a disponibilidad de los desarrolladores para que puedan utilizar el servicio como un origen de sucesos e invocar las API de dicho servicio.
-
-Un catálogo de paquetes existente ofrece una forma rápida de mejorar las aplicaciones con prestaciones útiles, y para acceder
-a servicios externos en el ecosistema. Algunos de los servicios externos que están habilitados para {{site.data.keyword.openwhisk_short}} son Cloudant, The Weather Company, Slack y GitHub.
-
+<dl>
+<dt>Acción</dt>
+<dd>Una [acción ](openwhisk_actions.html) es una parte de código que realiza una tarea específica. Una acción se puede escribir en el lenguaje de su elección, como pequeños fragmentos de código JavaScript o código Swift, o bien código binario personalizado. Especifique la acción en Cloud Functions como código fuente o como una imagen de Docker.
+<br><br>Una acción realiza un trabajo cuando se invoca directamente utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. Una acción también puede responder automáticamente a los sucesos desde servicios de {{site.data.keyword.Bluemix_notm}} y servicios de terceros utilizando un desencadenante.</dd>
+<dt>Secuencia</dt>
+<dd>Se puede encadenar un conjunto de acciones en una [secuencia](openwhisk_actions.html#openwhisk_create_action_sequence) sin tener que escribir código. Una secuencia es una cadena de acciones, invocadas en orden, donde el resultado de una se pasa como entrada a la siguiente acción. Esto le permite combinar acciones existentes juntas para una reutilización rápida y sencilla. A continuación, se puede invocar una secuencia como si fuera una acción, mediante una API REST o automáticamente en respuesta a sucesos.
+</dd>
+<dt>Suceso</dt>
+<dd>Como ejemplos de sucesos se pueden citar cambios en los registros de base de datos, lecturas de sensor IoT que sobrepasen una
+temperatura determinada, nuevas confirmaciones de código en un repositorio GitHub o solicitudes HTTP sencillas desde apps web o de móvil. Los sucesos de orígenes de sucesos externos e internos se ponen en el canal por medio de un desencadenante, y las reglas permiten acciones de respuesta para dichos sucesos.</dd>
+<dt>Desencadenante</dt>
+<dd>Los [desencadenantes](openwhisk_triggers_rules.html#openwhisk_triggers_create) son un canal con nombre para una clase de sucesos. Un desencadenante es una declaración a la que desea reaccionar en un determinado tipo de suceso, ya sea un usuario o mediante un origen de sucesos.</dd>
+<dt>Regla</dt>
+<dd>Una [regla](openwhisk_triggers_rules.html#openwhisk_rules_use) asocia un desencadenante con una acción. Cada vez que se activa el desencadenante, la regla invocará la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
+una acción se invoque como respuesta a sucesos de distintos desencadenantes.</dd>
+<dt>Paquete</dt>
+<dd>Las integraciones con servicios y proveedores de sucesos se pueden añadir con paquetes. Un [paquete](openwhisk_packages.html) es una agrupación de canales de información y acciones. Un canal de información es un fragmento de código que configura un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, un desencadenante creado con un canal de información de cambios de {{site.data.keyword.cloudant}} configura un servicio para que active el desencadenante siempre que se modifique un documento o se añada a una base de datos {{site.data.keyword.cloudant_short_notm}}. Las acciones en paquetes representan lógica reutilizable que un proveedor de servicios puede poner a disponibilidad de los desarrolladores para que puedan utilizar el servicio como un origen de sucesos e invocar las API de dicho servicio.
+<br><br>Un catálogo de paquetes existente ofrece una forma rápida de mejorar las aplicaciones con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que tienen paquetes de {{site.data.keyword.openwhisk_short}} son {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack y GitHub.</dd>
+</dl>
 
 ## Funcionamiento de {{site.data.keyword.openwhisk_short}}
 {: #openwhisk_how}
 
-Como proyecto de código abierto, OpenWhisk aprovecha la tecnología de gigantes que incluyen Nginx, Kafka, Consul, Docker, CouchDB. Todos estos componentes se combinan para formar un “servicio de programación basado en sucesos sin servidor”. Para explicar detalladamente todos los componentes, haremos un seguimiento de una invocación de una acción a medida que fluye por el sistema. Una invocación en OpenWhisk es lo principal que hace un motor sin servidor: ejecutar el código que el usuario ha incorporado en el sistema y devolver los resultados de la ejecución.
+Para explicar detalladamente todos los componentes, hagamos un seguimiento de una invocación de una acción a través del sistema de {{site.data.keyword.openwhisk_short}}. Una invocación ejecuta el código que el usuario ha incorporado en el sistema y devuelve los resultados de la ejecución. La figura siguiente muestra la arquitectura de {{site.data.keyword.openwhisk_short}} de alto nivel.
 
-### Creación de la acción
+![Arquitectura de {{site.data.keyword.openwhisk_short}}](./images/OpenWhisk.png)
 
-Para definir un poco de contexto en la explicación, en primer lugar podemos crear una acción en el sistema. Luego utilizaremos dicha acción para explicar los conceptos cuando realicemos el seguimiento del flujo en el sistema. En los siguientes mandatos se da por supuesto que la [CLI de OpenWhisk está correctamente configurada](https://github.com/openwhisk/openwhisk/tree/master/docs#setting-up-the-openwhisk-cli).
 
-Primero cree un archivo *action.js* con el siguiente código, que muestra “Hello World” en stdout, y devuelve un objeto JSON que contiene “world” bajo la clave “hello”.
-```javascript
-function main() {
-    console.log('Hello World');
-    return { hello: 'world' };
-}
-```
-{: codeblock}
+## Cómo funciona el proceso interno de OpenWhisk
+{: #openwhisk_internal}
 
-Cree la acción ejecutando el siguiente mandato:
-```
-wsk action create myAction action.js
-```
-{: pre}
-
-Ahora ejecute el mandato siguiente invocar esa acción:
-```
-wsk action invoke myAction --result
-```
-{: pre}
-
-## El flujo interno del proceso
 ¿Qué pasa entre bastidores en OpenWhisk?
 
-![Flujo de procesamiento de OpenWhisk](images/OpenWhisk_flow_of_processing.png)
+OpenWhisk es un proyecto de código abierto que combina componentes que incluyen Nginx, Kafka, Docker y CouchDB para formar un servicio de programación basado en sucesos sin servidor.
+
+<img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="El flujo interno del proceso subyacente a OpenWhisk" style="width:550px; border-style: none"/>
 
 ### Entrar en el sistema: nginx
 
-En primer lugar, la API de usuario de OpenWhisk se basa en HTTP y sigue un diseño RESTful. Por lo tanto, el mandato que se envía mediante la CLI wsk es básicamente una solicitud HTTP realizada al sistema OpenWhisk. El mandato específico se convierte a groso modo en:
+En primer lugar, la API de usuario de OpenWhisk se basa en HTTP y sigue un diseño RESTful. Por lo tanto, el mandato que se envía mediante la CLI es una solicitud HTTP realizada al sistema OpenWhisk. El mandato específico se convierte a groso modo en:
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -107,13 +96,10 @@ El registro de la acción contiene principalmente el código que se va a ejecuta
 
 En este caso en concreto, la acción no toma ningún parámetro (la definición de parámetros de la función es una lista vacía). Por lo tanto, se presupone que no se ha definido ningún parámetro predeterminado, ni ningún parámetro específico para la acción, lo que constituye el caso más simple desde este punto de vista.
 
-### Quién hay para invocar la acción: Consul
 
-El controlador (o, más concretamente, su parte de equilibrio de carga) ya tiene todo lo necesario para ejecutar el código; sin embargo, necesita saber quién está disponible para hacerlo. Se utiliza **Consul**, un servicio de descubrimiento, para supervisar los ejecutores disponibles en el sistema mediante la comprobación continua del estado del sistema. Estos ejecutores también se denominan **Invocadores**.
+### Quién hay para invocar la acción: Equilibrador de carga
 
-Ahora que sabe qué Invocadores están disponibles, el Controlador elige uno de ellos para invocar la acción solicitada.
-
-En este caso supondremos que el sistema tiene tres Invocadores disponibles, los Invocadores del 0 al 2, y que el Controlador ha elegido el *Invocador 2* para invocar la acción.
+El Equilibrador de carga, que forma parte del Controlador, tiene una visión global de los ejecutores disponibles en el sistema mediante la comprobación continua del estado del sistema. Estos ejecutores también se denominan **Invocadores**. Puesto que sabe qué Invocadores están disponibles, el Equilibrador de carga elige uno de ellos para invocar la acción solicitada.
 
 ### Hagan cola: Kafka
 
@@ -132,7 +118,7 @@ Cuando Kafka confirma que ha recibido el mensaje, se responde a la solicitud HTT
 
 El **Invocador** es el centro de OpenWhisk. La función del Invocador es invocar una acción. También se implementa en Scala. Pero va mucho más allá. Para ejecutar acciones de forma aislada y segura utiliza **Docker**.
 
-Docker sirve para configurar un nuevo entorno de encapsulación automática (denominado *contenedor*) para cada acción que se invoca de forma rápida, aislada y controlada. Para cada invocación de una acción se genera un contenedor Docker y se inserta el código de la acción. A continuación, el código se ejecuta utilizando los parámetros que se le han pasado, se obtiene el resultado y el contenedor se destruye. Las optimizaciones de rendimiento pueden realizarse en esta etapa para reducir la sobrecarga y agilizar los tiempos de respuesta. 
+Docker sirve para configurar un nuevo entorno de encapsulación automática (denominado *contenedor*) para cada acción que se invoca de forma rápida, aislada y controlada. Para cada invocación de una acción se genera un contenedor Docker y se inserta el código de la acción. A continuación, el código se ejecuta utilizando los parámetros que se le han pasado, se obtiene el resultado y el contenedor se destruye. Las optimizaciones de rendimiento pueden realizarse en esta etapa para reducir la sobrecarga y agilizar los tiempos de respuesta.
 
 En este caso, teniendo una acción basada en *Node.js*, el Invocador inicia un contenedor Node.js. A continuación, inserta el código procedente de *myAction*, lo ejecuta sin parámetros, extrae el resultado, guarda los registros y destruye el contenedor Node.js de nuevo.
 
@@ -141,7 +127,6 @@ En este caso, teniendo una acción basada en *Node.js*, el Invocador inicia un c
 Cuando el Invocador obtiene el resultado, se almacena en la base de datos **whisks** como una activación bajo el ActivationId. La base de datos **whisks** se encuentra en **CouchDB**.
 
 En este caso específico, el Invocador obtiene el objeto JSON resultante de la acción, recupera el registro que ha escrito Docker, los coloca en el registro de activación y lo almacena en la base de datos. Consulte el ejemplo siguiente:
-
 ```json
 {
    "activationId": "31809ddca6f64cfc9de2937ebd44fbb9",
@@ -165,17 +150,17 @@ Observe cómo el registro contiene el resultado devuelto y los registros escrito
 Ahora puede volver a utilizar la API REST (volver al paso 1) para obtener su activación y, por lo tanto, el resultado de la acción. Para ello, ejecute este mandato:
 
 ```bash
-wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
-{: pre} 
+{: pre}
 
 ### Resumen
 
-Puede ver cómo una sencilla acción **wsk action invoked myAction** pasa por las distintas fases del sistema {{site.data.keyword.openwhisk_short}}. El propio sistema consta principalmente de sólo dos componentes personalizados, el **Controlador** y el **Invocador**. Todo lo demás ya se encuentra allí, desarrollado por muchos miembros de la comunidad de código abierto.
+Puede ver cómo una sencilla acción **ibmcloud wsk action invoked myAction** pasa por las distintas fases del sistema {{site.data.keyword.openwhisk_short}}. El propio sistema consta principalmente de sólo dos componentes personalizados, el **Controlador** y el **Invocador**. Todo lo demás ya se encuentra allí, desarrollado por muchos miembros de la comunidad de código abierto.
 
 Puede encontrar información adicional sobre {{site.data.keyword.openwhisk_short}} en los temas siguientes:
 
 * [Nombres de entidad](./openwhisk_reference.html#openwhisk_entities)
 * [Semánticas de acción](./openwhisk_reference.html#openwhisk_semantics)
 * [Límites](./openwhisk_reference.html#openwhisk_syslimits)
-* [API REST](./openwhisk_reference.html#openwhisk_ref_restapi)
+* [Referencia de API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)

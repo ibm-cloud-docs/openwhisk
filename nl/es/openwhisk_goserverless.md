@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Integración de OpenWhisk con Serverless Framework
+# Serverless Framework
 {: #openwhisk_goserverless}
 
 [Serverless Framework](https://serverless.com/) es una infraestructura de código abierto para crear aplicaciones sin servidor. Mediante un archivo de manifiesto simple, los desarrolladores pueden definir funciones sin servidor, conectarlas con orígenes de sucesos y declarar servicios en la nube que necesita su aplicación. La infraestructura gestiona el despliegue de estas aplicaciones sin servidor en los proveedores de la nube. También permite a los desarrolladores supervisar los servicios en producción, las actualizaciones de despliegue y ayudar a depurar problemas. También ofrece un interesante ecosistema de plugins de otros proveedores para ampliar la funcionalidad de la infraestructura. OpenWhisk es la tecnología en la que se basa Serverless Framework.

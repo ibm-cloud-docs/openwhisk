@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Utilización del paquete WebSocket
+# WebSocket
 {: #openwhisk_catalog_websocket}
 
 El paquete `/whisk.system/websocket` proporciona un método cómodo para publicar mensajes en un WebSocket.
@@ -21,10 +21,10 @@ El paquete incluye las acciones siguientes:
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/websocket` | Paquete | uri | Programas de utilidad para comunicar con WebSockets |
-| `/whisk.system/websocket/send` | Acción | uri, payload | Enviar la carga útil al URI de WebSocket |
+| `/whisk.system/websocket` | paquete | uri | Programas de utilidad para comunicar con WebSockets |
+| `/whisk.system/websocket/send` | acción | uri, payload | Enviar la carga útil al URI de WebSocket |
 
-Si tiene intención de enviar varios mensajes al mismo URI de WebSocket, se recomienda crear un enlace de paquete con el valor `uri`.  Con enlace, no necesita especificar el valor cada vez que utilice la acción `send`.
+Si tiene intención de enviar varios mensajes al mismo URI de WebSocket, se recomienda crear un enlace de paquete con el valor `uri`. Con enlace, no necesita especificar el valor cada vez que utilice la acción `send`.
 
 ## Envío de un mensaje a un WebSocket
 

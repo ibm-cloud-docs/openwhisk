@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -11,118 +11,96 @@ lastupdated: "2018-02-14"
 {:screen: .screen}
 {:pre: .pre}
 
-# 開始使用 {{site.data.keyword.openwhisk_short}}
+# 開始使用
+{: #index}
 
-{{site.data.keyword.openwhisk}} 是分散式、事件驅動計算服務，也稱為「無伺服器運算」或「函數即服務 (FaaaS)」。{{site.data.keyword.openwhisk_short}} 會執行應用程式邏輯，以回應來自 Web 或透過 HTTP 的行動應用程式的事件或直接呼叫。事件可以從 {{site.data.keyword.Bluemix}} 服務（例如 Cloudant）和外部來源提供。開發人員可以著重在撰寫應用程式邏輯，以及建立依需求執行的「動作」。
-這個新參照範例的主要好處是您不用明確地供應伺服器。因此，不用擔心自動擴充、高可用性、更新、維護，以及為了伺服器在執行中但未處理要求的時間，負擔數小時的處理器時間成本。
-有 HTTP 呼叫、資料庫狀態變更，或觸發執行程式碼的其他類型事件時，便會執行您的程式碼。不論 VM 是否執行有用的工作，都會依執行時間的毫秒（四捨五入至最接近的 100 毫秒）來向您收費，而非依每小時的 VM 使用率。
+{{site.data.keyword.openwhisk}} 是以 Apache OpenWhisk 為基礎的多國語言「功能即服務 (FaaS)」程式設計平台。{{site.data.keyword.openwhisk_short}} 可讓開發人員撰寫可擴充執行應用程式邏輯的輕量型程式碼（稱為動作）。您可以根據來自 Web 應用程式或行動應用程式的 HTTP 型 API 要求設定依需求發生動作，或自動從 {{site.data.keyword.Bluemix_notm}} 服務及協力廠商事件回應事件型要求。
 {: shortdesc}
 
-這個程式設計模型最適合微服務、行動式、IoT 及許多其他應用程式。您預設會有既有的自動擴充及負載平衡，而不需要手動配置叢集、負載平衡器、http 外掛程式等。如果您剛好是在 {{site.data.keyword.openwhisk}} 上執行，則也會有零管理的好處，意思是 IBM 會維護所有的硬體、網路及軟體。您只需要提供您要執行的程式碼，並將它交給 {{site.data.keyword.openwhisk}}。剩下的就是「魔法」。[Martin Fowler 部落格](https://martinfowler.com/articles/serverless.html)充分地介紹了無伺服器程式設計模型。
+因為 {{site.data.keyword.openwhisk_short}} 是一種無伺服器的事件驅動平台，所以您不需要明確地佈建伺服器。使用微服務、行動、IoT 及其他許多應用程式的開發人員，都可以專注在撰寫應用程式邏輯，而不用擔心自動擴充、高可用性、更新及維護。現成可用的自動擴充及負載平衡表示您不需要手動配置叢集、HTTP 外掛程式等等！IBM 會處理所有硬體、網路及軟體管理。您要做的只是提供程式碼。
 
-您也可以取得 [Apache OpenWhisk 原始碼](https://github.com/openwhisk/openwhisk)，並自行執行系統。
+按一下選項以開始使用：
 
-如需 {{site.data.keyword.openwhisk_short}} 運作方式的詳細資料，請參閱[關於 {{site.data.keyword.openwhisk_short}}](./openwhisk_about.html)。
+<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="按一下圖示，馬上開始使用 {{site.data.keyword.openswhisk_short}}。" style="width:440px;" />
+<map name="home_map" id="home_map">
+<area href="#openwhisk_start_hello_world" alt="建立動作" title="建立動作" shape="rect" coords="-7, -8, 108, 211" />
+<area href="bluemix_cli.html" alt="設定 {{site.data.keyword.openwhisk_short}} CLI 外掛程式" title="設定 {{site.data.keyword.openwhisk_short}} CLI 外掛程式" shape="rect" coords="155, -1, 289, 210" />
+<area href="openwhisk_about.html" alt="查看平台架構" title="查看平台架構" shape="rect" coords="326, -10, 448, 218" />
+</map>
 
-您可以使用「瀏覽器」或 CLI 來開發 {{site.data.keyword.openwhisk_short}} 應用程式。這兩者具有類似的功能可用來開發應用程式；CLI 可讓您進一步控制部署及作業。
 
-## 在瀏覽器中開發
-{: #openwhisk_start_editor}
-
-請在[瀏覽器](https://console.{DomainName}/openwhisk/actions)中試用 {{site.data.keyword.openwhisk_short}} 來建立「動作」、使用「觸發程式」自動執行「動作」，以及探索公用套件。
-如需「{{site.data.keyword.openwhisk_short}} 使用者介面」的快速導覽，請造訪[進一步瞭解](https://console.{DomainName}/openwhisk/learn)頁面。
-
-## 使用 CLI 開發
-{: #openwhisk_start_configure_cli}
-
-您可以使用 {{site.data.keyword.openwhisk_short}} 指令行介面 (CLI) 來設定名稱空間及授權金鑰。移至[配置 CLI](https://console.{DomainName}/openwhisk/cli)，並遵循指示進行安裝。
-
-## 概觀
-{: #openwhisk_start_overview}
-- [OpenWhisk 運作方式](./openwhisk_about.html)
-- [無伺服器應用程式的常見使用案例](./openwhisk_use_cases.html)
-- [設定及使用 OpenWhisk CLI](./openwhisk_cli.html)
-- [從 iOS 應用程式使用 OpenWhisk](./openwhisk_mobile_sdk.html)
-- [文章、範例及指導教學](https://github.com/openwhisk/openwhisk-external-resources)
-- [Apache OpenWhisk FAQ](http://openwhisk.org/faq)
-- [定價](https://console.ng.bluemix.net/openwhisk/learn/pricing)
-
-## 程式設計模型
-{: #openwhisk_start_programming}
-- [系統詳細資料](./openwhisk_reference.html)
-- [OpenWhisk 所提供服務的型錄](./openwhisk_catalog.html)
-- [動作](./openwhisk_actions.html)
-- [觸發程式及規則](./openwhisk_triggers_rules.html)
-- [資訊來源](./openwhisk_feeds.html)
-- [套件](./openwhisk_packages.html)
-- [註釋](./openwhisk_annotations.html)
-- [Web 動作](./openwhisk_webactions.html)
-- [API 閘道](./openwhisk_apigateway.html)
-- [實體名稱](./openwhisk_reference.html#openwhisk_entities)
-- [動作語意](./openwhisk_reference.html#openwhisk_semantics)
-- [限制](./openwhisk_reference.html#openwhisk_syslimits)
-
-## {{site.data.keyword.openwhisk_short}} Hello World 範例
+## 在 GUI 中建立動作
 {: #openwhisk_start_hello_world}
-若要開始使用 {{site.data.keyword.openwhisk_short}}，請嘗試下列 JavaScript 程式碼範例。
 
-```javascript
-/**
- * Hello world as an OpenWhisk action.
- */
+若要開始使用 {{site.data.keyword.openwhisk_short}}，請嘗試使用 HelloWorld 快速入門範本。
+
+1.  從 [{{site.data.keyword.Bluemix_notm}} **型錄** ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://console.bluemix.net/catalog/?category=whisk) **函數**種類中，按一下 Functions。
+
+2. 按一下**開始建立** > **快速入門範本**，然後選取 **Hello World** 範本。
+
+5. 查看動作的程式碼，然後按一下**部署**來建立動作。您現在會有一個稱為 `hello` 的動作。
+
+6. 按一下**呼叫**來執行此動作。手動呼叫動作，會執行動作所定義的應用程式邏輯。在**啟動**畫面中，您可以看到動作所產生的 "Hello stranger!" 問候語。
+
+做得好！您已建立第一個動作。若要清除此動作，請按一下溢位功能表，然後選取**刪除動作**。
+
+## 在 CLI 中建立動作
+{: #openwhisk_start_hello_world_cli}
+
+使用 HelloWorld JavaScript 範例程式碼來快速開始進行。此範例會建立基本 `hello` 動作，您可以手動呼叫它來執行其應用程式邏輯。
+
+1. [設定 {{site.data.keyword.openwhisk_short}} CLI 外掛程式](bluemix_cli.html)。
+
+2. 將下列程式碼儲存至名為 **hello.js** 的檔案中。
+
+    ```javascript
+    /**
+     * Hello world as an OpenWhisk action.
+     */
 function main(params) {
     var name = params.name || 'World';
     return {payload:  'Hello, ' + name + '!'};
-}
-```
-{: codeblock}
-
-若要使用此範例，請遵循下列步驟：
-
-1. 將程式碼儲存至檔案。例如，*hello.js*。
-
-2. 從 {{site.data.keyword.openwhisk_short}} CLI 指令行中，輸入下列指令來建立「動作」：
+    }
     ```
-wsk action create hello hello.js
+    {: codeblock}
+
+3. 建立 `hello` 動作。
+    ```
+    ibmcloud wsk action create hello hello.js
     ```
     {: pre}
 
-3. 然後，輸入下列指令來呼叫「動作」。
+4. 呼叫動作，但未傳遞任何參數。
     ```
-wsk action invoke hello --blocking --result
+    ibmcloud wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
-    這個指令會輸出：
-    ```json
+    輸出：
+        ```
     {
         "payload": "Hello, World!"
     }
     ```
-    
+    {: screen}
+
+5. 重新呼叫動作並傳遞 name 參數，以測試應用程式邏輯。
     ```
-wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud wsk action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
-    這個指令會輸出：
-    ```json
+    輸出：
+        ```
     {
         "payload": "Hello, Fred!"
     }
     ```
+    {: screen}
 
-您也可以使用 {{site.data.keyword.openwhisk_short}} 中的事件驅動功能，來呼叫此「動作」以回應事件。請遵循[警示服務範例](./openwhisk_packages.html#openwhisk_package_trigger)，將事件來源配置成每次產生定期事件時都呼叫「`hello` 動作」。
+做得好！您已建立第一個動作。若要清除此動作，請執行 `ibmcloud wsk action delete hello`。
 
-[OpenWhisk 指導教學及範例的完整清單可在這裡找到](https://github.com/openwhisk/openwhisk-external-resources#sample-applications)。除了範例之外，此儲存庫也包含文章、簡報、播客、視訊及其他 {{site.data.keyword.openwhisk_short}} 相關資源的鏈結。
-
-## API 參考資料
-{: #openwhisk_start_api notoc}
-* [REST API 文件](./openwhisk_reference.html#openwhisk_ref_restapi)
-* [REST API](https://console.{DomainName}/apidocs/98)
-
-## 相關鏈結
-{: #general notoc}
-* [探索：{{site.data.keyword.openwhisk_short}}](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
-* [IBM developerWorks 上的 {{site.data.keyword.openwhisk_short}}](https://developer.ibm.com/openwhisk/)
-* [Apache {{site.data.keyword.openwhisk_short}} 專案網站](http://openwhisk.org)
+**下一步為何？**
+* [試用警示服務範例，以在每次產生定期事件時呼叫 **hello** 動作。](./openwhisk_packages.html#openwhisk_package_trigger)
+* [建立無伺服器 REST API。](openwhisk_apigateway.html)
+* [查看 {{site.data.keyword.Bluemix_notm}} 服務（例如 Cloudant）的預先安裝動作套件。](cloudant_actions.html)

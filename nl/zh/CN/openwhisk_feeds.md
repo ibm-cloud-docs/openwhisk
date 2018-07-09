@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# 实现订阅源
+# 定制事件提供程序
 {: #openwhisk_feeds}
 
-{{site.data.keyword.openwhisk_short}} 支持开放 API，通过此 API，任何用户都可以将事件发起者服务公开为**包**中的**订阅源**。以下部分描述了用于提供您自己订阅源的体系结构选项和实现选项。
+{{site.data.keyword.openwhisk_short}} 支持开放 API，通过此 API，任何用户都可以将事件发起者服务公开为包中的订阅源。以下部分描述了用于提供您自己的定制订阅源的体系结构选项和实现选项。
 {: shortdesc}
 
 本资料适用于打算发布自己的订阅源的高级 {{site.data.keyword.openwhisk_short}} 用户。大多数 {{site.data.keyword.openwhisk_short}} 用户可以安全地跳过以下体系结构部分。
@@ -29,7 +29,7 @@ lastupdated: "2018-01-09"
 <!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
 
 ### 轮询
-在“轮询”模式下，{{site.data.keyword.openwhisk_short}} *操作*安排为定期轮询端点以访存新数据。此模式构建起来相对容易，但事件频率会受到轮询时间间隔的限制。
+在“轮询”模式下，{{site.data.keyword.openwhisk_short}} 操作安排为定期轮询端点以访存新数据。此模式构建起来相对容易，但事件频率会受到轮询时间间隔的限制。
 
 ### 连接
 在“连接”模式下，单独的服务用于保持与源订阅源的持续连接。基于连接的实现可能会通过使用较长的轮询时间间隔与服务端点进行交互，或者设置推送通知。
@@ -45,7 +45,7 @@ an open repo -->
 
 - {{site.data.keyword.openwhisk_short}} 处理流入系统的**事件**。
 
-- **触发器**在技术上是指某类事件的名称。每个事件属于恰好一个触发器；若用类比说明，触发器类似于基于主题的发布/预订系统中的*主题*。**规则** *T -> A* 表示“每当来自触发器 *T* 的事件到达时，通过触发器有效内容调用操作 *A*。”
+- **触发器**在技术上是指某类事件的名称。每个事件只属于一个触发器；若用类比说明，触发器类似于基于主题的发布/预订系统中的*主题*。**规则** *T -> A* 表示“每当来自触发器 *T* 的事件到达时，通过触发器有效内容调用操作 *A*。”
 
 - **订阅源**是全部属于某个触发器 *T* 的事件的流。订阅源通过**订阅源操作**进行控制，订阅源操作用于处理组成订阅源的事件流的创建、删除、暂停和恢复。通常，订阅源操作通过使用管理通知的 REST API 来与生成事件的外部服务进行交互。
 
@@ -56,23 +56,27 @@ an open repo -->
 * **triggerName**：包含从此订阅源所生成事件的触发器的标准名称。
 * **authKey**：拥有触发器的 {{site.data.keyword.openwhisk_short}} 用户的基本认证凭证。
 
-订阅源操作还可以接受管理订阅源所需的其他任何参数。例如，Cloudant changes 订阅源操作预期会接收多个参数，包括“*dbname*”、“*username*”等。
+订阅源操作还可以接受管理订阅源所需的其他任何参数。例如，{{site.data.keyword.cloudant}} changes 订阅源操作预期会接收多个参数，包括“*dbname*”、“*username*”等。
 
 用户使用 **--feed** 参数通过 CLI 创建触发器时，系统会自动使用相应参数调用订阅源操作。
 
-例如，假定用户通过将其用户名和密码作为绑定参数，为 `cloudant` 包创建了 `mycloudant` 绑定。用户通过 CLI 发出以下命令时：
-
-`wsk trigger create T --feed mycloudant/changes -p dbName myTable`
+例如，假定用户通过将其用户名和密码作为绑定参数，为 **cloudant** 包创建了 `mycloudant` 绑定。用户通过 CLI 发出以下命令时：
+```
+ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+```
+{: pre}
 
 然后系统将在后台执行等同于以下命令的操作：
+```
+ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+```
+{: pre}
 
-`wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype`
+名为 *changes* 的订阅源操作将采用这些参数，并预计执行设置来自 {{site.data.keyword.cloudant_short_notm}} 的事件流所需的任何操作。订阅源操作是使用相应的配置来执行的，此操作将定向到触发器 *T*。
 
-名为 *changes* 的订阅源操作将采用这些参数，并预计执行设置来自 Cloudant 中的事件流所需的任何操作。订阅源操作是使用相应的配置来执行的，此操作将定向到触发器 *T*。    
+对于 {{site.data.keyword.cloudant_short_notm}} *changes* 订阅源，该操作恰好与通过基于连接的体系结构实现的 *{{site.data.keyword.cloudant_short_notm}} trigger* 服务直接对话。
 
-对于 Cloudant *changes* 订阅源，该操作恰好与通过基于连接的体系结构实现的 *cloudant Trigger* 服务直接对话。
-
-对于 `wsk trigger delete`、`wsk trigger update` 和 `wsk trigger get`，会执行类似的订阅源操作协议。    
+对于 `ibmcloud wsk trigger delete`、`ibmcloud wsk trigger update` 和 `ibmcloud wsk trigger get`，会执行类似的订阅源操作协议。
 
 ## 通过 Hook 实现订阅源
 
@@ -110,9 +114,9 @@ an open repo -->
 
 提供者服务的 REST API 允许 {{site.data.keyword.openwhisk_short}} *订阅源操作*控制订阅源。提供者服务充当事件提供程序和 {{site.data.keyword.openwhisk_short}} 之间的代理。当提供者服务收到来自第三方的事件时，会通过触发触发器来将其发送给 {{site.data.keyword.openwhisk_short}}。
 
-Cloudant *changes* 订阅源是典型示例，因为它维持 `cloudanttrigger` 服务，以调解通过持续连接发送的 Cloudant 通知和 {{site.data.keyword.openwhisk_short}} 触发器。
+{{site.data.keyword.cloudant_short_notm}} *changes* 订阅源是典型示例，因为它维持 `cloudanttrigger` 服务，该服务用于调解通过持续连接发送的 {{site.data.keyword.cloudant_short_notm}} 通知和 {{site.data.keyword.openwhisk_short}} 触发器。
 <!-- TODO: add a reference to the open source implementation -->
 
 *alarm* 订阅源通过类似模式实现。
 
-基于连接的体系结构是性能最高的选项，但相对于轮询和 Hook 体系结构，它在操作方面的开销更大。   
+基于连接的体系结构是性能最高的选项，但相对于轮询和 Hook 体系结构，它在操作方面的开销更大。

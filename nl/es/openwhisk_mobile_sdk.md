@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -11,12 +11,13 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Uso del SDK móvil de OpenWhisk
+# SDK móvil
+{: #openwhisk_mobile_sdk}
 
 OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar
 fácilmente desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk.
 
-El SDK móvil se escribe en Swift 3.0 y admite iOS 10 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 8.0. Las versiones existentes Swift 2.2/Xcode 7 del SDK están disponibles hasta la 0.1.7, aunque ahora está en desuso.
+El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
 {: shortdesc}
 
 ## Añadir el SDK a su app
@@ -32,16 +33,16 @@ install! 'cocoapods', :deterministic_uuids => false
 use_frameworks!
 
 target 'MyApp' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 
 target 'MyApp WatchKit Extension' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 ```
 {: codeblock}
 
-En la línea de mandatos, escriba `pod install`. Este mandato instala el SDK para una app de iOS con una extensión watchOS. Utilice el archivo de espacio de trabajo que crea CocoaPods para su app para abrir el proyecto en Xcode. 
+En la línea de mandatos, escriba `pod install`. Este mandato instala el SDK para una app de iOS con una extensión watchOS. Utilice el archivo de espacio de trabajo que crea CocoaPods para su app para abrir el proyecto en Xcode.
 
 Después de la instalación, abra el espacio de trabajo del proyecto. Es posible que obtenga el siguiente aviso al construir:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) es necesario que esté configurado correctamente para destinos que utilizan Swift. Utilice el menú [Editar > Convertir > A Current Swift Syntax…] para elegir una versión de Swift o utilizar el editor de Crear configuración para configurar los valores de compilación directamente.`
@@ -51,7 +52,7 @@ Esto se produce si Cocoapods no actualiza la versión de Swift en el proyecto de
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['SWIFT_VERSION'] = '4.0'
     end
   end
 end
@@ -62,7 +63,7 @@ end
 
 Cree un archivo en el directorio del proyecto de la app y llámelo 'Cartfile'. Añada la línea siguiente al archivo:
 ```
-github "openwhisk/openwhisk-client-swift.git" ~> 0.2.2 # Or latest version
+github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
 {: pre}
 
@@ -86,11 +87,11 @@ SDK de OpenWhisk.
 
 Para instalar el ejemplo de app starter, especifique el mandato siguiente:
 ```
-wsk sdk install iOS
+ibmcloud wsk sdk install iOS
 ```
 {: pre}
 
-Este mandato descarga un archivo comprimido que contiene la app de iniciador. Dentro del directorio de proyecto hay un podfile. 
+Este mandato descarga un archivo comprimido que contiene la app de iniciador. Dentro del directorio de proyecto hay un podfile.
 
 Para instalar el SDK, especifique el mandato siguiente:
 ```
@@ -104,7 +105,6 @@ Para empezar rápidamente, cree un objeto WhiskCredentials con sus credenciales 
 y cree una instancia de OpenWhisk a partir del objeto.
 
 Por ejemplo, utilice el siguiente código de ejemplo para crear un objeto de credenciales:
-
 ```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
@@ -112,11 +112,12 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 {: pre}
 
 En el ejemplo anterior, pasará los elementos `myKey` y `myToken` que obtiene de OpenWhisk. Puede recuperar la clave y la señal con el mandato de CLI siguiente:
-
 ```
-wsk property get --auth
+ibmcloud wsk property get --auth
 ```
 {: pre}
+
+Salida:
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -126,10 +127,10 @@ La serie anterior a los dos puntos es la clave y la serie posterior a los dos pu
 
 ## Invocación de una acción de OpenWhisk
 
-Para invocar una acción remota, puede llamar `invokeAction` con el nombre de acción. Puede especificar el espacio de nombres al que pertenece la acción, o dejarlo en blanco para aceptar el espacio de nombres predeterminado. Utilice un diccionario para pasar parámetros a la acción, según sea necesario.
+Para invocar una acción remota, puede llamar `invokeAction` con el nombre de acción. Puede especificar el espacio de nombres al
+que pertenece la acción, o dejarlo en blanco para aceptar el espacio de nombres predeterminado. Utilice un diccionario para pasar parámetros a la acción, según sea necesario.
 
 Por ejemplo:
-
 ```swift
 // En este ejemplo, invocamos una acción para imprimir un mensaje en la consola de OpenWhisk
 var params = Dictionary<String, String>()
@@ -238,7 +239,8 @@ whisk.urlSession = session
 
 ### Soporte para nombres calificados
 
-Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La
+Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una
+acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La
 serie del nombre calificado tiene soporte para valores predeterminados sin nombre para espacios de nombres y paquetes que
 tienen todos los usuarios de OpenWhisk, por lo que se aplican las reglas de análisis siguientes:
 
@@ -257,8 +259,7 @@ Por comodidad, el SDK incluye un `WhiskButton`, que amplía `UIButton` para perm
 ```swift
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButton.setupWhiskAction("helloConsole", package: "mypackage", namespace: "_", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
-let myParams = ["name":"value"]
-// Llamar cuando se detecte el suceso de pulsar, p.e., en una IBAction, para invocar la acción
+// Llamar esta sección cuando se detecte el suceso de pulsar, p.e., en una IBAction, para invocar la acción
 whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
     if let error = error {
         print("Oh no, error: \(error)")

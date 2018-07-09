@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-09"
+lastupdated: "2018-04-12"
 
 ---
 
@@ -11,39 +11,39 @@ lastupdated: "2018-02-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Anotaciones en activos de OpenWhisk
+# Anotaciones
+{: #openwhisk_annotations}
 
-Las acciones, desencadenantes, reglas y paquetes de OpenWhisk (conocidos de forma colectiva como activos) pueden contener `anotaciones`. Las anotaciones se adjuntan a los activos del mismo modo que se adjuntan parámetros con una `clave` que define un nombre y un `valor` que define el valor. Se recomienda definirlos desde la interfaz de línea de mandatos (CLI) mediante `--annotation` o `-a` para abreviar.
+Las acciones, desencadenantes, reglas y paquetes de {{site.data.keyword.openwhisk}} (conocidos de forma colectiva como activos) pueden contener `anotaciones`. Las anotaciones se adjuntan a los activos del mismo modo que se adjuntan parámetros con una `clave` que define un nombre y un `valor` que define el valor. Se recomienda definirlos desde la interfaz de línea de mandatos (CLI) utilizando el distintivo `--annotation` o `-a` para abreviar.
 {: shortdesc}
 
-Razón fundamental: se han añadido anotaciones a OpenWhisk para permitir que se experimente sin cambiar el esquema del activo subyacente. En el momento de redactar este documento, de forma deliberada no se han definido las `anotaciones` que se permiten. Sin embargo, como las anotaciones se utilizan mucho para difundir los cambios semánticos, es importante empezar a documentarlas.
+Razón fundamental: se han añadido anotaciones a {{site.data.keyword.openWhisk_short}} para permitir que se experimente sin cambiar el esquema del activo subyacente. En el momento de redactar este documento, de forma deliberada no se han definido las `anotaciones` que se permiten. Sin embargo, como las anotaciones se utilizan mucho para difundir los cambios semánticos, es importante empezar a documentarlas.
 
-El uso principal de las anotaciones actualmente consiste en documentar acciones y paquetes. Muchos de los paquetes del catálogo de OpenWhisk contienen anotaciones, como: una descripción de la funcionalidad que ofrecen sus acciones, parámetros para utilizar al enlazar el paquete, parámetros de invocación o si un parámetro es "secreto" (por ejemplo, una contraseña) o no. Las anotaciones se inventan según sea necesario, por ejemplo, para permitir la integración de IU.
+El uso principal de las anotaciones actualmente consiste en documentar acciones y paquetes. Muchos de los paquetes del catálogo de {{site.data.keyword.openwhisk_short}} contienen anotaciones, como: una descripción de la funcionalidad que ofrecen sus acciones, parámetros para utilizar al enlazar el paquete, parámetros de invocación o si un parámetro es "secreto" (por ejemplo, una contraseña) o no. Las anotaciones se inventan según sea necesario, por ejemplo, para permitir la integración de IU.
 
 A continuación se muestra un ejemplo de conjunto de anotaciones para una acción `echo` que devuelve sus argumentos de entrada sin modificar (es decir, `function main(args) { return args }`). Esta acción es útil para registrar parámetros de entrada, por ejemplo, como parte de una secuencia o de una regla.
-
 ```
-wsk action create echo echo.js \
-    -a description 'Una acción que devuelve su entrada. Útil para registrar entrada para habilitar debug/replay.' \
+ibmcloud wsk action create echo echo.js \
+    -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \
     -a sampleOutput '{ "msg": "Five fuzzy felines"}'
 ```
 {: pre}
 
-Entre las anotaciones que describen paquetes, se incluyen:
+Entre las anotaciones que describen **paquetes**, se incluyen:
 
 - `description`: Una sucinta descripción del paquete.
 - `parameters`: Una matriz que describe los parámetros que abarca el paquete.
 
-Entre las anotaciones que describen acciones, se incluyen:
+Entre las anotaciones que describen **acciones**, se incluyen:
 
 - `description`: Una sucinta descripción de la acción.
-- `parámetros`: Una matriz que describe las acciones necesarias para ejecutar la acción.
+- `parameters`: Una matriz que describe las acciones necesarias para ejecutar la acción.
 - `sampleInput`: Un ejemplo que muestra el esquema de entrada con los valores típicos.
 - `sampleOutput`: Un ejemplo que muestra el esquema de salida, generalmente para `sampleInput`.
 
-Entre las anotaciones que describen parámetros, se incluyen:
+Entre las anotaciones que describen **parámetros**, se incluyen:
 
 - `name`: El nombre del parámetro.
 - `description`: Una sucinta descripción del parámetro.
@@ -55,19 +55,19 @@ Entre las anotaciones que describen parámetros, se incluyen:
 Las anotaciones _no_ se comprueban. Aunque puede suceder que se utilicen anotaciones para inferir si una composición de dos acciones en una secuencia es válida, por ejemplo, el sistema aún no lo hace.
 
 ## Anotaciones específicas de acciones web
-{: #openwhisk_annotations_webactions}
+{: #annotations-specific-to-web-actions}
 
 Recientemente, se ha ampliado la API principal con nuevas características. Para permitir que paquetes y acciones participen en estas características, se han incorporado las siguientes nuevas anotaciones con significado semántico. Estas anotaciones se deben establecer explícitamente en `true` para que tengan efecto. Si se cambia el valor `true` por `false`, el activo adjunto se excluye de la nueva API. Las anotaciones no tienen ningún otro significado en el sistema. Consulte las anotaciones siguientes:
 
-- `web-export`: Solo se aplica a una acción. Si está definida, permite que las llamadas REST puedan acceder a su acción correspondiente _sin_ autenticación. Se llaman [_acciones web_](openwhisk_webactions.html) porque permiten utilizar acciones de OpenWhisk desde un navegador, por ejemplo. Es importante tener en cuenta que el _propietario_ de la acción web es el responsable del coste de ejecutarlas en el sistema. Es decir, el _propietario_ de la acción también es el propietario del registro de activaciones.
-- `final`: Solo se aplica a una acción. Convierte en inalterables todos los parámetros de acción ya definidos. Un parámetro de una acción que lleva la anotación no se puede modificar mediante parámetros durante la invocación una vez que el valor del parámetro está definido mediante el paquete que lo contiene o la definición de la acción.
-- `raw-http`: Solo se aplica a una acción en presencia de una anotación `web-export`. Si aparece, los parámetros de cuerpo y consulta de la solicitud HTTP se pasan parámetros como propiedades reservadas.
+- `web-export`: solo se aplica a una acción. Si está definida, permite que las llamadas REST puedan acceder a su acción correspondiente _sin_ autenticación. Se llaman [_acciones web_](openwhisk_webactions.html) porque permiten utilizar acciones de OpenWhisk desde un navegador, por ejemplo. Es importante tener en cuenta que el _propietario_ de la acción web es el responsable del coste de ejecutarlas en el sistema. Es decir, el _propietario_ de la acción también es el propietario del registro de activaciones.
+- `final`: solo se aplica a una acción. Convierte en inalterables todos los parámetros de acción ya definidos. Un parámetro de una acción que lleva la anotación no se puede modificar mediante parámetros durante la invocación una vez que el valor del parámetro está definido mediante el paquete que lo contiene o la definición de la acción.
+- `raw-http`: solo se aplica a una acción en presencia de una anotación `web-export`. Si aparece, los parámetros de cuerpo y consulta de la solicitud HTTP se pasan parámetros como propiedades reservadas.
 - `web-custom-options`: Cuando se establece, esta anotación permite una acción web para responder a las solicitudes OPTIONS con cabeceras personalizadas, de lo contrario, se aplica una [respuesta CORS predeterminada](openwhisk_webactions.html#options-requests).
-- `require-whisk-auth`: Se aplica a una acción. Si una acción lleva la anotación `web-export` y esta anotación es también `true`, solo puede acceder a la ruta un asunto autenticado. Es importante tener en cuenta que el _propietario_ de la acción web es el responsable del coste de ejecutarlas en el sistema. Es decir, el _propietario_ de la acción también es el propietario del registro de activaciones.
+- `require-whisk-auth`: esta anotación protege la acción web de modo que solo se invoque mediante solicitudes que especifiquen las credenciales de autenticación adecuadas. Cuando se establece en un valor booleano, controla si el valor de autenticación básica de la solicitud (es decir, la clave de autenticación de Whisk) se autenticará o no. El valor `true` autentica las credenciales y el valor `false` invoca la acción sin ninguna autenticación. Cuando se establece en un número o una serie, este valor debe coincidir con el valor de la cabecera `X-Require-Whisk-Auth` de la solicitud. En ambos casos, es importante tener en cuenta que el _propietario_ de la acción de la web es el responsable del coste de ejecutarlas en el sistema (es decir, el _propietario_ de la acción también es el propietario del registro de activaciones).
 
 ## Anotaciones específicas de las activaciones
 
-El sistema incluye también registros de activación con anotaciones. Son los siguientes:
+El sistema puede decorar los registros de activación con las anotaciones siguientes:
 
 - `path`: el nombre de la vía de acceso completa de la acción que ha generado la activación. Tenga en cuenta que, si esta activación ha sido el resultado de una acción en un enlace de paquete, la vía de acceso hace referencia al paquete padre.
 - `kind`: el tipo de acción ejecutada, y uno de los tipos de tiempo de ejecución de OpenWhisk admitidos.
@@ -113,3 +113,4 @@ A continuación, se muestra un ejemplo de cómo aparecerían estas anotaciones e
   }
 ]
 ```
+{: codeblock}

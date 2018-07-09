@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Implementación de canales de información
+# Proveedores de sucesos personalizados
 {: #openwhisk_feeds}
 
-{{site.data.keyword.openwhisk_short}} da soporte a una API abierta, donde cualquier usuario puede exponer un servicio productor de sucesos como un **canal de información** en un **paquete**. La siguiente esta sección describe las opciones de arquitectura e implementación para proporcionar canales de información propios.
+{{site.data.keyword.openwhisk_short}} da soporte a una API abierta, donde cualquier usuario puede exponer un servicio productor de sucesos como un canal de información en un paquete. La siguiente sección describe las opciones de arquitectura e implementación para proporcionar canales de información personalizados propios.
 {: shortdesc}
 
 Este material está pensado para usuarios avanzados de {{site.data.keyword.openwhisk_short}} que deseen publicar sus propios canales de información. La mayoría de los usuarios de {{site.data.keyword.openwhisk_short}} pueden omitir la siguiente sección sobre arquitectura.
@@ -29,7 +29,7 @@ En el patrón *Ganchos*, se configura un canal de información utilizando un rec
 <!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
 
 ### Sondeo
-En el patrón "Sondeo", se organiza una *acción* de {{site.data.keyword.openwhisk_short}} para sondear un punto final periódicamente y obtener datos nuevos. La creación de este patrón es relativamente fácil, pero la frecuencia de los sucesos está limitada, como es lógico, por el intervalo de sondeo.
+En el patrón "Sondeo", se organiza una acción de {{site.data.keyword.openwhisk_short}} para sondear un punto final periódicamente y obtener datos nuevos. La creación de este patrón es relativamente fácil, pero la frecuencia de los sucesos está limitada, como es lógico, por el intervalo de sondeo.
 
 ### Conexiones
 En el patrón "Conexiones", un servicio independiente mantiene una conexión persistente con una fuente de canal de información. La implementación basada en conexión puede interactuar con un punto final de servicio mediante un sondeo largo o configurar una notificación push.
@@ -56,23 +56,27 @@ La *acción de canal de información* es una *acción* de {{site.data.keyword.op
 * **triggerName**: El nombre completo del desencadenante que contiene los sucesos producidos desde este canal de información.
 * **authKey**: Las credenciales de autenticación básicas del usuario de {{site.data.keyword.openwhisk_short}} propietario del desencadenante.
 
-La acción de canal de información también puede aceptar otros parámetros necesarios para gestionar el canal de información. Por ejemplo, la acción de canal de información de los cambios de cloudant espera recibir parámetros que incluyan *'dbname'*, *'username'*, etc.
+La acción de canal de información también puede aceptar otros parámetros necesarios para gestionar el canal de información. Por ejemplo, la acción de canal de información de los cambios de {{site.data.keyword.cloudant}} espera recibir parámetros que incluyan *'dbname'*, *'username'*, etc.
 
 Cuando el usuario crea un desencadenante desde la CLI con el parámetro **--feed**, el sistema invoca automáticamente la acción de canal de información con los parámetros apropiados.
 
-Por ejemplo, suponga que el usuario crea un enlace de `mycloudant` para el paquete `cloudant` con un nombre de usuario y contraseña como parámetros de enlace. Cuando el usuario emita el siguiente mandato desde la CLI:
-
-`wsk trigger create T --feed mycloudant/changes -p dbName myTable`
+Por ejemplo, suponga que el usuario crea un enlace de **mycloudant** para el paquete `cloudant` con un nombre de usuario y contraseña como parámetros de enlace. Cuando el usuario emita el siguiente mandato desde la CLI:
+```
+ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+```
+{: pre}
 
 Entonces, el sistema realiza una acción parecida al siguiente mandato:
+```
+ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+```
+{: pre}
 
-`wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype`
+La acción de canal de información llamada *changes* obtiene estos parámetros y se espera que realice las acciones necesarias para configurar una secuencia de sucesos desde {{site.data.keyword.cloudant_short_notm}}. La acción de canal de información se produce utilizando la configuración adecuada, que está dirigida al desencadenante *T*.
 
-La acción de canal de información llamada *cambios* obtiene estos parámetros y se espera que realice las acciones necesarias para configurar una secuencia de sucesos desde Cloudant. La acción de canal de información se produce utilizando la configuración adecuada, que está dirigida al desencadenante *T*.    
+Para el canal de información *changes* de {{site.data.keyword.cloudant_short_notm}}, la acción se pone en contacto directamente con un servicio *desencadenante de {{site.data.keyword.cloudant_short_notm}}* que está implementado con una arquitectura basada en conexión.
 
-Para el canal de información *cambios* de Cloudant, la acción se pone en contacto directamente con un servicio *desencadenante de cloudant* que está implementado con una arquitectura basada en conexión.
-
-Se produce un protocolo de acción de canal de información similar para `wsk trigger delete`, `wsk trigger update` y `wsk trigger get`.    
+Se produce un protocolo de acción de canal de información similar para `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` e `ibmcloud wsk trigger get`.
 
 ## Implementación de canales de información con ganchos
 
@@ -110,9 +114,9 @@ Puesto que las acciones de {{site.data.keyword.openwhisk_short}} deben ser de ej
 
 El servicio del proveedor tiene una API REST que permite a la *acción de canal de información* de {{site.data.keyword.openwhisk_short}} controlar el canal de información. El servicio de proveedor actúa como un proxy entre el proveedor de suceso y {{site.data.keyword.openwhisk_short}}. Cuando recibe sucesos de un tercero, los envía a {{site.data.keyword.openwhisk_short}} activando un desencadenante.
 
-El canal *cambios* de Cloudant es el ejemplo canónico, ya que configura un servicio `cloudanttrigger` que media entre las notificaciones de Cloudant a través de una conexión persistente y desencadenantes de {{site.data.keyword.openwhisk_short}}.
+El canal *changes* de {{site.data.keyword.cloudant_short_notm}} es el ejemplo canónico, ya que configura un servicio `cloudanttrigger` que media entre las notificaciones de {{site.data.keyword.cloudant_short_notm}} a través de una conexión persistente y desencadenantes de {{site.data.keyword.openwhisk_short}}.
 <!-- TODO: add a reference to the open source implementation -->
 
-El canal de información *alarma* se implementa con un patrón parecido.
+El canal de información *alarm* se implementa con un patrón parecido.
 
-La arquitectura basada en conexión es la opción de rendimiento más alto, pero impone más sobrecarga en las operaciones en comparación con las arquitecturas de sondeo y gancho.   
+La arquitectura basada en conexión es la opción de rendimiento más alto, pero impone más sobrecarga en las operaciones en comparación con las arquitecturas de sondeo y gancho.

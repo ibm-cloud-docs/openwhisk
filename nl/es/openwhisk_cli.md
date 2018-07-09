@@ -100,9 +100,8 @@ Una vez que el entorno esté configurado, puede utilizar la CLI de {{site.data.k
 * Ejecutar sus fragmentos de código, o acciones, en {{site.data.keyword.openwhisk_short}}. Consulte [Crear e invocar acciones](./openwhisk_actions.html).
 * Usar desencadenantes y reglas para permitir a sus acciones responder ante sucesos. Consulte
 [Creación de desencadenantes y reglas](./openwhisk_triggers_rules.html).
-* Aprenda a los paquetes agrupan acciones y configure orígenes de sucesos externos. Consulte [Uso y creación de paquetes](./openwhisk_packages.html).
-* Explore el catálogo de paquetes y mejore sus aplicaciones con servicios externos como un
-[Origen de sucesos de Cloudant](./openwhisk_cloudant.html). Consulte [Paquetes de {{site.data.keyword.openwhisk_short}} preinstalados](./openwhisk_catalog.html).
+* Aprender cómo los paquetes agrupan acciones y configurar orígenes de sucesos externos. Consulte [Uso y creación de paquetes](./openwhisk_packages.html).
+* Explorar el catálogo de paquetes y mejorar sus aplicaciones con servicios externos como un [origen de sucesos de Cloudant](./openwhisk_cloudant.html). Consulte [Paquetes de {{site.data.keyword.openwhisk_short}} preinstalados](./openwhisk_catalog.html).
 
 ## Configure la CLI para utilizar un proxy HTTPS
 {: #cli_https_proxy}
