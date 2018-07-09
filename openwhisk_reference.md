@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-04"
 
 ---
 
@@ -234,9 +234,9 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.11.1 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
+The Node.js version 8.11.3 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
 
-The following packages are pre-installed in the Node.js version 8.11.1 environment:
+The following packages are pre-installed in the Node.js version 8.11.3 environment:
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
   - [async v2.6.1](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
@@ -245,10 +245,10 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
   - [commander v2.15.1](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
-  - [consul v0.32.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
+  - [consul v0.33.1](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - A high-level, caching, CouchDB client for Node.js.
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
@@ -264,9 +264,9 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - The node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - The Lodash library exported as Node.js modules.
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
   - [marked v0.4.0](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
@@ -274,7 +274,7 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as /user/:name into a regular expression which can then be used to match against URL paths.
@@ -286,27 +286,27 @@ The following packages are pre-installed in the Node.js version 8.11.1 environme
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - Semantic Versioning for Nodejs
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - Parse URLs for path parameters more easily than from using a regex string matcher.
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
   - [validator v10.3.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
-  - [winston v2.4.2](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
+  - [winston v3.0.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
 
 ### Node.js version 6 environment
 {: #openwhisk_ref_javascript_environments_6}
-The Node.js 6.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:6` when creating or updating an action.
+The Node.js 6.14.3 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:6` when creating or updating an action.
 
-The following packages are available to be used in the Node.js 6.14.0 environment:
+The following packages are available to be used in the Node.js 6.14.3 environment:
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
 - [async v2.1.4](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
@@ -332,7 +332,7 @@ The following packages are available to be used in the Node.js 6.14.0 environmen
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - Deprecated UUID packaged.
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud is a standard library for Node.js that abstracts away differences among multiple cloud providers.
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); just like any other module.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
@@ -387,7 +387,7 @@ Python packages:
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -411,12 +411,12 @@ Python packages:
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -428,7 +428,7 @@ Python packages:
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -440,7 +440,7 @@ Python packages:
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -556,7 +556,7 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 actions can use the following packages when using single Swift source file:
-- Watson Developer Cloud SDK version 0.27.0, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK version 0.28.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
@@ -586,7 +586,7 @@ The following PHP extensions are available in addition to the standard ones:
 The following Composer packages are also available:
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Docker actions
 {: #openwhisk_ref_docker}

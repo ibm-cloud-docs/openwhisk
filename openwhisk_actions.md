@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-06"
 
 ---
 
@@ -953,7 +953,7 @@ actions/
   ```
   {: pre}
 
-  For Swift 4, use the kind `swift:3.1.1`:
+  For Swift 4, use the kind `swift:4.1`:
   ```
   ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
