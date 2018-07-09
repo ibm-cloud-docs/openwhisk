@@ -60,7 +60,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: screen}
 
-## Setting up a Watson Text to Speech package outside {{site.data.keywrod.Bluemix_notm}}
+## Setting up a Watson Text to Speech package outside {{site.data.keyword.Bluemix_notm}}
 
 If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Watson Text to Speech outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Text to Speech service. You need the Watson Text to Speech service user name, and password.
 
