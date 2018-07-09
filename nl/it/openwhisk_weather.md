@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-01"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -14,24 +14,25 @@ lastupdated: "2017-06-01"
 # Utilizzo del pacchetto Weather
 {: #openwhisk_catalog_weather}
 
-Il pacchetto `/whisk.system/weather` offre un pratico modo per richiamare l'API Weather Company Data for IBM Bluemix.
+Il pacchetto `/whisk.system/weather` offre una soluzione pratica per richiamare l'API Weather Company Data for the {{site.data.keyword.Bluemix}}.
+{: shortdesc}
 
 Il pacchetto include la seguente azione.
 
 | Entità | Tipo | Parametri | Descrizione |
 | --- | --- | --- | --- |
-| `/whisk.system/weather` | pacchetto | username, password | Servizi dall'API Weather Company Data for IBM Bluemix  |
-| `/whisk.system/weather/forecast` | azione | latitude, longitude, timePeriod | Previsione per il periodo di tempo specificato|
+| `/whisk.system/weather` | Pacchetto | username, password | Servizi dall'API Weather Company Data for the {{site.data.keyword.Bluemix_notm}} |
+| `/whisk.system/weather/forecast` | Azione | latitude, longitude, timePeriod | Previsione per il periodo di tempo specificato|
 
 Si consiglia di effettuare la creazione di un bind di pacchetto con i valori `username` e `password`. In questo modo, non dovrai specificare le credenziali ogni volta che richiami le azioni nel pacchetto.
 
-## Configurazione del pacchetto Weather in Bluemix
+## Configurazione del pacchetto Weather in {{site.data.keyword.Bluemix_notm}}
 
-Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind di pacchetto per le tue istanze del servizio Bluemix Weather.
+Se utilizzi OpenWhisk da {{site.data.keyword.Bluemix_notm}}, OpenWhisk  crea automaticamente i bind di pacchetto per le tue istanze del servizio {{site.data.keyword.Bluemix_notm}} Weather.
 
-1. Crea un'istanza del servizio Weather Company Data nel tuo [dashboard](http://console.ng.Bluemix.net) Bluemix.
+1. Crea un'istanza del servizio Weather Company Data nel tuo [dashboard](http://console.ng.Bluemix.net) {{site.data.keyword.Bluemix_notm}}.
   
-  Assicurati di ricordare il nome dell'istanza del servizio e dell'organizzazione e dello spazio Bluemix in cui ti trovi.
+  Assicurati di ricordare il nome dell'istanza del servizio e dell'organizzazione e dello spazio {{site.data.keyword.Bluemix_notm}} in cui ti trovi.
   
 2. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per l'istanza del servizio Weather Company Data da te creata.
   
@@ -39,8 +40,6 @@ Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind 
   wsk package refresh
   ```
   {: pre}
-  
-  
   ```
   created bindings:
   Bluemix_Weather_Company_Data_Credentials-1
@@ -55,9 +54,9 @@ Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind 
   ```
   
  
-## Configurazione di un pacchetto Weather esternamente a Bluemix
+## Configurazione di un pacchetto Weather all'esterno di {{site.data.keyword.Bluemix_notm}}
 
-Se non stai utilizzando OpenWhisk in Bluemix o se desideri configurare il tuo servizio Weather Company Data esternamente a Bluemix, devi creare manualmente un bind del pacchetto per il tuo servizio Weather Company Data. Ti servono il nome utente e la password del servizio Weather Company Data.
+Se non utilizzi OpenWhisk in {{site.data.keyword.Bluemix_notm}} o se vuoi configurare Weather Company Data all'esterno di {{site.data.keyword.Bluemix_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio Weather Company Data. Ti servono il nome utente e la password del servizio Weather Company Data.
 
 - Crea un bind di pacchetto configurato per il tuo servizio Watson Translator.
 
@@ -70,50 +69,45 @@ Se non stai utilizzando OpenWhisk in Bluemix o se desideri configurare il tuo se
 ## Come ottenere una previsione meteo per una località
 {: #openwhisk_catalog_weather_forecast}
 
-L'azione `/whisk.system/weather/forecast` restituisce una previsione meteo per una località, richiamando un'API The Weather Company. I parametri sono i seguenti:
+L'azione `/whisk.system/weather/forecast` restituisce una previsione meteo per una località richiamando un'API da The Weather Company. I parametri sono i seguenti:
 
-- `username`: nome utente per The Weather Company Data for IBM Bluemix che ha diritto a richiamare l'API delle previsioni.
-- `password`: password per The Weather Company Data for IBM Bluemix che ha diritto a richiamare l'API delle previsioni.
-- `latitude`: la coordinata della latitudine della località.
-- `longitude`: la coordinata della longitudine della località.
-- `timePeriod`: il periodo di tempo per la previsione. Le opzioni valide sono:
-  - `10day` - (valore predefinito) restituisce una previsione giornaliera a 10 giorni
-  - `48hour` - restituisce una previsione oraria a 2 giorni
-  - `current` - restituisce le condizioni meteo correnti
-  - `timeseries` - restituisce sia le osservazioni correnti che un massimo di 24 ore di osservazioni antecedenti alla data e ora correnti.
+- `username`: nome utente per The Weather Company Data for {{site.data.keyword.Bluemix_notm}} che è autorizzato a richiamare l'API di previsione.
+- `password`: password per l'utente di The Weather Company Data for {{site.data.keyword.Bluemix_notm}} che è autorizzato a richiamare l'API di previsione.
+- `latitude`: la coordinata di latitudine della località.
+- `longitude`: la coordinata di longitudine della località.
+- `timePeriod`: il periodo di tempo per la previsione. I valori validi sono:
+  - `10day` - (predefinito) Restituisce una previsione giornaliera di 10 giorni
+  - `48hour` - Restituisce una previsione oraria di 2 giorni
+  - `current` - Restituisce le condizioni meteorologiche correnti
+  - `timeseries` - Restituisce le rilevazioni in tempo reale e quelle delle ultime 24 ore dalla data/ora corrente.
 
 
-- Di seguito viene riportato un esempio di creazione di un bind di pacchetto e successiva acquisizione di una previsione meteo di 10 giorni.1. Crea un bind di pacchetto con la tua chiave API.
-  
-  ```
-  wsk package bind /whisk.system/weather myWeather --param username MY_USERNAME --param password MY_PASSWORD
-  ```
-  {: pre}
+Il seguente esempio mostra come creare un bind di pacchetto e quindi ottenere una previsione di 10 giorni.
 
 - Richiama l'azione `forecast` nel tuo bind di pacchetto per ottenere la previsione meteo.
-  
   ```
   wsk action invoke myWeather/forecast --result \
   --param latitude 43.7 \
   --param longitude -79.4
   ```
   {: pre}
+  
   ```json
   {
       "forecasts": [
           {
-              "dow": "Mercoledì",
+              "dow": "Wednesday",
               "max_temp": -1,
               "min_temp": -16,
-              "narrative": "Possibilità di alcuni rovesci. Massime tra i -2°C e 0°C e minime tra -17°C e -15°C.",
+              "narrative": "Chance of a few snow showers. Highs -2 to 0C and lows -17 to -15C.",
               ...
           },
           {
               "class": "fod_long_range_daily",
-              "dow": "Giovedì",
+              "dow": "Thursday",
               "max_temp": -4,
               "min_temp": -8,
-              "narrative": "Prevalentemente soleggiato. Massime tra -5°C e -3°C e minime tra i -9°C e -7°C.",
+              "narrative": "Mostly sunny. Highs -5 to -3C and lows -9 to -7C.",
               ...
           },
           ...

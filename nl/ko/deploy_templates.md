@@ -38,7 +38,7 @@ lastupdated: "2018-02-13"
 
 Cloudant 템플리트는 조치 시퀀스 및 해당 시퀀스를 시작하는 트리거를 작성합니다. 트리거는 이름과 색상이 있는 고양이의 데이터베이스여야 하는 연결된 Cloudant DB에 변경사항이 있을 때 실행됩니다. 예상되는 데이터 항목은 이름과 색상이 정의된 고양이입니다. 새 고양이가 데이터베이스에 추가되거나 현재 고양이가 편집되면 해당 데이터가 콘솔에 로깅됩니다. 
 
-1. 템플리트를 작성하려면 [{{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk_short}}](https://dev-console.stage1.bluemix.net/openwhisk/) 이동한 후에 **작성 시작**을 클릭하십시오.  
+1. 템플리트를 작성하려면 [{{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk_short}}](https://dev-console.stage1.bluemix.net/openwhisk/)로 이동한 후에 **작성 시작**을 클릭하십시오.  
 
 2. **템플리트 배치**를 클릭하십시오. 
 

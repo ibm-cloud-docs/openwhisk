@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-02-21"
+  years: 2016, 2018
+lastupdated: "2018-02-09"
 
 ---
 
@@ -13,54 +13,103 @@ lastupdated: "2017-02-21"
 
 # Annotazioni sugli asset OpenWhisk
 
-Le azioni, i trigger, le regole e i pacchetti OpenWhisk (denominati collettivamente come asset) possono essere decorati con `annotazioni`. Le annotazioni vengono collegate agli asset proprio come i parametri, con una `key` che definisce un nome e un `value` che definisce un valore. È opportuno impostarle dalla CLI (command line interface) tramite `--annotation` o l'abbreviazione `-a`.
+Le azioni, i trigger, le regole e i pacchetti OpenWhisk (indicati collettivamente come asset) possono essere decorati con `annotazioni`. Le annotazioni vengono allegate agli asset proprio come i parametri, con una `key` che definisce un nome e un `value` che definisce il valore. È opportuno impostarle dalla CLI (command line interface) tramite `--annotation` o l'abbreviazione `-a`.
 {: shortdesc}
 
-Motivazione: le annotazioni sono state aggiunte ad OpenWhisk per consentire la sperimentazione senza apportare modifiche allo schema di asset sottostante. Fino alla stesura di questo documento, non abbiamo deliberatamente definito quali `annotazioni` sono consentite. Tuttavia, poiché abbiamo iniziato a utilizzare maggiormente le annotazioni per impartire modifiche semantiche, è importante che finalmente vengano documentate.
+Ragione fondamentale: le annotazioni sono state aggiunte a OpenWhisk per consentire la sperimentazione senza modificare lo schema di asset sottostante. Fino alla stesura di questo documento, è stato fatto un tentativo deliberato di non definire quali `annotazioni` siano consentite. Tuttavia, poiché le annotazioni sono utilizzate maggiormente per impartire modifiche semantiche, è importante iniziare a documentarle.
 
-Fino ad oggi, l'utilizzo più diffuso delle annotazioni è quello di documentare le azioni e i pacchetti. In molti dei pacchetti nel catalogo OpenWhisk potrai vedere delle annotazioni, come ad esempio una descrizione della funzionalità offerta dalle loro azioni, quali parametri sono richiesti in fase di bind del pacchetto e quali sono i parametri per il tempo di richiamata, se un parametro è un "segreto" (ad esempio, password) o meno. Le abbiamo inventate in base alle esigenze, ad esempio per consentire l'integrazione della IU.
+Fino ad oggi, l'utilizzo più diffuso delle annotazioni è quello di documentare le azioni e i pacchetti. Molti dei pacchetti nel catalogo OpenWhisk contengono annotazioni quali: una descrizione della funzionalità offerta dalle sue azioni, parametri da utilizzare al momento del bind del pacchetto, parametri del tempo di richiamo o se un parametro è un "segreto" (ad esempio, password) o meno. Le annotazioni vengono inventate secondo necessità, ad esempio per consentire l'integrazione dell'interfaccia utente.
 
-Di seguito è riportata una serie di annotazioni di esempio per un'azione `echo` che restituisce i suoi argomenti di input non modificati (ad esempio, `function main(args) { return args }`). Questa azione può essere utile ad esempio per la registrazione dei parametri di input come parte di una sequenza o regola.
+Di seguito è riportata una serie di annotazioni di esempio per un'azione `echo`, che restituisce i suoi argomenti di input non modificati (ad esempio `function main(args) { return args }`). Questa azione è utile per registrare i parametri di input, ad esempio, come parte di una sequenza o regola.
 
 ```
 wsk action create echo echo.js \
-    -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
-    -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
-    -a sampleInput  '{ "msg": "Five fuzzy felines"}' \
-    -a sampleOutput '{ "msg": "Five fuzzy felines"}'
+    -a description 'Un'azione che restituisce il suo input. Utile per la registrazione dell'input per abilitare il debug o la riproduzione.' \
+    -a parameters  '[{ "required":false, "description": "Qualsiasi entità JSON" }]' \
+    -a sampleInput  '{ "msg": "Cinque felini indistinti"}' \
+    -a sampleOutput '{ "msg": "Cinque felini indistinti"}'
 ```
 {: pre}
 
-Le annotazioni utilizzate per descrivere i pacchetti sono:
+Le annotazioni che descrivono i pacchetti includono:
 
-- `description`: una descrizione concisa del pacchetto
-- `parameters`: un array che descrive i parametri nell'ambito del pacchetto (descritti più avanti)
+- `description`: una descrizione concisa del pacchetto.
+- `parameters`: un array che descrive i parametri applicabili al pacchetto.
 
-Allo stesso modo, per le azioni: 
+Le annotazioni che descrivono le azioni includono:
 
-- `description`: una descrizione concisa dell'azione
-- `parameters`: un array che descrive le azioni richieste per eseguire l'azione
-- `sampleInput`: un esempio che mostra lo schema di input con i valori tipici
-- `sampleOutput`: un esempio che mostra lo schema di output, solitamente per `sampleInput`
+- `description`: una descrizione concisa dell'azione.
+- `parameters`: un array che descrive le azioni richieste per eseguire l'azione.
+- `sampleInput`: un esempio che mostra lo schema di input con valori tipici.
+- `sampleOutput`: un esempio che mostra lo schema di output, solitamente per `sampleInput`.
 
-Le annotazioni utilizzate per descrivere i parametri sono:
+Le annotazioni che descrivono i parametri includono:
 
-- `name`: il nome del parametro
-- `description`: una descrizione concisa del parametro
-- `doclink`: un link a un'ulteriore documentazione per il parametro (utile, ad esempio, per i token OAuth) 
-- `required`: true per i parametri obbligatori e false per quelli facoltativi
-- `bindTime`: true se è necessario specificare il parametro quando si esegue il bind del pacchetto
-- `type`: il tipo di parametro, può essere `password` o `array` (ma può essere utilizzato in modo più ampio)
+- `name`: il nome del parametro.
+- `description`: una descrizione concisa del parametro.
+- `doclink`: un link ad ulteriore documentazione per il parametro (utile per i token OAuth).
+- `required`: true per i parametri obbligatori e false per quelli facoltativi.
+- `bindTime`: true se il parametro viene specificato quando si esegue il bind del pacchetto.
+- `type`: il tipo di parametro, uno tra `password`, `array` (ma può essere utilizzato in modo più ampio).
 
-Le annotazioni *non* vengono controllate. Quindi, mentre è possibile utilizzare le annotazioni per dedurre ad esempio se una composizione di due azioni in una sequenza è legale, il sistema non lo fa ancora.
+Le annotazioni _non_ vengono verificate. Quindi, mentre è ipotizzabile utilizzare le annotazioni per dedurre se, ad esempio, una composizione di due azioni in una sequenza è legale, il sistema non lo fa ancora.
 
-## Annotazioni specifiche delle azioni web
+## Annotazioni specifiche per le azioni web
 {: #openwhisk_annotations_webactions}
 
-Di recente abbiamo esteso l'API principale con nuove funzioni. Per poter inserire i pacchetti e le azioni in queste funzioni, abbiamo introdotto le seguenti nuove annotazioni semanticamente significative. Per avere effetto, queste annotazioni devono essere impostate esplicitamente su `true`. Se si modifica il valore da `true` a `false`, l'asset collegato verrà escluso dalla nuova API. Le annotazioni non hanno significato al di fuori del sistema. Esse sono:
+Di recente, l'API principale è stata estesa con nuove funzioni. Per consentire a pacchetti e azioni di partecipare a queste funzioni, vengono introdotte nuove annotazioni semanticamente significative. Per avere effetto, queste annotazioni devono essere impostate esplicitamente su `true`. La modifica del valore da `true` a `false` esclude l'asset allegato dalla nuova API. Le annotazioni non hanno altro significato nel sistema. Vedi le seguenti annotazioni:
 
-- `final`: si applica solo a un'azione. Rende immutabili tutti i parametri di azione già definiti. Un parametro di un'azione con l'annotazione non può essere sovrascritto dai parametri per il tempo di richiamata una volta che il parametro ha un valore definito tramite il suo pacchetto di inclusione o la definizione dell'azione.
-- `web-export`: si applica solo a un'azione. Se presente, rende accessibile la sua azione corrispondente alle chiamate REST *senza* eseguire l'autenticazione. Queste sono chiamate [*azioni web*](openwhisk_webactions.html) in quanto consentono di utilizzare le azioni OpenWhisk, ad esempio, da un browser. È importante notare che al *proprietario* delle azioni web verranno addebitati i costi delle loro esecuzioni nel sistema (vale a dire, il *proprietario* dell'azione possiede anche il record delle attivazioni).
-- `require-whisk-auth`: si applica a un'azione. Se un'azione contiene l'annotazione `web-export` e questa annotazione è `true`, la rotta è accessibile solo a un soggetto autenticato. È importante notare che al *proprietario* delle azioni web verranno addebitati i costi delle loro esecuzioni nel sistema (vale a dire, il *proprietario* dell'azione possiede anche il record delle attivazioni).
+- `web-export`: si applica solo a un'azione. Se presente, rende accessibile la sua azione corrispondente alle chiamate REST _senza_ autenticazione. Sono chiamate [_azioni web_](openwhisk_webactions.html) perché consentono di utilizzare le azioni OpenWhisk, ad esempio, da un browser. È importate notare che il _proprietario_ delle azioni web sostiene il costo della loro esecuzione nel sistema. In altre parole, il _proprietario_ dell'azione possiede anche il record delle attivazioni.
+- `final`: si applica solo a un'azione. Rende immutabili tutti i parametri di azione già definiti. Un parametro di un'azione che contiene l'annotazione non può essere sovrascritto dai parametri del tempo di richiamo una volta che il valore dei parametri viene definito tramite il relativo pacchetto di inclusione o la definizione di azione.
 - `raw-http`: si applica solo a un'azione in presenza di un'annotazione `web-export`. Se presente, i parametri di query e corpo della richiesta HTTP vengono passati all'azione come proprietà riservate.
+- `web-custom-options`: se impostata, questa annotazione consente a un'azione web di rispondere alle richieste OPTIONS con intestazioni personalizzate, altrimenti viene applicata una [risposta CORS predefinita](openwhisk_webactions.html#options-requests).
+- `require-whisk-auth`: si applica a un'azione. Se un'azione contiene l'annotazione `web-export` e questa annotazione è `true`, la rotta è accessibile solo a un soggetto autenticato. È importate notare che il _proprietario_ delle azioni web sostiene il costo della loro esecuzione nel sistema. In altre parole, il _proprietario_ dell'azione possiede anche il record delle attivazioni.
 
+## Annotazioni specifiche per le attivazioni
+
+Il sistema decora con le annotazioni anche i record di attivazione. Queste sono:
+
+- `path`: il nome del percorso completo dell'azione che ha generato l'attivazione. Nota che se questa attivazione è stata il risultato di un'azione in un bind di pacchetto, il percorso si riferisce al pacchetto principale.
+- `kind`: il tipo di azione eseguita e uno dei tipi di runtime OpenWhisk di supporto.
+- `limits`: i limiti di tempo, memoria e log a cui questa attivazione era soggetta.
+
+Per le attivazioni relative alla sequenza, il sistema genera le seguenti annotazioni:
+
+- `topmost`: è presente solo per un'azione di sequenza più esterna.
+- `causedBy`: è presente solo per le azioni contenute in una sequenza.
+
+Infine, e per garantire la trasparenza delle prestazioni, le attivazioni registrano anche quanto segue:
+
+- `waitTime`: il tempo di attesa nel sistema OpenWhisk interno. Questo è approssimativamente il tempo trascorso tra il momento in cui il controller riceve la richiesta di attivazione e il momento in cui l'invoker fornisce un contenitore per l'azione. Questo valore è attualmente presente solo per le attivazioni non correlate alla sequenza. Per le sequenze, queste informazioni possono essere ricavate dal record di attivazione della sequenza `topmost`.
+- `initTime`: il tempo trascorso per inizializzare la funzione. Se questo valore è presente, l'azione ha richiesto l'inizializzazione e rappresenta un avvio a freddo. Un'attivazione a caldo salta l'inizializzazione e in questo caso l'annotazione non viene generata.
+
+Di seguito viene mostrato un esempio di queste annotazioni così come potrebbero essere visualizzate in un record di attivazione.
+
+```javascript
+"annotations": [
+  {
+    "key": "path",
+    "value": "guest/echo"
+  },
+  {
+    "key": "waitTime",
+    "value": 66
+  },
+  {
+    "key": "kind",
+    "value": "nodejs:6"
+  },
+  {
+    "key": "initTime",
+    "value": 50
+  },
+  {
+    "key": "limits",
+    "value": {
+      "logs": 10,
+      "memory": 256,
+      "timeout": 60000
+    }
+  }
+]
+```

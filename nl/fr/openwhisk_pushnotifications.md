@@ -76,7 +76,7 @@ L'action `/whisk.system/pushnotifications/sendMessage` envoie des notifications 
 - `tagNames` : envoyez une notification aux périphériques abonnés à l'une des étiquettes spécifiées. Par exemple, `-p tagNames "[\"tag1\"]"`.
 - `gcmCollapseKey` : ce paramètre identifie un groupe de messages
 - `gcmCategory` : identificateur de catégorie à utiliser pour les notifications push interactives.
-- `gcmIcon` : spécifiez le nom de l'ibmcloudône à afficher pour la notification. Assurez-vous que l'ibmcloudône est déjà conditionnée avec l'application client.
+- `gcmIcon` : spécifiez le nom de l'icône à afficher pour la notification. Assurez-vous que l'icône est déjà conditionnée avec l'application client.
 - `gcmDelayWhileIdle` : lorsque ce paramètre a pour valeur true, le message n'est pas envoyé tant que le périphérique n'est pas actif.
 - `gcmSync` : la messagerie de groupe de périphériques permet à chaque instance d'application d'un groupe de refléter le dernier état de messagerie.
 - `gcmVisibility` : privé/public - visibilité de cette notification, qui affecte comment et quand les notifications sont révélées sur un écran verrouillé.
@@ -92,7 +92,7 @@ L'action `/whisk.system/pushnotifications/sendMessage` envoie des notifications 
 - `gcmLightsLedArgb` : couleur du voyant. Le matériel utilise sa meilleure approximation.
 - `gcmLightsLedOnMs` : durée, exprimée en millisecondes, pendant laquelle le voyant reste allumé lorsqu'il clignote. Le matériel utilise sa meilleure approximation.
 - `gcmLightsLedOffMs` : durée, exprimée en millisecondes, pendant laquelle le voyant reste éteint lorsqu'il clignote. Le matériel utilise sa meilleure approximation.
-- `apnsBadge` : numéro à afficher en tant que badge de l'ibmcloudône d'application.
+- `apnsBadge` : numéro à afficher en tant que badge de l'icône d'application.
 - `apnsCategory` : identificateur de catégorie à utiliser pour les notifications push interactives.
 - `apnsIosActionKey` : titre de la clé d'action.
 - `apnsPayload` : contenu JSON personnalisé qui est envoyé dans le cadre du message de notification. 
@@ -107,11 +107,11 @@ L'action `/whisk.system/pushnotifications/sendMessage` envoie des notifications 
 - `apnsSubtitle` : sous-titre des notifications push riches (pris en charge sous iOS 10 et versions ultérieures uniquement).
 - `apnsAttachmentUrl` : lien vers le support des notifications iOS (vidéo, audio, GIF, images - pris en charge sous iOS 10 et versions ultérieures uniquement).
 - `fireFoxTitle` : spécifie le titre qui doit être défini pour WebPush Notification.
-- `fireFoxIconUrl` : URL de l'ibmcloudône qui doit être définie pour WebPush Notification.
+- `fireFoxIconUrl` : URL de l'icône qui doit être définie pour WebPush Notification.
 - `fireFoxTimeToLive` : ce paramètre spécifie la durée de conservation (exprimée en secondes) du message dans le stockage GCM si le périphérique est hors ligne.
 - `fireFoxPayload` : contenu JSON personnalisé qui est envoyé dans le cadre du message de notification. 
 - `chromeTitle` : spécifie le titre qui doit être défini pour WebPush Notification.
-- `chromeIconUrl` : URL de l'ibmcloudône qui doit être définie pour WebPush Notification.
+- `chromeIconUrl` : URL de l'icône qui doit être définie pour WebPush Notification.
 - `chromeTimeToLive` : ce paramètre spécifie la durée de conservation (exprimée en secondes) du message dans le stockage GCM si le périphérique est hors ligne.
 - `chromePayload` : contenu JSON personnalisé qui est envoyé dans le cadre du message de notification. 
 - `safariTitle` : spécifie le titre à définir pour les notifications push Safari.
@@ -120,7 +120,7 @@ L'action `/whisk.system/pushnotifications/sendMessage` envoie des notifications 
 - `chromeAppExtTitle` : spécifie le titre qui doit être défini pour WebPush Notification.
 - `chromeAppExtCollapseKey` : ce paramètre identifie un groupe de messages.
 - `chromeAppExtDelayWhileIdle` : lorsque ce paramètre a pour valeur true, il indique que le message n'est pas envoyé tant que le périphérique n'est pas actif.
-- `chromeAppExtIconUrl` : URL de l'ibmcloudône qui doit être définie pour WebPush Notification.
+- `chromeAppExtIconUrl` : URL de l'icône qui doit être définie pour WebPush Notification.
 - `chromeAppExtTimeToLive` : ce paramètre spécifie la durée de conservation (exprimée en secondes) du message dans le stockage GCM si le périphérique est hors ligne.
 - `chromeAppExtPayload` : contenu JSON personnalisé qui est envoyé dans le cadre du message de notification. 
 

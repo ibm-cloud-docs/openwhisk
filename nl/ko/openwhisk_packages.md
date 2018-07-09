@@ -31,7 +31,7 @@ lastupdated: "2018-01-09"
 
 여러 패키지가 {{site.data.keyword.openwhisk_short}}에 등록되어 있습니다. 네임스페이스에서 패키지의 목록을 가져오고, 패키지의 엔티티를 나열하며 패키지의 개별 엔티티에 대한 설명을 가져올 수 있습니다. 
 
-1. `,/whisk.system` 네임스페이스에서 패키지의 목록을 가져오십시오. 
+1. `/whisk.system` 네임스페이스에서 패키지의 목록을 가져오십시오. 
 
   ```
   wsk package list /whisk.system

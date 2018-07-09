@@ -86,7 +86,7 @@ lastupdated: "2018-02-02"
 - `gcmTimeToLive`: 이 매개변수는 디바이스가 오프라인인 경우에 메시지가 GCM 스토리지에 보관되는 기간(초)을 지정합니다. 
 - `gcmStyleType`: 확장 가능한 알림의 유형을 지정합니다. 가능한 값은 `bigtext_notification`, `picture_notification` 및 `inbox_notification`입니다. 
 - `gcmStyleTitle`: 알림의 제목을 지정합니다. 제목은 알림이 확장될 때 표시됩니다. 3개의 모든 확장 가능 알림에 대해 제목을 지정해야 합니다. 
-- `gcmStyleUrl`: 알림에 대해 그림을 가져오는 URL입니다. `picture_notification`에 대해 지정되어야 합니다. 
+- `gcmStyleUrl`: 알림에 대해 그림을 가져와야 하는 URL입니다. `picture_notification`에 대해 지정되어야 합니다. 
 - `gcmStyleText`: `bigtext_notification` 확장 시에 표시되어야 하는 대형 텍스트입니다. `bigtext_notification`에 대해 지정되어야 합니다. 
 - `gcmStyleLines`: `inbox_notification`에 대해 받은 편지함 스타일로 표시되는 문자열의 배열입니다. `inbox_notification`에 대해 지정되어야 합니다. 
 - `gcmLightsLedArgb`: LED 색상입니다. 하드웨어는 최상의 추정을 수행합니다. 

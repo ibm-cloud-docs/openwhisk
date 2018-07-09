@@ -587,7 +587,7 @@ A partir del `package.json` del ejemplo anterior, añada `webpack` como dependen
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
 	"dependencies": {
     "left-pad" : "1.1.3"
@@ -658,7 +658,7 @@ Para crear y desplegar una acción de OpenWhisk utilizando `npm` y `webpack`:
   {: pre}
   Utilizando la CLI:
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  bx wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -1040,7 +1040,7 @@ El tiempo que se ha tardado en ejecutar la acción está en la propiedad "durati
 
 El proceso de creación de acciones Java es parecido al de las acciones JavaScript y Swift. En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Swift, y se añaden parámetros a dicha acción.
 
-Para compilar, probar y archivar archivos Java, debe tener un [JDK 8](http://openjdk.java.net/install) instalado localmente.
+Para compilar, probar y archivar archivos Java, debe tener un [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) instalado localmente.
 
 ### Creación e invocación de una acción
 {: #openwhisk_actions_java_invoke}

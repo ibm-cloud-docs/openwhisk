@@ -1,19 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-04-24"
+  years: 2016, 2018
+lastupdated: "2018-02-15"
 
 ---
 
 {:shortdesc: .shortdesc}
-{:codeblock:.codeblock}
-{:screen:.screen}
+{:codeblock: .codeblock}
+{:screen: .screen}
 {:pre: .pre}
+{:tip: .tip}
 
 # Dettagli del sistema {{site.data.keyword.openwhisk_short}}
 {: #openwhisk_reference}
-
 
 Le seguenti sezioni forniscono ulteriori dettagli sul sistema {{site.data.keyword.openwhisk}}.
 {: shortdesc}
@@ -24,11 +24,11 @@ Le seguenti sezioni forniscono ulteriori dettagli sul sistema {{site.data.keywor
 ### Spazi dei nomi e pacchetti
 {: #openwhisk_entities_namespaces}
 
-Azioni, trigger e regole {{site.data.keyword.openwhisk_short}} appartengono a uno spazio dei nomi e, facoltativamente, a un pacchetto.
+Le azioni, i trigger e le regole {{site.data.keyword.openwhisk_short}} appartengono a uno spazio dei nomi e, facoltativamente, a un pacchetto.
 
 I pacchetti possono contenere azioni e feed. Un pacchetto non può contenerne un altro, pertanto la nidificazione dei pacchetti non è consentita. Inoltre, le entità non devono essere contenute in un pacchetto.
 
-In Bluemix, uno spazio dei nomi {{site.data.keyword.openwhisk_short}} corrisponde a una coppia organizzazione/spazio. Ad esempio, l'organizzazione `BobsOrg` e lo spazio `dev` corrisponderebbero allo spazio dei nomi {{site.data.keyword.openwhisk_short}} `/BobsOrg_dev`.
+In {{site.data.keyword.Bluemix_notm}}, una coppia organizzazione+spazio corrisponde a uno spazio dei nomi {{site.data.keyword.openwhisk_short}}. Ad esempio, l'organizzazione `BobsOrg` e lo spazio `dev` corrisponderebbero allo spazio dei nomi {{site.data.keyword.openwhisk_short}} `/BobsOrg_dev`.
 
 Se autorizzato, puoi creare il tuo spazio dei nomi personale. Lo spazio dei nomi `/whisk.system` è riservato alle entità distribuite con il sistema {{site.data.keyword.openwhisk_short}}.
 
@@ -37,10 +37,9 @@ Se autorizzato, puoi creare il tuo spazio dei nomi personale. Lo spazio dei nomi
 {: #openwhisk_entities_fullyqual}
 
 Il nome completo di un'entità è
-`/nomeSpazioNomi[/nomePacchetto]/nomeEntità`. Nota che `/` viene utilizzato per delimitare
-gli spazi dei nomi, i pacchetti e le entità. Inoltre, gli spazi dei nomi devono essere preceduti da `/`.
+`/nomeSpazioNomi[/nomePacchetto]/nomeEntità`. Nota che per delimitare gli spazi dei nomi, i pacchetti e le entità viene utilizzato `/`. Inoltre, gli spazi dei nomi devono essere preceduti da `/`.
 
-Per praticità, lo spazio dei nomi può essere tralasciato se è lo  *spazio dei nomi predefinito* dell'utente.
+Per praticità, lo spazio dei nomi può essere tralasciato se è lo *spazio dei nomi predefinito* dell'utente.
 
 Ad esempio, considera un utente il cui spazio dei nomi predefinito è `/myOrg`. Di seguito sono riportati esempi di nomi completi di una serie di entità e i rispettivi alias.
 
@@ -50,19 +49,18 @@ Ad esempio, considera un utente il cui spazio dei nomi predefinito è `/myOrg`. 
 | `/myOrg/video/transcode` | `video/transcode` | `/myOrg` | `video` | `transcode` |
 | `/myOrg/filter` | `filter` | `/myOrg` |  | `filter` |
 
-Userai questo schema di denominazione quando utilizzi, ad esempio, la CLI {{site.data.keyword.openwhisk_short}}.
+Puoi adoperare questo schema di denominazione quando utilizzi, ad esempio, la CLI {{site.data.keyword.openwhisk_short}}.
 
 ### Nomi delle entità
 {: #openwhisk_entities_names}
 
-I nomi di tutte le entità, inclusi azioni, trigger, regole, pacchetti e spazi dei nomi, sono una sequenza di caratteri aventi il seguente formato:
+I nomi di tutte le entità, tra cui azioni, trigger, regole, pacchetti e spazi dei nomi, sono una sequenza di caratteri che si attengono al seguente formato:
 
 * Il primo carattere deve essere un carattere alfanumerico o un carattere di sottolineatura.
-* I caratteri successivi possono essere alfanumerici, spazi o i seguenti: `_`, `@`, `.`, `-`.
+* I caratteri successivi possono essere alfanumerici, spazi o uno qualsiasi dei seguenti valori: `_`, `@`, `.`, `-`.
 * L'ultimo carattere non può essere uno spazio.
 
-Più precisamente, un nome deve corrispondere alla seguente espressione regolare (indicata utilizzando la sintassi metacharacter Java): `\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`.
-
+Più precisamente, un nome deve corrispondere alla seguente espressione regolare (indicata utilizzando la sintassi di metacaratteri Java): `\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`.
 
 ## Semantica delle azioni
 {: #openwhisk_semantics}
@@ -72,74 +70,68 @@ Le seguenti sezioni forniscono informazioni dettagliate sulle azioni {{site.data
 ### Assenza di stato
 {: #openwhisk_semantics_stateless}
 
-Le implementazioni delle azioni devono essere senza stato o *idempotenti*. Mentre il sistema non applica questa proprietà, non vi è alcuna garanzia che qualsiasi stato gestito da un'azione sia disponibile tra le chiamate.
+Le implementazioni dell'azione sono senza stato o *idempotenti*. Anche se il sistema non impone questa proprietà, non è garantito che uno stato mantenuto da un'azione sia disponibile tra le chiamate.
 
-Inoltre, potrebbero esistere più creazioni di istanze di un'azione, ciascuna delle quali con il proprio stato. La chiamata di un'azione potrebbe essere inviata a una qualsiasi di queste creazioni di istanze.
+Inoltre, potrebbero esserci più creazioni di istanze di un'azione, ciascuna delle quali con il proprio stato. Una chiamata di azione potrebbe essere inviata a una qualsiasi di queste creazioni di istanza.
 
 ### Input e output delle chiamate
 {: #openwhisk_semantics_invocationio}
 
-L'input da/l'output verso un'azione costituiscono un dizionario di coppie chiave/valore. La chiave è una stringa e il valore è un valore JSON valido.
+L'input e l'output di un'azione costituiscono un dizionario di coppie chiave-valore. La chiave è una stringa e il valore è un valore JSON valido.
 
-### Ordinamento delle chiamate delle azioni
+### Ordine di richiamo delle azioni
 {: #openwhisk_ordering}
 
-Le chiamate di un'azione non sono ordinate. Se l'utente richiama un'azione due volte dalla riga di comando o dall'API REST, la seconda chiamata potrebbe essere eseguita per prima. Se le azioni hanno effetti secondari, questi potrebbero essere osservati in qualsiasi ordine.
+Le chiamate di un'azione non sono ordinate. Se l'utente richiama un'azione due volte dalla riga di comando o dall'API REST, la seconda chiamata potrebbe essere eseguita per prima. Se le azioni hanno effetti secondari, potrebbero essere osservate in qualsiasi ordine.
 
-Inoltre, non vi è alcuna garanzia che le azioni verranno eseguite automaticamente. Due azioni possono essere eseguite contemporaneamente e avere effetti secondari interfoliati. OpenWhisk non garantisce uno specifico modello di coerenza simultanea per gli effetti secondari. Qualsiasi effetto secondario dipenderà dall'implementazione.
+Inoltre, non è garantito che le azioni vengano eseguite automaticamente. Due azioni possono essere eseguite contemporaneamente e i loro effetti secondari possono essere intercalati. OpenWhisk non garantisce uno specifico modello di coerenza simultanea per gli effetti secondari. Eventuali effetti collaterali della simultaneità dipendono dall'implementazione.
 
 ### Garanzie di esecuzione dell'azione
 {: #openwhisk_atmostonce}
 
 Alla ricezione di una richiesta di chiamata, il sistema registra la richiesta e invia un'attivazione.
 
-Il sistema restituisce un ID di attivazione (in caso di chiamata non bloccante) per confermare la ricezione della chiamata.
-Nota che se si verifica un problema di rete o un altro errore che avviene prima di ricevere una risposta HTTP, è possibile
-che {{site.data.keyword.openwhisk_short}} abbia ricevuto ed elaborato la richiesta.
+Il sistema restituisce un ID di attivazione (con una chiamata non bloccante) che conferma che è stata ricevuta.
+Se si verifica un errore di rete o un altro errore che avviene prima di ricevere una risposta HTTP, è possibile che {{site.data.keyword.openwhisk_short}} abbia ricevuto ed elaborato la richiesta.
 
-Il sistema tenta di richiamare l'azione una volta, ottenendo uno dei quattro seguenti risultati:
+Il sistema tenta di richiamare l'azione una volta, determinando uno dei seguenti quattro risultati:
 - *success*: la chiamata dell'azione è stata completata correttamente.
-- *application error*: la chiamata dell'azione è stata eseguita correttamente, ma l'azione ha restituito un valore di errore sullo scopo, ad esempio perché non è stata soddisfatta una precondizione sugli argomenti.
+- *application error*: la chiamata dell'azione ha avuto esito positivo, ma l'azione ha restituito un valore di errore di proposito, ad esempio perché non è stata soddisfatta una precondizione sugli argomenti.
 - *action developer error*: l'azione è stata richiamata, ma è terminata in modo anomalo; ad esempio l'azione non ha rilevato un'eccezione o era presente un errore di sintassi.
 - *whisk internal error*: il sistema non è stato in grado di richiamare l'azione.
-Il risultato viene registrato nel campo `stato` del record di attivazione, come illustrato in una delle seguenti sezioni.
+Il risultato viene registrato nel campo `status` del record di attivazione, come illustrato in una delle seguenti sezioni.
 
-Per ogni chiamata ricevuta correttamente, e che potrebbe
-essere addebitata all'utente, ci sarà infine un record di attivazione.
+Per ogni chiamata ricevuta correttamente, e che potrebbe essere addebitata all'utente, ci sarà un record di attivazione.
 
-Nota che in caso di un *action developer error*, è possibile che l'azione sia stata eseguita in modo parziale e che abbia generato degli effetti secondari
-visibili esternamente.   È responsabilità dell'utente verificare che tali effetti secondari siano realmente avvenuti e, se necessario, immettere la logica per la
-ripetizione dei tentativi.   Nota anche che alcuni *whisk internal error* indicheranno che un'azione ha avviato l'esecuzione ma
-il sistema ha riscontrato un errore prima che l'azione registrasse il completamento.
+Se il risultato è *action developer error*, l'azione potrebbe essere eseguita parzialmente e generare effetti secondari visibili esterni. È responsabilità dell'utente controllare se si sono verificati tali effetti secondari ed immettere la logica del nuovo tentativo laddove necessario. Alcuni errori di tipo *whisk internal errors* indicano che un'azione inizia l'esecuzione, ma si verifica un errore prima che l'azione registri il completamento.
 
 ## Record di attivazione
 {: #openwhisk_ref_activation}
 
-Ogni chiamata di un'azione e ogni trigger che attiva risultati in un record di attivazione.
+Ogni chiamata di azione e attivazione di trigger produce un record di attivazione.
 
 Un record di attivazione contiene i seguenti campi:
 
-- *activationId*: l'ID dell'attivazione.
+- *activationId*: l'ID di attivazione.
 - *start* e *end*: data/ora di inizio e fine dell'attivazione. I valori sono espressi nel [formato temporale UNIX](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15).
-- *namespace* e `nome`: lo spazio dei nomi e il nome dell'entità.
-- *logs*: un array di stringhe con i log prodotti dall'azione durante la sua attivazione. Ogni elemento dell'array corrisponde a un riga di output emessa dall'azione in `stdout` o `stderr` e include il tempo e il flusso dell'output del log. La struttura è la seguente: `TIMESTAMP STREAM: LOG_OUTPUT`.
+- *namespace* e `name`: lo spazio dei nomi e il nome dell'entità.
+- *logs*: un array di stringhe con i log prodotti dall'azione durante la sua attivazione. Ogni elemento dell'array corrisponde a un riga emessa dall'azione in `stdout` o `stderr` e include il tempo e il flusso dell'output del log. La struttura è la seguente: `TIMESTAMP STREAM: LOG_OUTPUT`.
 - *response*: un dizionario che definisce le chiavi `success`, `status` e `result`:
   - *status*: il risultato dell'attivazione, che può assumere uno dei seguenti valori: "success", "application error", "action developer error", "whisk internal error".
   - *success*: è `true` se, e solo se, lo stato è `"success"`
-- *result*: un dizionario che contiene il risultato dell'attivazione. Se l'attivazione è stata eseguita correttamente, contiene il valore restituito dall'azione. Se l'attivazione non è stata eseguita correttamente, `result` contiene la chiave `error`, generalmente accompagnata da una spiegazione dell'errore.
+- *result*: un dizionario che contiene il risultato dell'attivazione. Se l'attivazione ha avuto esito positivo, il risultato contiene il valore restituito dall'azione. Se l'attivazione ha avuto esito negativo, `result` contiene la chiave `error`, generalmente accompagnata da una spiegazione dell'errore.
 
 
 ## Azioni JavaScript
 {: #openwhisk_ref_javascript}
 
-### Prototipo della funzione
+### Prototipo di funzione
 {: #openwhisk_ref_javascript_fnproto}
 
-Azioni JavaScript {{site.data.keyword.openwhisk_short}} eseguite in un runtime Node.js.
+Le azioni JavaScript {{site.data.keyword.openwhisk_short}} vengono eseguite in un runtime Node.js.
 
-Le azioni scritte in JavaScript devono essere circoscritte in un unico file. Tale file può contenere più funzioni, ma per convenzione deve essere presente una funzione denominata `main`, che è quella richiamata con l'azione. Segue un esempio di azione con più funzioni.
-
-```
+Le azioni scritte in JavaScript devono essere limitate a un singolo file. Il file può contenere più funzioni, ma per convenzione deve essere presente una funzione denominata `main` che è quella che viene chiamata quando viene richiamata l'azione. Il seguente esempio mostra un'azione con più funzioni.
+```javascript
 function main() {
     return { payload: helper() }
 }
@@ -150,23 +142,23 @@ function helper() {
 ```
 {: codeblock}
 
-I parametri di input dell'azione vengono trasmessi come oggetto JSON come parametri della funzione `main`. Il risultato di un'attivazione eseguita correttamente è anch'esso un oggetto JSON, che viene tuttavia restituito in modo differente a seconda che l'azione sia sincrona o asincrona, come descritto nella seguente sezione.
+I parametri di input dell'azione vengono passati come oggetto JSON sotto forma di parametro per la funzione `main`. Il risultato di un'attivazione eseguita correttamente è anch'esso un oggetto JSON, che viene tuttavia restituito in modo differente a seconda che l'azione sia sincrona o asincrona, come descritto nella seguente sezione.
 
 
 ### Funzionamento sincrono e asincrono
 {: #openwhisk_ref_javascript_synchasynch}
 
-È comune che le funzioni JavaScript proseguano la loro esecuzione in una funzione di callback anche dopo una restituzione. Per conformità, un'attivazione di una azione JavaScript può essere *sincrona* o *asincrona*.
+È comune che le funzioni JavaScript proseguano la loro esecuzione in una funzione di callback anche dopo una restituzione.  Per gestire questo comportamento, un'attivazione di una azione JavaScript può essere *sincrona* o *asincrona*.
 
-Un'attivazione dell'azione JavaScript è **sincrona** se la funzione principale termina in una delle seguenti condizioni:
+L'attivazione di un'azione JavaScript è **sincrona** se la funzione principale termina in una delle seguenti condizioni:
 
 - La funzione principale termina senza eseguire un'istruzione `return`.
 - La funzione principale termina con l'esecuzione di un'istruzione `return` che restituisce qualsiasi valore *eccetto* una Promessa.
 
-Di seguito è riportato un esempio di azione sincrona.
+Vedi il seguente esempio di un'azione sincrona:
 
-```
-// un'azione in cui ciascun percorso comporta un'attivazione sincrona
+```javascript
+// an Action in which each path results in a synchronous activation
 function main(params) {
   if (params.payload == 0) {
      return;
@@ -179,13 +171,11 @@ function main(params) {
 ```
 {: codeblock}
 
-L'attivazione di un'azione JavaScript è **asincrona** se la funzione principale termina restituendo una Promessa.  In questo caso, il sistema presuppone che l'azione sia ancora in esecuzione, finché la Promessa non verrà soddisfatta o respinta.
-Inizia a creare l'istanza di un nuovo oggetto Promessa e a trasmettergli una funzione di callback. Il callback utilizza due argomenti, resolve e reject, che sono entrambe funzioni. Tutto il codice asincrono va all'interno di tale callback.
+L'attivazione di un'azione JavaScript è **asincrona** se la funzione principale termina restituendo una Promessa. In questo caso, il sistema presuppone che l'azione sia ancora in esecuzione fino a quando la Promessa non viene soddisfatta o rifiutata.
+Inizia a creare l'istanza di un nuovo oggetto Promessa e a trasmettergli una funzione di callback. Il callback utilizza due argomenti, resolve e reject, che sono entrambi funzioni. Tutto il codice asincrono va all'interno di tale callback.
 
-
-Di seguito è riportato un esempio di come soddisfare una Promessa richiamando la funzione resolve.
-
-```
+Nel seguente esempio, puoi vedere come soddisfare una Promossa richiamando la funzione resolve.
+```javascript
 function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
@@ -196,9 +186,8 @@ function main(args) {
 ```
 {: codeblock}
 
-Di seguito è riportato un esempio di come rifiutare una Promessa richiamando la funzione reject.
-
-```
+Questo esempio mostra come rifiutare una Promessa richiamando la funzione reject.
+```javascript
 function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
@@ -209,9 +198,8 @@ function main(args) {
 ```
 {: codeblock}
 
-È possibile che un'azione sia sincrona su alcuni input e asincrona su altri. Di seguito viene riportato un esempio.
-
-```
+È possibile che un'azione sia sincrona su alcuni input e asincrona su altri, come mostrato nel seguente esempio. 
+```javascript
   function main(params) {
       if (params.payload) {
          // asynchronous activation
@@ -220,7 +208,7 @@ function main(args) {
                   resolve({ done: true });
                 }, 100);
              })
-      } else {
+      }  else {
          // synchronous activation
          return {done: true};
       }
@@ -228,272 +216,481 @@ function main(args) {
 ```
 {: codeblock}
 
-Nota che, indipendentemente dal fatto che un attivazione sia sincrona o asincrona, il richiamo dell'azione può essere bloccante o non bloccante.
+Indipendentemente dal fatto che un attivazione sia sincrona o asincrona, la chiamata dell'azione può essere bloccante o non bloccante.
 
-### Oggetto whisk globale JavaScript rimosso
+### Rimozione dell'oggetto whisk globale JavaScript
 
-L'oggetto globale `whisk` è stato rimosso; migra le tue azioni nodejs per utilizzare metodi alternativi.
-Per le funzioni `whisk.invoke()` e `whisk.trigger()` utilizza la libreria client già installata [openwhisk](https://www.npmjs.com/package/openwhisk).
-Per `whisk.getAuthKey()` puoi ottenere il valore della chiave API dalla variabile di ambiente `__OW_API_KEY`.
-Per `whisk.error()` puoi restituire un rejected Promise (ad esempio Promise.reject).
+L'oggetto globale `whisk` è stato rimosso; migra le tue azioni nodejs per utilizzare dei metodi alternativi.
+Per le funzioni `whisk.invoke()` e `whisk.trigger()`, utilizza la libreria client [openwhisk](https://www.npmjs.com/package/openwhisk) già installata.
+Per `whisk.getAuthKey()`, puoi ottenere il valore della chiave API dalla variabile di ambiente `__OW_API_KEY`.
+Per `whisk.error()`, puoi restituire una Promessa rifiutata (ossia, Promise.reject).
 
 ### Ambienti di runtime JavaScript
 {: #openwhisk_ref_javascript_environments}
 
-Le azioni JavaScript vengono eseguite per impostazione predefinita in un ambiente Node.js versione 6.9.1.  L'ambiente 6.9.1 verrà inoltre utilizzato per un'azione se l'indicatore `--kind` viene specificato esplicitamente con il valore 'nodejs:6' quando si crea o si aggiorna l'azione.
-I seguenti pacchetti sono utilizzabili nell'ambiente Node.js 6.9.1:
+Le azioni JavaScript possono essere eseguite in Node.js versione 6 o Node.js versione 8.
+Attualmente, le azioni JavaScript vengono eseguite per impostazione predefinita in un ambiente Node.js versione 6.11.4.  
 
-- apn v2.1.2
-- async v2.1.4
-- btoa v1.1.2
-- cheerio v0.22.0
-- cloudant v1.6.2
-- commander v2.9.0
-- consul v0.27.0
-- cookie-parser v1.4.3
-- cradle v0.7.1
-- errorhandler v1.5.0
-- glob v7.1.1
-- gm v1.23.0
-- lodash v4.17.2
-- log4js v0.6.38
-- iconv-lite v0.4.15
-- marked v0.3.6
-- merge v1.2.0
-- moment v2.17.0
-- mongodb v2.2.11
-- mustache v2.3.0
-- nano v6.2.0
-- node-uuid v1.4.7
-- nodemailer v2.6.4
-- oauth2-server v2.4.1
-- openwhisk v3.3.2
-- pkgcloud v1.4.0
-- process v0.11.9
-- pug v2.0.0-beta6
-- redis v2.6.3
-- request v2.79.0
-- request-promise v4.1.1
-- rimraf v2.5.4
-- semver v5.3.0
-- sendgrid v4.7.1
-- serve-favicon v2.3.2
-- socket.io v1.6.0
-- socket.io-client v1.6.0
-- superagent v3.0.0
-- swagger-tools v0.10.1
-- tmp v0.0.31
-- twilio v2.11.1
-- underscore v1.8.3
-- uuid v3.0.0
-- validator v6.1.0
-- watson-developer-cloud v2.29.0
-- when v3.7.7
-- winston v2.3.0
-- ws v1.1.1
-- xml2js v0.4.17
-- xmlhttprequest v1.8.0
-- yauzl v2.7.0
+### Ambiente Node.js versione 6
+{: #openwhisk_ref_javascript_environments_6}
+L'ambiente Node.js 6.12.2 viene utilizzato se l'indicatore `--kind` viene specificato esplicitamente con il valore `nodejs:6` quando si crea o si aggiorna un'azione.
+
+I seguenti pacchetti sono disponibili per l'utilizzo nell'ambiente Node.js 6.12.2:
+
+- [apn v2.1.2](https://www.npmjs.com/package/apn) - Un modulo Node.js per l'interfacciamento con il servizio Apple Push Notification.
+- [async v2.1.4](https://www.npmjs.com/package/async) - Fornisce funzioni per lavorare con funzioni asincrone.
+- [btoa v1.1.2](https://www.npmjs.com/package/btoa) - Una porta della funzione btoa del browser.
+- [cheerio v0.22.0](https://www.npmjs.com/package/cheerio) - Implementazione rapida, flessibile e snella del core jQuery progettato specificamente per il server.
+- [cloudant v1.6.2](https://www.npmjs.com/package/cloudant) - La libreria Cloudant ufficiale per Node.js.
+- [commander v2.9.0](https://www.npmjs.com/package/commander) - La soluzione completa per le interfacce della riga di comando Node.js.
+- [consul v0.27.0](https://www.npmjs.com/package/consul) - Un client per Consul, che implica il rilevamento e la configurazione del servizio.
+- [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Analizza l'intestazione del cookie e popola req.cookies con un oggetto codificato dai nomi dei cookie.
+- [cradle v0.7.1](https://www.npmjs.com/package/cradle) - Un client CouchDB di livello superiore con memorizzazione nella cache per Node.js.
+- [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Middleware di gestione degli errori di solo sviluppo.
+- [glob v7.1.1](https://www.npmjs.com/package/glob) - Abbina i file utilizzando i modelli usati dalla shell, come stelle e altri elementi.
+- [gm v1.23.0](https://www.npmjs.com/package/gm) - GraphicsMagick e ImageMagick per Node.
+- [lodash v4.17.2](https://www.npmjs.com/package/lodash) - La libreria Lodash che viene esportata come moduli Node.js.
+- [log4js v0.6.38](https://www.npmjs.com/package/log4js) - Una conversione del framework log4js progettato per funzionare con Node. 
+- [iconv-lite v0.4.15](https://www.npmjs.com/package/iconv-lite) - Conversione della codifica dei caratteri Pure JS
+- [marked v0.3.6](https://www.npmjs.com/package/marked) - Un programma di analisi e compilatore markdown completo, che è scritto in JavaScript. Costruito per garantire velocità.
+- [merge v1.2.0](https://www.npmjs.com/package/merge) - Unisci più oggetti in uno, per creare un nuovo oggetto clonato. 
+- [moment v2.17.0](https://www.npmjs.com/package/moment) - Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e la formattazione delle date.
+- [mongodb v2.2.11](https://www.npmjs.com/package/mongodb) - Il driver MongoDB ufficiale per Node.js.
+- [mustache v2.3.0](https://www.npmjs.com/package/mustache) - Mustache.js è un'implementazione del sistema di template mustache in JavaScript.
+- [nano v6.2.0](https://www.npmjs.com/package/nano) - Driver couchdb minimalista per Node.js.
+- [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - UUID fornito obsoleto. 
+- [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Invia e-mail da Node.js in modo semplicissimo.
+- [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Modulo completo, conforme e ben testato per l'implementazione di un server/provider OAuth2 in modo esplicito in Node.js.
+- [openwhisk v3.11.0](https://www.npmjs.com/package/openwhisk) - Libreria client JavaScript per la piattaforma OpenWhisk. Fornisce un wrapper attorno alle API OpenWhisk.
+- [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud è una libreria standard per Node.js che astrae le differenze tra più provider cloud.
+- [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); proprio come qualsiasi altro modulo.
+- [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implementa il linguaggio di templating Pug.
+- [redis v2.6.3](https://www.npmjs.com/package/redis) - Un client Redis completo e ricco di funzioni per Node.js. 
+- [request v2.79.0](https://www.npmjs.com/package/request) - La richiesta è il modo più semplice per effettuare chiamate HTTP.
+- [request-promise v4.1.1](https://www.npmjs.com/package/request-promise) - Il client di richiesta HTTP semplificato 'request' con il supporto della Promessa. Con tecnologia Bluebird.
+- [rimraf v2.5.4](https://www.npmjs.com/package/rimraf) - Il comando UNIX rm -rf per Node.
+- [semver v5.3.0](https://www.npmjs.com/package/semver) - Supporta la creazione delle versioni semantiche.
+- [sendgrid v4.7.1](https://www.npmjs.com/package/sendgrid) - Fornisce il supporto e-mail tramite l'API SendGrid.
+- [serve-favicon v2.3.2](https://www.npmjs.com/package/serve-favicon) - Middleware Node.js per servire un favicon.
+- [socket.io v1.6.0](https://www.npmjs.com/package/socket.io) - Socket.IO consente comunicazioni bidirezionali basate su eventi in tempo reale.
+- [socket.io-client v1.6.0](https://www.npmjs.com/package/socket.io-client) - Supporto lato client per Socket.IO.
+- [superagent v3.0.0](https://www.npmjs.com/package/superagent) - SuperAgent è una piccola libreria di richieste HTTP lato client progressiva e modulo Node.js con la stessa API, con molte funzioni client HTTP di livello superiore.
+- [swagger-tools v0.10.1](https://www.npmjs.com/package/swagger-tools) - Strumenti correlati all'utilizzo di Swagger, un modo per documentare le API.
+- [tmp v0.0.31](https://www.npmjs.com/package/tmp) - Un semplice programma di creazione di file e directory temporanei per node.js.
+- [twilio v2.11.1](https://www.npmjs.com/package/twilio) - Un wrapper per l'API Twilio, relativo a voce, video e messaggi.
+- [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js è una libreria di programmi di utilità per JavaScript che supporta i soliti aspetti funzionali (each, map, reduce, filter...) senza estendere gli oggetti JavaScript di base.
+- [uuid v3.0.0](https://www.npmjs.com/package/uuid) - Generazione semplice e veloce di UUID RFC4122.
+- [validator v6.1.0](https://www.npmjs.com/package/validator) - Una libreria di programmi di convalida e di pulizia di stringhe.
+- [watson-developer-cloud v2.29.0](https://www.npmjs.com/package/watson-developer-cloud) - Libreria client Node.js per utilizzare i servizi Watson Developer Cloud, una raccolta di API che utilizzano il calcolo cognitivo per risolvere problemi complessi.
+- [when v3.7.7](https://www.npmjs.com/package/when) - When.js è un'implementazione solida e collaudata di Promises/A+ e when(), che include uno shim completo di ES6 Promise.
+- [winston v2.3.0](https://www.npmjs.com/package/winston) - Una libreria di registrazione asincrona multi-trasporto per node.js. "WINSTON è nei log."
+- [ws v1.1.1](https://www.npmjs.com/package/ws) - ws è un'implementazione client e server WebSocket semplice da usare, molto veloce e completamente testata.
+- [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Semplice convertitore di oggetti XML in JavaScript. Supporta la conversione bidirezionale.
+- [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest è un wrapper per il client http incorporato per emulare l'oggetto XMLHttpRequest del browser.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Ancora un'altra libreria decompressa per node. Per la compressione.
+
+### Ambiente Node.js versione 8
+{: #openwhisk_ref_javascript_environments_8}
+L'ambiente Node.js versione 8.9.3 viene utilizzato se l'indicatore `--kind` viene specificato esplicitamente con il valore `nodejs:8` quando si crea o si aggiorna un'azione.
+
+I seguenti pacchetti sono preinstallati nell'ambiente Node.js versione 8.9.3:
+
+  - [apn v2.1.5](https://www.npmjs.com/package/apn) - Un modulo Node.js per l'interfacciamento con il servizio Apple Push Notification.
+  - [async v2.6.0](https://www.npmjs.com/package/async) - Fornisce funzioni per lavorare con funzioni asincrone.
+  - [bent v1.1.0](https://www.npmjs.com/package/btoa) - Una porta della funzione btoa del browser.
+  - [btoa v1.1.2](https://www.npmjs.com/package/btoa) - Una porta della funzione btoa del browser.
+  - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - Questa è la libreria Cloudant ufficiale per Node.js.
+  - [commander v2.12.2](https://www.npmjs.com/package/commander) - La soluzione completa per le interfacce della riga di comando Node.js.
+  - [consul v0.30.0](https://www.npmjs.com/package/consul) - Un client per Consul, che implica il rilevamento e la configurazione del servizio.
+  - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Analizza l'intestazione del cookie e popola req.cookies con un oggetto codificato dai nomi dei cookie.
+  - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - Un client CouchDB di livello superiore con memorizzazione nella cache per Node.js.
+  - [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Middleware di gestione degli errori di solo sviluppo.
+  - [glob v7.1.2](https://www.npmjs.com/package/glob) - Abbina i file utilizzando i modelli usati dalla shell, come stelle e altri elementi.
+  - [gm v1.23.0](https://www.npmjs.com/package/gm) - GraphicsMagick e ImageMagick per Node.
+  - [ibm-cos-sdk v1.1.1](https://www.npmjs.com/package/ibm-cos-sdk) - SDK IBM Cloud Object Storage per Node.js
+  - [ibm_db v2.2.1](https://www.npmjs.com/package/ibm_db) - Un'interfaccia asincrona/sincrona per node.js su IBM DB2 e IBM Informix. 
+  - [lodash v4.17.4](https://www.npmjs.com/package/lodash) - La libreria Lodash esportata come moduli Node.js.
+  - [log4js v2.3.12](https://www.npmjs.com/package/log4js) - Una conversione del framework log4js progettato per funzionare con Node.
+  - [iconv-lite v0.4.19](https://www.npmjs.com/package/iconv-lite) - Conversione della codifica dei caratteri Pure JS
+  - [marked v0.3.7](https://www.npmjs.com/package/marked) - Un programma di analisi e compilatore markdown completo, che è scritto in JavaScript. Costruito per garantire velocità.
+  - [merge v1.2.0](https://www.npmjs.com/package/merge) - Unisci più oggetti in uno, per creare facoltativamente un nuovo oggetto clonato.
+  - [moment v2.19.3](https://www.npmjs.com/package/moment) - Una libreria di date JavaScript leggera per l'analisi, la convalida, la manipolazione e la formattazione delle date.
+  - [mongodb v2.2.33](https://www.npmjs.com/package/mongodb) - Il driver MongoDB ufficiale per Node.js.
+  - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - Mustache.js è un'implementazione del sistema di template mustache in JavaScript.
+  - [nano v6.4.2](https://www.npmjs.com/package/nano) - Driver couchdb minimalista per Node.js.
+  - [nodemailer v4.4.1](https://www.npmjs.com/package/nodemailer) - Invia e-mail da Node.js in modo semplicissimo.
+  - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Modulo completo, conforme e ben testato per l'implementazione di un server/provider OAuth2 in modo esplicito in Node.js
+  - [openwhisk v3.11.0](https://www.npmjs.com/package/openwhisk) - Libreria client JavaScript per la piattaforma OpenWhisk. Fornisce un wrapper attorno alle API OpenWhisk.
+  - [process v0.11.10](https://www.npmjs.com/package/process) - require('process'); proprio come qualsiasi altro modulo.
+  - [pug v2.0.0-rc.4](https://www.npmjs.com/package/pug) - Implementa il linguaggio di templating Pug.
+  - [redis v2.8.0](https://www.npmjs.com/package/redis) - Questo è un client Redis completo e ricco di funzioni per Node.js.
+  - [request v2.83.0](https://www.npmjs.com/package/request) - La richiesta è il modo più semplice per effettuare chiamate HTTP.
+  - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - Il client di richiesta HTTP semplificato 'request' con il supporto della Promessa. Con tecnologia Bluebird.
+  - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - Il comando UNIX rm -rf per Node.
+  - [semver v5.4.1](https://www.npmjs.com/package/semver) - Supporta la creazione delle versioni semantiche.
+  - [@sendgrid/mail@6.1.4](https://www.npmjs.com/package/@sendgrid/mail) - Fornisce il supporto e-mail tramite l'API SendGrid.
+  - [serve-favicon v2.4.5](https://www.npmjs.com/package/serve-favicon) - Middleware Node.js per servire un favicon.
+  - [socket.io v2.0.4](https://www.npmjs.com/package/socket.io) - Socket.IO consente comunicazioni bidirezionali basate su eventi in tempo reale.
+  - [socket.io-client v2.0.4](https://www.npmjs.com/package/socket.io-client) - Supporto lato client per Socket.IO.
+  - [superagent v3.8.2](https://www.npmjs.com/package/superagent) - SuperAgent è una piccola libreria di richieste HTTP lato client progressiva e modulo Node.js con la stessa API, con molte funzioni client HTTP di livello superiore.
+  - [swagger-tools v0.10.3](https://www.npmjs.com/package/swagger-tools) - Strumenti correlati all'utilizzo di Swagger, un modo per documentare le API.
+  - [tmp v0.0.33](https://www.npmjs.com/package/tmp) - Un semplice programma di creazione di file e directory temporanei per node.js.
+  - [twilio v3.10.1](https://www.npmjs.com/package/twilio) - Un wrapper per l'API Twilio, relativo a voce, video e messaggi.
+  - [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js è una libreria di programmi di utilità per JavaScript che supporta i soliti aspetti funzionali (each, map, reduce, filter...) senza estendere gli oggetti JavaScript di base.
+  - [uuid v3.1.0](https://www.npmjs.com/package/uuid) - Generazione semplice e veloce di UUID RFC4122.
+  - [validator v9.2.0](https://www.npmjs.com/package/validator) - Una libreria di programmi di convalida e di pulizia di stringhe.
+  - [watson-developer-cloud v3.0.2](https://www.npmjs.com/package/watson-developer-cloud) - Libreria client Node.js per utilizzare i servizi Watson Developer Cloud, una raccolta di API che utilizzano il calcolo cognitivo per risolvere problemi complessi.
+  - [when v3.7.8](https://www.npmjs.com/package/when) - When.js è un'implementazione solida e collaudata di Promises/A+ e when(), che include uno shim completo di ES6 Promise.
+  - [winston v2.4.0](https://www.npmjs.com/package/winston) - Una libreria di registrazione asincrona multi-trasporto per node.js. "WINSTON è nei log."
+  - [ws v3.3.1](https://www.npmjs.com/package/ws) - ws è un'implementazione client e server WebSocket semplice da usare, molto veloce e completamente testata.
+  - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Semplice convertitore di oggetti XML in JavaScript. Supporta la conversione bidirezionale.
+  - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest è un wrapper per il client http incorporato per emulare l'oggetto XMLHttpRequest del browser.
+  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - Ancora un'altra libreria decompressa per node. Per la compressione
+
+### Assemblaggio di pacchetti npm con le tue azioni
+Tutti i pacchetti `npm` non preinstallati nell'ambiente Node.js, possono essere raggruppati come dipendenze quando crei o aggiorni la tua azione. 
+
+Per ulteriori informazioni, vedi [Assemblaggio di un'azione come modulo Node.js](./openwhisk_actions.html#openwhisk_js_packaged_action) o [Assemblaggio di un'azione come un unico bundle](./openwhisk_actions.html#openwhisk_js_webpack_action).
 
 
 ## Ambienti di runtime Python
 {: #openwhisk_ref_python_environments}
 
-OpenWhisk supporta l'esecuzione di azioni Python utilizzando due versioni di runtime differenti.
+OpenWhisk supporta l'esecuzione di azioni Python utilizzando due diverse versioni di runtime.
 
-### Azioni Python 3
 
-Le azioni Python 3 sono eseguite utilizzando Python 3.6.1. Per utilizzare questo runtime, specifica il parametro CLI `wsk` `--kind python:3` durante la creazione o l'aggiornamento di un'azione.
-Le azioni Python possono anche utilizzare i seguenti pacchetti, in aggiunta alle librerie standard Python 3.6.
+### Azioni Python 3 (basate su Jessie)
+{: #openwhisk_ref_python_environments_jessie}
 
-- aiohttp v1.3.3
-- appdirs v1.4.3
-- asn1crypto v0.21.1
-- async-timeout v1.2.0
-- attrs v16.3.0
-- beautifulsoup4 v4.5.1
-- cffi v1.9.1
-- chardet v2.3.0
-- click v6.7
-- cryptography v1.8.1
-- cssselect v1.0.1
-- Flask v0.12
-- gevent v1.2.1
-- greenlet v0.4.12
-- httplib2 v0.9.2
-- idna v2.5
-- itsdangerous v0.24
-- Jinja2 v2.9.5
-- kafka-python v1.3.1
-- lxml v3.6.4
-- MarkupSafe v1.0
-- multidict v2.1.4
-- packaging v16.8
-- parsel v1.1.0
-- pyasn1 v0.2.3
-- pyasn1-modules v0.0.8
-- pycparser v2.17
-- PyDispatcher v2.0.5
-- pyOpenSSL v16.2.0
-- pyparsing v2.2.0
-- python-dateutil v2.5.3
-- queuelib v1.4.2
-- requests v2.11.1
-- Scrapy v1.1.2
-- service-identity v16.0.0
-- simplejson v3.8.2
-- six v1.10.0
-- Twisted v16.4.0
-- w3lib v1.17.0
-- Werkzeug v0.12
-- yarl v0.9.8
-- zope.interface v4.3.3
+Le azioni Python 3 vengono eseguite con Python 3.6.4. Per utilizzare questo runtime, specifica il parametro `--kind python-jessie:3` della CLI `wsk` quando crei o aggiorni un'azione.
+Quando crei azioni python usando virtualenv, utilizza l'immagine docker `ibmfunctions/action-python-v3`.
+Il runtime contiene pacchetti SDK per i servizi IBM Cloud che possono essere utilizzati dalle azioni Python, in aggiunta alle librerie standard di Python 3.6.
+
+Versione Python:
+- [3.6.4](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
+
+Pacchetti Python:
+- asn1crypto (0.24.0)
+- attrs (17.4.0)
+- Automat (0.6.0)
+- beautifulsoup4 (4.6.0)
+- certifi (2017.11.5)
+- cffi (1.11.4)
+- chardet (3.0.4)
+- click (6.7)
+- cloudant (2.7.0)
+- constantly (15.1.0)
+- cryptography (2.1.4)
+- cssselect (1.0.3)
+- docutils (0.14)
+- Flask (0.12.2)
+- gevent (1.2.2)
+- greenlet (0.4.12)
+- httplib2 (0.10.3)
+- hyperlink (17.3.1)
+- ibm-cos-sdk (2.0.0)
+- ibm-db (2.0.8a0)
+- idna (2.6)
+- incremental (17.5.0)
+- itsdangerous (0.24)
+- Jinja2 (2.10)
+- jmespath (0.9.3)
+- kafka-python (1.3.5)
+- lxml (4.1.1)
+- MarkupSafe (1.0)
+- numpy (1.14.0)
+- pandas (0.22.0)
+- parsel (1.3.1)
+- pip (9.0.1)
+- pyasn1 (0.4.2)
+- pyasn1-modules (0.2.1)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.5.0)
+- pysolr (3.7.0)
+- python-dateutil (2.6.1)
+- pytz (2017.3)
+- queuelib (1.4.2)
+- requests (2.18.4)
+- scikit-learn (0.19.1)
+- scipy (1.0.0)
+- Scrapy (1.5.0)
+- service-identity (17.0.0)
+- setuptools (38.4.0)
+- simplejson (3.13.2)
+- six (1.11.0)
+- Twisted (17.9.0)
+- urllib3 (1.22)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- watson-developer-cloud (1.0.2)
+- Werkzeug (0.14.1)
+- wheel (0.30.0)
+- zope.interface (4.4.3)
+
+
+### Azioni Python 3 (basate su Alpine)
+{: #openwhisk_ref_python_environments_alpine}
+
+Le azioni Python 3 vengono eseguite con Python 3.6.1. Per utilizzare questo runtime, specifica il parametro `--kind python:3` della CLI `wsk` quando crei o aggiorni un'azione.
+Quando crei azioni python usando virtualenv, utilizza l'immagine docker `openwhisk/python3action`.
+I seguenti pacchetti possono essere utilizzati dalle azioni Python, in aggiunta alle librerie standard di Python 3.6.
+
+- asn1crypto (0.23.0)
+- attrs (17.3.0)
+- Automat (0.6.0)
+- beautifulsoup4 (4.5.3)
+- cffi (1.11.2)
+- click (6.7)
+- constantly (15.1.0)
+- cryptography (2.1.3)
+- cssselect (1.0.1)
+- Flask (0.12)
+- gevent (1.2.1)
+- greenlet (0.4.12)
+- httplib2 (0.10.3)
+- idna (2.6)
+- incremental (17.5.0)
+- itsdangerous (0.24)
+- Jinja2 (2.9.6)
+- kafka-python (1.3.4)
+- lxml (3.7.3)
+- MarkupSafe (1.0)
+- parsel (1.2.0)
+- pip (9.0.1)
+- pyasn1 (0.3.7)
+- pyasn1-modules (0.1.5)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.3.0)
+- python-dateutil (2.6.0)
+- queuelib (1.4.2)
+- requests (2.13.0)
+- Scrapy (1.3.3)
+- service-identity (17.0.0)
+- setuptools (36.5.0)
+- simplejson (3.10.0)
+- six (1.11.0)
+- Twisted (17.1.0)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- Werkzeug (0.12.2)
+- wheel (0.29.0)
+- zope.interface (4.4.3)
+
 
 ### Azioni Python 2
 
-Le azioni Python 2 sono eseguite utilizzando Python 2.7.12. Questo è il runtime predefinito per le azioni Python, a meno che non specifichi l'indicatore `--kind` durante la creazione o l'aggiornamento di un'azione. Per selezionare esplicitamente questo runtime, utilizza `--kind python:2`. Le azioni Python 2 possono anche utilizzare i seguenti pacchetti, in aggiunta alla libreria standard Python 2.7.
+Le azioni Python 2 vengono eseguite con Python 2.7.12, che è il runtime predefinito per le azioni Python, a meno che non specifichi l'indicatore `--kind` quando crei o aggiorni un'azione. Per selezionare esplicitamente questo runtime, utilizza `--kind python:2`.
+Quando crei azioni python usando virtualenv, utilizza l'immagine docker `openwhisk/python2action`.
+I seguenti pacchetti possono essere utilizzati dalle azioni Python 2, in aggiunta alla libreria standard di Python 2.7.
 
-- appdirs v1.4.3
-- asn1crypto v0.21.1
-- attrs v16.3.0
-- beautifulsoup4 v4.5.1
-- cffi v1.9.1
-- click v6.7
-- cryptography v1.8.1
-- cssselect v1.0.1
-- enum34 v1.1.6
-- Flask v0.11.1
-- gevent v1.1.2
-- greenlet v0.4.12
-- httplib2 v0.9.2
-- idna v2.5
-- ipaddress v1.0.18
-- itsdangerous v0.24
-- Jinja2 v2.9.5
-- kafka-python v1.3.1
-- lxml v3.6.4
-- MarkupSafe v1.0
-- packaging v16.8
-- parsel v1.1.0
-- pyasn1 v0.2.3
-- pyasn1-modules v0.0.8
-- pycparser v2.17
-- PyDispatcher v2.0.5
-- pyOpenSSL v16.2.0
-- pyparsing v2.2.0
-- python-dateutil v2.5.3
-- queuelib v1.4.2
-- requests v2.11.1
-- Scrapy v1.1.2
-- service-identity v16.0.0
-- simplejson v3.8.2
-- six v1.10.0
-- Twisted v16.4.0
-- virtualenv v15.1.0
-- w3lib v1.17.0
-- Werkzeug v0.12
-- zope.interface v4.3.3
+- asn1crypto (0.23.0)
+- attrs (17.2.0)
+- beautifulsoup4 (4.5.1)
+- cffi (1.11.1)
+- click (6.7)
+- cryptography (2.0.3)
+- cssselect (1.0.1)
+- enum34 (1.1.6)
+- Flask (0.11.1)
+- gevent (1.1.2)
+- greenlet (0.4.12)
+- httplib2 (0.9.2)
+- idna (2.6)
+- ipaddress (1.0.18)
+- itsdangerous (0.24)
+- Jinja2 (2.9.6)
+- kafka-python (1.3.1)
+- lxml (3.6.4)
+- MarkupSafe (1.0)
+- parsel (1.2.0)
+- pip (9.0.1)
+- pyasn1 (0.3.7)
+- pyasn1-modules (0.1.4)
+- pycparser (2.18)
+- PyDispatcher (2.0.5)
+- pyOpenSSL (17.3.0)
+- python-dateutil (2.5.3)
+- queuelib (1.4.2)
+- requests (2.11.1)
+- Scrapy (1.1.2)
+- service-identity (17.0.0)
+- setuptools (36.5.0)
+- simplejson (3.8.2)
+- six (1.11.0)
+- Twisted (16.4.0)
+- virtualenv (15.1.0)
+- w3lib (1.18.0)
+- Werkzeug (0.12.2)
+- wheel (0.29.0)
+- zope.interface (4.4.3)
+
+## Azioni Swift
+{: #openwhisk_ref_swift3}
+
+### Swift 3
+Le azioni Swift 3 vengono eseguite con Swift 3.1.1 `--kind swift:3.1.1`. Specifica sempre il tipo `swift:3.1.1` in quanto le versioni precedenti di Swift non sono supportate.
+
+Devi migrare tutte le azioni Swift per utilizzare il tipo `swift:3.1.1`. Come procedura consigliata, fornisci sempre il tipo specifico quando crei o aggiorni le azioni.
+{: tip}
+
+Le azioni Swift 3.1.1 possono utilizzare i seguenti pacchetti:
+- KituraNet versione 1.7.6, https://github.com/IBM-Swift/Kitura-net
+- SwiftyJSON versione 15.0.1, https://github.com/IBM-Swift/SwiftyJSON
+- SDK Watson Developer Cloud versione 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
+
+## Azioni PHP
+{: #openwhisk_ref_php}
+
+Le azioni PHP vengono eseguite con PHP 7.1. Per utilizzare questo runtime, specifica il parametro `--kind php:7.1` della `wsk` quando crei o aggiorni un'azione. Questo è il comportamento predefinito quando crei un'azione con un file che ha un'estensione `.php`.
+
+Sono disponibili le seguenti estensioni PHP in aggiunta a quelle standard:
+
+- bcmath
+- curl
+- gd
+- intl
+- mbstring
+- mysqli
+- pdo_mysql
+- pdo_pgsql
+- pdo_sqlite
+- soap
+- zip
+
+### Pacchetti Composer
+Sono disponibili anche i seguenti pacchetti Composer:
+
+- guzzlehttp/guzzle       v6.3.0
+- ramsey/uuid             v3.6.1
 
 ## Azioni Docker
 {: #openwhisk_ref_docker}
 
-Le azioni Docker eseguono un file binario fornito dall'utente in un contenitore Docker. Il file binario viene eseguito in un'immagine Docker basata su [python:2.7.12-alpine](https://hub.docker.com/r/library/python), perciò il file binario deve essere compatibile con questa distribuzione.
+Le azioni Docker eseguono un file binario fornito dall'utente in un contenitore Docker. Il file binario viene eseguito in un'immagine Docker basata su [python:2.7.12-alpine](https://hub.docker.com/r/library/python), pertanto il file binario deve essere compatibile con questa distribuzione.
 
-La struttura di base Docker può essere opportunamente utilizzata per la creazione di immagini Docker compatibili con OpenWhisk. Puoi installare la struttura di base con il comando CLI `wsk sdk install docker`.
+La struttura di base Docker può essere opportunamente utilizzata per creare immagini Docker compatibili con OpenWhisk. Puoi installare la struttura di base con il comando CLI `wsk sdk install docker`.
 
 Il programma binario principale deve trovarsi in `/action/exec` all'interno del contenitore. L'eseguibile riceve gli argomenti di input tramite una singola stringa di argomenti della riga di comando che può essere deserializzata come oggetto `JSON`. Deve restituire un risultato tramite `stdout` come stringa a singola riga del `JSON` serializzato.
 
-Puoi includere qualsiasi procedura di compilazione o dipendenza modificando il `Dockerfile` incluso in `dockerSkeleton`.
+Puoi includere eventuali passi di compilazione o dipendenze modificando il `Dockerfile` compreso nel `dockerSkeleton`.
 
 ## API REST
 {: #openwhisk_ref_restapi}
 Informazioni relative all'API REST sono disponibili [qui](openwhisk_rest_api.html)
 
-
 ## Limiti di sistema
 {: #openwhisk_syslimits}
 
 ### Azioni
-{{site.data.keyword.openwhisk_short}} ha dei limiti di sistema, tra cui la quantità di memoria che un'azione può utilizzare e il numero di chiamate di azioni consentite per ciascun minuto.
+{{site.data.keyword.openwhisk_short}} ha alcuni limiti di sistema, inclusa la quantità di memoria che un'azione può utilizzare e il numero di chiamate di azioni consentite al minuto.
 
 La seguente tabella elenca i limiti predefiniti per le azioni.
 
-| limite | descrizione | configurabile | unità | valore predefinito |
-| ----- | ----------- | ------------ | -----| ------- |
-| timeout | un contenitore non può essere eseguito per più di N millisecondi | per azione |  millisecondi | 60000 |
-| memory | a un contenitore non possono essere assegnati più di N MB di memoria | per azione | MB | 256 |
-| logs | un contenitore non può scrivere più di N MB in stdout | per azione | MB | 10 |
-| concurrent | non possono essere inviate più di N attivazioni per ogni spazio dei nomi in esecuzione o in coda per l'esecuziome | per spazio dei nomi | numero | 1000 |
-| minuteRate | non possono essere inviate più di N attivazioni per ogni spazio dei nomi al minuto | per utente | numero | 5000 |
-| codeSize | la dimensiona massima del codice azione | non configurabile, limite per azione | MB | 48 |
-| parameters | la dimensione massima dei parametri che possono essere collegati | non configurabile, limite per azione/pacchetto/trigger | MB | 1 |
+| Limite | Descrizione | Impostazione predefinita | Minimo | Massimo | 
+| ----- | ----------- | :-------: | :---: | :---: |
+| [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | La dimensione massima del codice azione in MB. | 48 | 1 | 48 |
+| [concurrent](openwhisk_reference.html#openwhisk_syslimits_concurrent) | Non è possibile inviare più di N attivazioni per ogni spazio dei nomi in esecuzione o in coda per l'esecuzione. | 1000 | 1 | 1000* |
+| [logs](openwhisk_reference.html#openwhisk_syslimits_logs) | Un contenitore non può scrivere più di N MB in stdout. | 10 | 0 | 10 |
+| [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | Un contenitore non può assegnare più di N MB di memoria. | 256 | 128 | 512 |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | Non è possibile inviare più di N attivazioni per ogni spazio dei nomi al minuto. | 5000 | 1 | 5000* |
+| [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | Il numero massimo di file aperti per un'azione Docker. | 64 | 0 | 64 |
+| [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | La dimensione massima dei parametri che possono essere allegati in MB. | 1 | 0 | 1 |
+| [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | Il numero massimo di processi disponibili per un'azione Docker. | 512 | 0 | 512 |
+| [result](openwhisk_reference.html#openwhisk_syslimits_result) | La dimensione massima del risultato della chiamata di azione in MB. | 1 | 0 | 1 |
+| [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | Un contenitore non può essere eseguito per più di N millisecondi. | 60000 | 100 | 300000 |
 
-### Timeout per azione (ms) (valore predefinito: 60 secondi)
-{: #openwhisk_syslimits_timeout}
-* Il limite di timeout N è compreso nell'intervallo [100 ms - 300000 ms] ed è impostato per azione in millisecondi.
-* L'utente può modificare il limite durante la creazione dell'azione.
-* Un contenitore in esecuzione per più di N millisecondi viene terminato.
+### Aumento dei limiti fissi
+{: #increase_fixed_limit}
 
-### Memoria per azione (MB) (valore predefinito: 256 MB)
-{: #openwhisk_syslimits_memory}
-* Il limite di memoria M è compreso nell'intervallo [128 MB - 512 MB] ed è impostato per ciascuna azione in MB.
-* L'utente può modificare il limite durante la creazione dell'azione.
-* A un contenitore non può essere assegnata una quantità di memoria superiore al limite.
+I valori limite che terminano con un (*) sono fissi, ma possono essere aumentati se un caso di business può giustificare valori limite di sicurezza più elevati. Se vuoi aumentare il valore limite, contatta il supporto IBM aprendo un ticket direttamente dalla [console web IBM {{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk/).
+  1. Seleziona **Supporto**
+  2. Seleziona **Aggiungi ticket** dal menu a discesa.
+  3. Seleziona **Tecnico** per il tipo di ticket.
+  4. Seleziona **Funzioni** per l'area tecnica di supporto.
 
-### Log per azione (MB) (valore predefinito: 10 MB)
-{: #openwhisk_syslimits_logs}
-* Il limite di log N è compreso nell'intervallo [0 MB..10 MB] ed è impostato per azione.
-* Un utente può modificare il limite durante la creazione o l'aggiornamento dell'azione.
-* I log che superano il limite impostato vengono troncati e viene aggiunta un'avvertenza come ultimo output dell'attivazione per indicare che l'attivazione ha superato il limite di log impostato.
+#### codeSize (MB) (valore fisso: 48 MB)
+{: #openwhisk_syslimits_codesize}
+* La dimensione massima del codice per l'azione è 48 MB.
+* Per un'azione JavaScript, si consiglia di utilizzare uno strumento per concatenare tutto il codice sorgente, che include le dipendenze, in un singolo file di bundle.
+* Questo limite è fisso e non può essere modificato.
 
-### Risorsa per azione (MB) (valore fisso: 48 MB)
-{: #openwhisk_syslimits_artifact}
-* La dimensiona massima del codice per l'azione è 48 MB.
-* Per un'azione Java ti raccomandiamo di utilizzare uno strumento per concatenare tutto il codice di origine incluse le dipendenze in un singolo file di bundle.
-
-### Dimensione payload per attivazione (MB) (valore fisso: 1MB)
-{: #openwhisk_syslimits_activationsize}
-* La dimensione massima del contenuto POST più qualsiasi parametro sottoposto a currying per una chiamata dell'azione o attivazione del trigger è di 1 MB.
-
-### Chiamata simultanea per lo spazio dei nomi (valore predefinito: 1000)
-{: #openwhisk_syslimits_concur}
+#### concurrent (valore fisso: 1000*)
+{: #openwhisk_syslimits_concurrent}
 * Il numero di attivazioni che sono in esecuzione o in coda per l'esecuzione per uno spazio dei nomi non può essere maggiore di 1000.
-* Il limite predefinito può essere configurato statisticamente da Whisk in consul kvstore.
-* L'utente non può attualmente modificare questi limiti.
+* Questo valore limite è fisso, ma può essere aumentato se un caso di business può giustificare valori limite di sicurezza più elevati. Consulta la sezione [Aumento dei limiti fissi](openwhisk_reference.html#increase_fixed_limit) per istruzioni dettagliate su come aumentare questo limite.
 
-### Chiamate al minuto (valore fisso: 5000)
-{: #openwhisk_syslimits_invocations}
-* Il limite di frequenza N è impostato su 5000 e limita il numero di chiamate di azioni possibili in finestre temporali di un minuto.
-* L'utente non può modificare questo limite durante la creazione dell'azione.
+#### logs (MB) (valore fisso: 10 MB)
+{: #openwhisk_syslimits_logs}
+* Il limite di log N è compreso nell'intervallo  [0 MB..10 MB] ed è impostato per ogni azione.
+* Un utente può modificare il limite del log delle azioni quando un'azione viene creata o aggiornata.
+* I log che superano il limite impostato vengono troncati, quindi tutte le nuove voci di log vengono ignorate e viene aggiunta un'avvertenza come ultimo output dell'attivazione per indicare che l'attivazione ha superato il limite di log impostato.
+
+#### memory (MB) (valore fisso: 256 MB)
+{: #openwhisk_syslimits_memory}
+* Il limite di memoria M è compreso nell'intervallo [128 MB..512 MB] ed è impostato per ogni azione in MB.
+* Un utente può modificare il limite di memoria quando viene creata un'azione.
+* Un contenitore non può utilizzare più memoria di quella assegnata dal limite.
+
+#### minuteRate (valore fisso: 5000*)
+{: #openwhisk_syslimits_minuterate}
+* Il limite di frequenza N è impostato su 5000 e limita il numero di chiamate di azioni in finestre di 1 minuto.
 * Una chiamata CLI o API che superi questo limite riceverà un codice di errore corrispondente al codice di stato HTTP `429: TOO MANY REQUESTS`.
+* Questo valore limite è fisso, ma può essere aumentato se un caso di business può giustificare valori limite di sicurezza più elevati. Consulta la sezione [Aumento dei limiti fissi](openwhisk_reference.html#increase_fixed_limit) per istruzioni dettagliate su come aumentare questo limite.
 
-### Dimensione dei parametri (valore fisso: 1 MB)
-{: #openwhisk_syslimits_parameters}
-* Il limite di dimensione per i parametri durante la creazione o l'aggiornamento di un'azione/pacchetto/trigger è 1 MB.
-* Il limite non può essere modificato dall'utente.
-* Il tentativo di creazione o aggiornamento di un'entità con dei parametri troppo grandi verrà rifiutato.
-
-### Numero limite dei file aperti dall'azione Docker (valore fisso: 64:64)
+#### openulimit (valore fisso: 1024:1024)
 {: #openwhisk_syslimits_openulimit}
-* Il numero massimo di file aperti è 64 (per i limiti hard e soft).
-* Il comando docker run utilizza l'argomento `--ulimit nofile=64:64`.
-* Per ulteriori informazioni sul numero limite di file aperti, vedi la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
+* Il numero massimo di file aperti per un'azione Docker è 1024 (per entrambi i limiti hard e soft).
+* Questo limite è fisso e non può essere modificato.
+* Il comando docker run utilizza l'argomento `--ulimit nofile=1024:1024`.
+* Per ulteriori informazioni, vedi la documentazione di riferimento della riga di comando [docker run](https://docs.docker.com/engine/reference/commandline/run).
 
-### Limite dei processi per azione Docker (valore fisso: 512:512)
+#### parameters (valore fisso: 1 MB)
+{: #openwhisk_syslimits_parameters}
+* Il limite di dimensione per i parametri totali durante la creazione o l'aggiornamento di un'azione, un pacchetto o un trigger è 1 MB.
+* Un'entità con parametri troppo grandi viene rifiutata durante il tentativo di crearla o aggiornarla.
+* Questo limite è fisso e non può essere modificato.
+
+#### proculimit (valore fisso: 1024:1024)
 {: #openwhisk_syslimits_proculimit}
-* Il numero massimo di processi disponibili per un utente è 512 (per i limiti hard e soft).
-* Il comando docker run utilizza l'argomento `--ulimit nproc=512:512`.
-* Per ulteriori informazioni sul limite del numero massimo di processi, vedi la documentazione [docker run](https://docs.docker.com/engine/reference/commandline/run).
+* Il numero massimo di processi disponibili per un contenitore di azioni Docker è 1024.
+* Questo limite è fisso e non può essere modificato.
+* Il comando docker run utilizza l'argomento `--pids-limit 1024`.
+* Per ulteriori informazioni, vedi la documentazione di riferimento della riga di comando [docker run](https://docs.docker.com/engine/reference/commandline/run).
+
+#### result (valore fisso: 1 MB)
+{: #openwhisk_syslimits_result}
+* La dimensione massima di output del risultato di una chiamata di azione in MB. 
+* Questo limite è fisso e non può essere modificato.
+
+#### timeout (ms) (valore predefinito: 60s)
+{: #openwhisk_syslimits_timeout}
+* Il limite di timeout N è compreso nell'intervallo [100 ms..300000 ms]ed è impostato per ogni azione in millisecondi.
+* Un utente può modificare il limite di timeout quando viene creata un'azione.
+* Un contenitore in esecuzione per più di N millisecondi viene terminato.
 
 ### Trigger
 
-I trigger sono soggetti a una frequenza di attivazione al minuto come indicato nella seguente tabella.
+I trigger sono soggetti a una frequenza di attivazione al minuto, come indicato nella seguente tabella.
 
-| limite | descrizione | configurabile | unità | valore predefinito |
-| ----- | ----------- | ------------ | -----| ------- |
-| minuteRate | non possono essere attivati più di N trigger per ogni spazio dei nomi al minuto | per utente | numero | 5000 |
+| Limite | Descrizione | Impostazione predefinita | Minimo | Massimo | 
+| ----- | ----------- | :-------: | :---: | :---: |
+| [minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) | Non è possibile attivare più di N trigger per spazio dei nomi al minuto. | 5000* | 5000* | 5000* |
 
-### Trigger al minuto (valore fisso: 5000)
-* Il limite di frequenza N è impostato su 5000 e limita il numero di trigger che possono essere attivati in finestre temporali di un minuto.
-* L'utente non può modificare questo limite durante la creazione del trigger.
+### Aumento dei limiti fissi
+{: #increase_fixed_tlimit}
+
+I valori limite che terminano con un (*) sono fissi, ma possono essere aumentati se un caso di business può giustificare valori limite di sicurezza più elevati. Se vuoi aumentare il valore limite, contatta il supporto IBM aprendo un ticket direttamente dalla [console web IBM {{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk/).
+  1. Seleziona **Supporto**
+  2. Seleziona **Aggiungi ticket** dal menu a discesa.
+  3. Seleziona **Tecnico** per il tipo di ticket.
+  4. Seleziona **Funzioni** per l'area tecnica di supporto.
+
+#### minuteRate (valore fisso: 5000*)
+{: #openwhisk_syslimits_tminuterate}
+
+* Il limite di frequenza N è impostato su 5000 e limita il numero di trigger che un utente può attivare in finestre di 1 minuto.
+* Un utente non può modificare il limite di trigger quando un trigger viene creato.
 * Una chiamata CLI o API che superi questo limite riceverà un codice di errore corrispondente al codice di stato HTTP `429: TOO MANY REQUESTS`.
+* Questo valore limite è fisso, ma può essere aumentato se un caso di business può giustificare valori limite di sicurezza più elevati. Consulta la sezione [Aumento dei limiti fissi](openwhisk_reference.html#increase_fixed_tlimit) per istruzioni dettagliate su come aumentare questo limite.

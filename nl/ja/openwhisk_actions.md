@@ -572,7 +572,7 @@ exports.main = myAction;
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -643,7 +643,7 @@ global.main = main;
   {: pre}
   CLI を使用する場合:
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  bx wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -1025,7 +1025,7 @@ hello.zip が hello.swift と同じディレクトリーに作成されたこと
 
 Java アクションを作成するプロセスは、JavaScript アクションや Swift アクションと似ています。以下のセクションでは、単一 Java アクションの作成と呼び出し、および、そのアクションへのパラメーターの追加について説明します。
 
-Java ファイルをコンパイル、テスト、およびアーカイブするには、[JDK 8](http://openjdk.java.net/install) がローカルにインストールされている必要があります。
+Java ファイルをコンパイル、テスト、およびアーカイブするには、[JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) がローカルにインストールされている必要があります。
 
 ### アクションの作成と呼び出し
 {: #openwhisk_actions_java_invoke}

@@ -28,14 +28,14 @@ lastupdated: "2018-02-14"
 
 {{site.data.keyword.openwhisk_short}} プラグインをインストールするには、以下のコマンドを実行します。
 ```
-ibmcloud plugin install cloud-functions
+bx plugin install cloud-functions
 ```
 {: pre}
 
 
 {{site.data.keyword.openwhisk_short}} プラグインが正常にインストールされたことを確認するために、以下のコマンドを実行します。
 ```
-ibmcloud plugin list cloud-functions
+bx plugin list cloud-functions
 ```
 {: pre}
 
@@ -48,12 +48,12 @@ Cloud-Functions      1.0.0
 
 以下のコマンドを実行して、{{site.data.keyword.openwhisk_short}} プラグインをアップグレードできます。
 ```
-ibmcloud plugin update Cloud-Functions
+bx plugin update Cloud-Functions
 ```
 {: pre}
 
 
-プラグイン・コマンドについて詳しくは、`ibmcloud plugin --help` を使用するか、以下の資料を確認してください。
+プラグイン・コマンドについて詳しくは、`bx plugin --help` を使用するか、以下の資料を確認してください。
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_plugin_list
 
 ## {{site.data.keyword.Bluemix_notm}} CLI 認証
@@ -65,23 +65,23 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_p
 
 米国南部地域にログインするには、以下のようにします。
 ```
-ibmcloud login -a api.ng.bluemix.net
+bx login -a api.ng.bluemix.net
 ```
 {: pre}
 
 
 英国地域にログインするには、以下のようにします。
 ```
-ibmcloud login -a api.eu-gb.bluemix.net
+bx login -a api.eu-gb.bluemix.net
 ```
 {: pre}
 
 
-`-a` フラグは、使用する {{site.data.keyword.Bluemix_notm}} API エンドポイントを指定します。API エンドポイントを指定した場合、`-a` オプションは不要です。`ibmcloud api` コマンドを使用して、{{site.data.keyword.Bluemix_notm}} API エンドポイントを明示的に設定できます。現在の API エンドポイント設定を表示するには、`ibmcloud target` コマンドを使用します。
+`-a` フラグは、使用する {{site.data.keyword.Bluemix_notm}} API エンドポイントを指定します。API エンドポイントを指定した場合、`-a` オプションは不要です。`bx api` コマンドを使用して、{{site.data.keyword.Bluemix_notm}} API エンドポイントを明示的に設定できます。現在の API エンドポイント設定を表示するには、`bx target` コマンドを使用します。
 
 `login` コマンドでは、組織、スペース、パスワードなどの情報を求めるプロンプトが出されます (指定しなかった場合)。コマンド・ラインで組織およびスペースを指定することで、それらを求めるプロンプトをスキップできます。
 ```
-ibmcloud login -o <MY_ORG> -s <MY_SPACE>
+bx login -o <MY_ORG> -s <MY_SPACE>
 ```
 {: pre}
 
@@ -91,19 +91,19 @@ https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-a
 
 {{site.data.keyword.Bluemix_notm}} CLI を使用して新規 API キーを作成するには、以下のコマンドを実行します。
 ```
-ibmcloud iam api-key-create MyKey
+bx iam api-key-create MyKey
 ```
 {: pre}
 
 
 次に、以下の例のように、API キーの生成値を使用してログインします。
 ```
-ibmcloud login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
+bx login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
 ```
 {: pre}
 
 
-login コマンドについて詳しくは、`ibmcloud login --help` を使用するか、以下の資料を確認してください。
+login コマンドについて詳しくは、`bx login --help` を使用するか、以下の資料を確認してください。
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login
 
 
@@ -112,7 +112,7 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_l
 
 セットアップを検証します。以下の例のように、引数として `hello` を渡して、echo のブロッキング (同期) 呼び出しを実行します。
 ```
-ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+bx wsk action invoke whisk.system/utils/echo -p message hello --result
 ```
 {: pre}
 
@@ -131,7 +131,7 @@ ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
 * パッケージでアクションをバンドルする方法および外部イベント・ソースを構成する方法を学習する。『[パッケージの作成と使用](./openwhisk_packages.html)』を参照してください。
 * パッケージ・カタログを検討し、[Cloudant イベント・ソース](./openwhisk_cloudant.html)などの外部サービスでアプリケーションを強化する。『[{{site.data.keyword.openwhisk_short}} 対応サービスの使用](./openwhisk_catalog.html)』を参照してください。
 
-{{site.data.keyword.openwhisk_short}} プラグインのコマンドのリストを表示するには、引数を指定せずに `ibmcloud wsk` を実行します。
+{{site.data.keyword.openwhisk_short}} プラグインのコマンドのリストを表示するには、引数を指定せずに `bx wsk` を実行します。
 
 ## アクションからのサービスの使用
 {: #binding_services}
@@ -151,17 +151,17 @@ HTTPS プロキシーを使用するように {{site.data.keyword.openwhisk_shor
 
 実動前 (ステージング) デプロイメントおよび実動デプロイメントを処理するためのスペースを作成できます。それぞれに対してスペースを作成します。スペースを作成することで、{{site.data.keyword.openwhisk_short}} で 2 つの異なる名前空間が定義されるようにすることができます。
 
-`ibmcloud iam space-create` を使用して、組織の下に「staging」や「production」などの追加スペースを作成できます。以下の例を参照してください。
+`bx iam space-create` を使用して、組織の下に「staging」や「production」などの追加スペースを作成できます。以下の例を参照してください。
 ```
-ibmcloud iam space-create "staging"
-ibmcloud iam space-create "production"
+bx iam space-create "staging"
+bx iam space-create "production"
 ```
 
-`ibmcloud iam` コマンドについて詳しくは、資料 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create を参照してください。
+`bx iam` コマンドについて詳しくは、資料 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create を参照してください。
 
 {{site.data.keyword.openwhisk_short}} には、名前空間の名前に対する制限があります。その制限について詳しくは、資料 https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities を参照してください。
 
-既にログインしている場合は、{{site.data.keyword.Bluemix_notm}} CLI で `ibmcloud target` コマンドを実行して、地域、組織、およびスペースを切り替えることができます。
+既にログインしている場合は、{{site.data.keyword.Bluemix_notm}} CLI で `bx target` コマンドを実行して、地域、組織、およびスペースを切り替えることができます。
 
 すべての {{site.data.keyword.Bluemix_notm}} 地域を表示するには、以下のコマンドを使用します。
 
@@ -169,28 +169,28 @@ ibmcloud iam space-create "production"
 {: tip}
 
 ```
-ibmcloud regions
+bx regions
 
 Name       Geolocation          Customer   Deployment   Domain                   CF API Endpoint                  Type
 us-south   US South             IBM        Production   ng.bluemix.net     https://api.ng.bluemix.net             public
 eu-gb      United Kingdom       IBM        Production   eu-gb.bluemix.net  https://api.eu-gb.bluemix.net          public
 ```
 
-地域を変更するには、`ibmcloud target` コマンドを使用します。例えば、英国地域およびスペース `staging` に切り替える場合、以下のようにします。
+地域を変更するには、`bx target` コマンドを使用します。例えば、英国地域およびスペース `staging` に切り替える場合、以下のようにします。
 ```
-ibmcloud target -r eu-gb -s staging
+bx target -r eu-gb -s staging
 ```
 {: pre}
 
 
 同じ地域内でスペースを変更する必要がある場合 (staging から production への変更など)、以下のコマンドを実行します。
 ```
-ibmcloud target -s production
+bx target -s production
 ```
 {: pre}
 
 
-`target` コマンドについて詳しくは、`ibmcloud target --help` を使用するか、以下の資料を確認してください。
+`target` コマンドについて詳しくは、`bx target --help` を使用するか、以下の資料を確認してください。
 https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_target
 
 ## OpenWhisk CLI から {{site.data.keyword.openwhisk_short}} CLI プラグインへのマイグレーション
@@ -201,26 +201,26 @@ https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_t
 ### コマンド構文
 {: #command_syntax}
 
-すべての `wsk` コマンド (不要になった `wsk bluemix login` コマンドを除く) は、コマンド `ibmcloud wsk` を使用することで、同様に動作します。すべてのコマンドのオプションおよび引数は同じです。
+すべての `wsk` コマンド (不要になった `wsk bluemix login` コマンドを除く) は、コマンド `bx wsk` を使用することで、同様に動作します。すべてのコマンドのオプションおよび引数は同じです。
 
 ### API 認証と API ホスト
 {: #api_authentication}
 
 OpenWhisk CLI を使用するには、認証 API キーおよび API ホストを構成する必要があります。
-{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。`ibmcloud login` でログインし、`ibmcloud target` コマンドを使用して地域と名前空間のターゲットを指定する必要があります。それ以降、すべての後続のコマンドは、`ibmcloud wsk` で開始します。このように認証することで、{{site.data.keyword.Bluemix_notm}} Web ページにアクセスして CLI 環境を構成するための特定の情報を取得しなくても済むようにもなります。
+{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。`bx login` でログインし、`bx target` コマンドを使用して地域と名前空間のターゲットを指定する必要があります。それ以降、すべての後続のコマンドは、`bx wsk` で開始します。このように認証することで、{{site.data.keyword.Bluemix_notm}} Web ページにアクセスして CLI 環境を構成するための特定の情報を取得しなくても済むようにもなります。
 
 cURL や Postman などの外部 HTTP クライアントから {{site.data.keyword.openwhisk_short}} を使用するために認証 API キーを取得する必要がある場合は、以下のコマンドで取得できます。
 
 現在の API キーを取得するには、以下のコマンドを実行します。
 ```
-ibmcloud wsk property get --auth
+bx wsk property get --auth
 ```
 {: pre}
 
 
 現在の API ホストを取得するには、以下のコマンドを実行します。
 ```
-ibmcloud wsk property get --apihost
+bx wsk property get --apihost
 ```
 {: pre}
 
@@ -233,12 +233,12 @@ API キーは、{{site.data.keyword.openwhisk_short}} CLI プラグインのタ�
 
 現在、OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のために API ゲートウェイの許可を構成するには、`wsk bluemix login` を実行する必要があります。
 
-{{site.data.keyword.openwhisk}} CLI プラグインでは、`wsk bluemix login` を実行する必要はなくなりました。代わりに、`ibmcloud login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインします。そうすると、{{site.data.keyword.openwhisk}} プラグインは、現在のログインとターゲットの情報を自動的に利用します。これで、`ibmcloud wsk api` コマンドを使用して、API を管理できます。
+{{site.data.keyword.openwhisk}} CLI プラグインでは、`wsk bluemix login` を実行する必要はなくなりました。代わりに、`bx login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインします。そうすると、{{site.data.keyword.openwhisk}} プラグインは、現在のログインとターゲットの情報を自動的に利用します。これで、`bx wsk api` コマンドを使用して、API を管理できます。
 
 ### デプロイメント・スクリプトのマイグレーション
 {: #migrating_deploy_scripts}
 
-`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `ibmcloud wsk` を使用することで、すべてのコマンドは同様に動作します。{{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` の現在の実行が `ibmcloud wsk` に変換されるようにすることができます。{{site.data.keyword.Bluemix_notm}} CLI の `ibmcloud login` および `ibmcloud target` コマンドは、無人モードで動作します。無人モードでは、`ibmcloud wsk` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
+`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `bx wsk` を使用することで、すべてのコマンドは同様に動作します。{{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` の現在の実行が `bx wsk` に変換されるようにすることができます。{{site.data.keyword.Bluemix_notm}} CLI の `bx login` および `bx target` コマンドは、無人モードで動作します。無人モードでは、`bx wsk` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
 
 
 ## バージョン履歴
@@ -247,9 +247,9 @@ API キーは、{{site.data.keyword.openwhisk_short}} CLI プラグインのタ�
 以下は、バージョンの履歴レコードであり、ハイライトおよびバグ修正を示します。
 
 1.0.7 (2018-02-02)
-* `ibmcloud wsk api` が `/api/{id}` などのパス・パラメーターを受け入れるように変更。詳しくは、『[API ゲートウェイ](./openwhisk_apigateway.html)』を参照。
+* `bx wsk api` が `/api/{id}` などのパス・パラメーターを受け入れるように変更。詳しくは、『[API ゲートウェイ](./openwhisk_apigateway.html)』を参照。
 * リストア・プロキシーのサポート。
 * `swift:3` を削除。
 
 1.0.6 (2018-01-30)
-* パッケージ内のアクションでのコマンド `ibmcloud wsk service bind` のバグを修正。
+* パッケージ内のアクションでのコマンド `bx wsk service bind` のバグを修正。

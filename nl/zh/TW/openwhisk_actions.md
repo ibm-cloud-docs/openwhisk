@@ -572,7 +572,7 @@ exports.main = myAction;
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad" : "1.1.3"
@@ -642,7 +642,7 @@ global.main = main;
   {: pre}
   使用 CLI：
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  bx wsk action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -1017,7 +1017,7 @@ wsk action invoke --result helloSwift --param name World
 
 建立「Java 動作」的程序，與建立 JavaScript 及 Swift 動作的程序類似。下列各節會引導您建立及呼叫單一 Java 動作，以及將參數新增至該動作。
 
-若要編譯、測試及保存 Java 檔案，您必須已在本端安裝 [JDK 8](http://openjdk.java.net/install)。
+若要編譯、測試及保存 Java 檔案，您必須已在本端安裝 [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html)。
 
 ### 建立及呼叫動作
 {: #openwhisk_actions_java_invoke}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2016, 2017
-lastupdated: "2017-06-02"
+  years: 2016, 2018
+lastupdated: "2018-01-09"
 
 ---
 
@@ -13,36 +13,28 @@ lastupdated: "2017-06-02"
 
 # Utilizzo del pacchetto Cloudant
 {: #openwhisk_catalog_cloudant}
-Il pacchetto `/whisk.system/cloudant` ti consente di lavorare con un database Cloudant. Include le azioni e i feed di seguito indicati.
+Il pacchetto `/whisk.system/cloudant` ti consente di lavorare con un database Cloudant. Include le azioni e i feed indicati di seguito.
 
 | Entità | Tipo | Parametri | Descrizione |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | pacchetto | dbname, host, username, password | Lavorare con un database Cloudant |
-| `/whisk.system/cloudant/read` | azione | dbname, id | Leggere un documento da un database |
-| `/whisk.system/cloudant/write` | azione | dbname, overwrite, doc | Scrivere un documento in un database |
-| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Attivare degli eventi di trigger in caso di modifiche a un database |
+| `/whisk.system/cloudant` | Pacchetto | dbname, host, username, password | Lavorare con un database Cloudant|
+| `/whisk.system/cloudant/read` | Azione | dbname, id | Leggere un documento da un database|
+| `/whisk.system/cloudant/write` | Azione | dbname, overwrite, doc | Scrivere un documento in un database|
+| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Attivare eventi trigger in caso di modifiche a un database|
+{: shortdesc}
 
-I seguenti argomenti descrivono la configurazione di un database Cloudant, la configurazione di un pacchetto associato e l'utilizzo di azioni e feed nel pacchetto `/whisk.system/cloudant`.
+I seguenti argomenti illustrano la configurazione di un database Cloudant, la configurazione di un pacchetto associato e l'utilizzo delle azioni e dei feed nel pacchetto `/whisk.system/cloudant`.
 
-## Configurazione di un database Cloudant in Bluemix
+## Configurazione di un database Cloudant in {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_in}
 
-Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind di pacchetto per le tue istanze del servizio Bluemix Cloudant. Se non stai utilizzando OpenWhisk e Cloudant da Bluemix, vai direttamente al passo successivo.
+Se utilizzi OpenWhisk da {{site.data.keyword.Bluemix_notm}}, OpenWhisk crea automaticamente i bind di pacchetto per le tue istanze del servizio Cloudant. Se non utilizzi OpenWhisk e Cloudant da {{site.data.keyword.Bluemix_notm}}, vai direttamente al passo successivo.
 
-1. Crea un'istanza del servizio Cloudant nel tuo [dashboard](http://console.ng.Bluemix.net) Bluemix.
+1. Crea un'istanza del servizio Cloudant nel tuo [dashboard](http://console.ng.Bluemix.net) {{site.data.keyword.Bluemix_notm}}.
 
-  Assicurati di ricordare il nome dell'istanza del servizio e dell'organizzazione e dello spazio Bluemix in cui ti trovi.
+  Assicurati di creare una chiave credenziale per ogni nuova istanza del servizio.
 
-2. Assicurati che la CLI OpenWhisk si trovi nello spazio dei nomi corrispondente all'organizzazione e allo spazio Bluemix che hai utilizzato nel passo precedente.
-
-  ```
-  wsk property set --namespace myBluemixOrg_myBluemixSpace
-  ```
-  {: pre}
-
-  In alternativa, puoi utilizzare `wsk property set --namespace` per impostare uno spazio dei nomi da un elenco di quelli a cui puoi accedere.
-
-3. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per l'istanza del servizio Cloudant da te creata.
+2. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per ogni istanza del servizio Cloudant con una chiave credenziale definita.
 
   ```
   wsk package refresh
@@ -62,9 +54,9 @@ Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind 
   /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
   ```
 
-  Viene visualizzato il nome completo del bind di pacchetto che corrisponde alla tua istanza del servizio Bluemix Cloudant.
+  Il bind di pacchetto contiene ora le credenziali associate alla tua istanza del servizio Cloudant.
 
-4. Verifica che il bind di pacchetto creato precedentemente sia configurato con l'host e le credenziali della tua istanza del servizio Cloudant Bluemix.
+3. Verifica che il bind di pacchetto creato precedentemente sia configurato con l'host e le credenziali della tua istanza del servizio {{site.data.keyword.Bluemix_notm}} Cloudant.
 
   ```
   wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
@@ -90,10 +82,10 @@ Se stai utilizzando OpenWhisk da Bluemix, OpenWhisk crea automaticamente i bind 
   ]
   ```
 
-## Configurazione di un database Cloudant esternamente a Bluemix
+## Configurazione di un database Cloudant all'esterno di {{site.data.keyword.Bluemix_notm}}
 {: #openwhisk_catalog_cloudant_outside}
 
-Se non stai utilizzando OpenWhisk in Bluemix o se vuoi configurare il tuo database Cloudant esternamente a Bluemix, devi creare manualmente un bind di pacchetto per il tuo account Cloudant. Ti servono il nome host, il nome utente e la password dell'account Cloudant.
+Se non utilizzi OpenWhisk in {{site.data.keyword.Bluemix_notm}} o se vuoi configurare il tuo database Cloudant all'esterno di {{site.data.keyword.Bluemix_notm}}, devi creare manualmente un bind di pacchetto per il tuo account Cloudant. Ti servono il nome host, il nome utente e la password dell'account Cloudant.
 
 1. Crea un bind di pacchetto configurato per il tuo account Cloudant.
 
@@ -120,9 +112,9 @@ Se non stai utilizzando OpenWhisk in Bluemix o se vuoi configurare il tuo databa
 
 ### Filtro degli eventi di modifica del database
 
-Puoi definire una funzione di filtro per evitare di avere degli eventi di modifica non necessari che attivano il tuo trigger.
+Puoi definire una funzione di filtro per evitare di avere eventi di modifica non necessari che attivano il tuo trigger.
 
-Per creare una nuova funzione di filtro puoi utilizzare un'azione.
+Per creare una nuova funzione di filtro, puoi utilizzare un'azione.
 
 Crea un file di documento json `design_doc.json` con la seguente funzione di filtro
 ```json
@@ -136,8 +128,7 @@ Crea un file di documento json `design_doc.json` con la seguente funzione di fil
 }
 ```
 
-Crea un nuovo documento di progettazione sul database con la funzione di filtro
-
+Crea un documento di progettazione sul database con la funzione di filtro
 ```
 wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
@@ -152,21 +143,21 @@ Le informazioni per il nuovo documento di progettazione vengono riprodotte sullo
 
 ### Crea il trigger utilizzando la funzione di filtro
 
-Puoi utilizzare il feed `changes` per configurare un servizio per attivare un trigger ogni volta che viene apportata una modifica al tuo database Cloudant. I parametri sono i seguenti:
+Puoi utilizzare il feed `changes` per configurare un servizio in modo da attivare un trigger ogni volta che viene apportata una modifica al tuo database Cloudant. I parametri sono i seguenti:
 
 - `dbname`: nome del database Cloudant.
-- `maxTriggers`: arrestare l'attivazione dei trigger quando viene raggiunto questo limite. Il valore predefinito è infinito.
+- `maxTriggers`: arresta l'attivazione dei trigger quando viene raggiunto questo limite. Il valore predefinito è infinito.
 - `filter`: funzione di filtro definita su un documento di progettazione.
-- `query_params`: parametri di query facoltativi per la funzione di filtro.
+- `query_params`: parametri di query aggiuntivi per la funzione di filtro.
 
 
-1. Crea un trigger con il feed `changes` nel bind di pacchetto che hai creato precedentemente includendo `filter` e `query_params` per attivare il trigger solo quando un documento viene aggiunto o modificato quando lo stato è `new`.
+1. Crea un trigger con un feed `changes` nel bind di pacchetto che hai creato in precedenza. Includi le funzioni `filter` e `query_params` per attivare il trigger nel momento in cui un documento viene aggiunto o modificato quando lo stato è `new`.
 Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
 
   ```
-  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes /
-  --param dbname testdb /
-  --param filter "mailbox/by_status" /
+  wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  --param dbname testdb \
+  --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
   ```
   {: pre}
@@ -183,11 +174,11 @@ Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
 
 3. Nel tuo dashboard Cloudant, modifica un documento esistente oppure creane uno nuovo.
 
-4. Osserva le nuove attivazioni per il trigger `myCloudantTrigger` per ciascuna modifica di documento solo se lo stato del documento è `new` in base alla funzione di filtro e al parametro di query.
+4. Puoi osservare le nuove attivazioni per il trigger `myCloudantTrigger` per ogni modifica del documento solo se lo stato del documento è `new` in base alla funzione di filtro e al parametro di query.
   
-  **Nota**: se non se in grado di osservare le nuove attivazioni, vedi le sezioni successive relative alla lettura da, e alla scrittura in, un database Cloudant. L'esecuzione di test sulle seguenti procedure di lettura e scrittura aiuterà a verificare la correttezza delle credenziali Cloudant.
+  **Nota**: se non sei in grado di osservare le nuove attivazioni, consulta le sezioni successive relative alla lettura e alla scrittura in un database Cloudant. Il test dei seguenti passi di lettura e scrittura aiuta a verificare che le credenziali Cloudant siano corrette.
   
-  Puoi ora creare le regole e associarle alle azioni per reagire agli aggiornamenti dei documenti.
+  Adesso puoi creare le regole e associarle alle azioni per reagire agli aggiornamenti del documento.
   
   Il contenuto degli eventi generati include i seguenti parametri:
   
@@ -195,7 +186,7 @@ Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
   - `seq`: l'identificativo della sequenza generato da Cloudant.
   - `changes`: un array di oggetti, ciascuno dei quali con un campo `rev` che contiene l'ID revisione del documento.
   
-  La rappresentazione JSON dell'evento di trigger è la seguente:
+  La rappresentazione JSON dell'evento trigger è la seguente:
   
   ```json
   {
@@ -214,7 +205,7 @@ Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
 
 Puoi utilizzare un'azione per memorizzare un documento in un database Cloudant denominato `testdb`. Assicurati che questo database esista nel tuo account Cloudant.
 
-1. Memorizza un documento utilizzando l'azione `write` nel bind di pacchetto che hai creato precedentemente. Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
+1. Memorizza un documento utilizzando l'azione `write` nel bind di pacchetto che hai creato in precedenza. Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
 
   ```
   wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
@@ -230,9 +221,9 @@ Puoi utilizzare un'azione per memorizzare un documento in un database Cloudant d
   }
   ```
 
-2. Verifica che il documento esista sfogliando il tuo dashboard Cloudant per individuarlo.
+2. Verifica che il documento esista cercandolo nel tuo dashboard Cloudant.
 
-  L'URL del dashboard per il database `testdb` ha un aspetto simile al seguente: `https://MIOACCOUNTCLOUDANT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
+  L'URL del dashboard per il database `testdb` ha un aspetto simile al seguente: `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
 
 
 ## Lettura da un database Cloudant
@@ -240,7 +231,7 @@ Puoi utilizzare un'azione per memorizzare un documento in un database Cloudant d
 
 Puoi utilizzare un'azione per recuperare un documento da un database Cloudant denominato `testdb`. Assicurati che questo database esista nel tuo account Cloudant.
 
-- Recupera un documento utilizzando l'azione `read` nel bind di pacchetto che hai creato precedentemente. Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
+- Recupera un documento utilizzando l'azione `read` nel bind di pacchetto che hai creato in precedenza. Assicurati di sostituire `/_/myCloudant` con il tuo nome pacchetto.
 
   ```
   wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
@@ -254,12 +245,12 @@ Puoi utilizzare un'azione per recuperare un documento da un database Cloudant de
   }
   ```
 
-## Utilizzo di una sequenza di azioni e un trigger di modifica per elaborare un documento da un database Cloudant
+## Utilizzo di una sequenza di azioni e di un trigger di modifica per elaborare un documento da un database Cloudant
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
 Puoi utilizzare una sequenza di azioni in una regola per recuperare ed elaborare il documento associato a un evento di modifica Cloudant.
 
-Di seguito è riportato un codice di esempio di un'azione che gestisce un documento:
+Codice di esempio di un'azione che gestisce un documento:
 ```javascript
 function main(doc){
   return { "isWalter:" : doc.name === "Walter White"};
@@ -273,20 +264,20 @@ wsk action create myAction myAction.js
 {: pre}
 
 Per leggere un documento dal database, puoi utilizzare l'azione `read` dal pacchetto Cloudant.
-L'azione `read` potrebbe essere formata con `myAction` per creare una sequenza di azioni.
+L'azione `read` può essere composta con `myAction` per creare una sequenza di azioni.
 ```
 wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
-L'azione `sequenceAction` può essere utilizzata in una regola che attiva l'azione sui nuovi eventi di trigger Cloudant.
+L'azione `sequenceAction` può essere utilizzata in una regola che attiva l'azione sui nuovi eventi trigger Cloudant.
 ```
 wsk rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
-**Nota** il trigger `changes` Cloudant è utilizzato per supportare il parametro `includeDoc` che non è più supportato.
-  Avrai bisogno di ricreare i trigger precedentemente creati con `includeDoc`. Segui queste istruzioni per ricreare il trigger:
+**Nota:** il trigger `changes` Cloudant è utilizzato per supportare il parametro `includeDoc` che non è più supportato.
+  Puoi ricreare i trigger precedentemente creati con `includeDoc`. Segui questa procedura per ricreare il trigger: 
   ```
   wsk trigger delete myCloudantTrigger
   ```
@@ -296,6 +287,6 @@ wsk rule create myRule myCloudantTrigger sequenceAction
   ```
   {: pre}
 
-  L'esempio di seguito illustrato può essere utilizzato per creare una sequenza di azioni per leggere il documento modificato e chiamare le tue azioni esistenti.
-  Ricorda di disabilitare tutte le regole che non sono più valide e creane di nuove utilizzando il modello della sequenza di azioni.
+  L'esempio può essere utilizzato per creare una sequenza di azioni per leggere il documento modificato e chiamare le tue azioni esistenti.
+  Ricordati di disabilitare tutte le regole che non sono più valide e creane di nuove utilizzando il modello della sequenza di azioni.
 
