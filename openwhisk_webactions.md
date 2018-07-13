@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Web actions
+# Creating web actions
 {: #openwhisk_webactions}
 
-Web actions are OpenWhisk actions, which are annotated, to quickly enable developers to build web-based applications. These annotated actions allow developers to program backend logic that your web application can access anonymously, without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (that is, OAuth flow).
+Web actions are OpenWhisk actions which are annotated to quickly enable developers to build web-based applications. These annotated actions allow developers to program backend logic that your web application can access anonymously, without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (that is, OAuth flow).
 {: shortdesc}
 
 Web action activations are associated with the user that created the action. This action defers the cost of an action activation from the caller to the owner of the action.
