@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-04"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-07-04"
 {:pre: .pre}
 {:tip: .tip}
 
-# System details and Limits
+# System details and limits
 {: #openwhisk_reference}
 
 The following sections provide technical details about the {{site.data.keyword.openwhisk}} system and limit settings.

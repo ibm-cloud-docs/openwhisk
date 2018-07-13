@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# WebSocket package
 {: #openwhisk_catalog_websocket}
 
 The `/whisk.system/websocket` package offers a convenient way to post messages to a WebSocket.

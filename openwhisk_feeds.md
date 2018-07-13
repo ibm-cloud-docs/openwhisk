@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Custom event providers
+# Creating custom event provider feeds
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a feed in a package. The following section describes architectural, and implementation options for providing your own custom feed.

@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Mobile push
+# Mobile push package
 {: #openwhisk_catalog_pushnotifications}
 
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.

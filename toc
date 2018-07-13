@@ -26,14 +26,13 @@ IBM Cloud Functions
     bluemix_cli.md
 
     {: .topicgroup}
-    Managing actions
+    Creating actions
         openwhisk_actions.md
-        deploy_templates.md
+        openwhisk_webactions.md
+        openwhisk_managing.md
         parameters.md
         binding_services.md
-        openwhisk_webactions.md
         openwhisk_packages.md
-        openwhisk_annotations.md
 
     {: .topicgroup}
     Invoking actions with events
@@ -52,8 +51,10 @@ IBM Cloud Functions
         openwhisk_logs.md
         openwhisk_monitoring.md
 
+    deploy_templates.md
+
     {: .topicgroup}
-    Pre-installed Actions
+    Pre-installed packages
         cloudant_actions.md
         messagehub_actions.md
         mobile_push_actions.md
@@ -66,16 +67,21 @@ IBM Cloud Functions
         openwhisk_websocket.md
 
     {: .topicgroup}
-    SDK and Frameworks
+    Installable packages
+        cloud_object_storage_actions.md
+
+    {: .topicgroup}
+    SDK and frameworks
         openwhisk_goserverless.md
         openwhisk_mobile_sdk.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
+    openwhisk_annotations.md
     openwhisk_reference.md
 
     {: .topicgroup}
-    API Documentation
+    API documentation
         [REST API Reference](https://console.ng.bluemix.net/apidocs/98){: new_window}
         [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
