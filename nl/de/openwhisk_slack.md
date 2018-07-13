@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-29"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack-Paket verwenden
+# Slack
 {: #openwhisk_catalog_slack}
 
 Das Paket `/whisk.system/slack` bietet eine komfortable Methode zur Verwendung der [Slack-APIs](https://api.slack.com/).
@@ -34,32 +34,29 @@ Die Aktion `/whisk.system/slack/post` sendet eine Nachricht an einen angegebenen
 - `channel`: Der Slack-Kanal, an den die Nachricht zu senden ist.
 - `username`: Der Name, unter dem die Nachricht gesendet werden soll.
 - `text`: Ein zu sendender Nachrichtentext.
-- `token`: (optional) Ein Slack-[Zugriffstoken](https://api.slack.com/tokens). Weitere Informationen zur Verwendung von Slack-Zugriffstokens finden Sie in der [Übersicht über die OpenWhisk-Pakete](./openwhisk_catalog.html).
+- `token`: (optional) Ein Slack-[Zugriffstoken](https://api.slack.com/tokens).
 
 Im folgenden Beispiel wird gezeigt, wie Slack konfiguriert wird, eine Paketbindung erstellt wird und eine Nachricht an einen Kanal gesendet wird.
 
 1. Konfigurieren Sie für Ihr Team einen [eingehenden Webhook](https://api.slack.com/incoming-webhooks) für Slack.
-  
+
   Nach der Konfiguration von Slack erhalten Sie eine Webhook-URL, die ungefähr wie folgt aussieht: `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Der Webhook wird im nächsten Schritt benötigt.
-  
+
 2. Erstellen Sie eine Paketbindung mit Ihren Slack-Berechtigungsnachweisen, mit dem Kanal, an den gesendet werden soll, sowie mit dem Benutzernamen, unter dem gesendet werden soll.
-  
   ```
-  wsk package bind /whisk.system/slack mySlack \
+  ibmcloud wsk package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
   ```
   {: pre}
-  
-3. Rufen Sie die Aktion `post` in Ihrer Paketbindung auf, um eine Nachricht an Ihren Slack-Kanal zu senden.
-  
+
+3. Rufen Sie die Aktion **post** in Ihrer Paketbindung auf, um eine Nachricht an Ihren Slack-Kanal zu senden.
   ```
-  wsk action invoke mySlack/post --blocking --result \
+  ibmcloud wsk action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}
-  
 
 ## Slack-Token-basierte API verwenden
 

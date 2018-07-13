@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-05-31"
 
 ---
 
@@ -11,11 +11,12 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Utilisation du SDK OpenWhisk pour applications mobiles
+# SDK pour applications mobiles
+{: #openwhisk_mobile_sdk}
 
-OpenWhisk fournit un SDK pour applications mobiles destiné aux périphériques iOS et watchOS qui permet à ces applications de lancer sans difficulté des déclencheurs distants et d'appeler des actions distantes. Une version pour Android n'étant pas disponible, les développeurs Android peuvent utiliser directement l'API REST OpenWhisk.
+OpenWhisk fournit un SDK pour applications mobiles destiné aux périphériques iOS et watchOS qui permet à ces applications de lancer sans difficulté des déclencheurs distants et d'appeler des actions à distance. Une version pour Android n'étant pas disponible, les développeurs Android peuvent utiliser directement l'API REST OpenWhisk.
 
-Le logiciel SDK pour applications mobiles est écrit en langage Swift 3.0 et prend en charge iOS 10 et les éditions ultérieures. Vous pouvez générer le logiciel SDK pour applications mobiles avec Xcode 8.0. Les versions Legacy Swift 2.2/Xcode 7 du logiciel SDK sont disponibles jusqu'à la version 0.1.7, bien que celle-ci soit désormais dépréciée.
+Le logiciel SDK pour applications mobiles est écrit en langage Swift 4 et prend en charge iOS 11 et les éditions ultérieures. Vous pouvez générer le logiciel SDK pour applications mobiles avec Xcode 9.
 {: shortdesc}
 
 ## Ajout du logiciel SDK à votre application
@@ -24,32 +25,33 @@ Vous pouvez installer le logiciel SDK pour applications mobiles à l'aide de Coc
 
 ### Installation à l'aide de CocoaPods
 
-Le SDK OpenWhisk pour applications mobiles est disponible pour distribution publique via CocoaPods. En supposant que CocoaPods est installé, insérez les lignes suivantes dans un fichier nommé 'Podfile' sous le répertoire des projets d'applications de démarrage.
+Le logiciel SDK OpenWhisk pour applications mobiles est disponible pour distribution publique via CocoaPods. En supposant que CocoaPods est installé, insérez les lignes suivantes dans un fichier nommé 'Podfile' sous le répertoire des projets d'applications de démarrage.
 
 ```ruby
 install! 'cocoapods', :deterministic_uuids => false
 use_frameworks!
 
 target 'MyApp' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 
 target 'MyApp WatchKit Extension' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.2.2'
+     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 ```
 {: codeblock}
 
-Depuis la ligne de commande, entrez `pod install`. Cette commande installe le logiciel SDK pour une application iOS avec une extension watchOS. Utilisez le fichier d'espace de travail que CocoaPods a créé pour votre application afin d'ouvrir le projet dans Xcode. 
+Depuis la ligne de commande, entrez `pod install`. Cette commande installe le logiciel SDK pour une application iOS avec une extension watchOS. Utilisez le fichier d'espace de travail que CocoaPods a créé pour votre application afin d'ouvrir le projet dans Xcode.
 
-Après l'installation, ouvrez l'espace de travail de votre projet. L'avertissement suivant peut s'afficher lors de la génération : `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
-Ce message apparaît si Cocoapods ne met pas à jour la version de Swift dans le projet Pods.  Pour résoudre ce problème, sélectionnez le projet Pods et la cible OpenWhisk.  Accédez aux paramètres de génération et associez le paramètre `Use Legacy Swift Language Version` à la valeur `no`. Vous pouvez aussi ajouter les instructions de postinstallation suivantes à la fin de votre fichier Pod :
+Après l'installation, ouvrez l'espace de travail de votre projet. L'avertissement suivant peut s'afficher lors de la génération :
+`Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
+Ce message apparaît si Cocoapods ne met pas à jour la version de Swift dans le projet Pods. Pour résoudre ce problème, sélectionnez le projet Pods et la cible OpenWhisk.  Accédez aux paramètres de génération et associez le paramètre `Use Legacy Swift Language Version` à la valeur `no`. Vous pouvez aussi ajouter les instructions de postinstallation suivantes à la fin de votre fichier Pod :
 
 ```ruby
 post_install do |installer|
   installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '3.0'
+      config.build_settings['SWIFT_VERSION'] = '4.0'
     end
   end
 end
@@ -60,7 +62,7 @@ end
 
 Créez un fichier dans le répertoire de projet de votre application et appelez-le 'Cartfile'. Insérez la ligne suivante dans le fichier :
 ```
-github "openwhisk/openwhisk-client-swift.git" ~> 0.2.2 # Or latest version
+github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
 {: pre}
 
@@ -81,11 +83,11 @@ Vous pouvez utiliser l'interface CLI d'OpenWhisk pour télécharger l'exemple de
 
 Pour installer l'exemple d'application de démarrage, entrez la commande suivante :
 ```
-wsk sdk install iOS
+ibmcloud wsk sdk install iOS
 ```
 {: pre}
 
-Cette commande télécharge un fichier compressé contenant l'application de démarrage. Le répertoire de projet contient un fichier Pod. 
+Cette commande télécharge un fichier compressé contenant l'application de démarrage. Le répertoire de projet contient un fichier Pod.
 
 Pour installer le logiciel SDK, entrez la commande suivante :
 ```
@@ -98,20 +100,19 @@ pod install
 Pour être opérationnel rapidement, créez un objet WhiskCredentials avec vos données d'identification pour l'API OpenWhisk et créez une instance OpenWhisk depuis l'objet.
 
 Par exemple, utilisez l'exemple de code suivant pour créer un objet de données d'identification :
-
 ```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
 ```
 {: pre}
 
-Dans l'exemple précédent, vous transmettez les éléments `myKey` et `myToken` obtenus d'OpenWhisk. Vous
-pouvez extraire la clé et le jeton avec la commande de l'interface de ligne de commande suivante :
-
+Dans l'exemple précédent, vous transmettez les éléments `myKey` et `myToken` obtenus d'OpenWhisk. Vous pouvez extraire la clé et le jeton avec la commande de l'interface de ligne de commande suivante :
 ```
-wsk property get --auth
+ibmcloud wsk property get --auth
 ```
 {: pre}
+
+Sortie :
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -121,12 +122,11 @@ Les chaînes qui précèdent le signe deux-points correspondent à votre clé et
 
 ## Appel d'une action OpenWhisk
 
-Pour appeler une action distante, vous pouvez appeler `invokeAction` avec le nom d'action. Vous pouvez spécifier l'espace de nom auquel l'action appartient ou ne rien indiquer pour accepter l'espace de nom par défaut. Utilisez un dictionnaire pour transmettre des paramètres à l'action, en fonction des besoins.
+Pour appeler une action distante, vous pouvez appeler `invokeAction` avec le nom d'action. Vous pouvez spécifier l'espace de noms auquel l'action appartient ou ne rien indiquer pour accepter l'espace de noms par défaut. Utilisez un dictionnaire pour transmettre des paramètres à l'action, selon les besoins.
 
-Exemple :
-
+Par exemple :
 ```swift
-// In this example, we are invoking an Action to print a message to the OpenWhisk Console
+// Dans cet exemple, nous appelons une action pour imprimer un message dans la console OpenWhisk
 var params = Dictionary<String, String>()
 params["payload"] = "Hi from mobile"
 do {
@@ -148,10 +148,10 @@ Dans l'exemple précédent, vous appelez l'action `helloConsole` en utilisant l'
 
 ## Exécution d'un déclencheur OpenWhisk
 
-Pour exécuter un déclencheur distant, vous pouvez appeler la méthode `fireTrigger` et transmettre éventuellement des paramètres à l'aide d'un dictionnaire. 
+Pour exécuter un déclencheur distant, vous pouvez appeler la méthode `fireTrigger` et transmettre des paramètres à l'aide d'un dictionnaire, le cas échéant.
 
 ```swift
-// In this example we are firing a Trigger when our location has changed by a certain amount
+// Dans cet exemple, nous lançons un déclencheur lorsque notre emplacement a changé en excès de certains paramètres
 var locationParams = Dictionary<String, String>()
 locationParams["payload"] = "{\"lat\":41.27093, \"lon\":-73.77763}"
 do {
@@ -234,8 +234,7 @@ Toutes les actions et tous les déclencheurs possèdent un nom qualifié complet
 - Dans qName = "/monEspaceNom/foo", l'espace de nom est monEspaceNom, le package est le package par défaut et l'action/le déclencheur est "foo"
 - Dans qName = "/monEspaceNom/monpackage/foo, l'espace de nom est monEspaceNom, le package est monpackage et l'action/le déclencheur est "foo"
 
-Toutes les autres combinaisons génèrent une erreur WhiskError.QualifiedName. Par conséquent, lorsque vous utilisez des noms qualifiés, vous
-devez encapsuler l'appel dans une construction "`do/try/catch`".
+Toutes les autres combinaisons génèrent une erreur WhiskError.QualifiedName. Par conséquent, lorsque vous utilisez des noms qualifiés, vous devez encapsuler l'appel dans une construction "`do/try/catch`".
 
 ### Bouton du logiciel SDK
 
@@ -245,7 +244,7 @@ Pour des raisons pratiques, le logiciel SDK inclut un élément `WhiskButton` qu
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButton.setupWhiskAction("helloConsole", package: "mypackage", namespace: "_", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
 let myParams = ["name":"value"]
-// Call this when you detect a press event, e.g. in an IBAction, to invoke the Action
+// Appelez cette action lorsque vous détectez un événement de clic (par ex. IBAction) pour appeler l'action
 whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
     if let error = error {
         print("Oh no, error: \(error)")
@@ -253,7 +252,7 @@ whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
         print("Success: \(reply)")
     }
 })
-// or alternatively you can set up a "self contained" button that listens for press events on itself and invokes an Action
+// Vous pouvez aussi implanter un bouton "autonome" qui sera à l'écoute d'événements de clic et appellera une action
 var whiskButtonSelfContained = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButtonSelfContained.listenForPressEvents = true
 do {

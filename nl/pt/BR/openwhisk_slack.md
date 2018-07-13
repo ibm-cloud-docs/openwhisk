@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-29"
 
 ---
 
@@ -11,18 +11,18 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Usando o pacote Slack
+# Slack
 {: #openwhisk_catalog_slack}
 
 O pacote `/whisk.system/slack` oferece uma maneira conveniente de usar as [APIs do Slack](https://api.slack.com/).
 {: shortdesc}
 
-O pacote inclui as Ações a seguir:
+O pacote inclui as ações a seguir:
 
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/whisk.system/slack` | Pacote | url, channel, username | Interagir com a API do Slack |
-| `/whisk.system/slack/post` | Ação | text, url, channel, username | Posta uma mensagem para um canal do Slack |
+| `/whisk.system/slack` | pacote | url, channel, username | Interagir com a API do Slack |
+| `/whisk.system/slack/post` | ação | text, url, channel, username | Posta uma mensagem para um canal do Slack |
 
 É sugerido criar uma ligação de pacote com os valores `username`, `url` e
 `channel`. Com a ligação, não será necessário especificar os valores toda vez que você chamar a ação no pacote.
@@ -35,33 +35,30 @@ A ação `/whisk.system/slack/post` posta uma mensagem para um canal do Slack es
 - `channel`: o canal do Slack no qual postar a mensagem.
 - `username`: o nome com o qual postar a mensagem.
 - `text`: uma mensagem para postar.
-- `token`: (opcional) um [token de acesso](https://api.slack.com/tokens) de Slack. Veja o [Guia do Pacote do OpenWhisk](./openwhisk_catalog.html) para obter mais detalhes sobre como usar tokens de acesso do Slack.
+- `token`: (opcional) um [token de acesso](https://api.slack.com/tokens) de Slack.
 
 O exemplo a seguir mostra como configurar o Slack, criar uma ligação de pacote e postar uma mensagem em um canal.
 
 1. Configure um [webhook recebido](https://api.slack.com/incoming-webhooks) do Slack para sua equipe.
-  
+
   Após a configuração do Slack, você obtém uma URL de webhook semelhante a
 `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. O webhook será necessário na próxima etapa.
-  
+
 2. Crie uma ligação de pacote com suas credenciais do Slack, o canal no qual deseja postar e o nome de usuário com o qual postar.
-  
   ```
-  wsk package bind /whisk.system/slack mySlack \
+  ibmcloud wsk package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
   ```
   {: pre}
-  
-3. Chame a ação `post` em sua ligação de pacote para postar uma mensagem em seu canal do Slack.
-  
+
+3. Chame a ação **post** em sua ligação do pacote para postar uma mensagem em seu canal do Slack.
   ```
-  wsk action invoke mySlack/post --blocking --result \
+  ibmcloud wsk action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}
-  
 
 ## Usando a API baseada no token de Slack
 

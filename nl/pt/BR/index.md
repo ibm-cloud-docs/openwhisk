@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -11,128 +11,96 @@ lastupdated: "2018-02-14"
 {:screen: .screen}
 {:pre: .pre}
 
-# Introdução ao {{site.data.keyword.openwhisk_short}}
+# Introdução
+{: #index}
 
-O {{site.data.keyword.openwhisk}} é um serviço de cálculo distribuído, acionado por eventos, também referido como computação Sem servidor ou como Function as a Service (FaaS). O {{site.data.keyword.openwhisk_short}} executa a lógica de aplicativo em
-resposta a eventos ou chamadas diretas de apps da web ou móveis sobre HTTP. Os eventos podem ser fornecidos por meio de serviços do {{site.data.keyword.Bluemix}} como o Cloudant e por meio de origens externas. Os desenvolvedores podem focar a composição da lógica de aplicativo e a criação de ações que são executadas sob demanda.
-O benefício chave desse novo paradigma é que você não provisiona os servidores explicitamente. Eliminando, portanto, a preocupação com ajuste automático de escala, alta disponibilidade, atualizações, manutenção e custo por horas de tempo do processador quando o servidor está sendo executado, mas não entregando solicitações.
-Seu código é executado quando há uma chamada HTTP, mudança de estado do banco de dados ou outro tipo de evento que aciona a execução do código.
-Você é cobrado por milissegundo de tempo de execução (arredondado para os 100 ms mais próximos), não por hora de utilização de VM, independentemente se essa VM estava executando um trabalho útil ou não.
+O {{site.data.keyword.openwhisk}} é uma plataforma de programação poliglota Functions-as-a-Service (FaaS) com base no Apache OpenWhisk. O {{site.data.keyword.openwhisk_short}} permite que os desenvolvedores gravem ações chamadas por código leve que executam a lógica de aplicativo de forma escalável. É possível configurar ações para ocorrerem sob demanda com base em solicitações de API baseada em HTTP de apps da web ou apps móveis ou automaticamente em resposta a solicitações baseadas em evento de serviços {{site.data.keyword.Bluemix_notm}} e eventos de terceiros.
 {: shortdesc}
 
-Esse modelo de programação é uma correspondência perfeita para microsserviços, dispositivos móveis, IoT e muitos outros apps. Você obtém ajuste automático de escala e balanceamento de carga inerentes prontos para utilização, sem ter que configurar manualmente clusters, balanceadores de carga, plug-ins de http, etc. Caso você execute no {{site.data.keyword.openwhisk}}, também obterá um benefício de administração zero - o que significa que todo o hardware, a rede e o software é mantido pela IBM. Tudo o que você precisa fazer é fornecer o código que deseja executar e fornecê-lo ao {{site.data.keyword.openwhisk}}. O resto é “mágica”. Uma boa introdução para o modelo de programação Serverless está disponível no [blog de Martin Fowler](https://martinfowler.com/articles/serverless.html).
+Como o {{site.data.keyword.openwhisk_short}} é uma plataforma sem servidor acionada por evento, você não precisa provisionar explicitamente os servidores. Os desenvolvedores que trabalham com microsserviços, dispositivos móveis, IoT e muitos outros apps podem focalizar a gravação da lógica do app em vez de se preocuparem com ajuste automático de escala, alta disponibilidade, atualizações e manutenção. O ajuste automático de escala e o balanceamento de carga prontos para utilização significam que você não precisa configurar manualmente clusters, plug-ins http e assim por diante! A IBM cuida de toda a administração de hardware, rede e software. Tudo que você tem que fazer é fornecer o código.
 
-Também é possível obter o [Código-fonte do Apache OpenWhisk](https://github.com/openwhisk/openwhisk) e executar o sistema sozinho.
+Clique em uma opção para começar:
 
-Para obter mais detalhes sobre como o {{site.data.keyword.openwhisk_short}} funciona, consulte [Sobre o {{site.data.keyword.openwhisk_short}}](./openwhisk_about.html).
+<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Clique em um ícone para começar a usar rapidamente o {{site.data.keyword.openswhisk_short}}." style="width:440px;" />
+<map name="home_map" id="home_map">
+<area href="#openwhisk_start_hello_world" alt="Criar uma ação" title="Criar uma ação" shape="rect" coords="-7, -8, 108, 211" />
+<area href="bluemix_cli.html" alt="Configurar o plug-in da CLI do {{site.data.keyword.openwhisk_short}}" title="Configurar o plug-in da CLI do {{site.data.keyword.openwhisk_short}}" shape="rect" coords="155, -1, 289, 210" />
+<area href="openwhisk_about.html" alt="Ver a arquitetura da plataforma" title="Ver a arquitetura da plataforma" shape="rect" coords="326, -10, 448, 218" />
+</map>
 
-É possível usar o Navegador ou a CLI para desenvolver os seus aplicativos {{site.data.keyword.openwhisk_short}}.
-Ambos têm recursos semelhantes para desenvolver aplicativos; a CLI fornece mais controle sobre a sua implementação e as operações.
 
-## Desenvolver em seu navegador
-{: #openwhisk_start_editor}
-
-Experimente o {{site.data.keyword.openwhisk_short}} em seu [Navegador](https://console.{DomainName}/openwhisk/actions) para criar ações, automatizar ações usando acionadores e explorar pacotes públicos. Visite a página [Saiba mais](https://console.{DomainName}/openwhisk/learn) para um tour rápido da Interface com o usuário do {{site.data.keyword.openwhisk_short}}.
-
-## Desenvolver usando a CLI
-{: #openwhisk_start_configure_cli}
-
-É possível usar a interface da linha de comandos (CLI) do {{site.data.keyword.openwhisk_short}} para configurar o namespace e a chave de autorização.
-Acesse [Configurar CLI](https://console.{DomainName}/openwhisk/cli) e siga as instruções para instalá-la.
-
-## visão geral
-{: #openwhisk_start_overview}
-- [Como funciona o OpenWhisk](./openwhisk_about.html)
-- [Casos de uso comuns para aplicativos Serverless](./openwhisk_use_cases.html)
-- [Configurando e usando a CLI do OpenWhisk](./openwhisk_cli.html)
-- [Usando o OpenWhisk por meio de um app iOS](./openwhisk_mobile_sdk.html)
-- [Artigos, amostras e
-tutoriais](https://github.com/openwhisk/openwhisk-external-resources)
-- [FAQ do Apache OpenWhisk](http://openwhisk.org/faq)
-- [Preços](https://console.ng.bluemix.net/openwhisk/learn/pricing)
-
-## Gabarito de Programação
-{: #openwhisk_start_programming}
-- [Detalhes do Sistema](./openwhisk_reference.html)
-- [Catálogo de serviços fornecidos pelo OpenWhisk](./openwhisk_catalog.html)
-- [Ações
-](./openwhisk_actions.html)
-- [Acionadores e regras](./openwhisk_triggers_rules.html)
-- [Feeds](./openwhisk_feeds.html)
-- [Pacotes](./openwhisk_packages.html)
-- [Anotações](./openwhisk_annotations.html)
-- [Ações da web](./openwhisk_webactions.html)
-- [Gateway de API](./openwhisk_apigateway.html)
-- [Nomes de entidades](./openwhisk_reference.html#openwhisk_entities)
-- [Semântica de ação](./openwhisk_reference.html#openwhisk_semantics)
-- [  Limites
-](./openwhisk_reference.html#openwhisk_syslimits)
-
-## Exemplo Hello World do {{site.data.keyword.openwhisk_short}}
+## Criando uma ação na GUI
 {: #openwhisk_start_hello_world}
-Para iniciar o uso do {{site.data.keyword.openwhisk_short}}, tente o exemplo de código JavaScript a seguir.
 
-```javascript
-/**
- * Hello world como uma ação OpenWhisk.
- */
+Para começar a usar o {{site.data.keyword.openwhisk_short}}, tente usar o modelo de iniciação rápida HelloWorld.
+
+1.  No **Catálogo** do [{{site.data.keyword.Bluemix_notm}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/catalog/?category=whisk), categoria **Functions**, clique em Functions.
+
+2. Clique em **Começar a criar** > **Modelos de iniciação rápida** e selecione o modelo **Hello World**.
+
+5. Verifique o código para a ação e, em seguida, crie a ação clicando em **Implementar**. Agora você tem uma ação chamada `hello`.
+
+6. Execute a ação clicando em **Chamar**. Chamar uma ação executa manualmente a lógica do app que a ação define. No painel **Ativações**, é possível ver a saudação "Olá, estranho!" produzida pela ação.
+
+Bom Trabalho! Você criou sua primeira ação. Para limpar essa ação, clique no menu overflow e selecione **Excluir ação**.
+
+## Criando uma ação na CLI
+{: #openwhisk_start_hello_world_cli}
+
+Comece a trabalhar rapidamente com o código de exemplo HelloWorld de JavaScript. Esse exemplo cria uma ação básica `hello` que você pode chamar manualmente para executar sua lógica de app.
+
+1. [Configure o plug-in da CLI do {{site.data.keyword.openwhisk_short}}](bluemix_cli.html).
+
+2. Salve o código a seguir em um arquivo nomeado **hello.js**.
+
+    ```javascript
+    /**
+     * Hello World como uma ação do OpenWhisk.
+     */
 function main(params) {
-    var name = params.name || 'World';
+        var name = params.name || 'World';
     return {payload:  'Hello, ' + name + '!'};
-}
-```
-{: codeblock}
-
-Para usar esse exemplo, siga estas etapas:
-
-1. Salve o código em um arquivo. Por exemplo, *hello.js*.
-
-2. Na linha de comandos da CLI do {{site.data.keyword.openwhisk_short}}, crie a ação inserindo este comando:
+    }
     ```
-    wsk action create hello hello.js
+    {: codeblock}
+
+3. Crie a ação `hello`.
+    ```
+    ibmcloud wsk action create hello hello.js
     ```
     {: pre}
 
-3. Em seguida, chame a ação inserindo os comandos a seguir.
+4. Chame a ação sem passar nenhum parâmetro.
     ```
-    wsk action invoke hello --blocking --result
+    ibmcloud wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
-    Estas
-saídas de comando:
-    ```json
+    Saída:
+    ```
     {
         "payload": "Hello, World!"
     }
     ```
-    
+    {: screen}
+
+5. Chame a ação novamente, passando o parâmetro de nome, para testar a lógica de app.
     ```
-    wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud wsk action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
-    Estas
-saídas de comando:
-    ```json
+    Saída:
+    ```
     {
         "payload": "Hello, Fred!"
     }
     ```
+    {: screen}
 
-Também é possível usar os recursos acionados por eventos no {{site.data.keyword.openwhisk_short}} para chamar essa ação em resposta a eventos. Siga o [exemplo de serviço de alarme](./openwhisk_packages.html#openwhisk_package_trigger) para configurar uma origem de eventos para chamar a Ação `hello` toda vez que um evento periódico é gerado.
+Bom Trabalho! Você criou sua primeira ação. Para limpar essa ação, execute `ibmcloud wsk action delete hello`.
 
-Uma lista completa de
-[Tutoriais
-e Amostras do OpenWhisk pode ser localizada aqui](https://github.com/openwhisk/openwhisk-external-resources#sample-applications). Além das amostras, esse repositório contém links para artigos, apresentações, podcasts, vídeos e outros recursos relacionados ao {{site.data.keyword.openwhisk_short}}.
-
-## Referência à API
-{: #openwhisk_start_api notoc}
-* [Documentação da API REST](./openwhisk_reference.html#openwhisk_ref_restapi)
-* [REST API](https://console.{DomainName}/apidocs/98)
-
-## Links relacionados
-{: #general notoc}
-* [Descobrir: {{site.data.keyword.openwhisk_short}}](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
-* [{{site.data.keyword.openwhisk_short}} no IBM developerWorks](https://developer.ibm.com/openwhisk/)
-* [Website do projeto Apache {{site.data.keyword.openwhisk_short}}](http://openwhisk.org)
+**O que Vem a Seguir?**
+* [Experimente o exemplo de serviço de alarme para chamar a ação **hello** sempre que um evento periódico for gerado.](./openwhisk_packages.html#openwhisk_package_trigger)
+* [Criar uma API de REST sem servidor.](openwhisk_apigateway.html)
+* [Verifique os pacotes de ação pré-instalados para serviços {{site.data.keyword.Bluemix_notm}} como o Cloudant.](cloudant_actions.html)

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,64 +11,55 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Informationen zu {{site.data.keyword.openwhisk_short}}
+# Plattformarchitektur
+{: #openwhisk_about}
 
-{{site.data.keyword.openwhisk}} ist eine ereignisgesteuerte Berechnungsplattform (auch als serverunabhängiges Computing oder Function as a Service (FaaS) bezeichnet), die Code als Reaktion auf Ereignisse oder direkte Aufrufe ausführt. In der folgenden Abbildung ist die allgemeine Architektur von {{site.data.keyword.openwhisk}} dargestellt.
+{{site.data.keyword.openwhisk}} ist eine ereignisgesteuerte Berechnungsplattform (auch als serverunabhängiges Computing oder Function as a Service (FaaS) bezeichnet), die Code als Reaktion auf Ereignisse oder direkte Aufrufe ausführt.
 {: shortdesc}
 
-![{{site.data.keyword.openwhisk_short}}-Architektur](./images/OpenWhisk.png)
+## {{site.data.keyword.openwhisk_short}}-Technologie
+{: #technology}
 
-Beispiele für Ereignisse sind Änderungen an Datenbanksätzen, IoT-Sensormesswerte (IoT, Internet of Things - Internet der Dinge), die einen bestimmten Temperaturwert überschreiten, neue Codefestschreibungen (Commits) in einem GitHub-Repository oder einfache HTTP-Anforderungen von Web-Apps oder mobilen Apps. Ereignisse aus externen und internen Ereignisquellen werden durch einen Auslöser kanalisiert. Regeln ermöglichen es Aktionen, auf diese Ereignisse zu reagieren.
+Im Folgenden werden einige grundlegende Konzepte der Technologie beschrieben, die {{site.data.keyword.openwhisk_short}} zugrunde liegt:
 
-Aktionen können kleine Snippets aus JavaScript- oder Swift-Code oder angepasster Binärcode sein, die in einem Docker-Container eingebettet sind. Aktionen in {{site.data.keyword.openwhisk_short}} werden sofort bereitgestellt und ausgeführt, wenn ein Auslöser aktiviert wird. Je mehr Auslöser aktiviert werden, desto mehr Aktionen werden aufgerufen. Wird kein Auslöser aktiviert, wird kein Aktionscode ausgeführt und Kosten bleiben bei null.
-
-Neben der Verknüpfung von Aktionen mit Auslösern ist es möglich, eine Aktion direkt über die API, die CLI oder das iOS-SDK von {{site.data.keyword.openwhisk_short}} aufzurufen. Eine Gruppe von Aktionen kann außerdem verkettet werden, ohne dass dazu Code geschrieben werden muss. Jede Aktion in der Kette wird in der Reihenfolge aufgerufen, wobei die Ausgabe einer Aktion als Eingabe an die nächste Aktion in der Folge übergeben wird.
-
-Bei traditionellen virtuellen Maschinen mit langer Laufzeit oder Containern ist es ein allgemein übliches Verfahren, mehrere virtuelle Maschinen (VMs) bzw. Container bereitzustellen, um flexibel auf Ausfälle einer einzelnen Instanz reagieren zu können. {{site.data.keyword.openwhisk_short}} bietet jedoch ein alternatives Modell ohne Kostenaufwand für den Ausfallschutz an. Die bedarfsgesteuerte Ausführung von Aktionen ermöglicht eine inhärente Skalierbarkeit und eine optimale Auslastung, da die Anzahl der aktiven Aktionen immer der Auslöserrate entspricht. Darüber hinaus kann sich der Entwickler jetzt allein auf den Code konzentrieren und braucht sich nicht um die Überwachung, die Programmkorrekturen oder den Schutz für den zugrunde liegenden Server, den Speicher, das Netz und die Betriebssysteminfrastruktur zu kümmern.
-
-Integrationen in Services und Ereignisprovider können durch Pakete hinzugefügt werden. Ein Paket ist ein Bündel aus Feeds und Aktionen. Ein Feed ist ein Codeabschnitt, der eine externe Ereignisquelle zum Aktivieren (Auslösen) von Auslöserereignissen konfiguriert. Zum Beispiel konfiguriert ein Auslöser, der mit einem Feed für Cloudant-Änderungen erstellt wurde, einen Service, der den Auslöser jedes Mal dann aktiviert, wenn ein Dokument in einer Cloudant-Datenbank geändert oder hinzugefügt wird. Aktionen in Paketen stellen wiederverwendbare Logik da, die ein Service-Provider verfügbar machen kann, sodass Entwickler den Service als Ereignisquelle verwenden und APIs dieses Service aufrufen können.
-
-Ein bestehender Katalog mit Paketen bietet eine schnelle Möglichkeit, Anwendungen um nützliche Funktionen zu erweitern und auf externe Services im direkten Geschäftsumfeld zuzugreifen. Zu den externen Services, die für {{site.data.keyword.openwhisk_short}} eingerichtet sind, gehören zum Beispiel Cloudant, The Weather Company, Slack und GitHub.
-
+<dl>
+<dt>Aktion</dt>
+<dd>Eine [Aktion](openwhisk_actions.html) ist ein Abschnitt Code, der eine bestimmte Task ausführt. Aktionen können in einer Sprache Ihrer Wahl geschrieben sein und es kann sich um kleine Snippets aus JavaScript- oder Swift-Code oder angepasstem Binärcode handeln, die in einem Docker-Container eingebettet sind. Sie stellen Ihre Aktion für Cloud Functions entweder als Quellcode oder als Docker-Image bereit.
+<br><br>Eine Aktion führt Verarbeitungsprozesse aus, wenn sie direkt über die API, die CLI oder das iOS-SDK von {{site.data.keyword.openwhisk_short}} aufgerufen wird. Eine Aktion kann auch automatisch auf Ereignisse von {{site.data.keyword.Bluemix_notm}}-Services und Services von Drittanbietern unter Verwendung eines Auslösers reagieren.</dd>
+<dt>Sequenz</dt>
+<dd>Eine Gruppe von Aktionen kann außerdem zu einer [Sequenz](openwhisk_actions.html#openwhisk_create_action_sequence) verkettet werden, ohne dass dazu Code geschrieben werden muss. Eine Sequenz ist eine Kette von Aktionen, die nacheinander aufgerufen werden, wobei die Ausgabe einer Aktion als Eingabe an die nächste Aktion übergeben wird. Auf diese Weise können Sie vorhandene Aktionen kombinieren und so schnell und einfach wiederverwenden. Eine Sequenz kann dann genau wie eine Aktion über eine REST-API oder automatisch als Reaktion auf Ereignisse aufgerufen werden.
+</dd>
+<dt>Ereignis</dt>
+<dd>Beispiele für Ereignisse sind Änderungen an Datenbanksätzen, IoT-Sensormesswerte (IoT, Internet of Things - Internet der Dinge), die einen bestimmten Temperaturwert überschreiten, neue Codefestschreibungen (Commits) in einem GitHub-Repository oder einfache HTTP-Anforderungen von Web-Apps oder mobilen Apps. Ereignisse aus externen und internen Ereignisquellen werden durch einen Auslöser kanalisiert. Regeln ermöglichen es Aktionen, auf diese Ereignisse zu reagieren.</dd>
+<dt>Auslöser</dt>
+<dd>Ein [Auslöser](openwhisk_triggers_rules.html#openwhisk_triggers_create) ist ein benannter Kanal für eine Klasse von Ereignissen. Bei einem Auslöser handelt es sich um eine Deklaration, die auf einen bestimmten Typ von Ereignis reagieren soll, entweder durch einen Benutzer oder eine Ereignisquelle.</dd>
+<dt>Regel</dt>
+<dd>Eine [Regel](openwhisk_triggers_rules.html#openwhisk_rules_use) ordnet einen Auslöser einer Aktion zu. Sobald der Auslöser angewendet wird, ruft die Regel die zugeordnete Aktion auf. Mit dem entsprechenden Satz von Regeln kann ein einzelnes Auslöserereignis mehrere Aktionen aufrufen oder eine Aktion als Reaktion auf Ereignisse aus mehreren Auslösern aufgerufen werden.</dd>
+<dt>Paket</dt>
+<dd>Integrationen in Services und Ereignisprovider können durch Pakete hinzugefügt werden. Ein [Paket](openwhisk_packages.html) ist ein Bündel aus Feeds und Aktionen. Ein Feed ist ein Codeabschnitt, der eine externe Ereignisquelle zum Aktivieren (Auslösen) von Auslöserereignissen konfiguriert. Zum Beispiel konfiguriert ein Auslöser, der mit einem Feed für {{site.data.keyword.cloudant}}-Änderungen erstellt wurde, einen Service, der den Auslöser jedes Mal dann aktiviert, wenn ein Dokument in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank geändert oder hinzugefügt wird. Aktionen in Paketen stellen wiederverwendbare Logik da, die ein Service-Provider verfügbar machen kann, sodass Entwickler den Service als Ereignisquelle verwenden und APIs dieses Service aufrufen können.
+<br><br>Ein bestehender Katalog mit Paketen bietet eine schnelle Möglichkeit, Anwendungen um nützliche Funktionen zu erweitern und auf externe Services im direkten Geschäftsumfeld zuzugreifen. Zu den externen Services, die über {{site.data.keyword.openwhisk_short}}-Paket verfügen, gehören zum Beispiel {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack und GitHub.</dd>
+</dl>
 
 ## Funktionsweise von {{site.data.keyword.openwhisk_short}}
 {: #openwhisk_how}
 
-Als Open-Source-Projekt stützt sich OpenWhisk auf die Grundlage großer Komponenten wie Nginx, Kafka, Consul, Docker und CouchDB. Alle diese Komponenten bilden zusammen einen 'serverunabhängigen, ereignisgesteuerten Programmierservice'. Zur eingehenderen Erläuterung aller Komponenten soll ein Aufruf einer Aktion durch das System in seinem Verlauf verfolgt werden. Ein Aufruf in OpenWhisk führt zur Kernaufgabe einer serverunabhängigen Engine: Die Ausführung des Codes, den der Benutzer dem System zugeführt hat und die Rückgabe der Ergebnisse dieser Ausführung.
+Zur eingehenderen Erläuterung aller Komponenten soll ein Aufruf einer Aktion durch das {{site.data.keyword.openwhisk_short}}-System verfolgt werden. Ein Aufruf führt den Code aus, den der Benutzer dem System zugeführt hat, und gibt die Ergebnisse dieser Ausführung zurück. In der folgenden Abbildung ist die allgemeine Architektur von {{site.data.keyword.openwhisk_short}} dargestellt.
 
-### Aktion erstellen
+![{{site.data.keyword.openwhisk_short}}-Architektur](./images/OpenWhisk.png)
 
-Um der Erläuterung etwas Kontext zu verleihen, wird im System zunächst eine Aktion erstellt. Anhand dieser Aktion werden später die verschiedenen Konzepte während der Verarbeitung durch das System erläutert. Die folgenden Befehle gehen davon aus, dass die [OpenWhisk-CLI ordnungsgemäß eingerichtet ist](https://github.com/openwhisk/openwhisk/tree/master/docs#setting-up-the-openwhisk-cli).
 
-Erstellen Sie zuerst eine Datei mit dem Namen *action.js*,die den folgenden Code enthält, der die Zeichenfolge “Hello World” an die Standardausgabe (STDOUT) ausgibt und ein JSON-Objekt zurückgibt, das die Zeichenfolge “world” unter dem Schlüssel “hello” enthält.
-```javascript
-function main() {
-    console.log('Hello World');
-    return { hello: 'world' };
-}
-```
-{: codeblock}
+## Funktionsweise der internen Verarbeitung von OpenWhisk
+{: #openwhisk_internal}
 
-Erstellen Sie die Aktion, indem Sie den folgenden Befehl ausführen:
-```
-wsk action create myAction action.js
-```
-{: pre}
-
-Führen Sie nun den folgenden Befehl aus, um diese Aktion aufzurufen:
-```
-wsk action invoke myAction --result
-```
-{: pre}
-
-## Interner Verarbeitungsablauf
 Was geschieht hinter den Kulissen in OpenWhisk?
 
-![OpenWhisk-Verarbeitungsablauf](images/OpenWhisk_flow_of_processing.png)
+OpenWhisk ist ein Open-Source-Projekt, das Komponenten wie Nginx, Kafka, Docker und CouchDB umfasst und so einen serverunabhängigen ereignisbasierten Programmierservice darstellt.
+
+<img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="Der interne Verarbeitungsablauf hinter den Kulissen in OpenWhisk" style="width:550px; border-style: none"/>
 
 ### Eingang in das System: nginx
 
-Zunächst ist die Benutzerinteraktions-API von OpenWhisk vollständig HTTP-basiert und entspricht einem REST-konformen Design. Daher ist der Befehl, der über die wsk-Befehlszeilenschnittstelle (CLI) gesendet wird, eigentlich eine HTTP-Anforderung an das OpenWhisk-System. Der spezielle Befehl lässt sich grob wie folgt übersetzen:
+Zunächst ist die Benutzerinteraktions-API von OpenWhisk vollständig HTTP-basiert und entspricht einem REST-konformen Design. Daher ist der Befehl, der über die Befehlszeilenschnittstelle (CLI) gesendet wird, eine HTTP-Anforderung an das OpenWhisk-System. Der spezielle Befehl lässt sich grob wie folgt übersetzen:
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -103,13 +94,10 @@ Der Datensatz der Aktion enthält hauptsächlich den auszuführenden Code sowie 
 
 In diesem speziellen Fall hat die Aktion keine Parameter (die Parameterdefinition der Funktion ist eine leere Liste), Daher wird davon ausgegangen, dass keine Standardparameter festgelegt sind und dass keine bestimmten Parameter an die Aktion gesendet wurden, sodass dies der trivialste Fall in dieser Hinsicht ist.
 
-### Wer ruft die Aktion auf: Consul
 
-Der Controller (oder genauer seine Lastverteilungskomponente) verfügt nun über alle Daten, um die Ausführung Ihres Codes zu starten. Allerdings muss ihm noch bekannt sein, wer für diese Aktion verfügbar ist. **Consul**, eine Serviceerkennung, dient dazu, die ausführenden Komponenten (Executors) durch kontinuierliches Prüfen des Allgemeinzustands dieser Komponenten zu überwachen. Diese ausführenden Komponenten werden als **Aufrufer** (Invoker) bezeichnet.
+### Aufruf der Aktion durch die Lastausgleichsfunktion
 
-Der Controller, der jetzt ermittelt hat, welche Aufrufer verfügbar sind, wählt einen von diesen aus, um die angeforderte Aktion aufzurufen.
-
-Nehmen Sie für diesen Fall an, dass das System drei verfügbare Aufrufer hat (Aufrufer 0 - 2) und dass der Controller Aufrufer 2 (*Invoker 2*) zum Aufrufen der betreffenden Aktion ausgewählt hat.
+Die Lastausgleichsfunktion (Load Balancer), die Bestandteil des Controllers ist, hat durch kontinuierliche Statusüberprüfungen einen globalen Überblick über die im System verfügbaren ausführenden Komponenten (Executor). Diese ausführenden Komponenten werden als **Aufrufer** (Invoker) bezeichnet. Die Lastausgleichsfunktion, die jetzt ermittelt hat, welche Aufrufer verfügbar sind, wählt einen von diesen aus, um die angeforderte Aktion aufzurufen.
 
 ### Eine Zeile erstellen: Kafka
 
@@ -128,7 +116,7 @@ Wenn Kafka den Eingang der Nachricht bestätigt, wird die HTTP-Anforderung an de
 
 Der Aufrufer (**Invoker**) ist das Herzstück von OpenWhisk. Der Aufrufer hat die Aufgabe, eine Aktion aufzurufen. Er ist ebenfalls in Scala implementiert. Jedoch ist dazu noch wesentlich mehr zu sagen. Zum Ausführen von Aktionen auf eine isolierte und sichere Weise wird **Docker** verwendet.
 
-Docker wird dazu verwendet, eine neue und in sich eingekapselte Umgebung (einen so genannten *Container*) für jede Aktion einzurichten, die in schneller, isolierter und gesteuerter Weise aufgerufen wird. Für jeden Aktionsaufruf wird ein Docker-Container generiert und der Aktionscode dort eingefügt. Der Code wird anschließend mit den übergebenen Parametern ausgeführt, das Ergebnis abgerufen und der Container wieder gelöscht. In diesem Stadium können Leistungsoptimierungen vorgenommen werden, um den Systemaufwand zu verringern und schnelle Antwortzeiten zu erzielen. 
+Docker wird dazu verwendet, eine neue und in sich eingekapselte Umgebung (einen so genannten *Container*) für jede Aktion einzurichten, die in schneller, isolierter und gesteuerter Weise aufgerufen wird. Für jeden Aktionsaufruf wird ein Docker-Container generiert und der Aktionscode dort eingefügt. Der Code wird anschließend mit den übergebenen Parametern ausgeführt, das Ergebnis abgerufen und der Container wieder gelöscht. In diesem Stadium können Leistungsoptimierungen vorgenommen werden, um den Systemaufwand zu verringern und schnelle Antwortzeiten zu erzielen.
 
 In diesem Fall, in dem eine auf *Node.js* basierende Aktion vorhanden ist, startet der Aufrufer einen Node.js-Container. Anschließend fügt er den Code aus *myAction* ein, führt ihn ohne Parameter aus, extrahiert das Ergebnis, speichert die Protokolle und löscht den Node.js-Container wieder.
 
@@ -137,7 +125,6 @@ In diesem Fall, in dem eine auf *Node.js* basierende Aktion vorhanden ist, start
 Wenn das Ergebnis vom Aufrufer abgerufen wurde, wird es in der Datenbank **whisks** als Aktivierung unter der Aktivierung-ID (ActivationId) gespeichert. Die Datenbank **whisks** wird in **CouchDB** betrieben.
 
 In diesem besonderen Fall ruft der Aufrufer das resultierende JSON-Objekt aus der Aktion ab, erfasst das Protokoll, das von Docker geschrieben wurde, fügt alle diese Elemente in den Aktivierungsdatensatz ein und speichert diesen in der Datenbank. Schauen Sie sich das folgende Beispiel an:
-
 ```json
 {
    "activationId": "31809ddca6f64cfc9de2937ebd44fbb9",
@@ -161,17 +148,17 @@ Beachten Sie, wie der Datensatz sowohl das zurückgegebene Ergebnis als auch die
 Sie können jetzt die REST-API erneut verwenden (beginnen Sie wieder bei Schritt 1), um Ihre Aktivierung und damit das Ergebnis Ihrer Aktion abzurufen. Führen Sie dazu den folgenden Befehl aus:
 
 ```bash
-wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
-{: pre} 
+{: pre}
 
 ### Zusammenfassung
 
-Sie haben gesehen, wie ein einfacher Befehl **wsk action invoke myAction** verschiedene Komponenten des {{site.data.keyword.openwhisk_short}}-Systems durchlauft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community.
+Sie haben gesehen, wie ein einfacher Befehl **ibmcloud wsk action invoked myAction** verschiedene Komponenten des {{site.data.keyword.openwhisk_short}}-Systems durchläuft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community.
 
 Weitere Informationen zu {{site.data.keyword.openwhisk_short}} finden Sie in den folgenden Abschnitten:
 
 * [Entitätsnamen](./openwhisk_reference.html#openwhisk_entities)
 * [Aktionssemantik](./openwhisk_reference.html#openwhisk_semantics)
 * [Begrenzungen](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST-API](./openwhisk_reference.html#openwhisk_ref_restapi)
+* [REST-API-Referenz](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)

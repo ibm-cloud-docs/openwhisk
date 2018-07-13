@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Feeds implementieren
+# Angepasste Ereignisprovider
 {: #openwhisk_feeds}
 
-{{site.data.keyword.openwhisk_short}} unterstützt eine offene API, mit der jeder Benutzer einen Ereignisproduzentenservice als **Feed** in einem **Paket** verfügbar machen kann. Im folgenden Abschnitt werden die Architektur- und Implementierungsoptionen beschrieben, mit denen Sie Ihren eigenen Feed bereitstellen können.
+{{site.data.keyword.openwhisk_short}} unterstützt eine offene API, mit der jeder Benutzer einen Ereignisproduzentenservice als Feed in einem Paket verfügbar machen kann. Im folgenden Abschnitt werden die Architektur- und Implementierungsoptionen beschrieben, mit denen Sie Ihren eigenen angepassten Feed bereitstellen können.
 {: shortdesc}
 
 Die folgenden Informationen sind für erfahrene {{site.data.keyword.openwhisk_short}}-Benutzer gedacht, die eigene Feeds veröffentlichen möchten. Die meisten {{site.data.keyword.openwhisk_short}}-Benutzer können den Abschnitt zur Architektur ohne Weiteres überspringen.
@@ -24,12 +24,12 @@ Die folgenden Informationen sind für erfahrene {{site.data.keyword.openwhisk_sh
 Es gibt mindestens drei Architekturmuster für die Erstellung eines Feeds: **Hooks**, **Polling** und **Verbindungen**.
 
 ### Hooks
-Im Muster *Hooks* wird der Feed mit einer [Webhook-Funktion](https://en.wikipedia.org/wiki/Webhook) eingerichtet, die von einem anderen Service verfügbar gemacht wird. Bei diesem Verfahren wird ein Webhook in einem externen Service konfiguriert, um direkt POST-Anforderungen an eine URL zu senden, durch die ein Auslöser aktiviert wird. Diese Methode ist mit Abstand die einfachste und bequemste Option, Feeds mit geringer Frequenz zu implementieren.
+Im Muster *Hooks* wird der Feed mit einer [Webhook-Funktion](https://en.wikipedia.org/wiki/Webhook) eingerichtet, die von einem anderen Service verfügbar gemacht wird.   Bei diesem Verfahren wird ein Webhook in einem externen Service konfiguriert, um direkt POST-Anforderungen an eine URL zu senden, durch die ein Auslöser aktiviert wird. Diese Methode ist mit Abstand die einfachste und bequemste Option, Feeds mit geringer Frequenz zu implementieren.
 
 <!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
 
 ### Polling
-Im Muster "Polling" wird eine {{site.data.keyword.openwhisk_short}}-*Aktion* so eingerichtet, dass sie einen Endpunkt regelmäßig abfragt, um neue Daten abzurufen. Dieses Muster ist relativ einfach zu erstellen, aber die Häufigkeiten der Ereignisse werden durch das Polling-Intervall begrenzt.
+Im Muster "Polling" wird eine {{site.data.keyword.openwhisk_short}}-Aktion so eingerichtet, dass sie einen Endpunkt regelmäßig abfragt, um neue Daten abzurufen. Dieses Muster ist relativ einfach zu erstellen, aber die Häufigkeiten der Ereignisse werden durch das Polling-Intervall begrenzt.
 
 ### Verbindungen
 Im Muster "Verbindungen" verwaltet ein separater Service eine persistente Verbindung zu einer Feedquelle. Die verbindungsbasierte Implementierung kann mit einem Serviceendpunkt durch lange Polling-Intervalle interagieren. Es kann auch eine Push-Benachrichtigung eingerichtet werden.
@@ -56,23 +56,27 @@ Die *Feedaktion* ist eine normale {{site.data.keyword.openwhisk_short}}-*Aktion*
 * **triggerName**: Der vollständig qualifizierte Name des Auslösers, der die Ereignisse enthält, die von diesem Feed generiert werden.
 * **authKey**: Die grundlegenden Berechtigungsnachweise des {{site.data.keyword.openwhisk_short}}-Benutzers, der Eigner des Auslösers ist.
 
-Die Feedaktion kann außerdem alle anderen Parameter akzeptieren, die zum Verwalten des Feeds erforderlich sind. Die Feedaktion für Cloudant-Änderungen erwartet beispielsweise, dass Parameter mit Werten für *'dbname'*, *'username'* usw. empfangen werden.
+Die Feedaktion kann außerdem alle anderen Parameter akzeptieren, die zum Verwalten des Feeds erforderlich sind. Die Feedaktion für {{site.data.keyword.cloudant}}-Änderungen erwartet beispielsweise, dass Parameter mit Werten für *'dbname'*, *'username'* usw. empfangen werden.
 
 Wenn der Benutzer einen Auslöser über die Befehlszeilenschnittstelle (CLI) mit dem Parameter **--feed** erstellt, wird die Feedaktion mit den entsprechenden Parametern automatisch aufgerufen.
 
-Nehmen Sie zum Beispiel an, dass der Benutzer eine Bindung `mycloudant` für das Paket `cloudant` mit einem Benutzernamen und einem Kennwort als gebundene Parameter erstellt. Der Benutzer führt nun den folgenden Befehl über die CLI aus:
-
-`wsk trigger create T --feed mycloudant/changes -p dbName myTable`
+Nehmen Sie zum Beispiel an, dass der Benutzer eine Bindung **mycloudant** für das Paket `cloudant` mit einem Benutzernamen und einem Kennwort als gebundene Parameter erstellt. Der Benutzer führt nun den folgenden Befehl über die CLI aus:
+```
+ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+```
+{: pre}
 
 Dadurch wird im System eine Operation ausgeführt, die dem folgenden Befehl entspricht:
+```
+ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+```
+{: pre}
 
-`wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype`
+Die Feedaktion *changes* akzeptiert diese Parameter. Von der Feedaktion wird erwartet, dass sie die erforderliche Aktion ausführt, um einen Ereignisstrom von {{site.data.keyword.cloudant_short_notm}} einzurichten. Die Feedaktion wird durch die entsprechende Konfiguration ausgeführt, die auf den Auslöser *T* ausgerichtet ist.
 
-Die Feedaktion *changes* akzeptiert diese Parameter. Von der Feedaktion wird erwartet, dass sie die erforderliche Aktion ausführt, um einen Ereignisstrom von Cloudant einzurichten. Die Feedaktion wird durch die entsprechende Konfiguration ausgeführt, die auf den Auslöser *T* ausgerichtet ist.    
+Für den {{site.data.keyword.cloudant_short_notm}}-Feed *changes* kommuniziert die Aktion direkt mit einem *{{site.data.keyword.cloudant_short_notm}}-Auslöserservice*, der mit einer verbindungsbasierten Architektur implementiert ist.
 
-Für den Cloudant-Feed *changes* kommuniziert die Aktion direkt mit einem *Cloudant-Auslöserservice*, der mit einer verbindungsbasierten Architektur implementiert ist.
-
-Ein ähnliches Feedaktionsprotokoll wird für `wsk trigger delete`, `wsk trigger update` und `wsk trigger get` ausgeführt.    
+Ein ähnliches Feedaktionsprotokoll wird für `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` und `ibmcloud wsk trigger get` ausgeführt.
 
 ## Feeds mit Hooks implementieren
 
@@ -110,9 +114,9 @@ Da {{site.data.keyword.openwhisk_short}}-Aktionen eine kurze Laufzeit haben müs
 
 Der Provider-Service hat eine REST-API, die es der {{site.data.keyword.openwhisk_short}}-*Feedaktion* ermöglicht, den Feed zu steuern. Der Provider-Service fungiert als Proxy zwischen dem Ereignisprovider und {{site.data.keyword.openwhisk_short}}. Wenn er vom Drittanbieter Ereignisse empfängt, sendet er sie an {{site.data.keyword.openwhisk_short}}, indem er einen Auslöser aktiviert.
 
-Der Cloudant-Feed *changes* ist ein kanonisches Beispiel. Der Service `cloudanttrigger` wird automatisch installiert und vermittelt zwischen Cloudant-Benachrichtigungen über eine persistente Verbindung und {{site.data.keyword.openwhisk_short}}-Auslösern.
+Der {{site.data.keyword.cloudant_short_notm}}-Feed *changes* ist ein kanonisches Beispiel. Der Service `cloudanttrigger` wird automatisch installiert und vermittelt zwischen {{site.data.keyword.cloudant_short_notm}}-Benachrichtigungen über eine persistente Verbindung und {{site.data.keyword.openwhisk_short}}-Auslösern.
 <!-- TODO: add a reference to the open source implementation -->
 
 Der Feed *alarm* wird mithilfe eines ähnlichen Musters implementiert.
 
-Die verbindungsbasierte Architektur ist die beste Leistungsoption. Allerdings fällt ein hoher Aufwand an Operationen im Vergleich zu Polling- und Hook-Architekturen an.   
+Die verbindungsbasierte Architektur ist die beste Leistungsoption. Allerdings fällt ein hoher Aufwand an Operationen im Vergleich zu Polling- und Hook-Architekturen an.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Watson Speech to Text パッケージの使用
+# Watson: Speech to Text パッケージ
 {: #openwhisk_catalog_watson_texttospeech}
 
 `/whisk.system/watson-speechToText` パッケージを利用して、スピーチをテキストに変換するための Watson API を簡単に呼び出すことができます。
@@ -19,58 +19,60 @@ lastupdated: "2018-01-09"
 
 このパッケージには、以下のアクションが含まれています。
 
-| エンティティー| タイプ | パラメーター| 説明 |
+| エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-speechToText` | パッケージ| username、password| スピーチをテキストに変換するパッケージ|
-| `/whisk.system/watson-speechToText/speechToText` | アクション | payload、content_type、encoding、username、password、continuous、inactivity_timeout、interim_results、keywords、keywords_threshold、max_alternatives、model、timestamps、watson-token、word_alternatives_threshold、word_confidence、X-Watson-Learning-Opt-Out| 音声のテキストへの変換|
+| `/whisk.system/watson-speechToText` | パッケージ | username、password | スピーチをテキストに変換するパッケージ |
+| `/whisk.system/watson-speechToText/speechToText` | アクション | payload、content_type、encoding、username、password、continuous、inactivity_timeout、interim_results、keywords、keywords_threshold、max_alternatives、model、timestamps、watson-token、word_alternatives_threshold、word_confidence、X-Watson-Learning-Opt-Out | 音声のテキストへの変換 |
 
 **注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/speechToText` を含めて非推奨です。
 
 ## {{site.data.keyword.Bluemix_notm}} での Watson Speech to Text パッケージのセットアップ
 
-{{site.data.keyword.Bluemix_notm}} から OpenWhisk を使用している場合、{{site.data.keyword.Bluemix_notm}} Watson サービス・インスタンスのパッケージ・バインディングは OpenWhisk が自動的に作成します。
+{{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用している場合、パッケージ・バインディングは {{site.data.keyword.Bluemix_notm}} Watson サービス・インスタンス用に自動的に作成されます。
 
 1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.ng.Bluemix.net)で Watson Speech to Text のサービス・インスタンスを作成します。
-  
+
   サービス・インスタンスの名前、およびユーザーが所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
-  
-2. 名前空間でパッケージを最新表示します。最新表示により、ユーザーが作成した Watson サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
+
+2. 名前空間でパッケージを最新表示します。 最新表示により、ユーザーが作成した Watson サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  wsk package refresh
+  ibmcloud wsk package refresh
   ```
   {: pre}
-  
+
+  出力例:
   ```
   created bindings:
   Bluemix_Watson_SpeechToText_Credentials-1
   ```
-  
+  {: screen}
+
+  パッケージをリストして、バインディングが作成されたことを確認します。
   ```
-  wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
-  
+
+  出力例:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_SpeechToText_Credentials-1 private
   ```
-  
+  {: screen}
 
 ## {{site.data.keyword.Bluemix_notm}} 外部での Watson Speech to Text パッケージのセットアップ
 
-{{site.data.keyword.Bluemix_notm}} で OpenWhisk を使用していない場合、または {{site.data.keyword.Bluemix_notm}} の外部で Watson Speech to Text をセットアップしたい場合は、Watson Speech to Text サービスのパッケージ・バインディングを手動で作成する必要があります。Watson Speech to Text サービスのユーザー名とパスワードが必要になります。
+{{site.data.keyword.Bluemix_notm}} で {{site.data.keyword.openwhisk_short}} を使用していない場合、または {{site.data.keyword.Bluemix_notm}} の外部で Watson Speech to Text をセットアップしたい場合は、Watson Speech to Text サービスのパッケージ・バインディングを手動で作成する必要があります。 Watson Speech to Text サービスのユーザー名とパスワードが必要になります。
 
-- Watson Speech to Text サービス用に構成されるパッケージ・バインディングを作成します。
-  
-  ```
-  wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
-  ```
-  {: pre}
-  
+Watson Speech to Text サービス用に構成されるパッケージ・バインディングを作成します。
+```
+ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+```
+{: pre}
 
 ## スピーチをテキストに変換
 
-`/whisk.system/watson-speechToText/speechToText` アクションは、音声スピーチをテキストに変換します。パラメーターは次のとおりです。
+`/whisk.system/watson-speechToText/speechToText` アクションは、音声スピーチをテキストに変換します。 パラメーターは次のとおりです。
 
 - `username`: Watson API ユーザー名。
 - `password`: Watson API パスワード。
@@ -89,17 +91,17 @@ lastupdated: "2018-01-09"
 - `word_alternatives_threshold`: 可能な単語の代替として仮説を識別するための下限である信頼値。
 - `word_confidence`: 単語ごとに信頼度の指標を 0 から 1 の範囲で返すかどうかを示します。
 - `X-Watson-Learning-Opt-Out`: 呼び出しのデータ収集をオプトアウトするかどうかを示します。
- 
 
-- パッケージ・バインディング内の `speechToText` アクションを呼び出して、エンコードされた音声を変換します。
-  ```
-  wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
-  ```
-  {: pre}
+パッケージ・バインディング内の **speechToText** アクションを呼び出して、エンコードされた音声を変換します。
+```
+ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+```
+{: pre}
 
-  ```json
-  {
-    "data": "Hello Watson"
+出力例:
+```
+{
+  "data": "Hello Watson"
   }
-  ```
-  
+```
+{: screen}

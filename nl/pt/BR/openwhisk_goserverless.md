@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Integração do OpenWhisk com Serverless Framework
+# Serverless Framework
 {: #openwhisk_goserverless}
 
 O [Serverless Framework](https://serverless.com/) é uma estrutura de software livre

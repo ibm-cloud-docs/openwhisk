@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -11,120 +11,96 @@ lastupdated: "2018-02-14"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.openwhisk_short}} の概説
+# はじめに
+{: #index}
 
-{{site.data.keyword.openwhisk}} は、サーバーレス・コンピューティングや FaaS (Function as a Service) とも呼ばれる、イベント・ドリブンの分散コンピュート・サービスです。{{site.data.keyword.openwhisk_short}} は、イベントに応えて、または、Web アプリやモバイル・アプリからの HTTP を介した直接起動に応えて、アプリケーション・ロジックを実行します。イベントは、{{site.data.keyword.Bluemix}} サービス (Cloudant など) および外部ソースから提供できます。開発者は、アプリケーション・ロジックの作成や、オンデマンドで実行されるアクションの作成に集中できます。
-この新しいパラダイムの主な利点は、サーバーを明示的にプロビジョンしないことです。そのため、自動スケーリング、高可用性、更新、保守、およびサーバーが実行されているが要求を処理していないときのプロセッサー時間のコストについて心配する必要がなくなります。
-HTTP 呼び出し、データベース状態変更、または、コードの実行をトリガーするその他のタイプのイベントがあると、コードが実行されます。
-課金は実行時間のミリ秒単位で行われ (最も近い 100 ms に切り上げ)、VM が有益な作業をしているかどうかに関係なく VM 使用の時間単位で課金されるのではありません。
+{{site.data.keyword.openwhisk}} は、Apache OpenWhisk に基づいた、多言語 Functions-as-a-Service (FaaS) プログラミング・プラットフォームです。{{site.data.keyword.openwhisk_short}} は、アクションと呼ばれる軽量のコードを開発者が作成できるようにします。アクションは、アプリケーション・ロジックをスケーラブルに実行します。アクションは、Web アプリケーションまたはモバイル・アプリケーションからの HTTP ベースの API 要求に基づいてオンデマンドで発生するようにセットアップしたり、{{site.data.keyword.Bluemix_notm}} サービスおよびサード・パーティー・イベントからのイベント・ベースの要求への応答として自動的に発生するようにセットアップしたりできます。
 {: shortdesc}
 
-このプログラミング・モデルは、マイクロサービス、モバイル、IoT、およびその他の多くのアプリケーションに最適です。はじめから備わっている自動スケーリングおよびロード・バランシングがすぐに使用可能であり、クラスター、ロード・バランサー、HTTP プラグインなどを手動で構成する必要はありません。{{site.data.keyword.openwhisk}} で実行する場合、ゼロ管理のメリットも享受できます。つまり、すべてのハードウェア、ネットワーキング、およびソフトウェアが IBM によって保守されます。必要な作業は、実行したいコードを用意し、それを {{site.data.keyword.openwhisk}} に渡すことだけです。残りはまるで魔法のように完了します。サーバーレス・プログラミング・モデルについての優れた概説が、[Martin Fowler のブログ](https://martinfowler.com/articles/serverless.html)にあります。
+{{site.data.keyword.openwhisk_short}} は、サーバーレスのイベント・ドリブン・プラットフォームであるため、サーバーを明示的にプロビジョンする必要はありません。マイクロサービス、モバイル、IoT、およびその他多くのアプリケーションに取り組んでいる開発者は、自動スケーリング、高可用性、更新、および保守などの心配をする代わりに、アプリケーション・ロジックの作成に集中できます。すぐに使用可能な自動スケーリングやロード・バランシングが備わっているということは、クラスターや http プラグインなどを手動で構成する必要がないということです。ハードウェア、ネットワーク、およびソフトウェアの管理はすべて IBM が行います。ユーザーが行うのは、コードを用意することだけです。
 
-[Apache OpenWhisk ソース・コード](https://github.com/openwhisk/openwhisk)を入手して、自身でシステムを実行することもできます。
+いずれかのオプションをクリックして、開始します。
 
-{{site.data.keyword.openwhisk_short}} の動作について詳しくは、『[{{site.data.keyword.openwhisk_short}} の概要](./openwhisk_about.html)』を参照してください。
+<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="アイコンをクリックして、すぐに {{site.data.keyword.openswhisk_short}} を開始します。" style="width:440px;" />
+<map name="home_map" id="home_map">
+<area href="#openwhisk_start_hello_world" alt="アクションの作成" title="アクションの作成" shape="rect" coords="-7, -8, 108, 211" />
+<area href="bluemix_cli.html" alt="{{site.data.keyword.openwhisk_short}} CLI プラグインのセットアップ" title="{{site.data.keyword.openwhisk_short}} CLI プラグインのセットアップ" shape="rect" coords="155, -1, 289, 210" />
+<area href="openwhisk_about.html" alt="プラットフォーム・アーキテクチャーの確認" title="プラットフォーム・アーキテクチャーの確認" shape="rect" coords="326, -10, 448, 218" />
+</map>
 
-ブラウザーおよび CLI を使用して、{{site.data.keyword.openwhisk_short}} アプリケーションを開発できます。
-この 2 つには、類似したアプリケーション開発機能がありますが、CLI では、デプロイメントおよび操作をより詳細に制御できます。
 
-## ブラウザーで開発
-{: #openwhisk_start_editor}
-
-[ブラウザー](https://console.{DomainName}/openwhisk/actions)で {{site.data.keyword.openwhisk_short}} を試して、アクションの作成、トリガーを使用したアクションの自動化、パブリック・パッケージの探索を行ってください。{{site.data.keyword.openwhisk_short}} ユーザー・インターフェースのクイック・ツアーについては、[詳細](https://console.{DomainName}/openwhisk/learn)ページを参照してください。
-
-## CLI を使用して開発
-{: #openwhisk_start_configure_cli}
-
-{{site.data.keyword.openwhisk_short}} コマンド・ライン・インターフェース (CLI) を使用して、名前空間および許可キーをセットアップできます。
-[「CLI の構成」](https://console.{DomainName}/openwhisk/cli)に移動し、手順に従ってインストールしてください。
-
-## 概要
-{: #openwhisk_start_overview}
-- [OpenWhisk の動作](./openwhisk_about.html)
-- [サーバーレス・アプリケーションの一般的なユース・ケース](./openwhisk_use_cases.html)
-- [OpenWhisk CLI のセットアップと使用](./openwhisk_cli.html)
-- [iOS アプリからの OpenWhisk の使用](./openwhisk_mobile_sdk.html)
-- [記事、サンプル、およびチュートリアル](https://github.com/openwhisk/openwhisk-external-resources)
-- [Apache OpenWhisk の FAQ](http://openwhisk.org/faq)
-- [料金](https://console.ng.bluemix.net/openwhisk/learn/pricing)
-
-## プログラミング・モデル
-{: #openwhisk_start_programming}
-- [システムの詳細](./openwhisk_reference.html)
-- [OpenWhisk 提供サービスのカタログ](./openwhisk_catalog.html)
-- [アクション](./openwhisk_actions.html)
-- [トリガーおよびルール](./openwhisk_triggers_rules.html)
-- [フィード](./openwhisk_feeds.html)
-- [パッケージ](./openwhisk_packages.html)
-- [アノテーション](./openwhisk_annotations.html)
-- [Web アクション](./openwhisk_webactions.html)
-- [API ゲートウェイ](./openwhisk_apigateway.html)
-- [エンティティー名](./openwhisk_reference.html#openwhisk_entities)
-- [アクションの意味](./openwhisk_reference.html#openwhisk_semantics)
-- [制限](./openwhisk_reference.html#openwhisk_syslimits)
-
-## {{site.data.keyword.openwhisk_short}} Hello World 例
+## GUI でのアクションの作成
 {: #openwhisk_start_hello_world}
-{{site.data.keyword.openwhisk_short}} の入門として、まず次の JavaScript コード例を試してみてください。
 
-```javascript
-/**
- * Hello world as an OpenWhisk action.
- */
+{{site.data.keyword.openwhisk_short}} の入門として、HelloWorld クイック・スタート・テンプレートを使用してみてください。
+
+1.  [{{site.data.keyword.Bluemix_notm}} **カタログ** ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/?category=whisk) の**「Functions」**カテゴリーで、「Functions」をクリックします。
+
+2. **「作成の開始」**>**「クイック・スタート・テンプレート (Quickstart templates)」**をクリックし、**「Hello World」**テンプレートを選択します。
+
+5. アクションのコードを確認し、**「デプロイ」**をクリックしてアクションを作成します。これで、`hello` というアクションができました。
+
+6. **「起動」**をクリックしてアクションを実行します。アクションを手動で呼び出すと、アクションで定義されたアプリケーション・ロジックが実行されます。**「アクティベーション (Activations)」**パネルに、アクションによって生成された「Hello stranger!」という挨拶が表示されます。
+
+おつかれさまでした。最初のアクションの作成が終了しました。このアクションをクリーンアップするには、オーバーフロー・メニューをクリックし、**「アクションの削除」**を選択します。
+
+## CLI でのアクションの作成
+{: #openwhisk_start_hello_world_cli}
+
+HelloWorld JavaScript サンプル・コードを使用して、素早く稼働させることができます。この例では、基本的な `hello` アクションを作成します。このアクションを手動で呼び出して、アプリケーション・ロジックを実行できます。
+
+1. [{{site.data.keyword.openwhisk_short}} CLI プラグインをセットアップします](bluemix_cli.html)。
+
+2. 以下のコードを **hello.js** という名前のファイルに保存します。
+
+    ```javascript
+    /**
+     * Hello world as an OpenWhisk action.
+     */
 function main(params) {
-    var name = params.name || 'World';
+        var name = params.name || 'World';
     return {payload:  'Hello, ' + name + '!'};
-}
-```
-{: codeblock}
-
-この例を使用するには、以下の手順を実行してください。
-
-1. コードをファイルに保存します。例えば、*hello.js* などです。
-
-2. {{site.data.keyword.openwhisk_short}} CLI コマンド・ラインで、以下のコマンドを入力してアクションを作成します。
+    }
     ```
-    wsk action create hello hello.js
+    {: codeblock}
+
+3. `hello` アクションを作成します。
+    ```
+    ibmcloud wsk action create hello hello.js
     ```
     {: pre}
 
-3. 次に、以下のコマンドを入力して、アクションを呼び出します。
+4. パラメーターを何も渡さずにアクションを呼び出します。
     ```
-    wsk action invoke hello --blocking --result
+    ibmcloud wsk action invoke hello --blocking --result
     ```
     {: pre}  
 
-    このコマンドの出力は以下のとおりです。
-    ```json
+    出力:
+    ```
     {
         "payload": "Hello, World!"
     }
     ```
-    
+    {: screen}
+
+5. アプリケーション・ロジックをテストするために、name パラメーターを渡して再度アクションを呼び出します。
     ```
-    wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud wsk action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
-    このコマンドの出力は以下のとおりです。
-    ```json
+    出力:
+    ```
     {
         "payload": "Hello, Fred!"
     }
     ```
+    {: screen}
 
-また、{{site.data.keyword.openwhisk_short}} のイベント・ドリブン機能を使用して、イベントに対する応答としてこのアクションを呼び出すこともできます。[アラーム・サービスの例](./openwhisk_packages.html#openwhisk_package_trigger)に従って、定期的なイベントが生成されるたびに `hello` アクションを呼び出すようにイベント・ソースを構成します。
+おつかれさまでした。最初のアクションの作成が終了しました。このアクションをクリーンアップするには、`ibmcloud wsk action delete hello` を実行します。
 
-[OpenWhisk のチュートリアルおよびサンプルの全リストがここにあります](https://github.com/openwhisk/openwhisk-external-resources#sample-applications)。サンプルのほかに、記事、プレゼンテーション、ポッドキャスト、ビデオ、その他の {{site.data.keyword.openwhisk_short}} 関連リソースへのリンクが、このリポジトリーに含まれます。
-
-## API リファレンス
-{: #openwhisk_start_api notoc}
-* [REST API の資料](./openwhisk_reference.html#openwhisk_ref_restapi)
-* [REST API](https://console.{DomainName}/apidocs/98)
-
-## 関連リンク
-{: #general notoc}
-* [ディスカバー: {{site.data.keyword.openwhisk_short}}](http://www.ibm.com/cloud-computing/bluemix/openwhisk/)
-* [IBM developerWorks の {{site.data.keyword.openwhisk_short}}](https://developer.ibm.com/openwhisk/)
-* [Apache {{site.data.keyword.openwhisk_short}} プロジェクト Web サイト](http://openwhisk.org)
+**次の作業**
+* [定期的なイベントが生成されるたびに **hello** アクションを呼び出すアラーム・サービスの例を試してみる。](./openwhisk_packages.html#openwhisk_package_trigger)
+* [サーバーレス REST API を作成する。](openwhisk_apigateway.html)
+* [Cloudant など、{{site.data.keyword.Bluemix_notm}} サービス用にプリインストールされているアクション・パッケージを確認する。](cloudant_actions.html)

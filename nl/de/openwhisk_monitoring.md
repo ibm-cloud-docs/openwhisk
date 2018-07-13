@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -12,9 +12,10 @@ lastupdated: "2018-01-09"
 {:tip: .tip}
 {:pre: .pre}
 
-# Aktivität mit dem {{site.data.keyword.openwhisk_short}}-Dashboard überwachen
+# Aktivität mit dem Dashboard überwachen
+{: #openwhisk_monitoring}
 
-Das [{{site.data.keyword.openwhisk}}-Dashboard](https://{DomainName}/openwhisk/dashboard/) stellt eine grafische Zusammenfassung Ihrer Aktivität bereit. Verwenden Sie das Dashboard, um die Leistung und den Status Ihrer {{site.data.keyword.openwhisk_short}}-Aktionen zu ermitteln.
+Das [{{site.data.keyword.openwhisk}}-Dashboard](https://console.bluemix.net/openwhisk/dashboard/) stellt eine grafische Zusammenfassung Ihrer Aktivität bereit. Verwenden Sie das Dashboard, um die Leistung und den Status Ihrer {{site.data.keyword.openwhisk_short}}-Aktionen zu ermitteln.
 {:shortdesc}
 
 Sie können jederzeit auf die Option **Erneut laden** klicken, um das Dashboard mit den neuesten Aktivierungsprotokolldaten zu aktualisieren.
@@ -45,12 +46,10 @@ Die Ansicht **Aktivitätenhistogramm** zeigt ein horizontales Diagramm an, um di
 Diese Ansicht zeigt eine formatierte Version des Aktivierungsprotokolls an. Sie zeigt die Details zu jeder Aktivierung an, prüft jedoch einmal pro Minute durch Polling auf neue Aktivierungen. Klicken Sie auf eine Aktion, um ein detailliertes Protokoll anzuzeigen.
 
 Wenn Sie Ausgabe, die im Aktivitätenprotokoll angezeigt wird, über die CLI abrufen wollen, verwenden Sie den folgenden Befehl:
-{: tip}
-
-  ```
-  wsk activation poll
-  ```
-  {: pre}
+```
+ibmcloud wsk activation poll
+```
+{: pre}
 
 ## Filteroptionen
 {: #filtering}

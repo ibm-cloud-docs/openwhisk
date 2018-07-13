@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -31,26 +31,24 @@ In den folgenden Abschnitten finden Sie Informationen dazu, wie Sie Aktionen in 
 * [Beliebige ausführbare Dateien](#creating-actions-arbitrary)
 
 Außerdem enthalten die folgenden Abschnitte wissenswerte Informationen:
-* [Aktionsausgaben beobachten](#watching-action-output)
-* [Unterstützung für große Anwendungen](#large-app-support)
+* [Aktionsausgabe überwachen](#monitor-action-output)
+* [Aktionen abrufen](#getting-actions)
 * [Aktionen auflisten](#listing-actions)
 * [Aktionen löschen](#deleting-actions)
+* [Unterstützung für große Anwendungen](#large-app-support)
 * [In der Aktionskomponente auf Aktionsmetadaten zugreifen](#accessing-action-metadata-within-the-action-body)
-
 
 ## JavaScript-Aktionen erstellen und aufrufen
 {: #creating-and-invoking-javascript-actions}
 
 In den folgenden Abschnitten werden Sie in die Arbeit mit Aktionen in JavaScript eingeführt. Sie beginnen mit dem Erstellen und Aufrufen einer einfachen Aktion. Anschließend werden Sie einer Aktion Parameter hinzufügen und diese Aktion mit Parametern aufrufen. Als Nächstes folgt das Festlegen von Standardparametern und das Aufrufen dieser Parameter. Danach erstellen Sie asynchrone Aktionen und zum Schluss arbeiten Sie mit Aktionssequenzen.
 
-
 ### Einfache JavaScript-Aktion erstellen und aufrufen
 {: #openwhisk_single_action_js}
 
 Sehen Sie sich die folgenden Schritte und Beispiele an, um Ihre erste JavaScript-Aktion zu erstellen.
 
-1. Erstellen Sie eine JavaScript-Datei mit dem folgenden Inhalt. Für dieses Beispiel wird der Dateiname 'hello.js' verwendet.
-
+1. Erstellen Sie eine JavaScript-Datei mit dem folgenden Inhalt. Geben Sie für dieses Beispiel die Datei **hello.js** an.
   ```javascript
   function main() {
       return {payload: 'Hello world'};
@@ -58,48 +56,57 @@ Sehen Sie sich die folgenden Schritte und Beispiele an, um Ihre erste JavaScript
   ```
   {: codeblock}
 
-  Die JavaScript-Datei könnte noch weitere Funktionen enthalten. Allerdings muss nach allgemeiner Konvention eine Funktion mit dem Namen `main` vorhanden sein, um den Einstiegspunkt für die Aktion bereitzustellen.
+  Die JavaScript-Datei könnte noch weitere Funktionen enthalten. Allerdings muss nach allgemeiner Konvention eine Funktion mit dem Namen **main** vorhanden sein, um den Einstiegspunkt für die Aktion bereitzustellen.
 
-2. Erstellen Sie eine Aktion aus der folgenden JavaScript-Funktion. Für dieses Beispiel heißt die Aktion 'hello'.
-
+2. Erstellen Sie eine Aktion aus der folgenden JavaScript-Funktion. Für dieses Beispiel heißt die Aktion **hello**.
   ```
-  wsk action create hello hello.js
+  ibmcloud wsk action create hello hello.js
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   ok: created action hello
   ```
-  Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.js`-Quellendateien wird die Aktion in einer Laufzeit mit Node.js 6 ausgeführt. Sie können auch eine Aktion erstellen, die mit Node.js 8 ausgeführt wird, indem Sie den Parameter `--kind nodejs:8` explizit angeben. Weitere Informationen finden unter den Hinweisen zum Unterschied von Node.js 6 und 8 in der [Referenz](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
-  
-3. Listen Sie die Aktionen auf, die Sie erstellt haben:
+  {: screen}
 
+  Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.js`-Quellendateien wird die Aktion in einer Laufzeit mit Node.js 6 ausgeführt. Sie können auch eine Aktion erstellen, die mit Node.js 8 ausgeführt wird, indem Sie den Parameter `--kind nodejs:8` explizit angeben. Weitere Informationen finden unter den Hinweisen zum Unterschied von Node.js 6 und 8 in der [Referenz](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
+
+3. Listen Sie die Aktionen auf, die Sie erstellt haben:
   ```
-  wsk action list
+  ibmcloud wsk action list
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   actions
   hello       private
   ```
+  {: screen}
 
-  Die erstellte Aktion `hello` wird angezeigt.
+  Die erstellte Aktion **hello** wird angezeigt.
 
-4. Nach dem Erstellen der Aktion können Sie sie in der Cloud in OpenWhisk mit dem Befehl 'invoke' ausführen. Sie können Aktionen mit einem blockierenden (Flag *blocking*, d. h. Anforderung/Antwort) oder mit einem nicht blockierenden (Flag *non-blocking*) Aufruf ausführen. Eine Anforderung für einen blockierenden Aufruf _wartet_, bis das Aktivierungsergebnis verfügbar ist. Der Wartezeitraum beträgt weniger als 60 Sekunden oder das [Zeitlimit](./openwhisk_reference.html#openwhisk_syslimits) der Aktion, je nachdem, welcher Wert kürzer ist. Das Ergebnis der Aktivierung wird zurückgegeben, wenn es innerhalb des Wartezeitraums verfügbar ist. Anderenfalls setzt die Aktivierung die Verarbeitung im System fort und eine Aktivierungs-ID wird zurückgegeben, sodass das Ergebnis wie bei nicht blockierenden Anforderungen später geprüft werden kann (weitere Tipps zur Überwachung von Aktivierungen finden Sie [hier](#watching-action-output)).
+4. Nach dem Erstellen der Aktion können Sie sie in der Cloud mit dem Befehl **invoke** ausführen. Sie können Aktionen mit einem blockierenden (Flag *blocking*, d. h. Anforderung/Antwort) oder mit einem nicht blockierenden (Flag *non-blocking*) Aufruf ausführen. Eine Anforderung für einen blockierenden Aufruf _wartet_, bis das Aktivierungsergebnis verfügbar ist. Der Wartezeitraum beträgt weniger als 60 Sekunden oder das [Zeitlimit](./openwhisk_reference.html#openwhisk_syslimits) der Aktion, je nachdem, welcher Wert kürzer ist. Das Ergebnis der Aktivierung wird zurückgegeben, wenn es innerhalb des Wartezeitraums verfügbar ist. Anderenfalls setzt die Aktivierung die Verarbeitung im System fort und eine Aktivierungs-ID wird zurückgegeben, sodass das Ergebnis wie bei nicht blockierenden Anforderungen später geprüft werden kann (weitere Tipps zur Überwachung von Aktivierungen finden Sie [hier](#monitor-action-output)).
 
   Im folgenden Beispiel wird der Blockierungsparameter `--blocking` verwendet:
-
   ```
-  wsk action invoke --blocking hello
+  ibmcloud wsk action invoke --blocking hello
   ```
   {: pre}
 
+  Der Befehl gibt zwei wichtige Informationen aus:
+  * Die Aktivierungs-ID (`44794bd6aab74415b4e42a308d880e5b`)
+  * Das Aufrufergebnis, wenn es innerhalb des erwarteten Wartezeitraums verfügbar ist
+
+  **Die Ausgabe zeigt die Aktivierungs-ID an:**
   ```
   ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
   ```
+  {: screen}
 
-  ```json
+  **Aufrufergebnis:**
+  ```
   {
       "result": {
           "payload": "Hello world"
@@ -108,253 +115,60 @@ Sehen Sie sich die folgenden Schritte und Beispiele an, um Ihre erste JavaScript
       "success": true
   }
   ```
+  {: screen}
 
-  Der Befehl gibt zwei wichtige Informationen aus:
-  * Die Aktivierungs-ID (`44794bd6aab74415b4e42a308d880e5b`)
-  * Das Aufrufergebnis, wenn es innerhalb des erwarteten Wartezeitraums verfügbar ist
+  Das Ergebnis ist in diesem Fall die Zeichenfolge `Hello world`, die von der JavaScript-Funktion zurückgegeben wird. Mithilfe der Aktivierungs-ID können später die Protokolle oder das Ergebnis des Aufrufs abgerufen werden.
 
-  Das Ergebnis ist in diesem Fall die Zeichenfolge `Hello world`, die von der JavaScript-Funktion zurückgegeben wird. Mithilfe der Aktivierungs-ID können später die Protokolle oder das Ergebnis des Aufrufs abgerufen werden.  
+5. Wenn Sie das Aktionsergebnis nicht sofort benötigen, können Sie das Flag `--blocking` weglassen und einen nicht blockierenden Aufruf ausführen. Später können Sie das Ergebnis über die Aktivierungs-ID abrufen.
 
-5. Wenn Sie das Aktionsergebnis nicht sofort benötigen, können Sie das Flag `--blocking` weglassen und einen nicht blockierenden Aufruf ausführen. Später können Sie das Ergebnis über die Aktivierungs-ID abrufen. Beispiel:
-
+  Sehen Sie sich die folgenden Beispiele an:
   ```
-  wsk action invoke hello
+  ibmcloud wsk action invoke hello
   ```
   {: pre}
 
+  **Befehlsausgabe:**
   ```
   ok: invoked hello with id 6bf1f670ee614a7eb5af3c9fde813043
   ```
+  {: screen}
 
+  Da Sie die Aktivierungs-ID nun kennen, können Sie sie angeben, um das Aktionsergebnis abzurufen:
   ```
-  wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
-  ```json
+  **Aktionsergebnis:**
+  ```
   {
       "payload": "Hello world"
   }
   ```
+  {: screen}
 
 6. Wenn Sie vergessen, die Aktivierungs-ID zu notieren, können Sie eine Liste der Aktivierungen in der Reihenfolge von der jüngsten bis zur ältesten abrufen. Führen Sie den folgenden Befehl aus, um eine Liste Ihrer Aktivierungen abzurufen:
 
+  **Auflisten von Aktivierungen:**
   ```
-  wsk activation list
+  ibmcloud wsk activation list
   ```
   {: pre}
 
+  Ausgabe:
   ```
   activations
   44794bd6aab74415b4e42a308d880e5b         hello
   6bf1f670ee614a7eb5af3c9fde813043         hello
   ```
-
-### Parameter an eine Aktion übergeben
-{: #openwhisk_pass_params}
-
-Beim Aufruf können Parameter an die Aktion übergeben werden.
-
-1. Verwenden Sie Parameter in der Aktion. Aktualisieren Sie die Datei 'hello.js' zum Beispiel mit dem folgenden Inhalt:
-
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
-
-  Die Eingabeparameter werden in Form eines JSON-Objektparameters an die Funktion `main` übergeben. Beachten Sie, wie die Parameter `name` und `place` in diesem Beispiel aus dem Objekt `params` abgerufen werden.
-
-2. Aktualisieren Sie die Aktion `hello` und rufen Sie sie auf, `name` und `place` übergeben. Beispiel:
-
-  ```
-  wsk action update hello hello.js
-  ```
-  {: pre}
-
-  Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern müssen, beachten Sie, dass durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt werden, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Nehmen Sie an, neben dem Parameter `__bx_creds` sind noch zwei Parameter mit den Schlüsseln 'key1' und 'key2' vorhanden. Wenn Sie einen Befehl `action update` mit `-p key1 neuer-wert -p key2 neuer-wert` ausführen, den Parameter `__bx_creds` jedoch nicht angeben, ist der Parameter `__bx_creds` nach erfolgreicher Ausführung des Befehls `action update` nicht mehr vorhanden. In diesem Fall müssen Sie die Serviceberechtigungsnachweise erneut binden. Dies ist eine bekannte Einschränkung, für die es keine Ausweichlösung gibt.
-  {: tip}  
-
-3.  Parameter können in der Befehlszeile explizit angegeben oder in einer Datei bereitgestellt werden, die die gewünschten Parameter enthält.
-
-  Zur Übergabe von Parametern direkt über die Befehlszeile geben Sie ein Schlüssel/Wert-Paar für das Flag `--param` an:
-  ```
-  wsk action invoke --result hello --param name Bernie --param place Vermont
-  ```
-  {: pre}
-
-  Wenn Sie eine Datei mit Parameterwerten verwenden wollen, erstellen Sie eine Datei, die die Parameter im JSON-Format enthält. Der Dateiname muss anschließend an das Flag `param-file` übergeben werden:
-
-  Sehen Sie sich die folgende Beispielparameterdatei `parameters.json` an:
-  ```json
-  {
-      "name": "Bernie",
-      "place": "Vermont"
-  }
-  ```
-
-  ```
-  wsk action invoke --result hello --param-file parameters.json
-  ```
-  {: pre}
-
-  ```json
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-
-  Beachten Sie die Verwendung der Option `--result`: Sie bewirkt einen blockierenden Aufruf, bei dem die Befehlszeilenschnittstelle auf den Abschluss der Aktivierung wartet und dann nur das Ergebnis anzeigt. Aus Gründen des Bedienungskomforts kann diese Option ohne die Option `--blocking` verwendet werden, die automatisch abgeleitet wird.
-
-  Darüber hinaus gilt: Wenn die in der Befehlszeile angegebenen Parameterwerte gültige JSON-Werte sind, dann werden sie analysiert und als strukturiertes Objekt an Ihre Aktion gesendet. Aktualisieren Sie die Datei 'action' zum Beispiel wie folgt:
-
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
-  }
-  ```
-  {: codeblock}
-
-  Jetzt erwartet die Aktion, dass ein einzelner Parameter `person` die Felder `name` und `place` aufweist. Rufen Sie als Nächstes die Aktion mit einem einzelnen Parameter `person` auf, der ein gültiger JSON-Wert ist, wie im folgenden Beispiel:
-
-  ```
-  wsk action invoke --result hello -p person '{"name": "Bernie", "place": "Vermont"}'
-  ```
-  {: pre}
-
-  Das Ergebnis ist dasselbe, weil die CLI automatisch den Parameter `person` in das strukturierte Objekt analysiert, das jetzt von der Aktion erwartet wird:
-  ```json
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-
-### Standardparameter festlegen
-{: #openwhisk_binding_actions}
-
-Aktionen können mit mehreren benannten Parameter aufgerufen werden. Die Aktion `hello` aus dem vorherigen Beispiel erwartet beispielsweise zwei Parameter: den Namen (*name*) einer Person und den Ort (*place*), aus dem sie kommt.
-
-Anstatt nun jedes Mal alle Parameter an eine Aktion zu übergeben, können Sie bestimmte Parameter binden. Im folgenden Beispiel wird der Parameter *place* gebunden, sodass die Aktion mit dem Standardwert "Vermont" arbeitet:
-
-1. Aktualisieren Sie die Aktion mit der Option `--param`, um Parameterwerte zu binden, oder durch die Übergabe einer Datei mit den Parametern an `--param-file`.
-
-  Zur expliziten Angabe von Standardparametern über die Befehlszeile übergeben Sie ein Schlüssel/Wert-Paar an das Flag `param`:
-
-  ```
-  wsk action update hello --param place Vermont
-  ```
-  {: pre}
-
-  Zur Übergabe von Parametern aus einer Datei muss eine Datei erstellt werden, die den gewünschten Inhalt im JSON-Format enthält. Anschließend muss der Dateiname an das Flag `-param-file` übergeben werden:
-
-  Sehen Sie sich die folgende Beispielparameterdatei `parameters.json` an:
-  ```json
-  {
-      "place": "Vermont"
-  }
-  ```
-  {: codeblock}
-
-  ```
-  wsk action update hello --param-file parameters.json
-  ```
-  {: pre}
-
-2. Rufen Sie die Aktion auf, indem Sie diesmal nur den Parameter `name` übergeben.
-
-  ```
-  wsk action invoke --result hello --param name Bernie
-  ```
-  {: pre}
-
-  ```json
-  {
-      "payload": "Hello, Bernie from Vermont"
-  }
-  ```
-
-  Sie stellen fest, dass Sie den Parameter "place" beim Aufruf der Aktion nicht angeben mussten. Gebundene Parameter können weiterhin durch eine entsprechende Angabe eines Parameterwerts im Aufruf überschrieben werden.
-
-3. Rufen Sie die Aktion auf, indem Sie Werte für `name` und `place` übergeben. Der letztere Wert überschreibt den Wert, der an die Aktion gebunden ist.
-
-  Verwendung des Flags `--param`:
-
-  ```
-  wsk action invoke --result hello --param name Bernie --param place "Washington, DC"
-  ```
-  {: pre}
-
-  Verwendung des Flags `--param-file`:
-
-  Datei: parameters.json:
-  ```json
-  {
-    "name": "Bernie",
-    "place": "Vermont"
-  }
-  ```
-  {: codeblock}
-  ```
-  wsk action invoke --result hello --param-file parameters.json
-  ```
-  {: pre}
-
-  ```json
-  {  
-      "payload": "Hello, Bernie from Washington, DC"
-  }
-  ```
-
-### Aktions-URL abrufen
-
-Eine Aktion kann über die REST-Schnittstelle durch eine HTTPS-Anforderung aufgerufen werden. Führen Sie den folgenden Befehl aus, um eine Aktions-URL abzurufen:
-
-```
-wsk action get actionName --url
-```
-{: pre}
-
-```
-ok: got action actionName
-https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
-```
-
-Beim Aufruf einer Aktion durch eine HTTPS-Anforderung muss die Authentifizierung angegeben werden. Weitere Informationen zu Aktionsaufrufen
-über die REST-Schnittstelle finden Sie unter [REST-APIs mit OpenWhisk verwenden](./openwhisk_rest_api.html#openwhisk_rest_api).
-{: tip}
-
-### Aktionscode speichern
-
-Code, der einer vorhandenen Aktion zugeordnet ist, wird abgerufen und lokal gespeichert. Das Speichern wird für alle Aktionen außer Sequenzen und Docker-Aktionen ausgeführt. Wenn Aktionscode in einer Datei gespeichert wird, wird der Code im aktuellen Arbeitsverzeichnis gespeichert und der Pfad der gespeicherten Datei angezeigt.
-
-1. Speichern Sie Aktionscode unter einem Dateinamen, der dem Namen einer vorhandenen Aktion entspricht. Es wird eine Dateierweiterung verwendet, die der Art der verwendeten Aktion entspricht, oder es wird der Erweiterungstyp `.zip` für Aktionscode verwendet, der sich in einer ZIP-Datei befindet.
-  ```
-  wsk action get actionName --save
-  ```
-  {: pre}
-
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/actionName.js
-  ```
-
-2. Anstatt den Datennamen und die Erweiterung des gespeicherten Codes durch die Befehlszeilenschnittstelle bestimmen zu lassen, kann ein angepasster Dateiname und eine angepasste Erweiterung durch das Flag `--save-as` angegeben werden.
-  ```
-  wsk action get actionName --save-as codeFile.js
-  ```
-  {: pre}
-
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/codeFile.js
-  ```
+  {: screen}
 
 ### Asynchrone Aktionen erstellen
 {: #openwhisk_asynchrony_js}
 
 JavaScript-Funktionen, die asynchron ausgeführt werden, können das Aktivierungsergebnis zurückgeben, nachdem die Funktion `main` die Steuerung zurückgegeben hat, indem sie ein Promise-Objekt in Ihrer Aktion zurückgeben.
 
-1. Speichern Sie den folgenden Inhalt in einer Datei mit dem Namen `asyncAction.js`.
-
+1. Speichern Sie den folgenden Inhalt in einer Datei mit dem Namen **asyncAction.js**.
   ```javascript
   function main(args) {
        return new Promise(function(resolve, reject) {
@@ -370,54 +184,63 @@ JavaScript-Funktionen, die asynchron ausgeführt werden, können das Aktivierung
 
   Die JavaScript-Funktion `setTimeout()` wartet in diesem Fall 2 Sekunden ab, bevor sie die Callback-Funktion aufruft, die den asynchronen Code darstellt, und geht dann in die Callback-Funktion des Promise-Objekts hinein.
 
-  Der Callback-Funktion des Promise-Objekts verwendet zwei Argumente ('resolve' und 'reject'), die beide Funktionen sind. Der Aufruf von `resolve()` erfüllt das Promise-Objekt und weist darauf hin, dass die Aktivierung normal abgeschlossen wird.
+  Der Callback-Funktion des Promise-Objekts verwendet zwei Argumente ('resolve' und 'reject'), die beide Funktionen sind.  Der Aufruf von `resolve()` erfüllt das Promise-Objekt und weist darauf hin, dass die Aktivierung normal abgeschlossen wird.
 
   Mit einem Aufruf von `reject()` kann das Promise-Objekt zurückgewiesen und signalisiert werden, dass die Aktivierung abnormal beendet wird.
 
-2. Führen Sie die folgenden Befehle aus, um die Aktion zu erstellen und aufzurufen:
+2. Führen Sie die folgenden Befehle aus, um die Aktion zu erstellen und aufzurufen.
 
+  Erstellen Sie eine Aktion mit dem Namen **asyncAction**:
   ```
-  wsk action create asyncAction asyncAction.js
+  ibmcloud wsk action create asyncAction asyncAction.js
   ```
   {: pre}
 
+  Rufen Sie die Aktion auf:
   ```
-  wsk action invoke --result asyncAction
+  ibmcloud wsk action invoke --result asyncAction
   ```
   {: pre}
 
-  ```json
+  Beispielausgabe:
+  ```
   {
       "done": true
   }
   ```
+  {: screen}
 
   Beachten Sie, dass Sie einen blockierenden Aufruf einer asynchronen Aktion ausgeführt haben.
 
-3. Rufen Sie das Aktivierungsprotokoll ab, um zu prüfen, wie lange die Ausführung der Aktivierung gedauert hat:
+3. Rufen Sie das Aktivierungsprotokoll ab, um zu prüfen, wie lange die Ausführung der Aktivierung gedauert hat.
 
+  Um dies zu tun, müssen Sie zuerst die Aktion zum Abrufen der Aktivierungs-ID auflisten:
   ```
-  wsk activation list --limit 1 asyncAction
+  ibmcloud wsk activation list --limit 1 asyncAction
   ```
   {: pre}
-  
+
+  Beispielausgabe:
   ```
   activations
   b066ca51e68c4d3382df2d8033265db0             asyncAction
   ```
+  {: screen}
 
+  Rufen Sie anschließend die Aktivierungsprotokollinformationen mit der Aktivierungs-ID ab:
   ```
-  wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
- 
-  ```json
+
+  ```
   {
       "start": 1455881628103,
       "end":   1455881648126,
       ...
   }
   ```
+  {: screen}
 
   Beim Vergleich der Zeitmarken für `start` und `end` im Aktivierungsdatensatz können Sie erkennen, dass diese Aktivierung geringfügig länger als zwei Sekunden zur Ausführung benötigt hat.
 
@@ -426,64 +249,76 @@ JavaScript-Funktionen, die asynchron ausgeführt werden, können das Aktivierung
 
 Die bisherigen Beispiele sind eigenständige JavaScript-Funktionen. Sie können jedoch auch eine Aktion erstellen, die eine externe API aufruft.
 
-Im folgenden Beispiel wird ein Yahoo Weather-Services aufgerufen, um die aktuellen Wetterbedingungen an einem bestimmten Standort abzurufen.
+Das folgende Beispiel ruft den APOD-Service der NASA auf (APOD = Astronomy Picture of the Day), der täglich ein Bild des Universums zur Verfügung stellt.
 
-1. Speichern Sie den folgenden Inhalt in einer Datei mit dem Namen `weather.js`.
-
+1. Speichern Sie den folgenden Inhalt in einer Datei mit dem Namen **apod.js**.
   ```javascript
-  var request = require('request');
+  var url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
 
-  function main(params) {
-      var location = params.location || 'Vermont';
-      var url = 'https://query.yahooapis.com/v1/public/yql?q=select item.condition from weather.forecast where woeid in (select woeid from geo.places(1) where text="' + location + '")&format=json';
+  $.ajax({
+    url: url,
+    success: function(result){
+    if("copyright" in result) {
+      $("#copyright").text("Image Credits: " + result.copyright);
+    }
+    else {
+      $("#copyright").text("Image Credits: " + "Public Domain");
+    }
 
-      return new Promise(function(resolve, reject) {
-          request.get(url, function(error, response, body) {
-              if (error) {
-                  reject(error);
-              }
-              else {
-                  var condition = JSON.parse(body).query.results.channel.item.condition;
-                  var text = condition.text;
-                  var temperature = condition.temp;
-                  var output = 'It is ' + temperature + ' degrees in ' + location + ' and ' + text;
-                  resolve({msg: output});
-              }
-          });
-      });
+    if(result.media_type == "video") {
+      $("#apod_img_id").css("display", "none");
+      $("#apod_vid_id").attr("src", result.url);
+    }
+    else {
+      $("#apod_vid_id").css("display", "none");
+      $("#apod_img_id").attr("src", result.url);
+    }
+    $("#reqObject").text(url);
+    $("#returnObject").text(JSON.stringify(result, null, 4));
+    $("#apod_explaination").text(result.explanation);
+    $("#apod_title").text(result.title);
   }
+  });
   ```
   {: codeblock}
 
- Die Aktion in diesem Beispiel verwendet die JavaScript-Bibliothek `request`, um eine HTTP-Anforderung an die Yahoo Weather-API zu senden, und extrahiert Felder aus dem JSON-Ergebnis. In den [Referenzinformationen](./openwhisk_reference.html#openwhisk_ref_javascript_environments) finden Sie detaillierte Informationen zu den Node.js-Paketen, die Sie in Ihren Aktionen verwenden können.
+  Es wird ein Aufruf an die APOD-API der NASA durchgeführt und es werden Felder aus dem JSON-Ergebnis extrahiert. In den [Referenzinformationen](./openwhisk_reference.html#openwhisk_ref_javascript_environments) finden Sie detaillierte Informationen zu den Node.js-Paketen, die Sie in Ihren Aktionen verwenden können.
 
-  Dieses Beispiel demonstriert außerdem den Bedarf an asynchronen Aktionen. Die Aktion gibt ein Promise-Objekt zurück, um anzugeben, dass das Ergebnis dieser Aktion noch nicht verfügbar ist, wenn die Funktion die Ausführung beendet. Das Ergebnis ist erst im Callback `request` verfügbar, wenn der HTTP-Aufruf abgeschlossen ist, und wird als Argument an die Funktion `resolve()` übergeben.
+2. Führen Sie die folgenden Befehle aus, um die Aktion zu erstellen und aufzurufen.
 
-2. Führen Sie die folgenden Befehle aus, um die Aktion zu erstellen und aufzurufen:
-
+  Erstellen Sie die Aktion mit dem Namen **apod**:
   ```
-  wsk action create weather weather.js
-  ```
-  {: pre}
-
-  ```
-  wsk action invoke --result weather --param location "Brooklyn, NY"
+  ibmcloud wsk action create apod apod.js
   ```
   {: pre}
 
-  ```json
+  Rufen Sie die Aktion **apod** auf:
+  ```
+  ibmcloud wsk action invoke --result apod
+  ```
+  {: pre}
+
+  **Zurückgegebenes Objekt:**
+  ```
   {
-      "msg": "It is 28 degrees in Brooklyn, NY and Cloudy"
+    "copyright": "Eric Houck",
+    "date": "2018-03-28",
+    "explanation": "Does an alignment like this occur only once in a blue moon? No, although it was during a blue moon that this single-shot image was taken.  During a full moon that happened to be the second of the month -- the situation that defines a blue moon -- the photographer created the juxtaposition in late January by quickly moving around to find just the right spot to get the background Moon superposed behind the arc of a foreground tree.  Unfortunately, in this case, there seemed no other way than getting bogged down in mud and resting the camera on a barbed-wire fence.  The arc in the oak tree was previously created by hungry cows in Knight's Ferry, California, USA.  Quirky Moon-tree juxtapositions like this can be created during any full moon though, given enough planning and time.  Another opportunity will arise this weekend, coincidently during another blue moon. Then, the second blue moon in 2018 will occur, meaning that for the second month this year, two full moons will appear during a single month (moon-th).  Double blue-moon years are relatively rare, with the last occurring in 1999, and the next in 2037.",
+    "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Blue Moon Tree",
+    "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
   }
   ```
+  {: screen}
 
 ### Aktion als Node.js-Modul packen
 {: #openwhisk_js_packaged_action}
 
 Als Alternative zum Schreiben des gesamten Aktionscodes in einer einzigen JavaScript-Quellendatei können Sie eine Aktion als `npm`-Paket schreiben. Nehmen Sie als Beispiel ein Verzeichnis mit den folgenden Dateien:
 
-Zunächst `package.json`:
-
+**package.json:**
 ```json
 {
   "name": "my-action",
@@ -495,8 +330,7 @@ Zunächst `package.json`:
 ```
 {: codeblock}
 
-Dann `index.js`:
-
+**index.js:**
 ```javascript
 function myAction(args) {
     const leftPad = require("left-pad")
@@ -510,42 +344,39 @@ exports.main = myAction;
 
 Die Aktion wird durch `exports.main` verfügbar gemacht. Der Aktionshandler selbst kann einen beliebigen Namen haben, solange er der üblichen Signatur für die Annahme und die Rückgabe eines Objekts (oder einem `Promise`-Objekt für ein Objekt) entspricht. Den Node.js-Konventionen entsprechend muss diese Datei entweder den Namen `index.js` erhalten oder Sie müssen den bevorzugten Dateinamen in der Eigenschaft `main` in 'package.json' angeben.
 
-Gehen Sie wie folgt vor, um aus diesem Paket eine OpenWhisk-Aktion zu erstellen:
+Gehen Sie wie folgt vor, um aus diesem Paket eine {{site.data.keyword.openwhisk_short}}-Aktion zu erstellen:
 
-1. Installieren Sie zunächst alle Abhängigkeiten lokal.
-
+1. Installieren Sie alle Abhängigkeiten lokal:
   ```
   npm install
   ```
   {: pre}
 
 2. Erstellen Sie ein `.zip`-Archiv, in dem alle Dateien (einschließlich aller Abhängigkeiten) enthalten sind:
-
   ```
   zip -r action.zip *
   ```
   {: pre}
 
-  Die Verwendung der Windows Explorer-Aktion zur Erstellung der ZIP-Datei führt zu einer falschen Struktur. OpenWhisk-ZIP-Aktionen müssen `package.json` am Stammelement der ZIP-Datei aufweisen, während Windows Explorer die Datei in einem verschachtelten Ordner ablegt. Am sichersten ist die Verwendung des Befehlszeilenbefehls `zip`.
+  Die Verwendung der Windows Explorer-Aktion zur Erstellung der ZIP-Datei führt zu einer falschen Struktur. {{site.data.keyword.openwhisk_short}}-ZIP-Aktionen müssen `package.json` am Stammelement der ZIP-Datei aufweisen, während Windows Explorer die Datei in einem verschachtelten Ordner ablegt. Am sichersten ist die Verwendung des Befehlszeilenbefehls `zip`.
   {: tip}
 
 3. Erstellen Sie die Aktion:
-
   ```
-  wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
   Bei der Erstellung einer Aktion aus einem `.zip`-Archiv mithilfe des CLI-Tools müssen Sie explizit einen Wert für das Flag `--kind` (d. h. `nodejs:6` oder `nodejs:8`) angeben.
 
 4. Sie können die Aktion wie jede andere aufrufen:
-
   ```
-  wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
-  
-  ```json
+
+  Beispielausgabe:
+  ```
   {
       "padded": [
           ".......................and now",
@@ -554,6 +385,7 @@ Gehen Sie wie folgt vor, um aus diesem Paket eine OpenWhisk-Aktion zu erstellen:
       ]
   }
   ```
+  {: screen}
 
 Zum Schluss beachten Sie, dass zwar die meisten `npm`-Pakete JavaScript-Quellen mit `npm install` installieren, andere jedoch auch Binärartefakte installieren und kompilieren. Der Upload von Archivdateien unterstützt derzeit keine binären Abhängigkeiten, sondern nur JavaScript-Abhängigkeiten. Wenn im Archiv binäre Abhängigkeiten eingeschlossen sind, können Aktionsaufrufe fehlschlagen.
 
@@ -573,7 +405,7 @@ Fügen Sie dem vorherigen Beispiel von `package.json` den Bundler `webpack` als 
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "bx wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -585,7 +417,7 @@ Fügen Sie dem vorherigen Beispiel von `package.json` den Bundler `webpack` als 
 ```
 {: codeblock}
 
-Erstellen Sie die Webpack-Konfigurationsdatei `webpack.config.js`. 
+Erstellen Sie die Webpack-Konfigurationsdatei `webpack.config.js`.
 ```javascript
 var path = require('path');
 module.exports = {
@@ -600,6 +432,7 @@ module.exports = {
 {: codeblock}
 
 Setzen Sie die Variable `global.main` auf die Hauptfunktion der Aktion.
+
 Mit dem vorherigen Beispiel:
 ```javascript
 function myAction(args) {
@@ -617,18 +450,15 @@ global.main = main;
 ```
 {: codeblock}
 
-
 Gehen Sie wie folgt vor, um eine OpenWhisk-Aktion mit `npm` und `webpack` zu erstellen und bereitzustellen:
 
 1. Installieren Sie zunächst die Abhängigkeiten lokal:
-
   ```
   npm install
   ```
   {: pre}
 
 2. Erstellen Sie das Webpack-Bundle:
-
   ```
   npm run build
   ```
@@ -637,17 +467,18 @@ Gehen Sie wie folgt vor, um eine OpenWhisk-Aktion mit `npm` und `webpack` zu ers
   Die Datei `dist/bundle.js` wird erstellt und zur Bereitstellung als Quellcode der Aktion verwendet.
 
 3. Erstellen Sie die Aktion mit dem Script `npm` oder über die Befehlszeilenschnittstelle (CLI).
+
   Mit dem Script `npm`:
   ```
   npm run deploy
   ```
   {: pre}
+
   Über die Befehlszeilenschnittstelle:
   ```
-  bx wsk action update my-action dist/bundle.js
+  ibmcloud wsk action update my-action dist/bundle.js
   ```
   {: pre}
-
 
 Zum Schluss ist zu beachten, dass die Bundledatei, die von `webpack` erstellt wird, keine binären Abhängigkeiten, sondern JavaScript-Abhängigkeiten unterstützt. Daher schlagen Aktionsaufrufe fehl, wenn das Bundle von binären Abhängigkeiten abhängig ist, weil diese nicht in die Datei `bundle.js` eingeschlossen sind.
 
@@ -659,12 +490,12 @@ Sie können eine Aktion erstellen, die eine Sequenz von Aktionen miteinander ver
 Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.system/utils` bereitgestellt, die Sie zum Erstellen Ihrer ersten Sequenz verwenden können. Weitere Informationen zu Paketen finden Sie im Abschnitt zu [Paketen](./openwhisk_packages.html).
 
 1. Zeigen Sie die Aktionen im Paket `/whisk.system/utils` an.
-
   ```
-  wsk package get --summary /whisk.system/utils
+  ibmcloud wsk package get --summary /whisk.system/utils
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   package /whisk.system/utils: Building blocks that format and assemble data
    action /whisk.system/utils/head: Extract prefix of an array
@@ -674,26 +505,26 @@ Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.
    action /whisk.system/utils/date: Current date and time
    action /whisk.system/utils/cat: Concatenates input into a string
   ```
+  {: screen}
 
   In diesem Beispiel verwenden Sie die Aktionen `split` (Aufteilen) und `sort` (Sortieren).
 
 2. Erstellen Sie eine Aktionssequenz, sodass das Ergebnis der einen Aktion als Argument an die nächste Aktion übergeben wird.
-
   ```
-  wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
   Diese Aktionssequenz konvertiert Zeilen von Text in ein Array und sortiert die Zeilen.
 
 3. Rufen Sie die Aktion auf:
-
   ```
-  wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
-  ```json
+  Beispielausgabe:
+  ```
   {
       "length": 3,
       "lines": [
@@ -703,15 +534,12 @@ Verschiedene Dienstprogrammaktionen werden in einem Paket mit dem Namen `/whisk.
       ]
   }
   ```
+  {: screen}
 
   Wie leicht zu erkennen ist, sind die Zeilen im Ergebnis sortiert.
 
 **Hinweis:** Außer den Standardparametern sind Parameter, die zwischen Aktionen in der Sequenz übergeben werden, sind explizit.
-Daher sind die Parameter, die an die Aktionssequenz übergeben werden, nur für die erste Aktion in der Sequenz verfügbar.
-Das Ergebnis der ersten Aktion in der Sequenz wird zu dem JSON-Eingabeobjekt für die zweite Aktion in der Sequenz usw.
-Das Objekt enthält keine Parameter, die ursprünglich an die Sequenz übergeben wurden, es sei denn, die erste Aktion schließt sie explizit in ihr Ergebnis ein.
-Die Eingabeparameter für eine Aktion werden mit den Standardparametern der Aktion zusammengeführt. Erstere haben Vorrang und überschreiben alle übereinstimmenden Standardparameter.
-Weitere Informationen zum Aufrufen von Aktionssequenzen mit mehreren benannten Parametern finden Sie unter [Standardparameter festlegen](./openwhisk_actions.html#openwhisk_binding_actions).
+Daher sind die Parameter, die an die Aktionssequenz übergeben werden, nur für die erste Aktion in der Sequenz verfügbar. Das Ergebnis der ersten Aktion in der Sequenz wird zu dem JSON-Eingabeobjekt für die zweite Aktion in der Sequenz usw. Das Objekt enthält keine Parameter, die ursprünglich an die Sequenz übergeben wurden, es sei denn, die erste Aktion schließt sie explizit in ihr Ergebnis ein. Die Eingabeparameter für eine Aktion werden mit den Standardparametern der Aktion zusammengeführt. Erstere haben Vorrang und überschreiben alle übereinstimmenden Standardparameter. Weitere Informationen zum Aufrufen von Aktionssequenzen mit mehreren benannten Parametern finden Sie unter [Standardparameter für eine Aktion festlegen](./parameters.html#default-params-action).
 
 ## Python-Aktionen erstellen
 {: #creating-python-actions}
@@ -721,8 +549,7 @@ Das Verfahren zur Erstellung von Python-Aktionen ist dem von JavaScript-Aktionen
 ### Python-Aktion erstellen und aufrufen
 {: #openwhisk_actions_python_invoke}
 
-Eine Aktion ist eine einfache Python-Funktion der höchsten Ebene. Erstellen Sie zum Beispiel eine Datei mit dem Namen `hello.py` und dem folgenden Quellcode:
-
+Eine Aktion ist eine einfache Python-Funktion der höchsten Ebene. Erstellen Sie zum Beispiel eine Datei mit dem Namen **hello.py** und dem folgenden Quellcode:
 ```python
 def main(args):
     name = args.get("name", "stranger")
@@ -734,27 +561,28 @@ def main(args):
 
 Python-Aktionen lesen stets ein Wörterverzeichnis (Dictionary) und generieren ein Wörterverzeichnis. Die Eingangsmethode für die Aktion ist standardmäßig `main`. Sie kann jedoch wie bei jedem anderen Aktionstyp explizit zum Erstellen der Aktion über die Befehlszeilenschnittstelle `wsk` mit der Option `--main` angegeben werden.
 
-Sie können eine OpenWhisk-Aktion mit dem Namen `helloPython` wie folgt aus dieser Funktion erstellen:
+Sie können eine {{site.data.keyword.openwhisk_short}}-Aktion mit dem Namen **helloPython** wie folgt aus dieser Funktion erstellen:
 ```
-wsk action create helloPython hello.py
+ibmcloud wsk action create helloPython hello.py
 ```
 {: pre}
 
-Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.py`-Quellendateien wird die Aktion in einer Laufzeit mit Python 2 ausgeführt. Sie können auch eine Aktion erstellen, die mit Python 3 ausgeführt wird, indem Sie den Parameter `--kind python:3` explizit angeben.
-Darüber hinaus gibt es eine Python 3-Laufzeit mit der Art `python-jessie:3`, die zusätzliche Pakete für IBM Cloud Services wie IBM Cloudant, IBM DB2, IBM COS und IBM Watson enthält.
+Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.py`-Quellendateien wird die Aktion in einer Laufzeit mit Python 2 ausgeführt. Sie können auch eine Aktion erstellen, die mit Python 3 ausgeführt wird, indem Sie den Parameter `--kind python:3` explizit angeben. Darüber hinaus gibt es eine Python 3-Laufzeit mit der Art `python-jessie:3`, die zusätzliche Pakete für IBM Cloud Services wie IBM Cloudant, IBM DB2, IBM COS und IBM Watson enthält.
 Weitere Informationen zu Paketen in dieser Python 3-Laufzeit finden Sie in den [Referenzinformationen zur Python-Laufzeit](./openwhisk_reference.html#openwhisk_ref_python_environments).
 
 Der Aktionsaufruf für Python-Aktionen entspricht dem für JavaScript-Aktionen:
 ```
-wsk action invoke --result helloPython --param name World
+ibmcloud wsk action invoke --result helloPython --param name World
 ```
 {: pre}
 
-```json
+Beispielausgabe:
+```
   {
       "greeting": "Hello World!"
   }
 ```
+{: screen}
 
 ### Python-Aktionen in ZIP-Dateien packen
 {: #openwhisk_actions_python_zip}
@@ -762,27 +590,23 @@ wsk action invoke --result helloPython --param name World
 Sie können eine Python-Aktion und abhängige Module in eine ZIP-Datei packen.
 Der Dateiname der Quellendatei, die den Eingangspunkt (z. B. `main`) enthält, muss `__main__.py` sein.
 Beispiel: Zum Erstellen einer Aktion mit einem Helper-Modul mit dem Namen `helper.py` erstellen Sie zunächst ein Archiv, das Ihre Quellendateien enthält:
-
 ```bash
 zip -r helloPython.zip __main__.py helper.py
 ```
 {: pre}
 
 Anschließend erstellen Sie die Aktion:
-
 ```bash
-wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
 Diese Schritte werden zwar für Python 3 (mit der Art `python:3`) gezeigt, können jedoch genau so mit den anderen Python-Arten `python:2` oder `python-jessie:3` ausgeführt werden.
 
-
-### Packen Sie Python-Aktionen mit einer virtuellen Umgebung in ZIP-Dateien.
+### Python-Aktionen mit einer virtuellen Umgebung in ZIP-Dateien packen
 {: #openwhisk_actions_python_virtualenv}
 
-Eine andere Methode zum Packen von Python-Abhängigkeiten ist die Verwendung einer virtuellen Umgebung (`virtualenv`). In dieser Umgebung können Sie zusätzliche Pakete verknüpfen, die zum Beispiel über [`pip`](https://packaging.python.org/installing/) installiert werden können.
-
+Eine andere Methode zum Packen von Python-Abhängigkeiten ist die Verwendung einer virtuellen Umgebung (`virtualenv`). In dieser Umgebung können Sie zusätzliche Pakete verknüpfen, die zum Beispiel mit [`pip`](https://packaging.python.org/installing/) installiert werden können.
 
 Wie bei der grundlegenden ZIP-Dateiunterstützung muss der Name der Quellendatei, die den Haupteingangspunkt enthält, `__main__.py` sein. Zur Verdeutlichung: Der Inhalt von `__main__.py` ist die Hauptfunktion, sodass Sie für dieses Beispiel `hello.py` in `__main__.py` umbenennen können (siehe vorherigen Abschnitt). Außerdem muss das virtualenv-Verzeichnis den Namen `virtualenv` haben. Das nachfolgende Beispielszenario zeigt die Installation von Abhängigkeiten, das Packen in einem Verzeichnis für die virtuelle Umgebung (virtualenv) sowie das Erstellen einer kompatiblen OpenWhisk-Aktion.
 
@@ -794,7 +618,7 @@ Um die Kompatibilität mit dem OpenWhisk-Laufzeitcontainer sicherzustellen, müs
 1. Bei einer angegebenen Datei mit dem Namen [requirements.txt ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://pip.pypa.io/en/latest/user_guide/#requirements-files), die die `pip`-Module und -Versionen für die Installation enthält, führen Sie den folgenden Befehl aus, um die Abhängigkeiten zu installieren und eine virtuelle Umgebung (virtualenv) unter Verwendung eines kompatiblen Docker-Image zu erstellen:
     ```
     docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
-      bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+      bash  -c "cd tmp &&virtualenv virtualenv &&source virtualenv/bin/activate &&pip install -r requirements.txt"
     ```
     {: pre}
 
@@ -804,12 +628,14 @@ Um die Kompatibilität mit dem OpenWhisk-Laufzeitcontainer sicherzustellen, müs
     ```
     {: pre}
 
-3. Erstellen Sie die Aktion:
+3. Erstellen Sie die Aktion **helloPython**:
     ```
-    wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
+Fügen Sie der Datei `requirements.txt` nur Module hinzu, die nicht Teil der ausgewählten Laufzeitumgebung sind. So kann die virtuelle Umgebung (virtualenv) möglichst klein gehalten werden.
+{: tip}
 
 ## PHP-Aktionen erstellen
 {: #creating-php-actions}
@@ -831,61 +657,64 @@ function main(array $args) : array
     return ["greeting" => $greeting];
 }
 ```
+{: codeblock}
 
-PHP-Aktionen verarbeiten stets eine assoziative Feldgruppe und geben auch eine assoziative Feldgruppe zurück. Die Eingangsmethode für die Aktion ist standardmäßig `main`. Sie kann jedoch wie bei jedem anderen Aktionstyp explizit beim Erstellen der Aktion über die Befehlszeilenschnittstelle `wsk` mit der Option `--main` angegeben werden.
+PHP-Aktionen verarbeiten stets eine assoziative Feldgruppe und geben auch eine assoziative Feldgruppe zurück. Die Eingangsmethode für die Aktion ist standardmäßig `main`. Sie kann jedoch wie bei jedem anderen Aktionstyp explizit beim Erstellen der Aktion über die Befehlszeilenschnittstelle `ibmcloud wsk` mit der Option `--main` angegeben werden.
 
-Sie können eine OpenWhisk-Aktion mit dem Namen `helloPHP` wie folgt aus dieser Funktion erstellen:
-
+Sie können eine {{site.data.keyword.openwhisk_short}}-Aktion mit dem Namen **helloPHP** wie folgt aus dieser Funktion erstellen:
 ```
-wsk action create helloPHP hello.php
+ibmcloud wsk action create helloPHP hello.php
 ```
 {: pre}
 
 Die CLI leitet den Typ der Aktion automatisch aus der Erweiterung der Quellendatei ab. Für `.php`-Quellendateien wird die Aktion in einer Laufzeit mit PHP 7.1 ausgeführt. Weitere Informationen finden Sie in den [Referenzinformationen zu PHP](./openwhisk_reference.html#openwhisk_ref_php).
 
 Der Aktionsaufruf für PHP-Aktionen entspricht dem für JavaScript-Aktionen:
-
 ```
-wsk action invoke --result helloPHP --param name World
+ibmcloud wsk action invoke --result helloPHP --param name World
 ```
 {: pre}
 
-```json
+Beispielausgabe:
+```
   {
       "greeting": "Hello World!"
   }
 ```
+{: screen}
 
 ### PHP-Aktionen in ZIP-Dateien packen
 {: #openwhisk_actions_php_zip}
 
 Sie können eine PHP-Aktion zusammen mit anderen Dateien und abhängigen Paketen in eine ZIP-Datei packen.
 Der Dateiname der Quellendatei, die den Eingangspunkt (z. B. `main`) enthält, muss `index.php` lauten.
-Beispiel: Zum Erstellen einer Aktion, die eine zweite Datei mit der Bezeichnung `helper.php` enthält, erstellen Sie zuerst ein Archiv mit den Quellendateien:
 
+Beispiel: Zum Erstellen einer Aktion, die eine zweite Datei mit der Bezeichnung `helper.php` enthält, erstellen Sie zuerst ein Archiv mit den Quellendateien:
 ```bash
 zip -r helloPHP.zip index.php helper.php
 ```
 {: pre}
 
-Anschließend erstellen Sie die Aktion:
-
+Erstellen Sie anschließend die Aktion **helloPHP**:
 ```bash
-wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
 ## Swift-Aktionen erstellen
 {: #creating-swift-actions}
 
-Das Verfahren zur Erstellung von Swift-Aktionen ist dem von JavaScript-Aktionen ähnlich. In den folgenden Abschnitten werden die Schritte zum Erstellen und Aufrufen einer einzelnen Swift-Aktion sowie zum Übergeben von Parametern an diese Aktion beschrieben.
+Das Verfahren zur Erstellung von Swift-Aktionen ist dem von JavaScript-Aktionen ähnlich. In den folgenden Abschnitten werden die Schritte zum Erstellen und Aufrufen einer einzelnen Swift-Aktion sowie zum Packen einer Aktion in einer ZIP-Datei beschrieben.
 
-Sie können Ihren Swift-Code auch online mithilfe der [Swift-Sandbox](https://swiftlang.ng.bluemix.net) testen, ohne Xcode auf Ihrer Maschine installieren zu müssen.
+Sie können Ihren Swift-Code auch online mithilfe des [Online Swift Playground](http://online.swiftplayground.run) testen, ohne Xcode auf Ihrer Maschine installieren zu müssen.
+
+**Achtung:** Swift-Aktionen werden in einer Linux-Umgebung ausgeführt. Swift für Linux befindet sich noch in Entwicklung und OpenWhisk arbeitet in der Regel mit dem neuesten verfügbaren Release, das jedoch nicht unbedingt stabil ist. Darüber hinaus ist es möglich, dass die mit OpenWhisk verwendete Version von Swift nicht mit den Versionen von Swift aus stabilen Releases von Xcode on MacOS konsistent ist.
 
 ### Aktion erstellen und aufrufen
 
+#### Swift 3
 Eine Aktion ist eine einfache Swift-Funktion der höchsten Ebene. Erstellen Sie zum Beispiel eine Datei mit dem Namen
-`hello.swift` und dem folgenden Inhalt:
+**hello.swift** und dem folgenden Inhalt:
 
 ```swift
 func main(args: [String:Any]) -> [String:Any] {
@@ -898,137 +727,276 @@ func main(args: [String:Any]) -> [String:Any] {
 ```
 {: codeblock}
 
-Swift-Aktionen lesen stets ein Wörterverzeichnis (Dictionary) und generieren ein Wörterverzeichnis. 
+In diesem Beispiel liest die Swift-Aktion ein Wörterverzeichnis (Dictionary) und sie generiert ein Wörterverzeichnis.
 
-Sie können eine {{site.data.keyword.openwhisk_short}}-Aktion mit dem Namen `helloSwift` wie folgt aus dieser Funktion erstellen:
+Sie können eine OpenWhisk-Aktion mit dem Namen **helloSwift** wie folgt aus dieser Funktion erstellen:
 
 ```
-wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
- 
 
-Geben Sie immer `swift:3.1.1` an, da vorherige Swift-Versionen nicht unterstützt werden.
-{: tip}
+#### Swift 4
+
+Neu in Swift 4 sind neben der obigen Hauptfunktionssignatur zwei weitere Out-of-the-box-Signaturen, die den [Codable](https://developer.apple.com/documentation/swift/codable)-Typ nutzen. Weitere Informationen zu Datentypen, die für die Kompatibilität mit externen Darstellungen wie JSON codierbar und decodierbar sind, finden Sie [hier](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
+
+Im folgenden Beispiel wird ein Eingabeparameter als **Codable-Eingabe** mit dem Feld `name` verwendet und gibt eine **Codable-Ausgabe** mit einem Feld `greetings` zurück.
+```swift
+struct Input: Codable {
+    let name: String?
+}
+struct Output: Codable {
+    let greeting: String
+}
+func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
+    let result = Output(greeting: "Hello \(param.name ?? "stranger")!")
+    print("Log greeting:\(result.greeting)")
+    completion(result, nil)
+}
+```
+{: codeblock}
+
+In diesem Beispiel liest die Swift-Aktion einen Codable-Typ und sie generiert einen Codable-Typ.
+Wenn Sie keine Eingabe verarbeiten müssen, können Sie die Funktionssignatur verwenden, die keine Eingabe - sondern nur Codable-Ausgabe - verwendet.
+```swift
+struct Output: Codable {
+    let greeting: String
+}
+func main(completion: (Output?, Error?) -> Void) -> Void {
+    let result = Output(greeting: "Hello OpenWhisk!")
+    completion(result, nil)
+}
+```
+{: codeblock}
+
+Sie können eine OpenWhisk-Aktion mit dem Namen `helloSwift` wie folgt aus dieser Funktion erstellen:
+
+```
+ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+```
+{: pre}
+
+Weitere Informationen zur Swift-Laufzeit finden Sie in den [Referenzinformationen](./openwhisk_reference.html#swift-actions) zu Swift.
 
 Der Aktionsaufruf für Swift-Aktionen entspricht dem für JavaScript-Aktionen:
-
 ```
-wsk action invoke --result helloSwift --param name World
+ibmcloud wsk action invoke --result helloSwift --param name World
 ```
 {: pre}
 
-```json
+Beispielausgabe:
+```
   {
       "greeting": "Hello World!"
   }
 ```
+{: screen}
 
-**Achtung:** Swift-Aktionen, die in einer Linux-Umgebung ausgeführt werden, befinden sich noch in Entwicklung und {{site.data.keyword.openwhisk_short}} arbeitet in der Regel mit dem neuesten verfügbaren Release, das jedoch nicht unbedingt stabil ist. Darüber hinaus ist es möglich, dass die mit {{site.data.keyword.openwhisk_short}} verwendete Version von Swift nicht mit den Versionen von Swift aus stabilen Releases von XCode on MacOS konsistent ist.
+Weitere Informationen zu Parametern finden Sie im Abschnitt [Mit Parametern arbeiten](./parameters.html).
 
 ### Aktion als ausführbare Swift-Datei packen
-{: #openwhisk_actions_swift_zip}
+{: #packaging-an-action-as-a-swift-executable}
 
 Wenn Sie eine OpenWhisk-Swift-Aktion mit einer Swift-Quellendatei erstellen, muss diese in eine Binärdatei kompiliert werden, bevor die Aktion ausgeführt wird. Danach werden Aufrufe der Aktion viel schneller durchgeführt, bis der Container, in dem die Aktion enthalten ist, bereinigt wird. Diese Verzögerung wird als Kaltstartverzögerung bezeichnet.
 
-Zur Vermeidung der Kaltstartverzögerung können Sie Ihre Swift-Datei in eine Binärdatei kompilieren und anschließend in einer ZIP-Datei in OpenWhisk hochladen. Da Sie das OpenWhisk-Scaffolding benötigen, ist es am einfachsten, die Binärdatei innerhalb derselben Umgebung zu erstellen, in der sie ausgeführt wird. Sehen Sie sich die folgenden Schritte an:
+Zur Vermeidung der Kaltstartverzögerung können Sie Ihre Swift-Datei in eine Binärdatei kompilieren und anschließend in einer ZIP-Datei in OpenWhisk hochladen. Da Sie das OpenWhisk-Scaffolding benötigen, ist es am einfachsten, die Binärdatei innerhalb derselben Umgebung zu erstellen, in der sie ausgeführt wird. 
 
-- Führen Sie einen interaktiven Container für Swift-Aktionen mit dem folgenden Befehl aus:
-  ```
-  docker run --rm -it -v "$(pwd):/owexec" openwhisk/action-swift-v3.1.1 bash
-  ```
-  {: pre}
-  
-- Kopieren Sie den Quellcode und bereiten Sie den Build vor:
-  ```
-  cp /owexec/hello.swift /swift3Action/spm-build/main.swift 
-  ```
-  {: pre}
+### Script zum Erstellen einer mit Swift gepackten Aktion verwenden
 
-  ```
-  cat /swift3Action/epilogue.swift >> /swift3Action/spm-build/main.swift
-  ```
-  {: pre}
+Sie können ein Script verwenden, um das Packen der Aktion zu automatisieren. Erstellen Sie eine Scriptdatei mit dem Namen `compile.sh` mit dem folgenden Beispielcode.
+```bash
+#!/bin/bash
+set -ex
 
-  ```
-  echo '_run_main(mainFunction:main)' >> /swift3Action/spm-build/main.swift
-  ```
-  {: pre}
+if [ -z "$1" ] ; then
+    echo 'Error: Missing action name'
+    exit 1
+fi
+if [ -z "$2" ] ; then
+    echo 'Error: Missing kind, for example swift:4.1'
+    exit 2
+fi
+OUTPUT_DIR="build"
+if [ ${2} == "swift:3.1.1" ]; then
+  BASE_PATH="/swift3Action"
+  DEST_SOURCE="$BASE_PATH/spm-build"
+  RUNTIME="openwhisk/action-swift-v3.1.1"
+elif [ ${2} == "swift:4.1" ]; then
+  RUNTIME="ibmfunctions/action-swift-v4.1"
+  BASE_PATH="/swift4Action"
+  DEST_SOURCE="/$BASE_PATH/spm-build/Sources/Action"
+else
+  echo "Error: Kind $2 not recognize"
+  exit 3
+fi
+DEST_PACKAGE_SWIFT="$BASE_PATH/spm-build/Package.swift"
 
-- (Optional) Erstellen Sie die Datei `Package.swift`, um Abhängigkeiten hinzuzufügen.
-   ```
-   swift import PackageDescription
-   
-   let package = Package(
+BUILD_FLAGS=""
+if [ -n "$3" ] ; then
+    BUILD_FLAGS=${3}
+fi
+
+echo "Using runtime $RUNTIME to compile swift"
+docker run --rm --name=compile-ow-swift -it -v "$(pwd):/owexec" $RUNTIME bash -ex -c "
+
+if [ -f \"/owexec/$OUTPUT_DIR/$1.zip\" ] ; then
+    rm \"/owexec/$OUTPUT_DIR/$1.zip\"
+fi
+
+echo 'Setting up build...'
+cp /owexec/actions/$1/Sources/*.swift $DEST_SOURCE/
+
+# action file can be either {action name}.swift or main.swift
+if [ -f \"$DEST_SOURCE/$1.swift\" ] ; then
+    echo 'renaming $DEST_SOURCE/$1.swift $DEST_SOURCE/main.swift'
+    mv \"$DEST_SOURCE/$1.swift\" $DEST_SOURCE/main.swift
+fi
+# Add in the OW specific bits
+cat $BASE_PATH/epilogue.swift >> $DEST_SOURCE/main.swift
+echo '_run_main(mainFunction:main)' >> $DEST_SOURCE/main.swift
+
+# Only for Swift4
+if [ ${2} != "swift:3.1.1" ]; then
+  echo 'Adding wait to deal with escaping'
+  echo '_ = _whisk_semaphore.wait(timeout: .distantFuture)' >> $DEST_SOURCE/main.swift
+fi
+
+echo \"Compiling $1...\"
+cd /$BASE_PATH/spm-build
+cp /owexec/actions/$1/Package.swift $DEST_PACKAGE_SWIFT
+# we have our own Package.swift, do a full compile
+swift build ${BUILD_FLAGS} -c release
+
+echo 'Creating archive $1.zip...'
+#.build/release/Action
+mkdir -p /owexec/$OUTPUT_DIR
+zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
+"
+```
+{: codeblock}
+
+Das Script setzt voraus, dass Sie ein Verzeichnis mit dem Namen `actions` haben, wobei jedes Verzeichnis der höchsten Ebene eine Aktion darstellt.
+```
+actions/
+├── hello
+│   ├── Package.swift
+│   └── Sources
+│       └── main.swift
+```
+
+- Erstellen Sie die Datei `Package.swift`, um Abhängigkeiten hinzuzufügen. **Hinweis:** Die Syntax unterscheidet sich bei Swift 3- und Swift 4-Tools.
+
+  Swift 3 - Beispielsyntax:
+  ```swift
+  import PackageDescription
+
+  let package = Package(
      name: "Action",
          dependencies: [
-             .Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 3),
-             .Package(url: "https://github.com/IBM-Swift/CCurl.git", "0.2.3"),
-             .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", "1.7.10"),
-             .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", "15.0.1"),
-             .Package(url: "https://github.com/watson-developer-cloud/swift-sdk.git", "0.16.0")
+            .Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 3),
+            .Package(url: "https://github.com/IBM-Swift/CCurl.git", "0.2.3"),
+            .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", "1.7.10"),
+            .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", "15.0.1"),
+            .Package(url: "https://github.com/watson-developer-cloud/swift-sdk.git", "0.16.0")
          ]
-   )
-   ```
-   {: pre}
-
-  In diesem Beispiel werden die Abhängigkeiten `swift-watson-sdk` und `example-package-deckofplayingcards` hinzugefügt.
-  Beachten Sie, dass `CCurl`, `Kitura-net` und `SwiftyJSON` in der Standard-Swift-Aktion zur Verfügung gestellt werden, sodass Sie sie in Ihre eigene Datei `Package.swift` einfügen können.
-
-- Kopieren Sie die Datei 'Package.swift' in das Verzeichnis 'spm-build'.
+  )
   ```
-  cp /owexec/Package.swift /swift3Action/spm-build/Package.swift
+  {: codeblock}
+
+  Swift 4 - Beispielsyntax:
+  ```swift
+  // swift-tools-version:4.0
+  import PackageDescription
+
+  let package = Package(
+      name: "Action",
+      products: [
+        .executable(
+          name: "Action",
+          targets:  ["Action"]
+        )
+      ],
+      dependencies: [
+        .package(url: "https://github.com/apple/example-package-deckofplayingcards.git", .upToNextMajor(from: "3.0.0"))
+      ],
+      targets: [
+        .target(
+          name: "Action",
+          dependencies: ["DeckOfPlayingCards"],
+          path: "."
+        )
+      ]
+  )
+  ```
+  {: codeblock}
+
+  Wie Sie sehen können, wird `example-package-deckofplayingcards` in diesem Beispiel als Abhängigkeit hinzugefügt. Beachten Sie, dass `CCurl`, `Kitura-net` und `SwiftyJSON` in der Standard-Swift-Aktion zur Verfügung gestellt werden, sodass Sie sie bei Swift 3-Aktionen nur in Ihre eigene Datei `Package.swift` einfügen sollten.
+
+- Erstellen Sie die Aktion, indem Sie den folgenden Befehl für eine Swift 3-Aktion ausführen:
+  ```
+  bash compile.sh hello swift:3.1.1
   ```
   {: pre}
 
-- Wechseln Sie in das Verzeichnis 'spm-build'.
+  Bei der Kompilierung für Swift 4 verwenden Sie `swift:4.1` anstelle von `swift:3.1.1`:
   ```
-  cd /swift3Action/spm-build
-  ```
-  {: pre}
-
-- Kompilieren Sie Ihre Swift-Aktion.
-  ```
-  swift build -c release
+  bash compile.sh hello swift:4.1
   ```
   {: pre}
 
-- Erstellen Sie das ZIP-Archiv.
+  Dadurch wird `hello.zip` in `build` erstellt.
+
+- Laden Sie sie mit dem Aktionsnamen **helloSwifty** in OpenWhisk hoch. Verwenden Sie für Swift 3 die folgende Art (kind): `swift:3.1.1`:
   ```
-  zip /owexec/hello.zip .build/release/Action
+  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
-- Beenden Sie den Docker-Container.
+  Verwenden Sie für Swift 4 die folgende Art (kind): `swift:4.1`:
   ```
-  exit
-  ```
-  {: pre}
-
-Sie können sehen, dass die Datei 'hello.zip' im selben Verzeichnis wie die Datei 'hello.swift' erstellt wurde. 
-
-- Laden Sie sie mit dem Aktionsnamen 'helloSwifty' in OpenWhisk hoch:
-  ```
-  wsk action update helloSwiftly hello.zip --kind swift:3.1.1
+  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
-- Führen Sie den folgenden Befehl aus, um zu prüfen, wie viel schneller die Aktion ist: 
+- Führen Sie den folgenden Befehl aus, um zu prüfen, wie viel schneller die Aktion ist:
   ```
-  wsk action invoke helloSwiftly --blocking
+  ibmcloud wsk action invoke helloSwiftly --blocking
   ```
   {: pre}
 
-Die Zeit, die zur Ausführung der Aktion benötigt wurde, ist in der Eigenschaft 'duration' (Dauer) enthalten. Vergleichen Sie diese mit der Zeit, die zur Ausführung mit einem Kompilierungsschritt in der Aktion 'hello' benötigt wird.
+  Die Zeit, die zur Ausführung der Aktion benötigt wurde, ist in der Eigenschaft 'duration' (Dauer) enthalten. Vergleichen Sie diese mit der Zeit, die zur Ausführung mit einem Kompilierungsschritt in der Aktion **hello** benötigt wird.
+
+### Fehlerbehandlung in Swift 4
+
+Mit dem neuen Codable-Completion-Handler können Sie einen Fehler übergeben, um auf einen Fehler in Ihrer Aktion hinzuweisen.
+Die [Fehlerbehandlung in Swift](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) ähnelt der Behandlung von Ausnahmebedingungen in anderen Sprachen, in denen `try, catch` und `throw` verwendet werden.
+
+Das folgende Snippet zeigt ein Beispiel für die Fehlerbehandlung:
+```swift
+enum VendingMachineError: Error {
+    case invalidSelection
+    case insufficientFunds(coinsNeeded: Int)
+    case outOfStock
+}
+func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
+    // Return real error
+    do{
+        throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
+    } catch {
+        completion(nil, error)
+    }
+}
+```
+{: codeblock}
 
 ## Java-Aktionen erstellen
 {: #creating-java-actions}
 
 Das Verfahren zur Erstellung von Java-Aktionen ist dem von JavaScript- und Swift-Aktionen ähnlich. In den folgenden Abschnitten werden die Schritte zum Erstellen und Aufrufen einer einzelnen Java-Aktion sowie zum Übergeben von Parametern an diese Aktion beschrieben.
 
-Damit Sie Java-Dateien kompilieren, testen und archivieren können, muss lokal ein [JDK 8](http://www.oracle.com/technetwork/java/javase/downloads/index.html) installiert sein.
+Damit Sie Java-Dateien kompilieren, testen und archivieren können, muss lokal ein [JDK 8](http://openjdk.java.net/install) installiert sein.
 
-### Aktion erstellen und aufrufen
+### Java-Aktion erstellen und aufrufen
 {: #openwhisk_actions_java_invoke}
 
 Eine Java-Aktion ist ein Java-Programm mit einer Methode namens `main`, deren exakte Signatur wie folgt aussieht:
@@ -1068,11 +1036,9 @@ jar cvf hello.jar Hello.class
 [google-gson](https://github.com/google/gson) muss in Ihrem Java-Klassenpfad (CLASSPATH) vorhanden sein, um die Java-Datei kompilieren zu können.
 {: tip}
 
-Aus dieser JAR-Datei können Sie folgendermaßen eine OpenWhisk-Aktion
-namens `helloJava` erstellen:
-
+Aus dieser JAR-Datei können Sie folgendermaßen eine {{site.data.keyword.openwhisk_short}}-Aktion namens **helloJava** erstellen:
 ```
-wsk action create helloJava hello.jar --main Hello
+ibmcloud wsk action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1083,17 +1049,18 @@ Sie müssen den Namen der Hauptklasse durch `--main` angeben. Eine infrage komme
 Sie können den Methodennamen Ihrer Java-Aktion auch anpassen, wenn dies erforderlich ist. Dies geschieht, indem Sie den vollständig qualifizierten Namen der Java-Methode Ihrer Aktion angeben. Beispiel: `--main com.example.MyMain#methodName`.
 
 Der Aktionsaufruf für Java-Aktionen stimmt mit dem für Swift- und JavaScript-Aktionen überein:
-
 ```
-wsk action invoke --result helloJava --param name World
+ibmcloud wsk action invoke --result helloJava --param name World
 ```
 {: pre}
 
-```json
+Beispielausgabe:
+```
   {
       "greeting": "Hello World!"
   }
 ```
+{: screen}
 
 ## Docker-Aktionen erstellen
 {: #creating-docker-actions}
@@ -1102,32 +1069,31 @@ Bei {{site.data.keyword.openwhisk_short}}-Docker-Aktionen können Sie Ihre Aktio
 
 Ihr Code wird in eine ausführbare Binärdatei kompiliert und in ein Docker-Image eingebettet. Das Binärprogramm interagiert mit dem System durch den Empfang von Eingaben über `stdin` und Ausgabe von Antworten über `stdout`.
 
-Voraussetzung ist, dass Sie über ein Docker Hub-Konto verfügen. Rufen Sie zur Einrichtung einer kostenlosen Docker-ID und eines Kontos [Docker Hub](https://hub.docker.com) auf.
+Voraussetzung ist, dass Sie über ein Docker Hub-Konto verfügen.  Rufen Sie zur Einrichtung einer kostenlosen Docker-ID und eines Kontos [Docker Hub](https://hub.docker.com) auf.
 
-In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das Kennwort `janes_password` verwendet. Wenn die CLI eingerichtet ist, bleiben drei Schritte übrig, um eine angepasste Binärdatei zur Verwendung durch {{site.data.keyword.openwhisk_short}} einzurichten. Anschließend kann das hochgeladene Docker-Image als Aktion verwendet werden.
+In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das Kennwort `janes_password` verwendet.  Wenn die CLI eingerichtet ist, bleiben drei Schritte übrig, um eine angepasste Binärdatei zur Verwendung durch {{site.data.keyword.openwhisk_short}} einzurichten. Anschließend kann das hochgeladene Docker-Image als Aktion verwendet werden.
 
 1. Laden Sie das Docker-Gerüst (Skeleton) herunter. Sie können es über die CLI wie folgt herunterladen und installieren:
-
   ```
-  wsk sdk install docker
+  ibmcloud wsk sdk install docker
   ```
   {: pre}
 
   Das Docker-Gerüst ist jetzt im aktuellen Verzeichnis installiert.
-  
   ```
   ls dockerSkeleton/
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   Dockerfile      README.md       buildAndPush.sh example.c
   ```
+  {: screen}
 
   Das Gerüst ist eine Docker-Containervorlage, in die Sie Ihren Code in Form von angepassten Binärdateien einfügen können.
 
 2. Richten Sie Ihre angepasste Binärdatei im Docker-Gerüst ('docherSkeleton') ein. Das Gerüst schließt bereits ein C-Programm ein, das Sie verwenden können.
-
   ```
   cat dockerSkeleton/example.c
   ```
@@ -1151,7 +1117,6 @@ In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das
   Die letzte Zeile der Ausgabe _muss_ der Konvention entsprechend ein in eine Zeichenfolge konvertiertes JSON-Objekt sein, das das Aktionsergebnis darstellt.
 
 3. Erstellen Sie das Docker-Image und laden Sie es mithilfe eines bereitgestellten Scripts hoch. Sie müssen zunächst den Befehl `docker login` zur Authentifizierung und anschließend das Script mit einem ausgewählten Imagenamen ausführen.
-
   ```
   docker login -u janesmith -p janes_password
   ```
@@ -1167,26 +1132,22 @@ In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das
   ```
   {: pre}
 
-  Beachten Sie, dass ein Teil der Datei `example.c` im Rahmen des Buildprozesses für das Docker-Image kompiliert wird, sodass Sie keine C-Kompilierung auf Ihrer Maschine benötigen.
-  Tatsächlich lässt sich die Binärdatei in dem Container nicht ausführen, da die Formate nicht übereinstimmen, wenn Sie sie nicht auf einer kompatiblen Hostmaschine kompilieren.
+  Beachten Sie, dass ein Teil der Datei `example.c` im Rahmen des Buildprozesses für das Docker-Image kompiliert wird, sodass Sie keine C-Kompilierung auf Ihrer Maschine benötigen. Tatsächlich lässt sich die Binärdatei in dem Container nicht ausführen, da die Formate nicht übereinstimmen, wenn Sie sie nicht auf einer kompatiblen Hostmaschine kompilieren.
 
-  Ihr Docker-Container kann jetzt als OpenWhisk-Aktion verwendet werden.
-
-
+  Ihr Docker-Container kann jetzt als {{site.data.keyword.openwhisk_short}}-Aktion verwendet werden:
   ```
-  wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud wsk action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
-  Beachten Sie die Verwendung von `--docker` zum Erstellen einer Aktion. Es wird angenommen, dass alle Docker-Images auf einem Docker Hub gehostet werden.
-  Die Aktion kann wie alle anderen {{site.data.keyword.openwhisk_short}}-Aktionen aufgerufen werden. 
-
+  Beachten Sie die Verwendung von `--docker` zum Erstellen einer Aktion. Es wird angenommen, dass alle Docker-Images auf einem Docker Hub gehostet werden. Die Aktion kann wie alle anderen {{site.data.keyword.openwhisk_short}}-Aktionen aufgerufen werden.
   ```
-  wsk action invoke --result example --param payload Rey
+  ibmcloud wsk action invoke --result example --param payload Rey
   ```
   {: pre}
 
-  ```json
+  **Aufrufausgabe:**
+  ```
   {
       "args": {
           "payload": "Rey"
@@ -1194,49 +1155,44 @@ In den nachfolgenden Anweisungen wird die Docker-Benutzer-ID `janesmith` und das
       "msg": "Hello from arbitrary C program!"
   }
   ```
+  {: screen}
 
-  Zum Aktualisieren der Docker-Aktion führen Sie `buildAndPush.sh` aus, um das neueste Image auf Docker Hub hochzuladen. Dies ermöglicht dem System das Extrahieren Ihres neuen Docker-Images bei der nächsten Ausführung des Codes für Ihre Aktion. Wenn keine aktiven Container vorhanden sind, verwenden die Aufrufe das neue Docker-Image. Wenn jedoch ein aktiver Container vorhanden ist, der eine ältere Version Ihres Docker-Images verwendet, verwenden neue Aufrufe weiterhin dieses Image, solange Sie nicht den Befehl `wsk action update` ausführen. Damit wird dem System angezeigt, dass es für neue Aufrufe eine Docker-Pull-Operation ausführen muss, um Ihr neues Docker-Image abzurufen.
+  Zum Aktualisieren der Docker-Aktion führen Sie `buildAndPush.sh` aus, um das neueste Image auf Docker Hub hochzuladen. Dies ermöglicht dem System das Extrahieren Ihres neuen Docker-Images bei der nächsten Ausführung des Codes für Ihre Aktion. Wenn keine aktiven Container vorhanden sind, verwenden die Aufrufe das neue Docker-Image. Wenn jedoch ein aktiver Container vorhanden ist, der eine ältere Version Ihres Docker-Images verwendet, verwenden neue Aufrufe weiterhin dieses Image, solange Sie nicht den Befehl `ibmcloud wsk action update` ausführen. Damit wird dem System angezeigt, dass es für neue Aufrufe eine Docker-Pull-Operation ausführen muss, um Ihr neues Docker-Image abzurufen.
 
+  **Laden Sie das aktuelle Image auf Docker Hub hoch:**
   ```
   ./buildAndPush.sh janesmith/blackboxdemo
   ```
   {: pre}
 
+  **Aktualisieren Sie die Aktion, sodass neue Aufrufe mit dem neuen Image beginnen:***
   ```
-  wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud wsk action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   Weitere Informationen zur Erstellung von Docker-Aktionen finden Sie im Abschnitt mit den [Referenzinformationen](./openwhisk_reference.html#openwhisk_ref_docker).
 
   Die vorherige Version der Befehlszeilenschnittstelle unterstützte `--docker` ohne Parameter und der Imagename war ein positionsgebundenes Argument. Damit die Docker-Aktionen Initialisierungsdaten mithilfe einer Datei (ZIP-Datei) akzeptieren können, normalisieren Sie das Benutzererlebnis für Docker-Aktionen so, dass ein positionsgebundenes Argument (falls vorhanden) eine Datei (z. B. eine ZIP-Datei) sein muss. Der Name des Images muss nach der Option `--docker` angegeben werden. Auf Kundenwunsch wurde das Argument `--native` als Kurzform für `--docker openwhisk/dockerskeleton` hinzugefügt, damit ausführbare Dateien, die im Standard-Docker-Aktion-SDK ausgeführt werden, bequemer erstellt und bereitgestellt werden können.
-  
-  Beispiel: Dieses Lernprogramm erstellt eine ausführbare Binärdatei innerhalb des Containers im Verzeichnis `/action/exec`. Wenn Sie diese Datei in Ihr lokales Dateisystem kopieren und in die Datei `exec.zip` komprimieren, können Sie die folgenden Befehle verwenden, um eine Docker-Aktion zu erstellen, die die ausführbare Datei als Initialisierungsdaten empfängt. 
 
-  ```
-  wsk action create example exec.zip --native
-  ```
-  {: pre}
+  Beispiel: Dieses Lernprogramm erstellt eine ausführbare Binärdatei innerhalb des Containers im Verzeichnis `/action/exec`. Wenn Sie diese Datei in Ihr lokales Dateisystem kopieren und in die Datei `exec.zip` komprimieren, können Sie die folgenden Befehle verwenden, um eine Docker-Aktion zu erstellen, die die ausführbare Datei als Initialisierungsdaten empfängt.
 
-  Dies entspricht folgendem Befehl: 
+  **Erstellen Sie eine Aktion aus der ZIP-Datei:**
   ```
-  wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud wsk action create example exec.zip --native
   ```
   {: pre}
 
-## Aktionen mit beliebigen ausführbaren Dateien erstellen
-{: #creating-actions-arbitrary}
-
-Mit der Option `--native` können Sie anzeigen, ob ausführbare Dateien als OpenWhisk-Aktion ausgeführt werden können. Dies schließt `Bash-Scripts` oder auch übergreifend kompilierte Binärprogramme mit ein. Für die letztere besteht die Einschränkung darin, dass das Binärprogramm mit dem Image von `openwhisk/dockerskeleton` kompatibel sein muss.
+  Dies entspricht folgendem Befehl:
+  ```
+  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ```
+  {: pre}
 
 ## Go-Aktionen erstellen
 {: #creating-go-actions}
 
-Mit der Option `--native` können ausführbare Dateien als Aktion gepackt werden. Dies funktioniert für Go als Beispiel.
-Wie bei Docker-Aktionen empfängt die ausführbare Go-Datei ein einzelnes Argument über die Befehlszeile.
-Dabei handelt sich um eine Zeichenfolgeserialisierung des JSON-Objekts, das die Argumente für die Aktion darstellt.
-Das Programm kann die Protokolle in `stdout` oder `stderr` ausgeben.
-Die letzte Zeile der Ausgabe _muss_ der Konvention entsprechend ein in eine Zeichenfolge konvertiertes JSON-Objekt sein, das das Aktionsergebnis darstellt.
+Mit der Option `--native` können ausführbare Dateien als Aktion gepackt werden. Dies funktioniert für Go als Beispiel. Wie bei Docker-Aktionen empfängt die ausführbare Go-Datei ein einzelnes Argument über die Befehlszeile. Dabei handelt sich um eine Zeichenfolgeserialisierung des JSON-Objekts, das die Argumente für die Aktion darstellt. Das Programm kann die Protokolle in `stdout` oder `stderr` ausgeben. Die letzte Zeile der Ausgabe _muss_ der Konvention entsprechend ein in eine Zeichenfolge konvertiertes JSON-Objekt sein, das das Aktionsergebnis darstellt.
 
 Das folgende Beispiel zeigt eine Go-Aktion.
 ```go
@@ -1266,17 +1222,19 @@ func main() {
     fmt.Println(string(res))
 }
 ```
+{: codeblock}
 
 Speichern Sie den obigen Code in einer Datei mit dem Namen `sample.go` und kompilieren Sie sie für OpenWhisk. Die ausführbare Datei muss den Namen `exec` haben.
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-wsk action create helloGo --native exec.zip
+ibmcloud wsk action create helloGo --native exec.zip
 ```
+{: codeblock}
 
 Die Aktion kann wie jede andere Aktion ausgeführt werden.
 ```bash
-wsk action invoke helloGo -r -p name gopher
+ibmcloud wsk action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1284,12 +1242,17 @@ wsk action invoke helloGo -r -p name gopher
 
 Protokolle werden ebenfalls auf ähnliche Weise abgerufen.
 ```bash
-wsk activation logs --last --strip
+ibmcloud wsk activation logs --last --strip
 my first Go action.
 ```
 
+## Aktionen mit beliebigen ausführbaren Dateien erstellen
+{: #creating-actions-arbitrary}
+
+Mit der Option `--native` können Sie anzeigen, ob __ausführbare Dateien als OpenWhisk-Aktion ausgeführt werden können. Dies schließt `Bash-Scripts` oder auch übergreifend kompilierte Binärprogramme mit ein. Für die letztere besteht die Einschränkung darin, dass das Binärprogramm mit dem Image von `openwhisk/dockerskeleton` kompatibel sein muss.
+
 ## Aktionsausgabe überwachen
-{: #watching-action-output}
+{: #monitor-action-output}
 
 {{site.data.keyword.openwhisk_short}}-Aktionen können von anderen Benutzern, als Reaktion auf verschiedene Ereignisse oder als Teil einer Aktionssequenz aufgerufen werden. In solchen Fällen kann es nützlich sein, die Aufrufe zu überwachen.
 
@@ -1297,79 +1260,136 @@ Sie können die Ausgabe von Aktionen, wenn sie aufgerufen werden, über die {{si
 
 1. Geben Sie den folgenden Befehl über eine Shell ein:
   ```
-  wsk activation poll
+  ibmcloud wsk activation poll
   ```
   {: pre}
 
   Dieser Befehl startet eine Polling-Schleife, die kontinuierlich auf Protokolle aus Aktivierungen prüft.
 
 2. Wechseln Sie zu einem anderen Fenster und rufen Sie eine Aktion auf:
-
   ```
-  wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
   ```
+  {: screen}
 
 3. Beobachten Sie das Aktivierungsprotokoll in dem Polling-Fenster:
-
   ```
   Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
     2016-02-11T16:46:56.842065025Z stdout: hello bob!
   ```
+  {: screen}
 
   Immer wenn Sie das Dienstprogramm 'poll' ausführen, werden die Protokolle für Aktionen, die für Sie in OpenWhisk ausgeführt werden, in Echtzeit angezeigt.
 
-## Unterstützung für große Anwendungen
-{: #large-app-support}
+## Aktionen abrufen
+{: #getting-actions}
 
-Die maximale Codegröße für eine Aktion ist 48 MB. Anwendungen, die viele Drittanbietermodule, native Bibliotheken oder externe Tools enthalten, könnten auf diese Begrenzung stoßen.
+Metadaten, die vorhandene Aktionen beschreiben, können mit dem Befehl `ibmcloud wsk action` abgerufen werden.
 
-Wenn Sie ein Paket (ZIP- oder JAR-Datei) erstellen, das größer als 48 MB ist, besteht die Lösung darin, das Laufzeitimage um Abhängigkeiten zu erweitern und anschießend eine einzelne Quellendatei oder ein kleineres Archiv als 48 MB zu verwenden.
-
-Wenn zum Beispiel eine Docker-Laufzeit erstellt wird, die erforderliche gemeinsam genutzte Bibliotheken einschließt, müssen diese Abhängigkeiten nicht in der Archivdatei enthalten sein. Private Quellendateien können weiterhin in das Archiv eingebunden und während der Ausführung eingefügt werden.
-
-Ein weiterer Vorteil der Verringerung von Archivdateigrößen besteht darin, dass sich auch Bereitstellungszeiten verbessern.
-
-### Python-Beispiel
-
-Im folgenden Python-Beispiel kann 'opencv' die Bibliothek `opencv-python` enthalten und dann die Binärdatei für 'opencv' im Betriebssystemimage installieren. Anschließend können Sie die Datei `requirements.txt` verwenden und den Befehl `pip install requirements.txt` ausführen, um das Image um weitere Python-Bibliotheken zu erweitern. Sie können die Datei `action.py` anschließend mit dem neuen Image verwenden.
-
-### Node.js-Beispiel
-
-Im folgenden Node.js-Beispiel können Sie zusätzliche Pakete im Betriebssystemimage installieren:
-
-Installieren Sie 'opencv' mithilfe von `npm`:
+**Befehl:**
 ```
-npm install opencv
+ibmcloud wsk action get hello
+```
+
+***Ergebnis:**
+```
+ok: got action hello
+{
+    "namespace": "user@email.com",
+    "name": "hello",
+    "version": "0.0.1",
+    "exec": {
+        "kind": "nodejs:6",
+        "binary": false
+    },
+    "annotations": [
+        {
+            "key": "exec",
+            "value": "nodejs:6"
+        }
+    ],
+    "limits": {
+        "timeout": 60000,
+        "memory": 256,
+        "logs": 10
+    },
+    "publish": false
+}
+```
+{: screen}
+
+### Aktions-URL abrufen
+{: #get-action-url}
+
+Eine Aktion kann über die REST-Schnittstelle durch eine HTTPS-Anforderung aufgerufen werden. Führen Sie den folgenden Befehl aus, um eine Aktions-URL abzurufen:
+```
+ibmcloud wsk action get actionName --url
 ```
 {: pre}
 
-Wenn Sie eine Datei `package.json` haben, können Sie die Installation mithilfe von `npm` ganz ähnlich durchführen:
+Für Standardaktionen wird eine URL mit dem folgenden Format zurückgegeben:
 ```
-npm install package.json
+ok: got action actionName
+https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
-{: pre}
+{: screen}
 
-Fahren Sie anschließend mit der Verwendung von `action.js` mit dem neuen Image fort.
+Für [Webaktionen](./openwhisk_webactions.html) wird eine URL im folgenden Format zurückgegeben:
+```
+ok: got action actionName
+https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
+```
+{: screen}
+
+**Hinweis:** Bei Standardaktionen ist eine Authentifizierung erforderlich, wenn der Aufruf über eine HTTPS-Anforderung erfolgt. Weitere Informationen zu Aktionsaufrufen über die REST-Schnittstelle finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
+
+### Aktionscode speichern
+{: #save-action}
+
+Code, der einer vorhandenen Aktion zugeordnet ist, kann abgerufen und lokal gespeichert werden. Das Speichern kann für alle Aktionen außer Sequenzen und Docker-Aktionen ausgeführt werden.
+
+1. Speichern Sie den Aktionscode unter einem Dateinamen, der dem Namen einer vorhandenen Aktion im aktuellen Arbeitsverzeichnis entspricht. Es wird eine Dateierweiterung verwendet, die der Art der verwendeten Aktion entspricht, oder es wird der Erweiterungstyp '.zip' für den Aktionscode verwendet, der sich in einer ZIP-Datei befindet.
+  ```
+  ibmcloud wsk action get actionName --save
+  ```
+  {: pre}
+
+  Beispielausgabe:
+  ```
+  ok: saved action code to /absolutePath/currentDirectory/actionName.js
+  ```
+  {: screen}
+
+2. Anstatt das Ziel des zu speichernden Codes durch die Befehlszeilenschnittstelle bestimmen zu lassen, können ein angepasster Dateipfad, ein Dateiname und eine Erweiterung durch das Flag `--save-as` angegeben werden.
+  ```
+  ibmcloud wsk action get actionName --save-as codeFile.js
+  ```
+  {: pre}
+
+  Beispielausgabe:
+  ```
+  ok: saved action code to /absolutePath/currentDirectory/codeFile.js
+  ```
+  {: screen}
 
 ## Aktionen auflisten
 {: #listing-actions}
 
 Sie können alle Aktionen auflisten, die mit dem folgenden Befehl erstellt wurden:
-
 ```
-wsk action list
+ibmcloud wsk action list
 ```
 {: pre}
 
-Je mehr Aktionen Sie schreiben, desto umfangreicher wird die Liste. Es kann daher hilfreich sein, zusammengehörige Aktionen in [Paketen](./openwhisk_packages.html) zu gruppieren. Mit der folgenden Befehlssyntax können Sie die Liste der Aktionen so filtern, dass nur Aktionen in einem bestimmten Paket angezeigt werden: 
-
+Je mehr Aktionen Sie schreiben, desto umfangreicher wird die Liste. Es kann daher hilfreich sein, zusammengehörige Aktionen in [Paketen](./openwhisk_packages.html) zu gruppieren. Mit der folgenden Befehlssyntax können Sie die Liste der Aktionen so filtern, dass nur Aktionen in einem bestimmten Paket angezeigt werden:
 ```
-wsk action list [PAKETNAME]
+ibmcloud wsk action list [PACKAGE NAME]
 ```
 {: pre}
 
@@ -1380,32 +1400,71 @@ Sie können eine Bereinigung durchführen, indem Sie Aktionen löschen, die nich
 
 1. Führen Sie den folgenden Befehl zum Löschen einer Aktion aus:
   ```
-  wsk action delete hello
+  ibmcloud wsk action delete hello
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   ok: deleted hello
   ```
+  {: screen}
 
 2. Überprüfen Sie, ob die Aktion nicht mehr in der Liste der Aktionen angezeigt wird.
   ```
-  wsk action list
+  ibmcloud wsk action list
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   actions
   ```
+  {: screen}
+
+## Unterstützung für große Anwendungen
+{: #large-app-support}
+
+Die maximale Codegröße für eine Aktion ist 48 MB. Anwendungen, die viele Drittanbietermodule, native Bibliotheken oder externe Tools enthalten, könnten auf diese Begrenzung stoßen.
+
+Wenn Sie ein Paket (ZIP- oder JAR-Datei) erstellen, das größer als 48 MB ist, besteht die Lösung darin, das Laufzeitimage um Abhängigkeiten zu erweitern und anschießend eine einzelne Quellendatei oder ein kleineres Archiv als 48 MB zu verwenden.
+
+Wenn zum Beispiel eine Docker-Laufzeit erstellt wird, die erforderliche gemeinsam genutzte Bibliotheken einschließt, müssen diese Abhängigkeiten nicht in der Archivdatei enthalten sein. Private Quellendateien können weiterhin in das Archiv eingebunden und während der Ausführung eingefügt werden.
+
+Ein weiterer Vorteil der Verringerung von Archivdateigrößen besteht darin, dass sich auch Bereitstellungszeiten verbessern. In den folgenden Abschnitten werden zwei Laufzeitbeispiele gezeigt, die veranschaulichen, wie die Anwendungsgrößen durch die Verwendung dieser Technik reduziert werden können.
+
+### Python-Beispiel
+
+Orientieren Sie sich zum Reduzieren der Codegröße bei einer Python-Anwendung an den folgenden Schritten:
+
+1. Stellen Sie die Bibliothek `opencv-python` in 'opencv'.
+2. Installieren Sie anschließend die 'opencv'-Binärdatei im Betriebssystemimage.
+3. Anschließend können Sie die Datei `requirements.txt` verwenden und den Befehl `pip install requirements.txt` ausführen, um das Image um weitere Python-Bibliotheken zu erweitern.
+4. Sie können die Datei `action.py` anschließend mit dem neuen Image verwenden.
+
+### Node.js-Beispiel
+
+Um die Anwendungsgröße für eine Node.js-Anwendung zu reduzieren, orientieren Sie sich an den folgenden Schritten zum Installieren zusätzlicher Pakete im Betriebssystemimage:
+
+1. Installieren Sie 'opencv' mithilfe von `npm`:
+   ```
+   npm install opencv
+   ```
+   {: pre}
+
+2. Wenn Sie eine Datei `package.json` haben, können Sie die Installation mithilfe von `npm` ganz ähnlich durchführen:
+   ```
+   npm install package.json
+   ```
+   {: pre}
+
+3. Fahren Sie anschließend mit der Verwendung von `action.js` mit dem neuen Image fort.
 
 ## In der Aktionskomponente auf Aktionsmetadaten zugreifen
 {: #accessing-action-metadata-within-the-action-body}
 
-Die Aktionsumgebung enthält mehrere Eigenschaften, die für die aktive Aktion spezifisch sind.
-Mit diesen kann die Aktion programmgestützt über die REST-API mit OpenWhisk-Assets arbeiten oder einen internen
-Alarm auslösen, wenn die Aktion kurz davor ist, das zugeteilte Zeitbudget aufzubrauchen.
-Auf die Eigenschaften kann über die Systemumgebung für alle unterstützten Laufzeiten zugegriffen werden:
-Node.js-, Python-, Swift-, Java- und Docker-Aktionen bei Verwendung des Docker-Gerüsts für OpenWhisk.
+Die Aktionsumgebung enthält mehrere Eigenschaften, die für die aktive Aktion spezifisch sind. Mit diesen Eigenschaften kann die Aktion programmgestützt über die REST-API mit OpenWhisk-Assets arbeiten oder einen internen Alarm auslösen, wenn die Aktion kurz davor ist, das zugeteilte Zeitbudget aufzubrauchen.
+Auf die Eigenschaften kann über die Systemumgebung für alle unterstützten Laufzeiten zugegriffen werden: Node.js-, Python-, Swift-, Java- und Docker-Aktionen bei Verwendung des Docker-Gerüsts für OpenWhisk.
 
 * `__OW_API_HOST`: Der API-Host für die OpenWhisk-Bereitstellung, die diese Aktion ausführt.
 * `__OW_API_KEY`: Der API-Schlüssel für das Subjekt, das die Aktion aufruft; dieser Schlüssel kann ein eingeschränkter API-Schlüssel sein.

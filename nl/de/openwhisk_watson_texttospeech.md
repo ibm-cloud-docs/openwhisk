@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Watson-Paket 'Text to Speech' verwenden
+# Watson: 'Text to Speech'-Paket
 {: #openwhisk_catalog_watson_texttospeech}
 
 Das Paket `/whisk.system/watson-textToSpeech` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für die Konvertierung von Text in Sprache.
@@ -28,44 +28,47 @@ Das Paket enthält die folgenden Aktionen.
 
 ## Watson-Paket 'Text to Speech' in {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk über {{site.data.keyword.Bluemix_notm}} verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre {{site.data.keyword.Bluemix_notm}}-Watson-Serviceinstanzen.
+Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}} verwenden, werden die Paketbindungen automatisch für Ihre {{site.data.keyword.Bluemix_notm}} Watson-Serviceinstanzen erstellt.
 
-1. Erstellen Sie eine Watson-Serviceinstanz für 'Text to Speech' in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
-  
+1. Erstellen Sie eine Watson-Serviceinstanz für 'Text to Speech' in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.bluemix.net).
+
   Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
-  
+
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Watson-Serviceinstanz, die Sie erstellt haben.
   ```
-  wsk package refresh
+  ibmcloud wsk package refresh
   ```
-  
+  {: pre}
+
+  Beispielausgabe:
   ```
   created bindings:
   Bluemix_Watson_TextToSpeech_Credentials-1
   ```
-  
+  {: screen}
+
+  Listen Sie die Pakete auf, um zu ermitteln, ob die Paketbindung erstellt wurde:
   ```
-  wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
-  
+
+  Beispielausgabe:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_TextToSpeec_Credentials-1 private
   ```
-  
-  
+  {: screen}
+
 ## Watson-Paket 'Text to Speech' außerhalb von {{site.data.keywrod.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie den Watson-Service 'Text to Speech' außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson-Service 'Text to Speech' erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson-Service 'Text to Speech'.
+Wenn Sie {{site.data.keyword.openwhisk_short}} nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie den Watson-Service 'Text to Speech' außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson-Service 'Text to Speech' erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson-Service 'Text to Speech'.
 
-- Erstellen Sie eine Paketbindung, die für Ihren Watson-Service 'Text to Speech' konfiguriert ist.
-  
-  ```
-  wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
-  ```
-  {: pre}
-  
+Erstellen Sie eine Paketbindung, die für Ihren Watson-Service 'Text to Speech' konfiguriert ist.
+```
+ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+```
+{: pre}
 
 ## Umsetzung von Text in Sprache
 
@@ -78,17 +81,16 @@ Die Aktion `/whisk.system/watson-textToSpeech/textToSpeech` wandelt Text in eine
 - `accept`: Das Format der Sprachdatei.
 - `encoding`: Die Codierung der binären Sprachdaten.
 
+Rufen Sie die Aktion **textToSpeech** in Ihrer Paketbindung auf, um den Text umzusetzen.
+```
+ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+```
+{: pre}
 
-- Rufen Sie die Aktion `textToSpeech` in Ihrer Paketbindung auf, um den Text umzusetzen.
-  
-  ```
-  wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
-  ```
-  {: pre}
-  
-  ```json
-  {
-    "payload": "<base64 encoding of a .wav file>"
+Beispielausgabe:
+```
+{
+  "payload": "<base64 encoding of a .wav file>"
   }
-  ```
-  
+```
+{: screen}

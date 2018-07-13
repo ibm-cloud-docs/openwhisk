@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -12,217 +12,177 @@ lastupdated: "2018-02-14"
 {:tip: .tip}
 {:pre: .pre}
 
-# Plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
+# Configuration du plug-in de l'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
 {: #cloudfunctions_cli}
 
-{{site.data.keyword.openwhisk_short}} offre un plug-in puissant pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} qui permet une gestion complète du système {{site.data.keyword.openwhisk_short}}.
+{{site.data.keyword.openwhisk}} offre un plug-in puissant pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} qui permet une gestion complète du système {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 ## Configuration de l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}
 {: #bluemix_cli_setup}
 
-Téléchargez et installez l'[interface de ligne de commande {{site.data.keyword.Bluemix_notm}}. ](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html)
+Téléchargez et installez l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} et connectez-vous.
+{: shortdesc}
+
+1. Téléchargez et installez l'[interface de ligne de commande {{site.data.keyword.Bluemix_notm}}. ](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html)
+
+2. Connectez-vous à l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}. {{site.data.keyword.openwhisk_short}} est disponible dans les régions {{site.data.keyword.Bluemix_notm}} Sud des Etats-Unis et Royaume-Uni. Si le noeud final d'API {{site.data.keyword.Bluemix_notm}} n'est pas spécifié, indiquez-en un avec l'indicateur `-a`.
+
+    * Pour vous connecter à la région Sud des Etats-Unis :
+      ```
+      ibmcloud login -a api.ng.bluemix.net
+      ```
+      {: pre}
+
+    * Pour vous connecter à la région Royaume-Uni :
+      ```
+      ibmcloud login -a api.eu-gb.bluemix.net
+      ```
+      {: pre}
+
+  Vous pouvez utiliser la commande `ibmcloud api` pour définir de manière explicite le noeud final de l'API {{site.data.keyword.Bluemix_notm}}. Pour afficher le paramètre de noeud final d'API, utilisez la commande `ibmcloud target`.
+  {: tip}
+
+3. La commande `ibmcloud login` vous invite à saisir des informations, telles que l'organisation, l'espace et le mot de passe, si elles ne sont pas spécifiées.
+
+  Vous pouvez indiquer l'organisation et l'espace à la connexion pour éviter d'avoir à répondre aux invites. Pour cela, utilisez les indicateurs suivants : `ibmcloud login -o <ORG> -s <SPACE>`.
+  {: tip}
+
+Vous pouvez également utiliser une clé d'API {{site.data.keyword.Bluemix_notm}} pour vous connecter. Cette méthode s'avère pratique lorsque votre compte est configuré avec une connexion fédérée qui nécessite une connexion avec l'indicateur `--sso`. [L'utilisation d'une clé d'API](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) est également avantageuse si vous souhaitez définir une intégration continue et configurer un pipeline automatisé.
+
+1. Créez une nouvelle clé d'API.
+    ```
+    ibmcloud iam api-key-create MyKey
+    ```
+    {: pre}
+
+2. Utilisez la valeur générée de la clé d'API pour vous connecter.
+    ```
+    ibmcloud login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
+    ```
+    {: pre}
+</br>
+Pour plus d'informations sur la commande `ibmcloud login`, utilisez `ibmcloud login --help` ou consultez la rubrique [Commandes IBM Cloud (bx)](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login).
 
 ## Configuration du plug-in {{site.data.keyword.openwhisk_short}}
 {: #cloudfunctions_plugin_setup}
 
-Pour installer le plug-in {{site.data.keyword.openwhisk_short}}, exécutez la commande suivante :
-```
-bx plugin install cloud-functions
-```
-{: pre}
+Téléchargez et installez le plug-in {{site.data.keyword.openwhisk_short}}.
+{: shortdesc}
 
+1. Installez le plug-in {{site.data.keyword.openwhisk_short}}.
+    ```
+    ibmcloud plugin install cloud-functions
+    ```
+    {: pre}
 
-Pour vérifier que l'installation du plug-in {{site.data.keyword.openwhisk_short}} a abouti, exécutez la commande suivante :
-```
-bx plugin list cloud-functions
-```
-{: pre}
+2. Vérifiez que le plug-in est installé.
+    ```
+    ibmcloud plugin list cloud-functions
+    ```
+    {: pre}
 
+    Sortie :
+    ```
+    Plugin Name          Version
+    Cloud-Functions      1.0.16
+    ```
+    {: screen}
 
-La sortie affiche les informations sur la version {{site.data.keyword.openwhisk_short}} installée :
-```
-Plugin Name          Version
-Cloud-Functions      1.0.0
-```
+3. Effectuez un appel (synchrone) bloquant de `echo`. Indiquez `hello` comme argument.
+    ```
+    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ```
+    {: pre}
 
-Vous pouvez mettre à niveau le plug-in {{site.data.keyword.openwhisk_short}} en exécutant la commande suivante :
-```
-bx plugin update Cloud-Functions
-```
-{: pre}
+4. Vérifiez que le message `hello` est renvoyé dans la sortie.
+    Exemple de sortie :
+    ```
+    {
+        "message":"hello"
+    }
+    ```
+    {: screen}
 
+5. Vous pouvez mettre à niveau le plug-in {{site.data.keyword.openwhisk_short}} en exécutant la commande suivante :
+    ```
+    ibmcloud plugin update cloud-functions
+    ```
+    {: pre}
 
-Pour plus d'informations sur la commande de plug-in, utilisez `bx plugin --help` ou vérifiez la documentation suivante :
-https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_plugin_list
-
-## Authentification d'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}
-{: #bluemix_cli_auth}
-
-{{site.data.keyword.openwhisk_short}} est disponible dans deux régions {{site.data.keyword.Bluemix_notm}}. 
-
-Lorsque vous vous connectez à l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}, vous pouvez spécifier le noeud final d'API {{site.data.keyword.Bluemix_notm}} pour la région cible tout comme pour l'organisation et l'espace. 
-
-Pour vous connecter à la région Sud des Etats-Unis :
-```
-bx login -a api.ng.bluemix.net
-```
-{: pre}
-
-
-Pour vous connecter à la région Royaume-Uni :
-```
-bx login -a api.eu-gb.bluemix.net
-```
-{: pre}
-
-
-L'indicateur `-a` spécifie le noeud final d'API {{site.data.keyword.Bluemix_notm}} à utiliser. Si le noeud final d'API est spécifié, l'option `-a` n'est pas nécessaire. Vous pouvez utiliser la commande `bx api` pour définir explicitement le noeud final d'API {{site.data.keyword.Bluemix_notm}}. Pour afficher le paramétrage de noeud final d'API en cours, utilisez la commande `bx target`. 
-
-La commande `login` vous invite à saisir des informations, telles que l'organisation, l'espace et le mot de passe, si elles ne sont pas spécifiées. Vous pouvez spécifier l'organisation et l'espace sur la ligne de commande pour ignorer l'invite vous demandant de les saisir. 
-```
-bx login -o <MY_ORG> -s <MY_SPACE>
-```
-{: pre}
-
-
-Vous pouvez également utiliser une clé d'API {{site.data.keyword.Bluemix_notm}} pour vous connecter. Cette méthode est utile lorsque votre compte est configuré avec une connexion fédérée qui vous demande de vous connecter avec l'indicateur `- - connexion unique`. L'utilisation d'une clé d'API est également avantageuse si vous souhaitez définir une intégration continue et configurer un pipeline inattendu. 
-https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key
-
-Pour créer une nouvelle clé d'API en utilisant l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}, exécutez la commande suivante :
-```
-bx iam api-key-create MyKey
-```
-{: pre}
-
-
-Ensuite, utilisez la valeur générée par la clé d'API pour vous connecter, comme dans l'exemple suivant :
-```
-bx login -a api.ng.bluemix.net -o <MY_ORG> -s <MY_SPACE> --apikey <MY_KEY>
-```
-{: pre}
-
-
-Pour plus d'informations sur la commande login, utilisez `bx login --help` ou lisez la documentation suivante :
-https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login
-
-
-## Utilisation du plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
-{: #cloudfunctions_plugin_usage}
-
-Vérifiez votre configuration. Effectuez un appel (synchrone) bloquant d'echo, en transmettant `hello` comme argument, comme dans l'exemple suivant :
-```
-bx wsk action invoke whisk.system/utils/echo -p message hello --result
-```
-{: pre}
-
-
-Exemple :
-```
-{
-    "message":"hello"
-}
-```
-
-Une fois votre environnement configuré, vous pouvez utiliser l'interface de ligne de commande {{site.data.keyword.openwhisk_short}} pour effectuer les tâches suivantes :
+Vous pouvez utiliser l'interface de ligne de commande {{site.data.keyword.openwhisk_short}} pour :
 
 * Exécuter vos fragments de code, ou vos actions, dans {{site.data.keyword.openwhisk_short}}. Voir [Création et appel d'actions](./openwhisk_actions.html).
 * Utiliser des déclencheurs et des règles pour que vos actions puissent répondre à des événements. Voir [Création de déclencheurs et de règles](./openwhisk_triggers_rules.html).
 * Découvrir comment les packages regroupent des actions et configurer des sources d'événements externes. Voir [Création et utilisation de packages](./openwhisk_packages.html).
-* Explorer le catalogue de packages et améliorer vos applications avec des services externes tels qu'une [source d'événements Cloudant](./openwhisk_cloudant.html). Voir [Utilisation de services compatibles avec {{site.data.keyword.openwhisk_short}}](./openwhisk_catalog.html).
+* Explorer le catalogue de packages et améliorer vos applications avec des services externes, par exemple une [source d'événement {{site.data.keyword.cloudant}}](./openwhisk_cloudant.html).
 
-Afin d'obtenir une liste de commandes pour le plug-in {{site.data.keyword.openwhisk_short}}, exécutez `bx wsk` sans arguments.
+Pour afficher la liste des commandes du plug-in {{site.data.keyword.openwhisk_short}}, exécutez la commande `ibmcloud wsk` sans arguments.
+{: tip}
 
-## Utilisation de services à partir des actions
+## Utilisation de services à partir d'actions
 {: #binding_services}
 
-{{site.data.keyword.openwhisk_short}} fournit la commande `service bind` pour mettre vos données d'identification du service {{site.data.keyword.Bluemix_notm}} à la disposition de votre code lors de l'exécution. La commande `service bind` peut ensuite être exploitée pour vous permettre de lier n'importe quel service {{site.data.keyword.Bluemix_notm}} à n'importe quelle action qui est définie dans {{site.data.keyword.openwhisk_short}}.
+{{site.data.keyword.openwhisk_short}} fournit la commande `service bind` pour mettre vos données d'identification du service {{site.data.keyword.Bluemix_notm}} à la disposition de votre code lors de l'exécution. Vous pouvez ensuite utiliser la commande `service bind` pour lier un service {{site.data.keyword.Bluemix_notm}} à une action définie dans {{site.data.keyword.openwhisk_short}}.
 
-Pour obtenir des instructions détaillées sur la façon d'utiliser des services à partir des actions, voir la rubrique [Utilisation de services à partir des actions](./binding_services.html). 
+Pour obtenir la procédure détaillée de l'utilisation des services à partir d'actions, voir [Liaisons de service à des actions](./binding_services.html).
 
-## Configuration de l'interface de ligne de commande {{site.data.keyword.openwhisk_short}} pour l'utilisation d'un proxy HTTPS
+## Configuration de l'interface de ligne de commande {{site.data.keyword.openwhisk_short}} pour utiliser un proxy HTTPS
 {: #cli_https_proxy}
 
 L'interface de ligne de commande {{site.data.keyword.openwhisk_short}} peut être configurée pour utiliser un proxy HTTPS. Pour configurer un proxy HTTPS, vous devez créer une variable d'environnement appelée `HTTPS_PROXY`. Celle-ci doit avoir pour valeur l'adresse du proxy HTTPS et son port définis au format suivant : `{IP PROXY}:{PORT PROXY}`.
 
-## Gestion des régions, des organisations et des espaces
+## Changement de régions, d'organisations et d'espaces
 {: #region_info}
 
-Vous pouvez créer des espaces pour gérer vos déploiements de préproduction et de production en créant des espaces pour chacun d'eux. Le fait de créer des espaces permet que deux noms d'espace différents soient définis pour vous par {{site.data.keyword.openwhisk_short}}. 
+Si vous êtes déjà connecté, vous pouvez exécuter la commande `ibmcloud target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} pour changer de régions, d'organisations et d'espaces.
 
-Vous pouvez utiliser la commande `bx iam space-create` pour créer d'autres espaces sous votre organisation, par exemple, "staging" et "production". Exemple :
+{{site.data.keyword.openwhisk_short}} est disponible dans les régions {{site.data.keyword.Bluemix_notm}} Sud des Etats-Unis et Royaume-Uni. Pour changer de région, utilisez la commande `ibmcloud target`. Par exemple, pour passer à la région Royaume-Uni et à l'espace `staging` figurant dans cette région, exécutez :
 ```
-bx iam space-create "staging"
-bx iam space-create "production"
+ibmcloud target -r eu-gb -s staging
 ```
+{: pre}
 
-Pour plus d'informations sur la commande `bx iam`, voir la documentation suivante : https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create
+Vous pouvez créer des espaces pour gérer vos déploiements de préproduction et de production en créant des espaces pour chacun d'eux. Le fait de créer des espaces permet que deux noms d'espace différents soient définis pour vous par {{site.data.keyword.openwhisk_short}}. Exécutez la commande [`ibmcloud iam space-create`](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) pour créer d'autres espaces sous votre organisation, par exemple "staging" et "production" :
 
-{{site.data.keyword.openwhisk_short}} présente des restrictions relatives aux noms d'espace de nom. Pour en savoir plus sur ces restrictions, voir la documentation suivante : https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities
+```
+ibmcloud iam space-create "staging"
+ibmcloud iam space-create "production"
+```
+{: pre}
 
-Si vous êtes déjà connecté, vous pouvez exécuter la commande `bx target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} pour changer de région, d'organisation et d'espace. 
-
-Utilisez la commande suivante pour afficher toutes les régions {{site.data.keyword.Bluemix_notm}} :
-
-{{site.data.keyword.openwhisk_short}} est pris en charge uniquement dans les régions `us-south` et `eu-gb`.
+{{site.data.keyword.openwhisk_short}} fait l'objet de restrictions en matière de noms d'espace de nom. Pour plus d'informations, consultez la documentation sur les [limites et détails du système](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities).
 {: tip}
-
-```
-bx regions
-
-Name       Geolocation          Customer   Deployment   Domain                   CF API Endpoint                  Type
-us-south   US South             IBM        Production   ng.bluemix.net     https://api.ng.bluemix.net             public
-eu-gb      United Kingdom       IBM        Production   eu-gb.bluemix.net  https://api.eu-gb.bluemix.net          public
-```
-
-Utilisez la commande `bx target` pour changer les régions. Par exemple, si vous souhaitez passer dans la région United Kingdom et dans l'espace `staging` :
-```
-bx target -r eu-gb -s staging
-```
-{: pre}
-
-
-Si vous devez changer d'espace au sein d'une même région, par exemple, aller de staging à production, exécutez la commande suivante :
-```
-bx target -s production
-```
-{: pre}
-
-
-Pour plus d'informations sur la commande `target`, utilisez `bx target --help` ou lisez la documentation suivante :
-https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_target
 
 ## Migration depuis l'interface de ligne de commande OpenWhisk vers le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Avec l'introduction du plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, l'interface de ligne de commande OpenWhisk n'est plus nécessaire. 
+Avec l'introduction du plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, l'interface de ligne de commande OpenWhisk autonome n'est plus nécessaire.
 
 ### Syntaxe de commande
 {: #command_syntax}
 
-Toutes les commandes `wsk`, à l'exception de la commande `wsk bluemix login` devenue inutile, fonctionnement de la même manière en utilisant la commande `bx wsk`.  Toutes les options et tous les arguments de commande sont identiques. 
+Toutes les commandes `wsk`, à l'exception de la commande `wsk bluemix login` devenue inutile, fonctionnent de la même façon en utilisant la commande `ibmcloud wsk`.  Toutes les options et tous les arguments de commande sont identiques.
 
 ### Authentification et hôte d'API
 {: #api_authentication}
 
-Pour l'interface de ligne de commande OpenWhisk, vous devez configurer la clé d'API d'authentification et l'hôte d'API.
-Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, vous n'avez pas besoin de configurer explicitement la clé d'API et l'hôte d'API. Vous devez vous connecter avec `bx login` et cibler votre région et votre espace de nom en utilisant la commande `bx target`. Après quoi, toutes les commandes suivantes commenceront par `bx wsk`. Ce type d'authentification permet également d'éviter d'accéder à la page Web {{site.data.keyword.Bluemix_notm}} afin d'obtenir des informations spécifiques pour configurer votre environnement d'interface de ligne de commande. 
+Avec l'interface de ligne de commande OpenWhisk, vous deviez configurer la clé d'API d'authentification et l'hôte d'API.
+Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, vous n'avez plus besoin de configurer de manière explicite la clé d'API et l'hôte d'API. A la place, vous pouvez vous connecter avec `ibmcloud login` et cibler votre région et votre espace de nom en utilisant la commande `ibmcloud target`. Après la connexion, toutes les commandes commencent par `ibmcloud wsk`.
 
-Si vous devez vous procurer la clé d'API d'authentification afin d'utiliser {{site.data.keyword.openwhisk_short}} à partir d'un client HTTP externe, tel que cURL ou Postman, vous pouvez l'extraire à l'aide des commandes suivantes :
+Si vous devez utiliser une clé d'API d'authentification pour {{site.data.keyword.openwhisk_short}} dans un client HTTP externe, tel que cURL ou Postman, vous pouvez la récupérer avec les commandes suivantes :
 
-Pour obtenir la clé d'API en cours, exécutez la commande suivante :
+Pour obtenir la clé d'API en cours :
 ```
-bx wsk property get --auth
-```
-{: pre}
-
-
-Pour obtenir l'hôte d'API en cours, exécutez la commande suivante :
-```
-bx wsk property get --apihost
+ibmcloud wsk property get --auth
 ```
 {: pre}
 
+Pour obtenir l'hôte d'API en cours :
+```
+ibmcloud wsk property get --apihost
+```
+{: pre}
 
 La clé d'API est propre à chaque région, chaque organisation et chaque espace ciblés par le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}.
 {: tip}
@@ -230,25 +190,57 @@ La clé d'API est propre à chaque région, chaque organisation et chaque espace
 ### Authentification de passerelle d'API
 {: #apigw_authentication}
 
-Actuellement, l'interface de ligne de commande OpenWhisk vous oblige à exécuter la commande `wsk bluemix login` dans le but de pouvoir configurer l'autorisation de passerelle d'API pour la gestion de vos API à l'aide de la commande `wsk api`. 
-
-Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk}}, il n'est plus nécessaire d'exécuter la commande `wsk bluemix login`. A la place, utilisez la commande `bx login` pour vous connecter à {{site.data.keyword.Bluemix_notm}} ; le plug-in{{site.data.keyword.openwhisk}} utilisera automatiquement vos informations cible et de connexion actuelles. A présent, vous pouvez gérer vos API en utilisant la commande `bx wsk api`. 
+L'interface de ligne de commande OpenWhisk vous obligeait à exécuter la commande `wsk bluemix login` pour pouvoir configurer l'autorisation de la passerelle d'API pour la gestion de vos API en utilisant la commande `wsk api`. Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, il n'est plus nécessaire d'exécuter la commande `wsk bluemix login`. A la place, lorsque vous utilisez la commande `ibmcloud login` pour vous connecter à {{site.data.keyword.Bluemix_notm}}, le plug-in {{site.data.keyword.openwhisk}} utilise automatiquement vos informations de connexion et de destination. A présent, vous pouvez gérer vos API en utilisant la commande `ibmcloud wsk api`.
 
 ### Migration des scripts de déploiement
 {: #migrating_deploy_scripts}
 
-Si vous avez des scripts qui utilisent l'interface de ligne de commande OpenWhisk avec le binaire `wsk`, toutes les commandes fonctionnent de la même manière en utilisant la commande `bx wsk`. Vous pouvez modifier vos scripts afin d'utiliser le plug-in d'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} ou vous pouvez créer un alias ou un encapsuleur de sorte que les exécutions en cours de `wsk` soient converties en `bx wsk`. Les commandes `bx login` et `bx target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} fonctionnent en mode sans opérateur. Avec le mode sans opérateur, vous pouvez configurer votre environnement avant d'exécuter des commandes `bx wsk` pour déployer et gérer vos entités {{site.data.keyword.openwhisk_short}}. 
-
+Si vous avez des scripts qui utilisent l'interface de ligne de commande OpenWhisk avec le binaire `wsk`, toutes les commandes fonctionnent de la même manière en utilisant la commande `ibmcloud wsk`. Vous pouvez modifier vos scripts afin d'utiliser le plug-in d'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}, ou créer un alias ou un encapsuleur de sorte que les commandes utilisant actuellement `wsk` soient converties en `ibmcloud wsk`. Les commandes `ibmcloud login` et `ibmcloud target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} fonctionnent en mode sans opérateur. Dans ce mode, vous pouvez configurer votre environnement avant d'exécuter des commandes `ibmcloud wsk` pour déployer et gérer vos entités {{site.data.keyword.openwhisk_short}}.
 
 ## Historique des versions
 {: #version_history}
 
-Enregistrement historique de versions qui montre les points forts et les correctifs de bogue. 
+Enregistrement historique des versions qui montre les points forts et les correctifs de bogue.
 
-1.0.7 (2018-02-02)
-* `bx wsk api` accepte désormais des paramètres de chemin, tels que `/api/{id}`. Pour plus d'informations, voir[Passerelle d'API](./openwhisk_apigateway.html). 
-* Restaurez la prise en charge de proxy. 
-* Retirez `swift:3`.
+1.0.18 (20/06/2018)
+* Correctif permettant de supprimer la liaison des instances de service fournies par l'utilisateur.
+* Amélioration des performances.
 
-1.0.6 (2018-01-30)
-* Bogue corrigé pour la commande `bx wsk service bind` pour les actions présentes dans un package.
+1.0.17 (12/06/2018)
+* Ajout du support de liaison (`ibmcloud wsk service bind`) et de suppression de liaison (`ibmcloud wsk service unbind`) des instances de service fournies par l'utilisateur créées en utilisant la commande `ibmcloud cf create-user-provided-service`.
+
+1.0.16 (24/05/2018)
+* Correctifs de bogues mineurs et améliorations.
+
+1.0.15 (21/05/2018)
+* Correctifs de bogues mineurs et améliorations.
+
+1.0.14 (17/05/2018)
+* Prise en charge du caractère `&` pour les noms d'organisation et d'espace.
+
+1.0.13 (07/05/2018)
+* Correctifs de bogues mineurs et amélioration du traitement des erreurs.
+
+1.0.12 (30/04/2018)
+* Mises à jour du SDK {{site.data.keyword.Bluemix_notm}} pour assurer la compatibilité avec l'interface de ligne de commande `bx`.
+
+1.0.11 (23/04/2018)
+* Correctifs de bogues mineurs et améliorations.
+
+1.0.10 (09/04/2018)
+* Ajout de la nouvelle option `--web-secure` dans les commandes `ibmcloud wsk action create|update` pour sécuriser les noeuds finaux des actions Web.
+* Correction de l'[erreur](https://github.com/apache/incubator-openwhisk-cli/issues/237) liée aux paramètres de chemins consécutifs.
+
+1.0.9 (16/03/2018)
+* Prise en charge de la liaison de service au niveau du package.
+
+1.0.8 (22/02/2018)
+* Prise en charge de la liaison de service IAM.
+
+1.0.7 (02/02/2018)
+* `ibmcloud wsk api` accepte désormais des paramètres de chemin de type `/api/{id}`. Pour plus d'informations, voir [Passerelle d'API](./openwhisk_apigateway.html).
+* Rétablissement de la prise en charge de proxy.
+* Retrait de `swift:3`.
+
+1.0.6 (30/01/2018)
+* Correctif de bogue pour la commande `ibmcloud wsk service bind` concernant les actions présentes dans un package.

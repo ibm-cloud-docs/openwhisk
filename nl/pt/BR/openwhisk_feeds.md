@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Implementando feeds
+# Provedores de eventos customizados
 {: #openwhisk_feeds}
 
-O {{site.data.keyword.openwhisk_short}} suporta uma API aberta, em que qualquer usuário pode expor um serviço de produtor de evento como um **feed** em um **pacote**. A seção a seguir descreve opções de arquitetura e de implementação para fornecer o seu próprio feed.
+O {{site.data.keyword.openwhisk_short}} suporta uma API aberta, em que qualquer usuário pode expor um serviço de produtor de evento como um feed em um pacote. A seção a seguir descreve opções de arquitetura e de implementação para fornecer o seu próprio feed customizado.
 {: shortdesc}
 
 Esse material é destinado a usuários avançados do {{site.data.keyword.openwhisk_short}} que pretendem publicar os seus próprios feeds. A maioria dos usuários do {{site.data.keyword.openwhisk_short}} pode ignorar seguramente a seção de arquitetura a seguir.
@@ -24,12 +24,12 @@ Esse material é destinado a usuários avançados do {{site.data.keyword.openwhi
 Há pelo menos três padrões arquiteturais para criar um feed: **Ganchos**, **Pesquisa** e **Conexões**.
 
 ### Ganchos
-No padrão *Ganchos*, um feed é configurado usando um recurso [webhook](https://en.wikipedia.org/wiki/Webhook) que é exposto por outro serviço. Nessa estratégia, um webhook é configurado em um serviço externo para POSTAR diretamente em uma URL para disparar um acionador. Esse método é de longe a opção mais fácil e mais atraente para implementar feeds de baixa frequência.
+No padrão *Ganchos*, um feed é configurado usando um recurso [webhook](https://en.wikipedia.org/wiki/Webhook) que é exposto por outro serviço.   Nessa estratégia, um webhook é configurado em um serviço externo para POSTAR diretamente em uma URL para disparar um acionador. Esse método é de longe a opção mais fácil e mais atraente para implementar feeds de baixa frequência.
 
 <!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
 
 ### Chamada Seletiva
-No padrão "Pesquisa", uma *Ação* do {{site.data.keyword.openwhisk_short}} é organizada para pesquisar um terminal periodicamente para buscar novos dados. Esse padrão é relativamente fácil de construir, mas as frequências de eventos são limitadas pelo intervalo de pesquisa.
+No padrão "Pesquisa", uma ação do {{site.data.keyword.openwhisk_short}} é organizada para pesquisar um terminal periodicamente para buscar novos dados. Esse padrão é relativamente fácil de construir, mas as frequências de eventos são limitadas pelo intervalo de pesquisa.
 
 ### Economia Conectada
 No padrão "Conexões", um serviço separado mantém uma conexão persistente com uma origem do feed. A implementação baseada em conexão pode interagir com um terminal em serviço usando intervalos de pesquisa longa ou para configurar uma notificação push.
@@ -41,66 +41,75 @@ an open repo -->
 
 ## Diferença entre feed e acionador
 
-Os feeds e acionadores estão intimamente relacionados, mas são tecnicamente conceitos distintos.   
+Feeds e acionadores estão intimamente relacionados,
+mas tecnicamente têm conceitos distintos.   
 
 - O {{site.data.keyword.openwhisk_short}} processa **eventos** que fluem para o sistema.
 
-- Um **Acionador** é tecnicamente um nome para uma classe de eventos. Cada evento pertence a exatamente um acionador; por analogia, um acionador é semelhante a um *tópico* em sistemas de publicação/assinatura baseados em tópico. Uma **Regra** *T -> A* significa "sempre que um evento do acionador *T* chegar, chame a ação *A* com a carga útil do acionador.
+- Um **acionador** é tecnicamente um nome para uma classe de eventos. Cada evento pertence a exatamente um acionador; por analogia, um acionador é semelhante a um *tópico*
+em sistemas de pub-sub baseados em tópico. Uma **regra** *T -> A* significa que "sempre que um evento a partir do acionador *T* chegar, chame a ação
+*A* com a carga útil do acionador.
 
-- Um **feed** é um fluxo de eventos que pertencem a algum acionador *T*. Um feed é controlado por uma **Ação de feed**, que manipula a criação, a exclusão, a pausa e a continuação do fluxo de eventos que compõem um feed. A Ação de feed geralmente interage com serviços externos que produzem os eventos, usando uma API de REST que gerencia notificações.
+- Um **feed** é um fluxo de eventos que pertencem a algum acionador *T*. Um feed é controlado por uma **Ação de feed**, que manipula a criação, a exclusão, a pausa e a continuação do fluxo de eventos que compõem um feed. A ação de feed geralmente interage com serviços externos que produzem os eventos, usando uma API de REST que gerencia notificações.
 
 ##  Implementando ações de feed
 
-A *Ação de feed* é uma *Ação* normal do {{site.data.keyword.openwhisk_short}} e aceita os parâmetros a seguir:
+A *Ação de feed* é uma *ação* normal do {{site.data.keyword.openwhisk_short}} e aceita os parâmetros a seguir:
 * **lifecycleEvent**: um 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE' ou 'UNPAUSE'.
 * **triggerName**: o nome completo do acionador, que contém eventos que são produzidos nesse feed.
-* **authKey**: as credenciais de aut. básica do usuário do {{site.data.keyword.openwhisk_short}} que é proprietário do acionador.
+* **authKey**: as credenciais de autenticação básica do usuário do {{site.data.keyword.openwhisk_short}} que possui o acionador.
 
-A ação de feed também pode aceitar qualquer outro parâmetro que ela precise para gerenciar o feed. Por exemplo, a ação de feed de mudanças do cloudant espera receber parâmetros que incluem *'dbname'*, *'username'* e assim por diante.
+A ação de feed também pode aceitar quaisquer outros parâmetros que ela precisa para gerenciar o feed. Por exemplo, o {{site.data.keyword.cloudant}} muda a ação de feed espera receber parâmetros que incluem *'dbname'*, *'username'* e assim por diante.
 
-Quando o usuário cria um acionador na CLI com o parâmetro **--feed**, o sistema chama automaticamente chama a ação de feed com os parâmetros apropriados.
+Quando o usuário cria um acionador por meio da CLI com o parâmetro **--feed**, o sistema automaticamente chama a ação de feed com os parâmetros apropriados.
 
-Por exemplo, suponha que o usuário crie uma ligação `mycloudant` para o pacote `cloudant` com um nome de usuário e senha como parâmetros ligados. Quando o usuário emite o comando a seguir na CLI:
-
-`wsk trigger create T --feed mycloudant/changes -p dbName myTable`
+Por exemplo, suponha que o usuário crie uma ligação **mycloudant** para o pacote `cloudant` com um nome de usuário e senha como parâmetros ligados. Quando o usuário emite o comando a seguir na CLI:
+```
+ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+```
+{: pre}
 
 Então, nos bastidores, o sistema faz algo equivalente ao comando a seguir:
+```
+ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+```
+{: pre}
 
-`wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype`
+A ação de feed nomeada *changes* toma esses parâmetros e deve executar qualquer ação que seja necessária para configurar um fluxo de eventos do {{site.data.keyword.cloudant_short_notm}}. A ação de feed ocorre usando a configuração apropriada, que é direcionada para o acionador *T*.
 
-A ação de feed que é denominada *mudanças* toma esses parâmetros e deve executar qualquer ação necessária para configurar um fluxo de eventos do Cloudant. A ação de feed ocorre usando a configuração apropriada, que é direcionada ao acionador *T*.    
+Para o feed {{site.data.keyword.cloudant_short_notm}} *changes*, a ação conversa diretamente com um serviço *acionador do {{site.data.keyword.cloudant_short_notm}}* que é implementado com uma arquitetura baseada em conexão.
 
-Para o feed *mudanças* do Cloudant, a ação conversa diretamente com um serviço *acionador do Cloudant* que é implementado com uma arquitetura baseada em conexão.
-
-Um protocolo de ação de feed semelhante ocorre para `wsk trigger delete`, `wsk trigger update` e `wsk trigger get`.    
+Um protocolo de ação de feed semelhante ocorre para `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` e `ibmcloud trigger get`.
 
 ## Implementando feeds com ganchos
 
 Será fácil configurar um feed usando um gancho se o produtor de evento suportar um recurso webhook/retorno de chamada.
 
-Com esse método, _não há necessidade_ de levantar qualquer serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio de *Ações de feed* stateless do {{site.data.keyword.openwhisk_short}}, que negociam diretamente com uma API de webhook de terceiro.
+Com esse método, _não há necessidade_ de levantar qualquer serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio de *Ações de feed* stateless do {{site.data.keyword.openwhisk_short}}, que negociam diretamente com uma API de webhook de terceiros.
 
-Quando chamado com `CREATE`, a ação de feed simplesmente instala um webhook para algum outro serviço, solicitando ao serviço remoto para POSTAR notificações para a URL `fireTrigger` apropriada no {{site.data.keyword.openwhisk_short}}.
+Quando chamada com `CREATE`, a ação de feed simplesmente instala um webhook para algum outro serviço, solicitando ao serviço remoto para POSTAR notificações para a URL apropriada `fireTrigger` no {{site.data.keyword.openwhisk_short}}.
 
 O webhook é direcionado para enviar notificações para uma URL como:
 
 `POST /namespaces/{namespace}/triggers/{triggerName}`
 
-O formulário com a solicitação de POST será interpretado como um documento JSON que define parâmetros no evento acionador. As regras do {{site.data.keyword.openwhisk_short}} passam esses parâmetros acionadores para quaisquer ações para disparar como resultado do evento.
+O formulário com a solicitação de POST é interpretado como um documento JSON que define parâmetros no evento acionador. As regras do {{site.data.keyword.openwhisk_short}} passam esses parâmetros acionadores para quaisquer ações para disparar como resultado do evento.
 
 ## Implementando feeds com pesquisa
 
-É possível configurar uma *Ação* do {{site.data.keyword.openwhisk_short}} para pesquisar uma origem do feed inteiramente no {{site.data.keyword.openwhisk_short}}, sem a necessidade de levantar qualquer conexão persistente ou serviço externo.
+É possível configurar uma *ação* do {{site.data.keyword.openwhisk_short}} para
+pesquisar uma origem do feed inteiramente no {{site.data.keyword.openwhisk_short}}, sem a necessidade de levantar qualquer conexão
+persistente ou serviço externo.
 
 Para feeds nos quais um webhook não está disponível, mas não precisam de alto volume ou tempos de resposta de baixa latência, a pesquisa é uma opção atraente.
 
 Para configurar um feed baseado em pesquisa, a ação de feed usa as etapas a seguir quando chamada para `CREATE`:
 
 1. A ação de feed configura um acionador periódico (*T*) com a frequência desejada, usando o feed `whisk.system/alarms`.
-2. O desenvolvedor de feed cria uma ação `pollMyService` que pesquisa o serviço remoto e retorna qualquer evento novo.
-3. A ação de feed configura uma *Regra* *T -> pollMyService*.
+2. O desenvolvedor de feed cria uma ação `pollMyService` que pesquisa o serviço remoto e retorna quaisquer novos eventos.
+3. A ação de feed configura uma *regra* *T -> pollMyService*.
 
-Esse procedimento implementa um acionador baseado em pesquisa inteiramente usando ações {{site.data.keyword.openwhisk_short}}, sem qualquer necessidade de um serviço separado.
+Esse procedimento implementa um acionador baseado em pesquisa inteiramente usando ações do {{site.data.keyword.openwhisk_short}}, sem nenhuma necessidade de um serviço separado.
 
 ## Implementando feeds usando conexões
 
@@ -111,9 +120,9 @@ Como as ações do {{site.data.keyword.openwhisk_short}} devem ser de execução
 
 O serviço do provedor tem uma API de REST que permite que a *ação de feed* do {{site.data.keyword.openwhisk_short}} controle o feed. O serviço do provedor age como um proxy entre o provedor de evento e o {{site.data.keyword.openwhisk_short}}. Quando ele recebe eventos do terceiro, ele os envia para o {{site.data.keyword.openwhisk_short}} disparando um acionador.
 
-O feed de *mudanças* do Cloudant é o exemplo canônico porque ele levanta um serviço `cloudanttrigger`, que media entre as notificações do Cloudant em uma conexão persistente e os acionadores do {{site.data.keyword.openwhisk_short}}.
+O feed *changes* do {{site.data.keyword.cloudant_short_notm}} é o exemplo canônico porque ele levanta um serviço `cloudanttrigger`, que media entre notificações do {{site.data.keyword.cloudant_short_notm}} sobre uma conexão persistente e acionadores do {{site.data.keyword.openwhisk_short}}.
 <!-- TODO: add a reference to the open source implementation -->
 
 O feed *alarme* é implementado com um padrão semelhante.
 
-A arquitetura baseada em conexão é a opção de desempenho mais alto, mas impõe mais sobrecarga em operações que são comparadas com as arquiteturas de pesquisa e gancho.   
+A arquitetura baseada em conexão é a opção de desempenho mais alto, mas impõe mais sobrecarga em operações que são comparadas com as arquiteturas de pesquisa e gancho.

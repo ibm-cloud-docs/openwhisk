@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-16"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket-Paket verwenden
+# WebSocket
 {: #openwhisk_catalog_websocket}
 
 Das Paket `/whisk.system/websocket` bietet eine bequeme Möglichkeit, Nachrichten an einen WebSocket zu senden (posten).

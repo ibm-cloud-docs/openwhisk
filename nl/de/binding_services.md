@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-02-14"
+lastupdated: "2018-06-21"
 
 ---
 
@@ -12,171 +12,142 @@ lastupdated: "2018-02-14"
 {:pre: .pre}
 {:tip: .tip}
 
-# Services über Aktionen verwenden
+# Services an Aktionen binden
 {: #binding_services}
 
-Sie können das [CLI-Plug-in für {{site.data.keyword.openwhisk}}](./bluemix_cli.html) dazu verwenden, einen Service an eine Aktion zu binden. {{site.data.keyword.openwhisk_short}} stellt den Befehl `service bind` bereit, um Ihre {{site.data.keyword.Bluemix}}-Serviceberechtigungsnachweise für Ihren Cloud Functions-Code zur Laufzeit verfügbar zu machen. Der Befehl `service bind` darf nicht mit dem Befehl `cf bind-service` verwechselt werden, der in Cloud Foundry verfügbar ist. Dieser Befehl ist lediglich eine automatisierte Methode, einen neuen Parameter für Ihre vorhandene Aktion zu erstellen, der Serviceberechtigungsnachweise enthält. Der {{site.data.keyword.openwhisk_short}}-Befehl `service bind` ist flexibler und ermöglicht Ihnen, einen beliebigen {{site.data.keyword.Bluemix_notm}}-Service an eine beliebige Aktion zu binden, die in {{site.data.keyword.openwhisk_short}} definiert ist. Der einzige Vorbehalt besteht darin, dass Sie über Berechtigungsnachweise für den Service verfügen müssen, den Sie binden möchten.
+Sie können das [-CLI-Plug-in für {{site.data.keyword.openwhisk}}](./bluemix_cli.html) dazu verwenden, einen Service an eine Aktion oder ein Paket zu binden. Der Befehl {{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` dient dazu, Ihre {{site.data.keyword.Bluemix_notm}}-Serviceberechtigungsnachweise für Ihren {{site.data.keyword.openwhisk_short}}-Code zur Laufzeit verfügbar zu machen.
 {: shortdesc}
 
-## Service an eine Aktion binden
+Der Befehl `ibmcloud wsk service bind` darf nicht mit dem Befehl `cf bind-service` verwechselt werden, der in Cloud Foundry verfügbar ist.
+{: tip}
+
+## Service an eine Aktion oder ein Paket binden
 {: #cli_bind}
 
-Binden Sie einen Service an eine Aktion mithilfe des Befehls `bx wsk service bind`, der von dem [{{site.data.keyword.openwhisk_short}}-CLI-Plug-in](./bluemix_cli.html) bereitgestellt wird. Weitere Informationen finden Sie im Abschnitt [Einschränkungen](./binding_services.html#limitations).
+Sie können einen beliebigen {{site.data.keyword.Bluemix_notm}}-Service an eine beliebige Aktion binden, die in {{site.data.keyword.openwhisk_short}} definiert ist. Beim Binden eines Service wird ein neuer Parameter für Ihre vorhandene Aktion erstellt, der Berechtigungsnachweise für die Serviceinstanz enthält.
 
-Syntax für die Verwendung von `bind`:
-```
-bx wsk service bind SERVICENAME AKTIONSNAME [--instance instanzname] [--keyname name]
-```
-{: pre}
+**Hinweis**: Sie können nur einen Service für jeden Typ an eine Aktion oder ein Paket binden. Das Binden mehrerer Services desselben Typs wird nicht unterstützt.
 
-Der Befehl `service bind` erfordert einen Servicetyp und einen Aktionsnamen, an die die Bindung erfolgt. Wenn Sie zum Beispiel einen Watson-Service 'conversation' an eine Aktion mit dem Namen `hello` binden wollen, könnte Ihr Aufruf ähnlich wie im folgenden Befehl aussehen:
-```
-bx wsk service bind conversation hello
-```
-{: pre}
+Bevor Sie beginnen, müssen Sie für den Service, den Sie binden wollen, [Berechtigungsnachweise definieren](/docs/apps/reqnsi.html#accser_external).
 
-Dadurch wird die folgende Ausgabe erzeugt:
-``` 
-Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
-```
+1. Rufen Sie den Namen der Serviceinstanz ab, die an eine Aktion oder ein Paket gebunden werden soll.
+ ```
+    ibmcloud service list
+    ```
+    {: pre}
 
-Dieser Befehl durchsucht Ihren aktuellen Bereich nach vorhandenen Watson-Services 'conversation', nimmt den ersten gefundenen Service 'conversation' und ruft dann alle Berechtigungsnachweise ab, die zu diesem Service gehören. Dann bindet er die erste Gruppe von Berechtigungsnachweisen, die zu diesem Services gehören, als Parameter an die angegebene Aktion `hello`. Die Ausgabe zeigt genau, an welchen Service die Aktion gebunden wurde und welche Gruppe von Berechtigungsnachweisen aus diesem Service für die Bindung verwendet wurden.
+    Beispielausgabe:
+    ```
+    name              service        plan   bound apps   last operation
+    Conversation-qp   conversation   free                create succeeded
+    Conversation-uc   conversation   free                create succeeded
+    Discovery-37      discovery      lite                create succeeded
+    ```
+    {: screen}
 
-Zur Überprüfung, ob die Berechtigungsnachweise erfolgreich gebunden wurden, führen Sie den folgenden Befehl aus:
-```
-bx wsk action get hello parameters
-```
-{: pre}
+2. Rufen Sie den Namen der Berechtigungsnachweise ab, die für die Serviceinstanz definiert sind, die Sie im vorherigen Schritt erhalten haben.
+    ```
+    ibmcloud service keys Conversation-qp
+    ```
+    {: pre}
 
-Beispielausgabe:
+    Beispielausgabe:
+    ```
+    Invoking 'cf service-keys Conversation-qp'...
+
+    Getting keys for service instance Conversation-qp as <your ID>...
+
+    name
+Credentials-1
+Credentials-2
+    ```
+    {: screen}
+
+3. Binden Sie den Service an eine Aktion.
+    ```
+    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ```
+    {: pre}
+
+    <table>
+    <caption>Informationen zu den Komponenten des Befehls <code>ibmcloud wsk service bind</code></caption>
+    <thead>
+    <th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>ibmcloud wsk service bind</code></th>
+    </thead>
+    <tbody>
+    <tr>
+    <td><code>SERVICE_TYPE</code></td>
+    <td>Der Typ des Service, den Sie binden.</td>
+    </tr>
+    <tr>
+    <td><code>ACTION_NAME</code></td>
+    <td>Der Name der Aktion oder des Pakets, an die/das der Service gebunden werden soll.</td>
+    </tr>
+    <tr>
+    <td>--instance <code>instanzname</code></td>
+    <td>Optional: Geben Sie einen Namen für die Serviceinstanz an. Wenn Sie keinen Serviceinstanznamen angeben, wird die erste Instanz für den Service ausgewählt.</td>
+    </tr>
+    <tr>
+    <td>--keyname <code>berechtigungsnachweisname</code></td>
+    <td>Optional: Geben Sie einen Namen für den Berechtigungsnachweissatz an. Wenn Sie keinen Namen für den Berechtigungsnachweissatz angeben, wird der erste Berechtigungsnachweissatz für die Serviceinstanz ausgewählt.</td>
+    </tr>
+    </tbody></table>
+
+    Geben Sie beispielsweise Folgendes ein, um einen {{site.data.keyword.ibmwatson}}-Service 'conversation' an eine Aktion mit dem Namen `hello` zu binden:
+    ```
+    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+
+    Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
 ```
-ok: got action Hello World
+    {: screen}
+
+4. Stellen Sie sicher, dass die Berechtigungsnachweise erfolgreich gebunden wurden. Die Aktion, an die der Service gebunden ist, unterstützt keine angepassten Flags. Sie unterstützt die Flags 'debug' und 'verbose'.
+ ```
+    ibmcloud wsk action get hello parameters
+    ```
+    {: pre}
+
+    Beispielausgabe:
+    ```
+    ok: got action Hello World
 {
-    "parameters": [
+        "parameters": [
         {
-            "key": "var1",
+                "key": "var1",
             "value": "val1"
-        },
-        {
-            "key": "dog",
+            },
+            {
+                "key": "dog",
             "value": "cat"
-        },
-        {
-            "key": "__bx_creds",
+            },
+            {
+                "key": "__bx_creds",
             "value": {
-                "conversation": {
-                    "password": "[Servicekennwort]",
+                    "conversation": {
+                        "password": "[Servicekennwort]",
                     "url": "[Service-URL]",
                     "username": "[Servicebenutzername]",
                     "instance": "Conversation-qp",
                     "credentials": "Credentials-1"
-                },
-            }
-        }
-    ],
-}
-```
-
-In dieser Ausgabe können Sie sehen, dass die Berechtigungsnachweise für diesen Service 'conversation' (zusammen mit anderen Berechtigungsnachweisen für andere Servicetypen) zu einem Parameter mit dem Namen `__bx_creds` gehören, der jetzt innerhalb des Aktionscodes wie jeder andere gebundene Parameter verwendet werden kann. Die Aktion wählt den ersten verfügbaren Service 'conversation' aus, der die erste Gruppe von Berechtigungsnachweisen in diesem Service enthält. 
-
-Weitere Informationen zur Übergabe von Parametern an eine Aktion sowie dazu, wie sich die Ausführung einer Operation `action update` auf Berechtigungsnachweise auswirkt, finden Sie im Dokument [Aktionen erstellen und aufrufen](openwhisk_actions.html#openwhisk_pass_params).
-
-Der Befehl `wsk service` unterstützt die folgenden beiden Flags:
-
-<dl>
-    <dt>--instance</dt>
-    <dd>Der Name des bestimmten Service des Typs, den Sie verwenden möchten.</dd>
-    <dt>--keyname</dt>
-    <dd>Der Name der bestimmten Berechtigungsnachweise in dem Service, den Sie verwenden möchten.</dd>
-</dl>
-
-Betrachten Sie das folgende Beispiel, um sich mit der Verwendung dieser Flags vertraut zu machen. Nehmen Sie an, dass nach dem vorherigen Befehl `bx wsk service bind` tatsächlich zwei Services 'conversation' vorhanden sind und dass die Standardoperation für die Aktion den falschen Service und die falschen Berechtigungsnachweise gebunden hat. Sie könnten den Befehl erneut mit den Flags `--instance` und `--keyname` ausführen, um sicherzustellen, dass der richtige Service an die richtige Aktion gebunden wird. Sehen Sie sich zuerst an, welche Services verfügbar sind und welche Berechtigungsnachweise an sie gebunden sind. Eine Auflistung der vorhandenen Services könnte zum Beispiel wie die folgende aussehen:
-
-```
-bx service list
-name              service        plan   bound apps   last operation
-Conversation-qp   conversation   free                create succeeded
-Conversation-uc   conversation   free                create succeeded
-Discovery-37      discovery      lite                create succeeded
-```
-
-Dieser Ausgabe ist zu entnehmen, dass der Service **Conversation-qp** der erste von zwei aufgeführten Services ist und dass er derjenige ist, an den der erste Befehl `bx wsk service bind conversation hello` die Bindung durchgeführt hat. Sie möchten jetzt lieber die Bindung an den Service **Conversation-uc** durchführen. Um nun absolut sicher zu gehen, können Sie prüfen, welche Berechtigungsnachweise der Service **Conversation-uc** enthält, um sich zu vergewissern, dass Sie die richtige Gruppe von Berechtigungsnachweisen binden.
-
-```
-bx service keys Conversation-uc
-Invoking 'cf service-keys Conversation-uc'...
-
-Getting keys for service instance Conversation-uc as [Ihre_ID]...
-
-name
-Credentials-1
-Credentials-2
-```
-
-Sie wollen die Bindung an die Berechtigungsnachweise mit dem Namen "Credentials-2" aus diesem Server durchführen. Führen Sie den folgenden Befehl aus, um sicherzustellen, dass die Aktion das gewünschte Verhalten ausführt:
-```
-bx wsk service bind conversation hello --instance Conversation-uc --keyname Credentials-2
-```
-{: pre}
-
-Dadurch wird die folgende Ausgabe erzeugt:
-```
-Service credentials 'Credentials-2' from service 'Conversation-uc' bound to action 'hello'.
-```
-
-In der Ausgabe können Sie sehen, dass die richtige Gruppe von Berechtigungsnachweisen an die Aktion gebunden wurden. Zur Prüfung können Sie wiederum den folgenden Befehl `bx wsk action get` ausführen.
-```
-bx wsk action get hello parameters
-```
-{: pre}
-
-Dieser Befehl erzeugt die folgenden Ergebnisse:
-```
-ok: got action Hello World
-{
-    "parameters": [
-        {
-            "key": "var1",
-            "value": "val1"
-        },
-        {
-            "key": "dog",
-            "value": "cat"
-        },
-        {
-            "key": "__bx_creds",
-            "value": {
-                "conversation": {
-                    "password": "[Servicekennwort]",
-                    "url": "[Service-URL]",
-                    "username": "[Servicebenutzername]",
-                    "instance": "Conversation-uc",
-                    "credentials": "Credentials-2"
+                    },
                 }
             }
-        }
-    ],
-}
-```
+        ],
+    }
+    ```
+    {: screen}
 
-Die normalen Debug-Flags werden unterstützt und geben Antwortheader von Aufrufen aus.
+    In diesem Beispiel gehören die Berechtigungsnachweise für den Service 'conversation' - zusammen mit anderen Berechtigungsnachweisen für andere Servicetypen - zu einem Parameter mit dem Namen `__bx_creds`. Die Aktion sucht nach dem gebundenen Parameter `__bx_creds` und entfernt die Referenz auf den aufgelisteten Servicetyp. Wenn dieser Servicetyp der einzige aufgelistete Typ ist, füllt die Aktion den Wert des Parameters `__bx_creds` mit Nullen. Wenn mehr als ein Service an die Aktion gebunden ist, bleibt der Parameter `__bx_creds` mit den Services bestehen, die noch gebunden sind.
 
-## Bindung eines Service an eine Aktion aufheben
+Weitere Informationen zum Übergeben von Parametern an eine Aktion oder ein Paket und zu den Auswirkungen auf Berechtigungsnachweise bei `update`-Operationen finden Sie im Abschnitt [Mit Parametern arbeiten](./parameters.html#pass-params-action).
+
+
+## Bindung eines Service an eine Aktion oder ein Paket aufheben
 {: #cli_unbind}
 
-Die Bindung eines Service an eine Aktion wird mit dem Befehl `bx wsk service unbind` aufgehoben. Der Befehl `service unbind` entfernt vorhandene Bindungen, die durch den Befehl `service bind` erstellt wurden.
+Sie können eine Bindung eines Service an eine Aktion oder ein Paket aufheben. Das Aufheben einer Servicebindung entfernt vorhandene Bindungen, die durch den Befehl `service bind` erstellt wurden.
 
-Syntax für die Verwendung von `unbind`:
 ```
-bx wsk service unbind SERVICENAME AKTIONSNAME
+ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
-
-## Einschränkungen
-{: #limitations}
-
-Die Aktion `service` unterstützt keine angepassten Flags. Sie unterstützt die üblichen Flags 'debug' und 'verbose'. Die Aktion sucht nach dem gebundenen Parameter `__bx_creds` und entfernt die Referenz auf den aufgelisteten Servicetyp. Wenn dieser Servicetyp der einzige aufgelistete Typ ist, füllt die Aktion den Wert des Parameters `__bx_creds` mit Nullen. Wenn mehr als ein Service an die Aktion gebunden ist, bleibt der Parameter `__bx_creds` mit den Services bestehen, die noch gebunden sind.
-
-Sie können nur einen Service für jeden Typ an eine Aktion binden. Das Binden mehrerer Services desselben Typs innerhalb einer Aktion wird nicht unterstützt.
-{: tip}
-

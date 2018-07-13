@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-02-16"
 
 ---
 
@@ -11,15 +11,15 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# OpenWhisk と Serverless Framework の統合
+# サーバーレス・フレームワーク
 {: #openwhisk_goserverless}
 
-[Serverless Framework](https://serverless.com/) は、サーバーレス・アプリケーションを構築するためのオープン・ソース・フレームワークです。開発者は、シンプルなマニフェスト・ファイルを使用して、サーバーレス機能を定義し、それらをイベント・ソースに接続し、アプリケーションが必要とするクラウド・サービスを宣言することができます。このフレームワークは、こうしたサーバーレス・アプリケーションのクラウド・プロバイダーへのデプロイを処理します。また、開発者による実動サービスのモニター、更新のロールアウト、および問題のデバッグの支援も可能にします。また、フレームワークの機能を拡張するサード・パーティー・プラグインの活力あるエコシステムもあります。OpenWhisk は、Serverless Framework を支えるテクノロジーです。
+[Serverless Framework](https://serverless.com/) は、サーバーレス・アプリケーションを構築するためのオープン・ソース・フレームワークです。 開発者は、シンプルなマニフェスト・ファイルを使用して、サーバーレス機能を定義し、それらをイベント・ソースに接続し、アプリケーションが必要とするクラウド・サービスを宣言することができます。 このフレームワークは、こうしたサーバーレス・アプリケーションのクラウド・プロバイダーへのデプロイを処理します。 また、開発者による実動サービスのモニター、更新のロールアウト、および問題のデバッグの支援も可能にします。 また、フレームワークの機能を拡張するサード・パーティー・プラグインの活力あるエコシステムもあります。 OpenWhisk は、Serverless Framework を支えるテクノロジーです。
 {:shortdesc}
 
-OpenWhisk には、[Serverless Framework 向けの固有のプロバイダー・プラグイン](https://github.com/serverless/serverless-openwhisk)があります。Serverless Framework を使用する開発者は、アプリケーションを任意の OpenWhisk プラットフォーム・インスタンス ({{site.data.keyword.Bluemix_notm}}、あるいは他のクラウドまたはプライベートでホストされる) にデプロイすることを選択できます。複数プロバイダーのサポートは、プラットフォーム間でのアプリケーションの移動がはるかに容易であることを意味し、開発者がマルチクラウド・サーバーレス・アプリケーションを開発することを可能にします。
+OpenWhisk には、[Serverless Framework 向けの固有のプロバイダー・プラグイン](https://github.com/serverless/serverless-openwhisk)があります。 Serverless Framework を使用する開発者は、アプリケーションを任意の OpenWhisk プラットフォーム・インスタンス ({{site.data.keyword.Bluemix_notm}}、あるいは他のクラウドまたはプライベートでホストされる) にデプロイすることを選択できます。 複数プロバイダーのサポートは、プラットフォーム間でのアプリケーションの移動がはるかに容易であることを意味し、開発者がマルチクラウド・サーバーレス・アプリケーションを開発することを可能にします。
 
-## 始めに
+## はじめに
 {: #openwhisk_goserverless_starting}
 
 公式の Serverless Framework [OpenWhisk 入門ガイド](https://serverless.com/framework/docs/providers/openwhisk/guide/intro/)。

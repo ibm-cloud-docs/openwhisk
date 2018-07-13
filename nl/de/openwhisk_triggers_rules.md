@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -11,13 +11,13 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Auslöser und Regeln erstellen
+# Allgemeine Konzepte
 {: #openwhisk_triggers}
 
 {{site.data.keyword.openwhisk_short}}-Auslöser und -Regeln statten die Plattform mit ereignisgesteuerten Funktionen aus. Ereignisse aus externen und internen Ereignisquellen werden durch einen Auslöser kanalisiert. Durch Regeln können Ihre Aktionen auf diese Ereignisse reagieren.
 {: shortdesc}
 
-## Auslöser erstellen
+## Was ist ein Auslöser?
 {: #openwhisk_triggers_create}
 
 Ein Auslöser ist ein benannter Kanal für eine Klasse von Ereignissen. Es gibt zum Beispiel die folgenden Auslöser:
@@ -25,14 +25,14 @@ Ein Auslöser ist ein benannter Kanal für eine Klasse von Ereignissen. Es gibt 
 - Auslöser von Dokumentuploads auf eine Website.
 - Auslöser von eingehenden E-Mails.
 
-Auslöser können mithilfe eines Wörterverzeichnisses mit Schlüssel/Wert-Paaren *aktiviert* (ausgelöst) werden. Manchmal wird dieses Wörterverzeichnis als das *Ereignis* bezeichnet. Wie bei Aktionen hat das Aktivieren eines Auslösers eine Aktivierungs-ID zur Folge.
+Auslöser können mithilfe eines Wörterverzeichnisses mit Schlüssel/Wert-Paaren *aktiviert* (ausgelöst) werden. Manchmal wird dieses Wörterverzeichnis als das *Ereignis* bezeichnet. Wie bei Aktionen hat das Aktivieren eines Auslösers eine **Aktivierungs-ID** zur Folge.
 
 Auslöser können explizit durch einen Benutzer oder für einen Benutzer durch eine externe Ereignisquelle aktiviert werden.
 Ein *Feed* ist eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle zum Aktivieren von Auslöserereignissen, die von {{site.data.keyword.openwhisk_short}} verarbeitet werden können. Sehen Sie sich die folgenden Beispielfeeds an:
-- Der Feed für Cloudant-Datenänderungen, der jedes Mal ein Auslöserereignis aktiviert, wenn ein Dokument in einer Datenbank hinzugefügt oder geändert wird.
+- Der Feed für {{site.data.keyword.cloudant}}-Datenänderungen, der jedes Mal ein Auslöserereignis aktiviert, wenn ein Dokument in einer Datenbank hinzugefügt oder geändert wird.
 - Ein Git-Feed, der ein Auslöserereignis für jede Festschreibung (Commit) in einem Git-Repository aktiviert.
 
-## Regeln verwenden
+## Wie wirken sich Regeln auf Auslöser aus?
 {: #openwhisk_rules_use}
 
 Eine Regel ordnet genau einen Auslöser genau einer Aktion zu, wobei jede Aktivierung des Auslösers zur Folge hat, dass die entsprechende Aktion mit dem Auslöserereignis als Eingabe aufgerufen wird.
@@ -52,7 +52,7 @@ Sie können Regeln so einrichten, dass ein einzelnes Auslöserereignis mehrere A
 - Regel `imageUpload -> classifyImage`.
 - Regel `imageUpload -> thumbnailImage`.
 
-Die drei Regeln richten das folgende Verhalten ein: 
+Die drei Regeln richten das folgende Verhalten ein:
 - Bilder in beiden Tweets werden klassifiziert.
 - Hochgeladene Bilder werden klassifiziert
 - Eine Piktogrammversion wird generiert.
@@ -65,41 +65,47 @@ Auslöser können aktiviert werden, wenn bestimmte Ereignisse stattfinden, oder 
 Erstellen Sie zum Beispiel einen Auslöser, um Aktualisierungen an Benutzerstandorten zu senden, und aktivieren Sie den Auslöser manuell.
 1. Geben Sie den folgenden Befehl ein, um den Auslöser zu erstellen:
   ```
-  wsk trigger create locationUpdate
+  ibmcloud wsk trigger create locationUpdate
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   ok: created trigger locationUpdate
   ```
+  {: screen}
 
 2. Prüfen Sie, ob der Auslöser erstellt wurde, indem Sie die Gruppe von Auslösern auflisten.
   ```
-  wsk trigger list
+  ibmcloud wsk trigger list
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   triggers
   /someNamespace/locationUpdate                            private
   ```
+  {: screen}
 
   Jetzt ist ein benannter "Kanal" erstellt, an den Ereignisse aktiviert werden können.
 
 3. Als Nächstes aktivieren Sie ein Auslöserereignis, indem Sie den Auslösernamen und die Parameter des Auslösers angeben:
   ```
-  wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
   ```
+  {: screen}
 
 Ein Auslöser, der ohne begleitende Regel aktiviert wird, die mit ihm abzugleichen ist, hat keine sichtbaren Auswirkungen.
-Auslöser können nicht innerhalb eines Pakets erstellt werden; sie müssen direkt in einem Namensbereich erstellt werden.
+Auslöser können nicht innerhalb eines Pakets erstellt werden; sie müssen direkt in einem **Namensbereich** erstellt werden.
 
-## Auslöser und Aktionen mithilfe von Regeln zuordnen
+## Regeln zum Zuordnen von Auslösern zu Aktionen verwenden
 {: #openwhisk_rules_assoc}
 
 Regeln werden dazu verwendet, einen Auslöser einer Aktion zuzuordnen. Jedes Mal, wenn ein Auslöserereignis aktiviert wird, wird die Aktion mit den Ereignisparametern aufgerufen.
@@ -113,77 +119,85 @@ Erstellen Sie zum Beispiel eine Regel, die die Aktion `hello` aufruft, wenn eine
   ```
   {: codeblock}
 
-2. Stellen Sie sicher, dass der Auslöser und die Aktion vorhanden sind.
+2. Stellen Sie sicher, dass der Auslöser und die Aktion vorhanden sind:
   ```
-  wsk trigger update locationUpdate
-  ```
-  {: pre}
-
-  ```
-  wsk action update hello hello.js
+  ibmcloud wsk trigger update locationUpdate
   ```
   {: pre}
 
-3. Der nächste Schritt ist die Erstellung der Regel. Die Regel wird nach der Erstellung aktiviert. Das heißt, sie ist unverzüglich verfügbar, um auf die Aktivierung Ihres Auslösers zu antworten. Die drei Parameter sind der Name der Regel, der Auslöser und die Aktion.
   ```
-  wsk rule create myRule locationUpdate hello
-  ```
-  {: pre}
-
-  Sie können eine Regel jederzeit inaktivieren.
-  ```
-  wsk rule disable myRule
+  ibmcloud wsk action update hello hello.js
   ```
   {: pre}
 
-4. Aktivieren Sie den Auslöser `locationUpdate`. Jedes Mal, wenn Sie ein Ereignis auslösen, wird die Aktion `hello` mit den Ereignisparametern aufgerufen.
+3. Der nächste Schritt ist die Erstellung der Regel. Die Regel wird nach der Erstellung aktiviert. Das heißt, sie ist unverzüglich verfügbar, um auf die Aktivierung Ihres Auslösers zu antworten. Die drei Parameter sind der _Name der Regel_, der _Name des Auslösers_ und der _Name der Aktion_.
   ```
-  wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud wsk rule create myRule locationUpdate hello
   ```
   {: pre}
 
+  Sie können eine Regel jederzeit inaktivieren:
+  ```
+  ibmcloud wsk rule disable myRule
+  ```
+  {: pre}
+
+4. Aktivieren Sie den Auslöser **locationUpdate**. Jedes Mal, wenn Sie ein Ereignis auslösen, wird die Aktion **hello** mit den Ereignisparametern aufgerufen.
+  ```
+  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ```
+  {: pre}
+
+  Beispielausgabe:
   ```
   ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
   ```
+  {: screen}
 
-5. Stellen Sie fest, ob die Aktion aufgerufen wurde, indem Sie die letzte Aktivierung prüfen.
+5. Stellen Sie fest, ob die Aktion **hello** aufgerufen wurde, indem Sie die letzte Aktivierung prüfen.
   ```
-  wsk activation list --limit 1 hello
+  ibmcloud wsk activation list --limit 1 hello
   ```
   {: pre}
 
+  Beispielausgabe:
   ```
   activations
   9c98a083b924426d8b26b5f41c5ebc0d             hello
   ```
+  {: screen}
+
+  Fragen Sie anschließend die Aktivierungs-ID ab, die in der vorherigen Befehlsausgabe aufgeführt ist:
   ```
-  wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
-  ```json
+  Beispielausgabe:
+  ```
   {
      "payload": "Hello, Donald from Washington, D.C."
   }
   ```
+  {: screen}
 
-  Wie Sie sehen, hat die Aktion `hello` die Ereignisnutzdaten (payload) empfangen und die erwartete Zeichenfolge zurückgegeben.
+  Wie Sie sehen, hat die Aktion **hello** die Ereignisnutzdaten (payload) empfangen und die erwartete Zeichenfolge zurückgegeben.
 
 Sie können mehrere Regeln erstellen, die denselben Auslöser verschiedenen Aktionen zuordnen.
 Auslöser und Regeln können nicht zu einem Paket gehören. Die Regel kann jedoch einer Aktion zugeordnet werden, die zu einem Paket gehört. Beispiel: 
   ```
-  wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 Sie können Regeln auch mit Sequenzen verwenden. Beispielsweise können Sie eine Aktionssequenz `recordLocationAndHello` erstellen,
 die durch die Regel `anotherRule` aktiviert wird.
   ```
-  wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

@@ -76,7 +76,7 @@ wsk property set --apihost openwhisk.eu-gb.bluemix.net
 권한 부여 키가 지역마다 특정하므로, 지역 전환이 필요한 경우에는 API 호스트 및 권한 부여 키를 둘 다 사용하여 CLI를 재구성해야 합니다.
 {: tip}
 
-패키지 및 조치, 규칙 등의 아티팩트는 지역에 특정합니다. 따라서 다중 지역에서 동일 아티팩트를 사용하는 경우에는 각각의 원하는 지역에 이를 배치해야 합니다. 
+패키지 및 액션, 규칙 등의 아티팩트는 지역에 특정합니다. 따라서 다중 지역에서 동일 아티팩트를 사용하는 경우에는 각각의 원하는 지역에 이를 배치해야 합니다. 
 
 권한 부여 키를 알고 있으면 이를 사용하도록 CLI를 구성할 수 있습니다.  
 
@@ -89,16 +89,16 @@ wsk property set --auth <authorization_key>
 
 **팁:** {{site.data.keyword.openwhisk_short}} CLI는 기본적으로 `~/.wskprops`에 특성 세트를 저장합니다. 이 파일의 위치는 `WSK_CONFIG_FILE` 환경 변수를 설정하여 변경될 수 있습니다.  
 
-CLI 설정을 확인하려면 [조치 작성 및 실행](./index.html#openwhisk_start_hello_world)을 시도하십시오. 
+CLI 설정을 확인하려면 [액션 작성 및 실행](./index.html#openwhisk_start_hello_world)을 시도하십시오. 
 
 ## {{site.data.keyword.openwhisk_short}} CLI 사용
 {: #using_openwhisk_cli}
 
 일단 환경이 구성되면 {{site.data.keyword.openwhisk_short}} CLI를 사용하여 다음 태스크를 수행할 수 있습니다. 
 
-* {{site.data.keyword.openwhisk_short}}에서 코드 스니펫 또는 조치를 실행합니다. [조치 작성 및 호출](./openwhisk_actions.html)을 참조하십시오. 
-* 트리거 및 규칙을 사용하여 조치가 이벤트에 응답할 수 있도록 합니다. [트리거 및 규칙 작성](./openwhisk_triggers_rules.html)을 참조하십시오. 
-* 패키지가 조치를 번들링하고 외부 이벤트 소스를 구성하는 방법을 알아봅니다. [패키지 사용 및 작성](./openwhisk_packages.html)을 참조하십시오.
+* {{site.data.keyword.openwhisk_short}}에서 코드 스니펫 또는 액션을 실행합니다. [액션 작성 및 호출](./openwhisk_actions.html)을 참조하십시오. 
+* 트리거 및 규칙을 사용하여 액션이 이벤트에 응답할 수 있도록 합니다. [트리거 및 규칙 작성](./openwhisk_triggers_rules.html)을 참조하십시오. 
+* 패키지가 액션을 번들링하고 외부 이벤트 소스를 구성하는 방법을 알아봅니다. [패키지 사용 및 작성](./openwhisk_packages.html)을 참조하십시오.
 * 패키지의 카탈로그를 탐색하고 [Cloudant 이벤트 소스](./openwhisk_cloudant.html) 등의 외부 서비스로 애플리케이션을 개선합니다. [사전 설치된 {{site.data.keyword.openwhisk_short}} 패키지](./openwhisk_catalog.html)를 참조하십시오. 
 
 ## HTTPS 프록시를 사용하도록 CLI 구성

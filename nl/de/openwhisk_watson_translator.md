@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-01-09"
+lastupdated: "2018-03-26"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-01-09"
 {:screen: .screen}
 {:pre: .pre}
 
-# Watson Translator-Paket verwenden
+# Watson: Translator-Paket
 {: #openwhisk_catalog_watson_translator}
 
 Das Paket `/whisk.system/watson-translator` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für Übersetzungen.
@@ -21,7 +21,7 @@ Das Paket enthält die folgenden Aktionen.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-translator` | Paket | username, password | Paket für Textübersetzung und Spracherkennung |
+| `/whisk.system/watson-translator` | Paket | username, password | Paket für Textübersetzung und Spracherkennung  |
 | `/whisk.system/watson-translator/translator` | Aktion | payload, translateFrom, translateTo, translateParam, username, password | Übersetzung von Text |
 | `/whisk.system/watson-translator/languageId` | Aktion | payload, username, password | Ermittlung einer Sprache |
 
@@ -29,45 +29,45 @@ Das Paket enthält die folgenden Aktionen.
 
 ## Watson Translator-Paket in {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk über {{site.data.keyword.Bluemix_notm}} verwenden, erstellt OpenWhisk automatisch Paketbindungen für Ihre {{site.data.keyword.Bluemix_notm}}-Watson-Serviceinstanzen.
+Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}} verwenden, werden die Paketbindungen automatisch für Ihre {{site.data.keyword.Bluemix_notm}} Watson-Serviceinstanzen erstellt.
 
-1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
-  
-  Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
-  
+1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.bluemix.net). Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
+
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Watson-Serviceinstanz, die Sie erstellt haben.
   ```
-  wsk package refresh
+  ibmcloud wsk package refresh
   ```
   {: pre}
-  
+
+  Beispielausgabe:
   ```
   created bindings:
   Bluemix_Watson_Translator_Credentials-1
   ```
-  
+  {: screen}
+
+  Listen Sie die Pakete auf, um zu ermitteln, ob die Paketbindung erstellt wurde:
   ```
-  wsk package list
+  ibmcloud wsk package list
   ```
   {: pre}
-  
+
+  Beispielausgabe:
   ```
   packages
   /myBluemixOrg_myBluemixSpace/Bluemix_Watson_Translator_Credentials-1 private
   ```
-  
-  
+  {: screen}
+
 ## Watson Translator-Paket außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten
 
-Wenn Sie OpenWhisk nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie Watson Translator außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson Translator-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson Translator-Service.
+Wenn Sie {{site.data.keyword.openwhisk_short}} nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie Watson Translator außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson Translator-Service erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson Translator-Service.
 
 - Erstellen Sie eine Paketbindung, die für Ihren Watson Translator-Service konfiguriert ist.
-
   ```
-  wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
-
 
 ## Text übersetzen
 
@@ -80,22 +80,23 @@ Die Aktion `/whisk.system/watson-translator/translator` übersetzt Text aus eine
 - `translateFrom`: Ein zweistelliger Code für die Ausgangssprache.
 - `translateTo`: Ein zweistelliger Code für die Zielsprache.
 
-- Rufen Sie die Aktion `translator` in Ihrer Paketbindung auf, um einen Text aus dem Englischen ins Französische zu übersetzen.
-  ```
-  wsk action invoke myWatsonTranslator/translator \
-  --blocking --result \
-  --param payload "Blue skies ahead" --param translateFrom "en" \
-  --param translateTo "fr"
-  ```
-  {: pre}
-  
-  ```json
-  {
-      "payload": "Ciel bleu a venir"
+Rufen Sie die Aktion **translator** in Ihrer Paketbindung auf, um einen Text aus dem Englischen ins Französische zu übersetzen.
+```
+ibmcloud wsk action invoke myWatsonTranslator/translator \
+--blocking --result \
+--param payload "Blue skies ahead" --param translateFrom "en" \
+--param translateTo "fr"
+```
+{: pre}
+
+Beispielausgabe:
+```
+{
+    "payload": "Ciel bleu a venir"
   }
-  ```
-  
-  
+```
+{: screen}
+
 ## Sprache eines Texts ermitteln
 
 Die Aktion `/whisk.system/watson-translator/languageId` ermittelt die Sprache eines Texts. Die folgenden Parameter sind verfügbar:
@@ -104,19 +105,20 @@ Die Aktion `/whisk.system/watson-translator/languageId` ermittelt die Sprache ei
 - `password`: Das Kennwort für die Watson-API.
 - `payload`: Der zu ermittelnde Text.
 
-- Rufen Sie die Aktion `languageId` in Ihrer Paketbindung auf, um die Sprache zu ermitteln.
-  ```
-  wsk action invoke myWatsonTranslator/languageId \
-  --blocking --result \
-  --param payload "Ciel bleu a venir"
-  ```
-  {: pre}
-  
-  ```json
-  {
-    "payload": "Ciel bleu a venir",
+Rufen Sie die Aktion **languageId** in Ihrer Paketbindung auf, um die Sprache zu ermitteln.
+```
+ibmcloud wsk action invoke myWatsonTranslator/languageId \
+--blocking --result \
+--param payload "Ciel bleu a venir"
+```
+{: pre}
+
+Beispielausgabe:
+```
+{
+  "payload": "Ciel bleu a venir",
     "language": "fr",
     "confidence": 0.710906
   }
-  ```
-  
+```
+{: screen}
