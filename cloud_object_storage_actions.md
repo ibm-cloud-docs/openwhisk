@@ -12,7 +12,7 @@ lastupdated: "2018-07-13"
 {:pre: .pre}
 {:tip: .tip}
 
-# Object Storage
+# Object Storage package
 {: #cloud_object_storage_actions}
 
 The {{site.data.keyword.cos_full_notm}} package provides a set of actions for interacting with {{site.data.keyword.cos_full}} instances. These actions allow you to read, write, and delete from the buckets that are present on a {{site.data.keyword.cos_short}} instance.
@@ -45,7 +45,7 @@ Before you install the package, you must request an instance of {{site.data.keyw
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}
 
-After you have an {{site.data.keyword.cos_short}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_short}} package into your namespace.
+After you have an {{site.data.keyword.cos_short}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_short}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -100,7 +100,7 @@ To install the {{site.data.keyword.cos_short}} package:
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance `apikey`, `resource_instance_id`, and other credentials.
+3. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance credentials.
     ```
     ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg parameters
     ```

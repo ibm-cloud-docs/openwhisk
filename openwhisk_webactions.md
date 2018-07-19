@@ -14,7 +14,7 @@ lastupdated: "2018-07-13"
 # Creating web actions
 {: #openwhisk_webactions}
 
-Web actions are OpenWhisk actions which are annotated to quickly enable developers to build web-based applications. These annotated actions allow developers to program backend logic that your web application can access anonymously, without requiring an OpenWhisk authentication key. It is up to the action developer to implement their own desired authentication and authorization (that is, OAuth flow).
+Web actions are {{site.data.keyword.openwhisk}} actions which are annotated to quickly enable developers to build web-based applications. These annotated actions allow developers to program backend logic that your web application can access anonymously, without requiring a {{site.data.keyword.openwhisk_short}} authentication key. It is up to the action developer to implement their own desired authentication and authorization, or OAuth flow.
 {: shortdesc}
 
 Web action activations are associated with the user that created the action. This action defers the cost of an action activation from the caller to the owner of the action.
@@ -122,12 +122,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [response size limit](./openwhisk_reference.html) for actions since a response that exceeds the predefined system limits fail. Large objects are not sent inline through OpenWhisk, but instead deferred to an object store, for example.
+It is important to be aware of the [response size limit](./openwhisk_reference.html) for actions since a response that exceeds the predefined system limits fail. Large objects are not sent inline through {{site.data.keyword.openwhisk_short}}, but instead deferred to an object store, for example.
 
 ## Handling HTTP requests with actions
 {: #openwhisk_webactions_http}
 
-An OpenWhisk action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions can be invoked without authentication, and can be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must return a JSON object. However, the OpenWhisk system (namely the `controller`), treats a web action differently if its result includes one or more of the following top-level JSON properties:
+A {{site.data.keyword.openwhisk_short}} action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions can be invoked without authentication, and can be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must return a JSON object. However, the {{site.data.keyword.openwhisk_short}} system (namely the `controller`), treats a web action differently if its result includes one or more of the following top-level JSON properties:
 
 - `headers`: A JSON object where the keys are header-names and the values are string, number, or boolean values for those headers (default is no headers). To send multiple values for a single header, the header's value is a JSON array of values.
 - `statusCode`: A valid HTTP status code (default is 200 OK).
@@ -147,7 +147,7 @@ See the following HTTP parameters:
 - `__ow_method` (type: string). The HTTP method of the request.
 - `__ow_headers` (type: map string to string): The request headers.
 - `__ow_path` (type: string): The unmatched path of the request (matching stops once the action extension is consumed).
-- `__ow_user` (type: string): The Namespace that identifies the OpenWhisk authenticated subject
+- `__ow_user` (type: string): The Namespace that identifies the {{site.data.keyword.openwhisk_short}}-authenticated subject
 - `__ow_body` (type: string): The request body entity, as a base64 encoded string when content is binary, or plain string otherwise
 - `__ow_query` (type: string): The query parameters from the request as an unparsed string
 
