@@ -14,7 +14,7 @@ lastupdated: "2018-06-22"
 # Message Hub events source
 {: #openwhisk_catalog_message_hub}
 
-You can create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub_full}} instance by using Feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
+You can create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} package
@@ -27,7 +27,7 @@ This package enables communication with [{{site.data.keyword.messagehub}}](https
 ## Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance
 {: #create_message_hub_trigger}
 
-In order to create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub}} instance, you need to use the Feed that is named `/messaging/messageHubFeed`. The Feed action supports the following parameters:
+In order to create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub}} instance, you need to use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
 
 |Name|Type|Description|
 |---|---|---|
@@ -202,7 +202,7 @@ If the same message is posted without `isBinaryData` set to `true`, the trigger 
 {: codeblock}
 
 ### Messages are batched
-Notice that the trigger payload contains an array of messages. If these messages are produced to your messaging system quickly, the Feed attempts to batch up the posted messages into a single firing of your trigger. Batch processing allows the messages to be posted to your trigger more rapidly and efficiently.
+Notice that the trigger payload contains an array of messages. If these messages are produced to your messaging system quickly, the feed attempts to batch up the posted messages into a single firing of your trigger. Batch processing allows the messages to be posted to your trigger more rapidly and efficiently.
 
 Keep in mind when coding actions that are fired by your trigger, that the number of messages in the payload is technically unbounded, but is always greater than 0. See the following example of a batched message (note the change in the *offset* value):
 ```json

@@ -15,21 +15,21 @@ lastupdated: "2018-06-22"
 # Cloudant events source
 {: #openwhisk_cloudant}
 
-Learn how to listen for changes to a {{site.data.keyword.cloudant}} database, filter database change events, and use an action sequence to process a document from a {{site.data.keyword.cloudant_short_notm}} database. The `/whisk.system/cloudant` package enables you to work with a {{site.data.keyword.cloudant_short_notm}} database, and includes the following actions and Feeds:
+Learn how to listen for changes to a {{site.data.keyword.cloudant}} database, filter database change events, and use an action sequence to process a document from a {{site.data.keyword.cloudant_short_notm}} database. The `/whisk.system/cloudant` package enables you to work with a {{site.data.keyword.cloudant_short_notm}} database, and includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | package | dbname, host, username, password | Work with a Cloudant database. |
 | `/whisk.system/cloudant/read` | action | dbname, id | Read a document from a database. |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
+| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
-The following sections step you through configuring an associated package, and how to use actions and Feeds in the `/whisk.system/cloudant` package. For more information about setting up the {{site.data.keyword.cloudant_short_notm}} database, and reading or writing to it, see [{{site.data.keyword.cloudant_short_notm}} actions](./cloudant_actions.html).
+The following sections step you through configuring an associated package, and how to use actions and feeds in the `/whisk.system/cloudant` package. For more information about setting up the {{site.data.keyword.cloudant_short_notm}} database, and reading or writing to it, see [{{site.data.keyword.cloudant_short_notm}} actions](./cloudant_actions.html).
 
 ## Create a trigger by using the filter function
 
-You can use the `changes` Feed to configure a service to fire a trigger on every change to your {{site.data.keyword.cloudant_short_notm}} database.
+You can use the `changes` feed to configure a service to fire a trigger on every change to your {{site.data.keyword.cloudant_short_notm}} database.
 
 The parameters used in this example are as follows:
 

@@ -26,7 +26,7 @@ The following sections provide technical details about the {{site.data.keyword.o
 
 {{site.data.keyword.openwhisk_short}} actions, triggers, and rules belong in a Namespace, and sometimes a package.
 
-Packages can contain actions and Feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
+Packages can contain actions and feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
 
@@ -601,7 +601,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 
 ## REST API
 {: #openwhisk_ref_restapi}
-Information about the {{site.data.keyword.openwhisk_short}} REST API can be found in the [REST API reference](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
+Information about the {{site.data.keyword.openwhisk_short}} REST API can be found in the [REST API reference](https://console.bluemix.net/apidocs/openwhisk).
 
 ## System limits
 {: #openwhisk_syslimits}

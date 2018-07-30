@@ -17,9 +17,9 @@ lastupdated: "2018-06-22"
 In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a set of related actions, and share them with others.
 {: shortdesc}
 
-A package can include *actions* and *Feeds*.
+A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the {{site.data.keyword.cloudant}} package includes actions to read and write records to a {{site.data.keyword.cloudant_short_notm}} database.
-- A Feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a Feed that can fire a trigger at a specified frequency.
+- A feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a feed that can fire a trigger at a specified frequency.
 
 Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs in a *namespace*, and the fully qualified name of an entity is `/namespaceName[/packageName]/entityName`. For more information, refer to the [naming guidelines](./openwhisk_reference.html#openwhisk_entities).
 
@@ -69,7 +69,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   ```
   {: screen}
 
-  This output shows that the {{site.data.keyword.cloudant_short_notm}} package provides two actions, `read` and `write`, and one trigger feed called `changes`. The `changes` Feed causes triggers to be fired when documents are added to the specified {{site.data.keyword.cloudant_short_notm}} database.
+  This output shows that the {{site.data.keyword.cloudant_short_notm}} package provides two actions, `read` and `write`, and one trigger feed called `changes`. The `changes` feed causes triggers to be fired when documents are added to the specified {{site.data.keyword.cloudant_short_notm}} database.
 
   The {{site.data.keyword.cloudant_short_notm}} package also defines the parameters `username`, `password`, `host`, and `port`. These parameters must be specified for the actions and feeds to be meaningful. The parameters allow the actions to operate on a specific {{site.data.keyword.cloudant_short_notm}} account, for example.
 
@@ -211,12 +211,12 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
   Notice that the `place` parameter value that is specified with the action invocation overwrites the default value set in the `valhallaSamples` package binding.
 
-## Create and use trigger Feeds
+## Create and use trigger feeds
 {: #openwhisk_package_trigger}
 
-Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a Feed in the Alarms package to fire a trigger every second, and how to use a rule to invoke an action every second.
+Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger every second, and how to use a rule to invoke an action every second.
 
-1. Get a description of the Feed in the `/whisk.system/alarms` package.
+1. Get a description of the feed in the `/whisk.system/alarms` package.
   ```
   ibmcloud wsk package get --summary /whisk.system/alarms
   ```
@@ -241,7 +241,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: screen}
 
-  The `/whisk.system/alarms/alarm` Feed takes two parameters:
+  The `/whisk.system/alarms/alarm` feed takes two parameters:
   - `cron`: A crontab specification of when to fire the trigger.
   - `trigger_payload`: The payload parameter value to set in each trigger event.
 
@@ -294,7 +294,7 @@ Feeds offer a convenient way to configure an external event source to fire these
 ## Create a package
 {: #openwhisk_packages_create}
 
-A package is used to organize a set of related actions and Feeds.
+A package is used to organize a set of related actions and feeds.
 It also allows for parameters to be shared across all entities in the package.
 
 To create a custom package with a simple action in it, try the following example:
@@ -465,7 +465,7 @@ You can set default parameters for all the entities in a package by setting pack
 ## Share a package
 {: #openwhisk_packages_share}
 
-After the actions and Feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} Rules and sequence actions.
+After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} Rules and sequence actions.
 
 1. Share the package with all users:
   ```

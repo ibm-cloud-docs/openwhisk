@@ -55,19 +55,13 @@ To install the {{site.data.keyword.nlushort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/natural-language-understanding-v1` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/natural-language-understanding-v1
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -80,7 +74,7 @@ To install the {{site.data.keyword.nlushort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.nlushort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.nlushort}} instance you created to the package.
     ```
     ibmcloud wsk service bind natural-language-understanding natural-language-understanding-v1
     ```
@@ -92,15 +86,15 @@ To install the {{site.data.keyword.nlushort}} package:
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.nlushort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.nlushort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/natural-language-understanding-v1 parameters
+    ibmcloud wsk package get natural-language-understanding-v1 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/natural-language-understanding-v1, displaying field parameters
+    ok: got package natural-language-understanding-v1, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -125,5 +119,13 @@ To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke natural-language-understanding-v1/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#versioning).
+
+This package's functions use the current version of Natural Language Understanding, 2018-03-16. Try out the `list-models` action.
+```
+ibmcloud wsk action invoke natural-language-understanding-v1/list-models -b -p version 2018-03-16
 ```
 {: pre}

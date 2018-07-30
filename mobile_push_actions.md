@@ -17,7 +17,7 @@ lastupdated: "2018-06-22"
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
 {: shortdesc}
 
-The package includes the following actions and Feeds:
+The package includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |

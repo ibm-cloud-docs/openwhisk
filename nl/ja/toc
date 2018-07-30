@@ -76,7 +76,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     API 資料
-        [REST API リファレンス](https://console.ng.bluemix.net/apidocs/98){: new_window}
+        [REST API リファレンス](https://console.bluemix.net/apidocs/openwhisk){: new_window}
         [IBM Cloud のネイティブ API 管理](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
     {: .topicgroup}

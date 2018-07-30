@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-07-25"
 
 ---
 
@@ -18,53 +18,32 @@ lastupdated: "2018-07-13"
 Manage actions by monitoring action output, getting specific information on an action, or deleting actions.
 {: shortdec}
 
-## Monitoring action output
-{: #monitor-action-output}
-
-{{site.data.keyword.openwhisk_short}} actions might be invoked by other users, in response to various events, or as part of an action sequence. In such cases, it can be useful to monitor the invocations.
-
-You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of actions as they are invoked.
-
-1. Issue the following command from a shell:
-  ```
-  ibmcloud wsk activation poll
-  ```
-  {: pre}
-
-  This command starts a polling loop that continuously checks for logs from activations.
-
-2. Switch to another window and invoke an action:
-  ```
-  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
-  ```
-  {: pre}
-
-  Example output:
-  ```
-  ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
-  ```
-  {: screen}
-
-3. Observe the activation log in the polling window:
-  ```
-  Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
-    2016-02-11T16:46:56.842065025Z stdout: hello bob!
-  ```
-  {: screen}
-
-  Similarly, whenever you run the poll utility, you see in real time the logs for any actions that are run on your behalf in OpenWhisk.
-
 ## Getting actions
 {: #getting-actions}
 
-Metadata that describes existing actions can be retrieved by using the `ibmcloud wsk action` get command.
+After you have created an action, you can get more information about the action details and list the actions in your namespace.
+{: shortdesc}
 
-**Command:**
+To list all of the actions you have created:
+```
+ibmcloud wsk action list
+```
+{: pre}
+
+As you create more actions, it can be helpful to group related actions into [packages](./openwhisk_packages.html). To filter your list of actions to only actions within a specific package:
+```
+ibmcloud wsk action list [PACKAGE NAME]
+```
+{: pre}
+
+To get metadata that describes specific actions:
+
 ```
 ibmcloud wsk action get hello
 ```
+{: pre}
 
-***Result:**
+Example output:
 ```
 ok: got action hello
 {
@@ -91,109 +70,308 @@ ok: got action hello
 ```
 {: screen}
 
-You can list all the actions created using the following command:
+<table>
+<caption>Understanding the <code>action get</code> command output</caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>action get</code> command output</th>
+</thead>
+<tbody>
+<tr>
+<td><code>namespace</code></td>
+<td>The namespace that this action is in.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>The name of the action.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>The semantic version of the action.</td>
+</tr>
+<tr>
+<td><code>exec</code></td>
+<td><ul><li><code>kind</code>: The type of action. Possible values are nodejs:6, nodejs:8, php:7.1, python:3, python-jessie:3, swift:3.1.1, swift:4.1, java, blackbox, and sequence.</li>
+<li><code>code</code>: Javascript or Swift code to execute when kind is nodejs or swift.</li>
+<li><code>components</code>: The actions in the sequence when kind is sequence. The actions are listed in order.</li>
+<li><code>image</code>: Container image name when kind is blackbox.</li>
+<li><code>init</code>: Optional zipfile reference when kind is nodejs.</li>
+<li><code>binary</code>: Whether the action is compiled into a binary executable.</li></ul></td>
+</tr>
+<tr>
+<td><code>annotations</code></td>
+<td>Annotations on this action. For a list of possible annotations, see the [action annotations](openwhisk_annotations.html#action) and [web action annotations](openwhisk_annotations.html#annotations-specific-to-web-actions) reference topics.</td>
+</tr>
+<tr>
+<td><code>limits</code></td>
+<td><ul><li><code>timeout</code>: The timeout, in milliseconds, set for the action after which the action is terminated. Default: 6000</li>
+<li><code>memory</code>: The maximum memory limit, in MB, set for the action. Default: 256</li>
+<li><code>logs</code>: The maximum log size limit, in MB, set for the action. Default: 10</li></ul></td>
+</tr>
+<tr>
+<td><code>publish</code></td>
+<td>Whether the action is publicly published.</td>
+</tr>
+</tbody></table>
+
+## Viewing activation details
+{: #activation}
+
+{{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. Whenever an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
+
+To get all activation record IDs in a namespace:
 ```
-ibmcloud wsk action list
+ibmcloud wsk activation list
 ```
 {: pre}
 
-As you write more actions, this list gets longer and it can be helpful to group related actions into [packages](./openwhisk_packages.html). To filter your list of actions to just those within a specific package, you can use the following command syntax:
+To get details about a specific activation record that resulted from an action invocation:
 ```
-ibmcloud wsk action list [PACKAGE NAME]
+ibmcloud wsk activation get <activation_ID>
 ```
 {: pre}
+
+Example output:
+```
+ok: got activation c2b36969fbe94562b36969fbe9856215
+{
+    "namespace": "BobsOrg_dev",
+    "name": "hello",
+    "version": "0.0.1",
+    "subject": "user@email.com",
+    "activationId": "c2b36969fbe94562b36969fbe9856215",
+    "start": 1532456307768,
+    "end": 1532456309838,
+    "duration": 2070,
+    "response": {
+        "status": "success",
+        "statusCode": 0,
+        "success": true,
+        "result": {
+            "done": true
+        }
+    },
+    "logs": [],
+    "annotations": [
+        {
+            "key": "path",
+            "value": "BobsOrg_dev/hello"
+        },
+        {
+            "key": "waitTime",
+            "value": 50
+        },
+        {
+            "key": "kind",
+            "value": "nodejs:6"
+        },
+        {
+            "key": "limits",
+            "value": {
+                "logs": 10,
+                "memory": 256,
+                "timeout": 60000
+            }
+        },
+        {
+            "key": "initTime",
+            "value": 53
+        }
+    ],
+    "publish": false
+}
+```
+{: screen}
+
+<table>
+<caption>Understanding the <code>activation get</code> command output</caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>activation get</code> command output</th>
+</thead>
+<tbody>
+<tr>
+<td><code>namespace</code></td>
+<td>The namespace that this activation is in. This might be different than the namespace that the action is in.</td>
+</tr>
+<tr>
+<td><code>name</code></td>
+<td>The name of the action.</td>
+</tr>
+<tr>
+<td><code>version</code></td>
+<td>The semantic version of the action.</td>
+</tr>
+<tr>
+<td><code>subject</code></td>
+<td>The user account that activated the item.</td>
+</tr>
+<tr>
+<td><code>activationId</code></td>
+<td>ID of this activation record.</td>
+</tr>
+<tr>
+<td><code>start</code></td>
+<td>Time when the activation began.</td>
+</tr>
+<tr>
+<td><code>end</code></td>
+<td>Time when the activation completed.</td>
+</tr>
+<tr>
+<td><code>duration</code></td>
+<td>Time, in milliseconds, that it took for the activation to complete.</td>
+</tr>
+<tr>
+<td><code>response</code></td>
+<td><ul><li><code>status</code>: The exit status of the activation.</li>
+<li><code>statusCode</code>: The status code. If the action errored, the HTTP error code.</li>
+<li><code>success</code>: Whether the action completed successfully.</li>
+<li><code>result</code>: The return value from the activation.</li>
+</ul></td>
+</tr>
+<tr>
+<td><code>logs</code></td>
+<td>Logs for this activation.</td>
+</tr>
+<tr>
+<td><code>annotations</code></td>
+<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](openwhisk_annotations.html#activation).</td>
+</tr>
+<tr>
+<td><code>publish</code></td>
+<td>Whether the action is publicly published.</td>
+</tr>
+</tbody></table>
 
 ## Accessing action metadata within the action body
 {: #accessing-action-metadata-within-the-action-body}
 
-The action environment contains several properties that are specific to the running action. These properties allow the action to programmatically work with OpenWhisk assets through the REST API, or set an internal alarm when the action is about to use up its allotted time budget. The properties are accessible in the system environment for all supported runtimes: Node.js, Python, Swift, Java and Docker actions when using the OpenWhisk Docker skeleton.
+The action environment contains several properties that are specific to the running action. These properties allow the action to programmatically work with OpenWhisk assets through the REST API or set an internal alarm when the action is about to use up its allotted time budget. The properties are accessible in the system environment for all supported runtimes: Node.js, Python, Swift, Java, and Docker when using the OpenWhisk Docker skeleton.
 
-* `__OW_API_HOST` the API host for the OpenWhisk deployment running this action
-* `__OW_API_KEY` the API key for the subject invoking the action, this key may be a restricted API key
-* `__OW_NAMESPACE` the namespace for the _activation_ (this may not be the same as the namespace for the action)
-* `__OW_ACTION_NAME` the fully qualified name of the running action
-* `__OW_ACTIVATION_ID` the activation id for this running action instance
-* `__OW_DEADLINE` the approximate time when this action will have consumed its entire duration quota (measured in epoch milliseconds)
+| Property | Description |
+| -------- | ----------- |
+| `__OW_API_HOST` | The API host for the OpenWhisk deployment running this action. |
+| `__OW_API_KEY` | The API key for the subject invoking the action, this key may be a restricted API key. |
+| `__OW_NAMESPACE` | The namespace for the activation. This namespace might not be the same as the namespace for the action. |
+| `__OW_ACTION_NAME` | The fully qualified name of the running action. |
+| `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |
+| `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action will consume its entire duration quota. |
 
 ## Getting an action URL
 {: #get-action-url}
 
-An action can be invoked by using the REST interface through an HTTPS request. To get an action URL, execute the following command:
+An action can be invoked by using the REST interface through an HTTPS request.
+{: shortdesc}
+
+To get an action URL:
 ```
 ibmcloud wsk action get actionName --url
 ```
 {: pre}
 
-A URL with the following format is returned for standard actions:
+Example output for standard actions:
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-For [web actions](./openwhisk_webactions.html), a URL is returned in the the following format:
+Example output for [web actions](./openwhisk_webactions.html):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
+**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/openwhisk).
 
 ## Saving action code
 {: #save-action}
 
-Code associated with an existing action may be retrieved and saved locally. Saving can be performed on all actions except sequences and Docker actions.
+You can get and locally save code associated with an existing action. You can save code for all actions except for sequences and Docker actions.
+{: shortdesc}
 
-1. Save action code to a filename that corresponds with an existing action name in the current working directory. A file extension that corresponds to the action kind is used, or an extension of .zip will be used for action code that is a zip file.
-  ```
-  ibmcloud wsk action get actionName --save
-  ```
-  {: pre}
+Save action code to a filename that corresponds with an existing action name in the current working directory.
+```
+ibmcloud wsk action get actionName --save
+```
+{: pre}
 
-  Example output:
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/actionName.js
-  ```
-  {: screen}
+A file extension that corresponds to the action kind is used. For action code that is a zip file, an extension of .zip is used. Example output:
+```
+ok: saved action code to /absolutePath/currentDirectory/actionName.js
+```
+{: screen}
 
-2. Instead of allowing the CLI to determine the destination of the code to be saved, a custom file path, filename and extension can be provided by using the `--save-as` flag.
-  ```
-  ibmcloud wsk action get actionName --save-as codeFile.js
-  ```
-  {: pre}
+You can instead provide a custom file path, filename, and extension by using the `--save-as` flag.
+```
+ibmcloud wsk action get actionName --save-as codeFile.js
+```
+{: pre}
 
-  Example output:
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/codeFile.js
-  ```
-  {: screen}
+Example output:
+```
+ok: saved action code to /absolutePath/currentDirectory/codeFile.js
+```
+{: screen}
+
+## Monitoring action logs
+{: #monitor-action-output}
+
+{{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. To get information about when actions were invoked and what the output was, it can be useful to monitor the action logs.
+
+You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of actions as they are invoked.
+
+1. Start a polling loop that continuously checks for logs from activations.
+    ```
+    ibmcloud wsk activation poll
+    ```
+    {: pre}
+
+2. Switch to another window and invoke an action.
+    ```
+    ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
+    ```
+    {: screen}
+
+3. In the polling window, you can see the activation log.
+    ```
+    Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
+      2016-02-11T16:46:56.842065025Z stdout: hello bob!
+    ```
+    {: screen}
+    You might also see the logs for any actions that are run on your behalf in {{site.data.keyword.openwhisk_short}} in real time.
 
 ## Deleting actions
 {: #deleting-actions}
 
 You can clean up by deleting actions that you do not want to use.
 
-1. Run the following command to delete an action:
-  ```
-  ibmcloud wsk action delete hello
-  ```
-  {: pre}
+1. Delete an action.
+    ```
+    ibmcloud wsk action delete hello
+    ```
+    {: pre}
 
-  Example output:
-  ```
-  ok: deleted hello
-  ```
-  {: screen}
+    Example output:
+    ```
+    ok: deleted hello
+    ```
+    {: screen}
 
 2. Verify that the action no longer appears in the list of actions.
-  ```
-  ibmcloud wsk action list
-  ```
-  {: pre}
+    ```
+    ibmcloud wsk action list
+    ```
+    {: pre}
 
-  Example output:
-  ```
-  actions
-  ```
-  {: screen}
+    Example output:
+    ```
+    actions
+    ```
+    {: screen}

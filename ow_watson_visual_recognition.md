@@ -59,19 +59,13 @@ To install the {{site.data.keyword.}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/visual-recognition-v3` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/visual-recognition-v3
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -84,37 +78,40 @@ To install the {{site.data.keyword.}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.}} instance you created to the package.
     ```
-    ibmcloud wsk service bind watson_vision_combined visual-recognition-v3
+    ibmcloud wsk service bind watson-vision-combined visual-recognition-v3
     ```
     {: pre}
 
     Example output:
     ```
-    Credentials 'Credentials-1' from 'watson_vision_combined' service instance 'Watson Visual Recognition' bound to 'visual-recognition-v3'.
+    Credentials 'Credentials-1' from 'watson-vision-combined' service instance 'Watson Visual Recognition' bound to 'visual-recognition-v3'.
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/visual-recognition-v3 parameters
+    ibmcloud wsk package get visual-recognition-v3 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/visual-recognition-v3, displaying field parameters
+    ok: got package visual-recognition-v3, displaying field parameters
     [
       {
         "key": "__bx_creds",
         "value": {
-          "watson_vision_combined": {
-            "credentials": "Credentials-1",
-            "instance": "Watson Visual Recognition",
-            "password": "AAAA0AAAAAAA",
-            "url": "https://gateway.watsonplatform.net/watson_vision_combined/api",
-            "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
+          "watson-vision-combined": {
+            "apikey": "AA1Aa111AAA1aaAA1AAAAaaAaaa1AAAA1AaAA1",
+            "credentials": "Auto-generated service credentials",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:language-translator:us-south:a/a11a1a11aa111a111aa1aa1111a1a111:1111a11-aaa1-11a1-111a-1a1111a11111::",
+            "iam_apikey_name": "auto-generated-apikey-aa1a1a1-aa1a-11a1-a1aa-aa11aa1a11a1",
+            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/a11a1a11aa111a111aa1aa1111a1a111::serviceid:ServiceId-11a1111-11a1-1111-1111-aaa11a11a11a",
+            "instance": "Watson Visual Recognition-g2",
+            "url": "https://gateway.watsonplatform.net/visual-recognition/api"
           }
         }
       }
@@ -123,21 +120,19 @@ To install the {{site.data.keyword.}} package:
     {: screen}
 
 ## Using the {{site.data.keyword.visualrecognitionshort}} package
-
-- Visual Recognition uses a form of `api_key` only with instances created before May 23, 2018. Newer instances of Visual Recognition use `iam_apikey`.
-
-### Example usage with {{site.data.keyword.visualrecognitionshort}}
-
-```
-bx wsk action invoke visual-recognition-v3/<action name> -b -p <param name> <param>
-```
-
-## Using the {{site.data.keyword.visualrecognitionshort}} package
 {: #usage}
 
 To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke visual-recognition-v3/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#versioning).
+
+This package's functions use the current version of Visual Recognition, 2018-03-19. Try out the `list-classifiers` action.
+```
+ibmcloud wsk action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
 {: pre}

@@ -91,19 +91,13 @@ To install the {{site.data.keyword.discoveryshort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/discovery-v1` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/discovery-v1
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -116,7 +110,7 @@ To install the {{site.data.keyword.discoveryshort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.discoveryshort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.discoveryshort}} instance you created to the package.
     ```
     ibmcloud wsk service bind discovery discovery-v1
     ```
@@ -128,15 +122,15 @@ To install the {{site.data.keyword.discoveryshort}} package:
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.discoveryshort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.discoveryshort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/discovery-v1 parameters
+    ibmcloud wsk package get discovery-v1 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/discovery-v1, displaying field parameters
+    ok: got package discovery-v1, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -161,5 +155,13 @@ To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke discovery-v1/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html#versioning).
+
+This package's functions use the current version of Discovery, 2018-03-05. Try out the `list-environments` action.
+```
+ibmcloud wsk action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}
