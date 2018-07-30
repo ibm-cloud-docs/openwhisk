@@ -57,19 +57,13 @@ To install the {{site.data.keyword.languagetranslatorshort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/language-translator-v3` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/language-translator-v3
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -82,37 +76,40 @@ To install the {{site.data.keyword.languagetranslatorshort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.languagetranslatorshort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.languagetranslatorshort}} instance you created to the package.
     ```
-    ibmcloud wsk service bind language_translator language-translator-v3
+    ibmcloud wsk service bind language-translator language-translator-v3
     ```
     {: pre}
 
     Example output:
     ```
-    Credentials 'Credentials-1' from 'language_translator' service instance 'Watson Language Translator' bound to 'language-translator-v3'.
+    Credentials 'Credentials-1' from 'language-translator' service instance 'Watson Language Translator' bound to 'language-translator-v3'.
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.languagetranslatorshort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.languagetranslatorshort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/language-translator-v3 parameters
+    ibmcloud wsk package get language-translator-v3 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/language-translator-v3, displaying field parameters
+    ok: got package language-translator-v3, displaying field parameters
     [
       {
         "key": "__bx_creds",
         "value": {
-          "language_translator": {
-            "credentials": "Credentials-1",
-            "instance": "Watson Language Translator",
-            "password": "AAAA0AAAAAAA",
-            "url": "https://gateway.watsonplatform.net/language_translator/api",
-            "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
+          "language-translator": {
+            "apikey": "AA1Aa111AAA1aaAA1AAAAaaAaaa1AAAA1AaAA1",
+            "credentials": "Auto-generated service credentials",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:language-translator:us-south:a/a11a1a11aa111a111aa1aa1111a1a111:1111a11-aaa1-11a1-111a-1a1111a11111::",
+            "iam_apikey_name": "auto-generated-apikey-aa1a1a1-aa1a-11a1-a1aa-aa11aa1a11a1",
+            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/a11a1a11aa111a111aa1aa1111a1a111::serviceid:ServiceId-11a1111-11a1-1111-1111-aaa11a11a11a",
+            "instance": "Language Translator-g2",
+            "url": "https://gateway.watsonplatform.net/language-translator/api"
           }
         }
       }
@@ -127,5 +124,13 @@ To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke language-translator-v3/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#versioning).
+
+This package's functions use the current version of Language Translator, 2018-05-01. Try out the `identify` action.
+```
+ibmcloud wsk action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```
 {: pre}

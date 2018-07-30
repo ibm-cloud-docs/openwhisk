@@ -56,19 +56,13 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/natural-language-classifier-v1` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/natural-language-classifier-v1
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -81,9 +75,15 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.  
     ```
     ibmcloud wsk service bind natural_language_classifier natural-language-classifier-v1
+    ```
+    {: pre}
+
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
+    ```
+    ibmcloud wsk service bind natural-language-classifier natural-language-classifier-v1
     ```
     {: pre}
 
@@ -93,15 +93,15 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/natural-language-classifier-v1 parameters
+    ibmcloud wsk package get natural-language-classifier-v1 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/natural-language-classifier-v1, displaying field parameters
+    ok: got package natural-language-classifier-v1, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -126,5 +126,11 @@ To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke natural-language-classifier-v1/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+Try out the `list-classifiers` action.
+```
+ibmcloud wsk action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}

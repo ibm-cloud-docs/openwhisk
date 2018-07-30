@@ -56,19 +56,13 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/tone-analyzer-v3` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/tone-analyzer-v3
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -81,27 +75,32 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.toneanalyzershort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.toneanalyzershort}} instance you created to the package.
     ```
     ibmcloud wsk service bind tone_analyzer tone-analyzer-v3
     ```
     {: pre}
 
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
+    ```
+    ibmcloud wsk service bind tone-analyzer tone-analyzer-v3
+    ```
+    {: pre}
     Example output:
     ```
     Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.toneanalyzershort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.toneanalyzershort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/tone-analyzer-v3 parameters
+    ibmcloud wsk package get tone-analyzer-v3 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/tone-analyzer-v3, displaying field parameters
+    ok: got package tone-analyzer-v3, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -126,5 +125,13 @@ To use the actions in this package, run commands in the following format:
 
 ```
 ibmcloud wsk action invoke tone-analyzer-v3/<action_name> -b -p <param name> <param>
+```
+{: pre}
+
+All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#versioning).
+
+This package's functions use the current version of Tone Analyzer, 2017-09-21. Try out the `tone` action.
+```
+ibmcloud wsk action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}

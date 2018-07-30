@@ -65,7 +65,7 @@ To install the {{site.data.keyword.cos_short}} package:
 
 2. Navigate to either the `runtimes/nodejs` or `runtimes/python` directory. Actions in the {{site.data.keyword.cos_short}} package are deployed in the runtime that you choose.
     ```
-    cd <filepath>/package-cloud-object-storage/runtimes/nodejs
+    cd package-cloud-object-storage/runtimes/nodejs
     ```
     {: pre}
 

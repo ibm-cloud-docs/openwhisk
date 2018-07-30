@@ -40,7 +40,7 @@ To create a trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` Feed.
+2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
   ```
   ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```

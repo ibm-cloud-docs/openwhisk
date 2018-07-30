@@ -67,19 +67,13 @@ To install the {{site.data.keyword.texttospeechshort}} package:
     ```
     {: pre}
 
-2. Navigate to the `packages/text-to-speech-v1` directory.
+2. Deploy the package.
     ```
-    cd <filepath>/packages/text-to-speech-v1
-    ```
-    {: pre}
-
-3. Deploy the package.
-    ```
-    wskdeploy -m manifest.yaml
+    wskdeploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
-4. Verify that the package is added to your package list.
+3. Verify that the package is added to your package list.
     ```
     ibmcloud wsk package list
     ```
@@ -92,27 +86,32 @@ To install the {{site.data.keyword.texttospeechshort}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.texttospeechshort}} instance you created to the package.
+4. Bind the credentials from the {{site.data.keyword.texttospeechshort}} instance you created to the package.
     ```
     ibmcloud wsk service bind text_to_speech text-to-speech-v1
     ```
     {: pre}
 
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
+    ```
+    ibmcloud wsk service bind text-to-speech text-to-speech-v1
+    ```
+    {: pre}
     Example output:
     ```
     Credentials 'Credentials-1' from 'text_to_speech' service instance 'Watson Text to Speech' bound to 'text-to-speech-v1'.
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/text-to-speech-v1 parameters
+    ibmcloud wsk package get text-to-speech-v1 parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/text-to-speech-v1, displaying field parameters
+    ok: got package text-to-speech-v1, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -140,21 +139,8 @@ ibmcloud wsk action invoke text-to-speech-v1/<action_name> -b -p <param name> <p
 ```
 {: pre}
 
-### API usage guidelines
-* **Audio formats:** The service can produce audio in many formats (MIME types). See [Specifying an audio format](https://console.bluemix.net/docs/services/text-to-speech/http.html#format).
-* **SSML:** Many methods refer to the Speech Synthesis Markup Language (SSML). SSML is an XML-based markup language that provides text annotation for speech-synthesis applications. See [Using SSML](https://console.bluemix.net/docs/services/text-to-speech/SSML.html) and [Using IBM SPR](https://console.bluemix.net/docs/services/text-to-speech/SPRs.html).
-* **Word translations:** Many customization methods accept sounds-like or phonetic translations for words. Phonetic translations are based on the SSML phoneme format for representing a word. You can specify them in standard International Phonetic Alphabet (IPA) representation
-
-  &lt;phoneme alphabet="ipa" ph="t&#601;m&#712;&#593;to"&gt;&lt;/phoneme&gt;
-
-  or in the proprietary IBM Symbolic Phonetic Representation (SPR)
-
-  &lt;phoneme alphabet="ibm" ph="1gAstroEntxrYFXs"&gt;&lt;/phoneme&gt;
-
-  See [Understanding customization](https://console.bluemix.net/docs/services/text-to-speech/custom-intro.html).
-* **WebSocket interface:** The service also offers a WebSocket interface for speech synthesis. The WebSocket interface supports both plain text and SSML input, including the SSML &lt;mark&gt; element and word timings. See [The WebSocket interface](https://console.bluemix.net/docs/services/text-to-speech/websockets.html).
-* **Customization IDs:** Many methods accept a customization ID, which is a Globally Unique Identifier (GUID). Customization IDs are hexadecimal strings that have the format `xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx`.
-* **`X-Watson-Learning-Opt-Out`:** By default, all Watson services log requests and their results. Logging is done only to improve the services for future users. The logged data is not shared or made public. To prevent IBM from accessing your data for general service improvements, set the `X-Watson-Learning-Opt-Out` request header to `true` for all requests. You must set the header on each request that you do not want IBM to access for general service improvements.
-
-  Methods of the customization interface do not log words and translations that you use to build custom voice models. Your training data is never used to improve the service's base models. However, the service does log such data when a custom model is used with a synthesize request. You must set the `X-Watson-Learning-Opt-Out` request header to `true` to prevent IBM from accessing the data to improve the service.
-* **`X-Watson-Metadata`:** This header allows you to associate a customer ID with data that is passed with a request. If necessary, you can use the **Delete labeled data** method to delete the data for a customer ID. See [Information security](https://console.bluemix.net/docs/services/text-to-speech/information-security.html).
+Try out the `list-voices` action.
+```
+ibmcloud wsk action invoke text-to-speech-v1/list-voices -b
+```
+{: pre}

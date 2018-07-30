@@ -163,4 +163,4 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Entity names](./openwhisk_reference.html#openwhisk_entities)
 * [Action semantics](./openwhisk_reference.html#openwhisk_semantics)
 * [Limits](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API reference](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST API reference](https://console.bluemix.net/apidocs/openwhisk)
