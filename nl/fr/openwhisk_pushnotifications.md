@@ -36,25 +36,25 @@ Pour créer un déclencheur qui s'exécute chaque fois qu'un nouveau périphéri
 
 1. Créez une liaison de package qui est configurée pour votre service Push Notifications avec vos paramètres **appId** et **appSecret**.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Créez un déclencheur pour le type d'événement `onDeviceRegister` du service Push Notifications en utilisant votre flux `myPush/webhook`.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. Vous pouvez créer une règle qui envoie un message à chaque fois qu'un nouveau périphérique est enregistré. Créez une règle à l'aide de l'action et du déclencheur précédents.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Vérifiez les résultats en exécutant la commande `ibmcloud wsk activation poll`.
+4. Vérifiez les résultats en exécutant la commande `ibmcloud fn activation poll`.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

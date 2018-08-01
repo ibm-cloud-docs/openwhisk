@@ -36,7 +36,7 @@ lastupdated: "2018-05-31"
 
 2. **hello** アクションを更新して、使用する準備ができている状態にします。
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ lastupdated: "2018-05-31"
 
   コマンド・ラインを使用して直接パラメーターを渡すには、以下に示すように、`--param` フラグにキー/値のペアを指定します。
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ lastupdated: "2018-05-31"
 
   次に、以下の例のように、有効な JSON である単一の `person` パラメーターを指定してアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ lastupdated: "2018-05-31"
 
   デフォルト・パラメーターを明示的にコマンド・ラインに指定するには、以下に示すように、`param` フラグにキー/値のペアを指定してください。
   ```
-  ibmcloud wsk action update hello --param place Kansas
+  ibmcloud fn action update hello --param place Kansas
   ```
   {: pre}
 
 2. 今回は `name` パラメーターのみを渡してアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy
+  ibmcloud fn action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ lastupdated: "2018-05-31"
 
   `--param` フラグを使用してアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ lastupdated: "2018-05-31"
 1. パラメーターが設定されたパッケージを作成します。
 
   ```
-  ibmcloud wsk package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
   {: pre}
 
@@ -166,13 +166,13 @@ lastupdated: "2018-05-31"
 
   以下のように、アクションを作成します。
   ```
-  ibmcloud wsk action update MyApp/hello hello.js
+  ibmcloud fn action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. アクションを呼び出し、使用されるデフォルト・パッケージ・パラメーターを確認します。
   ```
-  ibmcloud wsk action invoke --result MyApp/hello
+  ibmcloud fn action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -201,7 +201,7 @@ lastupdated: "2018-05-31"
 2. 更新された `hello.js` の内容でアクションを更新します。
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ lastupdated: "2018-05-31"
 4. **hello** アクションを呼び出すときに `parameters.json` ファイル名を使用し、出力を確認します。
 
   ```
-  ibmcloud wsk action invoke --result hello --param-file parameters.json
+  ibmcloud fn action invoke --result hello --param-file parameters.json
   ```
 
   出力例:

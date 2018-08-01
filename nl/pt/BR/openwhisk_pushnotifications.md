@@ -36,25 +36,25 @@ Para criar um acionador que é disparado toda vez que um novo dispositivo é reg
 
 1. Crie uma ligação de pacote que seja configurada para o seu serviço Push Notifications usando seu **appId** e **appSecret**.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Crie um acionador para o tipo de evento `onDeviceRegister` do serviço Push Notifications usando seu feed `myPush/webhook`.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. É possível criar uma regra que envia uma mensagem cada vez que um novo dispositivo é registrado. Crie uma regra usando a ação e o acionador anteriores.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Verifique os resultados usando o comando `ibmcloud wsk activation poll`.
+4. Verifique os resultados usando o comando `ibmcloud fn activation poll`.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

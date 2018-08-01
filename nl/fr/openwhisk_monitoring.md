@@ -47,7 +47,7 @@ Cette vue affiche une version formatée du journal d'activation. Elle affiche le
 
 Pour obtenir la sortie affichée dans le journal d'activité via l'interface de ligne de commande, utilisez la commande suivante :
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

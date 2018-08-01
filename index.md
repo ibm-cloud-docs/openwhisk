@@ -66,13 +66,13 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
 
 3. Create the `hello` action.
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. Invoke the action without passing any parameters.
     ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
 
 5. Invoke the action again, passing the name parameter, to test the app logic.
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
     ```
     {: screen}
 
-Good work! You created your first action. To clean up this action, run `ibmcloud wsk action delete hello`.
+Good work! You created your first action. To clean up this action, run `ibmcloud fn action delete hello`.
 
 **What's next?**
 * [Try out the alarm service example to invoke the **hello** action every time a periodic event is generated.](./openwhisk_packages.html#openwhisk_package_trigger)

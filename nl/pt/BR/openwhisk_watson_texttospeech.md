@@ -37,7 +37,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço do Watson que você criou.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
   Liste os pacotes para ver se a ligação de pacote foi criada:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Se você não está usando o {{site.data.keyword.openwhisk_short}} no {{site.dat
 
 Crie uma ligação de pacote que esteja configurada para o seu serviço de Fala do Watson para Texto.
 ```
-ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -84,7 +84,7 @@ A ação `/whisk.system/watson-textToSpeech/textToSpeech` converte texto em um d
 
 Chame a ação **textToSpeech** em sua ligação do pacote para converter o texto.
 ```
-ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

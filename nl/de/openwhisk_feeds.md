@@ -62,13 +62,13 @@ Wenn der Benutzer einen Auslöser über die Befehlszeilenschnittstelle (CLI) mit
 
 Nehmen Sie zum Beispiel an, dass der Benutzer eine Bindung **mycloudant** für das Paket `cloudant` mit einem Benutzernamen und einem Kennwort als gebundene Parameter erstellt. Der Benutzer führt nun den folgenden Befehl über die CLI aus:
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Dadurch wird im System eine Operation ausgeführt, die dem folgenden Befehl entspricht:
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ Die Feedaktion *changes* akzeptiert diese Parameter. Von der Feedaktion wird erw
 
 Für den {{site.data.keyword.cloudant_short_notm}}-Feed *changes* kommuniziert die Aktion direkt mit einem *{{site.data.keyword.cloudant_short_notm}}-Auslöserservice*, der mit einer verbindungsbasierten Architektur implementiert ist.
 
-Ein ähnliches Feedaktionsprotokoll wird für `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` und `ibmcloud wsk trigger get` ausgeführt.
+Ein ähnliches Feedaktionsprotokoll wird für `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` und `ibmcloud fn trigger get` ausgeführt.
 
 ## Feeds mit Hooks implementieren
 

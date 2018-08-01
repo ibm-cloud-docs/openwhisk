@@ -32,7 +32,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system` 名前空間内のパッケージのリストを取得します。
   ```
-  ibmcloud wsk package list /whisk.system
+  ibmcloud fn package list /whisk.system
   ```
   {: pre}
 
@@ -55,7 +55,7 @@ lastupdated: "2018-06-22"
 
 2. `/whisk.system/cloudant` パッケージ内のエンティティーのリストを取得します。
   ```
-  ibmcloud wsk package get --summary /whisk.system/cloudant
+  ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ lastupdated: "2018-06-22"
 
 3. `/whisk.system/cloudant/read` アクションの説明を取得します。
   ```
-  ibmcloud wsk action get --summary /whisk.system/cloudant/read
+  ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -95,7 +95,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/samples/greeting` アクションの説明を取得します。
   ```
-  ibmcloud wsk action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -110,7 +110,7 @@ lastupdated: "2018-06-22"
 
 2. パラメーターを指定せずにアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -126,7 +126,7 @@ lastupdated: "2018-06-22"
 
 3. パラメーターを指定してアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/samples` パッケージにバインドし、`place` パラメーターのデフォルト値を設定します。
   ```
-  ibmcloud wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -163,7 +163,7 @@ lastupdated: "2018-06-22"
 
 2. パッケージ・バインディングの説明を取得します。
   ```
-  ibmcloud wsk package get --summary valhallaSamples
+  ibmcloud fn package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -181,7 +181,7 @@ lastupdated: "2018-06-22"
 
 3. パッケージ・バインディング内のアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -197,7 +197,7 @@ lastupdated: "2018-06-22"
 
 4. アクションを呼び出し、パラメーターのデフォルト値を上書きします。
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/alarms` パッケージ内のフィードの説明を取得します。
   ```
-  ibmcloud wsk package get --summary /whisk.system/alarms
+  ibmcloud fn package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -230,7 +230,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -247,7 +247,7 @@ lastupdated: "2018-06-22"
 
 2. 8 秒ごとに起動されるトリガーを作成します。
   ```
-  ibmcloud wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -267,13 +267,13 @@ lastupdated: "2018-06-22"
 
 4. アクションが存在することを確認します。
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 5. **everyEightSeconds** トリガーが起動されるたびに `hello` アクションを呼び出すルールを作成します。
   ```
-  ibmcloud wsk rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -285,7 +285,7 @@ lastupdated: "2018-06-22"
 
 6. アクティベーション・ログをポーリングして、アクションが呼び出されていることを確認します。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -301,7 +301,7 @@ lastupdated: "2018-06-22"
 
 1. **「custom」**という名前のパッケージを作成します。
   ```
-  ibmcloud wsk package create custom
+  ibmcloud fn package create custom
   ```
   {: pre}
 
@@ -313,7 +313,7 @@ lastupdated: "2018-06-22"
 
 2. パッケージのサマリーを取得します。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -333,7 +333,7 @@ lastupdated: "2018-06-22"
 
 4. `custom` パッケージ内に、**identity** という名前のアクションを作成します。
   ```
-  ibmcloud wsk action create custom/identity identity.js
+  ibmcloud fn action create custom/identity identity.js
   ```
   {: pre}
 
@@ -347,7 +347,7 @@ lastupdated: "2018-06-22"
 
 5. もう一度パッケージのサマリーを取得します。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -362,7 +362,7 @@ lastupdated: "2018-06-22"
 
 6. パッケージ内のアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -376,7 +376,7 @@ lastupdated: "2018-06-22"
 
 1. 2 つのパラメーター **city** と `country` で `custom` パッケージを更新します。
   ```
-  ibmcloud wsk package update custom --param city Austin --param country USA
+  ibmcloud fn package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -388,7 +388,7 @@ lastupdated: "2018-06-22"
 
 2. **custom** パッケージおよび **identidy** アクションのパラメーターを表示し、パッケージ内の **identity** アクションがパッケージからパラメーターをどのように継承しているのかを確認します。
   ```
-  ibmcloud wsk package get custom parameters
+  ibmcloud fn package get custom parameters
   ```
   {: pre}
 
@@ -410,7 +410,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk action get custom/identity parameters
+  ibmcloud fn action get custom/identity parameters
   ```
   {: pre}
 
@@ -433,7 +433,7 @@ lastupdated: "2018-06-22"
 
 3. **identity** アクションをパラメーターを指定せずに呼び出して、アクションが本当にパラメーターを継承することを確認します。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -448,7 +448,7 @@ lastupdated: "2018-06-22"
 
 4. 一部のパラメーターを指定して **identity** アクションを呼び出します。 呼び出しパラメーターはパッケージ・パラメーターとマージされます。その際、呼び出しパラメーターがパッケージ・パラメーターをオーバーライドします。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -469,7 +469,7 @@ lastupdated: "2018-06-22"
 
 1. すべてのユーザーでパッケージを共有します。
   ```
-  ibmcloud wsk package update custom --shared yes
+  ibmcloud fn package update custom --shared yes
   ```
   {: pre}
 
@@ -481,7 +481,7 @@ lastupdated: "2018-06-22"
 
 2. パッケージの `publish` プロパティーを表示して、このプロパティーが true になっていることを確認します。
   ```
-  ibmcloud wsk package get custom publish
+  ibmcloud fn package get custom publish
   ```
   {: pre}
 
@@ -497,7 +497,7 @@ lastupdated: "2018-06-22"
 
 1. パッケージの説明を取得して、パッケージおよびアクションの完全修飾名を表示します。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 

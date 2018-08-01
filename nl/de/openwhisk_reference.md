@@ -592,7 +592,7 @@ Die folgenden Composer-Pakete sind ebenfalls verfügbar:
 
 Docker-Aktionen werden in einer vom Benutzer bereitgestellten Binärdatei in einem Docker-Container ausgeführt. Die Binärdatei wird in einem Docker-Image auf der Basis von [python:2.7.12-alpine](https://hub.docker.com/r/library/python) ausgeführt, sodass die Binärdatei mit dieser Distribution kompatibel sein muss.
 
-Das Docker-Gerüst (Skeleton) ist eine bequeme Methode, OpenWhisk-kompatible Docker-Images zu erstellen. Sie können das Gerüst mit dem CLI-Plug-in-Befehl `ibmcloud wsk sdk install docker` installieren.
+Das Docker-Gerüst (Skeleton) ist eine bequeme Methode, OpenWhisk-kompatible Docker-Images zu erstellen. Sie können das Gerüst mit dem CLI-Plug-in-Befehl `ibmcloud fn sdk install docker` installieren.
 
 Das Hauptbinärprogramm muss sich in `/action/exec` im Container befinden. Die ausführbare Datei empfängt die Eingabeargumente von einer einzelnen Befehlszeilenargumentzeichenfolge, die als `JSON`-Objekt deserialisiert werden kann. Es muss ein Ergebnis über `stdout` in Form einer einzeiligen Zeichenfolge aus serialisierten `JSON`-Daten zurückgeben.
 

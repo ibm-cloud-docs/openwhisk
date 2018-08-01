@@ -23,7 +23,7 @@ Die häufigste Verwendung von Annotationen bis heute dient dem Zweck, Aktionen u
 
 Das folgende Beispiel zeigt einen Satz von Annotationen für eine Aktion `echo`, der die Eingabeargumente unverändert (Beispiel: `function main(args) { return args }`) zurückgibt. Diese Aktion kann zur Protokollierung von Eingabeparametern zum Beispiel im Zusammenhang mit einer Sequenz oder Regel verwendet werden.
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

@@ -593,7 +593,7 @@ Sono disponibili anche i seguenti pacchetti Composer:
 
 Le azioni Docker eseguono un file binario fornito dall'utente in un contenitore Docker. Il file binario viene eseguito in un'immagine Docker basata su [python:2.7.12-alpine](https://hub.docker.com/r/library/python), pertanto il file binario deve essere compatibile con questa distribuzione.
 
-La struttura di base Docker può essere opportunamente utilizzata per creare immagini Docker compatibili con OpenWhisk. Puoi installare la struttura di base con il comando del plug-in della CLI `ibmcloud wsk sdk install docker`.
+La struttura di base Docker può essere opportunamente utilizzata per creare immagini Docker compatibili con OpenWhisk. Puoi installare la struttura di base con il comando del plug-in della CLI `ibmcloud fn sdk install docker`.
 
 Il programma binario principale deve trovarsi in `/action/exec` all'interno del contenitore. L'eseguibile riceve gli argomenti di input da una singola stringa di argomenti della riga di comando che può essere deserializzata come oggetto `JSON`. Deve restituire un risultato mediante `stdout` sotto forma di stringa a singola riga del `JSON` serializzato.
 

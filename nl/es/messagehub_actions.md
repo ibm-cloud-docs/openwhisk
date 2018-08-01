@@ -26,7 +26,7 @@ Un paquete que permite la comunicación con las instancias de [{{site.data.keywo
 
 3. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia del servicio {{site.data.keyword.messagehub}} que ha creado.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -39,7 +39,7 @@ Un paquete que permite la comunicación con las instancias de [{{site.data.keywo
 
 4. Obtenga una lista de los paquetes de su espacio de nombres para mostrar que el enlace de paquetes ya está disponible.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -58,7 +58,7 @@ Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keywo
 
 Cree un enlace de paquete configurado para el servicio de {{site.data.keyword.messagehub}}.
 ```
-ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
 
@@ -87,9 +87,9 @@ Si desea utilizar una acción de {{site.data.keyword.openwhisk_short}} para gene
 |value|Serie|El valor del mensaje que desea generar.|
 |key|Serie (opcional)|La clave del mensaje que desea generar.|
 
-Aunque los tres primeros parámetros se pueden enlazar automáticamente mediante `ibmcloud wsk package refresh`, consulte el siguiente ejemplo que invoca la acción con todos los parámetros necesarios:
+Aunque los tres primeros parámetros se pueden enlazar automáticamente mediante `ibmcloud fn package refresh`, consulte el siguiente ejemplo que invoca la acción con todos los parámetros necesarios:
 ```
-ibmcloud wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
+ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```
 {: pre}
 

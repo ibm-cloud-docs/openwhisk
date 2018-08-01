@@ -33,12 +33,12 @@ function main({name}) {
 
 以下のように、CLI の `--web` フラグを値 `true` または `yes` で指定し、_Web アクション_ **hello** を、名前空間 `guest` のパッケージ `demo` 内に作成できます。
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ Web アクションを呼び出すには通常、コンテンツ拡張子が必�
 
 アクション・パラメーターは保護され、変更不可能として処理されます。 Web アクションを有効にするために、パラメーターは自動的にファイナライズされます。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --we
 
 **--web-secure** の使用例:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 **require-whisk-auth** の使用例:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ Web アクションの所有者がすべてのアクティベーション・レ�
 
 Web API (`https://openwhisk.bluemix.net/api/v1/web/`) を介した Web アクションの起動を無効にするには、`--web` フラグに値 `false` または `no` を渡して、CLI で アクションを更新します。
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk は、[Akka HTTP](http://doc.akka.io/docs/akka-http/current/scala/http
 
 未加工 HTTP Web アクションは、`--web` フラグで値 `raw` を使用して有効化します。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 未加工 HTTP を無効にするには、`--web` フラグに値 `false` または `no` を渡します。
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 例として、この Node 関数を `decode.js` として保存し、以下のコマンドを実行します。
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -528,7 +528,7 @@ function main(params) {
 
 この関数を `custom-options.js` に保存し、以下のコマンドを実行します。
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

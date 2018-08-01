@@ -32,7 +32,7 @@ Hay varios paquetes registrados con {{site.data.keyword.openwhisk_short}}. Puede
 
 1. Obtener una lista de paquetes en el espacio de nombres `/whisk.system`.
   ```
-  ibmcloud wsk package list /whisk.system
+  ibmcloud fn package list /whisk.system
   ```
   {: pre}
 
@@ -55,7 +55,7 @@ Hay varios paquetes registrados con {{site.data.keyword.openwhisk_short}}. Puede
 
 2. Obtener una lista de entidades en el paquete `/whisk.system/cloudant`.
   ```
-  ibmcloud wsk package get --summary /whisk.system/cloudant
+  ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ Hay varios paquetes registrados con {{site.data.keyword.openwhisk_short}}. Puede
 
 3. Obtener una descripción de la acción `/whisk.system/cloudant/read`.
   ```
-  ibmcloud wsk action get --summary /whisk.system/cloudant/read
+  ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -97,7 +97,7 @@ la acción `greeting` en el paquete `/whisk.system/samples` con distintos parám
 
 1. Obtener una descripción de la acción `/whisk.system/samples/greeting`.
   ```
-  ibmcloud wsk action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -112,7 +112,7 @@ la acción `greeting` en el paquete `/whisk.system/samples` con distintos parám
 
 2. Invoque la acción sin ningún parámetro.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -128,7 +128,7 @@ la acción `greeting` en el paquete `/whisk.system/samples` con distintos parám
 
 3. Invoque la acción con parámetros.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -155,7 +155,7 @@ En el ejemplo sencillo siguiente, enlaza al paquete `/whisk.system/samples`.
 
 1. Enlazar al paquete `/whisk.system/samples` y establecer un valor de parámetro `place` predeterminado.
   ```
-  ibmcloud wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -167,7 +167,7 @@ En el ejemplo sencillo siguiente, enlaza al paquete `/whisk.system/samples`.
 
 2. Obtener una descripción del enlace de paquete.
   ```
-  ibmcloud wsk package get --summary valhallaSamples
+  ibmcloud fn package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -186,7 +186,7 @@ paquete `valhallaSamples`.
 
 3. Invocar una acción en el enlace de paquete.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -202,7 +202,7 @@ paquete `valhallaSamples`.
 
 4. Invoque una acción y sobrescriba el valor de parámetro predeterminado.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -224,7 +224,7 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
 
 1. Obtener una descripción del canal de información en el paquete `/whisk.system/alarms`.
   ```
-  ibmcloud wsk package get --summary /whisk.system/alarms
+  ibmcloud fn package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -236,7 +236,7 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
   {: screen}
 
   ```
-  ibmcloud wsk action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -253,7 +253,7 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
 
 2. Crear un desencadenante que se active cada 8 segundos.
   ```
-  ibmcloud wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -273,14 +273,14 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
 
 4. Asegúrese de que la acción exista.
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 5. Crear una regla que invoque la acción **hello** cada vez que se active el desencadenante
 `everyEightSeconds`.
   ```
-  ibmcloud wsk rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -292,7 +292,7 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
 
 6. Comprobar que la acción se está invocando, sondeando los registros de activación.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -308,7 +308,7 @@ Para crear un paquete personalizado con una acción sencilla en él, pruebe el e
 
 1. Cree un paquete llamado **custom**.
   ```
-  ibmcloud wsk package create custom
+  ibmcloud fn package create custom
   ```
   {: pre}
 
@@ -320,7 +320,7 @@ Para crear un paquete personalizado con una acción sencilla en él, pruebe el e
 
 2. Obtenga un resumen del paquete.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -341,7 +341,7 @@ devuelve todos los parámetros de entrada.
 
 4. Crear una acción denominada **identity** en el paquete `custom`.
   ```
-  ibmcloud wsk action create custom/identity identity.js
+  ibmcloud fn action create custom/identity identity.js
   ```
   {: pre}
 
@@ -356,7 +356,7 @@ anidamiento de paquetes. Un paquete solo puede contener acciones y no puede cont
 
 5. Obtenga otra vez un resumen del paquete.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -371,7 +371,7 @@ anidamiento de paquetes. Un paquete solo puede contener acciones y no puede cont
 
 6. Invocar la acción en el paquete.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -385,7 +385,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
 
 1. Actualizar el paquete **custom** con dos parámetros: `city` y `country`.
   ```
-  ibmcloud wsk package update custom --param city Austin --param country USA
+  ibmcloud fn package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -397,7 +397,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
 
 2. Mostrar los parámetros en el paquete **custom** y acción **identidy**, y ver cómo la acción **identity** del paquete hereda los parámetros del paquete.
   ```
-  ibmcloud wsk package get custom parameters
+  ibmcloud fn package get custom parameters
   ```
   {: pre}
 
@@ -419,7 +419,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
   {: screen}
 
   ```
-  ibmcloud wsk action get custom/identity parameters
+  ibmcloud fn action get custom/identity parameters
   ```
   {: pre}
 
@@ -442,7 +442,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
 
 3. Invocar la acción **identity** sin parámetros para comprobar que la acción realmente hereda los parámetros.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -457,7 +457,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
 
 4. Invocar la acción **identity** con algunos parámetros. Los parámetros de invocación se fusionan con los parámetros del paquete; los parámetros de invocación prevalecen sobre los parámetros del paquete.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -478,7 +478,7 @@ Tras depurar y probar las acciones y los canales de información que comprende u
 
 1. Compartir el paquete con todos los usuarios:
   ```
-  ibmcloud wsk package update custom --shared yes
+  ibmcloud fn package update custom --shared yes
   ```
   {: pre}
 
@@ -490,7 +490,7 @@ Tras depurar y probar las acciones y los canales de información que comprende u
 
 2. Mostrar la propiedad `publish` del paquete para verificar que ahora es true.
   ```
-  ibmcloud wsk package get custom publish
+  ibmcloud fn package get custom publish
   ```
   {: pre}
 
@@ -507,7 +507,7 @@ acción sobre él. Otros usuarios deben conocer los nombres completos del paquet
 
 1. Obtener una descripción del paquete para mostrar los nombres completos del paquete y la acción.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 

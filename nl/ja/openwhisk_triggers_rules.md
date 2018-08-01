@@ -66,7 +66,7 @@ lastupdated: "2018-06-22"
 例として、ユーザー・ロケーションの更新を送信するトリガーを作成し、手動でトリガーを起動します。
 1. 以下のコマンドを入力してトリガーを作成します。
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -78,7 +78,7 @@ lastupdated: "2018-06-22"
 
 2. トリガーのセットをリストして、トリガーを作成したことを確認します。
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -93,7 +93,7 @@ lastupdated: "2018-06-22"
 
 3. 次に、トリガー名とパラメーターを指定することにより、トリガー・イベントを起動します。
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -122,30 +122,30 @@ lastupdated: "2018-06-22"
 
 2. トリガーとアクションが存在することを確認します。
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. 次のステップでは、ルールを作成します。 ルールは作成時に有効になります。つまり、ルールは即時にトリガーのアクティベーションに応答できるようになります。 3 つのパラメーターは、_ルール名_、_トリガー名_、および_アクション名_です。
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   ルールを無効にすることをいつでも選択できます。
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. **locationUpdate** トリガーを起動します。 イベントを起動するたびに、イベント・パラメーターを使用して **hello** アクションが呼び出されます。
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -157,7 +157,7 @@ lastupdated: "2018-06-22"
 
 5. 最新のアクティベーションを調べて、**hello** アクションが呼び出されたことを確認します。
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -170,7 +170,7 @@ lastupdated: "2018-06-22"
 
   次に、前のコマンド出力にリストされたアクティベーション ID を照会します。
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -188,18 +188,18 @@ lastupdated: "2018-06-22"
 トリガーおよびルールはパッケージに所属できません。 ただし、パッケージに属しているアクションに、ルールを関連付けることはできます。
 以下に例を示します。
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 また、シーケンスとともにルールを使用することも可能です。 例えば、ルール `anotherRule`
 でアクティブ化されるアクション・シーケンス `recordLocationAndHello` を作成することができます。
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

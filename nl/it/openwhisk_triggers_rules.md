@@ -65,7 +65,7 @@ I trigger possono essere attivati al verificarsi di determinati eventi o manualm
 Ad esempio, crea un trigger per l'invio di aggiornamenti sull'ubicazione dell'utente e attivalo manualmente.
 1. Immetti il seguente comando per creare il trigger:
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ Ad esempio, crea un trigger per l'invio di aggiornamenti sull'ubicazione dell'ut
 
 2. Verifica di aver creato il trigger elencando l'insieme di trigger.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ Ad esempio, crea un trigger per l'invio di aggiornamenti sull'ubicazione dell'ut
 
 3. Successivamente, attiva un evento trigger specificandone il nome e i parametri:
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ Ad esempio, crea una regola che richiama l'azione `hello` ogni volta che viene p
 
 2. Assicurati che il trigger e l'azione esistano:
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. Il passo successivo è quello di creare la regola. La regola viene abilitata al momento della creazione, il che significa che è immediatamente disponibile per rispondere alle attivazioni del tuo trigger. I tre parametri sono: _nome regola_, _nome trigger_ e _nome azione_.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   In qualsiasi momento, puoi scegliere di disabilitare una regola:
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. Attiva il trigger **locationUpdate**. Ogni volta che attivi un evento, l'azione **hello** viene richiamata con i parametri dell'evento.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ Ad esempio, crea una regola che richiama l'azione `hello` ogni volta che viene p
 
 5. Verifica che l'azione **hello** sia stata richiamata controllando l'attivazione più recente.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ Ad esempio, crea una regola che richiama l'azione `hello` ogni volta che viene p
 
   Ora esegui la query dell'ID di attivazione elencato nell'output del comando precedente:
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -187,18 +187,18 @@ Puoi creare più regole che associano lo stesso trigger ad azioni differenti.
 I trigger e le regole non possono appartenere a un pacchetto. Tuttavia, la regola può essere associata a un'azione
 che appartiene a un pacchetto, ad esempio:
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 Puoi anche utilizzare le regole con le sequenze. Ad esempio, è possibile creare una sequenza di
 azioni `recordLocationAndHello` che viene attivata dalla regola `anotherRule`.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

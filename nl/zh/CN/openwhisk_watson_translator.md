@@ -36,7 +36,7 @@ lastupdated: "2018-03-26"
 
 2. 刷新名称空间中的包。刷新操作将自动为已创建的 Watson 服务实例创建包绑定。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ lastupdated: "2018-03-26"
 
   列出包以查看是否已创建包绑定：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ lastupdated: "2018-03-26"
 
 - 创建为您的 Watson Translator 服务配置的包绑定。
   ```
-  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud fn package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
 
@@ -83,7 +83,7 @@ lastupdated: "2018-03-26"
 
 调用包绑定中的 **translator** 操作，以将某些文本从英语翻译为法语。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/translator \
+ibmcloud fn action invoke myWatsonTranslator/translator \
 --blocking --result \
 --param payload "Blue skies ahead" --param translateFrom "en" \
 --param translateTo "fr"
@@ -108,7 +108,7 @@ ibmcloud wsk action invoke myWatsonTranslator/translator \
 
 调用包绑定中的 **languageId** 操作来识别语言。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/languageId \
+ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
 --param payload "Ciel bleu a venir"
 ```

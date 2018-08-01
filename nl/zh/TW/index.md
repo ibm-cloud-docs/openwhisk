@@ -66,13 +66,13 @@ function main(params) {
 
 3. 建立 `hello` 動作。
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. 呼叫動作，但未傳遞任何參數。
     ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ function main(params) {
 
 5. 重新呼叫動作並傳遞 name 參數，以測試應用程式邏輯。
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-做得好！您已建立第一個動作。若要清除此動作，請執行 `ibmcloud wsk action delete hello`。
+做得好！您已建立第一個動作。若要清除此動作，請執行 `ibmcloud fn action delete hello`。
 
 **下一步為何？**
 * [試用警示服務範例，以在每次產生定期事件時呼叫 **hello** 動作。](./openwhisk_packages.html#openwhisk_package_trigger)

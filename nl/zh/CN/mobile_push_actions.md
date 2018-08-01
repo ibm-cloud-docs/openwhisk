@@ -48,13 +48,13 @@ lastupdated: "2018-06-22"
 
 4. 创建与 `/whisk.system/pushnotifications` 的包绑定。
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. 验证包绑定是否存在：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -133,7 +133,7 @@ lastupdated: "2018-06-22"
 
 使用先前创建的包绑定中的 **sendMessage** 操作来发送推送通知。确保将 `/myNamespace/myPush` 替换为您的包名。
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

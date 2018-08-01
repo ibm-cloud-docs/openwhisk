@@ -37,7 +37,7 @@ lastupdated: "2018-03-27"
 
 2. 重新整理名稱空間中的套件。重新整理會自動建立您所建立 Weather Company Data 服務實例的套件連結。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ lastupdated: "2018-03-27"
 
   列出套件，查看已建立套件連結：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-27"
 
 建立針對 Watson Translator 服務所配置的套件連結。
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -90,7 +90,7 @@ ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME
 
 在套件連結中呼叫 **forecast** 動作，以取得天氣預報。
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

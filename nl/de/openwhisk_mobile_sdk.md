@@ -83,7 +83,7 @@ Sie können die OpenWhisk-CLI zum Herunterladen von Beispielcode verwenden, der 
 
 Geben Sie den folgenden Befehl ein, um das Starter-App-Beispiel zu installieren:
 ```
-ibmcloud wsk sdk install iOS
+ibmcloud fn sdk install iOS
 ```
 {: pre}
 
@@ -108,7 +108,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 
 Im obigen Beispiel werden die aus OpenWhisk abgerufenen Parameter `myKey` und `myToken` übergeben. Sie können den Schlüssel (Key) und das Token mit dem folgenden CLI-Befehl abrufen:
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 

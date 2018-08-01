@@ -33,12 +33,12 @@ function main({name}) {
 
 您可以搭配使用 CLI 的 `--web` 旗標與 `true` 或 `yes` 值，在名稱空間 `guest` 的套件 `demo` 中建立 _Web 動作_ **hello**：
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -331,7 +331,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 動作參數也會受到保護並視為不可變。系統會自動完成參數，以啟用 Web 動作。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -346,13 +346,13 @@ ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --we
 
 使用 **--web-secure** 的範例：
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 使用 **require-whisk-auth** 的範例：
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -368,7 +368,7 @@ curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-
 
 若要停用透過 Web API (`https://openwhisk.bluemix.net/api/v1/web/`) 呼叫 Web 動作，請將 `false` 或 `no` 值傳遞給 `--web` 旗標，以使用 CLI 來更新動作。
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -407,7 +407,7 @@ OpenWhisk 使用 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/htt
 
 若要啟用原始 HTTP Web 動作，可以搭配使用 `--web` 旗標與 `raw` 值。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -415,7 +415,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 將 `false` 或 `no` 值傳遞給 `--web` 旗標，即可停用原始 HTTP。
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 例如，將 Node 函數儲存為 `decode.js`，然後執行下列指令：
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -528,7 +528,7 @@ Access-Control-Allow-Headers: Authorization, Content-Type
 
 將函數儲存到 `custom-options.js`，然後執行下列指令：
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

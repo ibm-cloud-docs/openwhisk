@@ -91,7 +91,7 @@ Téléchargez et installez le plug-in {{site.data.keyword.openwhisk_short}}.
 
 3. Effectuez un appel (synchrone) bloquant de `echo`. Indiquez `hello` comme argument.
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +117,7 @@ Vous pouvez utiliser l'interface de ligne de commande {{site.data.keyword.openwh
 * Découvrir comment les packages regroupent des actions et configurer des sources d'événements externes. Voir [Création et utilisation de packages](./openwhisk_packages.html).
 * Explorer le catalogue de packages et améliorer vos applications avec des services externes, par exemple une [source d'événement {{site.data.keyword.cloudant}}](./openwhisk_cloudant.html).
 
-Pour afficher la liste des commandes du plug-in {{site.data.keyword.openwhisk_short}}, exécutez la commande `ibmcloud wsk` sans arguments.
+Pour afficher la liste des commandes du plug-in {{site.data.keyword.openwhisk_short}}, exécutez la commande `ibmcloud fn` sans arguments.
 {: tip}
 
 ## Utilisation de services à partir d'actions
@@ -162,25 +162,25 @@ Avec l'introduction du plug-in d'interface de ligne de commande {{site.data.keyw
 ### Syntaxe de commande
 {: #command_syntax}
 
-Toutes les commandes `wsk`, à l'exception de la commande `wsk bluemix login` devenue inutile, fonctionnent de la même façon en utilisant la commande `ibmcloud wsk`.  Toutes les options et tous les arguments de commande sont identiques.
+Toutes les commandes `wsk`, à l'exception de la commande `wsk bluemix login` devenue inutile, fonctionnent de la même façon en utilisant la commande `ibmcloud fn`.  Toutes les options et tous les arguments de commande sont identiques.
 
 ### Authentification et hôte d'API
 {: #api_authentication}
 
 Avec l'interface de ligne de commande OpenWhisk, vous deviez configurer la clé d'API d'authentification et l'hôte d'API.
-Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, vous n'avez plus besoin de configurer de manière explicite la clé d'API et l'hôte d'API. A la place, vous pouvez vous connecter avec `ibmcloud login` et cibler votre région et votre espace de nom en utilisant la commande `ibmcloud target`. Après la connexion, toutes les commandes commencent par `ibmcloud wsk`.
+Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, vous n'avez plus besoin de configurer de manière explicite la clé d'API et l'hôte d'API. A la place, vous pouvez vous connecter avec `ibmcloud login` et cibler votre région et votre espace de nom en utilisant la commande `ibmcloud target`. Après la connexion, toutes les commandes commencent par `ibmcloud fn`.
 
 Si vous devez utiliser une clé d'API d'authentification pour {{site.data.keyword.openwhisk_short}} dans un client HTTP externe, tel que cURL ou Postman, vous pouvez la récupérer avec les commandes suivantes :
 
 Pour obtenir la clé d'API en cours :
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 Pour obtenir l'hôte d'API en cours :
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -190,12 +190,12 @@ La clé d'API est propre à chaque région, chaque organisation et chaque espace
 ### Authentification de passerelle d'API
 {: #apigw_authentication}
 
-L'interface de ligne de commande OpenWhisk vous obligeait à exécuter la commande `wsk bluemix login` pour pouvoir configurer l'autorisation de la passerelle d'API pour la gestion de vos API en utilisant la commande `wsk api`. Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, il n'est plus nécessaire d'exécuter la commande `wsk bluemix login`. A la place, lorsque vous utilisez la commande `ibmcloud login` pour vous connecter à {{site.data.keyword.Bluemix_notm}}, le plug-in {{site.data.keyword.openwhisk}} utilise automatiquement vos informations de connexion et de destination. A présent, vous pouvez gérer vos API en utilisant la commande `ibmcloud wsk api`.
+L'interface de ligne de commande OpenWhisk vous obligeait à exécuter la commande `wsk bluemix login` pour pouvoir configurer l'autorisation de la passerelle d'API pour la gestion de vos API en utilisant la commande `wsk api`. Avec le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, il n'est plus nécessaire d'exécuter la commande `wsk bluemix login`. A la place, lorsque vous utilisez la commande `ibmcloud login` pour vous connecter à {{site.data.keyword.Bluemix_notm}}, le plug-in {{site.data.keyword.openwhisk}} utilise automatiquement vos informations de connexion et de destination. A présent, vous pouvez gérer vos API en utilisant la commande `ibmcloud fn api`.
 
 ### Migration des scripts de déploiement
 {: #migrating_deploy_scripts}
 
-Si vous avez des scripts qui utilisent l'interface de ligne de commande OpenWhisk avec le binaire `wsk`, toutes les commandes fonctionnent de la même manière en utilisant la commande `ibmcloud wsk`. Vous pouvez modifier vos scripts afin d'utiliser le plug-in d'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}, ou créer un alias ou un encapsuleur de sorte que les commandes utilisant actuellement `wsk` soient converties en `ibmcloud wsk`. Les commandes `ibmcloud login` et `ibmcloud target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} fonctionnent en mode sans opérateur. Dans ce mode, vous pouvez configurer votre environnement avant d'exécuter des commandes `ibmcloud wsk` pour déployer et gérer vos entités {{site.data.keyword.openwhisk_short}}.
+Si vous avez des scripts qui utilisent l'interface de ligne de commande OpenWhisk avec le binaire `wsk`, toutes les commandes fonctionnent de la même manière en utilisant la commande `ibmcloud fn`. Vous pouvez modifier vos scripts afin d'utiliser le plug-in d'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}, ou créer un alias ou un encapsuleur de sorte que les commandes utilisant actuellement `wsk` soient converties en `ibmcloud fn`. Les commandes `ibmcloud login` et `ibmcloud target` dans l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} fonctionnent en mode sans opérateur. Dans ce mode, vous pouvez configurer votre environnement avant d'exécuter des commandes `ibmcloud fn` pour déployer et gérer vos entités {{site.data.keyword.openwhisk_short}}.
 
 ## Historique des versions
 {: #version_history}

@@ -66,13 +66,13 @@ function main(params) {
 
 3. `hello` アクションを作成します。
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. パラメーターを何も渡さずにアクションを呼び出します。
     ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ function main(params) {
 
 5. アプリケーション・ロジックをテストするために、name パラメーターを渡して再度アクションを呼び出します。
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-おつかれさまでした。最初のアクションの作成が終了しました。このアクションをクリーンアップするには、`ibmcloud wsk action delete hello` を実行します。
+おつかれさまでした。最初のアクションの作成が終了しました。このアクションをクリーンアップするには、`ibmcloud fn action delete hello` を実行します。
 
 **次の作業**
 * [定期的なイベントが生成されるたびに **hello** アクションを呼び出すアラーム・サービスの例を試してみる。](./openwhisk_packages.html#openwhisk_package_trigger)

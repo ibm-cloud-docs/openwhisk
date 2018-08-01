@@ -65,7 +65,7 @@ Auslöser können aktiviert werden, wenn bestimmte Ereignisse stattfinden, oder 
 Erstellen Sie zum Beispiel einen Auslöser, um Aktualisierungen an Benutzerstandorten zu senden, und aktivieren Sie den Auslöser manuell.
 1. Geben Sie den folgenden Befehl ein, um den Auslöser zu erstellen:
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ Erstellen Sie zum Beispiel einen Auslöser, um Aktualisierungen an Benutzerstand
 
 2. Prüfen Sie, ob der Auslöser erstellt wurde, indem Sie die Gruppe von Auslösern auflisten.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ Erstellen Sie zum Beispiel einen Auslöser, um Aktualisierungen an Benutzerstand
 
 3. Als Nächstes aktivieren Sie ein Auslöserereignis, indem Sie den Auslösernamen und die Parameter des Auslösers angeben:
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ Erstellen Sie zum Beispiel eine Regel, die die Aktion `hello` aufruft, wenn eine
 
 2. Stellen Sie sicher, dass der Auslöser und die Aktion vorhanden sind:
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. Der nächste Schritt ist die Erstellung der Regel. Die Regel wird nach der Erstellung aktiviert. Das heißt, sie ist unverzüglich verfügbar, um auf die Aktivierung Ihres Auslösers zu antworten. Die drei Parameter sind der _Name der Regel_, der _Name des Auslösers_ und der _Name der Aktion_.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   Sie können eine Regel jederzeit inaktivieren:
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. Aktivieren Sie den Auslöser **locationUpdate**. Jedes Mal, wenn Sie ein Ereignis auslösen, wird die Aktion **hello** mit den Ereignisparametern aufgerufen.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ Erstellen Sie zum Beispiel eine Regel, die die Aktion `hello` aufruft, wenn eine
 
 5. Stellen Sie fest, ob die Aktion **hello** aufgerufen wurde, indem Sie die letzte Aktivierung prüfen.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ Erstellen Sie zum Beispiel eine Regel, die die Aktion `hello` aufruft, wenn eine
 
   Fragen Sie anschließend die Aktivierungs-ID ab, die in der vorherigen Befehlsausgabe aufgeführt ist:
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -186,18 +186,18 @@ Erstellen Sie zum Beispiel eine Regel, die die Aktion `hello` aufruft, wenn eine
 Sie können mehrere Regeln erstellen, die denselben Auslöser verschiedenen Aktionen zuordnen.
 Auslöser und Regeln können nicht zu einem Paket gehören. Die Regel kann jedoch einer Aktion zugeordnet werden, die zu einem Paket gehört. Beispiel: 
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 Sie können Regeln auch mit Sequenzen verwenden. Beispielsweise können Sie eine Aktionssequenz `recordLocationAndHello` erstellen,
 die durch die Regel `anotherRule` aktiviert wird.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

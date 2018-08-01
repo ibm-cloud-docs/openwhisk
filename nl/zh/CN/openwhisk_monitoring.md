@@ -48,7 +48,7 @@ lastupdated: "2018-03-16"
 要使用 CLI 获取“活动日志”中显示的输出，请使用以下命令：
 
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

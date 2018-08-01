@@ -41,7 +41,7 @@ lastupdated: "2018-03-16"
 
 2. 액세스 토큰으로 GitHub 저장소에 대해 구성된 패키지 바인딩을 작성하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ lastupdated: "2018-03-16"
 
 3. `myGit/webhook` 피드를 사용하여 GitHub `push` 이벤트 유형에 대한 트리거를 작성하십시오.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

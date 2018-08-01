@@ -50,7 +50,7 @@ Esta vista muestra una versión con formato del registro de activación. Muestra
 
 Para obtener la salida mostrada del registro de actividad usando la CLI, utilice el mandato siguiente:
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

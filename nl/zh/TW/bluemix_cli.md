@@ -91,7 +91,7 @@ lastupdated: "2018-06-21"
 
 3. 執行 `echo` 的區塊處理（同步）呼叫。傳遞 `hello` 作為引數。
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +117,7 @@ lastupdated: "2018-06-21"
 * 瞭解套件如何組合動作以及配置外部事件來源。請參閱[建立及使用套件](./openwhisk_packages.html)。
 * 探索套件的型錄，以及使用外部服務（例如 [{{site.data.keyword.cloudant}} 事件來源](./openwhisk_cloudant.html)）來加強應用程式。
 
-若要取得 {{site.data.keyword.openwhisk_short}} 外掛程式的指令清單，請執行不含任何引數的 `ibmcloud wsk`。
+若要取得 {{site.data.keyword.openwhisk_short}} 外掛程式的指令清單，請執行不含任何引數的 `ibmcloud fn`。
 {: tip}
 
 ## 使用動作中的服務
@@ -162,24 +162,24 @@ ibmcloud iam space-create "production"
 ### 指令語法
 {: #command_syntax}
 
-除了不再需要的 `wsk bluemix login` 指令之外，所有 `wsk` 指令都會使用 `ibmcloud wsk` 指令，以相同的方式運作。所有指令選項和引數都相同。
+除了不再需要的 `wsk bluemix login` 指令之外，所有 `wsk` 指令都會使用 `ibmcloud fn` 指令，以相同的方式運作。所有指令選項和引數都相同。
 
 ### API 鑑別及主機
 {: #api_authentication}
 
-OpenWhisk CLI 需要您配置鑑別 API 金鑰及 API 主機。使用 {{site.data.keyword.openwhisk_short}} CLI 外掛程式，您不需要明確配置 API 金鑰及 API 主機。相反地，您可以使用 `ibmcloud login` 來登入，並使用 `ibmcloud target` 指令，將您的地區及名稱空間設為目標。登入之後，所有指令的開頭都是 `ibmcloud wsk`。
+OpenWhisk CLI 需要您配置鑑別 API 金鑰及 API 主機。使用 {{site.data.keyword.openwhisk_short}} CLI 外掛程式，您不需要明確配置 API 金鑰及 API 主機。相反地，您可以使用 `ibmcloud login` 來登入，並使用 `ibmcloud target` 指令，將您的地區及名稱空間設為目標。登入之後，所有指令的開頭都是 `ibmcloud fn`。
 
 如果您需要在外部 HTTP 用戶端（例如 cURL 或 Postman）中使用 {{site.data.keyword.openwhisk_short}} 的鑑別 API 金鑰，則可以使用下列指令進行擷取：
 
 若要取得現行 API 金鑰，請執行下列指令：
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 若要取得現行 API 主機，請執行下列指令：
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -189,12 +189,12 @@ ibmcloud wsk property get --apihost
 ### API 閘道鑑別
 {: #apigw_authentication}
 
-OpenWhisk CLI 需要您執行 `wsk bluemix login`，才能使用 `wsk api` 指令來配置用於管理 API 的「API 閘道」授權。使用 {{site.data.keyword.openwhisk_short}} CLI 外掛程式，就不需要執行 `wsk bluemix login`。相反地，當您使用 `ibmcloud login` 指令來登入 {{site.data.keyword.Bluemix_notm}} 時，{{site.data.keyword.openwhisk}} 外掛程式會自動利用現行登入和目標資訊。現在，您可以使用 `ibmcloud wsk api` 指令來管理 API。
+OpenWhisk CLI 需要您執行 `wsk bluemix login`，才能使用 `wsk api` 指令來配置用於管理 API 的「API 閘道」授權。使用 {{site.data.keyword.openwhisk_short}} CLI 外掛程式，就不需要執行 `wsk bluemix login`。相反地，當您使用 `ibmcloud login` 指令來登入 {{site.data.keyword.Bluemix_notm}} 時，{{site.data.keyword.openwhisk}} 外掛程式會自動利用現行登入和目標資訊。現在，您可以使用 `ibmcloud fn api` 指令來管理 API。
 
 ### 移轉部署 Script
 {: #migrating_deploy_scripts}
 
-如果您的 Script 使用具有 `wsk` 二進位的 OpenWhisk CLI，則所有指令都會使用 `ibmcloud wsk` 指令，以相同的方式運作。您可以修改 Script 來使用 {{site.data.keyword.Bluemix_notm}} CLI 外掛程式，或建立別名或封套，以將使用 `wsk` 的現行指令轉換為 `ibmcloud wsk`。{{site.data.keyword.Bluemix_notm}} CLI 中的 `ibmcloud login` 和 `ibmcloud target` 指令以自動模式運作。使用自動模式，您可以在執行 `ibmcloud wsk` 指令以部署及管理 {{site.data.keyword.openwhisk_short}} 實體之前，先配置環境。
+如果您的 Script 使用具有 `wsk` 二進位的 OpenWhisk CLI，則所有指令都會使用 `ibmcloud fn` 指令，以相同的方式運作。您可以修改 Script 來使用 {{site.data.keyword.Bluemix_notm}} CLI 外掛程式，或建立別名或封套，以將使用 `wsk` 的現行指令轉換為 `ibmcloud fn`。{{site.data.keyword.Bluemix_notm}} CLI 中的 `ibmcloud login` 和 `ibmcloud target` 指令以自動模式運作。使用自動模式，您可以在執行 `ibmcloud fn` 指令以部署及管理 {{site.data.keyword.openwhisk_short}} 實體之前，先配置環境。
 
 ## 版本歷程
 {: #version_history}

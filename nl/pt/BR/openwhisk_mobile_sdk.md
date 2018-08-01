@@ -91,7 +91,7 @@ exemplo que integra a estrutura do SDK do OpenWhisk.
 
 Para instalar o exemplo do app iniciador, insira o comando a seguir:
 ```
-ibmcloud wsk sdk install iOS
+ibmcloud fn sdk install iOS
 ```
 {: pre}
 
@@ -120,7 +120,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 No exemplo anterior, você transmite o `myKey` e o `myToken` que são
 obtidos do OpenWhisk. É possível recuperar a chave e o token com o comando da CLI a seguir:
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 

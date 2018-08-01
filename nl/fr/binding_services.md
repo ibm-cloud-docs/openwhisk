@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # Liaison de services à des actions
 {: #binding_services}
 
-Vous pouvez utiliser le [plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk}}](./bluemix_cli.html) pour lier un service à une action ou un package. La commande `ibmcloud wsk service bind` de {{site.data.keyword.openwhisk_short}} rend vos données d'identification au service {{site.data.keyword.Bluemix_notm}} disponibles pour votre code {{site.data.keyword.openwhisk_short}} en phase d'exécution.
+Vous pouvez utiliser le [plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk}}](./bluemix_cli.html) pour lier un service à une action ou un package. La commande `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} rend vos données d'identification au service {{site.data.keyword.Bluemix_notm}} disponibles pour votre code {{site.data.keyword.openwhisk_short}} en phase d'exécution.
 {: shortdesc}
 
-Ne confondez pas la commande `ibmcloud wsk service bind` avec la commande `cf bind-service` disponible dans Cloud Foundry.
+Ne confondez pas la commande `ibmcloud fn service bind` avec la commande `cf bind-service` disponible dans Cloud Foundry.
 {: tip}
 
 ## Liaison d'un service à une action ou un package
@@ -65,14 +65,14 @@ Credentials-2
 
 3. Liez le service à une action.
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>Description des composantes de la commande <code>ibmcloud wsk service bind</code></caption>
+    <caption>Description des composantes de la commande <code>ibmcloud fn service bind</code></caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icône Idée"/> Description des composantes de la commande <code>ibmcloud wsk service bind</code></th>
+    <th colspan=2><img src="images/idea.png" alt="Icône Idée"/> Description des composantes de la commande <code>ibmcloud fn service bind</code></th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     Par exemple, pour lier un service de conversation {{site.data.keyword.ibmwatson}} à une action nommée `hello`, exécutez :
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. Vérifiez que la liaison des données d'identification a abouti. L'action à laquelle est lié le service ne prend pas en charge les indicateurs personnalisés, mais prend en charge les indicateurs debug et verbose.
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Pour plus d'informations sur la transmission de paramètres à une action ou un 
 Supprimez la liaison d'un service d'une action ou d'un package. Cette opération supprime les liaisons existantes créées par la commande `service bind`.
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

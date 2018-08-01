@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # 将服务绑定到操作
 {: #binding_services}
 
-您可以使用 [{{site.data.keyword.openwhisk}} CLI 插件](./bluemix_cli.html)将服务绑定到操作或包。{{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` 命令可使您的 {{site.data.keyword.Bluemix_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
+您可以使用 [{{site.data.keyword.openwhisk}} CLI 插件](./bluemix_cli.html)将服务绑定到操作或包。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 命令可使您的 {{site.data.keyword.Bluemix_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
 {: shortdesc}
 
-不要将 `ibmcloud wsk service bind` 命令与 Cloud Foundry 中提供的 `cf bind-service` 命令相混淆。
+不要将 `ibmcloud fn service bind` 命令与 Cloud Foundry 中提供的 `cf bind-service` 命令相混淆。
 {: tip}
 
 ## 将服务绑定到操作或包
@@ -65,14 +65,14 @@ Credentials-2
 
 3. 将服务绑定到操作。
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>了解 <code>ibmcloud wsk service bind</code> 命令的组成部分</caption>
+    <caption>了解 <code>ibmcloud fn service bind</code> 命令的组成部分</caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="“构想”图标"/> 了解 <code>ibmcloud wsk service bind</code> 命令的组成部分</th>
+    <th colspan=2><img src="images/idea.png" alt="“构想”图标"/> 了解 <code>ibmcloud fn service bind</code> 命令的组成部分</th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     例如，要将 {{site.data.keyword.ibmwatson}} Conversation 服务绑定到名为 `hello` 的操作：
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
 ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. 验证凭证是否已成功绑定。服务绑定到的操作不支持任何定制标志，但支持调试和详细信息标志。
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Credentials-2
 取消服务与操作或包的绑定。取消绑定服务可除去 `service bind` 命令创建的现有绑定。
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

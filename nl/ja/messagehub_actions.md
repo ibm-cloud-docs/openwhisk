@@ -26,7 +26,7 @@ lastupdated: "2018-06-22"
 
 3. 名前空間でパッケージを最新表示します。 最新表示により、作成した {{site.data.keyword.messagehub}} サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -39,7 +39,7 @@ lastupdated: "2018-06-22"
 
 4. 名前空間内のパッケージをリストして、パッケージ・バインディングが使用可能になったことを示します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -58,7 +58,7 @@ lastupdated: "2018-06-22"
 
 {{site.data.keyword.messagehub}} サービス用に構成されるパッケージ・バインディングを作成します。
 ```
-ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
 
@@ -88,9 +88,9 @@ ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_
 |value|ストリング|生成したいメッセージの値。|
 |key|ストリング (オプション)|生成したいメッセージのキー。|
 
-最初の 3 つのパラメーターは `ibmcloud wsk package refresh` を使用して自動的にバインドできますが、すべての必要なパラメーターを指定してアクションを呼び出す以下の例を参照してください。
+最初の 3 つのパラメーターは `ibmcloud fn package refresh` を使用して自動的にバインドできますが、すべての必要なパラメーターを指定してアクションを呼び出す以下の例を参照してください。
 ```
-ibmcloud wsk action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
+ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```
 {: pre}
 

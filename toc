@@ -10,7 +10,6 @@ IBM Cloud Functions
     {: .topicgroup}
     Overview
         openwhisk_use_cases.md
-        cost_considerations.md
         openwhisk_about.md
         openwhisk_compare.md
 
@@ -45,12 +44,7 @@ IBM Cloud Functions
         openwhisk_feeds.md
 
     openwhisk_apigateway.md
-
-    {: .topicgroup}
-    Operating serverless apps
-        openwhisk_logs.md
-        openwhisk_monitoring.md
-
+    openwhisk_logs.md
     deploy_templates.md
 
     {: .topicgroup}
@@ -80,6 +74,7 @@ IBM Cloud Functions
         ow_watson_personality_insights.md
         ow_watson_tone_analyzer.md
         ow_watson_language_translator.md
+
 
     {: .topicgroup}
     SDK and frameworks

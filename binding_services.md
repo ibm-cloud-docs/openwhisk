@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # Binding services to actions
 {: #binding_services}
 
-You can use the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+You can use the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 {: shortdesc}
 
-Don't confuse `ibmcloud wsk service bind` command with the `cf bind-service` command that is available in Cloud Foundry.
+Don't confuse `ibmcloud fn service bind` command with the `cf bind-service` command that is available in Cloud Foundry.
 {: tip}
 
 ## Binding a service to an action or package
@@ -65,14 +65,14 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) f
 
 3. Bind the service to an action.
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>Understanding the <code>ibmcloud wsk service bind</code> command components</caption>
+    <caption>Understanding the <code>ibmcloud fn service bind</code> command components</caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>ibmcloud wsk service bind</code> command components</th>
+    <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>ibmcloud fn service bind</code> command components</th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) f
 
     For example, to bind a {{site.data.keyword.ibmwatson}} conversation service to an action named `hello`:
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) f
 
 4. Verify that the credentials are successfully bound. The action that the service is bound to does not support any custom flags, but does support the debug and verbose flags.
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ For more information about passing parameters to an action or package and how cr
 Unbind a service from an action or package. Unbinding a service removes existing bindings created by the `service bind` command.
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

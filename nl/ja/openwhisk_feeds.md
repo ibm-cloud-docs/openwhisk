@@ -62,13 +62,13 @@ an open repo -->
 
 例えば、ユーザーが、バインドされたパラメーターとしてユーザー名およびパスワードを指定して **cloudant** パッケージ用に `mycloudant` バインディングを作成すると想定します。 ユーザーが CLI から次のコマンドを実行するとします。
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 そうすると、システムは以下のコマンドに相当する処理を暗黙的に実行します。
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigge
 
 {{site.data.keyword.cloudant_short_notm}} *changes* フィードの場合は、アクションが、接続ベースのアーキテクチャーで実装された *{{site.data.keyword.cloudant_short_notm}} トリガー*・サービスと直接対話するようになっています。
 
-`ibmcloud wsk trigger delete`、`ibmcloud wsk trigger update` および `ibmcloud wsk trigger get` でも同様のフィード・アクション・プロトコルが発生します。
+`ibmcloud fn trigger delete`、`ibmcloud fn trigger update` および `ibmcloud fn trigger get` でも同様のフィード・アクション・プロトコルが発生します。
 
 ## フックを使用したフィードの実装
 

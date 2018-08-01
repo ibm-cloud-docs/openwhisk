@@ -83,7 +83,7 @@ github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 若要安裝入門範本應用程式範例，請輸入下列指令：
 
 ```
-ibmcloud wsk sdk install iOS
+ibmcloud fn sdk install iOS
 ```
 {: pre}
 
@@ -109,7 +109,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 
 在前一個範例中，您傳入從 OpenWhisk 取得的 `myKey` 及 `myToken`。您可以使用下列 CLI 指令來擷取金鑰及記號：
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 

@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # Bind dei servizi alle azioni
 {: #binding_services}
 
-Puoi utilizzare il [plug-in della CLI {{site.data.keyword.openwhisk}} ](./bluemix_cli.html) per eseguire il bind di un servizio a un'azione o un pacchetto. Il comando `ibmcloud wsk service bind` di {{site.data.keyword.openwhisk_short}} rende disponibili le tue credenziali del servizio {{site.data.keyword.Bluemix_notm}} al tuo codice {{site.data.keyword.openwhisk_short}} durante il runtime.
+Puoi utilizzare il [plug-in della CLI {{site.data.keyword.openwhisk}} ](./bluemix_cli.html) per eseguire il bind di un servizio a un'azione o un pacchetto. Il comando `ibmcloud fn service bind` di {{site.data.keyword.openwhisk_short}} rende disponibili le tue credenziali del servizio {{site.data.keyword.Bluemix_notm}} al tuo codice {{site.data.keyword.openwhisk_short}} durante il runtime.
 {: shortdesc}
 
-Non confondere il comando `ibmcloud wsk service bind` con il comando `cf bind-service` che è disponibile in Cloud Foundry.
+Non confondere il comando `ibmcloud fn service bind` con il comando `cf bind-service` che è disponibile in Cloud Foundry.
 {: tip}
 
 ## Bind di un servizio a un'azione o un pacchetto
@@ -65,14 +65,14 @@ Credentials-2
 
 3. Esegui il bind del servizio a un'azione.
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>Descrizione dei componenti del comando <code>ibmcloud wsk service bind</code></caption>
+    <caption>Descrizione dei componenti del comando <code>ibmcloud fn service bind</code></caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icona Idea"/> Descrizione dei componenti del comando <code>ibmcloud wsk service bind</code></th>
+    <th colspan=2><img src="images/idea.png" alt="Icona Idea"/> Descrizione dei componenti del comando <code>ibmcloud fn service bind</code></th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     Ad esempio, per eseguire il bind di un servizio di conversazione {{site.data.keyword.ibmwatson}} a un'azione denominata `hello`:
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. Verifica che le credenziali siano state associate correttamente. L'azione a cui è stato associato il servizio tramite bind non supporta alcun indicatore personalizzato, ma supporta il debug e gli indicatori dettagliati.
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Per ulteriori informazioni sul passaggio dei parametri a un'azione o un pacchett
 Annulla il bind di un servizio da un'azione o un pacchetto. L'annullamento del bind di un servizio rimuove i bind esistenti creati dal comando `service bind`.
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

@@ -66,13 +66,13 @@ function main(params) {
 
 3. Créez l'action `hello`.
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. Appelez l'action sans paramètre.
     ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ function main(params) {
 
 5. Appelez à nouveau l'action, avec cette fois-ci le paramètre "name" pour tester la logique d'application.
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-Bien joué ! Vous venez de créer votre première action. Pour supprimer cette action, exécutez `ibmcloud wsk action delete hello`.
+Bien joué ! Vous venez de créer votre première action. Pour supprimer cette action, exécutez `ibmcloud fn action delete hello`.
 
 **Etape suivante ?**
 * [Tester l'exemple de service Alarm pour appeler l'action **hello** chaque fois qu'un événement périodique est généré.](./openwhisk_packages.html#openwhisk_package_trigger)

@@ -60,7 +60,7 @@ lastupdated: "2018-06-22"
 
 2. 以下の JavaScript 関数からアクションを作成します。 この例では、アクションは **hello** という名前です。
   ```
-  ibmcloud wsk action create hello hello.js
+  ibmcloud fn action create hello hello.js
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ lastupdated: "2018-06-22"
 
 3. 以下のように、作成したアクションをリストします。
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 
@@ -91,7 +91,7 @@ lastupdated: "2018-06-22"
 
   次の例では、ブロッキングを示す `--blocking` パラメーターが使用されています。
   ```
-  ibmcloud wsk action invoke --blocking hello
+  ibmcloud fn action invoke --blocking hello
   ```
   {: pre}
 
@@ -123,7 +123,7 @@ lastupdated: "2018-06-22"
 
   以下の例を参照してください。
   ```
-  ibmcloud wsk action invoke hello
+  ibmcloud fn action invoke hello
   ```
   {: pre}
 
@@ -135,7 +135,7 @@ lastupdated: "2018-06-22"
 
   アクティベーション ID が分かったので、それを指定して、アクションの結果を取得できます。
   ```
-  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ lastupdated: "2018-06-22"
 
   **アクティベーションのリスト:**
   ```
-  ibmcloud wsk activation list
+  ibmcloud fn activation list
   ```
   {: pre}
 
@@ -192,13 +192,13 @@ lastupdated: "2018-06-22"
 
   **asyncAction** というアクションを作成します。
   ```
-  ibmcloud wsk action create asyncAction asyncAction.js
+  ibmcloud fn action create asyncAction asyncAction.js
   ```
   {: pre}
 
   以下のように、アクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result asyncAction
+  ibmcloud fn action invoke --result asyncAction
   ```
   {: pre}
 
@@ -216,7 +216,7 @@ lastupdated: "2018-06-22"
 
   これを行うには、まずアクションをリストして、アクティベーション ID を取得します。
   ```
-  ibmcloud wsk activation list --limit 1 asyncAction
+  ibmcloud fn activation list --limit 1 asyncAction
   ```
   {: pre}
 
@@ -229,7 +229,7 @@ lastupdated: "2018-06-22"
 
   次に、アクティベーション ID を使用して、アクティベーション・ログ情報を取得します。
   ```
-  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
 
@@ -288,13 +288,13 @@ lastupdated: "2018-06-22"
 
   **apod** という名前のアクションを作成します。
   ```
-  ibmcloud wsk action create apod apod.js
+  ibmcloud fn action create apod apod.js
   ```
   {: pre}
 
   **apod** アクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result apod
+  ibmcloud fn action invoke --result apod
   ```
   {: pre}
 
@@ -363,7 +363,7 @@ exports.main = myAction;
 
 3. 以下のように、アクションを作成します。
   ```
-  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud fn action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
@@ -371,7 +371,7 @@ exports.main = myAction;
 
 4. 以下のように、アクションの呼び出しは、他と同様に行うことができます。
   ```
-  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
 
@@ -405,7 +405,7 @@ exports.main = myAction;
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -476,7 +476,7 @@ global.main = main;
 
   CLI を使用する場合:
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  ibmcloud fn action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -491,7 +491,7 @@ global.main = main;
 
 1. `/whisk.system/utils` パッケージのアクションを表示します。
   ```
-  ibmcloud wsk package get --summary /whisk.system/utils
+  ibmcloud fn package get --summary /whisk.system/utils
   ```
   {: pre}
 
@@ -511,7 +511,7 @@ global.main = main;
 
 2. アクション・シーケンスを作成して、1 つのアクションの結果が次のアクションに引数として渡されるようにします。
   ```
-  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
@@ -519,7 +519,7 @@ global.main = main;
 
 3. 以下のように、アクションを呼び出します。
   ```
-  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
@@ -563,7 +563,7 @@ Python アクションは常に辞書を取り込み、辞書を生成します�
 
 次のように、この関数から **helloPython** という名前の {{site.data.keyword.openwhisk_short}} アクションを作成できます。
 ```
-ibmcloud wsk action create helloPython hello.py
+ibmcloud fn action create helloPython hello.py
 ```
 {: pre}
 
@@ -572,7 +572,7 @@ CLI は、ソース・ファイルの拡張子からアクションのタイプ�
 
 以下のように、Python アクションにおけるアクション呼び出しは、JavaScript アクションの場合と同じです。
 ```
-ibmcloud wsk action invoke --result helloPython --param name World
+ibmcloud fn action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -597,7 +597,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 次に、以下のようにアクションを作成します。
 ```bash
-ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud fn action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
@@ -630,7 +630,7 @@ OpenWhisk ランタイム・コンテナーとの互換性を確保するため�
 
 3. アクション **helloPython** を作成します。
     ```
-    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -659,12 +659,12 @@ function main(array $args) : array
 ```
 {: codeblock}
 
-PHP アクションは常に連想配列を取り込み、連想配列を返します。 アクションの入り口メソッドはデフォルトで `main` ですが、他のアクション・タイプと同様に、`ibmcloud wsk` CLI でアクションを作成する際に `--main` を使用して明示的に指定することもできます。
+PHP アクションは常に連想配列を取り込み、連想配列を返します。 アクションの入り口メソッドはデフォルトで `main` ですが、他のアクション・タイプと同様に、`ibmcloud fn` CLI でアクションを作成する際に `--main` を使用して明示的に指定することもできます。
 
 次のように、
 この関数から **helloPHP** という名前の {{site.data.keyword.openwhisk_short}} アクションを作成できます。
 ```
-ibmcloud wsk action create helloPHP hello.php
+ibmcloud fn action create helloPHP hello.php
 ```
 {: pre}
 
@@ -672,7 +672,7 @@ CLI は、ソース・ファイルの拡張子からアクションのタイプ�
 
 以下のように、PHP アクションにおけるアクション呼び出しは、JavaScript アクションの場合と同じです。
 ```
-ibmcloud wsk action invoke --result helloPHP --param name World
+ibmcloud fn action invoke --result helloPHP --param name World
 ```
 {: pre}
 
@@ -698,7 +698,7 @@ zip -r helloPHP.zip index.php helper.php
 
 次に、アクション **helloPHP** を作成します。
 ```bash
-ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
@@ -733,7 +733,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 以下のように、この関数から **helloSwift** という名前の OpenWhisk アクションを作成できます。
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
 
@@ -772,7 +772,7 @@ func main(completion: (Output?, Error?) -> Void) -> Void {
 
 以下のように、この関数から `helloSwift` という名前の OpenWhisk アクションを作成できます。
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
 ```
 {: pre}
 
@@ -780,7 +780,7 @@ Swift ランタイムの詳細については、Swift [リファレンス](./ope
 
 以下のように、Swift アクションにおけるアクション呼び出しは、JavaScript アクションの場合と同じです。
 ```
-ibmcloud wsk action invoke --result helloSwift --param name World
+ibmcloud fn action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -948,19 +948,19 @@ actions/
 
 - これを、アクション名 **helloSwifty** として OpenWhisk にアップロードします。Swift 3 の場合は、kind `swift:3.1.1` を使用します。
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
   Swift 4 の場合は、kind `swift:4.1` を使用します。
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
 - どのくらい高速になったかを確認するために、以下のコマンドを実行します。
   ```
-  ibmcloud wsk action invoke helloSwiftly --blocking
+  ibmcloud fn action invoke helloSwiftly --blocking
   ```
   {: pre}
 
@@ -1039,7 +1039,7 @@ Java ファイルをコンパイルするには、[google-gson](https://github.c
 以下に示すように、
 この JAR ファイルから **helloJava** という {{site.data.keyword.openwhisk_short}} アクションを作成できます。
 ```
-ibmcloud wsk action create helloJava hello.jar --main Hello
+ibmcloud fn action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1051,7 +1051,7 @@ ibmcloud wsk action create helloJava hello.jar --main Hello
 
 以下のように、Java アクションにおけるアクション呼び出しは、Swift および JavaScript アクションの場合と同じです。
 ```
-ibmcloud wsk action invoke --result helloJava --param name World
+ibmcloud fn action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -1076,7 +1076,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
 1. Docker スケルトンをダウンロードします。 以下のように、CLI を使用してダウンロードしてインストールできます。
   ```
-  ibmcloud wsk sdk install docker
+  ibmcloud fn sdk install docker
   ```
   {: pre}
 
@@ -1137,13 +1137,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   これで、Docker コンテナーを {{site.data.keyword.openwhisk_short}} アクションとして使用できます。
   ```
-  ibmcloud wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud fn action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   アクションを作成するための `--docker` の使用に注意してください。 すべての Docker イメージが Docker Hub でホストされると想定されています。 このアクションは他の {{site.data.keyword.openwhisk_short}} アクションと同様に呼び出すことができます。
   ```
-  ibmcloud wsk action invoke --result example --param payload Rey
+  ibmcloud fn action invoke --result example --param payload Rey
   ```
   {: pre}
 
@@ -1158,7 +1158,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
   ```
   {: screen}
 
-  Docker アクションを更新するには、`buildAndPush.sh` を実行して、最新イメージを Docker Hub にアップロードします。 これにより、システムは、アクション用のコードの次回実行時に新規 Docker イメージをプルできるようになります。 ウォーム・コンテナーがない場合、新しい呼び出しは新規 Docker イメージを使用します。 ただし、前のバージョンの Docker イメージを使用しているウォーム・コンテナーがある場合は、`ibmcloud wsk action update` を実行しない限り、新しい呼び出しはそのイメージを使用し続けます。 これは、新しい呼び出しには Docker プルを実行して新規 Docker イメージを取得するようにシステムに指示します。
+  Docker アクションを更新するには、`buildAndPush.sh` を実行して、最新イメージを Docker Hub にアップロードします。 これにより、システムは、アクション用のコードの次回実行時に新規 Docker イメージをプルできるようになります。 ウォーム・コンテナーがない場合、新しい呼び出しは新規 Docker イメージを使用します。 ただし、前のバージョンの Docker イメージを使用しているウォーム・コンテナーがある場合は、`ibmcloud fn action update` を実行しない限り、新しい呼び出しはそのイメージを使用し続けます。 これは、新しい呼び出しには Docker プルを実行して新規 Docker イメージを取得するようにシステムに指示します。
 
   **Docker ハブへの最新イメージのアップロード:**
   ```
@@ -1168,7 +1168,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **新規の呼び出しが新規イメージを使用し始めるように、アクションを更新します。***
   ```
-  ibmcloud wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud fn action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -1180,13 +1180,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **zip ファイルからのアクションの作成:**
   ```
-  ibmcloud wsk action create example exec.zip --native
+  ibmcloud fn action create example exec.zip --native
   ```
   {: pre}
 
   これは、以下のコマンドと同等です。
   ```
-  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud fn action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
 
@@ -1229,13 +1229,13 @@ func main() {
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-ibmcloud wsk action create helloGo --native exec.zip
+ibmcloud fn action create helloGo --native exec.zip
 ```
 {: codeblock}
 
 このアクションは、他のアクションと同様に実行可能です。
 ```bash
-ibmcloud wsk action invoke helloGo -r -p name gopher
+ibmcloud fn action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1243,7 +1243,7 @@ ibmcloud wsk action invoke helloGo -r -p name gopher
 
 同様にログも取得されます。
 ```bash
-ibmcloud wsk activation logs --last --strip
+ibmcloud fn activation logs --last --strip
 my first Go action.
 ```
 
@@ -1261,7 +1261,7 @@ my first Go action.
 
 1. シェルから以下のコマンドを発行します。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -1269,7 +1269,7 @@ my first Go action.
 
 2. 別のウィンドウに切り替えて、以下のようにアクションを呼び出します。
   ```
-  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
@@ -1291,11 +1291,11 @@ my first Go action.
 ## アクションの取得
 {: #getting-actions}
 
-既存のアクションを記述したメタデータは、`ibmcloud wsk action get` コマンドを使用して取得できます。
+既存のアクションを記述したメタデータは、`ibmcloud fn action get` コマンドを使用して取得できます。
 
 **コマンド:**
 ```
-ibmcloud wsk action get hello
+ibmcloud fn action get hello
 ```
 
 ***結果:**
@@ -1330,7 +1330,7 @@ ok: got action hello
 
 アクションは、HTTPS 要求を介して REST インターフェースを使用して呼び出すことができます。アクション URL を取得するには、以下のコマンドを実行します。
 ```
-ibmcloud wsk action get actionName --url
+ibmcloud fn action get actionName --url
 ```
 {: pre}
 
@@ -1357,7 +1357,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 1. 現行作業ディレクトリー内に、既存のアクション名に対応するファイル名でアクション・コードが保存されます。アクションの種類に対応するファイル拡張子が使用されるか、zip ファイルであるアクション・コードには .zip の拡張子が使用されます。
   ```
-  ibmcloud wsk action get actionName --save
+  ibmcloud fn action get actionName --save
   ```
   {: pre}
 
@@ -1369,7 +1369,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 2. 保存するコードの宛先を CLI が決定するのを許可する代わりに、`--save-as` フラグを使用して、カスタムのファイル・パス、ファイル名、および拡張子を指定できます。
   ```
-  ibmcloud wsk action get actionName --save-as codeFile.js
+  ibmcloud fn action get actionName --save-as codeFile.js
   ```
   {: pre}
 
@@ -1384,13 +1384,13 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 以下のコマンドを使用して、作成されたすべてのアクションをリストできます。
 ```
-ibmcloud wsk action list
+ibmcloud fn action list
 ```
 {: pre}
 
 作成したアクションが多くなるほど、このリストは長くなるため、関連するアクションを[パッケージ](./openwhisk_packages.html)にグループ化すると役立ちます。 アクションのリストをフィルターに掛けて、特定のパッケージ内のもののみにするために、以下のコマンド構文を使用できます。
 ```
-ibmcloud wsk action list [PACKAGE NAME]
+ibmcloud fn action list [PACKAGE NAME]
 ```
 {: pre}
 
@@ -1401,7 +1401,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 
 1. アクションを削除するには、以下のコマンドを実行します。
   ```
-  ibmcloud wsk action delete hello
+  ibmcloud fn action delete hello
   ```
   {: pre}
 
@@ -1413,7 +1413,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 
 2. 当該アクションがアクションのリストに表示されなくなっていることを確認します。
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 

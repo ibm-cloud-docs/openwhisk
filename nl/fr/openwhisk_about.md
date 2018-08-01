@@ -148,13 +148,13 @@ Notez que l'enregistrement contient à la fois le résultat renvoyé et les jour
 A présent vous pouvez réutiliser l'API REST (en reprenant à partir de l'étape 1) pour obtenir votre activation, puis le résultat de votre action. Pour cela, exécutez la commande suivante :
 
 ```bash
-ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### Récapitulatif
 
-Vous pouvoir voir de quelle façon une simple action **ibmcloud wsk action invoked myAction** transite par différentes étapes du système {{site.data.keyword.openwhisk_short}}. Le système proprement dit n'est constitué que deux composants personnalisés, le **contrôleur** et l'**auteur de l'appel**. Tout le reste est déjà là, développé par toutes ces personnes de la communauté open source.
+Vous pouvoir voir de quelle façon une simple action **ibmcloud fn action invoked myAction** transite par différentes étapes du système {{site.data.keyword.openwhisk_short}}. Le système proprement dit n'est constitué que deux composants personnalisés, le **contrôleur** et l'**auteur de l'appel**. Tout le reste est déjà là, développé par toutes ces personnes de la communauté open source.
 
 Vous trouverez des informations supplémentaires sur {{site.data.keyword.openwhisk_short}} dans les rubriques suivantes :
 

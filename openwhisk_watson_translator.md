@@ -35,7 +35,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -48,7 +48,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
 
   List packages to see that the package binding was created:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -65,7 +65,7 @@ If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword
 
 - Create a package binding that is configured for your Watson Translator service.
   ```
-  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud fn package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
 
@@ -82,7 +82,7 @@ The `/whisk.system/watson-translator/translator` action translates text from one
 
 Invoke the **translator** action in your package binding to translate some text from English to French.
 ```
-ibmcloud wsk action invoke myWatsonTranslator/translator \
+ibmcloud fn action invoke myWatsonTranslator/translator \
 --blocking --result \
 --param payload "Blue skies ahead" --param translateFrom "en" \
 --param translateTo "fr"
@@ -107,7 +107,7 @@ The `/whisk.system/watson-translator/languageId` action identifies the language 
 
 Invoke the **languageId** action in your package binding to identify the language.
 ```
-ibmcloud wsk action invoke myWatsonTranslator/languageId \
+ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
 --param payload "Ciel bleu a venir"
 ```

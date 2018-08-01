@@ -55,7 +55,7 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
 
 2. Erstellen Sie eine Webaktion mit dem Namen **hello** unter Verwendung der Datei `hello.js`, die in Schritt 1 erstellt wurde. **Hinweis:** Stellen Sie sicher, dass Sie das Flag `--web true` hinzufügen.
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
 
 3. Erstellen Sie eine API mit dem Basispfad `/hello` und dem Pfad `/world` sowie mit der Methode `get` und dem Antworttyp `json`:
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -119,13 +119,13 @@ Sie haben die Möglichkeit, den Code der Aktion so zu ändern, dass er mit der R
 
 2. Aktualisieren Sie die Aktion mit dem geänderten Ergebnis.
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. Aktualisieren Sie den API-Antworttyp mit dem Flag `--response-type http`:
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -161,11 +161,11 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
 
 1. Erstellen Sie nun eine API für den Buchclub mit dem Namen **Book Club** und dem HTTP-URL-Basispfad `/club`, `books` als zugehöriger Ressource und `{isbn}` als Pfadparameter, der verwendet wird, um ein bestimmtes Buch mithilfe der ISBN (International Standard Book Number) anzugeben.
   ```bash
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -173,7 +173,7 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
 
 2. Listen Sie mit dem folgenden Befehl alle **Book Club**-Aktionen auf, die verfügbar gemachten wurden:
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -252,13 +252,13 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
 
 1. Exportieren Sie die API mit dem Namen **Book Club** in eine Datei, die als Basis zum erneuten Erstellen der APIs mit einer Datei als Eingabe verwendet werden kann.
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. Testen Sie die Swagger-Datei, indem Sie zuerst alle verfügbar gemachten URLs unter einem gemeinsamen Basispfad mit dem folgenden Befehl löschen:
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -276,7 +276,7 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
 
 1. Stellen Sie jetzt die API **Book Club** mithilfe der Datei `club-swagger.json` wieder her:
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -297,7 +297,7 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
 
 2. Überprüfen Sie, ob die API **Book Club** erneut erstellt wurde:
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

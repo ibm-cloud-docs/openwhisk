@@ -47,7 +47,7 @@ Essa visualização exibe uma versão formatada do log de ativação. Ela mostra
 
 Para obter a saída exibida no Log de atividades usando a CLI, use o comando a seguir:
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

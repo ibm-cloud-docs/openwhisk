@@ -148,13 +148,13 @@ Docker를 사용하면 빠르고 격리되고 제어된 방식으로 호출되�
 이제 다시 REST API를 사용하여(다시 1단계에서 시작함) 활성화 및 액션의 결과를 가져올 수 있습니다. 이를 수행하려면 다음 명령을 실행하십시오.
 
 ```bash
-ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### 요약
 
-단순한 **ibmcloud wsk action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 여러 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다.
+단순한 **ibmcloud fn action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 여러 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다.
 
 다음 주제에서 {{site.data.keyword.openwhisk_short}}에 대한 추가 정보를 찾을 수 있습니다.
 

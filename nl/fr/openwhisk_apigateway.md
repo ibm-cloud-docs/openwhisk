@@ -55,7 +55,7 @@ Pour des raisons pratiques, les étapes sont décomposées en sous-rubriques plu
 
 2. Créez une action Web nommée **hello** à l'aide du fichier `hello.js` que vous avez créé à l'étape 1. **Remarque :** Veillez à ajouter l'indicateur `--web true`.
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Pour des raisons pratiques, les étapes sont décomposées en sous-rubriques plu
 
 3. Créez une API avec le chemin de base `/hello`, le chemin `/world` et la méthode `get` avec le type de réponse `json`
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -119,13 +119,13 @@ Vous pouvez choisir de modifier le code de l'action pour qu'il soit conforme au 
 
 2. Mettez à jour l'action avec le résultat modifié :
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. Mettez à jour le type de réponse d'API en utilisant l'indicateur `--response-type http` :
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -161,11 +161,11 @@ Dans cet exemple, l'API est définie avec un **paramètre de chemin**. Lorsque v
 
 1. Créez une API pour le groupe de lecture, nommée **Book Club**, avec `/club` comme chemin de base de l'URL HTTP, `books` comme ressource associée et `{isbn}` comme paramètre de chemin utilisé pour identifier un livre particulier à l'aide de son numéro ISBN (International Standard Book Number).
   ```bash
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -173,7 +173,7 @@ Dans cet exemple, l'API est définie avec un **paramètre de chemin**. Lorsque v
 
 2. Affichez la liste de toutes les actions **Book Club** qui sont exposées en utilisant la commande suivante :
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -252,13 +252,13 @@ Dans cet exemple, l'API est définie avec un **paramètre de chemin**. Lorsque v
 
 1. Exportez l'API nommée **Book Club** dans un fichier que vous pouvez utiliser comme base pour recréer les API en utilisant un fichier en entrée.
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. Testez le fichier swagger en commençant par supprimer toutes les URL exposées sous un chemin de base commun en exécutant la commande suivante :
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -276,7 +276,7 @@ Dans cet exemple, l'API est définie avec un **paramètre de chemin**. Lorsque v
 
 1. A présent, restaurez l'API nommée **Book Club** en utilisant le nom de fichier `club-swagger.json` :
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -297,7 +297,7 @@ Dans cet exemple, l'API est définie avec un **paramètre de chemin**. Lorsque v
 
 2. Vérifiez que l'API **Book Club** a bien été recréée :
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

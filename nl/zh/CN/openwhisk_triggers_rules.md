@@ -65,7 +65,7 @@ lastupdated: "2018-06-22"
 例如，创建用于发送用户位置更新的触发器，然后手动触发该触发器。
 1. 输入以下命令来创建触发器：
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ ok: created trigger locationUpdate
 
 2. 通过列出触发器集来检查是否已创建该触发器。
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ triggers
 
 3. 接下来，通过指定触发器名称和参数来触发触发器事件：
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
 
 2. 确保触发器和操作存在：
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. 下一步是创建规则。规则创建后即会启用，这意味着规则将立即可用于响应触发器激活。三个参数分别是：_规则名称_、_触发器名称_和_操作名称_。
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   您可以随时选择禁用规则：
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. 触发 **locationUpdate** 触发器。每次触发事件时，都会通过事件参数来调用 **hello** 操作。
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
 
 5. 通过检查最新的激活来验证是否调用了 **hello** 操作。
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ activations
 
   现在，查询先前命令输出中列出的激活标识：
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -185,17 +185,17 @@ activations
 
 可以创建多个规则，用于将同一触发器与不同操作相关联。触发器和规则不能属于包。但是，规则可以与属于包的操作相关联，例如：
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 您还可以将规则与序列配合使用。例如，可以创建由规则 `anotherRule` 激活的操作序列 `recordLocationAndHello`。
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

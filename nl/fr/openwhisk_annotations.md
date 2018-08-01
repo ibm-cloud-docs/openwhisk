@@ -23,7 +23,7 @@ A ce jour, l'utilisation la plus répandue des annotations consiste à documente
 
 Voici un exemple d'ensemble d'annotations pour une action `echo`, qui renvoie ses arguments d'entrée non modifiés (par exemple, `function main(args) { return args }`). Cette action peut s'avérer utile pour la consignation des paramètres d'entrée, par exemple, dans le cadre d'une séquence ou d'une règle.
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

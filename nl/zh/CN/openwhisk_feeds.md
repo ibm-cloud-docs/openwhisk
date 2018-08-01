@@ -62,13 +62,13 @@ an open repo -->
 
 例如，假定用户通过将其用户名和密码作为绑定参数，为 **cloudant** 包创建了 `mycloudant` 绑定。用户通过 CLI 发出以下命令时：
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 然后系统将在后台执行等同于以下命令的操作：
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigge
 
 对于 {{site.data.keyword.cloudant_short_notm}} *changes* 订阅源，该操作恰好与通过基于连接的体系结构实现的 *{{site.data.keyword.cloudant_short_notm}} trigger* 服务直接对话。
 
-对于 `ibmcloud wsk trigger delete`、`ibmcloud wsk trigger update` 和 `ibmcloud wsk trigger get`，会执行类似的订阅源操作协议。
+对于 `ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 和 `ibmcloud fn trigger get`，会执行类似的订阅源操作协议。
 
 ## 通过 Hook 实现订阅源
 

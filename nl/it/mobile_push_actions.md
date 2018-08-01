@@ -47,13 +47,13 @@ Per creare un bind di pacchetto, vedi la seguente procedura:
 
 4. Crea un bind di pacchetto con `/whisk.system/pushnotifications`.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. Verifica che il bind di pacchetto esista:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ Vedi il seguente esempio per inviare una notifica di push dal pacchetto Push not
 
 Invia una notifica di push utilizzando l'azione **sendMessage** nel bind di pacchetto che hai creato in precedenza. Assicurati di sostituire `/myNamespace/myPush` con il tuo nome pacchetto.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

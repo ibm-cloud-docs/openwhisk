@@ -55,7 +55,7 @@ lastupdated: "2018-03-30"
 
 2. ステップ 1 で作成した `hello.js` ファイルを使用して、**hello** という名前の Web アクションを作成します。**注:** 必ず、フラグ `--web true` を追加してください。
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-30"
 
 3. 以下のように、基本パス `/hello`、パス `/world`、メソッド `get`、および応答タイプ `json` を使用して、API を作成します。
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -119,13 +119,13 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 2. 以下のように、変更された結果でアクションを更新します。
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. `--response-type http` フラグを使用して、API 応答タイプを更新します。
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -161,11 +161,11 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 1. HTTP URL 基本パスに `/club`、リソースに `books`、パス・パラメーターに、本の国際標準図書番号 (ISBN) を使用して特定の本を識別するために使用される `{isbn}` を指定して、ブック・クラブ用の API を **Book Club** という名前で作成します。
   ```bash
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -173,7 +173,7 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 2. 以下のコマンドを使用して、公開されているすべての **Book Club** アクションをリストします。
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -252,13 +252,13 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 1. **Book Club** という名前の API をファイルにエクスポートします。ファイルを入力として使用して API を再作成するための基盤として、このファイルを使用できます。
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. まず、以下のコマンドを使用して、共通した基本パスの下に公開されたすべての URL を削除することで、swagger ファイルをテストします。
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -276,7 +276,7 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 1. 今度は、ファイル名 **club-swagger.json** を使用して、`Book Club` という名前の API を復元します。
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -297,7 +297,7 @@ Web アクション **hello** が呼び出され、照会パラメーターを�
 
 2. **Book Club** API が再作成されたことを確認します。
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

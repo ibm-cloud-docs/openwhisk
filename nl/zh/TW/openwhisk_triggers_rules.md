@@ -65,7 +65,7 @@ lastupdated: "2018-06-22"
 例如，建立觸發程式來傳送使用者位置更新，以及手動發動觸發程式。
 1. 輸入下列指令，以建立觸發程式：
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ ok: created trigger locationUpdate
 
 2. 列出這組觸發程式，確認您已建立觸發程式。
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ triggers
 
 3. 接下來，請指定觸發程式名稱及參數，以發動觸發程式事件：
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
 
 2. 確定觸發程式和動作已存在：
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. 下一步是建立規則。規則會在建立時啟用，表示它會立即可用來回應觸發程式的「啟動」。三個參數為：_規則名稱_、_觸發程式名稱_ 及_動作名稱_。
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   您隨時都可以選擇停用規則：
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. 發動 **locationUpdate** 觸發程式。每次發動事件時，都會使用事件參數來呼叫 **hello** 動作。
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
 
 5. 檢查最新的「啟動」，來驗證已呼叫 **hello** 動作。
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ activations
 
   現在，請查詢前一個指令輸出中所列出的啟動 ID：
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -185,17 +185,17 @@ activations
 
 您可以建立多個規則，來建立相同觸發程式與不同動作的關聯。觸發程式及規則不能屬於套件。不過，規則可以與屬於套件的動作相關聯，例如：
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 您也可以搭配使用規則與序列。例如，某人可以建立透過規則 `anotherRule` 所啟動的動作序列 `recordLocationAndHello`。
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

@@ -48,13 +48,13 @@ lastupdated: "2018-06-22"
 
 4. 建立與 `/whisk.system/pushnotifications` 連結的套件。
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. 驗證套件連結已存在：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -133,7 +133,7 @@ lastupdated: "2018-06-22"
 
 使用您先前建立之套件連結中的 **sendMessage** 動作，來傳送推送通知。請務必將 `/myNamespace/myPush` 取代成您的套件名稱。
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

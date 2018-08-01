@@ -592,7 +592,7 @@ PHP 액션은 PHP 7.1.18에서 실행됩니다. 이 런타임을 사용하려면
 
 Docker 액션은 Docker 컨테이너에서 사용자 제공 2진을 실행합니다. 2진이 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 기반의 Docker 이미지에서 실행되므로, 2진은 이 배포와 호환 가능해야 합니다.
 
-Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 편리한 방법입니다. `ibmcloud wsk sdk install docker` CLI 플러그인 명령을 사용하여 스켈레톤을 설치할 수 있습니다.
+Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 편리한 방법입니다. `ibmcloud fn sdk install docker` CLI 플러그인 명령을 사용하여 스켈레톤을 설치할 수 있습니다.
 
 기본 2진 프로그램은 컨테이너 내부의 `/action/exec`에 있어야 합니다. 실행 파일은 `JSON` 오브젝트로서 역직렬화될 수 있는 단일 명령행 인수 문자열을 통해 입력 인수를 수신합니다. 이는 직렬화된 `JSON`의 단일행 문자열로서 `stdout`을 사용하여 결과를 리턴해야 합니다.
 

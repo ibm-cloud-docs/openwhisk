@@ -36,7 +36,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
 
 2. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour l'instance de service Watson que vous avez créée.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
 
   Affichez la liste des packages pour vérifier que la liaison a bien été créée :
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ Si vous n'utilisez pas {{site.data.keyword.openwhisk_short}} dans {{site.data.ke
 
 Créez une liaison de package configurée pour votre service Watson Speech to Text.
 ```
-ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -94,7 +94,7 @@ L'action `/whisk.system/watson-speechToText/speechToText` convertit un contenu a
 
 Appelez l'action **speechToText** dans votre liaison de package pour convertir le contenu audio codé.
 ```
-ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

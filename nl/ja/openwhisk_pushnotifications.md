@@ -36,25 +36,25 @@ lastupdated: "2018-03-16"
 
 1. **appId** と **appSecret** を使用して、プッシュ通知サービス用に構成されたパッケージ・バインディングを作成します。
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. `myPush/webhook` フィードを使用して、プッシュ通知サービス `onDeviceRegister` イベント・タイプ用のトリガーを作成します。
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. 新規デバイスが登録されるたびにメッセージを送信するルールを作成できます。前のアクションとトリガーを使用してルールを作成します。
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. `ibmcloud wsk activation poll` コマンドを使用して結果を確認します。
+4. `ibmcloud fn activation poll` コマンドを使用して結果を確認します。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

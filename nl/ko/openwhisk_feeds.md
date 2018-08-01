@@ -62,13 +62,13 @@ an open repo -->
 
 예를 들어, 사용자가 바인드 매개변수로서 사용자 이름과 비밀번호를 사용하여 **cloudant** 패키지에 대한 `mycloudant` 바인딩을 작성한다고 가정합니다. 사용자가 CLI에서 다음 명령을 실행하는 경우:
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 시스템은 이를 틈타서 다음 명령에 상응하는 작업을 수행합니다.
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigge
 
 {{site.data.keyword.cloudant_short_notm}} *changes* 피드의 경우, 액션은 연결 기반 아키텍처로 구현된 *{{site.data.keyword.cloudant_short_notm}} 트리거* 서비스와 직접 대화합니다.
 
-`ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` 및 `ibmcloud wsk trigger get`에 대해 유사한 피드 액션 프로토콜이 발생합니다.
+`ibmcloud fn trigger delete`, `ibmcloud fn trigger update` 및 `ibmcloud fn trigger get`에 대해 유사한 피드 액션 프로토콜이 발생합니다.
 
 ## 후크를 사용하여 피드 구현
 

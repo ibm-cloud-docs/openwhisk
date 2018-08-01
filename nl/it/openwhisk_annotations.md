@@ -23,7 +23,7 @@ Fino ad oggi, l'utilizzo più diffuso delle annotazioni è quello di documentare
 
 Di seguito è riportata una serie di annotazioni di esempio per un'azione `echo`, che restituisce i suoi argomenti di input non modificati (ad esempio, `function main(args) { return args }`). Questa azione è utile per registrare i parametri di input, ad esempio, come parte di una sequenza o regola.
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'Un'azione che restituisce il suo input. Utile per la registrazione dell'input per abilitare il debug o la riproduzione.' \
     -a parameters  '[{ "required":false, "description": "Qualsiasi entità JSON" }]' \
     -a sampleInput  '{ "msg": "Cinque felini indistinti"}' \

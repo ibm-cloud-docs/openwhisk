@@ -62,13 +62,13 @@ an open repo -->
 
 例如，假設使用者利用使用者名稱及密碼作為已連結參數，來建立 **cloudant** 套件的 `mycloudant` 連結。如果使用者從 CLI 發出下列指令：
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 然後，在涵蓋系統的情況下，與下列指令相等的事項如下：
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigge
 
 針對「{{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源」，動作會直接與使用連線型架構所實作的 *{{site.data.keyword.cloudant_short_notm}} 觸發程式* 服務交談。
 
-`ibmcloud wsk trigger delete`、`ibmcloud wsk trigger update` 及 `ibmcloud wsk trigger get` 會執行類似的「資訊來源」動作通訊協定。
+`ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 及 `ibmcloud fn trigger get` 會執行類似的「資訊來源」動作通訊協定。
 
 ## 使用連結鉤實作資訊來源
 

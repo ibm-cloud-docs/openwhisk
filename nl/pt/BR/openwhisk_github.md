@@ -42,7 +42,7 @@ No exemplo a seguir, é criado um acionador que dispara a cada nova confirmaçã
 
 2. Crie uma ligação de pacote configurada para seu repositório GitHub e com o token de acesso.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -51,7 +51,7 @@ No exemplo a seguir, é criado um acionador que dispara a cada nova confirmaçã
 
 3. Crie um acionador para o tipo de evento `push` do GitHub usando seu feed `myGit/webhook`.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

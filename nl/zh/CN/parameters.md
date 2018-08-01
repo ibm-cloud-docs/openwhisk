@@ -36,7 +36,7 @@ lastupdated: "2018-05-31"
 
 2. 更新 **hello** 操作以使其可供使用：
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ lastupdated: "2018-05-31"
 
   要直接通过命令行来传递参数，请向 `--param` 标志提供键/值对：
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ lastupdated: "2018-05-31"
 
   接下来，使用作为有效 JSON 的单个 `person` 参数调用操作，如以下示例中所示：
   ```
-  ibmcloud wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ lastupdated: "2018-05-31"
 
   要在命令行上显式指定缺省参数，请向 `param` 标志提供键/值对：
   ```
-  ibmcloud wsk action update hello --param place Kansas
+  ibmcloud fn action update hello --param place Kansas
   ```
   {: pre}
 
 2. 调用操作，但这次只传递 `name` 参数。
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy
+  ibmcloud fn action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -126,7 +126,7 @@ lastupdated: "2018-05-31"
 
   使用 `--param` 标志调用操作：
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -154,7 +154,7 @@ lastupdated: "2018-05-31"
 1. 创建设置了参数的包：
 
   ```
-  ibmcloud wsk package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
   {: pre}
 
@@ -168,13 +168,13 @@ lastupdated: "2018-05-31"
 
   创建操作：
   ```
-  ibmcloud wsk action update MyApp/hello hello.js
+  ibmcloud fn action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. 调用操作，并观察正在使用的缺省包参数：
   ```
-  ibmcloud wsk action invoke --result MyApp/hello
+  ibmcloud fn action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -203,7 +203,7 @@ lastupdated: "2018-05-31"
 2. 使用更新的 `hello.js` 的内容来更新操作：
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -220,7 +220,7 @@ lastupdated: "2018-05-31"
 4. 调用 **hello** 操作时使用 `parameters.json` 文件名，并观察输出：
 
   ```
-  ibmcloud wsk action invoke --result hello --param-file parameters.json
+  ibmcloud fn action invoke --result hello --param-file parameters.json
   ```
 
   示例输出：

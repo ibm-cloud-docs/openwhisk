@@ -63,7 +63,7 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
 
 2. Crear una acción desde la función JavaScript siguiente. En este ejemplo, la acción se llama **hello**.
   ```
-  ibmcloud wsk action create hello hello.js
+  ibmcloud fn action create hello hello.js
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
 
 3. Mostrar una lista de las acciones que ha creado:
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 
@@ -94,7 +94,7 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
 
   Este ejemplo utiliza el parámetro blocking, `--blocking`:
   ```
-  ibmcloud wsk action invoke --blocking hello
+  ibmcloud fn action invoke --blocking hello
   ```
   {: pre}
 
@@ -128,7 +128,7 @@ para hacer una invocación sin bloqueo. Puede obtener el resultado posteriorment
 
   Consulte los ejemplos siguientes:
   ```
-  ibmcloud wsk action invoke hello
+  ibmcloud fn action invoke hello
   ```
   {: pre}
 
@@ -140,7 +140,7 @@ para hacer una invocación sin bloqueo. Puede obtener el resultado posteriorment
 
   Ahora que conoce el ID de activación, puede especificarlo para obtener el resultado de la acción:
   ```
-  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ para hacer una invocación sin bloqueo. Puede obtener el resultado posteriorment
 
   **Listar activaciones:**
   ```
-  ibmcloud wsk activation list
+  ibmcloud fn activation list
   ```
   {: pre}
 
@@ -197,13 +197,13 @@ Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver 
 
   Cree una acción denominada **asyncAction**:
   ```
-  ibmcloud wsk action create asyncAction asyncAction.js
+  ibmcloud fn action create asyncAction asyncAction.js
   ```
   {: pre}
 
   Invoque la acción:
   ```
-  ibmcloud wsk action invoke --result asyncAction
+  ibmcloud fn action invoke --result asyncAction
   ```
   {: pre}
 
@@ -221,7 +221,7 @@ Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver 
 
   Para ello, primero obtenga una lista con la acción para ver el ID de activación:
   ```
-  ibmcloud wsk activation list --limit 1 asyncAction
+  ibmcloud fn activation list --limit 1 asyncAction
   ```
   {: pre}
 
@@ -234,7 +234,7 @@ Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver 
 
   Ahora obtenga la información de registro de activación utilizando el ID de activación:
   ```
-  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
 
@@ -294,13 +294,13 @@ En el ejemplo siguiente se invoca el servicio Astronomy Picture of the Day (APOD
 
   Cree la acción denominada **apod**:
   ```
-  ibmcloud wsk action create apod apod.js
+  ibmcloud fn action create apod apod.js
   ```
   {: pre}
 
   Invoque la acción **apod**:
   ```
-  ibmcloud wsk action invoke --result apod
+  ibmcloud fn action invoke --result apod
   ```
   {: pre}
 
@@ -369,7 +369,7 @@ Para crear una acción de {{site.data.keyword.openwhisk_short}} desde este paque
 
 3. Cree la acción:
   ```
-  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud fn action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
@@ -377,7 +377,7 @@ Para crear una acción de {{site.data.keyword.openwhisk_short}} desde este paque
 
 4. Puede invocar la acción como cualquier otra:
   ```
-  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
 
@@ -411,7 +411,7 @@ A partir del `package.json` del ejemplo anterior, añada `webpack` como dependen
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
   },
 	"dependencies": {
     "left-pad" : "1.1.3"
@@ -482,7 +482,7 @@ Para crear y desplegar una acción de OpenWhisk utilizando `npm` y `webpack`:
 
   Utilizando la CLI:
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  ibmcloud fn action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -497,7 +497,7 @@ Se proporcionan varias acciones de utilidad en un paquete llamado `/whisk.system
 
 1. Mostrar las acciones del paquete `/whisk.system/utils`.
   ```
-  ibmcloud wsk package get --summary /whisk.system/utils
+  ibmcloud fn package get --summary /whisk.system/utils
   ```
   {: pre}
 
@@ -517,7 +517,7 @@ Se proporcionan varias acciones de utilidad en un paquete llamado `/whisk.system
 
 2. Crear una secuencia de acciones para que el resultado de una acción se pase como argumento a la acción siguiente.
   ```
-  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
@@ -525,7 +525,7 @@ Se proporcionan varias acciones de utilidad en un paquete llamado `/whisk.system
 
 3. Invoque la acción:
   ```
-  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
@@ -570,7 +570,7 @@ diccionario y generan un diccionario. El método de entrada para la acción es `
 
 Puede crear una acción de {{site.data.keyword.openwhisk_short}} denominada **helloPython** a partir de esta función de la siguiente manera:
 ```
-ibmcloud wsk action create helloPython hello.py
+ibmcloud fn action create helloPython hello.py
 ```
 {: pre}
 
@@ -579,7 +579,7 @@ Para obtener más información sobre los paquetes incluidos en este tiempo de ej
 
 La invocación de la acción es la misma para acciones Python que para acciones JavaScript:
 ```
-ibmcloud wsk action invoke --result helloPython --param name World
+ibmcloud fn action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -604,7 +604,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 A continuación, cree la acción:
 ```bash
-ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud fn action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
@@ -637,7 +637,7 @@ Para asegurar la compatibilidad con el contenedor de tiempo de ejecución de Ope
 
 3. Cree la acción **helloPython**:
     ```
-    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -666,11 +666,11 @@ function main(array $args) : array
 ```
 {: codeblock}
 
-Las acciones PHP siempre consumen una matriz asociativa y devuelven una matriz asociativa. El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar de forma explícita al crear la acción con la CLI `ibmcloud wsk` utilizando `--main`, como con cualquier otro tipo de acción.
+Las acciones PHP siempre consumen una matriz asociativa y devuelven una matriz asociativa. El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar de forma explícita al crear la acción con la CLI `ibmcloud fn` utilizando `--main`, como con cualquier otro tipo de acción.
 
 Puede crear una acción de {{site.data.keyword.openwhisk_short}} llamada **helloPHP** desde esta función, según se indica a continuación:
 ```
-ibmcloud wsk action create helloPHP hello.php
+ibmcloud fn action create helloPHP hello.php
 ```
 {: pre}
 
@@ -678,7 +678,7 @@ La CLI deduce automáticamente el tipo de acción a partir de la extensión del 
 
 La invocación de la acción es la misma para acciones PHP que para acciones JavaScript:
 ```
-ibmcloud wsk action invoke --result helloPHP --param name World
+ibmcloud fn action invoke --result helloPHP --param name World
 ```
 {: pre}
 
@@ -704,7 +704,7 @@ zip -r helloPHP.zip index.php helper.php
 
 A continuación, cree la acción **helloPHP**:
 ```bash
-ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
@@ -738,7 +738,7 @@ En este ejemplo, la acción Swift consume un diccionario y genera un diccionario
 
 Puede crear una acción OpenWhisk denominada **helloSwift** a partir de esta función de la siguiente manera:
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
 
@@ -777,7 +777,7 @@ func main(completion: (Output?, Error?) -> Void) -> Void {
 
 Puede crear una acción OpenWhisk denominada `helloSwift` a partir de esta función de la siguiente manera:
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
 ```
 {: pre}
 
@@ -785,7 +785,7 @@ Consulte la documentación de [referencia](./openwhisk_reference.html#swift-acti
 
 La invocación de la acción es la misma para acciones Swift que para acciones JavaScript:
 ```
-ibmcloud wsk action invoke --result helloSwift --param name World
+ibmcloud fn action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -953,19 +953,19 @@ actions/
 
 - Cárguelo en OpenWhisk con el nombre de acción **helloSwifty**. Para Swift 3, utilice el tipo `swift:3.1.1`
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
   Para Swift 4, utilice el tipo `swift:3.1.1`:
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
 - Para comprobar lo rápido que es, ejecute el siguiente mandato:
   ```
-  ibmcloud wsk action invoke helloSwiftly --blocking
+  ibmcloud fn action invoke helloSwiftly --blocking
   ```
   {: pre}
 
@@ -1043,7 +1043,7 @@ jar cvf hello.jar Hello.class
 
 Puede crear una acción de {{site.data.keyword.openwhisk_short}} denominada **helloJava** a partir de este archivo JAR tal como se indica a continuación:
 ```
-ibmcloud wsk action create helloJava hello.jar --main Hello
+ibmcloud fn action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1055,7 +1055,7 @@ Si es necesario, también puede personalizar el nombre de método de la acción 
 
 La invocación de la acción es la misma para acciones Java que para acciones Swift y JavaScript:
 ```
-ibmcloud wsk action invoke --result helloJava --param name World
+ibmcloud fn action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -1082,7 +1082,7 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
 
 1. Descargar el esqueleto de Docker. Puede descargarlo e instalarlo usando la CLI de la siguiente manera:
   ```
-  ibmcloud wsk sdk install docker
+  ibmcloud fn sdk install docker
   ```
   {: pre}
 
@@ -1143,13 +1143,13 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
 
   El contenedor de Docker ahora se puede utilizar como una acción de {{site.data.keyword.openwhisk_short}}:
   ```
-  ibmcloud wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud fn action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   Observe el uso de `--docker` para crear una acción. Se presupone que todas las imágenes de Docker se alojan en Docker Hub. La acción se puede invocar como cualquier otra acción de {{site.data.keyword.openwhisk_short}}.
   ```
-  ibmcloud wsk action invoke --result example --param payload Rey
+  ibmcloud fn action invoke --result example --param payload Rey
   ```
   {: pre}
 
@@ -1164,7 +1164,7 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
   ```
   {: screen}
 
-  Para actualizar la acción de Docker, ejecute `buildAndPush.sh` para cargar la imagen más reciente en Docker Hub. Esto permite al sistema extraer la nueva imagen de Docker la próxima vez que ejecute el código para la acción. Si no hay contenedores recientes, las nuevas invocaciones utilizan la imagen de Docker nueva. Sin embargo, si hay un contenedor reciente que utiliza una versión anterior de la imagen de Docker, las nuevas invocaciones siguen utilizando esta imagen a no ser que se ejecute `ibmcloud wsk action update`. Esto indica al sistema que, para las nuevas invocaciones, debe ejecutar una extracción de Docker para obtener su nueva imagen de Docker.
+  Para actualizar la acción de Docker, ejecute `buildAndPush.sh` para cargar la imagen más reciente en Docker Hub. Esto permite al sistema extraer la nueva imagen de Docker la próxima vez que ejecute el código para la acción. Si no hay contenedores recientes, las nuevas invocaciones utilizan la imagen de Docker nueva. Sin embargo, si hay un contenedor reciente que utiliza una versión anterior de la imagen de Docker, las nuevas invocaciones siguen utilizando esta imagen a no ser que se ejecute `ibmcloud fn action update`. Esto indica al sistema que, para las nuevas invocaciones, debe ejecutar una extracción de Docker para obtener su nueva imagen de Docker.
 
   **Cargue la imagen más reciente en Docker Hub:**
   ```
@@ -1174,7 +1174,7 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
 
   **Actualice la acción para que las nuevas invocaciones empiecen a utilizar la nueva imagen:***
   ```
-  ibmcloud wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud fn action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -1187,13 +1187,13 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
 
   **Cree una acción a partir del archivo zip:**
   ```
-  ibmcloud wsk action create example exec.zip --native
+  ibmcloud fn action create example exec.zip --native
   ```
   {: pre}
 
   Que es equivalente a invocar el mandato siguiente.
   ```
-  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud fn action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
 
@@ -1236,13 +1236,13 @@ Guarde el código anterior en un archivo `sample.go` y cree con él una compilac
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-ibmcloud wsk action create helloGo --native exec.zip
+ibmcloud fn action create helloGo --native exec.zip
 ```
 {: codeblock}
 
 La acción puede ejecutarse como cualquier otra acción.
 ```bash
-ibmcloud wsk action invoke helloGo -r -p name gopher
+ibmcloud fn action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1250,7 +1250,7 @@ ibmcloud wsk action invoke helloGo -r -p name gopher
 
 Los registros se recuperan también de una forma similar.
 ```bash
-ibmcloud wsk activation logs --last --strip
+ibmcloud fn activation logs --last --strip
 my first Go action.
 ```
 
@@ -1268,7 +1268,7 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
 
 1. Emita el siguiente mandato desde un shell:
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -1276,7 +1276,7 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
 
 2. Cambie a otra ventana e invoque la acción:
   ```
-  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
@@ -1298,11 +1298,11 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
 ## Obtención de acciones
 {: #getting-actions}
 
-Los metadatos que describen las acciones existentes se pueden recuperar mediante el mandato get `ibmcloud wsk action`.
+Los metadatos que describen las acciones existentes se pueden recuperar mediante el mandato get `ibmcloud fn action`.
 
 **Mandato:**
 ```
-ibmcloud wsk action get hello
+ibmcloud fn action get hello
 ```
 
 ***Resultado:**
@@ -1337,7 +1337,7 @@ ok: got action hello
 
 Una acción se puede invocar utilizando la interfaz REST mediante una solicitud HTTPS. Para obtener un URL de acción, ejecute el mandato siguiente:
 ```
-ibmcloud wsk action get actionName --url
+ibmcloud fn action get actionName --url
 ```
 {: pre}
 
@@ -1364,7 +1364,7 @@ El código asociado con una acción existente puede recuperarse y guardarse loca
 
 1. Guarde el código de acción en un nombre de archivo que corresponda con un nombre de acción existente en el directorio de trabajo actual. Se utiliza una extensión de archivo que corresponde al tipo de acción, o una extensión de tipo .zip para el código de acción que es un archivo zip.
   ```
-  ibmcloud wsk action get actionName --save
+  ibmcloud fn action get actionName --save
   ```
   {: pre}
 
@@ -1376,7 +1376,7 @@ El código asociado con una acción existente puede recuperarse y guardarse loca
 
 2. En lugar de permitir que la CLI determine el destino del código que se va a guardar, se puede proporcionar una vía de acceso de archivo, un nombre de archivo y una extensión personalizados mediante el distintivo `--save-as`.
   ```
-  ibmcloud wsk action get actionName --save-as codeFile.js
+  ibmcloud fn action get actionName --save-as codeFile.js
   ```
   {: pre}
 
@@ -1391,13 +1391,13 @@ El código asociado con una acción existente puede recuperarse y guardarse loca
 
 Puede generar una lista de todas las acciones creadas utilizando el siguiente mandato:
 ```
-ibmcloud wsk action list
+ibmcloud fn action list
 ```
 {: pre}
 
 A medida que escriba más acciones, esta lista crece y puede resultar útil agrupar las acciones relacionadas en [paquetes](./openwhisk_packages.html). Para filtrar la lista de acciones y limitarla a las contenidas en un determinado paquete, puede utilizar la siguiente sintaxis de mandato:
 ```
-ibmcloud wsk action list [NOMBRE PAQUETE]
+ibmcloud fn action list [NOMBRE PAQUETE]
 ```
 {: pre}
 
@@ -1408,7 +1408,7 @@ Puede realizar una limpieza mediante la supresión de acciones que no quiera usa
 
 1. Ejecute el mandato siguiente para suprimir una acción:
   ```
-  ibmcloud wsk action delete hello
+  ibmcloud fn action delete hello
   ```
   {: pre}
 
@@ -1420,7 +1420,7 @@ Puede realizar una limpieza mediante la supresión de acciones que no quiera usa
 
 2. Compruebe que la acción ya no aparece en la lista de acciones.
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 

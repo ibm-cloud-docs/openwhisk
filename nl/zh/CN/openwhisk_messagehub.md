@@ -40,7 +40,7 @@ lastupdated: "2018-06-22"
 |isBinaryKey|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将键值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
 |isBinaryValue|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将消息值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
 
-此参数列表可能看起来让人望而生畏，但可以使用 `ibmcloud wsk package refresh` CLI 插件命令自动设置这些参数：
+此参数列表可能看起来让人望而生畏，但可以使用 `ibmcloud fn package refresh` CLI 插件命令自动设置这些参数：
 
 1. 在正用于 {{site.data.keyword.openwhisk}} 的当前组织和空间下创建 {{site.data.keyword.messagehub}} 服务实例。
 
@@ -48,7 +48,7 @@ lastupdated: "2018-06-22"
 
 3. 刷新名称空间中的包。刷新操作将自动为已创建的 {{site.data.keyword.messagehub}} 服务实例创建包绑定。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ lastupdated: "2018-06-22"
 
 4. 列出名称空间中的包，以显示包绑定是否现在可用。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ lastupdated: "2018-06-22"
 
 5. 现在，您只需创建将在新消息发布到 {{site.data.keyword.messagehub}} 主题时触发的触发器即可。
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ lastupdated: "2018-06-22"
 
 1. 创建为 {{site.data.keyword.messagehub}} 服务配置的包绑定。
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. 现在，您可以使用新包创建将在新消息发布到 {{site.data.keyword.messagehub}} 主题时触发的触发器。
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

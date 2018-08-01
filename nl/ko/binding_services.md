@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # 액션에 서비스 바인드
 {: #binding_services}
 
-[{{site.data.keyword.openwhisk}} CLI 플러그인](./bluemix_cli.html)을 활용하여 서비스를 액션 또는 패키지에 바인드할 수 있습니다. {{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` 명령을 사용하면 런타임 시 {{site.data.keyword.Bluemix_notm}} 서비스 신임 정보를 {{site.data.keyword.openwhisk_short}} 코드에서 사용할 수 있습니다.
+[{{site.data.keyword.openwhisk}} CLI 플러그인](./bluemix_cli.html)을 활용하여 서비스를 액션 또는 패키지에 바인드할 수 있습니다. {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 명령을 사용하면 런타임 시 {{site.data.keyword.Bluemix_notm}} 서비스 신임 정보를 {{site.data.keyword.openwhisk_short}} 코드에서 사용할 수 있습니다.
 {: shortdesc}
 
-`ibmcloud wsk service bind` 명령을 Cloud Foundry에서 사용 가능한 `cf bind-service` 명령과 혼동하지 마십시오.
+`ibmcloud fn service bind` 명령을 Cloud Foundry에서 사용 가능한 `cf bind-service` 명령과 혼동하지 마십시오.
 {: tip}
 
 ## 액션 또는 패키지에 서비스 바인드
@@ -65,14 +65,14 @@ Credentials-2
 
 3. 액션에 서비스를 바인드하십시오.
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption><code>ibmcloud wsk service bind</code> 명령 컴포넌트에 대한 이해</caption>
+    <caption><code>ibmcloud fn service bind</code> 명령 컴포넌트에 대한 이해</caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="아이디어 아이콘"/> <code>ibmcloud wsk service bind</code> 명령 컴포넌트에 대한 이해</th>
+    <th colspan=2><img src="images/idea.png" alt="아이디어 아이콘"/> <code>ibmcloud fn service bind</code> 명령 컴포넌트에 대한 이해</th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     예를 들어, {{site.data.keyword.ibmwatson}} 대화 서비스를 액션 `hello`에 바인드하려면 다음을 실행하십시오.
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. 신임 정보가 바인드되었는지 확인하십시오. 서비스가 바인드된 액션은 사용자 정의 플래그를 지원하지 않지만 디버그 및 상세 플래그는 지원합니다.
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Credentials-2
 액션 또는 패키지에서 서비스를 바인드 해제하십시오. 서비스를 바인드 해제하면 `service bind` 명령으로 작성된 기존 바인딩이 제거됩니다.
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

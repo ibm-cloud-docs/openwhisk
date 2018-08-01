@@ -42,7 +42,7 @@ lastupdated: "2018-03-26"
 以下の例では、2 分ごとに 1 回起動するトリガーを作成します。 トリガーは可能になるとすぐに起動し、2019 年 1 月 31 日 23:59:00 UTC に起動を停止します。
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -70,7 +70,7 @@ lastupdated: "2018-03-26"
 以下は、2019 年 12 月 25 日 12:30:00 UTC に 1 回起動するトリガーを作成する例です。 トリガーの起動後、トリガーならびにそのすべての関連ルールが削除されます。
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -103,7 +103,7 @@ lastupdated: "2018-03-26"
 以下は、トリガー・イベントで `name` および `place` の値を指定して、2 分ごとに 1 回起動するトリガーを作成する例です。 トリガーは、2019 年 1 月 1 日 00:00:00 UTC まで起動を開始せず、2019 年 1 月 31 日 23:59:00 UTC に起動を停止します。
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

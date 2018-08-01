@@ -32,7 +32,7 @@ lastupdated: "2018-06-22"
 
 1. 取得 `/whisk.system` 名稱空間中的套件清單。
   ```
-  ibmcloud wsk package list /whisk.system
+  ibmcloud fn package list /whisk.system
   ```
   {: pre}
 
@@ -55,7 +55,7 @@ lastupdated: "2018-06-22"
 
 2. 取得 `/whisk.system/cloudant` 套件中的實體清單。
   ```
-  ibmcloud wsk package get --summary /whisk.system/cloudant
+  ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ lastupdated: "2018-06-22"
 
 3. 取得 `/whisk.system/cloudant/read` 動作的說明。
   ```
-  ibmcloud wsk action get --summary /whisk.system/cloudant/read
+  ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -95,7 +95,7 @@ lastupdated: "2018-06-22"
 
 1. 取得 `/whisk.system/samples/greeting` 動作的說明。
   ```
-  ibmcloud wsk action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -110,7 +110,7 @@ lastupdated: "2018-06-22"
 
 2. 不使用任何參數來呼叫動作。
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -126,7 +126,7 @@ lastupdated: "2018-06-22"
 
 3. 使用參數來呼叫動作。
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ lastupdated: "2018-06-22"
 
 1. 連結至 `/whisk.system/samples`，並設定預設 `place` 參數值。
   ```
-  ibmcloud wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -163,7 +163,7 @@ ok: created binding valhallaSamples
 
 2. 取得套件連結的說明。
   ```
-  ibmcloud wsk package get --summary valhallaSamples
+  ibmcloud fn package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -181,7 +181,7 @@ ok: created binding valhallaSamples
 
 3. 在套件連結中呼叫動作。
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -197,7 +197,7 @@ ok: created binding valhallaSamples
 
 4. 呼叫動作，並且改寫預設參數值。
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ ok: created binding valhallaSamples
 
 1. 取得 `/whisk.system/alarms` 套件中「資訊來源」的說明。
   ```
-  ibmcloud wsk package get --summary /whisk.system/alarms
+  ibmcloud fn package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -230,7 +230,7 @@ package /whisk.system/alarms
   {: screen}
 
   ```
-  ibmcloud wsk action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -247,7 +247,7 @@ package /whisk.system/alarms
 
 2. 建立每 8 秒發動一次的觸發程式。
   ```
-  ibmcloud wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -267,13 +267,13 @@ ok: created trigger feed everyEightSeconds
 
 4. 確定動作已存在。
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 5. 建立規則，以在每次 **everyEightSeconds** 觸發程式發動時呼叫 `hello` 動作。
   ```
-  ibmcloud wsk rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -285,7 +285,7 @@ ok: created trigger feed everyEightSeconds
 
 6. 確認是透過輪詢啟動日誌來呼叫動作。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -301,7 +301,7 @@ ok: created trigger feed everyEightSeconds
 
 1. 建立稱為 **custom** 的套件。
   ```
-  ibmcloud wsk package create custom
+  ibmcloud fn package create custom
   ```
   {: pre}
 
@@ -313,7 +313,7 @@ ok: created package custom
 
 2. 取得套件的摘要。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -333,7 +333,7 @@ package /myNamespace/custom
 
 4. 在 `custom` 套件中，建立稱為 **identity** 的動作。
   ```
-  ibmcloud wsk action create custom/identity identity.js
+  ibmcloud fn action create custom/identity identity.js
   ```
   {: pre}
 
@@ -347,7 +347,7 @@ ok: created action custom/identity
 
 5. 再次取得套件的摘要。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -362,7 +362,7 @@ package /myNamespace/custom
 
 6. 在套件中呼叫動作。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -376,7 +376,7 @@ package /myNamespace/custom
 
 1. 使用兩個參數來更新 **custom** 套件：`city` 及 `country`。
   ```
-  ibmcloud wsk package update custom --param city Austin --param country USA
+  ibmcloud fn package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -388,7 +388,7 @@ ok: updated package custom
 
 2. 顯示 **custom** 套件及 **identidy** 動作中的參數，以及查看套件中的 **identity** 動作如何繼承套件中的參數。
   ```
-  ibmcloud wsk package get custom parameters
+  ibmcloud fn package get custom parameters
   ```
   {: pre}
 
@@ -410,7 +410,7 @@ ok: updated package custom
   {: screen}
 
   ```
-  ibmcloud wsk action get custom/identity parameters
+  ibmcloud fn action get custom/identity parameters
   ```
   {: pre}
 
@@ -433,7 +433,7 @@ ok: updated package custom
 
 3. 不使用任何參數來呼叫 **identity** 動作，以驗證動作確實繼承參數。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -448,7 +448,7 @@ ok: updated package custom
 
 4. 使用一些參數來呼叫 **identity** 動作。呼叫參數會與套件參數合併；呼叫參數會置換套件參數。
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -469,7 +469,7 @@ ok: updated package custom
 
 1. 與所有使用者共用套件：
   ```
-  ibmcloud wsk package update custom --shared yes
+  ibmcloud fn package update custom --shared yes
   ```
   {: pre}
 
@@ -481,7 +481,7 @@ ok: updated package custom
 
 2. 顯示套件的 `publish` 內容，以驗證它現在為 true。
   ```
-  ibmcloud wsk package get custom publish
+  ibmcloud fn package get custom publish
   ```
   {: pre}
 
@@ -496,7 +496,7 @@ ok: updated package custom
 
 1. 取得套件的說明，以顯示套件及動作的完整名稱。
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 

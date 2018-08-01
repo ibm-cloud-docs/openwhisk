@@ -147,13 +147,13 @@ Docker 用于以快速、隔离且受控的方式为调用的每个操作设置�
 现在，可以再次使用 REST API（重新从步骤 1 开始）来获取您的激活，进而获得操作的结果。为此，请运行以下命令：
 
 ```bash
-ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### 总结
 
-您已经了解了简单的 **ibmcloud wsk action 调用的 myAction** 是如何经历 {{site.data.keyword.openwhisk_short}} 系统的不同阶段的。该系统本身主要只包含两个定制组件：**控制器**和**调用者**。其他一切都是现成的，是开放式源代码社团中的许多人员开发的。
+您已经了解了简单的 **ibmcloud fn action 调用的 myAction** 是如何经历 {{site.data.keyword.openwhisk_short}} 系统的不同阶段的。该系统本身主要只包含两个定制组件：**控制器**和**调用者**。其他一切都是现成的，是开放式源代码社团中的许多人员开发的。
 
 可以在以下主题中找到有关 {{site.data.keyword.openwhisk_short}} 的更多信息：
 

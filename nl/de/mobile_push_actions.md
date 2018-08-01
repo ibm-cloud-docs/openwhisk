@@ -47,13 +47,13 @@ Führen Sie zum Erstellen einer Paketbindung die folgenden Schritte aus:
 
 4. Erstellen Sie eine Paketbindung mit `/whisk.system/pushnotifications`.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. Prüfen Sie, ob die Paketbindung vorhanden ist:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ Das folgende Beispiel zeigt, wie eine Push-Benachrichtigung aus dem Paket 'Push 
 
 Senden Sie eine Push-Benachrichtigung mithilfe der Aktion **sendMessage** in der Paketbindung ab, die Sie zuvor erstellt haben. Stellen Sie sicher, dass Sie `/myNamespace/myPush` durch Ihren Paketnamen ersetzen.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

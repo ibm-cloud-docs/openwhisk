@@ -36,25 +36,25 @@ Per creare un trigger che viene attivato ogni volta che un nuovo dispositivo vie
 
 1. Crea un bind di pacchetto configurato per il tuo servizio Push Notification utilizzando il tuo **appId** e **appSecret**.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Crea un trigger per il tipo di evento `onDeviceRegister` del servizio Push Notification utilizzando il tuo feed `myPush/webhook`.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. Puoi creare una regola che invia un messaggio ogni volta che viene registrato un nuovo dispositivo. Crea una regola utilizzando l'azione e il trigger precedenti.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Controlla i risultati utilizzando il comando `ibmcloud wsk activation poll`.
+4. Controlla i risultati utilizzando il comando `ibmcloud fn activation poll`.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

@@ -42,7 +42,7 @@ El canal de información `/whisk.system/alarms/interval` configura el servicio d
 El ejemplo siguiente crea un desencadenante que se activará una vez cada 2 minutos. El desencadenante se activa tan pronto como sea posible, y se dejará de activar el 31 de enero de 2019, a las 23:59:00 UTC.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -70,7 +70,7 @@ El canal de información `/whisk.system/alarms/once` configura el servicio de al
 A continuación se muestra un ejemplo de creación de un desencadenante que se activará una vez el 25 de diciembre de 2019, a las 12:30:00 UTC. Después de que el desencadenante se active, se suprimirá, al igual que sus reglas asociadas.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -103,7 +103,7 @@ Para obtener más información, consulte: http://crontab.org. Las series siguien
 A continuación se muestra un ejemplo de creación de un desencadenante que se activa una vez cada 2 minutos con los valores `name` y `place` en el suceso desencadenante. El desencadenante no empezará a activarse hasta el 1 de enero de 2019, a las 00:00:00 UTC, y se dejará de activar el 31 de enero de 2019, a las 23:59:00 UTC.
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

@@ -33,12 +33,12 @@ function main({name}) {
 
 您可在 CLI 中使用值为 `true` 或 `yes` 的 `--web` 标志在包 `demo` 中为名称空间 `guest` 创建 _Web 操作_ **hello**：
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -331,7 +331,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 操作参数受到保护并且被视为不可改变。参数会自动完成，以启用 Web 操作。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -346,13 +346,13 @@ ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --we
 
 使用 **--web-secure** 的示例：
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 使用 **require-whisk-auth** 的示例：
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -368,7 +368,7 @@ curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-
 
 要禁止通过 Web API (`https://openwhisk.bluemix.net/api/v1/web/`) 调用 Web 操作，请使用 CLI 将值 `false` 或 `no` 传递给 `--web` 标志，以更新操作。
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -407,7 +407,7 @@ OpenWhisk 使用 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/htt
 
 原始 HTTP Web 操作通过值为 `raw` 的 `--web` 标志来启用。
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -415,7 +415,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 禁用原始 HTTP 可以通过将值 `false` 或 `no` 传递给 `--web` 标志来完成。
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 例如，将 Node 函数保存为 `decode.js`，然后执行以下命令：
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -528,7 +528,7 @@ Access-Control-Allow-Headers: Authorization, Content-Type
 
 将该函数保存到 `custom-options.js`，然后执行以下命令：
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

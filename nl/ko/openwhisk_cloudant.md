@@ -45,7 +45,7 @@ lastupdated: "2018-06-22"
 
   반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오.
   ```
-  ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes \
   --param dbname testdb \
   --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
@@ -60,7 +60,7 @@ lastupdated: "2018-06-22"
 
 2. 활성화에 대한 폴링을 시작하여 발생한 상황을 명확하게 보여주십시오.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ lastupdated: "2018-06-22"
 
 4. 이전에 작성된 트리거에 **showCloudantChange** 액션을 연결하기 위한 룰을 작성하십시오.
   ```
-  ibmcloud wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ibmcloud fn rule update aCloudantRule myCloudantTrigger showCloudantChange
   ```
   {: pre}
 
@@ -131,7 +131,7 @@ lastupdated: "2018-06-22"
 
 다음 필터 함수로 데이터베이스에서 디자인 문서를 작성하십시오.
 ```
-ibmcloud wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 {: pre}
 
@@ -160,20 +160,20 @@ function main(doc){
 
 {{site.data.keyword.cloudant_short_notm}}에서 문서를 처리하기 위한 액션을 작성하십시오.
 ```
-ibmcloud wsk action create myAction myAction.js
+ibmcloud fn action create myAction myAction.js
 ```
 {: pre}
 
 데이터베이스에서 문서를 읽기 위해 {{site.data.keyword.cloudant_short_notm}} 패키지에서 `read` 액션을 사용할 수 있습니다.
 `read` 액션은 액션 시퀀스를 작성하기 위한 `myAction`으로 구성될 수 있습니다.
 ```
-ibmcloud wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
+ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
 `sequenceAction` 액션은 새 {{site.data.keyword.cloudant_short_notm}} 트리거 이벤트에서 액션을 활성화하는 룰에서 사용될 수 있습니다.
 ```
-ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
+ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
@@ -181,12 +181,12 @@ ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
 
 `includeDoc`로 이전에 작성된 트리거를 재작성할 수 있습니다. 트리거를 재작성하려면 다음 단계를 수행하십시오.
 ```
-ibmcloud wsk trigger delete myCloudantTrigger
+ibmcloud fn trigger delete myCloudantTrigger
 ```
 {: pre}
 
 ```
-ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
+ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
 ```
 {: pre}
 

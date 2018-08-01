@@ -23,7 +23,7 @@ lastupdated: "2018-04-12"
 
 以下是 `echo` 動作的一組註釋範例，此動作會傳回其未經修改的輸入引數（例如，`function main(args) { return args }`）。例如，此動作適用於將輸入參數記載為某個序列或規則的一部分。
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

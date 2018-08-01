@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-02"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-07-02"
 
 {{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system.
 {: shortdesc}
+
+You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plug-in commands: `ibmcloud fn <command>`
+{: tip}
 
 ## Setting up the {{site.data.keyword.Bluemix_notm}} CLI
 {: #bluemix_cli_setup}
@@ -91,7 +94,7 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
 
 3. Perform a blocking (synchronous) invocation of `echo`. Pass `hello` as an argument.
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +120,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to:
 * Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
 * Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
 
-To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud wsk` with no arguments.
+To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
 
 ## Using services from actions
@@ -158,30 +161,30 @@ ibmcloud iam space-create "production"
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migration}
 
-With the introduction of the {{site.data.keyword.openwhisk_short}} CLI plug-in, the OpenWhisk stand-alone CLI is no longer needed.
+With the introduction of the {{site.data.keyword.openwhisk_short}} CLI plug-in, the OpenWhisk stand-alone CLI (`wsk`) is no longer needed.
 
 ### Command Syntax
 {: #command_syntax}
 
-All `wsk` commands, except the `wsk bluemix login` command that is no longer needed, work the same way by using the command `ibmcloud wsk`.  All command options and arguments are the same.
+All `wsk` commands, except the `wsk bluemix login` command that is no longer needed, work the same way by using the command `ibmcloud fn`.  All command options and arguments are the same.
 
 ### API Authentication and Host
 {: #api_authentication}
 
 The OpenWhisk CLI required you to configure the authentication API key and the API host.
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all commands begin with `ibmcloud wsk`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all commands begin with `ibmcloud fn`.
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:
 
 To get the current API key:
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 To get the current API host:
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -191,17 +194,20 @@ The API key is specific per region, organization, and space targeted by the {{si
 ### API Gateway authentication
 {: #apigw_authentication}
 
-The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.Bluemix_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud wsk api` command.
+The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.Bluemix_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
 
 ### Migrating deployment scripts
 {: #migrating_deploy_scripts}
 
-If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud wsk`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud wsk`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud wsk` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
+If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
 
 ## Version history
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+1.0.21 (2018-08-01)
+* Aliases `fn` and `functions` can now be used for {{site.data.keyword.openwhisk_short}} commands: `ibmcloud fn <command>` and `ibmcloud fn <command>`. You can also still use `ibmcloud wsk <command>`.
 
 1.0.19 (2018-07-02)
 * Minor bug fixes and improvements.

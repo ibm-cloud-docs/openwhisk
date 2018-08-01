@@ -611,7 +611,7 @@ Los siguientes paquetes de Composer también están disponibles:
 
 Las acciones Docker ejecutan un binario proporcionado por el usuario en un contenedor Docker. El binario se ejecuta en una imagen Docker basada en [python:2.7.12-alpine](https://hub.docker.com/r/library/python), por lo que el binario debe ser compatible con dicha distribución.
 
-El esqueleto de Docker es una forma cómoda de crear imágenes Docker compatibles con OpenWhisk. Puede instalar el esqueleto con el mandato de plug-in de CLI `ibmcloud wsk sdk install docker`.
+El esqueleto de Docker es una forma cómoda de crear imágenes Docker compatibles con OpenWhisk. Puede instalar el esqueleto con el mandato de plug-in de CLI `ibmcloud fn sdk install docker`.
 
 El programa binario principal debe estar en `/action/exec` dentro del contenedor. El ejecutable recibe los argumentos de entrada desde una serie de argumento de línea de mandatos, que se puede deserializar como un objeto `JSON`. Debe devolver un resultado utilizando `stdout` como una serie de una línea de `JSON` serializado.
 

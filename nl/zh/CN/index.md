@@ -66,13 +66,13 @@ function main(params) {
 
 3. 创建 `hello` 操作。
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. 在不使用任何参数的情况下调用该操作。
 ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ function main(params) {
 
 5. 在传递 name 参数的情况下再次调用该操作，以测试应用程序逻辑。
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-非常好！您已创建第一个操作。要清除此操作，请运行 `ibmcloud wsk action delete hello`。
+非常好！您已创建第一个操作。要清除此操作，请运行 `ibmcloud fn action delete hello`。
 
 **接下来要做什么？**
 * [试用警报服务示例，以在每次生成定期事件时都调用 **hello** 操作](./openwhisk_packages.html#openwhisk_package_trigger)。

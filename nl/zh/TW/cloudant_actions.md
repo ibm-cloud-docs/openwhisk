@@ -40,7 +40,7 @@ lastupdated: "2018-06-22"
 
 2. 重新整理名稱空間中的套件。重新整理會自動為每一個 {{site.data.keyword.cloudant_short_notm}} 服務實例建立一個套件連結，並定義認證金鑰。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -52,7 +52,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -68,7 +68,7 @@ lastupdated: "2018-06-22"
 3. 確認先前建立的套件連結是使用 {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} 服務實例主機及認證進行配置。
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -125,7 +125,7 @@ packages
 
 - 使用您先前建立的套件連結中的 **read** 動作，來提取文件。請務必將 `/_/myCloudant` 取代為您的套件名稱。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -146,7 +146,7 @@ packages
 
 1. 使用您先前建立的套件連結中的 **write** 動作，來儲存文件。請務必將 `/_/myCloudant` 取代為您的套件名稱。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

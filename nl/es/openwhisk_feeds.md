@@ -62,13 +62,13 @@ Cuando el usuario crea un desencadenante desde la CLI con el parámetro **--feed
 
 Por ejemplo, suponga que el usuario crea un enlace de **mycloudant** para el paquete `cloudant` con un nombre de usuario y contraseña como parámetros de enlace. Cuando el usuario emita el siguiente mandato desde la CLI:
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Entonces, el sistema realiza una acción parecida al siguiente mandato:
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ La acción de canal de información llamada *changes* obtiene estos parámetros 
 
 Para el canal de información *changes* de {{site.data.keyword.cloudant_short_notm}}, la acción se pone en contacto directamente con un servicio *desencadenante de {{site.data.keyword.cloudant_short_notm}}* que está implementado con una arquitectura basada en conexión.
 
-Se produce un protocolo de acción de canal de información similar para `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` e `ibmcloud wsk trigger get`.
+Se produce un protocolo de acción de canal de información similar para `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` e `ibmcloud fn trigger get`.
 
 ## Implementación de canales de información con ganchos
 

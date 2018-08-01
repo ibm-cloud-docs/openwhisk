@@ -43,7 +43,7 @@ lastupdated: "2018-03-26"
 以下示例创建每 2 分钟触发一次的触发器。触发器会尽快触发，并且将在 2019 年 1 月 31 日 23:59:00 UTC 停止触发。
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -71,7 +71,7 @@ lastupdated: "2018-03-26"
 下面是创建触发器的示例，此触发器将在 2019 年 12 月 25 日 12:30:00 UTC 触发一次。此触发器触发后，将删除该触发器及其所有关联的规则。
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -103,7 +103,7 @@ lastupdated: "2018-03-26"
 下面是通过触发器事件中的 `name` 和 `place` 值创建每 2 分钟触发一次的触发器的示例。触发器直到 2019 年 1 月 1 日 00:00:00 UTC 才会开始触发，并且将在 2019 年 1 月 31 日 23:59:00 UTC 停止触发。
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

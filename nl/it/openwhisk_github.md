@@ -41,7 +41,7 @@ Nel seguente esempio, viene creato un trigger che si attiva ogni volta che c'è 
 
 2. Crea un bind di pacchetto configurato per il tuo repository GitHub e con il tuo token di accesso.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ Nel seguente esempio, viene creato un trigger che si attiva ogni volta che c'è 
 
 3. Crea un trigger per il tipo di evento `push` di GitHub utilizzando il tuo feed `myGit/webhook`.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

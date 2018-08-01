@@ -39,7 +39,7 @@ lastupdated: "2018-06-22"
 
 2. 名前空間でパッケージを最新表示します。このリフレッシュにより、資格情報キーが定義された各 {{site.data.keyword.cloudant_short_notm}} サービス・インスタンスごとに 1 つのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-06-22"
 3. 前に作成されたパッケージ・バインディングが {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} サービス・インスタンスのホストと資格情報で構成されていることを確認します。
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ lastupdated: "2018-06-22"
 
 - 前に作成したパッケージ・バインディング内で **read** アクションを使用して文書を取り出します。 `/_/myCloudant` は実際のパッケージ名に置き換えてください。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ lastupdated: "2018-06-22"
 
 1. 前に作成したパッケージ・バインディング内で **write** アクションを使用して文書を保管します。 `/_/myCloudant` は実際のパッケージ名に置き換えてください。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

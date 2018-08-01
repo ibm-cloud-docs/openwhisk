@@ -65,7 +65,7 @@ Os acionadores podem ser disparados quando determinados eventos ocorrem ou podem
 Como um exemplo, crie um acionador para enviar atualizações de local do usuário e dispare o acionador manualmente.
 1. Insira o comando a seguir para criar o acionador:
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ Como um exemplo, crie um acionador para enviar atualizações de local do usuár
 
 2. Verifique se você criou o acionador listando o conjunto de acionadores.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ Como um exemplo, crie um acionador para enviar atualizações de local do usuár
 
 3. Em seguida, dispare um evento especificando o nome e os parâmetros do acionador:
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ Como um exemplo, crie uma regra que chame a ação `hello` sempre que uma atuali
 
 2. Certifique-se de que o acionador e a ação existam:
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. A próxima etapa é criar a regra. A regra é ativada na criação, o que significa que está imediatamente disponível para responder a ativações de seu acionador. Os três parâmetros são: _rule name_, _trigger name_ e _action name_.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   A qualquer momento, é possível optar por desativar uma regra:
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. Dispare o acionador **locationUpdate**. Cada vez que você dispara um evento, a ação **hello** é chamada com os parâmetros de evento.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ Como um exemplo, crie uma regra que chame a ação `hello` sempre que uma atuali
 
 5. Verifique se a ação **hello** foi chamada, verificando a ativação mais recente.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ Como um exemplo, crie uma regra que chame a ação `hello` sempre que uma atuali
 
   Agora, consulte o ID de ativação listado na saída de comando anterior:
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -187,18 +187,18 @@ Como um exemplo, crie uma regra que chame a ação `hello` sempre que uma atuali
 Acionadores e regras não podem pertencer a um pacote. No entanto, a regra pode ser associada a uma ação
 que pertença a um pacote, por exemplo:
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 Também é possível usar regras com sequências. Por exemplo, é possível criar uma sequência
 de ações `recordLocationAndHello` que é ativada pela regra `anotherRule`.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

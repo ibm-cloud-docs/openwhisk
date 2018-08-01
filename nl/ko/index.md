@@ -66,13 +66,13 @@ function main(params) {
 
 3. `hello` 액션을 작성하십시오.
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 4. 매개변수를 전달하지 않고 액션을 호출하십시오.
     ```
-    ibmcloud wsk action invoke hello --blocking --result
+    ibmcloud fn action invoke hello --blocking --result
     ```
     {: pre}  
 
@@ -86,7 +86,7 @@ function main(params) {
 
 5. 앱 로직을 테스트하려면 이름 매개변수를 전달하여 액션을 다시 호출하십시오.
     ```
-    ibmcloud wsk action invoke hello --blocking --result --param name Fred
+    ibmcloud fn action invoke hello --blocking --result --param name Fred
     ```
     {: pre}  
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-잘하셨습니다! 첫 번째 액션을 작성했습니다. 이 액션을 정리하려면 `ibmcloud wsk action delete hello`를 실행하십시오.
+잘하셨습니다! 첫 번째 액션을 작성했습니다. 이 액션을 정리하려면 `ibmcloud fn action delete hello`를 실행하십시오.
 
 **다음에 수행할 작업**
 * [주기적 이벤트를 생성할 때마다 **hello** 액션을 호출하도록 알람 서비스 예제를 시도하십시오.](./openwhisk_packages.html#openwhisk_package_trigger)
