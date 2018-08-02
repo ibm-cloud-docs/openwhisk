@@ -149,13 +149,13 @@ Docker の使用によって、隔離され制御された方法で素早くア�
 次に、REST API を再度使用して (再びステップ 1 から開始して)、アクティベーションを取得し、アクションの結果を取得できます。 そのために、以下のコマンドを実行します。
 
 ```bash
-ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### まとめ
 
-単純な **ibmcloud wsk action invoked myAction** がどのように {{site.data.keyword.openwhisk_short}} システムのさまざまなステージを通過していくのかが分かりました。 システム自体は、主に 2 つのみのカスタム・コンポーネント、**Controller** と **Invoker** からなります。 他のすべては、オープン・ソース・コミュニティーの多くの人によって開発され、既に存在しています。
+単純な **ibmcloud fn action invoked myAction** がどのように {{site.data.keyword.openwhisk_short}} システムのさまざまなステージを通過していくのかが分かりました。 システム自体は、主に 2 つのみのカスタム・コンポーネント、**Controller** と **Invoker** からなります。 他のすべては、オープン・ソース・コミュニティーの多くの人によって開発され、既に存在しています。
 
 {{site.data.keyword.openwhisk_short}} に関する追加情報が以下のトピックに記載されています。
 

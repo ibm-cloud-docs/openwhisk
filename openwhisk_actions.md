@@ -44,7 +44,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 2. Create an action called `hello` using the JavaScript function.
   ```
-  ibmcloud wsk action create hello hello.js
+  ibmcloud fn action create hello hello.js
   ```
   {: pre}
 
@@ -58,7 +58,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 3. Verify that your `hello` action is in your actions list.
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 
@@ -71,7 +71,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 4. Run the action in the cloud by running a blocking invocation. Blocking invocations use a request/response style and waits for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits).
     ```
-    ibmcloud wsk action invoke --blocking hello
+    ibmcloud fn action invoke --blocking hello
     ```
     {: pre}
 
@@ -96,7 +96,7 @@ Review the following steps and examples to create your first JavaScript action.
 5. If you don't need the action result right away, you can omit the `--blocking` flag to run a non-blocking invocation.
     1. Run a non-blocking invocation.
         ```
-        ibmcloud wsk action invoke hello
+        ibmcloud fn action invoke hello
         ```
         {: pre}
 
@@ -108,7 +108,7 @@ Review the following steps and examples to create your first JavaScript action.
 
     2. Use the activation ID to obtain the action result.
         ```
-        ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+        ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
         ```
         {: pre}
 
@@ -122,7 +122,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 6. If you forget to record the activation ID, you can get a list of activations ordered from most to least recent.
     ```
-    ibmcloud wsk activation list
+    ibmcloud fn activation list
     ```
     {: pre}
 
@@ -159,13 +159,13 @@ JavaScript functions that run asynchronously can return the activation result af
 
 2. Create an action called `asyncAction`.
     ```
-    ibmcloud wsk action create asyncAction asyncAction.js
+    ibmcloud fn action create asyncAction asyncAction.js
     ```
     {: pre}
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result asyncAction
+    ibmcloud fn action invoke --result asyncAction
     ```
     {: pre}
 
@@ -181,7 +181,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
   1. Get the activation ID.
       ```
-      ibmcloud wsk activation list --limit 1 asyncAction
+      ibmcloud fn activation list --limit 1 asyncAction
       ```
       {: pre}
 
@@ -194,7 +194,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
   2. Get the log for the activation ID.
       ```
-      ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
+      ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
       ```
       {: pre}
 
@@ -255,13 +255,13 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 
 2. Create an action named `apod`.
     ```
-    ibmcloud wsk action create apod apod.js
+    ibmcloud fn action create apod apod.js
     ```
     {: pre}
 
 3. Invoke the `apod` action.
     ```
-    ibmcloud wsk action invoke --result apod
+    ibmcloud fn action invoke --result apod
     ```
     {: pre}
 
@@ -332,13 +332,13 @@ For example, consider a directory with the following files:
 
 5. Create the action. When creating an action from a `.zip` archive, you must explicitly provide a value for the `--kind` flag by using `nodejs:6` or `nodejs:8`.
     ```
-    ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+    ibmcloud fn action create packageAction --kind nodejs:6 action.zip
     ```
     {: pre}
 
 6. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+    ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
     ```
     {: pre}
 
@@ -369,7 +369,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
       "main": "dist/bundle.js",
       "scripts": {
         "build": "webpack --config webpack.config.js",
-        "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
       },
       "dependencies": {
         "left-pad": "1.1.3"
@@ -430,7 +430,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
 
     * Using the CLI:
         ```
-        ibmcloud wsk action update my-action dist/bundle.js
+        ibmcloud fn action update my-action dist/bundle.js
         ```
         {: pre}
 
@@ -461,7 +461,7 @@ An action is simply a top-level Python function. To create a Python action:
 
 2. Create a `helloPython` action.
     ```
-    ibmcloud wsk action create helloPython hello.py
+    ibmcloud fn action create helloPython hello.py
     ```
     {: pre}
 
@@ -475,7 +475,7 @@ An action is simply a top-level Python function. To create a Python action:
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result helloPython --param name World
+    ibmcloud fn action invoke --result helloPython --param name World
     ```
     {: pre}
 
@@ -500,7 +500,7 @@ You can package a Python action and dependent modules in a zip file. For example
 
 2. Create the action.
     ```bash
-    ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python:3 helloPython.zip
     ```
     {: pre}
 
@@ -531,7 +531,7 @@ To install dependencies, package them in a virtual environment, and create a com
 
 4. Create the action `helloPython`.
     ```
-    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -562,11 +562,11 @@ An action is simply a top-level PHP function. To create a PHP action:
     {: codeblock}
 
     * PHP actions always consume an associative array and return an associative array.
-    * The entry method for the action is `main` by default but can be specified explicitly when you create the action with the `ibmcloud wsk` CLI by using the `--main` flag.
+    * The entry method for the action is `main` by default but can be specified explicitly when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
 
 2. Create an action called `helloPHP`.
     ```
-    ibmcloud wsk action create helloPHP hello.php
+    ibmcloud fn action create helloPHP hello.php
     ```
     {: pre}
 
@@ -574,7 +574,7 @@ An action is simply a top-level PHP function. To create a PHP action:
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result helloPHP --param name World
+    ibmcloud fn action invoke --result helloPHP --param name World
     ```
     {: pre}
 
@@ -599,7 +599,7 @@ You can package a PHP action and other files or dependent packages in a zip file
 
 2. Create the action.
     ```bash
-    ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
+    ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
     ```
     {: pre}
 
@@ -637,7 +637,7 @@ An action is simply a top-level Swift function. To create a Swift 3 action:
 
 2. Create an action called `helloSwift`.
     ```
-    ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
+    ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
     ```
     {: pre}
 
@@ -645,7 +645,7 @@ An action is simply a top-level Swift function. To create a Swift 3 action:
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result helloSwift --param name World
+    ibmcloud fn action invoke --result helloSwift --param name World
     ```
     {: pre}
 
@@ -681,13 +681,13 @@ In addition to the main function signature, Swift 4 provides two more signatures
 
 2. Create an action called `helloSwift`.
     ```
-    ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+    ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
     ```
     {: pre}
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result helloSwift --param name World
+    ibmcloud fn action invoke --result helloSwift --param name World
     ```
     {: pre}
 
@@ -848,19 +848,19 @@ actions/
 4. Upload the zip to {{site.data.keyword.openwhisk_short}} with the action name `helloSwiftly`.
     * Swift 3:
       ```
-      ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+      ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
       ```
       {: pre}
 
     * Swift 4:
       ```
-      ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+      ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
       ```
       {: pre}
 
 5. Invoke the action.
     ```
-    ibmcloud wsk action invoke helloSwiftly --blocking
+    ibmcloud fn action invoke helloSwiftly --blocking
     ```
     {: pre}
 
@@ -868,7 +868,7 @@ actions/
 
 6. You can compare the duration of the pre-compiled action invocation to the duration of a command invocation with a compilation step. Invoke the action from the previous section:
     ```
-    ibmcloud wsk action invoke --result helloSwift --param name World --blocking
+    ibmcloud fn action invoke --result helloSwift --param name World --blocking
     ```
     {: pre}
 
@@ -941,7 +941,7 @@ To create a Java action:
 
 3. Create an action.
     ```
-    ibmcloud wsk action create helloJava hello.jar --main Hello
+    ibmcloud fn action create helloJava hello.jar --main Hello
     ```
     {: pre}
   * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
@@ -950,7 +950,7 @@ To create a Java action:
 
 4. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result helloJava --param name World
+    ibmcloud fn action invoke --result helloJava --param name World
     ```
     {: pre}
 
@@ -976,7 +976,7 @@ To set up a custom binary and use the uploaded Docker image as an action:
 
 1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
   ```
-  ibmcloud wsk sdk install docker
+  ibmcloud fn sdk install docker
   ```
   {: pre}
 
@@ -1024,13 +1024,13 @@ To set up a custom binary and use the uploaded Docker image as an action:
 
 5. Use your Docker container to create an action.
     ```
-    ibmcloud wsk action create example --docker <username>/blackboxdemo
+    ibmcloud fn action create example --docker <username>/blackboxdemo
     ```
     {: pre}
 
 6. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result example --param payload Rey
+    ibmcloud fn action invoke --result example --param payload Rey
     ```
     {: pre}
 
@@ -1053,7 +1053,7 @@ To set up a custom binary and use the uploaded Docker image as an action:
 
 8. If there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image. Update the action so that new invocations begin using the new image.
     ```
-    ibmcloud wsk action update example --docker <username>/blackboxdemo
+    ibmcloud fn action update example --docker <username>/blackboxdemo
     ```
     {: pre}
 
@@ -1061,7 +1061,7 @@ To set up a custom binary and use the uploaded Docker image as an action:
     1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zipping it into `exec.zip`.
     2. Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.
         ```
-        ibmcloud wsk action create example exec.zip --native
+        ibmcloud fn action create example exec.zip --native
         ```
         {: pre}
 
@@ -1111,13 +1111,13 @@ To create a Go action:
     ```bash
     GOOS=linux GOARCH=amd64 go build -o exec
     zip exec.zip exec
-    ibmcloud wsk action create helloGo --native exec.zip
+    ibmcloud fn action create helloGo --native exec.zip
     ```
     {: codeblock}
 
 3. Invoke the action.
     ```bash
-    ibmcloud wsk action invoke helloGo -r -p name gopher
+    ibmcloud fn action invoke helloGo -r -p name gopher
     {
         "msg": "Hello, gopher!"
     }
@@ -1134,7 +1134,7 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
 
 1. List the actions in the `/whisk.system/utils` package.
     ```
-    ibmcloud wsk package get --summary /whisk.system/utils
+    ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
@@ -1152,13 +1152,13 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
 
 2. Using the `split` and `sort` actions, create an action sequence so that the result of `split` is passed as an argument to `sort`. This action sequence converts some lines of text to an array, and sorts the lines.
   ```
-  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Invoke the action.
     ```
-    ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+    ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
     {: pre}
 

@@ -35,7 +35,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 2. Create a web action named `hello` using the file you created. **Note:** Be sure to add the flag `--web true`.
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -97,13 +97,13 @@ To return different content types in the body, use full control over the HTTP re
 
 2. Update the action with the modified result.
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. Update the API response type by using the `--response-type http` flag.
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -139,11 +139,11 @@ To try out this book club web actions example:
 
 1. Create an API for the book club named `Book Club`, with `/club` as its HTTP URL base path, `books` as its resource, and `{isbn}` as a path parameter that is used to identify a specific book by using its International Standard Book Number (ISBN).
   ```
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ To try out this book club web actions example:
 
 2. List all of the `Book Club` actions that are exposed.
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -232,13 +232,13 @@ To export or import a configuration, you can continue using the book club exampl
 
 1. Export the `Book Club` API into a file named `club-swagger.json`. This file can be used as a base to re-create the APIs by using a file as input.
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. Test the swagger file by first deleting all exposed URLs under a common base path.
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -253,7 +253,7 @@ To export or import a configuration, you can continue using the book club exampl
 
 3. Restore the `Book Club` API by using the `club-swagger.json` file.
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -274,7 +274,7 @@ To export or import a configuration, you can continue using the book club exampl
 
 4. Verify that the `Book Club` API is re-created.
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

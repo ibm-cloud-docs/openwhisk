@@ -36,7 +36,7 @@ lastupdated: "2018-03-26"
 
 2. 名前空間でパッケージを最新表示します。 最新表示により、ユーザーが作成した Watson サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ lastupdated: "2018-03-26"
 
   パッケージをリストして、バインディングが作成されたことを確認します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ lastupdated: "2018-03-26"
 
 Watson Speech to Text サービス用に構成されるパッケージ・バインディングを作成します。
 ```
-ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -94,7 +94,7 @@ ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText
 
 パッケージ・バインディング内の **speechToText** アクションを呼び出して、エンコードされた音声を変換します。
 ```
-ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

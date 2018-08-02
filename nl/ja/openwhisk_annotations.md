@@ -23,7 +23,7 @@ lastupdated: "2018-04-12"
 
 入力引数を変更せずにそのまま返す `echo` アクション (例: `function main(args) { return args }`) に対する一連のアノテーションの例を以下に示します。 このアクションは、例えばシーケンスやルールの一部として、入力パラメーターをログに記録する場合などに有用です。
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

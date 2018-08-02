@@ -39,7 +39,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each {{site.data.keyword.cloudant_short_notm}} service instance with a credential key defined.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
 3. Check to see that the package binding that was created previously is configured with your {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ You can use an action to fetch a document from a {{site.data.keyword.cloudant_sh
 
 - Fetch a document by using the **read** action in the package binding that you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ You can use an action to store a document in a {{site.data.keyword.cloudant_shor
 
 1. Store a document by using the **write** action in the package binding you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

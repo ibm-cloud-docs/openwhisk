@@ -41,7 +41,7 @@ L'exemple suivant illustre la création d'un déclencheur qui s'exécute chaque 
 
 2. Créez une liaison de package configurée pour votre référentiel GitHub et avec votre jeton d'accès.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ L'exemple suivant illustre la création d'un déclencheur qui s'exécute chaque 
 
 3. Créez un déclencheur pour le type d'événement `push` GitHub à l'aide de votre flux `myGit/webhook`.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

@@ -91,7 +91,7 @@ Descargue e instale el plug-in de {{site.data.keyword.openwhisk_short}}.
 
 3. Realice una invocación de bloqueo (síncrona) de `echo`. Pase `hello` como un argumento.
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -119,7 +119,7 @@ Puede utilizar la CLI de {{site.data.keyword.openwhisk_short}} para:
 * Aprender cómo los paquetes agrupan acciones y configurar orígenes de sucesos externos. Consulte [Creación y uso de paquetes](./openwhisk_packages.html).
 * Explorar el catálogo de paquetes y mejorar sus aplicaciones con servicios externos, como un [origen de sucesos de {{site.data.keyword.cloudant}}](./openwhisk_cloudant.html).
 
-Para obtener una lista de mandatos para el plugin de {{site.data.keyword.openwhisk_short}}, ejecute `ibmcloud wsk` sin argumentos.
+Para obtener una lista de mandatos para el plugin de {{site.data.keyword.openwhisk_short}}, ejecute `ibmcloud fn` sin argumentos.
 {: tip}
 
 ## Uso de servicios de acciones
@@ -165,25 +165,25 @@ Con la introducción del plugin de CLI de {{site.data.keyword.openwhisk_short}},
 ### Sintaxis de mandatos
 {: #command_syntax}
 
-Todos los mandatos `wsk`, excepto el mandato `wsk bluemix login`, que ya no es necesario, funcionan del mismo modo mediante el mandato `ibmcloud wsk`.  Todos los argumentos y las opciones de mandato son los mismos.
+Todos los mandatos `wsk`, excepto el mandato `wsk bluemix login`, que ya no es necesario, funcionan del mismo modo mediante el mandato `ibmcloud fn`.  Todos los argumentos y las opciones de mandato son los mismos.
 
 ### Host y autenticación de API
 {: #api_authentication}
 
 En la CLI de OpenWhisk, se debía configurar la clave de API de autenticación y el host de API.
-Con el plugin de CLI de {{site.data.keyword.openwhisk_short}}, no es necesario que configure explícitamente la clave de API y el host de API. En su lugar, puede iniciar la sesión con `ibmcloud login` y seleccionar la región y el espacio de nombres como destino mediante el mandato `ibmcloud target`. Tras iniciar la sesión, todos los mandatos empiezan por `ibmcloud wsk`.
+Con el plugin de CLI de {{site.data.keyword.openwhisk_short}}, no es necesario que configure explícitamente la clave de API y el host de API. En su lugar, puede iniciar la sesión con `ibmcloud login` y seleccionar la región y el espacio de nombres como destino mediante el mandato `ibmcloud target`. Tras iniciar la sesión, todos los mandatos empiezan por `ibmcloud fn`.
 
 Si necesita utilizar la clave de API de autenticación de {{site.data.keyword.openwhisk_short}} en un cliente HTTP externo, como cURL o Postman, puede recuperarla con los mandatos siguientes:
 
 Para obtener la clave de API actual:
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 Para obtener el host de API actual:
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -193,12 +193,12 @@ La clave de API es específica por región, organización y espacio seleccionado
 ### Autenticación de pasarela de API
 {: #apigw_authentication}
 
-La CLI de OpenWhisk requería que ejecute `wsk bluemix login` para poder configurar la autorización de pasarela de API para la gestión de las API utilizando el mandato `wsk api`. Con el plugin de CLI de {{site.data.keyword.openwhisk_short}}, no es necesario ejecutar `wsk bluemix login`. En su lugar, cuando utilice el mandato `ibmcloud login` para iniciar sesión en {{site.data.keyword.Bluemix_notm}}, el plugin de {{site.data.keyword.openwhisk}} utilizará automáticamente su información de destino e inicio de sesión actual. Ahora puede gestionar las API utilizando el mandato `ibmcloud wsk api`.
+La CLI de OpenWhisk requería que ejecute `wsk bluemix login` para poder configurar la autorización de pasarela de API para la gestión de las API utilizando el mandato `wsk api`. Con el plugin de CLI de {{site.data.keyword.openwhisk_short}}, no es necesario ejecutar `wsk bluemix login`. En su lugar, cuando utilice el mandato `ibmcloud login` para iniciar sesión en {{site.data.keyword.Bluemix_notm}}, el plugin de {{site.data.keyword.openwhisk}} utilizará automáticamente su información de destino e inicio de sesión actual. Ahora puede gestionar las API utilizando el mandato `ibmcloud fn api`.
 
 ### Migración de scripts de despliegue
 {: #migrating_deploy_scripts}
 
-Si tiene scripts que utilizan la CLI de OpenWhisk con el binario de `wsk`, todos los mandatos funcionan de la misma manera mediante el mandato `ibmcloud wsk`. Puede modificar los scripts para utilizar el plugin de CLI de {{site.data.keyword.Bluemix_notm}} o crear un alias o un derivador para que los mandatos actuales que utilizan `wsk` se conviertan en `ibmcloud wsk`. Los mandatos `ibmcloud login` e `ibmcloud target` de la CLI de {{site.data.keyword.Bluemix_notm}} funcionan de modo desatendido. Con la modalidad desatendida, puede configurar el entorno antes de ejecutar mandatos `ibmcloud wsk` para desplegar y gestionar las entidades de {{site.data.keyword.openwhisk_short}}.
+Si tiene scripts que utilizan la CLI de OpenWhisk con el binario de `wsk`, todos los mandatos funcionan de la misma manera mediante el mandato `ibmcloud fn`. Puede modificar los scripts para utilizar el plugin de CLI de {{site.data.keyword.Bluemix_notm}} o crear un alias o un derivador para que los mandatos actuales que utilizan `wsk` se conviertan en `ibmcloud fn`. Los mandatos `ibmcloud login` e `ibmcloud target` de la CLI de {{site.data.keyword.Bluemix_notm}} funcionan de modo desatendido. Con la modalidad desatendida, puede configurar el entorno antes de ejecutar mandatos `ibmcloud fn` para desplegar y gestionar las entidades de {{site.data.keyword.openwhisk_short}}.
 
 ## Historial de versiones
 {: #version_history}

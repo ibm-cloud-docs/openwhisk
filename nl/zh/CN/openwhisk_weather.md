@@ -37,7 +37,7 @@ lastupdated: "2018-03-27"
 
 2. 刷新名称空间中的包。刷新操作将自动为已创建的 Weather Company Data 服务实例创建包绑定。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ lastupdated: "2018-03-27"
 
   列出包以查看是否已创建包绑定：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-27"
 
 创建为您的 Watson Translator 服务配置的包绑定。
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -90,7 +90,7 @@ ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME
 
 调用包绑定中的 **forecast** 操作来获取天气预报。
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

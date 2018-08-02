@@ -42,7 +42,7 @@ lastupdated: "2018-03-16"
 
 2. 建立使用存取記號針對 GitHub 儲存庫而配置的套件連結。
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -51,7 +51,7 @@ lastupdated: "2018-03-16"
 
 3. 使用 `myGit/webhook` 資訊來源，來建立 GitHub `push` 事件類型的觸發程式。
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

@@ -37,7 +37,7 @@ lastupdated: "2018-03-26"
 
 2. 重新整理名稱空間中的套件。重新整理會自動建立您所建立之 Watson 服務實例的套件連結。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ lastupdated: "2018-03-26"
 
   列出套件，查看已建立連結：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-26"
 
 建立針對 Watson Speech to Text 服務所配置的套件連結。
 ```
-ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -95,7 +95,7 @@ ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText
 
 在套件連結中呼叫 **speechToText** 動作，以轉換已編碼的音訊。
 ```
-ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

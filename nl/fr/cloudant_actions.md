@@ -39,7 +39,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} à partir d'{{site.data.keyword
 
 2. Actualisez les packages dans votre espace de nom. Cette opération crée automatiquement une liaison de package pour chaque instance de service {{site.data.keyword.cloudant_short_notm}} ayant une clé de données d'identification définie.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} à partir d'{{site.data.keyword
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} à partir d'{{site.data.keyword
 3. Vérifiez que la liaison de package qui a été créée précédemment est configurée avec l'hôte et les données d'identification de votre instance de service {{site.data.keyword.Bluemix_notm}} {{site.data.keyword.cloudant_short_notm}}.
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ Vous pouvez utiliser une action pour extraire un document d'une base de données
 
 - Procédez à l'extraction d'un document en utilisant l'action **read** dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/_/myCloudant` par le nom de votre package.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ Vous pouvez utiliser une action pour stocker un document dans une base de donné
 
 1. Stockez un document en utilisant l'action **write** dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/_/myCloudant` par le nom de votre package.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

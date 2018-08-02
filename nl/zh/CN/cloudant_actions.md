@@ -39,7 +39,7 @@ lastupdated: "2018-06-22"
 
 2. 刷新名称空间中的包。刷新操作将自动为已定义凭证密钥的每个 {{site.data.keyword.cloudant_short_notm}} 服务实例创建包绑定。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-06-22"
 3. 检查以确认先前创建的包绑定是否已配置为使用 {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} 服务实例主机和凭证。
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ packages
 
 - 使用先前创建的包绑定中的 **read** 操作来访存文档。确保将 `/_/myCloudant` 替换为您的包名。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ packages
 
 1. 使用先前创建的包绑定中的 **write** 操作来存储文档。确保将 `/_/myCloudant` 替换为您的包名。
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

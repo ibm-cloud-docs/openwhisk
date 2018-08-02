@@ -70,7 +70,7 @@ The following steps show you how to create an example trigger to send user locat
 
 1. Create the trigger. Triggers must be created directly within a namespace and can't be created inside packages.
     ```
-    ibmcloud wsk trigger create locationUpdate
+    ibmcloud fn trigger create locationUpdate
     ```
     {: pre}
 
@@ -82,7 +82,7 @@ The following steps show you how to create an example trigger to send user locat
 
 2. Verify that the trigger is created.
     ```
-    ibmcloud wsk trigger list
+    ibmcloud fn trigger list
     ```
     {: pre}
 
@@ -96,7 +96,7 @@ The following steps show you how to create an example trigger to send user locat
 
 3. Fire a trigger event.
     ```
-    ibmcloud wsk trigger fire locationUpdate --param name Human --param place "Earth"
+    ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```
     {: pre}
 
@@ -125,19 +125,19 @@ After you create the [`locationUpdate` trigger](#openwhisk_triggers_fire), the f
 
 2. Create the `hello` action.
     ```
-    ibmcloud wsk action create hello hello.js
+    ibmcloud fn action create hello hello.js
     ```
     {: pre}
 
 3. Create the `myRule` rule to associate the `locationUpdate` trigger with the `hello` action. Rules must be created directly within a namespace and can't be created inside packages.
     ```
-    ibmcloud wsk rule create myRule locationUpdate hello
+    ibmcloud fn rule create myRule locationUpdate hello
     ```
     {: pre}
 
 4. Fire the `locationUpdate` trigger. Each a trigger event occurs, the `hello` action is called with the event parameters.
     ```
-    ibmcloud wsk trigger fire locationUpdate --param name Human --param place "Earth"
+    ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```
     {: pre}
 
@@ -149,7 +149,7 @@ After you create the [`locationUpdate` trigger](#openwhisk_triggers_fire), the f
 
 5. Verify that the `hello` action was invoked by checking the most recent activation record.
     ```
-    ibmcloud wsk activation list --limit 1 hello
+    ibmcloud fn activation list --limit 1 hello
     ```
     {: pre}
 
@@ -162,7 +162,7 @@ After you create the [`locationUpdate` trigger](#openwhisk_triggers_fire), the f
 
 6. Get more information on the activation ID from the previous command output.
     ```
-    ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+    ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
     ```
     {: pre}
 
@@ -177,17 +177,17 @@ After you create the [`locationUpdate` trigger](#openwhisk_triggers_fire), the f
 
 7. To disable the rule, you can run the following command.
     ```
-    ibmcloud wsk rule disable myRule
+    ibmcloud fn rule disable myRule
     ```
     {: pre}
 
 You can also use rules to associate triggers with sequences. For example, you can create an action sequence called `recordLocationAndHello` that is activated by the rule `anotherRule`:
 ```
-ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
 ```
 {: pre}
 
 ```
-ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
 ```
 {: pre}

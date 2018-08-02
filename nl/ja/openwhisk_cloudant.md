@@ -45,7 +45,7 @@ lastupdated: "2018-06-22"
 
   `/_/myCloudant` は実際のパッケージ名に置き換えてください。
   ```
-  ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes \
   --param dbname testdb \
   --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
@@ -60,7 +60,7 @@ lastupdated: "2018-06-22"
 
 2. アクティベーションのポーリングを開始して、何が起こっているのかを明確に可視化します。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ lastupdated: "2018-06-22"
 
 4. **showCloudantChange** アクションを前に作成したトリガーに接続するルールを作成します。
   ```
-  ibmcloud wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ibmcloud fn rule update aCloudantRule myCloudantTrigger showCloudantChange
   ```
   {: pre}
 
@@ -131,7 +131,7 @@ lastupdated: "2018-06-22"
 
 以下のフィルター関数を使用してデータベースに設計文書を作成します。
 ```
-ibmcloud wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 {: pre}
 
@@ -160,20 +160,20 @@ function main(doc){
 
 {{site.data.keyword.cloudant_short_notm}} からの文書を処理するためのアクションを作成します。
 ```
-ibmcloud wsk action create myAction myAction.js
+ibmcloud fn action create myAction myAction.js
 ```
 {: pre}
 
 データベースから文書を読み取るために、{{site.data.keyword.cloudant_short_notm}} パッケージから `read` アクションを使用できます。
 `read` アクションを `myAction` と組み合わせて、アクション・シーケンスを作成できます。
 ```
-ibmcloud wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
+ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
 `sequenceAction` アクションを、新規 {{site.data.keyword.cloudant_short_notm}} トリガー・イベントでこのアクションを活動化するルール内で使用できます。
 ```
-ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
+ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
@@ -181,12 +181,12 @@ ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
 
 `includeDoc` を使用して以前に作成されたトリガーを作成し直すことができます。 トリガーを作成し直すには、以下のステップを実行します。
 ```
-ibmcloud wsk trigger delete myCloudantTrigger
+ibmcloud fn trigger delete myCloudantTrigger
 ```
 {: pre}
 
 ```
-ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
+ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
 ```
 {: pre}
 

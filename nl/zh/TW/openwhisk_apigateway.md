@@ -56,7 +56,7 @@ lastupdated: "2018-03-30"
 
 2. 使用步驟 1 中建立的 `hello.js` 檔案，建立名為 **hello** 的 Web 動作。**附註：**請務必新增 `--web true` 旗標。
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -68,7 +68,7 @@ lastupdated: "2018-03-30"
 
 3. 使用基本路徑 `/hello`、路徑 `/world` 和方法 `get` 來建立 API，回應類型 `json`：
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -120,13 +120,13 @@ lastupdated: "2018-03-30"
 
 2. 使用修改過的結果來更新動作：
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. 使用 `--response-type http` 旗標來更新 API 回應類型：
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -164,11 +164,11 @@ lastupdated: "2018-03-30"
 
 1. 使用 `/club` 作為其 HTTP URL 基本路徑、使用 `books` 作為其資源，並使用 `{isbn}` 作為用來利用「國際標準書碼 (ISBN)」識別特定書籍的路徑參數，以建立名為 **Book Club** 之讀書會的 API。
   ```bash
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -176,7 +176,7 @@ lastupdated: "2018-03-30"
 
 2. 使用下列指令來列出所有公開的 **Book Club** 動作：
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -255,13 +255,13 @@ lastupdated: "2018-03-30"
 
 1. 將名為 **Book Club** 的 API 匯出至檔案，該檔案可作為基本，使用檔案作為輸入來重建 API。
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. 使用下列指令，先刪除一般基本路徑下的所有已公開 URL，來測試 Swagger 檔案：
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -279,7 +279,7 @@ ok: deleted API /club
 
 1. 現在，使用檔名 `club-swagger.json` 來還原名為 **Book Club** 的 API：
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -300,7 +300,7 @@ ok: deleted API /club
 
 2. 驗證 **Book Club** API 已重建：
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

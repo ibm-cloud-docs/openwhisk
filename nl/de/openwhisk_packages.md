@@ -32,7 +32,7 @@ In {{site.data.keyword.openwhisk_short}} sind verschiedene Pakete registriert. S
 
 1. Rufen Sie eine Liste der Pakete im Namensbereich `/whisk.system` ab.
   ```
-  ibmcloud wsk package list /whisk.system
+  ibmcloud fn package list /whisk.system
   ```
   {: pre}
 
@@ -55,7 +55,7 @@ In {{site.data.keyword.openwhisk_short}} sind verschiedene Pakete registriert. S
 
 2. Rufen Sie eine Liste der Entitäten im Paket `/whisk.system/cloudant` ab.
   ```
-  ibmcloud wsk package get --summary /whisk.system/cloudant
+  ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ In {{site.data.keyword.openwhisk_short}} sind verschiedene Pakete registriert. S
 
 3. Rufen Sie eine Beschreibung der Aktion `/whisk.system/cloudant/read` ab.
   ```
-  ibmcloud wsk action get --summary /whisk.system/cloudant/read
+  ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -95,7 +95,7 @@ Sie können Aktionen in einem Paket ebenso wie bei anderen Aktionen aufrufen. Di
 
 1. Rufen Sie eine Beschreibung der Aktion `/whisk.system/samples/greeting` ab.
   ```
-  ibmcloud wsk action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -110,7 +110,7 @@ Sie können Aktionen in einem Paket ebenso wie bei anderen Aktionen aufrufen. Di
 
 2. Rufen Sie die Aktion ohne Parameter auf.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -126,7 +126,7 @@ Sie können Aktionen in einem Paket ebenso wie bei anderen Aktionen aufrufen. Di
 
 3. Rufen Sie die Aktion mit Parametern auf.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 
 1. Erstellen Sie eine Bindung an das Paket `/whisk.system/samples` und legen Sie einen Standardwert für den Parameter `place` fest.
   ```
-  ibmcloud wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -163,7 +163,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 
 2. Rufen Sie eine Beschreibung der Paketbindung ab.
   ```
-  ibmcloud wsk package get --summary valhallaSamples
+  ibmcloud fn package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -181,7 +181,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 
 3. Rufen Sie eine Aktion in der Paketbindung auf.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -197,7 +197,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 
 4. Rufen Sie eine Aktion auf und überschreiben Sie den Standardparameterwert.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
 
 1. Rufen Sie eine Beschreibung des Feeds im Paket `/whisk.system/alarms` ab.
   ```
-  ibmcloud wsk package get --summary /whisk.system/alarms
+  ibmcloud fn package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -230,7 +230,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
   {: screen}
 
   ```
-  ibmcloud wsk action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -247,7 +247,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
 
 2. Erstellen Sie einen Auslöser, der alle acht Sekunden aktiviert wird.
   ```
-  ibmcloud wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -267,13 +267,13 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
 
 4. Stellen Sie sicher, dass die Aktion vorhanden ist.
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 5. Erstellen Sie eine Regel, die die Aktion **hello** jedes Mal aufruft, wenn der Auslöser `everyEightSeconds` aktiviert wird.
   ```
-  ibmcloud wsk rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -285,7 +285,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
 
 6. Prüfen Sie, ob die Aktion aufgerufen wird, indem Sie die Aktivierungsprotokolle durch Polling abfragen.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -301,7 +301,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 1. Erstellen Sie ein Paket mit dem Namen **custom**.
   ```
-  ibmcloud wsk package create custom
+  ibmcloud fn package create custom
   ```
   {: pre}
 
@@ -313,7 +313,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 2. Rufen Sie eine Zusammenfassung des Pakets ab.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -333,7 +333,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 4. Erstellen Sie eine Aktion mit dem Namen **identity** im Paket `custom`.
   ```
-  ibmcloud wsk action create custom/identity identity.js
+  ibmcloud fn action create custom/identity identity.js
   ```
   {: pre}
 
@@ -347,7 +347,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 5. Rufen Sie erneut eine Zusammenfassung des Pakets ab.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -362,7 +362,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 6. Rufen Sie die Aktion in dem Paket auf.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -376,7 +376,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
 
 1. Aktualisieren Sie das Paket **custom** mit zwei Parametern: `city` und `country`.
   ```
-  ibmcloud wsk package update custom --param city Austin --param country USA
+  ibmcloud fn package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -388,7 +388,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
 
 2. Zeigen Sie die Parameter im Paket **custom** und in der Aktion **identidy** an und beachten Sie, wie die Aktion **identity** in dem Paket die Parameter aus dem Paket übernimmt.
   ```
-  ibmcloud wsk package get custom parameters
+  ibmcloud fn package get custom parameters
   ```
   {: pre}
 
@@ -410,7 +410,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
   {: screen}
 
   ```
-  ibmcloud wsk action get custom/identity parameters
+  ibmcloud fn action get custom/identity parameters
   ```
   {: pre}
 
@@ -433,7 +433,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
 
 3. Rufen Sie die Aktion **identity** ohne Parameter auf, um zu prüfen, ob die Aktion die Parameter tatsächlich übernimmt.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -448,7 +448,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
 
 4. Rufen Sie die Aktion **identity** mit Parametern auf. Die Aufrufparameter werden mit den Paketparametern gemischt, wobei die Aufrufparameter die Paketparameter überschreiben.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -469,7 +469,7 @@ Wenn die Aktionen und Feeds, die ein Paket bilden, auf Fehler geprüft und getes
 
 1. Stellen Sie das Paket zur gemeinsamen Nutzung durch alle Benutzer bereit:
   ```
-  ibmcloud wsk package update custom --shared yes
+  ibmcloud fn package update custom --shared yes
   ```
   {: pre}
 
@@ -481,7 +481,7 @@ Wenn die Aktionen und Feeds, die ein Paket bilden, auf Fehler geprüft und getes
 
 2. Zeigen Sie die Eigenschaft `publish` des Pakets an, um zu prüfen, ob sie jetzt den Wert 'true' hat.
   ```
-  ibmcloud wsk package get custom publish
+  ibmcloud fn package get custom publish
   ```
   {: pre}
 
@@ -497,7 +497,7 @@ Andere Benutzer können Ihr Paket **custom** jetzt verwenden, indem sie Bindunge
 
 1. Rufen Sie eine Beschreibung des Pakets ab, um die vollständig qualifizierten Namen des Pakets und der Aktion anzuzeigen.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 

@@ -36,7 +36,7 @@ lastupdated: "2018-05-31"
 
 2. 사용할 수 있도록 **hello** 액션을 업데이트하십시오.
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ lastupdated: "2018-05-31"
 
   명령행을 통해 직접 매개변수를 전달하려면 `--param` 플래그에 키/값 쌍을 제공하십시오.
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ lastupdated: "2018-05-31"
 
   그리고 다음 예제에서와 같이 유효한 JSON인 `person` 매개변수로 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ lastupdated: "2018-05-31"
 
   명령행에서 명시적으로 기본 매개변수를 지정하려면 `param` 플래그에 키/값 쌍을 제공하십시오.
   ```
-  ibmcloud wsk action update hello --param place Kansas
+  ibmcloud fn action update hello --param place Kansas
   ```
   {: pre}
 
 2. 이번에는 `name` 매개변수만 전달하여 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy
+  ibmcloud fn action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ lastupdated: "2018-05-31"
 
   `--param` 플래그를 사용하여 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ lastupdated: "2018-05-31"
 1. 매개변수 세트로 패키지를 작성하십시오.
 
   ```
-  ibmcloud wsk package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
   {: pre}
 
@@ -166,13 +166,13 @@ function main(params) {
 
   액션을 작성하십시오.
   ```
-  ibmcloud wsk action update MyApp/hello hello.js
+  ibmcloud fn action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. 액션을 호출하고 사용 중인 기본 패키지 매개변수를 확인하십시오.
   ```
-  ibmcloud wsk action invoke --result MyApp/hello
+  ibmcloud fn action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -201,7 +201,7 @@ JSON 형식의 파일에 매개변수를 저장한 다음, `--param-file` 플래
 2. `hello.js`의 업데이트된 컨텐츠로 액션을 업데이트하십시오.
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ JSON 형식의 파일에 매개변수를 저장한 다음, `--param-file` 플래
 4. **hello** 액션 호출 시 `parameters.json` 파일 이름을 사용하고 출력을 확인하십시오.
 
   ```
-  ibmcloud wsk action invoke --result hello --param-file parameters.json
+  ibmcloud fn action invoke --result hello --param-file parameters.json
   ```
 
   출력 예:

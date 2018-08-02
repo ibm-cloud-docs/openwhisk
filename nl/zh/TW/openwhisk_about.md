@@ -147,13 +147,13 @@ Kafka 確認取得訊息之後，會使用 **ActivationId** 回應對使用者�
 現在，您可以重新使用 REST API（從步驟 1 重新開始）以取得您的啟動，進而取得動作的結果。若要這樣做，請執行下列指令：
 
 ```bash
-ibmcloud wsk activation get 31809ddca6f64cfc9de2937ebd44fbb9
+ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
 ### 摘要
 
-您可以瞭解簡單的 **ibmcloud wsk action invoked myAction** 如何通過 {{site.data.keyword.openwhisk_short}} 系統的不同階段。系統本身主要僅包含兩個自訂元件：**控制器**及**呼叫程式**。由開放程式碼社群中的許多人員所開發的其他所有項目也都已就緒。
+您可以瞭解簡單的 **ibmcloud fn action invoked myAction** 如何通過 {{site.data.keyword.openwhisk_short}} 系統的不同階段。系統本身主要僅包含兩個自訂元件：**控制器**及**呼叫程式**。由開放程式碼社群中的許多人員所開發的其他所有項目也都已就緒。
 
 您可以在下列主題中尋找 {{site.data.keyword.openwhisk_short}} 的其他資訊：
 

@@ -36,7 +36,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
 
 2. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour l'instance de service Weather Company Data que vous avez créée.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
 
   Affichez la liste des packages pour vérifier que la liaison de package a bien été créée :
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ Si vous n'utilisez pas {{site.data.keyword.openwhisk_short}} dans {{site.data.ke
 
 Créez une liaison de package configurée pour votre service Watson Translator.
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -89,7 +89,7 @@ L'exemple suivant montre comment créer une liaison de package, puis obtenir une
 
 Appelez l'action **forecast** dans votre liaison de package pour obtenir la prévision météorologique.
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

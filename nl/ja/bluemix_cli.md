@@ -91,7 +91,7 @@ lastupdated: "2018-06-21"
 
 3. `echo` のブロッキング (同期) 呼び出しを実行します。引数として `hello` を渡します。
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +117,7 @@ lastupdated: "2018-06-21"
 * パッケージでアクションをバンドルする方法および外部イベント・ソースを構成する方法を学習する。 『[パッケージの作成と使用](./openwhisk_packages.html)』を参照してください。
 * パッケージ・カタログを検討し、[{{site.data.keyword.cloudant}} イベント・ソース](./openwhisk_cloudant.html)などの外部サービスでアプリケーションを強化する。
 
-{{site.data.keyword.openwhisk_short}} プラグインのコマンドをリストするには、引数を指定せずに `ibmcloud wsk` を実行します。
+{{site.data.keyword.openwhisk_short}} プラグインのコマンドをリストするには、引数を指定せずに `ibmcloud fn` を実行します。
 {: tip}
 
 ## アクションからのサービスの使用
@@ -163,25 +163,25 @@ ibmcloud iam space-create "production"
 ### コマンド構文
 {: #command_syntax}
 
-すべての `wsk` コマンド (不要になった `wsk bluemix login` コマンドを除く) は、コマンド `ibmcloud wsk` を使用することで、同様に動作します。  すべてのコマンドのオプションおよび引数は同じです。
+すべての `wsk` コマンド (不要になった `wsk bluemix login` コマンドを除く) は、コマンド `ibmcloud fn` を使用することで、同様に動作します。  すべてのコマンドのオプションおよび引数は同じです。
 
 ### API 認証と API ホスト
 {: #api_authentication}
 
 OpenWhisk CLI では、認証 API キーおよび API ホストを構成する必要がありました。
-{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。 代わりに、`ibmcloud login` でログインし、`ibmcloud target` コマンドを使用して地域と名前空間のターゲットを指定できます。ログイン後は、すべてのコマンドを `ibmcloud wsk` で開始します。
+{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。 代わりに、`ibmcloud login` でログインし、`ibmcloud target` コマンドを使用して地域と名前空間のターゲットを指定できます。ログイン後は、すべてのコマンドを `ibmcloud fn` で開始します。
 
 cURL や Postman などの外部 HTTP クライアントで {{site.data.keyword.openwhisk_short}} の認証 API キーを使用する必要がある場合は、以下のコマンドで取得できます。
 
 現在の API キーを取得するには、以下を実行します。
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 現在の API ホストを取得するには、以下を実行します。
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -191,12 +191,12 @@ API キーは、{{site.data.keyword.openwhisk_short}} CLI プラグインのタ�
 ### API ゲートウェイ認証
 {: #apigw_authentication}
 
-OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のために API ゲートウェイの許可を構成するには、`wsk bluemix login` を実行する必要がありました。{{site.data.keyword.openwhisk_short}} CLI プラグインでは、`wsk bluemix login` を実行する必要はありません。代わりに、`ibmcloud login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインすると、{{site.data.keyword.openwhisk}} プラグインによって、現在のログインとターゲットの情報が自動的に利用されます。これで、`ibmcloud wsk api` コマンドを使用して、API を管理できます。
+OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のために API ゲートウェイの許可を構成するには、`wsk bluemix login` を実行する必要がありました。{{site.data.keyword.openwhisk_short}} CLI プラグインでは、`wsk bluemix login` を実行する必要はありません。代わりに、`ibmcloud login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインすると、{{site.data.keyword.openwhisk}} プラグインによって、現在のログインとターゲットの情報が自動的に利用されます。これで、`ibmcloud fn api` コマンドを使用して、API を管理できます。
 
 ### デプロイメント・スクリプトのマイグレーション
 {: #migrating_deploy_scripts}
 
-`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `ibmcloud wsk` を使用することで、すべてのコマンドは同様に動作します。 {{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` を使用している現行コマンドが `ibmcloud wsk` に変換されるようにすることができます。{{site.data.keyword.Bluemix_notm}} CLI の `ibmcloud login` および `ibmcloud target` コマンドは、無人モードで動作します。 無人モードでは、`ibmcloud wsk` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
+`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `ibmcloud fn` を使用することで、すべてのコマンドは同様に動作します。 {{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` を使用している現行コマンドが `ibmcloud fn` に変換されるようにすることができます。{{site.data.keyword.Bluemix_notm}} CLI の `ibmcloud login` および `ibmcloud target` コマンドは、無人モードで動作します。 無人モードでは、`ibmcloud fn` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
 
 ## バージョン履歴
 {: #version_history}

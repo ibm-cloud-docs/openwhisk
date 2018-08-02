@@ -44,7 +44,7 @@ lastupdated: "2018-03-29"
 
 2. Slack 신임 정보, 게시되는 채널 및 게시자의 사용자 이름을 사용하여 패키지 바인딩을 작성하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -53,7 +53,7 @@ lastupdated: "2018-03-29"
 
 3. 패키지 바인딩에서 **post** 액션을 호출하여 사용자의 Slack 채널에 메시지를 게시하십시오.
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

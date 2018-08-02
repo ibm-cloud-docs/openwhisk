@@ -36,7 +36,7 @@ I parametri possono essere passati a un'azione quando viene richiamata. Gli esem
 
 2. Aggiorna l'azione **hello** in modo che si pronta per l'uso:
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ I parametri possono essere passati a un'azione quando viene richiamata. Gli esem
 
   Per passare i parametri direttamente tramite la riga di comando, fornisci una coppia chiave/valore all'indicatore `--param`:
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ I parametri possono essere passati a un'azione quando viene richiamata. Gli esem
 
   Quindi, richiama l'azione con un singolo parametro `person` che è un JSON valido, come nel seguente esempio:
   ```
-  ibmcloud wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ Anziché passare ogni volta tutti i parametri a un'azione, puoi eseguire il bind
 
   Per specificare i parametri predefiniti esplicitamente nella riga di comando, fornisci una coppia chiave/valore all'indicatore `param`:
   ```
-  ibmcloud wsk action update hello --param place Kansas
+  ibmcloud fn action update hello --param place Kansas
   ```
   {: pre}
 
 2. Richiama l'azione, questa volta passando solo il parametro `name`.
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy
+  ibmcloud fn action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ Anziché passare ogni volta tutti i parametri a un'azione, puoi eseguire il bind
 
   Richiama l'azione utilizzando l'indicatore `--param`:
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ Il seguente esempio imposta un parametro predefinito di `name` sul pacchetto **M
 1. Crea un pacchetto con un parametro impostato:
 
   ```
-  ibmcloud wsk package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
   {: pre}
 
@@ -166,13 +166,13 @@ Il seguente esempio imposta un parametro predefinito di `name` sul pacchetto **M
 
   Crea l'azione:
   ```
-  ibmcloud wsk action update MyApp/hello hello.js
+  ibmcloud fn action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. Richiama l'azione e osserva il parametro del pacchetto predefinito in uso:
   ```
-  ibmcloud wsk action invoke --result MyApp/hello
+  ibmcloud fn action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -201,7 +201,7 @@ Puoi inserire parametri in un file in formato JSON e quindi passare i parametri 
 2. Aggiorna l'azione con i contenuti aggiornati di `hello.js`:
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ Puoi inserire parametri in un file in formato JSON e quindi passare i parametri 
 4. Utilizza il nome file `parameters.json` durante la chiamata dell'azione **hello** e osserva l'output:
 
   ```
-  ibmcloud wsk action invoke --result hello --param-file parameters.json
+  ibmcloud fn action invoke --result hello --param-file parameters.json
   ```
 
   Output di esempio:

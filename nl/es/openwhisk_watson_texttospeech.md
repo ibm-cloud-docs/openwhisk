@@ -37,7 +37,7 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
 
 2. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia de servicio de Watson que ha creado.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
 
   Liste los paquetes para ver que se ha creado el enlace de paquete:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Si no utiliza {{site.data.keyword.openwhisk_short}} en {{site.data.keyword.Bluem
 
 Cree un enlace de paquete configurado para el servicio de Watson Speech to Text.
 ```
-ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -84,7 +84,7 @@ La acción `/whisk.system/watson-textToSpeech/textToSpeech` convierte texto en u
 
 Invoque la acción **textToSpeech** en el enlace del paquete para convertir el texto.
 ```
-ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

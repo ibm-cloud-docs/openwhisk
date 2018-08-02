@@ -44,7 +44,7 @@ Im folgenden Beispiel wird gezeigt, wie Slack konfiguriert wird, eine Paketbindu
 
 2. Erstellen Sie eine Paketbindung mit Ihren Slack-Berechtigungsnachweisen, mit dem Kanal, an den gesendet werden soll, sowie mit dem Benutzernamen, unter dem gesendet werden soll.
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -53,7 +53,7 @@ Im folgenden Beispiel wird gezeigt, wie Slack konfiguriert wird, eine Paketbindu
 
 3. Rufen Sie die Aktion **post** in Ihrer Paketbindung auf, um eine Nachricht an Ihren Slack-Kanal zu senden.
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

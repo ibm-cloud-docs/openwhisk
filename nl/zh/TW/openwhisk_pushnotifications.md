@@ -36,25 +36,25 @@ lastupdated: "2018-03-16"
 
 1. 使用 **appId** 及 **appSecret** 來建立為 Push Notification 服務所配置的套件連結。
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. 使用「`myPush/webhook` 資訊來源」，為 Push Notification 服務的 `onDeviceRegister` 事件類型建立觸發程式。
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. 您可以建立一個每次登錄新裝置時即傳送訊息的規則。使用前一個動作及觸發程式來建立規則。
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. 使用 `ibmcloud wsk activation poll` 指令來檢查結果。
+4. 使用 `ibmcloud fn activation poll` 指令來檢查結果。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

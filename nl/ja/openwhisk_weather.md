@@ -36,7 +36,7 @@ lastupdated: "2018-03-27"
 
 2. 名前空間でパッケージを最新表示します。 最新表示により、作成した Weather Company Data サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ lastupdated: "2018-03-27"
 
   パッケージをリストして、パッケージ・バインディングが作成されたことを確認します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ lastupdated: "2018-03-27"
 
 Watson Translator サービス用に構成されるパッケージ・バインディングを作成します。
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -89,7 +89,7 @@ ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME
 
 パッケージ・バインディング内の **forecast** アクションを呼び出して、天気予報を取得します。
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

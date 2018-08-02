@@ -83,7 +83,7 @@ OpenWhisk CLI를 사용하여 OpenWhisk SDK 프레임워크를 임베드하는 �
 
 스타터 앱 예제를 설치하려면 다음 명령을 입력하십시오.
 ```
-ibmcloud wsk sdk install iOS
+ibmcloud fn sdk install iOS
 ```
 {: pre}
 
@@ -108,7 +108,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 
 이전 예제에서는 OpenWhisk에서 가져온 `myKey` 및 `myToken`을 전달합니다. 다음 CLI 명령으로 키 및 토큰을 검색할 수 있습니다.
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 

@@ -26,20 +26,20 @@ After you have created an action, you can get more information about the action 
 
 To list all of the actions you have created:
 ```
-ibmcloud wsk action list
+ibmcloud fn action list
 ```
 {: pre}
 
 As you create more actions, it can be helpful to group related actions into [packages](./openwhisk_packages.html). To filter your list of actions to only actions within a specific package:
 ```
-ibmcloud wsk action list [PACKAGE NAME]
+ibmcloud fn action list [PACKAGE NAME]
 ```
 {: pre}
 
 To get metadata that describes specific actions:
 
 ```
-ibmcloud wsk action get hello
+ibmcloud fn action get hello
 ```
 {: pre}
 
@@ -120,13 +120,13 @@ ok: got action hello
 
 To get all activation record IDs in a namespace:
 ```
-ibmcloud wsk activation list
+ibmcloud fn activation list
 ```
 {: pre}
 
 To get details about a specific activation record that resulted from an action invocation:
 ```
-ibmcloud wsk activation get <activation_ID>
+ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
@@ -264,7 +264,7 @@ An action can be invoked by using the REST interface through an HTTPS request.
 
 To get an action URL:
 ```
-ibmcloud wsk action get actionName --url
+ibmcloud fn action get actionName --url
 ```
 {: pre}
 
@@ -292,7 +292,7 @@ You can get and locally save code associated with an existing action. You can sa
 
 Save action code to a filename that corresponds with an existing action name in the current working directory.
 ```
-ibmcloud wsk action get actionName --save
+ibmcloud fn action get actionName --save
 ```
 {: pre}
 
@@ -304,7 +304,7 @@ ok: saved action code to /absolutePath/currentDirectory/actionName.js
 
 You can instead provide a custom file path, filename, and extension by using the `--save-as` flag.
 ```
-ibmcloud wsk action get actionName --save-as codeFile.js
+ibmcloud fn action get actionName --save-as codeFile.js
 ```
 {: pre}
 
@@ -323,13 +323,13 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
 1. Start a polling loop that continuously checks for logs from activations.
     ```
-    ibmcloud wsk activation poll
+    ibmcloud fn activation poll
     ```
     {: pre}
 
 2. Switch to another window and invoke an action.
     ```
-    ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+    ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
     ```
     {: pre}
 
@@ -354,7 +354,7 @@ You can clean up by deleting actions that you do not want to use.
 
 1. Delete an action.
     ```
-    ibmcloud wsk action delete hello
+    ibmcloud fn action delete hello
     ```
     {: pre}
 
@@ -366,7 +366,7 @@ You can clean up by deleting actions that you do not want to use.
 
 2. Verify that the action no longer appears in the list of actions.
     ```
-    ibmcloud wsk action list
+    ibmcloud fn action list
     ```
     {: pre}
 

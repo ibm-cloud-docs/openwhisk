@@ -49,7 +49,7 @@ lastupdated: "2018-03-16"
 若要使用 CLI 來取得顯示在「活動日誌」中的輸出，請使用下列指令：
 
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

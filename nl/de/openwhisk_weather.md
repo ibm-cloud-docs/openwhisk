@@ -36,7 +36,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Serviceinstanz von Weather Company Data, die Sie erstellt haben.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 
   Listen Sie die Pakete auf, um zu ermitteln, ob die Paketbindung erstellt wurde:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ Wenn Sie {{site.data.keyword.openwhisk_short}} nicht in {{site.data.keyword.Blue
 
 Erstellen Sie eine Paketbindung, die für Ihren Weather-Service konfiguriert ist.
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -89,7 +89,7 @@ Das folgende Beispiel zeigt die Erstellung einer Paketbindung und den anschließ
 
 Rufen Sie die Aktion **forecast** in Ihrer Paketbindung auf, um die Wettervorhersage abzurufen.
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

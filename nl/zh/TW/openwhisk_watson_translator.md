@@ -36,7 +36,7 @@ lastupdated: "2018-03-26"
 
 2. 重新整理名稱空間中的套件。重新整理會自動建立您所建立之 Watson 服務實例的套件連結。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ lastupdated: "2018-03-26"
 
   列出套件，查看已建立套件連結：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ lastupdated: "2018-03-26"
 
 - 建立針對 Watson Translator 服務所配置的套件連結。
   ```
-  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud fn package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
 
@@ -83,7 +83,7 @@ lastupdated: "2018-03-26"
 
 在套件連結中呼叫 **translator** 動作，以將某串文字從英文翻譯成法文。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/translator \
+ibmcloud fn action invoke myWatsonTranslator/translator \
 --blocking --result \
 --param payload "Blue skies ahead" --param translateFrom "en" \
 --param translateTo "fr"
@@ -108,7 +108,7 @@ ibmcloud wsk action invoke myWatsonTranslator/translator \
 
 在套件連結中呼叫 **languageId** 動作，以識別語言。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/languageId \
+ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
 --param payload "Ciel bleu a venir"
 ```

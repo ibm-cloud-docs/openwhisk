@@ -60,7 +60,7 @@ lastupdated: "2018-06-22"
 
 2. 다음 JavaScript 함수에서 액션을 작성하십시오. 이 예제에서 액션을 **hello**라고 합니다.
   ```
-  ibmcloud wsk action create hello hello.js
+  ibmcloud fn action create hello hello.js
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ lastupdated: "2018-06-22"
 
 3. 작성된 액션을 나열하십시오.
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 
@@ -91,7 +91,7 @@ lastupdated: "2018-06-22"
 
   이 예제에서는 블로킹 매개변수인 `--blocking`을 사용합니다.
   ```
-  ibmcloud wsk action invoke --blocking hello
+  ibmcloud fn action invoke --blocking hello
   ```
   {: pre}
 
@@ -123,7 +123,7 @@ lastupdated: "2018-06-22"
 
   다음 예제를 참조하십시오.
   ```
-  ibmcloud wsk action invoke hello
+  ibmcloud fn action invoke hello
   ```
   {: pre}
 
@@ -135,7 +135,7 @@ lastupdated: "2018-06-22"
 
   이제 활성화 ID를 알고 있으므로 이를 지정하여 액션 결과를 얻을 수 있습니다.
   ```
-  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ lastupdated: "2018-06-22"
 
   **활성화 목록:**
   ```
-  ibmcloud wsk activation list
+  ibmcloud fn activation list
   ```
   {: pre}
 
@@ -192,13 +192,13 @@ lastupdated: "2018-06-22"
 
   **asyncAction** 액션을 작성하십시오.
   ```
-  ibmcloud wsk action create asyncAction asyncAction.js
+  ibmcloud fn action create asyncAction asyncAction.js
   ```
   {: pre}
 
   액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result asyncAction
+  ibmcloud fn action invoke --result asyncAction
   ```
   {: pre}
 
@@ -216,7 +216,7 @@ lastupdated: "2018-06-22"
 
   이를 수행하려면 먼저 액션을 나열하여 활성화 ID를 얻으십시오.
   ```
-  ibmcloud wsk activation list --limit 1 asyncAction
+  ibmcloud fn activation list --limit 1 asyncAction
   ```
   {: pre}
 
@@ -229,7 +229,7 @@ lastupdated: "2018-06-22"
 
   이제 활성화 ID를 사용하여 활성화 로그 정보를 가져오십시오.
   ```
-  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
 
@@ -288,13 +288,13 @@ lastupdated: "2018-06-22"
 
   **apod** 액션을 작성하십시오.
   ```
-  ibmcloud wsk action create apod apod.js
+  ibmcloud fn action create apod apod.js
   ```
   {: pre}
 
   **apod** 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result apod
+  ibmcloud fn action invoke --result apod
   ```
   {: pre}
 
@@ -363,7 +363,7 @@ exports.main = myAction;
 
 3. 액션을 작성하십시오.
   ```
-  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud fn action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
@@ -371,7 +371,7 @@ exports.main = myAction;
 
 4. 이 액션을 임의의 다른 액션처럼 호출할 수 있습니다.
   ```
-  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
 
@@ -405,7 +405,7 @@ webpack을 사용한 빠른 예제는 다음과 같습니다.
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad": "1.1.3"
@@ -476,7 +476,7 @@ global.main = main;
 
     CLI 사용:
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  ibmcloud fn action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -491,7 +491,7 @@ global.main = main;
 
 1. `/whisk.system/utils` 패키지에서 액션을 표시하십시오.
   ```
-  ibmcloud wsk package get --summary /whisk.system/utils
+  ibmcloud fn package get --summary /whisk.system/utils
   ```
   {: pre}
 
@@ -511,7 +511,7 @@ global.main = main;
 
 2. 한 액션의 결과가 다음 액션에 대한 인수로 전달되도록 액션 시퀀스를 작성하십시오.
   ```
-  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
@@ -519,7 +519,7 @@ global.main = main;
 
 3. 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
@@ -563,7 +563,7 @@ Python 액션에서는 항상 사전을 이용하고 사전을 생성합니다. 
 
 다음과 같이 이 함수에서 **helloPython**이라고 하는 {{site.data.keyword.openwhisk_short}} 액션을 작성할 수 있습니다.
 ```
-ibmcloud wsk action create helloPython hello.py
+ibmcloud fn action create helloPython hello.py
 ```
 {: pre}
 
@@ -572,7 +572,7 @@ CLI는 소스 파일 확장자에서 액션의 유형을 자동으로 추론합�
 
 Python 액션에 대한 액션 호출은 JavaScript 액션에 대한 액션 호출과 동일합니다.
 ```
-ibmcloud wsk action invoke --result helloPython --param name World
+ibmcloud fn action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -597,7 +597,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 그리고 액션을 작성하십시오.
 ```bash
-ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud fn action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
@@ -630,7 +630,7 @@ docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
 
 3. **helloPython** 액션을 작성하십시오.
     ```
-    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -659,11 +659,11 @@ function main(array $args) : array
 ```
 {: codeblock}
 
-PHP 액션은 항상 연관 배열을 이용하고 연관 배열을 리턴합니다. 액션에 대한 진입 메소드는 기본적으로 `main`이지만, 기타 액션 유형에서와 같이 `--main`을 사용하여 `ibmcloud wsk` CLI에서 액션을 작성할 때 명시적으로 지정될 수 있습니다.
+PHP 액션은 항상 연관 배열을 이용하고 연관 배열을 리턴합니다. 액션에 대한 진입 메소드는 기본적으로 `main`이지만, 기타 액션 유형에서와 같이 `--main`을 사용하여 `ibmcloud fn` CLI에서 액션을 작성할 때 명시적으로 지정될 수 있습니다.
 
 다음과 같이 이 함수에서 **helloPHP**라고 하는 {{site.data.keyword.openwhisk_short}} 액션을 작성할 수 있습니다.
 ```
-ibmcloud wsk action create helloPHP hello.php
+ibmcloud fn action create helloPHP hello.php
 ```
 {: pre}
 
@@ -671,7 +671,7 @@ CLI는 소스 파일 확장자에서 액션의 유형을 자동으로 추론합�
 
 PHP 액션에 대한 액션 호출은 JavaScript 액션에 대한 액션 호출과 동일합니다.
 ```
-ibmcloud wsk action invoke --result helloPHP --param name World
+ibmcloud fn action invoke --result helloPHP --param name World
 ```
 {: pre}
 
@@ -697,7 +697,7 @@ zip -r helloPHP.zip index.php helper.php
 
 그런 다음 **helloPHP** 액션을 작성하십시오.
 ```bash
-ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
@@ -732,7 +732,7 @@ func main(args: [String:Any]) -> [String:Any] {
 다음과 같이 이 함수에서 **helloSwift**라고 하는 OpenWhisk 액션을
 작성할 수 있습니다.
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
 
@@ -772,7 +772,7 @@ func main(completion: (Output?, Error?) -> Void) -> Void {
 다음과 같이 이 함수에서 `helloSwift`라고 하는 OpenWhisk 액션을
 작성할 수 있습니다.
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
 ```
 {: pre}
 
@@ -780,7 +780,7 @@ Swift 런타임에 대한 자세한 정보는 Swift [참조](./openwhisk_referen
 
 Swift 액션에 대한 액션 호출은 JavaScript 액션에 대한 액션 호출과 동일합니다.
 ```
-ibmcloud wsk action invoke --result helloSwift --param name World
+ibmcloud fn action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -948,19 +948,19 @@ actions/
 
 - 액션 이름 **helloSwifty**로 OpenWhisk에 업로드하십시오. Swift 3의 경우 `swift:3.1.1` 유형을 사용하십시오.
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
   Swift 4의 경우 `swift:3.1.1` 유형을 사용하십시오.
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
 - 얼마나 더 빠른지 확인하려면 다음 명령을 실행하십시오.
   ```
-  ibmcloud wsk action invoke helloSwiftly --blocking
+  ibmcloud fn action invoke helloSwiftly --blocking
   ```
   {: pre}
 
@@ -1039,7 +1039,7 @@ Java 파일을 컴파일하려면 [google-gson](https://github.com/google/gson)�
 다음과 같이 이 JAR 파일에서 **helloJava**라고 하는 {{site.data.keyword.openwhisk_short}} 액션을
 작성할 수 있습니다.
 ```
-ibmcloud wsk action create helloJava hello.jar --main Hello
+ibmcloud fn action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1051,7 +1051,7 @@ ibmcloud wsk action create helloJava hello.jar --main Hello
 
 Java 액션에 대한 액션 호출은 Swift 및 JavaScript 액션에 대한 액션 호출과 동일합니다.
 ```
-ibmcloud wsk action invoke --result helloJava --param name World
+ibmcloud fn action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -1076,7 +1076,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
 1. Docker 스켈레톤을 다운로드하십시오. 다음과 같이 CLI를 사용하여 이를 다운로드하고 설치할 수 있습니다.
   ```
-  ibmcloud wsk sdk install docker
+  ibmcloud fn sdk install docker
   ```
   {: pre}
 
@@ -1137,13 +1137,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   Docker 컨테이너를 이제 {{site.data.keyword.openwhisk_short}} 액션으로 사용할 수 있습니다.
   ```
-  ibmcloud wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud fn action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   `--docker`를 사용한 액션의 작성에 유념하십시오. 모든 Docker 이미지가 Docker 허브에 호스팅되어 있다고 가정합니다. 이 액션은 임의의 기타 {{site.data.keyword.openwhisk_short}} 액션으로서 호출될 수 있습니다.
   ```
-  ibmcloud wsk action invoke --result example --param payload Rey
+  ibmcloud fn action invoke --result example --param payload Rey
   ```
   {: pre}
 
@@ -1158,7 +1158,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
   ```
   {: screen}
 
-  Docker 액션을 업데이트하려면 `buildAndPush.sh`를 실행하여 최신 이미지를 Docker 허브로 업로드하십시오. 그러면 다음 번에 액션에 대한 코드를 실행할 때 시스템이 새 Docker 이미지를 가져올 수 있습니다. 웜 컨테이너가 없는 경우, 새 호출은 새 Docker 이미지를 사용합니다. 하지만 이전 버전의 Docker 이미지를 사용하는 웜 컨테이너가 있는 경우, 새 호출은 `ibmcloud wsk action update`를 실행하지 않는 한 해당 이미지를 계속 사용합니다. 이는 새 호출에 대해 Docker 가져오기를 실행하여 새 Docker 이미지를 가져오도록 시스템에 지시합니다.
+  Docker 액션을 업데이트하려면 `buildAndPush.sh`를 실행하여 최신 이미지를 Docker 허브로 업로드하십시오. 그러면 다음 번에 액션에 대한 코드를 실행할 때 시스템이 새 Docker 이미지를 가져올 수 있습니다. 웜 컨테이너가 없는 경우, 새 호출은 새 Docker 이미지를 사용합니다. 하지만 이전 버전의 Docker 이미지를 사용하는 웜 컨테이너가 있는 경우, 새 호출은 `ibmcloud fn action update`를 실행하지 않는 한 해당 이미지를 계속 사용합니다. 이는 새 호출에 대해 Docker 가져오기를 실행하여 새 Docker 이미지를 가져오도록 시스템에 지시합니다.
 
   **Docker 허브에 최신 이미지를 업로드하십시오.**
   ```
@@ -1168,7 +1168,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **새 호출이 새 이미지 사용을 시작하도록 액션을 업데이트하십시오.***
   ```
-  ibmcloud wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud fn action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -1180,13 +1180,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **zip 파일에서 액션을 작성하십시오.**
   ```
-  ibmcloud wsk action create example exec.zip --native
+  ibmcloud fn action create example exec.zip --native
   ```
   {: pre}
 
   다음 명령과 동등한 명령은 무엇입니까?
   ```
-  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud fn action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
 
@@ -1229,13 +1229,13 @@ func main() {
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-ibmcloud wsk action create helloGo --native exec.zip
+ibmcloud fn action create helloGo --native exec.zip
 ```
 {: codeblock}
 
 이 액션은 임의의 기타 액션으로서 실행될 수 있습니다.
 ```bash
-ibmcloud wsk action invoke helloGo -r -p name gopher
+ibmcloud fn action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1243,7 +1243,7 @@ ibmcloud wsk action invoke helloGo -r -p name gopher
 
 로그도 역시 유사한 방법으로 검색됩니다.
 ```bash
-ibmcloud wsk activation logs --last --strip
+ibmcloud fn activation logs --last --strip
 my first Go action.
 ```
 
@@ -1261,7 +1261,7 @@ my first Go action.
 
 1. 쉘에서 다음 명령을 실행하십시오.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -1269,7 +1269,7 @@ my first Go action.
 
 2. 다른 창으로 전환하여 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
@@ -1291,11 +1291,11 @@ my first Go action.
 ## 액션 가져오기
 {: #getting-actions}
 
-기존 액션을 설명하는 메타데이터는 `ibmcloud wsk action` get 명령을 사용하여 검색 가능합니다.
+기존 액션을 설명하는 메타데이터는 `ibmcloud fn action` get 명령을 사용하여 검색 가능합니다.
 
 **명령:**
 ```
-ibmcloud wsk action get hello
+ibmcloud fn action get hello
 ```
 
 ***결과:**
@@ -1330,7 +1330,7 @@ ok: got action hello
 
 액션은 HTTPS 요청을 통해 REST 인터페이스를 사용하여 호출될 수 있습니다. 액션 URL을 가져오려면 다음 명령을 실행하십시오.
 ```
-ibmcloud wsk action get actionName --url
+ibmcloud fn action get actionName --url
 ```
 {: pre}
 
@@ -1357,7 +1357,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 1. 현재 작업 디렉토리에 기존 액션 이름과 일치하는 파일 이름으로 액션 코드를 저장하십시오. 액션 유형과 일치하는 파일 확장자가 사용되거나, zip 파일에 .zip 확장자가 액션 코드로 사용됩니다.
   ```
-  ibmcloud wsk action get actionName --save
+  ibmcloud fn action get actionName --save
   ```
   {: pre}
 
@@ -1369,7 +1369,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 2. CLI가 저장할 코드의 대상을 판별할 수 있도록 하는 대신, `--save-as` 플래그를 사용하여 사용자 정의 파일 경로, 파일 이름 및 확장자를 제공할 수 있습니다.
   ```
-  ibmcloud wsk action get actionName --save-as codeFile.js
+  ibmcloud fn action get actionName --save-as codeFile.js
   ```
   {: pre}
 
@@ -1384,13 +1384,13 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 다음 명령을 사용하여 작성된 모든 액션을 나열할 수 있습니다.
 ```
-ibmcloud wsk action list
+ibmcloud fn action list
 ```
 {: pre}
 
 추가 액션을 작성하면 이 목록이 더 길어지며, 관련 액션을 [패키지](./openwhisk_packages.html)로 그룹화하는 것이 유용할 수 있습니다. 특정 패키지 내의 경우로만 액션의 목록을 필터링하려면 다음 명령 구문을 사용하십시오.
 ```
-ibmcloud wsk action list [PACKAGE NAME]
+ibmcloud fn action list [PACKAGE NAME]
 ```
 {: pre}
 
@@ -1401,7 +1401,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 
 1. 다음 명령을 실행하여 액션을 삭제하십시오.
   ```
-  ibmcloud wsk action delete hello
+  ibmcloud fn action delete hello
   ```
   {: pre}
 
@@ -1413,7 +1413,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 
 2. 액션이 더 이상 액션 목록에 표시되지 않는지 확인하십시오.
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 

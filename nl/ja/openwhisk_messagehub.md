@@ -40,7 +40,7 @@ lastupdated: "2018-06-22"
 |isBinaryKey|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、キー値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
 |isBinaryValue|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
 
-このパラメーター・リストは難しそうに見えるかもしれませんが、`ibmcloud wsk package refresh` CLI プラグイン・コマンドを使用して自動的に設定できます。
+このパラメーター・リストは難しそうに見えるかもしれませんが、`ibmcloud fn package refresh` CLI プラグイン・コマンドを使用して自動的に設定できます。
 
 1. {{site.data.keyword.openwhisk}} 用に使用している現行の組織およびスペースの下に、{{site.data.keyword.messagehub}} サービスのインスタンスを作成します。
 
@@ -48,7 +48,7 @@ lastupdated: "2018-06-22"
 
 3. 名前空間でパッケージを最新表示します。 最新表示により、作成した {{site.data.keyword.messagehub}} サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ lastupdated: "2018-06-22"
 
 4. 名前空間内のパッケージをリストして、パッケージ・バインディングが使用可能になったことを示します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ lastupdated: "2018-06-22"
 
 5. 残っている作業は、新規メッセージが {{site.data.keyword.messagehub}} トピックにポストされたら起動されるトリガーを作成することだけです。
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ lastupdated: "2018-06-22"
 
 1. {{site.data.keyword.messagehub}} サービス用に構成されるパッケージ・バインディングを作成します。
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. 次に、新規パッケージを使用して、新規メッセージが {{site.data.keyword.messagehub}} トピックにポストされたら起動されるトリガーを作成できます。
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

@@ -41,7 +41,7 @@ lastupdated: "2018-03-16"
 
 2. GitHub リポジトリー用に構成されたパッケージ・バインディングをアクセス・トークンを使用して作成します。
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ lastupdated: "2018-03-16"
 
 3. `myGit/webhook` フィードを使用して、GitHub `push` イベント・タイプ用のトリガーを作成します。
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

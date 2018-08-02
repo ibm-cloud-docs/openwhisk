@@ -41,7 +41,7 @@ En el siguiente ejemplo, se crea un desencadenante que se activa cada vez que se
 
 2. Crear un enlace de paquete configurado para su repositorio de GitHub y con su señal de acceso.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ En el siguiente ejemplo, se crea un desencadenante que se activa cada vez que se
 
 3. Crear un desencadenante para el tipo de suceso `push` de GitHub usando su canal de información `myGit/webhook`.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

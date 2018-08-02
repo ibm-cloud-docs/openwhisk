@@ -33,12 +33,12 @@ function main({name}) {
 
 Sie können nun eine _Webaktion_ **hello** im Paket `demo` für den Namensbereich `guest` mithilfe des CLI-Flags `--web` mit dem Wert `true` oder `yes` erstellen:
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ Eine Inhaltserweiterung ist in der Regel zum Aufrufen einer Webaktion erforderli
 
 Aktionsparameter werden geschützt und als unveränderlich behandelt. Parameter werden automatisch als endgültig festgelegt, um Webaktionen zu aktivieren.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ Verwenden Sie alternativ das Flag `--web-secure`, um die Annotation `require-whi
 
 Beispiel mit **--web-secure**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Beispiel mit **require-whisk-auth**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ Es ist wichtig zu beachten, dass dem Eigner der Webaktion alle Aktivierungsdaten
 
 Zum Inaktivieren einer Webaktion, sodass sie nicht mehr über die Web-API (`https://openwhisk.bluemix.net/api/v1/web/`) aufgerufen werden kann, übergeben Sie den Wert `false` oder `no` an das Flag `--web`, um eine Aktion über die Befehlszeilenschnittstelle zu aktualisieren.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk verwendet das [Akka Http](http://doc.akka.io/docs/akka-http/current/sc
 
 Webaktionen für unaufbereitete HTTP-Anforderungen werden über das Flag `--web` mit dem Wert `raw` aktiviert.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 Die Verarbeitung von unaufbereiteten HTTP-Anforderungen kann inaktiviert werden, indem der Wert `false` oder `no` an das Flag `--web` übergeben wird.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 Beispiel: Speichern Sie die Node-Funktion in einer Datei mit dem Namen `decode.js` und führen Sie die folgenden Befehle aus:
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 Speichern Sie die Funktion in `custom-options.js` und führen Sie die folgenden Befehle aus:
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

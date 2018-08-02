@@ -45,7 +45,7 @@ lastupdated: "2018-03-29"
 
 2. 使用 Slack 認證、要張貼至其中的頻道，以及用來進行張貼的使用者名稱，來建立套件連結。
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -54,7 +54,7 @@ lastupdated: "2018-03-29"
 
 3. 在套件連結中呼叫 **post** 動作，以將訊息張貼至 Slack 通道。
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

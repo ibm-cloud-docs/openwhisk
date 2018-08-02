@@ -47,13 +47,13 @@ Para crear un enlace de paquete, siga los siguientes pasos:
 
 4. Cree un enlace de paquete con `/whisk.system/pushnotifications`.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. Compruebe que el enlace de paquete existe:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ Consulte el ejemplo siguiente para enviar una notificación Push desde el paquet
 
 Enviar una notificación Push utilizando la acción **sendMessage** del enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/myNamespace/myPush` por su nombre de paquete.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

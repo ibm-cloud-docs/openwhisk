@@ -592,7 +592,7 @@ PHP アクションは PHP 7.1.18 で実行されます。このランタイム�
 
 Docker アクションは、Docker コンテナー内のユーザー提供バイナリーを実行します。 バイナリーは、[python:2.7.12-alpine](https://hub.docker.com/r/library/python) に基づく Docker イメージで実行されるため、バイナリーはこのディストリビューションと互換でなければなりません。
 
-Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルドするための便利な方法です。 `ibmcloud wsk sdk install docker` CLI プラグイン・コマンドでスケルトンをインストールできます。
+Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルドするための便利な方法です。 `ibmcloud fn sdk install docker` CLI プラグイン・コマンドでスケルトンをインストールできます。
 
 メイン・バイナリー・プログラムはコンテナー内部の `/action/exec` に置かれる必要があります。 実行可能バイナリーは、`JSON` オブジェクトとしてデシリアライズ可能な単一コマンド・ライン引数ストリングから、入力引数を受け取ります。また、シリアライズされた `JSON` の単一行ストリングとして `stdout` を使用して、結果を返す必要があります。
 

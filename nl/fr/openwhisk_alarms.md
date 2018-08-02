@@ -42,7 +42,7 @@ Le flux `/whisk.system/alarms/interval` configure le service Alarm pour exécute
 L'exemple ci-dessous crée un déclencheur qui est exécuté toutes les 2 minutes. Le déclencheur s'exécute dès que possible et cessera de s'exécuter le 31 janvier 2019, à 23:59:00 TUC.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -70,7 +70,7 @@ Le flux `/whisk.system/alarms/once` configure le service Alarm pour exécuter un
 Voici un exemple de création d'un déclencheur qui sera exécuté une seule fois le 25 décembre 2019 à 12:30:00 TUC. Une fois exécuté, le déclencheur sera supprimé ainsi que toutes les règles qui lui sont associées.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -103,7 +103,7 @@ Pour plus d'informations, voir http://crontab.org. Les chaînes suivantes sont d
 Voici un exemple de création d'un déclencheur qui s'exécute toutes les 2 minutes avec les valeurs `name` et `place` dans l'événement déclencheur. L'exécution du déclencheur ne démarrera pas avant le 1er janvier 2019, à 00:00:00 TUC et cessera le 31 janvier 2019, à 23:59:00 TUC.
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

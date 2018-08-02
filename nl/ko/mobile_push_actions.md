@@ -47,13 +47,13 @@ lastupdated: "2018-06-22"
 
 4. `/whisk.system/pushnotifications`로 패키지 바인딩을 작성하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. 패키지 바인딩이 있는지 확인하십시오.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ lastupdated: "2018-06-22"
 
 이전에 작성한 패키지 바인딩의 **sendMessage** 액션을 사용하여 푸시 알림을 전송하십시오. 반드시 `/myNamespace/myPush`를 패키지 이름으로 대체하십시오.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

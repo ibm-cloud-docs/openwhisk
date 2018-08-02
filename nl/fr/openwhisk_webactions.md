@@ -33,12 +33,12 @@ function main({name}) {
 
 Vous pouvez créer une  _action Web_ **hello** dans le package `demo` pour l'espace de nom `guest` en utilisant l'indicateur `--web` de l'interface de ligne de commande avec la valeur `true` ou `yes` :
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ Une extension de contenu est généralement nécessaire pour appeler une action 
 
 Les paramètres d'action sont protégés et traités comme non modifiables. Les paramètres sont finalisés automatiquement pour activer des actions Web.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ Sinon, utilisez l'indicateur `--web-secure` pour définir automatiquement l'anno
 
 Exemple d'utilisation de **--web-secure** :
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Exemple d'utilisation de **require-whisk-auth** :
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ Il est important de noter que le propriétaire de l'action Web détient tous les
 
 Pour désactiver l'appel d'une action Web via l'API Web (`https://openwhisk.bluemix.net/api/v1/web/`), attribuez la valeur `false` ou `no` à l'indicateur `--web` pour mettre à jour une action à l'aide de l'interface de ligne de commande.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk utilise l'infrastructure [Akka Http](http://doc.akka.io/docs/akka-http
 
 Les actions Web HTTP brutes sont activées via l'indicateur `--web` en utilisant la valeur `raw`.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 La désactivation des actions HTTP brutes est réalisée en attribuant la valeur `false` ou `no` à l'indicateur `--web`.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 Par exemple, enregistrez la fonction Node en tant que `decode.js` et exécutez les commandes suivantes :
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 Enregistrez la fonction dans le fichier `custom-options.js` et exécutez les commandes suivantes :
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

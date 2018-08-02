@@ -48,13 +48,13 @@ de Notificação push](https://console.bluemix.net/docs/services/mobilepush/inde
 
 4. Crie uma ligação de pacote com as `/whisk.system/pushnotifications`.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. Verifique se a ligação de pacote existe:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -133,7 +133,7 @@ Veja o exemplo a seguir para enviar uma notificação Push do pacote de notifica
 
 Envie uma notificação Push usando a ação **sendMessage** na ligação de pacote que você criou anteriormente. Certifique-se de substituir `/myNamespace/myPush` pelo nome de seu pacote.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

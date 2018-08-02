@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # アクションへのサービスのバインド
 {: #binding_services}
 
-[{{site.data.keyword.openwhisk}} CLI プラグイン](./bluemix_cli.html)を使用して、サービスをアクションまたはパッケージにバインドできます。 {{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` コマンドよって、実行時に {{site.data.keyword.Bluemix_notm}} サービス資格情報を {{site.data.keyword.openwhisk_short}} コードで使用できるようになります。
+[{{site.data.keyword.openwhisk}} CLI プラグイン](./bluemix_cli.html)を使用して、サービスをアクションまたはパッケージにバインドできます。 {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` コマンドよって、実行時に {{site.data.keyword.Bluemix_notm}} サービス資格情報を {{site.data.keyword.openwhisk_short}} コードで使用できるようになります。
 {: shortdesc}
 
-`ibmcloud wsk service bind` コマンドを、Cloud Foundry で使用可能な `cf bind-service` コマンドと混同しないようにしてください。
+`ibmcloud fn service bind` コマンドを、Cloud Foundry で使用可能な `cf bind-service` コマンドと混同しないようにしてください。
 {: tip}
 
 ## アクションまたはパッケージへのサービスのバインド
@@ -65,14 +65,14 @@ Credentials-2
 
 3. サービスをアクションにバインドします。
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption><code>ibmcloud wsk service bind</code> コマンド・コンポーネントの説明</caption>
+    <caption><code>ibmcloud fn service bind</code> コマンド・コンポーネントの説明</caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="アイデア・アイコン"/> <code>ibmcloud wsk service bind</code> コマンド・コンポーネントの説明</th>
+    <th colspan=2><img src="images/idea.png" alt="アイデア・アイコン"/> <code>ibmcloud fn service bind</code> コマンド・コンポーネントの説明</th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     例えば、{{site.data.keyword.ibmwatson}} Conversation サービスを `hello` というアクションにバインドするには、次のようにします。
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. 資格情報が正常にバインドされたことを確認します。サービスがバインドされた先のアクションでは、カスタム・フラグはサポートされませんが、デバッグ・フラグおよび詳細フラグはサポートされます。
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Credentials-2
 サービスをアクションまたはパッケージからアンバインドします。 サービスをアンバインドすると、`service bind` コマンドによって作成された既存のバインディングが削除されます。
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

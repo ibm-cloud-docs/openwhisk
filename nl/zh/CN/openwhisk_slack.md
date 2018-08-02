@@ -45,7 +45,7 @@ lastupdated: "2018-03-29"
 
 2. 使用 Slack 凭证、要发布到的通道和执行发布的用户名来创建包绑定。
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -54,7 +54,7 @@ lastupdated: "2018-03-29"
 
 3. 调用包绑定中的 **post** 操作，以将消息发布到 Slack 通道。
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

@@ -62,13 +62,13 @@ When the user creates a trigger from the CLI with the **--feed** parameter, the 
 
 For example, assume that the user creates a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Then, under the covers the system does something equivalent to the following command:
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ The feed action that is named *changes* takes these parameters, and is expected 
 
 For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action happens to talk directly to a *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
 
-A similar feed action protocol occurs for `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` and `ibmcloud wsk trigger get`.
+A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` and `ibmcloud fn trigger get`.
 
 ## Implementing feeds with Hooks
 

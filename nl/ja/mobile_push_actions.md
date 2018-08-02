@@ -47,13 +47,13 @@ lastupdated: "2018-06-22"
 
 4. `/whisk.system/pushnotifications` を使用してパッケージ・バインディングを作成します。
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. パッケージ・バインディングが存在することを確認します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ lastupdated: "2018-06-22"
 
 前に作成したパッケージ・バインディング内の **sendMessage** アクションを使用してプッシュ通知を送信します。 `/myNamespace/myPush` は実際のパッケージ名に置き換えてください。
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

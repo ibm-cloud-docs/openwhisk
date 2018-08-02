@@ -40,7 +40,7 @@ Para criar um acionador que reaja quando as mensagens forem postadas em uma inst
 |isBinaryKey|Booleano (Opcional - padrão=false)|Quando configurado para `true`, o provedor codifica o valor da chave como Base64 antes de passá-lo adiante como a carga útil do acionador.|
 |isBinaryValue|Booleano (Opcional - padrão=false)|Quando configurado para `true`, o provedor codifica o valor da mensagem como Base64 antes de passá-lo adiante como a carga útil do acionador.|
 
-Embora essa lista de parâmetros possa parecer assustadora, eles podem ser configurados automaticamente para você usando o comando do plug-in da CLI `ibmcloud wsk package refresh`.
+Embora essa lista de parâmetros possa parecer assustadora, eles podem ser configurados automaticamente para você usando o comando do plug-in da CLI `ibmcloud fn package refresh`.
 
 1. Crie uma instância do serviço {{site.data.keyword.messagehub}} em sua organização e espaço atuais que estejam sendo usados para o {{site.data.keyword.openwhisk}}.
 
@@ -48,7 +48,7 @@ Embora essa lista de parâmetros possa parecer assustadora, eles podem ser confi
 
 3. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço {{site.data.keyword.messagehub}} criada.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ Embora essa lista de parâmetros possa parecer assustadora, eles podem ser confi
 
 4. Liste os pacotes em seu namespace para mostrar que sua ligação de pacote agora está disponível.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ do {{site.data.keyword.messagehub}}.
 
 5. Agora tudo o que você precisa fazer é criar um acionador que é disparado quando novas mensagens são postadas em seu tópico do {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -90,13 +90,13 @@ o seu serviço {{site.data.keyword.messagehub}}. São necessárias as informaç�
 
 1. Crie uma ligação de pacote configurada para o seu serviço {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. Agora é possível criar um acionador usando seu novo pacote que é disparado quando novas mensagens são postadas em seu tópico do {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

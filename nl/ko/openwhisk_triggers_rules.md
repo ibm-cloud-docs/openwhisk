@@ -65,7 +65,7 @@ lastupdated: "2018-06-22"
 예를 들어, 사용자 위치 업데이트를 전송하도록 트리거를 작성하고 수동으로 트리거를 실행하십시오.
 1. 다음 명령을 입력하여 트리거를 작성하십시오.
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ lastupdated: "2018-06-22"
 
 2. 트리거 세트를 나열하여 트리거를 작성했는지 확인하십시오.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ lastupdated: "2018-06-22"
 
 3. 그런 다음 트리거 이름과 매개변수를 지정하여 트리거 이벤트를 실행하십시오.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ lastupdated: "2018-06-22"
 
 2. 트리거 및 액션이 있는지 확인하십시오.
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. 다음 단계는 규칙을 작성하는 것입니다. 룰은 작성 시에 사용되며, 이는 트리거의 활성화에 즉각적으로 응답할 수 있음을 의미합니다. 세 개의 매개변수는 _rule name_, _trigger name_ 및 _action name_입니다.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   룰을 사용하지 않도록 언제든 선택할 수 있습니다.
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. **locationUpdate** 트리거를 실행하십시오. 이벤트를 실행할 때마다 **hello** 액션이 이벤트 매개변수와 함께 호출됩니다.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ lastupdated: "2018-06-22"
 
 5. 최신 활성화를 확인하여 **hello** 액션이 호출되었는지 확인하십시오.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ lastupdated: "2018-06-22"
 
   이제 이전 명령 출력에 나열된 활성화 ID를 조회하십시오.
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -187,18 +187,18 @@ lastupdated: "2018-06-22"
 트리거 및 룰은 패키지에 속할 수 없습니다. 그러나 룰은 패키지에 속한 액션과
 연관될 수 있습니다. 예를 들어, 다음과 같습니다.
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 시퀀스에서 룰을 사용할 수도 있습니다. 예를 들어, `anotherRule` 룰에 의해 활성화된
 액션 시퀀스 `recordLocationAndHello`를 작성할 수 있습니다.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

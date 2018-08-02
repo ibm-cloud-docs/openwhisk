@@ -55,7 +55,7 @@ lastupdated: "2018-03-30"
 
 2. 1단계에서 작성된 `hello.js` 파일을 사용하여 웹 액션 **hello**를 작성하십시오. **참고:** 플래그 `--web true`를 추가하십시오.
   ```
-  ibmcloud wsk action create hello hello.js --web true
+  ibmcloud fn action create hello hello.js --web true
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-30"
 
 3. 응답 유형 `json`으로 기본 경로 `/hello`, 경로 `/world` 및 메소드 `get`의 API를 작성하십시오.
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type json
+  ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
@@ -119,13 +119,13 @@ lastupdated: "2018-03-30"
 
 2. 수정된 결과로 액션을 업데이트하십시오.
   ```
-  ibmcloud wsk action update hello hello.js --web true
+  ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
 3. `--response-type http` 플래그를 사용하여 API 응답 유형을 업데이트하십시오.
   ```
-  ibmcloud wsk api create /hello /world get hello --response-type http
+  ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
@@ -161,11 +161,11 @@ lastupdated: "2018-03-30"
 
 1. `/club`을 HTTP URL 기본 경로로, `books`를 리소스로, `{isbn}`을 ISBN(International Standard Book Number)을 사용하여 특정 서적을 식별하는 데 사용되는 경로 매개변수로 사용하여 북 클럽 **Book Club**에 대한 API를 작성하십시오.
   ```bash
-  ibmcloud wsk api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud wsk api create /club /books get getBooks                       --response-type http
-  ibmcloud wsk api create /club /books post postBooks                     --response-type http
-  ibmcloud wsk api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud wsk api create /club /books/{isbn} delete deleteBooks          --response-type http
+  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
+  ibmcloud fn api create /club /books get getBooks                       --response-type http
+  ibmcloud fn api create /club /books post postBooks                     --response-type http
+  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
+  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
   {: codeblock}
 
@@ -173,7 +173,7 @@ lastupdated: "2018-03-30"
 
 2. 다음 명령을 사용하여 노출된 모든 **Book Club** 액션을 나열하십시오.
   ```
-  ibmcloud wsk api list /club -f
+  ibmcloud fn api list /club -f
   ```
   {: pre}
 
@@ -252,13 +252,13 @@ lastupdated: "2018-03-30"
 
 1. 입력으로서 파일을 사용하여 API를 재작성하기 위한 기반으로 사용될 수 있는 파일로 이름이 **Book Club**인 API를 내보내십시오.
   ```
-  ibmcloud wsk api get "Book Club" > club-swagger.json
+  ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
 2. 먼저 다음 명령으로 공통 기본 경로 아래의 노출된 모든 URL을 삭제하여 Swagger 파일을 테스트하십시오.
   ```
-  ibmcloud wsk api delete /club
+  ibmcloud fn api delete /club
   ```
   {: pre}
 
@@ -276,7 +276,7 @@ ok: deleted API /club
 
 1. 이제 **club-swagger.json** 파일을 사용하여 `Book Club`으로 이름 지정된 API를 복원하십시오.
   ```
-  ibmcloud wsk api create --config-file club-swagger.json
+  ibmcloud fn api create --config-file club-swagger.json
   ```
   {: pre}
 
@@ -297,7 +297,7 @@ ok: deleted API /club
 
 2. **Book Club** API가 재작성되었는지 확인하십시오.
   ```
-  ibmcloud wsk api list /club
+  ibmcloud fn api list /club
   ```
   {: pre}
 

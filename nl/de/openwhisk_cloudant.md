@@ -45,7 +45,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
   Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
   ```
-  ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes \
   --param dbname testdb \
   --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
@@ -60,7 +60,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
 2. Starten Sie das Polling auf Aktivierungen, um einen Überblick über die aktuellen Abläufe zu erhalten.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
 4. Erstellen Sie eine Regel, um die Aktion **showCloudantChange** mit dem zuvor erstellten Auslöser zu verbinden:
   ```
-  ibmcloud wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ibmcloud fn rule update aCloudantRule myCloudantTrigger showCloudantChange
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ Erstellen Sie eine JSON-Dokumentdatei `design_doc.json` mit der folgenden Filter
 
 Erstellen Sie ein Entwurfsdokument für die Datenbank mit der folgenden Filterfunktion:
 ```
-ibmcloud wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 {: pre}
 
@@ -161,20 +161,20 @@ function main(doc){
 
 Erstellen Sie die Aktion, um das Dokument aus {{site.data.keyword.cloudant_short_notm}} zu verarbeiten:
 ```
-ibmcloud wsk action create myAction myAction.js
+ibmcloud fn action create myAction myAction.js
 ```
 {: pre}
 
 Zum Lesen eines Dokuments aus der Datenbank können Sie die Aktion `read` aus dem {{site.data.keyword.cloudant_short_notm}}-Paket verwenden.
 Die Aktion `read` kann mit `myAction` zusammengesetzt werden, um eine Aktionsfolge zu erstellen.
 ```
-ibmcloud wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
+ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
 Die Aktion `sequenceAction` kann in einer Regel verwendet werden, mit der die Aktion bei neuen {{site.data.keyword.cloudant_short_notm}}-Auslöserereignissen aktiviert wird.
 ```
-ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
+ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
@@ -182,12 +182,12 @@ ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
 
 Sie können Auslöser, die zuvor mit `includeDoc` erstellt wurden, erneut erstellen. Führen Sie die folgenden Schritte aus, um den Auslöser erneut zu erstellen:
 ```
-ibmcloud wsk trigger delete myCloudantTrigger
+ibmcloud fn trigger delete myCloudantTrigger
 ```
 {: pre}
 
 ```
-ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
+ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
 ```
 {: pre}
 

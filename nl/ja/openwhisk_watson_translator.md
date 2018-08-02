@@ -35,7 +35,7 @@ lastupdated: "2018-03-26"
 
 2. 名前空間でパッケージを最新表示します。 最新表示により、作成した Watson サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -48,7 +48,7 @@ lastupdated: "2018-03-26"
 
   パッケージをリストして、パッケージ・バインディングが作成されたことを確認します。
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -65,7 +65,7 @@ lastupdated: "2018-03-26"
 
 - Watson Translator サービス用に構成されるパッケージ・バインディングを作成します。
   ```
-  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud fn package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
 
@@ -82,7 +82,7 @@ lastupdated: "2018-03-26"
 
 パッケージ・バインディング内の **translator** アクションを呼び出して、テキストを英語からフランス語に翻訳します。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/translator \
+ibmcloud fn action invoke myWatsonTranslator/translator \
 --blocking --result \
 --param payload "Blue skies ahead" --param translateFrom "en" \
 --param translateTo "fr"
@@ -107,7 +107,7 @@ ibmcloud wsk action invoke myWatsonTranslator/translator \
 
 パッケージ・バインディング内の **languageId** アクションを呼び出して、言語を識別します。
 ```
-ibmcloud wsk action invoke myWatsonTranslator/languageId \
+ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
 --param payload "Ciel bleu a venir"
 ```

@@ -42,7 +42,7 @@ Il feed `/whisk.system/alarms/interval` configura il servizio Allarme per attiva
 Il seguente esempio crea un trigger che viene attivato una volta ogni 2 minuti. Il trigger viene attivato il prima possibile e terminerà l'attivazione il 31 gennaio 2019, 23:59:00 UTC.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -71,7 +71,7 @@ Il feed `/whisk.system/alarms/once` configura il servizio Allarme per attivare u
 Di seguito è riportato un esempio di creazione di un trigger che verrà attivato una volta il 25 dicembre 2019, 12:30:00 UTC. Dopo l'attivazione, il trigger verrà eliminato insieme a tutte le sue regole associate.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -105,7 +105,7 @@ Di seguito è riportato un esempio di creazione di un trigger che viene attivato
 1° gennaio 2019, 00:00:00 UTC e terminerà l'attivazione il 31 gennaio 2019, 23:59:00 UTC.
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

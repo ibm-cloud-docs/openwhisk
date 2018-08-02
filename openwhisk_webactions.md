@@ -33,12 +33,12 @@ function main({name}) {
 
 You can create a _web action_ **hello**  in the package `demo` for the Namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ A content extension is usually necessary to invoke a web action. The absence of 
 
 Action parameters are protected and treated as immutable. Parameters are automatically finalized to enable web actions.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ Alternatively, use the `--web-secure` flag to automatically set the `require-whi
 
 Example using **--web-secure**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Example using **require-whisk-auth**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ It is important to note that the owner of the web action owns all of the activat
 
 To disable a web action from being invoked via web API (`https://openwhisk.bluemix.net/api/v1/web/`), pass a value of `false` or `no` to the `--web` flag to update an action with the CLI.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/h
 
 Raw HTTP web actions are enabled through the `--web` flag by using a value of `raw`.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 Disabling raw HTTP can be accomplished by passing a value of `false` or `no` to the `--web` flag.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 As an example, save the Node function as `decode.js` and execute the following commands:
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 Save the function to `custom-options.js` and execute the following commands:
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

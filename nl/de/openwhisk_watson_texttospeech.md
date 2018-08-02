@@ -36,7 +36,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Watson-Serviceinstanz, die Sie erstellt haben.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 
   Listen Sie die Pakete auf, um zu ermitteln, ob die Paketbindung erstellt wurde:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ Wenn Sie {{site.data.keyword.openwhisk_short}} nicht in {{site.data.keyword.Blue
 
 Erstellen Sie eine Paketbindung, die für Ihren Watson-Service 'Text to Speech' konfiguriert ist.
 ```
-ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -83,7 +83,7 @@ Die Aktion `/whisk.system/watson-textToSpeech/textToSpeech` wandelt Text in eine
 
 Rufen Sie die Aktion **textToSpeech** in Ihrer Paketbindung auf, um den Text umzusetzen.
 ```
-ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

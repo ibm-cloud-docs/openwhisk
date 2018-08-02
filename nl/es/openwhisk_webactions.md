@@ -33,12 +33,12 @@ function main({name}) {
 
 Puede crear una _acción web_ **hello** en el paquete `demo` para el espacio de nombres `guest` utilizando el distintivo `--web` de la CLI con el valor `true` o `yes`:
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ Generalmente se necesita una extensión de contenido cuando se invoca una acció
 
 Los parámetros de la acción están protegidos y se tratan como inalterables. Los parámetros finalizan automáticamente para habilitar las acciones web.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ Como alternativa, puede utilizar el distintivo `--web-secure` para establecer au
 
 Ejemplo utilizando **--web-secure**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Ejemplo utilizando **require-whisk-auth**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ Es importante tener en cuenta que el propietario de la acción web es el propiet
 
 Para inhabilitar la invocación de una acción web mediante la API web (`https://openwhisk.bluemix.net/api/v1/web/`), pase el valor `false` o `no` al distintivo `--web` para actualizar una acción con la CLI.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk utiliza la infraestructura [Akka Http](http://doc.akka.io/docs/akka-ht
 
 Las acciones web HTTP sin procesar se habilitan asignando al distintivo `--web` el valor `raw`.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 La inhabilitación de HTTP sin procesar se consigue pasando el valor `false` o `no` al distintivo `--web`.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 Como ejemplo, guarde la función Node como `decode.js` y ejecute los mandatos siguientes:
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -528,7 +528,7 @@ function main(params) {
 
 Guarde la función en `custom-options.js` y ejecute los mandatos siguientes:
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

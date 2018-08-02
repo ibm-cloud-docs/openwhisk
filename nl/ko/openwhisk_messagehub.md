@@ -40,7 +40,7 @@ lastupdated: "2018-06-22"
 |isBinaryKey|부울(선택사항 - 기본값=false)|`true`로 설정된 경우, 제공자는 키 값을 트리거 페이로드로서 전달하기 전에 Base64로 인코딩합니다.|
 |isBinaryValue|부울(선택사항 - 기본값=false)|`true`로 설정된 경우, 제공자는 메시지 값을 트리거 페이로드로서 전달하기 전에 Base64로 인코딩합니다.|
 
-이 매개변수 목록이 어려워보일 수 있지만, 이는 `ibmcloud wsk package refresh` CLI 플러그인 명령을 사용하여 자동으로 설정될 수 있습니다.
+이 매개변수 목록이 어려워보일 수 있지만, 이는 `ibmcloud fn package refresh` CLI 플러그인 명령을 사용하여 자동으로 설정될 수 있습니다.
 
 1. {{site.data.keyword.openwhisk}}에 사용 중인 현재 조직 및 영역 아래에서 {{site.data.keyword.messagehub}} 서비스의 인스턴스를 작성하십시오.
 
@@ -48,7 +48,7 @@ lastupdated: "2018-06-22"
 
 3. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치기를 수행하면 작성된 {{site.data.keyword.messagehub}} 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ lastupdated: "2018-06-22"
 
 4. 네임스페이스에 패키지를 나열하여 패키지 바인딩이 이제 사용 가능함을 표시하십시오.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ lastupdated: "2018-06-22"
 
 5. 이제 새 메시지가 {{site.data.keyword.messagehub}} 주제에 게시될 때 실행되는 트리거를 작성하기만 하면 됩니다.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ lastupdated: "2018-06-22"
 
 1. {{site.data.keyword.messagehub}} 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. 이제 새 메시지가 {{site.data.keyword.messagehub}} 주제에 게시될 때 실행되는 새 패키지를 사용하여 트리거를 작성할 수 있습니다.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

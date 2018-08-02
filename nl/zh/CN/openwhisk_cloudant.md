@@ -46,7 +46,7 @@ lastupdated: "2018-06-22"
 
   确保将 `/_/myCloudant` 替换为您的包名。
   ```
-  ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes \
+  ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes \
   --param dbname testdb \
   --param filter "mailbox/by_status" \
   --param query_params '{"status":"new"}'
@@ -61,7 +61,7 @@ ok: created trigger feed myCloudantTrigger
 
 2. 开始对激活进行轮询，以清楚地了解发生的情况。
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ ok: created trigger feed myCloudantTrigger
 
 4. 创建规则，用于将 **showCloudantChange** 操作连接到先前创建的触发器：
   ```
-  ibmcloud wsk rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ibmcloud fn rule update aCloudantRule myCloudantTrigger showCloudantChange
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ ok: created trigger feed myCloudantTrigger
 
 在数据库上创建设计文档并包含以下过滤函数：
 ```
-ibmcloud wsk action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
 ```
 {: pre}
 
@@ -161,20 +161,20 @@ function main(doc){
 
 创建用于处理 {{site.data.keyword.cloudant_short_notm}} 中文档的操作：
 ```
-ibmcloud wsk action create myAction myAction.js
+ibmcloud fn action create myAction myAction.js
 ```
 {: pre}
 
 要从数据库中读取文档，可以使用 {{site.data.keyword.cloudant_short_notm}} 包中的 `read` 操作。
 `read` 操作可与 `myAction` 一起编写以创建操作序列。
 ```
-ibmcloud wsk action create sequenceAction --sequence /_/myCloudant/read,myAction
+ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
 `sequenceAction` 操作可以在对新 {{site.data.keyword.cloudant_short_notm}} 触发器事件激活该操作的规则中使用。
 ```
-ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
+ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
 ```
 {: pre}
 
@@ -182,12 +182,12 @@ ibmcloud wsk rule create myRule myCloudantTrigger sequenceAction
 
 您可以重新创建之前使用 `includeDoc` 创建的触发器。执行以下步骤来重新创建触发器：
 ```
-ibmcloud wsk trigger delete myCloudantTrigger
+ibmcloud fn trigger delete myCloudantTrigger
 ```
 {: pre}
 
 ```
-ibmcloud wsk trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
+ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
 ```
 {: pre}
 

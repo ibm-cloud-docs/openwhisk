@@ -23,7 +23,7 @@ lastupdated: "2018-04-12"
 
 下面是针对 `echo` 操作的一组注释样本，此操作会返回未加修改的输入自变量（例如，`function main(args) { return args }`）。此操作可用于对输入参数进行日志记录（例如，作为某个序列或规则的一部分）。
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

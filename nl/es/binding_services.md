@@ -15,7 +15,7 @@ lastupdated: "2018-06-21"
 # Enlace de servicios a acciones
 {: #binding_services}
 
-Puede utilizar el [plugin de CLI de {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para enlazar un servicio a una acción o paquete. El mandato `ibmcloud wsk service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
+Puede utilizar el [plugin de CLI de {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para enlazar un servicio a una acción o paquete. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
 {: shortdesc}
 
 No confunda el mandato `service bind` con el mandato `cf bind-service`, que está disponible en Cloud Foundry.
@@ -65,14 +65,14 @@ Credentials-2
 
 3. Enlace el servicio a una acción.
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>Visión general de los componentes del mandato <code>ibmcloud wsk service bind</code></caption>
+    <caption>Visión general de los componentes del mandato <code>ibmcloud fn service bind</code></caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icono de idea"/> Visión general de los componentes del mandato <code>ibmcloud wsk service bind</code></th>
+    <th colspan=2><img src="images/idea.png" alt="Icono de idea"/> Visión general de los componentes del mandato <code>ibmcloud fn service bind</code></th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ Credentials-2
 
     Por ejemplo, para enlazar un servicio de conversación de {{site.data.keyword.ibmwatson}} a una acción denominada `hello`:
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ Credentials-2
 
 4. Verifique que las credenciales se han enlazado correctamente. La acción a la que el servicio está enlazada no admite distintivos personalizados, pero sí admite los distintivos de depuración y de salida detallada.
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ Para obtener más información sobre cómo pasar parámetros a una acción o a u
 Puede desenlazar un servicio de una acción o paquete. Al desenlazar un servicio, se eliminan los enlaces existentes creados por el mandato `service bind`.
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

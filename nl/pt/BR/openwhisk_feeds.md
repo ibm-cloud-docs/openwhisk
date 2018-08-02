@@ -65,13 +65,13 @@ Quando o usuário cria um acionador por meio da CLI com o parâmetro **--feed**,
 
 Por exemplo, suponha que o usuário crie uma ligação **mycloudant** para o pacote `cloudant` com um nome de usuário e senha como parâmetros ligados. Quando o usuário emite o comando a seguir na CLI:
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Então, nos bastidores, o sistema faz algo equivalente ao comando a seguir:
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -79,7 +79,7 @@ A ação de feed nomeada *changes* toma esses parâmetros e deve executar qualqu
 
 Para o feed {{site.data.keyword.cloudant_short_notm}} *changes*, a ação conversa diretamente com um serviço *acionador do {{site.data.keyword.cloudant_short_notm}}* que é implementado com uma arquitetura baseada em conexão.
 
-Um protocolo de ação de feed semelhante ocorre para `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` e `ibmcloud trigger get`.
+Um protocolo de ação de feed semelhante ocorre para `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` e `ibmcloud trigger get`.
 
 ## Implementando feeds com ganchos
 

@@ -40,7 +40,7 @@ Para crear un desencadenante que reaccione cuando se publican mensajes en una in
 |isBinaryKey|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor de la clave como Base64 antes de pasarlo como carga útil del desencadenante.|
 |isBinaryValue|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor del mensaje como Base64 antes de pasarlo como carga útil del desencadenante.|
 
-Aunque esta lista de parámetros puede parecer larga, se pueden establecer automáticamente mediante el mandato de plug-in de CLI `ibmcloud wsk package refresh`.
+Aunque esta lista de parámetros puede parecer larga, se pueden establecer automáticamente mediante el mandato de plug-in de CLI `ibmcloud fn package refresh`.
 
 1. Cree una instancia del servicio {{site.data.keyword.messagehub}} bajo su organización actual y el espacio que utiliza para {{site.data.keyword.openwhisk}}.
 
@@ -48,7 +48,7 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
 
 3. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia del servicio {{site.data.keyword.messagehub}} que ha creado.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
 
 4. Obtenga una lista de los paquetes de su espacio de nombres para mostrar que el enlace de paquetes ya está disponible.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
 
 5. Ahora todo lo que tiene que hacer es crear un desencadenante que se active cuando se publiquen mensajes nuevos en el tema {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keywo
 
 1. Cree un enlace de paquete configurado para el servicio de {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. Ahora puede crear un desencadenante utilizando el nuevo paquete que se activará cuando se publiquen mensajes nuevos en el tema {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

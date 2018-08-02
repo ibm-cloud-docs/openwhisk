@@ -43,7 +43,7 @@ Sie können die {{site.data.keyword.Bluemix_notm}}-CLI herunterladen, installier
   Sie können den Befehl `ibmcloud api` verwenden, um den {{site.data.keyword.Bluemix_notm}}-API-Endpunkt explizit festzulegen. Zum Anzeigen der aktuellen Einstellung für den API-Endpunkt verwenden Sie den Befehl `ibmcloud target`.
  {: tip}
 
-3. Der Befehl `ibmcloud login` fordert Sie zur Eingabe von Informationen auf, wie zum Beispiel die Organisation, den Bereich und das Kennwort, falls diese nicht angegeben wurden. 
+3. Der Befehl `ibmcloud login` fordert Sie zur Eingabe von Informationen auf, wie zum Beispiel die Organisation, den Bereich und das Kennwort, falls diese nicht angegeben wurden.
 
   Sie können bei der Anmeldung die Organisation und den Bereich angeben, um die Eingabeaufforderungen zu überspringen. Verwenden Sie die folgenden Flags: `ibmcloud login -o <ORG> -s <SPACE>`.
   {: tip}
@@ -91,7 +91,7 @@ Sie können das {{site.data.keyword.openwhisk_short}}-Plug-in herunterladen und 
 
 3. Führen Sie einen blockierenden (synchronen) Aufruf von `echo` aus. Übergeben Sie `hello` als Argument.
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +117,7 @@ Sie können die {{site.data.keyword.openwhisk_short}}-CLI für folgende Aktivit�
 * Sie können sich informieren, wie Aktionen in Paketen gebündelt und externe Ereignisquellen konfiguriert werden. Siehe [Pakete verwenden und erstellen](./openwhisk_packages.html).
 * Sie können den Katalog der Pakete durchsuchen und Ihre Anwendungen durch externe Services wie zum Beispiel eine [{{site.data.keyword.cloudant}}-Ereignisquelle](./openwhisk_cloudant.html) erweitern.
 
-Zum Auflisten von Befehlen für das {{site.data.keyword.openwhisk_short}}-Plug-in führen Sie den Befehl `ibmcloud wsk` ohne Argumente aus.
+Zum Auflisten von Befehlen für das {{site.data.keyword.openwhisk_short}}-Plug-in führen Sie den Befehl `ibmcloud fn` ohne Argumente aus.
 {: tip}
 
 ## Services über Aktionen verwenden
@@ -163,24 +163,24 @@ Mit der Einführung des {{site.data.keyword.openwhisk_short}}-CLI-Plug-ins wird 
 ### Befehlssyntax
 {: #command_syntax}
 
-Alle `wsk`-Befehle mit Ausnahme des Befehls `wsk bluemix login`, der nicht mehr erforderlich ist, funktionieren auf die gleiche Weise wie bei Verwendung des Befehls `ibmcloud wsk`. Alle Befehlsoptionen und -argumente sind gleich.
+Alle `wsk`-Befehle mit Ausnahme des Befehls `wsk bluemix login`, der nicht mehr erforderlich ist, funktionieren auf die gleiche Weise wie bei Verwendung des Befehls `ibmcloud fn`. Alle Befehlsoptionen und -argumente sind gleich.
 
 ### API-Authentifizierung und API-Host
 {: #api_authentication}
 
-Für die OpenWhisk-Befehlszeilenschnittstelle (CLI) müssen Sie den Authentifizierungs-API-Schlüssel und den API-Host konfigurieren. Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in brauchen Sie den API-Schlüssel und den API-Host nicht explizit zu konfigurieren. Stattdessen können Sie sich mit dem Befehl `ibmcloud login` anmelden und Ihre Region und Ihren Namensbereich mit dem Befehl `ibmcloud target` als Ziel festlegen. Nach dem Anmelden beginnen alle Befehle mit `ibmcloud wsk`.
+Für die OpenWhisk-Befehlszeilenschnittstelle (CLI) müssen Sie den Authentifizierungs-API-Schlüssel und den API-Host konfigurieren. Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in brauchen Sie den API-Schlüssel und den API-Host nicht explizit zu konfigurieren. Stattdessen können Sie sich mit dem Befehl `ibmcloud login` anmelden und Ihre Region und Ihren Namensbereich mit dem Befehl `ibmcloud target` als Ziel festlegen. Nach dem Anmelden beginnen alle Befehle mit `ibmcloud fn`.
 
 Wenn Sie den Authentifizierungs-API-Schlüssel für {{site.data.keyword.openwhisk_short}} in einem externen HTTP-Client wie cURL oder Postman verwenden müssen, können Sie ihn mit den folgenden Befehlen abrufen:
 
 Führen Sie zum Abrufen des aktuellen API-Schlüssels den folgenden Befehl aus:
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 Führen Sie zum Abrufen des aktuellen API-Hosts den folgenden Befehl aus:
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -190,12 +190,12 @@ Der API-Schlüssel ist jeweils für die Region, die Organisation und den Bereich
 ### API-Gateway-Authentifizierung
 {: #apigw_authentication}
 
-Für die OpenWhisk-Befehlszeile musste der Befehl `wsk bluemix login` ausgeführt werden, sodass die API-Gateway-Berechtigung für das Management Ihrer APIs mit dem Befehl `wsk api` konfiguriert werden konnte. Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in ist es nicht erforderlich, den Befehl `wsk bluemix login` auszuführen. Wenn Sie stattdessen den Befehl `ibmcloud login` verwenden, um sich bei {{site.data.keyword.Bluemix_notm}} anzumelden, verwendet das {{site.data.keyword.openwhisk}}-Plug-in automatisch die Informationen zu Ihrer aktuellen Anmeldung und Ihrem aktuellen Bereich. Jetzt können Sie Ihre APIs mit dem Befehl `ibmcloud wsk api` verwalten.
+Für die OpenWhisk-Befehlszeile musste der Befehl `wsk bluemix login` ausgeführt werden, sodass die API-Gateway-Berechtigung für das Management Ihrer APIs mit dem Befehl `wsk api` konfiguriert werden konnte. Mit dem {{site.data.keyword.openwhisk_short}}-CLI-Plug-in ist es nicht erforderlich, den Befehl `wsk bluemix login` auszuführen. Wenn Sie stattdessen den Befehl `ibmcloud login` verwenden, um sich bei {{site.data.keyword.Bluemix_notm}} anzumelden, verwendet das {{site.data.keyword.openwhisk}}-Plug-in automatisch die Informationen zu Ihrer aktuellen Anmeldung und Ihrem aktuellen Bereich. Jetzt können Sie Ihre APIs mit dem Befehl `ibmcloud fn api` verwalten.
 
 ### Bereitstellungsscripts migrieren
 {: #migrating_deploy_scripts}
 
-Wenn Sie Scripts haben, die die OpenWhisk-Befehlszeilenschnittstelle mit dem Binärprogramm `wsk` verwenden, funktionieren alle Befehle auf die gleiche Weise wie bei Verwendung des Befehls `ibmcloud wsk`. Sie können Ihre Scripts so ändern, dass sie das {{site.data.keyword.Bluemix_notm}}-CLI-Plug-in verwenden, oder einen Alias oder Wrapper erstellen, sodass die aktuellen Befehle, die `wsk` verwenden, in `ibmcloud wsk` übersetzt werden. Die Befehle `ibmcloud login` und `ibmcloud target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle arbeiten im unbeaufsichtigten Modus. Beim unbeaufsichtigten Modus können Sie Ihre Umgebung konfigurieren, bevor Sie `ibmcloud wsk`-Befehle ausführen, um Ihre {{site.data.keyword.openwhisk_short}}-Entitäten bereitzustellen und zu verwalten.
+Wenn Sie Scripts haben, die die OpenWhisk-Befehlszeilenschnittstelle mit dem Binärprogramm `wsk` verwenden, funktionieren alle Befehle auf die gleiche Weise wie bei Verwendung des Befehls `ibmcloud fn`. Sie können Ihre Scripts so ändern, dass sie das {{site.data.keyword.Bluemix_notm}}-CLI-Plug-in verwenden, oder einen Alias oder Wrapper erstellen, sodass die aktuellen Befehle, die `wsk` verwenden, in `ibmcloud fn` übersetzt werden. Die Befehle `ibmcloud login` und `ibmcloud target` in der {{site.data.keyword.Bluemix_notm}}-Befehlszeilenschnittstelle arbeiten im unbeaufsichtigten Modus. Beim unbeaufsichtigten Modus können Sie Ihre Umgebung konfigurieren, bevor Sie `ibmcloud fn`-Befehle ausführen, um Ihre {{site.data.keyword.openwhisk_short}}-Entitäten bereitzustellen und zu verwalten.
 
 ## Versionsprotokoll
 {: #version_history}

@@ -60,7 +60,7 @@ lastupdated: "2018-06-22"
 
 2. 從下列 JavaScript 函數建立動作。在此範例中，動作稱為 **hello**。
   ```
-  ibmcloud wsk action create hello hello.js
+  ibmcloud fn action create hello hello.js
   ```
   {: pre}
 
@@ -74,7 +74,7 @@ lastupdated: "2018-06-22"
 
 3. 列出您已建立的動作：
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 
@@ -91,7 +91,7 @@ lastupdated: "2018-06-22"
 
   這個範例使用區塊處理參數 `--blocking`：
   ```
-  ibmcloud wsk action invoke --blocking hello
+  ibmcloud fn action invoke --blocking hello
   ```
   {: pre}
 
@@ -123,7 +123,7 @@ lastupdated: "2018-06-22"
 
   請參閱下列範例：
   ```
-  ibmcloud wsk action invoke hello
+  ibmcloud fn action invoke hello
   ```
   {: pre}
 
@@ -135,7 +135,7 @@ lastupdated: "2018-06-22"
 
   既然您已知道啟動 ID，即可指定它來取得動作結果：
   ```
-  ibmcloud wsk activation result 6bf1f670ee614a7eb5af3c9fde813043
+  ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
   ```
   {: pre}
 
@@ -151,7 +151,7 @@ lastupdated: "2018-06-22"
 
   **列出啟動：**
   ```
-  ibmcloud wsk activation list
+  ibmcloud fn activation list
   ```
   {: pre}
 
@@ -192,13 +192,13 @@ function main(args) {
 
   建立稱為 **asyncAction** 的動作：
   ```
-  ibmcloud wsk action create asyncAction asyncAction.js
+  ibmcloud fn action create asyncAction asyncAction.js
   ```
   {: pre}
 
   呼叫動作：
   ```
-  ibmcloud wsk action invoke --result asyncAction
+  ibmcloud fn action invoke --result asyncAction
   ```
   {: pre}
 
@@ -216,7 +216,7 @@ function main(args) {
 
   若要這麼做，請先列出可取得啟動 ID 的動作：
   ```
-  ibmcloud wsk activation list --limit 1 asyncAction
+  ibmcloud fn activation list --limit 1 asyncAction
   ```
   {: pre}
 
@@ -229,7 +229,7 @@ function main(args) {
 
   現在使用啟動 ID 來取得啟動日誌資訊：
   ```
-  ibmcloud wsk activation get b066ca51e68c4d3382df2d8033265db0
+  ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
   ```
   {: pre}
 
@@ -288,13 +288,13 @@ function main(args) {
 
   建立名為 **apod** 的動作：
   ```
-  ibmcloud wsk action create apod apod.js
+  ibmcloud fn action create apod apod.js
   ```
   {: pre}
 
   呼叫 **apod** 動作：
   ```
-  ibmcloud wsk action invoke --result apod
+  ibmcloud fn action invoke --result apod
   ```
   {: pre}
 
@@ -363,7 +363,7 @@ exports.main = myAction;
 
 3. 建立動作：
   ```
-  ibmcloud wsk action create packageAction --kind nodejs:6 action.zip
+  ibmcloud fn action create packageAction --kind nodejs:6 action.zip
   ```
   {: pre}
 
@@ -371,7 +371,7 @@ exports.main = myAction;
 
 4. 您可以呼叫任何其他動作：
   ```
-  ibmcloud wsk action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+  ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
   ```
   {: pre}
 
@@ -405,7 +405,7 @@ exports.main = myAction;
   "main": "dist/bundle.js",
   "scripts": {
     "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud wsk action update my-action dist/bundle.js --kind nodejs:8"
+    "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
   },
   "dependencies": {
     "left-pad" : "1.1.3"
@@ -478,7 +478,7 @@ global.main = main;
     使用 CLI：
   
   ```
-  ibmcloud wsk action update my-action dist/bundle.js
+  ibmcloud fn action update my-action dist/bundle.js
   ```
   {: pre}
 
@@ -493,7 +493,7 @@ global.main = main;
 
 1. 顯示 `/whisk.system/utils` 套件中的動作。
   ```
-  ibmcloud wsk package get --summary /whisk.system/utils
+  ibmcloud fn package get --summary /whisk.system/utils
   ```
   {: pre}
 
@@ -513,7 +513,7 @@ global.main = main;
 
 2. 建立動作序列，以將某個動作的結果當作下一個動作的引數來傳遞。
   ```
-  ibmcloud wsk action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
@@ -521,7 +521,7 @@ global.main = main;
 
 3. 呼叫動作：
   ```
-  ibmcloud wsk action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+  ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
   ```
   {: pre}
 
@@ -565,7 +565,7 @@ Python 動作一律會使用某個字典，並產生一個字典。動作的進�
 
 您可以從此函數建立稱為 **helloPython** 的 {{site.data.keyword.openwhisk_short}} 動作，如下所示：
 ```
-ibmcloud wsk action create helloPython hello.py
+ibmcloud fn action create helloPython hello.py
 ```
 {: pre}
 
@@ -574,7 +574,7 @@ CLI 會從原始檔副檔名自動推斷動作類型。對於 `.py` 原始檔，
 
 Python 動作與 JavaScript 動作的動作呼叫相同：
 ```
-ibmcloud wsk action invoke --result helloPython --param name World
+ibmcloud fn action invoke --result helloPython --param name World
 ```
 {: pre}
 
@@ -599,7 +599,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 然後建立動作：
 ```bash
-ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
+ibmcloud fn action create helloPython --kind python:3 helloPython.zip
 ```
 {: pre}
 
@@ -634,7 +634,7 @@ ibmcloud wsk action create helloPython --kind python:3 helloPython.zip
 
 3. 建立動作 **helloPython**：
     ```
-    ibmcloud wsk action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
@@ -663,11 +663,11 @@ function main(array $args) : array
 ```
 {: codeblock}
 
-PHP 動作一律使用聯合陣列，並傳回聯合陣列。動作的進入方法依預設是 `main`，但可以在使用 `--main` 來建立具有 `ibmcloud wsk` CLI 以及任何其他動作類型的動作時明確指定。
+PHP 動作一律使用聯合陣列，並傳回聯合陣列。動作的進入方法依預設是 `main`，但可以在使用 `--main` 來建立具有 `ibmcloud fn` CLI 以及任何其他動作類型的動作時明確指定。
 
 您可以從此函數建立稱為 **helloPHP** 的 {{site.data.keyword.openwhisk_short}} 動作，如下所示：
 ```
-ibmcloud wsk action create helloPHP hello.php
+ibmcloud fn action create helloPHP hello.php
 ```
 {: pre}
 
@@ -675,7 +675,7 @@ CLI 會從原始檔副檔名自動推斷動作類型。對於 `.php` 原始檔�
 
 PHP 動作與 JavaScript 動作的動作呼叫相同：
 ```
-ibmcloud wsk action invoke --result helloPHP --param name World
+ibmcloud fn action invoke --result helloPHP --param name World
 ```
 {: pre}
 
@@ -700,7 +700,7 @@ zip -r helloPHP.zip index.php helper.php
 
 然後，建立 **helloPHP** 動作：
 ```bash
-ibmcloud wsk action create helloPHP --kind php:7.1 helloPHP.zip
+ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
 ```
 {: pre}
 
@@ -733,7 +733,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 您可以從此函數建立稱為 **helloSwift** 的 OpenWhisk 動作，如下所示：
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:3.1.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
 ```
 {: pre}
 
@@ -771,7 +771,7 @@ func main(completion: (Output?, Error?) -> Void) -> Void {
 
 您可以從此函數建立稱為 `helloSwift` 的 OpenWhisk 動作，如下所示：
 ```
-ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
+ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
 ```
 {: pre}
 
@@ -779,7 +779,7 @@ ibmcloud wsk action create helloSwift hello.swift --kind swift:4.1
 
 Swift 動作與 JavaScript 動作的動作呼叫相同：
 ```
-ibmcloud wsk action invoke --result helloSwift --param name World
+ibmcloud fn action invoke --result helloSwift --param name World
 ```
 {: pre}
 
@@ -947,19 +947,19 @@ actions/
 
 - 使用動作名稱 **helloSwifty**，將它上傳至 OpenWhisk。針對 Swift 3，使用 `swift:3.1.1` 類型
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
 
   針對 Swift 4，使用 `swift:3.1.1` 類型：
   ```
-  ibmcloud wsk action update helloSwiftly build/hello.zip --kind swift:4.1
+  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
   ```
   {: pre}
 
 - 若要檢查速度快多少，請執行下列指令：
   ```
-  ibmcloud wsk action invoke helloSwiftly --blocking
+  ibmcloud fn action invoke helloSwiftly --blocking
   ```
   {: pre}
 
@@ -1037,7 +1037,7 @@ jar cvf hello.jar Hello.class
 
 您可以從此 JAR 檔建立稱為 **helloJava** 的 {{site.data.keyword.openwhisk_short}} 動作，如下所示：
 ```
-ibmcloud wsk action create helloJava hello.jar --main Hello
+ibmcloud fn action create helloJava hello.jar --main Hello
 ```
 {: pre}
 
@@ -1049,7 +1049,7 @@ ibmcloud wsk action create helloJava hello.jar --main Hello
 
 對於 Java 動作，動作呼叫是相同的，因為其適用於 Swift 及 JavaScript 動作：
 ```
-ibmcloud wsk action invoke --result helloJava --param name World
+ibmcloud fn action invoke --result helloJava --param name World
 ```
 {: pre}
 
@@ -1074,7 +1074,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
 1. 下載 Docker 架構。您可以使用 CLI 進行下載及安裝，如下所示：
   ```
-  ibmcloud wsk sdk install docker
+  ibmcloud fn sdk install docker
   ```
   {: pre}
 
@@ -1133,13 +1133,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   Docker 容器現在可以作為 {{site.data.keyword.openwhisk_short}} 動作使用：
   ```
-  ibmcloud wsk action create example --docker janesmith/blackboxdemo
+  ibmcloud fn action create example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
   請注意，使用 `--docker` 來建立動作。假設所有 Docker 映像檔都在 Docker Hub 上進行管理。動作會呼叫為任何其他 {{site.data.keyword.openwhisk_short}} 動作。
   ```
-  ibmcloud wsk action invoke --result example --param payload Rey
+  ibmcloud fn action invoke --result example --param payload Rey
   ```
   {: pre}
 
@@ -1154,7 +1154,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
   ```
   {: screen}
 
-  若要更新 Docker 動作，請執行 `buildAndPush.sh`，以將最新映像檔上傳至 Docker Hub。這可讓系統在下次執行您動作的程式碼時取回新的 Docker 映像檔。如果沒有暖容器，任何新呼叫會使用新的 Docker 映像檔。不過，如果有暖容器使用舊版 Docker 映像檔，則除非您執行 `ibmcloud wsk action update`，否則任何新呼叫都會繼續使用該映像檔。這指出針對新呼叫，系統會執行 Docekr 取回，以取得新的 Docker 映像檔。
+  若要更新 Docker 動作，請執行 `buildAndPush.sh`，以將最新映像檔上傳至 Docker Hub。這可讓系統在下次執行您動作的程式碼時取回新的 Docker 映像檔。如果沒有暖容器，任何新呼叫會使用新的 Docker 映像檔。不過，如果有暖容器使用舊版 Docker 映像檔，則除非您執行 `ibmcloud fn action update`，否則任何新呼叫都會繼續使用該映像檔。這指出針對新呼叫，系統會執行 Docekr 取回，以取得新的 Docker 映像檔。
 
   **將最新映像檔上傳至 Docker Hub：**
   ```
@@ -1164,7 +1164,7 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **更新動作，讓新的呼叫開始使用新的映像檔：***
   ```
-  ibmcloud wsk action update example --docker janesmith/blackboxdemo
+  ibmcloud fn action update example --docker janesmith/blackboxdemo
   ```
   {: pre}
 
@@ -1176,13 +1176,13 @@ ibmcloud wsk action invoke --result helloJava --param name World
 
   **從 zip 檔案建立動作：**
   ```
-  ibmcloud wsk action create example exec.zip --native
+  ibmcloud fn action create example exec.zip --native
   ```
   {: pre}
 
   這等同於下列指令。
   ```
-  ibmcloud wsk action create example exec.zip --docker openwhisk/dockerskeleton
+  ibmcloud fn action create example exec.zip --docker openwhisk/dockerskeleton
   ```
   {: pre}
 
@@ -1227,13 +1227,13 @@ func main() {
 ```bash
 GOOS=linux GOARCH=amd64 go build -o exec
 zip exec.zip exec
-ibmcloud wsk action create helloGo --native exec.zip
+ibmcloud fn action create helloGo --native exec.zip
 ```
 {: codeblock}
 
 該動作可以執行為任何其他動作。
 ```bash
-ibmcloud wsk action invoke helloGo -r -p name gopher
+ibmcloud fn action invoke helloGo -r -p name gopher
 {
     "msg": "Hello, gopher!"
 }
@@ -1241,7 +1241,7 @@ ibmcloud wsk action invoke helloGo -r -p name gopher
 
 以類似的方式擷取日誌。
 ```bash
-ibmcloud wsk activation logs --last --strip
+ibmcloud fn activation logs --last --strip
 my first Go action.
 ```
 
@@ -1259,7 +1259,7 @@ my first Go action.
 
 1. 從 Shell，發出下列指令：
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -1267,7 +1267,7 @@ my first Go action.
 
 2. 切換至另一個視窗，然後呼叫動作：
   ```
-  ibmcloud wsk action invoke /whisk.system/samples/helloWorld --param payload Bob
+  ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
   ```
   {: pre}
 
@@ -1289,11 +1289,11 @@ my first Go action.
 ## 取得動作
 {: #getting-actions}
 
-使用 `ibmcloud wsk action` get 指令，可以擷取說明現有動作的 meta 資料。
+使用 `ibmcloud fn action` get 指令，可以擷取說明現有動作的 meta 資料。
 
 **指令：**
 ```
-ibmcloud wsk action get hello
+ibmcloud fn action get hello
 ```
 
 ***結果：**
@@ -1328,7 +1328,7 @@ ok: got action hello
 
 您可以透過 HTTPS 要求，使用 REST 介面來呼叫動作。若要取得動作 URL，請執行下列指令：
 ```
-ibmcloud wsk action get actionName --url
+ibmcloud fn action get actionName --url
 ```
 {: pre}
 
@@ -1355,7 +1355,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 1. 將動作碼儲存至對應於現行工作目錄中現有動作名稱的檔名。會使用對應於動作類型的副檔名，或將 .zip 副檔名用於作為 zip 檔案的動作碼。
   ```
-  ibmcloud wsk action get actionName --save
+  ibmcloud fn action get actionName --save
   ```
   {: pre}
 
@@ -1367,7 +1367,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 2. 您可以使用 `--save-as` 旗標來提供自訂檔案路徑、檔名及副檔名，而非讓 CLI 判斷要儲存之程式碼的目的地。
   ```
-  ibmcloud wsk action get actionName --save-as codeFile.js
+  ibmcloud fn action get actionName --save-as codeFile.js
   ```
   {: pre}
 
@@ -1382,13 +1382,13 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 
 您可以列出使用下列指令所建立的所有動作：
 ```
-ibmcloud wsk action list
+ibmcloud fn action list
 ```
 {: pre}
 
 隨著您撰寫愈多動作，此清單也會變得愈長，而其有助於將相關的動作分組成[套件](./openwhisk_packages.html)。若要將您的動作清單過濾為只有特定套件中的動作，您可以使用下列指令語法：
 ```
-ibmcloud wsk action list [PACKAGE NAME]
+ibmcloud fn action list [PACKAGE NAME]
 ```
 {: pre}
 
@@ -1399,7 +1399,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 
 1. 執行下列指令，以刪除動作：
   ```
-  ibmcloud wsk action delete hello
+  ibmcloud fn action delete hello
   ```
   {: pre}
 
@@ -1412,7 +1412,7 @@ ibmcloud wsk action list [PACKAGE NAME]
 2. 驗證動作不再出現於動作清單中。
   
   ```
-  ibmcloud wsk action list
+  ibmcloud fn action list
   ```
   {: pre}
 

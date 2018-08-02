@@ -36,7 +36,7 @@ Parameters can be passed to an action when it is invoked. The examples that are 
 
 2. Update the **hello** action so it is ready to use:
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -47,7 +47,7 @@ Parameters can be passed to an action when it is invoked. The examples that are 
 
   To pass parameters directly through the command line, supply a key/value pair to the `--param` flag:
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place Kansas
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
   ```
   {: pre}
 
@@ -75,7 +75,7 @@ Parameters can be passed to an action when it is invoked. The examples that are 
 
   Next, invoke the action with a single `person` parameter that is a valid JSON, like in the following example:
   ```
-  ibmcloud wsk action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
   ```
   {: pre}
 
@@ -100,13 +100,13 @@ Rather than pass all the parameters to an action every time, you can bind certai
 
   To specify default parameters explicitly on the command line, provide a key/value pair to the `param` flag:
   ```
-  ibmcloud wsk action update hello --param place Kansas
+  ibmcloud fn action update hello --param place Kansas
   ```
   {: pre}
 
 2. Invoke the action by passing only the `name` parameter this time.
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy
+  ibmcloud fn action invoke --result hello --param name Dorothy
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ Rather than pass all the parameters to an action every time, you can bind certai
 
   Invoke the action using the `--param` flag:
   ```
-  ibmcloud wsk action invoke --result hello --param name Dorothy --param place "Washington, DC"
+  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ The following example sets a default parameter of `name` on the **MyApp** packag
 1. Create a package with a parameter set:
 
   ```
-  ibmcloud wsk package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
   {: pre}
 
@@ -166,13 +166,13 @@ The following example sets a default parameter of `name` on the **MyApp** packag
 
   Create the action:
   ```
-  ibmcloud wsk action update MyApp/hello hello.js
+  ibmcloud fn action update MyApp/hello hello.js
   ```
   {: pre}
 
 3. Invoke the action, and observe the default package parameter in use:
   ```
-  ibmcloud wsk action invoke --result MyApp/hello
+  ibmcloud fn action invoke --result MyApp/hello
   ```
   {: pre}
 
@@ -201,7 +201,7 @@ You can put parameters into a file in JSON format, and then pass in the paramete
 2. Update the action with the updated contents of `hello.js`:
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
@@ -218,7 +218,7 @@ You can put parameters into a file in JSON format, and then pass in the paramete
 4. Use the `parameters.json` filename when invoking the **hello** action, and observe the output:
 
   ```
-  ibmcloud wsk action invoke --result hello --param-file parameters.json
+  ibmcloud fn action invoke --result hello --param-file parameters.json
   ```
 
   Example output:

@@ -39,7 +39,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für jede {{site.data.keyword.cloudant_short_notm}}-Serviceinstanz mit einem definierten Berechtigungsnachweisschlüssel.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
 3. Prüfen Sie, ob die zuvor erstellte Paketbindung mit dem Host und den Berechtigungsnachweisen für Ihre {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}}-Serviceinstanz konfiguriert ist.
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ Sie können eine Aktion verwenden, um ein Dokument aus einer {{site.data.keyword
 
 - Rufen Sie ein Dokument mit der Aktion **read** in der Paketbindung ab, die Sie zuvor erstellt haben. Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ Sie können eine Aktion verwenden, um ein Dokument in einer {{site.data.keyword.
 
 1. Speichern Sie ein Dokument mit der Aktion **write** in der Paketbindung, die Sie zuvor erstellt haben. Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

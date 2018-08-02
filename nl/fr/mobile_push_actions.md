@@ -47,13 +47,13 @@ Pour créer une liaison de package, procédez comme suit :
 
 4. Créez une liaison de package avec `/whisk.system/pushnotifications`.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
   ```
   {: pre}
 
 5. Vérifiez que la liaison de package existe :
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -132,7 +132,7 @@ Voici un exemple qui illustre l'envoi d'une notification push à partir du packa
 
 Envoyez une notification push en utilisant l'action **sendMessage** dans la liaison de package que vous avez créée précédemment. Prenez soin de remplacer `/myNamespace/myPush` par votre nom de package.
 ```
-ibmcloud wsk action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

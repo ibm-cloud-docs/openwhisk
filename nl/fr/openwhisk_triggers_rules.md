@@ -65,7 +65,7 @@ Des déclencheurs peuvent être exécutés lorsque certains événements survien
 Par exemple, créez un déclencheur pour envoyer les mises à jour de l'emplacement d'utilisateur, et exécutez manuellement le déclencheur.
 1. Entrez la commande suivante pour créer le déclencheur :
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -77,7 +77,7 @@ Par exemple, créez un déclencheur pour envoyer les mises à jour de l'emplacem
 
 2. Vérifiez que le déclencheur a été créé en affichant la liste des déclencheurs.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -92,7 +92,7 @@ Par exemple, créez un déclencheur pour envoyer les mises à jour de l'emplacem
 
 3. Ensuite, exécutez un événement déclencheur en spécifiant le nom du déclencheur et des paramètres :
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -121,30 +121,30 @@ Par exemple, créez une règle qui appelle l'action `hello` à chaque fois qu'un
 
 2. Vérifiez que le déclencheur et l'action existent :
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. L'étape suivante consiste à créer la règle. La règle est activée au moment de la création ce qui signifie qu'elle est disponible immédiatement pour répondre aux activations de votre déclencheur. Les trois paramètres sont : _nom de la règle_, _nom du déclencheur_ et _nom de l'actione_.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   Vous pouvez à tout moment choisir de désactiver une règle :
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. Exécutez le déclencheur **locationUpdate**. A chaque fois que vous déclenchez un événement, l'action **hello** est appelée avec les paramètres d'événement.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -156,7 +156,7 @@ Par exemple, créez une règle qui appelle l'action `hello` à chaque fois qu'un
 
 5. Vérifiez que l'action **hello** a été appelée en vérifiant l'activation la plus récente.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -169,7 +169,7 @@ Par exemple, créez une règle qui appelle l'action `hello` à chaque fois qu'un
 
   Interrogez maintenant l'ID d'activation répertorié dans la sortie de la commande précédente :
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -187,18 +187,18 @@ Vous pouvez créer plusieurs règles qui associent le même déclencheur à des 
 Les déclencheurs et les règles ne peuvent pas appartenir à un package. En revanche, la règle peut être associée à une action
 qui appartient à un package, par exemple :
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 Vous pouvez également utiliser des règles avec des séquences. Vous
 pouvez ainsi créer une séquence d'actions `recordLocationAndHello`, qui est activée par la règle `anotherRule`.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

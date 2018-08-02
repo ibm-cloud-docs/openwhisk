@@ -23,7 +23,7 @@ lastupdated: "2018-04-12"
 
 다음은 `echo` 액션에 대한 샘플 어노테이션 세트이며, 이는 입력 인수를 수정하지 않고 리턴합니다(예: `function main(args) { return args }`). 이 액션은 입력 매개변수의 로깅에 유용합니다(예: 시퀀스 또는 룰의 일부로서).
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

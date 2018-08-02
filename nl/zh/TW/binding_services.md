@@ -15,10 +15,10 @@ lastupdated: "2018-06-21"
 # 將服務連結至動作
 {: #binding_services}
 
-您可以使用 [{{site.data.keyword.openwhisk}} CLI 外掛程式](./bluemix_cli.html)，將服務連結至動作或套件。{{site.data.keyword.openwhisk_short}} `ibmcloud wsk service bind` 指令，讓您的 {{site.data.keyword.Bluemix_notm}} 服務認證可供您的 {{site.data.keyword.openwhisk_short}} 程式碼在運行環境使用。
+您可以使用 [{{site.data.keyword.openwhisk}} CLI 外掛程式](./bluemix_cli.html)，將服務連結至動作或套件。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 指令，讓您的 {{site.data.keyword.Bluemix_notm}} 服務認證可供您的 {{site.data.keyword.openwhisk_short}} 程式碼在運行環境使用。
 {: shortdesc}
 
-不要混淆 `ibmcloud wsk service bind` 指令與 Cloud Foundry 中可用的 `cf bind-service` 指令。
+不要混淆 `ibmcloud fn service bind` 指令與 Cloud Foundry 中可用的 `cf bind-service` 指令。
 {: tip}
 
 ## 將服務連結至動作或套件
@@ -65,14 +65,14 @@ lastupdated: "2018-06-21"
 
 3. 將服務連結至動作。
     ```
-    ibmcloud wsk service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
+    ibmcloud fn service bind SERVICE_TYPE ACTION_NAME [--instance instance_name] [--keyname credentials_name]
     ```
     {: pre}
 
     <table>
-    <caption>瞭解 <code>ibmcloud wsk service bind</code> 指令元件</caption>
+    <caption>瞭解 <code>ibmcloud fn service bind</code> 指令元件</caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="「構想」圖示"/> 瞭解 <code>ibmcloud wsk service bind</code> 指令元件</th>
+    <th colspan=2><img src="images/idea.png" alt="「構想」圖示"/> 瞭解 <code>ibmcloud fn service bind</code> 指令元件</th>
     </thead>
     <tbody>
     <tr>
@@ -95,7 +95,7 @@ lastupdated: "2018-06-21"
 
     例如，若要將 {{site.data.keyword.ibmwatson}} Conversation 服務連結至名為 `hello` 的動作，請執行下列指令：
     ```
-    ibmcloud wsk service bind conversation hello --instance Conversation-qp --keyname Credentials-1
+    ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
     ```
@@ -103,7 +103,7 @@ lastupdated: "2018-06-21"
 
 4. 驗證認證已順利連結。服務所連結的動作不支援任何自訂旗標，但支援除錯及詳細旗標。
     ```
-    ibmcloud wsk action get hello parameters
+    ibmcloud fn action get hello parameters
     ```
     {: pre}
 
@@ -148,6 +148,6 @@ lastupdated: "2018-06-21"
 取消服務與動作或套件的連結。取消連結服務時會移除 `service bind` 指令所建立的現有連結。
 
 ```
-ibmcloud wsk service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}

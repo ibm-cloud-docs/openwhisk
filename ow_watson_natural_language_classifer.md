@@ -44,6 +44,9 @@ Before you install the package, you must create a {{site.data.keyword.nlclassifi
 After you have an {{site.data.keyword.nlclassifiershort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.nlclassifiershort}} package into your namespace.
 {: shortdesc}
 
+### Installing from the {{site.data.keyword.openwhisk_short}} CLI
+{: #nlclassifier_cli}
+
 Before you begin:
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
   2. Install the [`wskdeploy` command ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH.
@@ -64,7 +67,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 3. Verify that the package is added to your package list.
     ```
-    ibmcloud wsk package list
+    ibmcloud fn package list
     ```
     {: pre}
 
@@ -77,13 +80,13 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.  
     ```
-    ibmcloud wsk service bind natural_language_classifier natural-language-classifier-v1
+    ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
     ```
     {: pre}
 
     Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
     ```
-    ibmcloud wsk service bind natural-language-classifier natural-language-classifier-v1
+    ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
     ```
     {: pre}
 
@@ -95,7 +98,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 5. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
     ```
-    ibmcloud wsk package get natural-language-classifier-v1 parameters
+    ibmcloud fn package get natural-language-classifier-v1 parameters
     ```
     {: pre}
 
@@ -119,18 +122,42 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: screen}
 
+### Installing from the {{site.data.keyword.openwhisk_short}} UI
+{: #nlclassifier_ui}
+
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+
+2. Using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into. Namespaces are formed from the combined org and space names.
+
+3. Click **Install Packages**.
+
+4. Click on the **Watson** Package group.
+
+5. Click on the **Natural Language Classifier** Package.
+
+5. Click **Install**.
+
+6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **natural-language-classifier-v1**.
+
+7. To use the Actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
+  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above. 
+  * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
+    1. Click on an Action from the **natural-language-classifier-v1** Package that you want to use. The details page for that Action opens. 
+    2. In the left-hand navigation, click on the **Parameters** section. 
+    3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
+
 ## Using the {{site.data.keyword.nlclassifiershort}} package
 {: #usage}
 
 To use the actions in this package, run commands in the following format:
 
 ```
-ibmcloud wsk action invoke natural-language-classifier-v1/<action_name> -b -p <param name> <param>
+ibmcloud fn action invoke natural-language-classifier-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
 Try out the `list-classifiers` action.
 ```
-ibmcloud wsk action invoke natural-language-classifier-v1/list-classifiers -b
+ibmcloud fn action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}

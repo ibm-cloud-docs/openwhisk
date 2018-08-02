@@ -46,7 +46,7 @@ O exemplo a seguir mostra como configurar o Slack, criar uma ligação de pacote
 
 2. Crie uma ligação de pacote com suas credenciais do Slack, o canal no qual deseja postar e o nome de usuário com o qual postar.
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -55,7 +55,7 @@ O exemplo a seguir mostra como configurar o Slack, criar uma ligação de pacote
 
 3. Chame a ação **post** em sua ligação do pacote para postar uma mensagem em seu canal do Slack.
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

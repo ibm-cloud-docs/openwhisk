@@ -33,7 +33,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system` 네임스페이스에서 패키지의 목록을 가져오십시오.
   ```
-  ibmcloud wsk package list /whisk.system
+  ibmcloud fn package list /whisk.system
   ```
   {: pre}
 
@@ -56,7 +56,7 @@ lastupdated: "2018-06-22"
 
 2. `/whisk.system/cloudant` 패키지에서 엔티티의 목록을 가져오십시오.
   ```
-  ibmcloud wsk package get --summary /whisk.system/cloudant
+  ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ lastupdated: "2018-06-22"
 
 3. `/whisk.system/cloudant/read` 액션에 대한 설명을 가져오십시오.
   ```
-  ibmcloud wsk action get --summary /whisk.system/cloudant/read
+  ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
@@ -96,7 +96,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/samples/greeting` 액션에 대한 설명을 가져오십시오.
   ```
-  ibmcloud wsk action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get --summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -111,7 +111,7 @@ lastupdated: "2018-06-22"
 
 2. 매개변수 없이 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -127,7 +127,7 @@ lastupdated: "2018-06-22"
 
 3. 매개변수를 사용하여 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
+  ibmcloud fn action invoke --blocking --result /whisk.system/samples/greeting --param name Mork --param place Ork
   ```
   {: pre}
 
@@ -152,7 +152,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/samples` 패키지에 바인드하고 기본 `place` 매개변수값을 설정하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/samples valhallaSamples --param place Valhalla
+  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
   ```
   {: pre}
 
@@ -164,7 +164,7 @@ lastupdated: "2018-06-22"
 
 2. 패키지 바인딩의 설명을 가져오십시오.
   ```
-  ibmcloud wsk package get --summary valhallaSamples
+  ibmcloud fn package get --summary valhallaSamples
   ```
   {: pre}
 
@@ -182,7 +182,7 @@ lastupdated: "2018-06-22"
 
 3. 패키지 바인딩에서 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
   ```
   {: pre}
 
@@ -198,7 +198,7 @@ lastupdated: "2018-06-22"
 
 4. 액션을 호출하고 기본 매개변수값을 겹쳐쓰십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
   ```
   {: pre}
 
@@ -219,7 +219,7 @@ lastupdated: "2018-06-22"
 
 1. `/whisk.system/alarms` 패키지에서 피드의 설명을 가져오십시오.
   ```
-  ibmcloud wsk package get --summary /whisk.system/alarms
+  ibmcloud fn package get --summary /whisk.system/alarms
   ```
   {: pre}
 
@@ -231,7 +231,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -248,7 +248,7 @@ lastupdated: "2018-06-22"
 
 2. 8초마다 실행되는 트리거를 작성하십시오.
   ```
-  ibmcloud wsk trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
@@ -268,13 +268,13 @@ lastupdated: "2018-06-22"
 
 4. 액션이 있는지 확인하십시오.
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 5. **everyEightSeconds** 트리거가 실행될 때마다 `hello` 액션을 호출하는 룰을 작성하십시오.
   ```
-  ibmcloud wsk rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyEightSeconds hello
   ```
   {: pre}
 
@@ -286,7 +286,7 @@ lastupdated: "2018-06-22"
 
 6. 활성화 로그에 대한 폴링에 의해 액션이 호출되는지 확인하십시오.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 
@@ -302,7 +302,7 @@ lastupdated: "2018-06-22"
 
 1. **custom**이라고 하는 패키지를 작성하십시오.
   ```
-  ibmcloud wsk package create custom
+  ibmcloud fn package create custom
   ```
   {: pre}
 
@@ -314,7 +314,7 @@ lastupdated: "2018-06-22"
 
 2. 패키지의 요약을 가져오십시오.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -334,7 +334,7 @@ lastupdated: "2018-06-22"
 
 4. ``custom** 패키지에서 **identity** 액션을 작성하십시오.
   ```
-  ibmcloud wsk action create custom/identity identity.js
+  ibmcloud fn action create custom/identity identity.js
   ```
   {: pre}
 
@@ -348,7 +348,7 @@ lastupdated: "2018-06-22"
 
 5. 패키지의 요약을 다시 가져오십시오.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 
@@ -363,7 +363,7 @@ lastupdated: "2018-06-22"
 
 6. 패키지에서 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -377,7 +377,7 @@ lastupdated: "2018-06-22"
 
 1. **custom** 패키지를 두 개의 매개변수 `city` 및 `country`로 업데이트하십시오.
   ```
-  ibmcloud wsk package update custom --param city Austin --param country USA
+  ibmcloud fn package update custom --param city Austin --param country USA
   ```
   {: pre}
 
@@ -389,7 +389,7 @@ lastupdated: "2018-06-22"
 
 2. **custom** 패키지 및 **identidy** 액션에 매개변수를 표시하고 패키지의 **identity** 액션이 패키지에서 매개변수를 상속하는 방법을 확인하십시오.
   ```
-  ibmcloud wsk package get custom parameters
+  ibmcloud fn package get custom parameters
   ```
   {: pre}
 
@@ -411,7 +411,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk action get custom/identity parameters
+  ibmcloud fn action get custom/identity parameters
   ```
   {: pre}
 
@@ -434,7 +434,7 @@ lastupdated: "2018-06-22"
 
 3. 액션이 실제로 매개변수를 상속하는지 확인하려면 매개변수 없이 **identity** 액션을 호출하십시오.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity
+  ibmcloud fn action invoke --blocking --result custom/identity
   ```
   {: pre}
 
@@ -449,7 +449,7 @@ lastupdated: "2018-06-22"
 
 4. 일부 매개변수를 사용하여 **identity** 액션을 호출하십시오. 호출 매개변수가 패키지 매개변수와 병합되며, 호출 매개변수가 패키지 매개변수를 대체합니다.
   ```
-  ibmcloud wsk action invoke --blocking --result custom/identity --param city Dallas --param state Texas
+  ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
   {: pre}
 
@@ -470,7 +470,7 @@ lastupdated: "2018-06-22"
 
 1. 모든 사용자와 패키지를 공유하십시오.
   ```
-  ibmcloud wsk package update custom --shared yes
+  ibmcloud fn package update custom --shared yes
   ```
   {: pre}
 
@@ -482,7 +482,7 @@ lastupdated: "2018-06-22"
 
 2. 패키지의 `publish` 특성을 표시하여 현재 true인지 확인하십시오.
   ```
-  ibmcloud wsk package get custom publish
+  ibmcloud fn package get custom publish
   ```
   {: pre}
 
@@ -498,7 +498,7 @@ lastupdated: "2018-06-22"
 
 1. 패키지 및 액션의 완전한 이름을 표시하려면 패키지의 설명을 가져오십시오.
   ```
-  ibmcloud wsk package get --summary custom
+  ibmcloud fn package get --summary custom
   ```
   {: pre}
 

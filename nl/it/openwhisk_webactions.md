@@ -33,12 +33,12 @@ function main({name}) {
 
 Puoi creare un'_azione web_ **hello** nel pacchetto `demo` per lo spazio dei nomi `guest` utilizzando l'indicatore `--web` della CLI con un valore di `true` o `yes`:
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ Un'estensione del contenuto è necessaria solitamente per richiamare un'azione w
 
 I parametri di azione sono protetti e trattati come immutabili. I parametri vengono finalizzati automaticamente per abilitare le azioni web.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ In alternativa, utilizza l'indicatore `--web-secure` per impostare automaticamen
 
 Esempio con **--web-secure**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 Esempio con **require-whisk-auth**:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-
 
 Per disabilitare il richiamo di un'azione web tramite l'API web (`https://openwhisk.bluemix.net/api/v1/web/`), passa il valore `false` o `no` all'indicatore `--web` per aggiornare un'azione con la CLI.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk utilizza il framework [Http Akka](http://doc.akka.io/docs/akka-http/cu
 
 Le azioni web HTTP non elaborato sono abilitate tramite l'indicatore `--web` utilizzando il valore `raw`.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 La disabilitazione di HTTP non elaborato può essere eseguita passando il valore `false` o `no` all'indicatore `--web`.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 Come esempio, salva la funzione Node come `decode.js` ed esegui questi comandi:
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 Salva la funzione in `custom-options.js` ed esegui questi comandi:
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

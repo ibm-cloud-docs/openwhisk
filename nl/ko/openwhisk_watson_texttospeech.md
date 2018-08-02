@@ -36,7 +36,7 @@ lastupdated: "2018-03-26"
 
 2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치기를 수행하면 작성된 Watson 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ lastupdated: "2018-03-26"
 
   패키지를 나열하여 패키지 바인딩이 작성되었는지 확인하십시오.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ lastupdated: "2018-03-26"
 
 Watson Speech to Text 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
 ```
-ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -83,7 +83,7 @@ ibmcloud wsk package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech
 
 패키지 바인딩에서 **textToSpeech** 액션을 호출하여 텍스트를 변환하십시오.
 ```
-ibmcloud wsk action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

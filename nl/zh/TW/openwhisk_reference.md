@@ -590,7 +590,7 @@ PHP 動作是使用 PHP 7.1.18 來執行。若要使用此運行環境，請在�
 
 Docker 動作是在 Docker 容器中執行使用者提供的二進位檔。二進位檔是在根據 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 的 Docker 映像檔中執行，因此二進位檔必須與此發行套件相容。
 
-Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可以使用 `ibmcloud wsk sdk install docker` CLI 外掛程式指令來安裝架構。
+Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可以使用 `ibmcloud fn sdk install docker` CLI 外掛程式指令來安裝架構。
 
 主要二進位程式必須位在容器的 `/action/exec` 中。執行檔會從可解除序列化為 `JSON` 物件的單一指令行引數字串接收到輸入引數。它必須使用 `stdout`，以已序列化 `JSON` 的單行字串形式來傳回結果。
 

@@ -588,7 +588,7 @@ PHP 操作是使用 PHP 7.1.18 执行的。要使用此运行时，请在创建�
 
 Docker 操作在 Docker 容器中运行用户提供的二进制文件。该二进制文件在基于 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 的 Docker 映像中运行，所以该二进制文件必须与此分发版兼容。
 
-通过 Docker 框架，可以方便地构建兼容 OpenWhisk 的 Docker 映像。可以使用 `ibmcloud wsk sdk install docker` CLI 插件命令来安装该框架。
+通过 Docker 框架，可以方便地构建兼容 OpenWhisk 的 Docker 映像。可以使用 `ibmcloud fn sdk install docker` CLI 插件命令来安装该框架。
 
 主二进制程序必须位于容器内的 `/action/exec` 中。可执行文件通过可以反序列化为 `JSON` 对象的单个命令行自变量字符串来接收输入自变量。该文件必须使用 `stdout` 以单行序列化 `JSON` 字符串形式返回结果。
 

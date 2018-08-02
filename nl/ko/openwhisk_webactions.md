@@ -33,12 +33,12 @@ function main({name}) {
 
 `true` 또는 `yes` 값으로 CLI `--web` 플래그를 사용하여 `guest` 네임스페이스에 대한 `demo` 패키지에서 _웹 액션_ **hello**를 작성할 수 있습니다.
 ```
-ibmcloud wsk package create demo
+ibmcloud fn package create demo
 ```
 {: pre}
 
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web true
+ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
@@ -332,7 +332,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 액션 매개변수는 불변으로서 처리되고 보호됩니다. 매개변수는 웹 액션을 사용하도록 자동으로 최종 처리됩니다.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --web true
+ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
@@ -347,13 +347,13 @@ ibmcloud wsk action create /guest/demo/hello hello.js --parameter name Jane --we
 
 **--web-secure** 사용 예:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true --web-secure my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
 ```
 {: pre}
 
 **require-whisk-auth** 사용 예:
 ```bash
-ibmcloud wsk action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
+ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
 ```
 {: pre}
 
@@ -369,7 +369,7 @@ curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-
 
 웹 API(`https://openwhisk.bluemix.net/api/v1/web/`)를 통해 앱 액션이 호출되지 않도록 하려면 `false` 또는 `no` 값을 `--web` 플래그에 전달하여 CLI에서 액션을 업데이트하십시오.
 ```
-ibmcloud wsk action update /guest/demo/hello hello.js --web false
+ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -408,7 +408,7 @@ OpenWhisk는 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) 
 
 원시 HTTP 웹 액션은 `raw` 값을 사용하여 `--web` 플래그를 통해 사용됩니다.
 ```
-ibmcloud wsk action create /guest/demo/hello hello.js --web raw
+ibmcloud fn action create /guest/demo/hello hello.js --web raw
 ```
 {: pre}
 
@@ -416,7 +416,7 @@ ibmcloud wsk action create /guest/demo/hello hello.js --web raw
 
 원시 HTTP 사용 안함은 `false` 또는 `no` 값을 `--web` 플래그에 전달하여 완료됩니다.
 ```
-ibmcloud wsk update create /guest/demo/hello hello.js --web false
+ibmcloud fn update create /guest/demo/hello hello.js --web false
 ```
 {: pre}
 
@@ -473,7 +473,7 @@ func main(args: [String:Any]) -> [String:Any] {
 
 예를 들어, Node 함수를 `decode.js`로서 저장하고 다음 명령을 실행하십시오.
 ```
-ibmcloud wsk action create decode decode.js --web raw
+ibmcloud fn action create decode decode.js --web raw
 ```
 {: pre}
 
@@ -529,7 +529,7 @@ function main(params) {
 
 함수를 `custom-options.js`에 저장하고 다음 명령을 실행하십시오.
 ```
-ibmcloud wsk action create custom-option custom-options.js --web true -a web-custom-options true
+ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
 ```
 {: pre}
 

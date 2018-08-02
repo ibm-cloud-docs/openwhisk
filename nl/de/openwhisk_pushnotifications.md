@@ -36,25 +36,25 @@ Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der jedes Mal akti
 
 1. Erstellen Sie eine Paketbindung, die für den Push Notifications-Service konfiguriert ist, und verwenden Sie dabei Ihre Werte **appId** und **appSecret**.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Erstellen Sie mithilfe des Feeds `myPush/webhook` einen Auslöser für den Ereignistyp `onDeviceRegister` des Push Notifications-Service.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. Sie können eine Regel erstellen, die jedes Mal eine Nachricht sendet, wenn ein neues Gerät registriert wird. Erstellen Sie eine Regel unter Verwendung der vorherigen Aktion und des vorherigen Auslösers.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Überprüfen Sie die Ergebnisse unter Verwendung des Befehls `ibmcloud wsk activation poll`.
+4. Überprüfen Sie die Ergebnisse unter Verwendung des Befehls `ibmcloud fn activation poll`.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

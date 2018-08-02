@@ -62,13 +62,13 @@ Lorsque l'utilisateur crée un déclencheur depuis l'interface de ligne de comma
 
 Par exemple, supposons que l'utilisateur crée une liaison **mycloudant** pour le package `cloudant` avec un nom d'utilisateur et un mot de passe comme paramètres liés. Lorsque l'utilisateur exécute la commande suivante depuis l'interface de ligne de commande :
 ```
-ibmcloud wsk trigger create T --feed mycloudant/changes -p dbName myTable
+ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 le système effectue "en coulisses" une opération équivalente à :
 ```
-ibmcloud wsk action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
+ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
@@ -76,7 +76,7 @@ L'action de flux nommée *changes* admet ces paramètres et est censée effectue
 
 Pour le flux *changes* de {{site.data.keyword.cloudant_short_notm}}, l'action communique directement avec un service de *déclencheur {{site.data.keyword.cloudant_short_notm}}* qui est implémenté avec une architecture reposant sur des connexions.
 
-Il existe un protocole d'action de flux similaire pour `ibmcloud wsk trigger delete`, `ibmcloud wsk trigger update` et `ibmcloud wsk trigger get`.
+Il existe un protocole d'action de flux similaire pour `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` et `ibmcloud fn trigger get`.
 
 ## Implémentation de flux avec des points d'ancrage
 

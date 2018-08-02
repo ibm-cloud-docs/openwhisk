@@ -42,7 +42,7 @@ Durch den Feed `/whisk.system/alarms/interval` wird der Alarmservice so konfigur
 Im folgenden Beispiel wird ein Auslöser erstellt, der alle 2 Minuten einmal aktiviert wird. Der Auslöser wird so bald, wie möglich, aktiviert und die Aktivierung wird am 31. Januar 2019 um 23:59:00 Uhr (UTC) gestoppt.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -71,7 +71,7 @@ seit dem 1. Januar 1970 00:00:00 Uhr (UTC) dar. Der Zeichenfolgewert muss das IS
 Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal am 25. Dezember 2019 um 12:30:00 Uhr (UTC) aktiviert wird. Der Auslöser wird nach dem Aktivieren mit allen zugehörigen Regeln gelöscht.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -104,7 +104,7 @@ Weitere Informationen finden Sie unter: http://crontab.org. Die folgenden Beispi
 Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal alle 2 Minuten aktiviert wird, wobei das Auslöserereignis die Werte für `name` und `place` enthält. Der Auslöser beginnt die Ausführung der Aktivierungen erst am 01. Januar 2019 um 00:00:00 Uhr (UTC) und stoppt sie am 31. Januar 23:59:00 Uhr (UTC).
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

@@ -23,7 +23,7 @@ O uso mais comum de anotações até a data é documentar ações e pacotes. Mui
 
 Aqui está um conjunto de amostra de anotações para uma ação `echo`, que retorna seus argumentos de entrada não modificados (por exemplo, `function main(args) { return args }`). Essa ação é útil para registrar parâmetros de entrada, por exemplo, como parte de uma sequência ou regra.
 ```
-ibmcloud wsk action create echo echo.js \
+ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \
     -a sampleInput  '{ "msg": "Five fuzzy felines"}' \

@@ -36,25 +36,25 @@ Para crear un desencadenante que se active cada vez que se registre un nuevo dis
 
 1. Crear un enlace de paquete que está configurado para su servicio de notificaciones push utilizando su **appId** y **appSecret**.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. Crear un desencadenante para el tipo de suceso `onDeviceRegister` del servicio de notificaciones push utilizando su canal de información `myPush/webhook`.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. Puede crear una regla que envíe un mensaje cada vez que se registra un nuevo dispositivo. Cree una regla utilizando la acción y desencadenante anteriores.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. Compruebe los resultados utilizando el mandato `ibmcloud wsk activation poll`.
+4. Compruebe los resultados utilizando el mandato `ibmcloud fn activation poll`.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

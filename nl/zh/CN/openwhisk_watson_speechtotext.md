@@ -37,7 +37,7 @@ lastupdated: "2018-03-26"
 
 2. 刷新名称空间中的包。刷新操作将自动为已创建的 Watson 服务实例创建包绑定。
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ lastupdated: "2018-03-26"
 
   列出包以查看是否已创建绑定：
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-03-26"
 
 创建为您的 Watson Speech to Text 服务配置的包绑定。
 ```
-ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-speechToText myWatsonSpeechToText -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -95,7 +95,7 @@ ibmcloud wsk package bind /whisk.system/watson-speechToText myWatsonSpeechToText
 
 调用包绑定中的 **speechToText** 操作来转换已编码的音频。
 ```
-ibmcloud wsk action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
+ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result --param payload <base64 encoding of a .wav file> --param content_type 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 

@@ -47,7 +47,7 @@ Diese Ansicht zeigt eine formatierte Version des Aktivierungsprotokolls an. Sie 
 
 Wenn Sie Ausgabe, die im Aktivitätenprotokoll angezeigt wird, über die CLI abrufen wollen, verwenden Sie den folgenden Befehl:
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

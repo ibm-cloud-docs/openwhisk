@@ -47,7 +47,7 @@ lastupdated: "2018-03-16"
 
 CLI를 사용하여 활동 로그에 표시된 출력을 가져오려면 다음 명령을 사용하십시오.
 ```
-ibmcloud wsk activation poll
+ibmcloud fn activation poll
 ```
 {: pre}
 

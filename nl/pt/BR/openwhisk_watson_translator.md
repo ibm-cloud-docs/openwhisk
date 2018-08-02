@@ -36,7 +36,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço do Watson que você criou.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -49,7 +49,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
   Liste os pacotes para ver se a ligação de pacote foi criada:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -66,7 +66,7 @@ Se você não está usando o {{site.data.keyword.openwhisk_short}} no {{site.dat
 
 - Crie uma ligação de pacote que esteja configurada para o seu serviço de Tradutor do Watson.
   ```
-  ibmcloud wsk package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
+  ibmcloud fn package bind /whisk.system/watson-translator myWatsonTranslator -p username MYUSERNAME -p password MYPASSWORD
   ```
   {: pre}
 
@@ -84,7 +84,7 @@ parâmetro `payload` que é passado à ação será traduzido.
 
 Chame a ação **translator** em sua ligação de pacote para traduzir algum texto do inglês para o francês.
 ```
-ibmcloud wsk action invoke myWatsonTranslator/translator \
+ibmcloud fn action invoke myWatsonTranslator/translator \
 --blocking --result \
 --param payload "Blue skies ahead" --param translateFrom "en" \
 --param translateTo "fr"
@@ -109,7 +109,7 @@ A ação `/whisk.system/watson-translator/languageId` identifica o idioma de alg
 
 Chame a ação **languageId** em sua ligação do pacote para identificar o idioma.
 ```
-ibmcloud wsk action invoke myWatsonTranslator/languageId \
+ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
 --param payload "Ciel bleu a venir"
 ```

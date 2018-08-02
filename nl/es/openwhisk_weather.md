@@ -37,7 +37,7 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
 
 2. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia de servicio de Weather Company Data que ha creado.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -50,7 +50,7 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
 
   Liste los paquetes para ver que se ha creado el enlace de paquete:
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ Si no utiliza {{site.data.keyword.openwhisk_short}} en {{site.data.keyword.Bluem
 
 Cree un enlace de paquete configurado para el servicio de Watson Translator.
 ```
-ibmcloud wsk package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```
 {: pre}
 
@@ -91,7 +91,7 @@ El siguiente ejemplo muestra cómo crear un enlace de paquete y luego obtener de
 
 Invocar la acción **forecast** en su enlace de paquete para obtener la previsión meteorológica.
 ```
-ibmcloud wsk action invoke myWeather/forecast --result \
+ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
 --param longitude -79.4
 ```

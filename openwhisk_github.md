@@ -41,7 +41,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 2. Create a package binding that is configured for your GitHub repository and with your access token.
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -50,7 +50,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 3. Create a trigger for the GitHub `push` event type by using your `myGit/webhook` feed.
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

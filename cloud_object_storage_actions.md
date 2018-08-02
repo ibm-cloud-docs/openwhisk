@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-07-31"
 
 ---
 
@@ -77,7 +77,7 @@ To install the {{site.data.keyword.cos_short}} package:
 
 4. Verify that the `cloud-object-storage` package is added to your package list.
     ```
-    ibmcloud wsk package list
+    ibmcloud fn package list
     ```
     {: pre}
 
@@ -90,7 +90,7 @@ To install the {{site.data.keyword.cos_short}} package:
 
 5. Bind the credentials from the {{site.data.keyword.cos_short}} instance you created to the package.
     ```
-    ibmcloud wsk service bind cloud-object-storage cloud-object-storage-pkg
+    ibmcloud fn service bind cloud-object-storage cloud-object-storage-pkg
     ```
     {: pre}
 
@@ -100,9 +100,9 @@ To install the {{site.data.keyword.cos_short}} package:
     ```
     {: screen}
 
-3. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance credentials.
+6. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance credentials.
     ```
-    ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg parameters
+    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg parameters
     ```
     {: pre}
 
@@ -137,17 +137,20 @@ To install the {{site.data.keyword.cos_short}} package:
 
 2. Using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into. Namespaces are formed from the combined org and space names.
 
-3. Click **Quickstart templates**.
+3. Click **Install Packages**.
 
-4. Click the **Upload Image** template.
+4. Click on the **IBM Cloud Object Storage** Package group, and then click on the **IBM Cloud Object Storage** Package.
 
-5. Enter a name for your package or use the default name `upload-image`.
+5. In the Available Runtimes section, select either NodeJS or Python from the drop-down list and then click **Install**.
 
-5. Click **Next**.
+6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **cloud-object-storage**.
 
-6. In the **{{site.data.keyword.cos_short}}** list, select the name of the {{site.data.keyword.cos_short}} service instance that you created earlier.
-
-7. Click **Deploy**.
+7. To use the Actions in the **cloud-object-storage** Package, you must bind service credentials to the actions.
+  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
+  * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
+    1. Click on an Action from the **cloud-object-storage** Package that you want to use. The details page for that Action opens.
+    2. In the left-hand navigation, click on the **Parameters** section.
+    3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Writing to an {{site.data.keyword.cos_short}} bucket
 {: #cloud_object_storage_write}
@@ -162,7 +165,7 @@ You can use the `object-write` action to write an object to an {{site.data.keywo
 
 Write an object to your bucket by using the `object-write` action.
 ```
-ibmcloud wsk action invoke /_/cloud-object-storage/object-write --blocking --result --param bucket testbucket --param key data.txt --param body "my_test_data"
+ibmcloud fn action invoke /_/cloud-object-storage/object-write --blocking --result --param bucket testbucket --param key data.txt --param body "my_test_data"
 ```
 {: pre}
 
@@ -231,7 +234,7 @@ You can use the `object-read` action to read from an object in an {{site.data.ke
 
 Read from an object in your bucket by using the `object-read` action.
 ```
-ibmcloud wsk action invoke /_/cloud-object-storage/object-read --blocking --result --param bucket testbucket --param key data.txt
+ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --result --param bucket testbucket --param key data.txt
 ```
 {: pre}
 

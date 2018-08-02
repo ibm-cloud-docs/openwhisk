@@ -39,7 +39,7 @@ lastupdated: "2018-06-22"
 
 2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치면 정의된 신임 정보 키를 사용하여 각 {{site.data.keyword.cloudant_short_notm}} 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다. 
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -51,7 +51,7 @@ lastupdated: "2018-06-22"
   {: screen}
 
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -67,7 +67,7 @@ lastupdated: "2018-06-22"
 3. 이전에 작성된 패키지 바인딩이 {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} 서비스 인스턴스 호스트 및 신임 정보로 구성되었는지 확인하십시오.
 
   ```
-  ibmcloud wsk package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
   ```
   {: pre}
 
@@ -124,7 +124,7 @@ lastupdated: "2018-06-22"
 
 - 이전에 작성한 패키지 바인딩에서 **read** 액션을 사용하여 문서를 페치하십시오. 반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
   ```
   {: pre}
 
@@ -145,7 +145,7 @@ lastupdated: "2018-06-22"
 
 1. 앞에서 작성한 패키지 바인딩에서 **write** 액션을 사용하여 문서를 저장하십시오. 반드시 `/_/myCloudant`를 패키지 이름으로 대체하십시오.
   ```
-  ibmcloud wsk action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
   ```
   {: pre}
 

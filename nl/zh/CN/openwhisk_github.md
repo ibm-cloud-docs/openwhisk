@@ -42,7 +42,7 @@ lastupdated: "2018-03-16"
 
 2. 使用访问令牌创建为您的 GitHub 存储库配置的包绑定。
   ```
-  ibmcloud wsk package bind /whisk.system/github myGit \
+  ibmcloud fn package bind /whisk.system/github myGit \
     --param username myGitUser \
     --param repository myGitRepo \
     --param accessToken aaaaa1111a1a1a1a1a111111aaaaaa1111aa1a1a
@@ -51,7 +51,7 @@ lastupdated: "2018-03-16"
 
 3. 使用 `myGit/webhook` 订阅源为 GitHub `push` 事件类型创建触发器。
   ```
-  ibmcloud wsk trigger create myGitTrigger --feed myGit/webhook --param events push
+  ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
   ```
   {: pre}
 

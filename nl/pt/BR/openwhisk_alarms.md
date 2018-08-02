@@ -43,7 +43,7 @@ O feed `/whisk.system/alarms/interval` configura o serviço de Alarme para dispa
 O exemplo a seguir cria um acionador que é disparado uma vez a cada 2 minutos. O acionador é disparado assim que possível e irá parar o disparo em 31 de janeiro de 2019, 23h59 UTC.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -71,7 +71,7 @@ O feed `/whisk.system/alarms/once` configura o serviço de Alarme para disparar 
 A seguir está um exemplo de criação de um acionador que será disparado uma vez em 25 de dezembro de 2019, 12h30 UTC. Depois que o acionador for disparado, ele será excluído, assim como todas as suas regras associadas.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -105,7 +105,7 @@ A seguir está um exemplo de criação de um acionador que é disparado uma vez 
 1º de janeiro de 2019, 0h UTC e irá parar o disparo em 31 de janeiro de 2019, 23h59 UTC.
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

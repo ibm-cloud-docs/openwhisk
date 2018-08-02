@@ -44,7 +44,7 @@ The following example shows how to configure Slack, create a package binding, an
 
 2. Create a package binding with your Slack credentials, the channel that you want to post to, and the user name to post as.
   ```
-  ibmcloud wsk package bind /whisk.system/slack mySlack \
+  ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \
     --param username "Bob" \
     --param channel "#MySlackChannel"
@@ -53,7 +53,7 @@ The following example shows how to configure Slack, create a package binding, an
 
 3. Invoke the **post** action in your package binding to post a message to your Slack channel.
   ```
-  ibmcloud wsk action invoke mySlack/post --blocking --result \
+  ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
   ```
   {: pre}

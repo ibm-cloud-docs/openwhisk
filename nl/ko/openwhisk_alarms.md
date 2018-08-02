@@ -42,7 +42,7 @@ lastupdated: "2018-03-26"
 다음 예제는 매 2분마다 한 번씩 실행되는 트리거를 작성합니다. 트리거는 가급적 빨리 실행되며 2019년 1월 31일 23:59:00 UTC에 실행을 중지합니다.
 
   ```
-  ibmcloud wsk trigger create interval \
+  ibmcloud fn trigger create interval \
     --feed /whisk.system/alarms/interval \
     --param minutes 2 \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
@@ -70,7 +70,7 @@ lastupdated: "2018-03-26"
 다음은 2019년 12월 25일 12:30:00 UTC에 한 번만 실행되는 트리거를 작성하는 예제입니다. 트리거가 실행된 후 트리거 및 이와 연관된 모든 룰이 삭제됩니다.
 
   ```
-  ibmcloud wsk trigger create fireOnce \
+  ibmcloud fn trigger create fireOnce \
     --feed /whisk.system/alarms/once \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
     --param date "2019-12-25T12:30:00.000Z" \
@@ -103,7 +103,7 @@ lastupdated: "2018-03-26"
 다음은 트리거 이벤트에서 `name` 및 `place` 값으로 매 2분마다 한 번씩 실행되는 트리거를 작성하는 예제입니다. 트리거는 2019년 1월 1일 00:00:00 UTC 이전에는 실행을 시작하지 않으며 2019년 1월 31일 23:59:00 UTC에는 실행을 중지합니다.
 
   ```
-  ibmcloud wsk trigger create periodic \
+  ibmcloud fn trigger create periodic \
     --feed /whisk.system/alarms/alarm \
     --param cron "*/2 * * * *" \
     --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \

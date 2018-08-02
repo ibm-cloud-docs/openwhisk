@@ -36,25 +36,25 @@ lastupdated: "2018-03-16"
 
 1. **appId** 및 **appSecret**을 사용하여 푸시 알림 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
   ```
-  ibmcloud wsk package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
   {: pre}
 
 2. `myPush/webhook` 피드를 사용하여 푸시 알림 서비스 `onDeviceRegister` 이벤트 유형에 대한 트리거를 작성하십시오.
   ```
-  ibmcloud wsk trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
   {: pre}
 
 3. 새 디바이스가 등록될 때마다 메시지를 전송하는 룰을 작성할 수 있습니다. 이전 액션 및 트리거를 사용하여 규칙을 작성하십시오.
   ```
-  ibmcloud wsk rule create --enable myRule myPushTrigger sendMessage
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
   ```
   {: pre}
 
-4. `ibmcloud wsk activation poll` 명령을 사용하여 결과를 확인하십시오.
+4. `ibmcloud fn activation poll` 명령을 사용하여 결과를 확인하십시오.
   ```
-  ibmcloud wsk activation poll
+  ibmcloud fn activation poll
   ```
   {: pre}
 

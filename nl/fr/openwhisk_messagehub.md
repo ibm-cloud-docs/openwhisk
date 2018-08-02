@@ -40,7 +40,7 @@ Pour créer un déclencheur qui réagit lorsque des messages sont publiés dans 
 |isBinaryKey|Booléen (facultatif - par défaut=false)|Lorsque ce paramètre a pour valeur `true`, le fournisseur encode la valeur de la clé en Base64 avant de la transmettre en tant que contenu du déclencheur.|
 |isBinaryValue|Booléen (facultatif - par défaut=false)|Lorsque ce paramètre a pour valeur `true`, le fournisseur encode la valeur du message en Base64 avant de la transmettre en tant que contenu du déclencheur.|
 
-Cette liste de paramètres peut vous sembler impressionnante, mais ils peuvent être définis automatiquement à l'aide de la commande de plug-in de l'interface de ligne de commande `ibmcloud wsk package refresh`.
+Cette liste de paramètres peut vous sembler impressionnante, mais ils peuvent être définis automatiquement à l'aide de la commande de plug-in de l'interface de ligne de commande `ibmcloud fn package refresh`.
 
 1. Créez une instance de service {{site.data.keyword.messagehub}} sous l'organisation et l'espace en cours que vous utilisez pour {{site.data.keyword.openwhisk}}.
 
@@ -48,7 +48,7 @@ Cette liste de paramètres peut vous sembler impressionnante, mais ils peuvent �
 
 3. Actualisez les packages dans votre espace de nom. Cette opération crée automatiquement une liaison de package pour l'instance de service {{site.data.keyword.messagehub}} que vous avez créée.
   ```
-  ibmcloud wsk package refresh
+  ibmcloud fn package refresh
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ Cette liste de paramètres peut vous sembler impressionnante, mais ils peuvent �
 
 4. Affichez la liste des packages de votre espace de nom pour montrer que votre liaison de package est à présent disponible.
   ```
-  ibmcloud wsk package list
+  ibmcloud fn package list
   ```
   {: pre}
 
@@ -76,7 +76,7 @@ Cette liste de paramètres peut vous sembler impressionnante, mais ils peuvent �
 
 5. A présent, il ne vous reste plus qu'à créer un déclencheur qui s'exécute lorsque de nouveaux messages sont publiés dans votre rubrique {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
@@ -87,13 +87,13 @@ Si vous souhaitez configurer votre package {{site.data.keyword.messagehub}} en d
 
 1. Créez une liaison de package configurée pour votre service {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
   {: pre}
 
 2. A présent, vous pouvez créer un déclencheur à l'aide de votre nouveau package qui sera exécuté lorsque de nouveaux messages seront publiés dans votre rubrique {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud wsk trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
   {: pre}
 

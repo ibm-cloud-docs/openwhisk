@@ -68,7 +68,7 @@ Los desencadenantes se pueden activar cuando se producen determinados sucesos, o
 Como ejemplo, cree un desencadenante para enviar actualizaciones de ubicación de usuario y activar manualmente el desencadenante.
 1. Especifique el mandato siguiente para crear el desencadenante:
   ```
-  ibmcloud wsk trigger create locationUpdate
+  ibmcloud fn trigger create locationUpdate
   ```
   {: pre}
 
@@ -80,7 +80,7 @@ Como ejemplo, cree un desencadenante para enviar actualizaciones de ubicación d
 
 2. Compruebe que ha creado el desencadenante mostrando una lista del conjunto de desencadenantes.
   ```
-  ibmcloud wsk trigger list
+  ibmcloud fn trigger list
   ```
   {: pre}
 
@@ -95,7 +95,7 @@ Como ejemplo, cree un desencadenante para enviar actualizaciones de ubicación d
 
 3. A continuación, active el suceso desencadenante especificando el nombre de desencadenante y los parámetros:
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -125,30 +125,30 @@ Como ejemplo, cree una regla que invoque la acción `hello` siempre que se publi
 
 2. Asegúrese de que la acción de desencadenante exista:
   ```
-  ibmcloud wsk trigger update locationUpdate
+  ibmcloud fn trigger update locationUpdate
   ```
   {: pre}
 
   ```
-  ibmcloud wsk action update hello hello.js
+  ibmcloud fn action update hello hello.js
   ```
   {: pre}
 
 3. El siguiente paso consiste en crear la regla. La regla se habilita después de crearse; es decir, está disponible de forma inmediata para responder a las activaciones del desencadenante. Los tres parámetros son: el _nombre de la regla_, el _desencadenante_ y la _acción_.
   ```
-  ibmcloud wsk rule create myRule locationUpdate hello
+  ibmcloud fn rule create myRule locationUpdate hello
   ```
   {: pre}
 
   Puede inhabilitar una regla en cualquier momento:
   ```
-  ibmcloud wsk rule disable myRule
+  ibmcloud fn rule disable myRule
   ```
   {: pre}
 
 4. Active el desencadenante **locationUpdate**. Cada vez que activa un suceso, la acción **hello** se invoca con los parámetros de suceso.
   ```
-  ibmcloud wsk trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
+  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
   ```
   {: pre}
 
@@ -160,7 +160,7 @@ Como ejemplo, cree una regla que invoque la acción `hello` siempre que se publi
 
 5. Compruebe que la acción **hello** se ha invocado, revisando la activación más reciente.
   ```
-  ibmcloud wsk activation list --limit 1 hello
+  ibmcloud fn activation list --limit 1 hello
   ```
   {: pre}
 
@@ -173,7 +173,7 @@ Como ejemplo, cree una regla que invoque la acción `hello` siempre que se publi
 
   Ahora consulte el ID de activación que aparece en la lista de la salida del mandato anterior:
   ```
-  ibmcloud wsk activation result 9c98a083b924426d8b26b5f41c5ebc0d
+  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
   ```
   {: pre}
 
@@ -191,18 +191,18 @@ Puede crear varias reglas que se asocien con el mismo desencadenante con distint
 Los desencadenantes y reglas no pueden pertenecer a un paquete. La regla puede estar asociada a una acción
 que pertenece a un paquete; sin embargo, por ejemplo:
   ```
-  ibmcloud wsk rule create recordLocation locationUpdate /whisk.system/utils/echo
+  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
   ```
   {: pre}
 
 También puede utilizar reglas con secuencias. Por ejemplo, se puede crear una secuencia de acción
 `recordLocationAndHello` que se active mediante la regla `anotherRule`.
   ```
-  ibmcloud wsk action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
   ```
   {: pre}
 
   ```
-  ibmcloud wsk rule create anotherRule locationUpdate recordLocationAndHello
+  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
   ```
   {: pre}

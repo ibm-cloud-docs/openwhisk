@@ -91,7 +91,7 @@ lastupdated: "2018-06-21"
 
 3. 执行 `echo` 的阻塞性（同步）调用。将 `hello` 作为自变量传递。
     ```
-    ibmcloud wsk action invoke whisk.system/utils/echo -p message hello --result
+    ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
     {: pre}
 
@@ -117,7 +117,7 @@ lastupdated: "2018-06-21"
 * 了解包如何捆绑操作以及配置外部事件源。请参阅[创建和使用包](./openwhisk_packages.html)。
 * 浏览包的目录，并通过外部服务（例如，[{{site.data.keyword.cloudant}} 事件源](./openwhisk_cloudant.html)）来增强应用程序的功能。
 
-要列出 {{site.data.keyword.openwhisk_short}} 插件的命令，请运行不带任何自变量的 `ibmcloud wsk`。
+要列出 {{site.data.keyword.openwhisk_short}} 插件的命令，请运行不带任何自变量的 `ibmcloud fn`。
 {: tip}
 
 ## 通过操作使用服务
@@ -162,24 +162,24 @@ ibmcloud iam space-create "production"
 ### 命令语法
 {: #command_syntax}
 
-除了不再需要的 `wsk bluemix login` 命令外，其他所有 `wsk` 命令的工作方式与使用 `ibmcloud wsk` 命令相同。所有命令选项和自变量也都相同。
+除了不再需要的 `wsk bluemix login` 命令外，其他所有 `wsk` 命令的工作方式与使用 `ibmcloud fn` 命令相同。所有命令选项和自变量也都相同。
 
 ### API 认证和主机
 {: #api_authentication}
 
-OpenWhisk CLI 需要配置认证 API 密钥和 API 主机。使用 {{site.data.keyword.openwhisk_short}} CLI 插件时，您无需显式配置 API 密钥和 API 主机。取而代之的是，您可以使用 `ibmcloud login` 登录，然后使用 `ibmcloud target` 命令将您的区域和名称空间设定为目标。登录后，所有命令都以 `ibmcloud wsk` 开头。
+OpenWhisk CLI 需要配置认证 API 密钥和 API 主机。使用 {{site.data.keyword.openwhisk_short}} CLI 插件时，您无需显式配置 API 密钥和 API 主机。取而代之的是，您可以使用 `ibmcloud login` 登录，然后使用 `ibmcloud target` 命令将您的区域和名称空间设定为目标。登录后，所有命令都以 `ibmcloud fn` 开头。
 
 如果需要将认证 API 密钥用于外部 HTTP 客户机（例如，cURL 或 Postman）中的 {{site.data.keyword.openwhisk_short}}，可以使用以下命令来检索该密钥：
 
 要获取当前 API 密钥，请运行以下命令：
 ```
-ibmcloud wsk property get --auth
+ibmcloud fn property get --auth
 ```
 {: pre}
 
 要获取当前 API 主机，请运行以下命令：
 ```
-ibmcloud wsk property get --apihost
+ibmcloud fn property get --apihost
 ```
 {: pre}
 
@@ -189,12 +189,12 @@ API 密钥是特定于 {{site.data.keyword.openwhisk_short}} CLI 插件设定为
 ### API 网关认证
 {: #apigw_authentication}
 
-OpenWhisk CLI 需要您运行 `wsk bluemix login` 才能配置 API 网关授权，以使用 `wsk api` 命令来管理 API。使用 {{site.data.keyword.openwhisk_short}} CLI 插件后，无需运行 `wsk bluemix login`。取而代之的是，使用 `ibmcloud login` 命令登录到 {{site.data.keyword.Bluemix_notm}} 时，{{site.data.keyword.openwhisk}} 插件会自动利用您当前的登录和目标信息。现在，您可以使用 `ibmcloud wsk api` 命令来管理 API。
+OpenWhisk CLI 需要您运行 `wsk bluemix login` 才能配置 API 网关授权，以使用 `wsk api` 命令来管理 API。使用 {{site.data.keyword.openwhisk_short}} CLI 插件后，无需运行 `wsk bluemix login`。取而代之的是，使用 `ibmcloud login` 命令登录到 {{site.data.keyword.Bluemix_notm}} 时，{{site.data.keyword.openwhisk}} 插件会自动利用您当前的登录和目标信息。现在，您可以使用 `ibmcloud fn api` 命令来管理 API。
 
 ### 迁移部署脚本
 {: #migrating_deploy_scripts}
 
-如果您具有将 OpenWhisk CLI 与 `wsk` 二进制文件一起使用的脚本，那么所有命令的工作方式与使用 `ibmcloud wsk` 命令相同。您可以修改脚本以使用 {{site.data.keyword.Bluemix_notm}} CLI 插件，或者创建别名或包装程序，使当前使用 `wsk` 的命令转换为 `ibmcloud wsk`。{{site.data.keyword.Bluemix_notm}} CLI 中的 `ibmcloud login` 和 `ibmcloud target` 命令以无人照管方式工作。在无人照管方式下，可以先配置环境，然后再运行 `ibmcloud wsk` 命令来部署和管理 {{site.data.keyword.openwhisk_short}} 实体。
+如果您具有将 OpenWhisk CLI 与 `wsk` 二进制文件一起使用的脚本，那么所有命令的工作方式与使用 `ibmcloud fn` 命令相同。您可以修改脚本以使用 {{site.data.keyword.Bluemix_notm}} CLI 插件，或者创建别名或包装程序，使当前使用 `wsk` 的命令转换为 `ibmcloud fn`。{{site.data.keyword.Bluemix_notm}} CLI 中的 `ibmcloud login` 和 `ibmcloud target` 命令以无人照管方式工作。在无人照管方式下，可以先配置环境，然后再运行 `ibmcloud fn` 命令来部署和管理 {{site.data.keyword.openwhisk_short}} 实体。
 
 ## 版本历史记录
 {: #version_history}
