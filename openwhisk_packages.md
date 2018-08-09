@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-08-09"
 
 ---
 
@@ -214,7 +214,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 ## Create and use trigger feeds
 {: #openwhisk_package_trigger}
 
-Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger every second, and how to use a rule to invoke an action every second.
+Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger once a minute, and how to use a rule to invoke an action once a minute.
 
 1. Get a description of the feed in the `/whisk.system/alarms` package.
   ```
@@ -245,15 +245,15 @@ Feeds offer a convenient way to configure an external event source to fire these
   - `cron`: A crontab specification of when to fire the trigger.
   - `trigger_payload`: The payload parameter value to set in each trigger event.
 
-2. Create a trigger that fires every 8 seconds.
+2. Create a trigger that fires every one minute.
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   Example output:
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
@@ -271,9 +271,9 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-5. Create a rule that invokes the **hello** action every time the `everyEightSeconds` trigger fires.
+5. Create a rule that invokes the **hello** action every time the `everyOneMinute` trigger fires.
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -289,7 +289,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-  You can see that the activations are observed every 8 seconds for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+  You can see that the activations are observed every one minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
 
 ## Create a package
 {: #openwhisk_packages_create}
