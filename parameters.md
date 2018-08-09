@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-05-31"
+lastupdated: "2018-08-09"
 
 ---
 
@@ -14,217 +14,204 @@ lastupdated: "2018-05-31"
 
 # Working with parameters
 
-Learn how to set parameters on packages and actions for deployment, and how to pass parameters to actions during invocation. You can also use a file to store parameters and pass the filename to the action, rather than supply each parameter individually on the command line.
+In serverless actions, data is supplied by adding parameters to the actions. Parameters are declared as an argument to the main serverless function.
 {: shortdesc}
 
-With serverless actions, data is supplied by adding parameters to the actions, which are declared as an argument to the main serverless function. All data arrives this way and the values can be set in a few different ways. The first option is to supply parameters when an action or package is created (or updated). This option is useful for data that stays the same on every execution, equivalent to environment variables on other platforms, or for default values that might be overridden at invocation time. The second option is to supply parameters when the action is invoked which overrides any parameters that were previously set.
+You can supply values for parameters in two ways:
+* **Pass parameters to an action during invocation**: Supply parameters when the action is invoked either through CLI flags or through a file. Parameters supplied at invocation override any default parameters that were previously set.
+* **Bind parameters to an action or package**: Set default parameters when an action or package is created or updated. This option is useful for data that stays the same on every execution, equivalent to environment variables on other platforms, or for default values that might be overridden at invocation time.
 
 ## Passing parameters to an action during invocation
 {: #pass-params-action}
 
-Parameters can be passed to an action when it is invoked. The examples that are provided use JavaScript but all the other languages work in the same way. To see detailed examples, check out the following topics on [Javascript actions](./openwhisk_actions.html#creating-and-invoking-javascript-actions), [Swift actions](./openwhisk_actions.html#creating-swift-actions), [Python actions](./openwhisk_actions.html#creating-python-actions), [Java actions](./openwhisk_actions.html#creating-java-actions), [PHP actions](./openwhisk_actions.html#creating-php-actions), [Docker actions](./openwhisk_actions.html#creating-docker-actions) or [Go actions](./openwhisk_actions.html#creating-go-actions).
+Parameters can be passed to an action when it is invoked.
 
-1. Use parameters in the action. For example, create a file that is named **hello.js** with the following content:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
+1. Save the following code to a file named `hello.js`.
 
-  The input parameters are passed as a JSON object parameter to the **main** function. Notice how the `name` and `place` parameters are retrieved from the `params` object in this example.
+    ```javascript
+    function main(params) {
+       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+    }
+    ```
+    {: codeblock}
 
-2. Update the **hello** action so it is ready to use:
-  ```
-  ibmcloud fn action update hello hello.js
-  ```
-  {: pre}
+2. Create the `hello` action.
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
-  If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](./binding_services.html) again.
-  {: tip}
+3. If you previously used this action, ensure the action is cleared of any previously set parameters by updating it.
+    ```
+    ibmcloud fn action update hello hello.js
+    ```
+    {: pre}
 
-3. Parameters can be provided explicitly by using the command line, or by [supplying a file](./parameters.html#using-parameter-files) that contains the desired parameters.
+4. Invoke the action by passing `name` and `place` parameters.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
+    ```
+    {: pre}
 
-  To pass parameters directly through the command line, supply a key/value pair to the `--param` flag:
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
-  ```
-  {: pre}
+    **Note**: You can instead pass a file of JSON-formatted parameters:
+    ```
+    ibmcloud fn action invoke --result hello --param-file parameters.json
+    ```
+    {: pre}
 
-  **Response:**
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
-  }
-  ```
-  {: screen}
+    Example output:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
+    }
+    ```
+    {: screen}
 
-  Notice the use of the `--result` option: it implies a blocking invocation where the CLI waits for the activation to complete and then displays only the result. For convenience, this option can be used without `--blocking` which is automatically inferred.
+5. You can also pass parameters in a structured objects to your action. For example, update the `hello` action to the following:
+    ```javascript
+    function main(params) {
+        return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+    }
+    ```
+    {: codeblock}
 
-  Additionally, if parameter values that are specified on the command line are valid JSON, then they are parsed and sent to your action as a structured object.
+    Now, the action expects a single `person` parameter to have fields `name` and `place`.
 
-  For example, update the **hello** action to the following:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
-  }
-  ```
-  {: codeblock}
+6. Invoke the action with a single `person` parameter that is a valid JSON object.
+    ```
+    ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+    ```
+    {: pre}
 
-  Now the action expects a single `person` parameter to have fields `name` and `place`.
+    Example output:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
+    }
+    ```
+    {: screen}
 
-  Next, invoke the action with a single `person` parameter that is a valid JSON, like in the following example:
-  ```
-  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
-  ```
-  {: pre}
-
-  **Response:**
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
-  }
-  ```
-  {: screen}
-
-  The result is the same because the CLI automatically parses the `person` parameter value into the structured object that the action now expects.
-
-## Setting default parameters on an action
+## Binding parameters to an action
 {: #default-params-action}
 
-actions can be invoked with multiple named parameters. Recall that the **hello** action from the previous example expects two parameters: the *name* of a person, and the *place* they are from.
+Actions can be invoked with multiple named parameters. For example, the basic `hello` action expects two parameters: the `name` of a person and the `place` they are from.
 
-Rather than pass all the parameters to an action every time, you can bind certain parameters. The following example binds the *place* parameter so that the action defaults to the place "Kansas":
+```javascript
+function main(params) {
+   return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+}
+```
+{: screen}
 
-1. Update the action by using the `--param` option to bind parameter values, or by passing a file that contains the parameters to `--param-file`. (For examples that use files, see the section on [using parameter files](./parameters.html#using-parameter-files).
+Rather than pass all the parameters to an action every time, you can bind default parameters to the action. The following steps show you how to bind the `place` parameter to the basic `hello` action so that the action defaults to the place "Kansas".
 
-  To specify default parameters explicitly on the command line, provide a key/value pair to the `param` flag:
-  ```
-  ibmcloud fn action update hello --param place Kansas
-  ```
-  {: pre}
+1. Save the following code to a file named `hello.js`.
 
-2. Invoke the action by passing only the `name` parameter this time.
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy
-  ```
-  {: pre}
+    ```javascript
+    function main(params) {
+       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+    }
+    ```
+    {: codeblock}
 
-  Example output:
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
-  }
-  ```
-  {: screen}
+2. Create the `hello` action.
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
-  Notice that you did not need to specify the place parameter when you invoked the action. Bound parameters can still be overwritten by specifying the parameter value at invocation time.
+3. Update the action to bind parameter values by using the `--param` flag and a key/value pair.
 
-3. Invoke the action by passing both the `name` and `place` values, and observe the output:
+    ```
+    ibmcloud fn action update hello --param place Kansas
+    ```
+    {: pre}
 
-  Invoke the action using the `--param` flag:
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
-  ```
-  {: pre}
+    **Note**: You can instead pass a file of JSON-formatted parameters:
+    ```
+    ibmcloud fn action update hello --param-file parameters.json
+    ```
+    {: pre}
 
-  Example output:
-  ```
-  {  
-      "payload": "Hello, Dorothy from Washington, DC"
-  }
-  ```
-  {: screen}
+    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](./binding_services.html) again.
+    {: tip}
 
-  Parameters set on an action when it was created or updated are always overridden by a parameter that is supplied directly on invocation.
-  {: tip}
+4. Invoke the action by passing only the `name` parameter.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy
+    ```
+    {: pre}
 
-## Setting default parameters on a package
+    Example output:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
+    }
+    ```
+    {: screen}
+
+    Because you did not specify the `place` parameter when you invoked the action, the value of the bound default parameter, `Kansas`, is used.
+
+5. Bound parameters can be overwritten by specifying the parameter value at invocation time. Invoke the action by passing both the `name` and `place`.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    {  
+        "payload": "Hello, Dorothy from Washington, DC"
+    }
+    ```
+    {: screen}
+
+## Binding parameters to a package
 {: #default-params-package}
 
-Parameters can be set at the package level, and serve as the default parameters for actions _unless_:
+Default parameters can also be set at the package level. Bound parameters serve as the default parameters for actions in the package unless:
 
-- The action itself has a default parameter.
-- The action has a parameter that is supplied at invoke time, which is always the "priority" when more than one parameter is available.
+- The action itself has a default parameter
+- The action has a parameter that is supplied at invocation time
 
-The following example sets a default parameter of `name` on the **MyApp** package and shows an action using it.
+The following example sets a default parameter of `name` on the `MyApp` package and shows an action using it.
 
-1. Create a package with a parameter set:
+1. Create a package, binding the default parameter `name` to it.
+    ```
+    ibmcloud fn package update MyApp --param name World
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package update MyApp --param name World
-  ```
-  {: pre}
+2. Save the following code to a file named `helloworld.js`.
 
-2. Create an action in the **MyApp** package:
-  ```javascript
-     function main(params) {
-         return {payload: "Hello, " + params.name};
-     }
-  ```
-  {: codeblock}
+    ```javascript
+       function main(params) {
+           return {payload: "Hello, " + params.name};
+       }
+    ```
+    {: codeblock}
 
-  Create the action:
-  ```
-  ibmcloud fn action update MyApp/hello hello.js
-  ```
-  {: pre}
+3. Create the action in the `MyApp` package.
+    ```
+    ibmcloud fn action update MyApp/hello helloworld.js
+    ```
+    {: pre}
 
-3. Invoke the action, and observe the default package parameter in use:
-  ```
-  ibmcloud fn action invoke --result MyApp/hello
-  ```
-  {: pre}
+    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](./binding_services.html) again.
+    {: tip}
 
-  Example output:
-  ```
-     {
-         "payload": "Hello, World"
-     }
-  ```
-  {: screen}
+3. Invoke the action without passing any parameters.
+    ```
+    ibmcloud fn action invoke --result MyApp/hello
+    ```
+    {: pre}
 
-## Using parameter files
-{: #using-parameter-files}
+    Example output:
+    ```
+       {
+           "payload": "Hello, World"
+       }
+    ```
+    {: screen}
 
-You can put parameters into a file in JSON format, and then pass in the parameters by supplying the filename with the `--param-file` flag. This method can be used for both package and action creation (or updates), and during action invocation.
-
-1. As an example, consider the **hello** example from earlier by using `hello.js` with the following content:
-
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
-
-2. Update the action with the updated contents of `hello.js`:
-
-  ```
-  ibmcloud fn action update hello hello.js
-  ```
-  {: pre}
-
-3. Create a parameter file called `parameters.json` containing JSON-formatted parameters:
-
-  ```json
-  {
-      "name": "Dorothy",
-      "place": "Kansas"
-  }
-  ```
-  {: codeblock}
-
-4. Use the `parameters.json` filename when invoking the **hello** action, and observe the output:
-
-  ```
-  ibmcloud fn action invoke --result hello --param-file parameters.json
-  ```
-
-  Example output:
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
-  }
-  ```
-  {: screen}
+    The default parameter that is bound to the package is used.

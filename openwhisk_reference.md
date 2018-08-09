@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-08-09"
 
 ---
 
@@ -246,12 +246,12 @@ The following packages are pre-installed in the Node.js version 8.11.3 environme
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
   - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
-  - [commander v2.15.1](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
+  - [commander v2.16.0](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
-  - [consul v0.33.1](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
+  - [consul v0.34.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - A high-level, caching, CouchDB client for Node.js.
-  - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
+  - [elasticsearch v15.1.1](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
   - [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
   - [etcd3 v0.2.11](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
   - [express v4.16.3](https://www.npmjs.com/package/express) - Fast, unopinionated, minimalist web framework for node.
@@ -259,19 +259,19 @@ The following packages are pre-installed in the Node.js version 8.11.3 environme
   - [formidable v1.2.1](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
   - [glob v7.1.2](https://www.npmjs.com/package/glob) - Match files using the patterns the shell uses, like stars and stuff.
   - [gm v1.23.1](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-  - [ibm-cos-sdk v1.2.1](https://www.npmjs.com/package/ibm-cos-sdk) - {{site.data.keyword.cos_full}} SDK for Node.js
+  - [ibm-cos-sdk v1.2.3-0](https://www.npmjs.com/package/ibm-cos-sdk) - {{site.data.keyword.cos_full}} SDK for Node.js
   - [ibm_db v2.4.0](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for node.js to IBM DB2 and IBM Informix.
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - The node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
   - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - The Lodash library exported as Node.js modules.
-  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
+  - [log4js v3.0.0](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
   - [marked v0.4.0](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-  - [mongodb v3.0.10](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-  - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
+  - [mongodb v3.1.1](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
+  - [mysql v2.16.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
   - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
@@ -289,18 +289,18 @@ The following packages are pre-installed in the Node.js version 8.11.3 environme
   - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
-  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
+  - [twilio v3.18.0](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - Parse URLs for path parameters more easily than from using a regex string matcher.
-  - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
-  - [validator v10.3.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
+  - [uuid v3.3.2](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
+  - [validator v10.4.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
+  - [watson-developer-cloud v3.7.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
   - [winston v3.0.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
-  - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
+  - [ws v5.2.2](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - Another unzip library for node.
+  - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - Another unzip library for node.
 
 ### Node.js version 6 environment
 {: #openwhisk_ref_javascript_environments_6}
@@ -374,7 +374,7 @@ When creating python actions using virtualenv, use the docker image `ibmfunction
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
 Python version:
-- [3.6.5](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
+- [3.6.6](https://github.com/docker-library/python/blob/a1aa406bfd8c7b129e6e0ee0ba972b863624ac0d/3.6/jessie/Dockerfile)
 
 Python packages:
 - asn1crypto==0.24.0
@@ -398,9 +398,9 @@ Python packages:
 - greenlet==0.4.13
 - httplib2==0.11.3
 - hyperlink==18.0.0
-- ibm-cos-sdk==2.1.1
-- ibm-cos-sdk-core==2.1.1
-- ibm-cos-sdk-s3transfer==2.1.1
+- ibm-cos-sdk==2.1.2
+- ibm-cos-sdk-core==2.1.2
+- ibm-cos-sdk-s3transfer==2.1.2
 - ibm-db==2.0.8a0
 - ibmcloudsql==0.2.13
 - idna==2.6
@@ -409,19 +409,19 @@ Python packages:
 - Jinja2==2.10
 - jmespath==0.9.3
 - kafka-python==1.4.3
-- lxml==4.2.1
+- lxml==4.2.3
 - MarkupSafe==1.0
 - numpy==1.14.5
-- pandas==0.23.1
+- pandas==0.23.3
 - parsel==1.4.0
 - pika==0.12.0
-- Pillow==5.1.0
+- Pillow==5.2.0
 - psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
 - PyDispatcher==2.0.5
-- pymongo==3.6.1
+- pymongo==3.7.1
 - pyOpenSSL==17.5.0
 - pysolr==3.7.0
 - python-dateutil==2.7.3
@@ -429,18 +429,18 @@ Python packages:
 - queuelib==1.4.2
 - redis==2.10.6
 - requests==2.19.1
-- scikit-learn==0.19.1
+- scikit-learn==0.19.2
 - scipy==1.1.0
-- Scrapy==1.5.0
+- Scrapy==1.5.1
 - service-identity==17.0.0
-- simplejson==3.15.0
+- simplejson==3.16.0
 - six==1.11.0
 - tornado==5.0.2
-- Twisted==18.4.0
+- Twisted==18.7.0
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.4.0
+- watson-developer-cloud==1.5.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -556,7 +556,7 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 actions can use the following packages when using single Swift source file:
-- Watson Developer Cloud SDK version 0.28.0, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK version 0.29.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
@@ -593,7 +593,7 @@ The following Composer packages are also available:
 
 Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
 
-The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud wsk sdk install docker` CLI plug-in command.
+The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud fn sdk install docker` CLI plug-in command.
 
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 
