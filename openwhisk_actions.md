@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-23"
+lastupdated: "2018-08-13"
 
 ---
 
@@ -69,7 +69,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-4. Run the action in the cloud by running a blocking invocation. Blocking invocations use a request/response style and waits for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits).
+4. Run the action in the cloud by running a blocking invocation. Blocking invocations use a request/response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits).
     ```
     ibmcloud fn action invoke --blocking hello
     ```
@@ -864,7 +864,7 @@ actions/
     ```
     {: pre}
 
-    The time that it took for the action to run is in the `duration1 property.
+    The time that it took for the action to run is in the `duration` property.
 
 6. You can compare the duration of the pre-compiled action invocation to the duration of a command invocation with a compilation step. Invoke the action from the previous section:
     ```
@@ -1058,7 +1058,7 @@ To set up a custom binary and use the uploaded Docker image as an action:
     {: pre}
 
 9. Optional: You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument makes it easier to create and deploy executables that run inside the standard Docker action SDK.
-    1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zipping it into `exec.zip`.
+    1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zip it into `exec.zip`.
     2. Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.
         ```
         ibmcloud fn action create example exec.zip --native

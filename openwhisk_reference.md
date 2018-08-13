@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-08-09"
+lastupdated: "2018-08-13"
 
 ---
 
@@ -30,7 +30,7 @@ Packages can contain actions and feeds. A package cannot contain another package
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
 
-You can create your own namespaces if you're entitled to do so. The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
+You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry orgs and spaces](bluemix_cli.html#region_info). The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
 ### Fully qualified names
 {: #openwhisk_entities_fullyqual}
