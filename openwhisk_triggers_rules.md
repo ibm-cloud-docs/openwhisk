@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-28"
+lastupdated: "2018-08-13"
 
 ---
 
@@ -135,7 +135,7 @@ After you create the [`locationUpdate` trigger](#openwhisk_triggers_fire), the f
     ```
     {: pre}
 
-4. Fire the `locationUpdate` trigger. Each a trigger event occurs, the `hello` action is called with the event parameters.
+4. Fire the `locationUpdate` trigger. Each time a trigger event occurs, the `hello` action is called with the event parameters.
     ```
     ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-08-13"
 
 ---
 
@@ -25,7 +25,7 @@ This tutorial steps you through deploying the templates that are available throu
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When a {{site.data.keyword.cloudant}} has a documented edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When a {{site.data.keyword.cloudant}} has a document edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
 | [Upload Image](./deploy_templates.html#cos-upload-image) | A web action the allows you to upload an image to a {{site.data.keyword.cos_full}} instance's bucket and then retreive a thumbnail of that image. | Node.js |
 | [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | A web action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
 | [Hello World](./deploy_templates.html#hello-world-template) | This action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
@@ -78,7 +78,7 @@ After template deployment, you can make further edits to the code to customize i
 ## Deploying the Upload Image template
 {: #cos-upload-image}
 
-The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short_notm}} bucket though a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
+The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short_notm}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
 To deploy the template:
 
