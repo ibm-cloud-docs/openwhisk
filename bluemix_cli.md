@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-08-01"
+lastupdated: "2018-08-16"
 
 ---
 
@@ -141,6 +141,8 @@ The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS pro
 
 If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
 
+To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
+
 {{site.data.keyword.openwhisk_short}} is available in the US South and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
 ```
 ibmcloud target -r eu-gb -s staging
@@ -157,6 +159,8 @@ ibmcloud iam space-create "production"
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
 {: tip}
+
+**Warning**: Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
 
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migration}
