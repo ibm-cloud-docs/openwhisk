@@ -282,7 +282,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/openwhisk).
+**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/functions).
 
 ## Saving action code
 {: #save-action}
