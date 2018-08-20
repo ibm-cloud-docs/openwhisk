@@ -84,31 +84,31 @@ To install the {{site.data.keyword.cos_short}} package:
     Output:
     ```
     packages
-    /myOrg_mySpace/cloud-object-storage-pkg private
+    /myOrg_mySpace/cloud-object-storage private
     ```
     {: screen}
 
 5. Bind the credentials from the {{site.data.keyword.cos_short}} instance you created to the package.
     ```
-    ibmcloud fn service bind cloud-object-storage cloud-object-storage-pkg
+    ibmcloud fn service bind cloud-object-storage cloud-object-storage
     ```
     {: pre}
 
     Example output:
     ```
-    Credentials 'Credentials-1' from 'cloud-object-storage' service instance 'Cloud Object Storage-r1' bound to 'cloud-object-storage-pkg'.
+    Credentials 'Credentials-1' from 'cloud-object-storage' service instance 'Cloud Object Storage-r1' bound to 'cloud-object-storage'.
     ```
     {: screen}
 
 6. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance credentials.
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg parameters
+    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg, displaying field parameters
+    ok: got package /myBluemixOrg_myBluemixSpace/cloud-object-storage, displaying field parameters
     [
       {
         "key": "__bx_creds",
