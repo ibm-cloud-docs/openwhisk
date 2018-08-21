@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-13"
+lastupdated: "2018-08-15"
 
 ---
 
@@ -127,15 +127,17 @@ It is important to be aware of the [response size limit](./openwhisk_reference.h
 ## Handling HTTP requests with actions
 {: #openwhisk_webactions_http}
 
-A {{site.data.keyword.openwhisk_short}} action that is not a web action requires both authentication and must respond with a JSON object. In contrast, web actions can be invoked without authentication, and can be used to implement HTTP handlers that respond with _headers_, _statusCode_, and _body_ content of different types. The web action must return a JSON object. However, the {{site.data.keyword.openwhisk_short}} system (namely the `controller`), treats a web action differently if its result includes one or more of the following top-level JSON properties:
+A {{site.data.keyword.openwhisk_short}} action that is not a web action requires authentication and must respond with a JSON object.
 
-- `headers`: A JSON object where the keys are header-names and the values are string, number, or boolean values for those headers (default is no headers). To send multiple values for a single header, the header's value is a JSON array of values.
-- `statusCode`: A valid HTTP status code (default is 200 OK).
-- `body`: A string that is either plain text or a base64 encoded string (for binary data).
+Web actions can be invoked without authentication and can be used to implement HTTP handlers that respond with `headers`, `statusCode`, and `body` content of different types.
+Web actions must return a JSON object. However, the controller treats a web action differently if its result includes one or more of the following as top-level JSON properties:
 
-The controller is to pass along the action-specified headers, if any, to the HTTP client that terminates the request/response. Similarly, the controller responds with the status code when present. Lastly, the body is passed along as the body of the response. Unless a `Content-Type` header is declared in the action result’s `headers`, the body is passed along as is if it’s a string (or results in an error otherwise). When the `Content-Type` is defined, the controller determines whether the response is binary data or plain text and decode the string by using a base64 decoder as needed. If the body fails to decode correctly, an error is returned to the caller.
+- `headers`: A JSON object in which the keys are header names and the values are string, number, or boolean values. To send multiple values for a single header, the header's value is a JSON array of the multiple values. No headers are set by default.
+- `statusCode`: A valid HTTP status code. If body content is present, the default is `200 OK`. If no body content is present, the default is `204 No Content`.
+- `body`: A string that is either plain text, a JSON object or array, or a base64 encoded string for binary data. The body is considered empty if it is `null`, the empty string `""`, or undefined. The default is an empty body.
 
-_Note_: A JSON object or array is treated as binary data, and must be base64 encoded.
+The controller passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
+
 
 ## HTTP Context
 {: #http-context}

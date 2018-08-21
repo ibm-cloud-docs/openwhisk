@@ -15,7 +15,7 @@ lastupdated: "2018-06-22"
 # Cloudant events source
 {: #openwhisk_cloudant}
 
-Learn how to listen for changes to a {{site.data.keyword.cloudant}} database, filter database change events, and use an action sequence to process a document from a {{site.data.keyword.cloudant_short_notm}} database. The `/whisk.system/cloudant` package enables you to work with a {{site.data.keyword.cloudant_short_notm}} database, and includes the following actions and feeds:
+Learn how to listen for changes to an {{site.data.keyword.cloudant}} database, filter database change events, and use an action sequence to process a document from an {{site.data.keyword.cloudant_short_notm}} database. The `/whisk.system/cloudant` package enables you to work with an {{site.data.keyword.cloudant_short_notm}} database, and includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -84,7 +84,7 @@ The parameters used in this example are as follows:
 
 7. Observe new activations for the **myCloudantTrigger** trigger for each document change only if the document status is **new** based on the filter function and query parameter.
 
-If you are unable to observe new activations, see the [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) topic which demonstrates how to read from and write to a {{site.data.keyword.cloudant_short_notm}} database. Test the reading and writing steps to help to verify that your {{site.data.keyword.cloudant_short_notm}} credentials are correct.
+If you are unable to observe new activations, see the [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) topic which demonstrates how to read from and write to an {{site.data.keyword.cloudant_short_notm}} database. Test the reading and writing steps to help to verify that your {{site.data.keyword.cloudant_short_notm}} credentials are correct.
 {: tip}
 
 ## Data structure of a trigger event
@@ -145,10 +145,10 @@ The information for the new design document is printed on the screen:
 ```
 {: screen}
 
-## Using an action sequence and a change trigger to process a document from a {{site.data.keyword.cloudant_short_notm}} database
+## Using an action sequence and a change trigger to process a document from an {{site.data.keyword.cloudant_short_notm}} database
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-You can use an action sequence in a rule to fetch and process the document that is associated with a {{site.data.keyword.cloudant_short_notm}} change event.
+You can use an action sequence in a rule to fetch and process the document that is associated with an {{site.data.keyword.cloudant_short_notm}} change event.
 
 Sample code of an action that handles a document:
 ```javascript

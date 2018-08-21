@@ -25,11 +25,11 @@ This tutorial steps you through deploying the templates that are available throu
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When a {{site.data.keyword.cloudant}} has a document edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](./deploy_templates.html#cos-upload-image) | A web action the allows you to upload an image to a {{site.data.keyword.cos_full}} instance's bucket and then retreive a thumbnail of that image. | Node.js |
+| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When an {{site.data.keyword.cloudant}} has a documented edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](./deploy_templates.html#cos-upload-image) | A web action the allows you to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retreive a thumbnail of that image. | Node.js |
 | [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | A web action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
 | [Hello World](./deploy_templates.html#hello-world-template) | This action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](./deploy_templates.html#messagehub-events-template) | When a {{site.data.keyword.messagehub_full}} topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](./deploy_templates.html#messagehub-events-template) | When an {{site.data.keyword.messagehub_full}} topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP |
 | [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | An action that will post to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
@@ -99,7 +99,7 @@ To deploy the template:
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
       2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#service-credentials).
       3. [Create at least one bucket](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
-  * **Input your own credentials**: Select this option to manually enter your own credentials for a {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
+  * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
   * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
 7. Click **Deploy**.
