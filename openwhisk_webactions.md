@@ -157,9 +157,9 @@ The `__ow_user` is only present when the web action is [annotated to require aut
 
 ## HTTPS Endpoint support
 
-Supported SSL protocols: TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
 
-Unsupported SSL protocols: SSLv2, SSLv3
+Unsupported SSL protocols: SSLv2, SSLv3, TLS 1.0, TLS 1.1
 
 ## Extra features
 {: #extra-features}
