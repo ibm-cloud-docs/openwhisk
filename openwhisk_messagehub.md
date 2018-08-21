@@ -14,7 +14,7 @@ lastupdated: "2018-06-22"
 # Message Hub events source
 {: #openwhisk_catalog_message_hub}
 
-You can create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
+You can create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} package

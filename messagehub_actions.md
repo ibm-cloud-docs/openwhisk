@@ -24,7 +24,7 @@ A package that enables communication with [{{site.data.keyword.messagehub_full}}
 
 2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled **mytopic**.
 
-3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
+3. Refresh the packages in your namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
   ```
   ibmcloud fn package refresh
   ```
@@ -37,7 +37,7 @@ A package that enables communication with [{{site.data.keyword.messagehub_full}}
   ```
   {: screen}
 
-4. List the packages in your Namespace to show that your package binding is now available.
+4. List the packages in your namespace to show that your package binding is now available.
   ```
   ibmcloud fn package list
   ```

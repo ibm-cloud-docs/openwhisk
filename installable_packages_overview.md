@@ -62,7 +62,7 @@ To install a package:
 ### Example using the {{site.data.keyword.cos_full_notm}} package
 {: #example}
 
-To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html), you must first create a {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
+To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html), you must first create an {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
 After creating the service instance and bucket, installing the package requires the following commands:
 

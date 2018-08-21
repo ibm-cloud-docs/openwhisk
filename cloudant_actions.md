@@ -26,14 +26,15 @@ The `/whisk.system/cloudant` package enables you to work with a [{{site.data.key
 {: shortdesc}
 
 The following sections step you through setting up a {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
+The following sections step you through setting up an {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
 For more information on how to use feeds with the `/whisk.system/cloudant` package, see [{{site.data.keyword.cloudant_short_notm}} events source](./openwhisk_cloudant.html).
 
-## Setting up a {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
+## Setting up an {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_cloud}
 
 If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}}, {{site.data.keyword.openwhisk_short}} automatically creates package bindings for your {{site.data.keyword.cloudant_short_notm}} service instances. If you aren't using {{site.data.keyword.openwhisk_short}} and {{site.data.keyword.cloudant_short_notm}} from {{site.data.keyword.Bluemix_notm}}, skip to the next section.
 
-1. Create a {{site.data.keyword.cloudant_short_notm}} service instance in your [{{site.data.keyword.Bluemix_notm}} dashboard](http://console.bluemix.net).
+1. Create an {{site.data.keyword.cloudant_short_notm}} service instance in your [{{site.data.keyword.Bluemix_notm}} dashboard](http://console.bluemix.net).
 
   Be sure to create a credential key for each new service instance.
 
@@ -92,7 +93,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
   ```
   {: screen}
 
-## Setting up a {{site.data.keyword.cloudant_short_notm}} database outside the {{site.data.keyword.Bluemix_notm}}
+## Setting up an {{site.data.keyword.cloudant_short_notm}} database outside the {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_nocloud}
 
 If you're not using {{site.data.keyword.openwhisk_short}} in the {{site.data.keyword.Bluemix_notm}} or if you want to set up your {{site.data.keyword.cloudant_short_notm}} database outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your {{site.data.keyword.cloudant_short_notm}} account. You need the {{site.data.keyword.cloudant_short_notm}} account host name, user name, and password.
@@ -117,10 +118,10 @@ If you're not using {{site.data.keyword.openwhisk_short}} in the {{site.data.key
   ```
   {: screen}
 
-## Reading from a {{site.data.keyword.cloudant_short_notm}} database
+## Reading from an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_read}
 
-You can use an action to fetch a document from a {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
+You can use an action to fetch a document from an {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
 
 - Fetch a document by using the **read** action in the package binding that you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
@@ -138,10 +139,10 @@ You can use an action to fetch a document from a {{site.data.keyword.cloudant_sh
   ```
   {: screen}
 
-## Writing to a {{site.data.keyword.cloudant_short_notm}} database
+## Writing to an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_write}
 
-You can use an action to store a document in a {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
+You can use an action to store a document in an {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
 
 1. Store a document by using the **write** action in the package binding you created previously. Be sure to replace `/_/myCloudant` with your package name.
   ```
