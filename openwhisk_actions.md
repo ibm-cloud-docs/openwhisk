@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-08-13"
+lastupdated: "2018-08-24"
 
 ---
 
@@ -514,14 +514,14 @@ To install dependencies, package them in a virtual environment, and create a com
 1. Create a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install.
 
 2. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtual environment must use the image that corresponds to the kind.
-    - For kind `python:2` use the docker image `openwhisk/python2action`.
-    - For kind `python:3` use the docker image `openwhisk/python3action`.
-    - For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
-    ```
-    docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
-      bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
-    ```
-    {: pre}
+    * For kind `python:2` use the docker image `openwhisk/python2action`.
+    * For kind `python:3` use the docker image `openwhisk/python3action`.
+    * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
+
+  ```
+  docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+  ```
+  {: pre}
 
 3. Package the `virtualenv` directory and any additional Python files. The source file that contains the entry point must be named `__main__.py`.
     ```
