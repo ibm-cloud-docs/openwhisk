@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather
+# Weather パッケージ
 {: #openwhisk_catalog_weather}
 
 `/whisk.system/weather` パッケージを利用して、Weather Company Data for the {{site.data.keyword.Bluemix}} API を簡単に呼び出すことができます。
@@ -64,7 +64,7 @@ lastupdated: "2018-03-27"
 
 {{site.data.keyword.Bluemix_notm}} で {{site.data.keyword.openwhisk_short}} を使用していない場合、または {{site.data.keyword.Bluemix_notm}} の外部で Weather Company Data サービスをセットアップしたい場合は、Weather Company Data サービスのパッケージ・バインディングを手動で作成する必要があります。 Weather Company Data サービスのユーザー名とパスワードが必要になります。
 
-Watson Translator サービス用に構成されるパッケージ・バインディングを作成します。
+Weather サービス用に構成されるパッケージ・バインディングを作成します。
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

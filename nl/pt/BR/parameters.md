@@ -171,7 +171,7 @@ O exemplo a seguir configura um parâmetro padrão de `name` no pacote **MyApp**
 
 3. Chame a ação e observar o parâmetro de pacote padrão em uso:
   ```
-  ibmcloud fn action invoke --result MyApp/hello
+  ibmcloud fn action invoke -- result MyApp/hello
   ```
   {: pre}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -35,8 +35,10 @@ temperatura determinada, nuevas confirmaciones de código en un repositorio GitH
 <dt>Desencadenante</dt>
 <dd>Los [desencadenantes](openwhisk_triggers_rules.html#openwhisk_triggers_create) son un canal con nombre para una clase de sucesos. Un desencadenante es una declaración a la que desea reaccionar en un determinado tipo de suceso, ya sea un usuario o mediante un origen de sucesos.</dd>
 <dt>Regla</dt>
-<dd>Una [regla](openwhisk_triggers_rules.html#openwhisk_rules_use) asocia un desencadenante con una acción. Cada vez que se activa el desencadenante, la regla invocará la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
+<dd>Una [regla](openwhisk_triggers_rules.html#openwhisk_rules_use) asocia un desencadenante con una acción. Cada vez que se activa el desencadenante, la regla utiliza el suceso desencadenante como entrada e invoca a la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
 una acción se invoque como respuesta a sucesos de distintos desencadenantes.</dd>
+<dt>Canal de información</dt>
+<dd>Un [canal de información](openwhisk_feeds.html#openwhisk_feeds) es una forma cómoda de configurar un origen de sucesos externo para activar sucesos desencadenantes que {{site.data.keyword.openwhisk_short}} pueda consumir. Por ejemplo, un canal de información Git podría activar un suceso desencadenante para cada confirmación en un repositorio Git.</dd>
 <dt>Paquete</dt>
 <dd>Las integraciones con servicios y proveedores de sucesos se pueden añadir con paquetes. Un [paquete](openwhisk_packages.html) es una agrupación de canales de información y acciones. Un canal de información es un fragmento de código que configura un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, un desencadenante creado con un canal de información de cambios de {{site.data.keyword.cloudant}} configura un servicio para que active el desencadenante siempre que se modifique un documento o se añada a una base de datos {{site.data.keyword.cloudant_short_notm}}. Las acciones en paquetes representan lógica reutilizable que un proveedor de servicios puede poner a disponibilidad de los desarrolladores para que puedan utilizar el servicio como un origen de sucesos e invocar las API de dicho servicio.
 <br><br>Un catálogo de paquetes existente ofrece una forma rápida de mejorar las aplicaciones con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que tienen paquetes de {{site.data.keyword.openwhisk_short}} son {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack y GitHub.</dd>
@@ -163,4 +165,4 @@ Puede encontrar información adicional sobre {{site.data.keyword.openwhisk_short
 * [Nombres de entidad](./openwhisk_reference.html#openwhisk_entities)
 * [Semánticas de acción](./openwhisk_reference.html#openwhisk_semantics)
 * [Límites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Referencia de API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [Referencia de API REST](https://console.bluemix.net/apidocs/openwhisk)

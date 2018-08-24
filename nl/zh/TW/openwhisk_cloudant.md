@@ -15,10 +15,9 @@ lastupdated: "2018-06-22"
 # Cloudant 事件來源
 {: #openwhisk_cloudant}
 
-瞭解如何接聽對 {{site.data.keyword.cloudant}} 資料庫的變更、過濾資料庫變更事件，以及使用動作序列來處理 {{site.data.keyword.cloudant_short_notm}} 資料庫中的文件。`/whisk.system/cloudant` 套件可讓您使用 {{site.data.keyword.cloudant_short_notm}} 資料庫，並包括下列動作及「資訊來源」：
+瞭解如何接聽對 {{site.data.keyword.cloudant}} 資料庫的變更、過濾資料庫變更事件，以及使用動作序列來處理 {{site.data.keyword.cloudant_short_notm}} 資料庫中的文件。`/whisk.system/cloudant` 套件可讓您使用 {{site.data.keyword.cloudant_short_notm}} 資料庫，並包括下列動作及資訊來源：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` |套件|dbname、host、username、password|使用 Cloudant 資料庫。|
 |`/whisk.system/cloudant/read` |動作|dbname、id|讀取資料庫中的文件。|
@@ -26,11 +25,11 @@ lastupdated: "2018-06-22"
 |`/whisk.system/cloudant/changes` |資訊來源|dbname、filter、query_params、maxTriggers|在資料庫變更時發動觸發程式事件。|
 {: shortdesc}
 
-下列各節將引導您逐步配置相關聯的套件，並且說明如何使用 `/whisk.system/cloudant` 套件中的動作及「資訊來源」。如需設定 {{site.data.keyword.cloudant_short_notm}} 資料庫以及讀取或寫入其中的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 動作](./cloudant_actions.html)。
+下列各節將引導您逐步配置相關聯的套件，並且說明如何使用 `/whisk.system/cloudant` 套件中的動作及資訊來源。如需設定 {{site.data.keyword.cloudant_short_notm}} 資料庫以及讀取或寫入其中的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 動作](./cloudant_actions.html)。
 
 ## 使用過濾器函數建立觸發程式
 
-您可以使用「`changes` 資訊來源」，配置服務在每次變更 {{site.data.keyword.cloudant_short_notm}} 資料庫時發動觸發程式。
+您可以使用 `changes` 資訊來源，配置服務在每次變更 {{site.data.keyword.cloudant_short_notm}} 資料庫時發動觸發程式。
 
 此範例中使用的參數如下所示：
 

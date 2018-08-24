@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -28,24 +28,18 @@ Las acciones, desencadenantes y reglas de {{site.data.keyword.openwhisk_short}} 
 
 Los paquetes pueden contener acciones y canales de información. Un paquete no puede contener otro paquete, por lo que no se permite anidamiento de paquetes. Además, las entidades no tienen que estar obligatoriamente contenidas en un paquete.
 
-En {{site.data.keyword.Bluemix_notm}}, un par organización+espacio corresponde a un espacio de nombres de {{site.data.keyword.openwhisk_short}}. Por ejemplo,
-la organización `BobsOrg` y el espacio `dev` corresponderían al espacio de nombres
-`/BobsOrg_dev` de {{site.data.keyword.openwhisk_short}}.
+En {{site.data.keyword.Bluemix_notm}}, un par organización+espacio corresponde a un espacio de nombres de {{site.data.keyword.openwhisk_short}}. Por ejemplo, la organización `BobsOrg` y el espacio `dev` corresponderían al espacio de nombres `/BobsOrg_dev` de {{site.data.keyword.openwhisk_short}}.
 
-Puede crear sus propios espacios de nombres si está autorizado a ello. El espacio de nombres `/whisk.system`
-se reserva para entidades distribuidas con el sistema {{site.data.keyword.openwhisk_short}}.
+Puede crear sus propios espacios de nombres si está autorizado a ello. El espacio de nombres `/whisk.system` se reserva para entidades distribuidas con el sistema {{site.data.keyword.openwhisk_short}}.
 
 ### Nombres completos
 {: #openwhisk_entities_fullyqual}
 
-El nombre completo de una entidad es `/namespaceName[/packageName]/entityName`. Observe que
-se utiliza `/` para delimitar espacios de nombres, paquetes y entidades. Además, los espacios de nombres deben
-tener una `/` como prefijo.
+El nombre completo de una entidad es `/namespaceName[/packageName]/entityName`. Observe que se utiliza `/` para delimitar espacios de nombres, paquetes y entidades. Además, los espacios de nombres deben tener una `/` como prefijo.
 
 Por comodidad, el espacio de nombres se puede dejar fuera si es el *espacio de nombre predeterminado* del usuario.
 
-Por ejemplo, supongamos un usuario cuyo espacio de nombres predeterminado es `/myOrg`. A continuación hay ejemplos
-de los nombres completos de una serie de entidades y sus alias.
+Por ejemplo, supongamos un usuario cuyo espacio de nombres predeterminado es `/myOrg`. A continuación hay ejemplosde los nombres completos de una serie de entidades y sus alias.
 
 | Nombre completo | Alias | Espacio de nombres | Paquete | Nombre |
 | --- | --- | --- | --- | --- |
@@ -77,8 +71,7 @@ En las secciones siguientes se describen los detalles sobre las acciones de
 
 Las implementaciones de acciones son sin estado, o *idempotent*. Aunque el sistema no impone esta propiedad, no hay garantía de que cualquier estado mantenido por una acción esté disponible entre invocaciones.
 
-Además, se puede dar la creación de varias instancias de una acción, teniendo cada creación de instancias su propio estado. Una
-invocación de acción se podría asignar a cualquiera de estas creaciones de instancias.
+Además, se puede dar la creación de varias instancias de una acción, teniendo cada creación de instancias su propio estado. Una invocación de acción se podría asignar a cualquiera de estas creaciones de instancias.
 
 ### Entrada y salida de invocación
 {: #openwhisk_semantics_invocationio}
@@ -88,12 +81,9 @@ La entrada y salida de una acción es un diccionario de pares de clave/valor. La
 ### Ordenación de invocaciones de acciones
 {: #openwhisk_ordering}
 
-Las invocaciones de una acción no están ordenadas. Si el usuario invoca una acción dos veces desde la línea de mandatos
-o la API REST, la segunda invocación podría ejecutarse antes que la primera. Si las acciones tienen efectos secundarios,
-se podrían observar en cualquier orden.
+Las invocaciones de una acción no están ordenadas. Si el usuario invoca una acción dos veces desde la línea de mandatos o la API REST, la segunda invocación podría ejecutarse antes que la primera. Si las acciones tienen efectos secundarios, se podrían observar en cualquier orden.
 
-Además, no se garantiza que las acciones se ejecuten automáticamente. Dos acciones se pueden ejecutar de forma simultánea
-y tener efectos secundarios que se entrelacen. OpenWhisk no asegura ningún modelo de coherencia simultáneo concreto en cuanto a efectos secundarios. Los efectos secundarios de simultaneidad dependen de la implementación.
+Además, no se garantiza que las acciones se ejecuten automáticamente. Dos acciones se pueden ejecutar de forma simultánea y tener efectos secundarios que se entrelacen. OpenWhisk no asegura ningún modelo de coherencia simultáneo concreto en cuanto a efectos secundarios. Los efectos secundarios de simultaneidad dependen de la implementación.
 
 ### Garantías de ejecución de acción
 {: #openwhisk_atmostonce}
@@ -108,8 +98,7 @@ El sistema intenta invocar la acción una vez, lo que tiene uno de los cuatro re
 - *application error*: La invocación de la acción ha sido correcta, pero la acción ha devuelto un valor de error a propósito, por ejemplo debido a una condición previa de los argumentos que no se cumpla.
 - *action developer error*: La acción se ha invocado, pero se ha completado de forma anómala, por ejemplo, la acción no ha detectado una excepción o se ha producido un error de sintaxis.
 - *whisk internal error*: El sistema no ha podido invocar la acción.
-El resultado se registra en el campo `status` del registro de activación,
-como documento en la sección siguiente.
+El resultado se registra en el campo `status` del registro de activación, como documento en la sección siguiente.
 
 Cada invocación que se recibe correctamente, y que se podría facturar al usuario, tiene un registro de activación.
 
@@ -251,9 +240,9 @@ Para obtener más información, consulte [Empaquetado de una acción como un mó
 
 ### Entorno Node.js versión 8 con SDK de IBM
 {: #openwhisk_ref_javascript_environments_8}
-Se utiliza el entorno Node.js versión 8.11.1 si se especifica de forma explícita el distintivo `--kind` con un valor de `nodejs:8` al crear o actualizar una acción.
+Se utiliza el entorno Node.js versión 8.11.3 si se especifica de forma explícita el distintivo `--kind` con un valor de `nodejs:8` al crear o actualizar una acción.
 
-Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8.11.1:
+Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8.11.3:
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib): una biblioteca para crear clientes AMQP 0-9-1 para Node.JS.
   - [apn v2.2.0](https://www.npmjs.com/package/apn): un módulo Node.js para interactuar con el servicio de notificaciones push de Apple.
   - [async v2.6.1](https://www.npmjs.com/package/async): proporciona funciones para trabajar con funciones asíncronas.
@@ -262,10 +251,10 @@ Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa): un puerto de la función btoa del navegador.
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - controlador de DataStax Node.js para Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant): esta es la biblioteca oficial de Cloudant para Node.js.
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant): esta es la biblioteca oficial de Cloudant para Node.js.
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant): esta es la biblioteca oficial de Cloudant para Node.js.
   - [commander v2.15.1](https://www.npmjs.com/package/commander): la solución completa para las interfaces de línea de mandatos de Node.js.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - conversor de direcciones de IU o API de Compose para bases de datos Scylla.
-  - [consul v0.32.0](https://www.npmjs.com/package/consul): un cliente para Consul, que incluye configuración y descubrimiento de servicio.
+  - [consul v0.33.1](https://www.npmjs.com/package/consul): un cliente para Consul, que incluye configuración y descubrimiento de servicio.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser): analizar cabeceras de cookies y rellenar req.cookies con un objeto codificado por los nombres de cookie.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle): un cliente CouchDB, de almacenamiento en memoria caché y alto nivel para Node.js.
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch): cliente oficial de Elasticsearch de bajo nivel para Node.js.
@@ -281,9 +270,9 @@ Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf): el cliente node.js se utiliza para simplificar la interacción con la plataforma de Internet de las cosas de IBM Watson.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite): conversión de codificación de caracteres de JS puro.
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom es una implementación JavaScript pura de muchos estándares de la web, especialmente los estándares WHATWG DOM y HTML.
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken): una implementación de señales web de JSON.
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken): una implementación de señales web de JSON.
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash): la biblioteca de Lodash que se exporta como módulos Node.js.
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js): es una conversión de la infraestructura log4js diseñada para trabajar con Node.
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js): es una conversión de la infraestructura log4js diseñada para trabajar con Node.
   - [marked v0.4.0](https://www.npmjs.com/package/marked): un completo analizador y compilador de markdown, escrito en JavaScript. Diseñado para ofrecer rapidez.
   - [merge v1.2.0](https://www.npmjs.com/package/merge): fusionar varios objetos en uno y, opcionalmente, crear un nuevo objeto clonado.
   - [moment v2.22.2](https://www.npmjs.com/package/moment): una biblioteca de fechas JavaScript ligera para analizar, validar, manipular y formatear fechas.
@@ -291,7 +280,7 @@ Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql): controlador de node.js para mysql.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache): mustache.js es una implementación del sistema de plantillas mustache en JavaScript.
   - [nano v6.4.4](https://www.npmjs.com/package/nano): controlador minimalista de couchdb para Node.js.
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer): enviar correos electrónicos desde Node.js, ¡es pan comido!
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer): enviar correos electrónicos desde Node.js, ¡es pan comido!
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server): módulo completo, compatible y bien probado para implementar un proveedor/servidor de OAuth2 con express en Node.js.
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk): biblioteca de cliente JavaScript para la plataforma OpenWhisk. Proporciona un derivador alrededor de las API de OpenWhisk.
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp): convierte una serie de vía de acceso, como /user/:name, en una expresión regular que luego se puede comparar con vías de acceso URL.
@@ -303,27 +292,27 @@ Los paquetes siguientes están preinstalados en el entorno de Node.js versión 8
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise): la versión simplificada del cliente de solicitudes HTTP 'request' con soporte de Promise. Basado en Bluebird.
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf): el mandato de UNIX rm -rf para Node.
   - [semver v5.5.0](https://www.npmjs.com/package/semver): mantenimiento de versiones semánticas para Nodejs
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail): proporciona soporte de correo electrónico mediante la API de SendGrid.
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail): proporciona soporte de correo electrónico mediante la API de SendGrid.
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon): middleware de Node.js para el servicio de favicon.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent): SuperAgent es una biblioteca progresiva de solicitudes HTTP del lado del cliente, y un módulo Node.js con la misma API, que tiene muchas funciones de cliente HTTP de alto nivel.
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio): un derivador para la API de Twilio, relacionado con voz, vídeo y mensajería.
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio): un derivador para la API de Twilio, relacionado con voz, vídeo y mensajería.
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore): Underscore.js es una biblioteca de programas de utilidad para JavaScript que proporciona soporte para los aspectos funcionales habituales (each, map, reduce, filter...) sin ampliar ningún objeto JavaScript principal.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern): analiza los URL correspondientes a parámetros de vía de acceso más fácilmente que un comparador de series regex.
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid): generación simple y rápida de UUID RFC4122.
   - [validator v10.3.0](https://www.npmjs.com/package/validator): una biblioteca de sanitizantes y validadores de series.
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud): biblioteca de cliente de Node.js para utilizar los servicios de Watson Developer Cloud, un conjunto de API que utilizan la computación cognitiva para resolver problemas complejos.
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud): biblioteca de cliente de Node.js para utilizar los servicios de Watson Developer Cloud, un conjunto de API que utilizan la computación cognitiva para resolver problemas complejos.
   - [when v3.7.8](https://www.npmjs.com/package/when): When.js es una sólida implementación de Promises/A+ y when() "a prueba de bombas", que incluye un completo corrector de compatibilidad ES6 Promise.
-  - [winston v2.4.2](https://www.npmjs.com/package/winston): una biblioteca de registro asíncrono multitransporte para node.js. "TRANQUILO, WINSTON ... yo lo pongo en los registros".
+  - [winston v3.0.0](https://www.npmjs.com/package/winston): una biblioteca de registro asíncrono multitransporte para node.js. "CHILL WINSTON! ... I put it in the logs."
   - [ws v5.2.0](https://www.npmjs.com/package/ws): ws es una implementación de cliente y servidor WebSocket fácil de utilizar, ultrarrápida y probada de forma exhaustiva.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js): sencillo conversor de objetos de XML a JavaScript. Admite conversión bidireccional.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest): node-XMLHttpRequest es un derivador para el cliente http incorporado para emular el objeto XMLHttpRequest del navegador.
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl): otra biblioteca de descompresión de archivos .zip para Node. Para comprimir.
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl): otra biblioteca de descompresión de archivos .zip para Node.
 
 ### Entorno de Node.js versión 6
 {: #openwhisk_ref_javascript_environments_6}
-Se utiliza el entorno Node.js 6.14.0 si se especifica de forma explícita el distintivo `--kind` con un valor de `nodejs:6` al crear o actualizar la acción.
+Se utiliza el entorno Node.js 6.14.3 si se especifica de forma explícita el distintivo `--kind` con un valor de `nodejs:6` al crear o actualizar la acción.
 
-Los paquetes siguientes están disponibles para su uso en el entorno de Node.js 6.14.0:
+Los paquetes siguientes están disponibles para su uso en el entorno de Node.js 6.14.3:
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn): un módulo Node.js para interactuar con el servicio de notificaciones push de Apple.
 - [async v2.1.4](https://www.npmjs.com/package/async): proporciona funciones para trabajar con funciones asíncronas.
@@ -349,7 +338,7 @@ Los paquetes siguientes están disponibles para su uso en el entorno de Node.js 
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid): UUID en desuso empaquetado.
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer): enviar correos electrónicos desde Node.js, ¡es pan comido!
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server): módulo completo, compatible y bien probado para implementar un proveedor/servidor de OAuth2 con express en Node.js.
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk): biblioteca de cliente JavaScript para la plataforma OpenWhisk. Proporciona un derivador alrededor de las API de OpenWhisk.
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk): biblioteca de cliente JavaScript para la plataforma OpenWhisk. Proporciona un derivador alrededor de las API de OpenWhisk.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud): pkgcloud es una biblioteca estándar para Node.js que no tiene en cuenta las diferencias entre varios proveedores de nube.
 - [process v0.11.9](https://www.npmjs.com/package/process): require('process'); como cualquier otro módulo.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug): implementa el lenguaje de creación de plantillas Pug.
@@ -371,11 +360,11 @@ Los paquetes siguientes están disponibles para su uso en el entorno de Node.js 
 - [validator v6.1.0](https://www.npmjs.com/package/validator): una biblioteca de sanitizantes y validadores de series.
 - [watson-developer-cloud v2.29.0](https://www.npmjs.com/package/watson-developer-cloud): biblioteca de cliente de Node.js para utilizar los servicios de Watson Developer Cloud, un conjunto de API que utilizan la computación cognitiva para resolver problemas complejos.
 - [when v3.7.7](https://www.npmjs.com/package/when): When.js es una sólida implementación de Promises/A+ y when() a prueba de bombas, que incluye un completo corrector de compatibilidad ES6 Promise.
-- [winston v2.3.0](https://www.npmjs.com/package/winston): una biblioteca de registro asíncrono multitransporte para node.js. "TRANQUILO, WINSTON ... yo lo pongo en los registros".
+- [winston v2.3.0](https://www.npmjs.com/package/winston): una biblioteca de registro asíncrono multitransporte para node.js. "CHILL WINSTON! ... I put it in the logs."
 - [ws v1.1.1](https://www.npmjs.com/package/ws): ws es una implementación de cliente y servidor WebSocket fácil de utilizar, ultrarrápida y probada de forma exhaustiva.
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js): sencillo conversor de objetos de XML a JavaScript. Admite conversión bidireccional.
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest): node-XMLHttpRequest es un derivador para el cliente http incorporado para emular el objeto XMLHttpRequest del navegador.
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl): otra biblioteca de descompresión de archivos .zip para Node. Para comprimir.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl): otra biblioteca de descompresión de archivos .zip para Node.
 
 
 ## Entornos de tiempo de ejecución Python
@@ -404,7 +393,7 @@ Paquetes de Python:
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -428,12 +417,12 @@ Paquetes de Python:
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -445,7 +434,7 @@ Paquetes de Python:
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -457,7 +446,7 @@ Paquetes de Python:
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -573,7 +562,7 @@ Las acciones Swift 4 se ejecutan utilizando Swift 4.1 `--kind swift:4.1`.
 Siga las instrucciones correspondientes a [acciones de swift empaquetadas](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) para incluir dependencias mediante Package.swift.
 
 Las acciones Swift 4.1 pueden utilizar los paquetes siguientes cuando se utiliza un solo archivo de origen Swift:
-- Watson Developer Cloud SDK versión 0.27.0, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK versión 0.28.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migración de Swift 3.1.1 a Swift 4.1
 
@@ -604,14 +593,14 @@ Las siguientes extensiones PHP están disponibles, además de las estándares:
 Los siguientes paquetes de Composer también están disponibles:
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Acciones de Docker
 {: #openwhisk_ref_docker}
 
 Las acciones Docker ejecutan un binario proporcionado por el usuario en un contenedor Docker. El binario se ejecuta en una imagen Docker basada en [python:2.7.12-alpine](https://hub.docker.com/r/library/python), por lo que el binario debe ser compatible con dicha distribución.
 
-El esqueleto de Docker es una forma cómoda de crear imágenes Docker compatibles con OpenWhisk. Puede instalar el esqueleto con el mandato de plug-in de CLI `ibmcloud fn sdk install docker`.
+El esqueleto de Docker es una forma cómoda de crear imágenes Docker compatibles con OpenWhisk. Puede instalar el esqueleto con el mandato de plug-in de CLI `ibmcloud wsk sdk install docker`.
 
 El programa binario principal debe estar en `/action/exec` dentro del contenedor. El ejecutable recibe los argumentos de entrada desde una serie de argumento de línea de mandatos, que se puede deserializar como un objeto `JSON`. Debe devolver un resultado utilizando `stdout` como una serie de una línea de `JSON` serializado.
 
@@ -619,7 +608,7 @@ Puede incluir los pasos de compilación o dependencias modificando el `archivo d
 
 ## API REST
 {: #openwhisk_ref_restapi}
-La información sobre la API REST de {{site.data.keyword.openwhisk_short}} se encuentra en la [referencia de API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
+La información sobre la API REST de {{site.data.keyword.openwhisk_short}} se encuentra en la [referencia de API REST](https://console.bluemix.net/apidocs/openwhisk).
 
 ## Límites del sistema
 {: #openwhisk_syslimits}

@@ -26,11 +26,11 @@ Les architectures OpenWhisk suivantes sont comparées :
 
 2. **IaaS (Infrastructure as a Service)** avec OpenWhisk RYO (Roll Your Own). Vous pouvez télécharger OpenWhisk depuis le site Apache Incubator Project et l'exécuter sur [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices).
 
-3. **Platform as a Service (PaaS)** en tant qu'environnement d'exécution d'application géré. L'environnement d'exécution [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) géré par l'implémentation {{site.data.keyword.Bluemix_notm}} Foundry en est un bon exemple. 
+3. **Platform as a Service (PaaS)** en tant qu'environnement d'exécution d'application géré. L'environnement d'exécution [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) géré par l'implémentation {{site.data.keyword.Bluemix_notm}} Foundry en est un bon exemple.
 
 4. **Container as a Service (CaaS)** en tant qu'environnement de conteneur géré. [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index) en est un bon exemple.
 
-5. **IaaS (Infrastructure as a Service)** avec environnement d'exécution Java EE. La solution [WebSphere Application Server VM sur {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server) en est un bon exemple. 
+5. **IaaS (Infrastructure as a Service)** avec environnement d'exécution Java EE. La solution [WebSphere Application Server VM sur {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server) en est un bon exemple.
 
 Le tableau suivant compare les éléments de chaque architecture du point de vue d'un développeur qui crée et exploite des applications :
 

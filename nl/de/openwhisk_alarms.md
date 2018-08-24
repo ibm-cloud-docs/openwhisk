@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-07-23"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-03-26"
 {:screen: .screen}
 {:pre: .pre}
 
-# Alarme
+# Alarme zum Planen von Triggern verwenden
 {: #openwhisk_catalog_alarm}
 
 Das Paket `/whisk.system/alarms` kann verwendet werden, um einen Auslöser mit einer angegebenen Häufigkeit zu aktivieren. Alarme sind nützlich, um sich wiederholende Jobs oder Tasks einzurichten, wie zum Beispiel das stündliche Aufrufen einer Systemsicherungsaktion.
@@ -22,95 +22,157 @@ Das Paket enthält die folgenden Feeds.
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
 | `/whisk.system/alarms` | Paket | - | Alarme und Dienstprogramm für regelmäßige Ausführung. |
-| `/whisk.system/alarms/interval` | Feed | minutes, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem intervallbasierten Zeitplan. |
 | `/whisk.system/alarms/once` | Feed | date, trigger_payload, deleteAfterFire | Einmaliges Aktivieren eines Auslöserereignisses an einem bestimmten Datum. |
+| `/whisk.system/alarms/interval` | Feed | minutes, trigger_payload, startDate, stopDate | Auslösen eines Auslöserereignisses nach einem intervallbasierten Zeitplan. |
 | `/whisk.system/alarms/alarm` | Feed | cron, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem zeitbasierten Zeitplan unter Verwendung von Cron. |
 
+## Auslöserereignis einmal aktivieren
+
+Durch den Feed `/whisk.system/alarms/once` wird der Service 'Alarm' so konfiguriert, dass er ein Auslöserereignis an einem angegebenen Datum einmal aktiviert. Führen Sie den folgenden Befehl aus, um einen Alarm zu erstellen, der lediglich einmal ausgelöst wird:
+```
+ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
+```
+{: pre}
+
+<table>
+<caption>Informationen zu den Komponenten des Befehls <code>trigger create fireOnce</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>trigger create fireOnce</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>fireOnce</code></td>
+<td>Der Typ von Alarmauslöser, den Sie erstellen.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/once</code></td>
+<td>Der Dateipfad des Alarmpakets für den 'fireOnce'-Feed.</td>
+</tr>
+<tr>
+<td><code>--param date</code></td>
+<td>Ersetzen Sie <code>&lt;date&gt;</code> durch das Datum, an dem der Auslöser aktiviert wird. Der Auslöser wird nur einmal zum angegebenen Zeitpunkt ausgelöst. Hinweis: Der Parameter `date` unterstützt sowohl ganzzahlige Werte als auch Zeichenfolgewerte. Der ganzzahlige Wert stellt die Anzahl der seit dem 1. Januar 1970 00:00:00 Uhr (UTC) verstrichenen Millisekunden dar. Der Zeichenfolgewert muss im Format des Standards <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a> angegeben werden.</td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;key&gt;</code> und <code>&lt;value&gt;</code> durch die Parameter des Auslösers zum Anwenden des Auslösers.</td>
+</tr>
+<tr>
+<td><code>--param deleteAfterFire</code></td>
+<td>Optional: Gibt an, ob der Auslöser und alle zugehörigen Regeln gelöscht werden, nachdem der Auslöser gestartet wurde. Ersetzen Sie <code>&lt;delete_option&gt;</code> durch einen der folgenden Werte: <ul><li><code>false</code> (Standardwert): Es wird keine Aktion ausgeführt, nachdem der Auslöser angewendet wurde.</li><li><code>true</code>: Der Auslöser wird nach seiner Anwendung gelöscht.</li><li><code>rules</code>: Der Auslöser wird zusammen mit den zugehörigen Regeln nach seiner Anwendung gelöscht.</li></ul></td>
+</tr>
+</tbody></table>
+
+Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal am 25. Dezember 2019 um 12:30:00 Uhr (UTC) aktiviert wird. Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`. Nach seiner Anwendung wird der Auslöser mit allen zugehörigen Regeln gelöscht.
+
+```
+ibmcloud fn trigger create fireOnce \
+  --feed /whisk.system/alarms/once \
+  --param date "2019-12-25T12:30:00.000Z" \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param deleteAfterFire "rules"
+```
+{: pre}
 
 ## Auslöserereignis regelmäßig nach einem intervallbasierten Zeitplan aktivieren
 {: #openwhisk_catalog_alarm_fire}
 
-Durch den Feed `/whisk.system/alarms/interval` wird der Alarmservice so konfiguriert, dass ein Auslöserereignis nach einem intervallbasierten Zeitplan aktiviert wird. Die folgenden Parameter sind verfügbar:
+Durch den Feed `/whisk.system/alarms/interval` wird der Service 'Alarm' so konfiguriert, dass ein Auslöserereignis nach einem intervallbasierten Zeitplan aktiviert wird. Führen Sie den folgenden Befehl aus, um einen intervallbasierten Alarm zu erstellen:
+```
+ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
+```
+{: pre}
 
-- `minutes` (*erforderlich*): Eine ganze Zahl, die die Länge des Intervalls (in Minuten) zwischen Auslöseraktivierungen angibt.
-- `trigger_payload` (*optional*): Der Wert dieses Parameters wird jedes Mal zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird.
-- `startDate` (*optional*): Das Datum, an dem der Auslöser aktiviert wird. Nachfolgende Aktivierungen erfolgen entsprechend der Intervalllänge, die durch den Parameter `minutes` angegeben wird.
-- `stopDate` (*optional*): Das Datum, an dem die Ausführung des Auslösers gestoppt wird. Nach Erreichen dieses Datums werden keine Auslöser mehr aktiviert.
+<table>
+<caption>Informationen zu den Komponenten des Befehls <code>trigger create interval</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>trigger create interval</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>interval</code></td>
+<td>Der Typ von Alarmauslöser, den Sie erstellen.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/interval</code></td>
+<td>Der Dateipfad des Alarmpakets für den 'interval'-Feed.</td>
+</tr>
+<tr>
+<td><code>--param minutes</code></td>
+<td>Ersetzen Sie <code>&lt;minutes&gt;</code> durch eine ganze Zahl, die die Länge des Intervalls (in Minuten) zwischen den einzelnen Anwendungen des Auslösers angibt.</td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;key&gt;</code> und <code>&lt;value&gt;</code> durch die Parameter des Auslösers zum Anwenden des Auslösers.</td>
+</tr>
+<tr>
+<td><code>--param startDate</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;startDate&gt;</code> durch das Datum, an dem der erste Auslöser aktiviert wird. Nachfolgende Aktivierungen erfolgen entsprechend der Intervalllänge, die durch den Parameter 'minutes' angegeben wird. Hinweis: Dieser Parameter unterstützt sowohl ganzzahlige Werte als auch Zeichenfolgewerte. Der ganzzahlige Wert stellt die Anzahl der seit dem 1. Januar 1970 00:00:00 Uhr (UTC) verstrichenen Millisekunden dar. Der Zeichenfolgewert muss im Format des Standards <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a> angegeben werden.</td>
+</tr>
+<tr>
+<td><code>--param stopDate</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;stopDate&gt;</code> durch das Datum, an dem die Anwendung des Auslösers beendet wird. Ab Erreichen dieses Datums werden keine weiteren Auslöser mehr aktiviert. Hinweis: Dieser Parameter unterstützt sowohl ganzzahlige Werte als auch Zeichenfolgewerte. Der ganzzahlige Wert stellt die Anzahl der seit dem 1. Januar 1970 00:00:00 Uhr (UTC) verstrichenen Millisekunden dar. Der Zeichenfolgewert muss im Format des Standards <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a> angegeben werden.</td>
+</tr>
+</tbody></table>
 
-  **Hinweis:** Die Parameter `startDate` und `stopDate` unterstützen einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden seit dem 1. Januar 1970, 00:00:00 Uhr (UTC), dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
+Im folgenden Beispiel wird ein Auslöser erstellt, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers erfolgt so bald wie möglich und endet am 31. Januar 2019 um 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`. 
 
-Im folgenden Beispiel wird ein Auslöser erstellt, der alle 2 Minuten einmal aktiviert wird. Der Auslöser wird so bald, wie möglich, aktiviert und die Aktivierung wird am 31. Januar 2019 um 23:59:00 Uhr (UTC) gestoppt.
-
-  ```
-  ibmcloud fn trigger create interval \
-    --feed /whisk.system/alarms/interval \
-    --param minutes 2 \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param stopDate "2019-01-31T23:59:00.000Z"
-  ```
-  {: pre}
-
-Jedes generierte Ereignis enthält Parameter, die die Eigenschaften sind, die durch den Wert `trigger_payload` angegeben werden. In diesem Fall erhält jedes Auslöserereignis die Parameter `name=Odin` und `place=Asgard`.
-
-## Auslöserereignis einmal aktivieren
-
-Der Feed `/whisk.system/alarms/once` konfiguriert den Alarm-Service so, dass er ein Auslöserereignis an einem angegebenen Datum aktiviert. Die folgenden Parameter sind verfügbar:
-
-- `date` (*erforderlich*): Das Datum, an dem der Auslöser aktiviert wird. Der Auslöser wird zu dem bestimmten Zeitpunkt nur einmal aktiviert.
-
-  **Hinweis:** Der Parameter `date` unterstützt einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden
-seit dem 1. Januar 1970 00:00:00 Uhr (UTC) dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
-
-- `trigger_payload` (*optional*): Der Wert dieses Parameters wird zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird.
-
-- `deleteAfterFire` (*optional*, default:false): Der Wert dieses Parameters bestimmt, ob der Auslöser und potenziell alle zugeordneten Regeln gelöscht werden, nachdem der Auslöser aktiviert wurde.
-  - `false`: Es wird keine Aktion nach dem Aktivieren des Auslösers ausgeführt.
-  - `true`: Der Auslöser wird nach dem Aktivieren gelöscht.
-  - `rules`: Der Auslöser und alle zugehörigen Regeln werden nach dem Aktivieren gelöscht.
-
-Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal am 25. Dezember 2019 um 12:30:00 Uhr (UTC) aktiviert wird. Der Auslöser wird nach dem Aktivieren mit allen zugehörigen Regeln gelöscht.
-
-  ```
-  ibmcloud fn trigger create fireOnce \
-    --feed /whisk.system/alarms/once \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param date "2019-12-25T12:30:00.000Z" \
-    --param deleteAfterFire "rules"
-  ```
-  {: pre}
+```
+ibmcloud fn trigger create interval \
+  --feed /whisk.system/alarms/interval \
+  --param minutes 2 \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param stopDate "2019-01-31T23:59:00.000Z"
+```
+{: pre}
 
 ## Auslöser nach zeitbasiertem Zeitplan mit 'cron' aktivieren
 
-Der Feed `/whisk.system/alarms/alarm` konfiguriert den Alarm-Service so, dass er ein Auslöserereignis mit einer angegebenen Häufigkeit aktiviert. Die folgenden Parameter sind verfügbar:
+Durch den Feed `/whisk.system/alarms/alarm` wird der Service 'Alarm' so konfiguriert, dass er ein Auslöserereignis in einer angegebenen Häufigkeit aktiviert. Führen Sie den folgenden Befehl aus, um einen zeitbasierten Alarm zu erstellen:
+```
+ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
+```
+{: pre}
 
-- `cron` (*erforderlich*): Eine Zeichenfolge auf der Basis der UNIX-Syntax 'crontab', die angibt, wann der Auslöser zu aktivieren ist (angegeben in koordinierter Weltzeit, UTC). Die Zeichenfolge besteht aus einer Reihe von fünf durch Leerzeichen getrennten Feldern: `X X X X X`.
-Weitere Informationen finden Sie unter: http://crontab.org. Die folgenden Beispiele zeigen Zeichenfolgen, die unterschiedliche Zeitdauern für die Häufigkeit angeben.
+<table>
+<caption>Informationen zu den Komponenten des Befehls <code>trigger create periodic</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>trigger create periodic</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>periodic</code></td>
+<td>Der Typ von Alarmauslöser, den Sie erstellen.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/alarm</code></td>
+<td>Der Dateipfad des Alarmpakets für den 'periodic'-Feed.</td>
+</tr>
+<tr>
+<td><code>--param cron</code></td>
+<td>Ersetzen Sie <code>&lt;cron&gt;</code> durch eine Zeichenfolge, die in koordinierter Weltzeit (UTC) angibt, wann die Aktivierung des Auslösers erfolgen soll. Diese Zeichenfolge basiert auf der <a href="http://crontab.org">UNIX-crontab-Syntax</a> und umfasst eine Folge von höchstens 5 Feldern. Die einzelnen Felder werden jeweils durch Leerzeichen im Format <code>X X X X X</code> getrennt. Die folgenden Zeichenfolgen sind Beispiele für die Angabe verschiedener Wiederholungshäufigkeiten:<ul><li><code>\* \* \* \* \*</code>: Der Auslöser wird zu Beginn einer jeden Minute aktiviert.</li><li><code>0 \* \* \* \*</code>: Der Auslöser wird zu Beginn einer jeden Stunde aktiviert.</li><li><code>0 \*/2 \* \* \*</code>: Der Auslöser wird alle zwei Stunden aktiviert (d. h. um 02:00:00, 04:00:00 ...).</li><li><code>0 9 8 \* \*</code>: Der Auslöser wird jeweils um 9:00:00 Uhr (UTC) am achten Tag eines jeden Monats ausgelöst.</li></ul></td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;key&gt;</code> und <code>&lt;value&gt;</code> durch die Parameter des Auslösers zum Anwenden des Auslösers.</td>
+</tr>
+<tr>
+<td><code>--param startDate</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;startDate&gt;</code> durch das Datum, an dem der erste Auslöser aktiviert wird. Nachfolgende Aktivierungen erfolgen entsprechend der Intervalllänge, die durch den Parameter 'minutes' angegeben wird. Hinweis: Dieser Parameter unterstützt sowohl ganzzahlige Werte als auch Zeichenfolgewerte. Der ganzzahlige Wert stellt die Anzahl der seit dem 1. Januar 1970 00:00:00 Uhr (UTC) verstrichenen Millisekunden dar. Der Zeichenfolgewert muss im Format des Standards <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a> angegeben werden.</td>
+</tr>
+<tr>
+<td><code>--param stopDate</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;stopDate&gt;</code> durch das Datum, an dem die Anwendung des Auslösers beendet wird. Ab Erreichen dieses Datums werden keine weiteren Auslöser mehr aktiviert. Hinweis: Dieser Parameter unterstützt sowohl ganzzahlige Werte als auch Zeichenfolgewerte. Der ganzzahlige Wert stellt die Anzahl der seit dem 1. Januar 1970 00:00:00 Uhr (UTC) verstrichenen Millisekunden dar. Der Zeichenfolgewert muss im Format des Standards <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a> angegeben werden.</td>
+</tr>
+</tbody></table>
 
-  - `* * * * *`: Der Auslöser wird zu Beginn jeder Minute aktiviert.
-  - `0 * * * *`: Der Auslöser wird zu Beginn jeder Stunde aktiviert.
-  - `0 */2 * * *`: Der Auslöser wird alle 2 Stunden (d. h. 02:00:00, 04:00:00, ...) aktiviert.
-  - `0 9 8 * *`: Der Auslöser wird um 9:00:00 Uhr (UTC) am achten Tag jedes Monats ausgelöst.
+Das folgende Beispiel veranschaulicht die Erstellung eines Auslösers, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers beginnt erst ab dem 01. Januar 2019 um 00:00:00 Uhr (UTC) und endet am 31. Januar 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`. 
 
-  **Hinweis:** Der Parameter `cron` unterstützt nur fünf Felder.
-
-- `trigger_payload` (*optional*): Der Wert dieses Parameters wird jedes Mal zum Inhalt des Auslösers, wenn der Auslöser aktiviert wird.
-
-- `startDate` (*optional*): Das Datum, an dem die Ausführung des Auslösers gestartet wird. Der Auslöser wird nach dem Zeitplan aktiviert, der durch den Parameter 'cron' angegeben wird.
-
-- `stopDate` (*optional*): Das Datum, an dem die Ausführung des Auslösers gestoppt wird. Wenn dieses Datum erreicht wird, werden keine Auslöser mehr aktiviert.
-
-  **Hinweis:** Die Parameter `startDate` und `stopDate` unterstützen einen ganzzahligen Wert oder einen Zeichenfolgewert. Der ganzzahlige Wert stellt die Anzahl der Millisekunden seit dem 1. Januar 1970, 00:00:00 Uhr (UTC), dar. Der Zeichenfolgewert muss das ISO-8601-Format (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15) haben.
-
-Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der einmal alle 2 Minuten aktiviert wird, wobei das Auslöserereignis die Werte für `name` und `place` enthält. Der Auslöser beginnt die Ausführung der Aktivierungen erst am 01. Januar 2019 um 00:00:00 Uhr (UTC) und stoppt sie am 31. Januar 23:59:00 Uhr (UTC).
-
-  ```
-  ibmcloud fn trigger create periodic \
-    --feed /whisk.system/alarms/alarm \
-    --param cron "*/2 * * * *" \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param startDate "2019-01-01T00:00:00.000Z" \
-    --param stopDate "2019-01-31T23:59:00.000Z"
-  ```
-  {: pre}
-
- **Hinweis:** Der Parameter `maxTriggers` ist veraltet und wird in Zukunft entfernt. Verwenden Sie zum Stoppen des Auslösers den Parameter `stopDate`.
+```
+ibmcloud fn trigger create periodic \
+  --feed /whisk.system/alarms/alarm \
+  --param cron "*/2 * * * *" \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param startDate "2019-01-01T00:00:00.000Z" \
+  --param stopDate "2019-01-31T23:59:00.000Z"
+```
+{: pre}

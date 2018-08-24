@@ -19,7 +19,7 @@ Dans {{site.data.keyword.openwhisk}}, vous pouvez utiliser des packages afin de 
 
 Un package peut inclure des *actions* et des *flux*.
 - Une action est un élément de code qui s'exécute sur {{site.data.keyword.openwhisk_short}}. Par exemple, le package {{site.data.keyword.cloudant}} contient des actions permettant de lire et d'écrire des enregistrements dans une base de données {{site.data.keyword.cloudant_short_notm}}.
-- Un flux est utilisé pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs. Par exemple, le package Alarm comprend un flux pouvant exécuter un déclencheur à la fréquence spécifiée.
+- Un flux est utilisé pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs. Par exemple, le package Alarm inclut un flux qui peut exécuter un déclencheur à la fréquence spécifiée.
 
 Chaque entité {{site.data.keyword.openwhisk_short}}, notamment les packages, appartient à un *espace de nom*, et le nom qualifié complet d'une entité est `/nom_espace_nom[/nom_package]/nom_entité`. Pour plus d'informations, voir les [instructions de désignation](./openwhisk_reference.html#openwhisk_entities).
 
@@ -214,7 +214,8 @@ Dans l'exemple simple ci-dessous, vous établissez une liaison au package `/whis
 ## Création et utilisation de flux de déclencheurs
 {: #openwhisk_package_trigger}
 
-Les flux sont pratiques pour configurer une source d'événements externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple montre comment utiliser un flux dans le package Alarms afin d'exécuter un déclencheur toutes les secondes, et comment utiliser une règle permettant d'appeler une action toutes les secondes.
+Les flux sont pratiques pour configurer une source d'événements externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exécuter un
+déclencheur toutes les secondes, et comment utiliser une règle permettant d'appeler une action toutes les secondes.
 
 1. Obtenez une description du flux dans le package `/whisk.system/alarms`.
   ```
@@ -465,7 +466,8 @@ Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un
 ## Partage d'un package
 {: #openwhisk_packages_share}
 
-Une fois que les actions et les flux qui constituent un package ont été débogués et testés, le package peut être partagé avec tous les utilisateurs de {{site.data.keyword.openwhisk_short}}. Le partage du package permet aux utilisateurs de lier le package, d'appeler des actions du package et de créer des règles et des actions de séquence {{site.data.keyword.openwhisk_short}}.
+Une fois que les actions et les flux qui constituent un package ont été débogués et testés, le package peut être partagé avec tous les
+utilisateurs d'{{site.data.keyword.openwhisk_short}}. Le partage du package permet aux utilisateurs de lier le package, d'appeler des actions du package et de créer des règles et des actions de séquence {{site.data.keyword.openwhisk_short}}.
 
 1. Partagez le package avec tous les utilisateurs :
   ```

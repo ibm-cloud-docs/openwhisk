@@ -37,7 +37,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço do Watson que você criou.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 
@@ -61,7 +61,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
   ```
   {: screen}
 
-## Configurando um pacote Watson Text to Speech fora do {{site.data.keywrod.Bluemix_notm}}
+## Configurando um pacote Watson Text to Speech fora do {{site.data.keyword.Bluemix_notm}}
 
 Se você não está usando o {{site.data.keyword.openwhisk_short}} no {{site.data.keyword.Bluemix_notm}} ou se deseja configurar o seu Watson Text to Speech fora do {{site.data.keyword.Bluemix_notm}}, deve-se criar manualmente uma ligação de pacote para o seu serviço Watson Text to Speech. Você precisa do nome do usuário e da senha do serviço de Texto do Watson para Fala.
 

@@ -40,7 +40,8 @@ Beim Aufruf können Parameter an eine Aktion übergeben werden. Die bereitgestel
   ```
   {: pre}
 
-  Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern, werden durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Wenn Sie `action update -p key1 new-value -p key2 new-value` ausführen, aber andere festgelegte Parameter auslassen, sind diese Parameter nach dem Aktualisieren der Aktion nicht mehr vorhanden. Alle Services, die an die Aktion gebunden wurden, werden ebenfalls entfernt. Nachdem Sie andere Parameter aktualisiert haben, müssen Sie wieder [Services an Ihre Aktion binden](./binding_services.html).{: tip}
+  Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern, werden durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Wenn Sie `action update -p key1 new-value -p key2 new-value` ausführen, aber andere festgelegte Parameter auslassen, sind diese Parameter nach dem Aktualisieren der Aktion nicht mehr vorhanden. Alle Services, die an die Aktion gebunden wurden, werden ebenfalls entfernt. Nachdem Sie andere Parameter aktualisiert haben, müssen Sie wieder [Services an Ihre Aktion binden](./binding_services.html).
+  {: tip}
 
 3. Parameter können in der Befehlszeile explizit angegeben oder [in einer Datei angegeben](./parameters.html#using-parameter-files) werden, die die gewünschten Parameter enthält.
 
@@ -136,7 +137,7 @@ Anstatt nun jedes Mal alle Parameter an eine Aktion zu übergeben, können Sie b
   {: screen}
 
   Die Parameter für eine Aktion, die bei ihrer Erstellung oder Aktualisierung festgelegt wurden, werden immer durch einen Parameter überschrieben, der direkt beim Aufruf angegeben wird.
- {: tip}
+  {: tip}
 
 ## Standardparameter für ein Paket festlegen
 {: #default-params-package}

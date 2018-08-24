@@ -60,7 +60,7 @@ lastupdated: "2018-03-26"
   ```
   {: screen}
 
-## {{site.data.keywrod.Bluemix_notm}} 외부에서 Watson Text to Speech 패키지 설정
+## {{site.data.keyword.Bluemix_notm}} 외부에서 Watson Text to Speech 패키지 설정
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk_short}}를 사용하지 않거나 {{site.data.keyword.Bluemix_notm}} 외부에서 Watson Text to Speech를 설정하려는 경우에는 Watson Text to Speech 서비스에 대한 패키지 바인딩을 수동으로 작성해야 합니다. Watson Text to Speech 서비스 사용자 이름 및 비밀번호가 반드시 필요합니다.
 

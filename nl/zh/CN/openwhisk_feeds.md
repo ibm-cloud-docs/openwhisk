@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# 定制事件提供程序
+# 创建定制事件提供程序订阅源
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} 支持开放 API，通过此 API，任何用户都可以将事件发起者服务公开为包中的订阅源。以下部分描述了用于提供您自己的定制订阅源的体系结构选项和实现选项。

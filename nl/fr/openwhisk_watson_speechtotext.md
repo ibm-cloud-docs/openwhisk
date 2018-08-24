@@ -102,6 +102,6 @@ Exemple de sortie :
 ```
 {
   "data": "Hello Watson"
-  }
+}
 ```
 {: screen}

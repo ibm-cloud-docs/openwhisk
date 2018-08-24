@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Cloudant 包
 {: #cloudant_actions}
 
 `/whisk.system/cloudant` 包支持您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 数据库，并包含以下操作和订阅源：

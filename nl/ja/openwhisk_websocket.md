@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# WebSocket パッケージ
 {: #openwhisk_catalog_websocket}
 
 `/whisk.system/websocket` パッケージを利用して、WebSocket にメッセージを簡単に送ることができます。

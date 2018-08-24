@@ -17,7 +17,7 @@ lastupdated: "2018-06-22"
 Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una instancia de {{site.data.keyword.messagehub_full}} mediante canales de información. Aprenda a crear desencadenantes de {{site.data.keyword.messagehub}} con o sin {{site.data.keyword.Bluemix}}, a escuchar mensajes y a manejar mensajes por lotes.
 {: shortdesc}
 
-## Paquete de {{site.data.keyword.messagehub}}
+## Paquete {{site.data.keyword.messagehub}}
 
 La acción `/messaging/messageHubProduce` ha quedado en desuso y se eliminará en una fecha futura. Para mantener un rendimiento óptimo, migre el uso de la acción `/messaging/messageHubProduce` para utilizar una conexión permanente cuando los datos se generen en Message Hub o Kafka.
 {: tip}
@@ -27,7 +27,7 @@ Este paquete permite la comunicación con las instancias de [{{site.data.keyword
 ## Creación de un desencadenante que realice la escucha de una instancia de {{site.data.keyword.messagehub}}
 {: #create_message_hub_trigger}
 
-Para crear un desencadenante que reaccione cuando se publican mensajes en una instancia de {{site.data.keyword.messagehub}}, debe utilizar el canal de información denominado `/messaging/messageHubFeed`. La acción de canal de información admite los siguientes parámetros:
+Para crear un desencadenante que reaccione cuando se publican mensajes en una instancia de {{site.data.keyword.messagehub}}, debe utilizar el canal de información denominado `/messaging/messageHubFeed`. La acción del canal de información admite los siguientes parámetros:
 
 |Nombre|Tipo|Descripción|
 |---|---|---|

@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather-Paket
+# Paket 'Weather'
 {: #openwhisk_catalog_weather}
 
 Das Paket `/whisk.system/weather` bietet eine komfortable Methode zum Aufrufen der Weather Company Data für die {{site.data.keyword.Bluemix}}-API.

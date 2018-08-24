@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Fournisseurs d'événements personnalisés
+# Création de flux de fournisseur d'événement
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} prend en charge une API ouverte, dans laquelle tous les utilisateurs peuvent exposer un service producteur d'événement sous forme de flux dans un package. La section ci-dessous décrit les options d'architecture et d'implémentation pour la mise à disposition de votre propre flux personnalisé.
@@ -19,7 +19,7 @@ lastupdated: "2018-06-22"
 
 Ce document s'adresse aux utilisateurs avancés de {{site.data.keyword.openwhisk_short}} qui souhaitent publier leurs propres flux. La plupart des utilisateurs de {{site.data.keyword.openwhisk_short}} peuvent ignorer la section suivante relative à l'architecture de flux.
 
-## Architecture de flux
+## architecture de flux
 
 Il existe aux moins trois modèles d'architecture pour la création d'un flux : **Points d'ancrage**, **Interrogation** et **Connexions**.
 
@@ -58,7 +58,8 @@ L'*action de flux* est une *action* {{site.data.keyword.openwhisk_short}} normal
 
 L'action de flux peut également accepter tout autre paramètre dont elle a besoin pour gérer le flux. Par exemple, l'action de flux {{site.data.keyword.cloudant}} "changes" s'attend à recevoir des paramètres, tels que *'dbname'*, *'username'*, etc.
 
-Lorsque l'utilisateur crée un déclencheur depuis l'interface de ligne de commande avec le paramètre **--feed**, le système appelle automatiquement l'action de flux avec les paramètres appropriés.
+Lorsque l'utilisateur crée un déclencheur depuis l'interface de ligne de commande avec le paramètre **--feed**, le système appelle
+automatiquement l'action de flux avec les paramètres appropriés.
 
 Par exemple, supposons que l'utilisateur crée une liaison **mycloudant** pour le package `cloudant` avec un nom d'utilisateur et un mot de passe comme paramètres liés. Lorsque l'utilisateur exécute la commande suivante depuis l'interface de ligne de commande :
 ```
@@ -82,9 +83,9 @@ Il existe un protocole d'action de flux similaire pour `ibmcloud fn trigger dele
 
 Il est facile de configurer un flux en utilisant un point d'ancrage si le producteur d'événement prend en charge une fonction de webhook/rappel.
 
-Avec cette méthode, il n'est _pas nécessaire_ de maintenir un service persistant hors de {{site.data.keyword.openwhisk_short}}. Toute gestion de flux s'exécute naturellement par le biais d'*actions de flux* {{site.data.keyword.openwhisk_short}} sans état, qui négocient directement avec une API de webhook tierce.
+Avec cette méthode, il n'est _pas nécessaire_ de maintenir un service persistant hors de {{site.data.keyword.openwhisk_short}}. La gestion des flux s'exécute naturellement par le biais d'*actions de flux* {{site.data.keyword.openwhisk_short}} sans état, qui négocient directement avec une API de webhook tierce.
 
-Lorsqu'elle est appelée avec `CREATE`, l'action de flux installe simplement un webhook pour un autre service en demandant au service distant de publier (POST) des notifications sur l'URL `fireTrigger` appropriée dans {{site.data.keyword.openwhisk_short}}.
+Lorsqu'elle est appelée avec `CREATE`, l'action de flux installe simplement un webhook pour un autre service et demande au service distant d'envoyer des notifications à l'URL `fireTrigger` appropriée dans {{site.data.keyword.openwhisk_short}}.
 
 Le webhook reçoit l'instruction d'envoyer les notifications à une adresse URL, telle que :
 
@@ -96,13 +97,15 @@ Le formulaire associé à la demande POST est interprété comme un document JSO
 
 Il est possible de configurer une *action* {{site.data.keyword.openwhisk_short}} afin d'interroger une source de flux entièrement dans {{site.data.keyword.openwhisk_short}}, sans qu'il ne soit nécessaire de maintenir des connexions ou un service externe persistants.
 
-Pour les flux pour lesquels aucun webhook n'est disponible mais qui n'ont pas besoin de gérer un volume élevé de demandes simultanées ou qui ne requièrent pas de temps de réponse courts, l'interrogation est une option attrayante.
+Pour les flux pour lesquels aucun webhook n'est disponible mais qui n'ont pas besoin de gérer un volume élevé de demandes simultanées ou qui ne
+requièrent pas de temps de réponse courts, l'interrogation est une option attrayante.
 
-Pour configurer un flux reposant sur l'interrogation, l'action de flux effectue les opérations suivantes lorsqu'elle est appelée pour `CREATE` :
+Pour configurer un flux reposant sur l'interrogation, l'action de flux effectue les opérations suivantes lorsqu'elle est appelée pour
+`CREATE` :
 
 1. L'action de flux configure un déclencheur périodique (*T*) avec la fréquence souhaitée, à l'aide du flux `whisk.system/alarms`.
 2. Le développeur de flux crée une action `pollMyService` qui interroge simplement le service distant et renvoie les nouveaux événements.
-3. L'action de flux configure la *règle* *T -> pollMyService*.
+3. L'action de flux configure une *règle* *T -> pollMyService*.
 
 Cette procédure implémente un déclencheur qui repose sur l'interrogation en utilisant uniquement des actions {{site.data.keyword.openwhisk_short}}, sans avoir besoin de recourir à un service distinct.
 

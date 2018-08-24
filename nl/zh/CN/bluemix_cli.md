@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 {{site.data.keyword.openwhisk}} 为 {{site.data.keyword.Bluemix_notm}} CLI 提供了功能强大的插件，支持对 {{site.data.keyword.openwhisk_short}} 系统进行全面管理。
 {: shortdesc}
+
+现在，您可以在 {{site.data.keyword.openwhisk_short}} 插件命令中使用别名 `fn`：`ibmcloud fn <command>`
+{: tip}
 
 ## 设置 {{site.data.keyword.Bluemix_notm}} CLI
 {: #bluemix_cli_setup}
@@ -157,7 +160,7 @@ ibmcloud iam space-create "production"
 ## 从 OpenWhisk CLI 迁移到 {{site.data.keyword.openwhisk_short}} CLI 插件
 {: #cli_migration}
 
-引入 {{site.data.keyword.openwhisk_short}} CLI 插件后，不再需要 OpenWhisk 独立 CLI。
+引入 {{site.data.keyword.openwhisk_short}} CLI 插件后，不再需要 OpenWhisk 独立 CLI (`wsk`)。
 
 ### 命令语法
 {: #command_syntax}
@@ -200,6 +203,12 @@ OpenWhisk CLI 需要您运行 `wsk bluemix login` 才能配置 API 网关授权�
 {: #version_history}
 
 版本的历史记录，其中显示了亮点和错误修订。
+
+1.0.21（2018 年 8 月 1 日）
+* 别名 `fn` 和 `functions` 现在可用于 {{site.data.keyword.openwhisk_short}} 命令：`ibmcloud fn <command>` 和 `ibmcloud fn <command>`。此外，您仍可以使用 `ibmcloud wsk <command>`。
+
+1.0.19（2018 年 7 月 2 日）
+* 小错误修订和改进。
 
 1.0.18（2018 年 6 月 20 日）
 * 针对取消绑定用户提供的服务实例，进行了修订。

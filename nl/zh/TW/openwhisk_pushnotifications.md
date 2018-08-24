@@ -40,7 +40,7 @@ lastupdated: "2018-03-16"
   ```
   {: pre}
 
-2. 使用「`myPush/webhook` 資訊來源」，為 Push Notification 服務的 `onDeviceRegister` 事件類型建立觸發程式。
+2. 使用 `myPush/webhook` 資訊來源，為 Push Notification 服務的 `onDeviceRegister` 事件類型建立觸發程式。
   ```
   ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```

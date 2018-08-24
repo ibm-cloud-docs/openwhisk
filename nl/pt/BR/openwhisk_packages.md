@@ -19,7 +19,7 @@ No {{site.data.keyword.openwhisk}}, é possível usar pacotes para empacotar um 
 
 Um pacote pode incluir *ações* e *feeds*.
 - Uma ação é uma parte do código executada no {{site.data.keyword.openwhisk_short}}. Por exemplo, o pacote do {{site.data.keyword.cloudant}} inclui ações para ler e gravar registros em um banco de dados {{site.data.keyword.cloudant_short_notm}}.
-- Um feed é usado para configurar uma origem de eventos externos para disparar eventos acionadores. Por exemplo, o pacote Alarme inclui um feed que pode disparar um acionador em uma frequência especificada.
+- Um feed é usado para configurar uma origem de eventos externos para disparar eventos acionadores. Por exemplo, o pacote Alarme inclui um feed que pode disparar um acionador a uma frequência especificada.
 
 Cada entidade do {{site.data.keyword.openwhisk_short}}, incluindo pacotes, pertence a um *namespace* e o nome completo de uma entidade é `/namespaceName[/packageName]/entityName`. Para obter mais informações, consulte as [diretrizes de nomenclatura](./openwhisk_reference.html#openwhisk_entities).
 
@@ -57,7 +57,7 @@ Vários pacotes são registrados com o {{site.data.keyword.openwhisk_short}}. É
 
 2. Obtenha uma lista de entidades no namespace `/whisk.system/cloudant`.
   ```
-  ibmcloud fn package get --summary /whisk.system/cloudant
+  ibmcloud fn package get -- summary /whisk.system/cloudant
   ```
   {: pre}
 
@@ -71,7 +71,9 @@ Vários pacotes são registrados com o {{site.data.keyword.openwhisk_short}}. É
   ```
   {: screen}
 
-  Essa saída mostra que o pacote do {{site.data.keyword.cloudant_short_notm}} fornece duas ações, `read` e `write`, e um feed de acionador chamado `changes`. O feed `changes` ocasiona o disparo de acionadores quando documentos são incluídos no banco de dados {{site.data.keyword.cloudant_short_notm}} especificado.
+  Essa saída mostra que o pacote do {{site.data.keyword.cloudant_short_notm}} fornece duas ações, `read` e `write`, e um feed de acionador chamado `changes`. 
+O feed `changes` faz com que os acionadores sejam disparados quando os documentos
+são incluídos no banco de dados do {{site.data.keyword.cloudant_short_notm}}.
 
   O pacote do {{site.data.keyword.cloudant_short_notm}} também define os parâmetros `username`, `password`, `host` e `port`. Esses parâmetros devem ser especificados para que as ações e os feeds sejam significativos. Os parâmetros permitem que as ações operem em uma conta específica do {{site.data.keyword.cloudant_short_notm}}, por exemplo.
 
@@ -97,7 +99,7 @@ Vários pacotes são registrados com o {{site.data.keyword.openwhisk_short}}. É
 
 1. Obtenha uma descrição da ação `/whisk.system/samples/greeting`.
   ```
-  ibmcloud fn action get --summary /whisk.system/samples/greeting
+  ibmcloud fn action get -- summary /whisk.system/samples/greeting
   ```
   {: pre}
 
@@ -165,7 +167,7 @@ No exemplo simples a seguir, você faz a ligação com o pacote `/whisk.system/s
 
 2. Obtenha uma descrição da ligação do pacote.
   ```
-  ibmcloud fn package get --summary valhallaSamples
+  ibmcloud fn package get -- summary valhallaSamples
   ```
   {: pre}
 
@@ -213,7 +215,7 @@ No exemplo simples a seguir, você faz a ligação com o pacote `/whisk.system/s
 
   Observe que o valor do parâmetro `place` especificado com a chamada da ação sobrescreve o valor padrão configurado na ligação do pacote `valhallaSamples`.
 
-## Criar e usar feeds do acionador
+## Criar e usar feeds acionadores
 {: #openwhisk_package_trigger}
 
 Feeds oferecem uma maneira conveniente para configurar uma origem de eventos externos para disparar esses eventos para um acionador do {{site.data.keyword.openwhisk_short}}. Este exemplo mostra como usar um feed no pacote Alarmes para disparar um acionador a cada segundo e como usar uma regra para chamar uma ação a cada segundo.
@@ -232,7 +234,7 @@ Feeds oferecem uma maneira conveniente para configurar uma origem de eventos ext
   {: screen}
 
   ```
-  ibmcloud fn action get --summary /whisk.system/alarms/alarm
+  ibmcloud fn action get -- summary /whisk.system/alarms/alarm
   ```
   {: pre}
 
@@ -243,7 +245,7 @@ Feeds oferecem uma maneira conveniente para configurar uma origem de eventos ext
   ```
   {: screen}
 
-  O feed `/whisk.system/alarms/alarm` usa dois parâmetros:
+  O feed  ` /whisk.system/alarms/alarm `  usa dois parâmetros:
   - `cron`: uma especificação de crontab de quando disparar o acionador.
   - `trigger_payload`: o valor de parâmetro de payload para configurar em cada evento acionador.
 
@@ -315,7 +317,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
 
 2. Obtenha um resumo do pacote.
   ```
-  ibmcloud fn package get --summary custom
+  ibmcloud fn package get -- summary custom
   ```
   {: pre}
 
@@ -349,7 +351,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
 
 5. Obtenha um resumo do pacote novamente.
   ```
-  ibmcloud fn package get --summary custom
+  ibmcloud fn package get -- summary custom
   ```
   {: pre}
 
@@ -412,7 +414,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   {: screen}
 
   ```
-  ibmcloud fn action get custom/identity parameters
+  ibmcloud fn action get custom / identity parameters
   ```
   {: pre}
 
@@ -467,7 +469,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
 ## Compartilhar um pacote
 {: #openwhisk_packages_share}
 
-Após as ações e os feeds que formam um pacote serem depurados e testados, o pacote pode ser compartilhado com todos os usuários do {{site.data.keyword.openwhisk_short}}. Compartilhar o pacote possibilita que os usuários liguem o pacote, chamem ações no pacote e criem regras e ações de sequência do {{site.data.keyword.openwhisk_short}}.
+Após as ações e os feeds que formam um pacote serem depuradas e testadas, o pacote pode ser compartilhado com todos os usuários do {{site.data.keyword.openwhisk_short}}. Compartilhar o pacote possibilita que os usuários liguem o pacote, chamem ações no pacote e criem regras e ações de sequência do {{site.data.keyword.openwhisk_short}}.
 
 1. Compartilhe o pacote com todos os usuários:
   ```
@@ -500,7 +502,7 @@ o pacote for privado, então, todo o seu conteúdo também será privado.
 
 1. Obtenha uma descrição do pacote para mostrar os nomes completos do pacote e da ação.
   ```
-  ibmcloud fn package get --summary custom
+  ibmcloud fn package get -- summary custom
   ```
   {: pre}
 

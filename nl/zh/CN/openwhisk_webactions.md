@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Web 操作
+# 创建 Web 操作
 {: #openwhisk_webactions}
 
-Web 操作是 OpenWhisk 操作，这些操作经过注释，可快速支持开发者构建基于 Web 的应用程序。这些带注释的操作允许开发者对 Web 应用程序可以匿名访问的后端逻辑进行编程，而无需 OpenWhisk 认证密钥。由操作开发者来实现其自己所需的认证和授权（即 OAuth 流）。
+Web 操作是 {{site.data.keyword.openwhisk}} 操作，这些操作经过注释，可快速支持开发者构建基于 Web 的应用程序。这些带注释的操作允许开发者对 Web 应用程序可以匿名访问的后端逻辑进行编程，而无需 {{site.data.keyword.openwhisk_short}} 认证密钥。由操作开发者来实现其自己所需的认证和授权（即 OAuth 流）。
 {: shortdesc}
 
 Web 操作激活将与创建操作的用户相关联。此操作会将操作激活的成本从调用者转移到操作所有者。
@@ -121,12 +121,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-请务必注意操作的[响应大小限制](./openwhisk_reference.html)，因为超过预定义系统限制的响应将失败。大对象不会通过 OpenWhisk 内嵌发送，而是会转移到对象存储等。
+It is important to be aware of the [响应大小限制](./openwhisk_reference.html)，因为超过预定义系统限制的响应将失败。例如，大对象不会通过 {{site.data.keyword.openwhisk_short}} 内嵌发送，而是会转移到对象存储。
 
 ## 使用操作处理 HTTP 请求
 {: #openwhisk_webactions_http}
 
-不属于 Web 操作的 OpenWhisk 操作不仅需要认证，而且必须使用 JSON 对象进行响应。相反，Web 操作可以在无认证的情况下进行调用，也可用于实现通过不同类型的 _headers_、_statusCode_ 和 _body_ 内容进行响应的 HTTP 处理程序。Web 操作必须返回 JSON 对象。但是，OpenWhisk 系统（即`控制器`）在其结果包含以下一个或多个顶级 JSON 属性的情况下，将以不同的方式处理 Web 操作：
+不属于 Web 操作的 {{site.data.keyword.openwhisk_short}} 操作不仅需要认证，而且必须使用 JSON 对象进行响应。相反，Web 操作可以在无认证的情况下进行调用，也可用于实现通过不同类型的 _headers_、_statusCode_ 和 _body_ 内容进行响应的 HTTP 处理程序。Web 操作必须返回 JSON 对象。但是，{{site.data.keyword.openwhisk_short}} 系统（即`控制器`）在其结果包含以下一个或多个顶级 JSON 属性的情况下，将以不同的方式处理 Web 操作：
 
 - `headers`：JSON 对象，其中键是头名称，值是这些头的字符串值、数字值或布尔值（缺省情况下没有 headers）。要为单个头发送多个值，该头的值为 JSON 值数组。
 - `statusCode`：有效 HTTP 状态码（缺省值为 200 OK）。
@@ -146,7 +146,7 @@ _注_：JSON 对象或数组会视为二进制数据，并且必须进行基本 
 - `__ow_method`（类型：字符串）：请求的 HTTP 方法。
 - `__ow_headers`（类型：字符串到字符串的映射）：请求头。
 - `__ow_path`（类型：字符串）：请求的未匹配路径（使用操作扩展名后，匹配会停止）。
-- `__ow_user`（类型：字符串）：用于标识经 OpenWhisk 认证的主题的名称空间。
+- `__ow_user`（类型：字符串）：用于标识经 {{site.data.keyword.openwhisk_short}} 认证的主题的名称空间。
 - `__ow_body`（类型：字符串）：请求主体实体，内容为二进制时为基本 64 位编码字符串，其他情况均为明文字符串。
 - `__ow_query`（类型：字符串）：请求中的查询参数（以未解析字符串的形式提供）。
 

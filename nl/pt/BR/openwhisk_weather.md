@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather
+# Pacote meteorológico
 {: #openwhisk_catalog_weather}
 
 O pacote `/whisk.system/weather` oferece uma maneira conveniente de chamar o Weather Company Data para a API do {{site.data.keyword.Bluemix}}.
@@ -38,7 +38,7 @@ Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço Weather Company Data que você criou.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 
@@ -64,7 +64,7 @@ Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword
 
 Se você não está usando o {{site.data.keyword.openwhisk_short}} no {{site.data.keyword.Bluemix_notm}} ou se deseja configurar seu serviço Weather Company Data fora do {{site.data.keyword.Bluemix_notm}}, deve-se criar manualmente uma ligação de pacote para seu serviço Weather Company Data. São necessários o nome do usuário e a senha do serviço Weather Company Data.
 
-Crie uma ligação de pacote que esteja configurada para o seu serviço de Tradutor do Watson.
+Crie uma ligação de pacote que esteja configurada para seu serviço Weather.
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

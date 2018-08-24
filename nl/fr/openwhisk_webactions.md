@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Actions Web
+# Création d'actions Web
 {: #openwhisk_webactions}
 
-Les actions Web sont des actions OpenWhisk qui sont annotées pour permettre aux développeurs de générer rapidement des applications Web. Ces actions annotées permettent aux développeurs de programmer une logique de back end à laquelle votre application Web peut accéder de manière anonyme, sans avoir à fournir une clé d'authentification OpenWhisk. Il revient au développeur d'action d'implémenter son propre mécanisme d'authentification et d'autorisation (c'est-à-dire, son flux de protocole d'autorisation OAuth).
+Les actions Web sont des actions {{site.data.keyword.openwhisk}} qui sont annotées pour permettre aux développeurs de générer rapidement des applications Web. Ces actions annotées permettent aux développeurs de programmer une logique de back end à laquelle votre application Web peut accéder de manière anonyme, sans avoir à fournir une clé d'authentification {{site.data.keyword.openwhisk_short}}. Il revient au développeur d'action d'implémenter son propre mécanisme d'authentification et d'autorisation, ou un flux de protocole d'autorisation OAuth.
 {: shortdesc}
 
 Des activations d'action Web sont associées à l'utilisateur qui a créé l'action. Cette action reporte le coût d'une action de l'appelant au propriétaire de l'action.
@@ -108,7 +108,7 @@ function main() {
 ```
 {: codeblock}  
 
-L'exemple suivant renvoie `application/json` :
+The following example returns `application/json`:
 ```javascript
 function main(params) {
     return {
@@ -120,14 +120,14 @@ function main(params) {
 ```
 {: codeblock}  
 
-Le paramètre `Content-Type` par défaut pour une réponse HTTP est `application/json`, et le corps peut correspondre à n'importe quelle valeur JSON autorisée. Le paramètre `Content-Type` par défaut peut être omis dans les en-têtes.
+The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-Il est important de connaître la [taille limite de la réponse](./openwhisk_reference.html) pour les actions car une réponse dépassant les limites du système prédéfinies est vouée à l'échec. Les objets volumineux ne sont pas envoyés en ligne via OpenWhisk, mais différés vers un conteneur d'objets, par exemple.
+It is important to be aware of the [taille limite de la réponse](./openwhisk_reference.html) pour les actions car une réponse dépassant les limites du système prédéfinies est vouée à l'échec. Les objets volumineux ne sont pas envoyés en ligne via {{site.data.keyword.openwhisk_short}}, mais différés vers un conteneur d'objets, par exemple.
 
 ## Traitement des demandes HTTP à l'aide d'actions
 {: #openwhisk_webactions_http}
 
-Une action OpenWhisk qui n'est pas une action Web requiert les deux authentifications et doit répondre avec un objet JSON. En revanche, les actions Web peuvent être appelées sans authentification et peuvent être utilisées pour implémenter des gestionnaires HTTP qui répondent avec un contenu _headers_, _statusCode_ et _body_ de différents types. L'action Web doit renvoyer un objet JSON. Toutefois, le système OpenWhisk (c'est-à-dire le contrôleur (`controller`)), traite une action Web différemment si son résultat comprend une ou plusieurs des propriétés JSON de niveau supérieur suivantes :
+Une action {{site.data.keyword.openwhisk_short}} qui n'est pas une action Web requiert les deux authentifications et doit répondre avec un objet JSON. En revanche, les actions Web peuvent être appelées sans authentification et peuvent être utilisées pour implémenter des gestionnaires HTTP qui répondent avec un contenu _headers_, _statusCode_ et _body_ de différents types. L'action Web doit renvoyer un objet JSON. Toutefois, le système {{site.data.keyword.openwhisk_short}} (c'est-à-dire le contrôleur (`controller`)), traite une action Web différemment si son résultat comprend une ou plusieurs des propriétés JSON de niveau supérieur suivantes :
 
 - `headers` : objet JSON dans lequel les clés sont des noms d'en-tête et les valeurs sont des valeurs de chaîne, numériques ou booléennes pour ces en-têtes (par défaut, il n'y a aucune valeur d'en-tête). Pour que plusieurs valeurs puissent être envoyées pour un seul en-tête, la valeur de l'en-tête est un tableau de valeurs JSON.
 - `statusCode`: code d'état HTTP valide (la valeur par défaut est 200 OK).
@@ -147,7 +147,7 @@ Examinez les paramètres HTTP suivants :
 - `__ow_method` (type : chaîne) : méthode HTTP de la demande.
 - `__ow_headers` (type : mappe chaîne à chaîne) : en-têtes de demande.
 - `__ow_path` (type : chaîne) : chemin sans correspondance de la demande (la correspondance cesse une fois l'extension d'action consommée).
-- `__ow_user` (type : chaîne) : espace nom qui identifie l'objet authentifié par OpenWhisk.
+- `__ow_user` (type : chaîne) : espace nom qui identifie l'objet authentifié par {{site.data.keyword.openwhisk_short}}.
 - `__ow_body` (type : chaîne) : entité de corps de demande sous la forme d'une chaîne codée en base64 lorsque le contenu est binaire, sinon, sous la forme d'une chaîne en clair.
 - `__ow_query` (type : chaîne) : paramètres de requête de la demande en tant que chaîne non analysée.
 
@@ -325,7 +325,7 @@ Exemple de sortie :
 ## Extensions de contenu
 {: #openwhisk_webactions_extensions}
 
-Une extension de contenu est généralement nécessaire pour appeler une action Web. En l'absence d'extension, `.http` est utilisé par défaut. Les extensions `.json` et `.http` ne requièrent pas de chemin de projection, contrairement aux extensions `.html`, `.svg` et `.text`. Par souci de commodité, on considère que le chemin par défaut correspond au nom d'extension. Pour appeler une action Web et recevoir une réponse `.html`, l'action doit répondre avec un objet JSON qui contient une propriété de niveau supérieur nommée `html` (ou bien la réponse doit figurer dans le chemin explicite). En d'autres termes, `/guest/demo/hello.html` revient à projeter la propriété `html` de manière explicite, comme dans `/guest/demo/hello.html/html`. Le nom qualifié complet de l'action doit inclure son nom de package, qui est `default` si l'action ne figure pas dans un package nommé. 
+Une extension de contenu est généralement nécessaire pour appeler une action Web. En l'absence d'extension, `.http` est utilisé par défaut. Les extensions `.json` et `.http` ne requièrent pas de chemin de projection, contrairement aux extensions `.html`, `.svg` et `.text`. Par souci de commodité, on considère que le chemin par défaut correspond au nom d'extension. Pour appeler une action Web et recevoir une réponse `.html`, l'action doit répondre avec un objet JSON qui contient une propriété de niveau supérieur nommée `html` (ou bien la réponse doit figurer dans le chemin explicite). En d'autres termes, `/guest/demo/hello.html` revient à projeter la propriété `html` de manière explicite, comme dans `/guest/demo/hello.html/html`. Le nom qualifié complet de l'action doit inclure son nom de package, qui est `default` si l'action ne figure pas dans un package nommé.
 
 ## Paramètres protégés
 {: #openwhisk_webactions_protected}

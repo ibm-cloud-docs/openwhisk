@@ -14,15 +14,15 @@ lastupdated: "2018-06-22"
 # Message Hub イベント・ソース
 {: #openwhisk_catalog_message_hub}
 
-{{site.data.keyword.messagehub_full}} インスタンスにメッセージがポストされたときに反応するトリガーを、フィードを使用して作成できます。ここでは、{{site.data.keyword.Bluemix}} を使用して、または使用せずに、{{site.data.keyword.messagehub}} トリガーを作成する方法、メッセージを listen する方法、およびメッセージを一括処理する方法について説明します。
+{{site.data.keyword.messagehub_full}} インスタンスにメッセージがポストされたときに反応するトリガーを、フィードを使用して作成できます。 ここでは、{{site.data.keyword.Bluemix}} を使用して、または使用せずに、{{site.data.keyword.messagehub}} トリガーを作成する方法、メッセージを listen する方法、およびメッセージを一括処理する方法について説明します。
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} パッケージ 
 
-`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、Message Hub/Kafka へのデータの生成が行われる場合は持続接続を使用するようにしてください。
+`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、Message Hub/Kafka へのデータの生成が行われる場合は持続接続を使用するようにしてください。
 {: tip}
 
-このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にします。{{site.data.keyword.messagehub}} パッケージの詳細、パッケージのセットアップ方法、およびメッセージの生成方法については、[{{site.data.keyword.messagehub}} パッケージ](./messagehub_actions.html)のトピックを参照してください。
+このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にします。 {{site.data.keyword.messagehub}} パッケージの詳細、パッケージのセットアップ方法、およびメッセージの生成方法については、[{{site.data.keyword.messagehub}} パッケージ](./messagehub_actions.html)のトピックを参照してください。
 
 ## {{site.data.keyword.messagehub}} インスタンスを listen するトリガーの作成
 {: #create_message_hub_trigger}
@@ -102,7 +102,7 @@ lastupdated: "2018-06-22"
 
 トリガーが作成されると、システムはメッセージング・サービス内の指定されたトピックをモニターします。 新規メッセージがポストされると、トリガーが起動されます。
 
-そのトリガーのペイロードには、`messages` フィールドが含まれています。これは、トリガーの前回の起動以降にポストされたメッセージの配列です。配列内の各メッセージ・オブジェクトには以下のフィールドが含まれています。
+そのトリガーのペイロードには、`messages` フィールドが含まれています。これは、トリガーの前回の起動以降にポストされたメッセージの配列です。 配列内の各メッセージ・オブジェクトには以下のフィールドが含まれています。
 - topic
 - partition
 - offset

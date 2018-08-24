@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 {{site.data.keyword.openwhisk}} offre un plug-in puissant pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}} qui permet une gestion complète du système {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
+
+Vous pouvez désormais utiliser l'alias `fn` dans vos commandes de plug-in {{site.data.keyword.openwhisk_short}} : `ibmcloud fn <command>`
+{: tip}
 
 ## Configuration de l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}
 {: #bluemix_cli_setup}
@@ -157,7 +160,7 @@ ibmcloud iam space-create "production"
 ## Migration depuis l'interface de ligne de commande OpenWhisk vers le plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Avec l'introduction du plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, l'interface de ligne de commande OpenWhisk autonome n'est plus nécessaire.
+Avec l'introduction du plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk_short}}, l'interface de ligne de commande (`wsk`) autonome n'est plus nécessaire.
 
 ### Syntaxe de commande
 {: #command_syntax}
@@ -201,6 +204,12 @@ Si vous avez des scripts qui utilisent l'interface de ligne de commande OpenWhis
 {: #version_history}
 
 Enregistrement historique des versions qui montre les points forts et les correctifs de bogue.
+
+1.0.21 (2018-08-01)
+* Les alias `fn` et `functions` peuvent désormais être utilisés pour les commandes {{site.data.keyword.openwhisk_short}} : `ibmcloud fn <command>` et `ibmcloud fn <command>`. Vous pouvez également encore utiliser `ibmcloud wsk <command>`.
+
+1.0.19 (2018-07-02)
+* Correctifs de bogues mineurs et améliorations.
 
 1.0.18 (20/06/2018)
 * Correctif permettant de supprimer la liaison des instances de service fournies par l'utilisateur.

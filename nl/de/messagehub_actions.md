@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,8 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# {{site.data.keyword.messagehub}}-Paket
+
 {: #openwhisk_catalog_message_hub}
 
 Ein Paket, das die Kommunikation mit [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)-Instanzen zur Veröffentlichung und Verarbeitung von Nachrichten unter Verwendung der nativen hochleistungsfähigen Kafka-API ermöglicht.
@@ -87,7 +88,7 @@ Wenn Sie eine {{site.data.keyword.openwhisk_short}}-Aktion verwenden wollen, um 
 |value|Zeichenfolge|Der Wert für die Nachricht, die Sie erstellen wollen.|
 |key|Zeichenfolge (optional)|Der Schlüssel für die Nachricht, die Sie erstellen wollen.|
 
-Die ersten drei Parameter können durch den Befehl `ibmcloud fn package refresh` automatisch gebunden werden. Das folgende Beispiel zeigt hingegen, wie die Aktion mit allen erforderlichen Parametern aufgerufen wird:
+Die ersten drei Parameter können durch den Befehl `ibmcloud fn package refresh` automatisch gebunden werden. Das folgende Beispiel veranschaulicht hingegen, wie die Aktion mit allen erforderlichen Parametern aufgerufen wird:
 ```
 ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```

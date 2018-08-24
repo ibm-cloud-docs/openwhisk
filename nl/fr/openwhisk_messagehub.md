@@ -31,7 +31,7 @@ Pour créer un déclencheur qui réagit lorsque des messages sont publiés dans 
 
 |Nom|Type|Description|
 |---|---|---|
-|kafka_brokers_sasl|Tableau JSON de chaînes|Ce paramètre est un tableau de chaînes `<host>:<port>` qui comprennent les courtiers figurant dans votre instance {{site.data.keyword.messagehub}}|
+|kafka_brokers_sasl|Tableau JSON de chaînes|Ce paramètre est un tableau de chaînes `<host>:<port>` composé des courtiers de votre instance {{site.data.keyword.messagehub}} instance|
 |user|Chaîne|Votre nom d'utilisateur {{site.data.keyword.messagehub}}.|
 |password|Chaîne|Votre mot de passe {{site.data.keyword.messagehub}}.|
 |topic|Chaîne|Rubrique que le déclencheur doit écouter.|
@@ -151,7 +151,7 @@ Si un message de type `{"title": "Some string", "amount": 5, "isAwesome": true}`
 ```
 {: codeblock}
 
-Cependant, si le même contenu de message est publié avec la valeur `false` affectée au paramètre `isJSONData`, le contenu du déclencheur se présentera comme suit : 
+Cependant, si le même contenu de message est publié avec la valeur `false` affectée au paramètre `isJSONData`, le contenu du déclencheur se présentera comme suit :
 ```json
 {
   "messages": [
@@ -185,7 +185,7 @@ Si un élément `value` de `Some data` est transmis avec la valeur `true` affect
 ```
 {: codeblock}
 
-Si le même message est publié sans que la valeur `true` soit affectée au paramètre `isBinaryData`, le contenu du déclencheur se présente comme suit : 
+Si le même message est publié sans que la valeur `true` soit affectée au paramètre `isBinaryData`, le contenu du déclencheur se présente comme suit :
 ```json
 {
   "messages": [

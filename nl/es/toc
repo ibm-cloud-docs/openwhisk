@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" href="/docs/openwhisk/index.html"}
+{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
@@ -10,7 +10,6 @@ IBM Cloud Functions
     {: .topicgroup}
     Visión general
         openwhisk_use_cases.md
-        cost_considerations.md
         openwhisk_about.md
         openwhisk_compare.md
 
@@ -26,14 +25,13 @@ IBM Cloud Functions
     bluemix_cli.md
 
     {: .topicgroup}
-    Gestión de acciones
+    Creación de acciones
         openwhisk_actions.md
-        deploy_templates.md
+        openwhisk_webactions.md
+        openwhisk_managing.md
         parameters.md
         binding_services.md
-        openwhisk_webactions.md
         openwhisk_packages.md
-        openwhisk_annotations.md
 
     {: .topicgroup}
     Invocación de acciones con sucesos
@@ -46,14 +44,11 @@ IBM Cloud Functions
         openwhisk_feeds.md
 
     openwhisk_apigateway.md
+    openwhisk_logs.md
+    deploy_templates.md
 
     {: .topicgroup}
-    Funcionamiento de apps sin servidor
-        openwhisk_logs.md
-        openwhisk_monitoring.md
-
-    {: .topicgroup}
-    Acciones preinstaladas
+    Paquetes preinstalados
         cloudant_actions.md
         messagehub_actions.md
         mobile_push_actions.md
@@ -66,16 +61,33 @@ IBM Cloud Functions
         openwhisk_websocket.md
 
     {: .topicgroup}
+    Paquetes instalables
+        installable_packages_overview.md
+        cloud_object_storage_actions.md
+        ow_watson_assistant.md
+        ow_watson_discovery.md
+        ow_watson_visual_recognition.md
+        ow_watson_natural_language_understanding.md
+        ow_watson_speech_to_text.md
+        ow_watson_text_to_speech.md
+        ow_watson_natural_language_classifer.md
+        ow_watson_personality_insights.md
+        ow_watson_tone_analyzer.md
+        ow_watson_language_translator.md
+
+
+    {: .topicgroup}
     SDK e infraestructuras
         openwhisk_goserverless.md
         openwhisk_mobile_sdk.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
+    openwhisk_annotations.md
     openwhisk_reference.md
 
     {: .topicgroup}
-    Documentación de API REST
+    Documentación de API
         [Referencia de API REST](https://console.bluemix.net/apidocs/openwhisk){: new_window}
         [Gestión de API nativa en IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 

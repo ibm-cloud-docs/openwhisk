@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Mobile Push
+# Mobile Push 包
 {: #openwhisk_catalog_pushnotifications}
 
 了解如何创建 Push 包绑定，并使用 `/whisk.system/pushnotifications` 包发送简单的推送通知，这将使您能够使用 Push 服务。

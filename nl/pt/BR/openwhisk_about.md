@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -34,7 +34,10 @@ Aprenda sobre alguns conceitos básicos da tecnologia por trás do {{site.data.k
 <dt>Acionador</dt>
 <dd>[Acionadores](openwhisk_triggers_rules.html#openwhisk_triggers_create) são um canal nomeado para uma classe de eventos. Um acionador é uma declaração de que você deseja reagir a um determinado tipo de evento, seja de um usuário ou por uma origem de eventos.</dd>
 <dt>Regra</dt>
-<dd>Uma [regra](openwhisk_triggers_rules.html#openwhisk_rules_use) associa um acionador a uma ação. Toda vez que o acionador é disparado, a regra chama a ação associada. Com o conjunto apropriado de regras, é possível que um único evento acionador chame várias ações ou que uma ação seja chamada como uma resposta a eventos de vários acionadores.</dd>
+<dd>Uma [regra](openwhisk_triggers_rules.html#openwhisk_rules_use) associa um acionador a uma ação. Toda vez que o acionador for disparado, a regra usará o evento acionador como entrada e chamará a ação associada. Com o conjunto apropriado de regras, é possível que um único evento acionador chame várias ações ou que uma ação seja chamada como uma resposta a eventos de vários acionadores.</dd>
+<dt>Feed</dt>
+<dd>Um [feed](openwhisk_feeds.html#openwhisk_feeds) é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. 
+Por exemplo, um feed do Git pode disparar um evento acionador para cada confirmação em um repositório Git.</dd>
 <dt>Pacote</dt>
 <dd>Integrações com serviços e provedores de eventos podem ser incluídas com pacotes. Um [pacote](openwhisk_packages.html) é um pacote configurável de feeds e ações. Um feed é uma parte do código que configura uma origem de eventos externos para disparar eventos acionadores. Por exemplo, um acionador que é criado com um feed de mudanças do {{site.data.keyword.cloudant}} configura um serviço para disparar o acionador toda vez que um documento é modificado ou incluído em um banco de dados {{site.data.keyword.cloudant_short_notm}}. As ações em pacotes representam lógica reutilizável que um provedor de serviços pode disponibilizar para que os desenvolvedores podem usar o serviço como uma origem de eventos e chamar as APIs desse serviço.
 <br><br>Um catálogo de pacotes existente oferece uma forma rápida de aprimorar aplicativos com recursos úteis e de acessar serviços externos no ecossistema. Exemplos de serviços externos que têm pacotes do {{site.data.keyword.openwhisk_short}} incluem {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack e GitHub.</dd>
@@ -154,7 +157,8 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### Sumário
 
-É possível ver como um **ibmcloud fn action invoked myAction** simples passa por diferentes estágios do sistema {{site.data.keyword.openwhisk_short}}. O sistema em si consiste principalmente em somente dois componentes customizados, o **Controlador** e o **Invocador**. Todo o resto já está lá, desenvolvido por muitas pessoas na comunidade de software livre.
+É possível ver como uma ação simples de **ibmcloud fn action invoked myAction**
+passa por diferentes estágios do sistema {{site.data.keyword.openwhisk_short}}. O sistema em si consiste principalmente em somente dois componentes customizados, o **Controlador** e o **Invocador**. Todo o resto já está lá, desenvolvido por muitas pessoas na comunidade de software livre.
 
 É possível localizar informações adicionais sobre o {{site.data.keyword.openwhisk_short}} nos tópicos a seguir:
 
@@ -162,4 +166,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [Semântica de ação](./openwhisk_reference.html#openwhisk_semantics)
 * [  Limites
 ](./openwhisk_reference.html#openwhisk_syslimits)
-* [referência de API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [referência de API REST](https://console.bluemix.net/apidocs/openwhisk)

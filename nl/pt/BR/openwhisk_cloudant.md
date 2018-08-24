@@ -15,21 +15,26 @@ lastupdated: "2018-06-22"
 # Origem de eventos do Cloudant
 {: #openwhisk_cloudant}
 
-Saiba como receber mudanças para um banco de dados {{site.data.keyword.cloudant}}, filtrar os eventos de mudança do banco de dados e usar uma sequência de ações para processar um documento de um banco de dados {{site.data.keyword.cloudant_short_notm}}. O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados {{site.data.keyword.cloudant_short_notm}} e inclui as ações e os feeds a seguir:
+Saiba como receber mudanças para um banco de dados {{site.data.keyword.cloudant}}, filtrar os eventos de mudança do banco de dados e usar uma sequência de ações para processar um documento de um banco de dados {{site.data.keyword.cloudant_short_notm}}. 
+O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados
+do {{site.data.keyword.cloudant_short_notm}} e inclui as ações e os feeds a seguir:
 
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | pacote | dbname, host, username, password | Trabalhe com um banco de dados Cloudant. |
 | `/whisk.system/cloudant/read` | ação | dbname, id | Leia um documento de um banco de dados. |
 | `/whisk.system/cloudant/write` | ação | dbname, overwrite, doc | Grave um documento em um banco de dados. |
-| `/whisk.system/cloudant/changes` | Feed | Dbname, filtro, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
+| `/whisk.system/cloudant/changes` | alimentação | Dbname, filtro, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
 {: shortdesc}
 
-As seções a seguir conduzem você pela configuração de um pacote associado e como usar ações e feeds no pacote `/whisk.system/cloudant`. Para obter mais informações sobre como configurar o banco de dados {{site.data.keyword.cloudant_short_notm}} e ler ou gravar nele, veja [Ações do {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).
+As seções a seguir conduzem você pela configuração de um pacote associado e ensinam como usar
+ações e feeds no pacote `/whisk.system/cloudant`.
+Para obter mais informações sobre como configurar o banco de dados {{site.data.keyword.cloudant_short_notm}} e ler ou gravar nele, veja [Ações do {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).
 
 ## Criar um acionador usando a função de filtro
 
-É possível usar o feed `changes` para configurar um serviço para disparar um acionador em cada mudança para seu banco de dados {{site.data.keyword.cloudant_short_notm}}.
+É possível usar o feed `changes` para configurar um serviço para disparar um acionador
+em cada mudança em seu banco de dados do {{site.data.keyword.cloudant_short_notm}}.
 
 Os parâmetros usados neste exemplo são como a seguir:
 

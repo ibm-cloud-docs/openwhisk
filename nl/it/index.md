@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -40,14 +40,14 @@ Per iniziare con {{site.data.keyword.openwhisk_short}}, prova a utilizzare il te
 
 5. Controlla il codice per l'azione, quindi crea l'azione facendo clic su **Distribuisci**. Adesso hai un'azione chiamata `hello`.
 
-6. Esegui l'azione facendo clic su **Richiamo**. Il richiamo di un'azione esegue manualmente il codice dell'applicazione definito dall'azione. Nel pannello **Attivazioni**, puoi vedere il saluto "Hello stranger!" prodotto dall'azione.
+6. Esegui l'azione facendo clic su **Richiamo**. La chiamata di un'azione esegue manualmente il codice dell'applicazione definito dall'azione. Nel pannello **Attivazioni**, puoi vedere il saluto "Hello stranger!" prodotto dall'azione.
 
 Ottimo lavoro! Hai creato la tua prima azione. Per ripulire questa azione, fai clic sul menu di overflow e seleziona **Elimina azione**.
 
 ## Creazione di un'azione nella CLI
 {: #openwhisk_start_hello_world_cli}
 
-Diventa subito operativo con il codice di esempio JavaScript di HelloWorld. Questo esempio crea un'azione `hello` di base che puoi richiamare manualmente per eseguire la sua logica dell'applicazione. 
+Diventa subito operativo con il codice di esempio JavaScript di HelloWorld. Questo esempio crea un'azione `hello` di base che puoi richiamare manualmente per eseguire la sua logica dell'applicazione.
 
 1. [Configura il plug-in della CLI {{site.data.keyword.openwhisk_short}}](bluemix_cli.html).
 
@@ -59,7 +59,7 @@ Diventa subito operativo con il codice di esempio JavaScript di HelloWorld. Ques
      */
 function main(params) {
         var name = params.name || 'World';
-    return {payload:  'Hello, ' + name + '!'};
+        return {payload:  'Hello, ' + name + '!'};
     }
     ```
     {: codeblock}

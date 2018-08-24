@@ -94,8 +94,8 @@ ibmcloud fn action invoke myWatsonTranslator/translator \
 Exemple de sortie :
 ```
 {
-    "payload": "Ciel bleu à venir"
-  }
+    "payload": "Ciel bleu a venir"
+}
 ```
 {: screen}
 
@@ -111,7 +111,7 @@ Appelez l'action **languageId** dans votre liaison de package pour identifier la
 ```
 ibmcloud fn action invoke myWatsonTranslator/languageId \
 --blocking --result \
---param payload "Ciel bleu à venir"
+--param payload "Ciel bleu a venir"
 ```
 {: pre}
 

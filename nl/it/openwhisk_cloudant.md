@@ -22,7 +22,7 @@ Scopri come ascoltare le modifiche a un database {{site.data.keyword.cloudant}},
 | `/whisk.system/cloudant` | pacchetto | dbname, host, username, password | Lavorare con un database Cloudant. |
 | `/whisk.system/cloudant/read` | azione | dbname, id | Leggere un documento da un database. |
 | `/whisk.system/cloudant/write` | azione | dbname, overwrite, doc | Scrivere un documento in un database. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Attivare eventi trigger in caso di modifiche a un database. |
+| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Attivare eventi trigger in caso di modifiche a un database. |
 {: shortdesc}
 
 Le seguenti sezioni ti illustrano come configurare un pacchetto associato e come utilizzare le azioni e i feed nel pacchetto `/whisk.system/cloudant`. Per ulteriori informazioni sulla configurazione del database {{site.data.keyword.cloudant_short_notm}} e sulla lettura o scrittura nel database, vedi [Azioni {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).

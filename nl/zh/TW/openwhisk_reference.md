@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -26,7 +26,7 @@ lastupdated: "2018-06-22"
 
 {{site.data.keyword.openwhisk_short}} 的動作、觸發程式及規則屬於「名稱空間」，有時屬於套件。
 
-套件可以包含動作及「資訊來源」。套件不能包含另一個套件，因此不容許巢狀套件。實體也不需要包含在套件中。
+套件可以包含動作及資訊來源。套件不能包含另一個套件，因此不容許巢狀套件。實體也不需要包含在套件中。
 
 在 {{site.data.keyword.Bluemix_notm}} 中，組織+空間配對對應至 {{site.data.keyword.openwhisk_short}} 名稱空間。例如，組織 `BobsOrg` 及空間 `dev` 將對應至 {{site.data.keyword.openwhisk_short}} 名稱空間 `/BobsOrg_dev`。
 
@@ -96,8 +96,7 @@ lastupdated: "2018-06-22"
 - *成功*：順利完成動作呼叫。
 - *應用程式錯誤*：動作呼叫成功，但動作故意傳回錯誤值（例如，因為引數的前置條件不相符）。
 - *動作開發人員錯誤*：已呼叫動作，但異常完成（例如，動作偵測不到異常狀況，或有語法錯誤）。
-- *Whisk 內部錯誤*：系統無法呼叫動作。
-結果會記錄在啟動記錄的 `status` 欄位中（如下節所記載）。
+- *Whisk 內部錯誤*：系統無法呼叫動作。結果會記錄在啟動記錄的 `status` 欄位中（如下節所記載）。
 
 每個成功收到的呼叫以及每個可能向使用者收費的呼叫，都有一筆啟動記錄。
 
@@ -232,9 +231,9 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
 
 ### 具有 IBM SDK 的 Node.js 第 8 版環境
 {: #openwhisk_ref_javascript_environments_8}
-如果在建立或更新動作時明確指定 `--kind` 旗標，且值為 `nodejs:8`，則會使用 Node.js 8.11.1 版環境。
+如果在建立或更新動作時明確指定 `--kind` 旗標，且值為 `nodejs:8`，則會使用 Node.js 8.11.3 版環境。
 
-下列套件已預先安裝在 Node.js 8.11.1 版環境中：
+下列套件已預先安裝在 Node.js 8.11.3 版環境中：
   - [amqplib 0.5.2 版](https://www.npmjs.com/package/amqplib) - 程式庫，以製作 Node.JS 的 AMQP 0-9-1 用戶端。
   - [apn 2.2.0 版](https://www.npmjs.com/package/apn) - Node.js 模組，以與 Apple Push Notification 服務互動。
   - [async 2.6.1 版](https://www.npmjs.com/package/async) - 提供函數以與非同步函數搭配使用。
@@ -243,10 +242,10 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
   - [btoa 1.2.1 版](https://www.npmjs.com/package/btoa) - 瀏覽器 btoa 功能的埠。
   - [cassandra-driver 3.5.0 版](https://www.npmjs.com/package/cassandra-driver) - Apache Cassandra 的 DataStax Node.js 驅動程式。
   - [cloudant 1.10.0 版](https://www.npmjs.com/package/cloudant) - 這是 Node.js 的官方 Cloudant 程式庫。
-  - [@cloudant/cloudant 2.2.0 版](https://www.npmjs.com/package/cloudant) - 這是適用於 Node.js 的正式 Cloudant 程式庫。
+  - [@cloudant/cloudant 2.3.0 版](https://www.npmjs.com/package/cloudant) - 這是適用於 Node.js 的正式 Cloudant 程式庫。
   - [commander 2.15.1 版](https://www.npmjs.com/package/commander) - node.js 指令行介面的完整解決方案。
   - [composeaddresstranslator 1.0.4 版](https://www.npmjs.com/package/composeaddresstranslator) - Scylla 資料庫之 Compose 使用者介面或 API 的位址轉換器。
-  - [consul 0.32.0 版](https://www.npmjs.com/package/consul) - Consul 的用戶端，包含服務探索及配置。
+  - [consul 0.33.1 版](https://www.npmjs.com/package/consul) - Consul 的用戶端，包含服務探索及配置。
   - [cookie-parser 1.4.3 版](https://www.npmjs.com/package/cookie-parser) - 剖析 Cookie 標頭，並在 req.cookies 中移入 Cookie 名稱所含索引鍵的物件。
   - [cradle 0.7.1 版](https://www.npmjs.com/package/cradle) - 適用於 Node.js 的高階、快取、CouchDB 用戶端。
   - [elasticsearch 15.0.0 版](https://www.npmjs.com/package/elasticsearch) - 適用於 Node.js 的正式低階 Elasticsearch 用戶端。
@@ -262,9 +261,9 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
   - [ibmiotf 0.2.41 版](https://www.npmjs.com/package/ibmiotf) - node.js 用戶端用於簡化與 IBM Watson Internet of Things Platform 的互動。
   - [iconv-lite 0.4.23 版](https://www.npmjs.com/package/iconv-lite) - Pure JS 字元編碼轉換
   - [jsdom 11.10.0 版](https://www.npmjs.com/package/jsdom) - jsdom 是許多 Web 標準的純 JavaScript 實作，特別是 WHATWG DOM 和 HTML 標準。
-  - [jsonwebtoken 8.2.2 版](https://www.npmjs.com/package/jsonwebtoken) -「JSON Web 記號」的實作。
+  - [jsonwebtoken 8.3.0 版](https://www.npmjs.com/package/jsonwebtoken) -「JSON Web 記號」的實作。
   - [lodash 4.17.10 版](https://www.npmjs.com/package/lodash) - 匯出為 Node.js 模組的 Lodash 程式庫。
-  - [log4js 2.8.0 版](https://www.npmjs.com/package/log4js) - 這是使用 Node 之 log4js 架構的轉換。
+  - [log4js 2.9.0 版](https://www.npmjs.com/package/log4js) - 這是使用 Node 之 log4js 架構的轉換。
   - [marked 0.4.0 版](https://www.npmjs.com/package/marked) - 以 JavaScript 撰寫的全功能 Markdown 剖析器和編譯器。專為提供速度而打造。
   - [merge 1.2.0 版](https://www.npmjs.com/package/merge) - 將多個物件合併成一個，選擇性地建立新的複製物件。
   - [moment 2.22.2 版](https://www.npmjs.com/package/moment) - 用於剖析、驗證、操作及格式化日期的輕量型 JavaScript 日期程式庫。
@@ -272,7 +271,7 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
   - [mysql 2.15.0 版](https://www.npmjs.com/package/mysql) - 這是適用於 mysql 的 node.js 驅動程式。
   - [mustache 2.3.0 版](https://www.npmjs.com/package/mustache) - mustache.js 是 JavaScript 中 mustache 範本系統的實作。
   - [nano 6.4.4 版](https://www.npmjs.com/package/nano) - 適用於 Node.js 的簡約 couchdb 驅動程式。
-  - [nodemailer 4.6.5 版](https://www.npmjs.com/package/nodemailer) - 從 Node.js 傳送電子郵件 - 容易使用！
+  - [nodemailer 4.6.7 版](https://www.npmjs.com/package/nodemailer) - 從 Node.js 傳送電子郵件 - 容易使用！
   - [oauth2-server 3.0.0 版](https://www.npmjs.com/package/oauth2-server) - 完整、相容及完整測試的模組，用於實作以 Node.js 表示的 OAuth2 Server/Provider。
   - [openwhisk 3.15.0 版](https://www.npmjs.com/package/openwhisk) - 適用於 OpenWhisk 平台的 JavaScript 用戶端程式庫。在 OpenWhisk API 附近提供封套。
   - [path-to-regex 2.2.1 版](https://www.npmjs.com/package/path-to-regexp) - 將路徑字串（例如 /user/:name）轉換成接著可用來比對 URL 路徑的正規表示式。
@@ -284,27 +283,27 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
   - [request-promise 4.2.2 版](https://www.npmjs.com/package/request-promise) - 具有 Promise 支援的簡化 HTTP 要求用戶端 'request'。採用 Bluebird 技術。
   - [rimraf 2.6.2 版](https://www.npmjs.com/package/rimraf) - 適用於 Node 的 UNIX 指令 rm -rf。
   - [semver 5.5.0 版](https://www.npmjs.com/package/semver) - 適用於 Nodejs 的語意版本化
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - 透過 SendGrid API 提供電子郵件支援。
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - 透過 SendGrid API 提供電子郵件支援。
   - [serve-favicon 2.5.0 版](https://www.npmjs.com/package/serve-favicon) - 負責處理 Favicon 的 Node.js 中介軟體。
   - [superagent 3.8.3 版](https://www.npmjs.com/package/superagent) - SuperAgent 是小型的漸進式用戶端 HTTP 要求程式庫及具有相同 API 的 Node.js 模組，其中包含許多高階 HTTP 用戶端特性。
-  - [twilio 3.17.2 版](https://www.npmjs.com/package/twilio) - 適用於語音、視訊及傳訊之相關 Twilio API 的封套。
+  - [twilio 3.17.3 版](https://www.npmjs.com/package/twilio) - 適用於語音、視訊及傳訊之相關 Twilio API 的封套。
   - [underscore 1.9.1 版](https://www.npmjs.com/package/underscore) - Underscore.js 是 JavaScript 的公用程式程式庫，支援一般的功能可疑物件（每個、對映、減少、過濾器...），而不延伸任何核心 JavaScript 物件。
   - [url-pattern 1.0.3 版](https://www.npmjs.com/package/url-pattern) - 剖析路徑參數的 URL，比使用正規表示式字串配對器更為簡單。
   - [uuid 3.2.1 版](https://www.npmjs.com/package/uuid) - 簡單、快速產生 RFC4122 UUID。
   - [validator 10.3.0 版](https://www.npmjs.com/package/validator) - 字串驗證器和消毒器的程式庫。
-  - [watson-developer-cloud 3.4.5 版](https://www.npmjs.com/package/watson-developer-cloud) - Node.js 用戶端程式庫要使用 Watson Developer Cloud 服務，這是一組使用認知運算來解決複雜問題的 API 集合。
+  - [watson-developer-cloud 3.5.0 版](https://www.npmjs.com/package/watson-developer-cloud) - Node.js 用戶端程式庫要使用 Watson Developer Cloud 服務，這是一組使用認知運算來解決複雜問題的 API 集合。
   - [when 3.7.8 版](https://www.npmjs.com/package/when) - When.js 是一種穩固的實線、未經測試的 Promisses/A+ 和 when() 實作，包括完整的 ES6 Promise shim。
-  - [winston 2.4.2 版](https://www.npmjs.com/package/winston) - 適用於 node.js 的多重傳輸非同步記載程式庫。"CHILL WINSTON! ... 我把它放在日誌裡。"
+  - [winston 3.0.0 版](https://www.npmjs.com/package/winston) - 適用於 node.js 的多重傳輸非同步記載程式庫。"CHILL WINSTON! ... 我把它放在日誌裡。"
   - [ws 5.2.0 版](https://www.npmjs.com/package/ws) - ws 為使用簡單、超快、完整測試的 WebSocket 用戶端及伺服器實作。
   - [xml2js 0.4.19 版](https://www.npmjs.com/package/xml2js) - JavaScript 物件轉換器的簡單 XML。它支援雙向轉換。
   - [xmlhttprequest 1.8.0 版](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest 是內建 HTTP 用戶端用來模擬瀏覽器 XMLHttpRequest 物件的封套。
-  - [yauzl 2.9.1 版](https://www.npmjs.com/package/yauzl) - 還有另一個適用於 Node 的解壓縮程式庫。用於壓縮。
+  - [yauzl 2.9.2 版](https://www.npmjs.com/package/yauzl) - 另一個適用於 Node 的解壓縮程式庫。
 
 ### Node.js 第 6 版環境
 {: #openwhisk_ref_javascript_environments_6}
-如果在建立或更新動作時明確指定 `--kind` 旗標，且值為 `nodejs:6`，則會使用 Node.js 6.14.0 環境。
+如果在建立或更新動作時明確指定 `--kind` 旗標，且值為 `nodejs:6`，則會使用 Node.js 6.14.3 環境。
 
-下列套件適用於 Node.js 6.14.0 環境：
+下列套件適用於 Node.js 6.14.3 環境：
 
 - [apn 2.1.2 版](https://www.npmjs.com/package/apn)- Node.js 模組，以與 Apple Push Notification 服務互動。
 - [async 2.1.4 版](https://www.npmjs.com/package/async) - 提供函數以與非同步函數搭配使用。
@@ -330,7 +329,7 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
 - [node-uuid 1.4.7 版](https://www.npmjs.com/package/node-uuid) - 已淘汰的 UUID 套件。
 - [nodemailer 2.6.4 版](https://www.npmjs.com/package/nodemailer) - 從 Node.js 傳送電子郵件 - 容易使用！
 - [oauth2-server 2.4.1 版](https://www.npmjs.com/package/oauth2-server) - 完整、相容及完整測試的模組，用於實作以 Node.js 表示的 OAuth2 Server/Provider。
-- [openwhisk 3.14.0 版](https://www.npmjs.com/package/openwhisk) - OpenWhisk 平台的 JavaScript 用戶端程式庫。在 OpenWhisk API 附近提供封套。
+- [openwhisk 3.15.0 版](https://www.npmjs.com/package/openwhisk) - 適用於 OpenWhisk 平台的 JavaScript 用戶端程式庫。在 OpenWhisk API 附近提供封套。
 - [pkgcloud 1.4.0 版](https://www.npmjs.com/package/pkgcloud) - pkgcloud 是一個 Node.js 標準程式庫，可抽象化多個雲端提供者之間的差異。
 - [process 0.11.9 版](https://www.npmjs.com/package/process) - require('process')；就像任何其他模組。
 - [pug 2.0.0-beta6 版](https://www.npmjs.com/package/pug) - 實作 Pug 範本語言。
@@ -356,7 +355,7 @@ JavaScript 動作可以在 Node.js 第 6 版或 Node.js 第 8 版中執行。
 - [ws 1.1.1 版](https://www.npmjs.com/package/ws) - ws 為使用簡單、超快、完整測試的 WebSocket 用戶端及伺服器實作。
 - [xml2js 0.4.17 版](https://www.npmjs.com/package/xml2js) - JavaScript 物件轉換器的簡單 XML。它支援雙向轉換。
 - [xmlhttprequest 1.8.0 版](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest 是內建 HTTP 用戶端用來模擬瀏覽器 XMLHttpRequest 物件的封套。
-- [yauzl 2.7.0 版](https://www.npmjs.com/package/yauzl) - 還有另一個適用於 Node 的解壓縮程式庫。用於壓縮。
+- [yauzl 2.7.0 版](https://www.npmjs.com/package/yauzl) - 另一個適用於 Node 的解壓縮程式庫。
 
 
 ## Python 執行時期
@@ -385,7 +384,7 @@ Python 套件：
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -409,12 +408,12 @@ Python 套件：
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -426,7 +425,7 @@ Python 套件：
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -438,7 +437,7 @@ Python 套件：
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -553,7 +552,7 @@ Swift 4 動作是使用 Swift 4.1 `--kind swift:4.1` 來執行。
 遵循[包裝的 swift 動作](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable)的指示，以包括使用 Package.swift 的相依關係。
 
 使用單一 Swift 原始檔時，Swift 4.1 動作可以使用下列套件：
-- Watson Developer Cloud SDK 0.27.0 版：https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK 0.28.0 版：https://github.com/watson-developer-cloud/swift-sdk
 
 ### 將 Swift 3.1.1 移轉至 Swift 4.1
 
@@ -583,14 +582,14 @@ PHP 動作是使用 PHP 7.1.18 來執行。若要使用此運行環境，請在�
 也可以使用下列 Composer 套件：
 
 - guzzlehttp/guzzle       6.7.3 版
-- ramsey/uuid             3.6.3 版
+- ramsey/uuid             3.7.3 版
 
 ## Docker 動作
 {: #openwhisk_ref_docker}
 
 Docker 動作是在 Docker 容器中執行使用者提供的二進位檔。二進位檔是在根據 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 的 Docker 映像檔中執行，因此二進位檔必須與此發行套件相容。
 
-Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可以使用 `ibmcloud fn sdk install docker` CLI 外掛程式指令來安裝架構。
+Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可以使用 `ibmcloud wsk sdk install docker` CLI 外掛程式指令來安裝架構。
 
 主要二進位程式必須位在容器的 `/action/exec` 中。執行檔會從可解除序列化為 `JSON` 物件的單一指令行引數字串接收到輸入引數。它必須使用 `stdout`，以已序列化 `JSON` 的單行字串形式來傳回結果。
 
@@ -598,7 +597,7 @@ Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可
 
 ## REST API
 {: #openwhisk_ref_restapi}
-在 [REST API 參照](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)中，可以找到 {{site.data.keyword.openwhisk_short}} REST API 的相關資訊。
+在 [REST API 參照](https://console.bluemix.net/apidocs/openwhisk)中，可以找到 {{site.data.keyword.openwhisk_short}} REST API 的相關資訊。
 
 ## 系統限制
 {: #openwhisk_syslimits}
@@ -608,9 +607,7 @@ Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可
 
 下表列出動作的預設限制。
 
-|限制 |說明
-|預設值 |最小值 |最大值
-|
+|限制 |說明|預設值 |最小值 |最大值|
 | ----- | ----------- | :-------: | :---: | :---: |
 |[codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) |動作碼的大小上限 (MB)。|48|1|48|
 |[concurrent](openwhisk_reference.html#openwhisk_syslimits_concurrent) |每個「名稱空間」的執行中或置入佇列等待執行的活動次數不可提交超過 N 次。|1000|1|1000* |
@@ -702,9 +699,7 @@ Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可
 
 觸發程式受限於每分鐘的發動率，如下表所記載。
 
-|限制 |說明
-|預設值 |最小值 |最大值
-|
+|限制 |說明|預設值 |最小值 |最大值|
 | ----- | ----------- | :-------: | :---: | :---: |
 |[minuteRate](openwhisk_reference.html#openwhisk_syslimits_tminuterate) |每個「名稱空間」每分鐘的觸發程式發動次數不可超過 N 次。|5000* |5000* |5000* |
 

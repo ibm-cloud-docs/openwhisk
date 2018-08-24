@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -26,7 +26,7 @@ Les sections suivantes fournissent des détails techniques sur les paramètres d
 
 Les actions, les déclencheurs et les règles {{site.data.keyword.openwhisk_short}} appartiennent à un espace de nom et parfois à un package.
 
-Les packages peuvent contenir des actions et des flux. Un package ne peut pas contenir un autre package ; par conséquent, l'imbrication de packages n'est pas autorisée. De plus, les entités ne doivent pas obligatoirement se trouver dans un package.
+Un package peut contenir des actions et des flux. Un package ne peut pas contenir un autre package ; par conséquent, l'imbrication de packages n'est pas autorisée. De plus, les entités ne doivent pas obligatoirement se trouver dans un package.
 
 Dans {{site.data.keyword.Bluemix_notm}}, une paire organisation+espace correspond à un espace de nom {{site.data.keyword.openwhisk_short}}. Par exemple, l'organisation `BobsOrg` et l'espace `dev` correspondraient à l'espace de nom {{site.data.keyword.openwhisk_short}} `/BobsOrg_dev`.
 
@@ -231,9 +231,9 @@ Pour plus d'informations, voir [Conditionnement d'une action en tant que module 
 
 ### Environnement Node.js version 8 avec kits de développement IBM SDK
 {: #openwhisk_ref_javascript_environments_8}
-L'environnement Node.js version 8.11.1 est utilisé si l'indicateur `--kind` est spécifié de manière explicite avec la valeur `nodejs:8` lors de la création ou de la mise à jour d'une action.
+L'environnement Node.js version 8.11.3 est utilisé si l'indicateur `--kind` est spécifié de manière explicite avec la valeur `nodejs:8` lors de la création ou de la mise à jour d'une action.
 
-Les packages suivants sont préinstallés dans l'environnement Node.js version 8.11.1 :
+Les packages suivants sont préinstallés dans l'environnement Node.js version 8.11.3 :
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - Bibliothèque pour créer des clients AMQP 0-9-1 pour Node.JS.
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - Module Node.js qui permet d'interagir avec le service Apple Push Notification.
   - [async v2.6.1](https://www.npmjs.com/package/async) - Fournit des fonctions permettant de gérer des fonctions asynchrones.
@@ -242,10 +242,10 @@ Les packages suivants sont préinstallés dans l'environnement Node.js version 8
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa) - Port de la fonction btoa du navigateur.
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - Pilote Node.js DataStax pour Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - Bibliothèque Cloudant officielle pour Node.js.
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant) - Bibliothèque Cloudant officielle pour Node.js.
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - Bibliothèque Cloudant officielle pour Node.js.
   - [commander v2.15.1](https://www.npmjs.com/package/commander) - Solution complète pour les interfaces de ligne de commande Node.js.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Traducteur d'adresses dans l'API ou l'interface utilisateur Compose pour les bases de données Scylla.
-  - [consul v0.32.0](https://www.npmjs.com/package/consul) - Client pour Consul, impliquant la configuration et la reconnaissance de service.
+  - [consul v0.33.1](https://www.npmjs.com/package/consul) - Client pour Consul, impliquant la configuration et la reconnaissance de service.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Faire une analyse syntaxique d'un en-tête de cookie et remplir req.cookies avec un objet indexé par les noms de cookie.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - Client CouchDB de mise en cache de haut niveau pour Node.js.
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - Client Elasticsearch bas niveau officiel pour Node.js.
@@ -261,9 +261,9 @@ Les packages suivants sont préinstallés dans l'environnement Node.js version 8
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - Le client node.js est utilisé pour simplifier l'interaction avec IBM Watson Internet of Things Platform.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Conversion de codage de caractères en pur JS
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom est une implémentation en JavaScript pur de nombreuses normes Web, notamment les normes WHATWG DOM et HTML.
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken) - Implémentation de jetons Web JSON.
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - Implémentation de jetons Web JSON.
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - Bibliothèque Lodash exportée sous la forme de modules Node.js.
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js) - Conversion de l'infrastructure log4js pour utiliser Node.
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - Conversion de l'infrastructure log4js pour utiliser Node.
   - [marked v0.4.0](https://www.npmjs.com/package/marked) - Analyseur syntaxique et compilateur Markdown avec fonctions complètes, écrit en JavaScript. Conçu pour la vitesse.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Fusionner plusieurs objets en un seul en créant éventuellement un nouvel objet cloné.
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - Bibliothèque de dates JavaScript simple pour l'analyse syntaxique, la validation, la manipulation et le formatage des dates.
@@ -271,7 +271,7 @@ Les packages suivants sont préinstallés dans l'environnement Node.js version 8
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - Pilote node.js pour mysql.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js est une implémentation du système de modèles Mustache en JavaScript.
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - Pilote couchdb minimaliste pour Node.js.
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer) - Envoyer des courriers électroniques depuis Node.js, c'est du gâteau !
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - Envoyer des courriers électroniques depuis Node.js, c'est du gâteau !
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Module complet, conforme et bien testé permettant d'implémenter un fournisseur/serveur OAuth2 avec Express dans Node.js.
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - Bibliothèque client JavaScript pour la plateforme OpenWhisk. Fournit un encapsuleur autour des API OpenWhisk.
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp) - Permet de transformer une chaîne de chemin d'accès, par exemple /utilisateur/:nom, en expression régulière pouvant être ensuite mise en corrélation avec des chemins d'URL.
@@ -283,27 +283,27 @@ Les packages suivants sont préinstallés dans l'environnement Node.js version 8
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - Demande client HTTP de type 'request' simplifiée avec le support Promise. Optimisée pour Bluebird.
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - Commande UNIX rm -rf pour node.
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - Gestion des versions sémantique pour Nodejs
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - Fournit l'assistance par courrier électronique via l'API SendGrid.
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - Fournit l'assistance par courrier électronique via l'API SendGrid.
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - Middleware Node.js pour utiliser un favicon.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent est une bibliothèque de demandes HTTP côté client progressive et de petite taille, ainsi qu'un module Node.js avec la même API, arborant un grand nombre de fonctions client HTTP de haut niveau.
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio) - Encapsuleur pour l'API Twilio, lié aux fonctions vocales et vidéo et à la messagerie.
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - Encapsuleur pour l'API Twilio, lié aux fonctions vocales et vidéo et à la messagerie.
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js est une bibliothèque d'utilitaires (utility-belt) pour JavaScript qui prend en charge les fonctions auxiliaires habituelles (each, map, reduce, filter...) sans étendre aucun objet Core JavaScript.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - Analyse les URL pour extraire les paramètres de chemin plus facilement qu'avec un module de mise en correspondance de chaînes regex.
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - Génération simple et rapide d'identificateurs uniques universels RFC4122.
   - [validator v10.3.0](https://www.npmjs.com/package/validator) - Bibliothèque de valideurs et de nettoyeurs de chaînes.
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud) - Bibliothèque client Node.js permettant d'utiliser les services Watson Developer Cloud, collection d'API qui utilisent l'informatique cognitive pour résoudre des problèmes complexes.
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - Bibliothèque client Node.js permettant d'utiliser les services Watson Developer Cloud, collection d'API qui utilisent l'informatique cognitive pour résoudre des problèmes complexes.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js est une implémentation Promises/A+ et when() inébranlable, éprouvée, comprenant un modificateur ES6 Promise complet.
-  - [winston v2.4.2](https://www.npmjs.com/package/winston) - Bibliothèque de consignation asynchrone multitransport pour Node.js. "CHILL WINSTON! ... I put it in the logs."
+  - [winston v3.0.0](https://www.npmjs.com/package/winston) - Bibliothèque de consignation asynchrone multitransport pour Node.js. "CHILL WINSTON! ... I put it in the logs."
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws est une implémentation client et serveur WebSocket facile à utiliser, ultra rapide et soigneusement testée.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Convertisseur d'objet XML en JavaScript simple. Il prend en charge la conversion bidirectionnelle.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest est un encapsuleur pour le client HTTP intégré afin d'émuler l'objet XMLHttpRequest de navigateur.
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - Autre bibliothèque de décompression (Yet Another UnZip Library) pour node.
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - Autre bibliothèque de décompression pour node.
 
 ### Environnement Node.js version 6
 {: #openwhisk_ref_javascript_environments_6}
-L'environnement Node.js 6.14.0 est utilisé si l'indicateur `--kind` est spécifié de manière explicite avec la valeur `nodejs:6` lors de la création ou de la mise à jour d'une action.
+L'environnement Node.js 6.14.3 est utilisé si l'indicateur `--kind` est spécifié de manière explicite avec la valeur `nodejs:6` lors de la création ou de la mise à jour d'une action.
 
-Les packages suivants sont disponibles pour être utilisés dans l'environnement Node.js 6.14.0 :
+Les packages suivants sont disponibles pour être utilisés dans l'environnement Node.js 6.14.3 :
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - Module Node.js qui permet d'interagir avec le service Apple Push Notification.
 - [async v2.1.4](https://www.npmjs.com/package/async) - Fournit des fonctions permettant de gérer des fonctions asynchrones.
@@ -329,7 +329,7 @@ Les packages suivants sont disponibles pour être utilisés dans l'environnement
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - Identificateur unique universel obsolète conditionné.
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Envoyer des courriers électroniques depuis Node.js, c'est du gâteau !
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Module complet, conforme et bien testé permettant d'implémenter un fournisseur/serveur OAuth2 avec Express dans Node.js.
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk) - Bibliothèque client JavaScript pour la plateforme OpenWhisk. Fournit un encapsuleur autour des API OpenWhisk.
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - Bibliothèque client JavaScript pour la plateforme OpenWhisk. Fournit un encapsuleur autour des API OpenWhisk.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud est une bibliothèque standard pour Node.js qui élimine les différences entre plusieurs fournisseurs de cloud.
 - [process v0.11.9](https://www.npmjs.com/package/process) - ('process') est requis, comme pour n'importe quel autre module.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implémente le langage de création de modèles Pug.
@@ -355,7 +355,7 @@ Les packages suivants sont disponibles pour être utilisés dans l'environnement
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws est une implémentation client et serveur WebSocket facile à utiliser, ultra rapide et soigneusement testée.
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Convertisseur d'objet XML en JavaScript simple. Il prend en charge la conversion bidirectionnelle.
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest est un encapsuleur pour le client HTTP intégré afin d'émuler l'objet XMLHttpRequest de navigateur.
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Autre bibliothèque de décompression (Yet Another UnZip Library) pour node.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Autre bibliothèque de décompression pour node.
 
 
 ## Environnements d'exécution Python
@@ -384,7 +384,7 @@ Packages Python :
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -408,12 +408,12 @@ Packages Python :
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -425,7 +425,7 @@ Packages Python :
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -437,7 +437,7 @@ Packages Python :
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -553,7 +553,7 @@ Les actions Swift 4 sont exécutées avec Swift 4.1 `--kind swift:4.1`.
 Suivez les instructions pour que les [actions Swift conditionnées](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) incluent les dépendances en utilisant Package.swift.
 
 Les actions Swift 4.1 peuvent utiliser les packages suivants avec un fichier source Swift unique :
-- Watson Developer Cloud SDK version 0.27.0, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK version 0.28.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migration de Swift 3.1.1 vers Swift 4.1
 
@@ -583,14 +583,14 @@ Les extensions PHP suivantes sont disponibles en plus des extensions standard :
 Les packages Composer suivants sont également disponibles :
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Actions Docker
 {: #openwhisk_ref_docker}
 
 Les actions Docker exécutent un fichier binaire fourni par l'utilisateur dans un conteneur Docker. Le fichier binaire s'exécute dans une image Docker reposant sur [python:2.7.12-alpine](https://hub.docker.com/r/library/python) ; par conséquent, il doit être compatible avec cette distribution.
 
-Le squelette Docker est pratique pour générer des images Docker compatibles avec OpenWhisk. Vous pouvez l'installer avec la commande de plug-in d'interface de ligne de commande `ibmcloud fn sdk install docker`.
+Le squelette Docker est pratique pour générer des images Docker compatibles avec OpenWhisk. Vous pouvez l'installer avec la commande de plug-in d'interface de ligne de commande `ibmcloud wsk sdk install docker`.
 
 Le programme binaire principal doit se trouver dans `/action/exec` à l'intérieur du conteneur. L'exécutable reçoit les arguments d'entrée d'une chaîne d'arguments de ligne de commande qui peut être désérialisée en tant qu'objet `JSON`. Il doit renvoyer un résultat en utilisant `stdout` sous forme de chaîne comportant une seule ligne de code `JSON` sérialisé.
 
@@ -598,13 +598,13 @@ Vous pouvez inclure des étapes de compilation ou des dépendances en modifiant 
 
 ## API REST
 {: #openwhisk_ref_restapi}
-Vous trouverez des informations sur l'API REST {{site.data.keyword.openwhisk_short}} dans le [document de référence sur l'API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
+Vous trouverez des informations sur l'API REST {{site.data.keyword.openwhisk_short}} dans le [document de référence sur l'API REST](https://console.bluemix.net/apidocs/openwhisk).
 
 ## Limites du système
 {: #openwhisk_syslimits}
 
 ### Actions
-{{site.data.keyword.openwhisk_short}} présente quelques limites relatives au système, notamment la quantité de mémoire qu'une action peut utiliser et le nombre d'appels d'action autorisés par minute. 
+{{site.data.keyword.openwhisk_short}} présente quelques limites relatives au système, notamment la quantité de mémoire qu'une action peut utiliser et le nombre d'appels d'action autorisés par minute.
 
 Le tableau ci-dessous répertorie les limites par défaut pour les actions.
 
@@ -651,7 +651,7 @@ Les valeurs limite qui se terminent par un astérisque (*) sont fixes, mais il e
 #### memory (Mo) (Valeur par défaut : 256 Mo)
 {: #openwhisk_syslimits_memory}
 * La mémoire limite N est comprise dans la plage [128 Mo - 512 Mo] et est définie par action en mégaoctets.
-* Un utilisateur peut modifier la limite de mémoire lorsqu'une action est créée. 
+* Un utilisateur peut modifier la limite de mémoire lorsqu'une action est créée.
 * Un conteneur ne peut pas utiliser plus de mémoire que celle qui est allouée par la limite.
 
 #### minuteRate (Fixe : 5000*)
@@ -687,7 +687,7 @@ Les valeurs limite qui se terminent par un astérisque (*) sont fixes, mais il e
 
 #### sequenceMaxActions (Fixe : 50*)
 {: #openwhisk_syslimits_sequencemax}
-* Nombre maximal d'actions comprenant une séquence donnée. 
+* Nombre maximal d'actions comprenant une séquence donnée.
 * Cette limite est fixe et ne peut pas être modifiée.
 
 #### timeout (ms) (Valeur par défaut : 60s)

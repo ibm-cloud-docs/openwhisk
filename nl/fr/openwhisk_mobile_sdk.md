@@ -45,7 +45,7 @@ Depuis la ligne de commande, entrez `pod install`. Cette commande installe le lo
 
 Après l'installation, ouvrez l'espace de travail de votre projet. L'avertissement suivant peut s'afficher lors de la génération :
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
-Ce message apparaît si Cocoapods ne met pas à jour la version de Swift dans le projet Pods. Pour résoudre ce problème, sélectionnez le projet Pods et la cible OpenWhisk.  Accédez aux paramètres de génération et associez le paramètre `Use Legacy Swift Language Version` à la valeur `no`. Vous pouvez aussi ajouter les instructions de postinstallation suivantes à la fin de votre fichier Pod :
+Ce message apparaît si Cocoapods ne met pas à jour la version de Swift dans le projet Pods.  Pour résoudre ce problème, sélectionnez le projet Pods et la cible OpenWhisk.  Accédez aux paramètres de génération et associez le paramètre `Use Legacy Swift Language Version` à la valeur `no`. Vous pouvez aussi ajouter les instructions de postinstallation suivantes à la fin de votre fichier Pod :
 
 ```ruby
 post_install do |installer|

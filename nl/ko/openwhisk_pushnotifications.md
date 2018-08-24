@@ -40,7 +40,7 @@ lastupdated: "2018-03-16"
   ```
   {: pre}
 
-2. `myPush/webhook` 피드를 사용하여 푸시 알림 서비스 `onDeviceRegister` 이벤트 유형에 대한 트리거를 작성하십시오.
+2. `myPush/webhook` 피드를 사용하여 푸시 알림 서비스 `onDeviceRegister` 이벤트 유형에 대한 트리거를 작성하십시오. 
   ```
   ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```
@@ -52,7 +52,7 @@ lastupdated: "2018-03-16"
   ```
   {: pre}
 
-4. `ibmcloud fn activation poll` 명령을 사용하여 결과를 확인하십시오.
+4. `ibmcloud fn activation poll` 명령을 사용하여 결과를 확인하십시오. 
   ```
   ibmcloud fn activation poll
   ```

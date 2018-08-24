@@ -15,7 +15,7 @@ lastupdated: "2018-06-21"
 # Services an Aktionen binden
 {: #binding_services}
 
-Sie können das [-CLI-Plug-in für {{site.data.keyword.openwhisk}}](./bluemix_cli.html) dazu verwenden, einen Service an eine Aktion oder ein Paket zu binden. Der Befehl {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` dient dazu, Ihre {{site.data.keyword.Bluemix_notm}}-Serviceberechtigungsnachweise für Ihren {{site.data.keyword.openwhisk_short}}-Code zur Laufzeit verfügbar zu machen.
+Sie können das [-CLI-Plug-in für {{site.data.keyword.openwhisk}}](./bluemix_cli.html) dazu verwenden, einen Service an eine Aktion oder ein Paket zu binden. Der {{site.data.keyword.openwhisk_short}}-Befehl `ibmcloud fn service bind` bewirkt, dass Ihre Berechtigungsnachweise für den {{site.data.keyword.Bluemix_notm}}-Service für Ihren {{site.data.keyword.openwhisk_short}}-Code zur Laufzeit verfügbar gemacht werden.
 {: shortdesc}
 
 Der Befehl `ibmcloud fn service bind` darf nicht mit dem Befehl `cf bind-service` verwechselt werden, der in Cloud Foundry verfügbar ist.
@@ -31,7 +31,7 @@ Sie können einen beliebigen {{site.data.keyword.Bluemix_notm}}-Service an eine 
 Bevor Sie beginnen, müssen Sie für den Service, den Sie binden wollen, [Berechtigungsnachweise definieren](/docs/apps/reqnsi.html#accser_external).
 
 1. Rufen Sie den Namen der Serviceinstanz ab, die an eine Aktion oder ein Paket gebunden werden soll.
- ```
+    ```
     ibmcloud service list
     ```
     {: pre}
@@ -72,7 +72,7 @@ Credentials-2
     <table>
     <caption>Informationen zu den Komponenten des Befehls <code>ibmcloud fn service bind</code></caption>
     <thead>
-    <th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>ibmcloud fn service bind</code></th>
+    <th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu ein Komponenten des Befehls <code>ibmcloud fn service bind</code></th>
     </thead>
     <tbody>
     <tr>
@@ -98,11 +98,11 @@ Credentials-2
     ibmcloud fn service bind conversation hello --instance Conversation-qp --keyname Credentials-1
 
     Service credentials 'Credentials-1' from service 'Conversation-qp' bound to action 'hello'.
-```
+    ```
     {: screen}
 
 4. Stellen Sie sicher, dass die Berechtigungsnachweise erfolgreich gebunden wurden. Die Aktion, an die der Service gebunden ist, unterstützt keine angepassten Flags. Sie unterstützt die Flags 'debug' und 'verbose'.
- ```
+    ```
     ibmcloud fn action get hello parameters
     ```
     {: pre}

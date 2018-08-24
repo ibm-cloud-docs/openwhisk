@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Push móvel
+# Pacote push móvel
 {: #openwhisk_catalog_pushnotifications}
 
 Saiba como criar uma ligação de pacote Push e enviar uma notificação Push simples usando o pacote `/whisk.system/pushnotifications`, que fornece a você a capacidade de trabalhar com um serviço de Push.
@@ -41,8 +41,7 @@ Para criar uma ligação de pacote, veja as etapas a seguir:
 
 2. Inicialize o Serviço de notificação push e ligue o serviço ao aplicativo {{site.data.keyword.Bluemix_notm}}.
 
-3. Configure o [aplicativo
-de Notificação push](https://console.bluemix.net/docs/services/mobilepush/index.html).
+3. Configure o [aplicativo de Notificação push](https://console.bluemix.net/docs/services/mobilepush/index.html).
 
   Certifique-se de lembrar do **App GUID** e do **App Secret** do app do {{site.data.keyword.Bluemix_notm}} que você criou.
 
@@ -71,7 +70,7 @@ de Notificação push](https://console.bluemix.net/docs/services/mobilepush/inde
 A ação `/whisk.system/pushnotifications/sendMessage` envia notificações Push para dispositivos registrados. Os parâmetros são os seguintes:
 - `text`: a mensagem de notificação a ser mostrada ao usuário. Por exemplo, `-p text "Hi, OpenWhisk send a notification"`.
 - `url`: uma URL que pode ser enviada junto com o alerta. Por exemplo, `-p url "https:\\www.w3.ibm.com"`.
-- `apiHost`: uma sequência opcional que especifica o host de API. O padrão é `mobile.ng.bluemix.net`. Por exemplo: `-p apiHost "mobile.eu-gb.bluemix.net"`
+- `apiHost`: uma sequência opcional que especifica o host de API. O padrão é `mobile.ng.bluemix.net`.  Por exemplo: `-p apiHost "mobile.eu-gb.bluemix.net"`
 - `deviceIds`: a lista de dispositivos especificados. Por exemplo, `-p deviceIds ["deviceID1"]`.
 - `platforms`: envie notificação para os dispositivos das plataformas especificadas. 'A' para dispositivos Apple (iOS) e 'G ' para dispositivos Google (Android). Por exemplo, `-p platforms ["A"]`.
 - `userIds`: envie notificação para os dispositivos dos usuários especificados. Por exemplo, `-p userIds "[\"testUser\"]"`

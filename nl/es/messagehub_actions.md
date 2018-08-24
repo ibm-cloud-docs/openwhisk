@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# Paquete {{site.data.keyword.messagehub}}
 {: #openwhisk_catalog_message_hub}
 
 Un paquete que permite la comunicación con las instancias de [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.

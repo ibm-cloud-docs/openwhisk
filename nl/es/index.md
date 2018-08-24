@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2018-06-21"
 # Iniciación
 {: #index}
 
-{{site.data.keyword.openwhisk}} es una plataforma de programación políglota que funciona como un servicio (FaaS) basada en Apache OpenWhisk. {{site.data.keyword.openwhisk_short}} permite a los desarrolladores escribir acciones de llamada de código ligero que ejecutan de forma escalable la lógica de la aplicación. Puede configurar acciones para que se produzcan según demanda en base a solicitudes de API basadas en HTTP desde apps web o apps para móviles o que se ejecuten automáticamente en respuesta a solicitudes basadas en sucesos procedentes de servicios de {{site.data.keyword.Bluemix_notm}} y sucesos de terceros.
+{{site.data.keyword.openwhisk}} es una plataforma de programación políglota que funciona como un servicio (FaaS) basada en Apache OpenWhisk. {{site.data.keyword.openwhisk_short}} permite a los desarrolladores escribir acciones de llamada de código ligero que ejecutan de forma escalable la lógica de la aplicación. Puede configurar acciones para que se produzcan según demanda con base a solicitudes de API basadas en HTTP desde apps web o apps para móviles o que se ejecuten automáticamente en respuesta a solicitudes basadas en sucesos procedentes de servicios de {{site.data.keyword.Bluemix_notm}} y sucesos de terceros.
 {: shortdesc}
 
 Puesto que {{site.data.keyword.openwhisk_short}} es una plataforma sin servidor, controlada por sucesos, no es necesario que suministre servidores de forma explícita. Los desarrolladores que trabajan con apps de microservicios, para móviles, IoT y muchas otras apps pueden centrarse en escribir la lógica de la app en lugar de preocuparse por el escalado automático, la alta disponibilidad, las actualizaciones y el mantenimiento. El escalado automático y el equilibrio de carga significa que no tiene que configurar manualmente los clústeres, los plugins http, etc. IBM se encarga de todo el hardware, del sistema de red y de la administración de software. Todo lo que tiene que hacer es suministrar el código.
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-Enhorabuena. Ha creado su primera acción. Para eliminar esta acción, ejecute `ibmcloud fn action delete hello`.
+Enhorabuena. Ha creado su primera acción. Para suprimir esta acción, ejecute `ibmcloud fn action delete hello`.
 
 **Qué hacer a continuación**
 * [Pruebe el ejemplo de servicio de alarma para invocar la acción **hello** cada vez que se genere un suceso periódico.](./openwhisk_packages.html#openwhisk_package_trigger)

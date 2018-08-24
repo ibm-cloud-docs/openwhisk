@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,21 +12,24 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Pacote Cloudant
 {: #cloudant_actions}
 
-O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) e inclui as ações e os feeds a seguir:
+O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados do
+[{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant)
+e inclui as ações e os feeds a seguir:
 
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | pacote | dbname, host, username, password | Trabalhe com um banco de dados Cloudant. |
 | `/whisk.system/cloudant/read` | ação | dbname, id | Leia um documento de um banco de dados. |
 | `/whisk.system/cloudant/write` | ação | dbname, overwrite, doc | Grave um documento em um banco de dados. |
-| `/whisk.system/cloudant/changes` | Feed | Dbname, filtro, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
+| `/whisk.system/cloudant/changes` | alimentação | Dbname, filtro, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
 {: shortdesc}
 
 As seções a seguir conduzem você pela configuração de um banco de dados {{site.data.keyword.cloudant_short_notm}} e como ler e gravar nele.
-Para obter mais informações sobre como usar feeds com o pacote `/whisk.system/cloudant`, veja [Origem de eventos do {{site.data.keyword.cloudant_short_notm}}](./openwhisk_cloudant.html).
+Para obter mais informações sobre como usar feeds com o pacote `/whisk.system/cloudant`,
+consulte a origem de eventos do [{{site.data.keyword.cloudant_short_notm}}](./openwhisk_cloudant.html).
 
 ## Configurando um banco de dados {{site.data.keyword.cloudant_short_notm}} no {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_cloud}
@@ -39,7 +42,7 @@ Se você está usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword.B
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para cada instância de serviço {{site.data.keyword.cloudant_short_notm}} com uma chave de credencial definida.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 
@@ -67,7 +70,7 @@ Se você está usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword.B
 3. Verifique se a ligação do pacote que foi criada anteriormente está configurada com seu host e credenciais da instância de serviço {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}}.
 
   ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
+  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parâmetros
   ```
   {: pre}
 

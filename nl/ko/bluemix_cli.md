@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 {{site.data.keyword.openwhisk}}는 {{site.data.keyword.openwhisk_short}} 시스템의 완벽한 관리를 허용하는 강력한 {{site.data.keyword.Bluemix_notm}} CLI용 플러그인을 제공합니다.
 {: shortdesc}
+
+이제 다음의 {{site.data.keyword.openwhisk_short}} 플러그인 명령에서 별명 `fn`을 사용할 수 있습니다. `ibmcloud fn <command>`
+{: tip}
 
 ## {{site.data.keyword.Bluemix_notm}} CLI 설정
 {: #bluemix_cli_setup}
@@ -117,7 +120,7 @@ lastupdated: "2018-06-21"
 * 패키지가 액션을 번들링하고 외부 이벤트 소스를 구성하는 방법을 알아봅니다. [패키지 작성 및 사용](./openwhisk_packages.html)을 참조하십시오.
 * 패키지의 카탈로그를 탐색하고 [{{site.data.keyword.cloudant}} 이벤트 소스](./openwhisk_cloudant.html) 등의 외부 서비스로 애플리케이션을 개선합니다.
 
-{{site.data.keyword.openwhisk_short}} 플러그인의 명령을 나열하려면 인수 없이 `ibmcloud fn`를 실행하십시오.
+{{site.data.keyword.openwhisk_short}} 플러그인에 대한 명령을 나열하려면 인수 없이 `ibmcloud fn`을 실행하십시오.
 {: tip}
 
 ## 액션에서 서비스 사용
@@ -157,18 +160,18 @@ ibmcloud iam space-create "production"
 ## OpenWhisk CLI에서 {{site.data.keyword.openwhisk_short}} CLI 플러그인으로 마이그레이션
 {: #cli_migration}
 
-{{site.data.keyword.openwhisk_short}} CLI 플러그인이 새로 제공되므로 OpenWhisk 독립형 CLI는 더 이상 필요하지 않습니다.
+{{site.data.keyword.openwhisk_short}} CLI 플러그인이 도입됨에 따라 OpenWhisk 독립형 CLI(`wsk`)는 더 이상 필요하지 않습니다. 
 
 ### 명령 구문
 {: #command_syntax}
 
-더 이상 필요하지 않은 `wsk bluemix login` 명령을 제외한 모든 `wsk` 명령은 `ibmcloud fn` 명령을 사용하는 방식과 동일하게 작동합니다. 모든 명령 옵션과 인수는 동일합니다.
+더 이상 필요하지 않은 `wsk bluemix login` 명령을 제외한 모든 `wsk` 명령은 `ibmcloud fn` 명령을 사용하여 동일한 방법으로 작동됩니다. 모든 명령 옵션과 인수는 동일합니다.
 
 ### API 인증 및 호스트
 {: #api_authentication}
 
 OpenWhisk CLI에서는 사용자가 인증 API 키와 API 호스트를 구성해야 합니다.
-{{site.data.keyword.openwhisk_short}} CLI 플러그인을 사용하면 API 키와 API 호스트를 명시적으로 구성할 필요가 없습니다. 대신 `ibmcloud login`을 사용하여 로그인하고 `ibmcloud target` 명령을 사용하여 지역 및 네임스페이스를 대상으로 지정할 수 있습니다. 로그인하면 모든 명령이 `ibmcloud fn`로 시작됩니다.
+{{site.data.keyword.openwhisk_short}} CLI 플러그인을 사용하면 API 키와 API 호스트를 명시적으로 구성할 필요가 없습니다. 대신 `ibmcloud login`을 사용하여 로그인하고 `ibmcloud target` 명령을 사용하여 지역 및 네임스페이스를 대상으로 지정할 수 있습니다. 로그인 이후에 모든 명령은 `ibmcloud fn`으로 시작됩니다. 
 
 cURL 또는 Postman 등의 외부 HTTP 클라이언트에서 {{site.data.keyword.openwhisk_short}}에 인증 API 키를 사용해야 하는 경우 다음 명령으로 이를 검색할 수 있습니다.
 
@@ -190,17 +193,23 @@ API 키는 {{site.data.keyword.openwhisk_short}} CLI 플러그인에서 대상�
 ### API 게이트웨이 인증
 {: #apigw_authentication}
 
-OpenWhisk CLI에서는 `wsk api` 명령을 사용하여 API 관리를 위한 API 게이트웨이 권한을 구성할 수 있도록 사용자가 `wsk bluemix login`을 실행해야 합니다. {{site.data.keyword.openwhisk_short}} CLI 플러그인을 사용하면 더 이상 `wsk bluemix login`을 실행할 필요가 없습니다. 대신에 `ibmcloud login` 명령을 사용하여 {{site.data.keyword.Bluemix_notm}}에 로그인하면 {{site.data.keyword.openwhisk}} 플러그인은 사용자의 현재 로그인 및 대상 정보를 자동으로 활용합니다. 이제 `ibmcloud fn api` 명령을 사용하여 API를 관리할 수 있습니다.
+OpenWhisk CLI에서는 `wsk api` 명령을 사용하여 API 관리를 위한 API 게이트웨이 권한을 구성할 수 있도록 사용자가 `wsk bluemix login`을 실행해야 합니다. {{site.data.keyword.openwhisk_short}} CLI 플러그인을 사용하면 더 이상 `wsk bluemix login`을 실행할 필요가 없습니다. 대신에 `ibmcloud login` 명령을 사용하여 {{site.data.keyword.Bluemix_notm}}에 로그인하면 {{site.data.keyword.openwhisk}} 플러그인은 사용자의 현재 로그인 및 대상 정보를 자동으로 활용합니다. 이제 `ibmcloud fn api` 명령을 사용하여 API를 관리할 수 있습니다. 
 
 ### 배치 스크립트 마이그레이션
 {: #migrating_deploy_scripts}
 
-`wsk` 2진이 있는 OpenWhisk CLI를 사용하는 스크립트가 있는 경우 모든 명령이 `ibmcloud fn` 명령을 사용하여 동일한 방식으로 작동됩니다. {{site.data.keyword.Bluemix_notm}} CLI 플러그인을 사용하도록 스크립트를 수정하거나 `wsk`를 사용하는 현재 명령이 `ibmcloud fn`로 변환될 수 있도록 별명 또는 랩퍼를 작성할 수 있습니다. {{site.data.keyword.Bluemix_notm}} CLI에서 `ibmcloud login` 및 `ibmcloud target` 명령은 무인 모드로 작동합니다. 무인 모드를 사용하면 {{site.data.keyword.openwhisk_short}} 엔티티를 배치하고 관리하도록 `ibmcloud fn` 명령 실행 전에 사용자 환경을 구성할 수 있습니다.
+`wsk` 2진에서 OpenWhisk CLI를 사용하는 스크립트가 있는 경우에는 모든 명령이 `ibmcloud fn` 명령을 사용하여 동일한 방법으로 작동됩니다. {{site.data.keyword.Bluemix_notm}} CLI 플러그인을 사용하도록 스크립트를 수정하거나, `wsk`를 사용하는 현재 명령이 `ibmcloud fn`으로 변환될 수 있도록 별명 또는 랩퍼를 작성할 수 있습니다. {{site.data.keyword.Bluemix_notm}} CLI에서 `ibmcloud login` 및 `ibmcloud target` 명령은 무인 모드로 작동합니다. 무인 모드에서는 {{site.data.keyword.openwhisk_short}} 엔티티를 배치하고 관리하기 위해 `ibmcloud fn` 명령을 실행하기 전에 사용자 환경을 구성할 수 있습니다. 
 
 ## 버전 히스토리
 {: #version_history}
 
 강조표시 및 버그 수정을 표시하는 버전의 히스토리 레코드입니다.
+
+1.0.21(2018-08-01)
+* 별명 `fn` 및 `functions`를 이제 다음의 {{site.data.keyword.openwhisk_short}} 명령에 사용할 수 있습니다. `ibmcloud fn <command>` 및 `ibmcloud fn <command>`. 또한 다음 명령을 계속 사용할 수도 있습니다. `ibmcloud wsk <command>`.
+
+1.0.19(2018-07-02)
+* 사소한 버그 수정사항 및 개선사항.
 
 1.0.18(2018-06-20)
 * 사용자 제공 서비스 인스턴스 바인드 해제를 위한 수정사항.

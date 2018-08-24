@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,8 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# Pacchetto {{site.data.keyword.messagehub}}
+
 {: #openwhisk_catalog_message_hub}
 
 Un pacchetto che consente la comunicazione con le istanze [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) per la pubblicazione e il consumo di messaggi utilizzando l'API Kafka nativa ad elevate prestazioni.
@@ -88,7 +89,7 @@ Se vuoi utilizzare un'azione {{site.data.keyword.openwhisk_short}} per produrre 
 |value|Stringa|Il valore per il messaggio che vuoi produrre.|
 |key|Stringa (facoltativo)|La chiave per il messaggio che vuoi produrre.|
 
-Anche se i primi tre parametri possono essere associati automaticamente utilizzando `ibmcloud fn package refresh`, vedi il seguente esempio che richiama l'azione con tutti i parametri necessari:
+Anche se è possibile eseguire il bind dei primi tre parametri automaticamente utilizzando `ibmcloud fn package refresh`, vedi il seguente esempio che richiama l'azione con tutti i parametri necessari:
 ```
 ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```

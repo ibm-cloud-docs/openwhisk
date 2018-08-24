@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -93,7 +93,7 @@ lastupdated: "2018-06-22"
 HTTP 응답을 수신하기 전에 네트워크 장애나 기타 장애가 개입되는 경우에는 {{site.data.keyword.openwhisk_short}}가 요청을 받아서 처리했을 수 있습니다.
 
 시스템은 액션을 한 번만 호출하며, 최종적으로는 다음 4개의 결과 중 하나가 발생합니다.
-- *성공*: 액션이 정상적으로 호출되었습니다. 
+- *성공*: 액션이 정상적으로 호출되었습니다.
 - *애플리케이션 오류*: 액션이 정상적으로 호출되었지만 액션이 의도적으로 오류 값을 리턴했습니다(예: 인수의 전제조건이 충족되지 않았기 때문에).
 - *액션 개발자 오류*: 액션이 호출되었지만 비정상적으로 완료되었습니다(예: 액션이 예외를 발견하지 못했거나 구문 오류가 존재함).
 - *whisk 내부 오류*: 시스템이 액션을 호출할 수 없습니다.
@@ -233,9 +233,9 @@ Node.js 환경에 사전 설치되지 않은 `npm` 패키지의 경우에는 액
 
 ### IBM SDK의 Node.js 버전 8 환경
 {: #openwhisk_ref_javascript_environments_8}
-Node.js 버전 8.11.1 환경은 액션을 작성하거나 업데이트할 때 `--kind` 플래그가 `nodejs:8`의 값으로 명시적으로 지정된 경우에 사용됩니다.
+Node.js 버전 8.11.3 환경은 액션을 작성하거나 업데이트할 때 `--kind` 플래그가 `nodejs:8`의 값으로 명시적으로 지정된 경우에 사용됩니다. 
 
-다음 패키지가 Node.js 버전 8.11.1 환경에 사전 설치되어 있습니다.
+다음과 같은 패키지가 Node.js 버전 8.11.3 환경에 사전 설치되어 있습니다. 
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - Node.JS의 AMQP 0-9-1 클라이언트를 작성하기 위한 라이브러리입니다.
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - Apple 푸시 알림 서비스와 인터페이스로 연결하기 위한 Node.js 모듈입니다.
   - [async v2.6.1](https://www.npmjs.com/package/async) - 비동기 함수 관련 작업을 위한 함수를 제공합니다.
@@ -244,10 +244,10 @@ Node.js 버전 8.11.1 환경은 액션을 작성하거나 업데이트할 때 `-
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa) - 브라우저의 btoa 함수의 포트입니다.
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - Apache Cassandra의 DataStax Node.js 드라이버입니다.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - 이는 Node.js에 대한 공식 Cloudant 라이브러리입니다.
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant) - 이는 Node.js의 공식 Cloudant 라이브러리입니다.
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - 이는 Node.js의 공식 Cloudant 라이브러리입니다. 
   - [commander v2.15.1](https://www.npmjs.com/package/commander) - node.js 명령행 인터페이스에 대한 완전한 솔루션입니다.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Scylla 데이터베이스의 Compose UI 또는 API에서 변환기를 처리합니다.
-  - [consul v0.32.0](https://www.npmjs.com/package/consul) - 서비스 검색 및 구성을 포함하는 Consul의 클라이언트입니다.
+  - [consul v0.33.1](https://www.npmjs.com/package/consul) - 서비스 검색 및 구성이 포함된 Consul에 대한 클라이언트입니다. 
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - 쿠키 헤더를 구문 분석하고 쿠키 이름으로 키 지정된 오브젝트로 req.cookies를 채웁니다.
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - Node.js에 대한 상위 레벨, 캐싱, CouchDB 클라이언트입니다.
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - Node.js의 공식 하위 레벨 Elasticsearch 클라이언트입니다.
@@ -263,9 +263,9 @@ Node.js 버전 8.11.1 환경은 액션을 작성하거나 업데이트할 때 `-
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - node.js 클라이언트는 IBM Watson Internet of Things Platform과의 상호작용을 단순화는 데 사용됩니다.
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Pure JS 문자 인코딩 변환입니다.
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom은 많은 웹 표준, 특히 WHATWG DOM 및 HTML 표준의 순수 Javascript 구현입니다.
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken) - JSON 웹 토큰의 구현입니다.
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - JSON 웹 토큰의 구현입니다. 
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - Node.js 모듈로서 노출된 Lodash 라이브러리입니다.
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js) - 이는 노드 관련 작업을 위한 log4js 프레임워크의 변환입니다.
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - 이는 노드 관련 작업을 위한 log4js 프레임워크의 변환입니다. 
   - [marked v0.4.0](https://www.npmjs.com/package/marked) - Javascript로 작성된, 모든 기능을 갖춘 마크다운 구문 분석기 및 컴파일러입니다. 속도를 위해 빌드되었습니다.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - 다중 오브젝트를 하나로 병합하며, 선택사항으로 복제된 새 오브젝트를 작성합니다.
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - 날짜를 구문 분석, 유효성 검증, 조작 및 형식화하기 위한 경량 Javascript 날짜 라이브러리입니다.
@@ -273,7 +273,7 @@ Node.js 버전 8.11.1 환경은 액션을 작성하거나 업데이트할 때 `-
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - 이는 mysql의 node.js 드라이버입니다.
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js는 Javascript로 된 mustache 템플리트 시스템의 구현입니다.
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - Node.js의 최소한의 couchdb 드라이버입니다.
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer) - Node.js에서 이메일을 발송합니다. 아주 쉽습니다!
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - Node.js에서 이메일을 발송합니다. 아주 쉽습니다! 
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Node.js로 표현하여 OAuth2 서버/제공자를 구현하기 위한 완벽하고 호환 가능하며 성공적으로 테스트된 모듈입니다.
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk 플랫폼에 대한 Javascript 클라이언트 라이브러리입니다. OpenWhisk API 관련 랩퍼를 제공합니다.
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp) - /user/:name과 같은 경로 문자열을 URL 경로에 대해 일치시키는 데 사용할 수 있는 정규식으로 변환합니다.
@@ -285,27 +285,27 @@ Node.js 버전 8.11.1 환경은 액션을 작성하거나 업데이트할 때 `-
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - Promise 지원의 단순화된 HTTP 요청 클라이언트 'request'입니다. Bluebird에 의해 구동됩니다.
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - 노드에 대한 UNIX 명령 "rm -rf"입니다.
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - Nodejs의 시맨틱 버전화입니다.
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - SendGrid API를 통한 이메일 지원을 제공합니다.
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - SendGrid API를 통한 이메일 지원을 제공합니다. 
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - 파비콘을 서비스하기 위한 Node.js 미들웨어입니다.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent는 소형의 혁신적 클라이언트 측 HTTP 요청 라이브러리 및 동일한 API의 Node.js 모듈이며, 다수의 상위 레벨 HTTP 클라이언트 기능을 과시합니다.
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio) - 음성, 비디오 및 메시징과 관련된 Twilio API에 대한 랩퍼입니다.
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - 음성, 동영상 및 메시징과 관련된 Twilio API에 대한 랩퍼입니다. 
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js는 유력한 기능상 용의자(각각, 맵, 축소, 필터...)를 지원하는 Javascript용 유틸리티 벨트 라이브러리입니다. 코어 Javascript 오브젝트의 확장은 없습니다.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - 매개변수의 URL을 구문 분석하며, 이는 정규식 문자열 매칭 프로그램을 사용하는 방식보다 더 쉽습니다.
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - RFC4122 UUIDS의 단순하고 빠른 생성입니다.
   - [validator v10.3.0](https://www.npmjs.com/package/validator) - 문자열 유효성 검증기 및 무결 처리기의 라이브러리입니다.
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud) - 코그너티브 컴퓨팅을 사용하여 복잡한 문제점을 해결하는 API의 콜렉션인 Watson Developer Cloud 서비스를 사용하기 위한 Node.js 클라이언트 라이브러리입니다.
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - 코그너티브 컴퓨팅을 사용하여 복잡한 문제점을 해결하는 API의 콜렉션인 Watson Developer Cloud 서비스를 사용하기 위한 Node.js 클라이언트 라이브러리입니다. 
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js는 매우 탄탄하며 극한 테스트를 거친 Promises/A+ 및 when() 구현이며, 전체 ES6 Promise shim이 포함됩니다.
-  - [winston v2.4.2](https://www.npmjs.com/package/winston) - node.js에 대한 다중 전송 비동기 로깅 라이브러리입니다. "CHILL WINSTON! ... I put it in the logs."
+  - [winston v3.0.0](https://www.npmjs.com/package/winston) - node.js에 대한 다중 전송 비동기 로깅 라이브러리입니다. "CHILL WINSTON! ... I put it in the logs."
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws는 사용이 단순하고 매우 빠르며 철저한 테스트를 거친 WebSocket 클라이언트 및 서버 구현입니다.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - 단순 XML 대 Javascript 오브젝트 변환기입니다. 이는 양방향 변환을 지원합니다.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest는 브라우저 XMLHttpRequest 오브젝트를 에뮬레이트하기 위한 기본 제공 http 클라이언트용 랩퍼입니다.
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - 노드에 대한 또 다른 unzip 라이브러리입니다. 압축용입니다.
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - 노드에 대한 또 다른 unzip 라이브러리입니다. 
 
 ### Node.js 버전 6 환경
 {: #openwhisk_ref_javascript_environments_6}
-Node.js 6.14.0 환경은 액션을 작성하거나 업데이트할 때 `--kind` 플래그가 `nodejs:6`의 값으로 명시적으로 지정된 경우에 사용됩니다.
+Node.js 6.14.3 환경은 액션을 작성하거나 업데이트할 때 `--kind` 플래그가 `nodejs:6`의 값으로 명시적으로 지정된 경우에 사용됩니다. 
 
-다음 패키지는 Node.js 6.14.0 환경에서 사용 가능합니다.
+다음과 같은 패키지가 Node.js 6.14.3 환경에서 사용될 수 있습니다. 
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - Apple 푸시 알림 서비스와의 인터페이스를 위한 Node.js 모듈입니다.
 - [async v2.1.4](https://www.npmjs.com/package/async) - 비동기 함수 관련 작업을 위한 함수를 제공합니다.
@@ -331,7 +331,7 @@ Node.js 6.14.0 환경은 액션을 작성하거나 업데이트할 때 `--kind` 
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - 더 이상 사용되지 않는 UUID 패키징입니다.
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Node.js에서 이메일을 발송합니다. 아주 쉽습니다!
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Node.js의 표현으로 OAuth2 서버/제공자를 구현하기 위한 완벽하고 호환 가능하며 성공적으로 테스트된 모듈입니다.
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk 플랫폼에 대한 Javascript 클라이언트 라이브러리입니다. OpenWhisk API 관련 랩퍼를 제공합니다.
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk 플랫폼에 대한 Javascript 클라이언트 라이브러리입니다. OpenWhisk API 관련 랩퍼를 제공합니다.
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud는 다중 클라우드 제공자 간의 차이를 도외시하는 Node.js용 표준 라이브러리입니다.
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'). 기타 모듈과 같습니다.
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Pug 템플레이팅 언어를 구현합니다.
@@ -347,7 +347,7 @@ Node.js 6.14.0 환경은 액션을 작성하거나 업데이트할 때 `--kind` 
 - [superagent v3.0.0](https://www.npmjs.com/package/superagent) - SuperAgent는 소형의 혁신적 클라이언트 측 HTTP 요청 라이브러리 및 동일한 API의 Node.js 모듈이며, 다수의 상위 레벨 HTTP 클라이언트 기능을 과시합니다.
 - [swagger-tools v0.10.1](https://www.npmjs.com/package/swagger-tools) - API를 문서화하는 방식인 Swagger 관련 작업과 연관된 도구입니다.
 - [tmp v0.0.31](https://www.npmjs.com/package/tmp) - node.js에 대한 단순 임시 파일 및 디렉토리 작성자입니다.
-- [twilio v2.11.1](https://www.npmjs.com/package/twilio) - 음성, 비디오 및 메시징과 관련된 Twilio API에 대한 랩퍼입니다.
+- [twilio v2.11.1](https://www.npmjs.com/package/twilio) - 음성, 동영상 및 메시징과 관련된 Twilio API에 대한 랩퍼입니다.
 - [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js는 유력한 기능상 용의자(각각, 맵, 축소, 필터...)를 지원하는 Javascript용 유틸리티 벨트 라이브러리입니다. 코어 Javascript 오브젝트의 확장은 없습니다.
 - [uuid v3.0.0](https://www.npmjs.com/package/uuid) - RFC4122 UUIDS의 단순하고 신속한 생성입니다.
 - [validator v6.1.0](https://www.npmjs.com/package/validator) - 문자열 유효성 검증기 및 무결 처리기의 라이브러리입니다.
@@ -357,7 +357,7 @@ Node.js 6.14.0 환경은 액션을 작성하거나 업데이트할 때 `--kind` 
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws는 사용이 단순하고 매우 빠르며 철저한 테스트를 거친 WebSocket 클라이언트 및 서버 구현입니다.
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Javascript 오브젝트 변환기에 대한 단순 XML입니다. 이는 양방향 변환을 지원합니다.
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest는 브라우저 XMLHttpRequest 오브젝트를 에뮬레이트하기 위한 기본 제공 http 클라이언트용 랩퍼입니다.
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - 노드에 대한 또 다른 unzip 라이브러리입니다. 압축용입니다.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - 노드에 대한 또 다른 unzip 라이브러리입니다. 
 
 
 ## Python 런타임 환경
@@ -386,7 +386,7 @@ Python 패키지:
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -410,12 +410,12 @@ Python 패키지:
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -427,7 +427,7 @@ Python 패키지:
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -439,7 +439,7 @@ Python 패키지:
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -555,7 +555,7 @@ Swift 4 액션은 Swift 4.1 `--kind swift:4.1`을 사용하여 실행됩니다.
 [패키징된 swift 액션](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable)에 대한 지시사항을 따라 Package.swift를 사용하여 종속 항목을 포함하십시오.
 
 Swift 4.1 액션은 단일 Swift 소스 파일을 사용할 때 다음 패키지를 사용할 수 있습니다.
-- Watson Developer Cloud SDK 버전 0.27.0, https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK 버전 0.28.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Swift 3.1.1을 Swift 4.1로 마이그레이션
 
@@ -585,14 +585,14 @@ PHP 액션은 PHP 7.1.18에서 실행됩니다. 이 런타임을 사용하려면
 다음의 작성기 패키지 역시 사용 가능합니다.
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Docker 액션
 {: #openwhisk_ref_docker}
 
 Docker 액션은 Docker 컨테이너에서 사용자 제공 2진을 실행합니다. 2진이 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 기반의 Docker 이미지에서 실행되므로, 2진은 이 배포와 호환 가능해야 합니다.
 
-Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 편리한 방법입니다. `ibmcloud fn sdk install docker` CLI 플러그인 명령을 사용하여 스켈레톤을 설치할 수 있습니다.
+Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 편리한 방법입니다. `ibmcloud wsk sdk install docker` CLI 플러그인 명령을 사용하여 스켈레톤을 설치할 수 있습니다.
 
 기본 2진 프로그램은 컨테이너 내부의 `/action/exec`에 있어야 합니다. 실행 파일은 `JSON` 오브젝트로서 역직렬화될 수 있는 단일 명령행 인수 문자열을 통해 입력 인수를 수신합니다. 이는 직렬화된 `JSON`의 단일행 문자열로서 `stdout`을 사용하여 결과를 리턴해야 합니다.
 
@@ -600,7 +600,7 @@ Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 
 
 ## REST API
 {: #openwhisk_ref_restapi}
-{{site.data.keyword.openwhisk_short}} REST API에 대한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)에서 찾을 수 있습니다.
+{{site.data.keyword.openwhisk_short}} REST API에 대한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/openwhisk)에서 찾을 수 있습니다.
 
 ## 시스템 한계
 {: #openwhisk_syslimits}

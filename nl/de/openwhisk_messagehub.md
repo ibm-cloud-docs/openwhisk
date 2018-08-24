@@ -14,8 +14,7 @@ lastupdated: "2018-06-22"
 # Message Hub-Ereignisquelle
 {: #openwhisk_catalog_message_hub}
 
-Sie können einen Auslöser erstellen, der reagiert, wenn Nachrichten unter Verwendung von Feeds an eine {{site.data.keyword.messagehub_full}}-Instanz gesendet werden. 
-Dieser Abschnitt enthält Informationen zum Erstellen von {{site.data.keyword.messagehub}}-Auslösern mit oder ohne {{site.data.keyword.Bluemix}}, zur Überwachung von Nachrichten und zur Verarbeitung von Stapelnachrichten.
+Sie können einen Auslöser erstellen, der reagiert, wenn Nachrichten unter Verwendung von Feeds an eine {{site.data.keyword.messagehub_full}}-Instanz gesendet werden. Dieser Abschnitt enthält Informationen zum Erstellen von {{site.data.keyword.messagehub}}-Auslösern mit oder ohne {{site.data.keyword.Bluemix}}, zur Überwachung von Nachrichten und zur Verarbeitung von Stapelnachrichten.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}}-Paket
@@ -203,7 +202,7 @@ Wird dieselbe Nachricht gesendet, ohne dass für `isBinaryData` der Wert `true` 
 {: codeblock}
 
 ### Nachrichten werden stapelweise verarbeitet
-Beachten Sie, dass die Nutzdaten für den Auslöser ein Array aus Nachrichten enthalten. Wenn diese Nachrichten sehr schnell für Ihr Messaging-System erstellt werden, versucht der Feed, die gesendeten Nachrichten in einem Stapel zusammenzufassen, der nur eine Aktivierung des Auslösers zur Folge hat. Durch diese Stapelverarbeitung können die Nachrichten schneller und effizienter an Ihren Auslöser gesendet werden.
+Beachten Sie, dass die Nutzdaten für den Auslöser ein Array aus Nachrichten enthalten. Wenn diese Nachrichten sehr schnell für Ihr Messaging-System erstellt werden, versucht der Feed, die gesendeten Nachrichten in einem Stapel zusammenzufassen, der nur eine einzige Aktivierung des Auslösers zur Folge hat. Durch diese Stapelverarbeitung können die Nachrichten schneller und effizienter an Ihren Auslöser gesendet werden.
 
 Berücksichtigen Sie beim Codieren von Aktionen, die von Ihrem Auslöser gestartet werden, dass die Anzahl der Nachrichten in den Nutzdaten technisch unbegrenzt ist, aber immer größer als 0 ist. Das folgende Beispiel zeigt eine in einem Stapel erfasste Nachricht (beachten Sie die Änderungen im Wert *offset*):
 ```json

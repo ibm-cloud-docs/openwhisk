@@ -15,7 +15,7 @@ lastupdated: "2018-06-22"
 # Cloudant 이벤트 소스
 {: #openwhisk_cloudant}
 
-{{site.data.keyword.cloudant}} 데이터베이스 변경사항을 청취하는 방법을 알아보고 데이터베이스 변경 이벤트를 필터링하고 액션 시퀀스를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에서 문서를 처리하십시오. `/whisk.system/cloudant` 패키지를 사용하면 {{site.data.keyword.cloudant_short_notm}} 데이터베이스 관련 작업을 수행할 수 있으며, 이 패키지에는 다음 액션과 피드가 포함되어 있습니다.
+{{site.data.keyword.cloudant}} 데이터베이스 변경사항을 청취하는 방법을 알아보고 데이터베이스 변경 이벤트를 필터링하고 액션 시퀀스를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에서 문서를 처리하십시오. `/whisk.system/cloudant` 패키지를 사용하면 {{site.data.keyword.cloudant_short_notm}} 데이터베이스 관련 작업을 수행할 수 있으며, 여기에는 다음 액션과 피드가 포함되어 있습니다. 
 
 |엔티티 |유형 |매개변수 |설명 |
 | --- | --- | --- | --- |
@@ -25,11 +25,11 @@ lastupdated: "2018-06-22"
 |`/whisk.system/cloudant/changes` |피드 |dbname, filter, query_params, maxTriggers | 데이터베이스 변경 시 트리거 이벤트를 실행합니다. |
 {: shortdesc}
 
-다음 절에서는 연관된 패키지 구성 및 `/whisk.system/cloudant` 패키지에서 액션 및 피드를 사용하는 방법에 대해 안내합니다. {{site.data.keyword.cloudant_short_notm}} 데이터베이스 설정 및 이 데이터베이스 읽기 또는 쓰기에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 액션](./cloudant_actions.html)을 참조하십시오.
+다음 절에서는 연관된 패키지의 구성 및 `/whisk.system/cloudant` 패키지에서 액션과 피드를 사용하는 방법에 대해 안내합니다. {{site.data.keyword.cloudant_short_notm}} 데이터베이스 설정 및 이 데이터베이스 읽기 또는 쓰기에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 액션](./cloudant_actions.html)을 참조하십시오.
 
 ## 필터 함수를 사용하여 트리거 작성
 
-`changes` 피드를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스를 변경할 때마다 트리거를 실행하도록 서비스를 구성할 수 있습니다.
+`changes` 피드를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 변경 시마다 트리거를 실행하도록 서비스를 구성할 수 있습니다. 
 
 이 예제에서 사용된 매개변수는 다음과 같습니다.
 

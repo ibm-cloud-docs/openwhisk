@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -34,7 +34,9 @@ Im Folgenden werden einige grundlegende Konzepte der Technologie beschrieben, di
 <dt>Auslöser</dt>
 <dd>Ein [Auslöser](openwhisk_triggers_rules.html#openwhisk_triggers_create) ist ein benannter Kanal für eine Klasse von Ereignissen. Bei einem Auslöser handelt es sich um eine Deklaration, die auf einen bestimmten Typ von Ereignis reagieren soll, entweder durch einen Benutzer oder eine Ereignisquelle.</dd>
 <dt>Regel</dt>
-<dd>Eine [Regel](openwhisk_triggers_rules.html#openwhisk_rules_use) ordnet einen Auslöser einer Aktion zu. Sobald der Auslöser angewendet wird, ruft die Regel die zugeordnete Aktion auf. Mit dem entsprechenden Satz von Regeln kann ein einzelnes Auslöserereignis mehrere Aktionen aufrufen oder eine Aktion als Reaktion auf Ereignisse aus mehreren Auslösern aufgerufen werden.</dd>
+<dd>Eine [Regel](openwhisk_triggers_rules.html#openwhisk_rules_use) ordnet einen Auslöser einer Aktion zu. Jedes Mal, wenn der Auslöser zur Anwendung kommt, verwendet die Regel das Auslöserereignis als Eingabe und ruft die zugehörige Aktion auf. Mit dem entsprechenden Satz von Regeln kann ein einzelnes Auslöserereignis mehrere Aktionen aufrufen oder eine Aktion als Reaktion auf Ereignisse aus mehreren Auslösern aufgerufen werden.</dd>
+<dt>Feed</dt>
+<dd>Ein [Feed](openwhisk_feeds.html#openwhisk_feeds) ist eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle, damit diese Auslöserereignisse aktiviert, die von {{site.data.keyword.openwhisk_short}} verarbeitet werden können. Ein Git-Feed könnte zum Beispiel ein Auslöserereignis für jede Festschreibung (Commit) in einem Git-Repository aktivieren.</dd>
 <dt>Paket</dt>
 <dd>Integrationen in Services und Ereignisprovider können durch Pakete hinzugefügt werden. Ein [Paket](openwhisk_packages.html) ist ein Bündel aus Feeds und Aktionen. Ein Feed ist ein Codeabschnitt, der eine externe Ereignisquelle zum Aktivieren (Auslösen) von Auslöserereignissen konfiguriert. Zum Beispiel konfiguriert ein Auslöser, der mit einem Feed für {{site.data.keyword.cloudant}}-Änderungen erstellt wurde, einen Service, der den Auslöser jedes Mal dann aktiviert, wenn ein Dokument in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank geändert oder hinzugefügt wird. Aktionen in Paketen stellen wiederverwendbare Logik da, die ein Service-Provider verfügbar machen kann, sodass Entwickler den Service als Ereignisquelle verwenden und APIs dieses Service aufrufen können.
 <br><br>Ein bestehender Katalog mit Paketen bietet eine schnelle Möglichkeit, Anwendungen um nützliche Funktionen zu erweitern und auf externe Services im direkten Geschäftsumfeld zuzugreifen. Zu den externen Services, die über {{site.data.keyword.openwhisk_short}}-Paket verfügen, gehören zum Beispiel {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack und GitHub.</dd>
@@ -122,7 +124,7 @@ In diesem Fall, in dem eine auf *Node.js* basierende Aktion vorhanden ist, start
 
 ### Ergebnisse speichern: erneut CouchDB
 
-Wenn das Ergebnis vom Aufrufer abgerufen wurde, wird es in der Datenbank **whisks** als Aktivierung unter der Aktivierung-ID (ActivationId) gespeichert. Die Datenbank **whisks** wird in **CouchDB** betrieben.
+Wenn das Ergebnis vom Aufrufer abgerufen wurde, wird es in der Datenbank **whisks** als Aktivierung unter der Aktivierungs-ID (ActivationId) gespeichert. Die Datenbank **whisks** wird in **CouchDB** betrieben.
 
 In diesem besonderen Fall ruft der Aufrufer das resultierende JSON-Objekt aus der Aktion ab, erfasst das Protokoll, das von Docker geschrieben wurde, fügt alle diese Elemente in den Aktivierungsdatensatz ein und speichert diesen in der Datenbank. Schauen Sie sich das folgende Beispiel an:
 ```json
@@ -154,11 +156,11 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### Zusammenfassung
 
-Sie haben gesehen, wie ein einfacher Befehl **ibmcloud fn action invoked myAction** verschiedene Komponenten des {{site.data.keyword.openwhisk_short}}-Systems durchläuft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community.
+Sie haben gesehen, wie ein einfacher Befehl **ibmcloud fn action invoked myAction** verschiedene Stufen des {{site.data.keyword.openwhisk_short}}-Systems durchläuft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community.
 
 Weitere Informationen zu {{site.data.keyword.openwhisk_short}} finden Sie in den folgenden Abschnitten:
 
 * [Entitätsnamen](./openwhisk_reference.html#openwhisk_entities)
 * [Aktionssemantik](./openwhisk_reference.html#openwhisk_semantics)
 * [Begrenzungen](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST-API-Referenz](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST-API-Referenz](https://console.bluemix.net/apidocs/openwhisk)

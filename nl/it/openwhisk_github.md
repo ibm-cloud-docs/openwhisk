@@ -35,7 +35,7 @@ Il feed `/whisk.system/github/webhook` configura un servizio per attivare un tri
 - `accessToken`: il tuo token di accesso personale GitHub. Quando [crei il tuo token](https://github.com/settings/tokens), assicurati di selezionare gli ambiti **repo:status** e **public_repo**. Inoltre, assicurati di non avere alcun webhook già definito per il tuo repository.
 - `events`: il [tipo di evento GitHub](https://developer.github.com/v3/activity/events/types/) a cui sei interessato.
 
-Nel seguente esempio, viene creato un trigger che si attiva ogni volta che c'è un nuovo commit in un repository GitHub.
+Nel seguente esempio, viene creato un trigger che si attiva ogni volta che c'è un nuovo commit a un repository GitHub.
 
 1. Genera un [token di accesso personale](https://github.com/settings/tokens) GitHub. Il token di accesso verrà utilizzato nel prossimo passo.
 

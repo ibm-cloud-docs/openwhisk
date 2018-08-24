@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 O {{site.data.keyword.openwhisk}} oferece um plug-in poderoso para a CLI do {{site.data.keyword.Bluemix_notm}} que permite o gerenciamento completo do sistema {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
+
+Agora é possível usar o alias `fn` em seus comandos de plug-in do {{site.data.keyword.openwhisk_short}}: `ibmcloud fn <command>`
+{: tip}
 
 ## Configurando a CLI do {{site.data.keyword.Bluemix_notm}}
 {: #bluemix_cli_setup}
@@ -158,30 +161,31 @@ O {{site.data.keyword.openwhisk_short}} tem restrições sobre nomes de namespac
 ## Migrando da CLI do OpenWhisk para o plug-in da CLI do {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Com a introdução do plug-in da CLI do {{site.data.keyword.openwhisk_short}}, a CLI independente do OpenWhisk não é mais necessária.
+Com a introdução do plug-in da CLI do {{site.data.keyword.openwhisk_short}}, a CLI independente do OpenWhisk (`wsk`) não é mais necessária.
 
 ### Sintaxe do Comando
 {: #command_syntax}
 
-Todos os comandos `wsk`, exceto o comando `wsk bluemix login` que não é mais necessário, funcionam da mesma maneira usando o comando `ibmcloud fn`.  Todas as opções de comando e os argumentos são os mesmos.
+Todos os comandos `wsk`, exceto o comando `wsk bluemix login`, que não é mais necessário, funcionam da mesma maneira usando o comando `ibmcloud fn`.  Todas as opções de comando e os argumentos são os mesmos.
 
 ### Autenticação e host de API
 {: #api_authentication}
 
 Na CLI do OpenWhisk, era necessário configurar a chave API de autenticação e o host de API.
-Com o plug-in da CLI do {{site.data.keyword.openwhisk_short}}, não é necessário configurar explicitamente a chave API e o host de API. Em vez disso, é possível efetuar login com o `ibmcloud login` e destinar sua região e namespace usando o comando `ibmcloud target`. Depois de efetuar login, todos os comandos iniciam com `ibmcloud fn`.
+Com o plug-in da CLI do {{site.data.keyword.openwhisk_short}}, não é necessário configurar explicitamente a chave API e o host de API. Em vez disso, é possível efetuar login com o `ibmcloud login` e destinar sua região e namespace usando o comando `ibmcloud target`. 
+Após efetuar login, todos os comandos iniciam com `ibmcloud fn`.
 
 Se você precisar usar a chave API de autenticação para o {{site.data.keyword.openwhisk_short}} em um cliente HTTP externo como cURL ou Postman, será possível recuperá-la com os comandos a seguir:
 
 Para obter a chave API atual:
 ```
-ibmcloud fn property get --auth
+ibmcloud fn property get -- auth
 ```
 {: pre}
 
 Para obter o host de API atual:
 ```
-ibmcloud fn property get --apihost
+ibmcloud fn property get -- apihost
 ```
 {: pre}
 
@@ -196,12 +200,18 @@ Na CLI do OpenWhisk, era necessário executar o `wsk bluemix login` para poder c
 ### Migrando scripts de implementação
 {: #migrating_deploy_scripts}
 
-Se você tem scripts que usam a CLI do OpenWhisk com o binário `wsk`, todos os comandos funcionam da mesma maneira usando o comando `ibmcloud fn`. É possível modificar seus scripts para usar o plug-in da CLI do {{site.data.keyword.Bluemix_notm}} ou criar um alias ou wrapper para que os comandos atuais usando `wsk` sejam convertidos para `ibmcloud fn`. Os comandos `ibmcloud login` e `ibmcloud target` na CLI do {{site.data.keyword.Bluemix_notm}} funcionam no modo não assistido. Com o modo não assistido, é possível configurar seu ambiente antes de executar comandos `ibmcloud fn` para implementar e gerenciar suas entidades do {{site.data.keyword.openwhisk_short}}.
+Se você tiver scripts que usam a CLI do OpenWhisk com o binário `wsk`, todos os comandos funcionarão da mesma maneira usando o comando `ibmcloud fn`. É possível modificar seus scripts para usar o plug-in da CLI do {{site.data.keyword.Bluemix_notm}} ou criar um alias ou um wrapper para que os comandos atuais que estão usando `wsk` sejam convertidos em `ibmcloud fn`. Os comandos `ibmcloud login` e `ibmcloud target` na CLI do {{site.data.keyword.Bluemix_notm}} funcionam no modo não assistido. Com o modo não assistido, é possível configurar seu ambiente antes de executar os comandos `ibmcloud fn` para implementar e gerenciar suas entidades do {{site.data.keyword.openwhisk_short}}.
 
 ## Histórico de versões
 {: #version_history}
 
 Um registro histórico de versões que mostram destaques e correções de bug.
+
+1.0.21 (2018-08-01)
+* Os aliases `fn` e `functions` agora podem ser usados para os comandos do {{site.data.keyword.openwhisk_short}}: `ibmcloud fn <command>`  e  ` ibmcloud fn <command>`. Também é possível usar o `ibmcloud wsk <command>`.
+
+1.0.19 (2018-07-02)
+* Correções de bugs secundários e melhorias.
 
 1.0.18 (20-06-2018)
 * Correção para desvincular instâncias de serviço fornecido pelo usuário.

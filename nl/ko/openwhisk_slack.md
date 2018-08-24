@@ -11,7 +11,7 @@ lastupdated: "2018-03-29"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack
+# Slack 패키지
 {: #openwhisk_catalog_slack}
 
 `/whisk.system/slack` 패키지는 [Slack API](https://api.slack.com/)를 사용하는 편리한 방법을 제공합니다.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -229,9 +229,9 @@ JavaScript 操作可以在 Node.js V6 或 Node.js V8 中执行。
 
 ### 带有 IBM SDK 的 Node.js V8 环境
 {: #openwhisk_ref_javascript_environments_8}
-如果在创建/更新操作时使用值 `nodejs:8` 显式指定 `--kind` 标志，那么将使用 Node.js V8.11.1 环境。
+如果在创建或更新操作时使用值 `nodejs:8` 显式指定 `--kind` 标志，那么将使用 Node.js V8.11.3 环境。
 
-Node.js V8.11.1 环境中预安装了以下包：
+Node.js V8.11.3 环境中预安装了以下包：
   - [amqplib V0.5.2](https://www.npmjs.com/package/amqplib) - 用于使 AMQP 0-9-1 客户机可用于 Node.JS 的库。
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - 用于与 Apple 推送通知服务进行交互的 Node.js 模块。
   - [async v2.6.1](https://www.npmjs.com/package/async) - 提供用于处理异步函数的函数。
@@ -240,10 +240,10 @@ Node.js V8.11.1 环境中预安装了以下包：
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa) - 浏览器的 btoa 函数的端口。
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - Apache Cassandra 的 DataStax Node.js 驱动程序。
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - 这是 Node.js 的正式 Cloudant 库。
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant) - 这是 Node.js 的正式 Cloudant 库。
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - 这是 Node.js 的正式 Cloudant 库。
   - [commander v2.15.1](https://www.npmjs.com/package/commander) - Node.js 命令行界面的完整解决方案。
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - 来自 Compose UI 或 Scylla 数据库的 API 的地址转换程序。
-  - [consul v0.32.0](https://www.npmjs.com/package/consul) - Consul 的客户机，涉及服务发现和配置。
+  - [consul v0.33.1](https://www.npmjs.com/package/consul) - Consul 的客户机，涉及服务发现和配置。
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - 解析 cookie 标头，并使用以 cookie 名称为键的对象填充 req.cookies。
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - Node.js 的高级别高速缓存 CouchDB 客户机。
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - 用于 Node.js 的正式低级别 Elasticsearch 客户机。
@@ -259,9 +259,9 @@ Node.js V8.11.1 环境中预安装了以下包：
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - Node.js 客户机用于简化与 IBM Watson Internet of Things Platform 的交互。
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - 纯 JS 字符编码转换。
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom 是许多 Web 标准（特别是 WHATWG DOM 和 HTML 标准）的纯 JavaScript 实现。
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken) - JSON Web 令牌的实现。
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - JSON Web 令牌的实现。
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - 导出为 Node.js 模块的 Lodash 库。
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js) - 用于转换 log4js 框架以使用 Node。
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - 用于转换 log4js 框架以使用 Node。
   - [marked v0.4.0](https://www.npmjs.com/package/marked) - 使用 JavaScript 编写的功能齐全的 Markdown 解析器和编译器。专为速度而构建。
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - 将多个对象合并为一个对象，可选择创建新的克隆对象。
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - 用于解析、验证、处理和格式化日期的轻量级 JavaScript 日期库。
@@ -269,7 +269,7 @@ Node.js V8.11.1 环境中预安装了以下包：
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - 这是 mysql 的 Node.js 驱动程序。
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js 是用 JavaScript 编写的 mustache 模板系统的实现。
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - 用于 Node.js 的极简 CouchDB 驱动程序。
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer) - 通过 Node.js 发送电子邮件 - 轻而易举！
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - 通过 Node.js 发送电子邮件 - 轻而易举！
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - 用于通过 Node.js 中 Express 实现 OAuth2 服务器/提供程序的完整、合规且行之有效的模块。
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - 用于 OpenWhisk 平台的 JavaScript 客户机库。基于 OpenWhisk API 提供包装程序。
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp) - 将路径字符串（例如 /user/:name）转换为正则表达式，然后该表达式可用于与 URL 路径进行匹配。
@@ -281,27 +281,27 @@ Node.js V8.11.1 环境中预安装了以下包：
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - 简化的 HTTP 请求客户机“请求”，支持使用 Promise。基于 Bluebird 技术。
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - 针对 Node 的 UNIX 命令 rm -rf。
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - 用于 Nodejs 的语义版本控制。
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - 通过 SendGrid API 提供电子邮件支持。
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - 通过 SendGrid API 提供电子邮件支持。
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - 用于提供 favicon 的 Node.js 中间件。
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent 是一种小型渐进式客户机端 HTTP 请求库，是具有相同 API 的 Node.js 模块，带有许多高级别的 HTTP 客户机功能。
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio) - 用于 Twilio API 的包装程序，与语音、视频和消息传递相关。
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - Twilio API 的包装程序，与语音、视频和消息传递相关。
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js 是一种 JavaScript 实用工具集库，支持可能的常用函数（each、map、reduce、filter...），无需扩展任何核心 JavaScript 对象。
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - 相比使用 regex 字符串匹配器，可更轻松地解析路径参数的 URL。
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - 简单、快速生成 RFC4122 UUID。
   - [validator v10.3.0](https://www.npmjs.com/package/validator) - 字符串验证器和杀毒器的库。
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud) - 使用 Watson Developer Cloud 服务的 Node.js 客户机库，这是一组使用认知计算来解决复杂问题的 API。
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - 使用 Watson Developer Cloud 服务的 Node.js 客户机库，这是一组使用认知计算来解决复杂问题的 API。
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js 是一种极其稳定、经过实际测试的 Promise/A+ 和 when() 实现，包含完整的 ES6 Promise 垫片。
-  - [winston v2.4.2](https://www.npmjs.com/package/winston) - 用于 Node.js 的多传输异步日志记录库。“别紧张 WINSTON！我把它放在日志里了。”
+  - [winston v3.0.0](https://www.npmjs.com/package/winston) - Node.js 的多传输异步日志记录库。“别紧张 WINSTON！我把它放在日志里了。”
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws 是一种易于使用、速度超快且经过全面测试的 WebSocket 客户机和服务器实现。
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - 简单的 XML 到 JavaScript 对象转换器。支持双向转换。
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest 是内置 HTTP 客户机的包装程序，用于模拟浏览器 XMLHttpRequest 对象。
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - 用于 Node 的另一个解压缩库。有关压缩。
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - 用于 Node 的另一个解压缩库。
 
 ### Node.js V6 环境
 {: #openwhisk_ref_javascript_environments_6}
-如果在创建或更新操作时使用值 `nodejs:6` 显式指定 `--kind` 标志，那么将使用 Node.js 6.14.0 环境。
+如果在创建或更新操作时使用值 `nodejs:6` 显式指定 `--kind` 标志，那么将使用 Node.js 6.14.3 环境。
 
-以下包可在 Node.js 6.14.0 环境中使用：
+以下包可在 Node.js 6.14.3 环境中使用：
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - 用于与 Apple 推送通知服务进行交互的 Node.js 模块。
 - [async v2.1.4](https://www.npmjs.com/package/async) - 提供用于处理异步功能的函数。
@@ -327,7 +327,7 @@ Node.js V8.11.1 环境中预安装了以下包：
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - 不推荐使用的打包的 UUID。
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - 通过 Node.js 发送电子邮件 - 轻而易举！
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - 用于通过 Node.js 中 Express 实现 OAuth2 服务器/提供程序的完整、合规且行之有效的模块。
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk) - 用于 OpenWhisk 平台的 JavaScript 客户机库。基于 OpenWhisk API 提供包装程序。
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - 用于 OpenWhisk 平台的 JavaScript 客户机库。基于 OpenWhisk API 提供包装程序。
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud 是 Node.js 的标准库，可提取出多个云提供者之间的差异。
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process')；就像任何其他模块一样。
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - 实现 Pug 模板语言。
@@ -353,7 +353,7 @@ Node.js V8.11.1 环境中预安装了以下包：
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws 是一种使用简单、速度超快且经过全面测试的 WebSocket 客户机和服务器实现。
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - 简单的 XML 到 JavaScript 对象转换器。支持双向转换。
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest 是内置 HTTP 客户机的包装程序，用于模拟浏览器 XMLHttpRequest 对象。
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - 是 Node 的另一个解压缩库。有关压缩。
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - 用于 Node 的另一个解压缩库。
 
 
 ## Python 运行时环境
@@ -382,7 +382,7 @@ Python 包：
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -406,12 +406,12 @@ Python 包：
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -423,7 +423,7 @@ Python 包：
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -435,7 +435,7 @@ Python 包：
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -551,7 +551,7 @@ Swift 4 操作使用 Swift 4.1 `--kind swift:4.1` 执行。
 遵循[打包的 Swift 操作](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable)的指示信息以包含使用 Package.swift 的依赖项。
 
 在使用单个 Swift 源文件时，Swift 4.1 操作可以使用以下包：
-- Watson Developer Cloud SDK V0.27.0：https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK V0.28.0：https://github.com/watson-developer-cloud/swift-sdk
 
 ### 将 Swift 3.1.1 迁移到 Swift 4.1
 
@@ -581,14 +581,14 @@ PHP 操作是使用 PHP 7.1.18 执行的。要使用此运行时，请在创建�
 另外还提供了以下组合器包：
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Docker 操作
 {: #openwhisk_ref_docker}
 
 Docker 操作在 Docker 容器中运行用户提供的二进制文件。该二进制文件在基于 [python:2.7.12-alpine](https://hub.docker.com/r/library/python) 的 Docker 映像中运行，所以该二进制文件必须与此分发版兼容。
 
-通过 Docker 框架，可以方便地构建兼容 OpenWhisk 的 Docker 映像。可以使用 `ibmcloud fn sdk install docker` CLI 插件命令来安装该框架。
+通过 Docker 框架，可以方便地构建兼容 OpenWhisk 的 Docker 映像。可以使用 `ibmcloud wsk sdk install docker` CLI 插件命令来安装该框架。
 
 主二进制程序必须位于容器内的 `/action/exec` 中。可执行文件通过可以反序列化为 `JSON` 对象的单个命令行自变量字符串来接收输入自变量。该文件必须使用 `stdout` 以单行序列化 `JSON` 字符串形式返回结果。
 
@@ -596,7 +596,7 @@ Docker 操作在 Docker 容器中运行用户提供的二进制文件。该二�
 
 ## REST API
 {: #openwhisk_ref_restapi}
-有关 {{site.data.keyword.openwhisk_short}} REST API 的信息可在 [REST API 参考](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)中找到。
+有关 {{site.data.keyword.openwhisk_short}} REST API 的信息可在 [REST API 参考](https://console.bluemix.net/apidocs/openwhisk)中找到。
 
 ## 系统限制
 {: #openwhisk_syslimits}

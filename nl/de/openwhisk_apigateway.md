@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-07-30"
 
 ---
 
@@ -15,37 +15,17 @@ lastupdated: "2018-03-30"
 # Serverunabhängige REST-APIs erstellen
 {: #openwhisk_apigateway}
 
-{{site.data.keyword.openwhisk}}-Aktionen können durch Einführung des API-Gateways von der direkten Verwaltung durch APIs profitieren. Das API-Gateway fungiert als Proxy zu [Webaktionen](./openwhisk_webactions.html) und stattet diese mit zusätzlichen Funktionen aus. Zu diesen zusätzlichen Funktionen gehören zum Beispiel: HTTP-Methodenrouting, Client-IDs/geheime Client-Schlüssel, Ratenbegrenzungen, CORS, Anzeigen der API-Nutzung, Anzeigen von Antwortprotokollen und Definieren von Richtlinien zur gemeinsamen Nutzung von APIs. Weitere Informationen zum API-Management finden Sie in der [Dokumentation zum API-Management](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+Mit APIs können Sie {{site.data.keyword.openwhisk}}-Aktionen direkt verwalten. Das API-Gateway fungiert als Proxy für [Webaktionen](./openwhisk_webactions.html) und stellt HTTP-Methodenrouting, Client-IDs und geheime Schlüssel, Ratenbegrenzungen, CORS, Anzeigen der API-Nutzung, Anzeigen von Antwortprotokollen und Definieren von Richtlinien zur gemeinsamen Nutzung von APIs bereit.
 {: shortdesc}
 
-## APIs aus OpenWhisk-Webaktionen im Browser erstellen
-{: #create_api_browser}
+Weitere Informationen zum API-Management finden Sie in der [Dokumentation zum API-Management](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
 
-Sie können die [**Registerkarte 'APIs'**](https://console.bluemix.net/openwhisk/apimanagement) im [{{site.data.keyword.openwhisk_short}}-Dashboard](https://console.bluemix.net/openwhisk/) für die folgenden Tasks verwenden:
-
-* [Cloud Functions-API erstellen](https://console.bluemix.net/openwhisk/apimanagement) - Sie können eine API erstellen, die eine Gruppe von OpenWhisk-Aktionen einschließt.
-* [API schützen](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) - Sie können API-Sicherheit und Richtlinien zur Ratenbegrenzung anwenden, um Ihre API zu schützen.
-* [Datenverkehr verwalten](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) - Sie können API-Nutzungsstatistiken anzeigen und Antwortprotokolle ausprobieren.
-* [Teilen & gemeinsam nutzen](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) - Sie können Ihre API mit Entwicklern innerhalb und außerhalb von {{site.data.keyword.Bluemix_notm}} gemeinsam nutzen.
-
-## APIs aus OpenWhisk-Webaktionen mithilfe dem CLI-Plug-in erstellen
-{: #create_api_cli}
-
-Der folgende Abschnitt führt Sie durch die API-Verwaltungstasks unter Verwendung des {{site.data.keyword.openwhisk_short}}-CLI-Plug-ins. Um APIs über die CLI zu erstellen und zu verwalten, müssen Sie zuerst das [{{site.data.keyword.openwhisk_short}}-CLI-Plug-in](https://console.bluemix.net/docs/openwhisk/bluemix_cli.html) für {{site.data.keyword.Bluemix_notm}} installieren.
-
-Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterteilt, zu denen Sie über die folgende Liste von API-Tasks wechseln können:
-
-* [Erste API erstellen](openwhisk_apigateway.html#create_cli_api)
-* [Vollständige Kontrolle über die HTTP-Antwort](openwhisk_apigateway.html#full_control)
-* [Mehrere Webaktionen verfügbar machen](openwhisk_apigateway.html#multiple_web_actions)
-* [Konfiguration exportieren](openwhisk_apigateway.html#export_config)
-* [Konfiguration importieren](openwhisk_apigateway.html#import_config)
-* [Konfiguration ändern](openwhisk_apigateway.html#modify_config)
-
-### Erste API über die CLI erstellen
+## Erste API erstellen
 {: #create_cli_api}
 
-1. Erstellen Sie eine JavaScript-Datei mit dem Namen **hello.js** und mit folgendem Inhalt:
+Bevor Sie beginnen, installieren Sie das [{{site.data.keyword.openwhisk_short}} CLI-Plug-in](bluemix_cli.html).
+
+1. Speichern Sie den folgenden Code in einer JavaScript-Datei namens `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {payload: `Hello world ${name}`};
@@ -53,7 +33,7 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
   ```
   {: codeblock}
 
-2. Erstellen Sie eine Webaktion mit dem Namen **hello** unter Verwendung der Datei `hello.js`, die in Schritt 1 erstellt wurde. **Hinweis:** Stellen Sie sicher, dass Sie das Flag `--web true` hinzufügen.
+2. Erstellen Sie mithilfe der soeben erstellten Datei eine Webaktion namens `hello`. **Hinweis:** Stellen Sie sicher, dass Sie das Flag `--web true` hinzufügen.
   ```
   ibmcloud fn action create hello hello.js --web true
   ```
@@ -65,7 +45,7 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
   ```
   {: screen}
 
-3. Erstellen Sie eine API mit dem Basispfad `/hello` und dem Pfad `/world` sowie mit der Methode `get` und dem Antworttyp `json`:
+3. Erstellen Sie eine API mit dem Basispfad `/hello` und dem Pfad `/world` sowie mit der Methode `get` und dem Antworttyp `json`.
   ```
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
@@ -78,11 +58,11 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
   ```
   {: screen}
 
-  Eine neue URL wird generiert, über die die Aktion `hello` mit der HTTP-Methode __GET__ verfügbar gemacht wird.
+  Es wird eine neue URL generiert, über die die Aktion `hello` mit der HTTP-Methode 'GET' verfügbar gemacht wird.
 
-4. Senden Sie zum Schluss unter Verwendung des Befehls **curl** eine HTTP-Anforderung an die URL:
+4. Senden Sie unter Verwendung des Befehls 'cURL' eine Test-HTTP-Anforderung an die URL.
   ```
-  $ curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
+  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
   ```
   {: pre}
 
@@ -94,18 +74,16 @@ Für eine bessere Übersicht werden die Schritte in kleinere Unterthemen unterte
   ```
   {: screen}
 
-Die Webaktion **hello** wird aufgerufen, die ein JSON-Objekt zurückgibt, das den Parameter **name** enthält, der durch den Abfrageparameter gesendet wurde. Sie können Parameter mit einfachen Abfrageparametern oder mit dem Anforderungshauptteil übergeben. Webaktionen können eine Aktion auf öffentlichem Wege ohne den API-Schlüssel für die OpenWhisk-Berechtigung aufrufen.
+Es wird die Webaktion `hello` aufgerufen. Diese gibt ein JSON-Objekt zurück, das den Parameter **name** im Abfrageparameter enthält. Sie können Parameter mit einfachen Abfrageparametern oder mit dem Anforderungshauptteil an die Aktion übergeben. Webaktionen können eine Aktion öffentlich aufrufen, ohne den Berechtigungs-API-Schlüssel für {{site.data.keyword.openwhisk_short}} zu verwenden.
 
-### Vollständige Kontrolle über die HTTP-Antwort
+## Uneingeschränkte Kontrolle über die HTTP-Antwort ausüben
 {: #full_control}
 
-Das Flag `--response-type` steuert die Ziel-URL der Webaktion, sodass sie durch das API-Gateway als Proxy geleitet wird. Bei Verwendung des Flags `--response-type json` wird das vollständige Ergebnis der Aktion im JSON-Format zurückgegeben und der Inhaltstyp (Content-Type) des Headers automatisch auf `application/json` gesetzt.
+Das Flag `--response-type` steuert die Ziel-URL der Webaktion, sodass sie durch das API-Gateway als Proxy geleitet wird. Wenn Sie zum Beispiel das Flag `--response-type json` verwenden, wird das vollständige Ergebnis der Aktion in JSON-Format zurückgegeben und der Header **Content-Type** wird automatisch auf den Wert `application/json` gesetzt.
 
-Wenn Sie die vollständige Kontrolle über die Eigenschaften von HTTP-Antworten wie `statusCode` oder `headers` haben, können Sie verschiedene Inhaltstypen im Hauptteil (`body`) zurückgeben. Dazu können Sie das Flag `--response-type http` verwenden, das die Ziel-URL der Webaktion mit der Erweiterung `http` konfiguriert.
+Damit verschiedene Inhaltstypen im Hauptteil zurückgegeben werden, sollten Sie die volle Bandbreite an Kontrolle über die Eigenschaften in HTTP-Antworten wie **statusCode** und **headers** nutzen. Durch Verwenden des Flags `--response-type http` können Sie die Ziel-URL der Webaktion mit der Erweiterung `http` konfigurieren. Sie können den Code der Aktion so zu ändern, dass er mit der Rückgabe von Webaktionen mit der Erweiterung `http` konform ist, oder Sie können die Aktion in eine Sequenz einfügen, um ihr Ergebnis an eine neue Aktion zu übergeben. Die neue Aktion kann dann das Ergebnis in das ordnungsgemäße Format für eine HTTP-Antwort umsetzen. Weitere Informationen zu Antworttypen und Erweiterungen von Webaktionen finden Sie in der Dokumentation zu [Webaktionen](./openwhisk_webactions.html).
 
-Sie haben die Möglichkeit, den Code der Aktion so zu ändern, dass er mit der Rückgabe von Webaktionen mit der Erweiterung `http` konform ist, oder Sie können die Aktion in eine Sequenz einfügen, um ihr Ergebnis an eine neue Aktion zu übergeben. Die neue Aktion kann dann das Ergebnis in das ordnungsgemäße Format für eine HTTP-Antwort umsetzen. Weitere Informationen zu Antworttypen und Erweiterungen von Webaktionen finden Sie in der Dokumentation zu [Webaktionen](./openwhisk_webactions.html).
-
-1. Ändern Sie den Code für `hello.js`, sodass er die JSON-Eigenschaften `body`, `statusCode` und `headers` zurückgibt:
+1. Ändern Sie den Code für die Aktion `hello.js` so, dass er die JSON-Eigenschaften `body`, `statusCode` und `headers` zurückgibt.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
@@ -123,14 +101,14 @@ Sie haben die Möglichkeit, den Code der Aktion so zu ändern, dass er mit der R
   ```
   {: pre}
 
-3. Aktualisieren Sie den API-Antworttyp mit dem Flag `--response-type http`:
+3. Aktualisieren Sie den API-Antworttyp mit dem Flag `--response-type http`.
   ```
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
-4. Rufen Sie die aktualisierte API mit dem folgenden **curl**-Befehl auf:
-  ```bash
+4. Rufen Sie die aktualisierte API mit dem folgenden cURL-Befehl auf.
+  ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
@@ -143,12 +121,10 @@ Sie haben die Möglichkeit, den Code der Aktion so zu ändern, dass er mit der R
   ```
   {: screen}
 
-Sie haben nun die vollständige Kontrolle über Ihre APIs und können den Inhalt steuern. Sie können zum Beispiel HTML zurückgeben oder den Statuscode für bestimmte Situationen wie 'Nicht gefunden' (404) oder 'Nicht berechtigt' (401) oder sogar 'Interner Fehler' (500) festlegen.
-
-### Mehrere Webaktionen verfügbar machen
+## Mehrere Webaktionen verfügbar machen
 {: #multiple_web_actions}
 
-Wenn Sie zum Beispiel eine Reihe von Aktionen für einen Buchclub für Freunde verfügbar machen möchten, können Sie eine Reihe von Aktionen verwenden, um das Back-End für den Buchclub zu implementieren:
+Es ist möglich, zum Bereitstellen des Back-Ends Ihrer App mehrere Webaktionen verfügbar zu machen. Wenn zum Beispiel eine Reihe von Aktionen für einen Buchclub verfügbar gemacht werden soll, können Sie eine Reihe von Aktionen verwenden, um das Back-End für den Buchclub zu implementieren:
 
 | Aktion | HTTP-Methode | Beschreibung |
 | ----------- | ----------- | ------------ |
@@ -157,21 +133,23 @@ Wenn Sie zum Beispiel eine Reihe von Aktionen für einen Buchclub für Freunde v
 | putBooks    | PUT | Aktualisieren von Buchdetails |
 | deleteBooks | DELETE | Löschen eines Buches |
 
-In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie Pfadparameter verwenden, muss die API mit dem Antworttyp `http` definiert werden. Der Pfadwert, der mit dem Basispfad beginnt und die tatsächlichen Pfadparameterwerte enthält, ist im Feld `__ow_path` des JSON-Parameters der Aktion verfügbar. Weitere Informationen finden Sie in der Dokumentation zum [HTTP-Kontext bei Webaktionen](./openwhisk_webactions.html#http-context). Dies umfasst Informationen zu weiteren HTTP-Kontextfeldern, die für Webaktionen verfügbar sind, die mit einem Antworttyp `http` aufgerufen werden.
+In diesem Beispiel wird die API mit einem Pfadparameter definiert. Wenn Sie Pfadparameter verwenden, muss die API mit dem Antworttyp `http` definiert werden. Der Pfadwert, der mit dem Basispfad beginnt und die tatsächlichen Pfadparameterwerte enthält, ist im Feld `__ow_path` des JSON-Parameters der Aktion verfügbar. Weitere Details zu HTTP-Kontextfeldern enthält die Dokumentation zum [HTTP-Kontext bei Webaktionen](./openwhisk_webactions.html#http-context).
 
-1. Erstellen Sie nun eine API für den Buchclub mit dem Namen **Book Club** und dem HTTP-URL-Basispfad `/club`, `books` als zugehöriger Ressource und `{isbn}` als Pfadparameter, der verwendet wird, um ein bestimmtes Buch mithilfe der ISBN (International Standard Book Number) anzugeben.
-  ```bash
+Gehen Sie wie folgt vor, um das Buchclub-Beispiel für Webaktionen auszuprobieren:
+
+1. Erstellen Sie für den Buchclub eine API namens `Book Club` mit dem HTTP-URL-Basispfad `/club`, der zugehörigen Ressource `books` und dem Pfadparameter `{isbn}`, der verwendet wird, um ein bestimmtes Buch anhand seiner ISBN (International Standard Book Number) anzugeben.
+  ```
   ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
   ibmcloud fn api create /club /books get getBooks                       --response-type http
   ibmcloud fn api create /club /books post postBooks                     --response-type http
   ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
   ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
-  {: codeblock}
+  {: pre}
 
-  Beachten Sie, dass die erste mit dem Basispfad `/club` verfügbar gemachte Aktion die API-Bezeichnung mit dem Namen **Book Club** erhält. Alle weiteren unter `/club` verfügbar gemachten Aktionen sind nun **Book Club** zugeordnet.
+  Die erste mit dem Basispfad `/club` verfügbar gemachte Aktion erhält den Namen `Book Club`. Alle weiteren unter `/club` verfügbar gemachten Aktionen sind nun `Book Club` zugeordnet.
 
-2. Listen Sie mit dem folgenden Befehl alle **Book Club**-Aktionen auf, die verfügbar gemachten wurden:
+2. Listen Sie alle `Book Club`-Aktionen auf, die verfügbar gemacht wurden.
   ```
   ibmcloud fn api list /club -f
   ```
@@ -213,7 +191,7 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-3. Sie können zur Übung ein Buch mit dem Titel **JavaScript: The Good Parts** mit einer HTTP-Anforderung __POST__ hinzufügen:
+3. Fügen Sie ein Buch mit dem Titel `JavaScript: The Good Parts` hinzu, indem Sie eine entsprechende HTTP-Anforderung vom Typ POST verwenden.
   ```
   curl -X POST -d '{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}' -H "Content-Type: application/json" https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
@@ -227,8 +205,8 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-4. Rufen Sie eine Liste mit Büchern ab, indem Sie die Aktion **getBooks** mit HTTP __GET__ verwenden:
-  ```bash
+4. Rufen Sie eine Liste von Büchern ab. Führen Sie dazu einen HTTP-Aufruf vom Typ GET für die Aktion `getBooks` aus.
+  ```
   curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
   {: pre}
@@ -241,22 +219,24 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-5. Sie können ein bestimmtes Buch löschen, indem Sie die Aktion **deleteBooks** mit HTTP __DELETE__ verwenden. In diesem Beispiel ist `/club/books/978-0596517748` der Wert des Felds `__ow_path` der Aktion **deleteBooks**. Dabei ist `978-0596517748` der tatsächliche Wert `{isbn}` des Pfads.
+5. Löschen Sie ein bestimmtes Buch. Verwenden Sie dazu einen HTTP-Aufruf vom Typ DELETE für die Aktion `deleteBooks`. In diesem Beispiel ist `/club/books/978-0596517748` der Wert des Felds `__ow_path` der Aktion `deleteBooks`. Dabei ist `978-0596517748` der tatsächliche Wert `{isbn}` des Pfads.
   ```bash
   curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
   ```
   {: pre}
 
-### Konfiguration exportieren
-{: #export_config}
+## Konfiguration exportieren und importieren
+{: #export_import_config}
 
-1. Exportieren Sie die API mit dem Namen **Book Club** in eine Datei, die als Basis zum erneuten Erstellen der APIs mit einer Datei als Eingabe verwendet werden kann.
+Zum Exportieren oder Importieren einer Konfiguration können Sie weiterhin das Buchclub-Beispiel verwenden.
+
+1. Exportieren Sie die `Book Club`-API in eine Datei namens `club-swagger.json`. Diese Datei kann als Basis zum erneuten Erstellen der APIs mit einer Datei als Eingabe verwendet werden.
   ```
   ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
-2. Testen Sie die Swagger-Datei, indem Sie zuerst alle verfügbar gemachten URLs unter einem gemeinsamen Basispfad mit dem folgenden Befehl löschen:
+2. Testen Sie die Swagger-Datei, indem Sie zuerst alle unter einem gemeinsamen Basispfad verfügbar gemachten URLs löschen.
   ```
   ibmcloud fn api delete /club
   ```
@@ -268,13 +248,10 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-  Sie können alle verfügbar gemachten URLs entweder über den Basispfad `/club` oder über die API-Namensbezeichnung **Book Club** löschen:
+  Sie können alle verfügbar gemachten URLs unter Verwendung des Basispfads `/club` oder aber unter Verwendung der API-Namensbezeichnung `Book Club` löschen.
   {: tip}
 
-### Konfiguration importieren
-{: #import_config}
-
-1. Stellen Sie jetzt die API **Book Club** mithilfe der Datei `club-swagger.json` wieder her:
+3. Stellen Sie die `Book Club`-API mithilfe der Datei `club-swagger.json` wieder her.
   ```
   ibmcloud fn api create --config-file club-swagger.json
   ```
@@ -295,7 +272,7 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-2. Überprüfen Sie, ob die API **Book Club** erneut erstellt wurde:
+4. Überprüfen Sie, ob die API `Book Club` erneut erstellt wurde.
   ```
   ibmcloud fn api list /club
   ```
@@ -313,7 +290,14 @@ In diesem Beispiel wird die API mit einem **Pfadparameter** definiert. Wenn Sie 
   ```
   {: screen}
 
-### Konfiguration mithilfe der Benutzerschnittstelle ändern
+## Konfiguration ändern
 {: #modify_config}
 
-Sie können die Konfiguration im {{site.data.keyword.openwhisk_short}}-Dashboard bearbeiten. Klicken Sie dazu auf die Registerkarte [APIs](https://console.ng.bluemix.net/openwhisk/apimanagement), um die Sicherheit, die Ratenbegrenzungen und andere Eigenschaften festzulegen. Nachdem Sie die Konfiguration aktualisiert haben, können Sie die Definitionsdatei im JSON-Format herunterladen und sie anschließend über die CLI erneut importieren. Dies kann beispielsweise bei einer unbeaufsichtigten Bereitstellung in einer CICD-Pipeline (CICD = Continuous Integration and Deployment) nützlich sein. Sie haben auch die Möglichkeit, die API-Definitionsdatei unter Verwendung der Benutzerschnittstelle hochzuladen und erneut zu importieren.
+Nachdem Sie Ihre Konfiguration erstellt haben, können Sie sie im {{site.data.keyword.openwhisk_short}}-Dashboard über die [**Registerkarte 'APIs'**](https://console.bluemix.net/openwhisk/apimanagement) auf die folgenden Arten ändern.
+
+* [{{site.data.keyword.openwhisk_short}}-API erstellen](https://console.bluemix.net/openwhisk/apimanagement): Erstellen Sie eine API, die eine Gruppe von {{site.data.keyword.openwhisk_short}}-Aktionen einschließt.
+* [API sichern](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api): Sichern Sie Ihre API durch Anwendung von Richtlinien für die API-Sicherheit und die Ratenbegrenzung.
+* [Datenverkehr verwalten](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api): Verwalten Sie den Datenverkehr durch Anzeigen von API-Nutzungsstatistiken und Überprüfen von Antwortprotokollen.
+* [Teilen und gemeinsam nutzen](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api): Nutzen Sie Ihre API mit Entwicklern innerhalb und außerhalb von {{site.data.keyword.Bluemix_notm}}.
+
+Nachdem Sie die Konfiguration aktualisiert haben, können Sie die Definitionsdatei im JSON-Format herunterladen und sie anschließend über die CLI erneut importieren. Das Herunterladen und Importieren der Konfiguration kann beispielsweise bei einer unbeaufsichtigten Bereitstellung in einer CICD-Pipeline (CICD = Continuous Integration and Deployment) nützlich sein. Sie haben auch die Möglichkeit, die API-Definitionsdatei unter Verwendung der Benutzerschnittstelle hochzuladen und erneut zu importieren.

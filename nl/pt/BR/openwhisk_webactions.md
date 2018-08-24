@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,14 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Ações da web
+# Criando ações da web
 {: #openwhisk_webactions}
 
-As ações da web são ações do OpenWhisk, que são anotadas, para permitir que os desenvolvedores construam rapidamente aplicativos baseados na web. Essas ações anotadas permitem que os desenvolvedores programem a lógica de backend que seu aplicativo da web pode acessar anonimamente, sem requerer uma chave de autenticação do OpenWhisk. Cabe ao desenvolvedor de ação implementar sua própria autenticação e autorização desejada (ou seja, fluxo OAuth).
+Ações da web são ações do {{site.data.keyword.openwhisk}} que são anotadas para permitir
+que os desenvolvedores construam rapidamente aplicativos baseados na web. Essas ações anotadas permitem que os
+desenvolvedores programem a lógica de backend que seu aplicativo da web pode acessar anonimamente, sem
+a requisição de uma chave de autenticação do {{site.data.keyword.openwhisk_short}}. Cabe ao
+desenvolvedor de ação implementar sua própria autenticação e autorização ou fluxo do OAuth desejado.
 {: shortdesc}
 
 As ativações de ação da web estão associadas ao usuário que criou a ação. Essa ação adia o custo de uma ativação de ação do responsável pela chamada para o proprietário da ação.
@@ -122,12 +126,18 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [limite de tamanho de resposta](./openwhisk_reference.html) para ações porque uma resposta que excede os limites predefinidos do sistema falha. Os objetos grandes não são enviados sequencialmente por meio do OpenWhisk, mas, em vez disso, adiados para um armazenamento de objeto, por exemplo.
+It is important to be aware of the [limite de tamanho de resposta](./openwhisk_reference.html) para ações porque uma resposta que excede os limites predefinidos do sistema falha. 
+Os objetos grandes não são enviados sequencialmente por meio do {{site.data.keyword.openwhisk_short}},
+mas, em vez disso, são adiados para um armazenamento de objeto, por exemplo.
 
 ## Manipulando solicitações de HTTP com ações
 {: #openwhisk_webactions_http}
 
-Uma ação do OpenWhisk que não é uma ação da web requer a autenticação e deve responder com um objeto JSON. Em contraste, as ações da web podem ser chamadas sem autenticação e podem ser usadas para implementar manipuladores de HTTP que respondem com conteúdo _headers_, _statusCode_ e _body_ de diferentes tipos. A ação da web deve retornar um objeto JSON. No entanto, o sistema OpenWhisk (a saber, `controller`), trata uma ação da web de forma diferente se seu resultado inclui uma ou mais das propriedades JSON de nível superior a seguir:
+Uma ação do {{site.data.keyword.openwhisk_short}} que não seja uma ação da web requer
+autenticação e deve responder com um objeto JSON. Em contraste, as ações da web podem ser chamadas sem autenticação e podem ser usadas para implementar manipuladores de HTTP que respondem com conteúdo _headers_, _statusCode_ e _body_ de diferentes tipos. A ação da web deve retornar um objeto JSON. 
+No entanto, o sistema {{site.data.keyword.openwhisk_short}} (ou seja, o `controller`),
+trata uma ação da web de forma diferente quando seu resultado inclui uma ou mais das propriedades
+JSON de nível superior a seguir:
 
 - `headers`: um objeto JSON no qual as chaves são nomes de cabeçalho e os valores são valores de sequência, número ou booleano para esses cabeçalhos (o padrão é sem cabeçalhos). Para enviar múltiplos valores para um único cabeçalho, o valor do cabeçalho é uma matriz de valores JSON.
 - `statusCode`: um código de status de HTTP válido (o padrão é 200 OK).
@@ -147,7 +157,8 @@ Veja os parâmetros HTTP a seguir:
 - `__ow_method` (tipo: sequência). O método de HTTP da solicitação.
 - `__ow_headers` (tipo: mapear sequência para sequência): os cabeçalhos da solicitação.
 - `__ow_path` (tipo: sequência): o caminho não correspondido da solicitação (a correspondência é parada assim que a extensão de ação é consumida).
-- `__ow_user` (tipo: sequência): o namespace que identifica o assunto autenticado do OpenWhisk
+- `__ow_user` (tipo: sequência): o Namespace que identifica o sujeito
+autenticado pelo {{site.data.keyword.openwhisk_short}}
 - `__ow_body` (tipo: sequência): a entidade de corpo da solicitação, como uma sequência codificada com base64 quando o conteúdo é binário ou, caso contrário, sequência simples
 - `__ow_query` (tipo: sequência): os parâmetros de consulta da solicitação como uma sequência não analisada
 
@@ -343,7 +354,7 @@ O resultado dessas mudanças é que o `name` é ligado a `Jane` e não pode ser 
 
 Por padrão, uma ação da web pode ser chamada por alguém que tem a URL de chamada da ação da web. Use a [anotação de ação da web](./openwhisk_annotations.html#annotations-specific-to-web-actions) `require-whisk-auth` para proteger a ação da web. Quando a anotação `require-whisk-auth` for configurada para `true`, a ação autenticará as credenciais de autorização básica da solicitação de chamada com relação à chave de aut. do whisk do proprietário da ação. Quando configurada para um número ou uma sequência com distinção entre maiúsculas e minúsculas, a solicitação de chamada da ação deve incluir um cabeçalho `X-Require-Whisk-Auth` tendo esse mesmo valor. As ações da web protegidas retornarão a mensagem `Not Authorized` quando a validação de credencial falhar.
 
-Como alternativa, use a sinalização `--web-secure` para configurar automaticamente a anotação `require-whisk-auth`. Quando configurada para `true`, um número aleatório é gerado como o valor de anotação `require-whisk-auth`. Quando configurada para `false`, a anotação `require-whisk-auth` é removida. Quando configurada para qualquer outro valor, esse valor é usado como o valor de anotação `require-whisk-auth`.
+Como alternativa, use a sinalização `--web-secure` para configurar automaticamente a anotação `require-whisk-auth`.  Quando configurada para `true`, um número aleatório é gerado como o valor de anotação `require-whisk-auth`. Quando configurada para `false`, a anotação `require-whisk-auth` é removida.  Quando configurada para qualquer outro valor, esse valor é usado como o valor de anotação `require-whisk-auth`.
 
 Exemplo usando **--web-secure**:
 ```bash

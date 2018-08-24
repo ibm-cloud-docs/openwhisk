@@ -108,7 +108,7 @@ lastupdated: "2018-06-21"
     {: pre}
 
     輸出範例：
-        ```
+    ```
     ok: got action Hello World
     {
         "parameters": [

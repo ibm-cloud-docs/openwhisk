@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -233,21 +233,21 @@ Node.js 環境にプリインストールされていない任意の `npm` パ�
 
 ### IBM SDK のある Node.js バージョン 8 環境
 {: #openwhisk_ref_javascript_environments_8}
-アクションの作成または更新時に `--kind` フラグが明示的に指定され、値が `nodejs:8` である場合、Node.js バージョン 8.11.1 環境が使用されます。
+アクションの作成または更新時に `--kind` フラグが明示的に指定され、値が `nodejs:8` である場合、Node.js バージョン 8.11.3 環境が使用されます。
 
-Node.js バージョン 8.11.1 環境では、以下のパッケージがプリインストールされます。
+Node.js バージョン 8.11.3 環境では、以下のパッケージがプリインストールされます。
   - [amqplib v0.5.2](https://www.npmjs.com/package/amqplib) - Node.JS 用の AMQP 0-9-1 クライアントを作成するためのライブラリー。
   - [apn v2.2.0](https://www.npmjs.com/package/apn) - Apple Push Notification サービスとのインターフェースのための Node.js モジュール。
   - [async v2.6.1](https://www.npmjs.com/package/async) - 非同期関数での作業のための機能を提供します。
   - [bent v1.1.0](https://www.npmjs.com/package/bent) - Node.js w/ async/await 用の機能 HTTP クライアント。
-  - [body-parser v1.18.3](https://www.npmjs.com/package/body-parser) - Node.js 本体構文解析ミドルウェア。req.body プロパティーで入手可能な着信要求本体をハンドラーの前にミドルウェアで構文解析します。
+  - [body-parser v1.18.3](https://www.npmjs.com/package/body-parser) - Node.js 本体構文解析ミドルウェア。 req.body プロパティーで入手可能な着信要求本体をハンドラーの前にミドルウェアで構文解析します。
   - [btoa v1.2.1](https://www.npmjs.com/package/btoa) - ブラウザーの btoa 関数のポート。
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - Apache Cassandra 用の DataStax Node.js ドライバー。
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - これは Node.js 用の公式 Cloudant ライブラリーです。
-  - [@cloudant/cloudant v2.2.0](https://www.npmjs.com/package/cloudant) - これは Node.js 用の公式 Cloudant ライブラリーです。
+  - [@cloudant/cloudant v2.3.0](https://www.npmjs.com/package/cloudant) - これは Node.js 用の公式 Cloudant ライブラリーです。
   - [commander v2.15.1](https://www.npmjs.com/package/commander) - node.js コマンド・ライン・インターフェースの完全なソリューション。
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Scylla データベース用の Compose UI または API からのアドレス変換機構。
-  - [consul v0.32.0](https://www.npmjs.com/package/consul) - サービス・ディスカバリーおよび構成を含む Consul 用のクライアント。
+  - [consul v0.33.1](https://www.npmjs.com/package/consul) - サービス・ディスカバリーおよび構成を含む Consul 用のクライアント。
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Cookie ヘッダーを構文解析し、Cookie 名がキーになったオブジェクトを req.cookies に取り込みます。
   - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - キャッシングを行う高水準な Node.js 用 CouchDB クライアント。
   - [elasticsearch v15.0.0](https://www.npmjs.com/package/elasticsearch) - Node.js 用の公式の低レベル Elasticsearch クライアント。
@@ -263,21 +263,21 @@ Node.js バージョン 8.11.1 環境では、以下のパッケージがプリ�
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - IBM Watson IoT プラットフォームとの対話を単純化するために使用される node.js クライアント。
   - [iconv-lite v0.4.23](https://www.npmjs.com/package/iconv-lite) - Pure JS 文字エンコード変換
   - [jsdom v11.10.0](https://www.npmjs.com/package/jsdom) - jsdom は、多くの Web 標準 (特に、WHATWG DOM および HTML 標準) の pure-JavaScript 実装です。
-  - [jsonwebtoken v8.2.2](https://www.npmjs.com/package/jsonwebtoken) - JSON Web トークンの実装。
+  - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - JSON Web トークンの実装。
   - [lodash v4.17.10](https://www.npmjs.com/package/lodash) - Node.js モジュールとしてエクスポートされる Lodash ライブラリー。
-  - [log4js v2.8.0](https://www.npmjs.com/package/log4js) - これは、Node と連動するための log4js フレームワークの変換です。
-  - [marked v0.4.0](https://www.npmjs.com/package/marked) - JavaScript で記述されたフル機能のマークダウン・パーサーおよびコンパイラー。スピードのために作成。
+  - [log4js v2.9.0](https://www.npmjs.com/package/log4js) - これは、Node と連動するための log4js フレームワークの変換です。
+  - [marked v0.4.0](https://www.npmjs.com/package/marked) - JavaScript で記述されたフル機能のマークダウン・パーサーおよびコンパイラー。 スピードのために作成。
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - 複数のオブジェクトを 1 つにマージし、オプションで新しい複製オブジェクトを作成します。
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - 日付を構文解析、検証、操作、およびフォーマット設定するための軽量 JavaScript 日付ライブラリー。
   - [mongodb v3.0.10](https://www.npmjs.com/package/mongodb) - Node.js 用の公式 MongoDB ドライバー。
   - [mysql v2.15.0](https://www.npmjs.com/package/mysql) - これは mysql 用の node.js ドライバーです。
   - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - mustache.js は、JavaScript での mustache テンプレート・システムの実装です。
   - [nano v6.4.4](https://www.npmjs.com/package/nano) - Node.js 用の最小主義の couchdb ドライバー。
-  - [nodemailer v4.6.5](https://www.npmjs.com/package/nodemailer) - Node.js からの E メールの送信 – とても簡単です!
+  - [nodemailer v4.6.7](https://www.npmjs.com/package/nodemailer) - Node.js からの E メールの送信 – とても簡単です。
   - [oauth2-server v3.0.0](https://www.npmjs.com/package/oauth2-server) - Node.js で Express を使用して OAuth2 サーバー/プロバイダーを実装するための、完全な、準拠する、十分にテスト済みのモジュール。
   - [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk プラットフォーム用の JavaScript クライアント・ライブラリー。 OpenWhisk API のラッパーを提供します。
   - [path-to-regex v2.2.1](https://www.npmjs.com/package/path-to-regexp) - パス・ストリング (例えば /user/:name) を、URL パスとの突き合わせに使用できる正規表現に変換します。
-  - [pg v7.4.3](https://www.npmjs.com/package/pg) - Node.js 用の非ブロッキング PostgreSQL クライアント。Pure JavaScript およびオプションのネイティブ libpq バインディング。
+  - [pg v7.4.3](https://www.npmjs.com/package/pg) - Node.js 用の非ブロッキング PostgreSQL クライアント。 Pure JavaScript およびオプションのネイティブ libpq バインディング。
   - [process v0.11.10](https://www.npmjs.com/package/process) - require('process'); 他のモジュールと同様。
   - [pug v2.0.3](https://www.npmjs.com/package/pug) - Pug テンプレート言語を実装します。
   - [redis v2.8.0](https://www.npmjs.com/package/redis) - これは、完全で機能が豊富な Node.js 用 Redis クライアントです。
@@ -285,27 +285,27 @@ Node.js バージョン 8.11.1 環境では、以下のパッケージがプリ�
   - [request-promise v4.2.2](https://www.npmjs.com/package/request-promise) - Promise サポートのある単純化された HTTP 要求クライアント 'request'。 Bluebird で稼働。
   - [rimraf v2.6.2](https://www.npmjs.com/package/rimraf) - ノード用の UNIX コマンド rm -rf。
   - [semver v5.5.0](https://www.npmjs.com/package/semver) - Nodejs 用のセマンティック・バージョニング
-  - [@sendgrid/mail@6.2.1](https://www.npmjs.com/package/@sendgrid/mail) - SendGrid API を介して E メールをサポートします。
+  - [@sendgrid/mail@6.3.1](https://www.npmjs.com/package/@sendgrid/mail) - SendGrid API を介して E メールをサポートします。
   - [serve-favicon v2.5.0](https://www.npmjs.com/package/serve-favicon) - favicon に関するサービスを提供するための Node.js ミドルウェア。
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent は小さな漸進的クライアント・サイド HTTP 要求ライブラリーであり、同じ API を持つ Node.js モジュールであり、多くの高水準な HTTP クライアント機能をサポートします。
-  - [twilio v3.17.2](https://www.npmjs.com/package/twilio) - 音声、ビデオ、およびメッセージングに関連した、Twilio API 用のラッパー。
+  - [twilio v3.17.3](https://www.npmjs.com/package/twilio) - 音声、ビデオ、およびメッセージングに関連した、Twilio API 用のラッパー。
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - underscore.js は、コア JavaScript オブジェクトをどれも拡張することなく、通常はあると思われる機能 (each、map、reduce、filter 等) をサポートする、JavaScript 用の便利なライブラリーです。
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - regex ストリング・マッチャーを使用するよりも簡単に、パス・パラメーターの URL を構文解析します。
   - [uuid v3.2.1](https://www.npmjs.com/package/uuid) - RFC4122 UUIDS の単純で高速な生成。
   - [validator v10.3.0](https://www.npmjs.com/package/validator) - ストリングのバリデーターおよびサニタイザーのライブラリー。
-  - [watson-developer-cloud v3.4.5](https://www.npmjs.com/package/watson-developer-cloud) - コグニティブ・コンピューティングを使用して複雑な問題を解決する API の集合である Watson Developer Cloud サービスを使用するための Node.js クライアント・ライブラリー。
+  - [watson-developer-cloud v3.5.0](https://www.npmjs.com/package/watson-developer-cloud) - コグニティブ・コンピューティングを使用して複雑な問題を解決する API の集合である Watson Developer Cloud サービスを使用するための Node.js クライアント・ライブラリー。
   - [when v3.7.8](https://www.npmjs.com/package/when) - when.js は、完全な ES6 Promise shim を含む、厳しい試験を経た強固な Promises/A+ および when() 実装です。
-  - [winston v2.4.2](https://www.npmjs.com/package/winston) - node.js 用のマルチ・トランスポート非同期ロギング・ライブラリー。 「落ち着いて! ログに入れたから。」
+  - [winston v3.0.0](https://www.npmjs.com/package/winston) - node.js 用のマルチ・トランスポート非同期ロギング・ライブラリー。 「落ち着いて! ログに入れたから。」
   - [ws v5.2.0](https://www.npmjs.com/package/ws) - ws は、使用が簡単で高速な、完全にテスト済みの、WebSocket クライアントおよびサーバーの実装です。
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - XML から JavaScript オブジェクトへの単純なコンバーター。 双方向変換をサポートします。
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest は、ブラウザー XMLHttpRequest オブジェクトをエミュレートするための、組み込み http クライアント用のラッパーです。
-  - [yauzl v2.9.1](https://www.npmjs.com/package/yauzl) - ノード用の別の unzip ライブラリー。 zip 用。
+  - [yauzl v2.9.2](https://www.npmjs.com/package/yauzl) - ノード用の別の unzip ライブラリー。
 
 ### Node.js バージョン 6 環境
 {: #openwhisk_ref_javascript_environments_6}
-アクションの作成または更新時に `--kind` フラグが明示的に指定され、値が `nodejs:6` である場合、Node.js 6.14.0 環境が使用されます。
+アクションの作成または更新時に `--kind` フラグが明示的に指定され、値が `nodejs:6` である場合、Node.js 6.14.3 環境が使用されます。
 
-Node.js 6.14.0 環境では以下のパッケージが使用可能です。
+Node.js 6.14.3 環境では以下のパッケージが使用可能です。
 
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - Apple Push Notification サービスとのインターフェースのための Node.js モジュール。
 - [async v2.1.4](https://www.npmjs.com/package/async) - 非同期関数での作業のための機能を提供します。
@@ -331,7 +331,7 @@ Node.js 6.14.0 環境では以下のパッケージが使用可能です。
 - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - 非推奨 UUID パッケージ。
 - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Node.js からの E メールの送信 – とても簡単です。
 - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Node.js で Express を使用して OAuth2 サーバー/プロバイダーを実装するための、完全な、準拠する、十分にテスト済みのモジュール。
-- [openwhisk v3.14.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk プラットフォーム用の JavaScript クライアント・ライブラリー。 OpenWhisk API のラッパーを提供します。
+- [openwhisk v3.15.0](https://www.npmjs.com/package/openwhisk) - OpenWhisk プラットフォーム用の JavaScript クライアント・ライブラリー。 OpenWhisk API のラッパーを提供します。
 - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud は、複数のクラウド・プロバイダー間の相違を取り除く、Node.js 用の標準ライブラリーです。
 - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); 他のモジュールと同様。
 - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Pug テンプレート言語を実装します。
@@ -357,7 +357,7 @@ Node.js 6.14.0 環境では以下のパッケージが使用可能です。
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws は、使用が簡単で高速な、完全にテスト済みの、WebSocket クライアントおよびサーバーの実装です。
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - XML から JavaScript オブジェクトへの単純なコンバーター。 双方向変換をサポートします。
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest は、ブラウザー XMLHttpRequest オブジェクトをエミュレートするための、組み込み http クライアント用のラッパーです。
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - ノード用の別の unzip ライブラリー。 zip 用。
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - ノード用の別の unzip ライブラリー。
 
 
 ## Python ランタイム環境
@@ -386,7 +386,7 @@ Python パッケージ:
 - cffi==1.11.5
 - chardet==3.0.4
 - click==6.7
-- cloudant==2.8.1
+- cloudant==2.9.0
 - constantly==15.1.0
 - cryptography==2.1.4
 - cssselect==1.0.3
@@ -410,12 +410,12 @@ Python パッケージ:
 - kafka-python==1.4.3
 - lxml==4.2.1
 - MarkupSafe==1.0
-- numpy==1.14.4
-- pandas==0.23.0
+- numpy==1.14.5
+- pandas==0.23.1
 - parsel==1.4.0
-- pika==0.11.2
+- pika==0.12.0
 - Pillow==5.1.0
-- psycopg2==2.7.4
+- psycopg2==2.7.5
 - pyasn1==0.4.2
 - pyasn1-modules==0.2.1
 - pycparser==2.18
@@ -427,7 +427,7 @@ Python パッケージ:
 - pytz==2018.3
 - queuelib==1.4.2
 - redis==2.10.6
-- requests==2.18.4
+- requests==2.19.1
 - scikit-learn==0.19.1
 - scipy==1.1.0
 - Scrapy==1.5.0
@@ -439,7 +439,7 @@ Python パッケージ:
 - urllib3==1.22
 - virtualenv==16.0.0
 - w3lib==1.19.0
-- watson-developer-cloud==1.3.5
+- watson-developer-cloud==1.4.0
 - Werkzeug==0.14.1
 - zope.interface==4.4.3
 
@@ -555,17 +555,17 @@ Swift 4 アクションは、Swift 4.1 `--kind swift:4.1` を使用して実行�
 Package.swift を使用して依存関係を組み込むには、[パッケージされた swift アクション](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable)の指示に従ってください。
 
 単一の Swift ソース・ファイルを使用する場合、Swift 4.1 アクションは以下のパッケージを使用できます。
-- Watson Developer Cloud SDK バージョン 0.27.0、https://github.com/watson-developer-cloud/swift-sdk
+- Watson Developer Cloud SDK バージョン 0.28.0、https://github.com/watson-developer-cloud/swift-sdk
 
 ### Swift 3.1.1 から Swift 4.1 へのマイグレーション
 
 #### 単一のソース・アクション・ファイルを使用する SwiftyJSON
-コンパイルされていない `swift:3.1.1` アクションがある場合、**SwiftyJSON** パッケージを使用するソース・ファイルと同様に、アクションをプリコンパイルし、`swift:4.1` kind アクションに使用したい SwiftyJSON のバージョンを指定する必要があります。Swift 4.1 以降、JSON データをネイティブに管理するためのより良いサポートがあることを考慮に入れてください。
+コンパイルされていない `swift:3.1.1` アクションがある場合、**SwiftyJSON** パッケージを使用するソース・ファイルと同様に、アクションをプリコンパイルし、`swift:4.1` kind アクションに使用したい SwiftyJSON のバージョンを指定する必要があります。 Swift 4.1 以降、JSON データをネイティブに管理するためのより良いサポートがあることを考慮に入れてください。
 
 ## PHP アクション
 {: #openwhisk_ref_php}
 
-PHP アクションは PHP 7.1.18 で実行されます。このランタイムを使用するには、アクションを作成または更新するときに `wsk` CLI パラメーター `--kind php:7.1` を指定します。この動作は、`.php` 拡張子を持つファイルでアクションを作成する際のデフォルトです。
+PHP アクションは PHP 7.1.18 で実行されます。このランタイムを使用するには、アクションを作成または更新するときに `wsk` CLI パラメーター `--kind php:7.1` を指定します。 この動作は、`.php` 拡張子を持つファイルでアクションを作成する際のデフォルトです。
 
 標準の PHP 拡張子に加えて、以下の PHP 拡張子が使用可能です。
 
@@ -585,22 +585,22 @@ PHP アクションは PHP 7.1.18 で実行されます。このランタイム�
 以下のコンポーザー・パッケージも使用可能です。
 
 - guzzlehttp/guzzle       v6.7.3
-- ramsey/uuid             v3.6.3
+- ramsey/uuid             v3.7.3
 
 ## Docker アクション
 {: #openwhisk_ref_docker}
 
 Docker アクションは、Docker コンテナー内のユーザー提供バイナリーを実行します。 バイナリーは、[python:2.7.12-alpine](https://hub.docker.com/r/library/python) に基づく Docker イメージで実行されるため、バイナリーはこのディストリビューションと互換でなければなりません。
 
-Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルドするための便利な方法です。 `ibmcloud fn sdk install docker` CLI プラグイン・コマンドでスケルトンをインストールできます。
+Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルドするための便利な方法です。 `ibmcloud wsk sdk install docker` CLI プラグイン・コマンドでスケルトンをインストールできます。
 
-メイン・バイナリー・プログラムはコンテナー内部の `/action/exec` に置かれる必要があります。 実行可能バイナリーは、`JSON` オブジェクトとしてデシリアライズ可能な単一コマンド・ライン引数ストリングから、入力引数を受け取ります。また、シリアライズされた `JSON` の単一行ストリングとして `stdout` を使用して、結果を返す必要があります。
+メイン・バイナリー・プログラムはコンテナー内部の `/action/exec` に置かれる必要があります。 実行可能バイナリーは、`JSON` オブジェクトとしてデシリアライズ可能な単一コマンド・ライン引数ストリングから、入力引数を受け取ります。 また、シリアライズされた `JSON` の単一行ストリングとして `stdout` を使用して、結果を返す必要があります。
 
 `dockerSkeleton` 内に含まれている `Dockerfile` を変更して、コンパイル・ステップや依存関係を組み込むことができます。
 
 ## REST API
 {: #openwhisk_ref_restapi}
-{{site.data.keyword.openwhisk_short}} REST API に関する情報は [REST API リファレンス](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)にあります。
+{{site.data.keyword.openwhisk_short}} REST API に関する情報は [REST API リファレンス](https://console.bluemix.net/apidocs/openwhisk)にあります。
 
 ## システム限度
 {: #openwhisk_syslimits}
@@ -621,7 +621,7 @@ Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルド�
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | 付加できるパラメーターの最大サイズ (MB)。 | 1 | 0 | 1 |
 | [proculimit](openwhisk_reference.html#openwhisk_syslimits_proculimit) | 1 つのアクションに使用可能なプロセスの最大数。 | 1024 | 0 | 1024 |
 | [result](openwhisk_reference.html#openwhisk_syslimits_result) | アクション呼び出し結果の最大サイズ (MB)。 | 1 | 0 | 1 |
-| [sequenceMaxActions](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | 1 つのシーケンスを構成するアクションの最大数。| 50 | 0 | 50* |
+| [sequenceMaxActions](openwhisk_reference.html#openwhisk_syslimits_sequencemax) | 1 つのシーケンスを構成するアクションの最大数。 | 50 | 0 | 50* |
 | [timeout](openwhisk_reference.html#openwhisk_syslimits_timeout) | 1 つのコンテナーが N ミリ秒より長く実行することは許可されません。 | 60000 | 100 | 600000 |
 
 ### 固定限度の引き上げ
@@ -689,7 +689,7 @@ Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルド�
 
 #### sequenceMaxActions (固定: 50*)
 {: #openwhisk_syslimits_sequencemax}
-*  1 つのシーケンスを構成するアクションの最大数。
+* 1 つのシーケンスを構成するアクションの最大数。
 * この限度は固定されており、変更することはできません。
 
 #### timeout (ms) (デフォルト: 60s)

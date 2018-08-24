@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -24,18 +24,20 @@ lastupdated: "2018-06-22"
 
 <dl>
 <dt>アクション</dt>
-<dd>[アクション](openwhisk_actions.html)は、1 つの特定のタスクを実行する 1 片のコードです。アクションは、任意の言語で書くことができます。例えば、JavaScript や Swift コードの小さなスニペットにしたり、Docker コンテナーに組み込まれたカスタム・バイナリー・コードにしたりできます。ユーザーは、ソース・コードまたは Docker イメージとして Cloud Functions にアクションを提供します。
-<br><br>アクションは、{{site.data.keyword.openwhisk_short}} API、CLI、または iOS SDK を使用して直接呼び出されたときに処理を実行します。また、アクションは、{{site.data.keyword.Bluemix_notm}} サービスおよびサード・パーティー・サービスからのイベントに、トリガーを使用して自動的に応答することもできます。</dd>
+<dd>[アクション](openwhisk_actions.html)は、1 つの特定のタスクを実行する 1 片のコードです。 アクションは、任意の言語で書くことができます。例えば、JavaScript や Swift コードの小さなスニペットにしたり、Docker コンテナーに組み込まれたカスタム・バイナリー・コードにしたりできます。 ユーザーは、ソース・コードまたは Docker イメージとして Cloud Functions にアクションを提供します。
+<br><br>アクションは、{{site.data.keyword.openwhisk_short}} API、CLI、または iOS SDK を使用して直接呼び出されたときに処理を実行します。 また、アクションは、{{site.data.keyword.Bluemix_notm}} サービスおよびサード・パーティー・サービスからのイベントに、トリガーを使用して自動的に応答することもできます。</dd>
 <dt>シーケンス</dt>
-<dd>一連のアクションをチェーニングして、コードを記述することなく、[シーケンス](openwhisk_actions.html#openwhisk_create_action_sequence)にまとめることができます。シーケンスは、順番に呼び出されるアクションのチェーンであり、1 つのアクションの出力が次のアクションへの入力として渡されます。これにより、既存のアクションを組み合わせて、素早く簡単に再利用できます。シーケンスは、アクションと同様に、REST API から呼び出したり、イベントに応答して自動的に呼び出したりできます。
+<dd>一連のアクションをチェーニングして、コードを記述することなく、[シーケンス](openwhisk_actions.html#openwhisk_create_action_sequence)にまとめることができます。 シーケンスは、順番に呼び出されるアクションのチェーンであり、1 つのアクションの出力が次のアクションへの入力として渡されます。 これにより、既存のアクションを組み合わせて、素早く簡単に再利用できます。 シーケンスは、アクションと同様に、REST API から呼び出したり、イベントに応答して自動的に呼び出したりできます。
 </dd>
 <dt>イベント</dt>
 <dd>イベントの例には、データベース・レコードへの変更、IoT センサーによる一定の気温を超えたことの感知、GitHub リポジトリーへの新規コードのコミット、Web アプリまたはモバイル・アプリからの単純な HTTP 要求などがあります。 外部および内部イベント・ソースからのイベントは、トリガーを介して送信され、ルールによってアクションがそうしたイベントに反応できます。</dd>
 <dt>トリガー</dt>
 <dd>[トリガー](openwhisk_triggers_rules.html#openwhisk_triggers_create)は、ある種のイベントに対して指定されたチャネルです。 トリガーとは、ユーザーから起動されるか、イベント・ソースによって起動されるかに関わらず、特定のタイプのイベントに対応するための宣言です。</dd>
 <dt>ルール</dt>
-<dd>[ルール](openwhisk_triggers_rules.html#openwhisk_rules_use)は、トリガーをアクションと関連付けます。トリガーが起動するたびに、ルールが関連のアクションを呼び出します。適切なルール・セットを使用して、単一のトリガー・イベントが
+<dd>[ルール](openwhisk_triggers_rules.html#openwhisk_rules_use)は、トリガーをアクションと関連付けます。 トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用し、関連付けられているアクションを呼び出します。適切なルール・セットを使用して、単一のトリガー・イベントが
 複数のアクションを呼び出すことも、複数のトリガーからのイベントに対する応答として 1 つのアクションを呼び出すこともできます。</dd>
+<dt>フィード</dt>
+<dd>[フィード](openwhisk_feeds.html#openwhisk_feeds) は、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 例えば、Git フィードでは、Git リポジトリーへのあらゆるコミットに対してトリガー・イベントを起動することがあります。</dd>
 <dt>パッケージ</dt>
 <dd>サービスおよびイベント・プロバイダーとの統合をパッケージで追加することができます。 [パッケージ](openwhisk_packages.html)は、フィードおよびアクションのバンドルです。 フィードは、トリガー・イベントを起動するように外部イベント・ソースを構成するコードです。 例えば、{{site.data.keyword.cloudant}} 変更フィードで作成されるトリガーは、{{site.data.keyword.cloudant_short_notm}} データベースで文書が変更されるか追加されるたびにそのトリガーを起動するようにサービスを構成します。 パッケージ内のアクションは、再使用可能なロジックを表します。サービス・プロバイダーがアクションを利用可能にすることによって、開発者はそのサービスをイベント・ソースとして使用し、そのサービスの API を呼び出すことができます。
 <br><br>既存のパッケージ・カタログを利用すると、素早く簡単に、有用な機能でアプリケーションを強化したり、エコシステム内の外部サービスにアクセスしたりできます。 {{site.data.keyword.openwhisk_short}} パッケージ対応の外部サービスの例として、{{site.data.keyword.cloudant_short_notm}}、The Weather Company、Slack、GitHub があります。</dd>
@@ -44,7 +46,7 @@ lastupdated: "2018-06-22"
 ## {{site.data.keyword.openwhisk_short}} の動作
 {: #openwhisk_how}
 
-すべてのコンポーネントをさらに詳細に説明するために、{{site.data.keyword.openwhisk_short}} システムからのアクションの呼び出しをトレースしてみます。呼び出しによって、ユーザーがシステムにフィードしたコードが実行され、その実行結果が返されます。次の図は、{{site.data.keyword.openwhisk_short}} アーキテクチャーの概要を示したものです。
+すべてのコンポーネントをさらに詳細に説明するために、{{site.data.keyword.openwhisk_short}} システムからのアクションの呼び出しをトレースしてみます。 呼び出しによって、ユーザーがシステムにフィードしたコードが実行され、その実行結果が返されます。 次の図は、{{site.data.keyword.openwhisk_short}} アーキテクチャーの概要を示したものです。
 
 ![{{site.data.keyword.openwhisk_short}} アーキテクチャー](./images/OpenWhisk.png)
 
@@ -60,7 +62,7 @@ OpenWhisk は、Nginx、Kafka、Docker、CouchDB などのコンポーネント�
 
 ### システムに入る: nginx
 
-まず、ユーザーに面している OpenWhisk の API は、完全に HTTP ベースであり、RESTful 設計に従っています。 したがって、CLI を介して送信されるコマンドは、OpenWhisk システムに対する HTTP 要求です。特定のコマンドは、おおよそ次のように変換されます。
+まず、ユーザーに面している OpenWhisk の API は、完全に HTTP ベースであり、RESTful 設計に従っています。 したがって、CLI を介して送信されるコマンドは、OpenWhisk システムに対する HTTP 要求です。 特定のコマンドは、おおよそ次のように変換されます。
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -98,7 +100,7 @@ Controller は、ユーザーがアクションを呼び出すための許可と
 
 ### アクションを呼び出す担当者: Load Balancer
 
-Load Balancer は、Controller の一部であり、実行プログラムの正常性状況を継続的にチェックすることにより、システム内で使用可能な実行プログラムの全体図を把握します。それらの実行プログラムを **Invoker** と呼びます。 使用可能な Invoker を把握している Load Balancer は、その中から、要求されたアクションを起動するInvoker を選択します。
+Load Balancer は、Controller の一部であり、実行プログラムの正常性状況を継続的にチェックすることにより、システム内で使用可能な実行プログラムの全体図を把握します。 それらの実行プログラムを **Invoker** と呼びます。 使用可能な Invoker を把握している Load Balancer は、その中から、要求されたアクションを起動するInvoker を選択します。
 
 ### 整列させる: Kafka
 
@@ -162,4 +164,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [エンティティー名](./openwhisk_reference.html#openwhisk_entities)
 * [アクションの意味](./openwhisk_reference.html#openwhisk_semantics)
 * [制限](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API リファレンス](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST API リファレンス](https://console.bluemix.net/apidocs/openwhisk)

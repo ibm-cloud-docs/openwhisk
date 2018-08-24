@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 {{site.data.keyword.openwhisk}} ofrece un potente plugin para la CLI de {{site.data.keyword.Bluemix_notm}} que permite la gestión completa del sistema {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
+
+Ahora puede utilizar el alias `fn` en los mandatos del plugin {{site.data.keyword.openwhisk_short}}: ` ibmcloud fn <command>`
+{: tip}
 
 ## Configuración de la CLI de {{site.data.keyword.Bluemix_notm}}
 {: #bluemix_cli_setup}
@@ -160,7 +163,7 @@ ibmcloud iam space-create "production"
 ## Migración de la CLI de OpenWhisk al plugin de CLI de {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Con la introducción del plugin de CLI de {{site.data.keyword.openwhisk_short}}, la CLI autónoma de OpenWhisk ya no es necesaria.
+Con la introducción del plugin de CLI de {{site.data.keyword.openwhisk_short}}, la CLI autónoma de OpenWhisk (`wsk`) ya no es necesaria.
 
 ### Sintaxis de mandatos
 {: #command_syntax}
@@ -204,6 +207,12 @@ Si tiene scripts que utilizan la CLI de OpenWhisk con el binario de `wsk`, todos
 {: #version_history}
 
 Un registro histórico de versiones que muestra los puntos destacados y las correcciones de errores.
+
+1.0.21 (2018-08-01)
+* Los alias `fn` y `functions` ahora se pueden utilizar para mandatos de {{site.data.keyword.openwhisk_short}}: `ibmcloud fn <command>` e `ibmcloud fn <command>`. También puede seguir utilizando `ibmcloud wsk <command>`.
+
+1.0.19 (2018-07-02)
+* Mejoras y arreglos de errores menores.
 
 1.0.18 (20-06-2018)
 * Arreglo para desenlazar instancias de servicio suministradas por el usuario.

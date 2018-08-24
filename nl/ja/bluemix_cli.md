@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -18,6 +18,9 @@ lastupdated: "2018-06-21"
 {{site.data.keyword.openwhisk}} は、{{site.data.keyword.openwhisk_short}} システムの完全な管理を可能にする {{site.data.keyword.Bluemix_notm}} CLI 用の強力なプラグインを提供します。
 {: shortdesc}
 
+{{site.data.keyword.openwhisk_short}} プラグイン・コマンドで、次の例に示すように、別名 `fn` が使用できるようになりました: `ibmcloud fn <command>`
+{: tip}
+
 ## {{site.data.keyword.Bluemix_notm}} CLI のセットアップ
 {: #bluemix_cli_setup}
 
@@ -26,7 +29,7 @@ lastupdated: "2018-06-21"
 
 1. [{{site.data.keyword.Bluemix_notm}} CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html) をダウンロードしてインストールします。
 
-2. {{site.data.keyword.Bluemix_notm}} CLI にログインします。 {{site.data.keyword.openwhisk_short}} は、{{site.data.keyword.Bluemix_notm}} の米国南部地域および英国地域で使用可能です。{{site.data.keyword.Bluemix_notm}} API エンドポイントが指定されていない場合、`-a` フラグを使用して指定してください。
+2. {{site.data.keyword.Bluemix_notm}} CLI にログインします。 {{site.data.keyword.openwhisk_short}} は、{{site.data.keyword.Bluemix_notm}} の米国南部地域および英国地域で使用可能です。 {{site.data.keyword.Bluemix_notm}} API エンドポイントが指定されていない場合、`-a` フラグを使用して指定してください。
 
     * 米国南部地域にログインするには、以下のようにします。
       ```
@@ -45,10 +48,10 @@ lastupdated: "2018-06-21"
 
 3. `ibmcloud login` コマンドでは、組織、スペース、パスワードなどの情報を求めるプロンプトが出されます (指定しなかった場合)。
 
-  ログイン時に組織およびスペースを指定することで、それらを求めるプロンプトをスキップできます。`ibmcloud login -o <ORG> -s <SPACE>` フラグを使用します。
+  ログイン時に組織およびスペースを指定することで、それらを求めるプロンプトをスキップできます。 `ibmcloud login -o <ORG> -s <SPACE>` フラグを使用します。
   {: tip}
 
-また、{{site.data.keyword.Bluemix_notm}} API キーを使用してログインすることもできます。 この方法は、フラグ `--sso` を指定してログインする必要があるフェデレーテッド・ログインがアカウントに対して構成されている場合に便利です。[API キーの使用](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key)は、継続的な統合 (CI) をセットアップする場合や、無人パイプラインを構成する場合にも役立ちます。
+また、{{site.data.keyword.Bluemix_notm}} API キーを使用してログインすることもできます。 この方法は、フラグ `--sso` を指定してログインする必要があるフェデレーテッド・ログインがアカウントに対して構成されている場合に便利です。 [API キーの使用](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key)は、継続的な統合 (CI) をセットアップする場合や、無人パイプラインを構成する場合にも役立ちます。
 
 1. 新しい API キーを作成します。
     ```
@@ -89,7 +92,7 @@ lastupdated: "2018-06-21"
     ```
     {: screen}
 
-3. `echo` のブロッキング (同期) 呼び出しを実行します。引数として `hello` を渡します。
+3. `echo` のブロッキング (同期) 呼び出しを実行します。 引数として `hello` を渡します。
     ```
     ibmcloud fn action invoke whisk.system/utils/echo -p message hello --result
     ```
@@ -138,7 +141,7 @@ HTTPS プロキシーを使用するように {{site.data.keyword.openwhisk_shor
 
 既にログインしている場合は、{{site.data.keyword.Bluemix_notm}} CLI で `ibmcloud target` コマンドを実行して、地域、組織、およびスペースを切り替えることができます。
 
-{{site.data.keyword.openwhisk_short}} は、{{site.data.keyword.Bluemix_notm}} の米国南部地域および英国地域で使用可能です。地域を変更するには、`ibmcloud target` コマンドを使用します。例えば、英国地域に切り替え、その地域内のスペース `staging` に切り替えるには、次のようにします。
+{{site.data.keyword.openwhisk_short}} は、{{site.data.keyword.Bluemix_notm}} の米国南部地域および英国地域で使用可能です。 地域を変更するには、`ibmcloud target` コマンドを使用します。 例えば、英国地域に切り替え、その地域内のスペース `staging` に切り替えるには、次のようにします。
 ```
 ibmcloud target -r eu-gb -s staging
 ```
@@ -158,7 +161,7 @@ ibmcloud iam space-create "production"
 ## OpenWhisk CLI から {{site.data.keyword.openwhisk_short}} CLI プラグインへのマイグレーション
 {: #cli_migration}
 
-{{site.data.keyword.openwhisk_short}} CLI プラグインの導入に伴い、OpenWhisk スタンドアロン CLI は不要になりました。
+{{site.data.keyword.openwhisk_short}} CLI プラグインの導入に伴い、OpenWhisk スタンドアロン CLI (`wsk`) は不要になりました。
 
 ### コマンド構文
 {: #command_syntax}
@@ -169,7 +172,7 @@ ibmcloud iam space-create "production"
 {: #api_authentication}
 
 OpenWhisk CLI では、認証 API キーおよび API ホストを構成する必要がありました。
-{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。 代わりに、`ibmcloud login` でログインし、`ibmcloud target` コマンドを使用して地域と名前空間のターゲットを指定できます。ログイン後は、すべてのコマンドを `ibmcloud fn` で開始します。
+{{site.data.keyword.openwhisk_short}} CLI プラグインでは、API キーおよび API ホストを明示的に構成する必要はありません。 代わりに、`ibmcloud login` でログインし、`ibmcloud target` コマンドを使用して地域と名前空間のターゲットを指定できます。 ログイン後は、すべてのコマンドを `ibmcloud fn` で開始します。
 
 cURL や Postman などの外部 HTTP クライアントで {{site.data.keyword.openwhisk_short}} の認証 API キーを使用する必要がある場合は、以下のコマンドで取得できます。
 
@@ -191,17 +194,23 @@ API キーは、{{site.data.keyword.openwhisk_short}} CLI プラグインのタ�
 ### API ゲートウェイ認証
 {: #apigw_authentication}
 
-OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のために API ゲートウェイの許可を構成するには、`wsk bluemix login` を実行する必要がありました。{{site.data.keyword.openwhisk_short}} CLI プラグインでは、`wsk bluemix login` を実行する必要はありません。代わりに、`ibmcloud login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインすると、{{site.data.keyword.openwhisk}} プラグインによって、現在のログインとターゲットの情報が自動的に利用されます。これで、`ibmcloud fn api` コマンドを使用して、API を管理できます。
+OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のために API ゲートウェイの許可を構成するには、`wsk bluemix login` を実行する必要がありました。 {{site.data.keyword.openwhisk_short}} CLI プラグインでは、`wsk bluemix login` を実行する必要はありません。 代わりに、`ibmcloud login` コマンドを使用して {{site.data.keyword.Bluemix_notm}} にログインすると、{{site.data.keyword.openwhisk}} プラグインによって、現在のログインとターゲットの情報が自動的に利用されます。 これで、`ibmcloud fn api` コマンドを使用して、API を管理できます。
 
 ### デプロイメント・スクリプトのマイグレーション
 {: #migrating_deploy_scripts}
 
-`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `ibmcloud fn` を使用することで、すべてのコマンドは同様に動作します。 {{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` を使用している現行コマンドが `ibmcloud fn` に変換されるようにすることができます。{{site.data.keyword.Bluemix_notm}} CLI の `ibmcloud login` および `ibmcloud target` コマンドは、無人モードで動作します。 無人モードでは、`ibmcloud fn` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
+`wsk` バイナリーで OpenWhisk CLI を使用するスクリプトがある場合、コマンド `ibmcloud fn` を使用することで、すべてのコマンドは同様に動作します。 {{site.data.keyword.Bluemix_notm}} CLI プラグインを使用するようにスクリプトを変更するか、別名またはラッパーを作成して、`wsk` を使用している現行コマンドが `ibmcloud fn` に変換されるようにすることができます。 {{site.data.keyword.Bluemix_notm}} CLI の `ibmcloud login` および `ibmcloud target` コマンドは、無人モードで動作します。 無人モードでは、`ibmcloud fn` コマンドを実行して {{site.data.keyword.openwhisk_short}} エンティティーをデプロイおよび管理する前に、環境を構成できます。
 
 ## バージョン履歴
 {: #version_history}
 
 以下は、バージョンの履歴レコードであり、ハイライトおよびバグ修正を示します。
+
+1.0.21 (2018-08-01)
+* {{site.data.keyword.openwhisk_short}} コマンドで、次の例に示すように、別名 `fn` および `functions` が使用できるようになりました: `ibmcloud fn <command>` および `ibmcloud fn <command>`。`ibmcloud wsk <command>` もまだ使用できます。
+
+1.0.19 (2018-07-02)
+* 小さいバグ修正および改善。
 
 1.0.18 (2018-06-20)
 * ユーザー提供のサービス・インスタンスをアンバインドするためのフィックス。
@@ -211,7 +220,7 @@ OpenWhisk CLI では、`wsk api` コマンドを使用して API の管理のた
 * `ibmcloud cf create-user-provided-service` コマンドを使用して作成されたユーザー提供のサービス・インスタンスをバインド (`ibmcloud wsk service bind`) およびアンバインド (`ibmcloud wsk service unbind`) するサポートの追加。
 
 1.0.16 (2018-05-24)
-* 小さいバグ修正および改善.
+* 小さいバグ修正および改善。
 
 1.0.15 (2018-05-21)
 * 小さいバグ修正および改善。

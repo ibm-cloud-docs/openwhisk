@@ -31,7 +31,7 @@ Per creare un trigger che reagisca quando i messaggi vengono pubblicati in un'is
 
 |Nome|Tipo|Descrizione|
 |---|---|---|
-|kafka_brokers_sasl|Array di stringhe JSON|Questo parametro è un array di stringhe `<host>:<port>` che comprendono i broker nella tua istanza {{site.data.keyword.messagehub}} |
+|kafka_brokers_sasl|Array di stringhe JSON|Questo parametro è un array di stringhe `<host>:<port>` che comprendono i broker nella tua istanza {{site.data.keyword.messagehub}}|
 |user|Stringa|Il tuo nome utente {{site.data.keyword.messagehub}}.|
 |password|Stringa|La tua password {{site.data.keyword.messagehub}}.|
 |topic|Stringa|L'argomento per cui vuoi che il trigger sia in ascolto.|

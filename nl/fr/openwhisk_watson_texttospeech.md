@@ -60,7 +60,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
   ```
   {: screen}
 
-## Configuration d'un package Watson Text to Speech en dehors d'{{site.data.keywrod.Bluemix_notm}}
+## Configuration d'un package Watson Text to Speech en dehors d'{{site.data.keyword.Bluemix_notm}}
 
 Si vous n'utilisez pas {{site.data.keyword.openwhisk_short}} dans {{site.data.keyword.Bluemix_notm}} ou si vous voulez configurer Watson Text to Speech en dehors d'{{site.data.keyword.Bluemix_notm}}, vous devez créer une liaison de package manuellement pour votre service Watson Text to Speech. Vous avez besoin du nom d'utilisateur du service et du mot de passe du service Watson Text to Speech.
 
@@ -91,6 +91,6 @@ Exemple de sortie :
 ```
 {
   "payload": "<base64 encoding of a .wav file>"
-  }
+}
 ```
 {: screen}

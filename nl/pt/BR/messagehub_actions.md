@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,8 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# {{site.data.keyword.messagehub}} pacote 
+
 {: #openwhisk_catalog_message_hub}
 
 Um pacote que permite a comunicação com instâncias do [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) para publicar e consumir mensagens usando a API nativa do Kafka de alto desempenho.
@@ -26,7 +27,7 @@ Um pacote que permite a comunicação com instâncias do [{{site.data.keyword.me
 
 3. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço {{site.data.keyword.messagehub}} criada.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 
@@ -91,7 +92,8 @@ Se você deseja usar uma ação do {{site.data.keyword.openwhisk_short}} para pr
 |valor|Sequência|O valor para a mensagem que você gostaria de produzir.|
 |Chave|Sequência (opcional)|A chave para a mensagem que você gostaria de produzir.|
 
-Embora os três primeiros parâmetros possam ser ligados automaticamente usando `ibmcloud fn package refresh`, veja o exemplo a seguir que chama a ação com todos os parâmetros necessários:
+Embora os três primeiros parâmetros possam ser ligados automaticamente usando `ibmcloud fn
+package refresh`, veja o exemplo a seguir que chama a ação com todos os parâmetros necessários:
 ```
 ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```

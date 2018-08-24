@@ -11,7 +11,7 @@ lastupdated: "2018-03-29"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack
+# Slack-Paket
 {: #openwhisk_catalog_slack}
 
 Das Paket `/whisk.system/slack` bietet eine komfortable Methode zur Verwendung der [Slack-APIs](https://api.slack.com/).

@@ -22,7 +22,7 @@ Aprenda a detectar si hay cambios en una base de datos de {{site.data.keyword.cl
 | `/whisk.system/cloudant` | paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant. |
 | `/whisk.system/cloudant/read` | acción | dbname, id | Leer un documento de la base de datos. |
 | `/whisk.system/cloudant/write` | acción | dbname, overwrite, doc | Escribir un documento en la base de datos. |
-| `/whisk.system/cloudant/changes` | Canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
+| `/whisk.system/cloudant/changes` | canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
 {: shortdesc}
 
 En las siguientes secciones se muestra la configuración de un paquete asociado y cómo utilizar acciones y canales de información en el paquete `/whisk.system/cloudant`. Para obtener más información sobre cómo configurar la base de datos de {{site.data.keyword.cloudant_short_notm}} y cómo leerla o escribir en la misma, consulte el tema sobre [Acciones de {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).
@@ -82,12 +82,12 @@ Los parámetros que se utilizan en este ejemplo son los siguientes:
 
 6. En su panel de control de {{site.data.keyword.cloudant_short_notm}}, modifique un documento existente o cree uno nuevo. El documento debe tener un campo _status_, con el valor **new**.
 
-7. Observe las nuevas activaciones para el desencadenante **myCloudantTrigger** para cada cambio de documento únicamente si el estado del documento es **new** en base a la función de filtro y los parámetros de consulta.
+7. Observe las nuevas activaciones para el desencadenante **myCloudantTrigger** para cada cambio de documento únicamente si el estado del documento es **new** con base a la función de filtro y los parámetros de consulta.
 
 Si no detecta nuevas activaciones, consulte el tema [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) que muestra cómo leer y escribir en una base de datos {{site.data.keyword.cloudant_short_notm}}. Pruebe los siguientes pasos de lectura y escritura para ayudar a comprobar si sus credenciales de {{site.data.keyword.cloudant_short_notm}} son correctas.
 {: tip}
 
-## Estructura de los datos de un suceso del desencadenante
+## Estructura de los datos de un suceso desencadenante
 
 El contenido de los sucesos generados tiene los siguientes parámetros:
 
@@ -172,7 +172,7 @@ ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```
 {: pre}
 
-Se puede utilizar la acción `sequenceAction` en una regla que active la acción sobre nuevos sucesos de desencadenante de {{site.data.keyword.cloudant_short_notm}}.
+Se puede utilizar la acción `sequenceAction` en una regla que active la acción sobre nuevos sucesos desencadenantes de {{site.data.keyword.cloudant_short_notm}}.
 ```
 ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
 ```

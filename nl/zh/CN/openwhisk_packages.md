@@ -294,7 +294,7 @@ ok: created trigger feed everyEightSeconds
 ## 创建包
 {: #openwhisk_packages_create}
 
-包用于组织一组相关的操作和订阅源。
+包用于组织一组相关操作和订阅源。
 它还允许在包中的所有实体之间共享参数。
 
 要创建定制包并在其中包含简单操作，请尝试以下示例：

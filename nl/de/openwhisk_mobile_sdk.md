@@ -238,7 +238,7 @@ Alle anderen Kombinationen haben einen Fehler WhiskError.QualifiedName zur Folge
 
 ### SDK-Schaltfläche
 
-Aus Gründen der Verwendungsfreundlichkeit enthält das SDK eine Schaltfläche `WhiskButton`, die die Schaltfläche `UIButton` erweitert, sodass sie Aktionen aufrufen kann. Gehen Sie zur Verwendung von `WhiskButton` wie im folgenden Beispiel vor:
+Aus Gründen der Verwendungsfreundlichkeit enthält das SDK eine Schaltfläche `WhiskButton`, die die Schaltfläche `UIButton` erweitert, sodass sie Aktionen aufrufen kann.  Gehen Sie zur Verwendung von `WhiskButton` wie im folgenden Beispiel vor:
 
 ```swift
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))

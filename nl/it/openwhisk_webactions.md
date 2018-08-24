@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Azioni web
+# Creazione di azioni web
 {: #openwhisk_webactions}
 
-Le azioni web sono azioni OpenWhisk, che sono annotate per consentire rapidamente agli sviluppatori di creare applicazioni basate sul web. Queste azioni annotate permettono agli sviluppatori di programmare la logica di backend a cui la tua applicazione web può accedere in modo anonimo, senza richiedere una chiave di autenticazione OpenWhisk. Spetta allo sviluppatore di azioni implementare la propria autenticazione e autorizzazione desiderata (ovvero, il flusso OAuth).
+Le azioni web sono azioni {{site.data.keyword.openwhisk}} che sono annotate per consentire rapidamente agli sviluppatori di creare applicazioni basate sul web. Queste azioni annotate permettono agli sviluppatori di programmare la logica di backend a cui la tua applicazione web può accedere in modo anonimo, senza richiedere una chiave di autenticazione {{site.data.keyword.openwhisk_short}}. Spetta allo sviluppatore di azioni implementare la propria autenticazione e autorizzazione desiderate o il flusso OAuth.
 {: shortdesc}
 
 Le attivazioni dell'azione web sono associate all'utente che ha creato l'azione. Questa azione rimanda il costo dell'attivazione dal chiamante al proprietario dell'azione.
@@ -122,12 +122,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [limite della dimensione della risposta](./openwhisk_reference.html) per le azioni poiché una risposta che supera i limiti predefiniti del sistema ha esisto negativo. Ad esempio, gli oggetti di grandi dimensioni non vengono inviati in linea tramite OpenWhisk, ma vengono invece rimandati ad un archivio oggetti.
+It is important to be aware of the [limite della dimensione della risposta](./openwhisk_reference.html) per le azioni poiché una risposta che supera i limiti predefiniti del sistema ha esisto negativo. Ad esempio, gli oggetti di grandi dimensioni non vengono inviati in linea tramite {{site.data.keyword.openwhisk_short}}, ma vengono invece rimandati ad un archivio oggetti.
 
 ## Gestione di richieste HTTP con le azioni
 {: #openwhisk_webactions_http}
 
-Un'azione OpenWhisk che non è un'azione web richiede l'autenticazione e deve rispondere con un oggetto JSON. Al contrario, le azioni web possono essere richiamate senza autenticazione e possono essere utilizzate per implementare gestori HTTP che rispondono con il contenuto di _headers_, _statusCode_ e _body_ di diversi tipi. L'azione web deve restituire un oggetto JSON. Tuttavia, il sistema OpenWhisk (ossia il `controller`), considera un'azione web in modo diverso se il suo risultato include una o più delle seguenti proprietà JSON di livello superiore:
+Un'azione {{site.data.keyword.openwhisk_short}} che non è un'azione web richiede l'autenticazione e deve rispondere con un oggetto JSON. Al contrario, le azioni web possono essere richiamate senza autenticazione e possono essere utilizzate per implementare gestori HTTP che rispondono con il contenuto di _headers_, _statusCode_ e _body_ di diversi tipi. L'azione web deve restituire un oggetto JSON. Tuttavia, il sistema {{site.data.keyword.openwhisk_short}} (ossia il `controller`), considera un'azione web in modo diverso se il suo risultato include una o più delle seguenti proprietà JSON di livello superiore:
 
 - `headers`: un oggetto JSON in cui le chiavi sono nomi intestazione e i valori sono valori stringa, numero o booleano per tali intestazioni ('impostazione predefinita è nessuna intestazione). Per inviare più valori per una singola intestazione, il valore dell'intestazione è un array di valori JSON.
 - `statusCode`: un codice di stato HTTP valido (il valore predefinito è 200 OK).
@@ -147,7 +147,7 @@ Vedi i seguenti parametri HTTP:
 - `__ow_method` (tipo: stringa). Il metodo HTTP della richiesta.
 - `__ow_headers` (tipo: associazione da stringa a stringa): le intestazioni della richiesta.
 - `__ow_path` (tipo: stringa): il percorso non corrispondente della richiesta (la corrispondenza si interrompe una volta consumata l'estensione dell'azione).
-- `__ow_user` (tipo: stringa): lo spazio dei nomi che identifica il soggetto autenticato OpenWhisk
+- `__ow_user` (tipo: stringa): lo spazio dei nomi che identifica il soggetto autenticato {{site.data.keyword.openwhisk_short}}
 - `__ow_body` (tipo: stringa): l'entità del corpo della richiesta, come stringa codificata in base64 quando il contenuto è binario o altrimenti stringa semplice
 - `__ow_query` (tipo: stringa): i parametri di query dalla richiesta sotto forma di stringa non analizzata
 
@@ -166,7 +166,7 @@ Protocolli SSL non supportati: SSLv2, SSLv3
 
 Le azioni web offrono funzioni aggiuntive che includono:
 
-- `Estensioni di contenuto`: la richiesta deve specificare il suo tipo di contenuto desiderato come  `.json`, `.html`, `.http`, `.svg` o `.text`. Il tipo viene specificato aggiungendo un'estensione al nome dell'azione nell'URI, in modo che l'azione `/guest/demo/hello` sia indicata come `/guest/demo/hello.http`, ad esempio, per ricevere una risposta HTTP. Per praticità, viene utilizzata l'estensione `.http` se non viene rilevata alcuna estensione.
+- `Estensioni di contenuto`: la richiesta deve specificare il suo tipo di contenuto desiderato come `.json`, `.html`, `.http`, `.svg` o `.text`. Il tipo viene specificato aggiungendo un'estensione al nome dell'azione nell'URI, in modo che l'azione `/guest/demo/hello` sia indicata come `/guest/demo/hello.http`, ad esempio, per ricevere una risposta HTTP. Per praticità, viene utilizzata l'estensione `.http` se non viene rilevata alcuna estensione.
 - `Proiezione dei campi dal risultato`: il percorso che segue il nome dell'azione viene utilizzato per proiettare uno o più livelli della risposta.
 `/guest/demo/hello.html/body`. Questa funzione consente a un'azione che restituisce un dizionario `{body: "..." }` di proiettare la proprietà `body` e di restituire direttamente il suo valore stringa. Il percorso proiettato segue un modello di percorso assoluto (come in XPath).
 - `Parametri di query e corpo come input`: l'azione riceve i parametri di query così come i parametri del corpo della richiesta. L'ordine di precedenza per l'unione dei parametri è: parametri di pacchetto, parametri di azione, parametri di query e parametri di corpo. Ognuno di questi parametri può sovrascrivere qualsiasi valore precedente se si verifica una sovrapposizione. Ad esempio, `/guest/demo/hello.http?name=Jane` può passare l'argomento `{name: "Jane"}` all'azione.
@@ -367,7 +367,7 @@ curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-
 
 ## Disabilitazione delle azioni web
 
-Per disabilitare il richiamo di un'azione web tramite l'API web (`https://openwhisk.bluemix.net/api/v1/web/`), passa il valore `false` o `no` all'indicatore `--web` per aggiornare un'azione con la CLI.
+Per disabilitare la chiamata di un'azione web tramite l'API web (`https://openwhisk.bluemix.net/api/v1/web/`), passa il valore `false` o `no` all'indicatore `--web` per aggiornare un'azione con la CLI.
 ```
 ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
@@ -554,7 +554,7 @@ Output di esempio:
 
 Un'azione {{site.data.keyword.openwhisk_short}} non riesce in due diverse possibili modalità di errore. La prima è nota come _application error_ ed è analoga a un'eccezione rilevata: l'azione restituisce un oggetto JSON che contiene una proprietà `error` di livello superiore. La seconda è un _developer error_, che si verifica quando l'azione non riesce in modo irreversibile e non produce una risposta (simile a un'eccezione non rilevata). Per le azioni web, il controller gestisce gli errori applicazione nel seguente modo:
 
-- Qualsiasi proiezione di percorso specificata viene ignorata e il controller proietta invece la proprietà  `error`.
+- Qualsiasi proiezione di percorso specificata viene ignorata e il controller proietta invece la proprietà `error`.
 - Il controller applica la gestione dei contenuti prevista dall'estensione dell'azione al valore della proprietà `error`.
 
-Gli sviluppatori devono sapere come possono essere utilizzate le azioni web e generare risposte di errore appropriate. Ad esempio, un'azione web utilizzata con l'estensione `.http` restituisce una risposta HTTP come `{error: { statusCode: 400 }`. In caso contrario, si verifica una mancata corrispondenza tra il `Content-Type` previsto dall'estensione e il `Content-Type` dell'azione nella risposta di errore. È necessario prestare particolare attenzione alle azioni web che sono sequenze, in modo che i componenti che costituiscono una sequenza possano generare errori adeguati laddove necessario. 
+Gli sviluppatori devono sapere come possono essere utilizzate le azioni web e generare risposte di errore appropriate. Ad esempio, un'azione web utilizzata con l'estensione `.http` restituisce una risposta HTTP come `{error: { statusCode: 400 }`. In caso contrario, si verifica una mancata corrispondenza tra il `Content-Type` previsto dall'estensione e il `Content-Type` dell'azione nella risposta di errore. È necessario prestare particolare attenzione alle azioni web che sono sequenze, in modo che i componenti che costituiscono una sequenza possano generare errori adeguati laddove necessario.

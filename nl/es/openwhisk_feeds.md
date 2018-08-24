@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Proveedores de sucesos personalizados
+# Creación de canales de información de proveedores de sucesos personalizados
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} da soporte a una API abierta, donde cualquier usuario puede exponer un servicio productor de sucesos como un canal de información en un paquete. La siguiente sección describe las opciones de arquitectura e implementación para proporcionar canales de información personalizados propios.

@@ -11,16 +11,15 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# 行動推送
+# 行動推送套件
 {: #openwhisk_catalog_pushnotifications}
 
 瞭解如何建立 Push 套件連結，並使用 `/whisk.system/pushnotifications` 套件傳送簡單推送通知，而此套件可讓您使用推送服務。
 {: shortdesc}
 
-該套件包括下列動作及「資訊來源」：
+該套件包括下列動作及資訊來源：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` |套件| appId、appSecret、admin_url |使用 Push 服務。|
 |`/whisk.system/pushnotifications/sendMessage` |動作|text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload|將推送通知傳送至一個以上的指定裝置。|

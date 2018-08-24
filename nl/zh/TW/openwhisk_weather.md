@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather
+# Weather 套件
 {: #openwhisk_catalog_weather}
 
 `/whisk.system/weather` 套件提供一種簡便的方式來呼叫 Weather Company Data for {{site.data.keyword.Bluemix}} API。
@@ -19,8 +19,7 @@ lastupdated: "2018-03-27"
 
 該套件包含下列動作。
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/weather` |套件|username、password|Weather Company Data for {{site.data.keyword.Bluemix_notm}} API 的服務 |
 |`/whisk.system/weather/forecast` |動作|latitude、longitude、timePeriod|指定時段的預報|
@@ -65,7 +64,7 @@ lastupdated: "2018-03-27"
 
 如果您不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或者要在 {{site.data.keyword.Bluemix_notm}} 外部設定 Weather Company Data 服務，則必須手動建立 WWeather Company Data 服務的套件連結。您需要 Weather Company Data 服務使用者名稱及密碼。
 
-建立針對 Watson Translator 服務所配置的套件連結。
+建立針對 Weather 服務所配置的套件連結。
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

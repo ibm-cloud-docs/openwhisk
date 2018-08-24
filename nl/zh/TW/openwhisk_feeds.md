@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# 自訂事件提供者
+# 建立自訂事件提供者資訊來源
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} 支援開放式 API，任何使用者都可以在其中將事件生產者服務公開為套件中的資訊來源。下節說明架構，以及用於提供專屬自訂資訊來源的實作選項。
@@ -47,18 +47,18 @@ an open repo -->
 
 - **觸發程式**技術上而言是某個事件類別的名稱。每一個事件只屬於一個觸發程式；觸發程式則類似主題型發佈/訂閱系統中的*主題*。**規則** *T -> A* 表示只要觸發程式 *T* 的事件到達，就會使用觸發程式有效負載來呼叫動作 *A*。
 
-- **資訊來源**是全部屬於某個觸發程式 *T* 的一連串事件。「資訊來源」是透過**資訊來源動作**所控制的，而資訊來源動作會處理建立、刪除、暫停及回復可構成「資訊來源」的一連串事件。「資訊來源」動作一般會使用管理通知的 REST API，與產生事件的外部服務互動。
+- **資訊來源**是全部屬於某個觸發程式 *T* 的一連串事件。資訊來源是透過**資訊來源動作**所控制的，而資訊來源動作會處理建立、刪除、暫停及回復可構成資訊來源的一連串事件。資訊來源動作一般會使用管理通知的 REST API，與產生事件的外部服務互動。
 
 ##  實作資訊來源動作
 
 *資訊來源動作* 是一般 {{site.data.keyword.openwhisk_short}} *動作*，接受下列參數：
 * **lifecycleEvent**：'CREATE'、'READ'、'UPDATE'、'DELETE'、'PAUSE' 或 'UNPAUSE' 其中之一。
-* **triggerName**：觸發程式的完整名稱，其中包含從此「資訊來源」產生的事件。
+* **triggerName**：觸發程式的完整名稱，其中包含從此資訊來源產生的事件。
 * **authKey**：擁有觸發程式之 {{site.data.keyword.openwhisk_short}} 使用者的「基本」鑑別認證。
 
-「資訊來源」動作也可以接受任何管理資訊來源所需的其他參數。例如，「{{site.data.keyword.cloudant}} changes 資訊來源」動作預期接收的參數包括 *'dbname'*、*'username'* 等等。
+資訊來源動作也可以接受任何管理資訊來源所需的其他參數。例如，{{site.data.keyword.cloudant}} changes 資訊來源動作預期接收的參數包括 *'dbname'*、*'username'* 等等。
 
-使用者從 CLI 使用 **--feed** 參數建立觸發程式時，系統會使用適當的參數自動呼叫「資訊來源」動作。
+使用者從 CLI 使用 **--feed** 參數建立觸發程式時，系統會使用適當的參數自動呼叫資訊來源動作。
 
 例如，假設使用者利用使用者名稱及密碼作為已連結參數，來建立 **cloudant** 套件的 `mycloudant` 連結。如果使用者從 CLI 發出下列指令：
 ```
@@ -72,11 +72,11 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 ```
 {: pre}
 
-名為 *changes* 的「資訊來源」動作會採用這些參數，且預期會執行任何必要動作，以從 {{site.data.keyword.cloudant_short_notm}} 設定一連串事件。「資訊來源」動作是使用適當的配置進行，其會導向觸發程式 *T*。
+名為 *changes* 的資訊來源動作會採用這些參數，且預期會執行任何必要動作，以從 {{site.data.keyword.cloudant_short_notm}} 設定一連串事件。資訊來源動作是使用適當的配置進行，其會導向觸發程式 *T*。
 
-針對「{{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源」，動作會直接與使用連線型架構所實作的 *{{site.data.keyword.cloudant_short_notm}} 觸發程式* 服務交談。
+針對 {{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源，動作會直接與使用連線型架構所實作的 *{{site.data.keyword.cloudant_short_notm}} 觸發程式* 服務交談。
 
-`ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 及 `ibmcloud fn trigger get` 會執行類似的「資訊來源」動作通訊協定。
+`ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 及 `ibmcloud fn trigger get` 會執行類似的資訊來源動作通訊協定。
 
 ## 使用連結鉤實作資訊來源
 
@@ -84,7 +84,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 運用此方法，_不需要_ 在 {{site.data.keyword.openwhisk_short}} 外部使用任何持續性服務。所有資訊來源管理都會透過 Stateless {{site.data.keyword.openwhisk_short}} *資訊來源動作* 自然進行，而這些資訊來源動作會直接與協力廠商的 Webhook API 進行協議。
 
-使用 `CREATE` 呼叫時，「資訊來源」動作只會安裝某個其他服務的 Webhook，並要求遠端服務將通知 POST 至 {{site.data.keyword.openwhisk_short}} 中的適當 `fireTrigger` URL。
+使用 `CREATE` 呼叫時，資訊來源動作只會安裝某個其他服務的 Webhook，並要求遠端服務將通知 POST 至 {{site.data.keyword.openwhisk_short}} 中的適當 `fireTrigger` URL。
 
 指示 Webhook 將通知傳送至 URL，例如：
 
@@ -96,13 +96,13 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 可以在 {{site.data.keyword.openwhisk_short}} 內設定 {{site.data.keyword.openwhisk_short}} *動作* 來完整輪詢資訊來源，而不需要使用任何持續性連線或外部服務。
 
-針對無法使用 Webhook 但不需要高容量或低延遲回應時間的「資訊來源」，輪詢是具吸引力的選項。
+針對無法使用 Webhook 但不需要高容量或低延遲回應時間的資訊來源，輪詢是具吸引力的選項。
 
-為了設定輪詢型「資訊來源」，「資訊來源」動作會在呼叫 `CREATE` 時採取下列步驟：
+為了設定輪詢型資訊來源，資訊來源動作會在呼叫 `CREATE` 時採取下列步驟：
 
-1. 「資訊來源」動作會使用「`whisk.system/alarms` 資訊來源」，以所要的頻率設定定期觸發程式 (*T*)。
-2. 「資訊來源」開發人員會建立 `pollMyService` 動作，此動作會輪詢遠端服務並傳回任何新事件。
-3. 「資訊來源」動作會設定*規則* *T -> pollMyService*。
+1. 資訊來源動作會使用 `whisk.system/alarms` 資訊來源，以所要的頻率設定定期觸發程式 (*T*)。
+2. 資訊來源開發人員會建立 `pollMyService` 動作，此動作會輪詢遠端服務並傳回任何新事件。
+3. 資訊來源動作會設定*規則* *T -> pollMyService*。
 
 此程序會使用 {{site.data.keyword.openwhisk_short}} 動作完整實作輪詢型觸發程式，而不需要使用個別服務。
 
@@ -114,7 +114,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 提供者服務有一個 REST API，其容許 {{site.data.keyword.openwhisk_short}} *資訊來源動作* 控制資訊來源。提供者服務會作為事件提供者與 {{site.data.keyword.openwhisk_short}} 之間的 Proxy。當它收到來自協力廠商的事件時，會透過發動觸發程式將它們傳送至 {{site.data.keyword.openwhisk_short}}。
 
-「{{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源」是標準範例，因為它是一個 `cloudanttrigger` 服務，在持續性連線的 {{site.data.keyword.cloudant_short_notm}} 通知與 {{site.data.keyword.openwhisk_short}} 觸發程式之間調解。
+{{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源是標準範例，因為它是一個 `cloudanttrigger` 服務，在持續性連線的 {{site.data.keyword.cloudant_short_notm}} 通知與 {{site.data.keyword.openwhisk_short}} 觸發程式之間調解。
 <!-- TODO: add a reference to the open source implementation -->
 
 *警示* 資訊來源是使用類似的型樣進行實作。

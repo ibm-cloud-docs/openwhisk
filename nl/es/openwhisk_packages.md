@@ -17,9 +17,9 @@ lastupdated: "2018-06-22"
 En {{site.data.keyword.openwhisk}}, puede utilizar paquetes para agrupar un conjunto de acciones relacionadas y compartirlas con otros.
 {: shortdesc}
 
-Un paquete puede incluir *acciones* y *canales de información*.
+Un paquete puede incluir *actions* y *feeds* (acciones y canales de información).
 - Una acción es un segmento de código que se ejecuta en {{site.data.keyword.openwhisk_short}}. Por ejemplo, el paquete {{site.data.keyword.cloudant}} incluye acciones para leer y escribir registros en una base de datos {{site.data.keyword.cloudant_short_notm}}.
-- Un canal de información se utiliza para configurar un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, el paquete Alarma incluye un canal de información que puede activar un desencadenante en una frecuencia especificada.
+- Un canal de información sirve para configurar un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, el paquete Alarma incluye un canal de información que puede activar un desencadenante en una frecuencia especificada.
 
 Toda entidad de {{site.data.keyword.openwhisk_short}}, incluyendo los paquetes, pertenecen a un *namespace* (espacio de nombres), y el nombre completo de una entidad es `/namespaceName[/packageName]/entityName`. Para obtener más información, consulte las [directrices de denominación](./openwhisk_reference.html#openwhisk_entities).
 

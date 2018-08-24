@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather
+# Package Weather
 {: #openwhisk_catalog_weather}
 
 Le package `/whisk.system/weather` offre une méthode pratique permettant d'appeler The Weather Company Data pour l'API {{site.data.keyword.Bluemix}}.
@@ -30,7 +30,7 @@ Il est recommandé de créer une liaison de package avec les valeurs `username` 
 
 Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Bluemix_notm}}, les liaisons de package sont automatiquement créées pour vos instances de service {{site.data.keyword.Bluemix_notm}} Weather.
 
-1. Créez une instance de service Weather Company Data dans votre [tableau de bord](http://console.bluemix.net) {{site.data.keyword.Bluemix_notm}}. 
+1. Créez une instance de service Weather Company Data dans votre [tableau de bord](http://console.bluemix.net) {{site.data.keyword.Bluemix_notm}}.
 
   Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
 
@@ -64,7 +64,7 @@ Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Blue
 
 Si vous n'utilisez pas {{site.data.keyword.openwhisk_short}} dans {{site.data.keyword.Bluemix_notm}} ou si vous voulez configurer le service Weather Company Data en dehors d'{{site.data.keyword.Bluemix_notm}}, vous devez créer manuellement une liaison de package pour votre service Weather Company Data. Vous devez connaître le nom d'utilisateur et le mot de passe du service Weather Company Data.
 
-Créez une liaison de package configurée pour votre service Watson Translator.
+Créez une liaison de package configurée pour votre service Weather.
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

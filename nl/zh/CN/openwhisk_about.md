@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -33,7 +33,9 @@ lastupdated: "2018-06-22"
 <dt>触发器</dt>
 <dd>[触发器](openwhisk_triggers_rules.html#openwhisk_triggers_create)是为某类事件指定的通道。触发器是指要对特定类型的事件做出反应的声明，事件可来自用户或来自事件源。</dd>
 <dt>规则</dt>
-<dd>[规则](openwhisk_triggers_rules.html#openwhisk_rules_use)将触发器与操作关联在一起。每次触发器触发时，规则都会调用关联的操作。使用相应的规则集时，可以通过单个触发器事件来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。</dd>
+<dd>[规则](openwhisk_triggers_rules.html#openwhisk_rules_use)将触发器与操作关联在一起。每次触发器触发时，规则都会将触发器事件作为输入，并调用关联的操作。使用相应的规则集时，可以通过单个触发器事件来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。</dd>
+<dt>订阅源</dt>
+<dd>通过[订阅源](openwhisk_feeds.html#openwhisk_feeds)，可以方便地配置外部事件源来触发 {{site.data.keyword.openwhisk_short}} 可使用的触发器事件。例如，Git 订阅源可针对 Git 存储库中的每次落实，触发触发器事件。</dd>
 <dt>包</dt>
 <dd>可以随包添加与服务和事件提供程序的集成。[包](openwhisk_packages.html)是捆绑在一起的一组订阅源和操作。订阅源是一段代码，用于配置外部事件源以触发触发器事件。例如，使用 {{site.data.keyword.cloudant}} 更改订阅源创建的触发器可将服务配置为每次修改文档或将文档添加到 {{site.data.keyword.cloudant_short_notm}} 数据库时都触发该触发器。包中的操作表示可复用逻辑，服务提供者可提供此逻辑，以便开发者不仅能够将服务用作事件源，还能调用该服务的 API。<br><br>通过包的现有目录，能够迅速借助多个有用的功能来增强应用程序，也能访问生态系统中的外部服务。具有 {{site.data.keyword.openwhisk_short}} 包的外部服务的示例包括 {{site.data.keyword.cloudant_short_notm}}、The Weather Company、Slack 和 GitHub。</dd>
 </dl>
@@ -160,4 +162,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [实体名称](./openwhisk_reference.html#openwhisk_entities)
 * [操作语义](./openwhisk_reference.html#openwhisk_semantics)
 * [限制](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 参考](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST API 参考](https://console.bluemix.net/apidocs/openwhisk)

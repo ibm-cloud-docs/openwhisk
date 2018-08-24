@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -57,9 +57,9 @@ Soyez rapidement opérationnel avec l'exemple de code JavaScript HelloWorld. Cet
     /**
      * Hello world en tant qu'action OpenWhisk.
      */
-function main(params) {
+    function main(params) {
         var name = params.name || 'World';
-    return {payload:  'Hello, ' + name + '!'};
+        return {payload:  'Hello, ' + name + '!'};
     }
     ```
     {: codeblock}

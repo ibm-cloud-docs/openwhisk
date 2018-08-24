@@ -11,13 +11,13 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# 모바일 푸시
+# 모바일 푸시 패키지
 {: #openwhisk_catalog_pushnotifications}
 
 푸시 패키지 바인딩을 작성하는 방법을 알아보고 푸시 서비스에 대한 작업을 수행하는 기능을 제공하는 `/whisk.system/pushnotifications` 패키지를 사용하여 단순 푸시 알림을 전송하십시오.
 {: shortdesc}
 
-패키지에는 다음 액션 및 피드가 포함됩니다.
+패키지에는 다음의 액션 및 피드가 포함됩니다.
 
 |엔티티 |유형 |매개변수 |설명 |
 | --- | --- | --- | --- |
@@ -43,7 +43,7 @@ lastupdated: "2018-06-22"
 
 3. [푸시 알림 애플리케이션](https://console.bluemix.net/docs/services/mobilepush/index.html)을 구성하십시오.
 
-  작성된 {{site.data.keyword.Bluemix_notm}} 앱의 **App GUID** 및 **App Secret**을 반드시 기억하십시오.
+  작성된 {{site.data.keyword.Bluemix_notm}} 앱의 **앱 GUID** 및 **앱 시크릿**을 반드시 기억하십시오.
 
 4. `/whisk.system/pushnotifications`로 패키지 바인딩을 작성하십시오.
   ```
@@ -70,7 +70,7 @@ lastupdated: "2018-06-22"
 `/whisk.system/pushnotifications/sendMessage` 액션은 등록된 디바이스에 푸시 알림을 전송합니다. 매개변수는 다음과 같습니다.
 - `text`: 사용자에게 표시될 알림 메시지입니다. 예: `-p text "Hi, OpenWhisk send a notification"`.
 - `url`: 경보와 함께 전송될 수 있는 URL입니다. 예: `-p url "https:\\www.w3.ibm.com"`.
-- `apiHost`: API 호스트를 지정하는 선택적 문자열입니다. 기본값은 `mobile.ng.bluemix.net`입니다. 예를 들어, `-p apiHost "mobile.eu-gb.bluemix.net"`입니다.
+- `apiHost`: API 호스트를 지정하는 선택적 문자열입니다. 기본값은 `mobile.ng.bluemix.net`입니다.  예를 들어, `-p apiHost "mobile.eu-gb.bluemix.net"`입니다.
 - `deviceIds`: 지정된 디바이스의 목록입니다. 예: `-p deviceIds ["deviceID1"]`.
 - `platforms`: 지정된 플랫폼의 디바이스에 알림을 전송합니다. Apple(iOS) 디바이스의 경우에는 'A'이며, Google(Android) 디바이스의 경우에는 'G'입니다. 예: `-p platforms ["A"]`.
 - `userIds`: 지정된 사용자의 디바이스에 알림을 전송합니다. 예: `-p userIds "[\"testUser\"]"`

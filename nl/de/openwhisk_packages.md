@@ -19,7 +19,7 @@ In {{site.data.keyword.openwhisk}} können Sie Pakete verwenden, um eine Gruppe 
 
 Ein Paket kann *Aktionen* und *Feeds* enthalten.
 - Eine Aktion ist ein Abschnitt Code, der in {{site.data.keyword.openwhisk_short}} ausgeführt wird. Zum Beispiel enthält das {{site.data.keyword.cloudant}}-Paket Aktionen zum Lesen und Schreiben von Datensätzen in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank.
-- Ein Feed dient zum Konfigurieren einer externen Ereignisquelle zum Aktivieren von Auslöserereignissen. Zum Beispiel enthält das Paket für Alarme einen Feed, der einen Auslöser mit einer angegebenen Häufigkeit auslösen kann.
+- Ein Feed dient zum Konfigurieren einer externen Ereignisquelle, sodass diese Auslöserereignisse aktiviert. Das Paket für Alarme enthält zum Beispiel einen Feed, der einen Auslöser mit einer angegebenen Häufigkeit anwenden kann.
 
 Jede {{site.data.keyword.openwhisk_short}}-Entität, einschließlich Paketen, gehört in einen *Namensbereich*. Der vollständig qualifizierte Name einer Entität setzt sich dementsprechend wie folgt zusammen: `/Namensbereichsname[/Paketname]/Entitätsname`. Weitere Informationen finden Sie unter [Benennungsrichtlinien](./openwhisk_reference.html#openwhisk_entities).
 
@@ -69,7 +69,7 @@ In {{site.data.keyword.openwhisk_short}} sind verschiedene Pakete registriert. S
   ```
   {: screen}
 
-  Diese Ausgabe zeigt, dass das {{site.data.keyword.cloudant_short_notm}}-Paket zwei Aktionen, `read` und `write`, sowie einen Auslöserfeed mit dem Namen `changes` bereitstellt. Der Feed `changes` bewirkt, dass Auslöser aktiviert werden, wenn Dokumente der angegebenen {{site.data.keyword.cloudant_short_notm}}-Datenbank hinzugefügt werden.
+  Diese Ausgabe zeigt, dass das {{site.data.keyword.cloudant_short_notm}}-Paket zwei Aktionen, `read` und `write`, sowie einen Auslöserfeed mit dem Namen `changes` bereitstellt. Der Feed `changes` bewirkt, dass Auslöser aktiviert werden, wenn Dokumente zu der angegebenen {{site.data.keyword.cloudant_short_notm}}-Datenbank hinzugefügt werden.
 
   Das {{site.data.keyword.cloudant_short_notm}}-Paket definiert außerdem die Parameter `username`, `password`, `host` und `port`. Diese Parameter müssen für die Aktionen und Feeds angegeben werden, damit diese eine Bedeutung haben. Durch die Parameter können Aktionen zum Beispiel auf einem bestimmten {{site.data.keyword.cloudant_short_notm}}-Konto operieren.
 
@@ -214,7 +214,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 ## Auslöserfeeds erstellen und verwenden
 {: #openwhisk_package_trigger}
 
-Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle zum Auslösen von Ereignissen für einen {{site.data.keyword.openwhisk_short}}-Auslöser. Das folgende Beispiel zeigt, wie ein Feed im Paket für Alarme verwendet wird, um einen Auslöser jede Sekunde zu aktivieren und eine Regel zu verwenden, um jede Sekunde eine Aktion aufzurufen.
+Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle zum Auslösen von Ereignissen für einen {{site.data.keyword.openwhisk_short}}-Auslöser. Das folgende Beispiel zeigt, wie ein Feed im Paket für Alarme verwendet wird, um einen Auslöser einmal pro Sekunde zu aktivieren und eine Regel zu verwenden, um jede Sekunde eine Aktion aufzurufen.
 
 1. Rufen Sie eine Beschreibung des Feeds im Paket `/whisk.system/alarms` ab.
   ```
@@ -241,7 +241,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
   ```
   {: screen}
 
-  Der Feed `/whisk.system/alarms/alarm` hat zwei Parameter:
+  Der `/whisk.system/alarms/alarm` hat zwei Parameter:
   - `cron`: Eine crontab-Angabe für den Zeitpunkt, wann der Auslöser zu aktivieren ist.
   - `trigger_payload`: Der Payload-Parameterwert, der in jedem Auslöserereignis festgelegt werden soll.
 
@@ -465,7 +465,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
 ## Paket gemeinsam nutzen
 {: #openwhisk_packages_share}
 
-Wenn die Aktionen und Feeds, die ein Paket bilden, auf Fehler geprüft und getestet wurden, kann das Paket zur gemeinsamen Nutzung durch alle {{site.data.keyword.openwhisk_short}}-Benutzer bereitgestellt werden. Durch die gemeinsame Nutzung haben Benutzer die Möglichkeit, das Paket zu binden, Aktionen in dem Paket aufzurufen sowie {{site.data.keyword.openwhisk_short}}-Regeln zu verfassen und Aktionssequenzen zu erstellen.
+Nachdem die Aktionen und Feeds, die ein Paket bilden, auf Fehler geprüft und getestet worden sind, kann das Paket zur gemeinsamen Nutzung durch alle {{site.data.keyword.openwhisk_short}}-Benutzer bereitgestellt werden. Durch die gemeinsame Nutzung haben Benutzer die Möglichkeit, das Paket zu binden, Aktionen in dem Paket aufzurufen sowie {{site.data.keyword.openwhisk_short}}-Regeln zu verfassen und Aktionssequenzen zu erstellen.
 
 1. Stellen Sie das Paket zur gemeinsamen Nutzung durch alle Benutzer bereit:
   ```

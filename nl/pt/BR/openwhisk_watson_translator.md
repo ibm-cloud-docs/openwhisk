@@ -36,7 +36,7 @@ para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço do Watson que você criou.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 

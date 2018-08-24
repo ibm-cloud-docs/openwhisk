@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,8 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# {{site.data.keyword.messagehub}} 패키지 
+
 {: #openwhisk_catalog_message_hub}
 
 고유 고성능 Kafka API를 사용하여 메시지를 공개하고 이용하기 위한 [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) 인스턴스와의 통신을 가능하게 하는 패키지입니다.
@@ -88,7 +89,7 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 |value|문자열|생성할 메시지에 대한 값입니다.|
 |key|문자열(선택사항)|생성할 메시지에 대한 키입니다.|
 
-처음 3개의 매개변수가 `ibmcloud fn package refresh`를 사용하여 자동으로 바인드될 수 있지만, 모든 필수 매개변수로 액션을 호출하는 다음 예제를 참조하십시오.
+처음 3개의 매개변수는 `ibmcloud fn package refresh`를 사용하여 자동으로 바인드될 수 있지만, 모든 필수 매개변수로 액션을 호출하는 다음 예제를 참조하십시오. 
 ```
 ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
 ```

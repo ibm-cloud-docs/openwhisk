@@ -14,7 +14,8 @@ lastupdated: "2018-06-22"
 # Origem de eventos do Message Hub
 {: #openwhisk_catalog_message_hub}
 
-É possível criar um acionador que reaja quando as mensagens forem postadas em uma instância do {{site.data.keyword.messagehub_full}} usando feeds. Saiba como criar acionadores do {{site.data.keyword.messagehub}} com ou sem o {{site.data.keyword.Bluemix}}, receber mensagens e manipular mensagens em lote.
+É possível criar um acionador que reaja quando as mensagens são postadas em uma instância do
+{{site.data.keyword.messagehub_full}} usando feeds. Saiba como criar acionadores do {{site.data.keyword.messagehub}} com ou sem o {{site.data.keyword.Bluemix}}, receber mensagens e manipular mensagens em lote.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} pacote 
@@ -27,7 +28,9 @@ Esse pacote permite a comunicação com instâncias do [{{site.data.keyword.mess
 ## Criando um acionador que receba em uma instância do {{site.data.keyword.messagehub}}
 {: #create_message_hub_trigger}
 
-Para criar um acionador que reaja quando as mensagens forem postadas em uma instância do {{site.data.keyword.messagehub}}, você precisa usar o feed nomeado `/messaging/messageHubFeed`. A ação de feed suporta os parâmetros a seguir:
+Para criar um acionador que reaja quando as mensagens são postadas em uma instância do
+{{site.data.keyword.messagehub}}, é necessário usar o feed que é denominado
+`/messaging/messageHubFeed`. A ação de feed suporta os parâmetros a seguir:
 
 |Nome|Digite|Descrição|
 |---|---|---|
@@ -40,7 +43,8 @@ Para criar um acionador que reaja quando as mensagens forem postadas em uma inst
 |isBinaryKey|Booleano (Opcional - padrão=false)|Quando configurado para `true`, o provedor codifica o valor da chave como Base64 antes de passá-lo adiante como a carga útil do acionador.|
 |isBinaryValue|Booleano (Opcional - padrão=false)|Quando configurado para `true`, o provedor codifica o valor da mensagem como Base64 antes de passá-lo adiante como a carga útil do acionador.|
 
-Embora essa lista de parâmetros possa parecer assustadora, eles podem ser configurados automaticamente para você usando o comando do plug-in da CLI `ibmcloud fn package refresh`.
+Embora essa lista de parâmetros possa parecer assustadora, eles podem ser configurados automaticamente
+usando o comando de plug-in da CLI `ibmcloud fn package refresh`.
 
 1. Crie uma instância do serviço {{site.data.keyword.messagehub}} em sua organização e espaço atuais que estejam sendo usados para o {{site.data.keyword.openwhisk}}.
 
@@ -48,7 +52,7 @@ Embora essa lista de parâmetros possa parecer assustadora, eles podem ser confi
 
 3. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço {{site.data.keyword.messagehub}} criada.
   ```
-  ibmcloud fn package refresh
+  Atualização do pacote ibmcloud fn
   ```
   {: pre}
 
@@ -205,7 +209,9 @@ Se a mesma mensagem fosse postada sem `isBinaryData` configurado para `true`, a 
 {: codeblock}
 
 ### As mensagens são processadas em lote
-Observe que a carga útil do acionador contém uma matriz de mensagens. Se essas mensagens são produzidas em seu sistema de mensagens rapidamente, o feed tenta colocar em lote as mensagens postadas em um único disparo de seu acionador. O processamento em lote permite que as mensagens sejam postadas para seu acionador de forma mais rápida e eficiente.
+Observe que a carga útil do acionador contém uma matriz de mensagens. Se essas mensagens forem
+produzidas para seu sistema de mensagens rapidamente, o feed tentará criar lotes das mensagens postadas em um
+único disparo de seu acionador. O processamento em lote permite que as mensagens sejam postadas para seu acionador de forma mais rápida e eficiente.
 
 Tenha em mente ao codificar ações que são disparadas por seu acionador que o número de mensagens na carga útil é tecnicamente sem limites, mas é sempre maior que 0. Veja o exemplo a seguir de uma mensagem em lote (observe a mudança no valor *offset*):
 ```json

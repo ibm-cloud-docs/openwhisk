@@ -19,8 +19,7 @@ lastupdated: "2018-03-26"
 
 該套件包含下列動作。
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/watson-translator` |套件|username、password|文字翻譯及語言識別的套件|
 |`/whisk.system/watson-translator/translator` |動作|payload、translateFrom、translateTo、translateParam、username、password|翻譯文字|

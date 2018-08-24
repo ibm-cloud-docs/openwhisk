@@ -19,7 +19,7 @@ In {{site.data.keyword.openwhisk}}, puoi utilizzare i pacchetti per raggruppare 
 
 Un pacchetto può includere *azioni* e *feed*.
 - Un'azione è una parte di codice eseguita su {{site.data.keyword.openwhisk_short}}. Ad esempio, il pacchetto {{site.data.keyword.cloudant}} include azioni per la lettura e scrittura di record in un database {{site.data.keyword.cloudant_short_notm}}.
-- Un feed è utilizzato per configurare un'origine eventi esterna per l'attivazione di eventi trigger. Ad esempio, il pacchetto Allarme include un feed che può attivare un trigger a una frequenza specificata.
+- Il feed serve a configurare un'origine eventi esterna per l'attivazione di eventi trigger. Ad esempio,il pacchetto Alarm include un feed che può attivare un trigger alla frequenza indicata.
 
 Ogni entità {{site.data.keyword.openwhisk_short}}, inclusi i pacchetti, appartiene a uno *spazio dei nomi* e il nome completo di un'entità è `/nomeSpazioNomi[/nomePacchetto]/nomeEntità`. Per ulteriori informazioni, vedi le [linee guida per la denominazione](./openwhisk_reference.html#openwhisk_entities).
 
@@ -69,7 +69,7 @@ In {{site.data.keyword.openwhisk_short}} sono registrati vari pacchetti. Puoi ot
   ```
   {: screen}
 
-  Questo output mostra che il pacchetto {{site.data.keyword.cloudant_short_notm}} fornisce due azioni, `read` e `write` e un solo feed di trigger denominato `changes`. Il feed `changes` provoca l'attivazione dei trigger quando si aggiungo documenti al database {{site.data.keyword.cloudant_short_notm}} specificato.
+  Questo output mostra che il pacchetto {{site.data.keyword.cloudant_short_notm}} fornisce due azioni, `read` e `write` e un solo feed di trigger denominato `changes`. Il feed `changes` provoca l'attivazione dei trigger quando si aggiungono documenti al database {{site.data.keyword.cloudant_short_notm}} specificato.
 
   Il pacchetto {{site.data.keyword.cloudant_short_notm}} definisce, inoltre, i parametri `username`, `password`, `host` e `port`. Affinché le azioni e i feed siano significativi, è necessario specificare questi parametri. Ad esempio, i parametri consentono alle azioni di operare su un account {{site.data.keyword.cloudant_short_notm}} specifico.
 
@@ -214,9 +214,9 @@ Nel semplice esempio di seguito riportato, puoi eseguire il bind del pacchetto `
 ## Crea e utilizza i feed di trigger
 {: #openwhisk_package_trigger}
 
-I feed possono essere opportunamente utilizzati per configurare un'origine eventi esterna per l'attivazione di questi eventi in un trigger {{site.data.keyword.openwhisk_short}}. Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare un trigger e come utilizzare una regola per richiamare un'azione ogni secondo.
+I feed possono essere opportunamente utilizzati per configurare un'origine eventi esterna per l'attivazione di questi eventi in un trigger {{site.data.keyword.openwhisk_short}}. Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare un trigger e come utilizzare una regola per chiamare un'azione ogni secondo.
 
-1. Ottieni una descrizione del feed nel pacchetto `/whisk.system/alarms`.
+1. Ottieni una descrizione del feed del pacchetto `/whisk.system/alarms`.
   ```
   ibmcloud fn package get --summary /whisk.system/alarms
   ```
@@ -294,7 +294,7 @@ I feed possono essere opportunamente utilizzati per configurare un'origine event
 ## Crea un pacchetto
 {: #openwhisk_packages_create}
 
-Un pacchetto viene utilizzato per organizzare una serie di azioni e feed correlati.
+Un pacchetto serve a organizzare un insieme di feed e azioni correlati.
 Inoltre, consente la condivisione dei parametri tra tutte le entità del pacchetto.
 
 Per creare un pacchetto personalizzato che contenga un'azione semplice, prova il seguente esempio:
@@ -465,7 +465,7 @@ Puoi impostare parametri predefiniti per tutte le entità di un pacchetto impost
 ## Condividi un pacchetto
 {: #openwhisk_packages_share}
 
-Una volta eseguito il test e il debug delle azioni e dei feed compresi in un pacchetto, quest'ultimo può essere condiviso con tutti gli utenti {{site.data.keyword.openwhisk_short}}. La condivisione del pacchetto consente agli utenti di eseguire il bind del pacchetto, richiamare azioni nel pacchetto e creare regole e azioni in sequenza in {{site.data.keyword.openwhisk_short}}.
+Una volta eseguiti i test e il debug delle azioni e dei feed compresi in un pacchetto, quest'ultimo può essere condiviso con tutti gli utenti {{site.data.keyword.openwhisk_short}}. La condivisione del pacchetto consente agli utenti di eseguire il bind del pacchetto, richiamare azioni nel pacchetto e creare regole e azioni in sequenza in {{site.data.keyword.openwhisk_short}}.
 
 1. Condividi i pacchetti con tutti gli utenti:
   ```

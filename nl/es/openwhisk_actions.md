@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-23"
 
 ---
 
@@ -15,43 +15,25 @@ lastupdated: "2018-06-22"
 # Creación e invocación de acciones
 {: #openwhisk_actions}
 
-Las acciones son fragmentos de código sin estado que se ejecutan en la plataforma {{site.data.keyword.openwhisk}}. Por ejemplo, una acción se puede utilizar para detectar las caras de una imagen, responder a un cambio en la base de datos, agregar un conjunto de llamadas de API o publicar un Tweet. Una acción se puede escribir como JavaScript, Swift, Python, función PHP, método Java, o bien como un ejecutable binario personalizado, incluidos los programas Go y ejecutables personalizados empaquetado en un contenedor Docker.
+Las acciones son fragmentos de código sin estado que se ejecutan en la plataforma {{site.data.keyword.openwhisk}}. Por ejemplo, una acción se puede utilizar para detectar las caras de una imagen, responder a un cambio en la base de datos, agregar un conjunto de llamadas de API o publicar un tweet.
 {:shortdesc}
 
 Las acciones se pueden invocar explícitamente, o ejecutarse como respuesta a un suceso. En cualquier caso, cada ejecución de una
-acción tiene como resultado un registro de activación que se identifica mediante un ID de activación exclusivo. La entrada a una
-acción y el resultado de la acción son un diccionario de pares de clave/valor, en el que la clave es una serie y
-el valor es un valor JSON válido. Las acciones también se pueden componer de llamadas a otras acciones, o de una secuencia definida de acciones.
+acción tiene como resultado un registro de activación que se identifica mediante un ID de activación exclusivo. La entrada a una acción y el resultado de la acción son un diccionario de pares de clave/valor, en el que la clave es una serie y el valor es un valor JSON válido. Las acciones también se pueden componer de llamadas a otras acciones, o de una secuencia definida de acciones.
 
-Aprenda a crear, invocar y depurar acciones en el entorno de desarrollo que elija:
-* [JavaScript](#creating-and-invoking-javascript-actions)
-* [Swift](#creating-swift-actions)
-* [Python](#creating-python-actions)
-* [Java](#creating-java-actions)
-* [PHP](#creating-php-actions)
-* [Docker](#creating-docker-actions)
-* [Go](#creating-go-actions)
-* [Ejecutables arbitrarios](#creating-actions-arbitrary)
+Una acción se puede escribir como una función JavaScript, Swift, Python, PHP, como un método Java, o como un ejecutable binario personalizado, como los programas Go, y como ejecutables personalizados empaquetados en un contenedor Docker. Aprenda a crear, invocar y depurar acciones en el entorno de desarrollo que elija.
 
-Además, obtendrá información acerca de:
-* [Supervisión de la salida de acción](#monitor-action-output)
-* [Obtención de acciones](#getting-actions)
-* [Listado de acciones](#listing-actions)
-* [Supresión de acciones](#deleting-actions)
-* [Soporte para grandes aplicaciones](#large-app-support)
-* [Acceso a metadatos de acción dentro del cuerpo de la acción](#accessing-action-metadata-within-the-action-body)
-
-## Creación e invocación de acciones de JavaScript
+## Creación de acciones de JavaScript
 {: #creating-and-invoking-javascript-actions}
 
-Las secciones siguientes le guían en la forma de trabajar con acciones en JavaScript. Comience con la creación e invocación de una acción simple. A continuación, continúe con la adición de parámetros a una acción y la invocación de la acción con parámetros. Después, establezca parámetros predeterminados e invóquelos. A continuación, cree acciones asíncronas y, finalmente, trabaje con secuencias de acciones.
+Las secciones siguientes le guían en la forma de trabajar con acciones en JavaScript. Empiece por crear e invocar una acción simple. A continuación, añada parámetros a la acción e invoque dicha acción con parámetros. Después, establezca parámetros predeterminados e invóquelos. Por último, cree acciones asíncronas.
 
 ### Creación e invocación de una acción JavaScript sencilla
 {: #openwhisk_single_action_js}
 
 Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
 
-1. Crear un archivo JavaScript con el contenido siguiente. Para este ejemplo, llame al archivo **hello.js**.
+1. Guarde el código siguiente en un archivo denominado `hello.js`.
   ```javascript
   function main() {
       return {payload: 'Hello world'};
@@ -59,9 +41,9 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
   ```
   {: codeblock}
 
-  El archivo JavaScript podría tener funciones adicionales. No obstante, por convenio, debe existir una función llamada **main** para proporcionar un punto de entrada para la acción.
+  El archivo JavaScript podría tener funciones adicionales. No obstante, por convenio, debe existir una función llamada `main` para proporcionar un punto de entrada para la acción.
 
-2. Crear una acción desde la función JavaScript siguiente. En este ejemplo, la acción se llama **hello**.
+2. Cree una acción denominada `hello` con la función JavaScript.
   ```
   ibmcloud fn action create hello hello.js
   ```
@@ -75,7 +57,7 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
 
   La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.js`, la acción se ejecuta utilizando el tiempo de ejecución Node.js 6. También puede crear una acción que se ejecute con Node.js 8 especificando de forma explícita el parámetro `--kind nodejs:8`. Para obtener más información, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_javascript_environments) de Node.js 6 en comparación con 8.
 
-3. Mostrar una lista de las acciones que ha creado:
+3. Verifique que su acción `hello` se encuentra en su lista de acciones.
   ```
   ibmcloud fn action list
   ```
@@ -88,799 +70,645 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
   ```
   {: screen}
 
-  Puede ver la acción **hello** que ha creado.
+4. Ejecute la acción en la nube ejecutando una invocación de bloqueo. Las invocaciones de bloqueo utilizan un estilo de solicitud/respuesta y esperan a que el resultado de la activación esté disponible. El período de espera es inferior a 60 segundos o el [valor de límite de tiempo](./openwhisk_reference.html#openwhisk_syslimits) de la acción.
+    ```
+    ibmcloud fn action invoke --blocking hello
+    ```
+    {: pre}
 
-4. Tras crear su acción, puede ejecutarla en la nube con el mandato **invoke**. Puede invocar acciones con una invocación *blocking* (es decir, estilo solicitud/respuesta) o *non-blocking*, especificando un distintivo en el mandato. Una solicitud de invocación de bloqueo _espera_ a que el resultado de la activación esté disponible. El período de espera es inferior a 60 segundos o el [valor de límite de tiempo](./openwhisk_reference.html#openwhisk_syslimits) de la acción. El resultado de la activación se devuelve si está disponible en el período de espera. De no ser así, la activación se sigue procesando en el sistema y se devuelve un ID de activación para poder buscar el resultado más tarde, como en las solicitudes que no son de bloqueo (consulte [aquí](#monitor-action-output) para ver consejos sobre la supervisión de activaciones).
+    El mandato genera la siguiente información:
+        * El ID de activación (` 44794bd6aab74415b4e42a308d880e5b`), que se puede utilizar para recuperar los registros o el resultado de la invocación
+        * El resultado de la invocación si está disponible en el período de espera previsto.
+    ```
+    ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
-  Este ejemplo utiliza el parámetro blocking, `--blocking`:
-  ```
-  ibmcloud fn action invoke --blocking hello
-  ```
-  {: pre}
-
-  La salida del mandato son dos elementos de información importantes:
-  * El ID de activación (`44794bd6aab74415b4e42a308d880e5b`)
-  * El resultado de la invocación si está disponible en el período de espera previsto.
-
-  **La salida muestra el ID de activación:**
-  ```
-  ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
-  ```
-  {: screen}
-
-  **Resultado de la invocación:**
-  ```
-  {
-      "result":{
-          "payload": "Hello world"
-      },
+    {
+        "result":{
+            "payload": "Hello world"
+        },
       "status": "success",
       "success": true
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
+    Para obtener sugerencias sobre las activaciones de supervisión, consulte [Supervisión de la salida de acción](openwhisk_managing.html#monitor-action-output).
+    {: tip}
 
-  El resultado en este caso es la serie `Hello world` devuelta por la función JavaScript. El ID de activación se puede
-utilizar para recuperar los registros o el resultado de la invocación a posteriori.
+5. Si no necesita el resultado de la acción inmediatamente, puede omitir el distintivo `--blocking`para ejecutar una invocación sin bloqueo.
+    1. Ejecute una acción sin bloqueo.
+        ```
+        ibmcloud fn action invoke hello
+        ```
+        {: pre}
 
-5. Si no necesita el resultado de la acción inmediatamente, puede omitir el distintivo `--blocking`
-para hacer una invocación sin bloqueo. Puede obtener el resultado posteriormente, usando el ID de activación.
+        Salida de ejemplo:
+        ```
+        ok: invoked hello with id 6bf1f670ee614a7eb5af3c9fde813043
+        ```
+        {: screen}
 
-  Consulte los ejemplos siguientes:
-  ```
-  ibmcloud fn action invoke hello
-  ```
-  {: pre}
+    2. Utilice el ID de activación para obtener el resultado de la acción.
+        ```
+        ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
+        ```
+        {: pre}
 
-  **Salida del mandato:**
-  ```
-  ok: invoked hello with id 6bf1f670ee614a7eb5af3c9fde813043
-  ```
-  {: screen}
-
-  Ahora que conoce el ID de activación, puede especificarlo para obtener el resultado de la acción:
-  ```
-  ibmcloud fn activation result 6bf1f670ee614a7eb5af3c9fde813043
-  ```
-  {: pre}
-
-  **Resultado de la acción:**
-  ```
-  {
-      "payload": "Hello world"
+        Se devuelve el resultado de la acción:
+        ```
+        {
+            "payload": "Hello world"
   }
-  ```
-  {: screen}
+        ```
+        {: screen}
 
-6. Si olvida registrar el ID de activación, puede obtener una lista de activaciones ordenadas de la más reciente a la más antigua. Ejecute el mandato siguiente para obtener una lista de sus activaciones:
+6. Si olvida registrar el ID de activación, puede obtener una lista de activaciones ordenadas de más recientes a menos recientes.
+    ```
+    ibmcloud fn activation list
+    ```
+    {: pre}
 
-  **Listar activaciones:**
-  ```
-  ibmcloud fn activation list
-  ```
-  {: pre}
-
-  Salida:
-  ```
-  activations
+    Salida:
+    ```
+    activations
   44794bd6aab74415b4e42a308d880e5b         hello
   6bf1f670ee614a7eb5af3c9fde813043         hello
-  ```
-  {: screen}
+    ```
+    {: screen}
 
 ### Creación de acciones asíncronas
 {: #openwhisk_asynchrony_js}
 
 Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver el resultado de la activación tras el retorno de la función `main`.
 
-1. Guardar el contenido siguiente en un archivo llamado **asyncAction.js**.
-  ```javascript
-  function main(args) {
-       return new Promise(function(resolve, reject) {
-         setTimeout(function() {
-           resolve({ done: true });
+1. Guarde el código siguiente en un archivo denominado `asyncAction.js`.
+    ```javascript
+    function main(args) {
+         return new Promise(function(resolve, reject) {
+           setTimeout(function() {
+             resolve({ done: true });
          }, 2000);
       })
-   }
-  ```
-  {: codeblock}
+     }
+    ```
+    {: codeblock}
 
-  Observe que la función `main` devuelve un Promise, que indica que la activación aún no se ha completado, pero que se espera que lo haga en el futuro.
+    * La función `main` devuelve una Promise. Promise indica que la acción no se ha completado todavía, pero que se espera que lo haga en el futuro.
+    * La función JavaScript `setTimeout()` espera 2 segundos antes de llamar a la función de retorno de llamada de Promise, que representa el código asíncrono.
+    * La devolución de llamada de Promise acepta los argumentos `resolve` y `reject`, que son ambos funciones.
+      * La llamada a `resolve()` rellena el Promise e indica que la activación se ha completado con normalidad.
+      * Una llamada a `reject()` se puede utilizar para rechazar el Promise e indicar que la activación se ha completado de forma anómala.
 
-  La función `setTimeout()` de JavaScript en este caso espera 2 segundos antes de invocar la función de devolución de llamada, que representa el código asíncrono y va dentro de la función de devolución de llamada del Promise.
+2. Cree una acción denominada `asyncAction`.
+    ```
+    ibmcloud fn action create asyncAction asyncAction.js
+    ```
+    {: pre}
 
-  La devolución de llamada del Promise tiene dos argumentos, resolve y reject, ambos son funciones.  La llamada a `resolve()` rellena el Promise e indica que la activación se ha completado con normalidad.
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result asyncAction
+    ```
+    {: pre}
 
-  Una llamada a `reject()` se puede utilizar para rechazar el Promise e indicar que la activación se ha completado de forma anómala.
-
-2. Ejecute los mandatos siguientes para crear la acción e invocarla.
-
-  Cree una acción denominada **asyncAction**:
-  ```
-  ibmcloud fn action create asyncAction asyncAction.js
-  ```
-  {: pre}
-
-  Invoque la acción:
-  ```
-  ibmcloud fn action invoke --result asyncAction
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  {
-      "done": true
+    Salida de ejemplo:
+    ```
+    {
+        "done": true
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-  Tenga en cuenta que ha realizado una invocación de bloqueo de una acción asíncrona.
+3. Compruebe cuánto tiempo tardó la activación en completarse obteniendo el registro de activación.
 
-3. Recupere el registro de activación para ver cuánto tiempo ha tardado la activación en completarse.
+  1. Obtenga el ID de activación.
+      ```
+      ibmcloud fn activation list --limit 1 asyncAction
+      ```
+      {: pre}
 
-  Para ello, primero obtenga una lista con la acción para ver el ID de activación:
-  ```
-  ibmcloud fn activation list --limit 1 asyncAction
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  activations
+      Salida de ejemplo:
+      ```
+      activations
   b066ca51e68c4d3382df2d8033265db0             asyncAction
-  ```
-  {: screen}
+      ```
+      {: screen}
 
-  Ahora obtenga la información de registro de activación utilizando el ID de activación:
-  ```
-  ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
-  ```
-  {: pre}
+  2. Obtenga el registro para el ID de activación.
+      ```
+      ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
+      ```
+      {: pre}
 
-  ```
-  {
-      "start": 1455881628103,
-      "end":   1455881648126,
-      ...
-  }
-  ```
-  {: screen}
-
-  Si se comparan los registros de fecha y hora de `start` y `end` en el registro de activación,
-puede ver que esta activación ha tardado poco más de 2 segundos en completarse.
+      El valor de `duration` muestra que la activación tardó algo más de 2 segundos en completarse:
+      ```
+      ok: got activation b066ca51e68c4d3382df2d8033265db0
+      {
+          ...
+          "activationId": "c2b36969fbe94562b36969fbe9856215",
+          "start": 1532456307768,
+          "end": 1532456309838,
+          "duration": 2070,
+          ...
+      }
+      ```
+      {: screen}
 
 ### Uso de acciones para invocar una API externa
 {: #openwhisk_apicall_action}
 
 Los ejemplos proporcionados hasta ahora son funciones JavaScript autocontenidas. También puede crear una acción que invoque una API externa.
+{: shortdesc}
 
 En el ejemplo siguiente se invoca el servicio Astronomy Picture of the Day (APOD) de la NASA, que proporciona una imagen única de nuestro universo cada día.
 
-1. Guarde el contenido siguiente en un archivo llamado **apod.js**.
-  ```javascript
-  var url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
+1. Guarde el siguiente código en un archivo denominado `apod.js`.
+    ```javascript
+    var url = "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo";
 
-  $.ajax({
+    $.ajax({
     url: url,
     success: function(result){
     if("copyright" in result) {
-      $("#copyright").text("Image Credits: " + result.copyright);
+        $("#copyright").text("Image Credits: " + result.copyright);
     }
     else {
-      $("#copyright").text("Image Credits: " + "Public Domain");
-    }
+        $("#copyright").text("Image Credits: " + "Public Domain");
+      }
 
-    if(result.media_type == "video") {
-      $("#apod_img_id").css("display", "none");
+      if(result.media_type == "video") {
+        $("#apod_img_id").css("display", "none");
       $("#apod_vid_id").attr("src", result.url);
     }
     else {
-      $("#apod_vid_id").css("display", "none");
+        $("#apod_vid_id").css("display", "none");
       $("#apod_img_id").attr("src", result.url);
     }
-    $("#reqObject").text(url);
+      $("#reqObject").text(url);
     $("#returnObject").text(JSON.stringify(result, null, 4));
     $("#apod_explaination").text(result.explanation);
     $("#apod_title").text(result.title);
   }
-  });
-  ```
-  {: codeblock}
+    });
+    ```
+    {: codeblock}
 
-  Se realiza una llamada a la API de APOD de la NASA y se extraen campos del resultado JSON. El tema [Referencias](./openwhisk_reference.html#openwhisk_ref_javascript_environments) detalla los paquetes Node.js que puede utilizar en sus acciones.
+    Se realiza una llamada a la API APOD de la NASA y los se extraen del resultado JSON. Para obtener más información sobre los paquetes de Node.js que se pueden utilizar en sus acciones, consulte [Límites y detalles del sistema](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
 
-2. Ejecute los mandatos siguientes para crear la acción e invocarla.
+2. Cree una acción denominada `apod`.
+    ```
+    ibmcloud fn action create apod apod.js
+    ```
+    {: pre}
 
-  Cree la acción denominada **apod**:
-  ```
-  ibmcloud fn action create apod apod.js
-  ```
-  {: pre}
+3. Invoque la acción `apod`.
+    ```
+    ibmcloud fn action invoke --result apod
+    ```
+    {: pre}
 
-  Invoque la acción **apod**:
-  ```
-  ibmcloud fn action invoke --result apod
-  ```
-  {: pre}
-
-  **Objeto de retorno:**
-  ```
-  {
-    "copyright": "Eric Houck",
+    Se devuelve el objeto de ejemplo siguiente:
+    ```
+    {
+      "copyright": "Eric Houck",
     "date": "2018-03-28",
-    "explanation": "Does an alignment like this occur only once in a blue moon? No, although it was during a blue moon that this single-shot image was taken.  During a full moon that happened to be the second of the month -- the situation that defines a blue moon -- the photographer created the juxtaposition in late January by quickly moving around to find just the right spot to get the background Moon superposed behind the arc of a foreground tree.  Unfortunately, in this case, there seemed no other way than getting bogged down in mud and resting the camera on a barbed-wire fence.  The arc in the oak tree was previously created by hungry cows in Knight's Ferry, California, USA.  Quirky Moon-tree juxtapositions like this can be created during any full moon though, given enough planning and time.  Another opportunity will arise this weekend, coincidently during another blue moon. Then, the second blue moon in 2018 will occur, meaning that for the second month this year, two full moons will appear during a single month (moon-th).  Double blue-moon years are relatively rare, with the last occurring in 1999, and the next in 2037.",
+    "explanation": "Does an alignment like this occur only once in a blue moon? ...",
     "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
     "media_type": "image",
     "service_version": "v1",
     "title": "Blue Moon Tree",
     "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
 ### Empaquetado de una acción como un módulo Node.js
 {: #openwhisk_js_packaged_action}
 
-Como alternativa a grabar todo el código de acción en un único archivo de origen JavaScript, puede grabar una acción como un paquete `npm`. Piense como ejemplo un directorio con los archivos siguientes:
+Como alternativa a grabar todo el código de acción en un único archivo de origen JavaScript, puede grabar una acción como un paquete `npm`.
 
-**package.json:**
-```json
-{
-  "name": "my-action",
+Por ejemplo, considere un directorio con los archivos siguientes:
+
+1. Guarde el código siguiente en un archivo denominado `package.json`.
+    ```json
+    {
+      "name": "my-action",
   "main": "index.js",
   "dependencies" : {
-    "left-pad" : "1.1.3"
-  }
-}
-```
-{: codeblock}
+        "left-pad" : "1.1.3"
+      }
+    }
+    ```
+    {: codeblock}
 
-**index.js:**
-```javascript
-function myAction(args) {
-    const leftPad = require("left-pad")
+2. Guarde el código siguiente en un archivo denominado `index.js`.
+    ```javascript
+    function myAction(args) {
+        const leftPad = require("left-pad")
     const lines = args.lines || [];
     return { padded: lines.map(l => leftPad(l, 30, ".")) }
-}
+    }
 
-exports.main = myAction;
-```
-{: codeblock}
+    exports.main = myAction;
+    ```
+    {: codeblock}
+    * La acción se expone a través de `exports.main`.
+    * El manejador de acciones puede tener cualquier nombre siempre que cumpla con la firma convencional de aceptar un objeto y devolverlo (o una `Promise` de un objeto).
+    * Debe denominar este archivo como **index.js** o especificar el nombre de archivo que prefiera como la propiedad `main` en **package.json**.
 
-La acción se expone a través de `exports.main`. El manejador de acciones en sí puede tener cualquier nombre, siempre que cumpla con la firma habitual de aceptar un objeto y devolverlo (o una `Promesa` de un objeto). Por convención Node.js, puede poner un nombre a este archivo `index.js` o especificar el nombre de archivo que prefiera como la propiedad `main` en package.json.
+3. Instale todas las dependencias localmente.
+    ```
+    npm install
+    ```
+    {: pre}
+    **Nota**: La mayoría de los paquetes de `npm` instalan orígenes JavaScript en `npm install`, algunos también instalan y compilan artefactos binarios. El archivo de archivado actualmente solo da soporte a dependencias de JavaScript. Las invocaciones de acción pueden fallar si el archivo incluye dependencias binarias.
 
-Para crear una acción de {{site.data.keyword.openwhisk_short}} desde este paquete:
+4. Cree un archivo `.zip` que contenga todos los archivos, incluidas todas las dependencias.
+    ```
+    zip -r action.zip *
+    ```
+    {: pre}
 
-1. Instale todas las dependencias localmente:
-  ```
-  npm install
-  ```
-  {: pre}
+    El uso de la acción de Windows Explorer para crear el archivo zip da lugar a una estructura incorrecta. Las acciones zip de {{site.data.keyword.openwhisk_short}} deben tener `package.json` como raíz del zip, mientras que Windows Explorer las coloca dentro de una carpeta anidada. La opción más segura consiste en utilizar el mandato `zip` desde la línea de mandatos.
+    {: tip}
 
-2. Cree un archivo `.zip` que contenga todos los archivos (incluidas todas las dependencias):
-  ```
-  zip -r action.zip *
-  ```
-  {: pre}
+5. Cree la acción. Al crear una acción desde un archivo `.zip`, debe proporcionar explícitamente un valor para el distintivo `--kind` utilizando `nodejs:6` o `nodejs:8`.
+    ```
+    ibmcloud fn action create packageAction --kind nodejs:6 action.zip
+    ```
+    {: pre}
 
-  El uso de la acción de Windows Explorer para crear el archivo zip da lugar a una estructura incorrecta. Las acciones zip de {{site.data.keyword.openwhisk_short}} deben tener `package.json` como raíz del zip, mientras que Windows Explorer las coloca dentro de una carpeta anidada. La opción más segura consiste en utilizar el mandato `zip` desde la línea de mandatos.
-  {: tip}
+6. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
+    ```
+    {: pre}
 
-3. Cree la acción:
-  ```
-  ibmcloud fn action create packageAction --kind nodejs:6 action.zip
-  ```
-  {: pre}
-
-  Al crear una acción desde un archivo `.zip` con la herramienta CLI, debe proporcionar explícitamente un valor para el distintivo `--kind` utilizando `nodejs:6` o `nodejs:8`.
-
-4. Puede invocar la acción como cualquier otra:
-  ```
-  ibmcloud fn action invoke --result packageAction --param lines "[\"and now\", \"for something completely\", \"different\" ]"
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  {
-      "padded": [
-          ".......................and now",
+    Salida de ejemplo:
+    ```
+    {
+        "padded": [
+            ".......................and now",
           "......for something completely",
           ".....................different"
       ]
-  }
-  ```
-  {: screen}
-
-Finalmente, tenga en cuenta que mientras que la mayoría de los paquetes de `npm` instalan orígenes JavaScript en `npm install`, algunos también instalan y compilan artefactos binarios. La carga del archivo de archivado no da soporte en este momento a las dependencias binarias, sino únicamente a las dependencias de JavaScript. Las invocaciones de acción pueden fallar si el archivo incluye dependencias binarias.
+    }
+    ```
+    {: screen}
 
 ### Empaquetado de una acción como un paquete individual
 {: #openwhisk_js_webpack_action}
 
-Es conveniente incluir sólo el código mínimo en un solo archivo `.js` que incluya dependencias. Este enfoque permite agilizar los despliegues, y en algunas circunstancias en las que empaquetar la acción como un zip podría generar un archivo demasiado por incluir archivos innecesarios.
+Si el empaquetamiento de la acción como zip incluye demasiados archivos innecesarios o si necesita un despliegue más rápido, puede escribir el código mínimo en un archivo `.js` individual que incluya las dependencias.
+{: shortdesc}
 
-Puede utilizar un empaquetador de módulos JavaScript, como [webpack](https://webpack.js.org/concepts/). Cuando webpack procesa el código, se crea un gráfico de dependencias recursivamente que incluye todos los módulos que necesita la acción.
+Puede empaquetar una acción utilizando un empaquetador de módulos de JavaScript como, por ejemplo, [webpack ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo") ](https://webpack.js.org/concepts/). Cuando `webpack` procesa el código, se crea un gráfico de dependencias recursivamente que incluye todos los módulos que necesita la acción.
 
-Aquí se muestra un ejemplo rápido utilizando webpack:
-
-A partir del `package.json` del ejemplo anterior, añada `webpack` como dependencia de desarrollo y añada algunos mandatos de script npm.
-```json
-{
-  "name": "my-action",
+1. Guarde el código siguiente en un archivo denominado `package.json`. `webpack` se añade como una dependencia de desarrollo.
+    ```json
+    {
+      "name": "my-action",
   "main": "dist/bundle.js",
   "scripts": {
-    "build": "webpack --config webpack.config.js",
-    "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
-  },
+        "build": "webpack --config webpack.config.js",
+        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:8"
+      },
 	"dependencies": {
-    "left-pad" : "1.1.3"
-  },
+        "left-pad" : "1.1.3"
+      },
   "devDependencies": {
-    "webpack": "^3.8.1"
-  }
-}
-```
-{: codeblock}
+        "webpack": "^3.8.1"
+      }
+    }
+    ```
+    {: codeblock}
 
-Cree el archivo de configuración de webpack `webpack.config.js`.
-```javascript
-var path = require('path');
-module.exports = {
-  entry: './index.js',
+2. Guarde el siguiente código de configuración de webpack en un archivo denominado `webpack.config.js`.
+    ```javascript
+    var path = require('path');
+    module.exports = {
+      entry: './index.js',
   output: {
-    path: path.resolve(__dirname, 'dist'),
+        path: path.resolve(__dirname, 'dist'),
     filename: 'bundle.js'
-  },
+      },
   target: 'node'
-};
-```
-{: codeblock}
+    };
+    ```
+    {: codeblock}
 
-Establezca la variable `global.main` en la función principal de la acción.
-
-Del ejemplo anterior:
-```javascript
-function myAction(args) {
-    const leftPad = require("left-pad")
+3. Guarde el código siguiente en un archivo denominado `index.js`. La variable `global.main` se establece en la función main de la acción.
+    ```javascript
+    function myAction(args) {
+        const leftPad = require("left-pad")
     const lines = args.lines || [];
     return { padded: lines.map(l => leftPad(l, 30, ".")) }
-}
-global.main = myAction;
-```
-{: codeblock}
+    }
 
-Si el nombre de la función es `main`, utilice la siguiente sintaxis:
-```javascript
-global.main = main;
-```
-{: codeblock}
+    global.main = myAction;
+    ```
+    {: codeblock}
 
-Para crear y desplegar una acción de OpenWhisk utilizando `npm` y `webpack`:
+4. Instale todas las dependencias localmente.
+    ```
+    npm install
+    ```
+    {: pre}
 
-1. Primero, instale las dependencias localmente:
-  ```
-  npm install
-  ```
-  {: pre}
+5. Cree el paquete de webpack.
+    ```
+    npm run build
+    ```
+    {: pre}
 
-2. Cree el paquete de webpack:
-  ```
-  npm run build
-  ```
-  {: pre}
+    El archivo `dist/bundle.js` se crea y despliega como el código de origen de la acción.
 
-  Se creará el archivo `dist/bundle.js` y se utilizará para desplegarlo como código fuente de la acción.
+6. Cree la acción utilizando el script `npm` o la CLI.
+    * Utilización del script `npm`:
+        ```
+        npm run deploy
+        ```
+        {: pre}
 
-3. Cree la acción utilizando el script `npm` o la CLI.
+    * Utilizando la CLI:
+        ```
+        ibmcloud fn action update my-action dist/bundle.js
+        ```
+        {: pre}
 
-  Mediante el script `npm`:
-  ```
-  npm run deploy
-  ```
-  {: pre}
-
-  Utilizando la CLI:
-  ```
-  ibmcloud fn action update my-action dist/bundle.js
-  ```
-  {: pre}
-
-Por último, el archivo de paquete que crea `webpack` no admite dependencias binarias, sino dependencias de JavaScript. Así, las invocaciones de acción fallarán si el paquete depende de las dependencias binarias, porque no se incluyen en el archivo `bundle.js`.
-
-## Creación de secuencias de acciones
-{: #openwhisk_create_action_sequence}
-
-Puede crear una acción que encadene juntas una secuencia de acciones.
-
-Se proporcionan varias acciones de utilidad en un paquete llamado `/whisk.system/utils` que puede utilizar para crear su primera secuencia. Puede obtener más información sobre los paquetes en la sección [paquetes](./openwhisk_packages.html).
-
-1. Mostrar las acciones del paquete `/whisk.system/utils`.
-  ```
-  ibmcloud fn package get --summary /whisk.system/utils
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  package /whisk.system/utils: Building blocks that format and assemble data
-   action /whisk.system/utils/head: Extract prefix of an array
-   action /whisk.system/utils/split: Split a string into an array
-   action /whisk.system/utils/sort: Sorts an array
-   action /whisk.system/utils/echo: Returns the input
-   action /whisk.system/utils/date: Current date and time
-   action /whisk.system/utils/cat: Concatenates input into a string
-  ```
-  {: screen}
-
-  En este ejemplo utilizará las acciones `split` y `sort`.
-
-2. Crear una secuencia de acciones para que el resultado de una acción se pase como argumento a la acción siguiente.
-  ```
-  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
-  ```
-  {: pre}
-
-  Esta secuencia de acciones convierte algunas líneas de texto en una matriz, y ordena las líneas.
-
-3. Invoque la acción:
-  ```
-  ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  {
-      "length": 3,
-      "lines": [
-          "Is full of regret.",
-          "Over-ripe sushi,",
-          "The Master"
-      ]
-  }
-  ```
-  {: screen}
-
-  En el resultado, puede ver que las líneas se ordenan.
-
-**Nota**: los parámetros que se pasan entre acciones de la secuencia son explícitos, salvo los predeterminados.
-Por tanto, los parámetros que se pasan a la secuencia de acción solo están disponibles para la primera acción de la secuencia. El resultado de la primera acción de la secuencia se convierte en el objeto JSON de entrada de la segunda acción de la secuencia (y así sucesivamente). Este objeto no incluye ninguno de los parámetros que originalmente se han pasado a la secuencia, a menos que la primera acción los incluya explícitamente en el resultado. Los parámetros de entrada a una acción se fusionan con los parámetros predeterminados de la acción, dando prioridad a los primeros y sustituyendo los parámetros predeterminados coincidentes. Para obtener más información sobre la invocación de secuencias de acciones con varios parámetros con nombre, consulte [Establecimiento de parámetros predeterminados en una acción](./parameters.html#default-params-action).
+    **Nota**: El archivo de paquete que `webpack` crea solo da soporte a dependencias de JavaScript. Las invocaciones a la acción podrían fallar si el paquete depende de dependencias binarias porque estas no se incluyen con el archivo `bundle.js`.
 
 ## Creación de acciones Python
 {: #creating-python-actions}
 
-El proceso de creación de acciones Python es parecido al de las acciones JavaScript. En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Python, y se añaden parámetros a dicha acción.
+En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Python y la adición de parámetros a dicha acción.
 
 ### Creación e invocación de una acción Python
 {: #openwhisk_actions_python_invoke}
 
-Una acción es sencillamente una función Python de nivel superior. Por ejemplo, cree un archivo denominado **hello.py** con el siguiente código fuente:
-```python
-def main(args):
-    name = args.get("name", "stranger")
-    greeting = "Hello " + name + "!"
-    print(greeting)
+Una acción es sencillamente una función Python de nivel superior. Para crear una acción de Python:
+
+1. Guarde el código siguiente en un archivo denominado `hello.py`.
+    ```python
+    def main(args):
+        name = args.get("name", "stranger")
+        greeting = "Hello " + name + "!"
+        print(greeting)
         return {"greeting": greeting}
-```
-{: codeblock}
+    ```
+    {: codeblock}
 
-Las acciones Python siempre consumen un
-diccionario y generan un diccionario. El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar de forma explícita para crear la acción con la CLI `wsk` utilizando `--main`, como con cualquier otro tipo de acción.
+  * Las acciones Python siempre consumen un
+diccionario y generan un diccionario.
+  * El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar explícitamente para crear la acción con la CLI de `wsk` utilizando el distintivo `--main`.
 
-Puede crear una acción de {{site.data.keyword.openwhisk_short}} denominada **helloPython** a partir de esta función de la siguiente manera:
-```
-ibmcloud fn action create helloPython hello.py
-```
-{: pre}
+2. Creación de una acción `helloPython`.
+    ```
+    ibmcloud fn action create helloPython hello.py
+    ```
+    {: pre}
 
-La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.py`, la acción se ejecuta utilizando el tiempo de ejecución Python 2. También puede crear una acción que se ejecute con Python 3 especificando de forma explícita el parámetro `--kind python:3`. Además, hay un tiempo de ejecución Python 3 con el tipo `python-jessie:3` que contiene paquetes adicionales para IBM Cloud Services como IBM Cloudant, IBM DB2, IBM COS e IBM Watson.
-Para obtener más información sobre los paquetes incluidos en este tiempo de ejecución de Python 3, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_python_environments) del tiempo de ejecución de Python.
+    Salida de ejemplo:
+    ```
+    ok: created action helloPython
+    ```
+    {: screen}
 
-La invocación de la acción es la misma para acciones Python que para acciones JavaScript:
-```
-ibmcloud fn action invoke --result helloPython --param name World
-```
-{: pre}
+    La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.py`, la acción se ejecuta utilizando el tiempo de ejecución Python 2. También puede crear una acción que se ejecute con Python 3 especificando de forma explícita el parámetro `--kind python:3`. También puede utilizar el entorno de tiempo de ejecución de Python 3 con el tipo `python-jessie:3`, que contiene paquetes adicionales para IBM Cloud Services como, por ejemplo, {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}} y {{site.data.keyword.ibmwatson_notm}}. Para obtener más información sobre los paquetes incluidos en este tiempo de ejecución de Python 3, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_python_environments) del tiempo de ejecución de Python.
 
-Salida de ejemplo:
-```
-  {
-      "greeting": "Hello World!"
-  }
-```
-{: screen}
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result helloPython --param name World
+    ```
+    {: pre}
+
+    Salida de ejemplo:
+    ```
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
 
 ### Empaquetamiento de acciones de Python en archivos zip
 {: #openwhisk_actions_python_zip}
 
-Puede empaquetar una acción Python y los módulos dependientes en un archivo zip.
-El nombre del archivo fuente que contiene el punto de entrada (por ejemplo, `main`) debe ser `__main__.py`.
-Por ejemplo, para crear una acción con un módulo de ayudante denominado `helper.py`, primero cree un archivador con sus archivos fuente:
-```bash
-zip -r helloPython.zip __main__.py helper.py
-```
-{: pre}
+Puede empaquetar una acción Python y los módulos dependientes en un archivo zip. Por ejemplo, para crear una acción con un módulo de ayudante denominado `helper.py`:
 
-A continuación, cree la acción:
-```bash
-ibmcloud fn action create helloPython --kind python:3 helloPython.zip
-```
-{: pre}
+1. Cree un archivador que contenga los archivos fuente. **Nota**: El archivo fuente que contiene el punto de entrada se debe denominar `__main__.py`.
+    ```bash
+    zip -r helloPython.zip __main__.py helper.py
+    ```
+    {: pre}
 
-Aunque estos pasos se muestran para Python 3 (con el tipo `python:3`), puede hacer lo mismo con otros tipos de Python, como `python:2` o `python-jessie:3`.
+2. Cree la acción.
+    ```bash
+    ibmcloud fn action create helloPython --kind python:3 helloPython.zip
+    ```
+    {: pre}
 
 ### Empaquetamiento de acciones de Python con un entorno virtual en archivos zip
 {: #openwhisk_actions_python_virtualenv}
 
-Otra forma de empaquetar dependencias de Python es utilizando un entorno virtual (`virtualenv`), que permite enlazar a paquetes adicionales que, por ejemplo, se pueden instalar utilizando [`pip`](https://packaging.python.org/installing/).
+Puede empaquetar dependencias de Python utilizando un entorno virtual, `virtualenv`. El entorno virtual permite enlazar paquetes adicionales que se pueden instalar utilizando [`pip` ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://packaging.python.org/installing/), por ejemplo.
 
-Como con el soporte al archivo zip básico, el nombre para el archivo fuente que contiene el punto de entrada principal debe ser `__main__.py`. Es decir, el contenido de `__main__.py` es la función principal, de modo que, para este ejemplo, puede cambiar el nombre de `hello.py` a `__main__.py` de la sección anterior. Además, el directorio virtualenv debe denominarse `virtualenv`. Consulte el siguiente escenario de ejemplo para instalar dependencias, empaquetándolas en un virtualenv, y creando una acción compatible con OpenWhisk.
+Para instalar dependencias, empaquételas en un entorno virtual y cree una acción de OpenWhisk compatible:
 
-Para asegurar la compatibilidad con el contenedor de tiempo de ejecución de OpenWhisk, las instalaciones de paquetes dentro de un virtualenv deben realizarse en el entorno de destino utilizando la imagen correspondiente al tipo.
-- Para el tipo `python:2`, utilice la imagen de docker `openwhisk/python2action`.
-- Para el tipo `python:3`, utilice la imagen de docker `openwhisk/python3action`.
-- Para el tipo `python-jessie:3`, utilice la imagen de docker `ibmfunctions/action-python-v3`.
+1. Cree un archivo [requirements.txt ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) que contenga las versiones y los módulos de `pip` a instalar.
 
-1. Dado un archivo [requirements.txt ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) con las versiones y módulos `pip` a instalar, ejecute lo siguiente para instalar las dependencias y crear un virtualenv utilizando una imagen Docker compatible:
+2. Instale las dependencias y cree un entorno virtual. El directorio virtualenv debe denominarse `virtualenv`. Para asegurar la compatibilidad con el contenedor de tiempo de ejecución de OpenWhisk, las instalaciones de paquetes dentro de un entorno virtual deben utilizar la imagen que corresponde al tipo.
+    - Para el tipo `python:2`, utilice la imagen de docker `openwhisk/python2action`.
+    - Para el tipo `python:3`, utilice la imagen de docker `openwhisk/python3action`.
+    - Para el tipo `python-jessie:3`, utilice la imagen de docker `ibmfunctions/action-python-v3`.
     ```
     docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 \
       bash  -c "cd tmp &&virtualenv virtualenv &&source virtualenv/bin/activate &&pip install -r requirements.txt"
     ```
     {: pre}
 
-2. Archive el directorio virtualenv y todos los archivos Python adicionales:
+3. Empaquete el directorio `virtualenv` y todos los archivos Python adicionales. El archivo fuente que contiene el punto de entrada se debe denominar `__main__.py`.
     ```
     zip -r helloPython.zip virtualenv __main__.py
     ```
     {: pre}
 
-3. Cree la acción **helloPython**:
+4. Cree la acción `helloPython`.
     ```
     ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
     ```
     {: pre}
 
-Añada `requirements.txt` únicamente los módulos que no forman parte del entorno de tiempo de ejecución seleccionado. Esto ayuda a mantener un tamaño mínimo del entorno virtual.
+Añada únicamente los módulos que no son parte del entorno de tiempo de ejecución seleccionado para `requirements.txt`. Esto ayuda a mantener un tamaño mínimo de `virtualenv`.
 {: tip}
 
 ## Creación de acciones PHP
 {: #creating-php-actions}
 
-El proceso de creación de acciones PHP es parecido al de las acciones JavaScript. En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción PHP, y se añaden parámetros a dicha acción.
+En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción PHP y la adición de parámetros a dicha acción.
 
 ### Creación e invocación de una acción PHP
 {: #openwhisk_actions_php_invoke}
 
-Una acción es sencillamente una función PHP de nivel superior. Por ejemplo, cree un archivo denominado `hello.php` con el siguiente código fuente:
+Una acción es sencillamente una función PHP de nivel superior. Para crear una acción PHP:
 
-```php
-<?php
+1. Guarde el código siguiente en un archivo llamado `hello.php`.
+    ```
+    <?php
 function main(array $args) : array
 {
-    $name = $args["name"] ?? "stranger";
+        $name = $args["name"] ?? "stranger";
     $greeting = "Hello $name!";
     echo $greeting;
     return ["greeting" => $greeting];
 }
-```
-{: codeblock}
+    ```
+    {: codeblock}
 
-Las acciones PHP siempre consumen una matriz asociativa y devuelven una matriz asociativa. El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar de forma explícita al crear la acción con la CLI `ibmcloud fn` utilizando `--main`, como con cualquier otro tipo de acción.
+    * Las acciones PHP siempre consumen una matriz asociativa y devuelven una matriz asociativa.
+    * El método de entrada para la acción es `main` de forma predeterminada, pero se puede especificar explícitamente cuando crea la acción con la CLI de `ibmcloud` utilizando el distintivo `--main`.
 
-Puede crear una acción de {{site.data.keyword.openwhisk_short}} llamada **helloPHP** desde esta función, según se indica a continuación:
-```
-ibmcloud fn action create helloPHP hello.php
-```
-{: pre}
+2. Cree una acción denominada `helloPHP`.
+    ```
+    ibmcloud fn action create helloPHP hello.php
+    ```
+    {: pre}
 
-La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.php`, la acción se ejecuta utilizando el tiempo de ejecución PHP 7.1. Para obtener más información, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_php) de PHP.
+    La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.php`, la acción se ejecuta utilizando el tiempo de ejecución PHP 7.1. Para obtener más información, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_php) de PHP.
 
-La invocación de la acción es la misma para acciones PHP que para acciones JavaScript:
-```
-ibmcloud fn action invoke --result helloPHP --param name World
-```
-{: pre}
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result helloPHP --param name World
+    ```
+    {: pre}
 
-Salida de ejemplo:
-```
-  {
-      "greeting": "Hello World!"
-  }
-```
-{: screen}
+    Salida de ejemplo:
+    ```
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
 
 ### Empaquetamiento de acciones PHP en archivos zip
 {: #openwhisk_actions_php_zip}
 
-Puede empaquetar una acción PHP junto con otros archivos y paquetes dependientes en un archivo zip.
-El nombre del archivo fuente que contiene el punto de entrada (por ejemplo, `main`) debe ser `index.php.py`.
+Puede empaquetar una acción PHP y otros archivos o paquetes dependientes en un archivo zip. Por ejemplo, para empaquetar una acción con un segundo archivo denominado `helper.php`:
 
-Por ejemplo, para crear una acción que incluya un segundo archivo denominado `helper.php`, primero cree un archivador que contenga sus archivos fuente:
-```bash
-zip -r helloPHP.zip index.php helper.php
-```
-{: pre}
+1. Cree un archivador que contenga los archivos fuente. **Nota**: El archivo fuente que contiene el punto de entrada se debe denominar `index.php`.
+    ```bash
+    zip -r helloPHP.zip index.php helper.php
+    ```
+    {: pre}
 
-A continuación, cree la acción **helloPHP**:
-```bash
-ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
-```
-{: pre}
+2. Cree la acción.
+    ```bash
+    ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
+    ```
+    {: pre}
 
 ## Creación de acciones Swift
 {: #creating-swift-actions}
 
-El proceso de creación de acciones Swift es parecido al de las acciones JavaScript. Las siguientes secciones le guían a través de la creación e invocación de una única acción de Swift y por el empaquetado de una acción en un archivo zip.
+Las siguientes secciones le guían a través de la creación e invocación de una única acción de Swift y por el empaquetado de una acción en un archivo zip.
 
-También puede usar [Online Swift Playground](http://online.swiftplayground.run) en línea para probar el código Swift sin tener que instalar Xcode en su máquina.
+**Nota:** Acciones Swift se ejecutan en un entorno Linux. Swift en Linux aún está en desarrollo, y {{site.data.keyword.openwhisk_short}} utiliza el release disponible más reciente. Es posible que estos releases no sean estables. La versión de Swift que se utiliza con {{site.data.keyword.openwhisk_short}} podría no ser coherente con versiones de Swift de releases estables de Xcode en MacOS.
 
-**Atención:** Acciones Swift se ejecutan en un entorno Linux. Swift en Linux aún está en desarrollo, y OpenWhisk generalmente utiliza el release disponible más reciente, que no es necesariamente estable. Además, la versión de Swift que se utiliza con OpenWhisk podría no ser coherente con versiones de Swift de releases estables de Xcode en MacOS.
+Para obtener más información sobre el entorno de tiempo de ejecución, consulte [reference](./openwhisk_reference.html#swift-actions) de Swift.
+{: tip}
 
 ### Creación e invocación de una acción
+{: #openwhisk_actions_swift_invoke}
 
 #### Swift 3
-Una acción es sencillamente una función Swift de nivel superior. Por ejemplo, cree un archivo llamado
-**hello.swift** con el contenido siguiente:
+{: #openwhisk_actions_swift3_invoke}
 
-```swift
-func main(args: [String:Any]) -> [String:Any] {
-    if let name = args["name"] as? String {
-        return [ "greeting" : "Hello \(name)!" ]
-    } else {
-        return [ "greeting" : "Hello stranger!" ]
+Una acción es sencillamente una función Swift de nivel superior. Para crear una acción de Swift 3:
+
+1. Guarde el siguiente código en un archivo denominado `hello.swift`.
+    ```swift
+    func main(args: [String:Any]) -> [String:Any] {
+        if let name = args["name"] as? String {
+            return [ "greeting" : "Hello \(name)!" ]
+        } else {
+            return [ "greeting" : "Hello stranger!" ]
+        }
     }
-}
-```
-{: codeblock}
+    ```
+    {: codeblock}
 
-En este ejemplo, la acción Swift consume un diccionario y genera un diccionario.
+    En este ejemplo, la acción Swift consume un diccionario y genera un diccionario.
 
-Puede crear una acción OpenWhisk denominada **helloSwift** a partir de esta función de la siguiente manera:
-```
-ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
-```
-{: pre}
+2. Cree una acción denominada `helloSwift`.
+    ```
+    ibmcloud fn action create helloSwift hello.swift --kind swift:3.1.1
+    ```
+    {: pre}
+
+    La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen. Para archivos de origen `.php`, la acción se ejecuta utilizando el tiempo de ejecución PHP 7.1. Para obtener más información, consulte la [referencia](./openwhisk_reference.html#openwhisk_ref_php) de PHP.
+
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result helloSwift --param name World
+    ```
+    {: pre}
+
+    Salida de ejemplo:
+    ```
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
 
 #### Swift 4
+{: #openwhisk_actions_swift4_invoke}
 
-Como novedad de Swift 4, además de la firma de la función principal anterior, se han añadido dos firmas más listas para ser utilizadas a fin de aprovechar el tipo [Codable](https://developer.apple.com/documentation/swift/codable). [Aquí](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) encontrará más información sobre los tipos de datos que se pueden codificar y descodificar con representaciones externas como JSON.
+Además de la firma para la función main, Swift 4 proporciona dos firmas más para sacar partido del tipo [Codable ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.apple.com/documentation/swift/codable). Obtenga [aquí ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) más información sobre los tipos de datos que se pueden codificar y descodificar para su compatibilidad con representaciones externas como por ejemplo JSON.
 
-El ejemplo siguiente toma un parámetro de entrada como **entrada codificable (Codable Input)** con un campo `name` y devuelve una **salida codificable (Codable output)** con un campo `greetings`.
-```swift
-struct Input: Codable {
-    let name: String?
-}
-struct Output: Codable {
-    let greeting: String
+1. Guarde el siguiente código en un archivo denominado `hello.swift`.
+    ```swift
+    struct Input: Codable {
+        let name: String?
+    }
+    struct Output: Codable {
+        let greeting: String
 }
 func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
-    let result = Output(greeting: "Hello \(param.name ?? "stranger")!")
-    print("Log greeting:\(result.greeting)")
-    completion(result, nil)
-}
-```
-{: codeblock}
+        let result = Output(greeting: "Hello \(param.name ?? "stranger")!")
+        print("Log greeting:\(result.greeting)")
+        completion(result, nil)
+    }
+    ```
+    {: codeblock}
+    Este ejemplo toma un parámetro de entrada como `entrada codificable (Codable Input)` con un campo `name` y devuelve una `salida codificable (Codable output)` con un campo `greetings`.
 
-En este ejemplo, la acción de Swift consume un código codificable y genera un tipo codificable.
-No es necesario que gestione la entrada; puede utilizar la firma de la función que no necesita ninguna entrada, solo una salida codificable.
-```swift
-struct Output: Codable {
-    let greeting: String
-}
-func main(completion: (Output?, Error?) -> Void) -> Void {
-    let result = Output(greeting: "Hello OpenWhisk!")
-    completion(result, nil)
-}
-```
-{: codeblock}
+2. Cree una acción denominada `helloSwift`.
+    ```
+    ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
+    ```
+    {: pre}
 
-Puede crear una acción OpenWhisk denominada `helloSwift` a partir de esta función de la siguiente manera:
-```
-ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
-```
-{: pre}
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result helloSwift --param name World
+    ```
+    {: pre}
 
-Consulte la documentación de [referencia](./openwhisk_reference.html#swift-actions) de Swift para obtener más información sobre el tiempo de ejecución de Swift.
-
-La invocación de la acción es la misma para acciones Swift que para acciones JavaScript:
-```
-ibmcloud fn action invoke --result helloSwift --param name World
-```
-{: pre}
-
-Salida de ejemplo:
-```
-  {
-      "greeting": "Hello World!"
-  }
-```
-{: screen}
-
-Obtenga más información sobre los parámetros en el tema [Cómo trabajar con parámetros](./parameters.html).
+    Salida de ejemplo:
+    ```
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
 
 ### Empaquetado de una acción como un ejecutable Swift
 {: #packaging-an-action-as-a-swift-executable}
 
-Cuando cree una acción Swift de OpenWhisk con un archivo fuente Swift, se tiene que compilar en un binario antes de ejecutar la acción. Una vez hecho esto, las siguientes llamadas a la acción serán mucho más rápidas hasta que se depure el contenedor que alberga la acción. Este retraso se conoce como retraso de inicio en frío.
+Cuando cree una acción Swift de {{site.data.keyword.openwhisk_short}} con un archivo fuente Swift, el archivo se debe compilar en un código binario antes de poder ejecutar la acción. Este retraso se conoce como retraso de inicio en frío. Una vez creado el binario, las siguientes llamadas a la acción serán mucho más rápidas hasta que se purgue el contenedor que alberga la acción. Para evitar el retraso de inicio en frío, puede compilar el archivo Swift en un binario y luego cargar dicho binario en {{site.data.keyword.openwhisk_short}} en un archivo zip.
 
-Para evitar el retraso de inicio en frío, puede compilar el archivo Swift en un binario y luego cargarlo en OpenWhisk en un archivo zip. Como necesita la protección de OpenWhisk, la forma más sencilla de crear el binario consiste en crearlo en el mismo entorno en el que se va a ejecutar.
+Puede utilizar un script para automatizar el empaquetado de la acción.
 
-### Utilización de un script para crear una acción empaquetada de Swift
-
-Puede utilizar un script para automatizar el empaquetado de la acción. Cree un archivo de script denominado `compile.sh` con el código de ejemplo siguiente.
-```bash
-#!/bin/bash
-set -ex
-
-if [ -z "$1" ] ; then
-    echo 'Error: Missing action name'
-    exit 1
-fi
-if [ -z "$2" ] ; then
-    echo 'Error: Missing kind, for example swift:4.1'
-    exit 2
-fi
-OUTPUT_DIR="build"
-if [ ${2} == "swift:3.1.1" ]; then
-  BASE_PATH="/swift3Action"
-  DEST_SOURCE="$BASE_PATH/spm-build"
-  RUNTIME="openwhisk/action-swift-v3.1.1"
-elif [ ${2} == "swift:4.1" ]; then
-  RUNTIME="ibmfunctions/action-swift-v4.1"
-  BASE_PATH="/swift4Action"
-  DEST_SOURCE="/$BASE_PATH/spm-build/Sources/Action"
-else
-  echo "Error: Kind $2 not recognize"
-  exit 3
-fi
-DEST_PACKAGE_SWIFT="$BASE_PATH/spm-build/Package.swift"
-
-BUILD_FLAGS=""
-if [ -n "$3" ] ; then
-    BUILD_FLAGS=${3}
-fi
-
-echo "Using runtime $RUNTIME to compile swift"
-docker run --rm --name=compile-ow-swift -it -v "$(pwd):/owexec" $RUNTIME bash -ex -c "
-
-if [ -f \"/owexec/$OUTPUT_DIR/$1.zip\" ] ; then
-    rm \"/owexec/$OUTPUT_DIR/$1.zip\"
-fi
-
-echo 'Setting up build...'
-cp /owexec/actions/$1/Sources/*.swift $DEST_SOURCE/
-
-# El archivo de acción puede ser {nombre_acción}.swift o main.swift
-if [ -f \"$DEST_SOURCE/$1.swift\" ] ; then
-    echo 'renaming $DEST_SOURCE/$1.swift $DEST_SOURCE/main.swift'
-    mv \"$DEST_SOURCE/$1.swift\" $DEST_SOURCE/main.swift
-fi
-# Añadir las partes específicas de OW
-cat $BASE_PATH/epilogue.swift >> $DEST_SOURCE/main.swift
-echo '_run_main(mainFunction:main)' >> $DEST_SOURCE/main.swift
-
-# Solo para Swift4
-if [ ${2} != "swift:3.1.1" ]; then
-  echo 'Adding wait to deal with escaping'
-  echo '_ = _whisk_semaphore.wait(timeout: .distantFuture)' >> $DEST_SOURCE/main.swift
-fi
-
-echo \"Compiling $1...\"
-cd /$BASE_PATH/spm-build
-cp /owexec/actions/$1/Package.swift $DEST_PACKAGE_SWIFT
-# Tenemos nuestro propio paquete Package.swift, realizar una compilación completa
-swift build ${BUILD_FLAGS} -c release
-
-echo 'Creating archive $1.zip...'
-#.build/release/Action
-mkdir -p /owexec/$OUTPUT_DIR
-zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
-"
-```
-{: codeblock}
-
-En el script se presupone que tiene un directorio denominado `actions`, en el que cada directorio de nivel superior representa una acción.
+**Requisito previo**: En el script utilizado en los siguientes pasos se presupone que tiene un directorio denominado `actions`, en el que cada directorio de nivel superior representa una acción.
 ```
 actions/
 ├── hello
@@ -889,92 +717,167 @@ actions/
 │       └── main.swift
 ```
 
-- Cree el archivo `Package.swift` para añadir dependencias. **Nota:** la sintaxis difiere entre las herramientas de Swift 3 y de Swift 4.
+1. Guarde el código siguiente en un archivo de script denominado `compile.sh`.
+    ```bash
+    #!/bin/bash
+    set -ex
 
-  Sintaxis de ejemplo de Swift 3:
-  ```swift
-  import PackageDescription
+    if [ -z "$1" ] ; then
+    echo 'Error: Missing action name'
+    exit 1
+fi
+if [ -z "$2" ] ; then
+    echo 'Error: Missing kind, for example swift:4.1'
+        exit 2
+    fi
+    OUTPUT_DIR="build"
+    if [ ${2} == "swift:3.1.1" ]; then
+      BASE_PATH="/swift3Action"
+      DEST_SOURCE="$BASE_PATH/spm-build"
+      RUNTIME="openwhisk/action-swift-v3.1.1"
+    elif [ ${2} == "swift:4.1" ]; then
+      RUNTIME="ibmfunctions/action-swift-v4.1"
+      BASE_PATH="/swift4Action"
+      DEST_SOURCE="/$BASE_PATH/spm-build/Sources/Action"
+    else
+      echo "Error: Kind $2 not recognize"
+      exit 3
+    fi
+    DEST_PACKAGE_SWIFT="$BASE_PATH/spm-build/Package.swift"
 
-  let package = Package(
+    BUILD_FLAGS=""
+    if [ -n "$3" ] ; then
+        BUILD_FLAGS=${3}
+    fi
+
+    echo "Using runtime $RUNTIME to compile swift"
+docker run --rm --name=compile-ow-swift -it -v "$(pwd):/owexec" $RUNTIME bash -ex -c "
+
+    if [ -f \"/owexec/$OUTPUT_DIR/$1.zip\" ] ; then
+    rm \"/owexec/$OUTPUT_DIR/$1.zip\"
+fi
+
+    echo 'Setting up build...'
+    cp /owexec/actions/$1/Sources/*.swift $DEST_SOURCE/
+
+    # El archivo de acción puede ser {nombre_acción}.swift o main.swift
+if [ -f \"$DEST_SOURCE/$1.swift\" ] ; then
+    echo 'renaming $DEST_SOURCE/$1.swift $DEST_SOURCE/main.swift'
+    mv \"$DEST_SOURCE/$1.swift\" $DEST_SOURCE/main.swift
+fi
+# Añadir las partes específicas de OW
+cat $BASE_PATH/epilogue.swift >> $DEST_SOURCE/main.swift
+echo '_run_main(mainFunction:main)' >> $DEST_SOURCE/main.swift
+
+    # Only for Swift4
+    if [ ${2} != "swift:3.1.1" ]; then
+      echo 'Adding wait to deal with escaping'
+      echo '_ = _whisk_semaphore.wait(timeout: .distantFuture)' >> $DEST_SOURCE/main.swift
+    fi
+
+    echo \"Compiling $1...\"
+    cd /$BASE_PATH/spm-build
+cp /owexec/actions/$1/Package.swift $DEST_PACKAGE_SWIFT
+# Tenemos nuestro propio paquete Package.swift, realizar una compilación completa
+swift build ${BUILD_FLAGS} -c release
+
+    echo 'Creating archive $1.zip...'
+    #.build/release/Action
+mkdir -p /owexec/$OUTPUT_DIR
+zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
+"
+    ```
+    {: codeblock}
+
+2. Para añadir dependencias, cree el archivo `Package.swift`. El siguiente ejemplo añade `example-package-deckofplayingcards` como una dependencia. `CCurl`, `Kitura-net` y `SwiftyJSON` se proporcionan en la acción estándar Swift; por eso debe incluirlos en su propio `Package.swift`solo para acciones Swift 3.
+    * Sintaxis de ejemplo de Swift 3:
+        ```swift
+        import PackageDescription
+
+        let package = Package(
      name: "Action",
          dependencies: [
-            .Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 3),
-            .Package(url: "https://github.com/IBM-Swift/CCurl.git", "0.2.3"),
-            .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", "1.7.10"),
-            .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", "15.0.1"),
-            .Package(url: "https://github.com/watson-developer-cloud/swift-sdk.git", "0.16.0")
+                  .Package(url: "https://github.com/apple/example-package-deckofplayingcards.git", majorVersion: 3),
+                  .Package(url: "https://github.com/IBM-Swift/CCurl.git", "0.2.3"),
+                  .Package(url: "https://github.com/IBM-Swift/Kitura-net.git", "1.7.10"),
+                  .Package(url: "https://github.com/IBM-Swift/SwiftyJSON.git", "15.0.1"),
+                  .Package(url: "https://github.com/watson-developer-cloud/swift-sdk.git", "0.16.0")
          ]
-  )
-  ```
-  {: codeblock}
+        )
+        ```
+        {: codeblock}
 
-  Sintaxis de ejemplo de Swift 4:
-  ```swift
-  // swift-tools-version:4.0
-  import PackageDescription
+    * Sintaxis de ejemplo de Swift 4:
+        ```swift
+        // swift-tools-version:4.0
+        import PackageDescription
 
-  let package = Package(
+        let package = Package(
       name: "Action",
       products: [
-        .executable(
+              .executable(
           name: "Action",
           targets:  ["Action"]
         )
-      ],
+            ],
       dependencies: [
-        .package(url: "https://github.com/apple/example-package-deckofplayingcards.git", .upToNextMajor(from: "3.0.0"))
-      ],
+              .package(url: "https://github.com/apple/example-package-deckofplayingcards.git", .upToNextMajor(from: "3.0.0"))
+            ],
       targets: [
-        .target(
+              .target(
           name: "Action",
           dependencies: ["DeckOfPlayingCards"],
           path: "."
         )
-      ]
-  )
-  ```
-  {: codeblock}
+            ]
+        )
+        ```
+        {: codeblock}
 
-  Como puede ver, este ejemplo añade `example-package-deckofplayingcards` como una dependencia. Tenga en cuenta que `CCurl`, `Kitura-net` y `SwiftyJSON` se proporcionan en la acción estándar Swift; por eso debe incluirlos en su propio `Package.swift`solo para acciones Swift 3.
+3. Para crear un `hello.zip` en `build`, compile la acción.
+    * Swift 3:
+      ```
+      bash compile.sh hello swift:3.1.1
+      ```
+      {: pre}
 
-- Para crear la acción, ejecute el siguiente mandato para una acción de Swift 3:
-  ```
-  bash compile.sh hello swift:3.1.1
-  ```
-  {: pre}
+    * Swift 4:
+      ```
+      bash compile.sh hello swift:4.1
+      ```
+      {: pre}
 
-  Para compilar para Swift 4, utilice `swift:4.1` en lugar de `swift:3.1.1`:
-  ```
-  bash compile.sh hello swift:4.1
-  ```
-  {: pre}
+4. Cargue el archivo zip en {{site.data.keyword.openwhisk_short}} con el nombre de acción `helloSwiftly`.
+    * Swift 3:
+      ```
+      ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
+      ```
+      {: pre}
 
-  Esto ha creado `hello.zip` en `build`.
+    * Swift 4:
+      ```
+      ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
+      ```
+      {: pre}
 
-- Cárguelo en OpenWhisk con el nombre de acción **helloSwifty**. Para Swift 3, utilice el tipo `swift:3.1.1`
-  ```
-  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:3.1.1
-  ```
-  {: pre}
+5. Invoque la acción.
+    ```
+    ibmcloud fn action invoke helloSwiftly --blocking
+    ```
+    {: pre}
 
-  Para Swift 4, utilice el tipo `swift:3.1.1`:
-  ```
-  ibmcloud fn action update helloSwiftly build/hello.zip --kind swift:4.1
-  ```
-  {: pre}
+    El tiempo que se ha tardado en ejecutar la acción está en la propiedad `duration1.
 
-- Para comprobar lo rápido que es, ejecute el siguiente mandato:
-  ```
-  ibmcloud fn action invoke helloSwiftly --blocking
-  ```
-  {: pre}
-
-  El tiempo que se ha tardado en ejecutar la acción está en la propiedad "duration" y se compara con el tiempo que se tarda en ejecutar con un paso de compilación en la acción **hello**.
+6. Puede comparar la duración de la invocación de la acción precompilada con la duración de una invocación de mandato con un paso de compilación. Invoque la acción de la sección anterior:
+    ```
+    ibmcloud fn action invoke --result helloSwift --param name World --blocking
+    ```
+    {: pre}
 
 ### Manejo de errores en Swift 4
+{: #error-handling-swift4}
 
-Con el nuevo manejador de terminación codificable, puede pasar un error a fin de indicar que la acción ha fallado.
-El [manejo de errores en Swift](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) se parece al manejo de excepciones en otros lenguajes, con el uso de las palabras clave `try, catch` y `throw`.
+Con la utilización del manejador de terminación Codable, se pueden pasar errores para indicar una anomalía en su acción. El [Manejo de errores en Swift ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) es parecido al manejo de excepciones en otros lenguajes, con la utilización de las palabras clave `try`, `catch` y `throw`.
 
 En el siguiente fragmento de código se muestra un ejemplo de manejo de un error:
 ```swift
@@ -997,115 +900,97 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 ## Creación de acciones de Java
 {: #creating-java-actions}
 
-El proceso de creación de acciones Java es parecido al de las acciones JavaScript y Swift. En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Swift, y se añaden parámetros a dicha acción.
+En las secciones siguientes se proporciona una guía para la creación e invocación de una única acción Java y la adición de parámetros a dicha acción.
 
-Para compilar, probar y archivar archivos Java, debe tener un [JDK 8](http://openjdk.java.net/install) instalado localmente.
+Para poder compilar, probar y archivar archivos Java, debe tener [JDK 8 ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo") ](http://openjdk.java.net/install) instalado localmente.
 
 ### Creación e invocación de una acción Java
 {: #openwhisk_actions_java_invoke}
 
-Una acción Java es un programa Java con un método llamado `main` que tiene la firma exacta que se indica a continuación:
+Una acción Java es un programa Java con un método llamado `main`. `main` debe tener la siguiente firma exacta:
 ```java
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 {: codeblock}
 
-Por ejemplo, cree un archivo Java denominado `Hello.java` con el contenido siguiente:
+Para crear una acción de Java:
 
-```java
-import com.google.gson.JsonObject;
-public class Hello {
-    public static JsonObject main(JsonObject args) {
-        String name = "stranger";
+1. Guarde el siguiente código en un archivo denominado `Hello.java`.
+    ```java
+    import com.google.gson.JsonObject;
+    public class Hello {
+        public static JsonObject main(JsonObject args) {
+            String name = "stranger";
         if (args.has("name"))
             name = args.getAsJsonPrimitive("name").getAsString();
         JsonObject response = new JsonObject();
         response.addProperty("greeting", "Hello " + name + "!");
         return response;
     }
-}
-```
-{: codeblock}
+    }
+    ```
+    {: codeblock}
 
-A continuación, compile `Hello.java` en un archivo JAR `hello.jar` tal como se indica a continuación:
-```
-javac Hello.java
-```
-{: pre}
+2. Compile `Hello.java` en un archivo JAR denominado `hello.jar`. **Nota**: [google-gson ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://github.com/google/gson) debe existir en su CLASSPATH de Java.
+    ```
+    javac Hello.java
+    ```
+    {: pre}
+    ```
+    jar cvf hello.jar Hello.class
+    ```
+    {: pre}
 
-```
-jar cvf hello.jar Hello.class
-```
-{: pre}
+3. Cree una acción.
+    ```
+    ibmcloud fn action create helloJava hello.jar --main Hello
+    ```
+    {: pre}
+  * Debe especificar el nombre de la clase principal con `--main`. Una clase principal apta es una que implemente un método `main` estático. Si la clase no está en el paquete predeterminado, utilice el nombre de clase completo de Java, por ejemplo `--main com.example.MyMain`.
+  * Puede personalizar el nombre de método de la acción Java. Esto se realiza especificando el nombre completo del método de la acción, por ejemplo, `--main com.example.MyMain#methodName`.
+  * La CLI deduce automáticamente el tipo de acción a partir de la extensión del archivo de origen.
 
-[google-gson](https://github.com/google/gson) debe existir en CLASSPATH de Java para compilar el archivo Java.
-{: tip}
+4. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result helloJava --param name World
+    ```
+    {: pre}
 
-Puede crear una acción de {{site.data.keyword.openwhisk_short}} denominada **helloJava** a partir de este archivo JAR tal como se indica a continuación:
-```
-ibmcloud fn action create helloJava hello.jar --main Hello
-```
-{: pre}
-
-Cuando se utiliza la línea de mandatos y un archivo fuente `.jar`, no es necesario especificar que está creando una acción Java; la herramienta lo determina a partir de la extensión de archivo.
-
-Tiene que especificar el nombre de la clase principal con `--main`. Una clase principal apta es una que implemente un método `main` estático. Si la clase no está en el paquete predeterminado, utilice el nombre de clase completo de Java, por ejemplo `--main com.example.MyMain`.
-
-Si es necesario, también puede personalizar el nombre de método de la acción Java. Esto se realiza especificando el nombre completo del método de Java de la acción, por ejemplo, `--main com.example.MyMain#methodName`.
-
-La invocación de la acción es la misma para acciones Java que para acciones Swift y JavaScript:
-```
-ibmcloud fn action invoke --result helloJava --param name World
-```
-{: pre}
-
-Salida de ejemplo:
-```
-  {
-      "greeting": "Hello World!"
-  }
-```
-{: screen}
+    Salida de ejemplo:
+    ```
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
 
 ## Creación de acciones Docker
 {: #creating-docker-actions}
 
 Con acciones Docker de {{site.data.keyword.openwhisk_short}}, puede escribir sus acciones en cualquier lenguaje.
+{: shortdesc}
 
 Su código se compila en un binario ejecutable y se incluye en una imagen Docker. El programa binario interactúa con el sistema
-aceptando la entrada desde `stdin` y respondiendo por medio de `stdout`.
+aceptando la entrada desde `stdin` y respondiendo por medio de `stdout`.   Podrá obtener más información sobre la creación de acciones de Docker en la sección
+[Referencias](./openwhisk_reference.html#openwhisk_ref_docker).
 
-Como requisito previo, debe tener una cuenta de Docker Hub.  Para configurar un ID y cuenta gratuitos de Docker, acceda a
-[Docker Hub](https://hub.docker.com).
+Requisito previo: Debe tener una cuenta de Docker Hub. Configure una cuenta y un ID de Docker gratuito en [Docker Hub ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://hub.docker.com).
 
-Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmith` y la contraseña es `janes_password`.  Suponiendo que la CLI está configurada, quedan tres pasos para configurar un binario personalizado para que lo use {{site.data.keyword.openwhisk_short}}. Tras hacerlo, la imagen de Docker subida se podrá utilizar como una acción.
+Para configurar un binario personalizado y utilizar la imagen de Docker cargada como una acción:
 
-1. Descargar el esqueleto de Docker. Puede descargarlo e instalarlo usando la CLI de la siguiente manera:
+1. Descargue e instale el esqueleto de Docker. El esqueleto es una plantilla de contenedor de Docker en la que puede inyectar código en forma de binarios personalizados.
   ```
   ibmcloud fn sdk install docker
   ```
   {: pre}
 
-  El esqueleto Docker estará ahora instalado en el directorio actual.
-  ```
-  ls dockerSkeleton/
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  Dockerfile      README.md       buildAndPush.sh example.c
-  ```
-  {: screen}
-
-  El esqueleto es una plantilla de contenedor de Docker en la que puede inyectar código en forma de binarios personalizados.
-
-2. Configure su binario personalizado en el esqueleto blackbox. El esqueleto ya incluye un programa en C que puede usar.
+2. Configure su binario personalizado en el esqueleto blackbox. El esqueleto incluye un programa en C que puede usar. Parte del archivo `example.c` está compilado como parte del proceso de compilación de imagen de Docker, por lo que no necesita C compilado en su máquina.
   ```
   cat dockerSkeleton/example.c
   ```
   {: pre}
 
+  Salida de ejemplo:
   ```c
   #include <stdio.h>
   int main(int argc, char *argv[]) {
@@ -1116,366 +1001,217 @@ Para las instrucciones siguientes, supondremos que el ID de usuario es `janesmit
   ```
   {: codeblock}
 
-  Puede modificar este valor cuando sea necesario o añadir código y dependencias adicionales a la imagen de docker.
-  En el último caso, puede modificar el `Dockerfile` según convenga para crear el ejecutable.
-  El binario debe estar en el contenedor en `/action/exec`.
+3. Opcional: Añada código y dependencias adicionales a la imagen de Docker modificando el `Dockerfile` para compilar el ejecutable. Tenga en cuenta los siguientes requisitos y límites:
+  * El binario debe estar en el contenedor en `/action/exec`.
+  * El ejecutable recibe un único argumento de la línea de mandatos. Este argumento la serialización de una cadena del objeto JSON que representa los argumentos para la acción.
+  * El programa puede redirigir sus registros a `stdout` o `stderr`.
+  * Por convenio, la última línea de la salida debe ser un objeto JSON en forma de cadena que represente el resultado de la acción.
 
-  El ejecutable recibe un único argumento de la línea de mandatos. Es la serialización de una cadena del objeto JSON que representa los argumentos para la acción. El programa puede redirigir sus registros a `stdout` o `stderr`.
-  Por convenio, la última línea de la salida _debe_ ser un objeto JSON en forma de cadena que represente el resultado de la acción.
+4. Construya la imagen de Docker y suba dicha imagen mediante un script proporcionado.
+    1. Inicie la sesión en Docker.
+        ```
+        docker login -u <username> -p <password>
+        ```
+        {: pre}
 
-3. Construya la imagen de Docker y suba dicha imagen mediante un script proporcionado. Antes debe ejecutar `docker login` para la autenticación y, a continuación, ejecute el script con el nombre de imagen elegido.
-  ```
-  docker login -u janesmith -p janes_password
-  ```
-  {: pre}
+    2. Vaya al directorio `dockerSkeleton`.
+        ```
+        cd dockerSkeleton
+        ```
+        {: pre}
 
-  ```
-  cd dockerSkeleton
-  ```
-  {: pre}
+    3. Ejecute el script.
+        ```
+        ./buildAndPush.sh <username>/blackboxdemo
+        ```
+        {: pre}
 
-  ```
-  ./buildAndPush.sh janesmith/blackboxdemo
-  ```
-  {: pre}
+5. Utilice el contendedor Docker para crear una acción.
+    ```
+    ibmcloud fn action create example --docker <username>/blackboxdemo
+    ```
+    {: pre}
 
-  Tenga en cuenta que parte del archivo `example.c` está compilado como parte del proceso de compilación de imagen de Docker, por lo que no necesita C compilado en su máquina. De hecho, salvo cuando compile el binario en una máquina de host compatible, no puede ejecutarse dentro del contenedor porque los formatos no coinciden.
+6. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result example --param payload Rey
+    ```
+    {: pre}
 
-  El contenedor de Docker ahora se puede utilizar como una acción de {{site.data.keyword.openwhisk_short}}:
-  ```
-  ibmcloud fn action create example --docker janesmith/blackboxdemo
-  ```
-  {: pre}
-
-  Observe el uso de `--docker` para crear una acción. Se presupone que todas las imágenes de Docker se alojan en Docker Hub. La acción se puede invocar como cualquier otra acción de {{site.data.keyword.openwhisk_short}}.
-  ```
-  ibmcloud fn action invoke --result example --param payload Rey
-  ```
-  {: pre}
-
-  **Salida de la invocación:**
-  ```
-  {
-      "args": {
-          "payload": "Rey"
-      },
+    Salida de ejemplo:
+    ```
+    {
+        "args": {
+            "payload": "Rey"
+        },
       "msg": "Hello from arbitrary C program!"
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-  Para actualizar la acción de Docker, ejecute `buildAndPush.sh` para cargar la imagen más reciente en Docker Hub. Esto permite al sistema extraer la nueva imagen de Docker la próxima vez que ejecute el código para la acción. Si no hay contenedores recientes, las nuevas invocaciones utilizan la imagen de Docker nueva. Sin embargo, si hay un contenedor reciente que utiliza una versión anterior de la imagen de Docker, las nuevas invocaciones siguen utilizando esta imagen a no ser que se ejecute `ibmcloud fn action update`. Esto indica al sistema que, para las nuevas invocaciones, debe ejecutar una extracción de Docker para obtener su nueva imagen de Docker.
+7. Para actualizar la acción de Docker, cargue la imagen más reciente en Docker Hub. Esto permite al sistema extraer la nueva imagen de Docker la próxima vez que ejecute el código para la acción.
+    ```
+    ./buildAndPush.sh <username>/blackboxdemo
+    ```
+    {: pre}
 
-  **Cargue la imagen más reciente en Docker Hub:**
-  ```
-  ./buildAndPush.sh janesmith/blackboxdemo
-  ```
-  {: pre}
+8. Si hay un contenedor reciente que utiliza una versión anterior de la imagen de Docker, las nuevas invocaciones siguen utilizando esta imagen. Actualice la acción para que las nuevas invocaciones empiecen a utilizar la nueva imagen.
+    ```
+    ibmcloud fn action update example --docker <username>/blackboxdemo
+    ```
+    {: pre}
 
-  **Actualice la acción para que las nuevas invocaciones empiecen a utilizar la nueva imagen:***
-  ```
-  ibmcloud fn action update example --docker janesmith/blackboxdemo
-  ```
-  {: pre}
-
-  Podrá obtener más información sobre la creación de acciones de Docker en la sección
-[Referencias](./openwhisk_reference.html#openwhisk_ref_docker).
-
-  La versión anterior de la CLI daba soporte a `--docker` sin ningún parámetro y el nombre de la imagen ha producido un argumento posicional. Para permitir que las acciones Docker acepten datos de inicialización utilizando un archivo (zip), se ha normalizado la experiencia de usuario para acciones Docker para que un argumento posicional, si está presente, debe ser un archivo (por ejemplo, un archivo zip) en su lugar. El nombre de la imagen debe especificarse después de la opción `-- docker`. Gracias a los comentarios de los usuarios, se ha incluido el argumento `-- native` como abreviatura de `-- docker openwhisk/dockerskeleton`, de modo que los ejecutables que se ejecutan dentro de la acción estándar SDK Docker son más adecuados para crear y desplegar.
-
-  Por ejemplo, esta guía de aprendizaje crea un ejecutable binario dentro de la ubicación del contenedor en `/action/exec`. Si copia este archivo a su sistema de archivos local y los comprime en `exec.zip`, a continuación, puede utilizar los mandatos siguientes para crear una acción Docker que recibe el ejecutable como datos de inicialización.
-
-  **Cree una acción a partir del archivo zip:**
-  ```
-  ibmcloud fn action create example exec.zip --native
-  ```
-  {: pre}
-
-  Que es equivalente a invocar el mandato siguiente.
-  ```
-  ibmcloud fn action create example exec.zip --docker openwhisk/dockerskeleton
-  ```
-  {: pre}
+9. Opcional: Puede utilizar el argumento `--native` como abreviatura de `--docker openwhisk/dockerskeleton`. Este argumento hace que sea más fácil crear y desplegar ejecutables que se ejecutan dentro del SDK de acción de Docker estándar.
+    1. Los pasos anteriores crean un ejecutable binario dentro del contenedor ubicado en `/action/exec`. Copie el archivo `/action/exec` en su sistema de archivos locales y empaquételo como zip en `exec.zip`.
+    2. Cree una acción de Docker que reciba el ejecutable como datos de inicialización. El argumento `--native` sustituye al argumento `--docker openwhisk/dockerskeleton`.
+        ```
+        ibmcloud fn action create example exec.zip --native
+        ```
+        {: pre}
 
 ## Creación de acciones Go
 {: #creating-go-actions}
 
-La opción `--native` permite empaquetar cualquier ejecutable como una acción. Esto funciona para Go, por ejemplo. Como en las acciones Docker, el ejecutable de Go recibe un único argumento de la línea de mandatos. Es la serialización de una cadena del objeto JSON que representa los argumentos para la acción. El programa puede redirigir sus registros a `stdout` o `stderr`. Por convenio, la última línea de la salida _debe_ ser un objeto JSON en forma de cadena que represente el resultado de la acción.
+El argumento `--native` permite empaquetar los ejecutables de Go como una acción.
 
-Aquí se muestra una acción Go de ejemplo.
-```go
-package main
+Tenga en cuenta los siguientes requisitos y límites.
+  * Los ejecutables de Go reciben un único argumento de la línea de mandatos. El argumento es la serialización de una cadena del objeto JSON que representa los argumentos para la acción.
+  * El programa puede redirigir sus registros a `stdout` o `stderr`.
+  * Por convenio, la última línea de la salida debe ser un objeto JSON en forma de cadena que represente el resultado de la acción.
 
-import "encoding/json"
-import "fmt"
-import "os"
+Para crear una acción Go:
 
-func main() {
-    //program receives one argument: the JSON object as a string
+1. Guarde el siguiente código en un archivo denominado `sample.go`.
+    ```go
+    package main
+
+    import "encoding/json"
+    import "fmt"
+    import "os"
+
+    func main() {
+        //program receives one argument: the JSON object as a string
     arg := os.Args[1]
 
-    // unmarshal the string to a JSON object
-    var obj map[string]interface{}
-    json.Unmarshal([]byte(arg), &obj)
+        // unmarshal the string to a JSON object
+        var obj map[string]interface{}
+        json.Unmarshal([]byte(arg), &obj)
 
-    // can optionally log to stdout (or stderr)
-    fmt.Println("hello Go action")
+        // can optionally log to stdout (or stderr)
+        fmt.Println("hello Go action")
 
-    name, ok := obj["name"].(string)
+        name, ok := obj["name"].(string)
     if !ok { name = "Stranger" }
 
-    // last line of stdout is the result JSON object as a string
-    msg := map[string]string{"msg": ("Hello, " + name + "!")}
-    res, _ := json.Marshal(msg)
-    fmt.Println(string(res))
-}
-```
-{: codeblock}
+        // last line of stdout is the result JSON object as a string
+        msg := map[string]string{"msg": ("Hello, " + name + "!")}
+        res, _ := json.Marshal(msg)
+        fmt.Println(string(res))
+    }
+    ```
+    {: codeblock}
 
-Guarde el código anterior en un archivo `sample.go` y cree con él una compilación cruzada para OpenWhisk. El ejecutable se debe denominar `exec`.
-```bash
-GOOS=linux GOARCH=amd64 go build -o exec
-zip exec.zip exec
-ibmcloud fn action create helloGo --native exec.zip
-```
-{: codeblock}
+2. Realice una compilación cruzada de `sample.go` para {{site.data.keyword.openwhisk_short}}. El ejecutable se debe denominar `exec`.
+    ```bash
+    GOOS=linux GOARCH=amd64 go build -o exec
+    zip exec.zip exec
+    ibmcloud fn action create helloGo --native exec.zip
+    ```
+    {: codeblock}
 
-La acción puede ejecutarse como cualquier otra acción.
-```bash
-ibmcloud fn action invoke helloGo -r -p name gopher
-{
-    "msg": "Hello, gopher!"
-}
-```
+3. Invoque la acción.
+    ```bash
+    ibmcloud fn action invoke helloGo -r -p name gopher
+    {
+        "msg": "Hello, gopher!"
+    }
+    ```
+    {: pre}
 
-Los registros se recuperan también de una forma similar.
-```bash
-ibmcloud fn activation logs --last --strip
-my first Go action.
-```
+## Creación de secuencias de acciones
+{: #openwhisk_create_action_sequence}
 
-## Creación de acciones utilizando ejecutables arbitrarios
-{: #creating-actions-arbitrary}
+Puede crear una acción que encadene juntas una secuencia de acciones. El resultado de una acción se pase como argumento a la acción siguiente.
+{: shortdesc}
 
-Mediante `--native`, puede ver que _cualquier_ ejecutable puede ejecutarse como una acción de OpenWhisk. Esto incluye a los scripts `bash`, o a los binarios de compilación cruzada. Para estos últimos, la restricción es que el binario debe ser compatible con la imagen `openwhisk/dockerskeleton`.
+Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` que puede utilizar para crear su primera secuencia.
 
-## Supervisión de la salida de acción
-{: #monitor-action-output}
+1. Lista las acciones en el paquete `/whisk.system/utils`.
+    ```
+    ibmcloud fn package get --summary /whisk.system/utils
+    ```
+    {: pre}
 
-Las acciones de {{site.data.keyword.openwhisk_short}} se podrían invocar por otros usuarios, en respuesta a varios sucesos, o como parte de una secuencia de acciones. En tales casos, puede ser útil supervisar las invocaciones.
+    Salida de ejemplo:
+    ```
+    package /whisk.system/utils: Building blocks that format and assemble data
+   action /whisk.system/utils/head: Extract prefix of an array
+   action /whisk.system/utils/split: Split a string into an array
+   action /whisk.system/utils/sort: Sorts an array
+   action /whisk.system/utils/echo: Returns the input
+   action /whisk.system/utils/date: Current date and time
+   action /whisk.system/utils/cat: Concatenates input into a string
+    ```
+    {: screen}
 
-Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhisk_short}} para ver el resultado de la salida de las acciones a medida que se invocan.
-
-1. Emita el siguiente mandato desde un shell:
+2. Utilizando las acciones `split` y `sort`, cree una secuencia de acciones de forma que el resultado de `split` se pase como argumento a `sort`. Esta secuencia de acciones convierte algunas líneas de texto en una matriz, y ordena las líneas.
   ```
-  ibmcloud fn activation poll
-  ```
-  {: pre}
-
-  Este mandato inicia un bucle de sondeo que comprueba continuamente los registros de las activaciones.
-
-2. Cambie a otra ventana e invoque la acción:
-  ```
-  ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
-  ```
-  {: screen}
-
-3. Observe el registro de activación en la ventana de sondeo:
-  ```
-  Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
-    2016-02-11T16:46:56.842065025Z stdout: hello bob!
-  ```
-  {: screen}
-
-  De la misma forma, cuando ejecute el programa de utilidad de sondeo, verá en tiempo real los registros de las acciones que ejecute en nombre de OpenWhisk.
-
-## Obtención de acciones
-{: #getting-actions}
-
-Los metadatos que describen las acciones existentes se pueden recuperar mediante el mandato get `ibmcloud fn action`.
-
-**Mandato:**
-```
-ibmcloud fn action get hello
-```
-
-***Resultado:**
-```
-ok: got action hello
-{
-    "namespace": "user@email.com",
-    "name": "hello",
-    "version": "0.0.1",
-    "exec": {
-        "kind": "nodejs:6",
-        "binary": false
-    },
-    "annotations": [
-        {
-            "key": "exec",
-            "value": "nodejs:6"
-        }
-    ],
-    "limits": {
-        "timeout": 60000,
-        "memory": 256,
-        "logs": 10
-    },
-    "publish": false
-}
-```
-{: screen}
-
-### Obtención de un URL de acción
-{: #get-action-url}
-
-Una acción se puede invocar utilizando la interfaz REST mediante una solicitud HTTPS. Para obtener un URL de acción, ejecute el mandato siguiente:
-```
-ibmcloud fn action get actionName --url
-```
-{: pre}
-
-Se devuelve un URL con el formato siguiente para las acciones estándares:
-```
-ok: got action actionName
-https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
-```
-{: screen}
-
-Para las [acciones web](./openwhisk_webactions.html), se devuelve un URL con el formato siguiente:
-```
-ok: got action actionName
-https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
-```
-{: screen}
-
-**Nota:** para las acciones estándares, la autenticación se debe proporcionar cuando se invoca mediante una solicitud HTTPS. Para obtener más información sobre las invocaciones de acciones mediante la interfaz REST, vea la [documentación de consulta de API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction).
-
-### Guardado del código de acción
-{: #save-action}
-
-El código asociado con una acción existente puede recuperarse y guardarse localmente. El guardado puede realizarse en todas las acciones, excepto en las secuencias y las acciones de Docker.
-
-1. Guarde el código de acción en un nombre de archivo que corresponda con un nombre de acción existente en el directorio de trabajo actual. Se utiliza una extensión de archivo que corresponde al tipo de acción, o una extensión de tipo .zip para el código de acción que es un archivo zip.
-  ```
-  ibmcloud fn action get actionName --save
+  ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
-  Salida de ejemplo:
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/actionName.js
-  ```
-  {: screen}
+3. Invoque la acción.
+    ```
+    ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+    ```
+    {: pre}
 
-2. En lugar de permitir que la CLI determine el destino del código que se va a guardar, se puede proporcionar una vía de acceso de archivo, un nombre de archivo y una extensión personalizados mediante el distintivo `--save-as`.
-  ```
-  ibmcloud fn action get actionName --save-as codeFile.js
-  ```
-  {: pre}
+    En la salida, las líneas de split se clasifican alfabéticamente.
+    ```
+    {
+        "length": 3,
+      "lines": [
+            "Is full of regret.",
+          "Over-ripe sushi,",
+          "The Master"
+      ]
+    }
+    ```
+    {: screen}
 
-  Salida de ejemplo:
-  ```
-  ok: saved action code to /absolutePath/currentDirectory/codeFile.js
-  ```
-  {: screen}
+**Nota**:
+* Los parámetros que se pasan entre acciones de la secuencia son explícitos, salvo los predeterminados. Por tanto, los parámetros que se pasan a la secuencia de acción solo están disponibles para la primera acción de la secuencia. El resultado de la primera acción de la secuencia se convierte en el objeto JSON de entrada de la segunda acción de la secuencia, y así sucesivamente. Este objeto no incluye ninguno de los parámetros que originalmente se han pasado a la secuencia, a menos que la primera acción los incluya explícitamente en el resultado. Los parámetros de entrada a una acción se fusionan con los parámetros predeterminados de la acción, dando prioridad a los primeros y sustituyendo los parámetros predeterminados coincidentes. Para obtener más información sobre la invocación de secuencias de acciones con varios parámetros con nombre, consulte [Establecimiento de parámetros predeterminados en una acción](./parameters.html#default-params-action).
+* Una secuencia no tiene un tiempo de espera excedido global distinto de los tiempos de espera de cada acción dentro de la secuencia. Debido a que una secuencia se trata como un conducto de operaciones, un error en una acción interrumpe el conducto. Si una acción excede el tiempo de espera, toda la secuencia finaliza con ese error.
 
-## Listado de acciones
-{: #listing-actions}
-
-Puede generar una lista de todas las acciones creadas utilizando el siguiente mandato:
-```
-ibmcloud fn action list
-```
-{: pre}
-
-A medida que escriba más acciones, esta lista crece y puede resultar útil agrupar las acciones relacionadas en [paquetes](./openwhisk_packages.html). Para filtrar la lista de acciones y limitarla a las contenidas en un determinado paquete, puede utilizar la siguiente sintaxis de mandato:
-```
-ibmcloud fn action list [NOMBRE PAQUETE]
-```
-{: pre}
-
-## Supresión de acciones
-{: #deleting-actions}
-
-Puede realizar una limpieza mediante la supresión de acciones que no quiera usar.
-
-1. Ejecute el mandato siguiente para suprimir una acción:
-  ```
-  ibmcloud fn action delete hello
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: deleted hello
-  ```
-  {: screen}
-
-2. Compruebe que la acción ya no aparece en la lista de acciones.
-  ```
-  ibmcloud fn action list
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  actions
-  ```
-  {: screen}
-
-## Soporte para grandes aplicaciones
+## Gestión de acciones grandes
 {: #large-app-support}
 
-El tamaño máximo de código de una acción es de 48 MB. Las aplicaciones que contienen muchos módulos de terceros, bibliotecas nativas o herramientas externas pueden alcanzar este límite.
-
-Si crea una acción de paquete (zip o jar) de más de 48 MB, la solución es ampliar la imagen de tiempo de ejecución con dependencias, y luego utilizar un único archivo de origen o un archivado de menos de 48 MB.
+El tamaño máximo de código de una acción es de 48 MB. Las aplicaciones que contienen muchos módulos de terceros, bibliotecas nativas o herramientas externas pueden alcanzar este límite. Si crea una acción de paquete .zip o .jar mayor de 48 MB, debe ampliar la imagen del entorno de tiempo de ejecución con dependencias y, a continuación, utilizar un archivo de origen individual o un archivador más pequeño de 48 MB.
 
 Por ejemplo, mediante la creación de un tiempo de ejecución de Docker personalizado, que incluye bibliotecas compartidas necesarias, no es necesario que estas dependencias estén presentes en el archivo de archivado. Los archivos de origen privado se pueden empaquetar en el archivado e introducirse en el tiempo de ejecución.
 
-Otra ventaja de reducir el tamaño de los archivos de archivado es que también mejoran los tiempos de despliegue. Se proporcionan dos ejemplos de tiempo de ejecución en las secciones siguientes para demostrar cómo se pueden reducir los tamaños de las aplicaciones con esta técnica.
+### Reducción del tamaño de las acciones
+{: #large-app-reduce}
 
-### Ejemplo de Python
+Para reducir el tamaño del código de una app de Python:
 
-Para una aplicación Python, consulte los pasos siguientes para reducir el tamaño del código.
+1. Coloque la biblioteca `opencv-python` en `opencv`.
+2. Instale el binario opencv en la imagen del sistema operativo.
+3. Aumente la imagen con más bibliotecas de Python ejecutando `pip install requirements.txt`.
+4. Utilice `action.py` con la nueva imagen.
 
-1. Coloque la biblioteca `opencv-python` en opencv.
-2. A continuación, instale el binario opencv en la imagen del sistema operativo.
-3. A continuación, puede utilizar `requirements.txt` y ejecutar `pip install requirements.txt` para aumentar la imagen con más bibliotecas Python.
-4. Después, puede utilizar `action.py` con la nueva imagen.
+Para reducir el tamaño del código de una app de Node.js:
 
-### Ejemplo de Node.js
-
-A fin de reducir el tamaño de la aplicación Node.js, consulte los pasos siguientes para instalar paquetes adicionales en la imagen del sistema operativo:
-
-1. Instale opencv mediante `npm`:
+1. Instale `opencv`.
    ```
    npm install opencv
    ```
    {: pre}
 
-2. Del mismo modo, si tiene un `package.json`, instálelo mediante `npm`:
+2. Instale `package.json`.
    ```
    npm install package.json
    ```
    {: pre}
 
-3. A continuación, utilice `action.js` con la nueva imagen.
-
-## Acceso a metadatos de acción dentro del cuerpo de la acción
-{: #accessing-action-metadata-within-the-action-body}
-
-El entorno de acción contiene varias propiedades que son específicas de la acción que se está ejecutando. Estas propiedades permiten que la acción funcione mediante programación con activos de OpenWhisk a través de la API REST o permiten establecer una alarma interna cuando la acción está a punto de alcanzar su presupuesto de tiempo permitido. Las propiedades están accesibles en el entorno del sistema para todos los tiempos de ejecución admitidos: Node.js, Python, Swift, Java y acciones Docker cuando se utiliza el esqueleto OpenWhisk Docker.
-
-* `__OW_API_HOST` - Host de API para el despliegue de OpenWhisk ejecutando esta acción.
-* `__OW_API_KEY` - Clave de API para quien invoca la acción. Esta clave puede ser una clave de API restringida.
-* `__OW_NAMESPACE` - Espacio de nombres para la _activación_ (puede no ser el mismo que el espacio de nombres para la acción).
-* `__OW_ACTION_NAME` - Nombre completo calificado de la acción en ejecución.
-* `__OW_ACTIVATION_ID` - ID de activación para esta instancia de acción en ejecución.
-* `__OW_DEADLINE` - Tiempo aproximado cuando esta acción habrá consumido toda su cuota de duración (medido en milisegundos desde epoch).
+3. Utilice `action.js` con la nueva imagen.

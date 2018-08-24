@@ -120,7 +120,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 No exemplo anterior, você transmite o `myKey` e o `myToken` que são
 obtidos do OpenWhisk. É possível recuperar a chave e o token com o comando da CLI a seguir:
 ```
-ibmcloud fn property get --auth
+ibmcloud fn property get -- auth
 ```
 {: pre}
 

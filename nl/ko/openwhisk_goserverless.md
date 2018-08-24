@@ -22,10 +22,10 @@ OpenWhisk에는 [서버리스 프레임워크의 자체 제공자 플러그인](
 ## 시작하기
 {: #openwhisk_goserverless_starting}
 
-공식 서버리스 프레임워크 [OpenWhisk용 시작하기 안내서](https://serverless.com/framework/docs/providers/openwhisk/guide/intro/).
+공식 서버리스 프레임워크 [Getting Started Guide for OpenWhisk](https://serverless.com/framework/docs/providers/openwhisk/guide/intro/).
 * 설치, 개발 워크플로우, 우수 사례, 작동 중인 OpenWhisk 애플리케이션을 빌드하고 배치하기 위한 단계별 안내 등을 커버하는 안내서입니다.
 
-OpenWhisk 제공자 플러그인의 서버리스 프레임워크를 사용하는 방법을 설명하는 동영상인 [서버리스 프레임워크 및 OpenWhisk](https://youtu.be/GJY10W98Itc)를 보십시오.
+OpenWhisk 제공자 플러그인의 서버리스 프레임워크를 사용하는 방법을 설명하는 동영상인 [The Serverless Framework and OpenWhisk](https://youtu.be/GJY10W98Itc)를 보십시오.
 
 ## 문서
 {: #openwhisk_goserverless_docs}
@@ -34,4 +34,4 @@ OpenWhisk 제공자 플러그인의 서버리스 프레임워크를 사용하는
 
 ## 샘플
 {: #openwhisk_goserverless_samples}
-[서버리스 프레임워크 예제 GitHub 저장소](https://github.com/serverless/examples)는 이제 HTTP API, cron 기반 스케줄러 및 체인 기능 등을 빌드하는 방법을 보여주는 OpenWhisk를 기능으로 제공합니다.
+[Serverless Framework examples GitHub repository](https://github.com/serverless/examples)는 이제 HTTP API, cron 기반 스케줄러 및 체인 기능 등을 빌드하는 방법을 보여주는 OpenWhisk를 기능으로 제공합니다.

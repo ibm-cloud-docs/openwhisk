@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,8 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# {{site.data.keyword.messagehub}}
+# {{site.data.keyword.messagehub}} パッケージ 
+
 {: #openwhisk_catalog_message_hub}
 
 ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームと行うための [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にするパッケージ。
@@ -74,10 +75,10 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ## {{site.data.keyword.messagehub}} へのメッセージの生成
 {: #producing_messages}
 
-`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、データが {{site.data.keyword.messagehub}}/Kafka に生成されるときには持続接続を使用するようにしてください。
+`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、データが {{site.data.keyword.messagehub}}/Kafka に生成されるときには持続接続を使用するようにしてください。
 {: tip}
 
-{{site.data.keyword.messagehub}} へのメッセージを容易に生成するために {{site.data.keyword.openwhisk_short}} アクションの使用を望む場合、`/messaging/messageHubProduce` アクションを使用できます。このアクションには以下のパラメーターがあります。
+{{site.data.keyword.messagehub}} へのメッセージを容易に生成するために {{site.data.keyword.openwhisk_short}} アクションの使用を望む場合、`/messaging/messageHubProduce` アクションを使用できます。 このアクションには以下のパラメーターがあります。
 
 |名前|タイプ|説明|
 |---|---|---|

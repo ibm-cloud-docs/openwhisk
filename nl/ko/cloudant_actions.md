@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,10 +12,10 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Cloudant 패키지
 {: #cloudant_actions}
 
-`/whisk.system/cloudant` 패키지를 사용하면 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 데이터베이스 관련 작업을 수행할 수 있으며, 이 패키지에는 다음 액션과 피드가 포함되어 있습니다.
+`/whisk.system/cloudant` 패키지를 사용하면 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 데이터베이스 관련 작업을 수행할 수 있으며, 여기에는 다음 액션과 피드가 포함되어 있습니다. 
 
 |엔티티 |유형 |매개변수 |설명 |
 | --- | --- | --- | --- |
@@ -26,7 +26,7 @@ lastupdated: "2018-06-22"
 {: shortdesc}
 
 다음 절에서는 {{site.data.keyword.cloudant_short_notm}} 데이터베이스를 설정할 수 있고 이 데이터베이스를 읽고 작성하는 방법을 알아볼 수 있습니다.
-`/whisk.system/cloudant` 패키지에서 피드를 사용하는 방법에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 이벤트 소스](./openwhisk_cloudant.html)를 참조하십시오.
+`/whisk.system/cloudant` 패키지에서 피드를 사용하는 방법에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 이벤트 소스](./openwhisk_cloudant.html)를 참조하십시오. 
 
 ## {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.cloudant_short_notm}} 데이터베이스 설정
 {: #cloudantdb_cloud}
@@ -37,7 +37,7 @@ lastupdated: "2018-06-22"
 
   각 새 서비스 인스턴스에 대한 신임 정보 키를 작성하십시오.
 
-2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치면 정의된 신임 정보 키를 사용하여 각 {{site.data.keyword.cloudant_short_notm}} 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다. 
+2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치면 정의된 신임 정보 키를 사용하여 각 {{site.data.keyword.cloudant_short_notm}} 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다.
   ```
   ibmcloud fn package refresh
   ```

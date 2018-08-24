@@ -19,7 +19,7 @@ lastupdated: "2018-06-22"
 
 패키지에는 *액션* 및 *피드*가 포함될 수 있습니다.
 - 액션은 {{site.data.keyword.openwhisk_short}}에서 실행되는 코드 조각입니다. 예를 들어, {{site.data.keyword.cloudant}} 패키지에는 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에서 레코드를 읽고 쓰는 액션이 포함되어 있습니다.
-- 피드를 사용하여 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성합니다. 예를 들어, 알람 패키지에는 지정된 빈도로 트리거를 실행할 수 있는 피드가 포함되어 있습니다.
+- 피드는 트리거 이벤트를 실행하도록 외부 이벤트 소스를 구성하는 데 사용됩니다. 예를 들어, 알람 패키지에는 지정된 빈도로 트리거를 실행할 수 있는 피드가 포함됩니다. 
 
 패키지를 포함하여 모든 {{site.data.keyword.openwhisk_short}} 엔티티는 *네임스페이스*에 속하며 엔티티의 완전한 이름은 `/namespaceName[/packageName]/entityName`입니다. 
 자세한 정보는 [이름 지정 가이드라인](./openwhisk_reference.html#openwhisk_entities)을 참조하십시오.
@@ -70,7 +70,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  이 출력은 {{site.data.keyword.cloudant_short_notm}} 패키지가 두 개의 액션(`read` 및 `write`)과 하나의 트리거 피드(`changes`)를 제공함을 보여줍니다. `changes` 피드는 문서가 지정된 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에 추가될 때 트리거가 실행되도록 합니다.
+  이 출력은 {{site.data.keyword.cloudant_short_notm}} 패키지가 두 개의 액션(`read` 및 `write`)과 하나의 트리거 피드(`changes`)를 제공함을 보여줍니다. `changes` 피드는 문서가 지정된 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에 추가될 때 트리거가 실행되도록 합니다. 
 
   또한 {{site.data.keyword.cloudant_short_notm}} 패키지는 `username`, `password`, `host` 및 `port` 매개변수도 정의합니다. 이러한 매개변수는 액션 및 피드가 유의미하도록 지정해야 합니다. 매개변수는 액션이 특정 {{site.data.keyword.cloudant_short_notm}} 계정에서 작동하도록 합니다. 예를 들어, 다음과 같습니다.
 
@@ -215,9 +215,9 @@ lastupdated: "2018-06-22"
 ## 트리거 피드 작성 및 사용
 {: #openwhisk_package_trigger}
 
-피드는 {{site.data.keyword.openwhisk_short}} 트리거에 대해 이러한 이벤트를 실행하도록 외부 이벤트 소스를 구성하는 편리한 방법을 제공합니다. 이 예제는 알람 패키지의 피드를 사용하여 매초 트리거를 실행하는 방법과 룰을 사용하여 매초 액션을 호출하는 방법을 보여줍니다.
+피드는 {{site.data.keyword.openwhisk_short}} 트리거에 대해 이러한 이벤트를 실행하도록 외부 이벤트 소스를 구성하는 편리한 방법을 제공합니다. 다음 예는 알람 패키지의 피드를 사용하여 매 초마다 트리거를 실행하는 방법과 룰을 사용하여 매 초마다 액션을 호출하는 방법을 표시합니다. 
 
-1. `/whisk.system/alarms` 패키지에서 피드의 설명을 가져오십시오.
+1. `/whisk.system/alarms`  패키지에서 피드의 설명을 가져오십시오. 
   ```
   ibmcloud fn package get --summary /whisk.system/alarms
   ```
@@ -242,7 +242,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  `/whisk.system/alarms/alarm` 피드는 두 개의 매개변수를 취합니다.
+  `/whisk.system/alarms/alarm` 피드는 두 개의 매개변수를 취합니다. 
   - `cron`: 트리거를 실행할 시기의 crontab 스펙입니다.
   - `trigger_payload`: 각 트리거 이벤트에서 설정할 페이로드 매개변수값입니다.
 
@@ -295,7 +295,7 @@ lastupdated: "2018-06-22"
 ## 패키지 작성
 {: #openwhisk_packages_create}
 
-패키지를 사용하여 관련 액션 및 피드의 세트를 구성할 수 있습니다.
+패키지는 연관된 액션 및 피드 세트를 구성하는 데 사용됩니다.
 또한 이는 패키지의 모든 엔티티 간에 매개변수가 공유되도록 허용합니다.
 
 내부에 단순 액션으로 사용자 정의 패키지를 작성하려면 다음 예제를 시도하십시오.
@@ -466,7 +466,7 @@ lastupdated: "2018-06-22"
 ## 패키지 공유
 {: #openwhisk_packages_share}
 
-패키지를 구성하는 액션 및 피드가 디버그되고 테스트된 후에는 패키지를 모든 {{site.data.keyword.openwhisk_short}} 사용자와 공유할 수 있습니다. 패키지를 공유하면 사용자가 패키지를 바인드하고 패키지의 액션을 호출하며 {{site.data.keyword.openwhisk_short}} 룰 및 시퀀스 액션을 작성할 수 있습니다.
+패키지를 구성하는 액션 및 피드가 디버그되고 테스트된 후에 패키지는 모든 {{site.data.keyword.openwhisk_short}} 사용자와 공유될 수 있습니다. 패키지를 공유하면 사용자가 패키지를 바인드하고 패키지의 액션을 호출하며 {{site.data.keyword.openwhisk_short}} 룰 및 시퀀스 액션을 작성할 수 있습니다.
 
 1. 모든 사용자와 패키지를 공유하십시오.
   ```

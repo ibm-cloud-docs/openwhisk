@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -98,7 +98,8 @@ function main(params) {
     ```
     {: screen}
 
-Bom Trabalho! Você criou sua primeira ação. Para limpar essa ação, execute `ibmcloud fn action delete hello`.
+Bom Trabalho! Você criou sua primeira ação. Para limpar essa ação, execute `ibmcloud fn action
+delete hello`.
 
 **O que Vem a Seguir?**
 * [Experimente o exemplo de serviço de alarme para chamar a ação **hello** sempre que um evento periódico for gerado.](./openwhisk_packages.html#openwhisk_package_trigger)

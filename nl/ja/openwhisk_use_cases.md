@@ -22,7 +22,7 @@ lastupdated: "2018-06-22"
 
 マイクロサービス・ベースのソリューションは、その利点にもかかわらず、主流のクラウド・テクノロジーを使用して構築するのは依然として難しく、複雑なツールチェーンの制御やビルド・パイプラインと運用パイプラインの分離が必要とされることも少なくありません。 小規模なアジャイルのチームが、インフラストラクチャーや運用の複雑な事柄 (フォールト・トレランス、ロード・バランシング、自動スケーリング、ロギングなど) に過大な時間をかけています。 こうしたチームは、対象の問題の解決に最適で、かつ、既に理解して慣れ親しんでいるプログラミング言語を使用して、合理化された、付加価値のあるコードを開発する方法を求めています。
 
-{{site.data.keyword.openwhisk_short}} のモジュラー性と本質的な拡張容易性は、小さなロジック断片をアクションに実装するのに理想的です。{{site.data.keyword.openwhisk_short}} アクションは互いに独立しており、{{site.data.keyword.openwhisk_short}} でサポートされている多様な言語を使用して実装可能であり、さまざまなバックエンド・システムにアクセスします。 各アクションは、個別にデプロイして管理でき、他のアクションとは独立してスケーリングされます。 アクション間の接続性は、{{site.data.keyword.openwhisk_short}} によって、ルール、シーケンス、および命名規則の形で提供されています。 このタイプの環境は、マイクロサービス・ベースのアプリケーションに適しています。
+{{site.data.keyword.openwhisk_short}} のモジュラー性と本質的な拡張容易性は、小さなロジック断片をアクションに実装するのに理想的です。 {{site.data.keyword.openwhisk_short}} アクションは互いに独立しており、{{site.data.keyword.openwhisk_short}} でサポートされている多様な言語を使用して実装可能であり、さまざまなバックエンド・システムにアクセスします。 各アクションは、個別にデプロイして管理でき、他のアクションとは独立してスケーリングされます。 アクション間の接続性は、{{site.data.keyword.openwhisk_short}} によって、ルール、シーケンス、および命名規則の形で提供されています。 このタイプの環境は、マイクロサービス・ベースのアプリケーションに適しています。
 
 {{site.data.keyword.openwhisk_short}} が支持されているもう 1 つの重要な根拠は、災害復旧構成でのシステムのコストです。 コンテナーまたは CloudFoundry ランタイムを使用する 10 個のマイクロサービスがあるという想定で、PaaS または CaaS を使用したマイクロサービスと、{{site.data.keyword.openwhisk_short}} を使用した場合とを比較します。 この比較は、単一のアベイラビリティー・ゾーン (AZ) で継続的に実行する 10 個の課金対象プロセスに相当します。2 つの AZ にまたがって実行する場合は 20 個、2 つの地域にまたがってそれぞれ 2 つのゾーンで実行する場合は 40 個に相当します。 {{site.data.keyword.openwhisk_short}} では同じ目標を達成するために、コストの追加なしで、AZ および地域をいくつでもまたがってそれらを実行することができます。
 
@@ -90,6 +90,6 @@ lastupdated: "2018-06-22"
 ## Kafka または {{site.data.keyword.messagehub}} を使用したイベント処理
 {: #openwhisk_event_processing}
 
-{{site.data.keyword.openwhisk_short}} は、Kafka、{{site.data.keyword.messagehub_full}} (Kafka ベース)、およびその他のメッセージング・システムと組み合わせて理想的に使用されます。 こうしたシステムのイベント・ドリブンの特性により、メッセージを処理するためにイベント・ドリブンのランタイムが必要になります。 このランタイムは、ビジネス・ロジックをこれらのメッセージに適用できます。これはまさに、{{site.data.keyword.openwhisk_short}} がフィード、トリガー、アクションを使用して実現していることです。Kafka と {{site.data.keyword.messagehub}} は多くの場合、大量の予測不能な作業負荷に使用され、メッセージのコンシューマーは即座に拡張可能であることが要求されます。 これもまた、{{site.data.keyword.openwhisk_short}} に最適な状況です。 {{site.data.keyword.openwhisk_short}} には、[openwhisk-package-kafka](https://github.com/openwhisk/openwhisk-package-kafka) パッケージで提供される、組み込みのメッセージ・コンシュームおよびメッセージ・パブリッシュの機能があります。
+{{site.data.keyword.openwhisk_short}} は、Kafka、{{site.data.keyword.messagehub_full}} (Kafka ベース)、およびその他のメッセージング・システムと組み合わせて理想的に使用されます。 こうしたシステムのイベント・ドリブンの特性により、メッセージを処理するためにイベント・ドリブンのランタイムが必要になります。 このランタイムは、ビジネス・ロジックをこれらのメッセージに適用できます。これはまさに、{{site.data.keyword.openwhisk_short}} がフィード、トリガー、アクションを使用して実現していることです。 Kafka と {{site.data.keyword.messagehub}} は多くの場合、大量の予測不能な作業負荷に使用され、メッセージのコンシューマーは即座に拡張可能であることが要求されます。 これもまた、{{site.data.keyword.openwhisk_short}} に最適な状況です。 {{site.data.keyword.openwhisk_short}} には、[openwhisk-package-kafka](https://github.com/openwhisk/openwhisk-package-kafka) パッケージで提供される、組み込みのメッセージ・コンシュームおよびメッセージ・パブリッシュの機能があります。
 
 {{site.data.keyword.openwhisk_short}}、{{site.data.keyword.messagehub}}、および Kafka に[イベント処理シナリオを実装したサンプル・アプリケーション](https://github.com/IBM/openwhisk-data-processing-message-hub)が提供されています。

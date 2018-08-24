@@ -93,7 +93,7 @@ Beispielausgabe:
 ```
 {
     "payload": "Ciel bleu a venir"
-  }
+}
 ```
 {: screen}
 

@@ -61,7 +61,7 @@ lastupdated: "2018-03-26"
   ```
   {: screen}
 
-## 在 {{site.data.keywrod.Bluemix_notm}} 外部设置 Watson Text to Speech 包
+## 在 {{site.data.keyword.Bluemix_notm}} 外部设置 Watson Text to Speech 包
 
 如果不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或者如果要在 {{site.data.keyword.Bluemix_notm}} 外部设置 Watson Text to Speech，那么必须为 Watson Text to Speech 服务手动创建包绑定。您需要 Watson Text to Speech 服务用户名和密码。
 

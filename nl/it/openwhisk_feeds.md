@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Provider di eventi personalizzati
+# Creazione di feed di provider di eventi personalizzati
 {: #openwhisk_feeds}
 
 {{site.data.keyword.openwhisk_short}} supporta un'API aperta, in cui qualsiasi utente può esporre un servizio di produzione di eventi sotto forma di feed in un pacchetto. La seguente sezione descrive le opzioni di architettura e implementazione per fornire il tuo feed personalizzato.
@@ -47,7 +47,7 @@ I feed e i trigger sono strettamente correlati, ma restano due concetti tecnicam
 
 - Un **trigger** è tecnicamente un nome per una classe di eventi. Ogni evento appartiene esattamente a un solo trigger; per analogia, un trigger assomiglia a un *argomento* nei sistemi di pubblicazione/sottoscrizione basati sugli argomenti. Una **regola** *T -> A* significa che "ogni volta che un evento arriva da un trigger *T*, si richiama l'azione *A* con il payload del trigger.
 
-- Un **feed** è un flusso di eventi che appartengono tutti a un certo trigger *T*. Un feed è controllato da un'**azione di feed**, che gestisce la creazione, l'eliminazione, la pausa e il ripristino del flusso di eventi che comprendono un feed. L'azione di feed in genere interagisce con i servizi esterni che generano gli eventi, utilizzando un'API REST che gestisce le notifiche.
+- Un **feed** è un flusso di eventi che appartengono tutti a un certo trigger *T*. Un feed è controllato da un'**azione di feed**, che gestisce la creazione, l'eliminazione, la pausa e il ripristino del flusso di eventi che formano un feed. L'azione di feed in genere interagisce con i servizi esterni che generano gli eventi, utilizzando un'API REST che gestisce le notifiche.
 
 ##  Implementazione delle azioni di feed
 
@@ -84,7 +84,7 @@ Un protocollo analogo di azione di feed si verifica per `ibmcloud fn trigger del
 
 Con questo metodo, _non è necessario_ impostare alcun servizio persistente al di fuori di {{site.data.keyword.openwhisk_short}}. Tutta la gestione dei feed avviene naturalmente tramite le *azioni di feed* {{site.data.keyword.openwhisk_short}} senza stato, che negoziano direttamente con un'API webhook di terze parti.
 
-Quando richiamata con `CREATE`, l'azione di feed installa semplicemente un webhook per qualche altro servizio, chiedendo al servizio remoto di pubblicare le notifiche all'ULR `fireTrigger` appropriato in {{site.data.keyword.openwhisk_short}}.
+Quando richiamata con `CREATE`, l'azione di feed installa semplicemente un webhook per qualche altro servizio, chiedendo al servizio remoto di pubblicare (POST) le notifiche all'URL `fireTrigger` appropriato in {{site.data.keyword.openwhisk_short}}.
 
 Il webhook è diretto a inviare notifiche a un URL come:
 
@@ -96,13 +96,13 @@ Il modulo con la richiesta POST viene interpretato come documento JSON che defin
 
 È possibile configurare un'*azione* {{site.data.keyword.openwhisk_short}} per eseguire il polling di un'origine di feed interamente all'interno di {{site.data.keyword.openwhisk_short}}, senza la necessità di impostare connessioni persistenti o servizi esterni.
 
-Per i feed in cui non è disponibile un webhook, ma che non richiedono tempi di risposta a bassa latenza o di volume elevato, il polling risulta essere un'opzione interessante.
+Per i feed in cui non è disponibile un webhook, ma non sono necessari tempi di risposta a bassa latenza o di grandi volumi, il polling risulta essere un'opzione interessante.
 
-Per configurare un feed basato sul polling, l'azione di feed effettua i seguenti passi quando viene richiamata con `CREATE`:
+Per impostare un feed basato sul polling, l'azione di feed utilizza i seguenti passi quando viene chiamata per eseguire `CREATE`:
 
 1. L'azione di feed configura un trigger periodico (*T*) con la frequenza desiderata, utilizzando il feed `whisk.system/alarms`.
 2. Lo sviluppatore del feed crea un'azione `pollMyService` che esegue il polling del servizio remoto e restituisce eventuali nuovi eventi.
-3. L'azione di feed configura una *regola* *T -> pollMyService*.
+3. L'azione di feed imposta una *regola* *T -> pollMyService*.
 
 Questa procedura implementa un trigger basato sul polling utilizzando esclusivamente azioni {{site.data.keyword.openwhisk_short}}, senza alcun bisogno di un servizio separato.
 
@@ -114,7 +114,7 @@ Poiché le azioni {{site.data.keyword.openwhisk_short}} devono essere di breve e
 
 Il servizio provider ha un'API REST che consente all'*azione di feed* {{site.data.keyword.openwhisk_short}} di controllare il feed. Il servizio provider funge da proxy tra il provider di eventi e {{site.data.keyword.openwhisk_short}}. Quando riceve gli eventi dalla terza parte, li invia a {{site.data.keyword.openwhisk_short}} attivando un trigger.
 
-Il feed *changes* di {{site.data.keyword.cloudant_short_notm}} è l'esempio canonico in quanto imposta un servizio `cloudanttrigger`, che si interpone tra le notifiche {{site.data.keyword.cloudant_short_notm}} su una connessione persistente e i trigger {{site.data.keyword.openwhisk_short}}.
+Il feed *changes* di {{site.data.keyword.cloudant_short_notm}} è l'esempio canonico in quanto imposta un servizio `cloudanttrigger`, che media tra le notifiche {{site.data.keyword.cloudant_short_notm}} su una connessione persistente e i trigger {{site.data.keyword.openwhisk_short}}.
 <!-- TODO: add a reference to the open source implementation -->
 
 Il feed *alarm* viene implementato con un modello simile.

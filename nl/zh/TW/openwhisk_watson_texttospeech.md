@@ -19,8 +19,7 @@ lastupdated: "2018-03-26"
 
 該套件包含下列動作。
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/watson-textToSpeech` |套件|username、password|將文字轉換為語音的套件|
 |`/whisk.system/watson-textToSpeech/textToSpeech` |動作|payload、voice、accept、encoding、username、password|將文字轉換為音訊|
@@ -61,7 +60,7 @@ lastupdated: "2018-03-26"
   ```
   {: screen}
 
-## 在 {{site.data.keywrod.Bluemix_notm}} 外部設定 Watson Text to Speech 套件
+## 在 {{site.data.keyword.Bluemix_notm}} 外部設定 Watson Text to Speech 套件
 
 如果您不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或者要在 {{site.data.keyword.Bluemix_notm}} 外部設定 Watson Text to Speech，則必須手動建立 Watson Text to Speech 服務的套件連結。您需要 Watson Text to Speech 服務使用者名稱及密碼。
 

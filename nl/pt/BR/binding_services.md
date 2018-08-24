@@ -15,7 +15,7 @@ lastupdated: "2018-06-21"
 # Ligando serviços a ações
 {: #binding_services}
 
-É possível usar o [Plug-in da CLI do {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para ligar um serviço a uma ação ou um pacote. O comando `ibmcloud fn service bind` do {{site.data.keyword.openwhisk_short}} torna suas credenciais de serviço {{site.data.keyword.Bluemix_notm}} disponíveis para seu código do {{site.data.keyword.openwhisk_short}} no tempo de execução.
+É possível usar o [Plug-in da CLI do {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para ligar um serviço a uma ação ou um pacote. O comando `ibmcloud fn service bind` do {{site.data.keyword.openwhisk_short}} disponibiliza suas credenciais de serviço do {{site.data.keyword.Bluemix_notm}} para o seu código do {{site.data.keyword.openwhisk_short}} no tempo de execução.
 {: shortdesc}
 
 Não confunda o comando `ibmcloud fn service bind` com o comando `cf bind-service` que está disponível no Cloud Foundry.

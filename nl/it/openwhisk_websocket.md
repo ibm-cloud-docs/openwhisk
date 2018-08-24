@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# Pacchetto WebSocket
 {: #openwhisk_catalog_websocket}
 
 Il pacchetto `/whisk.system/websocket` offre una soluzione pratica per pubblicare i messaggi in un WebSocket.

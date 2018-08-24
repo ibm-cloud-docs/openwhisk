@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-잘하셨습니다! 첫 번째 액션을 작성했습니다. 이 액션을 정리하려면 `ibmcloud fn action delete hello`를 실행하십시오.
+잘하셨습니다! 첫 번째 액션을 작성했습니다. 이 액션을 정리하려면 `ibmcloud fn action delete hello`를 실행하십시오. 
 
 **다음에 수행할 작업**
 * [주기적 이벤트를 생성할 때마다 **hello** 액션을 호출하도록 알람 서비스 예제를 시도하십시오.](./openwhisk_packages.html#openwhisk_package_trigger)

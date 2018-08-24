@@ -12,13 +12,13 @@ lastupdated: "2018-06-21"
 {:pre: .pre}
 {:tip: .tip}
 
-# Enlace de servicios a acciones
+# Enlace de servicios con acciones
 {: #binding_services}
 
-Puede utilizar el [plugin de CLI de {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para enlazar un servicio a una acción o paquete. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
+Puede utilizar el [plugin {{site.data.keyword.openwhisk}}](./bluemix_cli.html) CLI para enlazar un servicio con una acción o paquete. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
 {: shortdesc}
 
-No confunda el mandato `service bind` con el mandato `cf bind-service`, que está disponible en Cloud Foundry.
+No confunda el mandato `ibmcloud fn service bind` con el mandato `cf bind-service`, que está disponible en Cloud Foundry.
 {: tip}
 
 ## Enlace de un servicio a una acción o paquete

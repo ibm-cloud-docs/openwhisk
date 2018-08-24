@@ -40,7 +40,7 @@ Para criar um acionador que é disparado toda vez que um novo dispositivo é reg
   ```
   {: pre}
 
-2. Crie um acionador para o tipo de evento `onDeviceRegister` do serviço Push Notifications usando seu feed `myPush/webhook`.
+2. Crie um acionador para o tipo de evento `onDeviceRegister` do serviço de Notificações Push usando seu feed `myPush/webhook`.
   ```
   ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
   ```

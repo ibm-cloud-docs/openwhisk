@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Pacchetto Cloudant
 {: #cloudant_actions}
 
 Il pacchetto `/whisk.system/cloudant` ti consente di lavorare con un database [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) e include le azioni e i feed che seguono:
@@ -22,7 +22,7 @@ Il pacchetto `/whisk.system/cloudant` ti consente di lavorare con un database [{
 | `/whisk.system/cloudant` | pacchetto | dbname, host, username, password | Lavorare con un database Cloudant. |
 | `/whisk.system/cloudant/read` | azione | dbname, id | Leggere un documento da un database. |
 | `/whisk.system/cloudant/write` | azione | dbname, overwrite, doc | Scrivere un documento in un database. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Attivare eventi trigger in caso di modifiche a un database. |
+| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Attivare eventi trigger in caso di modifiche a un database. |
 {: shortdesc}
 
 Le seguenti sezioni ti illustrano come configurare un database {{site.data.keyword.cloudant_short_notm}} e come leggere e scrivere in esso.

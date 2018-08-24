@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Mobile Push
+# Package Mobile Push
 {: #openwhisk_catalog_pushnotifications}
 
 Découvrez comment créer une liaison de package Push et envoyer une notification push simple en ayant recours au package `/whisk.system/pushnotifications`, qui vous permet d'utiliser un service Push.
@@ -70,7 +70,7 @@ Pour créer une liaison de package, procédez comme suit :
 L'action `/whisk.system/pushnotifications/sendMessage` envoie des notifications push aux périphériques enregistrés. Les paramètres sont les suivants :
 - `text` : message de notification à présenter à l'utilisateur. Par exemple, `-p text "Hi, OpenWhisk send a notification"`.
 - `url` : URL qui peut être envoyée en même temps que l'alerte. Par exemple, `-p url "https:\\www.w3.ibm.com"`.
-- `apiHost` : chaîne facultative qui spécifie l'hôte d'API. La valeur par défaut est `mobile.ng.bluemix.net`. Par exemple : `-p apiHost "mobile.eu-gb.bluemix.net"`
+- `apiHost` : chaîne facultative qui spécifie l'hôte d'API. La valeur par défaut est `mobile.ng.bluemix.net`.  Par exemple : `-p apiHost "mobile.eu-gb.bluemix.net"`
 - `deviceIds` : liste des périphériques spécifiés. Par exemple, `-p deviceIds ["deviceID1"]`.
 - `platforms` : envoyez une notification aux périphériques des plateformes spécifiées. 'A' pour les périphériques Apple (iOS) et 'G' pour les périphériques Google (Android). Par exemple, `-p platforms ["A"]`.
 - `userIds` : envoyez une notification aux périphériques des utilisateurs spécifiés. Par exemple, `-p userIds "[\"testUser\"]"`

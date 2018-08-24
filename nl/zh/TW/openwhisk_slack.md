@@ -11,7 +11,7 @@ lastupdated: "2018-03-29"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack
+# Slack 套件
 {: #openwhisk_catalog_slack}
 
 `/whisk.system/slack` 套件提供一種簡便的方式來使用 [Slack API](https://api.slack.com/)。
@@ -19,8 +19,7 @@ lastupdated: "2018-03-29"
 
 該套件包含下列動作：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/slack` |套件|url、channel、username|與 Slack API 互動|
 |`/whisk.system/slack/post` |動作|text、url、channel、username|將訊息張貼至 Slack 頻道|

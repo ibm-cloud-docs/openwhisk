@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# WebSocket 套件
 {: #openwhisk_catalog_websocket}
 
 `/whisk.system/websocket` 套件提供便利的方式，以將訊息張貼至 WebSocket。
@@ -19,8 +19,7 @@ lastupdated: "2018-03-16"
 
 該套件包含下列動作：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/websocket` |套件|uri|與 WebSockets 進行通訊的公用程式|
 |`/whisk.system/websocket/send` |動作|uri、payload|將有效負載傳送至 WebSocket URI|

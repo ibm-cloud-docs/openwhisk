@@ -11,7 +11,7 @@ lastupdated: "2018-03-29"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack
+# Slack パッケージ
 {: #openwhisk_catalog_slack}
 
 `/whisk.system/slack` パッケージを利用して、[Slack API](https://api.slack.com/) を簡単に使用することができます。

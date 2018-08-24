@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# 웹 액션
+# 웹 액션 작성
 {: #openwhisk_webactions}
 
-웹 액션은 빠르게 개발자가 웹 기반 애플리케이션을 빌드할 수 있도록 하기 위한 어노테이션이 작성된 OpenWhisk 액션입니다. 이러한 어노테이션이 있는 액션으로 개발자는 OpenWhisk 인증 키를 요구하지 않고도 웹 애플리케이션이 익명으로 액세스할 수 있는 백엔드 로직을 프로그래밍할 수 있습니다. 원하는 인증과 권한(즉, OAuth 플로우)을 구현하는 것은 액션 개발자의 역할입니다.
+웹 액션은 개발자가 빠르게 웹 기반 애플리케이션을 빌드할 수 있도록 하기 위해 어노테이션이 작성된 {{site.data.keyword.openwhisk}} 액션입니다. 이러한 어노테이션이 있는 액션으로 개발자는 {{site.data.keyword.openwhisk_short}} 인증 키를 요구하지 않고도 웹 애플리케이션이 익명으로 액세스할 수 있는 백엔드 로직을 프로그래밍할 수 있습니다. 자신의 원하는 인증과 권한 또는 OAuth 플로우를 구현하는 것은 액션 개발자에게 달려 있습니다.
 {: shortdesc}
 
 웹 액션 활성화는 액션을 작성한 사용자와 연관되어 있습니다. 이 액션은 호출자의 액션 활성화 비용을 액션의 소유자에게 위임합니다.
@@ -120,14 +120,14 @@ function main(params) {
 ```
 {: codeblock}  
 
-HTTP 응답에 대한 기본 `Content-Type`은 `application/json`이며 본문에서는 JSON 값을 사용할 수 있습니다. 헤더에서는 기본 `Content-Type`을 생략할 수 있습니다.
+The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-[응답 크기 한계](./openwhisk_reference.html)(액션에 대한)를 알아야 합니다. 사전 정의된 시스템 한계를 초과하는 응답이 실패하기 때문입니다. 대형 오브젝트는 OpenWhisk를 통해 인라인으로 전송되지 않지만, 대신 오브젝트 저장소를 따릅니다. 예를 들면, 다음과 같습니다.
+[응답 크기 한계](./openwhisk_reference.html)를 액션에 대해 인지하는 게 중요합니다. 사전 정의된 시스템 한계를 초과하는 응답은 실패하기 때문입니다. 대형 오브젝트는 {{site.data.keyword.openwhisk_short}}를 통해 인라인으로 전송되지 않고 대신 오브젝트 저장소로 연기됩니다. 
 
 ## 액션에서 HTTP 요청 처리
 {: #openwhisk_webactions_http}
 
-웹 액션이 아닌 OpenWhisk 액션은 두 인증을 모두 요구하며 JSON 오브젝트로 응답해야 합니다. 이와는 대조적으로 웹 액션은 인증 없이 호출될 수 있으며, 다양한 유형의 _headers_, _statusCode_ 및 _body_ 컨텐츠로 응답하는 HTTP 핸들러를 구현하는 데 사용될 수 있습니다. 웹 액션은 JSON 오브젝트를 리턴해야 합니다. 그러나 해당 결과에 하나 이상의 다음 최상위 레벨 JSON 특성이 포함된 경우에는 OpenWhisk 시스템(즉, `controller`)이 웹 액션을 다르게 처리합니다.
+웹 액션이 아닌 {{site.data.keyword.openwhisk_short}} 액션은 두 인증을 모두 요구하며 JSON 오브젝트로 응답해야 합니다. 이와는 대조적으로 웹 액션은 인증 없이 호출될 수 있으며, 다양한 유형의 _headers_, _statusCode_ 및 _body_ 컨텐츠로 응답하는 HTTP 핸들러를 구현하는 데 사용될 수 있습니다. 웹 액션은 JSON 오브젝트를 리턴해야 합니다. 그러나 해당 결과에 하나 이상의 다음 최상위 레벨 JSON 특성이 포함된 경우에는 {{site.data.keyword.openwhisk_short}} 시스템(즉, `controller`)이 웹 액션을 다르게 처리합니다. 
 
 - `headers`: 키가 header-name이며 값이 해당 헤더(기본값은 헤더 없음)에 대해 문자열, 숫자 또는 부울 값인 JSON 오브젝트입니다. 단일 헤더에 대해 다중 값을 전송하려면 헤더의 값이 JSON 배열 값이어야 합니다.
 - `statusCode`: 유효한 HTTP 상태 코드입니다(기본값: 200 OK).
@@ -147,7 +147,7 @@ _참고_: JSON 오브젝트 또는 배열은 2진 데이터로서 처리되며 b
 - `__ow_method`(유형: 문자열). 요청의 HTTP 메소드입니다.
 - `__ow_headers`(유형: 문자열 대 문자열 맵핑): 요청 헤더입니다.
 - `__ow_path`(유형: 문자열): 요청의 일치하지 않는 경로입니다(일단 액션 확장자가 이용되면 일치가 중지됨).
-- `__ow_user`(유형: 문자열): OpenWhisk 인증 제목을 식별하는 네임스페이스입니다.
+- `__ow_user`(유형: 문자열): {{site.data.keyword.openwhisk_short}} 인증 제목을 식별하는 네임스페이스입니다. 
 - `__ow_body`(유형: 문자열): base64 인코딩된 문자열(컨텐츠가 2진인 경우) 또는 일반 문자열(그 외의 경우)로서의 요청 본문 엔티티입니다.
 - `__ow_query`(유형: 문자열): 구문 분석되지 않은 문자열로서의 요청의 조회 매개변수입니다.
 
@@ -168,7 +168,7 @@ _참고_: JSON 오브젝트 또는 배열은 2진 데이터로서 처리되며 b
 
 - `Content extensions`: 요청이 원하는 컨텐츠 유형을 `.json`, `.html`, `.http`, `.svg` 또는 `.text`로 지정해야 합니다. `/guest/demo/hello` 액션이 `/guest/demo/hello.http`로서 참조되도록(예: HTTP 응답을 다시 수신하기 위해) 유형은 확장자를 URI의 액션 이름에 추가하여 지정됩니다. 편의상, 확장자를 찾을 수 없으면 `.http` 확장자가 가정됩니다.
 - `Projecting fields from the result`: 액션 이름을 따르는 경로를 사용하여 응답의 레벨을 하나 이상 투영합니다.
-`/guest/demo/hello.html/body`. 이 기능은 `{body: "..." }` 사전을 리턴하는 액션이 `body` 특성을 보호하고 해당 문자열 값을 대신 직접 리턴하도록 허용합니다. 투영된 경로는 절대 경로 모델(XPath에서와 같이)을 따릅니다.
+`/guest/demo/hello.html/body`. 이 기능은 `{body: "..." }` 사전을 리턴하는 액션이 `body` 특성을 투영하고 해당 문자열 값을 대신 직접 리턴하도록 허용합니다. 투영된 경로는 절대 경로 모델(XPath에서와 같이)을 따릅니다.
 - `Query and body parameters as input`: 액션이 요청 본문에서 매개변수는 물론 조회 매개변수를 수신합니다. 매개변수 병합의 우선순위는 패키지 매개변수, 액션 매개변수, 조회 매개변수 및 본문 매개변수입니다. 이러한 각 매개변수는 겹침이 발생할 때 이전 값을 대체할 수 있습니다. 예를 들어, `/guest/demo/hello.http?name=Jane`은 `{name: "Jane"}` 인수를 액션에 전달할 수 있습니다.
 - `Form data`: 표준 `application/json`에 외에 웹 액션은 입력으로서 `application/x-www-form-urlencoded data` 데이터에서 인코딩된 URL을 수신할 수 있습니다.
 - `Activation using multiple HTTP verbs`: 웹 액션이 `GET`, `POST`, `PUT`, `PATCH` 및 `DELETE`는 물론 `HEAD` 및 `OPTIONS` 등의 HTTP 메소드를 통해 호출될 수 있습니다.
@@ -341,9 +341,9 @@ ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web
 ## 웹 액션 보안
 {: #securing-web-actions}
 
-기본적으로 웹 액션은 웹 액션의 호출 URL을 가진 사용자가 호출할 수 있습니다. `require-whisk-auth` [웹 액션 어노테이션](./openwhisk_annotations.html#annotations-specific-to-web-actions)을 사용하여 웹 액션을 보안하십시오. `require-whisk-auth` 어노테이션이 `true`로 설정된 경우 액션이 액션 소유자의 whisk 인증 키에 대해 호출 요청의 기본 권한 부여 신임 정보를 인증합니다. 숫자 또는 대소문자 구분 문자열로 설정된 경우 액션의 호출 요청에 이 동일한 값을 갖는 `X-Require-Whisk-Auth` 헤더가 포함되어야 합니다. 신임 정보 유효성 검증이 실패하면 보안된 웹 액션이 메시지 `Not Authorized`를 리턴합니다.
+기본적으로 웹 액션은 웹 액션의 호출 URL을 가진 사용자가 호출할 수 있습니다. `require-whisk-auth` [웹 액션 어노테이션](./openwhisk_annotations.html#annotations-specific-to-web-actions)을 사용하여 웹 액션을 보호하십시오. `require-whisk-auth` 어노테이션이 `true`로 설정된 경우 액션이 액션 소유자의 whisk 인증 키에 대해 호출 요청의 기본 권한 부여 신임 정보를 인증합니다. 숫자 또는 대소문자 구분 문자열로 설정된 경우 액션의 호출 요청에 이 동일한 값을 갖는 `X-Require-Whisk-Auth` 헤더가 포함되어야 합니다. 신임 정보 유효성 검증이 실패하면 보안된 웹 액션이 메시지 `Not Authorized`를 리턴합니다.
 
-또는 `--web-secure` 플래그를 사용하여 `require-whisk-auth` 어노테이션을 자동으로 설정하십시오. `true`로 설정되면 난수가 `require-whisk-auth` 어노테이션 값으로 생성됩니다. `false`로 설정된 경우에는 `require-whisk-auth` 어노테이션이 제거됩니다. 다른 값으로 설정되면 이 값은 `require-whisk-auth` 어노테이션 값으로 사용됩니다.
+또는 `--web-secure` 플래그를 사용하여 `require-whisk-auth` 어노테이션을 자동으로 설정하십시오.  `true`로 설정되면 난수가 `require-whisk-auth` 어노테이션 값으로 생성됩니다. `false`로 설정된 경우에는 `require-whisk-auth` 어노테이션이 제거됩니다.  다른 값으로 설정되면 이 값은 `require-whisk-auth` 어노테이션 값으로 사용됩니다.
 
 **--web-secure** 사용 예:
 ```bash
@@ -375,7 +375,7 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## 원시 HTTP 처리
 
-웹 액션은 액션 입력에 사용 가능한 첫 번째 클래스 특성으로 JSON 오브젝트를 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` 대 `args.__ow_query` 구문 분석). 이 프로세스는 `raw-http` [어노테이션](./openwhisk_annotations.html)을 통해 수행됩니다. 이전에 나타난 동일한 예제를 사용하되 이제는 `name`을 수신하는 "원시" HTTP 웹 액션으로서(둘 다 조회 매개변수로서), 그리고 HTTP 요청 본문의 JSON 값으로서 다음을 수행하십시오.
+웹 액션은 액션 입력에 사용 가능한 첫 번째 클래스 특성으로 JSON 오브젝트를 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` versus parsing `args.__ow_query`). 이 프로세스는 `raw-http` [어노테이션](./openwhisk_annotations.html)을 통해 수행됩니다. 이전에 나타난 동일한 예제를 사용하되 이제는 `name`을 수신하는 "원시" HTTP 웹 액션으로서(둘 다 조회 매개변수로서), 그리고 HTTP 요청 본문의 JSON 값으로서 다음을 수행하십시오.
 ```
  curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```

@@ -35,7 +35,7 @@ Le flux `/whisk.system/github/webhook` configure un service pour qu'il exécute 
 - `accessToken` : votre jeton d'accès personnel GitHub. Lorsque vous [créez votre jeton](https://github.com/settings/tokens), veillez à sélectionner les portées **repo:status** et **public_repo**. De plus, vérifiez qu'aucun webhook n'est défini pour votre référentiel.
 - `events` : [type d'événement GitHub](https://developer.github.com/v3/activity/events/types/) qui vous intéresse.
 
-L'exemple suivant illustre la création d'un déclencheur qui s'exécute chaque fois qu'une nouvelle validation est effectuée dans un référentiel GitHub. 
+L'exemple suivant illustre la création d'un déclencheur qui s'exécute chaque fois qu'une nouvelle validation est effectuée dans un référentiel GitHub.
 
 1. Générez un [jeton d'accès personnel](https://github.com/settings/tokens) GitHub. Le jeton d'accès va être utilisé à l'étape suivante.
 

@@ -19,8 +19,7 @@ lastupdated: "2018-03-16"
 
 該套件包含下列資訊來源：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/github` |套件|username、repository、accessToken|與 GitHub API 互動|
 |`/whisk.system/github/webhook` |資訊來源|events、username、repository、accessToken|在 GitHub 活動時發動觸發程式事件|
@@ -55,5 +54,4 @@ lastupdated: "2018-03-16"
   ```
   {: pre}
 
-  使用 `git push` 來確定 GitHub 儲存庫時，會導致 Webhook 發動觸發程式。如果規則符合觸發程式，則會呼叫相關聯的動作。此動作會接收 GitHub Webhook 有效負載作為輸入參數。每一個 GitHub Webhook 事件的 JSON 綱目都類似，但是為其事件類型所決定的唯一有效負載物件。
-如需有效負載內容的相關資訊，請參閱 [GitHub 事件和有效負載](https://developer.github.com/v3/activity/events/types/) API 文件。
+  使用 `git push` 來確定 GitHub 儲存庫時，會導致 Webhook 發動觸發程式。如果規則符合觸發程式，則會呼叫相關聯的動作。此動作會接收 GitHub Webhook 有效負載作為輸入參數。每一個 GitHub Webhook 事件的 JSON 綱目都類似，但是為其事件類型所決定的唯一有效負載物件。如需有效負載內容的相關資訊，請參閱 [GitHub 事件和有效負載](https://developer.github.com/v3/activity/events/types/) API 文件。

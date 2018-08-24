@@ -238,7 +238,7 @@ whisk.urlSession = session
 
 ### SDK 단추
 
-편의상 SDK에는 액션을 호출할 수 있도록 하는 `UIButton`을 확장하는 `WhiskButton`이 포함되어 있습니다. `WhiskButton`을 사용하려면 다음 예제를 따르십시오.
+편의상 SDK에는 액션을 호출할 수 있도록 하는 `UIButton`을 확장하는 `WhiskButton`이 포함되어 있습니다.  `WhiskButton`을 사용하려면 다음 예제를 따르십시오.
 
 ```swift
 var whiskButton = WhiskButton(frame: CGRectMake(0,0,20,20))

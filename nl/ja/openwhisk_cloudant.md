@@ -15,7 +15,7 @@ lastupdated: "2018-06-22"
 # Cloudant イベント・ソース
 {: #openwhisk_cloudant}
 
-{{site.data.keyword.cloudant}} データベースへの変更を listen し、データベース変更イベントをフィルタリングし、アクション・シーケンスを使用して {{site.data.keyword.cloudant_short_notm}} データベースからの文書を処理する方法を説明します。`/whisk.system/cloudant` パッケージを使用すると、{{site.data.keyword.cloudant_short_notm}} データベースを操作できます。このパッケージには、以下のアクションとフィードが含まれています。
+{{site.data.keyword.cloudant}} データベースへの変更を listen し、データベース変更イベントをフィルタリングし、アクション・シーケンスを使用して {{site.data.keyword.cloudant_short_notm}} データベースからの文書を処理する方法を説明します。 `/whisk.system/cloudant` パッケージを使用すると、{{site.data.keyword.cloudant_short_notm}} データベースを操作できます。このパッケージには、以下のアクションとフィードが含まれています。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
@@ -25,7 +25,7 @@ lastupdated: "2018-06-22"
 | `/whisk.system/cloudant/changes` | フィード | dbname、filter、query_params、maxTriggers | データベース変更時のトリガー・イベントの起動。 |
 {: shortdesc}
 
-以下のセクションでは、関連パッケージを構成する方法、および `/whisk.system/cloudant` パッケージ内のアクションとフィードを使用する方法を順に説明します。{{site.data.keyword.cloudant_short_notm}} データベースのセットアップ、およびそのデータベースの読み取りまたは書き込みについて詳しくは、[{{site.data.keyword.cloudant_short_notm}} アクション](./cloudant_actions.html)を参照してください。
+以下のセクションでは、関連パッケージを構成する方法、および `/whisk.system/cloudant` パッケージ内のアクションとフィードを使用する方法を順に説明します。 {{site.data.keyword.cloudant_short_notm}} データベースのセットアップ、およびそのデータベースの読み取りまたは書き込みについて詳しくは、[{{site.data.keyword.cloudant_short_notm}} アクション](./cloudant_actions.html)を参照してください。
 
 ## フィルター関数を使用したトリガーの作成
 
@@ -41,7 +41,7 @@ lastupdated: "2018-06-22"
 
 **query_params**: フィルター関数の追加の照会パラメーター _(オプション)_。
 
-1. 前に作成したパッケージ・バインディング内の `changes` フィードを使用して、**myCloudantTrigger** という名前のトリガーを作成します。状況が `new` のときに文書が追加または (変更されたら)トリガーを起動するように、`filter` 関数および `query_params` 関数を組み込みます。
+1. 前に作成したパッケージ・バインディング内の `changes` フィードを使用して、**myCloudantTrigger** という名前のトリガーを作成します。 状況が `new` のときに文書が追加または (変更されたら)トリガーを起動するように、`filter` 関数および `query_params` 関数を組み込みます。
 
   `/_/myCloudant` は実際のパッケージ名に置き換えてください。
   ```
@@ -64,7 +64,7 @@ lastupdated: "2018-06-22"
   ```
   {: pre}
 
-3. 変更フィードの影響を監視するために使用できるアクションを作成します。例えば、以下の JavaScript コードを含んだ **showCloudantChange** というアクションを作成します。
+3. 変更フィードの影響を監視するために使用できるアクションを作成します。 例えば、以下の JavaScript コードを含んだ **showCloudantChange** というアクションを作成します。
   ```javascript
   function main(data) {
     console.log(data);
@@ -84,7 +84,7 @@ lastupdated: "2018-06-22"
 
 7. フィルター関数および照会パラメーターに基づいて、文書の状況が **new** の場合のみ、文書変更のたびに **myCloudantTrigger** トリガーの新規アクティベーションがあることを確認します。
 
-新規アクティベーションを確認できない場合は、{{site.data.keyword.cloudant_short_notm}} データベースの読み取りおよび書き込みの方法を示している、[{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html)のトピックを参照してください。読み取りおよび書き込みのステップを試すと、ご使用の {{site.data.keyword.cloudant_short_notm}} 資格情報が正しいかどうかを検証するのに役立ちます。
+新規アクティベーションを確認できない場合は、{{site.data.keyword.cloudant_short_notm}} データベースの読み取りおよび書き込みの方法を示している、[{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html)のトピックを参照してください。 読み取りおよび書き込みのステップを試すと、ご使用の {{site.data.keyword.cloudant_short_notm}} 資格情報が正しいかどうかを検証するのに役立ちます。
 {: tip}
 
 ## トリガー・イベントのデータ構造

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-30"
+lastupdated: "2018-07-30"
 
 ---
 
@@ -15,37 +15,17 @@ lastupdated: "2018-03-30"
 # Creazione di API REST API senza server
 {: #openwhisk_apigateway}
 
-Le azioni {{site.data.keyword.openwhisk}} possono trarre vantaggio dall'essere gestite direttamente dalle API introducendo il gateway API, che funge da proxy per le [azioni web](./openwhisk_webactions.html) e fornisce loro ulteriori funzioni. Le funzioni aggiuntive includono: instradamento del metodo HTTP, segreti/ID client, limite di frequenza, CORS, visualizzazione dell'utilizzo delle API, visualizzazione dei log di risposta e politiche di condivisione API. Per ulteriori informazioni sulla gestione delle API, puoi consultare la [documentazione sulla gestione delle API](/docs/apis/management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+Utilizza le API per gestire direttamente le azioni {{site.data.keyword.openwhisk}}. Il gateway API funge da proxy per le [azioni web](./openwhisk_webactions.html) e fornisce l'instradamento del metodo HTTP, segreti e ID client, limiti di frequenza, CORS, visualizzazione dell'utilizzo dell'API, visualizzazione dei log di risposta e politiche di condivisione API.
 {: shortdesc}
 
-## Crea le API dalle azioni web OpenWhisk utilizzando il tuo browser
-{: #create_api_browser}
+Per ulteriori informazioni sulla gestione delle API, puoi consultare la [documentazione sulla gestione delle API](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
 
-Puoi utilizzare la [**scheda API**](https://console.bluemix.net/openwhisk/apimanagement) all'interno del [dashboard {{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk/) per effettuare le seguenti attività:
-
-* [Creare un'API Cloud Functions](https://console.bluemix.net/openwhisk/apimanagement) - Crea un'API che contiene un insieme di azioni OpenWhisk.
-* [Proteggere la tua API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) - Applica le politiche di sicurezza e limitazione della frequenza per proteggere la tua API.
-* [Gestire il traffico](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) - Visualizza le statistiche di utilizzo dell'API e controlla i log di risposte.
-* [Collaborare e condividere](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) - Condividi la tua API con gli sviluppatori all'interno e all'esterno di {{site.data.keyword.Bluemix_notm}}.
-
-## Crea le API dalle azioni web OpenWhisk utilizzando il plug-in della CLI
-{: #create_api_cli}
-
-La seguente sezione ti guida attraverso le attività di gestione dell'API utilizzando il plug-in della CLI {{site.data.keyword.openwhisk_short}}. Per creare e gestire le API attraverso la CLI, devi prima installare il [plug-in della CLI {{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/docs/openwhisk/bluemix_cli.html) per {{site.data.keyword.Bluemix_notm}}.
-
-Per comodità, i passi sono suddivisi in argomenti secondari più piccoli a cui puoi saltare rapidamente utilizzando il seguente elenco di attività API:
-
-* [Crea la tua prima API](openwhisk_apigateway.html#create_cli_api)
-* [Controllo completo sulla risposta HTTP](openwhisk_apigateway.html#full_control)
-* [Esposizione di più azioni web](openwhisk_apigateway.html#multiple_web_actions)
-* [Esporta la configurazione](openwhisk_apigateway.html#export_config)
-* [Importa la configurazione](openwhisk_apigateway.html#import_config)
-* [Modifica la configurazione](openwhisk_apigateway.html#modify_config)
-
-### Crea la tua prima API mediante la CLI
+## Creazione della tua prima API
 {: #create_cli_api}
 
-1. Crea un file JavaScript denominato **hello.js** contenente il seguente contenuto:
+Prima di iniziare, installa il plug-in della CLI [{{site.data.keyword.openwhisk_short}}](bluemix_cli.html).
+
+1. Salva il seguente codice in un file JavaScript denominato `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {payload: `Hello world ${name}`};
@@ -53,7 +33,7 @@ Per comodità, i passi sono suddivisi in argomenti secondari più piccoli a cui 
   ```
   {: codeblock}
 
-2. Crea un'azione web denominata **hello** utilizzando il file `hello.js` creato nel passo 1. **Nota:** assicurati di aggiungere l'indicatore `--web true`.
+2. Crea un'azione web denominata `hello` utilizzando il file che hai creato. **Nota:** assicurati di aggiungere l'indicatore `--web true`.
   ```
   ibmcloud fn action create hello hello.js --web true
   ```
@@ -65,7 +45,7 @@ Per comodità, i passi sono suddivisi in argomenti secondari più piccoli a cui 
   ```
   {: screen}
 
-3. Crea un'API con il percorso di base `/hello`, il percorso `/world` e il metodo `get` con il tipo di risposta `json`:
+3. Crea un'API con il percorso di base `/hello`, il percorso `/world`, il metodo `get` e il tipo di risposta `json`
   ```
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
@@ -78,11 +58,11 @@ Per comodità, i passi sono suddivisi in argomenti secondari più piccoli a cui 
   ```
   {: screen}
 
-  Viene generato un nuovo URL che espone l'azione `hello` utilizzando un metodo HTTP __GET__.
+  Viene generato un nuovo URL che espone l'azione `hello` utilizzando un metodo HTTP GET
 
-4. Infine, invia una richiesta HTTP all'URL utilizzando il comando **curl**:
+4. Invia una richiesta HTTP di test all'URL utilizzando il comando cURL.
   ```
-  $ curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
+  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
   ```
   {: pre}
 
@@ -94,18 +74,16 @@ Per comodità, i passi sono suddivisi in argomenti secondari più piccoli a cui 
   ```
   {: screen}
 
-Viene richiamata l'azione web **hello** che restituisce un oggetto JSON che include il parametro **name** inviato attraverso il parametro di query. Puoi passare i parametri all'azione con semplici parametri di query o utilizzando il corpo della richiesta. Le azioni web possono richiamare un'azione in modo pubblico senza utilizzare la chiave API di autorizzazione OpenWhisk.
+Viene richiamata l'azione web `hello` che restituisce un oggetto JSON che include il parametro **name** nel parametro di query. Puoi passare i parametri all'azione con semplici parametri di query o utilizzando il corpo della richiesta. Le azioni web possono richiamare pubblicamente un'azione senza utilizzare la chiave API di autorizzazione {{site.data.keyword.openwhisk_short}}.
 
-### Controllo completo sulla risposta HTTP
+## Utilizzo del controllo completo sulla risposta HTTP
 {: #full_control}
 
-L'indicatore `--response-type` controlla l'URL di destinazione dell'azione web che il gateway API deve trasmettere tramite proxy. L'utilizzo di `--response-type json` restituisce il risultato completo dell'azione in formato JSON e imposta automaticamente l'intestazione Content-Type su `application/json`.
+L'indicatore `--response-type` controlla l'URL di destinazione dell'azione web che il gateway API deve trasmettere tramite proxy. Ad esempio, quando utilizzi l'indicatore `--response-type json`, il risultato completo dell'azione viene restituito in formato JSON e l'intestazione **Content-Type** viene automaticamente impostata su `application/json`.
 
-Vuoi avere il controllo completo sulle proprietà di risposta HTTP come `statusCode` e `headers`, in modo da poter restituire diversi tipi di contenuto nel `body`. L'indicatore `--response-type http` rende possibile tutto questo configurando l'URL di destinazione dell'azione web con l'estensione `http`.
+Per restituire tipi di contenuto differenti nel corpo, usa il controllo completo sulle proprietà della risposta HTTP quali **statusCode** e **headers**. Puoi utilizzare l'indicatore `--response-type http` per configurare l'URL di destinazione dell'azione web con l'estensione `http`. Puoi modificare il codice dell'azione per rispettare la restituzione delle azioni web con l'estensione `http` o includere l'azione in una sequenza per passare il suo risultato a una nuova azione. La nuova azione può quindi trasformare il risultato in modo che abbia una formattazione appropriata per una risposta HTTP. Per ulteriori informazioni sui tipi di risposta e sulle estensioni delle azioni web, consulta la documentazione delle [azioni web](./openwhisk_webactions.html).
 
-Puoi scegliere di modificare il codice dell'azione per rispettare la restituzione delle azioni web con l'estensione `http` o includere l'azione in una sequenza per passare il suo risultato a una nuova azione. La nuova azione può quindi trasformare il risultato in modo che abbia una formattazione appropriata per una risposta HTTP. Per ulteriori informazioni sui tipi di risposta e sulle estensioni delle azioni web, consulta la documentazione delle [azioni web](./openwhisk_webactions.html).
-
-1. Modifica il codice per `hello.js` restituendo le proprietà JSON `body`, `statusCode` e `headers`:
+1. Modifica il codice per l'azione `hello.js` restituendo le proprietà JSON `body`, `statusCode` e `headers`.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
@@ -117,20 +95,20 @@ Puoi scegliere di modificare il codice dell'azione per rispettare la restituzion
   ```
   {: codeblock}
 
-2. Aggiorna l'azione con il risultato modificato:
+2. Aggiorna l'azione con il risultato modificato.
   ```
   ibmcloud fn action update hello hello.js --web true
   ```
   {: pre}
 
-3. Aggiorna il tipo di risposta dell'API utilizzando l'indicatore `--response-type http`:
+3. Aggiorna il tipo di risposta API utilizzando l'indicatore `--response-type http`.
   ```
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
-4. Richiama l'API aggiornata utilizzando il seguente comando **curl**:
-  ```bash
+4. Richiama l'API aggiornata utilizzando il seguente comando cURL.
+  ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
@@ -143,12 +121,10 @@ Puoi scegliere di modificare il codice dell'azione per rispettare la restituzion
   ```
   {: screen}
 
-Ora hai il pieno controllo delle tue API e puoi controllare il contenuto come l'URL di restituzione o impostare il codice di stato per errori come Non trovato (404), Non autorizzato (401) o Errore interno (500).
-
-### Esposizione di più azioni web
+## Esposizione di più azioni web
 {: #multiple_web_actions}
 
-Se, ad esempio, vuoi esporre una serie di azioni per un club letterario, puoi utilizzare la serie di azioni per implementare il tuo backend per tale club:
+Puoi esporre più azioni web per implementare il tuo backend applicazione. Ad esempio, per esporre una serie di azioni per un club letterario, puoi utilizzare la serie di azioni per implementare il tuo backend per tale club:
 
 | Azione | Metodo HTTP | Descrizione |
 | ----------- | ----------- | ------------ |
@@ -157,21 +133,23 @@ Se, ad esempio, vuoi esporre una serie di azioni per un club letterario, puoi ut
 | putBooks    | PUT | Aggiornare i dettagli del libro |
 | deleteBooks | DELETE | Eliminare un libro |
 
-In questo esempio, l'API è definita con un **parametro percorso**. Quando si utilizzano i parametri percorso, l'API deve essere definita con un tipo di risposta `http`. Il valore del percorso, che inizia con il percorso di base e include i valori effettivi del parametro di percorso, è disponibile nel campo `__ow_path` del parametro JSON dell'azione. Per ulteriori dettagli, fai riferimento alla documentazione [Contesto HTTP delle azioni web](./openwhisk_webactions.html#http-context), che include informazioni sugli altri campi del contesto HTTP disponibili per le azioni web richiamate con un tipo di risposta `http`.
+In questo esempio, l'API è definita con un parametro percorso. Quando utilizzi i parametri percorso, l'API deve essere definita con un tipo di risposta `http`. Il valore del percorso, che inizia con il percorso di base e include i valori effettivi del parametro di percorso, è disponibile nel campo `__ow_path` del parametro JSON dell'azione. Per ulteriori dettagli sui campi di contesto HTTP, vedi la documentazione [Contesto HTTP delle azioni web](./openwhisk_webactions.html#http-context).
 
-1. Crea un'API per il club letterario, denominata **Book Club**, con `/club` come percorso di base dell'URL HTTP, `books` come risorsa e `{isbn}` come parametro di percorso che viene utilizzato per identificare un libro specifico utilizzando il suo codice ISBN (International Standard Book Number).
-  ```bash
+Per provare questo esempio di azioni web per il club letterario:
+
+1. Crea un'API per il club letterario, denominata `Book Club`, con `/club` come percorso di base dell'URL HTTP, `books` come risorsa e `{isbn}` come parametro di percorso che viene utilizzato per identificare un libro specifico utilizzando il suo codice ISBN (International Standard Book Number).
+  ```
   ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
   ibmcloud fn api create /club /books get getBooks                       --response-type http
   ibmcloud fn api create /club /books post postBooks                     --response-type http
   ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
   ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
   ```
-  {: codeblock}
+  {: pre}
 
-  Nota che la prima azione esposta con il percorso di base `/club` ottiene l'etichetta dell'API con il nome **Book Club**. Tutte le altre azioni esposte in `/club` vengono ora associate a **Book Club**.
+  La prima azione esposta con il percorso di base `/club` è etichettata con il nome `Book Club`. Tutte le altre azioni esposte in `/club` vengono ora associate a `Book Club`.
 
-2. Elenca tutte le azioni **Book Club** esposte utilizzando il seguente comando:
+2. Elenca tutte le azioni `Book Club` esposte.
   ```
   ibmcloud fn api list /club -f
   ```
@@ -213,7 +191,7 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-3. Per divertimento, puoi aggiungere un libro intitolato **JavaScript: The Good Parts** con un HTTP __POST__:
+3. Aggiungi un libro intitolato `JavaScript: The Good Parts` utilizzando un HTTP POST.
   ```
   curl -X POST -d '{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}' -H "Content-Type: application/json" https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
@@ -227,8 +205,8 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-4. Ottieni un elenco di libri utilizzando l'azione **getBooks** con l'HTTP __GET__:
-  ```bash
+4. Ottieni un elenco dei libri utilizzando una chiamata HTTP GET all'azione `getBooks`.
+  ```
   curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
   ```
   {: pre}
@@ -241,22 +219,24 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-5. Puoi eliminare un libro specifico utilizzando l'azione **deleteBooks** con l'HTTP __DELETE__. In questo esempio, il valore del campo `__ow_path` dell'azione **deleteBooks** è `/club/books/978-0596517748`, dove `978-0596517748` è il valore effettivo `{isbn}` del percorso.
+5. Elimina uno specifico libro utilizzando una chiamata HTTP DELETE all'azione `deleteBooks`. In questo esempio, il valore del campo `__ow_path` dell'azione `deleteBooks` è `/club/books/978-0596517748`, dove `978-0596517748` è il valore effettivo `{isbn}` del percorso.
   ```bash
   curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
   ```
   {: pre}
 
-### Esporta la configurazione
-{: #export_config}
+## Esportazione ed importazione della configurazione
+{: #export_import_config}
 
-1. Esporta l'API denominata **Book Club** in un file che può essere utilizzato come base per ricreare le API utilizzando un file come input.
+Per esportare o importare una configurazione, puoi continuare ad utilizzare l'esempio del club letterario.
+
+1. Esporta l'API `Book Club` in un file denominato `club-swagger.json`. Questo file può essere utilizzato come base per creare di nuovo le API utilizzando un file come input.
   ```
   ibmcloud fn api get "Book Club" > club-swagger.json
   ```
   {: pre}
 
-2. Verifica il file swagger eliminando prima tutti gli URL esposti in un percorso di base comune utilizzando il seguente comando:
+2. Verifica il file swagger eliminando prima tutti gli URL esposti in un percorso di base comune.
   ```
   ibmcloud fn api delete /club
   ```
@@ -268,13 +248,10 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-  Puoi eliminare tutti gli URL esposti utilizzando il percorso di base `/club` o l'etichetta del nome API **"Book Club"**:
+  Puoi eliminare tutti gli URL esposti utilizzando il percorso di base `/club` o l'etichetta del nome API `"Book Club"`.
   {: tip}
 
-### Importa la configurazione
-{: #import_config}
-
-1. Adesso, ripristina l'API denominata **Book Club** utilizzando il file denominato `club-swagger.json`:
+3. Ripristina l'API `Book Club` utilizzando il file `club-swagger.json`.
   ```
   ibmcloud fn api create --config-file club-swagger.json
   ```
@@ -295,7 +272,7 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-2. Verifica che l'API **Book Club** venga ricreata:
+4. Verifica che l'API `Book Club` sia stata creata nuovamente.
   ```
   ibmcloud fn api list /club
   ```
@@ -313,7 +290,14 @@ In questo esempio, l'API è definita con un **parametro percorso**. Quando si ut
   ```
   {: screen}
 
-### Modifica la configurazione utilizzando l'interfaccia utente
+## Modifica della configurazione
 {: #modify_config}
 
-Puoi modificare la configurazione nel dashboard {{site.data.keyword.openwhisk_short}}; fai clic sulla [scheda API](https://console.ng.bluemix.net/openwhisk/apimanagement) per configurare la sicurezza, i limiti di frequenza e altre funzioni. Una volta terminato l'aggiornamento della configurazione, puoi scaricare il file di definizione in formato JSON e quindi reimportarlo utilizzando la CLI. Ciò può essere utile, ad esempio, per una distribuzione non presidiata in una pipeline di integrazione e distribuzione continua (CICD). Hai anche la possibilità di caricare e reimportare il file di definizione dell'API utilizzando l'interfaccia utente.
+Dopo che hai creato la tua configurazione, puoi utilizzare la [**scheda API**](https://console.bluemix.net/openwhisk/apimanagement) nel dashboard {{site.data.keyword.openwhisk_short}} per modificare la configurazione nei seguenti modi.
+
+* [Crea una {{site.data.keyword.openwhisk_short}} API](https://console.bluemix.net/openwhisk/apimanagement) che racchiude una serie di azioni {{site.data.keyword.openwhisk_short}}.
+* [Proteggi la tua API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) applicando la sicurezza API e le politiche di limitazione delle frequenze.
+* [Gestisci il traffico](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) visualizzando le statistiche di utilizzo API e controllando i log di risposte.
+* [Socializza e condividi](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) la tua API con gli sviluppatori all'interno e all'esterno di {{site.data.keyword.Bluemix_notm}}.
+
+Una volta terminato l'aggiornamento della configurazione, puoi scaricare il file di definizione in formato JSON e quindi reimportarlo utilizzando la CLI. Scaricare e importare la configurazione è utile, ad esempio, per una distribuzione non presidiata in una pipeline di integrazione e distribuzione continua (CICD). Hai anche la possibilità di caricare e reimportare il file di definizione dell'API utilizzando l'interfaccia utente.

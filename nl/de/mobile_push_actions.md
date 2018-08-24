@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Mobile Push
+# Mobile Push-Paket
 {: #openwhisk_catalog_pushnotifications}
 
 Hier erfahren Sie, wie Sie eine Push-Paketbindung erstellen und eine einfache Push-Benachrichtigung mit dem Paket `/whisk.system/pushnotifications` senden, das Ihnen die Möglichkeit bietet, mit einem Push-Service zu arbeiten.
@@ -23,7 +23,7 @@ Das Paket enthält die folgende Aktionen und Feeds:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | Paket | appId, appSecret, admin_url | Arbeiten mit dem Push-Service. |
 | `/whisk.system/pushnotifications/sendMessage` | Aktion | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Senden einer Push-Benachrichtigung an angegebene Geräte. |
-| `/whisk.system/pushnotifications/webhook` | Feed | events |Aktivieren von Auslöserereignissen für Geräteaktivitäten (Registrierung des Geräts, Rücknahme der Registrierung, Abonnement für Gerät, Beendigung des Abonnements) für den Push-Service. |
+| `/whisk.system/pushnotifications/webhook` | Feed | events | Aktivieren von Auslöserereignissen für Geräteaktivitäten (Registrierung des Geräts, Rücknahme der Registrierung, Abonnement für Gerät, Beendigung des Abonnements) für den Push-Service. |
 
 Informationen zum Aktivieren von Auslöserereignissen bei einer Geräteaktivität finden Sie im Abschnitt [Mobile Push bei Geräteereignissen](./openwhisk_pushnotifications.html).
 
@@ -70,7 +70,7 @@ Führen Sie zum Erstellen einer Paketbindung die folgenden Schritte aus:
 Von der Aktion `/whisk.system/pushnotifications/sendMessage` werden Push-Benachrichtigungen an registrierte Geräte gesendet. Die folgenden Parameter sind verfügbar:
 - `text`: Die Benachrichtigung, die dem Benutzer angezeigt wird. Beispiel: `-p text "Hallo, OpenWhisk sendet eine Benachrichtigung"`.
 - `url`: Eine URL, die zusammen mit einem Alert gesendet werden kann. Beispiel: `-p url "https:\\www.w3.ibm.com"`.
-- `apiHost`: Eine optionale Zeichenfolge, die den API-Host angibt. Der Standardwert ist `mobile.ng.bluemix.net`. Beispiel: `-p apiHost "mobile.eu-gb.bluemix.net"`
+- `apiHost`: Eine optionale Zeichenfolge, die den API-Host angibt. Der Standardwert ist `mobile.ng.bluemix.net`.  Beispiel: `-p apiHost "mobile.eu-gb.bluemix.net"`
 - `deviceIds`: Die Liste der angegebenen Geräte. Beispiel: `-p deviceIds ["deviceID1"]`.
 - `platforms`: Zum Senden einer Benachrichtigung an die Geräte der angegebenen Plattformen. 'A' für Apple- (iOS) Geräte und 'G' für Google- (Android) Geräte. Beispiel: `-p platforms ["A"]`.
 - `userIds`: Zum Senden einer Benachrichtigung an die Geräte der angegebenen Benutzer. Beispiel: `-p userIds "[\"testUser\"]"`

@@ -17,9 +17,9 @@ lastupdated: "2018-06-22"
 在 {{site.data.keyword.openwhisk}} 中，您可以使用套件將一組相關動作組合在一起，並與其他人共用。
 {: shortdesc}
 
-套件可以包括*動作* 及*資訊來源*。
+套件可以包含*動作* 及*資訊來源*。
 - 動作是在 {{site.data.keyword.openwhisk_short}} 上執行的程式碼片段。例如，{{site.data.keyword.cloudant}} 套件包括在 {{site.data.keyword.cloudant_short_notm}} 資料庫中讀取及寫入記錄的動作。
-- 「資訊來源」是用來配置外部事件來源，以發動觸發程式事件。例如，「警示」套件包括可依指定的頻率發動觸發程式的「資訊來源」。
+- 資訊來源是用來配置外部事件來源，以發動觸發程式事件。例如，「警示」套件包含可依指定的頻率發動觸發程式的資訊來源。
 
 每個 {{site.data.keyword.openwhisk_short}} 實體（包括套件）都屬於*名稱空間*，而實體的完整名稱是 `/namespaceName[/packageName]/entityName`。如需相關資訊，請參閱[命名準則](./openwhisk_reference.html#openwhisk_entities)。
 
@@ -157,7 +157,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-ok: created binding valhallaSamples
+  ok: created binding valhallaSamples
   ```
   {: screen}
 
@@ -214,9 +214,9 @@ ok: created binding valhallaSamples
 ## 建立及使用觸發程式資訊來源
 {: #openwhisk_package_trigger}
 
-資訊來源提供一種簡便的方法，將外部事件來源配置成向 {{site.data.keyword.openwhisk_short}} 觸發程式發動這些事件。此範例顯示如何使用「警示」套件中的「資訊來源」來每秒發動觸發程式，以及如何使用規則來每秒呼叫動作。
+資訊來源提供一種簡便的方法，將外部事件來源配置成向 {{site.data.keyword.openwhisk_short}} 觸發程式發動這些事件。此範例顯示如何使用「警示」套件中的資訊來源來每秒發動觸發程式，以及如何使用規則來每秒呼叫動作。
 
-1. 取得 `/whisk.system/alarms` 套件中「資訊來源」的說明。
+1. 取得 `/whisk.system/alarms` 套件中資訊來源的說明。
   ```
   ibmcloud fn package get --summary /whisk.system/alarms
   ```
@@ -224,7 +224,7 @@ ok: created binding valhallaSamples
 
   輸出範例：
   ```
-package /whisk.system/alarms
+  package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
   ```
   {: screen}
@@ -241,7 +241,7 @@ package /whisk.system/alarms
   ```
   {: screen}
 
-  「`/whisk.system/alarms/alarm` 資訊來源」採用兩個參數：
+  `/whisk.system/alarms/alarm` 資訊來源接受兩個參數：
   - `cron`：何時發動觸發程式的 crontab 規格。
   - `trigger_payload`：要在每一個觸發程式事件中設定的有效負載參數值。
 
@@ -253,7 +253,7 @@ package /whisk.system/alarms
 
   輸出範例：
   ```
-ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyEightSeconds
   ```
   {: screen}
 
@@ -294,8 +294,7 @@ ok: created trigger feed everyEightSeconds
 ## 建立套件
 {: #openwhisk_packages_create}
 
-套件用來組織一組相關動作及「資訊來源」。
-它也容許在套件中的所有實體之間共用參數。
+套件用來組織一組相關動作及資訊來源。它也容許在套件中的所有實體之間共用參數。
 
 若要建立具有簡單動作的自訂套件，請嘗試下列範例：
 
@@ -307,7 +306,7 @@ ok: created trigger feed everyEightSeconds
 
   輸出範例：
   ```
-ok: created package custom
+  ok: created package custom
   ```
   {: screen}
 
@@ -319,7 +318,7 @@ ok: created package custom
 
   輸出範例：
   ```
-package /myNamespace/custom
+  package /myNamespace/custom
   ```
   {: screen}
 
@@ -339,7 +338,7 @@ package /myNamespace/custom
 
   輸出範例：
   ```
-ok: created action custom/identity
+  ok: created action custom/identity
   ```
   {: screen}
 
@@ -353,7 +352,7 @@ ok: created action custom/identity
 
   輸出範例：
   ```
-package /myNamespace/custom
+  package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
   {: screen}
@@ -382,7 +381,7 @@ package /myNamespace/custom
 
   輸出範例：
   ```
-ok: updated package custom
+  ok: updated package custom
   ```
   {: screen}
 
@@ -465,7 +464,7 @@ ok: updated package custom
 ## 共用套件
 {: #openwhisk_packages_share}
 
-在除錯及測試包含套件的動作及「資訊來源」之後，即可與所有 {{site.data.keyword.openwhisk_short}} 使用者共用該套件。透過共用套件，使用者可以連結套件、呼叫套件中的動作，以及編寫「{{site.data.keyword.openwhisk_short}} 規則」及序列動作。
+在除錯及測試包含套件的動作及資訊來源之後，即可與所有 {{site.data.keyword.openwhisk_short}} 使用者共用套件。透過共用套件，使用者可以連結套件、呼叫套件中的動作，以及編寫「{{site.data.keyword.openwhisk_short}} 規則」及序列動作。
 
 1. 與所有使用者共用套件：
   ```
@@ -475,7 +474,7 @@ ok: updated package custom
 
   輸出範例：
   ```
-ok: updated package custom
+  ok: updated package custom
   ```
   {: screen}
 
@@ -488,7 +487,8 @@ ok: updated package custom
   輸出範例：
   ```
   ok: got package custom, displaying field publish
-    true
+
+  true
   ```
   {: screen}
 
@@ -502,7 +502,7 @@ ok: updated package custom
 
   輸出範例：
   ```
-package /myNamespace/custom
+  package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
   {: screen}

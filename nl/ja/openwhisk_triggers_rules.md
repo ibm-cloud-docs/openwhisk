@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-06-28"
 
 ---
 
@@ -11,33 +11,39 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# 一般的な概念
+# トリガーおよびルールによるイベントへの応答
 {: #openwhisk_triggers}
 
-{{site.data.keyword.openwhisk_short}} のトリガーおよびルールにより、プラットフォームにイベント・ドリブンの機能が実現されます。 外部および内部のイベント・ソースからのイベントがトリガーを通して送信され、アクションがそうしたイベントに反応することがルールによって可能になります。
+{{site.data.keyword.openwhisk}} のトリガーおよびルールにより、プラットフォームにイベント・ドリブンの機能が実現されます。 外部および内部のイベント・ソースからのイベントがトリガーを通して送信され、アクションがそうしたイベントに反応することがルールによって可能になります。
 {: shortdesc}
 
-## トリガーとは
+## 一般的な概念
+{: #definitions}
+
+### トリガー
 {: #openwhisk_triggers_create}
 
-トリガーは、ある種のイベントに対して指定されたチャネルです。 トリガーの例を以下に示します。
-- ロケーション更新イベントのトリガー。
-- Web サイトへの文書アップロードのトリガー。
-- 着信 E メールのトリガー。
+トリガーは、ある種のイベントに対して指定されたチャネルです。
+{: shortdesc}
 
-トリガーは、キーと値のペアのディクショナリーを使用して*起動する* (アクティブ化する) ことができます。 このディクショナリーは、*イベント* と呼ばれることもあります。 アクションと同様に、トリガーの起動のたびに、**アクティベーション ID** が生成されます。
+トリガーとは、ユーザーから起動されるか、イベント・ソースによって起動されるかに関わらず、特定のタイプのイベントに対応するための宣言です。 トリガーの例を以下に示します。
+- ロケーション更新イベントのトリガー
+- Web サイトへの文書アップロードのトリガー
+- 着信 E メールのトリガー
 
-トリガーは、ユーザーが明示的に起動することも、ユーザーの代わりに外部イベント・ソースによって起動することもできます。
-*フィード* は、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 以下のフィードの例を参照してください。
-- データベース内の文書が追加または変更されるたびにトリガー・イベントを起動する、{{site.data.keyword.cloudant}} データ変更フィード。
-- Git リポジトリーに対するコミットのたびにトリガー・イベントを起動する Git フィード。
+トリガーは、キーと値のペアのディクショナリーを使用して起動またはアクティブ化することができます。 このディクショナリーは、イベントと呼ばれることもあります。 トリガーは、ユーザーが明示的に起動することも、ユーザーの代わりに外部イベント・ソースによって起動することもできます。 アクションと同様に、トリガーの起動のたびに、アクティベーション ID が生成されます。 ルールに関連付けられていないトリガーは、起動されても視覚的な効果はありません。
 
-## ルールがトリガーに影響する仕組み
+フィードは、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 フィードの例を以下に示します。
+- データベース内の文書が追加または変更されるたびにトリガー・イベントを起動する、{{site.data.keyword.cloudant}} データ変更フィード
+- Git リポジトリーに対するコミットのたびにトリガー・イベントを起動する Git フィード
+
+### ルール
 {: #openwhisk_rules_use}
 
-1 つのルールは 1 つのトリガーを 1 つのアクションに関連付けます。トリガーが発生するたびに、対応するアクションが、トリガー・イベントを入力として呼び出されます。
+ルールは、トリガーをアクションと関連付けます。
+{: shortdesc}
 
-適切なルール・セットを使用して、単一のトリガー・イベントが
+トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用して、関連付けられたアクションを呼び出します。適切なルール・セットを使用して、単一のトリガー・イベントが
 複数のアクションを呼び出すことも、複数のトリガーからのイベントに対する応答として 1 つのアクションを呼び出すこともできます。
 
 例えば、以下のアクションを持つシステムがあるとします。
@@ -49,157 +55,140 @@ lastupdated: "2018-06-22"
 - `imageUpload` - Web サイトにイメージがアップロードされたときに起動するトリガー。
 
 単一のトリガー・イベントが複数のアクションを起動し、複数のトリガーが同じアクションを呼び出すように、ルールをセットアップすることができます。
-- `newTweet -> classifyImage` ルール。
-- `imageUpload -> classifyImage` ルール。
-- `imageUpload -> thumbnailImage` ルール。
+- `newTweet -> classifyImage` ルール
+- `imageUpload -> classifyImage` ルール
+- `imageUpload -> thumbnailImage` ルール
 
 この 3 つのルールによって、以下の動作が設定されます。
 - 各ツイートのイメージが分類されます。
 - アップロードされたイメージが分類されます。
 - サムネールのバージョンが生成されます。
 
-## トリガーの作成と起動
+## チャネル・イベントに対するトリガーの作成
 {: #openwhisk_triggers_fire}
 
-トリガーは、特定のイベントの発生時に起動することも、手動で起動することもできます。
+以下のステップは、ユーザー・ロケーションの更新を送信するトリガーの例を作成する方法と、手動でトリガーを起動する方法を示しています。
 
-例として、ユーザー・ロケーションの更新を送信するトリガーを作成し、手動でトリガーを起動します。
-1. 以下のコマンドを入力してトリガーを作成します。
-  ```
-  ibmcloud fn trigger create locationUpdate
-  ```
-  {: pre}
+1. トリガーを作成します。 トリガーは、名前空間内に直接作成する必要があり、パッケージ内には作成できません。
+    ```
+    ibmcloud fn trigger create locationUpdate
+    ```
+    {: pre}
 
-  出力例:
-  ```
-  ok: created trigger locationUpdate
-  ```
-  {: screen}
+    出力例:
+    ```
+    ok: created trigger locationUpdate
+    ```
+    {: screen}
 
-2. トリガーのセットをリストして、トリガーを作成したことを確認します。
-  ```
-  ibmcloud fn trigger list
-  ```
-  {: pre}
+2. トリガーが作成されたことを確認します。
+    ```
+    ibmcloud fn trigger list
+    ```
+    {: pre}
 
-  出力例:
-  ```
-  triggers
+    出力例:
+    ```
+    triggers
   /someNamespace/locationUpdate                            private
-  ```
-  {: screen}
+    ```
+    {: screen}
+    トリガーは、イベントを起動できる、指定されたチャネルとして機能します。
 
-  これで、イベントを起動できる、指定された「チャネル」が作成されました。
+3. トリガー・イベントを起動します。
+    ```
+    ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
+    ```
+    {: pre}
 
-3. 次に、トリガー名とパラメーターを指定することにより、トリガー・イベントを起動します。
-  ```
-  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
-  ```
-  {: pre}
+    このトリガーにはルールが関連付けられていないため、渡されたパラメーターは、どのアクションによっても入力として使用されません。 出力例:
+    ```
+    ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
+    ```
+    {: screen}
 
-  出力例:
-  ```
-  ok: triggered locationUpdate with id fa495d1223a2408b999c3e0ca73b2677
-  ```
-  {: screen}
-
-発生したトリガーは、それに突き合わせる付随のルールがない場合は、目に見える効果はありません。
-トリガーをパッケージ内に作成することはできません。トリガーは、**名前空間**の下に直接作成する必要があります。
+次のセクションでは、ルールを作成することによって、トリガーをアクションに関連付けることができます。
 
 ## ルールを使用したトリガーとアクションの関連付け
 {: #openwhisk_rules_assoc}
 
-ルールは、トリガーとアクションを関連付けるために使用されます。 トリガー・イベントが起動するたびに、イベント・パラメーターを使用してアクションが呼び出されます。
+ルールは、トリガーとアクションを関連付けるために使用されます。 トリガー・イベントが起動されるたびに、トリガー・イベントのパラメーターを使用してアクションが呼び出されます。
 
-例えば、ロケーション更新がポストされるたびに、`hello` アクションを呼び出すルールを作成します。
+以下のステップは、[`locationUpdate` トリガー](#openwhisk_triggers_fire)の作成後に、ロケーション更新がポストされるたびに `hello` アクションを呼び出すルール例を作成する方法を示しています。
+
 1. 以下のアクション・コードを含んでいる「hello.js」という名前のファイルを作成します。
-  ```javascript
-  function main(params) {
-     return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+    ```javascript
+    function main(params) {
+       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
   }
-  ```
-  {: codeblock}
+    ```
+    {: pre}
 
-2. トリガーとアクションが存在することを確認します。
-  ```
-  ibmcloud fn trigger update locationUpdate
-  ```
-  {: pre}
+2. `hello` アクションを作成します。
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn action update hello hello.js
-  ```
-  {: pre}
+3. `locationUpdate` トリガーを `hello` アクションに関連付ける `myRule` ルールを作成します。ルールは、名前空間内に直接作成する必要があり、パッケージ内には作成できません。
+    ```
+    ibmcloud fn rule create myRule locationUpdate hello
+    ```
+    {: pre}
 
-3. 次のステップでは、ルールを作成します。 ルールは作成時に有効になります。つまり、ルールは即時にトリガーのアクティベーションに応答できるようになります。 3 つのパラメーターは、_ルール名_、_トリガー名_、および_アクション名_です。
-  ```
-  ibmcloud fn rule create myRule locationUpdate hello
-  ```
-  {: pre}
+4. `locationUpdate` トリガーを起動します。 トリガー・イベントが発生するたびに、イベント・パラメーターを使用して `hello` アクションが呼び出されます。
+    ```
+    ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
+    ```
+    {: pre}
 
-  ルールを無効にすることをいつでも選択できます。
-  ```
-  ibmcloud fn rule disable myRule
-  ```
-  {: pre}
+    出力例:
+    ```
+    ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
+    ```
+    {: screen}
 
-4. **locationUpdate** トリガーを起動します。 イベントを起動するたびに、イベント・パラメーターを使用して **hello** アクションが呼び出されます。
-  ```
-  ibmcloud fn trigger fire locationUpdate --param name Donald --param place "Washington, D.C."
-  ```
-  {: pre}
+5. 最新のアクティベーション・レコードを調べて、`hello` アクションが呼び出されたことを確認します。
+    ```
+    ibmcloud fn activation list --limit 1 hello
+    ```
+    {: pre}
 
-  出力例:
-  ```
-  ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
-  ```
-  {: screen}
-
-5. 最新のアクティベーションを調べて、**hello** アクションが呼び出されたことを確認します。
-  ```
-  ibmcloud fn activation list --limit 1 hello
-  ```
-  {: pre}
-
-  出力例:
-  ```
-  activations
+    出力例:
+    ```
+    activations
   9c98a083b924426d8b26b5f41c5ebc0d             hello
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-  次に、前のコマンド出力にリストされたアクティベーション ID を照会します。
-  ```
-  ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
-  ```
-  {: pre}
+6. 前のコマンド出力からアクティベーション ID に関する詳細情報を取得します。
+    ```
+    ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
+    ```
+    {: pre}
 
-  出力例:
-  ```
-  {
-     "payload": "Hello, Donald from Washington, D.C."
-  }
-  ```
-  {: screen}
+    出力例:
+    ```
+    {
+       "payload": "Hello, Human from Earth"
+    }
+    ```
+    {: screen}
+    `Hello` アクションがイベント・ペイロードを受信して、予期されるストリングを返したことが分かります。
 
-  **Hello** アクションがイベント・ペイロードを受信して、予期されるストリングを返したことが分かります。
+7. ルールを使用不可にするには、以下のコマンドを実行します。
+    ```
+    ibmcloud fn rule disable myRule
+    ```
+    {: pre}
 
-同じトリガーを異なるアクションに関連付ける複数のルールを作成できます。
-トリガーおよびルールはパッケージに所属できません。 ただし、パッケージに属しているアクションに、ルールを関連付けることはできます。
-以下に例を示します。
-  ```
-  ibmcloud fn rule create recordLocation locationUpdate /whisk.system/utils/echo
-  ```
-  {: pre}
+また、ルールを使用して、トリガーをシーケンスに関連付けることもできます。例えば、ルール `anotherRule` によってアクティブ化される、`recordLocationAndHello` というアクション・シーケンスを作成することができます。
+```
+ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
+```
+{: pre}
 
-また、シーケンスとともにルールを使用することも可能です。 例えば、ルール `anotherRule`
-でアクティブ化されるアクション・シーケンス `recordLocationAndHello` を作成することができます。
-  ```
-  ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
-  ```
-  {: pre}
-
-  ```
-  ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
-  ```
-  {: pre}
+```
+ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
+```
+{: pre}

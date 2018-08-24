@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Acciones web
+# Creación de acciones web
 {: #openwhisk_webactions}
 
-Las acciones web son acciones de OpenWhisk que se anotan para permitir rápidamente a los desarrolladores crear aplicaciones basadas en web. Estas acciones anotadas permiten a los desarrolladores programar la lógica subyacente a la que la aplicación web puede acceder de forma anónima, sin necesidad de disponer de una clave de autenticación de OpenWhisk. Depende del desarrollador de la acción si desea implementar su propio sistema de autenticación y autorización (es decir, flujo de OAuth).
+Las acciones web son acciones de {{site.data.keyword.openwhisk}} que se anotan para permitir rápidamente los desarrolladores creen aplicaciones basadas en la web. Estas acciones anotadas permiten a los desarrolladores programar la lógica subyacente a la que la aplicación web puede acceder de forma anónima, sin necesidad de disponer de una clave de autenticación de {{site.data.keyword.openwhisk_short}}. Depende del desarrollador de la acción si desea implementar su propio sistema de autenticación y autorización o utilizar un flujo de OAuth.
 {: shortdesc}
 
 Las activaciones de acciones web están asociadas al usuario que ha creado la acción. Esta acción transfiere el coste de la activación de una acción del que efectúa la llamada al propietario de la acción.
@@ -122,12 +122,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [límite de tamaño de respuesta](./openwhisk_reference.html) de las acciones, ya que las respuestas que superen los límites predefinidos del sistema fallan. Los objetos grandes no envían en línea a través de OpenWhisk, sino que se defieren a un almacén de objetos, por ejemplo.
+It is important to be aware of the [límite de tamaño de respuesta](./openwhisk_reference.html) de las acciones, ya que las respuestas que superen los límites predefinidos del sistema fallan. Los objetos grandes no envían en línea a través de {{site.data.keyword.openwhisk_short}}, sino que se defieren a un almacén de objetos, por ejemplo.
 
 ## Manejo de solicitudes HTTP con acciones
 {: #openwhisk_webactions_http}
 
-Una acción de OpenWhisk que no sea una acción web necesita autenticación y debe responder con un objeto JSON. Por el contrario, las acciones web se pueden invocar sin autenticación y se pueden utilizar para implementar manejadores HTTP que respondan con contenido de _headers_, _statusCode_ y _body_ de distintos tipos. La acción web debe devolver un objeto JSON. Sin embargo, el sistema OpenWhisk (concretamente el `controlador`) trata una acción web de forma distinta si su resultado incluye una o varias de las siguientes propiedades JSON de nivel superior:
+Una acción de {{site.data.keyword.openwhisk_short}} que no sea una acción web necesita autenticación y debe responder con un objeto JSON. Por el contrario, las acciones web se pueden invocar sin autenticación y se pueden utilizar para implementar manejadores HTTP que respondan con contenido de _headers_, _statusCode_ y _body_ de distintos tipos. La acción web debe devolver un objeto JSON. Sin embargo, el sistema {{site.data.keyword.openwhisk_short}} (concretamente el `controlador`) trata una acción web de forma distinta si su resultado incluye una o varias de las siguientes propiedades JSON de nivel superior:
 
 - `headers`: Un objeto JSON en el que las claves son nombres de cabeceras y los valores son series de caracteres, números o valores booleanos correspondientes a dichas cabeceras (el valor predeterminado es sin cabeceras). Para enviar varios valores para una sola cabecera, el valor de la cabecera es una matriz JSON de valores.
 - `statusCode`: Un código de estado de HTTP válido (el valor predeterminado es 200 OK).
@@ -147,7 +147,7 @@ Consulte los parámetros HTTP siguientes:
 - `__ow_method` (tipo: serie): El método HTTP de la solicitud.
 - `__ow_headers` (tipo: correlación entre serie y serie): Cabeceras de la solicitud.
 - `__ow_path` (tipo: serie): Vía de acceso de la solicitud que no coincide (la comparación finaliza al consumirse la extensión de la acción).
-- `__ow_user` (tipo: serie): Espacio de nombres que identifica el asunto autenticado de OpenWhisk
+- `__ow_user` (tipo: serie): Espacio de nombres que identifica el asunto autenticado de {{site.data.keyword.openwhisk_short}}
 - `__ow_body` (tipo: serie): Entidad del cuerpo de la solicitud, como serie codificada en base64 cuando el contenido es binario o serie de texto sin formato en caso contrario
 - `__ow_query` (tipo: serie): Parámetros de la consulta procedentes de la solicitud como serie sin analizar
 

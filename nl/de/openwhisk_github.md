@@ -22,7 +22,7 @@ Das Paket enthält den folgenden Feed:
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
 | `/whisk.system/github` | Paket | username, repository, accessToken | Interaktion mit der GitHub-API |
-| `/whisk.system/github/webhook` | Feed | events, username, repository, accessToken |Aktivieren eines Auslöserereignisses bei GitHub-Aktivität |
+| `/whisk.system/github/webhook` | Feed | events, username, repository, accessToken | Aktivieren eines Auslöserereignisses bei GitHub-Aktivität |
 
 Es wird empfohlen, eine Paketbindung mit den Werten `username`, `repository` und `accessToken` zu erstellen.  Mit der Bindung brauchen Sie die Werte nicht jedes Mal anzugeben, wenn Sie den Feed im Paket verwenden.
 

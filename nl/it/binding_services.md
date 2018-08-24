@@ -122,7 +122,7 @@ Credentials-2
             },
             {
                 "key": "__bx_creds",
-            "value": {
+                "value": {
                     "conversation": {
                         "password": "[Service password]",
                     "url": "[Service url]",
@@ -148,6 +148,6 @@ Per ulteriori informazioni sul passaggio dei parametri a un'azione o un pacchett
 Annulla il bind di un servizio da un'azione o un pacchetto. L'annullamento del bind di un servizio rimuove i bind esistenti creati dal comando `service bind`.
 
 ```
-ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
+ibmcloud fn service unbind NOME_SERVIZIO NOME_AZIONE
 ```
 {: pre}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-06-22"
 
 ---
 
@@ -65,7 +65,7 @@ function main(params) {
     {: codeblock}
 
 3. Erstellen Sie die Aktion `hello`.
-```
+    ```
     ibmcloud fn action create hello hello.js
     ```
     {: pre}
@@ -98,7 +98,7 @@ function main(params) {
     ```
     {: screen}
 
-Gute Arbeit! Sie haben Ihre erste Aktion erstellt. Um diese Aktion wieder zu entfernen, führen Sie `ibmcloud fn action delete hello` aus.
+Gute Arbeit! Sie haben Ihre erste Aktion erstellt. Um diese Aktion wieder zu entfernen, führen Sie den Befehl `ibmcloud fn action delete hello` aus.
 
 **Weitere Schritte**
 * [Beispiel für den Alarmservice verwenden, um die Aktion **hello** jedes Mal aufzurufen, wenn ein regelmäßiges Ereignis generiert wird.](./openwhisk_packages.html#openwhisk_package_trigger)

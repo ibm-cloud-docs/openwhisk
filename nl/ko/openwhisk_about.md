@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -34,7 +34,9 @@ lastupdated: "2018-06-22"
 <dt>트리거</dt>
 <dd>[트리거](openwhisk_triggers_rules.html#openwhisk_triggers_create)는 이벤트 클래스의 이름 지정된 채널입니다. 트리거는 사용자 또는 이벤트 소스에 의한 특정 유형의 이벤트에 반응하려는 선언입니다.</dd>
 <dt>룰</dt>
-<dd>[룰](openwhisk_triggers_rules.html#openwhisk_rules_use)은 트리거를 액션과 연관시킵니다. 트리거가 실행될 때마다 룰은 연관된 액션을 호출합니다. 적절한 룰 세트를 사용하면 단일 트리거 이벤트가 다중 액션을 호출하거나 액션이 다중 트리거의 이벤트에 대한 응답으로 호출될 수 있습니다.</dd>
+<dd>[룰](openwhisk_triggers_rules.html#openwhisk_rules_use)은 트리거를 액션과 연관시킵니다. 트리거가 실행될 때마다 룰은 입력으로서 트리거 이벤트를 사용하고 연관된 액션을 호출합니다. 적절한 룰 세트를 사용하면 단일 트리거 이벤트가 다중 액션을 호출하거나 액션이 다중 트리거의 이벤트에 대한 응답으로 호출될 수 있습니다.</dd>
+<dt>피드</dt>
+<dd>[피드](openwhisk_feeds.html#openwhisk_feeds)는 {{site.data.keyword.openwhisk_short}}에서 이용할 수 있는 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성하는 편리한 방법입니다 예를 들어, Git 피드는 Git 저장소에 대한 모든 커미트에 대해 트리거 이벤트를 실행할 수 있습니다. </dd>
 <dt>패키지</dt>
 <dd>서비스 및 이벤트 제공자와의 통합이 패키지에서 추가될 수 있습니다. [패키지](openwhisk_packages.html)는 피드 및 액션의 번들입니다. 피드는 트리거 이벤트를 실행하기 위해 외부 이벤트 소스를 구성하는 코드 조각입니다. 예를 들어, {{site.data.keyword.cloudant}} 변경 피드로 작성된 트리거는 문서가 수정되거나 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에 추가될 때마다 트리거를 실행하도록 서비스를 구성합니다. 서비스 제공자가 가용성을 제공할 수 있는 재사용 가능한 로직을 패키지의 액션에서 표시하므로, 개발자는 서비스를 이벤트 소스로서 사용하고 해당 서비스의 API를 호출할 수 있습니다.
 <br><br>패키지의 기존 카탈로그는 유용한 기능으로 애플리케이션을 강화하고 에코시스템의 외부 서비스에 액세스할 수 있는 빠른 방법을 제공합니다. {{site.data.keyword.openwhisk_short}} 패키지가 포함된 외부 서비스의 예에는 {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack 및 GitHub가 있습니다.</dd>
@@ -51,7 +53,7 @@ lastupdated: "2018-06-22"
 ## OpenWhisk 내부 처리 작동 방식
 {: #openwhisk_internal}
 
-OpenWhisk의 뒤에서 무슨 일이 발생합니까?
+OpenWhisk의 백그라운드에선 어떤 일이 발생합니까?
 
 OpenWhisk는 Nginx, Kafka, Docker 및 CouchDB를 포함한 컴포넌트를 결합하여 서버리스 이벤트 기반 프로그래밍 서비스를 구성하는 오픈 소스 프로젝트입니다.
 
@@ -154,11 +156,11 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### 요약
 
-단순한 **ibmcloud fn action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 여러 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다.
+단순한 **ibmcloud fn action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 서로 다른 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다.
 
 다음 주제에서 {{site.data.keyword.openwhisk_short}}에 대한 추가 정보를 찾을 수 있습니다.
 
 * [엔티티 이름](./openwhisk_reference.html#openwhisk_entities)
 * [액션 시맨틱](./openwhisk_reference.html#openwhisk_semantics)
 * [한계](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 참조](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST API 참조](https://console.bluemix.net/apidocs/openwhisk)

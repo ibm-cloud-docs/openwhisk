@@ -60,7 +60,7 @@ lastupdated: "2018-03-26"
   ```
   {: screen}
 
-## {{site.data.keywrod.Bluemix_notm}} 外部での Watson Text to Speech パッケージのセットアップ
+## {{site.data.keyword.Bluemix_notm}} 外部での Watson Text to Speech パッケージのセットアップ
 
 {{site.data.keyword.Bluemix_notm}} で {{site.data.keyword.openwhisk_short}} を使用していない場合、または {{site.data.keyword.Bluemix_notm}} の外部で Watson Text to Speech をセットアップしたい場合は、Watson Text to Speech サービスのパッケージ・バインディングを手動で作成する必要があります。 Watson Text to Speech サービスのユーザー名とパスワードが必要になります。
 

@@ -15,17 +15,17 @@ lastupdated: "2018-06-22"
 # Cloudant-Ereignisquelle
 {: #openwhisk_cloudant}
 
-Hier erfahren Sie, wie Sie Änderungen an einer {{site.data.keyword.cloudant}}-Datenbank überwachen, Datenbankänderungsereignisse filtern und eine Aktionsfolge verwenden, um ein Dokument aus einer {{site.data.keyword.cloudant_short_notm}}-Datenbank zu verarbeiten. Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer {{site.data.keyword.cloudant_short_notm}} -Datenbank und enthält die folgenden Aktionen und Feeds:
+Hier erfahren Sie, wie Sie Änderungen an einer {{site.data.keyword.cloudant}}-Datenbank überwachen, Datenbankänderungsereignisse filtern und eine Aktionsfolge verwenden, um ein Dokument aus einer {{site.data.keyword.cloudant_short_notm}}-Datenbank zu verarbeiten. Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer {{site.data.keyword.cloudant_short_notm}}-Datenbank und enthält die folgenden Aktionen und Feeds:
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | Paket | dbname, host, username, password |Für die Arbeit mit einer Cloudant-Datenbank.|
-| `/whisk.system/cloudant/read` | Aktion | dbname, id |Lesen eines Dokuments aus einer Datenbank.|
-| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc |Schreiben eines Dokuments in eine Datenbank.|
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers |Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank.|
+| `/whisk.system/cloudant` | Paket | dbname, host, username, password | Für die Arbeit mit einer Cloudant-Datenbank. |
+| `/whisk.system/cloudant/read` | Aktion | dbname, id | Lesen eines Dokuments aus einer Datenbank. |
+| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreiben eines Dokuments in eine Datenbank. |
+| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank. |
 {: shortdesc}
 
-In den folgenden Abschnitten werden schrittweise die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` erläutert. Weitere Informationen zum Einrichten der {{site.data.keyword.cloudant_short_notm}}-Datenbank und zum Lesen oder Schreiben in dieser Datenbank finden Sie im Abschnitt [{{site.data.keyword.cloudant_short_notm}}-Aktionen](./cloudant_actions.html).
+In den folgenden Abschnitten wird schrittweise die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` erläutert. Weitere Informationen zum Einrichten der {{site.data.keyword.cloudant_short_notm}}-Datenbank und zum Lesen oder Schreiben in dieser Datenbank finden Sie im Abschnitt [{{site.data.keyword.cloudant_short_notm}}-Aktionen](./cloudant_actions.html).
 
 ## Auslöser mithilfe der Filterfunktion erstellen
 
@@ -41,7 +41,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
 **query_params**: Zusätzliche Abfrageparameter für die Filterfunktion _(optional)_.
 
-1. Erstellen Sie einen Auslöser mit dem Namen **myCloudantTrigger** mit dem Feed `changes` in der Paketbindung, die Sie zuvor erstellt haben. Schließen Sie dabei die Funktionen `filter` und `query_params` ein, um den Auslöser zu aktivieren, wenn ein Dokument hinzugefügt oder geändert wird, wenn der Status `new` ist. 
+1. Erstellen Sie einen Auslöser mit dem Namen **myCloudantTrigger** mit dem Feed `changes` in der Paketbindung, die Sie zuvor erstellt haben. Schließen Sie dabei die Funktionen `filter` und `query_params` ein, um den Auslöser zu aktivieren, wenn ein Dokument hinzugefügt oder geändert wird, wenn der Status `new` ist.
 
   Achten Sie darauf, `/_/myCloudant` durch Ihren Paketnamen zu ersetzen.
   ```
@@ -80,8 +80,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
 5. Erstellen Sie Aktionen und eine Regel, um sie dem Auslöser **myCloudantTrigger** zuzuordnen.
 
-6. Ändern Sie in Ihrem {{site.data.keyword.cloudant_short_notm}}-Dashboard ein vorhandenes Dokument oder erstellen Sie ein neues Dokument. 
-Das Dokument muss über ein Feld _status_ verfügen, das auf **new** gesetzt ist.
+6. Ändern Sie in Ihrem {{site.data.keyword.cloudant_short_notm}}-Dashboard ein vorhandenes Dokument oder erstellen Sie ein neues Dokument. Das Dokument muss über ein Feld _status_ verfügen, das auf **new** gesetzt ist.
 
 7. Beobachten Sie die neuen Aktivierungen für den Auslöser **myCloudantTrigger** für jede Dokumentänderung mithilfe der Filterfunktion und des Abfrageparameters nur dann, wenn das Dokument den Status **new** hat.
 

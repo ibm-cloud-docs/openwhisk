@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Web アクション
+# Web アクションの作成
 {: #openwhisk_webactions}
 
-Web アクションは、迅速に開発者が Web ベースのアプリケーションを構築することを可能にするための、アノテーションが付けられた OpenWhisk アクションです。 アノテーションが付けられたこれらのアクションにより、OpenWhisk 認証キーを必要とせずに Web アプリケーションが匿名でアクセスできるバックエンド・ロジックを、開発者がプログラムできます。 アクション開発者は、自由に独自の認証および許可 (つまり OAuth フロー) を実装できます。
+Web アクションは、開発者が Web ベースのアプリケーションを迅速に構築できるようにするためにアノテーションが付けられた {{site.data.keyword.openwhisk}} アクションです。アノテーションが付けられたこれらのアクションにより、{{site.data.keyword.openwhisk_short}} 認証キーを必要とせずに Web アプリケーションが匿名でアクセスできるバックエンド・ロジックを、開発者がプログラムできます。 アクション開発者は自身の判断で、必要とする独自の認証および許可 (OAuth フロー) を実装します。
 {: shortdesc}
 
 Web アクションのアクティベーションは、アクションを作成したユーザーと関連付けられます。 このアクションでは、アクションのアクティベーションのコストが、呼び出し元からアクションの所有者に移ります。
@@ -42,7 +42,7 @@ ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-値 `true` または `yes` の `--web` フラグを使用すると、資格情報を必要とせずに、REST インターフェース経由でアクションにアクセスできます。資格情報を伴う Web アクションを構成するには、『[Web アクションの保護](./openwhisk_webactions.html#securing-web-actions)』セクションを参照してください。Web アクションは、以下のように構造化された URL を使用して呼び出すことができます。
+値 `true` または `yes` の `--web` フラグを使用すると、資格情報を必要とせずに、REST インターフェース経由でアクションにアクセスできます。 資格情報を伴う Web アクションを構成するには、『[Web アクションの保護](./openwhisk_webactions.html#securing-web-actions)』セクションを参照してください。 Web アクションは、以下のように構造化された URL を使用して呼び出すことができます。
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`
 
 アクションが名前付きパッケージ内にない場合、パッケージ名は **default** になります。
@@ -108,7 +108,7 @@ function main() {
 ```
 {: codeblock}  
 
-The following example returns `application/json`:
+次の例は、`application/json` を返します。
 ```javascript
 function main(params) {
     return {
@@ -122,12 +122,12 @@ function main(params) {
 
 HTTP 応答のデフォルト `Content-Type` は `application/json` であり、本体は、許可される任意の JSON 値であることが可能です。デフォルトの `Content-Type` はヘッダーから省略できます。
 
-事前定義されたシステムしきい値を超える応答は失敗するため、アクションの[応答サイズ制限](./openwhisk_reference.html)を知っておくことは重要です。例えば、ラージ・オブジェクトは OpenWhisk を通じてインラインで送信するのではなく、オブジェクト・ストアに置きます。
+事前定義されたシステム限度を超える応答は失敗するため、アクションの[応答サイズ制限](./openwhisk_reference.html)を知っておくことが重要です。例えば、ラージ・オブジェクトは {{site.data.keyword.openwhisk_short}} を通じてインラインで送信するのではなく、オブジェクト・ストアに置きます。
 
 ## アクションによる HTTP 要求の処理
 {: #openwhisk_webactions_http}
 
-Web アクションでない OpenWhisk アクションは、認証を必要とし、JSON オブジェクトで応答することも必要です。対照的に、Web アクションは認証なしで起動でき、さまざまなタイプの _headers_、_statusCode_、および _body_ コンテンツで応答する HTTP ハンドラーを実装するために使用できます。 Web アクションは JSON オブジェクトを返す必要があります。 ただし、OpenWhisk システム (つまり、`コントローラー`) は、結果に以下の最上位 JSON プロパティーの 1 つ以上が含まれる場合、Web アクションを別の方法で処理します。
+Web アクションでない {{site.data.keyword.openwhisk_short}} アクションは、認証を必要とし、JSON オブジェクトで応答することも必要です。 対照的に、Web アクションは認証なしで起動でき、さまざまなタイプの _headers_、_statusCode_、および _body_ コンテンツで応答する HTTP ハンドラーを実装するために使用できます。 Web アクションは JSON オブジェクトを返す必要があります。 ただし、{{site.data.keyword.openwhisk_short}} システム (つまり、`コントローラー`) は、結果に以下の最上位 JSON プロパティーの 1 つ以上が含まれる場合、Web アクションを別の方法で処理します。
 
 - `headers`: キーがヘッダー名であり、値がそれらのヘッダーのストリング値、数値、またはブール値である、JSON オブジェクト (デフォルトはヘッダーなし)。 1 つのヘッダーで複数の値を送信する場合、ヘッダーの値は、値の JSON 配列になります。
 - `statusCode`: 有効な HTTP 状況コード (デフォルトは 200 の OK です )。
@@ -147,13 +147,13 @@ _注_ : JSON オブジェクトまたは配列はバイナリー・データと�
 - `__ow_method` (タイプ: ストリング): 要求の HTTP メソッド。
 - `__ow_headers` (タイプ: ストリング間マップ): 要求ヘッダー。
 - `__ow_path` (タイプ: ストリング): マッチングされていない要求パス (マッチングは、アクションの拡張子が取り込まれると停止します)。
-- `__ow_user` (タイプ: ストリング): OpenWhisk 認証済みサブジェクトを識別する名前空間
+- `__ow_user` (タイプ: ストリング): {{site.data.keyword.openwhisk_short}} 認証済みサブジェクトを識別する名前空間
 - `__ow_body` (タイプ: ストリング): コンテンツがバイナリーの場合は base64 エンコード・ストリング、それ以外の場合はプレーン・ストリングの要求本体エンティティー。
 - `__ow_query` (タイプ: ストリング): 構文解析されていないストリングである、要求からの照会パラメーター。
 
 要求は、指定された `__ow_` パラメーターのいずれもオーバーライドできません。 これを行うと、要求は失敗し、状況は 400 の Bad Request になります。
 
-`__ow_user` は、Web アクションが[認証を必要とするものとしてアノテーションが付けられている](./openwhisk_annotations.html#annotations-specific-to-web-actions)場合にのみ存在し、これにより、Web アクションは独自の許可ポリシーを実装することができます。 `__ow_query` は、Web アクションが[「未加工」 HTTP 要求 ](#raw-http-handling)を処理することを選択した場合にのみ使用可能です。 これは、URI からの解析される照会パラメーターを含むストリングです (`&` で分離)。 `__ow_body` プロパティーは、「未加工」HTTP 要求の中、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。 それ以外の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会および本体のパラメーターを受け取ります。本体パラメーターは照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
+`__ow_user` は、Web アクションが[認証を必要とするものとしてアノテーションが付けられている](./openwhisk_annotations.html#annotations-specific-to-web-actions)場合にのみ存在し、これにより、Web アクションは独自の許可ポリシーを実装することができます。 `__ow_query` は、Web アクションが[「未加工」 HTTP 要求 ](#raw-http-handling)を処理することを選択した場合にのみ使用可能です。 これは、URI からの解析される照会パラメーターを含むストリングです (`&` で分離)。 `__ow_body` プロパティーは、「未加工」HTTP 要求の中、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。 それ以外の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会および本体のパラメーターを受け取ります。 本体パラメーターは照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
 
 ## HTTPS エンドポイント・サポート
 
@@ -341,9 +341,9 @@ ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web
 ## Web アクションの保護
 {: #securing-web-actions}
 
-デフォルトでは、Web アクションの呼び出し URL を持っていれば誰でも Web アクションを呼び出すことができます。Web アクションを保護するには、[Web アクション・アノテーション](./openwhisk_annotations.html#annotations-specific-to-web-actions) `require-whisk-auth` を使用します。`require-whisk-auth` アノテーションが `true` に設定されている場合、アクションは、呼び出し要求の基本許可資格情報をアクション所有者の whisk 認証キーに照らして認証します。数字または大/小文字の区別があるストリングに設定されている場合、アクションの呼び出し要求には、それと同じ値が設定された `X-Require-Whisk-Auth` ヘッダーが含まれていなければなりません。保護された Web アクションは、資格情報の検証が失敗した場合はメッセージ `Not Authorized` を返します。
+デフォルトでは、Web アクションの呼び出し URL を持っていれば誰でも Web アクションを呼び出すことができます。 Web アクションを保護するには、[Web アクション・アノテーション](./openwhisk_annotations.html#annotations-specific-to-web-actions) `require-whisk-auth` を使用します。 `require-whisk-auth` アノテーションが `true` に設定されている場合、アクションは、呼び出し要求の基本許可資格情報をアクション所有者の whisk 認証キーに照らして認証します。 数字または大/小文字の区別があるストリングに設定されている場合、アクションの呼び出し要求には、それと同じ値が設定された `X-Require-Whisk-Auth` ヘッダーが含まれていなければなりません。 保護された Web アクションは、資格情報の検証が失敗した場合はメッセージ `Not Authorized` を返します。
 
-代替方法として、`--web-secure` フラグを使用して `require-whisk-auth` アノテーションを自動的に設定することもできます。`true` に設定すると、`require-whisk-auth` アノテーション値として乱数が生成されます。`false` に設定すると、`require-whisk-auth` アノテーションは削除されます。その他の値に設定すると、その値が `require-whisk-auth` アノテーション値として使用されます。
+代替方法として、`--web-secure` フラグを使用して `require-whisk-auth` アノテーションを自動的に設定することもできます。  `true` に設定すると、`require-whisk-auth` アノテーション値として乱数が生成されます。 `false` に設定すると、`require-whisk-auth` アノテーションは削除されます。  その他の値に設定すると、その値が `require-whisk-auth` アノテーション値として使用されます。
 
 **--web-secure** の使用例:
 ```bash
@@ -375,7 +375,7 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## 未加工 HTTP 処理
 
-Web アクションは、アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。この処理は、`raw-http` [アノテーション](./openwhisk_annotations.html)を介して行います。 前述の同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと、HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
+Web アクションは、アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。 この処理は、`raw-http` [アノテーション](./openwhisk_annotations.html)を介して行います。 前述の同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと、HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
 ```
 curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```

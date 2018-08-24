@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# Pacote WebSocket
 {: #openwhisk_catalog_websocket}
 
 O pacote `/whisk.system/websocket` oferece uma maneira conveniente de postar mensagens para um WebSocket.

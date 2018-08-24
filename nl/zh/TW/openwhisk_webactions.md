@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Web 動作
+# 建立 Web 動作
 {: #openwhisk_webactions}
 
-Web 動作是已註釋的 OpenWhisk 動作，可快速讓開發人員建置 Web 型應用程式。這些已註釋的動作容許開發人員對後端邏輯進行程式設計，而 Web 應用程式可匿名存取該後端邏輯，而不需要 OpenWhisk 鑑別金鑰。由動作開發人員決定實作其擁有的所需鑑別及授權（亦即 OAuth 流程）。
+Web 動作是已註釋的 {{site.data.keyword.openwhisk}} 動作，可快速讓開發人員建置 Web 型應用程式。這些已註釋的動作容許開發人員對後端邏輯進行程式設計，而 Web 應用程式可匿名存取該後端邏輯，而不需要 {{site.data.keyword.openwhisk_short}} 鑑別金鑰。由動作開發人員決定實作其擁有的所需鑑別及授權（或 OAuth 流程）。
 {: shortdesc}
 
 Web 動作啟動會與已建立動作的使用者相關聯。此動作會將動作啟動的成本從呼叫者推遲到動作的擁有者身上。
@@ -121,12 +121,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [回應大小限制](./openwhisk_reference.html)（適用於動作），因為如果回應超出預先定義的系統限制，就會失敗。例如，大型物件不會透過 OpenWhisk 在行內傳送，而是改為延遲到物件儲存庫。
+It is important to be aware of the [回應大小限制](./openwhisk_reference.html)（適用於動作），因為如果回應超出預先定義的系統限制，就會失敗。例如，大型物件不會透過 {{site.data.keyword.openwhisk_short}} 在行內傳送，而是改為延遲到物件儲存庫。
 
 ## 使用動作處理 HTTP 要求
 {: #openwhisk_webactions_http}
 
-不是 Web 動作的 OpenWhisk 動作需要這兩個鑑別，而且必須回應 JSON 物件。相對地，Web 動作可在未鑑別的情況下呼叫，而且可用來實作回應不同類型的 _headers_、_statusCode_ 及 _body_ 內容的 HTTP 處理程式。Web 動作必須傳回 JSON 物件。不過，如果 Web 動作的結果包括下列其中一個最上層 JSON 內容，則 OpenWhisk 系統（即 `controller`）會以不同的方式處理 Web 動作：
+不是 Web 動作的 {{site.data.keyword.openwhisk_short}} 動作需要這兩個鑑別，而且必須回應 JSON 物件。相對地，Web 動作可在未鑑別的情況下呼叫，而且可用來實作回應不同類型的 _headers_、_statusCode_ 及 _body_ 內容的 HTTP 處理程式。Web 動作必須傳回 JSON 物件。不過，如果 Web 動作的結果包括下列其中一個最上層 JSON 內容，則 {{site.data.keyword.openwhisk_short}} 系統（即 `controller`）會以不同的方式處理 Web 動作：
 
 - `headers`：索引鍵為標頭名稱且值為這些標頭的字串、數字或布林值的 JSON 物件（預設值為無標頭）。若要傳送單一標頭的多個值，則標頭的值是值的 JSON 陣列。
 - `statusCode`：有效的 HTTP 狀態碼（預設值為 200 OK）。
@@ -146,7 +146,7 @@ _附註_：JSON 物件或陣列被視為二進位資料，而且必須以 base64
 - `__ow_method`（類型：字串）：要求的 HTTP 方法。
 - `__ow_headers`（類型：將字串對映至字串）：要求標頭。
 - `__ow_path`（類型：字串）：要求的不相符路徑（比對會在使用動作副檔名之後停止）。
-- `__ow_user`（類型：字串）：識別 OpenWhisk 已鑑別身分的「名稱空間」
+- `__ow_user`（類型：字串）：識別 {{site.data.keyword.openwhisk_short}} 已鑑別身分的「名稱空間」
 - `__ow_body`（類型：字串）：要求內文實體，當內容為二進位時，為 base64 編碼的字串，否則為一般字串
 - `__ow_query`（類型：字串）：要求中的查詢參數，為未剖析的字串
 

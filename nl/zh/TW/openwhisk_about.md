@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -33,7 +33,9 @@ lastupdated: "2018-06-22"
 <dt>觸發程式 (Trigger)</dt>
 <dd>[觸發程式](openwhisk_triggers_rules.html#openwhisk_triggers_create)是某類別事件的具名頻道。觸發程式是您要反應特定類型事件的宣告（不論是由使用者還是透過事件來源）。</dd>
 <dt>規則 (Rule)</dt>
-<dd>[規則](openwhisk_triggers_rules.html#openwhisk_rules_use)會建立觸發程式與動作的關聯。每次發動觸發程式時，規則都會呼叫相關聯的動作。運用一組適當的規則，單一觸發程式事件可能會呼叫多個動作，也可能會呼叫動作以作為多個觸發程式的事件的回應。</dd>
+<dd>[規則](openwhisk_triggers_rules.html#openwhisk_rules_use)會建立觸發程式與動作的關聯。每次發動觸發程式時，規則都會使用觸發程式事件作為輸入，並呼叫相關聯的動作。運用一組適當的規則，單一觸發程式事件可能會呼叫多個動作，也可能會呼叫動作以作為多個觸發程式的事件的回應。</dd>
+<dt>資訊來源</dt>
+<dd>[資訊來源](openwhisk_feeds.html#openwhisk_feeds)是一種簡便的方法，可配置外部事件來源來發動 {{site.data.keyword.openwhisk_short}} 所使用的觸發程式事件。例如，Git 資訊來源可能在每次確定至 Git 儲存庫時，都會發動觸發程式事件。</dd>
 <dt>套件</dt>
 <dd>可以利用套件來新增與服務及事件提供者的整合。[套件](openwhisk_packages.html)是資訊來源與動作的組合。資訊來源是一段程式碼，可配置外部事件來源來發動觸發程式事件。例如，使用 {{site.data.keyword.cloudant}} 變更資訊來源所建立的觸發程式，會將服務配置成在每次修改文件或將其新增至 {{site.data.keyword.cloudant_short_notm}} 資料庫時發動觸發程式。套件中的動作代表服務提供者可設為可用的可重複使用邏輯，如此，開發人員可以使用服務作為事件來源，以及呼叫該服務的 API。<br><br>現有套件型錄提供快速的方式以使用有用的功能來加強應用程式，以及在生態系統中存取外部服務。具有 {{site.data.keyword.openwhisk_short}} 套件的外部服務範例包括 {{site.data.keyword.cloudant_short_notm}}、The Weather Company、Slack 及 GitHub。</dd>
 </dl>
@@ -160,4 +162,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [實體名稱](./openwhisk_reference.html#openwhisk_entities)
 * [動作語意](./openwhisk_reference.html#openwhisk_semantics)
 * [限制](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 參考資料](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [REST API 參考資料](https://console.bluemix.net/apidocs/openwhisk)

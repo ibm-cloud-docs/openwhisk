@@ -14,7 +14,7 @@ lastupdated: "2018-06-22"
 # 공통 유스 케이스
 {: #openwhisk_common_use_cases}
 
-{{site.data.keyword.openwhisk_short}}에서 제공하는 실행 모델은 다양한 유스 케이스를 지원합니다. 다음 절에는 일반적인 예제가 포함되어 있습니다. 서버리스 아키텍처, 예제 유스 케이스, 장단점 논의 및 구현 우수 사례에 대한 세부 논의사항을 알아보려면 탁월한 [Martin Fowler의 블로그에 있는 Mike Roberts 기사](https://martinfowler.com/articles/serverless.html)를 읽으십시오.
+{{site.data.keyword.openwhisk_short}}에서 제공하는 실행 모델은 다양한 유스 케이스를 지원합니다. 다음 절에는 일반적인 예제가 포함되어 있습니다. 서버리스 아키텍처, 예제 유스 케이스, 장단점 논의 및 구현 우수 사례에 대한 세부 논의사항을 알아보려면 [Martin Fowler의 블로그에 있는 Mike Roberts 기사](https://martinfowler.com/articles/serverless.html)를 읽으십시오.
 {: shortdesc}
 
 ## 마이크로서비스
@@ -47,7 +47,7 @@ IoT(Internet of Things) 시나리오는 종종 기본적으로 센서 구동형�
 
 전통적인 서버 아키텍처를 사용하는 IoT 애플리케이션을 구현할 수는 있습니다. 그러나 대부분의 경우에 서로 다른 서비스와 데이터 브릿지의 조합에서는 고성능의 유연한 파이프라인이 요구됩니다. IoT 디바이스에서 클라우드 스토리지와 분석 플랫폼에 이르기까지 그 범위가 걸쳐 있습니다. 종종 사전 구성된 브릿지에는 특정 솔루션 아키텍처를 구현하고 미세 조정해야 하는 데 필요한 프로그래밍 가능성이 부족합니다. 다양한 파이프라인이 제공되며 일반적으로(특히 IoT) 데이터 결합에서 표준화가 부족한 경우에는 파이프라인이 사용자 정의 데이터 변환을 필요로 하는 환경을 찾는 것이 일반적입니다. 이러한 사용자 정의 데이터 변환은 형식 변환, 필터링 또는 기능 보강에 적용됩니다. {{site.data.keyword.openwhisk_short}}는 '서버리스' 방식으로 해당 변환을 구현하기 위한 탁월한 도구이며, 여기서 사용자 정의 로직은 완벽히 관리되는 탄력적 클라우드 플랫폼에서 호스팅됩니다.
 
-{{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive 및 기타 서비스를 사용하는 다음의 샘플 IoT 애플리케이션을 보십시오. [{{site.data.keyword.openwhisk_short}}에서 구동 중인 IoT 데이터의 서버리스 변환](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
+{{site.data.keyword.openwhisk_short}},  NodeRed, Cognitive 및 기타 서비스를 사용하는 다음의 샘플 IoT 애플리케이션을 보십시오. [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
 
 ![IoT 솔루션 아키텍처 예제](images/IoT_solution_architecture_example.png)
 
@@ -92,4 +92,4 @@ IoT(Internet of Things) 시나리오는 종종 기본적으로 센서 구동형�
 
 {{site.data.keyword.openwhisk_short}}를 Kafka, {{site.data.keyword.messagehub_full}}(Kafka 기반) 및 기타 메시징 시스템과 조합하여 사용하면 더할 나위 없이 좋습니다. 해당 시스템의 이벤트 구동 특성은 메시지 처리를 위해 이벤트 구동 런타임을 필요로 합니다. 런타임은 비즈니스 로직을 해당 메시지에 적용할 수 있으며, 이는 해당 피드, 트리거 및 액션으로 {{site.data.keyword.openwhisk_short}}에서 제공하는 내용과 정확히 일치합니다. Kafka 및 {{site.data.keyword.messagehub}}는 종종 방대하고 예측 불가능한 워크로드 볼륨에 사용되며, 해당 메시지의 이용자에게 즉각적인 확장성을 갖도록 요구합니다. 다시 말하면, 이 상황은 {{site.data.keyword.openwhisk_short}}의 스윗 스팟입니다. {{site.data.keyword.openwhisk_short}}에는 메시지 이용 및 [openwhisk-package-kafka](https://github.com/openwhisk/openwhisk-package-kafka) 패키지에서 제공되는 메시지 공개를 위한 기본 제공 기능이 있습니다.
 
-[이벤트 처리 시나리오를 구현하는 예제 애플리케이션](https://github.com/IBM/openwhisk-data-processing-message-hub)은 {{site.data.keyword.openwhisk_short}}, {{site.data.keyword.messagehub}} 및 Kafka와 함께 제공됩니다.
+[example application that implements event processing scenario](https://github.com/IBM/openwhisk-data-processing-message-hub)는 {{site.data.keyword.openwhisk_short}}, {{site.data.keyword.messagehub}} 및 Kafka와 함께 제공됩니다.

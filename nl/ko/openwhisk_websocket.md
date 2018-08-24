@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# WebSocket 패키지
 {: #openwhisk_catalog_websocket}
 
 `/whisk.system/websocket` 패키지는 메시지를 WebSocket에 게시하는 편리한 방법을 제공합니다.

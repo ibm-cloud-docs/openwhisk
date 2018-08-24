@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# モバイル・プッシュ
+# モバイル・プッシュ・パッケージ
 {: #openwhisk_catalog_pushnotifications}
 
 プッシュ・パッケージ・バインディングを作成し、`/whisk.system/pushnotifications` パッケージを使用して単純なプッシュ通知を送信する方法を説明します。このパッケージは、プッシュ・サービスを操作する機能を提供します。
@@ -70,7 +70,7 @@ lastupdated: "2018-06-22"
 `/whisk.system/pushnotifications/sendMessage` アクションは、登録されたデバイスにプッシュ通知を送信します。 パラメーターは次のとおりです。
 - `text`: ユーザーに表示する通知メッセージ。 例えば、`-p text "Hi, OpenWhisk send a notification"` です。
 - `url`: アラートと一緒に送信できる URL。 例えば、`-p url "https:\\www.w3.ibm.com"` です。
-- `apiHost`: API ホストを指定するオプションのストリング。デフォルトは `mobile.ng.bluemix.net` です。  例: `-p apiHost "mobile.eu-gb.bluemix.net"`
+- `apiHost`: API ホストを指定するオプションのストリング。 デフォルトは `mobile.ng.bluemix.net` です。  例: `-p apiHost "mobile.eu-gb.bluemix.net"`
 - `deviceIds`: 指定されるデバイスのリスト。 例えば、`-p deviceIds ["deviceID1"]` です。
 - `platforms`: 指定されるプラットフォームのデバイスに通知を送信します。 Apple (iOS) デバイスの場合は「A」、Google (Android) デバイスの場合は「G」です。 例えば、`-p platforms ["A"]` です。
 - `userIds`: 指定されるユーザーのデバイスに通知を送信します。 例えば、`-p userIds "[\"testUser\"]"` です。

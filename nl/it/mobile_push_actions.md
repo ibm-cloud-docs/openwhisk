@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Push mobili
+# Pacchetto Push mobile
 {: #openwhisk_catalog_pushnotifications}
 
 Scopri come creare un bind di pacchetto Push e inviare una semplice notifica di push utilizzando il pacchetto `/whisk.system/pushnotifications`, che ti offre la possibilità di lavorare con un servizio push.
@@ -99,8 +99,8 @@ L'azione `/whisk.system/pushnotifications/sendMessage` invia notifiche di push a
 - `apnsPayload`: payload JSON personalizzato che viene inviato come parte del messaggio di notifica.
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: il nome del file audio nel bundle dell'applicazione. L'audio di questo file viene riprodotto come un avviso.
-- `apnsTitleLocKey`: la chiave per una stringa di titolo nel file `Localizable.strings` per la localizzazione corrente. La stringa della chiave può essere formattata con gli specificatori  %@ e %n$@ per recuperare le variabili specificate nell'array `titleLocArgs`.
-- `apnsLocKey`: una chiave per una stringa di messaggio di avviso nel file `Localizable.strings` per la localizzazione corrente (impostata mediante la preferenza della lingua dell'utente). La stringa della chiave può essere formattata con gli specificatori  %@ e %n$@ per recuperare le variabili specificate nell'array locArgs.
+- `apnsTitleLocKey`: la chiave per una stringa di titolo nel file `Localizable.strings` per la localizzazione corrente. La stringa della chiave può essere formattata con gli specificatori %@ e %n$@ per recuperare le variabili specificate nell'array `titleLocArgs`.
+- `apnsLocKey`: una chiave per una stringa di messaggio di avviso nel file `Localizable.strings` per la localizzazione corrente (impostata mediante la preferenza della lingua dell'utente). La stringa della chiave può essere formattata con gli specificatori %@ e %n$@ per recuperare le variabili specificate nell'array locArgs.
 - `apnsLaunchImage`: il nome di un file di immagine nel bundle dell'applicazione, con o senza estensione del nome file. L'immagine viene utilizzata come immagine di avvio quando gli utenti premono il pulsante di azione o spostano il cursore di azione.
 - `pnsTitleLocArgs`: valori di stringa variabili da visualizzare al posto degli specificatori di formato in `title-loc-key`.
 - `apnsLocArgs`: valori di stringa variabili da visualizzare al posto degli specificatori di formato in `locKey`.

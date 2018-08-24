@@ -60,7 +60,7 @@ Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}
   ```
   {: screen}
 
-## Watson-Paket 'Text to Speech' außerhalb von {{site.data.keywrod.Bluemix_notm}} einrichten
+## Watson-Paket 'Text to Speech' außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten
 
 Wenn Sie {{site.data.keyword.openwhisk_short}} nicht in {{site.data.keyword.Bluemix_notm}} verwenden oder wenn Sie den Watson-Service 'Text to Speech' außerhalb von {{site.data.keyword.Bluemix_notm}} einrichten möchten, müssen Sie manuell eine Paketbindung für Ihren Watson-Service 'Text to Speech' erstellen. Sie benötigen hierzu den Benutzernamen und das Kennwort des Watson-Service 'Text to Speech'.
 
@@ -91,6 +91,6 @@ Beispielausgabe:
 ```
 {
   "payload": "<base64 encoding of a .wav file>"
-  }
+}
 ```
 {: screen}

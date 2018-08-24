@@ -11,7 +11,7 @@ lastupdated: "2018-06-22"
 {:screen: .screen}
 {:pre: .pre}
 
-# Mobile Push
+# Paquete Mobile Push
 {: #openwhisk_catalog_pushnotifications}
 
 Aprenda a crear un enlace de paquete Push y a enviar una notificación Push simple con el paquete `/whisk.system/pushnotifications`, que le ofrece la posibilidad de trabajar con un servicio de envío por push.
@@ -25,7 +25,7 @@ El paquete incluye las siguientes acciones y canales de información:
 | `/whisk.system/pushnotifications/sendMessage` | acción | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Enviar notificaciones push a uno o más dispositivos especificados. |
 | `/whisk.system/pushnotifications/webhook` | canal de información | events | Activar sucesos desencadenantes en actividades de dispositivo (registro, anulación del registro, suscripción o anulación de suscripción de dispositivos) en el servicio Push. |
 
-Para obtener información sobre cómo activar sucesos de desencadenante cuando hay actividad de dispositivo, consulte el tema [Mobile Push en sucesos de dispositivo](./openwhisk_pushnotifications.html).
+Para obtener información sobre cómo activar sucesos desencadenantes cuando hay actividad de dispositivo, consulte el tema [Mobile Push en sucesos de dispositivo](./openwhisk_pushnotifications.html).
 
 ## Creación de un enlace de paquete Push
 {: #create_push_binding}

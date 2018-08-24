@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-21"
+lastupdated: "2018-08-01"
 
 ---
 
@@ -17,6 +17,9 @@ lastupdated: "2018-06-21"
 
 {{site.data.keyword.openwhisk}} offre un potente plug-in per la CLI {{site.data.keyword.Bluemix_notm}} che consente la completa gestione del sistema {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
+
+Puoi utilizzare l'alias `fn` nei tuoi comandi del plug-in {{site.data.keyword.openwhisk_short}}: `ibmcloud fn <command>`
+{: tip}
 
 ## Configurazione della CLI {{site.data.keyword.Bluemix_notm}}
 {: #bluemix_cli_setup}
@@ -158,7 +161,7 @@ ibmcloud iam space-create "production"
 ## Migrazione dalla CLI OpenWhisk al plug-in CLI {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Con l'introduzione del plug-in della CLI {{site.data.keyword.openwhisk_short}}, la CLI autonoma OpenWhisk non è più necessaria.
+Con l'introduzione del plug-in della CLI {{site.data.keyword.openwhisk_short}}, la CLI autonoma OpenWhisk (`wsk`) non è più necessaria.
 
 ### Sintassi dei comandi
 {: #command_syntax}
@@ -196,12 +199,18 @@ La CLI OpenWhisk ti richiedeva di eseguire `wsk bluemix login` per poter configu
 ### Migrazione degli script di distribuzione
 {: #migrating_deploy_scripts}
 
-Se hai degli script che utilizzano la CLI OpenWhisk con il binario `wsk`, tutti i comandi funzionano allo stesso modo del comando `ibmcloud fn`. Puoi modificare i tuoi script per utilizzare il plug-in della CLI {{site.data.keyword.Bluemix_notm}} o creare un alias o wrapper in modo che i comandi correnti che utilizzano `wsk` vengano convertiti in `ibmcloud fn`. I comandi `ibmcloud login` e `ibmcloud target` nella CLI {{site.data.keyword.Bluemix_notm}} funzionano in modalità automatica. Con la modalità automatica, puoi configurare il tuo ambiente prima di eseguire i comandi `ibmcloud fn` per distribuire e gestire le tue entità {{site.data.keyword.openwhisk_short}}.
+Se disponi di script che utilizzano la CLI OpenWhisk con il binario `wsk`, tutti i comandi funzionano allo stesso modo del comando `ibmcloud fn`. Puoi modificare i tuoi script per utilizzare il plug-in della CLI {{site.data.keyword.Bluemix_notm}} o creare un alias o wrapper in modo che i comandi correnti che utilizzano `wsk` vengano convertiti in `ibmcloud fn`. I comandi `ibmcloud login` e `ibmcloud target` nella CLI {{site.data.keyword.Bluemix_notm}} funzionano in modalità non presidiata. Con la modalità non presidiata, puoi configurare il tuo ambiente prima di eseguire i comandi `ibmcloud fn` per distribuire e gestire le tue entità {{site.data.keyword.openwhisk_short}}.
 
 ## Cronologia delle versioni
 {: #version_history}
 
 Un record cronologico delle versioni che mostrano evidenziazioni e correzioni di bug.
+
+1.0.21 (01-08-2018)
+* Gli alias `fn` e `functions` possono ora essere utilizzati per i comandi {{site.data.keyword.openwhisk_short}}: `ibmcloud fn <command>` e `ibmcloud fn <command>`. Puoi anche utilizzare ancora `ibmcloud wsk <command>`.
+
+1.0.19 (02-07-2018)
+* Correzioni di bug minori e miglioramenti.
 
 1.0.18 (20-06-2018)
 * Correzione per l'annullamento del bind delle istanze del servizio fornito dall'utente.

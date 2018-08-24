@@ -41,7 +41,7 @@ Les paramètres utilisés dans cet exemple sont les suivants :
 
 **query_params** : paramètres de requête supplémentaires pour la fonction de filtrage _(facultatif)_.
 
-1. Créez un déclencheur nommé **myCloudantTrigger** avec le flux `changes` dans la liaison de package que vous avez créée précédemment. Incluez les éléments `filter` et `query_params` pour exécuter le déclencheur en cas d'ajout (ou de modification) d'un document lorsque son statut indique `new`. 
+1. Créez un déclencheur nommé **myCloudantTrigger** avec le flux `changes` dans la liaison de package que vous avez créée précédemment. Incluez les éléments `filter` et `query_params` pour exécuter le déclencheur en cas d'ajout (ou de modification) d'un document lorsque son statut indique `new`.
 
   Prenez soin de remplacer `/_/myCloudant` par le nom de votre package.
   ```

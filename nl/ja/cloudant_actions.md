@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Cloudant パッケージ
 {: #cloudant_actions}
 
 `/whisk.system/cloudant` パッケージを使用すると、[{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) データベースを操作できます。このパッケージには、以下のアクションとフィードが含まれています。
@@ -37,7 +37,7 @@ lastupdated: "2018-06-22"
 
   新規サービス・インスタンスごとに 1 つの資格情報キーを作成するように注意してください。
 
-2. 名前空間でパッケージを最新表示します。このリフレッシュにより、資格情報キーが定義された各 {{site.data.keyword.cloudant_short_notm}} サービス・インスタンスごとに 1 つのパッケージ・バインディングが自動的に作成されます。
+2. 名前空間でパッケージを最新表示します。 このリフレッシュにより、資格情報キーが定義された各 {{site.data.keyword.cloudant_short_notm}} サービス・インスタンスごとに 1 つのパッケージ・バインディングが自動的に作成されます。
   ```
   ibmcloud fn package refresh
   ```

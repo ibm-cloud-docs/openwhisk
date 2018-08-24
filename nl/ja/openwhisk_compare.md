@@ -14,7 +14,7 @@ lastupdated: "2018-05-31"
 # Function as a Service との比較
 {: #openwhisk_faas_compared}
 
-{{site.data.keyword.openwhisk}} は、ハイ・スケーラブルなサーバーレス環境の OpenWhisk を提供します。{{site.data.keyword.openwhisk_short}} のサーバーレス・アーキテクチャーおよびコスト効率が高いコンピューティングをその他のアーキテクチャー・モデルと比較できます。
+{{site.data.keyword.openwhisk}} は、ハイ・スケーラブルなサーバーレス環境の OpenWhisk を提供します。 {{site.data.keyword.openwhisk_short}} のサーバーレス・アーキテクチャーおよびコスト効率が高いコンピューティングをその他のアーキテクチャー・モデルと比較できます。
 {: shortdesc}
 
 ## OpenWhisk アーキテクチャーの比較
@@ -22,13 +22,13 @@ lastupdated: "2018-05-31"
 
 以下の OpenWhisk アーキテクチャーの比較を示します。
 
-1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk)。IBM は、管理された OpenWhisk を提供する唯一のベンダーです。 FaaS プラットフォームを使用したサーバーレス・プログラミング・モデルの入門としては、[Martin Fowler のブログ](https://martinfowler.com/articles/serverless.html)が適しており、サーバーレス設計で OpenWhisk を実行する[ユース・ケース](./openwhisk_use_cases.html)を確認できます。
+1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk)。 IBM は、管理された OpenWhisk を提供する唯一のベンダーです。 FaaS プラットフォームを使用したサーバーレス・プログラミング・モデルの入門としては、[Martin Fowler のブログ](https://martinfowler.com/articles/serverless.html)が適しており、サーバーレス設計で OpenWhisk を実行する[ユース・ケース](./openwhisk_use_cases.html)を確認できます。
 
 2. **Infrastructure as a Service (IaaS)** で OpenWhisk ユーザー作成プログラム (RYO) を使用。 OpenWhisk を Apache Incubation Project からダウンロードし、それを [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices) 上で実行できます。
 
-3. **Platform as a Service (PaaS)** を管理対象アプリケーション・ランタイムとして。{{site.data.keyword.Bluemix_notm}} Foundry 実装で管理された [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) ランタイムがその良い例です。
+3. **Platform as a Service (PaaS)** を管理対象アプリケーション・ランタイムとして。 {{site.data.keyword.Bluemix_notm}} Foundry 実装で管理された [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) ランタイムがその良い例です。
 
-4. **Container as a Service (CaaS)** を管理対象コンテナー環境として。[{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index) が良い例です。
+4. **Container as a Service (CaaS)** を管理対象コンテナー環境として。 [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index) が良い例です。
 
 5. **Infrastructure as a Service (IaaS)** で Java EE ランタイムを使用。 [{{site.data.keyword.Bluemix_notm}} 上の WebSphere Application Server VM](https://console.ng.bluemix.net/catalog/services/websphere-application-server) が良い例です。
 
@@ -60,7 +60,7 @@ lastupdated: "2018-05-31"
 ## コストについての考慮事項
 {: #cost_considerations}
 
-テスト、ステージング、負荷テスト、およびその他の環境のためのインフラストラクチャーには、コストがかかります。セットアップに時間がかかるうえ、通常は 24 時間 365 日稼働することになるので、十分に活用されないことも多く、大量のキャパシティーを消費します。サーバーレス・アーキテクチャーを使用すると、いくつ環境があろうと、環境のコストは、定義されている環境の数でなく、負荷に基づいて生成されます。
+テスト、ステージング、負荷テスト、およびその他の環境のためのインフラストラクチャーには、コストがかかります。 セットアップに時間がかかるうえ、通常は 24 時間 365 日稼働することになるので、十分に活用されないことも多く、大量のキャパシティーを消費します。 サーバーレス・アーキテクチャーを使用すると、いくつ環境があろうと、環境のコストは、定義されている環境の数でなく、負荷に基づいて生成されます。
 {: shortdesc}
 
 サーバーレス・アプリケーションのコストを見積もるには、[料金カリキュレーター ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/learn/pricing) を使用できます。
@@ -68,16 +68,16 @@ lastupdated: "2018-05-31"
 ### 無限のキャパシティー
 {: #limitless_capacity}
 
-従来のアーキテクチャーでは、各サービスはそれぞれに割り振られた容量を消費し、ユーザーは容量使用量に応じて請求されます。{{site.data.keyword.openwhisk_short}} のサーバーレス・アーキテクチャーでは、マイクロサービス・アーキテクチャーの細分度に対する制約が削減されます。
+従来のアーキテクチャーでは、各サービスはそれぞれに割り振られた容量を消費し、ユーザーは容量使用量に応じて請求されます。 {{site.data.keyword.openwhisk_short}} のサーバーレス・アーキテクチャーでは、マイクロサービス・アーキテクチャーの細分度に対する制約が削減されます。
 
-{{site.data.keyword.openwhisk_short}} を使用していないとき、コストは発生しません。HTTP 呼び出し、データベース状態変更、または、コードの実行をトリガーするその他のタイプのイベントがあると、コードが実行されます。 課金は、100 ms 単位に丸められた、実行時間のミリ秒単位で行われます。VM が有益な作業をしていたかどうかに関係ない VM 利用の時間単位で課金されることはありません。イベントがコンシュームされた場合にのみ支払いを行い、環境の数に基づいて支払いを行うわけではないので、アプリを 100 個、1000 個、またはさらに多くのマイクロサービスへと分割できます。
+{{site.data.keyword.openwhisk_short}} を使用していないとき、コストは発生しません。 HTTP 呼び出し、データベース状態変更、または、コードの実行をトリガーするその他のタイプのイベントがあると、コードが実行されます。 課金は、100 ms 単位に丸められた、実行時間のミリ秒単位で行われます。VM が有益な作業をしていたかどうかに関係ない VM 利用の時間単位で課金されることはありません。 イベントがコンシュームされた場合にのみ支払いを行い、環境の数に基づいて支払いを行うわけではないので、アプリを 100 個、1000 個、またはさらに多くのマイクロサービスへと分割できます。
 
 ### 任意の地域でのアクションの実行
 {: #actions_region}
 
-従来のアーキテクチャーでは、実行対象の各地域でコードが実行される必要があり、その地域のインフラストラクチャーにも料金がかかります。{{site.data.keyword.openwhisk_short}} では、追加のコストなしに任意の地域にアクションをデプロイし、そこで実行できるようになります。従来のコスト制限なしで、コードの可用性と回復力を高めることができます。
+従来のアーキテクチャーでは、実行対象の各地域でコードが実行される必要があり、その地域のインフラストラクチャーにも料金がかかります。 {{site.data.keyword.openwhisk_short}} では、追加のコストなしに任意の地域にアクションをデプロイし、そこで実行できるようになります。 従来のコスト制限なしで、コードの可用性と回復力を高めることができます。
 
 ### 仕様での冗長性
 {: #redundancy_design}
 
-従来のアーキテクチャーでは、アプリケーションに冗長性が必要です。サーバーレス・アプリケーションは、仕様がステートレスかつ要求イベント・ドリブンであるため、{{site.data.keyword.openwhisk_short}} では、プロセスを高可用性 (HA) にする必要はありません。冗長性を明示的に作成する必要をなくすことで、サーバーレス・アプリケーションのステートレスな性質により、インフラストラクチャーのコストが大幅に削減されます。
+従来のアーキテクチャーでは、アプリケーションに冗長性が必要です。 サーバーレス・アプリケーションは、仕様がステートレスかつ要求イベント・ドリブンであるため、{{site.data.keyword.openwhisk_short}} では、プロセスを高可用性 (HA) にする必要はありません。 冗長性を明示的に作成する必要をなくすことで、サーバーレス・アプリケーションのステートレスな性質により、インフラストラクチャーのコストが大幅に削減されます。

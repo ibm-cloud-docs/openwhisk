@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,13 +12,12 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Cloudant 套件
 {: #cloudant_actions}
 
-`/whisk.system/cloudant` 套件可讓您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 資料庫，並包括下列動作及「資訊來源」：
+`/whisk.system/cloudant` 套件可讓您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 資料庫，並包括下列動作及資訊來源：
 
-|實體|類型|參數|說明
-|
+|實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` |套件|dbname、host、username、password|使用 Cloudant 資料庫。|
 |`/whisk.system/cloudant/read` |動作|dbname、id|讀取資料庫中的文件。|
@@ -26,8 +25,7 @@ lastupdated: "2018-06-22"
 |`/whisk.system/cloudant/changes` |資訊來源|dbname、filter、query_params、maxTriggers|在資料庫變更時發動觸發程式事件。|
 {: shortdesc}
 
-下列各節將引導您逐步設定 {{site.data.keyword.cloudant_short_notm}} 資料庫，並且說明如何在其中讀取及寫入。
-如需如何使用「資訊來源」與 `/whisk.system/cloudant` 套件搭配的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 事件來源](./openwhisk_cloudant.html)。
+下列各節將引導您逐步設定 {{site.data.keyword.cloudant_short_notm}} 資料庫，並且說明如何在其中讀取及寫入。如需如何使用資訊來源與 `/whisk.system/cloudant` 套件搭配的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 事件來源](./openwhisk_cloudant.html)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中設定 {{site.data.keyword.cloudant_short_notm}} 資料庫
 {: #cloudantdb_cloud}

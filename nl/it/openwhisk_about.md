@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2018-06-22"
 {{site.data.keyword.openwhisk}} è una piattaforma di calcolo basato sugli eventi, indicato anche come calcolo senza server o FaaS (Function as a Service), che esegue il codice in risposta a eventi o a chiamate dirette.
 {: shortdesc}
 
-## Tecnologia {{site.data.keyword.openwhisk_short}} 
+## Tecnologia {{site.data.keyword.openwhisk_short}}
 {: #technology}
 
 Scopri alcuni concetti basilari della tecnologia alla base di {{site.data.keyword.openwhisk_short}}:
@@ -34,7 +34,10 @@ Scopri alcuni concetti basilari della tecnologia alla base di {{site.data.keywor
 <dt>Trigger</dt>
 <dd>I [trigger](openwhisk_triggers_rules.html#openwhisk_triggers_create) sono un canale indicato per una classe di eventi. Un trigger è una dichiarazione da te scelta per reagire a un determinato tipo di evento, sia che provenga da un utente che da un'origine eventi.</dd>
 <dt>Regola</dt>
-<dd>Una [regola](openwhisk_triggers_rules.html#openwhisk_rules_use) associa un trigger a un'azione. Ogni volta che un trigger viene attivato, la regola richiama l'azione associata. Con l'insieme appropriato di regole, è possibile che un singolo evento trigger richiami più azioni o che un'azione venga richiamata in risposta a eventi appartenenti a più trigger.</dd>
+<dd>Una [regola](openwhisk_triggers_rules.html#openwhisk_rules_use) associa un trigger a un'azione. Ogni volta che un trigger viene attivato, la regola utilizza l'evento di trigger e richiama l'azione associata. Con l'insieme appropriato di regole, è possibile che un singolo evento trigger richiami più azioni o che un'azione venga richiamata in risposta a eventi appartenenti a più trigger.</dd>
+<dt>Feed</dt>
+<dd>Un [feed](openwhisk_feeds.html#openwhisk_feeds) rappresenta un modo utile per configurare un'origine eventi esterna
+per l'attivazione di eventi trigger che possono essere utilizzati da {{site.data.keyword.openwhisk_short}}. Ad esempio, un feed Git può attivare un evento trigger per ogni commit a un repository Git.</dd>
 <dt>Pacchetto</dt>
 <dd>Le integrazioni con i servizi e provider di eventi possono essere aggiunte con i pacchetti. Un [pacchetto](openwhisk_packages.html) è un bundle di feed e azioni. Un feed è una parte di codice che configura un'origine eventi esterna per l'attivazione di eventi trigger. Ad esempio, un trigger creato con un feed di modifica {{site.data.keyword.cloudant}} configura un servizio per attivare il trigger ogni volta che un documento viene modificato o aggiunto a un database {{site.data.keyword.cloudant_short_notm}}. Le azioni nei pacchetti rappresentano una logica riutilizzabile che può essere resa disponibile da un provider del servizio in modo che gli sviluppatori possano utilizzare il servizio come origine eventi e richiamare le API di quel servizio.
 <br><br>Un catalogo di pacchetti esistente consente di ampliare le applicazioni con funzioni utili e accedere a servizi esterni appartenenti all'ecosistema con rapidità. Esempi di servizi esterni che dispongono di pacchetti {{site.data.keyword.openwhisk_short}} includono {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack e GitHub.</dd>
@@ -59,7 +62,7 @@ OpenWhisk è un progetto open-source che combina componenti come Nginx, Kafka, D
 
 ### Accesso al sistema: nginx
 
-Innanzitutto,  l'API rivolta agli utenti OpenWhisk è completamente basata su HTTP e segue una progettazione RESTful. Di conseguenza, il comando inviato tramite la CLI è una richiesta HTTP nel sistema OpenWhisk. Il comando specifico si traduce approssimativamente in:
+Innanzitutto, l'API rivolta agli utenti OpenWhisk è completamente basata su HTTP e segue una progettazione RESTful. Di conseguenza, il comando inviato tramite la CLI è una richiesta HTTP nel sistema OpenWhisk. Il comando specifico si traduce approssimativamente in:
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -161,4 +164,4 @@ Puoi trovare ulteriori informazioni su {{site.data.keyword.openwhisk_short}} nei
 * [Nomi delle entità](./openwhisk_reference.html#openwhisk_entities)
 * [Semantica delle azioni](./openwhisk_reference.html#openwhisk_semantics)
 * [Limiti](./openwhisk_reference.html#openwhisk_syslimits)
-* [Guida di riferimento API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [Guida di riferimento API REST](https://console.bluemix.net/apidocs/openwhisk)

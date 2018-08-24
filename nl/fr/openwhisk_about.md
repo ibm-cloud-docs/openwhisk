@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -34,7 +34,10 @@ Découvrez quelques concepts de base de la technologie derrière {{site.data.key
 <dt>Déclencheur</dt>
 <dd>Les [déclencheurs](openwhisk_triggers_rules.html#openwhisk_triggers_create) constituent un canal nommé correspondant à une classe d'événements. Un déclencheur est une déclaration qui doit réagir à un certain type d'événement, provenant d'un utilisateur ou d'une source d'événements.</dd>
 <dt>Règle</dt>
-<dd>Une [règle](openwhisk_triggers_rules.html#openwhisk_rules_use) associe un déclencheur à une action. A chaque fois que le déclencheur s'exécute, la règle appelle l'action associée. Avec le jeu de règles approprié, un événement déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.</dd>
+<dd>Une [règle](openwhisk_triggers_rules.html#openwhisk_rules_use) associe un déclencheur à une action. A chaque fois que le déclencheur s'exécute, la règle utilise l'événement déclencheur comme entrée et appelle l'action associée. Avec le jeu de règles approprié, un événement déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.</dd>
+<dt>Flux </dt>
+<dd>Un
+[flux](openwhisk_feeds.html#openwhisk_feeds) est pratique pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs qui peuvent être consommés par {{site.data.keyword.openwhisk_short}}. Par exemple, un flux Git peut exécuter un déclencheur pour chaque validation dans un référentiel Git.</dd>
 <dt>Package</dt>
 <dd>Des intégrations à des services et à des fournisseurs d'événements peuvent être ajoutées à l'aide de packages. Un [package](openwhisk_packages.html) est un regroupement de flux et d'actions. Un flux est un élément de code qui configure une source d'événements externe en vue de l'exécution d'événements déclencheurs. Par exemple, un déclencheur créé avec un flux de modifications {{site.data.keyword.cloudant}} configure un service de sorte qu'il exécute le déclencheur à chaque fois qu'un document est modifié ou ajouté dans une base de données {{site.data.keyword.cloudant_short_notm}}. Les actions des packages représentent une logique réutilisable qu'un fournisseur de services peut mettre à disposition pour que les développeurs puissent utiliser le service en tant que source d'événements et appeler les API de ce service.
 <br><br>Un catalogue de packages existant permet d'améliorer les applications avec des fonctions utiles et d'accéder à des services externes dans l'écosystème rapidement. Parmi les exemples de services externes comprenant des packages {{site.data.keyword.openwhisk_short}} figurent {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack et GitHub.</dd>
@@ -74,7 +77,7 @@ Le premier point d'entrée dans le système s'effectue via **nginx**, "un serveu
 
 Nginx transmet la demande HTTP au **contrôleur**, qui est le composant suivant dans le chemin qui passe par OpenWhisk. Il s'agit d'une implémentation Scala de l'API REST réelle (basée sur **Akka** et **Spray**) et qui par conséquent sert d'interface pour toutes les tâches qu'un utilisateur peut réaliser. Ces tâches incluent notamment les demandes [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) pour vos entités dans OpenWhisk et l'appel d'actions.
 
-Le contrôleur commence par clarifier ce que l'utilisateur essaie de faire. Pour cela, il se base sur la méthode HTTP utilisée dans la demande HTTP. Selon la traduction ci-dessus, l'utilisateur émet une demande POST vers une action existante, que le contrôleur traduit en **appel d'une action**. 
+Le contrôleur commence par clarifier ce que l'utilisateur essaie de faire. Pour cela, il se base sur la méthode HTTP utilisée dans la demande HTTP. Selon la traduction ci-dessus, l'utilisateur émet une demande POST vers une action existante, que le contrôleur traduit en **appel d'une action**.
 
 Etant donné le rôle central du contrôleur (d'où son nom), il sera utilisé dans toutes les étapes suivantes :
 
@@ -161,4 +164,4 @@ Vous trouverez des informations supplémentaires sur {{site.data.keyword.openwhi
 * [Noms d'entité](./openwhisk_reference.html#openwhisk_entities)
 * [Sémantique d'action](./openwhisk_reference.html#openwhisk_semantics)
 * [Limites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Référence de l'API REST](https://console.bluemix.net/apidocs/98-cloud-functions?&language=node#introduction)
+* [Référence de l'API REST](https://console.bluemix.net/apidocs/openwhisk)

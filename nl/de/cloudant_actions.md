@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,21 +12,21 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Cloudant-Paket
 {: #cloudant_actions}
 
-Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) -Datenbank und enthält die folgenden Aktionen und Feeds:
+Das Paket `/whisk.system/cloudant` ermöglicht Ihnen die Arbeit mit einer [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant)-Datenbank und enthält die folgenden Aktionen und Feeds:
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` | Paket | dbname, host, username, password |Für die Arbeit mit einer Cloudant-Datenbank.|
-| `/whisk.system/cloudant/read` | Aktion | dbname, id |Lesen eines Dokuments aus einer Datenbank.|
-| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc |Schreiben eines Dokuments in eine Datenbank.|
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers |Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank.|
+| `/whisk.system/cloudant` | Paket | dbname, host, username, password | Für die Arbeit mit einer Cloudant-Datenbank. |
+| `/whisk.system/cloudant/read` | Aktion | dbname, id | Lesen eines Dokuments aus einer Datenbank. |
+| `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreiben eines Dokuments in eine Datenbank. |
+| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank. |
 {: shortdesc}
 
 In den folgenden Abschnitten werden Sie schrittweise durch die Einrichtung einer {{site.data.keyword.cloudant_short_notm}}-Datenbank geführt und es wird beschrieben, wie der Lese- und Schreibzugriff erfolgt.
-Weitere Informationen zur Verwendung von Feeds mit dem Paket `/whisk.system/cloudant` finden Sie im Abschnitt [{{site.data.keyword.cloudant_short_notm}}-Ereignisquelle](./openwhisk_cloudant.html).
+Weitere Informationen zur Verwendung von Feeds mit dem Paket `/whisk.system/cloudant` enthält der Abschnitt zur [{{site.data.keyword.cloudant_short_notm}}-Ereignisquelle](./openwhisk_cloudant.html).
 
 ## {{site.data.keyword.cloudant_short_notm}}-Datenbank in {{site.data.keyword.Bluemix_notm}} einrichten
 {: #cloudantdb_cloud}

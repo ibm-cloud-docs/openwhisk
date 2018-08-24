@@ -96,7 +96,7 @@ Le azioni possono essere richiamate con più parametri indicati. Ricorda che l'a
 
 Anziché passare ogni volta tutti i parametri a un'azione, puoi eseguire il bind di determinati parametri. Il seguente esempio esegue il bind del parametro *place* in modo che l'azione assuma come valore predefinito il luogo "Kansas":
 
-1. Aggiorna l'azione utilizzando l'opzione  `--param` per eseguire il bind dei valori di parametro o passando un file che contiene i parametri a `--param-file`. (Per esempi che utilizzano i file, vedi la sezione sull'[utilizzo di file di parametri](./parameters.html#using-parameter-files).)
+1. Aggiorna l'azione utilizzando l'opzione `--param` per eseguire il bind dei valori di parametro o passando un file che contiene i parametri a `--param-file`. (Per esempi che utilizzano i file, vedi la sezione sull'[utilizzo di file di parametri](./parameters.html#using-parameter-files).)
 
   Per specificare i parametri predefiniti esplicitamente nella riga di comando, fornisci una coppia chiave/valore all'indicatore `param`:
   ```

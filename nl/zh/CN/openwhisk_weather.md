@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# Weather
+# Weather 包
 {: #openwhisk_catalog_weather}
 
 通过 `/whisk.system/weather` 包，可以方便地调用 Weather Company Data for the {{site.data.keyword.Bluemix}} API。
@@ -65,7 +65,7 @@ lastupdated: "2018-03-27"
 
 如果不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或者如果要在 {{site.data.keyword.Bluemix_notm}} 外部设置 Weather Company Data 服务，那么必须为 Weather Company Data 服务手动创建包绑定。您需要 Weather Company Data 服务用户名和密码。
 
-创建为您的 Watson Translator 服务配置的包绑定。
+创建为 Weather 服务配置的包绑定。
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

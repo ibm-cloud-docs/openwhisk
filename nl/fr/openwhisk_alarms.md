@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-07-23"
 
 ---
 
@@ -11,7 +11,7 @@ lastupdated: "2018-03-26"
 {:screen: .screen}
 {:pre: .pre}
 
-# Alarmes
+# Utilisation d'alarmes pour planifier des déclencheurs
 {: #openwhisk_catalog_alarm}
 
 Le package `/whisk.system/alarms` peut être utilisé pour exécuter un déclencheur à une fréquence spécifiée. Les alarmes sont utiles pour configurer des tâches ou des travaux récurrents, comme l'appel d'une action de sauvegarde du système toutes les heures.
@@ -22,94 +22,157 @@ Le package comprend les flux suivants :
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/alarms` | package | - | Alarmes et utilitaire périodique. |
-| `/whisk.system/alarms/interval` | flux | minutes, trigger_payload, startDate, stopDate | Exécuter un événement déclencheur selon une planification basée sur des intervalles. |
-| `/whisk.system/alarms/once` | flux | date, trigger_payload, deleteAfterFire | Exécuter un événement déclencheur une fois à une date spécifique. |
-| `/whisk.system/alarms/alarm` | flux | cron, trigger_payload, startDate, stopDate | Exécuter un événement déclencheur selon une planification horaire à l'aide de cron. |
+| `/whisk.system/alarms/once` | flux | date, trigger_payload, deleteAfterFire | Exécution d'un événement déclencheur une fois à une date spécifique. |
+| `/whisk.system/alarms/interval` | flux | minutes, trigger_payload, startDate, stopDate | Exécution d'un événement déclencheur selon une planification basée sur des intervalles. |
+| `/whisk.system/alarms/alarm` | flux | cron, trigger_payload, startDate, stopDate | Exécution d'un événement déclencheur selon une planification horaire à l'aide de cron. |
 
+## Exécution ponctuelle d'un événement déclencheur
+
+Le flux `/whisk.system/alarms/once` configure le service Alarm pour exécuter un événement déclencheur une fois à une date spécifiée. Pour créer une alarme à exécution unique, utilisez la commande suivante :
+```
+ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
+```
+{: pre}
+
+<table>
+<caption>Description des composants de la commande <code>trigger create fireOnce</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Icône Idea"/> Description des composants de la commande <code>trigger create fireOnce</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>fireOnce</code></td>
+<td>Type de déclencheur d'alarme que vous créez.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/once</code></td>
+<td>Chemin du package d'alarme pour le flux fireOnce.</td>
+</tr>
+<tr>
+<td><code>--param date</code></td>
+<td>Remplacez <code>&lt;date&gt;</code> par la date à laquelle le déclencheur doit s'exécuter. Le déclencheur s'exécute une seule fois à l'heure spécifiée. Remarque : le paramètre `date` prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 UTC et la valeur de chaîne doit être spécifiée au <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">format ISO 8601</a>.</td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Facultatif : remplacez <code>&lt;key&gt;</code> et <code>&lt;value&gt;</code> par les paramètres du déclencheur lorsque celui-ci est exécuté.</td>
+</tr>
+<tr>
+<td><code>--param deleteAfterFire</code></td>
+<td>Facultatif : indique si le déclencheur et les règles associées sont supprimés une fois le déclencheur exécuté. Remplacez <code>&lt;delete_option&gt;</code> par l'une des valeurs suivantes :<ul><li><code>false</code> (valeur par défaut) : aucune action n'est effectuée une fois le déclencheur exécuté.</li><li><code>true</code> : le déclencheur est supprimé après son exécution.</li><li><code>rules</code> : le déclencheur et toutes les règles associées sont supprimés après l'exécution du déclencheur.</li></ul></td>
+</tr>
+</tbody></table>
+
+Voici un exemple de création d'un déclencheur qui sera exécuté une seule fois le 25 décembre 2019 à 12:30:00 TUC. Chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`.Une fois le déclencheur exécuté, ce dernier ainsi que toutes les règles associées seront supprimés.
+
+```
+ibmcloud fn trigger create fireOnce \
+  --feed /whisk.system/alarms/once \
+  --param date "2019-12-25T12:30:00.000Z" \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param deleteAfterFire "rules"
+```
+{: pre}
 
 ## Exécution régulière d'un événement déclencheur selon une planification basée sur des intervalles
 {: #openwhisk_catalog_alarm_fire}
 
-Le flux `/whisk.system/alarms/interval` configure le service Alarm pour exécuter un événement déclencheur selon une planification basée sur des intervalles. Les paramètres sont les suivants :
+Le flux `/whisk.system/alarms/interval` configure le service Alarm pour exécuter un événement déclencheur selon une planification basée sur des intervalles. Pour créer une alarme basée sur des intervalles, utilisez la commande suivante :
+```
+ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
+```
+{: pre}
 
-- `minutes` (*obligatoire*) : entier représentant la durée de l'intervalle (en minutes) entre les exécutions de déclencheur.
-- `trigger_payload` (*facultatif*) : la valeur de ce paramètre devient le contenu de déclencheur chaque fois que celui-ci est exécuté.
-- `startDate` (*facultatif*) : date d'exécution du premier déclencheur.  Les exécutions suivantes se produiront en fonction de la longueur d'intervalle spécifiée par le paramètre `minutes`.
-- `stopDate` (*facultatif*): date de fin d'exécution du déclencheur. Les déclencheurs ne se déclencheront plus une fois cette date atteinte.
+<table>
+<caption>Description des composants de la commande <code>trigger create interval</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Icône Idea"/> Description des composants de la commande <code>trigger create interval</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>interval</code></td>
+<td>Type de déclencheur d'alarme que vous créez.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/interval</code></td>
+<td>Chemin du package d'alarme pour le flux interval.</td>
+</tr>
+<tr>
+<td><code>--param minutes</code></td>
+<td>Remplacez <code>&lt;minutes&gt;</code> par un entier représentant la longueur de l'intervalle, en minutes, entre les exécutions de déclencheur.</td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Facultatif : remplacez <code>&lt;key&gt;</code> et <code>&lt;value&gt;</code> par les paramètres du déclencheur lorsque celui-ci est exécuté.</td>
+</tr>
+<tr>
+<td><code>--param startDate</code></td>
+<td>Facultatif : remplacez <code>&lt;startDate&gt;</code> par la date à laquelle le premier déclencheur va s'exécuter. Les exécutions suivantes se produisent en fonction de la longueur d'intervalle spécifiée par le paramètre minutes. Remarque : Ce paramètre prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 UTC et la valeur de chaîne doit être spécifiée au <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">format ISO 8601</a>.</td>
+</tr>
+<tr>
+<td><code>--param stopDate</code></td>
+<td>Facultatif : remplacez <code>&lt;stopDate&gt;</code> par la date à laquelle le déclencheur cessera de s'exécuter. Les déclencheurs ne se déclenchent plus une fois cette date atteinte. Remarque : Ce paramètre prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 UTC et la valeur de chaîne doit être spécifiée au <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">format ISO 8601</a>.</td>
+</tr>
+</tbody></table>
 
-  **Remarque** : les paramètres `startDate` et `stopDate` prennent en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 TUC et la valeur de chaîne doit être spécifiée au format ISO 8601 (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15).
+L'exemple ci-dessous crée un déclencheur qui est exécuté toutes les 2 minutes. Le déclencheur s'exécute dès que possible et cessera de s'exécuter le 31 janvier 2019, à 23:59:00 TUC. Chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`.
 
-L'exemple ci-dessous crée un déclencheur qui est exécuté toutes les 2 minutes. Le déclencheur s'exécute dès que possible et cessera de s'exécuter le 31 janvier 2019, à 23:59:00 TUC.
-
-  ```
-  ibmcloud fn trigger create interval \
-    --feed /whisk.system/alarms/interval \
-    --param minutes 2 \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param stopDate "2019-01-31T23:59:00.000Z"
-  ```
-  {: pre}
-
-Chaque événement généré inclut des paramètres, qui sont les propriétés spécifiées par la valeur `trigger_payload`. Dans ce cas, chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`.
-
-## Exécution ponctuelle d'un événement déclencheur
-
-Le flux `/whisk.system/alarms/once` configure le service Alarm pour exécuter un événement déclencheur à une date spécifiée. Les paramètres sont les suivants :
-
-- `date` (*obligatoire*) : date d'exécution du déclencheur. Le déclencheur sera exécuté une seule fois au moment spécifié.
-
-  **Remarque** : le paramètre `date` prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 TUC et la valeur de chaîne doit être spécifiée au format ISO 8601 (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15).
-
-- `trigger_payload` (*facultatif*) : la valeur de ce paramètre devient le contenu de déclencheur lorsque celui-ci est exécuté.
-
-- `deleteAfterFire` (*facultatif*, valeur par défaut : false) : la valeur de ce paramètre détermine si le déclencheur et éventuellement toutes les règles associées seront supprimées une fois le déclencheur exécuté.
-  - `false` : aucune action ne sera effectuée après l'exécution du déclencheur.
-  - `true` : le déclencheur sera supprimé après son exécution.
-  - `rules` : le déclencheur et toutes les règles associées seront supprimés après l'exécution du déclencheur.
-
-Voici un exemple de création d'un déclencheur qui sera exécuté une seule fois le 25 décembre 2019 à 12:30:00 TUC. Une fois exécuté, le déclencheur sera supprimé ainsi que toutes les règles qui lui sont associées.
-
-  ```
-  ibmcloud fn trigger create fireOnce \
-    --feed /whisk.system/alarms/once \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param date "2019-12-25T12:30:00.000Z" \
-    --param deleteAfterFire "rules"
-  ```
-  {: pre}
+```
+ibmcloud fn trigger create interval \
+  --feed /whisk.system/alarms/interval \
+  --param minutes 2 \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param stopDate "2019-01-31T23:59:00.000Z"
+```
+{: pre}
 
 ## Exécution d'un déclencheur selon une planification horaire à l'aide de cron
 
-Le flux `/whisk.system/alarms/alarm` configure le service Alarm pour exécuter un événement déclencheur à une fréquence spécifiée. Les paramètres sont les suivants :
+Le flux `/whisk.system/alarms/alarm` configure le service Alarm pour exécuter un événement déclencheur à une fréquence spécifiée. Pour créer une alarme basée sur une heure, utilisez la commande suivante :
+```
+ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
+```
+{: pre}
 
-- `cron` (*required*) : chaîne basée sur la syntaxe crontab UNIX indiquant à quel moment exécuter le déclencheur en Temps Universel Coordonné (TUC). Il s'agit d'une séquence de cinq zones séparées par un espace : `X X X X X`.
-Pour plus d'informations, voir http://crontab.org. Les chaînes suivantes sont des exemples qui utilisent des fréquences différentes.
+<table>
+<caption>Description des composants de la commande <code>trigger create periodic</code></caption>
+<thead>
+<th colspan=2><img src="images/idea.png" alt="Icône Idea"/> Description des composants de la commande <code>trigger create periodic</code></th>
+</thead>
+<tbody>
+<tr>
+<td><code>periodic</code></td>
+<td>Type de déclencheur d'alarme que vous créez.</td>
+</tr>
+<tr>
+<td><code>--feed /whisk.system/alarms/alarm</code></td>
+<td>Chemin du package d'alarme pour le flux d'alarme périodique.</td>
+</tr>
+<tr>
+<td><code>--param cron</code></td>
+<td>Remplacez <code>&lt;cron&gt;</code> par une chaîne indiquant l'heure d'exécution du déclencheur en Temps Universel Coordonné (UTC). La chaîne repose sur la <a href="http://crontab.org">syntaxe UNIX crontab</a> et figure dans une séquence comportant 5 zones au maximum. Les zones sont séparées par des espaces au format <code>X X X X X</code>. Les chaînes suivantes sont des exemples qui utilisent différentes durées fréquence :<ul><li><code>\* \* \* \* \*</code> : le déclencheur s'exécute au début de chaque minute.</li><li><code>\* \* \* \* \*</code> : le déclencheur s'exécute au début de chaque heure.</li><li><code>0 \*/2 \* \* \*</code> : le déclencheur s'exécute toutes les 2 heures (02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code> : le déclencheur s'exécute à 9:00:00AM (UTC) le huitième jour de chaque mois.</li></ul></td>
+</tr>
+<tr>
+<td><code>--param trigger_payload</code></td>
+<td>Facultatif : remplacez <code>&lt;key&gt;</code> et <code>&lt;value&gt;</code> par les paramètres du déclencheur lorsque celui-ci est exécuté.</td>
+</tr>
+<tr>
+<td><code>--param startDate</code></td>
+<td>Facultatif : remplacez <code>&lt;startDate&gt;</code> par la date à laquelle le premier déclencheur va s'exécuter. Les exécutions suivantes se produisent en fonction de la longueur d'intervalle spécifiée par le paramètre minutes. Remarque : Ce paramètre prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 UTC et la valeur de chaîne doit être spécifiée au <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">format ISO 8601</a>.</td>
+</tr>
+<tr>
+<td><code>--param stopDate</code></td>
+<td>Facultatif : remplacez <code>&lt;stopDate&gt;</code> par la date à laquelle le déclencheur cessera de s'exécuter. Les déclencheurs ne se déclenchent plus une fois cette date atteinte. Remarque : Ce paramètre prend en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 UTC et la valeur de chaîne doit être spécifiée au <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">format ISO 8601</a>.</td>
+</tr>
+</tbody></table>
 
-  - `* * * * *` : le déclencheur s'exécute au début de chaque minute.
-  - `0 * * * *` : le déclencheur s'exécute au début de chaque heure.
-  - `0 */2 * * *` : le déclencheur s'exécute toutes les deux heures (à savoir, 02:00:00, 04:00:00, ...).
-  - `0 9 8 * *` : le déclencheur s'exécute à 09:00:00 (TUC) le huitième jour de chaque mois.
+L'exemple ci-dessous crée un déclencheur qui est s'exécute toutes les 2 minutes. L'exécution du déclencheur ne démarrera pas avant le 1er janvier 2019, à 00:00:00 TUC et cessera le 31 janvier 2019, à 23:59:00 TUC. Chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`.
 
-  **Remarque** : le paramètre `cron` ne prend en charge que 5 zones.
-
-- `trigger_payload` (*facultatif*) : la valeur de ce paramètre devient le contenu de déclencheur chaque fois que celui-ci est exécuté.
-
-- `startDate` (*facultatif*) : date de début d'exécution du déclencheur. Le déclencheur s'exécute en fonction de la planification spécifiée par le paramètre cron.
-
-- `stopDate` (*facultatif*): date de fin d'exécution du déclencheur. Les déclencheurs ne s'exécutent plus une fois cette date atteinte.
-
-  **Remarque** : les paramètres `startDate` et `stopDate` prennent en charge une valeur de type entier ou chaîne. La valeur entière représente le nombre de millisecondes depuis le 1er janvier 1970 00:00:00 TUC, et la valeur de chaîne doit être spécifiée au format ISO 8601 (http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15).
-
-Voici un exemple de création d'un déclencheur qui s'exécute toutes les 2 minutes avec les valeurs `name` et `place` dans l'événement déclencheur. L'exécution du déclencheur ne démarrera pas avant le 1er janvier 2019, à 00:00:00 TUC et cessera le 31 janvier 2019, à 23:59:00 TUC.
-
-  ```
-  ibmcloud fn trigger create periodic \
-    --feed /whisk.system/alarms/alarm \
-    --param cron "*/2 * * * *" \
-    --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
-    --param startDate "2019-01-01T00:00:00.000Z" \
-    --param stopDate "2019-01-31T23:59:00.000Z"
-  ```
-  {: pre}
-
- **Remarque** : le paramètre `maxTriggers` est obsolète sera bientôt retiré. Pour arrêter le déclencheur, utilisez le paramètre `stopDate`.
+```
+ibmcloud fn trigger create periodic \
+  --feed /whisk.system/alarms/alarm \
+  --param cron "*/2 * * * *" \
+  --param trigger_payload "{\"name\":\"Odin\",\"place\":\"Asgard\"}" \
+  --param startDate "2019-01-01T00:00:00.000Z" \
+  --param stopDate "2019-01-31T23:59:00.000Z"
+```
+{: pre}

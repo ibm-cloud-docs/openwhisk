@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-04-30"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -11,10 +11,10 @@ lastupdated: "2018-04-30"
 {:screen: .screen}
 {:pre: .pre}
 
-# Webaktionen
+# Webaktionen erstellen
 {: #openwhisk_webactions}
 
-Webaktionen sind OpenWhisk-Aktionen, die Annotationen versehen wurden, um Entwickler schnell in die Lage zu versetzen, webbasierte Anwendungen zu erstellen. Diese annotierten Aktionen bieten Entwicklern die Möglichkeit, Back-End-Logik zu programmieren, auf die Ihre Webanwendung anonym zugreifen kann, ohne einen OpenWhisk-Authentifizierungsschlüssel zu benötigen. Es liegt in der Zuständigkeit des Aktionsentwicklers, die gewünschte Authentifizierung und Autorisierung (d. h. den OAuth-Ablauf) zu implementieren.
+Webaktionen sind {{site.data.keyword.openwhisk}}-Aktionen, die mit Annotationen versehen wurden, um Entwickler schnell in die Lage zu versetzen, webbasierte Anwendungen zu erstellen. Diese annotierten Aktionen bieten Entwicklern die Möglichkeit, Back-End-Logik zu programmieren, auf die Ihre Webanwendung anonym zugreifen kann, ohne einen {{site.data.keyword.openwhisk_short}}-Authentifizierungsschlüssel zu benötigen. Es liegt in der Zuständigkeit des jeweiligen Aktionsentwicklers, die gewünschte Authentifizierung und Autorisierung (d. h. den gewünschten OAuth-Ablauf) zu implementieren.
 {: shortdesc}
 
 Aktivierungen von Webaktionen werden dem Benutzer zugeordnet, der die Aktion erstellt hat. Bei dieser Aktion werden also die Kosten einer Aktionsaktivierung vom Aufrufer auf den Eigner der Aktion verlagert.
@@ -122,12 +122,12 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [Antwortgrößenbegrenzung](./openwhisk_reference.html) für Aktionen zu beachten, da eine Antwort, die die vordefinierten Systembegrenzungen überschreitet, fehlschlägt. Große Objekte werden nicht inline über OpenWhisk gesendet, sondern werden zum Beispiel in einen Objektspeicher verlagert.
+It is important to be aware of the [Antwortgrößenbegrenzung](./openwhisk_reference.html) für Aktionen zu beachten, da eine Antwort, die die vordefinierten Systembegrenzungen überschreitet, fehlschlägt. Große Objekte werden nicht inline über {{site.data.keyword.openwhisk_short}} gesendet, sondern werden stattdessen zum Beispiel in einen Objektspeicher verlagert.
 
 ## HTTP-Anforderungen mit Aktionen verarbeiten
 {: #openwhisk_webactions_http}
 
-Eine OpenWhisk-Aktion, die keine Webaktion ist, erfordert eine Authentifizierung und muss mit einem JSON-Objekt antworten. Im Gegensatz dazu können Webaktionen ohne Authentifizierung aufgerufen werden und lassen sich dazu verwenden, HTTP-Handler zu implementieren, die mit verschiedenartigen Inhalten für die Elemente _headers_, _statusCode code_ und _body_ antworten. Die Webaktion muss ein JSON-Objekt zurückgeben. Das OpenWhisk-System (d. h. der `Controller`) behandelt jedoch eine Webaktion anders, wenn das Ergebnis eines oder mehrere der folgenden Elemente als JSON-Eigenschaften der höchsten Ebene enthält:
+Eine {{site.data.keyword.openwhisk_short}}-Aktion, die keine Webaktion ist, erfordert eine Authentifizierung und muss mit einem JSON-Objekt antworten. Im Gegensatz dazu können Webaktionen ohne Authentifizierung aufgerufen werden und lassen sich dazu verwenden, HTTP-Handler zu implementieren, die mit verschiedenartigen Inhalten für die Elemente _headers_, _statusCode code_ und _body_ antworten. Die Webaktion muss ein JSON-Objekt zurückgeben. Das {{site.data.keyword.openwhisk_short}}-System (d. h. der `Controller`) behandelt jedoch eine Webaktion anders, wenn das Ergebnis eines oder mehrere der folgenden Elemente als JSON-Eigenschaften der höchsten Ebene enthält:
 
 - `headers`: Ein JSON-Objekt, in dem die Schlüssel Headernamen (header-names) und die Werte Zeichenfolgewerte, numerische Werte oder boolesche Werte für diese Header sind (Standardwert: keine Header). Für das Senden mehrerer Werte für einen einzelnen Header ist der Wert des Headers ein JSON-Array mit Werten.
 - `statusCode`: Ein gültiger HTTP-Statuscode (Standardwert: 200 OK).
@@ -146,8 +146,8 @@ Betrachten Sie die folgenden HTTP-Parameter:
 
 - `__ow_method` (Typ: Zeichenfolge): Die HTTP-Methode der Anforderung.
 - `__ow_headers` (Typ: Zuordnung von Zeichenfolge zu Zeichenfolge): Die Anforderungsheader.
-- `__ow_path` (Typ: Zeichenfolge): Der unabgeglichene Pfad der Anforderung (der Abgleich wird nach Verarbeitung der Aktionserweiterung beendet).
-- `__ow_user` (Typ: Zeichenfolge): Der Namensbereich, der das für OpenWhisk authentifizierte Subjekt identifiziert.
+- `__ow_path` (Typ: Zeichenfolge): Der nicht abgeglichene Pfad der Anforderung (der Abgleich wird nach Verarbeitung der Aktionserweiterung beendet).
+- `__ow_user` (Typ: Zeichenfolge): Der Namensbereich, der das für {{site.data.keyword.openwhisk_short}} authentifizierte Subjekt identifiziert.
 - `__ow_body` (Typ: Zeichenfolge): Die Anforderungshauptteilentität als Zeichenfolge in Base64-Codierung, wenn der Inhalt binär ist, oder andernfalls als normale Zeichenfolge.
 - `__ow_query` (Typ: Zeichenfolge): Die Abfrageparameter aus der Anforderung als nicht geparste Zeichenfolge.
 
@@ -343,7 +343,7 @@ Das Ergebnis dieser Änderungen besteht darin, dass das Element `name` an `Jane`
 
 Standardmäßig kann eine Webaktion von jedem aufgerufen werden, der die Aufruf-URL der Webaktion hat. Verwenden Sie zum Sichern der Webaktion die [Webaktionsannotation](./openwhisk_annotations.html#annotations-specific-to-web-actions) `require-whisk-auth`. Wenn die Annotation `require-whisk-auth` auf `true` gesetzt ist, authentifiziert die Aktion die Berechtigungsnachweis-Basisberechtigung der Aufrufanforderung gegenüber dem Whisk-Authentifizierungsschlüssel des Aktionseigners. Bei Festlegung auf eine Zahl oder eine Zeichenfolge, bei der Groß-/Kleinschreibung beachtet werden muss, muss die Aufrufanforderung der Aktion einen Header `X-Require-Whisk-Auth` mit demselben Wert enthalten. Gesicherte Webaktionen geben die Nachricht `NotAuthorized` zurück, wenn die Berechtigungsnachweisvalidierung fehlschlägt.
 
-Verwenden Sie alternativ das Flag `--web-secure`, um die Annotation `require-whisk-auth` automatisch festzulegen. Bei der Einstellung `true` wird eine Zufallszahl als Annotationswert `require-whisk-auth` generiert. Bei der Einstellung `false` wird die Annotation `require-whisk-auth` entfernt. Bei Einstellung auf einen anderen Wert wird dieser Wert als Annotationswert `require-whisk-auth` verwendet.
+Verwenden Sie alternativ das Flag `--web-secure`, um die Annotation `require-whisk-auth` automatisch festzulegen.  Bei der Einstellung `true` wird eine Zufallszahl als Annotationswert `require-whisk-auth` generiert. Bei der Einstellung `false` wird die Annotation `require-whisk-auth` entfernt.  Bei Einstellung auf einen anderen Wert wird dieser Wert als Annotationswert `require-whisk-auth` verwendet.
 
 Beispiel mit **--web-secure**:
 ```bash

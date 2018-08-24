@@ -11,7 +11,7 @@ lastupdated: "2018-03-29"
 {:screen: .screen}
 {:pre: .pre}
 
-# Slack
+# Slack 包
 {: #openwhisk_catalog_slack}
 
 通过 `/whisk.system/slack` 包，可以方便地使用 [Slack API](https://api.slack.com/)。

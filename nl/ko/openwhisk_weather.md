@@ -11,7 +11,7 @@ lastupdated: "2018-03-27"
 {:screen: .screen}
 {:pre: .pre}
 
-# 날씨
+# Weather 패키지
 {: #openwhisk_catalog_weather}
 
 `/whisk.system/weather` 패키지는 {{site.data.keyword.Bluemix}} API에 대한 Weather Company Data를 호출하는 편리한 방법을 제공합니다.
@@ -64,7 +64,7 @@ lastupdated: "2018-03-27"
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk_short}}를 사용하지 않거나 {{site.data.keyword.Bluemix_notm}} 외부에서 Weather Company Data 서비스를 설정하려는 경우 Weather Company Data 서비스에 대한 패키지 바인딩을 수동으로 작성해야 합니다. Weather Company Data 서비스 사용자 이름 및 비밀번호가 반드시 필요합니다.
 
-Watson Translator 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
+Weather 서비스에 대해 구성된 패키지 바인딩을 작성하십시오. 
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

@@ -11,7 +11,7 @@ lastupdated: "2018-03-16"
 {:screen: .screen}
 {:pre: .pre}
 
-# WebSocket
+# WebSocket 包
 {: #openwhisk_catalog_websocket}
 
 通过 `/whisk.system/websocket` 包，可方便地将消息发布到 WebSocket。

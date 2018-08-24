@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-07-13"
 
 ---
 
@@ -12,7 +12,7 @@ lastupdated: "2018-06-22"
 {:pre: .pre}
 {:tip: .tip}
 
-# Cloudant
+# Paquete Cloudant
 {: #cloudant_actions}
 
 El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) e incluye las siguientes acciones y canales de información:
@@ -22,7 +22,7 @@ El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos [{
 | `/whisk.system/cloudant` | paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant. |
 | `/whisk.system/cloudant/read` | acción | dbname, id | Leer un documento de la base de datos. |
 | `/whisk.system/cloudant/write` | acción | dbname, overwrite, doc | Escribir un documento en la base de datos. |
-| `/whisk.system/cloudant/changes` | Canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
+| `/whisk.system/cloudant/changes` | canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
 {: shortdesc}
 
 Las siguientes secciones le indican cómo configurar una base de datos de {{site.data.keyword.cloudant_short_notm}} y cómo leerla y escribir en la misma.

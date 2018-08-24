@@ -14,7 +14,7 @@ lastupdated: "2018-06-22"
 # Message Hub 事件來源
 {: #openwhisk_catalog_message_hub}
 
-您可以使用「資訊來源」，來建立在將訊息張貼至 {{site.data.keyword.messagehub_full}} 實例時做出反應的觸發程式。瞭解如何在使用或未使用 {{site.data.keyword.Bluemix}} 的情況下建立 {{site.data.keyword.messagehub}} 觸發程式、接聽訊息，以及處理批次的訊息。
+您可以使用資訊來源，來建立在將訊息張貼至 {{site.data.keyword.messagehub_full}} 實例時做出反應的觸發程式。瞭解如何在使用或未使用 {{site.data.keyword.Bluemix}} 的情況下建立 {{site.data.keyword.messagehub}} 觸發程式、接聽訊息，以及處理批次的訊息。
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} 套件
@@ -27,7 +27,7 @@ lastupdated: "2018-06-22"
 ## 建立接聽 {{site.data.keyword.messagehub}} 實例的觸發程式
 {: #create_message_hub_trigger}
 
-為了能夠建立在將訊息張貼至 {{site.data.keyword.messagehub}} 實例時做出反應的觸發程式，您需要使用名為 `/messaging/messageHubFeed` 的「資訊來源」。「資訊來源」動作支援下列參數：
+為了能夠建立在將訊息張貼至 {{site.data.keyword.messagehub}} 實例時做出反應的觸發程式，您需要使用名為 `/messaging/messageHubFeed` 的資訊來源。資訊來源動作支援下列參數：
 
 |名稱|類型|說明|
 |---|---|---|
@@ -202,7 +202,7 @@ lastupdated: "2018-06-22"
 {: codeblock}
 
 ### 會分批處理訊息
-請注意，觸發程式有效負載包含訊息的陣列。如果這些訊息快速地產生至您的傳訊系統，則「資訊來源」會嘗試將張貼的訊息分批處理為觸發程式的單一次發動。批次處理容許將訊息更快速且更有效率地張貼至觸發程式。
+請注意，觸發程式有效負載包含訊息的陣列。如果這些訊息快速地產生至您的傳訊系統，則資訊來源會嘗試將張貼的訊息分批處理為觸發程式的單一次發動。批次處理容許將訊息更快速且更有效率地張貼至觸發程式。
 
 請記住，使用程式碼編寫由觸發程式所發動的動作時，有效負載中的訊息數目在技術上是無界限的，但一律會大於 0。請參閱下列批次訊息範例（請注意 *offset* 值的變化）：
 ```json
