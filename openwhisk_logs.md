@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-07-31"
+lastupdated: "2018-08-24"
 
 ---
 
@@ -22,6 +22,8 @@ Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk
 
 You can view activation logs directly from the {{site.data.keyword.openwhisk_short}} Monitoring dashboard. The logs are also forwarded to [{{site.data.keyword.loganalysisfull}}](https://console.bluemix.net/docs/services/CloudLogAnalysis/kibana/analyzing_logs_Kibana.html#analyzing_logs_Kibana) where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 {:shortdesc}
+
+**Note**: Logging is not available for the US-East region.
 
 1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/dashboard/).
 

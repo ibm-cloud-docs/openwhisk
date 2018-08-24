@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-08-16"
+lastupdated: "2018-08-24"
 
 ---
 
@@ -29,7 +29,7 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](https://console.bluemix.net/docs/cli/reference/bluemix_cli/download_cli.html).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. {{site.data.keyword.openwhisk_short}} is available in the US South and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. If the {{site.data.keyword.Bluemix_notm}} API endpoint is not specified, specify one with the `-a` flag.
+2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. If the {{site.data.keyword.Bluemix_notm}} API endpoint is not specified, specify one with the `-a` flag.
 
     * To log in to the US South region:
       ```
@@ -37,9 +37,21 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
       ```
       {: pre}
 
+    * To log in to the US East region:
+      ```
+      ibmcloud login -a api.us-east.bluemix.net
+      ```
+      {: pre}
+
     * To log in to the United Kingdom region:
       ```
       ibmcloud login -a api.eu-gb.bluemix.net
+      ```
+      {: pre}
+
+    * To log in to the Germany region:
+      ```
+      ibmcloud login -a api.eu-de.bluemix.net
       ```
       {: pre}
 
@@ -143,7 +155,7 @@ If you are already logged in, you can run the `ibmcloud target` command in the {
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
-{{site.data.keyword.openwhisk_short}} is available in the US South and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
+{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
 ```
 ibmcloud target -r eu-gb -s staging
 ```
