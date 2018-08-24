@@ -163,4 +163,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [엔티티 이름](./openwhisk_reference.html#openwhisk_entities)
 * [액션 시맨틱](./openwhisk_reference.html#openwhisk_semantics)
 * [한계](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 참조](https://console.bluemix.net/apidocs/openwhisk)
+* [REST API 참조](https://console.bluemix.net/apidocs/functions)

@@ -601,7 +601,7 @@ Puoi includere eventuali passi di compilazione o dipendenze modificando il `Dock
 
 ## API REST
 {: #openwhisk_ref_restapi}
-Per informazioni sull'API REST {{site.data.keyword.openwhisk_short}}, vedi la [Guida di riferimento API REST](https://console.bluemix.net/apidocs/openwhisk).
+Per informazioni sull'API REST {{site.data.keyword.openwhisk_short}}, vedi la [Guida di riferimento API REST](https://console.bluemix.net/apidocs/functions).
 
 ## Limiti di sistema
 {: #openwhisk_syslimits}

@@ -283,7 +283,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**附註：**針對標準動作，透過 HTTPS 要求呼叫時，必須提供鑑別。如需使用 REST 介面來呼叫動作的相關資訊，請參閱 [REST API 參照](https://console.bluemix.net/apidocs/openwhisk)。
+**附註：**針對標準動作，透過 HTTPS 要求呼叫時，必須提供鑑別。如需使用 REST 介面來呼叫動作的相關資訊，請參閱 [REST API 參照](https://console.bluemix.net/apidocs/functions)。
 
 ## 儲存動作碼
 {: #save-action}

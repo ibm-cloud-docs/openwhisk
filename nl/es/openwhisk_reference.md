@@ -608,7 +608,7 @@ Puede incluir los pasos de compilación o dependencias modificando el `archivo d
 
 ## API REST
 {: #openwhisk_ref_restapi}
-La información sobre la API REST de {{site.data.keyword.openwhisk_short}} se encuentra en la [referencia de API REST](https://console.bluemix.net/apidocs/openwhisk).
+La información sobre la API REST de {{site.data.keyword.openwhisk_short}} se encuentra en la [referencia de API REST](https://console.bluemix.net/apidocs/functions).
 
 ## Límites del sistema
 {: #openwhisk_syslimits}

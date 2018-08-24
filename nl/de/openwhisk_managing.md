@@ -282,7 +282,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Hinweis:** Bei Standardaktionen ist eine Authentifizierung erforderlich, wenn der Aufruf über eine HTTPS-Anforderung erfolgt. Weitere Informationen zu Aktionsaufrufen über die REST-Schnittstelle finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/openwhisk).
+**Hinweis:** Bei Standardaktionen ist eine Authentifizierung erforderlich, wenn der Aufruf über eine HTTPS-Anforderung erfolgt. Weitere Informationen zu Aktionsaufrufen über die REST-Schnittstelle finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/functions).
 
 ## Aktionscode speichern
 {: #save-action}

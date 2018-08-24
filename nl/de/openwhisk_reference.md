@@ -600,7 +600,7 @@ Sie können darüber hinaus auch Kompilierungsschritte oder Abhängigkeiten einb
 
 ## REST-API
 {: #openwhisk_ref_restapi}
-Informationen zur {{site.data.keyword.openwhisk_short}}-REST-API finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/openwhisk).
+Informationen zur {{site.data.keyword.openwhisk_short}}-REST-API finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/functions).
 
 ## Systembegrenzungen
 {: #openwhisk_syslimits}

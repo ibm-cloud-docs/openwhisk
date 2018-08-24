@@ -88,7 +88,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Documentation API
-        [REST API Reference](https://console.bluemix.net/apidocs/openwhisk){: new_window}
+        [REST API Reference](https://console.bluemix.net/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
     {: .topicgroup}

@@ -166,4 +166,4 @@ passa por diferentes estágios do sistema {{site.data.keyword.openwhisk_short}}.
 * [Semântica de ação](./openwhisk_reference.html#openwhisk_semantics)
 * [  Limites
 ](./openwhisk_reference.html#openwhisk_syslimits)
-* [referência de API REST](https://console.bluemix.net/apidocs/openwhisk)
+* [referência de API REST](https://console.bluemix.net/apidocs/functions)

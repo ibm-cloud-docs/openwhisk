@@ -596,7 +596,7 @@ Docker 操作在 Docker 容器中运行用户提供的二进制文件。该二�
 
 ## REST API
 {: #openwhisk_ref_restapi}
-有关 {{site.data.keyword.openwhisk_short}} REST API 的信息可在 [REST API 参考](https://console.bluemix.net/apidocs/openwhisk)中找到。
+有关 {{site.data.keyword.openwhisk_short}} REST API 的信息可在 [REST API 参考](https://console.bluemix.net/apidocs/functions)中找到。
 
 ## 系统限制
 {: #openwhisk_syslimits}

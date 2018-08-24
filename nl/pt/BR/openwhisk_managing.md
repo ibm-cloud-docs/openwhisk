@@ -302,7 +302,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Nota:** para ações padrão, a autenticação deve ser fornecida quando chamada por meio de uma solicitação de HTTPS. Para obter mais informações sobre as chamadas de ação usando a interface REST, veja a [Referência da API de REST](https://console.bluemix.net/apidocs/openwhisk).
+**Nota:** para ações padrão, a autenticação deve ser fornecida quando chamada por meio de uma solicitação de HTTPS. Para obter mais informações sobre as chamadas de ação usando a interface REST, veja a [Referência da API de REST](https://console.bluemix.net/apidocs/functions).
 
 ## Salvando o código de ação
 {: #save-action}

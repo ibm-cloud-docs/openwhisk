@@ -86,7 +86,7 @@ IBM Cloud Functions
     openwhisk_annotations.md openwhisk_reference.md
 
     {: .topicgroup}
-    Documentação da API [Referência da API de REST](https://console.bluemix.net/apidocs/openwhisk){: new_window}[Gerenciamento
+    Documentação da API [Referência da API de REST](https://console.bluemix.net/apidocs/functions){: new_window}[Gerenciamento
 de API nativa no IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
     {: .topicgroup}

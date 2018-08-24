@@ -600,7 +600,7 @@ Docker スケルトンは、OpenWhisk 互換の Docker イメージをビルド�
 
 ## REST API
 {: #openwhisk_ref_restapi}
-{{site.data.keyword.openwhisk_short}} REST API に関する情報は [REST API リファレンス](https://console.bluemix.net/apidocs/openwhisk)にあります。
+{{site.data.keyword.openwhisk_short}} REST API に関する情報は [REST API リファレンス](https://console.bluemix.net/apidocs/functions)にあります。
 
 ## システム限度
 {: #openwhisk_syslimits}

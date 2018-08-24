@@ -631,7 +631,7 @@ O programa binário principal deve estar localizado em `/action/exec` dentro do 
 
 ## API da REST
 {: #openwhisk_ref_restapi}
-As informações sobre a API de REST do {{site.data.keyword.openwhisk_short}} podem ser localizadas na [Referência da API de REST](https://console.bluemix.net/apidocs/openwhisk).
+As informações sobre a API de REST do {{site.data.keyword.openwhisk_short}} podem ser localizadas na [Referência da API de REST](https://console.bluemix.net/apidocs/functions).
 
 ## Limites do sistema
 {: #openwhisk_syslimits}

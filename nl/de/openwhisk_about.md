@@ -163,4 +163,4 @@ Weitere Informationen zu {{site.data.keyword.openwhisk_short}} finden Sie in den
 * [Entitätsnamen](./openwhisk_reference.html#openwhisk_entities)
 * [Aktionssemantik](./openwhisk_reference.html#openwhisk_semantics)
 * [Begrenzungen](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST-API-Referenz](https://console.bluemix.net/apidocs/openwhisk)
+* [REST-API-Referenz](https://console.bluemix.net/apidocs/functions)

@@ -164,4 +164,4 @@ Vous trouverez des informations supplémentaires sur {{site.data.keyword.openwhi
 * [Noms d'entité](./openwhisk_reference.html#openwhisk_entities)
 * [Sémantique d'action](./openwhisk_reference.html#openwhisk_semantics)
 * [Limites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Référence de l'API REST](https://console.bluemix.net/apidocs/openwhisk)
+* [Référence de l'API REST](https://console.bluemix.net/apidocs/functions)

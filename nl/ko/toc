@@ -88,7 +88,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     API 문서
-        [REST API 참조서](https://console.bluemix.net/apidocs/openwhisk){: new_window}
+        [REST API 참조서](https://console.bluemix.net/apidocs/functions){: new_window}
         [IBM Cloud의 고유 API 관리](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
     {: .topicgroup}

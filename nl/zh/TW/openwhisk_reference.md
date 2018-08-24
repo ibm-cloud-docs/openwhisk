@@ -597,7 +597,7 @@ Docker 架構是建置 OpenWhisk 相容 Docker 映像檔的便利方法。您可
 
 ## REST API
 {: #openwhisk_ref_restapi}
-在 [REST API 參照](https://console.bluemix.net/apidocs/openwhisk)中，可以找到 {{site.data.keyword.openwhisk_short}} REST API 的相關資訊。
+在 [REST API 參照](https://console.bluemix.net/apidocs/functions)中，可以找到 {{site.data.keyword.openwhisk_short}} REST API 的相關資訊。
 
 ## 系統限制
 {: #openwhisk_syslimits}

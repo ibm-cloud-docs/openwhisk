@@ -598,7 +598,7 @@ Vous pouvez inclure des étapes de compilation ou des dépendances en modifiant 
 
 ## API REST
 {: #openwhisk_ref_restapi}
-Vous trouverez des informations sur l'API REST {{site.data.keyword.openwhisk_short}} dans le [document de référence sur l'API REST](https://console.bluemix.net/apidocs/openwhisk).
+Vous trouverez des informations sur l'API REST {{site.data.keyword.openwhisk_short}} dans le [document de référence sur l'API REST](https://console.bluemix.net/apidocs/functions).
 
 ## Limites du système
 {: #openwhisk_syslimits}

@@ -165,4 +165,4 @@ Puede encontrar información adicional sobre {{site.data.keyword.openwhisk_short
 * [Nombres de entidad](./openwhisk_reference.html#openwhisk_entities)
 * [Semánticas de acción](./openwhisk_reference.html#openwhisk_semantics)
 * [Límites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Referencia de API REST](https://console.bluemix.net/apidocs/openwhisk)
+* [Referencia de API REST](https://console.bluemix.net/apidocs/functions)

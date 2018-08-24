@@ -282,7 +282,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**注:** 標準アクションの場合、HTTPS 要求を介してアクションを呼び出すときに認証を提供する必要があります。 REST インターフェースを使用したアクションの呼び出しについて詳しくは、[REST API リファレンス (REST API reference)](https://console.bluemix.net/apidocs/openwhisk) を参照してください。
+**注:** 標準アクションの場合、HTTPS 要求を介してアクションを呼び出すときに認証を提供する必要があります。 REST インターフェースを使用したアクションの呼び出しについて詳しくは、[REST API リファレンス (REST API reference)](https://console.bluemix.net/apidocs/functions) を参照してください。
 
 ## アクション・コードの保存
 {: #save-action}

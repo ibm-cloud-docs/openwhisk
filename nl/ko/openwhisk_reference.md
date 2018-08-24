@@ -600,7 +600,7 @@ Docker 스켈레톤은 OpenWhisk 호환 가능 Docker 이미지를 빌드하는 
 
 ## REST API
 {: #openwhisk_ref_restapi}
-{{site.data.keyword.openwhisk_short}} REST API에 대한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/openwhisk)에서 찾을 수 있습니다.
+{{site.data.keyword.openwhisk_short}} REST API에 대한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/functions)에서 찾을 수 있습니다.
 
 ## 시스템 한계
 {: #openwhisk_syslimits}

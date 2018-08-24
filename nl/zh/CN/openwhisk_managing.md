@@ -283,7 +283,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**注：**对于标准操作，当通过 HTTPS 请求进行调用时，必须提供认证。有关使用 REST 接口调用操作的更多信息，请参阅 [REST API 参考](https://console.bluemix.net/apidocs/openwhisk)。
+**注：**对于标准操作，当通过 HTTPS 请求进行调用时，必须提供认证。有关使用 REST 接口调用操作的更多信息，请参阅 [REST API 参考](https://console.bluemix.net/apidocs/functions)。
 
 
 ## 保存操作代码

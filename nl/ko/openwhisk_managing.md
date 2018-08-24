@@ -282,7 +282,7 @@ https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**참고:** 표준 액션의 경우 인증은 HTTPS 요청을 통해 호출할 때 제공해야 합니다. REST 인터페이스를 사용하는 액션 호출에 대한 자세한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/openwhisk)를 참조하십시오.
+**참고:** 표준 액션의 경우 인증은 HTTPS 요청을 통해 호출할 때 제공해야 합니다. REST 인터페이스를 사용하는 액션 호출에 대한 자세한 정보는 [REST API 참조](https://console.bluemix.net/apidocs/functions)를 참조하십시오.
 
 ## 액션 코드 저장
 {: #save-action}

@@ -162,4 +162,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [實體名稱](./openwhisk_reference.html#openwhisk_entities)
 * [動作語意](./openwhisk_reference.html#openwhisk_semantics)
 * [限制](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 參考資料](https://console.bluemix.net/apidocs/openwhisk)
+* [REST API 參考資料](https://console.bluemix.net/apidocs/functions)
