@@ -2,7 +2,7 @@
 
 copyright:
   years: 2018
-lastupdated: "2018-08-13"
+lastupdated: "2018-08-31"
 
 ---
 
@@ -15,9 +15,7 @@ lastupdated: "2018-08-13"
 # Deploying quickstart templates
 {: #serviceauth}
 
-{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences, and can also incorpoate service instances from {{site.data.keyword.Bluemix}}. By using templates, you can quickly and easily create a project, and start coding right away.
-
-This tutorial steps you through deploying the templates that are available through {{site.data.keyword.openwhisk_short}}.
+{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other service instances from {{site.data.keyword.Bluemix_notm}}. By using templates, you can quickly and easily create a project, and start coding right away.
 {: shortdesc}
 
 ## Available quickstart templates
@@ -25,74 +23,94 @@ This tutorial steps you through deploying the templates that are available throu
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When an {{site.data.keyword.cloudant}} has a documented edited or added, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](./deploy_templates.html#cos-upload-image) | A web action the allows you to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retreive a thumbnail of that image. | Node.js |
-| [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | A web action that is invoked in response to an HTTP event, and then fetches data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](./deploy_templates.html#hello-world-template) | This action will accept a single parameter, which must be a JSON object. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](./deploy_templates.html#messagehub-events-template) | When an {{site.data.keyword.messagehub_full}} topic has new data added, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | An action that will post to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](./deploy_templates.html#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
+| [Hello World](./deploy_templates.html#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](./deploy_templates.html#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
 
-The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions, and a trigger that will kick off that sequence. The trigger is fired when there is a change in the connected {{site.data.keyword.cloudant_short_notm}} database, which should be a database of cats, with a name and a color. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database, or a current cat edited, the data will be logged to the console.
+The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions and a trigger that kicks off that sequence. The trigger is fired when a change is made in the connected {{site.data.keyword.cloudant_short_notm}} example database of cats. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database or a current cat is edited, the data is logged to the console.
 
-1. To create a template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
+### Deploying from the UI
+
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
 3. Click **Cloudant Events**.
 
-### Creating the {{site.data.keyword.cloudant_short_notm}} action
+4. Create the {{site.data.keyword.cloudant_short_notm}} action.
+    1. Provide a name for your package or use the provided default name `new-cloudant-item`.
+    2. In the **Actions** list, select `Node.js 6` for the cats database example, and click **Next**.
 
-1. Next, provide a name for your package or use the provided default name `new-cloudant-item`.
+5. Create the {{site.data.keyword.cloudant_short_notm}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide a {{site.data.keyword.messagehub}} service instance and service credentials.
+    1. In the **Cloudant Instance** list, select **Create your own instance**. The {{site.data.keyword.cloudant_short_notm}} setup page opens.
+    2. Create the {{site.data.keyword.cloudant_short_notm}} service instance.
+    3. Create a set of Service Credentials.
+    4. Click **OK** to close the {{site.data.keyword.cloudant_short_notm}} setup page and return to the {{site.data.keyword.openwhisk_short}} console.
+    5. In the **Cloudant Instance** list, you can now select **Input your own credentials** and provide the following information:
+      * Username: Your {{site.data.keyword.cloudant_short_notm}} username
+      * Password: Your {{site.data.keyword.cloudant_short_notm}} password
+      * Host: `<username>.cloudant.com`
+      * Database: The name of your {{site.data.keyword.cloudant_short_notm}} database
 
-2. Under the **Actions** drop-down, select the runtime for the actions you will own (nodejs, swift, python, or php). For this example, select **nodejs**, and click **Next**.
+5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Creating the {{site.data.keyword.cloudant_short_notm}} trigger
+### Deploying from the CLI
 
-Triggers invoke actions when they recieve events from event sources. To create a trigger for {{site.data.keyword.cloudant_short_notm}} template, provide the trigger with the required {{site.data.keyword.cloudant_short_notm}} service instance information.
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
 
-#### Create {{site.data.keyword.cloudant_short_notm}} service instance
+1. Clone the template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-cloudant-trigger.git
+    ```
+    {: pre}
 
-You can choose either:
-  * **Create your own instance**
-  * **Input your own credentials**
+2. Navigate to the directory for the action runtime that you want to use: `nodejs-6`, `nodejs`, `php`, `python`, or `swift`.
+    ```
+    cd template-cloudant-trigger/runtimes/nodejs
+    ```
+    {: pre}
 
-1. For this example, choose **Create your own instance**.
+3. Deploy the template, using the following environment variables.
+    ```
+    CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    ```
+    {: pre}
 
-2. A pop-up opens to take you to a new tab with the {{site.data.keyword.cloudant_short_notm}} setup page. After you create the {{site.data.keyword.cloudant_short_notm}} instance, you must create a set of Service Credentials, and then close the tab to return to this page by clicking **Ok**.
-
-3. Now choose **Input your own credentials** and provide the following information:
-  * Username - _Your {{site.data.keyword.cloudant_short_notm}} Username_
-  * Password - _Your {{site.data.keyword.cloudant_short_notm}} password_
-  * Host - _This is usually your `username.{{site.data.keyword.cloudant_short_notm}}.com`_
-  * Database - _The name of your {{site.data.keyword.cloudant_short_notm}} database_
-
-### Deploy the {{site.data.keyword.cloudant_short_notm}} template
-
-Click **Deploy**.
-
-After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+    <table>
+    <caption>Understanding the environment variables</caption>
+    <thead>
+    <th colspan=2>Understanding the environment variables</th>
+    </thead>
+    <tbody>
+    <tr><td><code>CLOUDANT_HOSTNAME</code></td><td><code>&lt;username&gt;.cloudant.com</code></td></tr>
+    <tr><td><code>CLOUDANT_USERNAME</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} username</td></tr>
+    <tr><td><code>CLOUDANT_PASSWORD</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} password</td></tr>
+    <tr><td><code>CLOUDANT_DATABASE</code></td><td>The name of your {{site.data.keyword.cloudant_short_notm}} database</td></tr>
+    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
+    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
+    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
+    </tbody></table>
 
 ## Deploying the Upload Image template
 {: #cos-upload-image}
 
-The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short_notm}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
+The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
-To deploy the template:
+### Deploying from the UI
 
-1. Go to the {{site.data.keyword.openwhisk_short}} console in [{{site.data.keyword.Bluemix_notm}} ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/).
-
-2. Click **Start Creating**.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
-3. Click the **Upload Image** template.
+3. Click **Upload Image**.
 
-4. Enter a name for your package or use the default name `upload-image`.
-
-5. Click **Next**.
+4. Enter a name for your package or use the default name `upload-image`, and click **Next**.
 
 6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_short}}** list, select one of the following options:
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
@@ -106,109 +124,275 @@ To deploy the template:
 
 8. In the left-hand navigation, click **Endpoints**
 
-9. In the Web Action section, copy the link without the .json suffix` and paste it into your browser's address bar. The interface for the template's web action is displayed.
+9. In the Web Action section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
 
 10. Optional: After the template deploys, you can navigate to the Actions dashboard to customize the code in the two new packages:
     * The `cloud-object-storage` package, which contains actions that work with {{site.data.keyword.cos_short}} instances
     * The template package (default name `upload-image`), which contains the `app` action
 
+### Deploying from the CLI
+
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
+
+1. [Install the {{site.data.keyword.cos_full_notm}} package](cloud_object_storage_actions.html#cloud_object_storage_cli).
+
+2. Clone the template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-cloud-object-storage.git
+    ```
+    {: pre}
+
+3. Navigate to the `nodejs` runtime directory.
+    ```
+    cd template-cloud-object-storage/runtimes/nodejs
+    ```
+    {: pre}
+
+3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_short}} bucket as environment variables.
+    ```
+    PACKAGE_NAME=<name> BUCKET_NAME=<name> wskdeploy -m manifest.yaml
+    ```
+    {: pre}
+
+4. In the [Actions page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/actions) of the {{site.data.keyword.openwhisk_short}} console, click the `process-change` action.
+
+5. In the left-hand navigation, click **Endpoints**.
+
+6. In the Web Action section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
+
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}
 
-The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publically available to anyone who may want to call it.
+The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publicly available to anyone who calls it.
 
-1. To create a template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
+### Deploying from the UI
+
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
-3. Review the **Package Name** field, you can update it as needed. The default is set for you as `get-http-resource`.
+3. Click **Get HTTP Resource**.
 
-4. Choose the runtime for the actions you will own: Node.js 8, Node.js 6, or Python 3.
+3. Enter a name for your package or use the default name `get-http-resource`.
+
+4. Choose the runtime for your actions: Node.js 8, Node.js 6, or Python 3.
 
 5. Click **Deploy**.
 
+6. Invoke the action by curling the following URL: `https://openwhisk.ng.bluemix.net/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
+    ```
+    curl https://openwhisk.ng.bluemix.net/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
+    ```
+    {: pre}
+
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+
+### Deploying from the CLI
+
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
+
+1. Clone the template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-get-external-resource.git
+    ```
+    {: pre}
+
+2. Navigate to the directory for the action runtime that you want to use: `nodejs-6`, `nodejs`, or `python`.
+    ```
+    cd template-get-external-resource/runtimes/nodejs
+    ```
+    {: pre}
+
+3. Deploy the template, using a custom package name as an environment variable.
+    ```
+    PACKAGE_NAME=<name> wskdeploy -m manifest.yaml
+    ```
+    {: pre}
+
+4. Invoke the action by curling the following URL: `https://openwhisk.ng.bluemix.net/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
+    ```
+    curl https://openwhisk.ng.bluemix.net/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
+    ```
+    {: pre}
 
 ## Deploying the Hello World template
 {: #hello-world-template}
 
-This action will accept a single parameter, which must be a JSON object.
+You can deploy this basic Hello World action to get started with {{site.data.keyword.openwhisk_short}} or to test other entities you create, such as triggers and rules.
 
-1. To create a template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
+### Deploying from the UI
+
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
-3. Review the **Package Name** field, you can update it as needed. The default is set for you as `hello-world`.
+3. Click **Hello World**.
 
-4. Choose the runtime for the actions you will own: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+4. Enter a name for your package or use the default name `hello-world`.
 
-5. Click **Deploy**.
+5. Choose the runtime for your actions: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+
+6. Click **Deploy**.
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+
+### Deploying from the CLI
+
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
+
+1. Clone the Hello World template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-hello-world.git
+    ```
+    {: pre}
+
+2. Navigate to the directory for the action runtime that you want to use: `nodejs-6`, `nodejs`, `php`, `python`, or `swift`.
+    ```
+    cd template-hello-world/runtimes/nodejs
+    ```
+    {: pre}
+
+3. Deploy the template.
+    ```
+    wskdeploy -m manifest.yaml
+    ```
+    {: pre}
 
 ## Deploying the {{site.data.keyword.messagehub}} Events template
 {: #messagehub-events-template}
 
 The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever there is a new item added to the {{site.data.keyword.messagehub}} topic that is chosen during template creation.
 
-1. To create a template, go to [{{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}}](https://console.bluemix.net/openwhisk/), and then click **Start Creating**.
+### Deploying from the UI
+
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
-3. Review the **Package Name** field, you can update it as needed. The default is set for you as `message-hub-events`.
+3. Click **{{site.data.keyword.messagehub}} Events**.
 
-4. Choose the runtime for the actions you will own: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+4. Create the {{site.data.keyword.messagehub}} action.
+    1. Provide a name for your package or use the provided default name `message-hub-events`.
+    2. Choose the runtime for your actions: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+    3. Click **Next**.
 
-5. Click **Next**.
+5. Create the {{site.data.keyword.messagehub}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide a {{site.data.keyword.messagehub}} service instance and service credentials.
+    1. In the **MessageHub Instance** list, select **Create your own instance**. The {{site.data.keyword.messagehub}} creation page opens.
+    2. Create the {{site.data.keyword.messagehub}} service instance.
+    3. Create a set of Service Credentials.
+    4. Click **OK** to close the {{site.data.keyword.messagehub}} creation page and return to the {{site.data.keyword.messagehub}} console.
+    5. In the **MessageHub Instance** list, you can now select **Input your own credentials** and provide the following information:
+      * Username: Your {{site.data.keyword.messagehub}} username
+      * Password: Your {{site.data.keyword.messagehub}} password
+      * kafka_admin_url: Your {{site.data.keyword.messagehub}} admin REST URL
+      * Database: The name of your {{site.data.keyword.messagehub}} database
+      * Topic: The topic to subscribe to
 
-### Creating the {{site.data.keyword.messagehub}} trigger
-
-Triggers invoke actions when they recieve events from event sources. To create a trigger for the {{site.data.keyword.messagehub}} template, provide the trigger with the required {{site.data.keyword.messagehub}} service instance information.
-
-Review the **Trigger Name** field, you can update it as needed. The default is set for you as `message-hub-events-trgr`.
-
-### Creating the {{site.data.keyword.messagehub}} service instance
-
-You can choose either:
-  * **Create your own instance**
-  * **Input your own credentials**
-
-1. For this example, choose **Create your own instance**.
-
-2. A pop-up opens to take you to a new tab with the {{site.data.keyword.messagehub}} setup page. After you create the {{site.data.keyword.messagehub}} instance, you must create a set of Service Credentials, and then close the tab to return to this page by clicking **Ok**.
-
-3. Now choose **Input your own credentials** and provide the following information:
-  * Username - _Your {{site.data.keyword.messagehub}} Username_
-  * Password - _Your {{site.data.keyword.messagehub}} password_
-  * kafka_admin_url - _Your {{site.data.keyword.messagehub}} admin REST URL_
-  * Database - _The name of your {{site.data.keyword.messagehub}} database_
-  * Topic - _Topic to subscribe to_
-
-### Deploy the {{site.data.keyword.messagehub}} template
-
-Click **Deploy**.
+5. Click **Deploy**.
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+
+### Deploying from the CLI
+
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
+
+1. Clone the template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-messagehub-trigger.git
+    ```
+    {: pre}
+
+2. Navigate to the directory for the action runtime that you want to use: `nodejs-6`, `nodejs`, `php`, `python`, or `swift`.
+    ```
+    cd template-messagehub-trigger/runtimes/nodejs
+    ```
+    {: pre}
+
+3. Deploy the template, using the following environment variables.
+    ```
+    KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    ```
+    {: pre}
+
+    <table>
+    <caption>Understanding the environment variables</caption>
+    <thead>
+    <th colspan=2>Understanding the environment variables</th>
+    </thead>
+    <tbody>
+    <tr><td><code>KAFKA_BROKERS</code></td><td>Your {{site.data.keyword.messagehub}} admin REST URL</td></tr>
+    <tr><td><code>KAFKA_TOPIC</code></td><td>The topic to subscribe to</td></tr>
+    <tr><td><code>MESSAGEHUB_USER</code></td><td>Your {{site.data.keyword.messagehub}} username</td></tr>
+    <tr><td><code>MESSAGEHUB_PASS</code></td><td>Your {{site.data.keyword.messagehub}} password</td></tr>
+    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
+    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
+    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
+    </tbody></table>
 
 ## Deploying the Periodic Slack Reminder template
 {: #slack-reminder-template}
 
-The Periodic Slack Reminder template posts to Slack on an interval provided by the user during trigger creation. Before creating this template, go to https://api.slack.com/incoming-webhooks to set up the incoming webhooks URL required.
+The Periodic Slack Reminder template posts to Slack on an interval provided by the user during trigger creation.
 
-1. Review the **Package Name** field, you can update it as needed. The default is set for you as `periodic-slack-reminder`.
+### Deploying from the UI
 
-2. Choose the runtime for the actions you will own: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
-3. Under the **Parameters** section, enter the webhook URL into the **Parameter Value** field, and then click **Next**. (Example: https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX).
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
-### Creating the Slack Reminder trigger
+2. Click **Quickstart templates**.
 
-Triggers invoke actions when they recieve events from event sources. To create a trigger for the Slack Reminder template, provide the trigger with the required {{site.data.keyword.messagehub}} service instance information.
+3. Click **Periodic Slack Reminder Events**.
 
-1. Review the **Trigger Name** field, you can update it as needed. The default is set for you as `periodic-slack-reminder-trgr`.
+4. Create the Periodic Slack Reminder action.
+    1. Provide a name for your package or use the provided default name `periodic-slack-reminder`.
+    2. Choose the runtime for your actions: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
+    3. In the Parameters section, enter the webhook URL into the **Parameter Value** field, such as `https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX`.
+    4. Click **Next**.
 
-2. Next, you can specify the interval in which the trigger is to fire by using a Pattern or Cron expression. You can select UTC times for Weekdays, Hours, and Minutes. Select your desired inverval options and you will be ready for template deployment.
+5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources.
+    1. Specify the trigger's time interval by using a Pattern or Cron expression.
+        * Pattern: Select UTC times for weekdays, hours, and minutes.
+        * Cron: Specify a Cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
+    2. Add the trigger JSON payload.
 
-3. Click **Deploy**.
+6. Click **Deploy**.
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+
+### Deploying from the CLI
+
+**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
+
+1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
+
+1. Clone the template repo.
+    ```
+    git clone https://github.com/ibm-functions/template-reminder-slack.git
+    ```
+    {: pre}
+
+2. Navigate to the directory for the action runtime that you want to use: `nodejs-6`, `nodejs`, `php`, `python`, or `swift`.
+    ```
+    cd template-reminder-slack/runtimes/nodejs
+    ```
+    {: pre}
+
+3. Deploy the template, using the following environment variables.
+    ```
+    SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    ```
+    {: pre}
+
+    <table>
+    <caption>Understanding the environment variables</caption>
+    <thead>
+    <th colspan=2>Understanding the environment variables</th>
+    </thead>
+    <tbody>
+    <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>The webhook URL, such as <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td>A Cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields separated by spaces in the format <code>X X X X X</code>.</td></tr>
+    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
+    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
+    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
+    </tbody></table>

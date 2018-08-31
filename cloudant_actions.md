@@ -25,7 +25,6 @@ The `/whisk.system/cloudant` package enables you to work with a [{{site.data.key
 | `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
-The following sections step you through setting up a {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
 The following sections step you through setting up an {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
 For more information on how to use feeds with the `/whisk.system/cloudant` package, see [{{site.data.keyword.cloudant_short_notm}} events source](./openwhisk_cloudant.html).
 
@@ -36,9 +35,19 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
 
 1. Create an {{site.data.keyword.cloudant_short_notm}} service instance in your [{{site.data.keyword.Bluemix_notm}} dashboard](http://console.bluemix.net).
 
-  Be sure to create a credential key for each new service instance.
+2. Create an alias for the service instance.
+    ```
+    ibmcloud resource service-alias-create <alias_name> --instance-name <service_instance_name>
+    ```
+    {: pre}
 
-2. Refresh the packages in your namespace. The refresh automatically creates a package binding for each {{site.data.keyword.cloudant_short_notm}} service instance with a credential key defined.
+3. Create a credential key for the alias.
+    ```
+    ibmcloud resource service-key-create <credential_name> <role> --alias-name <service alias> --parameters '{"HMAC":true}'
+    ```
+    {: pre}
+
+4. Refresh the packages in your namespace. The refresh automatically creates a package binding for each {{site.data.keyword.cloudant_short_notm}} service instance with a credential key defined.
   ```
   ibmcloud fn package refresh
   ```
@@ -65,7 +74,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
 
   Your package binding now contains the credentials that are associated with your {{site.data.keyword.cloudant_short_notm}} service instance.
 
-3. Check to see that the package binding that was created previously is configured with your {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
+5. Check to see that the package binding that was created previously is configured with your {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
 
   ```
   ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
