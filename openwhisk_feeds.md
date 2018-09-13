@@ -82,7 +82,7 @@ A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmclou
 
 It is easy to set up a feed by using a hook if the event producer supports a webhook/callback facility.
 
-With this method, there is _no need_ to stand up any persistent service outside of {{site.data.keyword.openwhisk_short}}. All feed management happens naturally though stateless {{site.data.keyword.openwhisk_short}} *feed actions*, which negotiate directly with a third part webhook API.
+With this method, there is _no need_ to stand up any persistent service outside of {{site.data.keyword.openwhisk_short}}. All feed management happens naturally though stateless {{site.data.keyword.openwhisk_short}} *feed actions*, which negotiate directly with a third party webhook API.
 
 When invoked with `CREATE`, the feed action simply installs a webhook for some other service, asking the remote service to POST notifications to the appropriate `fireTrigger` URL in {{site.data.keyword.openwhisk_short}}.
 
