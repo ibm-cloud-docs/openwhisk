@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-08-24"
+lastupdated: "2018-09-17"
 
 ---
 
@@ -517,7 +517,7 @@ To install dependencies, package them in a virtual environment, and create a com
     * For kind `python:2` use the docker image `openwhisk/python2action`.
     * For kind `python:3` use the docker image `openwhisk/python3action`.
     * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
-
+    
   ```
   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
   ```
@@ -570,7 +570,7 @@ An action is simply a top-level PHP function. To create a PHP action:
     ```
     {: pre}
 
-    The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
+    The CLI automatically infers the type of the action from the source file extension. For `.php` source files, the action runs by using a PHP 7.2 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
 
 3. Invoke the action.
     ```
@@ -599,9 +599,82 @@ You can package a PHP action and other files or dependent packages in a zip file
 
 2. Create the action.
     ```bash
-    ibmcloud fn action create helloPHP --kind php:7.1 helloPHP.zip
+    ibmcloud fn action create helloPHP --kind php:7.2 helloPHP.zip
     ```
     {: pre}
+
+## Creating Ruby actions
+{: #creating-ruby-actions}
+
+The following sections guide you through creating and invoking a single Ruby action and adding parameters to that action.
+
+Ruby actions are executed using Ruby 2.5. To use this runtime, specify the  `ibmcloud fn` CLI parameter
+`--kind ruby:2.5` when creating or updating an action. This is the default when creating an action with a file that has a `.rb` extension.
+
+## Creating and invoking Ruby actions
+{: #openwhisk_actions_ruby_invoke}
+
+An action is simply a top-level Ruby method.
+
+For example, create a file called `hello.rb`.
+
+1. Save the following code in a filed called `hello.rb`.
+    ```ruby
+    def main(args)
+      name = args["name"] || "stranger"
+      greeting = "Hello #{name}!"
+      puts greeting
+      { "greeting" => greeting }
+    end
+    ```
+    {: codeblock}
+
+    * Ruby actions always consume a Hash (dictionary-like collection) and return a Hash.
+    * The entry method for the action is `main` by default but can be specified explicitly when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
+
+2. Create an action called `helloRuby`.
+    ```
+    ibmcloud fn action create helloRuby hello.rb
+    ```
+    {: pre}
+
+    The CLI automatically infers the type of the action from the source file extension. For `.rb` source files, the action runs using a Ruby 2.5 runtime.runtime.
+
+3. Invoke the action.
+    ```
+    ibmcloud fn action invoke --result helloRuby --param name World
+    ```
+    {: pre}
+
+    Example output:
+    ```json
+      {
+          "greeting": "Hello World!"
+      }
+    ```
+    {: screen}
+
+## Packaging Ruby actions in zip files
+{: #openwhisk_actions_ruby_zip}
+
+You can package a PHP action and other files or dependent packages in a zip file. For example, to package an action with a second file called `helper.rb`:
+
+1. Create an archive containing your source files. **Note**: The source file that contains the entry point must be named `main.rb`.
+    ```bash
+    zip -r helloRuby.zip main.rb helper.rb
+    ```
+    {: pre}
+
+2. Create the action.
+    ```bash
+    ibmcloud fn action create helloRuby --kind ruby:2.5 helloRuby.zip
+    ```
+    {: pre}
+
+
+The gems `mechanize` and `jwt` are available in addition to the default and bundled gems.
+You can use arbitrary gems so long as you use zipped actions to package all the dependencies.
+
 
 ## Creating Swift actions
 {: #creating-swift-actions}
