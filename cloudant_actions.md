@@ -43,7 +43,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
 
 3. Create a credential key for the alias.
     ```
-    ibmcloud resource service-key-create <credential_name> <role> --alias-name <service alias> --parameters '{"HMAC":true}'
+    ibmcloud resource service-key-create <credential_name> <role> --alias-name <service alias>
     ```
     {: pre}
 
