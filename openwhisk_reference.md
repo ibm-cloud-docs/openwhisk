@@ -614,7 +614,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 ## REST API
 {: #openwhisk_ref_restapi}
 
-Information about the {{site.data.keyword.openwhisk_short}} REST API can be found in the [REST API reference](https://console.stage1.bluemix.net/apidocs/functions).
+Information about the {{site.data.keyword.openwhisk_short}} REST API can be found in the [REST API reference](https://console.bluemix.net/apidocs/functions).
 
 ## System limits
 {: #openwhisk_syslimits}
