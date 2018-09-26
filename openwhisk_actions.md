@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-09-17"
+lastupdated: "2018-09-25"
 
 ---
 
@@ -517,7 +517,7 @@ To install dependencies, package them in a virtual environment, and create a com
     * For kind `python:2` use the docker image `openwhisk/python2action`.
     * For kind `python:3` use the docker image `openwhisk/python3action`.
     * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
-    
+
   ```
   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
   ```
@@ -609,9 +609,9 @@ You can package a PHP action and other files or dependent packages in a zip file
 The following sections guide you through creating and invoking a single Ruby action and adding parameters to that action.
 
 Ruby actions are executed using Ruby 2.5. To use this runtime, specify the  `ibmcloud fn` CLI parameter
-`--kind ruby:2.5` when creating or updating an action. This is the default when creating an action with a file that has a `.rb` extension.
+`--kind ruby:2.5` when creating or updating an action.
 
-## Creating and invoking Ruby actions
+### Creating and invoking Ruby actions
 {: #openwhisk_actions_ruby_invoke}
 
 An action is simply a top-level Ruby method.
@@ -634,11 +634,9 @@ For example, create a file called `hello.rb`.
 
 2. Create an action called `helloRuby`.
     ```
-    ibmcloud fn action create helloRuby hello.rb
+    ibmcloud fn action create helloRuby hello.rb --kind ruby:2.5
     ```
     {: pre}
-
-    The CLI automatically infers the type of the action from the source file extension. For `.rb` source files, the action runs using a Ruby 2.5 runtime.runtime.
 
 3. Invoke the action.
     ```
@@ -654,7 +652,7 @@ For example, create a file called `hello.rb`.
     ```
     {: screen}
 
-## Packaging Ruby actions in zip files
+### Packaging Ruby actions in zip files
 {: #openwhisk_actions_ruby_zip}
 
 You can package a PHP action and other files or dependent packages in a zip file. For example, to package an action with a second file called `helper.rb`:
