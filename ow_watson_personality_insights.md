@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-07-17"
+lastupdated: "2018-09-26"
 
 ---
 
@@ -129,23 +129,23 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
 
-2. Using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into. Namespaces are formed from the combined org and space names.
+2. Using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 
 3. Click **Install Packages**.
 
-4. Click on the **Watson** Package group.
+4. Click the **Watson** Package group.
 
-5. Click on the **Personality Insights** Package.
+5. Click the **Personality Insights** Package.
 
 5. Click **Install**.
 
 6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **personality-insights-v3**.
 
 7. To use the Actions in the **personality-insights-v3** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above. 
+  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
-    1. Click on an Action from the **personality-insights-v3** Package that you want to use. The details page for that Action opens. 
-    2. In the left-hand navigation, click on the **Parameters** section. 
+    1. Click an Action from the **personality-insights-v3** Package that you want to use. The details page for that Action opens.
+    2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.personalityinsightsshort}} package

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-09-13"
 
 ---
 
@@ -25,7 +25,7 @@ The package includes the following actions.
 | `/whisk.system/watson-translator/translator` | action | payload, translateFrom, translateTo, translateParam, username, password | Translate text |
 | `/whisk.system/watson-translator/languageId` | action | payload, username, password | Identify language |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`.
+**Note**: The package `/whisk.system/watson` is deprecated including the actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`. See the [installable {{site.data.keyword.languagetranslatorshort}} package](ow_watson_language_translator.html) instead.
 
 ## Setting up the Watson Translator package in {{site.data.keyword.Bluemix_notm}}
 

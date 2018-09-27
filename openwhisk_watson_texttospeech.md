@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-03-26"
+lastupdated: "2018-09-13"
 
 ---
 
@@ -24,7 +24,7 @@ The package includes the following actions.
 | `/whisk.system/watson-textToSpeech` | package | username, password | Package to convert text into speech |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | action | payload, voice, accept, encoding, username, password | Convert text into audio |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`.
+**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](ow_watson_text_to_speech.html) instead.
 
 ## Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
 
