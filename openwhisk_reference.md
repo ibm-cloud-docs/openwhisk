@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-09-21"
+lastupdated: "2018-09-26"
 
 ---
 
@@ -39,7 +39,7 @@ You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry org
 The fully qualified name of an entity is
 `/namespaceName/[packageName]/entityName`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, namespaces must be prefixed with a `/`.
 
-For convenience, the Namespace can be left off if it is the user's *default namespace*. For example, consider a user whose default Namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
+For convenience, the Namespace can be left off if it is the user's default namespace. For example, consider a user whose default Namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
 
 | Fully qualified name | Alias | Namespace | Package | Name |
 | --- | --- | --- | --- | --- |

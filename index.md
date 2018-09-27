@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-06-22"
+lastupdated: "2018-09-26"
 
 ---
 
@@ -42,7 +42,7 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 6. Run the action by clicking **Invoke**. Invoking an action manually executes the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
 
-Good work! You created your first action. To clean up this action, click on the overflow menu and select **Delete Action**.
+Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.
 
 ## Creating an action in the CLI
 {: #openwhisk_start_hello_world_cli}

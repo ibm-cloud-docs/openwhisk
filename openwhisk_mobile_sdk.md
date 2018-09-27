@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-05-31"
+lastupdated: "2018-09-26"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2018-05-31"
 # Mobile SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to easily fire remote triggers and invoke remote actions. A version for Android is not available so Android developers can use the OpenWhisk REST API directly.
+OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly.
 
 The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK using Xcode 9.
 {: shortdesc}
@@ -122,7 +122,7 @@ The strings before the colon is your key, and the string after the colon is your
 
 ## Invoke an OpenWhisk action
 
-To invoke a remote action, you can call `invokeAction` with the action name. You can specify the namespace that the action belongs to, or leave it blank to accept the default namespace. Use a dictionary to pass parameters to the action as needed.
+To invoke a remote action, you can call `invokeAction` with the action name. Use a dictionary to pass parameters to the action as needed.
 
 For example:
 ```swift
@@ -143,8 +143,6 @@ do {
 }
 ```
 {: codeblock}
-
-In the previous example, you invoke the `helloConsole` action by using the default namespace.
 
 ## Fire an OpenWhisk trigger
 
