@@ -76,7 +76,6 @@ IBM Cloud Functions
         ow_watson_tone_analyzer.md
         ow_watson_language_translator.md
 
-
     {: .topicgroup}
     SDK and frameworks
         openwhisk_goserverless.md
@@ -92,6 +91,8 @@ IBM Cloud Functions
         [REST API reference](https://console.bluemix.net/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
 
+    at-events.md
+
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
@@ -100,4 +101,8 @@ IBM Cloud Functions
         [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
         [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
 
+    {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    ts_index.md
     {: .navgroup-end}
