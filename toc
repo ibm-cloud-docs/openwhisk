@@ -100,7 +100,6 @@ IBM Cloud Functions
         [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
         [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
         [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
-
     {: .navgroup-end}
 
     {: .navgroup id="help"}
