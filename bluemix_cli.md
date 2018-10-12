@@ -1,16 +1,17 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-09-26"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
@@ -44,13 +45,13 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
       ```
       {: pre}
 
-    * To log in to the United Kingdom region:
+    * To log in to the UK South region:
       ```
       ibmcloud login -a api.eu-gb.bluemix.net
       ```
       {: pre}
 
-    * To log in to the Germany region:
+    * To log in to the EU Central region:
       ```
       ibmcloud login -a api.eu-de.bluemix.net
       ```
@@ -58,7 +59,7 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 3. The `ibmcloud login` command prompts you for information such as organization, space, and password if not specified.
 
-  You can specify the organization and space when you log in to skip the prompts for them. Use the following flags: `ibmcloud login -o <ORG> -s <SPACE>`.
+  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -o <ORG> -s <SPACE>`.
   {: tip}
 
 You can also use an {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a federated login that requires you to log in with the flag `--sso`. [Using an API key](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) is also beneficial if you want to set up continuous integration (CI) and want to configure an unattended pipeline.
@@ -76,6 +77,7 @@ You can also use an {{site.data.keyword.Bluemix_notm}} API key to log in. This m
     {: pre}
 </br>
 For more information about the `ibmcloud login` command, use `ibmcloud login --help` or review the [IBM Cloud (bx) commands](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) topic.
+
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} plug-in
 {: #cloudfunctions_plugin_setup}
@@ -108,6 +110,10 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
     ```
     {: pre}
 
+4. Before you can start working with {{site.data.keyword.openwhisk_short}} entities, you must target a namespace.
+    * To use an IAM-based namespace, follow the steps in [Creating an IAM-based namespace in the CLI](openwhisk_namespaces.html#create_iam_cli). **Note**: The namespace is created in the resource group that you target.
+    * To use an Cloud Foundry-based namespace, see [Targeting Cloud Foundry-based namespaces](openwhisk_namespaces.html#target_cf).
+
 You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to:
 
 * Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
@@ -118,6 +124,8 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to:
 To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
 
+
+
 ## Using services from actions
 {: #binding_services}
 
@@ -125,53 +133,10 @@ To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `
 
 For detailed steps on how to use services from actions, see [Binding services to actions](./binding_services.html).
 
-## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
-{: #cli_https_proxy}
 
-The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format:
-`{PROXY IP}:{PROXY PORT}`.
+ After logging in, all commands begin with `ibmcloud fn`.
 
-## Switching to different regions, organizations, and spaces
-{: #region_info}
 
-If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
-
-To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
-
-{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
-```
-ibmcloud target -r eu-gb -s staging
-```
-{: pre}
-
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
-
-```
-ibmcloud iam space-create "staging"
-ibmcloud iam space-create "production"
-```
-{: pre}
-
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
-{: tip}
-
-**Warning**: Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
-
-## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
-{: #cli_migration}
-
-The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk stand-alone CLI (`wsk`) for interacting with {{site.data.keyword.openwhisk_short}} entities in IBM Cloud. The `wsk` stand-alone CLI does not have the latest features supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespace support and `service bind` support.
-{: shortdesc}
-
-### Command Syntax
-{: #command_syntax}
-
-All `wsk` commands, except the `wsk bluemix login` command that is no longer needed, work the same way by using the command `ibmcloud fn`. All command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the commands for the OpenWhisk stand-alone CLI. For more information, see the [Apache OpenWhisk CLI project ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-cli).
-
-### API Authentication and Host
-{: #api_authentication}
-
-The OpenWhisk CLI required you to configure the authentication API key and the API host. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all commands begin with `ibmcloud fn`.
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:
 
@@ -199,6 +164,8 @@ The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to conf
 {: #migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
+
+
 
 ## Version history
 {: #version_history}
