@@ -2,7 +2,7 @@
 
 copyright:
   years: 2016, 2018
-lastupdated: "2018-09-25"
+lastupdated: "2018-10-10"
 
 ---
 
@@ -471,7 +471,11 @@ An action is simply a top-level Python function. To create a Python action:
     ```
     {: screen}
 
-    The CLI automatically infers the type of the action by using the source file extension. For `.py` source files, the action runs by using a Python 2 runtime. You can also create an action that runs with Python 3 by explicitly specifying the parameter `--kind python:3`. You can also use the Python 3 runtime with kind `python-jessie:3`, which contains additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
+
+    The CLI automatically infers the type of the action by using the source file extension. For `.py` source files, the action runs by using a Python 2 runtime.
+
+    You can also create an action that runs with Python 3 by explicitly specifying the parameter `--kind python:3`. You can also use the Python 3 runtime with kind `python-jessie:3`, which contains additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
+
 
 3. Invoke the action.
     ```
@@ -515,8 +519,11 @@ To install dependencies, package them in a virtual environment, and create a com
 
 2. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtual environment must use the image that corresponds to the kind.
     * For kind `python:2` use the docker image `openwhisk/python2action`.
+
     * For kind `python:3` use the docker image `openwhisk/python3action`.
     * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
+
+
 
   ```
   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
