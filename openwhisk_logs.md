@@ -1,21 +1,22 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-24"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Logging and monitoring activity
 {: #openwhisk_logs}
 
-Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk_short}} to help you troubleshoot issues and improve the health and performance of your actions.
+Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk}} to help you troubleshoot issues and improve the health and performance of your actions. You can also use the {{site.data.keyword.cloudaccesstraillong}} service to track how users and applications interact with the {{site.data.keyword.openwhisk_short}} service.
 
 ## Viewing logs
 {: #view-logs}
@@ -23,7 +24,7 @@ Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk
 You can view activation logs directly from the {{site.data.keyword.openwhisk_short}} Monitoring dashboard. The logs are also forwarded to [{{site.data.keyword.loganalysisfull}}](https://console.bluemix.net/docs/services/CloudLogAnalysis/kibana/analyzing_logs_Kibana.html#analyzing_logs_Kibana) where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 {:shortdesc}
 
-**Note**: Logging is not available for the US-East region.
+**Note**: Logging is not available for the US East region.
 
 1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/dashboard/).
 
@@ -71,7 +72,96 @@ You can find specific activation logs by using Kibana's query syntax. The follow
     ```
     {: codeblock}
 
-## Monitoring activity
+## Monitoring performance of actions
+{: #monitoring_performance}
+
+Get insight into the performance of your actions deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or hits of action activation limits.
+{: shortdesc}
+
+Metrics are collected automatically for all entities. Depending on whether your actions are in an IAM-based or a Cloud Foundry-based namespace, metrics are located in the IBM Cloud account or space. These metrics are sent to {{site.data.keyword.monitoringlong}} and are made available through Grafana, where you can configure Grafana dashboards, create alerts based on the metrics event values, and more. For more information about metrics, see the [{{site.data.keyword.monitoringlong_notm}} documentation](https://console.bluemix.net/docs/services/cloud-monitoring/index.html).
+
+### Creating a dashboard
+{: #create_dashboard}
+
+Get started by creating a Grafana monitoring dashboard.
+
+1. Go to one of the following URLs. **Note**: Monitoring is not available for the US East region.
+    <table>
+    <thead>
+      <th>{{site.data.keyword.openwhisk_short}} region</th>
+      <th>Monitoring address</th>
+    </thead>
+    <tbody>
+      <tr>
+       <td>EU Central</td>
+       <td>metrics.eu-de.bluemix.net</td>
+      </tr>
+      <tr>
+       <td>UK South</td>
+       <td>metrics.eu-gb.bluemix.net</td>
+      </tr>
+      <tr>
+        <td>US South</td>
+        <td>metrics.ng.bluemix.net</td>
+       </tr>
+    </tbody>
+    </table>
+
+2. Select the metrics domain.
+    * IAM-based namespaces:
+        1. In the top right corner, click your user name.
+        2. In the **Domain** drop-down list, select **account**.
+        3. In the **Account** drop-down list, select the IBM Cloud account where your IAM-based namespace is located.
+    * Cloud Foundry-based namespaces:
+        1. In the top right corner, click your user name.
+        2. In the **Domain** drop-down list, select **space**.
+        3. Use the **Organization** and **Space** drop-down lists to select your Cloud Foundry-based namespace.
+
+3. Create a dashboard.
+    * To use a pre-made {{site.data.keyword.openwhisk_short}} dashboard:
+        1. Navigate to **Home > Import**.
+        3. Enter the dashboard ID for the pre-made {{site.data.keyword.openwhisk_short}} dashboard, `8124`, into the **Grafana.net Dashboard** field.
+        4. Click **Import**.
+    * To create a custom dashboard, navigate to **Home > Create New**.
+
+After an action is executed, new metrics are generated and made searchable in Grafana.
+
+### Metric format
+{: #metric_format}
+
+The metrics reflect data collected from your action activations that is aggregated on a per-minute basis. Metrics are searchable on the action or namespace level.
+
+<dl>
+<dt>Action-level metrics</dt>
+<dd>Action-level metrics are values that are calculated for a single action. These metrics are in the format `ibmcloud.public.functions.<region>.action.namespace.<namespace>.<action>.<metric_name>`. Note that some characters might be converted to dashes (`-`) or periods (`.`). For example, if you have an action named `hello-world` in the Cloud Foundry-based namespace `user@email.com_dev` in the `us-south` region, an action-level metric might look like: `ibmcloud.public.functions.us-south.action.namespace.vadim-ibm-com.dev.hello-world.duration`.</dd>
+<dt>Namespace-level metrics</dt>
+<dd>Namespace-level metrics are calculated based on the data from all active actions in the namespace. These metrics are in the format `ibmcloud.public.functions.<region>.action.namespace.all.<metric_name>`. For example, if you have an IAM-based namespace named `myNamespace` in the `us-south` region, a namespace-level metric might look like: `ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations`.</dd>
+</dl>
+
+Because you might have thousands or millions of action activations, the metric values are represented as an aggregation of events produced by many activations. The values are aggregated in the following ways:
+* Sum: All metric values are summed.
+* Average: An arithmetical mean is calculated.
+* Summed average: An arithmetical mean is calculated on component basis (controller), and the values from different components are summed.
+
+The following table describes the available metrics.
+
+| Metric name| Type| Description| Level |
+|------------|-----|------------|-------|
+| duration| average|The average action duration, billed action execution time.| action |
+| init-time| average |The time spent to initialize the action container | action |
+| wait-time| average| The average time spent in a queue waiting for an activation to be scheduled| action |
+| activation| sum| The overall number of activations that were triggered in the system| action |
+| status.success| sum| The number of successful activations of action code| action |
+| status.error.application| sum| The number of unsuccessful activations caused by application errors| action |
+| status.error.developer| sum| The number of unsuccessful activations caused by the developer, such as unhandled exceptions| action |
+| status.error.internal| sum| The number of unsuccessful activations caused by {{site.data.keyword.openwhisk_short}} internal errors| action |
+| kind| sum| The number of activations per action kind, such as per nodejs or python| action |
+| conductor| sum| The number of activations triggered by a conductor| action |
+| concurrent-invocations| summed average| The number of concurrent invocations in the system| namespace |
+| concurrent-rate-limit| sum| The sum of activations that were throttled due to exceeding the concurrency rate limit. No metric is emitted if the limit is not reached| namespace |
+| timed-rate-limit| sum| The sum of activations that were throttled due to exceeding the per minute limit. No metric is emitted if the limit is not reached| namespace |
+
+## Monitoring health of actions
 {: #openwhisk_monitoring}
 
 The [{{site.data.keyword.openwhisk_short}} Dashboard](https://console.bluemix.net/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
@@ -92,12 +182,7 @@ The **Activity Summary** view provides a high-level summary of your {{site.data.
 
 The **Activity Timeline** view displays a vertical bar graph for viewing the activity of past and present actions. Red indicates errors within specific actions. Correlate this view with the **Activity Log** to find more details about errors.
 
-<!--
-### Activity Histogram
-{: #histogram}
 
-The **Activity Histogram** view displays a horizontal bar graph for viewing the activity of past and present actions. Red bars indicate errors within specific actions. Correlate this view with the **Activity Log** to find more details about errors.
--->
 
 ### Activity Log
 {: #log}

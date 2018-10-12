@@ -1,26 +1,40 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-10-10"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Creating and invoking actions
 {: #openwhisk_actions}
 
-Actions are stateless code snippets that run on the {{site.data.keyword.openwhisk}} platform. For example, an action can be used to detect the faces in an image, respond to a database change, aggregate a set of API calls, or post a tweet.
+
+With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one, specific task called actions.
 {:shortdesc}
 
-Actions can be explicitly invoked, or run in response to an event. In either case, each run of an action results in an activation record that is identified by a unique activation ID. The input to an action and the result of an action are a dictionary of key-value pairs, where the key is a string and the value is a valid JSON value. Actions can also be composed of calls to other actions or a defined sequence of actions.
 
-An action can be written as a JavaScript, Swift, Python, PHP function, as a Java method, or as any binary-compatible executable such as Go programs and custom executables packaged as Docker containers. Learn how to create, invoke, and debug actions in your preferred development environment.
+**What is an action?**
+
+An action is a small piece of code that can be explicitly evoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
+
+**Why would I use an action?**
+
+By using actions, you limit the amount of time that your code is running, which lowers your overhead costs.
+
+Actions can be used for several different reasons in your applications. For example, an action can be used to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
+
+**Can I use more than one action at a time?**
+
+Yes! You can use actions to call other actions, or you can string actions together to create sequences. To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences just by calling the package instead of configuring the action or sequence again.
+
 
 ## Creating JavaScript actions
 {: #creating-and-invoking-javascript-actions}
@@ -33,6 +47,7 @@ The following sections guide you through working with actions in JavaScript. Sta
 Review the following steps and examples to create your first JavaScript action.
 
 1. Save the following code in a file named `hello.js`.
+
   ```javascript
   function main() {
       return {payload: 'Hello world'};
@@ -446,7 +461,7 @@ The following sections guide you through creating and invoking a single Python a
 
 An action is simply a top-level Python function. To create a Python action:
 
-1. Save the following code in a filed called `hello.py`.
+1. Save the following code in a file called `hello.py`.
     ```python
     def main(args):
         name = args.get("name", "stranger")
@@ -471,11 +486,7 @@ An action is simply a top-level Python function. To create a Python action:
     ```
     {: screen}
 
-
-    The CLI automatically infers the type of the action by using the source file extension. For `.py` source files, the action runs by using a Python 2 runtime.
-
-    You can also create an action that runs with Python 3 by explicitly specifying the parameter `--kind python:3`. You can also use the Python 3 runtime with kind `python-jessie:3`, which contains additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
-
+    The CLI automatically infers the type of the action by using the source file extension. For `.py` source files, the action runs by using a Python 2 runtime. You can also create an action that runs with Python 3 by explicitly specifying the parameter `--kind python:3`. You can also use the Python 3 runtime with kind `python-jessie:3`, which contains additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about packages included in this Python 3 runtime, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
 
 3. Invoke the action.
     ```
@@ -519,11 +530,8 @@ To install dependencies, package them in a virtual environment, and create a com
 
 2. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtual environment must use the image that corresponds to the kind.
     * For kind `python:2` use the docker image `openwhisk/python2action`.
-
     * For kind `python:3` use the docker image `openwhisk/python3action`.
     * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
-
-
 
   ```
   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"

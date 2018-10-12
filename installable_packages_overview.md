@@ -1,17 +1,17 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-07-19"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
-{:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
-{:screen: .screen}
 {:new_window: target="_blank"}
-{:tip: .tip}
+{:shortdesc: .shortdesc}
+{:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Using installable packages
 {: #installable-packages-overview}
