@@ -19,8 +19,7 @@ lastupdated: "2018-10-13"
 OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK using Xcode 9.
 {: shortdesc}
 
-The mobile SDK is not supported for IAM-based namespaces. Use a [Cloud Foundry-based namespace](openwhisk_namespaces.html#manage_cf) instead.
-{: tip}
+
 
 ## Add the SDK to your app
 
