@@ -1,14 +1,15 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-10-10"
+  years: 2017, 2018
+lastupdated: "2018-10-13"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -30,6 +31,8 @@ Packages can contain actions and feeds. A package cannot contain another package
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
 
+
+
 You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry orgs and spaces](bluemix_cli.html#region_info). The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
 
@@ -40,6 +43,8 @@ The fully qualified name of an entity is
 `/namespaceName/[packageName]/entityName`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, namespaces must be prefixed with a `/`.
 
 For convenience, the Namespace can be left off if it is the user's default namespace. For example, consider a user whose default Namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
+
+
 
 | Fully qualified name | Alias | Namespace | Package | Name |
 | --- | --- | --- | --- | --- |
