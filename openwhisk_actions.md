@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-12"
+lastupdated: "2018-10-17"
 
 ---
 
@@ -23,7 +23,7 @@ With {{site.data.keyword.openwhisk}}, you can create stateless code snippets tha
 
 **What is an action?**
 
-An action is a small piece of code that can be explicitly evoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
+An action is a small piece of code that can be explicitly invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
 
 **Why would I use an action?**
 
@@ -532,6 +532,7 @@ To install dependencies, package them in a virtual environment, and create a com
     * For kind `python:2` use the docker image `openwhisk/python2action`.
     * For kind `python:3` use the docker image `openwhisk/python3action`.
     * For kind `python-jessie:3` use the docker image `ibmfunctions/action-python-v3`.
+
 
   ```
   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
@@ -1056,9 +1057,14 @@ With {{site.data.keyword.openwhisk_short}} Docker actions, you can write your ac
 
 Your code is compiled into an executable binary and embedded into a Docker image. The binary program interacts with the system by taking input from `stdin` and replying through `stdout`.   You can find more information about creating Docker actions in the [References](./openwhisk_reference.html#openwhisk_ref_docker) section.
 
-Prerequisite: You must have a Docker Hub account. Set up a free Docker ID and account on [Docker Hub ![External link icon](../icons/launch-glyph.svg "External link icon")](https://hub.docker.com).
+You can use actions to call images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
+{: tip}
 
-To set up a custom binary and use the uploaded Docker image as an action:
+**Before you begin:**
+
+You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub ![External link icon](../icons/launch-glyph.svg "External link icon")](https://hub.docker.com).
+
+**To set up a Docker action:**
 
 1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
   ```
