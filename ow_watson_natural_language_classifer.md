@@ -1,14 +1,15 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-09-26"
+  years: 2017, 2018
+lastupdated: "2018-10-13"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -127,7 +128,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
 
-2. Using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
+2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 
 3. Click **Install Packages**.
 

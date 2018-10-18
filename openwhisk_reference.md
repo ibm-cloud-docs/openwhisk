@@ -1,14 +1,15 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-10-05"
+  years: 2017, 2018
+lastupdated: "2018-10-13"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -30,6 +31,8 @@ Packages can contain actions and feeds. A package cannot contain another package
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
 
+
+
 You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry orgs and spaces](bluemix_cli.html#region_info). The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
 
@@ -40,6 +43,8 @@ The fully qualified name of an entity is
 `/namespaceName/[packageName]/entityName`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, namespaces must be prefixed with a `/`.
 
 For convenience, the Namespace can be left off if it is the user's default namespace. For example, consider a user whose default Namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
+
+
 
 | Fully qualified name | Alias | Namespace | Package | Name |
 | --- | --- | --- | --- | --- |
@@ -368,17 +373,23 @@ The following packages are available to be used in the Node.js 6.14.4 environmen
 
 OpenWhisk supports running Python actions by using two different runtime versions.
 
-### Python 3 actions (Jessie based)
-{: #openwhisk_ref_python_environments_jessie}
+
+
+### Python 3.6 actions (Debian Jessie based)
+{: #openwhisk_ref_python_environments_3.6}
+
 
 Python 3 actions are executed with Python 3.6.6. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an action.
 When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
+
+
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
 Python version:
 - [3.6.6](https://github.com/docker-library/python/blob/master/3.6/alpine3.6/Dockerfile)
 
 Python packages:
+
 - asn1crypto             0.24.0
 - attrs                  18.1.0
 - autobahn               18.8.1
@@ -449,6 +460,10 @@ Python packages:
 - wheel                  0.31.1
 - zope.interface         4.5.0
 
+
+
+
+
 ### Python 3 actions (Alpine based)
 {: #openwhisk_ref_python_environments_alpine}
 
@@ -499,6 +514,7 @@ Python packages:
 - wheel            0.31.1
 - zope.interface   4.5.0
 
+
 ### Python 2 actions
 
 Python 2 actions are executed with Python 2.7.15, which is the default runtime for Python actions. Unless you specify the `--kind` flag when you create or update an action. To explicitly select this runtime, use `--kind python:2`.
@@ -506,6 +522,7 @@ When creating python actions using virtualenv, use the docker image `openwhisk/p
 The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
 
 Python packages:
+
 - asn1crypto       0.24.0
 - attrs            18.2.0
 - beautifulsoup4   4.5.1
@@ -548,6 +565,8 @@ Python packages:
 - wheel            0.31.1
 - zope.interface   4.5.0
 
+
+
 ## Swift actions
 {: #swift-actions}
 
@@ -568,7 +587,10 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 actions can use the following packages when using single Swift source file:
+
 - Watson Developer Cloud SDK version 0.34.0, https://github.com/watson-developer-cloud/swift-sdk
+
+
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
@@ -605,7 +627,7 @@ The following Composer packages are also available:
 ## Docker actions
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:2.7.12-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
+Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
 
 The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud fn sdk install docker` CLI plug-in command.
 

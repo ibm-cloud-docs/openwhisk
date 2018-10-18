@@ -1,16 +1,17 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Creating serverless REST APIs
 {: #openwhisk_apigateway}
@@ -19,6 +20,8 @@ Use APIs to directly manage {{site.data.keyword.openwhisk}} actions. The API Gat
 {: shortdesc}
 
 For more information about API management, you can read the [API management documentation](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+
+
 
 ## Creating your first API
 {: #create_cli_api}
@@ -74,7 +77,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   ```
   {: screen}
 
-The web action `hello` is invoked, which returns a JSON object that includes the parameter **name** in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using the {{site.data.keyword.openwhisk_short}} authorization API key.
+The web action `hello` is invoked, which returns a JSON object that includes the parameter **name** in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
 
 ## Using full control over the HTTP response
 {: #full_control}

@@ -1,16 +1,17 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-08"
+  years: 2017, 2018
+lastupdated: "2018-10-13"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Working with parameters
 

@@ -1,15 +1,17 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Creating custom event provider feeds
 {: #openwhisk_feeds}
@@ -26,7 +28,7 @@ There are at least three architectural patterns for creating a feed: **Hooks**, 
 ### Hooks
 In the *Hooks* pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook) facility that is exposed by another service.   In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### Polling
 In the "Polling" pattern, a {{site.data.keyword.openwhisk_short}} action is arranged to poll an endpoint periodically to fetch new data. This pattern is relatively easy to build, but the frequencies of events are limited by the polling interval.
@@ -34,10 +36,9 @@ In the "Polling" pattern, a {{site.data.keyword.openwhisk_short}} action is arra
 ### Connections
 In the "Connections"  pattern, a separate service maintains a persistent connection to a feed source. The connection-based implementation might interact with a service endpoint to by using long polling intervals, or to set up a push notification.
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## Difference between feed and trigger
 
@@ -115,7 +116,7 @@ Since {{site.data.keyword.openwhisk_short}} actions must be short-running, an ac
 The provider service has a REST API that allows the {{site.data.keyword.openwhisk_short}} *feed action* to control the feed. The provider service acts as a proxy between the event provider and {{site.data.keyword.openwhisk_short}}. When it receives events from the third party, it sends them on to {{site.data.keyword.openwhisk_short}} by firing a trigger.
 
 The {{site.data.keyword.cloudant_short_notm}} *changes* feed is the canonical example as it stands up a `cloudanttrigger` service, which mediates between {{site.data.keyword.cloudant_short_notm}} notifications over a persistent connection, and {{site.data.keyword.openwhisk_short}} triggers.
-<!-- TODO: add a reference to the open source implementation -->
+
 
 The *alarm* feed is implemented with a similar pattern.
 

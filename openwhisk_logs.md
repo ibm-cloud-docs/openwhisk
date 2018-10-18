@@ -1,21 +1,22 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-24"
+  years: 2017, 2018
+lastupdated: "2018-10-17"
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Logging and monitoring activity
 {: #openwhisk_logs}
 
-Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk_short}} to help you troubleshoot issues and improve the health and performance of your actions.
+Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk}} to help you troubleshoot issues and improve the health and performance of your actions. You can also use the {{site.data.keyword.cloudaccesstraillong}} service to track how users and applications interact with the {{site.data.keyword.openwhisk_short}} service.
 
 ## Viewing logs
 {: #view-logs}
@@ -23,7 +24,7 @@ Logging and monitoring is automatically enabled in {{site.data.keyword.openwhisk
 You can view activation logs directly from the {{site.data.keyword.openwhisk_short}} Monitoring dashboard. The logs are also forwarded to [{{site.data.keyword.loganalysisfull}}](https://console.bluemix.net/docs/services/CloudLogAnalysis/kibana/analyzing_logs_Kibana.html#analyzing_logs_Kibana) where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 {:shortdesc}
 
-**Note**: Logging is not available for the US-East region.
+**Note**: Logging is not available for the US East region.
 
 1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/dashboard/).
 
@@ -71,7 +72,9 @@ You can find specific activation logs by using Kibana's query syntax. The follow
     ```
     {: codeblock}
 
-## Monitoring activity
+
+
+## Monitoring health of actions
 {: #openwhisk_monitoring}
 
 The [{{site.data.keyword.openwhisk_short}} Dashboard](https://console.bluemix.net/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
@@ -92,12 +95,7 @@ The **Activity Summary** view provides a high-level summary of your {{site.data.
 
 The **Activity Timeline** view displays a vertical bar graph for viewing the activity of past and present actions. Red indicates errors within specific actions. Correlate this view with the **Activity Log** to find more details about errors.
 
-<!--
-### Activity Histogram
-{: #histogram}
 
-The **Activity Histogram** view displays a horizontal bar graph for viewing the activity of past and present actions. Red bars indicate errors within specific actions. Correlate this view with the **Activity Log** to find more details about errors.
--->
 
 ### Activity Log
 {: #log}

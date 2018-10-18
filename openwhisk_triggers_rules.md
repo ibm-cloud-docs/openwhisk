@@ -1,15 +1,17 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-08-13"
+  years: 2017, 2018
+lastupdated: "2018-10-13"
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Responding to events with triggers and rules
 {: #openwhisk_triggers}

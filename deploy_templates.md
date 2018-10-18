@@ -1,15 +1,16 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-08-31"
+  years: 2017, 2018
+lastupdated: "2018-10-12"
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:new_window: target="_blank"}
+{:codeblock: .codeblock}
+{:pre: .pre}
 {:tip: .tip}
 
 # Deploying quickstart templates
