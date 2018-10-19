@@ -238,7 +238,6 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 1. Save the following code in a file named `apod.js`.
     ```javascript
     let rp = require('request-promise')
-
     function main(params) {
         const options = {
             uri: "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo",
