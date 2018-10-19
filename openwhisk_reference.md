@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-10-19"
 
 ---
 
@@ -250,7 +250,7 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [cassandra-driver v3.5.0](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
   - [cloudant v1.10.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
   - [@cloudant/cloudant v2.4.0](https://www.npmjs.com/package/cloudant) - This is the official Cloudant library for Node.js.
-  - [commander v2.18.0](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
+  - [commander v2.19.0](https://www.npmjs.com/package/commander) - The complete solution for node.js command-line interfaces.
   - [composeaddresstranslator v1.0.4](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
   - [consul v0.34.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
   - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
@@ -265,15 +265,15 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [ibm_db v2.4.1](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for node.js to IBM DB2 and IBM Informix.
   - [ibmiotf v0.2.41](https://www.npmjs.com/package/ibmiotf) - The node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
   - [iconv-lite v0.4.24](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-  - [jsdom v12.0.0](https://www.npmjs.com/package/jsdom) - jsdom is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
+  - [jsdom v12.2.0](https://www.npmjs.com/package/jsdom) - jsdom is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
   - [jsforce v1.9.1](https://www.npmjs.com/package/jsforce)Salesforce API Library for JavaScript applications.
   - [jsonwebtoken v8.3.0](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
   - [lodash v4.17.11](https://www.npmjs.com/package/lodash) - The Lodash library exported as Node.js modules.
-  - [log4js v3.0.5](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
+  - [log4js v3.0.6](https://www.npmjs.com/package/log4js) - This is a conversion of the log4js framework to work with Node.
   - [marked v0.5.1](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
   - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
   - [moment v2.22.2](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-  - [mongodb v3.1.6](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
+  - [mongodb v3.1.7](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
   - [mysql v2.16.0](https://www.npmjs.com/package/mysql) - This is a node.js driver for mysql.
   - [mustache v3.0.0](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
   - [nano v7.0.1](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
@@ -281,7 +281,7 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [oauth2-server v3.0.1](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
   - [openwhisk v3.18.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
   - [path-to-regex v2.4.0](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as /user/:name into a regular expression which can then be used to match against URL paths.
-  - [pg v7.4.3](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for node.js. Pure JavaScript and optional native libpq bindings.
+  - [pg v7.5.0](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for node.js. Pure JavaScript and optional native libpq bindings.
   - [process v0.11.10](https://www.npmjs.com/package/process) - require('process'); just like any other module.
   - [pug v2.0.3](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
   - [redis v2.8.0](https://www.npmjs.com/package/redis) - This is a complete and feature rich Redis client for Node.js.
@@ -295,13 +295,13 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [socket.io-client v2.1.1](https://www.npmjs.com/package/socket.io-client) - Realtime application framework for socket.io.
   - [superagent v3.8.3](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
   - [swagger-tools v0.10.4](https://www.npmjs.com/package/swagger-tools) - Package that provides various tools for integrating and interacting with Swagger.
-  - [twilio v3.21.0](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
+  - [twilio v3.22.0](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
   - [underscore v1.9.1](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
   - [url-pattern v1.0.3](https://www.npmjs.com/package/url-pattern) - Parse URLs for path parameters more easily than from using a regex string matcher.
   - [uuid v3.3.2](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
   - [validator v10.8.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
   - [vcap_services v0.5.1](https://www.npmjs.com/package/vcap_services)Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides.
-  - [watson-developer-cloud v3.11.1](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
+  - [watson-developer-cloud v3.12.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
   - [when v3.7.8](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
   - [winston v3.1.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
   - [ws v6.0.0](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
@@ -373,15 +373,90 @@ The following packages are available to be used in the Node.js 6.14.4 environmen
 
 OpenWhisk supports running Python actions by using two different runtime versions.
 
+### Python 3.7 actions (Debian Stretch based)
+{: #openwhisk_ref_python_environments_3.7}
 
+
+Python 3 actions are executed with Python 3.7. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.7` when you create or update an action.
+When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3.7`.
+
+The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
+
+Python version:
+- [3.7](https://github.com/docker-library/python/blob/38dcdb4320c8668416205e044ee50489c059da18/3.7/stretch/slim/Dockerfile)
+
+Python packages:
+- asn1crypto==0.24.0
+- attrs==18.2.0
+- Automat==0.7.0
+- beautifulsoup4==4.6.3
+- botocore==1.12.13
+- cassandra-driver==3.15.1
+- certifi==2018.8.24
+- cffi==1.11.5
+- chardet==3.0.4
+- Click==7.0
+- cloudant==2.10.0
+- constantly==15.1.0
+- cryptography==2.3.1
+- cssselect==1.0.3
+- docutils==0.14
+- elasticsearch==5.5.3
+- Flask==1.0.2
+- gevent==1.3.6
+- greenlet==0.4.15
+- httplib2==0.11.3
+- hyperlink==18.0.0
+- ibm-cos-sdk==2.3.0
+- ibm-db==2.0.9
+- ibmcloudsql==0.2.13
+- idna==2.7
+- incremental==17.5.0
+- itsdangerous==0.24
+- Jinja2==2.10
+- jmespath==0.9.3
+- kafka-python==1.4.3
+- lxml==4.2.5
+- MarkupSafe==1.0
+- numpy==1.15.2
+- pandas==0.23.4
+- parsel==1.5.0
+- pika==0.12.0
+- Pillow==5.2.0
+- psycopg2==2.7.5
+- pyasn1==0.4.4
+- pyasn1-modules==0.2.2
+- pycparser==2.19
+- PyDispatcher==2.0.5
+- PyHamcrest==1.9.0
+- pymongo==3.7.1
+- pyOpenSSL==18.0.0
+- python-dateutil==2.7.3
+- pytz==2018.5
+- queuelib==1.5.0
+- redis==2.10.6
+- requests==2.19.1
+- scikit-learn==0.20.0
+- scipy==1.1.0
+- Scrapy==1.5.1
+- service-identity==17.0.0
+- simplejson==3.16.0
+- six==1.11.0
+- tornado==4.5.2
+- Twisted==18.7.0
+- urllib3==1.23
+- virtualenv==16.0.0
+- w3lib==1.19.0
+- watson-developer-cloud==2.1.0
+- websocket-client==0.47.0
+- Werkzeug==0.14.1
+- zope.interface==4.5.0
 
 ### Python 3.6 actions (Debian Jessie based)
 {: #openwhisk_ref_python_environments_3.6}
 
-
-Python 3 actions are executed with Python 3.6.6. To use this runtime, specify the `wsk` CLI parameter `--kind python-jessie:3` when you create or update an action.
-When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3`.
-
+Python 3 actions are executed with Python 3.6.6. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.6` when you create or update an action.
+When creating python actions using virtualenv, use the docker image `ibmfunctions/action-python-v3.6`.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
@@ -389,130 +464,72 @@ Python version:
 - [3.6.6](https://github.com/docker-library/python/blob/master/3.6/alpine3.6/Dockerfile)
 
 Python packages:
-
-- asn1crypto             0.24.0
-- attrs                  18.1.0
-- autobahn               18.8.1
-- Automat                0.7.0
-- beautifulsoup4         4.6.3
-- botocore               1.10.81
-- cassandra-driver       3.14.0
-- certifi                2018.8.13
-- cffi                   1.11.5
-- chardet                3.0.4
-- click                  6.7
-- cloudant               2.9.0
-- constantly             15.1.0
-- cryptography           2.3.1
-- cssselect              1.0.3
-- docutils               0.14
-- elasticsearch          5.5.3
-- Flask                  1.0.2
-- gevent                 1.2.2
-- greenlet               0.4.14
-- httplib2               0.11.3
-- hyperlink              18.0.0
-- ibm-cos-sdk            2.1.3
-- ibm-db                 2.0.9
-- ibmcloudsql            0.2.13
-- idna                   2.7
-- incremental            17.5.0
-- itsdangerous           0.24
-- Jinja2                 2.10
-- jmespath               0.9.3
-- kafka-python           1.4.3
-- lxml                   4.2.4
-- MarkupSafe             1.0
-- numpy                  1.15.0
-- pandas                 0.23.4
-- parsel                 1.5.0
-- pika                   0.12.0
-- Pillow                 5.2.0
-- pip                    18.0
-- psycopg2               2.7.5
-- pyasn1                 0.4.4
-- pyasn1-modules         0.2.2
-- pycparser              2.18
-- PyDispatcher           2.0.5
-- PyHamcrest             1.9.0
-- pymongo                3.7.1
-- pyOpenSSL              18.0.0
-- python-dateutil        2.7.3
-- pytz                   2018.5
-- queuelib               1.5.0
-- redis                  2.10.6
-- requests               2.19.1
-- scikit-learn           0.19.2
-- scipy                  1.1.0
-- Scrapy                 1.5.1
-- service-identity       17.0.0
-- setuptools             40.2.0
-- simplejson             3.16.0
-- six                    1.11.0
-- tornado                4.5.2
-- Twisted                18.7.0
-- txaio                  18.7.1
-- urllib3                1.23
-- virtualenv             16.0.0
-- w3lib                  1.19.0
-- watson-developer-cloud 1.7.0
-- Werkzeug               0.14.1
-- wheel                  0.31.1
-- zope.interface         4.5.0
-
-
-
-
-
-### Python 3 actions (Alpine based)
-{: #openwhisk_ref_python_environments_alpine}
-
-Python 3 actions are executed with Python 3.6.6. To use this runtime, specify the `wsk` CLI parameter `--kind python:3` when you create or update an action.
-When creating python actions using virtualenv, use the docker image `openwhisk/python3action`.
-The following packages are available for use by Python actions, in addition to the Python 3.6 standard libraries.
-
-Python packages:
-- asn1crypto       0.24.0
-- attrs            18.2.0
-- Automat          0.7.0
-- beautifulsoup4   4.5.3
-- cffi             1.11.5
-- click            6.7
-- constantly       15.1.0
-- cryptography     2.3.1
-- cssselect        1.0.3
-- Flask            0.12
-- gevent           1.2.1
-- greenlet         0.4.15
-- httplib2         0.10.3
-- idna             2.7
-- incremental      17.5.0
-- itsdangerous     0.24
-- Jinja2           2.10
-- kafka-python     1.3.4
-- lxml             3.7.3
-- MarkupSafe       1.0
-- parsel           1.5.0
-- pip              18.0
-- pyasn1           0.4.4
-- pyasn1-modules   0.2.2
-- pycparser        2.19
-- PyDispatcher     2.0.5
-- pyOpenSSL        18.0.0
-- python-dateutil  2.6.0
-- queuelib         1.5.0
-- requests         2.13.0
-- Scrapy           1.3.3
-- service-identity 17.0.0
-- setuptools       40.4.1
-- simplejson       3.10.0
-- six              1.11.0
-- Twisted          17.1.0
-- virtualenv       15.1.0
-- w3lib            1.19.0
-- Werkzeug         0.14.1
-- wheel            0.31.1
-- zope.interface   4.5.0
+- asn1crypto==0.24.0
+- attrs==18.2.0
+- autobahn==18.9.2
+- Automat==0.7.0
+- beautifulsoup4==4.6.3
+- botocore==1.12.13
+- cassandra-driver==3.15.1
+- certifi==2018.8.24
+- cffi==1.11.5
+- chardet==3.0.4
+- Click==7.0
+- cloudant==2.10.0
+- constantly==15.1.0
+- cryptography==2.3.1
+- cssselect==1.0.3
+- docutils==0.14
+- elasticsearch==5.5.3
+- Flask==1.0.2
+- gevent==1.3.6
+- greenlet==0.4.15
+- httplib2==0.11.3
+- hyperlink==18.0.0
+- ibm-cos-sdk==2.3.0
+- ibm-db==2.0.9
+- ibmcloudsql==0.2.13
+- idna==2.7
+- incremental==17.5.0
+- itsdangerous==0.24
+- Jinja2==2.10
+- jmespath==0.9.3
+- kafka-python==1.4.3
+- lxml==4.2.5
+- MarkupSafe==1.0
+- numpy==1.15.2
+- pandas==0.23.4
+- parsel==1.5.0
+- pika==0.12.0
+- Pillow==5.2.0
+- psycopg2==2.7.5
+- pyasn1==0.4.4
+- pyasn1-modules==0.2.2
+- pycparser==2.19
+- PyDispatcher==2.0.5
+- PyHamcrest==1.9.0
+- pymongo==3.7.1
+- pyOpenSSL==18.0.0
+- python-dateutil==2.7.3
+- pytz==2018.5
+- queuelib==1.5.0
+- redis==2.10.6
+- requests==2.19.1
+- scikit-learn==0.20.0
+- scipy==1.1.0
+- Scrapy==1.5.1
+- service-identity==17.0.0
+- simplejson==3.16.0
+- six==1.11.0
+- tornado==4.5.2
+- Twisted==18.7.0
+- txaio==18.8.1
+- urllib3==1.23
+- virtualenv==16.0.0
+- w3lib==1.19.0
+- watson-developer-cloud==1.7.1
+- Werkzeug==0.14.1
+- zope.interface==4.5.0
 
 
 ### Python 2 actions
@@ -522,50 +539,52 @@ When creating python actions using virtualenv, use the docker image `openwhisk/p
 The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
 
 Python packages:
-
-- asn1crypto       0.24.0
-- attrs            18.2.0
-- beautifulsoup4   4.5.1
-- cffi             1.11.5
-- click            6.7
-- cryptography     2.3.1
-- cssselect        1.0.3
-- enum34           1.1.6
-- Flask            0.11.1
-- functools32      3.2.3.post2
-- gevent           1.1.2
-- greenlet         0.4.15
-- httplib2         0.9.2
-- idna             2.7
-- ipaddress        1.0.22
-- itsdangerous     0.24
-- Jinja2           2.10
-- kafka-python     1.3.1
-- lxml             3.6.4
-- MarkupSafe       1.0
-- parsel           1.5.0
-- pip              18.0
-- pyasn1           0.4.4
-- pyasn1-modules   0.2.2
-- pycparser        2.19
-- PyDispatcher     2.0.5
-- pyOpenSSL        18.0.0
-- python-dateutil  2.5.3
-- queuelib         1.5.0
-- requests         2.11.1
-- Scrapy           1.1.2
-- service-identity 17.0.0
-- setuptools       40.4.1
-- simplejson       3.8.2
-- six              1.11.0
-- Twisted          16.4.0
-- virtualenv       15.1.0
-- w3lib            1.19.0
-- Werkzeug         0.14.1
-- wheel            0.31.1
-- zope.interface   4.5.0
-
-
+- asn1crypto==0.24.0
+- attrs==18.2.0
+- Automat==0.7.0
+- beautifulsoup4==4.6.3
+- certifi==2018.8.24
+- cffi==1.11.5
+- chardet==3.0.4
+- Click==7.0
+- constantly==15.1.0
+- cryptography==2.3.1
+- cssselect==1.0.3
+- enum34==1.1.6
+- Flask==1.0.2
+- functools32==3.2.3.post2
+- gevent==1.3.6
+- greenlet==0.4.15
+- httplib2==0.11.3
+- hyperlink==18.0.0
+- idna==2.7
+- incremental==17.5.0
+- ipaddress==1.0.22
+- itsdangerous==0.24
+- Jinja2==2.10
+- kafka-python==1.4.3
+- lxml==4.2.5
+- MarkupSafe==1.0
+- parsel==1.5.0
+- pyasn1==0.4.4
+- pyasn1-modules==0.2.2
+- pycparser==2.19
+- PyDispatcher==2.0.5
+- PyHamcrest==1.9.0
+- pyOpenSSL==18.0.0
+- python-dateutil==2.7.3
+- queuelib==1.5.0
+- requests==2.19.1
+- Scrapy==1.5.1
+- service-identity==17.0.0
+- simplejson==3.16.0
+- six==1.11.0
+- Twisted==18.7.0
+- urllib3==1.23
+- virtualenv==16.0.0
+- w3lib==1.19.0
+- Werkzeug==0.14.1
+- zope.interface==4.5.0
 
 ## Swift actions
 {: #swift-actions}
@@ -587,10 +606,7 @@ Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 actions can use the following packages when using single Swift source file:
-
-- Watson Developer Cloud SDK version 0.34.0, https://github.com/watson-developer-cloud/swift-sdk
-
-
+- Watson Developer Cloud SDK version 0.35.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Migrating Swift 3.1.1 to Swift 4.1
 
