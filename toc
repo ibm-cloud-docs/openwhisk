@@ -28,7 +28,6 @@ IBM Cloud Functions
     Creating actions
         openwhisk_actions.md
         openwhisk_webactions.md
-        openwhisk_managing.md
         parameters.md
         binding_services.md
         openwhisk_packages.md
