@@ -23,13 +23,14 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     bluemix_cli.md
+    openwhisk_namespaces.md
 
     {: .topicgroup}
     Creating actions
         openwhisk_actions.md
         openwhisk_webactions.md
+        managing.md
         parameters.md
-        binding_services.md
         openwhisk_packages.md
 
     {: .topicgroup}
