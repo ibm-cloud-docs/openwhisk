@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-12"
+lastupdated: "2018-10-23"
 
 ---
 
@@ -125,9 +125,9 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 8. In the left-hand navigation, click **Endpoints**
 
-9. In the Web Action section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
+9. In the **Web Action** section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
 
-10. Optional: After the template deploys, you can navigate to the Actions dashboard to customize the code in the two new packages:
+10. Optional: After the template deploys, you can navigate to the **Actions** dashboard to customize the code in the two new packages:
     * The `cloud-object-storage` package, which contains actions that work with {{site.data.keyword.cos_short}} instances
     * The template package (default name `upload-image`), which contains the `app` action
 
@@ -159,7 +159,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 5. In the left-hand navigation, click **Endpoints**.
 
-6. In the Web Action section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
+6. In the **Web Action** section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
 
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}

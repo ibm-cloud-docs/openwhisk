@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-10-23"
 
 ---
 
@@ -142,10 +142,10 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 6. Once the package has been installed you will be redirected to the Actions page and can search for your new package, which is named **push-notifications**.
 
-7. To use the Actions in the **push-notifications** package, you must bind service credentials to the actions.
+7. To use the actions in the **push-notifications** package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
-    1. Click an Action from the **push-notifications** package that you want to use. The details page for that Action opens.
+    1. Click an action from the **push-notifications** package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 

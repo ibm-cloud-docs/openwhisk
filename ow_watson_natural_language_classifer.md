@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-10-23"
 
 ---
 
@@ -138,12 +138,12 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 5. Click **Install**.
 
-6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **natural-language-classifier-v1**.
+6. Once the package has been installed you will be redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
 
-7. To use the Actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
+7. To use the actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
-    1. Click an Action from the **natural-language-classifier-v1** Package that you want to use. The details page for that Action opens.
+    1. Click an action from the **natural-language-classifier-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 

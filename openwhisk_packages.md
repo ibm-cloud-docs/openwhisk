@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-10-23"
 
 ---
 
@@ -495,7 +495,7 @@ After the actions and feeds that comprise a package are debugged and tested, the
   ```
   {: screen}
 
-Others can now use your **custom** package, including binding to the package or directly invoking an action in it. Other users must know the fully qualified names of the package to bind it or invoke actions in it. actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
+Others can now use your **custom** package, including binding to the package or directly invoking an action in it. Other users must know the fully qualified names of the package to bind it or invoke actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 
 1. Get a description of the package to show the fully qualified names of the package and action.
   ```
