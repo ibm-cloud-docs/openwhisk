@@ -23,7 +23,6 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     bluemix_cli.md
-    openwhisk_namespaces.md
 
     {: .topicgroup}
     Creating actions
