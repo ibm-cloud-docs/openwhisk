@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -56,7 +56,7 @@ Look at the following sample IoT application that uses {{site.data.keyword.openw
 ## API backend
 {: #openwhisk_api_backend}
 
-Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for actions. The [experimental feature](./openwhisk_apigateway.html) of {{site.data.keyword.openwhisk_short}} can invoke an action with HTTP methods other than POST and without the action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
+Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for actions. The [{{site.data.keyword.openwhisk_short}} feature](./openwhisk_apigateway.html) can invoke an action with HTTP methods other than POST and without the action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
 
 Additionally, {{site.data.keyword.openwhisk_short}} actions can be connected to an API Management tool of choice (such as [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) or other). Similar to other use cases, all considerations for scalability, and other Qualities of Services (QoS) apply.
 
