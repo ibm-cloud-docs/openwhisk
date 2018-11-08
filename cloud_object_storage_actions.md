@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-23"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -13,7 +13,7 @@ lastupdated: "2018-10-23"
 {:pre: .pre}
 {:tip: .tip}
 
-# Object Storage package
+# Cloud Object Storage package
 {: #cloud_object_storage_actions}
 
 The {{site.data.keyword.cos_full}} package provides a set of actions for interacting with {{site.data.keyword.cos_full_notm}} instances. These actions allow you to read, write, and delete from the buckets that are present on an {{site.data.keyword.cos_short}} instance.
@@ -271,7 +271,7 @@ Example output:
 
 6. Click **Invoke**.
 
-7. Verify that the output looks similar to the following:   
+7. Verify that the output looks similar to the following:
     ```
     object-write 3855 ms 6/7/2018, 14:56:09
     Activation ID: bb6eba3cf69wereaeba3cf691a1aad8

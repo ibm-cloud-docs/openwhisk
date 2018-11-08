@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -15,6 +15,8 @@ lastupdated: "2018-10-13"
 
 # Watson: Speech to Text package
 {: #openwhisk_catalog_watson_texttospeech}
+
+This pre-installed package is not available in the Tokyo region. Please see the installable [Speech to Text](./ow_watson_speech_to_text.html) package using IAM authentication. {: tip}
 
 The `/whisk.system/watson-speechToText` package offers a convenient way to call Watson APIs to convert the speech into text.
 {: shortdesc}

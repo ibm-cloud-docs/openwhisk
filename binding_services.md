@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-22"
+lastupdated: "2018-11-06"
 
 ---
 
@@ -14,17 +14,11 @@ lastupdated: "2018-10-22"
 {:tip: .tip}
 
 
-
-
-
 # Binding services to actions
 {: #binding_services}
 
 You can use the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 {: shortdesc}
-
-
-
 
 
 Don't confuse `ibmcloud fn service bind` command with the `cf bind-service` command that is available in Cloud Foundry.
@@ -152,6 +146,10 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) f
 For more information about passing parameters to an action or package and how credentials are affected during `update` operations, see [Working with parameters](./parameters.html#pass-params-action).
 
 
+If you change the name of the org or space that contains entities, then a namespace is created with the new name. The entities that your old namespace contained are not visible in the new namespace and are scheduled to be deleted. If you made the change by accident, you can quickly revert it and you might be able to save your entities before they are deleted.
+{: tip}
+
+
 ## Unbinding a service from an action or package
 {: #cli_unbind}
 
@@ -161,7 +159,3 @@ Unbind a service from an action or package. Unbinding a service removes existing
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
-
-
-
-

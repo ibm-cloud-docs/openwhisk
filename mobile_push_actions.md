@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-12"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -16,6 +16,8 @@ lastupdated: "2018-10-12"
 # Mobile push package
 {: #openwhisk_catalog_pushnotifications}
 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](./ow_push_notifications.html) package for the action `sendMessage` using IAM authentication {: tip}
+
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
 {: shortdesc}
 
@@ -25,7 +27,7 @@ The package includes the following actions and feeds:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | package | appId, appSecret, admin_url | Work with the Push Service. |
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
-| `/whisk.system/pushnotifications/webhook` | feed | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
+
 
 For information about firing Trigger events when there is device activity, see the [Mobile push on device events](./openwhisk_pushnotifications.html) topic.
 

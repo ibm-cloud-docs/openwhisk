@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -15,6 +15,8 @@ lastupdated: "2018-10-13"
 
 # Mobile push on device events
 {: #openwhisk_pushnotifications}
+
+This pre-installed package is not available in the Tokyo region. {: tip}
 
 Learn how to configure the Push service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
 {: shortdesc}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-12"
+lastupdated: "2018-11-07"
 
 ---
 
@@ -76,7 +76,9 @@ For detailed information about how to use triggers in {{site.data.keyword.messag
 ## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
+The `/messaging/messageHubProduce ` action is not available in the Tokyo region. {: tip}
+
+The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date.  To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
 If you would like to use a {{site.data.keyword.openwhisk_short}} action to conveniently produce a message to {{site.data.keyword.messagehub}}, you can use the `/messaging/messageHubProduce` action. This action takes the following parameters:

@@ -23,7 +23,6 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     bluemix_cli.md
-    openwhisk_namespaces.md
 
     {: .topicgroup}
     Creating actions
@@ -81,6 +80,11 @@ IBM Cloud Functions
     SDK and frameworks
         openwhisk_goserverless.md
         openwhisk_mobile_sdk.md
+
+    {: .topicgroup}
+    Managing Functions in Tokyo
+        openwhisk_namespaces.md
+        iam.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
