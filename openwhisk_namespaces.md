@@ -197,7 +197,35 @@ You can create an IAM managed namespace as part of a resource group and manage a
     ```
     {: pre}
 
+    You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
+    ```
+    curl --request GET \
+      --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces?limit=0&offset=0' \
+      --header 'accept: application/json' \
+      --header 'authorization: <IAM_token>'
+    ```
+    {: pre}
 
+    Example output:
+    ```
+    {
+      "limit": 10,
+      "offset": 0,
+      "total_Count": 2,
+      "namespaces": [
+        {
+          "id": "12345678-1234-abcd-1234-123456789abc",
+          "location": "jp-tok"
+        },
+        {
+          "id": "BobsOrg_dev",
+          "classic_type": 1,
+          "location": "jp-tok"
+        }
+      ]
+    }
+    ```
+    {: screen}
 
 
 For more information about working with HTTP REST, check out the [Cloud Functions API docs](https://console.bluemix.net/apidocs/functions).
