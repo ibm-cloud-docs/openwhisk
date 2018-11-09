@@ -6,7 +6,7 @@ lastupdated: "2018-11-09"
 
 ---
 
-{:new_window: target="blank"}
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -201,6 +201,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
 
 
 For more information about working with HTTP REST, check out the [Cloud Functions API docs](https://console.bluemix.net/apidocs/functions).
+{: tip}
 
 </br>
 </br>
