@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-08"
+lastupdated: "2018-11-09"
 
 ---
 
@@ -12,6 +12,7 @@ lastupdated: "2018-11-08"
 {:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+{:note: .note}
 
 # Creating namespaces
 {: #openwhisk_namespaces}
@@ -19,15 +20,14 @@ lastupdated: "2018-11-08"
 In the Tokyo region, {{site.data.keyword.openwhisk_short}} uses Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create access policies for the namespace.
 {: shortdesc}
 
-When you create an {{site.data.keyword.openwhisk_short}} namespace it is identified as as an IAM service instance. IAM managed service instances must be created within a
+When you create an {{site.data.keyword.openwhisk_short}} namespace it is identified as an IAM service instance. IAM managed service instances must be created within a
 [resource group](/docs/resources/resourcegroups.html). You can either create your own resource group or target the default. To see the IAM service-instances that you have in your account, you can run `ibmcloud resource service-instances`.
 
 The following artifacts are created in conjunction with your namespace. Do not delete them.
 
-* An ID is created that can be used as a functional id when you make outbound calls. All of the actions that are created in this namespace use this ID. To see all of your IDs, run `ibmcloud fn namespace list`.
+* A Service ID is created that can be used as a functional id when you make outbound calls. All of the actions that are created in this namespace can use this Service ID for access to other resources. To see all of your Service IDs, run `ibmcloud iam service-ids`.
 
-* An API key is created and can be used to generate IAM tokens. You can then use the tokens to authenticate the namespace with other IBM Cloud services. You can download the API key from the Cloud Functions dashboard.
-
+* An API key is created for the above Service ID which can be used to generate IAM tokens. You can then use the tokens to authenticate the namespace with other IBM Cloud services. The API key is provided to the actions as environment variable.
 
 
 ## Limitations
@@ -35,6 +35,14 @@ The following artifacts are created in conjunction with your namespace. Do not d
 
 [Creating APIs with API Gateway](openwhisk_apigateway.html) and using the [mobile SDK](openwhisk_mobile_sdk.html) are not supported for IAM managed namespaces at this time.
 
+</br>
+
+In order to target the {{site.data.keyword.openwhisk_short}} backend service in Tokyo location, you have to append the `apihost` to all CLI calls such as `ibmcloud fn namespace list --apihost jp-tok.functions.cloud.ibm.com`. This is temporary until the location can be targeted by `ibmcloud target -r jp-tok`.
+{: note}
+
+
+
+</br>
 </br>
 
 
@@ -96,7 +104,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
     Details of namespace: 'myNamespace'
     Description: 'short description'
     Resource Plan Id: 'functions-base-plan'
-    Location: 'us-south'
+    Location: 'jp-tok'
     ID: '05bae599-ead6-4ccb-9ca3-94ce8c8b3e43'
     ```
     {: screen}
@@ -128,7 +136,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
 
     ```
     curl --request POST \
-    --url 'https://openwhisk.ng.bluemix.net/api/servicebroker/api/v1/namespaces \
+    --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces \
     --header 'accept: application/json' \
     --header 'authorization: <IAM_token>' \
     --data '{"description":"string","name":"string","resource_group_id":"string","resource_plan_id":"string"}'
@@ -170,8 +178,8 @@ You can create an IAM managed namespace as part of a resource group and manage a
     {
       "description": "My new namespace for packages X, Y, and Z.",
       "id": "12345678-1234-abcd-1234-123456789abc",
-      "location": "us-south",
-      "crn": "crn:v1:functions:us-south:a/1a22bb3c44dd1a22bb3c44dd1a22:12345678-1234-abcd-1234-123456789abc::",
+      "location": "jp-tok",
+      "crn": "crn:v1:functions:jp-tok:a/1a22bb3c44dd1a22bb3c44dd1a22:12345678-1234-abcd-1234-123456789abc::",
       "name": "mynamespace",
       "resource_group_id": "1a22bb3c44dd1a22bb3c44dd1a22",
       "resource_plan_id": "functions-base-plan"
@@ -189,10 +197,39 @@ You can create an IAM managed namespace as part of a resource group and manage a
     ```
     {: pre}
 
+    You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
+    ```
+    curl --request GET \
+      --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces?limit=0&offset=0' \
+      --header 'accept: application/json' \
+      --header 'authorization: <IAM_token>'
+    ```
+    {: pre}
 
+    Example output:
+    ```
+    {
+      "limit": 10,
+      "offset": 0,
+      "total_Count": 2,
+      "namespaces": [
+        {
+          "id": "12345678-1234-abcd-1234-123456789abc",
+          "location": "jp-tok"
+        },
+        {
+          "id": "BobsOrg_dev",
+          "classic_type": 1,
+          "location": "jp-tok"
+        }
+      ]
+    }
+    ```
+    {: screen}
 
 
 For more information about working with HTTP REST, check out the [Cloud Functions API docs](https://console.bluemix.net/apidocs/functions).
+{: tip}
 
 </br>
 </br>

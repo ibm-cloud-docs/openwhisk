@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-07"
+lastupdated: "2018-11-08"
 
 ---
 
@@ -76,27 +76,10 @@ For detailed information about how to use triggers in {{site.data.keyword.messag
 ## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-The `/messaging/messageHubProduce ` action is not available in the Tokyo region. {: tip}
-
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date.  To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
+The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
-If you would like to use a {{site.data.keyword.openwhisk_short}} action to conveniently produce a message to {{site.data.keyword.messagehub}}, you can use the `/messaging/messageHubProduce` action. This action takes the following parameters:
-
-|Name|Type|Description|
-|---|---|---|
-|kafka_brokers_sasl|JSON Array of Strings|This parameter is an array of `<host>:<port>` strings that comprise the brokers in your {{site.data.keyword.messagehub}} instance.|
-|user|String|Your {{site.data.keyword.messagehub}} username.|
-|password|String|Your {{site.data.keyword.messagehub}} password.|
-|topic|String|The topic that you would like the trigger to listen to.|
-|value|String|The value for the message you would like to produce.|
-|key|String (Optional)|The key for the message you would like to produce.|
-
-While the first three parameters can be automatically bound by using `ibmcloud fn package refresh`, see the following example that invokes the action with all necessary parameters:
-```
-ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
-```
-{: pre}
+To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams/eventstreams112.html#producing_messages).
 
 ## References
 - [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)

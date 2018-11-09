@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-08"
+lastupdated: "2018-11-09"
 
 ---
 
-{:new_window: target="blank"}
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:pre: .pre}
@@ -36,7 +36,7 @@ In {{site.data.keyword.openwhisk_short}}, namespace's are considered an IBM Clou
 
 {{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, while using the service roles to manage interaction with the namespaces themselves.
 
-Want to learn more about IAM key concepts? Check out  https://console.test.cloud.ibm.com/docs/iam/iam_overview.html#iamconcepts
+Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam/iam_overview.html#iamconcepts).
 {: tip}
 
 </br>
@@ -169,6 +169,6 @@ You can access other resources from an IAM managed namespace by using an IAM tok
 
 Similar to how a user ID identifies a user, a service ID represents a specific resource. This means that IAM policies can be applied to those resources that manage access permissions. Just like a user, a resource must authenticate to verify its identity. Within Functions, this can be leveraged by the actions' implementation when accessing other services or resources.
 
-When you create a new IAM managed namespace, Functions automatically creates a corresponding service ID that identifies the namespace and an API key. At runtime, Cloud Functions passes the API key to the action code as the value of the environment variable `__OW_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported SDKs such as Cloudant, Watson, and COS authenticate with the IAM key itself. Other IAM managed services or resources that use a REST API, authenticate with the token that is derived from the IAM key.
+When you create a new IAM managed namespace, Functions automatically creates a corresponding service ID that identifies the namespace and an API key. At runtime, Cloud Functions passes the API key to the action code as the value of the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported SDKs such as Cloudant, Watson, and COS authenticate with the IAM key itself. Other IAM managed services or resources that use a REST API, authenticate with the token that is derived from the IAM key.
 
 Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam/iam_apikeys_services.html#iamapikeysforservices).
