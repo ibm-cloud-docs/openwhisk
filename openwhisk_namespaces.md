@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-08"
+lastupdated: "2018-11-09"
 
 ---
 
-{:new_window: target="_blank"}
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -30,10 +30,6 @@ The following artifacts are created in conjunction with your namespace. Do not d
 * An API key is created for the above Service ID which can be used to generate IAM tokens. You can then use the tokens to authenticate the namespace with other IBM Cloud services. The API key is provided to the actions as environment variable.
 
 
-
-
-
-
 ## Limitations
 {: #limitations}
 
@@ -43,7 +39,6 @@ The following artifacts are created in conjunction with your namespace. Do not d
 
 In order to target the {{site.data.keyword.openwhisk_short}} backend service in Tokyo location, you have to append the `apihost` to all CLI calls such as `ibmcloud fn namespace list --apihost jp-tok.functions.cloud.ibm.com`. This is temporary until the location can be targeted by `ibmcloud target -r jp-tok`.
 {: note}
-
 
 
 
@@ -137,10 +132,6 @@ You can create an IAM managed namespace as part of a resource group and manage a
 
 
 
-
-
-
-
 2. Create an IAM-enabled namespace.
 
     ```
@@ -205,10 +196,6 @@ You can create an IAM managed namespace as part of a resource group and manage a
       --header 'authorization: <IAM_token>'
     ```
     {: pre}
-
-
-
-    
 
 
 
