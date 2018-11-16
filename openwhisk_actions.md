@@ -332,13 +332,11 @@ For example, consider a directory with the following files:
     {: tip}
 
 
-
 5. Create the action. When creating an action from a `.zip` archive, you must explicitly provide a value for the `--kind` flag by using `nodejs:6` or `nodejs:8`.
     ```
     ibmcloud fn action create packageAction --kind nodejs:6 action.zip
     ```
     {: pre}
-
 
 6. Invoke the action.
     ```
@@ -386,7 +384,6 @@ You can package an action by using a JavaScript module bundler such as [webpack 
     }
     ```
     {: codeblock}
-
 
 2. Save the following webpack configuration code in a file named `webpack.config.js`.
     ```javascript
@@ -441,7 +438,8 @@ You can package an action by using a JavaScript module bundler such as [webpack 
         ```
         {: pre}
 
-    **Note**: The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary dependencies because this is not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary dependencies because this is not included with the file `bundle.js`.
+    {: tip}
 
 ## Creating Python actions
 {: #creating-python-actions}
