@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-19"
+lastupdated: "2018-11-16"
 
 ---
 
@@ -69,7 +69,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The CLI automatically infers the type of the action by using the source file extension. For `.js` source files, the action runs by using a Node.js 6 runtime. You can also create an action that runs with Node.js 8 by explicitly specifying the parameter `--kind nodejs:8`. For more information, see the Node.js 6 vs 8 [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
+  The CLI automatically infers the type of the action by using the source file extension. For `.js` source files, the action runs by using a Node.js 6 runtime. You can also create an action that runs with Node.js 8 by explicitly specifying the parameter `--kind nodejs:8`. For more information, see the Node.js[reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
 
 3. Verify that your `hello` action is in your actions list.
   ```
@@ -238,6 +238,7 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 1. Save the following code in a file named `apod.js`.
     ```javascript
     let rp = require('request-promise')
+
     function main(params) {
         const options = {
             uri: "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo",
@@ -330,11 +331,14 @@ For example, consider a directory with the following files:
     Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
     {: tip}
 
+
+
 5. Create the action. When creating an action from a `.zip` archive, you must explicitly provide a value for the `--kind` flag by using `nodejs:6` or `nodejs:8`.
     ```
     ibmcloud fn action create packageAction --kind nodejs:6 action.zip
     ```
     {: pre}
+
 
 6. Invoke the action.
     ```
@@ -362,6 +366,8 @@ If packaging the action as a zip includes too many unnecessary files or if you n
 
 You can package an action by using a JavaScript module bundler such as [webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/). When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 
+
+
 1. Save the following code in a file named `package.json`. `webpack` is added as a development depency.
     ```json
     {
@@ -380,6 +386,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
     }
     ```
     {: codeblock}
+
 
 2. Save the following webpack configuration code in a file named `webpack.config.js`.
     ```javascript

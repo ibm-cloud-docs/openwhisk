@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-09"
+lastupdated: "2018-11-16"
 
 ---
 
@@ -229,12 +229,14 @@ For the `whisk.error()`, you can return a rejected Promise (that is, Promise.rej
 ### JavaScript runtime environments
 {: #openwhisk_ref_javascript_environments}
 
-JavaScript actions can be executed in Node.js version 6 or Node.js version 8.
+JavaScript actions can be executed in Node.js version 8 or 6.
 Currently actions are executed by default in a Node.js version 6 environment.
 ### Packaging npm packages with your actions
 For any `npm` packages that are not pre-installed in the Node.js environment, you can bundle them as dependencies when you create or update your action.
 
 For more information, see [Packaging an action as a Node.js module](./openwhisk_actions.html#openwhisk_js_packaged_action) or [Packaging an action as a single bundle](./openwhisk_actions.html#openwhisk_js_webpack_action).
+
+
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
