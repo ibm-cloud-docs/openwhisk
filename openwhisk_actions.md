@@ -238,7 +238,6 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 1. Save the following code in a file named `apod.js`.
     ```javascript
     let rp = require('request-promise')
-
     function main(params) {
         const options = {
             uri: "https://api.nasa.gov/planetary/apod?api_key=NNKOjkoul8n1CH18TWA9gwngW1s1SmjESPjNoUFo",
@@ -330,7 +329,6 @@ For example, consider a directory with the following files:
 
     Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
     {: tip}
-
 
 5. Create the action. When creating an action from a `.zip` archive, you must explicitly provide a value for the `--kind` flag by using `nodejs:6` or `nodejs:8`.
     ```
