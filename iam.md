@@ -24,7 +24,7 @@ lastupdated: "2018-11-09"
 {: shortdesc}
 
 IAM policies are available in the Tokyo region only for {{site.data.keyword.openwhisk_short}}. If you operate in the Tokyo region, you must use IAM policies to control access.
-{: note}
+{: tip}
 
 </br>
 

@@ -38,13 +38,12 @@ The following artifacts are created in conjunction with your namespace. Do not d
 </br>
 
 In order to target the {{site.data.keyword.openwhisk_short}} backend service in Tokyo location, you have to append the `apihost` to all CLI calls such as `ibmcloud fn namespace list --apihost jp-tok.functions.cloud.ibm.com`. This is temporary until the location can be targeted by `ibmcloud target -r jp-tok`.
-{: note}
+{: tip}
 
 
 
 </br>
 </br>
-
 
 
 ## Creating a namespace with the CLI
@@ -121,8 +120,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
     ```
     {: pre}
 
-
-
+</br>
 
 ## Creating a namespace with the API
 {: #create_iam_cli}
