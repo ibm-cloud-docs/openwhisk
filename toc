@@ -108,5 +108,6 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="help"}
+    faq.md
     ts_index.md
     {: .navgroup-end}
