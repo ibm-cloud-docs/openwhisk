@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-09"
+lastupdated: "2018-11-19"
 
 ---
 
@@ -236,4 +236,4 @@ For more information about working with HTTP REST, check out the [Cloud Function
 ## Next steps
 {: #next}
 
-Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](iam.html). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} Namespaces REST API reference](/apidocs/functions/functions-namespace).
+Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](iam.html). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions/functions).

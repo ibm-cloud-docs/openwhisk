@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-09"
+lastupdated: "2018-11-19"
 
 ---
 
@@ -61,7 +61,7 @@ The following table details the actions that are mapped to platform management r
   </tbody>
 </table>
 
-Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam/users_roles.html#platform-management-roles).
+Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam/users_roles.html).
 
 </br>
 
@@ -71,7 +71,7 @@ Service specific roles determine the scope of an access policy within a specific
 {: shortdesc}
 
 
-It is important to note that the permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam/users_roles.html#service-access-roles).
+It is important to note that the permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam/users_roles.html).
 
 To see which roles are required to perform each operation, check out the following table:
 
@@ -171,4 +171,4 @@ Similar to how a user ID identifies a user, a service ID represents a specific r
 
 When you create a new IAM managed namespace, Functions automatically creates a corresponding service ID that identifies the namespace and an API key. At runtime, Cloud Functions passes the API key to the action code as the value of the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported SDKs such as Cloudant, Watson, and COS authenticate with the IAM key itself. Other IAM managed services or resources that use a REST API, authenticate with the token that is derived from the IAM key.
 
-Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam/iam_apikeys_services.html#iamapikeysforservices).
+Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam/iam_apikeys_services.html).
