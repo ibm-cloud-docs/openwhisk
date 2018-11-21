@@ -23,6 +23,7 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     bluemix_cli.md
+    
 
     {: .topicgroup}
     Creating actions
