@@ -85,6 +85,7 @@ IBM Cloud Functions
     Managing Functions in Tokyo
         openwhisk_namespaces.md
         iam.md
+    {: .navgroup-end}
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
