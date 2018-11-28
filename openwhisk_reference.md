@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-16"
+lastupdated: "2018-11-28"
 
 ---
 
@@ -674,7 +674,7 @@ The following table lists the default limits for actions.
 | [codeSize](openwhisk_reference.html#openwhisk_syslimits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
 | [concurrent](openwhisk_reference.html#openwhisk_syslimits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
 | [logs](openwhisk_reference.html#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
-| [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 512 |
+| [memory](openwhisk_reference.html#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
 | [minuteRate](openwhisk_reference.html#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
 | [openulimit](openwhisk_reference.html#openwhisk_syslimits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
 | [parameters](openwhisk_reference.html#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
@@ -711,7 +711,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 #### memory (MB) (Default: 256 MB)
 {: #openwhisk_syslimits_memory}
-* The memory limit M is in the range from [128 MB..512 MB] and is set per action in MB.
+* The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB.
 * A user can change the memory limit when an action is created.
 * A container cannot use more memory than is allocated by the limit.
 

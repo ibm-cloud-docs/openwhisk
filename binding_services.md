@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-06"
+lastupdated: "2018-11-19"
 
 ---
 
@@ -32,7 +32,7 @@ Bind any {{site.data.keyword.Bluemix_notm}} service to any action that is define
 
 **Note**: You can only bind one service of each type to an action or package. Binding multiple services of the same type is not supported.
 
-Before you begin, [define credentials](/docs/apps/reqnsi.html#accser_external) for the service that you want to bind.
+Before you begin, [define credentials](/docs/apps/reqnsi.html) for the service that you want to bind.
 
 1. Get the name of the service instance that you want to bind to an action or package.
     ```
