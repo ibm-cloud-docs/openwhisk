@@ -19,7 +19,7 @@ This FAQ provides answers to common questions about the {{site.data.keyword.open
 {: shortdesc}
 
 
-## What language runtime are supported?
+## What language runtimes are supported?
 {: #runtimes}
 {: faq}
 
@@ -73,6 +73,7 @@ The maximum timeout is 10 minutes. The default value is set to 1 minute, but can
 
 You can use up to 2048MB of memory for each function. The default is set to 256MB, but you can change it by using the `--memory` flag or through the GUI in the action details section.
 
+
 ## What's the difference between an action and and a web action?
 {: #difference}
 {: faq}
@@ -91,6 +92,5 @@ After the metrics are collected, you can see your logs by using the [{{site.data
 {: faq}
 
 You can get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk_short}} by using {{site.data.keyword.monitoringlong}}. You can also monitor the health and performance of your actions by using the dashboard to see a graphical summary of your activity.
-
 
 
