@@ -22,12 +22,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    {: .topicgroup}
-    Setting the foundation
-        bluemix_cli.md
-        understanding-access.md
-        namespaces.md
-        iam2.md
+    bluemix_cli.md
 
     {: .topicgroup}
     Creating actions
@@ -86,6 +81,12 @@ IBM Cloud Functions
         openwhisk_goserverless.md
         openwhisk_mobile_sdk.md
 
+    {: .topicgroup}
+    Managing Functions in Tokyo
+        openwhisk_namespaces.md
+        iam.md
+    {: .navgroup-end}
+
     {: .navgroup id="reference"}
     openwhisk_annotations.md
     openwhisk_reference.md
@@ -107,6 +108,5 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="help"}
-    faq.md
     ts_index.md
     {: .navgroup-end}
