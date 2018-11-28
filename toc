@@ -22,7 +22,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    bluemix_cli.md
+    bluemixcli.md
 
     {: .topicgroup}
     Creating actions
@@ -85,7 +85,6 @@ IBM Cloud Functions
     Managing Functions in Tokyo
         openwhisk_namespaces.md
         iam.md
-    {: .navgroup-end}
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
@@ -108,5 +107,6 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="help"}
+    faq.md
     ts_index.md
     {: .navgroup-end}
