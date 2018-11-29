@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-19"
+lastupdated: "2018-11-29"
 
 ---
 
@@ -189,7 +189,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
 
     ```
     curl --request GET \
-      --url 'https://openwhisk.ng.bluemix.net/api/servicebroker/api/v1/namespaces/{id} \
+      --url 'https://us-south.functions.cloud.ibm.com/api/servicebroker/api/v1/namespaces/{id} \
       --header 'accept: application/json' \
       --header 'authorization: <IAM_token>'
     ```

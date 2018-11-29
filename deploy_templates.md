@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-23"
+lastupdated: "2018-11-29"
 
 ---
 
@@ -180,9 +180,9 @@ The Get HTTP Resource template creates an action to fetch an external resource, 
 
 5. Click **Deploy**.
 
-6. Invoke the action by curling the following URL: `https://openwhisk.ng.bluemix.net/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
+6. Invoke the action by curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
     ```
-    curl https://openwhisk.ng.bluemix.net/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
+    curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
     ```
     {: pre}
 
@@ -210,9 +210,9 @@ After template deployment, you can make further edits to the code to customize i
     ```
     {: pre}
 
-4. Invoke the action by curling the following URL: `https://openwhisk.ng.bluemix.net/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
+4. Invoke the action by curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace>/$PACKAGE_NAME/weather?location=<city>`. For example:
     ```
-    curl https://openwhisk.ng.bluemix.net/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
+    curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/Get%20Resource/weather?location=Austin
     ```
     {: pre}
 

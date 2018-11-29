@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-13"
+lastupdated: "2018-11-29"
 
 ---
 
@@ -51,9 +51,9 @@ The package name is **default** if the action is not in a named package.
 
 An example is `guest/demo/hello`. The web action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
-Try opening [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the action by using `curl`:
+Try opening [https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane](https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the action by using `curl`:
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
@@ -189,7 +189,7 @@ When this action is invoked as a web action, you can alter the response of the w
 
 For example, to return the entire object, and see what arguments the action receives:
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
  ```
 {: pre}
 
@@ -212,7 +212,7 @@ Example output:
 
 To run with a query parameter, see the following example command:
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
  ```
 {: pre}
 
@@ -236,7 +236,7 @@ Example output:
 
 You can also run with form data:
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
  ```
 {: pre}
 
@@ -262,7 +262,7 @@ Example output:
 
 Run the following command for a JSON object:
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -288,7 +288,7 @@ Example output:
 
 Run the following command to project the name (as text):
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
 {: pre}
 
@@ -302,7 +302,7 @@ For convenience, query parameters, form data, and JSON object body entities are 
 
 See the following example that uses a "text" content-type, as was shown previously.
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
 {: pre}
 
@@ -381,7 +381,7 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -488,7 +488,7 @@ ok: created action decode
 {: screen}
 
 ```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
+curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
 
