@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-19"
+lastupdated: "2018-11-29"
 
 ---
 
@@ -207,7 +207,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-In this example, you use an installation that is running at http://localhost:8080. If you do not specify the baseUrl, the mobile SDK uses the instance that is running at https://openwhisk.ng.bluemix.net.
+In this example, you use an installation that is running at http://localhost:8080. If you do not specify the baseUrl, the mobile SDK uses the instance that is running at https://us-south.functions.cloud.ibm.com.
 
 You can pass in a custom NSURLSession in case you require special network handling. For example, you might have your own OpenWhisk installation that uses self-signed certificates:
 

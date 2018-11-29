@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-19"
+lastupdated: "2018-11-28"
 
 ---
 
-{:new_window: target="_blank"}
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
 {:codeblock: .codeblock}
@@ -16,9 +16,9 @@ lastupdated: "2018-11-19"
 # Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
 
-{{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
+
+{{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
 {:shortdesc}
-{: shortdesc}
 
 You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plug-in commands: `ibmcloud fn <command>`
 {: tip}
@@ -33,50 +33,42 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. If the {{site.data.keyword.Bluemix_notm}} API endpoint is not specified, specify one with the `-a` flag.
 
-    * To log in to the US South region:
-      ```
-      ibmcloud login -a api.ng.bluemix.net
-      ```
-      {: pre}
+  ```
+  ibmcloud login -a <endpoint>
+  ```
+  {: pre}
 
-    * To log in to the US East region:
-      ```
-      ibmcloud login -a api.us-east.bluemix.net
-      ```
-      {: pre}
+  <table>
+    <tr>
+      <th>Region</th>
+      <th>Endpoint</th>
+    </tr>
+    <tr>
+      <td>US South</td>
+      <td><code>api.ng.bluemix.net</code></td>
+    </tr>
+    <tr>
+      <td>US East</td>
+      <td><code>api.us-east.bluemix.net</code></td>
+    </tr>
+    <tr>
+      <td>US-South</td>
+      <td><code>api.eu-gb.bluemix.net</code></td>
+    </tr>
+    <tr>
+      <td>EU Central</td>
+      <td><code>api.eu-de.bluemix.net</code></td>
+    </tr>
+    <tr>
+      <td>Tokyo</td>
+      <td><code>api.jp-tok.bluemix.net</code></td>
+    </tr>
+  </table>
 
-    * To log in to the UK South region:
-      ```
-      ibmcloud login -a api.eu-gb.bluemix.net
-      ```
-      {: pre}
-
-    * To log in to the EU Central region:
-      ```
-      ibmcloud login -a api.eu-de.bluemix.net
-      ```
-      {: pre}
-
-3. The `ibmcloud login` command prompts you for information such as organization, space, and password if not specified.
-
-  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -o <ORG> -s <SPACE>`.
+  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -a <endpoint> -o <ORG> -s <SPACE>`
   {: tip}
 
-You can also use an {{site.data.keyword.Bluemix_notm}} API key to log in. This method is useful when your account is configured with a federated login that requires you to log in with the flag `--sso`. [Using an API key](https://console-regional.ng.bluemix.net/docs/cli/login_federated_id.html#using-an-api-key) is also beneficial if you want to set up continuous integration (CI) and want to configure an unattended pipeline.
-
-1. Create a new API key.
-    ```
-    ibmcloud iam api-key-create MyKey
-    ```
-    {: pre}
-
-2. Use the generated value of the API key to log in.
-    ```
-    ibmcloud login -a api.ng.bluemix.net -o <org> -s <space> --apikey <api_key>
-    ```
-    {: pre}
-</br>
-For more information about the `ibmcloud login` command, use `ibmcloud login --help` or review the [IBM Cloud (bx) commands](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_login) topic.
+3. If you did not specify an org and space, complete the prompts that follow the login command.
 
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} plug-in
@@ -86,30 +78,28 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
 {: shortdesc}
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
-    ```
-    ibmcloud plugin install cloud-functions
-    ```
-    {: pre}
+
+  ```
+  ibmcloud plugin install cloud-functions
+  ```
+  {: pre}
 
 2. Verify that the plug-in is installed.
-    ```
-    ibmcloud plugin list cloud-functions
-    ```
-    {: pre}
 
-    Output:
-    ```
-    Plugin Name          Version
-    Cloud-Functions      1.0.16
-    ```
-    {: screen}
+  ```
+  ibmcloud plugin list cloud-functions
+  ```
+  {: pre}
 
-3. You can upgrade the {{site.data.keyword.openwhisk_short}} plug-in by running the following command:
-    ```
-    ibmcloud plugin update cloud-functions
-    ```
-    {: pre}
+  Output:
+  ```
+  Plugin Name          Version
+  Cloud-Functions      1.0.16
+  ```
+  {: screen}
 
+Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
+{:tip}
 
 You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to:
 
@@ -118,7 +108,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to:
 * Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
 * Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
 
-To list of commands for the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
 
 
@@ -170,7 +160,7 @@ ibmcloud iam space-create "production"
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migration}
 
-The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk stand-alone CLI (`wsk`) for interacting with {{site.data.keyword.openwhisk_short}} entities in IBM Cloud. The `wsk` stand-alone CLI does not have the latest features supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespace support and `service bind` support.
+You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interact with {{site.data.keyword.openwhisk_short}} entities. Although you can continue to use the stand-alone OpenWhisk CLI, it will not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespaces and `service bind`.
 {: shortdesc}
 
 ### Command Syntax
