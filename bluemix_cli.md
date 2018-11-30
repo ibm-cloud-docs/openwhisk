@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-28"
+lastupdated: "2018-11-30"
 
 ---
 
@@ -210,6 +210,13 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+v1.0.25 (2018-11-23)
+* improve error message result display
+* `fn namespace get` fix to correctly display namespace properties
+
+v1.0.26 (2018-11-30)
+* `fn property get --auth` correctly returns the auth key in a new environment
 
 1.0.23 (2018-10-15)
 * Add support for ruby (.rb) action code recognition
