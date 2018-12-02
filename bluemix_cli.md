@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-28"
+lastupdated: "2018-12-02"
 
 ---
 
@@ -74,8 +74,18 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 ## Setting up the {{site.data.keyword.openwhisk_short}} plug-in
 {: #cloudfunctions_plugin_setup}
 
-Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
+To work with {{site.data.keyword.openwhisk_short}}, download and install the CLI plug-in.
 {: shortdesc}
+
+You can use the plug-in to:
+
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
+* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
+* Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
+
+To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+{: tip}
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
 
@@ -101,16 +111,6 @@ Download and install the {{site.data.keyword.openwhisk_short}} plug-in.
 Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
 {:tip}
 
-You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to:
-
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
-* Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
-
-To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
-{: tip}
-
 
 
 ## Using services from actions
@@ -126,14 +126,12 @@ For detailed steps on how to use services from actions, see [Binding services to
 
 The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
 
+
+
 ## Switching to different regions, organizations, and spaces
 {: #region_info}
 
 If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
-
-
-To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
-
 
 {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
 ```
@@ -141,15 +139,7 @@ ibmcloud target -r eu-gb -s staging
 ```
 {: pre}
 
-
-
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
-
-```
-ibmcloud iam space-create "staging"
-ibmcloud iam space-create "production"
-```
-{: pre}
+To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
 {: tip}
@@ -205,11 +195,17 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 
 
-
-## Version history
+## CLI version history
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+v1.0.26 (2018-11-30)
+* `fn property get --auth` correctly returns the auth key in a new environment
+
+v1.0.25 (2018-11-23)
+* improve error message result display
+* `fn namespace get` fix to correctly display namespace properties
 
 1.0.23 (2018-10-15)
 * Add support for ruby (.rb) action code recognition
