@@ -22,7 +22,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    bluemix_cli.md
+    bluemixcli.md
 
     {: .topicgroup}
     Creating actions
@@ -43,6 +43,7 @@ IBM Cloud Functions
         openwhisk_github.md
         openwhisk_feeds.md
 
+    openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
     deploy_templates.md
