@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2018
-lastupdated: "2018-12-11"
+lastupdated: "2018-12-12"
 
 ---
 
@@ -119,7 +119,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
         {: pre}
 4.  Execute the composition in the same way you [invoke other actions](openwhisk_triggers_rules.html#openwhisk_triggers) in {{site.data.keyword.openwhisk}}.
     ```
-    ibmcloud wsk action invoke demo
+    ibmcloud fn action invoke demo
     ```
     {: pre}
 
@@ -134,7 +134,7 @@ Apache OpenWhisk allows you to chain functions together in a `sequence`, where t
 {: #sequences-without-composer}
 You can chain together two functions named `action1` and `action2` in  {{site.data.keyword.openwhisk_short}}:
 
-`ibmcloud wsk action create --sequence mysequence action1 action2`.
+`ibmcloud fn action create --sequence mysequence action1 action2`.
 
 The result of this command is a function called `mysequence`, which is a composite of `action1` and `action2`.  You can use `mysequence` in the same manner as any function in OpenWhisk.
 
