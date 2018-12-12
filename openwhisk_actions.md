@@ -2,22 +2,27 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-06"
+lastupdated: "2018-12-12"
 
 ---
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
 
 # Creating and invoking actions
 {: #openwhisk_actions}
 
 
-With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one, specific task called actions.
+With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one specific task that is called an action.
 {:shortdesc}
 
 
@@ -29,11 +34,11 @@ An action is a small piece of code that can be explicitly invoked or set to auto
 
 By using actions, you limit the amount of time that your code is running, which lowers your overhead costs.
 
-Actions can be used for several different reasons in your applications. For example, an action can be used to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
+For example, you can use actions to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
 
 **Can I use more than one action at a time?**
 
-Yes! You can use actions to call other actions, or you can string actions together to create sequences. To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences just by calling the package instead of configuring the action or sequence again.
+Yes! You can use actions to call other actions, or you can string actions together to create sequences. To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences by calling the package instead of configuring the action or sequence again.
 
 
 ## Creating JavaScript actions
@@ -544,6 +549,276 @@ To install dependencies, package them in a virtual environment, and create a com
 
 Add only modules that are not part of the selected runtime environment to the `requirements.txt`. This helps to keep the `virtualenv` to a minimum size.
 {: tip}
+
+## Creating Go actions
+{: #creating-go-actions}
+
+The following sections guide you through creating and invoking a single Go action and adding parameters to that action. You can execute Go actions by using Go 1.11. To use this runtime, specify the `ibmcloud fn` CLI parameter
+`--kind go:1.11` when creating or updating an action.
+{: shortdesc}
+
+### Creating and invoking Go actions
+{: #openwhisk_actions_go_invoke}
+
+A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-action) for better performance or multiple source file support, including vendor libraries.
+{: shortdesc}
+
+To create a Go action:
+
+1. Save the following code in a file named `hello.go`. In the example, the function is named `Main`, but you can change the name by using the `--main` flag. If you rename the function, the name must begin with a capital letter, and cannot be the the term `main`, which is the name of the Go package.
+    ```go
+    package main
+
+    import "fmt"
+
+    // Main is the function implementing the action
+    func Main(params map[string]interface{}) map[string]interface{} {
+        // parse the input JSON
+        name, ok := params["name"].(string)
+        if !ok {
+            name = "World"
+        }
+        msg := make(map[string]interface{})
+        msg["body"] = "Hello " + name + "!"
+        // can optionally log to stdout (or stderr)
+        fmt.Println("hello Go action")
+        // return the output JSON
+        return msg
+    }
+    ```
+    {: codeblock}
+    The expected signature for a `Main` function is:
+    ```go
+    func Main(event map[string]interface{}) map[string]interface{}
+    ```
+    {: codeblock}
+
+2. Create or update an action called `helloGo`.
+    ```bash
+    ibmcloud fn action update helloGo hello.go --kind go:1.11
+    ```
+    {: pre}
+
+3. Invoke the action.
+    ```bash
+    ibmcloud fn action invoke --result helloGo --param name gopher
+    ```
+    {: pre}
+
+    Example output:
+    ```json
+      {
+          "greeting": "Hello gopher!"
+      }
+    ```
+    {: screen}
+
+### Packaging an action as a Go executable
+{: #packaging-action}
+
+Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#multiple-packages) or [vendor libraries](#vendor-libs).
+{: shortdesc}
+
+#### Working with multiple package source files
+{: #multiple-packages}
+
+To use multiple package source files, use a top level `src` directory, place the source files that belong to the main package at the root of `src` or inside a `main` directory and create directories for other packages. For example, the `hello` package becomes the `src/hello` directory.
+{: shortdesc}
+
+```
+go-action-hello/
+└── src
+    ├── hello
+    │   └── hello.go
+    └── main
+        └── main.go
+```
+{: screen}
+
+With this layout, you can import subpackages (`import "hello"`) as shown in the following example.
+
+To compile locally, set your `GOPATH` to parent of the `src` directory. If you use VSCode, you need to enable the `go.inferGopath` setting to `true`.
+{: note}
+
+Example of `main/main.go`:
+```go
+package main
+
+import (
+	"fmt"
+	"hello"
+)
+
+// Main forwading to Hello
+func Main(args map[string]interface{}) map[string]interface{} {
+	fmt.Println("This is main.Main")
+	greetings := "World"
+	name, ok := args["name"].(string)
+	if ok {
+		greetings = name
+	}
+	return hello.Hello(greetings)
+}
+```
+{: codeblock}
+
+Example of `hello/hello.go`:
+```go
+package hello
+
+import "fmt"
+
+// Hello return a greeting message
+func Hello(name string) map[string]interface{} {
+	fmt.Println("This is hello.Hello")
+	res := make(map[string]interface{})
+	res["body"] = "Hello " + name
+	return res
+}
+```
+{: codeblock}
+
+To compile by using the runtime environment, zip the content of the `src` directory. Do **not** include the top level project directory `go-action-project/`. To create the zip archive `hello-src.zip`:
+
+```bash
+cd src
+zip -r ../hello-src.zip *
+cd ..
+```
+{: pre}
+
+To compile and package the Go executable as `exec` in the root of the zip build the `hello-bin.zip` archive by running the following command. This assumes you have Docker CLI installed in your workstation and `docker` in your `PATH`.
+
+```bash
+docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
+```
+{: pre}
+
+The container gets the contents of the source zip in `stdin`, compiles the content, and creates a new zip archive with the executabled `exec` in the root. The zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
+
+Now you can update your action for production by using the CLI and new zip archive `hello-bin.zip`.
+```bash
+ibmcloud fn action update helloGo hello.go --kind go:1.11
+```
+
+#### Working with vendor libraries
+{: #vendor-libs}
+
+You can include dependencies by populating a `vendor` directory inside the source `zip` when you compile the Go Action. The `vendor` directory does not work at the top level. You need to place the `vendor` directory within `src/` and inside a package directory.
+{: shortdesc}
+
+
+Continuing with the previous example, use the log package `logrus` in `hello.go`.
+```go
+package hello
+
+import (
+	"os"
+
+	"github.com/Sirupsen/logrus"
+)
+
+var log = logrus.New()
+
+// Hello return a greeting message
+func Hello(name string) map[string]interface{} {
+	log.Out = os.Stdout
+	log.WithFields(logrus.Fields{"greetings": name}).Info("Hello")
+	res := make(map[string]interface{})
+	res["body"] = "Hello, " + name
+	return res
+}
+```
+{: codeblock}
+
+In this example the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [`dep`![External link icon](../icons/launch-glyph.svg “External link icon”)](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
+
+To use `dep`, create a file `src/main/Gopkg.toml` describing the version and location of the libraries.
+```toml
+[[override]]
+  name = "github.com/sirupsen/logrus"
+  version = "1.1.1"
+```
+{: codeblock}
+
+To populate the `vendor` directory, run `dep ensure`. 
+
+To make this an easier process to automate, you can use a deployment tool or script such as a [Makefile](#makefile).
+
+### Using a Makefile for Go actions
+{: #makefile}
+
+Continuing with the previous example, your project directory is as follows.
+```bash
+go-action-hello/
+├── Makefile
+└── src
+    ├── hello
+    │   ├── Gopkg.toml
+    │   ├── hello.go
+    │   └── vendor/
+    └── main
+        └── main.go
+```
+{: screen}
+
+Create the file `Makefile` to automate the deployment process.
+```Makefile
+GO_COMPILER?=openwhisk/actionloop-golang-v1.11
+CLI?=ibmcloud fn
+MAIN=main
+APP=hello
+SRCS=$(MAIN)/$(MAIN).go $(APP)/$(APP).go
+VENDORS=$(APP)/vendor
+NAME=go-action-$(APP)
+BINZIP=$(APP)-bin.zip
+SRCZIP=$(APP)-src.zip
+
+deploy: $(BINZIP)
+	$(CLI) action update $(NAME) $(BINZIP) --main $(MAIN) --kind go:1.11
+
+$(BINZIP): $(SRCZIP)
+	docker run -i $(GO_COMPILER) -compile $(MAIN) <$(SRCZIP) >$(BINZIP)
+
+$(SRCZIP): src/$(VENDORS)
+	cd src ; zip ../$(SRCZIP) -r $(SRCS) $(VENDORS)
+
+src/%/vendor:
+	cd $(@D) ; DEPPROJECTROOT=$(realpath $(@D)/../..) dep ensure
+
+clean:
+	-rm -rf $(BINZIP) $(SRCZIP) $(VENDORS)
+
+invoke:
+	$(CLI) action invoke $(NAME) -r -p name Gopher
+```
+{: codeblock}
+
+To delete the zip archives and vendor directory run:
+```bash
+make clean
+```
+{: pre}
+
+To populate the vendor directory, create the source zip, compile the source code, archive the exec into a zip, and deploy the Go action run:
+```bash
+make deploy
+```
+{: pre}
+
+Now that the `go-action-hello` is created, invoke the action.
+```bash
+ibmcloud fn action invoke go-action-hello -r -p name Go
+```
+{: pre}
+
+Example output:
+```json
+    {
+        "greeting": "Hello Go"
+    }
+```
+{: screen}
 
 ## Creating PHP actions
 {: #creating-php-actions}
@@ -1147,65 +1422,6 @@ You must have a Docker Hub account. You can set up a free Docker ID and account 
         ibmcloud fn action create example exec.zip --native
         ```
         {: pre}
-
-## Creating Go actions
-{: #creating-go-actions}
-
-The `--native` argument allows you to package any Go executable as an action.
-
-Note the following requirements and limits.
-  * The Go executable receives a single argument from the command line. The argument is a string serialization of the JSON object representing the arguments to the action.
-  * The program may log to `stdout` or `stderr`.
-  * By convention, the last line of output must be a stringified JSON object which represents the result of the action.
-
-To create a Go action:
-
-1. Save the following code in a file named `sample.go`.
-    ```go
-    package main
-
-    import "encoding/json"
-    import "fmt"
-    import "os"
-
-    func main() {
-        //program receives one argument: the JSON object as a string
-        arg := os.Args[1]
-
-        // unmarshal the string to a JSON object
-        var obj map[string]interface{}
-        json.Unmarshal([]byte(arg), &obj)
-
-        // can optionally log to stdout (or stderr)
-        fmt.Println("hello Go action")
-
-        name, ok := obj["name"].(string)
-        if !ok { name = "Stranger" }
-
-        // last line of stdout is the result JSON object as a string
-        msg := map[string]string{"msg": ("Hello, " + name + "!")}
-        res, _ := json.Marshal(msg)
-        fmt.Println(string(res))
-    }
-    ```
-    {: codeblock}
-
-2. Cross-compile `sample.go` for {{site.data.keyword.openwhisk_short}}. The executable must be called `exec`.
-    ```bash
-    GOOS=linux GOARCH=amd64 go build -o exec
-    zip exec.zip exec
-    ibmcloud fn action create helloGo --native exec.zip
-    ```
-    {: codeblock}
-
-3. Invoke the action.
-    ```bash
-    ibmcloud fn action invoke helloGo -r -p name gopher
-    {
-        "msg": "Hello, gopher!"
-    }
-    ```
-    {: pre}
 
 ## Creating action sequences
 {: #openwhisk_create_action_sequence}
