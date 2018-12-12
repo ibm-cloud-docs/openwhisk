@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-02"
+lastupdated: "2018-12-12"
 
 ---
 
@@ -133,13 +133,16 @@ The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS pro
 
 If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
 
-{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. To change regions, use the `ibmcloud target` command. For example, to switch to the United Kingdom region, and to the space `staging` in that region:
-```
-ibmcloud target -r eu-gb -s staging
-```
-{: pre}
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
+
+You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
+
+```
+ibmcloud iam space-create "staging"
+ibmcloud iam space-create "production"
+```
+{: pre}
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
 {: tip}
@@ -199,6 +202,11 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+v1.0.27 (2018-12-11)
+* `namespace get` fixes
+* `--save-as` fix when action is a black box action
+* addition of `--concurrency` flag for action create and action update commands
 
 v1.0.26 (2018-11-30)
 * `fn property get --auth` correctly returns the auth key in a new environment
