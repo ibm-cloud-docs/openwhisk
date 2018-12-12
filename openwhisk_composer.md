@@ -158,7 +158,7 @@ def main():
   return composer.sequence('action1', 'action2')
 ```
 {: codeblock}
-
+</br>
 <img src="images/composer-sequence.png" width="35%" title="Simple Sequence" style="width:250px; border-style: none"/></br>
 _Figure 1. Sequence with two actions_
 
@@ -187,8 +187,8 @@ def main():
   'handleError')
 ```
 {: codeblock}
-
-<img src="images/composer-error.png" width="35%" title="Try Sequence" style="width:250px; border-style: none"/></br>
+</br>
+<img src="images/composer-error.png" width="400" title="Try Sequence" style="width:400px; border-style: none"/></br>
 _Figure 2. Sequence with error handling_
 
 ### Conditional branching
@@ -211,7 +211,7 @@ def main():
   return composer.when('action1', 'action2', 'action3')
 ```
 {: codeblock}
-
+</br>
 <img src="images/composer-conditional.png" width="250" title="If Sequence" style="width:250px; border-style: none"/></br>
 _Figure 3. Sequence with conditional branching_
 
@@ -235,7 +235,7 @@ def main():
   return composer.loop('action1', 'action2')
 ```
 {: codeblock}
-
+</br>
 <img src="images/composer-loop.png" width="250" title="While Sequence" style="width:250px; border-style: none"/></br>
 _Figure 4. Sequence with `while` loop_
 
@@ -259,7 +259,7 @@ def main():
   return composer.sequence('action1',composer.action('hello', { 'action': "message = 'hello'\ndef main(args):\n    return { 'message':message }" }))
 ```
 {: codeblock}
-
+</br>
 <img src="images/composer-inline.png" width="250" title="While Sequence" style="width:250px; border-style: none"/></br>
 _Figure 5. Sequence with inline action definition_
 
