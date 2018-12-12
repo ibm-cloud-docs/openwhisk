@@ -43,6 +43,7 @@ IBM Cloud Functions
         openwhisk_github.md
         openwhisk_feeds.md
 
+    openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
     deploy_templates.md
