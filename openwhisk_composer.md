@@ -72,7 +72,7 @@ Install the [Composer for Python 3](https://github.com/apache/incubator-openwhis
     ```
     {: screen}
 
-## Configuring and running compositions in {{site.data.keyword.openwhisk}}
+## Configuring and running compositions in IBM Cloud Functions
 {: #run}
 
 You can use the JavaScript or Python 3 Composer libraries to create your compositions in {{site.data.keyword.openwhisk}}. Use `compose` or `pycompose` to compile your composition source code, then use `deploy` or `pydeploy` to deploy the composition to {{site.data.keyword.openwhisk}}. After you configure the composition, you can run it in {{site.data.keyword.openwhisk}}.
@@ -236,7 +236,7 @@ def main():
 ```
 {: codeblock}
 
-<img src="images/composer-loop.png" width="35%" title="While Sequence">
+<img src="images/composer-loop.png" width="250" title="While Sequence" style="width:250px; border-style: none"/>
 _Figure 4. Sequence with `while` loop_
 
 ### Inline definition of Actions
