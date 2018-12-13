@@ -529,11 +529,10 @@ To install dependencies, package them in a virtual environment, and create a com
     * For kind `python:3.6` use the docker image `ibmfunctions/action-python-v3.6`.
     * For kind `python:3.7` use the docker image `ibmfunctions/action-python-v3.7`.
 
-
-  ```
-  docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
-  ```
-  {: pre}
+   ```
+   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+   ```
+   {: pre}
 
 3. Package the `virtualenv` directory and any additional Python files. The source file that contains the entry point must be named `__main__.py`.
     ```
@@ -560,7 +559,7 @@ The following sections guide you through creating and invoking a single Go actio
 ### Creating and invoking Go actions
 {: #invoking-go-actions}
 
-A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-action) for better performance or multiple source file support, including vendor libraries.
+A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-go-actions) for better performance or multiple source file support, including vendor libraries.
 {: shortdesc}
 
 To create a Go action:
