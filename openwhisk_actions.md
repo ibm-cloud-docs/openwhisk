@@ -738,7 +738,7 @@ func Hello(name string) map[string]interface{} {
 ```
 {: codeblock}
 </br>
-In this example the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [`dep`![External link icon](../icons/launch-glyph.svg “External link icon”)](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
+In this example the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [`dep` ![External link icon](../icons/launch-glyph.svg “External link icon”)](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
 
 To use `dep`, create a file `src/main/Gopkg.toml` describing the version and location of the libraries.
 ```toml
