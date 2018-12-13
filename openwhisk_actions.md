@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-12"
+lastupdated: "2018-12-13"
 
 ---
 
@@ -529,11 +529,10 @@ To install dependencies, package them in a virtual environment, and create a com
     * For kind `python:3.6` use the docker image `ibmfunctions/action-python-v3.6`.
     * For kind `python:3.7` use the docker image `ibmfunctions/action-python-v3.7`.
 
-
-  ```
-  docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
-  ```
-  {: pre}
+   ```
+   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+   ```
+   {: pre}
 
 3. Package the `virtualenv` directory and any additional Python files. The source file that contains the entry point must be named `__main__.py`.
     ```
@@ -558,9 +557,9 @@ The following sections guide you through creating and invoking a single Go actio
 {: shortdesc}
 
 ### Creating and invoking Go actions
-{: #openwhisk_actions_go_invoke}
+{: #invoking-go-actions}
 
-A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-action) for better performance or multiple source file support, including vendor libraries.
+A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-go-actions) for better performance or multiple source file support, including vendor libraries.
 {: shortdesc}
 
 To create a Go action:
@@ -587,6 +586,7 @@ To create a Go action:
     }
     ```
     {: codeblock}
+    </br>
     The expected signature for a `Main` function is:
     ```go
     func Main(event map[string]interface{}) map[string]interface{}
@@ -614,13 +614,13 @@ To create a Go action:
     {: screen}
 
 ### Packaging an action as a Go executable
-{: #packaging-action}
+{: #packaging-go-actions}
 
-Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#multiple-packages) or [vendor libraries](#vendor-libs).
+Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#multiple-packages-go-actions) or [vendor libraries](#vendor-libs-go-actions).
 {: shortdesc}
 
 #### Working with multiple package source files
-{: #multiple-packages}
+{: #multiple-packages-go-actions}
 
 To use multiple package source files, use a top level `src` directory, place the source files that belong to the main package at the root of `src` or inside a `main` directory and create directories for other packages. For example, the `hello` package becomes the `src/hello` directory.
 {: shortdesc}
@@ -694,6 +694,9 @@ docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >he
 ```
 {: pre}
 
+In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`.
+The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
+
 The container gets the contents of the source zip in `stdin`, compiles the content, and creates a new zip archive with the executabled `exec` in the root. The zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
 
 Now you can update your action for production by using the CLI and new zip archive `hello-bin.zip`.
@@ -702,7 +705,7 @@ ibmcloud fn action update helloGo hello.go --kind go:1.11
 ```
 
 #### Working with vendor libraries
-{: #vendor-libs}
+{: #vendor-libs-go-actions}
 
 You can include dependencies by populating a `vendor` directory inside the source `zip` when you compile the Go Action. The `vendor` directory does not work at the top level. You need to place the `vendor` directory within `src/` and inside a package directory.
 {: shortdesc}
@@ -720,9 +723,12 @@ import (
 
 var log = logrus.New()
 
+func init() {
+	log.Out = os.Stdout
+}
+
 // Hello return a greeting message
 func Hello(name string) map[string]interface{} {
-	log.Out = os.Stdout
 	log.WithFields(logrus.Fields{"greetings": name}).Info("Hello")
 	res := make(map[string]interface{})
 	res["body"] = "Hello, " + name
@@ -730,8 +736,8 @@ func Hello(name string) map[string]interface{} {
 }
 ```
 {: codeblock}
-
-In this example the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [`dep`![External link icon](../icons/launch-glyph.svg “External link icon”)](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
+</br>
+In this example the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [dep ![External link icon](../icons/launch-glyph.svg "External link icon")](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
 
 To use `dep`, create a file `src/main/Gopkg.toml` describing the version and location of the libraries.
 ```toml
@@ -741,7 +747,7 @@ To use `dep`, create a file `src/main/Gopkg.toml` describing the version and loc
 ```
 {: codeblock}
 
-To populate the `vendor` directory, run `dep ensure`. 
+To populate the `vendor` directory, run `dep ensure`.
 
 To make this an easier process to automate, you can use a deployment tool or script such as a [Makefile](#makefile).
 
@@ -793,7 +799,7 @@ invoke:
 	$(CLI) action invoke $(NAME) -r -p name Gopher
 ```
 {: codeblock}
-
+</br>
 To delete the zip archives and vendor directory run:
 ```bash
 make clean
