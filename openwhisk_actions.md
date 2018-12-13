@@ -695,6 +695,9 @@ docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >he
 ```
 {: pre}
 
+In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`.
+The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
+
 The container gets the contents of the source zip in `stdin`, compiles the content, and creates a new zip archive with the executabled `exec` in the root. The zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
 
 Now you can update your action for production by using the CLI and new zip archive `hello-bin.zip`.
