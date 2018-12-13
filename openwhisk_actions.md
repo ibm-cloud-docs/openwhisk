@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-12"
+lastupdated: "2018-12-13"
 
 ---
 
@@ -558,7 +558,7 @@ The following sections guide you through creating and invoking a single Go actio
 {: shortdesc}
 
 ### Creating and invoking Go actions
-{: #openwhisk_actions_go_invoke}
+{: #invoking-go-actions}
 
 A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-action) for better performance or multiple source file support, including vendor libraries.
 {: shortdesc}
@@ -587,6 +587,7 @@ To create a Go action:
     }
     ```
     {: codeblock}
+    </br>
     The expected signature for a `Main` function is:
     ```go
     func Main(event map[string]interface{}) map[string]interface{}
@@ -614,13 +615,13 @@ To create a Go action:
     {: screen}
 
 ### Packaging an action as a Go executable
-{: #packaging-action}
+{: #packaging-go-actions}
 
-Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#multiple-packages) or [vendor libraries](#vendor-libs).
+Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#multiple-packages-go-actions) or [vendor libraries](#vendor-libs-go-actions).
 {: shortdesc}
 
 #### Working with multiple package source files
-{: #multiple-packages}
+{: #multiple-packages-go-actions}
 
 To use multiple package source files, use a top level `src` directory, place the source files that belong to the main package at the root of `src` or inside a `main` directory and create directories for other packages. For example, the `hello` package becomes the `src/hello` directory.
 {: shortdesc}
@@ -702,7 +703,7 @@ ibmcloud fn action update helloGo hello.go --kind go:1.11
 ```
 
 #### Working with vendor libraries
-{: #vendor-libs}
+{: #vendor-libs-go-actions}
 
 You can include dependencies by populating a `vendor` directory inside the source `zip` when you compile the Go Action. The `vendor` directory does not work at the top level. You need to place the `vendor` directory within `src/` and inside a package directory.
 {: shortdesc}
@@ -720,9 +721,12 @@ import (
 
 var log = logrus.New()
 
+func init() {
+	log.Out = os.Stdout
+}
+
 // Hello return a greeting message
 func Hello(name string) map[string]interface{} {
-	log.Out = os.Stdout
 	log.WithFields(logrus.Fields{"greetings": name}).Info("Hello")
 	res := make(map[string]interface{})
 	res["body"] = "Hello, " + name
@@ -741,7 +745,7 @@ To use `dep`, create a file `src/main/Gopkg.toml` describing the version and loc
 ```
 {: codeblock}
 
-To populate the `vendor` directory, run `dep ensure`. 
+To populate the `vendor` directory, run `dep ensure`.
 
 To make this an easier process to automate, you can use a deployment tool or script such as a [Makefile](#makefile).
 
@@ -793,7 +797,7 @@ invoke:
 	$(CLI) action invoke $(NAME) -r -p name Gopher
 ```
 {: codeblock}
-
+</br>
 To delete the zip archives and vendor directory run:
 ```bash
 make clean

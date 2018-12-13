@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-06"
+lastupdated: "2018-12-13"
 
 ---
 
@@ -243,7 +243,7 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 
 ### Node.js version 10 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_10}
-The Node.js version 10.13.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
+The Node.js version 10.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
 #### Migrating from `nodejs:8` to `nodejs:10`
 - The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` currently doesn't support nodejs10, track progress in [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541) expected on Dec. 7th 2018
