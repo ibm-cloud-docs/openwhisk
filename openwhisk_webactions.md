@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-11-29"
+lastupdated: "2018-12-13"
 
 ---
 
@@ -51,7 +51,7 @@ The package name is **default** if the action is not in a named package.
 
 An example is `guest/demo/hello`. The web action API path can be used with `curl` or `wget` without an API key. It can even be entered directly in your browser.
 
-Try opening [https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane](https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane) in your web browser. Or try invoking the action by using `curl`:
+Try opening `https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane` in your web browser. Or try invoking the action by using `curl`:
 ```
 curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
 ```
