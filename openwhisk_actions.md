@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-13"
+lastupdated: "2018-12-15"
 
 ---
 
@@ -64,7 +64,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 2. Create an action called `hello` using the JavaScript function.
   ```
-  ibmcloud fn action create hello hello.js
+  ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
 
@@ -179,7 +179,7 @@ JavaScript functions that run asynchronously can return the activation result af
 
 2. Create an action called `asyncAction`.
     ```
-    ibmcloud fn action create asyncAction asyncAction.js
+    ibmcloud fn action create asyncAction asyncAction.js --kind nodejs:10
     ```
     {: pre}
 
@@ -261,7 +261,7 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
 
 2. Create an action named `apod`.
     ```
-    ibmcloud fn action create apod apod.js
+    ibmcloud fn action create apod apod.js --kind nodejs:10
     ```
     {: pre}
 
@@ -338,7 +338,7 @@ For example, consider a directory with the following files:
 
 5. Create the action. When you create an action from a `.zip` archive, you must set a value for the `--kind` parameter to specify your Node.js runtime version. Choose between `nodejs:8` or `nodejs:10`.
     ```
-    ibmcloud fn action create packageAction --kind nodejs:10 action.zip
+    ibmcloud fn action create packageAction action.zip --kind nodejs:10
     ```
     {: pre}
 
@@ -437,7 +437,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
 
     * Using the CLI:
         ```
-        ibmcloud fn action update my-action dist/bundle.js
+        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10
         ```
         {: pre}
 

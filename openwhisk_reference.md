@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-13"
+lastupdated: "2018-12-15"
 
 ---
 
@@ -325,7 +325,7 @@ The following packages are pre-installed in the Node.js version 10 LTS environme
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8.12.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
+The Node.js version 8.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
 
 NodeJS version:
   - [8.14.0](https://nodejs.org/en/blog/release/v8.14.0)
@@ -404,7 +404,7 @@ The following packages are pre-installed in the Node.js version 8 environment:
 Node.js version 6 is the default version, but is deprecated as of 6 December 2018. To continue using a JavaScript action, update to Node.js version 8 or 10.
 {: deprecated}
 
-The Node.js 6.14.4 environment is used if the `--kind` parameter is set to `nodejs:6` when you create or update an action.
+The Node.js 6.15.1 environment is used if the `--kind` parameter is set to `nodejs:6` when you create or update an action.
 
 The following packages are available to be used in the Node.js 6 environment:
 - [apn v2.1.2](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
