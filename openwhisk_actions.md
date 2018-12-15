@@ -701,7 +701,7 @@ The container gets the contents of the source zip in `stdin`, compiles the conte
 
 Now you can update your action for production by using the CLI and new zip archive `hello-bin.zip`.
 ```bash
-ibmcloud fn action update helloGo hello.go --kind go:1.11
+ibmcloud fn action update helloGo hello-bin.zip --kind go:1.11
 ```
 
 #### Working with vendor libraries
