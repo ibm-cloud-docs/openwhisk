@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-15"
+lastupdated: "2018-12-16"
 
 ---
 
@@ -885,11 +885,13 @@ You can package a PHP action and other files or dependent packages in a zip file
     ```
     {: pre}
 
+
 2. Create the action.
     ```bash
     ibmcloud fn action create helloPHP --kind php:7.2 helloPHP.zip
     ```
     {: pre}
+
 
 ## Creating Ruby actions
 {: #creating-ruby-actions}
