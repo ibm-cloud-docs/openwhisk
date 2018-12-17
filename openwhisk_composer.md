@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2018
-lastupdated: "2018-12-12"
+lastupdated: "2018-12-17"
 
 ---
 
@@ -21,7 +21,7 @@ lastupdated: "2018-12-12"
 # Creating action compositions with Composer
 {: #openwhisk_composer}
 
-{{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with additional [`combinators`](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), which let you create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
+{{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with additional combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), which let you create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
 
 You can also use the open source project [Kui](https://github.com/ibm/kui) to make it easier to create, deploy and visualize your Composer source code. See [Kui on Github](https://github.com/ibm/kui) for more information on how to use Kui with Composer.
 {: note}
@@ -33,12 +33,30 @@ You can use Composer with actions written in any language, but you express the c
 {: shortdesc}
 
 **For JavaScript**:
-Install the Composer library [Node.js package](https://github.com/apache/incubator-openwhisk-composer) by using the Node Package Manager.
+1. Install the Composer library [Node.js package](https://github.com/apache/incubator-openwhisk-composer) by using the Node Package Manager.
 
-```
-npm install -g openwhisk-composer
-```
-{: pre}
+    ```
+        npm install -g openwhisk-composer
+    ```
+    {: pre}
+
+2.  Confirm that you installed the library by running help for the Composer commands.
+
+    ```
+    $ compose -h
+    $ deploy -h
+    ```
+    {: codeblock}
+
+    Example output:
+    ```
+    Usage:
+        compose composition.js [flags]
+
+    Usage:
+        deploy composition composition.json [flags]
+    ```
+    {: screen}
 
 **For Python 3**:
 Install the [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python) library by using `pip3`.
