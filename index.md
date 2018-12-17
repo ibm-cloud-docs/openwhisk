@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-10-12"
+lastupdated: "2018-12-17"
 
 ---
 
@@ -23,7 +23,7 @@ Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited 
 
 Click an option to get started:
 
-<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openswhisk_short}}." style="width:440px;" />
+<img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
 <area href="#openwhisk_start_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
 <area href="bluemix_cli.html" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
