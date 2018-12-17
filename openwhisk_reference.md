@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-15"
+lastupdated: "2018-12-17"
 
 ---
 
@@ -713,9 +713,13 @@ If you have a `swift:3.1.1` action that is not compiled, just as a source file u
 ## PHP actions
 {: #openwhisk_ref_php}
 
+
 PHP actions are executed with PHP 7.2.6 To use this runtime, specify the `wsk` CLI parameter `--kind php:7.2` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
 
+
 The PHP 7.1 runtime is currently deprecated, is recommended that all actions get migrated to PHP 7.2, PHP 7.2 provides better cache for warm invocations.
+
+
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -735,7 +739,10 @@ The following PHP extensions are available in addition to the standard ones:
 The following Composer packages are also available:
 
 - guzzlehttp/guzzle       v6.3.3
+
 - ramsey/uuid             v3.7.3
+
+
 
 ## Docker actions
 {: #openwhisk_ref_docker}
