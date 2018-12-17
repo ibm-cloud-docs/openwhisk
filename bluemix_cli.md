@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-12"
+lastupdated: "2018-12-17"
 
 ---
 
@@ -52,7 +52,7 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
       <td><code>api.us-east.bluemix.net</code></td>
     </tr>
     <tr>
-      <td>US-South</td>
+      <td>UK South</td>
       <td><code>api.eu-gb.bluemix.net</code></td>
     </tr>
     <tr>
