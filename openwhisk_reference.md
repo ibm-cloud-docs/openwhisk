@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2018
-lastupdated: "2018-12-17"
+lastupdated: "2018-12-31"
 
 ---
 
@@ -246,11 +246,14 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 The Node.js version 10.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
 #### Migrating from `nodejs:8` to `nodejs:10`
+
 - The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` currently doesn't support nodejs10, track progress in [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541) expected on Dec. 7th 2018
+
 - The `cloudant` npm package is not available in `nodejs:10`, the package is deprecated, you need to use the official npm package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodejs module (i.e `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` npm package is not available in `nodejs:10`.
 - The `log4js` npm package is not available in `nodejs10`. The `log4js` will be added onced the new major version `4.0.0` is released, to track use issue [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
 - The `watson-developer-cloud` npm package is not availble in `nodejs:10`. The `watson-developer-cloud` will be added once the new major version `4.0.0` is released,to track progress on the new version in this [watson-developer-cloud/node-sdk/issues/780](https://github.com/watson-developer-cloud/node-sdk/issues/780)
+
 
 
 NodeJS version:
@@ -323,9 +326,11 @@ The following packages are pre-installed in the Node.js version 10 LTS environme
   - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
 
 
+
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
 The Node.js version 8.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
+
 
 NodeJS version:
   - [8.14.0](https://nodejs.org/en/blog/release/v8.14.0)
@@ -398,6 +403,7 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
   - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+
 
 ### Node.js version 6 environment (deprecated)
 {: #openwhisk_ref_javascript_environments_6}
@@ -474,6 +480,7 @@ When creating python actions using virtualenv, use the docker image `ibmfunction
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
 
+
 Python version:
 - [3.7.1](https://github.com/docker-library/python/blob/39c500cc8aefcb67a76d518d789441ef85fc771f/3.7/stretch/Dockerfile)
 
@@ -544,6 +551,7 @@ Python packages:
 - websocket-client==0.47.0
 - Werkzeug==0.14.1
 - zope.interface==4.6.0
+
 
 
 ### Python 3.6 actions (Debian Jessie based)
