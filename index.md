@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-17"
+  years: 2017, 2019
+lastupdated: "2019-01-09"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2018-12-17"
 # Getting started
 {: #index}
 
-With {{site.data.keyword.openwhisk}} you can use you can use your favorite programming language to write lightweight code that executes app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or automatically in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that executes app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or automatically in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
 Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the languages that you can use and you don't have to spend time explicitly provisioning backend infrastructure. You can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, or maintenance. Out of the box, IBM provides the hardware, networking, software administration, load balancing, plugins, and so on. You just have to bring the code!
