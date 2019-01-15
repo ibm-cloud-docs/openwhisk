@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-09"
+lastupdated: "2019-01-15"
 
 ---
 
@@ -16,10 +16,10 @@ lastupdated: "2019-01-09"
 # Getting started
 {: #index}
 
-With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that executes app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or automatically in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or automatically in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
-Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the languages that you can use and you don't have to spend time explicitly provisioning backend infrastructure. You can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, or maintenance. Out of the box, IBM provides the hardware, networking, software administration, load balancing, plugins, and so on. You just have to bring the code!
+Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the languages that you can use and you don't have to spend time explicitly provisioning backend infrastructure. You can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, or maintenance. Out of the box, IBM provides the hardware, networking, software administration, load balancing, plug-ins, and so on. You just have to bring the code!
 
 Click an option to get started:
 
@@ -46,16 +46,16 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 5. Click **Deploy**. You've created an action. Great job!
 
-6. Run the action by clicking **Invoke**. Invoking an action manually executes the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
+6. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
 
-7. Optional: Click **Change Input** and make a change to the action or try your own. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
+7. Optional: Click **Change Input** to change the action or try your own. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
 
 Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.
 
 ## Creating an action in the CLI
 {: #openwhisk_start_hello_world_cli}
 
-Get up and running quickly with the HelloWorld JavaScript example code. This example creates a basic `hello` action which you can manually invoke to run its app logic.
+Get up and running quickly with the HelloWorld JavaScript example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
 1. [Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in](bluemix_cli.html).
 
