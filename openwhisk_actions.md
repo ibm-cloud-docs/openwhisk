@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-31"
+  years: 2017, 2019
+lastupdated: "2019-01-17"
 
 ---
 
@@ -1322,6 +1322,115 @@ To create a Java action:
       }
     ```
     {: screen}
+
+### Including dependencies in Java actions
+
+If you want to use a 3rd party dependency in your Java action, the action jar archive needs to include all libraries.
+You can use a build a tool such as [gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final jar archive that includes your code and all dependencies.
+
+Here is an example using gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to genrate a QR code image.
+Create a file `build.gradle` specifying the dependencies:
+```gradle
+apply plugin: 'java'
+
+version = '1.0'
+
+repositories {
+    mavenCentral()
+}
+
+configurations {
+    provided
+    compile.extendsFrom provided
+}
+
+dependencies {
+    provided 'com.google.code.gson:gson:2.6.2'
+    compile 'com.google.zxing:core:3.3.0'
+    compile 'com.google.zxing:javase:3.3.0'
+}
+
+jar {
+    dependsOn configurations.runtime
+
+    from {
+        (configurations.runtime - configurations.provided).collect {
+            it.isDirectory() ? it : zipTree(it)
+        }
+    }
+}
+```
+{: codeblock}
+Run the command `gradle jar`, this will generate a jar archive in the directory `build/libs/`.
+You will use this jar archive to deploy your action as described in the previous section.
+For more information read the gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies)
+
+Here is an example of a Java Web Action, that takes `text` as input and generates a QR code image. Create a file `Generate.java` in the directory `java_example/src/main/java/qr`
+```java
+package qr;
+
+import java.io.*;
+import java.util.Base64;
+
+import com.google.gson.JsonObject;
+
+import com.google.zxing.*;
+import com.google.zxing.client.j2se.MatrixToImageWriter;
+import com.google.zxing.common.BitMatrix;
+
+public class Generate {
+  public static JsonObject main(JsonObject args) throws Exception {
+    String property = "text";
+    String text = "Hello. Try with a 'text' value next time.";
+    if (args.has(property)) {
+      text = args.get(property).toString();
+    }
+
+    ByteArrayOutputStream baos = new ByteArrayOutputStream();
+    OutputStream b64os = Base64.getEncoder().wrap(baos);
+
+    BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
+    MatrixToImageWriter.writeToStream(matrix, "png", b64os);
+    b64os.close();
+
+    String output = baos.toString("utf-8");
+
+    JsonObject response = new JsonObject();
+    JsonObject headers = new JsonObject();
+    headers.addProperty("content-type", "image/png; charset=UTF-8");
+    response.add("headers", headers);
+    response.addProperty("body", output);
+    return response;
+  }
+}
+```
+{: codeblock}
+
+Build the Web Action jar by running the following command from the directory `java_example` where the file `build.gradle` is located.
+```bash
+gradle jar
+```
+{: pre}
+
+Deploy the web action using the jar `build/libs/java_example-1.0.jar`
+```bash
+ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
+```
+{: pre}
+
+Retrieve the public url of the web action endpoint and assigned to an environment variable
+```bash
+ibmcloud fn action get QRGenerate --url
+URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
+```
+{: pre}
+
+You can open a Web Browser using this `URL` and appending the query parameter `text` with the message to be encoded into the QR image. Or you can use an http client like `curl` to download a QR Image:
+```bash
+curl -o QRImage.png $URL\?text=https://cloud.ibm.com
+```
+{: pre}
+
 
 
 
