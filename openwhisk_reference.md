@@ -694,6 +694,7 @@ Python packages:
 ## Swift actions
 {: #swift-actions}
 
+
 ### Swift 3
 Swift 3 actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
 
@@ -706,6 +707,7 @@ Swift 3.1.1 actions can use the following packages when using a single Swift sou
 - Watson Developer Cloud SDK version 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Swift 4
+
 Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
@@ -713,13 +715,6 @@ Follow the instructions for [packaged swift actions](./openwhisk_actions.html#pa
 Swift 4.1 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 0.35.0, https://github.com/watson-developer-cloud/swift-sdk
 
-### Migrating Swift 3.1.1 to Swift 4.1
-
-#### SwiftyJSON using a single source action file
-If you have a `swift:3.1.1` action that is not compiled, just as a source file using the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.1` kind action. Take into account that starting with Swift 4.1, there is better support to manage JSON data natively.
-
-## PHP actions
-{: #openwhisk_ref_php}
 
 
 PHP actions are executed with PHP 7.2.6 To use this runtime, specify the `wsk` CLI parameter `--kind php:7.2` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.

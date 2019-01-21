@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-17"
+lastupdated: "2019-01-21"
 
 ---
 
@@ -967,6 +967,8 @@ You can use arbitrary gems so long as you use zipped actions to package all the 
 ## Creating Swift actions
 {: #creating-swift-actions}
 
+
+
 The following sections guide you through creating and invoking a single Swift action and packaging an action in a zip file.
 
 **Note:** Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on MacOS.
@@ -1045,6 +1047,7 @@ In addition to the main function signature, Swift 4 provides two more signatures
     ibmcloud fn action create helloSwift hello.swift --kind swift:4.1
     ```
     {: pre}
+
 
 3. Invoke the action.
     ```
@@ -1232,6 +1235,8 @@ actions/
     ibmcloud fn action invoke --result helloSwift --param name World --blocking
     ```
     {: pre}
+
+
 
 ### Error handling in Swift 4
 {: #error-handling-swift4}
