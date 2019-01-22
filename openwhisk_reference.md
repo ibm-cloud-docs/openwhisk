@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-17"
+  years: 2017, 2019
+lastupdated: "2019-01-21"
 
 ---
 
@@ -246,11 +246,14 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 The Node.js version 10.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
 #### Migrating from `nodejs:8` to `nodejs:10`
+
 - The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` currently doesn't support nodejs10, track progress in [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541) expected on Dec. 7th 2018
+
 - The `cloudant` npm package is not available in `nodejs:10`, the package is deprecated, you need to use the official npm package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodejs module (i.e `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` npm package is not available in `nodejs:10`.
 - The `log4js` npm package is not available in `nodejs10`. The `log4js` will be added onced the new major version `4.0.0` is released, to track use issue [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
 - The `watson-developer-cloud` npm package is not availble in `nodejs:10`. The `watson-developer-cloud` will be added once the new major version `4.0.0` is released,to track progress on the new version in this [watson-developer-cloud/node-sdk/issues/780](https://github.com/watson-developer-cloud/node-sdk/issues/780)
+
 
 
 NodeJS version:
@@ -323,9 +326,11 @@ The following packages are pre-installed in the Node.js version 10 LTS environme
   - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
 
 
+
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
 The Node.js version 8.14.0 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
+
 
 NodeJS version:
   - [8.14.0](https://nodejs.org/en/blog/release/v8.14.0)
@@ -398,6 +403,7 @@ The following packages are pre-installed in the Node.js version 8 environment:
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
   - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+
 
 ### Node.js version 6 environment (deprecated)
 {: #openwhisk_ref_javascript_environments_6}
@@ -474,6 +480,7 @@ When creating python actions using virtualenv, use the docker image `ibmfunction
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
 
+
 Python version:
 - [3.7.1](https://github.com/docker-library/python/blob/39c500cc8aefcb67a76d518d789441ef85fc771f/3.7/stretch/Dockerfile)
 
@@ -544,6 +551,7 @@ Python packages:
 - websocket-client==0.47.0
 - Werkzeug==0.14.1
 - zope.interface==4.6.0
+
 
 
 ### Python 3.6 actions (Debian Jessie based)
@@ -686,6 +694,7 @@ Python packages:
 ## Swift actions
 {: #swift-actions}
 
+
 ### Swift 3
 Swift 3 actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
 
@@ -698,6 +707,7 @@ Swift 3.1.1 actions can use the following packages when using a single Swift sou
 - Watson Developer Cloud SDK version 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
 
 ### Swift 4
+
 Swift 4 actions are executed using Swift 4.1 `--kind swift:4.1`.
 
 Follow the instructions for [packaged swift actions](./openwhisk_actions.html#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
@@ -705,13 +715,6 @@ Follow the instructions for [packaged swift actions](./openwhisk_actions.html#pa
 Swift 4.1 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 0.35.0, https://github.com/watson-developer-cloud/swift-sdk
 
-### Migrating Swift 3.1.1 to Swift 4.1
-
-#### SwiftyJSON using a single source action file
-If you have a `swift:3.1.1` action that is not compiled, just as a source file using the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.1` kind action. Take into account that starting with Swift 4.1, there is better support to manage JSON data natively.
-
-## PHP actions
-{: #openwhisk_ref_php}
 
 
 PHP actions are executed with PHP 7.2.6 To use this runtime, specify the `wsk` CLI parameter `--kind php:7.2` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-01-15"
 
 ---
 
@@ -57,7 +57,7 @@ To explain all the components in more detail, let's trace an invocation of an ac
 
 What happens behind the scenes in OpenWhisk?
 
-OpenWhisk is an open-source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
+OpenWhisk is an open source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
@@ -158,7 +158,7 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### Summary
 
-You can see how a simple **ibmcloud fn action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open-source community.
+You can see how a simple **ibmcloud fn action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community.
 
 You can find additional information about {{site.data.keyword.openwhisk_short}} in the following topics:
 

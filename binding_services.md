@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-19"
+  years: 2017, 2019
+lastupdated: "2019-01-15"
 
 ---
 
@@ -30,7 +30,7 @@ Don't confuse `ibmcloud fn service bind` command with the `cf bind-service` comm
 
 Bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}. Binding a service creates new parameter on your existing action that contains the service instance credentials.
 
-**Note**: You can only bind one service of each type to an action or package. Binding multiple services of the same type is not supported.
+**Note**: You can only bind one service of each type to an action or package. Binding services of the same type isn't supported.
 
 Before you begin, [define credentials](/docs/apps/reqnsi.html) for the service that you want to bind.
 
@@ -81,7 +81,7 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html) for the service t
     <tbody>
     <tr>
     <td><code>SERVICE_TYPE</code></td>
-    <td>The type of service that you are binding.</td>
+    <td>The type of service that you're binding.</td>
     </tr>
     <tr>
     <td><code>ACTION_NAME</code></td>
@@ -105,7 +105,7 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html) for the service t
     ```
     {: screen}
 
-4. Verify that the credentials are successfully bound. The action that the service is bound to does not support any custom flags, but does support the debug and verbose flags.
+4. Verify that the credentials are successfully bound. The action that the service is bound to doesn't support any custom flags, but does support the debug and verbose flags.
     ```
     ibmcloud fn action get hello parameters
     ```
@@ -146,7 +146,7 @@ Before you begin, [define credentials](/docs/apps/reqnsi.html) for the service t
 For more information about passing parameters to an action or package and how credentials are affected during `update` operations, see [Working with parameters](./parameters.html#pass-params-action).
 
 
-If you change the name of the org or space that contains entities, then a namespace is created with the new name. The entities that your old namespace contained are not visible in the new namespace and are scheduled to be deleted. If you made the change by accident, you can quickly revert it and you might be able to save your entities before they are deleted.
+If you change the name of the org or space that contains entities, then a namespace is created with the new name. The entities that your old namespace contained aren't visible in the new namespace and are scheduled to be deleted. If you made the change accidentally, you can revert it and you might be able to save your entities before they are deleted.
 {: tip}
 
 
