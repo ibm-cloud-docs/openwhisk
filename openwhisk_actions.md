@@ -74,7 +74,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information, see the Node.js [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
+  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information, see the Node.js [reference](/docs/openwhisk/openwhisk_reference.html#openwhisk_ref_javascript_environments).
 
 3. Verify that your `hello` action is in your actions list.
   ```
@@ -89,7 +89,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-4. Run the action in the cloud by running a blocking invocation. Blocking invocations use a request/response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](./openwhisk_reference.html#openwhisk_syslimits).
+4. Run the action in the cloud by running a blocking invocation. Blocking invocations use a request/response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk/openwhisk_reference.html#openwhisk_syslimits).
     ```
     ibmcloud fn action invoke --blocking hello
     ```
@@ -858,7 +858,7 @@ An action is simply a top-level PHP function. To create a PHP action:
     ```
     {: pre}
 
-    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
+    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information, see the PHP [reference](/docs/openwhisk/openwhisk_reference.html#openwhisk_ref_php).
 
 3. Invoke the action.
     ```
@@ -1043,7 +1043,7 @@ An action is a top-level Swift function. To create a Swift 3 action:
     ```
     {: pre}
 
-    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
+    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](/docs/openwhisk/openwhisk_reference.html#openwhisk_ref_php).
 
 3. Invoke the action.
     ```
