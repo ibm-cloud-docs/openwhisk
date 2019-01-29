@@ -31,45 +31,14 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/bluemix_cli/download_cli.html).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, and Tokyo {{site.data.keyword.Bluemix_notm}} regions. If the {{site.data.keyword.Bluemix_notm}} API endpoint is not specified, specify one with the `-a` flag.
+2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk/openwhisk_regions.html).
 
   ```
-  ibmcloud login -a <endpoint>
+  ibmcloud login
   ```
   {: pre}
 
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>Endpoint</th>
-    </tr>
-    <tr>
-      <td>US South</td>
-      <td><code>api.us-south.functions.cloud.ibm.com</code></td>
-    </tr>
-     <tr>
-      <td>US South - Stage 1</td>
-      <td><code>api.us-south.functions.test.cloud.ibm.com</code></td>
-    </tr>
-    <tr>
-      <td>US East</td>
-      <td><code>api.us-east.functions.cloud.ibm.com</code></td>
-    </tr>
-    <tr>
-      <td>UK South</td>
-      <td><code>api.eu-gb.functions.cloud.ibm.com</code></td>
-    </tr>
-    <tr>
-      <td>EU Central</td>
-      <td><code>api.eu-de.functions.cloud.ibm.com</code></td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>api.jp-tok.functions.cloud.ibm.com</code></td>
-    </tr>
-  </table>
-
-  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -a <endpoint> -o <ORG> -s <SPACE>`
+  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -o <ORG> -s <SPACE>`
   {: tip}
 
 3. If you did not specify an org and space, complete the prompts that follow the login command.
