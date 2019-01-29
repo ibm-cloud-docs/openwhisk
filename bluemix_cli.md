@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-22"
+lastupdated: "2019-01-29"
 
 ---
 
@@ -31,41 +31,14 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/bluemix_cli/download_cli.html).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, and United Kingdom {{site.data.keyword.Bluemix_notm}} regions. If the {{site.data.keyword.Bluemix_notm}} API endpoint is not specified, specify one with the `-a` flag.
+2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk/openwhisk_regions.html).
 
   ```
-  ibmcloud login -a <endpoint>
+  ibmcloud login
   ```
   {: pre}
 
-  <table>
-    <tr>
-      <th>Region</th>
-      <th>Endpoint</th>
-    </tr>
-    <tr>
-      <td>US South</td>
-      <td><code>api.ng.bluemix.net</code></td>
-    </tr>
-    <tr>
-      <td>US East</td>
-      <td><code>api.us-east.bluemix.net</code></td>
-    </tr>
-    <tr>
-      <td>UK South</td>
-      <td><code>api.eu-gb.bluemix.net</code></td>
-    </tr>
-    <tr>
-      <td>EU Central</td>
-      <td><code>api.eu-de.bluemix.net</code></td>
-    </tr>
-    <tr>
-      <td>Tokyo</td>
-      <td><code>api.jp-tok.bluemix.net</code></td>
-    </tr>
-  </table>
-
-  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -a <endpoint> -o <ORG> -s <SPACE>`
+  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -o <ORG> -s <SPACE>`
   {: tip}
 
 3. If you did not specify an org and space, complete the prompts that follow the login command.
@@ -79,10 +52,10 @@ To work with {{site.data.keyword.openwhisk_short}}, download and install the CLI
 
 You can use the plug-in to:
 
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](./openwhisk_actions.html).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](./openwhisk_triggers_rules.html).
-* Learn how packages bundle actions and configure external events sources. See [Create and use packages](./openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](./openwhisk_cloudant.html).
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk/openwhisk_actions.html).
+* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk/openwhisk_triggers_rules.html).
+* Learn how packages bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk/openwhisk_packages.html).
+* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](/docs/openwhisk/openwhisk_cloudant.html).
 
 To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
@@ -202,6 +175,9 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+v1.0.28 (2019-01-21)
+* Return an error when `update|delete|get namespace name` exists multiple times.
 
 v1.0.27 (2018-12-11)
 * `namespace get` fixes

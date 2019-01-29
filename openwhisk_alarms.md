@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -26,7 +26,7 @@ The package includes the following feeds.
 | `/whisk.system/alarms` | package | - | Alarms and periodic utility. |
 | `/whisk.system/alarms/once` | feed | date, trigger_payload, deleteAfterFire | Fire trigger event once on a specific date. |
 | `/whisk.system/alarms/interval` | feed | minutes, trigger_payload, startDate, stopDate | Fire trigger event on an interval-based schedule. |
-| `/whisk.system/alarms/alarm` | feed | cron, trigger_payload, startDate, stopDate | Fire trigger event on a time-based schedule using cron. |
+| `/whisk.system/alarms/alarm` | feed | cron, timezone, trigger_payload, startDate, stopDate | Fire trigger event on a time-based schedule using cron. |
 
 ## Firing a trigger event once
 
@@ -151,7 +151,12 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param cron</code></td>
-<td>Replace <code>&lt;cron&gt;</code> with a string that that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum 5 fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency:<ul><li><code>\* \* \* \* \*</code>: The trigger fires at the top of every minute.</li><li><code>0 \* \* \* \*</code>: The trigger fires at the top of every hour.</li><li><code>0 \*/2 \* \* \*</code>: The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code>: The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
+<td>Replace <code>&lt;cron&gt;</code> with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum 5 fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency:<ul><li><code>\* \* \* \* \*</code>: The trigger fires at the top of every minute.</li><li><code>0 \* \* \* \*</code>: The trigger fires at the top of every hour.</li><li><code>0 \*/2 \* \* \*</code>: The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code>: The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
+</tr>
+<tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>Optional: Replace <code>&lt;timezone&gt;</code> with a string that specifies the timezone. The actual time to fire the trigger will then be modified relative to the specified timezone. If the timezone is invalid, an error is thrown. You can check all timezones available at the Moment Timezone Website (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names/).</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>

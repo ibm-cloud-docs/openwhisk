@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -23,7 +23,7 @@ The `/whisk.system/cloudant` package enables you to work with a [{{site.data.key
 | `/whisk.system/cloudant` | package | dbname, host, username, password | Work with a Cloudant database. |
 | `/whisk.system/cloudant/read` | action | dbname, id | Read a document from a database. |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database. |
-| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
+| `/whisk.system/cloudant/changes` | feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
 The following sections step you through setting up an {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
@@ -32,35 +32,17 @@ For more information on how to use feeds with the `/whisk.system/cloudant` packa
 ## Setting up an {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_cloud}
 
-If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}}, {{site.data.keyword.openwhisk_short}} automatically creates package bindings for your {{site.data.keyword.cloudant_short_notm}} service instances. If you aren't using {{site.data.keyword.openwhisk_short}} and {{site.data.keyword.cloudant_short_notm}} from {{site.data.keyword.Bluemix_notm}}, skip to the next section.
+If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}} you can use the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an action or package.
 
-1. Create an {{site.data.keyword.cloudant_short_notm}} service instance in your [{{site.data.keyword.Bluemix_notm}} dashboard](http://console.bluemix.net).
+You must first manually create a package binding for your {{site.data.keyword.cloudant_short_notm}} account.
 
-2. Create an alias for the service instance.
-    ```
-    ibmcloud resource service-alias-create <alias_name> --instance-name <service_instance_name>
-    ```
-    {: pre}
-
-3. Create a credential key for the alias.
-    ```
-    ibmcloud resource service-key-create <credential_name> <role> --alias-name <service alias>
-    ```
-    {: pre}
-
-4. Refresh the packages in your namespace. The refresh automatically creates a package binding for each {{site.data.keyword.cloudant_short_notm}} service instance with a credential key defined.
+1. Create a package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
   ```
-  ibmcloud fn package refresh
+  ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
-  Example output:
-  ```
-  created bindings:
-  Bluemix_testCloudant_Credentials-1
-  ```
-  {: screen}
-
+2. Verify that the package binding exists.
   ```
   ibmcloud fn package list
   ```
@@ -69,64 +51,85 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Blu
   Example output:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
+  /myNamespace/myCloudant private
   ```
   {: screen}
+  
+3. Get the name of the service instance that you want to bind to an action or package.
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
 
-  Your package binding now contains the credentials that are associated with your {{site.data.keyword.cloudant_short_notm}} service instance.
+    Example output:
+    ```
+    Name          Location   State    Type
+    Cloudant-gm   us-south   active   service_instance
+    ```
+    {: screen}
 
-5. Check to see that the package binding that was created previously is configured with your {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} service instance host and credentials.
+4. Get the name of the credentials that are defined for the service instance you got in the previous step.
+    ```
+    ibmcloud resource service-keys --instance-name Cloudant-gm
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
-  ```
-  {: pre}
+    Example output:
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
 
-  Example output:
-  ```
-  ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
+5. Bind the service to the package you created in step 1.
+    ```
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ```
+    {: pre}
 
-  [
-      {
-          "key": "username",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix"
-      },
-      {
-          "key": "host",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix.cloudant.com"
-      },
-      {
-          "key": "password",
-          "value": "c9088667484a9ac827daf8884972737"
-      }
-  ]
-  ```
-  {: screen}
+6. Verify that the credentials are successfully bound.
+    ```
+    ibmcloud fn package get myCloudant parameters
+    ```
+    {: pre}
 
-## Setting up an {{site.data.keyword.cloudant_short_notm}} database outside the {{site.data.keyword.Bluemix_notm}}
-{: #cloudantdb_nocloud}
+    Example output:
+    ```
+    ok: got package myCloudant, displaying field parameters
+    {
+        "parameters": [
+            {
+                "key": "bluemixServiceName",
+                "value": "cloudantNoSQLDB"
+            },
+            {
+                "key": "apihost",
+                "value": "us-south.functions.cloud.ibm.com"
+            },
+            {
+                "key": "__bx_creds",
+                "value": {
+                    "cloudantnosqldb": {
+                        "apikey": "[Service apikey]",
+                        "credentials": "Service credentials-1",
+                        "iam_apikey_description": "[Service description]",
+                        "iam_apikey_name": "[Service apikey name]",
+                        "iam_role_crn": "[Service role crn]",
+                        "iam_serviceid_crn": "[Service id crn]",
+                        "instance": "Cloudant-gm",
+                        "url": "[Service url]",
+                        "username": "[Service username]"
+                    }
+                }
+            }
+        ],
+    }
+    ```
+    {: screen}
 
-If you're not using {{site.data.keyword.openwhisk_short}} in the {{site.data.keyword.Bluemix_notm}} or if you want to set up your {{site.data.keyword.cloudant_short_notm}} database outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your {{site.data.keyword.cloudant_short_notm}} account. You need the {{site.data.keyword.cloudant_short_notm}} account host name, user name, and password.
-
-1. Create a package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
-  ```
-  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
-  ```
-  {: pre}
-
-
-2. Verify that the package binding exists.
-  ```
-  wsk package list
-  ```
-  {: pre}
-
-  Example output:
-  ```
-  packages
-  /myNamespace/myCloudant private binding
-  ```
-  {: screen}
+    In this example, the credentials for the Cloudant service belong to a parameter named `__bx_creds`.
+  
 
 ## Reading from an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_read}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-08"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -76,7 +76,7 @@ For detailed information about how to use triggers in {{site.data.keyword.messag
 ## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
+The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
 To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams/eventstreams112.html#producing_messages).

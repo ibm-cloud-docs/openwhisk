@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-07"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -16,7 +16,8 @@ lastupdated: "2018-11-07"
 # Watson: Translator package
 {: #openwhisk_catalog_watson_translator}
 
-This pre-installed package is not longer available in any region. Please see the installable [Language Translator](./ow_watson_language_translator.html) package using the new V3 API with IAM authentication. {: tip}
+This pre-installed package is not longer available in any region. Please see the installable [Language Translator](./ow_watson_language_translator.html) package using the new V3 API with IAM authentication. 
+{: tip}
 
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.
 {: shortdesc}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-07"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -16,7 +16,8 @@ lastupdated: "2018-11-07"
 # GitHub events source
 {: #openwhisk_catalog_github}
 
-This pre-installed package is not available in the Tokyo region. {: tip}
+This pre-installed package is not available in the Tokyo region. 
+{: tip}
 
 The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/).
 {: shortdesc}
