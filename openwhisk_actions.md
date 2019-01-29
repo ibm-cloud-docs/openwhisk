@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-28"
+lastupdated: "2019-01-29"
 
 ---
 
@@ -28,7 +28,7 @@ With {{site.data.keyword.openwhisk}}, you can create stateless code snippets tha
 
 **What is an action?**
 
-An action is a small piece of code that can be explicitly invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
+An action is a small piece of code that can be invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
 
 **Why would I use an action?**
 
@@ -74,7 +74,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The CLI automatically determines the type of the action by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information, see the Node.js [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
+  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information, see the Node.js [reference](./openwhisk_reference.html#openwhisk_ref_javascript_environments).
 
 3. Verify that your `hello` action is in your actions list.
   ```
@@ -325,7 +325,7 @@ For example, consider a directory with the following files:
     npm install
     ```
     {: pre}
-    **Note**: While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload currently supports only JavaScript dependencies. Action invocations might fail if the archive includes binary dependencies.
+    **Note**: While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload supports only JavaScript dependencies. Action invocations might fail if the archive includes binary dependencies.
 
 4. Create a `.zip` archive containing all files, including all dependencies.
     ```
@@ -465,7 +465,7 @@ An action is simply a top-level Python function. To create a Python action:
     {: codeblock}
 
   * Python actions always consume a dictionary and produce a dictionary.
-  * The entry method for the action is `main` by default but can be specified explicitly to create the action with the `wsk` CLI by using the `--main` flag.
+  * The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
 
 2. Create a `helloPython` action.
     ```
@@ -479,7 +479,7 @@ An action is simply a top-level Python function. To create a Python action:
     ```
     {: screen}
 
-    The CLI automatically infers the type of the action by using the source file extension.
+    The type of action is determined by using the source file extension.
     For `.py` source files, the action runs by using a Python 2 runtime.
 
     You can also create an action that runs with Python 3.x, for Python 3.6 use the parameter `--kind python:3.6` (previously named `python-jessie:3`), for Python 3.7 use the parameter `--kind python:3.7`, both contain additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about the packages  that are included in these Python 3 runtimes, see the Python runtime [reference](./openwhisk_reference.html#openwhisk_ref_python_environments).
@@ -836,7 +836,7 @@ The following sections guide you through creating and invoking a single PHP acti
 
 An action is simply a top-level PHP function. To create a PHP action:
 
-1. Save the following code in a filed called `hello.php`.
+1. Save the following code in a file called `hello.php`.
     ```
     <?php
     function main(array $args) : array
@@ -850,7 +850,7 @@ An action is simply a top-level PHP function. To create a PHP action:
     {: codeblock}
 
     * PHP actions always consume an associative array and return an associative array.
-    * The entry method for the action is `main` by default but can be specified explicitly when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
+    * The entry method for the action is `main` by default but can be specified when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
 
 2. Create an action called `helloPHP`.
     ```
@@ -858,7 +858,7 @@ An action is simply a top-level PHP function. To create a PHP action:
     ```
     {: pre}
 
-    The CLI automatically infers the type of action from the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
+    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
 
 3. Invoke the action.
     ```
@@ -905,7 +905,7 @@ An action is simply a top-level Ruby method.
 
 For example, create a file called `hello.rb`.
 
-1. Save the following code in a filed called `hello.rb`.
+1. Save the following code in a file called `hello.rb`.
     ```ruby
     def main(args)
       name = args["name"] || "stranger"
@@ -917,7 +917,7 @@ For example, create a file called `hello.rb`.
     {: codeblock}
 
     * Ruby actions always consume a Hash (dictionary-like collection) and return a Hash.
-    * The entry method for the action is `main` by default but can be specified explicitly when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
+    * The entry method for the action is `main` by default but can be specified when you create the action with the `ibmcloud fn` CLI by using the `--main` flag.
 
 2. Create an action called `helloRuby`.
     ```
@@ -964,8 +964,8 @@ You can use arbitrary gems so long as you use zipped actions to package all the 
 ## Creating Swift actions
 {: #creating-swift-actions}
 
-The Swift 3.1.1 and 4.1 runtimes are currently deprecated and they will not be available beyond February 28th 2019.
-Start any new actions or migrate any existing actions to Swift 4.2 runtime using the kind `swift:4.2` and new compile process.
+The Swift 3.1.1 and 4.1 runtimes are deprecated and they will not be available beyond 28 February 2019.
+Start new actions with or migrate existing actions to the Swift 4.2 runtime by using the `swift:4.2` kind and its compile process.
 {: tip}
 
 The following sections guide you through creating and invoking a single Swift action and packaging an action in a zip file.
@@ -982,9 +982,9 @@ For more information about the Swift runtime, see the Swift [reference](./openwh
 #### Swift 4
 {: #openwhisk_actions_swift4_invoke}
 
-In addition to the main function signature, Swift 4 provides two more signatures which take advantage of the [Codable ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are encodable and decodable for compatibility with external representations such as JSON [here ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [Codable ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
 
-1. Save the following code in a filed called `hello.swift`.
+1. Save the following code in a file called `hello.swift`.
     ```swift
     struct Input: Codable {
         let name: String?
@@ -1021,9 +1021,9 @@ In addition to the main function signature, Swift 4 provides two more signatures
 #### Swift 3
 {: #openwhisk_actions_swift3_invoke}
 
-An action is simply a top-level Swift function. To create a Swift 3 action:
+An action is a top-level Swift function. To create a Swift 3 action:
 
-1. Save the following code in a filed called `hello.swift`.
+1. Save the following code in a file called `hello.swift`.
     ```swift
     func main(args: [String:Any]) -> [String:Any] {
         if let name = args["name"] as? String {
@@ -1043,7 +1043,7 @@ An action is simply a top-level Swift function. To create a Swift 3 action:
     ```
     {: pre}
 
-    The CLI automatically infers the type of action from the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
+    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.1 runtime. For more information, see the PHP [reference](./openwhisk_reference.html#openwhisk_ref_php).
 
 3. Invoke the action.
     ```
@@ -1062,23 +1062,23 @@ An action is simply a top-level Swift function. To create a Swift 3 action:
 ### Packaging an action as a Swift executable
 {: #packaging-an-action-as-a-swift-executable}
 
-When you create an {{site.data.keyword.openwhisk_short}} Swift action with a Swift source file, the file must be compiled into a binary before the action is run. This delay is known as the cold-start delay. Once the binary is created, subsequent calls to the action are much faster until the container holding your action is purged. To avoid the cold-start delay, you can compile your Swift file into a binary and then upload the binary to {{site.data.keyword.openwhisk_short}} in a zip file.
+When you create an {{site.data.keyword.openwhisk_short}} Swift action with a Swift source file, the file must be compiled into a binary before the action is run. This delay is known as the cold-start delay. Once the binary is created, subsequent calls to the action are much faster until the container holding your action is purged. To avoid the cold-start delay, you can compile your Swift file into a binary and then upload the binary to {{site.data.keyword.openwhisk_short}} in a .zip file.
 
 
 #### Compiling Swift 4.2 packaged actions
 {: #openwhisk_actions_swift42_compile}
 
-The docker runtime includes a compiler to help users compile and package Swift 4.2 actions.
+The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions.
 
 ##### Compiling a single source file for Swift 4.2
 
-To compile a single source file that doesn't depend on external libaries you can use the following command:
+To compile a single source file that doesn't depend on external libaries, you can use the following command:
 ```bash
 docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
 ```
-The docker container reads the content of the file from stdin, and writes a zip archive with the compiled swift executable to stdout.
+The Docker container reads the content of the file from stdin, and writes a .zip archive with the compiled swift executable to stdout.
 Use the flag `-compile` with the name of the main method.
-The zip archive is ready for deployment and invocation using the kind `swift:4.2`
+The .zip archive is ready for deployment and invocation using the kind `swift:4.2`
 ```bash
 wsk action update helloSwiftly hello.zip --kind swift:4.2
 wsk action invoke helloSwiftly -r -p name World
@@ -1120,12 +1120,12 @@ let package = Package(
 )
 ```
 
-Create a zip archive with the content of the directory:
+Create a .zip archive with the content of the directory:
 ```bash
 zip ../action-src.zip -r *
 ```
-Pass the zip archive to the docker container over stdin, and the stdout will be a new zip archive with the compiled executable.
-The docker container reads the content of the zip archive from stdin, and writes a new zip archive with the compiled swift executable to stdout.
+Pass the .zip archive to the Docker container over stdin, and the stdout will be a new .zip archive with the compiled executable.
+The docker container reads the content of the .zip archive from stdin, and writes a new .zip archive with the compiled swift executable to stdout.
 ```
 docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
 ```
@@ -1134,7 +1134,7 @@ In a Linux based system you can combine the `zip` and `docker run` steps in a si
 zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
 ```
 
-The zip `action-bin.zip` archive is ready for deployment and invocation using the kind `swift:4.2`
+The `action-bin.zip` archive is ready for deployment and invocation using the kind `swift:4.2`
 ```bash
 wsk action update helloSwiftly action-bin.zip --kind swift:4.2
 wsk action invoke helloSwiftly -r
@@ -1143,7 +1143,18 @@ wsk action invoke helloSwiftly -r
 #### Compiling Swift 3.1.1 and 4.1 packaged actions
 
 ##### Using a script to build Swift 3.1.1 and 4.1 packaged actions
-You can use a script to automate the packaging of the action. Create  script `compile.sh`h file the following.
+You can use a script to automate the packaging of the action. 
+
+Before you begin, create a directory `actions` with each top level directory representing an action.
+```
+actions/
+├── hello
+│   ├── Package.swift
+│   └── Sources
+│       └── main.swift
+```
+
+Create script `compile.sh` file the following.
 ```bash
 #!/bin/bash
 set -ex
@@ -1215,14 +1226,7 @@ zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
 "
 ```
 
-The script assumes you have a directory `actions` with each top level directory representing an action.
-```
-actions/
-├── hello
-│   ├── Package.swift
-│   └── Sources
-│       └── main.swift
-```
+
 
 - Create the `Package.swift` file to add dependencies.
 The syntax changes based on the Swift runtime version.
@@ -1266,7 +1270,7 @@ Swift 3 example sytax:
       ]
   )
   ```
-  As you can see this example adds `example-package-deckofplayingcards` as a dependency.
+  In the example, `example-package-deckofplayingcards` is added as a dependency.
   Notice that `CCurl`, `Kitura-net` and `SwiftyJSON` are provided in the standard Swift action. Include them in your own `Package.swift` for Swift 3 actions.
 
 - Build the action by running the following command for a Swift 3 action:
@@ -1277,7 +1281,7 @@ Swift 3 example sytax:
   ```
   bash compile.sh hello swift:4.1
   ```
-  This has created hello.zip in the `build`.
+  This process created hello.zip in the `build`.
 
 - Upload it to OpenWhisk with the action name helloSwifty:
   For Swift 3 use the kind `swift:3.1.1`
@@ -1371,7 +1375,7 @@ To create a Java action:
     {: pre}
   * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
   * You can customize the method name of your Java action. This is done by specifying the fully-qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
-  * The CLI automatically infers the type of the action from the source file extension.
+  * The type of action is determined by using the source file extension.
 
 4. Invoke the action.
     ```
@@ -1551,13 +1555,13 @@ To create a .NET Core action:
     ```
     {: codeblock}
 
-3. Compile `Hello.cs` and any other files and output to `out` directory:
+3. Compile `Hello.cs` and any other files and output to `out` directory.
     ```bash
     dotnet publish -c Release -o out
     ```
     {: pre}
 
-4. Zip the published files as follows:
+4. Compress the published files.
     ```bash
     cd out
     zip -r -0 ../helloDotNet.zip *
@@ -1750,7 +1754,7 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
     {: screen}
 
 **Note**:
-* Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action explicitly includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters. For more information about invoking action sequences with multiple named parameters, see [Setting default parameters on an action](./parameters.html#default-params-action).
+* Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters. For more information about invoking action sequences with multiple named parameters, see [Setting default parameters on an action](./parameters.html#default-params-action).
 * A sequence does not have an overall timeout separate from the timeouts of each action within the sequence. Because a sequence is a pipeline of operations, a failure in one action breaks the pipeline. If one action times out, the entire sequence is exited with that failure.
 
 ## Managing large actions

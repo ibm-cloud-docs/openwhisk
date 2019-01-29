@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-28"
+lastupdated: "2019-01-29"
 
 ---
 
@@ -246,7 +246,7 @@ For more information, see [Packaging an action as a Node.js module](./openwhisk_
 The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
 #### Migrating from `nodejs:8` to `nodejs:10`
-- The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` currently doesn't support nodejs10, track progress in [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541) expected on Dec. 7th 2018
+- The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` doesn't support nodejs10, track progress in [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541) expected on Dec. 7th 2018
 - The `cloudant` npm package is not available in `nodejs:10`, the package is deprecated, you need to use the official npm package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodejs module (i.e `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` npm package is not available in `nodejs:10`.
 - The `log4js` npm package is not available in `nodejs10`. The `log4js` will be added onced the new major version `4.0.0` is released, to track use issue [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
@@ -321,7 +321,7 @@ NPM Packages:
   - [xlsx v0.14.1](https://www.npmjs.com/package/xlsx) - Parser and writer for various spreadsheet formats.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-  - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+  - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
 
 
 ### Node.js version 8 environment with IBM SDKs
@@ -398,7 +398,7 @@ NPM Packages:
   - [ws v6.1.2](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
   - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
   - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-  - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - yet another unzip library for node. For zipping.
+  - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
 
 ### Node.js version 6 environment (deprecated)
 {: #openwhisk_ref_javascript_environments_6}
@@ -461,7 +461,7 @@ The following packages are available to be used in the Node.js 6 environment:
 - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
 - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
 - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Another unzip library for node.
+- [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
 
 
 ## Python runtime environments
@@ -698,7 +698,7 @@ Python packages:
 ## Swift actions
 {: #swift-actions}
 
-The Swift 3.1.1 and 4.1 runtimes are currently deprecated and they will not be available beyond February 28th 2019.
+The Swift 3.1.1 and 4.1 runtimes are deprecated and they will not be available beyond 28 February 2019.
 Please start any new actions or migrate any existing actions to Swift 4.2 runtime using the kind `swift:4.2` and new compile process.
 {: tip}
 
@@ -740,7 +740,7 @@ PHP 7.1 and 7.2 are deprecated as of 11 January 2019. To continue using a PHP ac
 
 PHP actions are executed with PHP 7.3.0. To use this runtime, specify the `wsk` CLI parameter `--kind php:7.3` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
 
-The PHP 7.1 and 7.2 runtime are currently deprecated, is recommended that all actions get migrated to PHP 7.3 provides better latency, faster runs end to end.
+The PHP 7.1 and 7.2 runtime are deprecated. Migrate all actions to PHP 7.3 for better latency and faster runs end to end.
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -815,7 +815,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 #### codeSize (MB) (Fixed: 48 MB)
 {: #openwhisk_syslimits_codesize}
 * The maximum code size for the action is 48 MB.
-* It is recommended for a JavaScript action to use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
+* For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
 * This limit is fixed and cannot be changed.
 
 #### concurrent (Fixed: 1000*)
