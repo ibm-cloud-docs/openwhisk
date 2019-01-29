@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -23,7 +23,7 @@ Learn how to listen for changes to an {{site.data.keyword.cloudant}} database, f
 | `/whisk.system/cloudant` | package | dbname, host, username, password | Work with a Cloudant database. |
 | `/whisk.system/cloudant/read` | action | dbname, id | Read a document from a database. |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database. |
-| `/whisk.system/cloudant/changes` | feed | dbname, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
+| `/whisk.system/cloudant/changes` | feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
 The following sections step you through configuring an associated package, and how to use actions and feeds in the `/whisk.system/cloudant` package. For more information about setting up the {{site.data.keyword.cloudant_short_notm}} database, and reading or writing to it, see [{{site.data.keyword.cloudant_short_notm}} actions](./cloudant_actions.html).
@@ -35,6 +35,10 @@ You can use the `changes` feed to configure a service to fire a trigger on every
 The parameters used in this example are as follows:
 
 **dbname**: The name of the {{site.data.keyword.cloudant_short_notm}} database _(required)_.
+
+**iamApiKey**: The IAM API key for the Cloudant database.  If specified will be used as the credentials instead of username and password _(optional)_.
+
+**iamUrl**: The IAM token service url that is used when `iamApiKey` is specified.  Defaults to `https://iam.bluemix.net/identity/token` _(optional)_. 
 
 **maxTriggers**: Stop firing triggers when this limit is reached _(optional)_. Defaults to infinite.
 

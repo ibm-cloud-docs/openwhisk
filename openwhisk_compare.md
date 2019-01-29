@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -24,15 +24,15 @@ lastupdated: "2018-10-12"
 
 The following OpenWhisk architectures are compared:
 
-1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk). IBM is the only vendor to offer managed OpenWhisk. A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html), and you can see [uses cases](./openwhisk_use_cases.html) for running OpenWhisk with a serverless design.
+1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk). IBM is the only vendor to offer managed OpenWhisk. A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html), and you can see [uses cases](/docs/openwhisk/openwhisk_use_cases.html) for running OpenWhisk with a serverless design.
 
-2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices).
+2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices).
 
-3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} Foundry implementation.
+3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} Foundry implementation.
 
 4. **Container as a Service (CaaS)** as a managed container environment. A good example is the [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index).
 
-5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server).
+5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server).
 
 The following table compares elements of each architecture from the perspective of a developer that is creating and operating applications:
 
@@ -56,7 +56,7 @@ The following table compares elements of each architecture from the perspective 
 |	Resource limits	|	[Some limits exist](./openwhisk_reference.html#openwhisk_syslimits)	|	Depends on allocated resources	|	No	|	No	|	No	|
 |	Latency for rarely used services	|	Rare requests can initially see several seconds response time, but remain in ms range for subsequent requests	|	Depends	|	Low	|	Low	|	Low - assuming the system has enough resources	|
 |	Sweet spot type of application	|	Event processing, IoT, Mobile backend, microservices. Definitely not for monolithic applications. See [use cases](./openwhisk_use_cases.html)	|	Same as column (1), but when user wants to run on non-IBM cloud or run on-prem.	|	Web applications with 24x7 workload load, stateful services that need to keep the connection open for long periods of time. Can be used to run microservices or monolithic applications	|	Ideal for microservices applications.	|	Traditional enterprise applications that are migrated from on-prem to the cloud. Ideal for monolithic applications	|
-|	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://console.ng.bluemix.net/openwhisk/learn/pricing)	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5)	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space)	|	Similar to column (3)	|	Similar to column (3)	|
+|	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://cloud.ibm.com/openwhisk/learn/pricing)	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5)	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space)	|	Similar to column (3)	|	Similar to column (3)	|
 |	Total Cost of Ownership (TCO)	|	For its sweet spot, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on-prem deployment can be cheaper than traditional architectures	|	Relatively low - The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate - The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS	|	Relatively high - Consider that migration of legacy applications into the cloud native model could be prohibitively expensive, this can be a viable and economical choice for those apps.	|
 
 ## Cost considerations
@@ -65,7 +65,7 @@ The following table compares elements of each architecture from the perspective 
 The infrastructure for your testing, staging, load testing, and other environments can be costly. It takes time to set them up, and because they usually operate 24x7, they are often underutilized and consume large amounts of capacity. By using a serverless architecture, costs for any number of environments are generated based on load instead of the number of environments defined.
 {: shortdesc}
 
-To estimate costs for a serverless application, you can use the [pricing calculator ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/learn/pricing).
+To estimate costs for a serverless application, you can use the [pricing calculator ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/learn/pricing).
 
 ### Limitless capacity
 {: #limitless_capacity}

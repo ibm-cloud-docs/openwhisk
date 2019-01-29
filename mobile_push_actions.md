@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-07"
+  years: 2017, 2019
+lastupdated: "2019-01-29"
 
 ---
 
@@ -16,7 +16,8 @@ lastupdated: "2018-11-07"
 # Mobile push package
 {: #openwhisk_catalog_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](./ow_push_notifications.html) package for the action `sendMessage` using IAM authentication {: tip}
+This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](./ow_push_notifications.html) package for the action `sendMessage` using IAM authentication 
+{: tip}
 
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
 {: shortdesc}
