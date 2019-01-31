@@ -91,6 +91,7 @@ IBM Cloud Functions
     {: .navgroup id="reference"}
     openwhisk_annotations.md
     openwhisk_reference.md
+    openwhisk_regions.md
 
     {: .topicgroup}
     API documentation

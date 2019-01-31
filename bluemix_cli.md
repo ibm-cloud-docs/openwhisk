@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-01-30"
 
 ---
 
@@ -29,7 +29,7 @@ You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plu
 Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 {: shortdesc}
 
-1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/bluemix_cli/download_cli.html).
+1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud/download_cli.html#install_use).
 
 2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk/openwhisk_regions.html).
 
