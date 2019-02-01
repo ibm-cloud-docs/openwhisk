@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-01"
 
 ---
 
@@ -525,12 +525,13 @@ To install dependencies, package them in a virtual environment, and create a com
 1. Create a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install.
 
 2. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtual environment must use the image that corresponds to the kind.
-    * For kind `python:2` use the docker image `openwhisk/python2action`.
-    * For kind `python:3.6` use the docker image `ibmfunctions/action-python-v3.6`.
-    * For kind `python:3.7` use the docker image `ibmfunctions/action-python-v3.7`.
+    * For kind `python:3.7` use the Docker image `ibmfunctions/action-python-v3.7`.
+    * For kind `python:3.6` use the Docker image `ibmfunctions/action-python-v3.6`.
+    * For kind `python:2` use the Docker image `openwhisk/python2action`.
 
    ```
-   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3 bash  -c "cd tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+   docker pull ibmfunctions/action-python-v3.7
+   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
    ```
    {: pre}
 
@@ -1125,7 +1126,7 @@ Create a .zip archive with the content of the directory:
 zip ../action-src.zip -r *
 ```
 Pass the .zip archive to the Docker container over stdin, and the stdout will be a new .zip archive with the compiled executable.
-The docker container reads the content of the .zip archive from stdin, and writes a new .zip archive with the compiled swift executable to stdout.
+The Docker container reads the content of the .zip archive from stdin, and writes a new .zip archive with the compiled swift executable to stdout.
 ```
 docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
 ```
@@ -1143,7 +1144,7 @@ wsk action invoke helloSwiftly -r
 #### Compiling Swift 3.1.1 and 4.1 packaged actions
 
 ##### Using a script to build Swift 3.1.1 and 4.1 packaged actions
-You can use a script to automate the packaging of the action. 
+You can use a script to automate the packaging of the action.
 
 Before you begin, create a directory `actions` with each top level directory representing an action.
 ```
