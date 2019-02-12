@@ -50,9 +50,9 @@ Yes! You can use actions to call other actions, or you can string actions togeth
 
 
 
+
 ## Creating JavaScript actions
-{: #creating-and-invoking-javascript-actions}
-{: javascript}
+{: #creating-and-invoking-javascript-actions}{: javascript}
 
 The following sections guide you through working with actions in JavaScript. Start by creating and invoking a simple action. Then, add parameters to the action and invoke that action with parameters. Next, set default parameters and invoke them. Finally, create asynchronous actions.
 {: shortdesc}
