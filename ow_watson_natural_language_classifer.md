@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-23"
+  years: 2017, 2019
+lastupdated: "2019-02-12"
 
 ---
 
@@ -50,7 +50,6 @@ After you have an {{site.data.keyword.nlclassifiershort}} service instance, use 
 
 Before you begin:
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Install the [`wskdeploy` command ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH.
 
 To install the {{site.data.keyword.nlclassifiershort}} package:
 
@@ -62,7 +61,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 2. Deploy the package.
     ```
-    wskdeploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
     ```
     {: pre}
 

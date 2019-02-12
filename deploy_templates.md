@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-29"
+  years: 2017, 2019
+lastupdated: "2019-02-12"
 
 ---
 
@@ -63,8 +63,6 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-cloudant-trigger.git
@@ -79,7 +77,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 3. Deploy the template, using the following environment variables.
     ```
-    CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -133,8 +131,6 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. [Install the {{site.data.keyword.cos_full_notm}} package](cloud_object_storage_actions.html#cloud_object_storage_cli).
 
 2. Clone the template repo.
@@ -151,7 +147,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_short}} bucket as environment variables.
     ```
-    PACKAGE_NAME=<name> BUCKET_NAME=<name> wskdeploy -m manifest.yaml
+    PACKAGE_NAME=<name> BUCKET_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -190,8 +186,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-get-external-resource.git
@@ -206,7 +200,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using a custom package name as an environment variable.
     ```
-    PACKAGE_NAME=<name> wskdeploy -m manifest.yaml
+    PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -239,8 +233,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the Hello World template repo.
     ```
     git clone https://github.com/ibm-functions/template-hello-world.git
@@ -255,7 +247,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -295,8 +287,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-messagehub-trigger.git
@@ -311,7 +301,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using the following environment variables.
     ```
-    KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -363,8 +353,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
 1. Clone the template repo.
@@ -381,7 +369,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using the following environment variables.
     ```
-    SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 

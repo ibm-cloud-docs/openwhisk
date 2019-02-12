@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-23"
+  years: 2017, 2019
+lastupdated: "2019-02-12"
 
 ---
 
@@ -47,7 +47,6 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 
 Before you begin:
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
@@ -65,7 +64,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 3. Deploy the package.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
