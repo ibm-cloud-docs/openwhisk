@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -28,7 +28,7 @@ Packages are bundled sets of related actions and feeds. Each package is designed
 
 **How are installable packages different from pre-installed packages?**
 
-[Pre-installed packages](openwhisk_packages.html#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. To store credentials or other parameters in a pre-installed package, you must create [package bindings](openwhisk_packages.html#openwhisk_package_bind).
+[Pre-installed packages](openwhisk_packages.html#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. To store credentials or other parameters in a pre-installed package, you must create [package bindings](/docs/openwhisk/openwhisk_packages.html#openwhisk_package_bind).
 
 Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories. You can install these packages directly into your own namespace by using the `ibmcloud fn deploy` command, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 
@@ -36,7 +36,9 @@ Installable packages do not reside within the {{site.data.keyword.openwhisk_shor
 {: #installing}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
+  2. Install the [`wskdeploy` command ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH.
 
 To install a package:
 
@@ -61,7 +63,7 @@ To install a package:
 ### Example using the {{site.data.keyword.cos_full_notm}} package
 {: #example}
 
-To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](cloud_object_storage_actions.html), you must first create an {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
+To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](/docs/openwhisk/cloud_object_storage_actions.html). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](/docs/openwhisk/cloud_object_storage_actions.html), you must first create an {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
 After creating the service instance and bucket, installing the package requires the following commands:
 

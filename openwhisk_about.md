@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-15"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -26,21 +26,21 @@ Learn about some basic concepts of the technology behind {{site.data.keyword.ope
 
 <dl>
   <dt>Action</dt>
-    <dd>An [action](openwhisk_actions.html) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
+    <dd>An [action](/docs/openwhisk/openwhisk_actions.html) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
     <br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.Bluemix_notm}} services and third party services using a trigger.</dd>
   <dt>Sequence</dt>
-    <dd>A set of actions can be chained together into a [sequence](openwhisk_actions.html#openwhisk_create_action_sequence) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. This allows you to combine existing actions together for quick and easy re-use. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
+    <dd>A set of actions can be chained together into a [sequence](/docs/openwhisk/openwhisk_actions.html#openwhisk_create_action_sequence) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. This allows you to combine existing actions together for quick and easy re-use. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
   </dd>
   <dt>Event</dt>
     <dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events.</dd>
   <dt>Trigger</dt>
-    <dd>[Triggers](openwhisk_triggers_rules.html#openwhisk_triggers_create) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
+    <dd>[Triggers](/docs/openwhisk/openwhisk_triggers_rules.html#openwhisk_triggers_create) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
   <dt>Rule</dt>
-    <dd>A [rule](openwhisk_triggers_rules.html#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.</dd>
+    <dd>A [rule](/docs/openwhisk/openwhisk_triggers_rules.html#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.</dd>
   <dt>Feed</dt>
-    <dd>A [feed](openwhisk_feeds.html#openwhisk_feeds) is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository.</dd>
+    <dd>A [feed](/docs/openwhisk/openwhisk_feeds.html#openwhisk_feeds) is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository.</dd>
   <dt>Package</dt>
-    <dd>Integrations with services and event providers can be added with packages. A [package](openwhisk_packages.html) is a bundle of feeds and actions. A feed is a piece of code that configures an external event source to fire trigger events. For example, a trigger that is created with an {{site.data.keyword.cloudant}} change feed configures a service to fire the trigger every time a document is modified or added to an {{site.data.keyword.cloudant_short_notm}} database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
+    <dd>Integrations with services and event providers can be added with packages. A [package](/docs/openwhisk/openwhisk_packages.html) is a bundle of feeds and actions. A feed is a piece of code that configures an external event source to fire trigger events. For example, a trigger that is created with an {{site.data.keyword.cloudant}} change feed configures a service to fire the trigger every time a document is modified or added to an {{site.data.keyword.cloudant_short_notm}} database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
     <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
 </dl>
 
@@ -162,7 +162,7 @@ You can see how a simple **ibmcloud fn action invoked myAction** passes through 
 
 You can find additional information about {{site.data.keyword.openwhisk_short}} in the following topics:
 
-* [Entity names](./openwhisk_reference.html#openwhisk_entities)
-* [Action semantics](./openwhisk_reference.html#openwhisk_semantics)
-* [Limits](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API reference](https://console.bluemix.net/apidocs/functions)
+* [Entity names](/docs/openwhisk/openwhisk_reference.html#openwhisk_entities)
+* [Action semantics](/docs/openwhisk/openwhisk_reference.html#openwhisk_semantics)
+* [Limits](/docs/openwhisk/openwhisk_reference.html#openwhisk_syslimits)
+* [REST API reference](/apidocs/functions)

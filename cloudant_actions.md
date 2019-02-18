@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2019-01-29"
 # Cloudant package
 {: #cloudant_actions}
 
-The `/whisk.system/cloudant` package enables you to work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) database, and includes the following actions and feeds:
+The `/whisk.system/cloudant` package enables you to work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html) database, and includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -27,12 +27,12 @@ The `/whisk.system/cloudant` package enables you to work with a [{{site.data.key
 {: shortdesc}
 
 The following sections step you through setting up an {{site.data.keyword.cloudant_short_notm}} database, and how to read and write to it.
-For more information on how to use feeds with the `/whisk.system/cloudant` package, see [{{site.data.keyword.cloudant_short_notm}} events source](./openwhisk_cloudant.html).
+For more information on how to use feeds with the `/whisk.system/cloudant` package, see [{{site.data.keyword.cloudant_short_notm}} events source](/docs/openwhisk/openwhisk_cloudant.html).
 
 ## Setting up an {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_cloud}
 
-If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}} you can use the [{{site.data.keyword.openwhisk}} CLI plug-in](./bluemix_cli.html) to bind a service to an action or package.
+If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}} you can use the [{{site.data.keyword.openwhisk}} CLI plug-in](/docs/openwhisk/bluemix_cli.html) to bind a service to an action or package.
 
 You must first manually create a package binding for your {{site.data.keyword.cloudant_short_notm}} account.
 
