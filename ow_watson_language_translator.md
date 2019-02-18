@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -32,7 +32,7 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 | [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | List models. |
 
 ## Creating a {{site.data.keyword.languagetranslatorshort}} service instance
-{: #service_instance}
+{: #service_instance_translator}
 
 Before you install the package, you must create a {{site.data.keyword.languagetranslatorshort}} service instance and service credentials.
 {: shortdesc}
@@ -41,7 +41,7 @@ Before you install the package, you must create a {{site.data.keyword.languagetr
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.languagetranslatorshort}} package
-{: #install}
+{: #install_translator}
 
 After you have an {{site.data.keyword.languagetranslatorshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.languagetranslatorshort}} package into your namespace.
 {: shortdesc}
@@ -145,7 +145,7 @@ To install the {{site.data.keyword.languagetranslatorshort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.languagetranslatorshort}} package
-{: #usage}
+{: #usage_translator}
 
 To use the actions in this package, run commands in the following format:
 

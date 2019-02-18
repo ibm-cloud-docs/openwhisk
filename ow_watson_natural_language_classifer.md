@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -31,7 +31,7 @@ The {{site.data.keyword.nlclassifiershort}} package contains the following entit
 | [list-classifiers](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#list-classifiers) | action |  username, password, iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | List classifiers. |
 
 ## Creating a {{site.data.keyword.nlclassifiershort}} service instance
-{: #service_instance}
+{: #service_instance_classifier}
 
 Before you install the package, you must create a {{site.data.keyword.nlclassifiershort}} service instance and service credentials.
 {: shortdesc}
@@ -40,7 +40,7 @@ Before you install the package, you must create a {{site.data.keyword.nlclassifi
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.nlclassifiershort}} package
-{: #install}
+{: #install_classifier}
 
 After you have an {{site.data.keyword.nlclassifiershort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.nlclassifiershort}} package into your namespace.
 {: shortdesc}
@@ -78,7 +78,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: screen}
 
-4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.  
+4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.
     ```
     ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
     ```
@@ -147,7 +147,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.nlclassifiershort}} package
-{: #usage}
+{: #usage_classifier}
 
 To use the actions in this package, run commands in the following format:
 

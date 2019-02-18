@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -31,7 +31,7 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 | [tone-chat](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   utterances,     content_language,     accept_language,  | Analyze customer engagement tone. |
 
 ## Creating a {{site.data.keyword.toneanalyzershort}} service instance
-{: #service_instance}
+{: #service_instance_tone}
 
 Before you install the package, you must create a {{site.data.keyword.toneanalyzershort}} service instance and service credentials.
 {: shortdesc}
@@ -40,7 +40,7 @@ Before you install the package, you must create a {{site.data.keyword.toneanalyz
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
-{: #install}
+{: #install_tone}
 
 After you have an {{site.data.keyword.toneanalyzershort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.toneanalyzershort}} package into your namespace.
 {: shortdesc}
@@ -146,7 +146,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.toneanalyzershort}} package
-{: #usage}
+{: #usage_tone}
 
 To use the actions in this package, run commands in the following format:
 

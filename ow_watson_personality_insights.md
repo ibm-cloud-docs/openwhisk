@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -33,7 +33,7 @@ The {{site.data.keyword.personalityinsightsshort}} package contains the followin
 | [profile-as-csv](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get a profile as CSV file. |
 
 ## Creating a {{site.data.keyword.personalityinsightsshort}} service instance
-{: #service_instance}
+{: #service_instance_insights}
 
 Before you install the package, you must create a {{site.data.keyword.personalityinsightsshort}} service instance and service credentials.
 {: shortdesc}
@@ -42,7 +42,7 @@ Before you install the package, you must create a {{site.data.keyword.personalit
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.personalityinsightsshort}} package
-{: #install}
+{: #install_insights}
 
 After you have an {{site.data.keyword.personalityinsightsshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.personalityinsightsshort}} package into your namespace.
 {: shortdesc}
@@ -149,7 +149,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.personalityinsightsshort}} package
-{: #usage}
+{: #usage_insights}
 
 To use the actions in this package, run commands in the following format:
 

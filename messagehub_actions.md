@@ -14,7 +14,7 @@ lastupdated: "2019-02-18"
 {:tip: .tip}
 
 # {{site.data.keyword.messagehub}} package
-{: #openwhisk_catalog_message_hub}
+{: #catalog_message_hub}
 
 A package that enables communication with [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}

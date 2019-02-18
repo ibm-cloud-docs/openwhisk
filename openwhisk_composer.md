@@ -1,8 +1,8 @@
 ---
 
 copyright:
-years: 2017, 2018
-lastupdated: "2018-12-17"
+years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -27,7 +27,7 @@ You can also use the open source project [Kui](https://github.com/ibm/kui) to ma
 {: note}
 
 ## Installing the Composer library for JavaScript or Python 3
-{: #install}
+{: #install_composer}
 
 You can use Composer with actions written in any language, but you express the composition in either JavaScript or Python 3. After the installation, you can use the Composer `compose/pycompose` and `deploy/pydeploy` commands to [configure and run a composition](#run).
 {: shortdesc}
@@ -65,7 +65,7 @@ Install the [Composer for Python 3](https://github.com/apache/incubator-openwhis
     ```
     git clone https://github.com/apache/incubator-openwhisk-composer-python.git
     ```
-    {: pre}  
+    {: pre}
 2.  Navigate to the composer directory.
     ```
     cd composer-python

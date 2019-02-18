@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-12"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -123,7 +123,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
 </br>
 
 ## Creating a namespace with the API
-{: #create_iam_cli}
+{: #create_iam_api}
 
 You can create an IAM managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}

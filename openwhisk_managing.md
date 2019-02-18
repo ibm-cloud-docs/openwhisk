@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-12"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -115,7 +115,7 @@ ok: got action hello
 </tbody></table>
 
 ## Viewing activation details
-{: #activation}
+{: #activation_details}
 
 {{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. Whenever an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
 
