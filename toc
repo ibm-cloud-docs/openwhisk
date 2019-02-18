@@ -46,6 +46,7 @@ IBM Cloud Functions
     openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
+    deploy.md
     deploy_templates.md
 
     {: .topicgroup}
