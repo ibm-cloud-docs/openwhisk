@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -18,7 +18,7 @@ lastupdated: "2019-02-18"
 The {{site.data.keyword.speechtotextfull}} service provides an API that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
-The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](https://console.bluemix.net/docs/services/speech-to-text/index.html).
+The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](https://cloud.ibm.com/docs/services/speech-to-text/index.html).
 
 The {{site.data.keyword.speechtotextshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.speechtotextshort}} API reference by clicking the entity name.
 
@@ -69,7 +69,7 @@ The {{site.data.keyword.speechtotextshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.speechtotextshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.speechtotextshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/catalog/services/speech_to_text).
+1. [Create a {{site.data.keyword.speechtotextshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/speech_to_text).
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.speechtotextshort}} package
@@ -82,7 +82,7 @@ After you have an {{site.data.keyword.speechtotextshort}} service instance, use 
 {: #speechtotext_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
 
 To install the {{site.data.keyword.speechtotextshort}} package:
 
@@ -158,7 +158,7 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #speechtotext_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -31,7 +31,7 @@ ibmcloud fn action list
 ```
 {: pre}
 
-As you create more actions, it can be helpful to group related actions into [packages](./openwhisk_packages.html). To filter your list of actions to only actions within a specific package:
+As you create more actions, it can be helpful to group related actions into [packages](/docs/openwhisk/openwhisk_packages.html). To filter your list of actions to only actions within a specific package:
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -276,14 +276,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-Example output for [web actions](./openwhisk_webactions.html):
+Example output for [web actions](/docs/openwhisk/openwhisk_webactions.html):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://console.bluemix.net/apidocs/functions).
+**Note:** For standard actions, authentication must be provided when invoked through an HTTPS request. For more information regarding action invocations using the REST interface, see the [REST API reference](https://cloud.ibm.com/apidocs/functions).
 
 ## Saving action code
 {: #save-action}

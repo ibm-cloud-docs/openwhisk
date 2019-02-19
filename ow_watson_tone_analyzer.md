@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -36,7 +36,7 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.toneanalyzershort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/catalog/services/tone_analyzer).
+1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/tone_analyzer).
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
@@ -49,7 +49,7 @@ After you have an {{site.data.keyword.toneanalyzershort}} service instance, use 
 {: #toneanalyzer_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
 
 To install the {{site.data.keyword.toneanalyzershort}} package:
 
@@ -124,7 +124,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #toneanalyzer_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

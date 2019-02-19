@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -18,7 +18,7 @@ lastupdated: "2019-02-18"
 The {{site.data.keyword.texttospeechfull}} service provides an API that uses IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a variety of languages, dialects, and voices.
 {:shortdesc}
 
-The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see the [IBM Cloud documentation](https://console.bluemix.net/docs/services/text-to-speech/index.html).
+The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see the [IBM Cloud documentation](https://cloud.ibm.com/docs/services/text-to-speech/index.html).
 
 The {{site.data.keyword.texttospeechshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.texttospeechshort}} API reference by clicking the entity name.
 
@@ -47,7 +47,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.texttospeechshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/catalog/services/text_to_speech).
+1. [Create a {{site.data.keyword.texttospeechshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/text_to_speech).
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.texttospeechshort}} package
@@ -60,7 +60,7 @@ After you have an {{site.data.keyword.texttospeechshort}} service instance, use 
 {: #texttospeech_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
 
 To install the {{site.data.keyword.texttospeechshort}} package:
 
@@ -135,7 +135,7 @@ To install the {{site.data.keyword.texttospeechshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #texttospeech_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

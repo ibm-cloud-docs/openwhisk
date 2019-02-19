@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -46,7 +46,7 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #install_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
@@ -129,7 +129,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #install_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. Using the namespace switcher in the top right corner, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into.
 

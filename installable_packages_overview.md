@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -28,7 +28,7 @@ Packages are bundled sets of related actions and feeds. Each package is designed
 
 **How are installable packages different from pre-installed packages?**
 
-[Pre-installed packages](openwhisk_packages.html#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. To store credentials or other parameters in a pre-installed package, you must create [package bindings](/docs/openwhisk/openwhisk_packages.html#openwhisk_package_bind).
+[Pre-installed packages](/docs/openwhisk/openwhisk_packages.html#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. To store credentials or other parameters in a pre-installed package, you must create [package bindings](/docs/openwhisk/openwhisk_packages.html#openwhisk_package_bind).
 
 Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories. You can install these packages directly into your own namespace by using the `ibmcloud fn deploy` command, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 

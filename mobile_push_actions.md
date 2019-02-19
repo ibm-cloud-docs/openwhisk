@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -46,7 +46,7 @@ To create a package binding, see the following steps:
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application.
 
-3. Configure the [Push Notification application](https://cloud.ibm.com/docs/services/mobilepush/index.html).
+3. Configure the [Push Notification application](/docs/services/mobilepush/index.html).
 
   Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.Bluemix_notm}} app you created.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-13"
+  years: 2017, 2019
+lastupdated: "2019-02-19"
 
 ---
 
@@ -32,7 +32,7 @@ Creating a package binding with the `username` and `password` values is suggeste
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Weather service instances.
 
-1. Create a Weather Company Data service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.bluemix.net).
+1. Create a Weather Company Data service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://cloud.ibm.com).
 
   Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
 

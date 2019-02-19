@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-07"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -25,9 +25,9 @@ Click an option to get started:
 
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
-<area href="#openwhisk_start_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
-<area href="bluemix_cli.html" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
-<area href="openwhisk_about.html" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
+<area href="/docs/openwhisk/index.html#openwhisk_start_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
+<area href="/docs/openwhisk/bluemix_cli.html" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
+<area href="/docs/openwhisk/openwhisk_about.html" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
 </map>
 
 
@@ -57,7 +57,7 @@ Good work! You created your first action. To clean up this action, click the ove
 
 Get up and running quickly with the HelloWorld JavaScript example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
-1. [Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in](bluemix_cli.html).
+1. [Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk/bluemix_cli.html).
 
 2. Save the following code to a file named **hello.js**.
 
@@ -116,7 +116,7 @@ Good work! You created your first action. To clean up this action, run `ibmcloud
 
 So you've completed your first template deploy, where do you go from here? You can:
 
-* Become familiar with the [terminology](openwhisk_about.html#technology).
-* Get started with [your own actions](openwhisk_actions.html).
-* Learn about organizing actions in [packages](openwhisk_packages.html).
-* Advanced option: create a [serverless REST API](openwhisk_apigateway.html).
+* Become familiar with the [terminology](/docs/openwhisk/openwhisk_about.html#technology).
+* Get started with [your own actions](/docs/openwhisk/openwhisk_actions.html).
+* Learn about organizing actions in [packages](/docs/openwhisk/openwhisk_packages.html).
+* Advanced option: create a [serverless REST API](/docs/openwhisk/openwhisk_apigateway.html).
