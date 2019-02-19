@@ -70,7 +70,7 @@ For detailed information about how to use triggers in {{site.data.keyword.messag
 [{{site.data.keyword.messagehub}} events source](/docs/openwhisk/openwhisk_messagehub.html) topic where the following tasks are covered:
 * [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger)
 * [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [Listening for messages](/docs/openwhisk_messagehub.html#message_hub_listen)
+* [Listening for messages](/docs/openwhisk/openwhisk_messagehub.html#message_hub_listen)
 * [Examples](/docs/openwhisk/openwhisk_messagehub.html#examples)
 
 ## Producing messages to {{site.data.keyword.messagehub}}
