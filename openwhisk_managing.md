@@ -100,7 +100,7 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible annotations, see the [action annotations](openwhisk_annotations.html#action) and [web action annotations](openwhisk_annotations.html#annotations-specific-to-web-actions) reference topics.</td>
+<td>Annotations on this action. For a list of possible annotations, see the [action annotations](/docs/openwhisk/openwhisk_annotations.html#action) and [web action annotations](/docs/openwhisk/openwhisk_annotations.html#annotations-specific-to-web-actions) reference topics.</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
@@ -235,7 +235,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](openwhisk_annotations.html#activation).</td>
+<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](/docs/openwhisk/openwhisk_annotations.html#activation).</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
