@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -19,8 +19,8 @@ The {{site.data.keyword.personalityinsightsfull}} service enables applications t
 {: shortdesc}
 
 The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
-* For information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](https://console.bluemix.net/docs/services/personality-insights/models.html).
-* For information about the meaning of the consumption preferences, see [Consumption preferences](https://console.bluemix.net/docs/services/personality-insights/preferences.html).
+* For information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](https://cloud.ibm.com/docs/services/personality-insights/models.html).
+* For information about the meaning of the consumption preferences, see [Consumption preferences](https://cloud.ibm.com/docs/services/personality-insights/preferences.html).
 
 **Note:** Request logging is disabled for the {{site.data.keyword.personalityinsightsshort}} service. The service neither logs nor retains data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 
@@ -38,7 +38,7 @@ The {{site.data.keyword.personalityinsightsshort}} package contains the followin
 Before you install the package, you must create a {{site.data.keyword.personalityinsightsshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.personalityinsightsshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/catalog/services/personality_insights).
+1. [Create a {{site.data.keyword.personalityinsightsshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/personality_insights).
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.personalityinsightsshort}} package
@@ -51,7 +51,7 @@ After you have an {{site.data.keyword.personalityinsightsshort}} service instanc
 {: #personalityinsights_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
 
 To install the {{site.data.keyword.personalityinsightsshort}} package:
 
@@ -127,7 +127,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #personalityinsights_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

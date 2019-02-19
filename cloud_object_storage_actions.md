@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -186,7 +186,7 @@ Example output:
 ### Write to a bucket from the UI
 {: #write_bucket_ui}
 
-1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/actions).
+1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions).
 
 2. Under the `cloud-object-storage` package, click the **object-write** action.
 

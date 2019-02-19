@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -22,7 +22,7 @@ This pre-installed package is not available in the Tokyo region.
 Learn how to configure the Push service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
 {: shortdesc}
 
-For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](./mobile_push_actions.html) topic which covers creating a Push package binding, and sending a Push notification.
+For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](/docs/openwhisk/mobile_push_actions.html) topic which covers creating a Push package binding, and sending a Push notification.
 
 ## Push parameters
 {: #push_notif_parameters}
@@ -63,6 +63,6 @@ To create a trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://console.bluemix.net/openwhisk/dashboard).
+5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
 
   The action sends a Push notification.

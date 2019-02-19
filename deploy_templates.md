@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -27,7 +27,7 @@ lastupdated: "2019-02-18"
 | [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk/deploy_templates.html#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
 | [Upload Image](/docs/openwhisk/deploy_templates.html#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
 | [Get HTTP Resource](/docs/openwhisk/deploy_templates.html#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](./deploy_templates.html#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
+| [Hello World](/docs/openwhisk/deploy_templates.html#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
 | [{{site.data.keyword.messagehub}} Events](/docs/openwhisk/deploy_templates.html#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
 | [Periodic Slack Reminder](/docs/openwhisk/deploy_templates.html#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
@@ -38,7 +38,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 ### Deploying from the UI
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -131,7 +131,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 ### Deploying from the CLI
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](cloud_object_storage_actions.html#cloud_object_storage_cli).
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk/cloud_object_storage_actions.html#cloud_object_storage_cli).
 
 2. Clone the template repo.
     ```
@@ -151,7 +151,7 @@ The Upload Image template creates a web action that allows you to upload an imag
     ```
     {: pre}
 
-4. In the [Actions page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/actions) of the {{site.data.keyword.openwhisk_short}} console, click the `process-change` action.
+4. In the [Actions page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions) of the {{site.data.keyword.openwhisk_short}} console, click the `process-change` action.
 
 5. In the left-hand navigation, click **Endpoints**.
 
@@ -164,7 +164,7 @@ The Get HTTP Resource template creates an action to fetch an external resource, 
 
 ### Deploying from the UI
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -217,7 +217,7 @@ You can deploy this basic Hello World action to get started with {{site.data.key
 
 ### Deploying from the UI
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -258,7 +258,7 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
 
 ### Deploying from the UI
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -329,7 +329,7 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 

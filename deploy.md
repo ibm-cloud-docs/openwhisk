@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-12"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -13,12 +13,12 @@ lastupdated: "2019-02-12"
 {:pre: .pre}
 {:tip: .tip}
 
-# Deploying entities with a manifest file.
+# Deploying entities with a manifest file
 {: #deploy}
 
 You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk/openwhisk_packages.html#openwhisk_packages), [Actions](/docs/openwhisk/openwhisk_actions.html#openwhisk_actions), [Triggers, and Rules](/docs/openwhisk/openwhisk_triggers_rules.html#openwhisk_triggers) with a single command.
 
-The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). After you define the manifest file, you can use it to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy`, and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities defined in your manifest file.
+The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plugin commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities defined in your manifest file.
 
 ## Creating the Hello World API example
 {: #deploy_helloworld_example}
@@ -36,12 +36,12 @@ function main() {
 {: codeblock}
 
 The deployment manifest file defines the following variables.
-* The package name
-* The action name
-* The action annotation that indicates it is to be a web action
-* The action code file name
-* The API with a base path of `/hello`
-* The endpoint path of `/world`
+* The package name.
+* The action name.
+* The action annotation that indicates it is to be a web action.
+* The action code file name.
+* The API with a base path of `/hello`.
+* The endpoint path of `/world`.
 
 2. Create the `hello_world_manifest.yml` file.
 

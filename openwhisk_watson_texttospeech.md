@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -15,7 +15,7 @@ lastupdated: "2019-01-29"
 # Watson: Text to Speech package
 {: #openwhisk_catalog_watson_texttospeech}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Text to Speech](./ow_watson_text_to_speech.html) package using IAM authentication. 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Text to Speech](/docs/openwhisk/ow_watson_text_to_speech.html) package using IAM authentication. 
 {: tip}
 
 The `/whisk.system/watson-textToSpeech` package offers a convenient way to call Watson APIs to convert the text into speech.
@@ -34,7 +34,7 @@ The package includes the following actions.
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
-1. Create a Watson Text to Speech service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.bluemix.net).
+1. Create a Watson Text to Speech service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://cloud.ibm.com).
 
   Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
 

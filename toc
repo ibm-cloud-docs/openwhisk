@@ -104,7 +104,7 @@ IBM Cloud Functions
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
-        [Pricing](https://console.ng.bluemix.net/openwhisk/learn/pricing){: new_window}
+        [Pricing](https://cloud.ibm.com/openwhisk/learn/pricing){: new_window}
         [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
         [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
         [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}

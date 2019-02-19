@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -91,7 +91,7 @@ Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-f
 
 {{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. You can then use the `service bind` command to bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}.
 
-For detailed steps on how to use services from actions, see [Binding services to actions](./binding_services.html).
+For detailed steps on how to use services from actions, see [Binding services to actions](/docs/openwhisk/binding_services.html).
 
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
@@ -109,7 +109,7 @@ If you are already logged in, you can run the `ibmcloud target` command in the {
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](https://console.bluemix.net/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
+You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
 
 ```
 ibmcloud iam space-create "staging"
@@ -117,7 +117,7 @@ ibmcloud iam space-create "production"
 ```
 {: pre}
 
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](https://console.bluemix.net/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
 {: tip}
 
 **Warning**: Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
@@ -177,7 +177,7 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 A historical record of versions that show highlights and bug fixes.
 
 v1.0.29 (2019-02-06)
-* Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](https://console.bluemix.net/docs/openwhisk/wskdeploy.html) documentation.
+* Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](https://cloud.ibm.com/docs/openwhisk/wskdeploy.html) documentation.
 
 v1.0.28 (2019-01-21)
 * Added an error message when `update|delete|get namespace name` exists multiple times.

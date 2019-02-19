@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-12-13"
+  years: 2017, 2019
+lastupdated: "2019-02-19"
 
 ---
 
@@ -44,7 +44,7 @@ ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-Using the `--web` flag with a value of `true` or `yes` allows an action to be accessible through a REST interface without the need for credentials. To configure a web action with credentials see the [Securing web actions](./openwhisk_webactions.html#securing-web-actions) section. A web action can be invoked by using a URL that is structured as follows:
+Using the `--web` flag with a value of `true` or `yes` allows an action to be accessible through a REST interface without the need for credentials. To configure a web action with credentials see the [Securing web actions](/docs/openwhisk/openwhisk_webactions.html#securing-web-actions) section. A web action can be invoked by using a URL that is structured as follows:
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
 The package name is **default** if the action is not in a named package.
@@ -124,7 +124,7 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [response size limit](./openwhisk_reference.html) for actions since a response that exceeds the predefined system limits fail. Large objects are not sent inline through {{site.data.keyword.openwhisk_short}}, but instead deferred to an object store, for example.
+It is important to be aware of the [response size limit](/docs/openwhisk/openwhisk_reference.html) for actions since a response that exceeds the predefined system limits fail. Large objects are not sent inline through {{site.data.keyword.openwhisk_short}}, but instead deferred to an object store, for example.
 
 ## Handling HTTP requests with actions
 {: #openwhisk_webactions_http}
@@ -157,7 +157,7 @@ See the following HTTP parameters:
 
 A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
 
-The `__ow_user` is only present when the web action is [annotated to require authentication](./openwhisk_annotations.html#annotations-specific-to-web-actions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web actions receive query and body parameters as first class properties in the action argument. Body parameters take precedence over query parameters, which in turn take precedence over action and package parameters.
+The `__ow_user` is only present when the web action is [annotated to require authentication](/docs/openwhisk/openwhisk_annotations.html#annotations-specific-to-web-actions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#raw-http-handling). It is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either "raw" HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web actions receive query and body parameters as first class properties in the action argument. Body parameters take precedence over query parameters, which in turn take precedence over action and package parameters.
 
 ## HTTPS Endpoint support
 
@@ -345,7 +345,7 @@ The result of these changes is that the `name` is bound to `Jane` and cannot be 
 ## Securing web actions
 {: #securing-web-actions}
 
-By default, a web action can be invoked by anyone having the web action's invocation URL. Use the `require-whisk-auth` [web action annotation](./openwhisk_annotations.html#annotations-specific-to-web-actions) to secure the web action. When the `require-whisk-auth` annotation is set to `true`, the action will authenticate the invocation request's Basic Authorization credentials against the action owner's whisk auth key. When set to a number or a case-sensitive string, the action's invocation request must include a `X-Require-Whisk-Auth` header having this same value. Secured web actions will return the message `Not Authorized` when credential validation fails.
+By default, a web action can be invoked by anyone having the web action's invocation URL. Use the `require-whisk-auth` [web action annotation](/docs/openwhisk/openwhisk_annotations.html#annotations-specific-to-web-actions) to secure the web action. When the `require-whisk-auth` annotation is set to `true`, the action will authenticate the invocation request's Basic Authorization credentials against the action owner's whisk auth key. When set to a number or a case-sensitive string, the action's invocation request must include a `X-Require-Whisk-Auth` header having this same value. Secured web actions will return the message `Not Authorized` when credential validation fails.
 
 Alternatively, use the `--web-secure` flag to automatically set the `require-whisk-auth` annotation.  When set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
@@ -379,7 +379,7 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## Raw HTTP handling
 
-A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](./openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
+A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](/docs/openwhisk/openwhisk_annotations.html). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```
 curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```

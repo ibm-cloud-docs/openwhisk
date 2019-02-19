@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-13"
+  years: 2017, 2019
+lastupdated: "2019-02-19"
 
 ---
 
@@ -134,7 +134,7 @@ Rather than pass all the parameters to an action every time, you can bind defaul
     ```
     {: pre}
 
-    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](./binding_services.html) again.
+    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](/docs/openwhisk/binding_services.html) again.
     {: tip}
 
 4. Invoke the action by passing only the `name` parameter.
@@ -198,7 +198,7 @@ The following example sets a default parameter of `name` on the `MyApp` package 
     ```
     {: pre}
 
-    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](./binding_services.html) again.
+    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed, so after you update other parameters you must [bind services to your action](/docs/openwhisk/binding_services.html) again.
     {: tip}
 
 3. Invoke the action without passing any parameters.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-19"
+  years: 2017, 2019
+lastupdated: "2019-02-19"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2018-11-19"
 # Creating serverless REST APIs
 {: #openwhisk_apigateway}
 
-Use APIs to directly manage {{site.data.keyword.openwhisk}} actions. The API Gateway acts as a proxy to [web actions](./openwhisk_webactions.html) and provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
+Use APIs to directly manage {{site.data.keyword.openwhisk}} actions. The API Gateway acts as a proxy to [web actions](/docs/openwhisk/openwhisk_webactions.html) and provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
 {: shortdesc}
 
 For more information about API management, you can read the [API management documentation](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
@@ -26,7 +26,7 @@ For more information about API management, you can read the [API management docu
 ## Creating your first API
 {: #create_cli_api}
 
-Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](bluemix_cli.html).
+Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk/bluemix_cli.html).
 
 1. Save the following code into a JavaScript file named `hello.js`.
   ```javascript
@@ -84,7 +84,7 @@ The web action `hello` is invoked, which returns a JSON object that includes the
 
 The `--response-type` flag controls the target URL of the web action to be proxied by the API Gateway. For example, when you use the `--response-type json` flag, the full result of the action is returned in JSON format and the **Content-Type** header is automatically set to `application/json`.
 
-To return different content types in the body, use full control over the HTTP response properties such as **statusCode** and **headers**. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](./openwhisk_webactions.html) documentation.
+To return different content types in the body, use full control over the HTTP response properties such as **statusCode** and **headers**. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](/docs/openwhisk/openwhisk_webactions.html) documentation.
 
 1. Change the code for the `hello.js` action returning the JSON properties `body`, `statusCode`, and `headers`.
   ```javascript
@@ -136,7 +136,7 @@ You can expose multiple web actions to implement your app backend. For example, 
 | putBooks    | PUT | Update book details |
 | deleteBooks | DELETE | Delete a book |
 
-In this example, the API is defined with a path parameter. When you use path parameters, the API must be defined with a response type of `http`. The path value, starting with the base path and including the actual path parameter values, is available in the `__ow_path` field of the action's JSON parameter. For more details about HTTP context fields, see the [web actions HTTP Context](./openwhisk_webactions.html#http-context) documentation.
+In this example, the API is defined with a path parameter. When you use path parameters, the API must be defined with a response type of `http`. The path value, starting with the base path and including the actual path parameter values, is available in the `__ow_path` field of the action's JSON parameter. For more details about HTTP context fields, see the [web actions HTTP Context](/docs/openwhisk/openwhisk_webactions.html#http-context) documentation.
 
 To try out this book club web actions example:
 
@@ -296,11 +296,11 @@ To export or import a configuration, you can continue using the book club exampl
 ## Modifying the configuration
 {: #modify_config}
 
-After you have created your configuration, you can use the [**APIs tab**](https://console.bluemix.net/openwhisk/apimanagement) in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
+After you have created your configuration, you can use the [**APIs tab**](https://cloud.ibm.com/openwhisk/apimanagement) in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
 
-* [Create a {{site.data.keyword.openwhisk_short}} API](https://console.bluemix.net/openwhisk/apimanagement) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
-* [Secure your API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) by applying API security and rate limiting policies.
-* [Manage traffic](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) by viewing API usage statistics and checking out response logs.
-* [Socialize and share](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) your API with developers both within and outside {{site.data.keyword.Bluemix_notm}}.
+* [Create a {{site.data.keyword.openwhisk_short}} API](https://cloud.ibm.com/openwhisk/apimanagement) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
+* [Secure your API](https://cloud.ibm.com/docs/apis/management/manage_apis.html#settings_api) by applying API security and rate limiting policies.
+* [Manage traffic](https://cloud.ibm.com/docs/apis/management/manage_apis.html#settings_api) by viewing API usage statistics and checking out response logs.
+* [Socialize and share](https://cloud.ibm.com/docs/apis/management/manage_apis.html#share_api) your API with developers both within and outside {{site.data.keyword.Bluemix_notm}}.
 
 Once you are done updating the configuration, you can download the definition file in JSON format, and then re-import it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You also have the option to upload and re-import the API definition file using the UI.

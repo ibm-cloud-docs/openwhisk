@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -26,7 +26,7 @@ Learn how to listen for changes to an {{site.data.keyword.cloudant}} database, f
 | `/whisk.system/cloudant/changes` | feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
-The following sections step you through configuring an associated package, and how to use actions and feeds in the `/whisk.system/cloudant` package. For more information about setting up the {{site.data.keyword.cloudant_short_notm}} database, and reading or writing to it, see [{{site.data.keyword.cloudant_short_notm}} actions](./cloudant_actions.html).
+The following sections step you through configuring an associated package, and how to use actions and feeds in the `/whisk.system/cloudant` package. For more information about setting up the {{site.data.keyword.cloudant_short_notm}} database, and reading or writing to it, see [{{site.data.keyword.cloudant_short_notm}} actions](/docs/openwhisk/cloudant_actions.html).
 
 ## Create a trigger by using the filter function
 
@@ -89,7 +89,7 @@ The parameters used in this example are as follows:
 
 7. Observe new activations for the **myCloudantTrigger** trigger for each document change only if the document status is **new** based on the filter function and query parameter.
 
-If you are unable to observe new activations, see the [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) topic which demonstrates how to read from and write to an {{site.data.keyword.cloudant_short_notm}} database. Test the reading and writing steps to help to verify that your {{site.data.keyword.cloudant_short_notm}} credentials are correct.
+If you are unable to observe new activations, see the [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk/cloudant_actions.html) topic which demonstrates how to read from and write to an {{site.data.keyword.cloudant_short_notm}} database. Test the reading and writing steps to help to verify that your {{site.data.keyword.cloudant_short_notm}} credentials are correct.
 {: tip}
 
 ## Data structure of a trigger event

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -33,7 +33,7 @@ The following artifacts are created in conjunction with your namespace. Do not d
 ## Limitations
 {: #limitations}
 
-[Creating APIs with API Gateway](openwhisk_apigateway.html) and using the [mobile SDK](openwhisk_mobile_sdk.html) are not supported for IAM managed namespaces at this time.
+[Creating APIs with API Gateway](/docs/openwhisk/openwhisk_apigateway.html) and using the [mobile SDK](/docs/openwhisk/openwhisk_mobile_sdk.html) are not supported for IAM managed namespaces at this time.
 
 </br>
 
@@ -226,7 +226,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
     {: screen}
 
 
-For more information about working with HTTP REST, check out the [Cloud Functions API docs](https://console.bluemix.net/apidocs/functions).
+For more information about working with HTTP REST, check out the [Cloud Functions API docs](https://cloud.ibm.com/apidocs/functions).
 {: tip}
 
 </br>
@@ -236,4 +236,4 @@ For more information about working with HTTP REST, check out the [Cloud Function
 ## Next steps
 {: #next}
 
-Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](iam.html). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](https://cloud.ibm.com/apidocs/functions).
+Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk/iam.html). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](https://cloud.ibm.com/apidocs/functions).

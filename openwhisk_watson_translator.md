@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-19"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2019-01-29"
 # Watson: Translator package
 {: #openwhisk_catalog_watson_translator}
 
-This pre-installed package is not longer available in any region. Please see the installable [Language Translator](./ow_watson_language_translator.html) package using the new V3 API with IAM authentication. 
+This pre-installed package is not longer available in any region. Please see the installable [Language Translator](/docs/openwhisk/ow_watson_language_translator.html) package using the new V3 API with IAM authentication. 
 {: tip}
 
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.
@@ -30,13 +30,13 @@ The package includes the following actions.
 | `/whisk.system/watson-translator/translator` | action | payload, translateFrom, translateTo, translateParam, username, password | Translate text |
 | `/whisk.system/watson-translator/languageId` | action | payload, username, password | Identify language |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`. See the [installable {{site.data.keyword.languagetranslatorshort}} package](ow_watson_language_translator.html) instead.
+**Note**: The package `/whisk.system/watson` is deprecated including the actions `/whisk.system/watson/translate` and `/whisk.system/watson/languageId`. See the [installable {{site.data.keyword.languagetranslatorshort}} package](/docs/openwhisk/ow_watson_language_translator.html) instead.
 
 ## Setting up the Watson Translator package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
-1. Create a Watson Translator service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://console.bluemix.net). Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
+1. Create a Watson Translator service instance in your {{site.data.keyword.Bluemix_notm}} [dashboard](http://cloud.ibm.com). Be sure to remember the name of the service instance and the {{site.data.keyword.Bluemix_notm}} organization and space you're in.
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
