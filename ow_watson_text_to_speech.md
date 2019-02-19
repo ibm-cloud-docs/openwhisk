@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-23"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -42,7 +42,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 | [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Delete labeled data. |
 
 ## Creating a {{site.data.keyword.texttospeechshort}} service instance
-{: #service_instance}
+{: #service_instance_texttospeech}
 
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} service instance and service credentials.
 {: shortdesc}
@@ -51,7 +51,7 @@ Before you install the package, you must create a {{site.data.keyword.texttospee
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.texttospeechshort}} package
-{: #install}
+{: #install_texttospeech}
 
 After you have an {{site.data.keyword.texttospeechshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.texttospeechshort}} package into your namespace.
 {: shortdesc}
@@ -61,7 +61,6 @@ After you have an {{site.data.keyword.texttospeechshort}} service instance, use 
 
 Before you begin:
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Install the [`wskdeploy` command ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) and add the downloaded binary to your PATH.
 
 To install the {{site.data.keyword.texttospeechshort}} package:
 
@@ -73,7 +72,7 @@ To install the {{site.data.keyword.texttospeechshort}} package:
 
 2. Deploy the package.
     ```
-    wskdeploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
@@ -158,7 +157,7 @@ To install the {{site.data.keyword.texttospeechshort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.texttospeechshort}} package
-{: #usage}
+{: #usage_texttospeech}
 
 To use the actions in this package, run commands in the following format:
 

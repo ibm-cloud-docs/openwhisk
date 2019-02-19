@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -14,7 +14,7 @@ lastupdated: "2019-01-29"
 {:tip: .tip}
 
 # {{site.data.keyword.messagehub}} package
-{: #openwhisk_catalog_message_hub}
+{: #catalog_message_hub}
 
 A package that enables communication with [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
@@ -67,11 +67,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ## Listening for messages using events
 
 For detailed information about how to use triggers in {{site.data.keyword.messagehub}} to listen for messages, see the following
-[{{site.data.keyword.messagehub}} events source](./openwhisk_messagehub.html) topic where the following tasks are covered:
-* [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
+[{{site.data.keyword.messagehub}} events source](/docs/openwhisk/openwhisk_messagehub.html) topic where the following tasks are covered:
+* [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger)
+* [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger_outside)
 * [Listening for messages](./openwhisk_messagehub.html#message_hub_listen)
-* [Examples](./openwhisk_messagehub.html#examples)
+* [Examples](/docs/openwhisk/openwhisk_messagehub.html#examples)
 
 ## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}

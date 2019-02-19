@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2019-01-29"
 # Mobile push on device events
 {: #openwhisk_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. 
+This pre-installed package is not available in the Tokyo region.
 {: tip}
 
 Learn how to configure the Push service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
@@ -25,7 +25,7 @@ Learn how to configure the Push service to fire a trigger when there is device a
 For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](./mobile_push_actions.html) topic which covers creating a Push package binding, and sending a Push notification.
 
 ## Push parameters
-{: #push_parameters}
+{: #push_notif_parameters}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 - **appId:** The {{site.data.keyword.Bluemix_notm}} app GUID.

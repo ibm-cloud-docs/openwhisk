@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-28"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -78,13 +78,13 @@ You can use up to 2048MB of memory for each function. The default is set to 256M
 {: #difference}
 {: faq}
 
-The main difference between an action and a web action is the response output object. For [web actions](openwhisk_webactions.html), the result represents an HTTP response, where are a minimum, the JSON output should have a `body` field. Optionally, it might also contain a statusCode and headers.
+The main difference between an action and a web action is the response output object. For [web actions](/docs/openwhisk/openwhisk_webactions.html#openwhisk_webactions), the result represents an HTTP response, where are a minimum, the JSON output should have a `body` field. Optionally, it might also contain a statusCode and headers.
 
 ## How can I see my action logs?
 {: #logs}
 {: faq}
 
-After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](openwhisk_logs.html#view-logs).
+After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](/docs/openwhisk/openwhisk_logs.html#view-logs).
 
 
 ## How does monitoring work?

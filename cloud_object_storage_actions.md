@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-07"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -39,7 +39,7 @@ Before you install the package, you must request an instance of {{site.data.keyw
 
 1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics/order-storage.html#creating-a-new-service-instance).
 
-2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam/service-credentials.html#service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
+2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam/service-credentials.html) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
 3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
 
@@ -53,7 +53,8 @@ After you have an {{site.data.keyword.cos_short}} service instance, use either t
 {: #cloud_object_storage_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
+
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
   2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.cos_short}} package:
@@ -70,9 +71,9 @@ To install the {{site.data.keyword.cos_short}} package:
     ```
     {: pre}
 
-3. Deploy the package. If you later decide to run the actions in this package in the other runtime, you can repeat the previous step and this step to redeploy the package.
+3. Deploy the package. You can repeat the previous steps to redeploy the package in another runtime.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -134,7 +135,7 @@ To install the {{site.data.keyword.cos_short}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #cloud_object_storage_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into. Namespaces are formed from the combined org and space names.
 
@@ -252,7 +253,7 @@ Example output:
 ### Read from a bucket from the UI
 {: #read_bucket_ui}
 
-1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/actions).
+1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions).
 
 2. Under the `cloud-object-storage` package, click the **object-read** action.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-11-29"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -24,12 +24,12 @@ lastupdated: "2018-11-29"
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](./deploy_templates.html#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](./deploy_templates.html#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
-| [Get HTTP Resource](./deploy_templates.html#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
+| [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk/deploy_templates.html#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](/docs/openwhisk/deploy_templates.html#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Get HTTP Resource](/docs/openwhisk/deploy_templates.html#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
 | [Hello World](./deploy_templates.html#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](./deploy_templates.html#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Periodic Slack Reminder](./deploy_templates.html#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](/docs/openwhisk/deploy_templates.html#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](/docs/openwhisk/deploy_templates.html#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
@@ -63,8 +63,6 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-cloudant-trigger.git
@@ -79,7 +77,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 3. Deploy the template, using the following environment variables.
     ```
-    CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -105,7 +103,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 ### Deploying from the UI
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://console.bluemix.net/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -116,7 +114,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_short}}** list, select one of the following options:
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
-      2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam/service-credentials.html#service-credentials).
+      2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam/service-credentials.html).
       3. [Create at least one bucket](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
   * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
   * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
@@ -132,8 +130,6 @@ The Upload Image template creates a web action that allows you to upload an imag
     * The template package (default name `upload-image`), which contains the `app` action
 
 ### Deploying from the CLI
-
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
 
 1. [Install the {{site.data.keyword.cos_full_notm}} package](cloud_object_storage_actions.html#cloud_object_storage_cli).
 
@@ -151,7 +147,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_short}} bucket as environment variables.
     ```
-    PACKAGE_NAME=<name> BUCKET_NAME=<name> wskdeploy -m manifest.yaml
+    PACKAGE_NAME=<name> BUCKET_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -190,8 +186,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-get-external-resource.git
@@ -206,7 +200,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using a custom package name as an environment variable.
     ```
-    PACKAGE_NAME=<name> wskdeploy -m manifest.yaml
+    PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -239,8 +233,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the Hello World template repo.
     ```
     git clone https://github.com/ibm-functions/template-hello-world.git
@@ -255,7 +247,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -295,8 +287,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Clone the template repo.
     ```
     git clone https://github.com/ibm-functions/template-messagehub-trigger.git
@@ -311,7 +301,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using the following environment variables.
     ```
-    KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -363,8 +353,6 @@ After template deployment, you can make further edits to the code to customize i
 
 ### Deploying from the CLI
 
-**Before you begin**: Install the [`wskdeploy` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project) utility.
-
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
 1. Clone the template repo.
@@ -381,7 +369,7 @@ After template deployment, you can make further edits to the code to customize i
 
 3. Deploy the template, using the following environment variables.
     ```
-    SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> wskdeploy -m manifest.yaml
+    SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 

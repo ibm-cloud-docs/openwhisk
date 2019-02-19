@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-30"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -87,7 +87,7 @@ Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-f
 
 
 ## Using services from actions
-{: #binding_services}
+{: #binding_services_cli}
 
 {{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. You can then use the `service bind` command to bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}.
 
@@ -176,26 +176,29 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
+v1.0.29 (2019-02-06)
+* Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](https://console.bluemix.net/docs/openwhisk/wskdeploy.html) documentation.
+
 v1.0.28 (2019-01-21)
-* Return an error when `update|delete|get namespace name` exists multiple times.
+* Added an error message when `update|delete|get namespace name` exists multiple times.
 
 v1.0.27 (2018-12-11)
-* `namespace get` fixes
-* `--save-as` fix when action is a black box action
-* addition of `--concurrency` flag for action create and action update commands
+* Added `namespace get` fixes.
+* Added a fix for `--save-as` when an action is a black box action.
+* Added `--concurrency` flag for action create and action update commands.
 
 v1.0.26 (2018-11-30)
-* `fn property get --auth` correctly returns the auth key in a new environment
+* Enabled `fn property get --auth` to correctly return the auth key in a new environment.
 
 v1.0.25 (2018-11-23)
-* improve error message result display
-* `fn namespace get` fix to correctly display namespace properties
+* Improved error message result display.
+* Added a `fn namespace get` fix to correctly display namespace properties.
 
 1.0.23 (2018-10-15)
-* Add support for ruby (.rb) action code recognition
+* Added support for ruby (.rb) action code recognition.
 
 1.0.22 (2018-08-20)
-* Add us-east region support
+* Added us-east region support.
 
 1.0.21 (2018-08-01)
 * Aliases `fn` and `functions` can now be used for {{site.data.keyword.openwhisk_short}} commands: `ibmcloud fn <command>` and `ibmcloud fn <command>`. You can also still use `ibmcloud wsk <command>`.
@@ -204,11 +207,11 @@ v1.0.25 (2018-11-23)
 * Minor bug fixes and improvements.
 
 1.0.18 (2018-06-20)
-* Fix for unbinding user-provided service instances.
+* Added a fix for unbinding user-provided service instances.
 * Performance improvements.
 
 1.0.17 (2018-06-12)
-* Add support for binding (`ibmcloud wsk service bind`) and unbinding (`ibmcloud wsk service unbind`) user-provided service instances that are created by using the `ibmcloud cf create-user-provided-service` command.
+* Added support for binding (`ibmcloud wsk service bind`) and unbinding (`ibmcloud wsk service unbind`) user-provided service instances that are created by using the `ibmcloud cf create-user-provided-service` command.
 
 1.0.16 (2018-05-24)
 * Minor bug fixes and improvements.
@@ -217,7 +220,7 @@ v1.0.25 (2018-11-23)
 * Minor bug fixes and improvements.
 
 1.0.14 (2018-05-17)
-* Enable support for the `&` character in org and space names.
+* Enabled support for the `&` character in org and space names.
 
 1.0.13 (2018-05-07)
 * Minor bug fixes and error handling improvements.
@@ -229,19 +232,19 @@ v1.0.25 (2018-11-23)
 * Minor bug fixes and improvements.
 
 1.0.10 (2018-04-09)
-* Add new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
-* Fix back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
+* Added new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
+* Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
 
 1.0.9 (2018-03-16)
-* Enable support for service bind at the package level.
+* Enabled support for service bind at the package level.
 
 1.0.8 (2018-02-22)
-* Enable support for IAM service bind.
+* Enabled support for IAM service bind.
 
 1.0.7 (2018-02-02)
-* `ibmcloud wsk api` now accepts path parameters such as `/api/{id}`. For info, see [API Gateway](./openwhisk_apigateway.html).
-* Restore proxy support.
-* Remove `swift:3`.
+* Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For info, see [API Gateway](/docs/openwhisk/openwhisk_apigateway.html).
+* Restored proxy support.
+* Removed `swift:3`.
 
 1.0.6 (2018-01-30)
-* Bug fix for command `ibmcloud wsk service bind` for actions inside a package.
+* Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.

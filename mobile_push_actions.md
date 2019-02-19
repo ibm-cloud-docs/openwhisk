@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-01-29"
+lastupdated: "2019-02-18"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2019-01-29"
 # Mobile push package
 {: #openwhisk_catalog_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](./ow_push_notifications.html) package for the action `sendMessage` using IAM authentication 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk/ow_push_notifications.html) package for the action `sendMessage` using IAM authentication 
 {: tip}
 
 Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
@@ -30,7 +30,7 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
 
 
-For information about firing Trigger events when there is device activity, see the [Mobile push on device events](./openwhisk_pushnotifications.html) topic.
+For information about firing Trigger events when there is device activity, see the [Mobile push on device events](/docs/openwhisk/openwhisk_pushnotifications.html) topic.
 
 ## Creating a Push package binding
 {: #create_push_binding}
@@ -42,11 +42,11 @@ To create a Push Notifications package binding, you must specify the following p
 
 To create a package binding, see the following steps:
 
-1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://console.bluemix.net).
+1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://cloud.ibm.com).
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application.
 
-3. Configure the [Push Notification application](https://console.bluemix.net/docs/services/mobilepush/index.html).
+3. Configure the [Push Notification application](https://cloud.ibm.com/docs/services/mobilepush/index.html).
 
   Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.Bluemix_notm}} app you created.
 

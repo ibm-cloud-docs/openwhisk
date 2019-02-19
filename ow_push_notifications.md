@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-23"
+  years: 2017, 2019
+lastupdated: "2019-02-18"
 
 ---
 
@@ -27,7 +27,7 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 | `/push-notifications/webhook` | action | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
 
 ## Creating a {{site.data.keyword.mobilepushshort}} service instance
-{: #service_instance}
+{: #service_instance_push}
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 
@@ -38,7 +38,7 @@ Before you install the package, you must create a {{site.data.keyword.mobilepush
 3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush/push_step_2.html#push_step_2).
 
 ## Installing the {{site.data.keyword.mobilepushshort}} package
-{: #install}
+{: #install_push}
 
 After you have a {{site.data.keyword.mobilepushshort}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.mobilepushshort}} package into your namespace.
 
@@ -47,7 +47,6 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 
 Before you begin:
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
@@ -65,7 +64,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 3. Deploy the package.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -150,7 +149,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.mobilepushshort}} package
-{: #usage}
+{: #usage_push}
 
 ### Send a push notification
 {: #push_notif}
