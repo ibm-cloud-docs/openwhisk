@@ -214,7 +214,7 @@ JavaScript functions that run asynchronously can return the activation result af
     ibmcloud fn action invoke --result asyncAction
     ```
     {: pre}
-    
+
     Example output:
 
     ```
@@ -355,7 +355,6 @@ For example, consider a directory with the following files:
     ```
     {: codeblock}
 
-    
     * The action is exposed through `exports.main`.
     * The action handler can have any name as long as it conforms to the conventional signature of accepting an object and returning an object (or a `Promise` of an object).
     * You must either name this file **index.js** or specify the file name that you prefer as the `main` property in **package.json**.
@@ -497,7 +496,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
 
     The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary dependencies because this is not included with the file `bundle.js`.
     {: tip}
-     
+
 ### Reducing the size of a Node.js app.
 {: #reducing_nodejs_action size}
 {: #large-app-reduce}
@@ -519,7 +518,7 @@ To reduce the code size of a Node.js app.
    {: pre}
 
 3. Use `action.js` with the new image.
-   
+
 
 
 
@@ -1026,7 +1025,7 @@ You can package a PHP action and other files or dependent packages in a .zip fil
     ibmcloud fn action create helloPHP --kind php:7.3 helloPHP.zip
     ```
     {: pre}
-    
+
 
 
 
@@ -1174,7 +1173,7 @@ In addition to the main function signature, Swift 4 provides two more signatures
       }
     ```
     {: screen}
-    
+
 #### Swift 3
 {: #actions_swift3_invoke}
 {: #openwhisk_actions_swift3_invoke}
@@ -1435,7 +1434,7 @@ Swift 3 example syntax.
   )
   ```
   {: codeblock}
-  
+
   Swift 4 example syntax.
   {: codeblock}
 
@@ -1464,7 +1463,7 @@ Swift 3 example syntax.
   )
   ```
   {: codeblock}
-  
+
   In this example, `example-package-deckofplayingcards` is added as a dependency.
   Notice that `CCurl`, `Kitura-net` and `SwiftyJSON` are provided in the standard Swift action. Include them in your own `Package.swift` for Swift 3 actions.
   {: shortdesc}
@@ -1475,14 +1474,14 @@ Swift 3 example syntax.
   bash compile.sh hello swift:3.1.1
   ```
   {: pre}
-  
+
   To compile for Swift 4 use `swift:4.1` instead of `swift:3.1.1`
 
   ```
   bash compile.sh hello swift:4.1
   ```
   {: pre}
-  
+
   This process created `hello.zip` in the `build`.
 
 
@@ -1494,7 +1493,7 @@ Swift 3 example syntax.
   wsk action update helloSwiftly build/hello.zip --kind swift:3.1.1
   ```
   {: pre}
-  
+
   For Swift 4.1 use the kind `swift:4.1`
 
   ```
@@ -1838,7 +1837,66 @@ Create a .NET Core action.
       }
     ```
     {: screen}
-    
+
+
+
+
+## Creating Ballerina actions
+{: #ballerina-actions}
+
+The following sections guide you through creating and invoking a single Ballerina action and adding parameters to that action.
+
+Ballerina actions are executed in Ballerina [0.990.2](https://ballerina.io/downloads). You will need a compatible version of the compiler locally available to generate the executable. Without the Ballerina compiler, you cannot create an OpenWhisk action.
+
+An action is simply a top-level Ballerina function which accepts and returns a JSON object. For example, create a file called `hello.bal`
+with the following source code.
+
+```ballerina
+import ballerina/io;
+
+public function main(json data) returns json {
+  json? name = data.name;
+  if (name == null) {
+    return { greeting: "Hello stranger!" };
+  } else {
+    return { greeting: "Hello " + name.toString() + "!" };
+  }
+}
+```
+{: codeblock}
+
+The entry method for the action is `main` by default, you can specify this vairable when you create the action with the `wsk` CLI by using `--main`. **Note** that the Ballerina compiler expects the presence of a function called `main` to generate the executable, so your source file must include a place holder called `main`.
+
+You can create an action called `hello` from the function above as follows.
+
+1. Generate the .balx file first
+
+```
+ballerina build hello.bal
+```
+{: pre}
+
+2. Create the action by using the .balx file.
+```
+ibmcloud fn action create bello hello.balx --kind ballerina:0.990
+```
+{: pre}
+
+The CLI does not yet determine the type of the action from the source file extension. You must specify the kind explicitly. For `.balx` source files, the action runs by using the Ballerina 0.990.2 runtime.
+
+```
+ibmcloud fn action invoke --result bello --param name World
+```
+{: pre}
+
+Example output.
+```json
+{
+  "greeting": "Hello World!"
+}
+```
+{: screen}
+
 
 
 
