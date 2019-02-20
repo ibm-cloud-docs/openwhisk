@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -24,7 +24,7 @@ You can create a trigger that reacts when messages are posted to an {{site.data.
 The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to Message Hub/Kafka.
 {: tip}
 
-This package enables communication with [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API. For more information about the {{site.data.keyword.messagehub}} package, how to set it up, and how to produce messages see the [{{site.data.keyword.messagehub}} package](/docs/openwhisk/messagehub_actions.html) topic.
+This package enables communication with [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API. For more information about the {{site.data.keyword.messagehub}} package, how to set it up, and how to produce messages see the [{{site.data.keyword.messagehub}} package](/docs/openwhisk?topic=cloud-functions-catalog_message_hub) topic.
 
 ## Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance
 {: #create_message_hub_trigger}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -37,11 +37,11 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics/order-storage.html#creating-a-new-service-instance).
+1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
 
-2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam/service-credentials.html) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
+2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
-3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
+3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-console-#create-buckets).
 
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}
@@ -54,7 +54,7 @@ After you have an {{site.data.keyword.cos_short}} service instance, use either t
 
 Before you begin:
 
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
   2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.cos_short}} package:

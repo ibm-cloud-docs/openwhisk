@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -21,7 +21,7 @@ In the Tokyo region, {{site.data.keyword.openwhisk_short}} uses Identity and Acc
 {: shortdesc}
 
 When you create an {{site.data.keyword.openwhisk_short}} namespace it is identified as an IAM service instance. IAM managed service instances must be created within a
-[resource group](/docs/resources/resourcegroups.html). You can either create your own resource group or target the default. To see the IAM service-instances that you have in your account, you can run `ibmcloud resource service-instances`.
+[resource group](/docs/resources?topic=resources-rgs). You can either create your own resource group or target the default. To see the IAM service-instances that you have in your account, you can run `ibmcloud resource service-instances`.
 
 The following artifacts are created in conjunction with your namespace. Do not delete them.
 
@@ -33,7 +33,7 @@ The following artifacts are created in conjunction with your namespace. Do not d
 ## Limitations
 {: #limitations}
 
-[Creating APIs with API Gateway](/docs/openwhisk/openwhisk_apigateway.html) and using the [mobile SDK](/docs/openwhisk/openwhisk_mobile_sdk.html) are not supported for IAM managed namespaces at this time.
+[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-openwhisk_mobile_sdk) are not supported for IAM managed namespaces at this time.
 
 </br>
 
@@ -52,7 +52,7 @@ In order to target the {{site.data.keyword.openwhisk_short}} backend service in 
 You can create an IAM managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud/cli_resource_group.html#ibmcloud_resource_group_create) yet, you can target the `default` group.
+1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
 
     ```
     ibmcloud target -g default
@@ -236,4 +236,4 @@ For more information about working with HTTP REST, check out the [Cloud Function
 ## Next steps
 {: #next}
 
-Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk/iam.html). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](https://cloud.ibm.com/apidocs/functions).
+Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](https://cloud.ibm.com/apidocs/functions).

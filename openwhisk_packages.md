@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -23,7 +23,7 @@ A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the {{site.data.keyword.cloudant}} package includes actions to read and write records to an {{site.data.keyword.cloudant_short_notm}} database.
 - A feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a feed that can fire a trigger at a specified frequency.
 
-Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs in a *namespace*, and the fully qualified name of an entity is `/namespaceName/[packageName]/entityName`. For more information, refer to the [naming guidelines](/docs/openwhisk/openwhisk_reference.html#openwhisk_entities).
+Every {{site.data.keyword.openwhisk_short}} entity, including packages, belongs in a *namespace*, and the fully qualified name of an entity is `/namespaceName/[packageName]/entityName`. For more information, refer to the [naming guidelines](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities).
 
 The following sections describe how to browse packages and use the triggers and feeds in them. In addition, if you are interested in contributing your own packages to the catalog, read the sections on creating and sharing packages.
 

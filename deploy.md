@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -16,7 +16,7 @@ lastupdated: "2019-02-19"
 # Deploying entities with a manifest file
 {: #deploy}
 
-You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk/openwhisk_packages.html#openwhisk_packages), [Actions](/docs/openwhisk/openwhisk_actions.html#openwhisk_actions), [Triggers, and Rules](/docs/openwhisk/openwhisk_triggers_rules.html#openwhisk_triggers) with a single command.
+You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#openwhisk_packages), [Actions](/docs/openwhisk?topic=cloud-functions-openwhisk_actions#openwhisk_actions), [Triggers, and Rules](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers) with a single command.
 
 The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plugin commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities defined in your manifest file.
 

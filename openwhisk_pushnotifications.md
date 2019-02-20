@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -22,7 +22,7 @@ This pre-installed package is not available in the Tokyo region.
 Learn how to configure the Push service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
 {: shortdesc}
 
-For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](/docs/openwhisk/mobile_push_actions.html) topic which covers creating a Push package binding, and sending a Push notification.
+For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_pushnotifications) topic which covers creating a Push package binding, and sending a Push notification.
 
 ## Push parameters
 {: #push_notif_parameters}

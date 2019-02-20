@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -29,9 +29,9 @@ You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plu
 Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 {: shortdesc}
 
-1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud/download_cli.html#install_use).
+1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk/openwhisk_regions.html).
+2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
 
   ```
   ibmcloud login
@@ -52,10 +52,10 @@ To work with {{site.data.keyword.openwhisk_short}}, download and install the CLI
 
 You can use the plug-in to:
 
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk/openwhisk_actions.html).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk/openwhisk_triggers_rules.html).
-* Learn how packages bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk/openwhisk_packages.html).
-* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](/docs/openwhisk/openwhisk_cloudant.html).
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk?topic=cloud-functions-openwhisk_actions).
+* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers).
+* Learn how packages bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages).
+* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant).
 
 To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
@@ -91,7 +91,7 @@ Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-f
 
 {{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. You can then use the `service bind` command to bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}.
 
-For detailed steps on how to use services from actions, see [Binding services to actions](/docs/openwhisk/binding_services.html).
+For detailed steps on how to use services from actions, see [Binding services to actions](/docs/openwhisk?topic=cloud-functions-binding_services).
 
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
@@ -117,7 +117,7 @@ ibmcloud iam space-create "production"
 ```
 {: pre}
 
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk/openwhisk_reference.html#openwhisk_entities) documentation.
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities) documentation.
 {: tip}
 
 **Warning**: Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
@@ -242,7 +242,7 @@ v1.0.25 (2018-11-23)
 * Enabled support for IAM service bind.
 
 1.0.7 (2018-02-02)
-* Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For info, see [API Gateway](/docs/openwhisk/openwhisk_apigateway.html).
+* Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For info, see [API Gateway](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway).
 * Restored proxy support.
 * Removed `swift:3`.
 
