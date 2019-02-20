@@ -534,12 +534,12 @@ An action is simply a top-level Python function. To create a Python action:
 
 1. Save the following code in a file called `hello.py`.
 
-    ```python
-    def main(args):
-        name = args.get("name", "stranger")
-        greeting = "Hello " + name + "!"
-        print(greeting)
-        return {"greeting": greeting}
+```python
+def main(args):
+    name = args.get("name", "stranger")
+    greeting = "Hello " + name + "!"
+    print(greeting)
+    return {"greeting": greeting}
     ```
     {: codeblock}
 
