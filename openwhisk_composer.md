@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-21"
 
 ---
 
@@ -101,7 +101,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
 
 1.  Set the API host to the {{site.data.keyword.openwhisk}} endpoint.
     ```
-    apihost = openwhisk.ng.bluemix.net
+    apihost = us-south.functions.cloud.ibm.com
     ```
     {: codeblock}
 2.  Add your `wsk` CLI authentication key. 
