@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -24,12 +24,12 @@ lastupdated: "2019-02-19"
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk/deploy_templates.html#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](/docs/openwhisk/deploy_templates.html#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
-| [Get HTTP Resource](/docs/openwhisk/deploy_templates.html#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](/docs/openwhisk/deploy_templates.html#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](/docs/openwhisk/deploy_templates.html#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Periodic Slack Reminder](/docs/openwhisk/deploy_templates.html#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](/docs/openwhisk?topic=cloud-functions-serviceauth#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Get HTTP Resource](/docs/openwhisk?topic=cloud-functions-serviceauth#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
+| [Hello World](/docs/openwhisk?topic=cloud-functions-serviceauth#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](/docs/openwhisk?topic=cloud-functions-serviceauth#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
@@ -114,8 +114,8 @@ The Upload Image template creates a web action that allows you to upload an imag
 6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_short}}** list, select one of the following options:
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
-      2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam/service-credentials.html).
-      3. [Create at least one bucket](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
+      2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
+      3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-console-#create-buckets).
   * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
   * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
@@ -131,7 +131,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 ### Deploying from the CLI
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk/cloud_object_storage_actions.html#cloud_object_storage_cli).
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli).
 
 2. Clone the template repo.
     ```

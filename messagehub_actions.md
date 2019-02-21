@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -67,11 +67,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ## Listening for messages using events
 
 For detailed information about how to use triggers in {{site.data.keyword.messagehub}} to listen for messages, see the following
-[{{site.data.keyword.messagehub}} events source](/docs/openwhisk/openwhisk_messagehub.html) topic where the following tasks are covered:
-* [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger)
-* [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk/openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [Listening for messages](/docs/openwhisk/openwhisk_messagehub.html#message_hub_listen)
-* [Examples](/docs/openwhisk/openwhisk_messagehub.html#examples)
+[{{site.data.keyword.messagehub}} events source](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub) topic where the following tasks are covered:
+* [Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger)
+* [Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger_outside)
+* [Listening for messages](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#message_hub_listen)
+* [Examples](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#examples)
 
 ## Producing messages to {{site.data.keyword.messagehub}}
 {: #producing_messages}
@@ -79,7 +79,7 @@ For detailed information about how to use triggers in {{site.data.keyword.messag
 The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
-To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams/eventstreams112.html#producing_messages).
+To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 ## References
 - [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -17,7 +17,7 @@ lastupdated: "2019-02-18"
 # Binding services to actions
 {: #binding_services}
 
-You can use the [{{site.data.keyword.openwhisk}} CLI plug-in](/docs/openwhisk/bluemix_cli.html) to bind a service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+You can use the [{{site.data.keyword.openwhisk}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) to bind a service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 {: shortdesc}
 
 
@@ -32,7 +32,7 @@ Bind any {{site.data.keyword.Bluemix_notm}} service to any action that is define
 
 **Note**: You can only bind one service of each type to an action or package. Binding services of the same type isn't supported.
 
-Before you begin, [define credentials](/docs/resources/connect_external_app.html#externalapp) for the service that you want to bind.
+Before you begin, [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind.
 
 1. Get the name of the service instance that you want to bind to an action or package.
     ```
@@ -143,7 +143,7 @@ Before you begin, [define credentials](/docs/resources/connect_external_app.html
 
     In this example, the credentials for the conversation service, along with any other credentials for other service types, belong to a parameter named `__bx_creds`. The action looks for the `__bx_creds` bound parameter, and removes the reference to the service type listed. If that service type is the only one listed, the action nulls out the `__bx_creds` parameter's value. If more than one service is bound to the action, the `__bx_creds` parameter remains with whatever services are still bound.
 
-For more information about passing parameters to an action or package and how credentials are affected during `update` operations, see [Working with parameters](/docs/openwhisk/parameters.html#pass-params-action).
+For more information about passing parameters to an action or package and how credentials are affected during `update` operations, see [Working with parameters](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action).
 
 
 If you change the name of the org or space that contains entities, then a namespace is created with the new name. The entities that your old namespace contained aren't visible in the new namespace and are scheduled to be deleted. If you made the change accidentally, you can revert it and you might be able to save your entities before they are deleted.

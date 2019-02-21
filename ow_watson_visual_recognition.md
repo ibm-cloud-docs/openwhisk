@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -52,7 +52,7 @@ After you have an {{site.data.keyword.visualrecognitionshort}} service instance,
 {: #visualrecognition_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 To install the {{site.data.keyword.visualrecognitionshort}} package:
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -31,11 +31,11 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush/push_step_prereq.html#push_step_1).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a#push_step_1).
 
-2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush/push_step_1.html#push_step_1) for the Push Notificiations service instance.
+2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notificiations service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush/push_step_2.html#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
 
 ## Installing the {{site.data.keyword.mobilepushshort}} package
 {: #install_push}
@@ -46,7 +46,7 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #install_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk/bluemix_cli.html#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 

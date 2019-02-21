@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -31,7 +31,7 @@ ibmcloud fn action list
 ```
 {: pre}
 
-As you create more actions, it can be helpful to group related actions into [packages](/docs/openwhisk/openwhisk_packages.html). To filter your list of actions to only actions within a specific package:
+As you create more actions, it can be helpful to group related actions into [packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages). To filter your list of actions to only actions within a specific package:
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -100,7 +100,7 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible annotations, see the [action annotations](/docs/openwhisk/openwhisk_annotations.html#action) and [web action annotations](/docs/openwhisk/openwhisk_annotations.html#annotations-specific-to-web-actions) reference topics.</td>
+<td>Annotations on this action. For a list of possible annotations, see the [action annotations](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action) and [web action annotations](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions) reference topics.</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
@@ -235,7 +235,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](/docs/openwhisk/openwhisk_annotations.html#activation).</td>
+<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation).</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -276,7 +276,7 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-Example output for [web actions](/docs/openwhisk/openwhisk_webactions.html):
+Example output for [web actions](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName

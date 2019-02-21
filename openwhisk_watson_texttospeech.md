@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-19"
+lastupdated: "2019-02-20"
 
 ---
 
@@ -15,7 +15,7 @@ lastupdated: "2019-02-19"
 # Watson: Text to Speech package
 {: #openwhisk_catalog_watson_texttospeech}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Text to Speech](/docs/openwhisk/ow_watson_text_to_speech.html) package using IAM authentication. 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) package using IAM authentication. 
 {: tip}
 
 The `/whisk.system/watson-textToSpeech` package offers a convenient way to call Watson APIs to convert the text into speech.
@@ -28,7 +28,7 @@ The package includes the following actions.
 | `/whisk.system/watson-textToSpeech` | package | username, password | Package to convert text into speech |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | action | payload, voice, accept, encoding, username, password | Convert text into audio |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk/ow_watson_text_to_speech.html) instead.
+**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) instead.
 
 ## Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
 
