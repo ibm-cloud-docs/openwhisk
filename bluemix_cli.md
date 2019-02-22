@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-22"
 
 ---
 
@@ -177,7 +177,7 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 A historical record of versions that show highlights and bug fixes.
 
 v1.0.29 (2019-02-06)
-* Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](https://cloud.ibm.com/docs/openwhisk/wskdeploy.html) documentation.
+* Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](/docs/openwhisk?topic=cloud-functions-deploy#deploy) documentation.
 
 v1.0.28 (2019-01-21)
 * Added an error message when `update|delete|get namespace name` exists multiple times.
