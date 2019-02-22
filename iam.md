@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-18"
+lastupdated: "2019-02-22"
 
 ---
 
@@ -152,7 +152,7 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 When a service invokes an action, the action has a response. Because the response is sent from the namespace or action to a service, it is considered outbound information. If want to limit the amount of influence that your namespace has on other services, you might want to create an access policy.
 {: shortdesc}
 
-For information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#assignaccess).
+For information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser).
 {: tip}
 
 
