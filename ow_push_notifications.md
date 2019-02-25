@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -31,7 +31,7 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a#push_step_1).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
 
 2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notificiations service instance.
 

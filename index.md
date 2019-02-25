@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -36,7 +36,7 @@ Click an option to get started:
 
 To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWorld quickstart template.
 
-1.  From the [{{site.data.keyword.Bluemix_notm}} **Catalog** ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/?category=whisk), select Functions.
+1.  Visit the Functions dashboard in the [{{site.data.keyword.Bluemix_notm}} **Catalog** ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
