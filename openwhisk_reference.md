@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -806,7 +806,7 @@ The following table lists the default limits for actions.
 ### Increasing fixed limits
 {: #increase_fixed_limit}
 
-Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk/).
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.
   3. Select **Technical** for the ticket type.
@@ -888,7 +888,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 ### Increasing fixed limits
 {: #increase_fixed_tlimit}
 
-Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk/).
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.
   3. Select **Technical** for the ticket type.

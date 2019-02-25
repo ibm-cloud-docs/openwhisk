@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-22"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -29,7 +29,7 @@ You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plu
 Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 {: shortdesc}
 
-1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli#install_use).
+1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
 2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
 
@@ -109,7 +109,7 @@ If you are already logged in, you can run the `ibmcloud target` command in the {
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/bluemix_cli/bx_cli.html#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
+You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/bluemix_cli?topic=cloud-cli-ibmcloud_cli#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
 
 ```
 ibmcloud iam space-create "staging"

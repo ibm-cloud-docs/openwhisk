@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -82,5 +82,5 @@ The `/messaging/messageHubProduce` action is deprecated and will be removed at a
 To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 ## References
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
+- [Apache Kafka](https://kafka.apache.org)

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-25"
 
 ---
 
@@ -26,7 +26,7 @@ You can view activation logs directly from the {{site.data.keyword.openwhisk_sho
 
 **Note**: Logging is not available for the US East region.
 
-1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/dashboard/).
+1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/dashboard).
 
 2. Optional: To view logs only for a specific action, limit the monitoring summary to that action. In the Filtering Options section, select the action name from the **Limit to** drop-down list.
 
@@ -275,7 +275,7 @@ Metrics for actions that exist as part of a default namespace are available in t
 ## Monitoring health of actions
 {: #openwhisk_monitoring}
 
-The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/openwhisk/dashboard/) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
+The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/openwhisk/dashboard) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
 {:shortdesc}
 
 You can filter logs by selecting which action logs you want to view, and select the time frame of the activity logged. These filters are applied to all views on the dashboard. Click **Reload** at any time to update the dashboard with the latest activation log data.
