@@ -28,4 +28,4 @@ You can get help by searching for information or by asking questions through a f
 
   * If you have technical questions about {{site.data.keyword.openwhisk_short}}, post your question on [Stack Overflow ![External link icon](../icons/launch-glyph.svg "External link icon")](https://stackoverflow.com/search?q=ibm-cloud-functions) and tag your question with "ibm-cloud-functions".
 
-For more information about getting support, see [How do I get the support that I need?](/docs/get-support/howtogetsupport.html#getting-customer-support).
+For more information about getting support, see [How do I get the support that I need?](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
