@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-02-26"
 
 ---
 
@@ -1739,7 +1739,7 @@ curl -o QRImage.png $URL\?text=https://cloud.ibm.com
 
 The following sections guide you through creating and invoking a single .NET Core action and adding parameters to that action.
 
-In order to compile, test and archive .NET Core projects, you must have the [.NET Core SDK](https://www.microsoft.com/net/download) installed locally and the environment variable `DOTNET_HOME` set to the location where the `dotnet` executable can be found.
+In order to compile, test and archive .NET Core projects, you must have the [.NET Core SDK](https://dotnet.microsoft.com/download) installed locally and the environment variable `DOTNET_HOME` set to the location where the `dotnet` executable can be found.
 
 ### Creating and invoking a .NET Core action
 {: #create-dotnet-action}

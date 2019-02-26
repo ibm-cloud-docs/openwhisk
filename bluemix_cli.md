@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-25"
+lastupdated: "2019-02-26"
 
 ---
 
@@ -109,7 +109,7 @@ If you are already logged in, you can run the `ibmcloud target` command in the {
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/bluemix_cli?topic=cloud-cli-ibmcloud_cli#bluemix_iam_space_create) to create more spaces under your organization such "staging" and "production":
+You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_account#ibmcloud_account_space_create) to create more spaces under your organization such "staging" and "production":
 
 ```
 ibmcloud iam space-create "staging"
