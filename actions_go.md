@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-27"
+lastupdated: "2019-03-01"
 
 ---
 
@@ -250,7 +250,7 @@ go-action-hello/
 ```
 {: screen}
 
-Create the file `Makefile` to automate the deployment process.
+1. Create the file `Makefile` to automate the deployment process.
 
 ```Makefile
 GO_COMPILER?=openwhisk/actionloop-golang-v1.11
@@ -284,21 +284,22 @@ invoke:
 {: codeblock}
 
 </br>
-Delete the zip archives and vendor directory.
+
+2. Delete the zip archives and vendor directory.
 
 ```bash
 make clean
 ```
 {: pre}
 
-Populate the vendor directory, create the source zip, compile the source code, archive the exec into a .zip, and deploy the Go action by running.
+3. Populate the vendor directory, create the source zip, compile the source code, archive the exec into a .zip, and deploy the Go action by running.
 
 ```bash
 make deploy
 ```
 {: pre}
 
-Now that the `go-action-hello` is created, invoke the action.
+4. Now that the `go-action-hello` is created, invoke the action.
 
 ```bash
 ibmcloud fn action invoke go-action-hello -r -p name Go

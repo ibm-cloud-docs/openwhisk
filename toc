@@ -36,10 +36,10 @@ IBM Cloud Functions
         actions_php.md
         actions_java.md
         actions_net.md
+        openwhisk_webactions.md
         
     {: topicgroup}
     Managing actions
-        openwhisk_webactions.md
         binding_services.md
         openwhisk_managing.md
         parameters.md
@@ -108,8 +108,8 @@ IBM Cloud Functions
 
     {: .topicgroup}
     API documentation
-        [REST API reference](https://console.bluemix.net/apidocs/functions){: new_window}
-        [Native API management in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
+        [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
+        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
     at-events.md
 

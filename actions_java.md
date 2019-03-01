@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-27"
+lastupdated: "2019-03-01"
 
 ---
 
@@ -101,7 +101,7 @@ You can use a build a tool such as [Gradle](https://gradle.org) to fetch the lib
 
 Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to genrate a QR code image.
 
-Create a file `build.gradle` and specify the dependencies.
+1. Create a file `build.gradle` and specify the dependencies.
 
 ```gradle
 apply plugin: 'java'
@@ -135,7 +135,7 @@ jar {
 ```
 {: codeblock}
 
-Run the command `gradle jar`, which generates a jar archive in the directory `build/libs/`.
+2. Run the command `gradle jar`, which generates a jar archive in the directory `build/libs/`.
 Use this jar archive to deploy the action as described in the previous section.
 For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies).
 
@@ -182,21 +182,21 @@ public class Generate {
 {: codeblock}
 
 
-Build the Web Action jar by running the following command from the directory `java_example` where the file `build.gradle` is located.
+3. Build the Web Action jar by running the following command from the directory `java_example` where the file `build.gradle` is located.
 
 ```bash
 gradle jar
 ```
 {: pre}
 
-Deploy the web action by using the jar `build/libs/java_example-1.0.jar`.
+4. Deploy the web action by using the jar `build/libs/java_example-1.0.jar`.
 
 ```bash
 ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
 ```
 {: pre}
 
-Retrieve the public URL of the web action endpoint and assign it to an environment variable.
+5. Retrieve the public URL of the web action endpoint and assign it to an environment variable.
 
 ```bash
 ibmcloud fn action get QRGenerate --url
@@ -204,7 +204,7 @@ URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
 ```
 {: pre}
 
-You can open a web browser by using this `URL` and appending the query parameter `text` with the message to be encoded into the QR image. You can also use an HTTP client like `curl` to download a QR image.
+6. You can open a web browser by using this `URL` and appending the query parameter `text` with the message to be encoded into the QR image. You can also use an HTTP client like `curl` to download a QR image.
 
 ```bash
 curl -o QRImage.png $URL\?text=https://cloud.ibm.com

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-27"
+lastupdated: "2019-03-01"
 
 ---
 
@@ -39,9 +39,10 @@ def main(args):
     return {"greeting": greeting}
     ```
     {: codeblock}
-
+    
   * Python actions always consume a dictionary and produce a dictionary.
   * The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
+  </br>
 
 2. Create a `helloPython` action.
 
@@ -60,8 +61,7 @@ def main(args):
     The type of action is determined by using the source file extension.
     For `.py` source files, the action runs by using a Python 2 runtime.
 
-
-    You can also create an action that runs with Python 3.x, for Python 3.6 use the parameter `--kind python:3.6` (previously named `python-jessie:3`), for Python 3.7 use the parameter `--kind python:3.7`, both contain additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about the packages  that are included in these Python 3 runtimes, see the Python runtime [reference](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_python_environments).
+You can also create an action that runs with Python 3.x, for Python 3.6 use the parameter `--kind python:3.6` (previously named `python-jessie:3`), for Python 3.7 use the parameter `--kind python:3.7`, both contain additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about the packages  that are included in these Python 3 runtimes, see the Python runtime [reference](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_python_environments).
 
 3. Invoke the action.
 

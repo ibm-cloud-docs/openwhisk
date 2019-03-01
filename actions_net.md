@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-27"
+lastupdated: "2019-03-01"
 
 ---
 
@@ -77,14 +77,14 @@ Create a .NET Core action.
     ```
     {: codeblock}
 
-3. Compile `Hello.cs` and any other files and output to `out` directory.
+4. Compile `Hello.cs` and any other files and output to `out` directory.
 
     ```bash
     dotnet publish -c Release -o out
     ```
     {: pre}
 
-4. Compress the published files.
+5. Compress the published files.
 
     ```bash
     cd out
@@ -93,7 +93,7 @@ Create a .NET Core action.
     ```
     {: pre}
 
-5. Create or Update the action.
+6. Create or Update the action.
 
     ```bash
     ibmcloud fn action update helloDotNet helloDotNet.zip --main Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main --kind dotnet:2.2
@@ -106,7 +106,7 @@ Create a .NET Core action.
     `Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main`
 
 
-6. Invoke the action.
+7. Invoke the action.
 
     ```
     ibmcloud fn action invoke --result helloDotNet --param name World
