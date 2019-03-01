@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-27"
+lastupdated: "2019-03-01"
 
 ---
 
@@ -202,7 +202,7 @@ JavaScript functions that run asynchronously can return the activation result af
     ```
     {: screen}
 
-3. Check how long the activation took to complete by getting the activation log.
+4. Check how long the activation took to complete by getting the activation log.
 
   1. Get the activation ID.
 
