@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-25"
+lastupdated: "2019-03-04"
 
 ---
 
@@ -238,7 +238,7 @@ Node.js version 6 is the default version, but is deprecated as of 6 December 201
 ### Packaging npm packages with your actions
 For any `npm` packages that are not pre-installed in the Node.js environment, you can bundle them as dependencies when you create or update your action.
 
-For more information, see [Packaging an action as a Node.js module](/docs/openwhisk?topic=cloud-functions-openwhisk_actions#openwhisk_js_packaged_action) or [Packaging an action as a single bundle](/docs/openwhisk?topic=cloud-functions-openwhisk_actions#openwhisk_js_webpack_action).
+For more information, see [Packaging an action as a Node.js module](/docs/openwhisk?topic=cloud-functions-creating-javascript-actions#openwhisk_js_packaged_action) or [Packaging an action as a single bundle](/docs/openwhisk?topic=cloud-functions-creating-javascript-actions#openwhisk_js_webpack_action).
 
 
 ### Node.js version 10 environment with IBM SDKs
@@ -718,7 +718,7 @@ Swift 3.1.1 actions can use the following packages when using a single Swift sou
 Swift 4 actions can be executed using Swift 4.1 or 4.2 using `--kind swift:4.1` or `--kind swift:4.2` respectively.
 The default `--kind swift:default` is Swift 4.2.
 
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-openwhisk_actions#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-creating-swift-actions#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
 
 Swift 4.1 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 0.38.1, https://github.com/watson-developer-cloud/swift-sdk
