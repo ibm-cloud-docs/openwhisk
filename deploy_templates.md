@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-03-04"
 
 ---
 
@@ -36,7 +36,7 @@ lastupdated: "2019-02-20"
 
 The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions and a trigger that kicks off that sequence. The trigger is fired when a change is made in the connected {{site.data.keyword.cloudant_short_notm}} example database of cats. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database or a current cat is edited, the data is logged to the console.
 
-### Deploying from the UI
+### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the UI
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -61,7 +61,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Deploying from the CLI
+### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the CLI
 
 1. Clone the template repo.
     ```
@@ -101,7 +101,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 
 The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
-### Deploying from the UI
+### Deploying the Upload Image template from the UI
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -129,7 +129,7 @@ The Upload Image template creates a web action that allows you to upload an imag
     * The `cloud-object-storage` package, which contains actions that work with {{site.data.keyword.cos_short}} instances
     * The template package (default name `upload-image`), which contains the `app` action
 
-### Deploying from the CLI
+### Deploying the Upload Image template from the CLI
 
 1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli).
 
@@ -162,7 +162,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publicly available to anyone who calls it.
 
-### Deploying from the UI
+### Deploying the Get HTTP Resource template from the UI
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -184,7 +184,7 @@ The Get HTTP Resource template creates an action to fetch an external resource, 
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Deploying from the CLI
+### Deploying the Get HTTP Resource template from the CLI
 
 1. Clone the template repo.
     ```
@@ -215,7 +215,7 @@ After template deployment, you can make further edits to the code to customize i
 
 You can deploy this basic Hello World action to get started with {{site.data.keyword.openwhisk_short}} or to test other entities you create, such as triggers and rules.
 
-### Deploying from the UI
+### Deploying the Hello World template from the UI
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -231,7 +231,7 @@ You can deploy this basic Hello World action to get started with {{site.data.key
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Deploying from the CLI
+### Deploying the Hello World template from the CLI
 
 1. Clone the Hello World template repo.
     ```
@@ -256,7 +256,7 @@ After template deployment, you can make further edits to the code to customize i
 
 The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever there is a new item added to the {{site.data.keyword.messagehub}} topic that is chosen during template creation.
 
-### Deploying from the UI
+### Deploying the {{site.data.keyword.messagehub}} Events template from the UI
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -285,7 +285,7 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Deploying from the CLI
+### Deploying the {{site.data.keyword.messagehub}} Events template from the CLI
 
 1. Clone the template repo.
     ```
@@ -325,7 +325,7 @@ After template deployment, you can make further edits to the code to customize i
 
 The Periodic Slack Reminder template posts to Slack on an interval provided by the user during trigger creation.
 
-### Deploying from the UI
+### Deploying the Periodic Slack Reminder template from the UI
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
@@ -351,7 +351,7 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
-### Deploying from the CLI
+### Deploying the Periodic Slack Reminder template from the CLI
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
