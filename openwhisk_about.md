@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-22"
+lastupdated: "2019-03-04"
 
 ---
 
@@ -29,7 +29,7 @@ Learn about some basic concepts of the technology behind {{site.data.keyword.ope
     <dd>An [action](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
     <br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.Bluemix_notm}} services and third party services using a trigger.</dd>
   <dt>Sequence</dt>
-    <dd>A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=cloud-functions-openwhisk_actions#openwhisk_create_action_sequence) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. This allows you to combine existing actions together for quick and easy re-use. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
+    <dd>A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=cloud-functions-creating-javascript-actions#openwhisk_create_action_sequence) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. This allows you to combine existing actions together for quick and easy re-use. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
   </dd>
   <dt>Event</dt>
     <dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events.</dd>
