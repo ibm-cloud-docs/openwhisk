@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-03-04"
 
 ---
 
@@ -406,7 +406,7 @@ Example output:
 ```
 {: screen}
 
-OpenWhisk uses the [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) framework to [determine](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary and which are plain text.
+OpenWhisk uses the [Akka Http](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary and which are plain text.
 
 ### Enabling raw HTTP handling
 
