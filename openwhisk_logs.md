@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-25"
+lastupdated: "2019-03-05"
+
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+
+subcollection: cloud-functions
 
 ---
 
@@ -281,7 +285,7 @@ The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/open
 You can filter logs by selecting which action logs you want to view, and select the time frame of the activity logged. These filters are applied to all views on the dashboard. Click **Reload** at any time to update the dashboard with the latest activation log data.
 
 ### Activity Summary
-{: #summary}
+{: #activity_summary}
 
 The **Activity Summary** view provides a high-level summary of your {{site.data.keyword.openwhisk_short}} environment. Use this view to monitor the overall health and performance of your {{site.data.keyword.openwhisk_short}}-enabled service. From the metrics in this view, you can do the following:
 * Determine the usage rate of your service's {{site.data.keyword.openwhisk_short}}-enabled actions by viewing the number of times that they were invoked.

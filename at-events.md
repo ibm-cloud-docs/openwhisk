@@ -4,6 +4,10 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
+keywords: events, serverless, push notifications
+
+subcollection: cloud-functions
+
 ---
 
 {:new_window: target="_blank"}

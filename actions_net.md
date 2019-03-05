@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-01"
+lastupdated: "2019-03-05"
+
+keywords: actions, serverless, .NET, net
+
+subcollection: cloud-functions
 
 ---
 

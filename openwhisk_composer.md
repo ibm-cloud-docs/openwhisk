@@ -2,7 +2,11 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-02-21"
+lastupdated: "2019-03-05"
+
+keywords: composer, openwhisk, compositions, sequence, branch
+
+subcollection: cloud-functions
 
 ---
 
