@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-25"
+lastupdated: "2019-03-05"
+
+keywords: message hub, package, messages, events
+
+subcollection: cloud-functions
 
 ---
 

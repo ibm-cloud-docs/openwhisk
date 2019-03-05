@@ -40,8 +40,8 @@ IBM Cloud Functions
         
     {: topicgroup}
     Managing actions
-        binding_services.md
         openwhisk_managing.md
+        binding_services.md
         parameters.md
         openwhisk_packages.md
 

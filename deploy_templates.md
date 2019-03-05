@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-04"
+lastupdated: "2019-03-05"
+
+keywords: deploy, deployment templates, templates, example, quickstart
+
+subcollection: cloud-functions
 
 ---
 

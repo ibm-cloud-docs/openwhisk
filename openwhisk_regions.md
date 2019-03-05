@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-01"
+lastupdated: "2019-03-05"
+
+keywords: regions, endpoints, api, cli, plug-in
+
+subcollection: cloud-functions
 
 ---
 

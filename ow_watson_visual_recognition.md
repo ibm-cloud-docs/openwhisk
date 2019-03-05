@@ -2,7 +2,11 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-02-20"
+lastupdated: "2019-03-05"
+
+keywords: visual recognition, watson, functions, cognitive, 
+
+subcollection: cloud-functions
 
 ---
 
