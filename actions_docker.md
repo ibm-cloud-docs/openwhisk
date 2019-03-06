@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-06"
 
 keywords: docker, actions, serverless
 
@@ -33,6 +33,9 @@ Your code is compiled into an executable binary and embedded into a Docker image
 
 You can use actions to call images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
 {: tip}
+
+
+## Creating and invoking a Docker action
 
 **Before you begin:**
 
