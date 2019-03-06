@@ -359,6 +359,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 You can change the runtime `kind` to migrate to a newer version of the action runtime. For example, since Node.js version 8 is in maintenance mode, you may want to switch the runtime to Node.js 10. You can use the following steps to change an action runtime.
 
 1. Save the action code in a file.
+
   ```
   ibmcloud fn action get actionName --save
   ```
