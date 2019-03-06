@@ -359,19 +359,19 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 You can change the runtime `kind` to migrate to a newer version of the action runtime. For example, since Node.js version 8 is in maintenance mode, you may want to switch the runtime to Node.js 10. You can use the following steps to change an action runtime.
 
 1. Save the action code in a file.
-```
-ibmcloud fn action get actionName --save
-```
-{: pre}
+  ```
+  ibmcloud fn action get actionName --save
+  ```
+  {: pre}
 
-**Optional:** Change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
+**Note:** You may need to change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
 
 2. Update the action by specifying the new runtime.
 
-```
-ibmcloud fn action update actionName actionName.js --kind nodejs:10
-```
-{: #pre}
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
 
 For a list of available runtimes, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_reference)
 
