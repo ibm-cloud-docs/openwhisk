@@ -364,9 +364,9 @@ ibmcloud fn action get actionName --save
 ```
 {: pre}
 
-2. **Optional.** Change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
+**Optional:** Change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
 
-3. Update the action by specifying the new runtime.
+2. Update the action by specifying the new runtime.
 
 ```
 ibmcloud fn action update actionName actionName.js --kind nodejs:10

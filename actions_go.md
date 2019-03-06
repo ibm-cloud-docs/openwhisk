@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-06"
 
 keywords: docker, actions, serverless
 
@@ -29,7 +29,7 @@ The following sections guide you through creating and invoking a single Go actio
 `--kind go:1.11` when creating or updating an action.
 {: shortdesc}
 
-## Creating and invoking Go actions
+## Creating and invoking a Go action
 {: #invoking-go-actions}
 
 A Go action is simply a public function from the `main` package. Use a single file for quick testing or development purposes. For production apps, [pre-compile your Go actions into an executable](#packaging-go-actions) for better performance or multiple source file support, including vendor libraries.
