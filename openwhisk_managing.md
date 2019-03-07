@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-06"
+lastupdated: "2019-03-07"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -375,6 +375,13 @@ You can change the runtime `kind` to migrate to a newer version of the action ru
   {: pre}
 
 For a list of available runtimes, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_reference)
+
+## Managing large actions
+{: #large-app-support}
+
+The maximum code size for an action is 48 MB. Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies, and then use a single source file or smaller archive than 48 MB.
+
+For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
 
 ## Deleting actions
 {: #deleting-actions}

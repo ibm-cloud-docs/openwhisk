@@ -4,6 +4,9 @@
 {: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
 IBM Cloud Functions
 
+    getting_started.md
+    openwhisk_actions.md
+
     {: .navgroup id="learn"}
     index.md
 
@@ -41,6 +44,7 @@ IBM Cloud Functions
     {: topicgroup}
     Managing actions
         openwhisk_managing.md
+        creating_action_sequence.md
         binding_services.md
         parameters.md
         openwhisk_packages.md
