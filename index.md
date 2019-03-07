@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-07"
 
 keywords: getting started, creating actions, invoking actions, 
 
@@ -26,7 +26,7 @@ With {{site.data.keyword.openwhisk}} you can use your favorite programming langu
 
 Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the languages that you can use and you don't have to spend time explicitly provisioning backend infrastructure. You can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, or maintenance. Out of the box, IBM provides the hardware, networking, software administration, load balancing, plug-ins, and so on. You just have to bring the code!
 
-# Working with actions
+## Working with actions
 {: #creating_actions}
 {: #openwhisk_actions}
 
