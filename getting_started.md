@@ -19,7 +19,6 @@ subcollection: cloud-functions
 
 # Getting started
 {: #getting_started}
-{: #index}
 
 With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or automatically in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
