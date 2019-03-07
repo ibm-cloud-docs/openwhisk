@@ -44,6 +44,7 @@ IBM Cloud Functions
     {: topicgroup}
     Managing actions
         openwhisk_managing.md
+        creating_action_sequence.md
         binding_services.md
         parameters.md
         openwhisk_packages.md
