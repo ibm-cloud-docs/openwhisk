@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-07"
+lastupdated: "2019-03-08"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -182,13 +182,11 @@ JavaScript functions that run asynchronously can return the activation result af
       * The call to `resolve()` fulfills the Promise and indicates that the activation completes normally.
       * A call to `reject()` can be used to reject the Promise and signal that the activation completes abnormally.
 
-
 2. Create an action called `asyncAction`.
     ```
     ibmcloud fn action create asyncAction asyncAction.js --kind nodejs:10
     ```
     {: pre}
-
 
 3. Invoke the action.
 
