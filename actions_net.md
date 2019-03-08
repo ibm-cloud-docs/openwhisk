@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: actions, serverless, .NET, net
 
@@ -108,8 +108,7 @@ Create a .NET Core action.
     The value for `main` needs to be in the following format.
     `{Assembly}::{Class Full Name}::{Method}`, e.q.,
     `Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main`
-
-
+    
 7. Invoke the action.
 
     ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-06"
+lastupdated: "2019-03-08"
 
 keywords: ballerina, serverless, actions
 
@@ -54,23 +54,21 @@ The entry method for the action is `main` by default. You can specify this varia
 To create an action called `hello` complete the following steps.
 
 1. Generate the .balx file.
-
-```
-ballerina build hello.bal
-```
+  ```
+  ballerina build hello.bal
+  ```
 {: pre}
 
 2. Create the action by using the .balx file.
-```
-ibmcloud fn action create bello hello.balx --kind ballerina:0.990
-```
+  ```
+  ibmcloud fn action create bello hello.balx --kind ballerina:0.990
+  ```
 {: pre}
 
 3. The CLI does not yet determine the type of the action from the source file extension. You must specify the kind explicitly. For `.balx` source files, the action runs by using the Ballerina 0.990.2 runtime.
-
-```
-ibmcloud fn action invoke --result bello --param name World
-```
+  ```
+  ibmcloud fn action invoke --result bello --param name World
+  ```
 {: pre}
 
 Example output.

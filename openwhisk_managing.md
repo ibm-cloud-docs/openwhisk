@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-07"
+lastupdated: "2019-03-08"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -256,7 +256,7 @@ The action environment contains several properties that are specific to the runn
 | Property | Description |
 | -------- | ----------- |
 | `__OW_API_HOST` | The API host for the OpenWhisk deployment running this action. |
-| `__OW_API_KEY` | The API key for the subject invoking the action. This key may be a restricted API key. |
+| `__OW_API_KEY` | The API key for the subject invoking the action. This key may be a restricted API key and is absent unless explicitly requested, see [Annotations](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations). |
 | `__OW_NAMESPACE` | The namespace for the activation. This namespace might not be the same as the namespace for the action. |
 | `__OW_ACTION_NAME` | The fully qualified name of the running action. |
 | `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |

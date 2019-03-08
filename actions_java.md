@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: actions, serverless, java
 
@@ -107,36 +107,36 @@ Here is an example using Gradle to build a Java action that leverages the librar
 
 1. Create a file `build.gradle` and specify the dependencies.
 
-```gradle
-apply plugin: 'java'
+  ```gradle
+  apply plugin: 'java'
 
-version = '1.0'
+  version = '1.0'
 
-repositories {
-    mavenCentral()
-}
+  repositories {
+     mavenCentral()
+  }
 
-configurations {
-    provided
-    compile.extendsFrom provided
-}
+  configurations {
+      provided
+      compile.extendsFrom provided
+  }
 
-dependencies {
-    provided 'com.google.code.gson:gson:2.6.2'
-    compile 'com.google.zxing:core:3.3.0'
-    compile 'com.google.zxing:javase:3.3.0'
-}
+  dependencies {
+       provided 'com.google.code.gson:gson:2.6.2'
+      compile 'com.google.zxing:core:3.3.0'
+       compile 'com.google.zxing:javase:3.3.0'
+  }
 
-jar {
-    dependsOn configurations.runtime
+  jar {
+      dependsOn configurations.runtime
 
-    from {
-        (configurations.runtime - configurations.provided).collect {
-            it.isDirectory() ? it : zipTree(it)
-        }
-    }
-}
-```
+     from {
+          (configurations.runtime - configurations.provided).collect {
+              it.isDirectory() ? it : zipTree(it)
+          }
+      }
+  }
+  ```
 {: codeblock}
 
 2. Run the command `gradle jar`, which generates a jar archive in the directory `build/libs/`.
@@ -145,72 +145,71 @@ For more information, read the Gradle documentation [Declaring Dependencies](htt
 
 Here is an example of a Java Web Action that takes `text` as input and generates a QR code image. Create a file `Generate.java` in the directory `java_example/src/main/java/qr`.
 
-```java
-package qr;
+  ```java
+  package qr;
 
-import java.io.*;
-import java.util.Base64;
+  import java.io.*;
+  import java.util.Base64;
 
-import com.google.gson.JsonObject;
+  import com.google.gson.JsonObject;
 
-import com.google.zxing.*;
-import com.google.zxing.client.j2se.MatrixToImageWriter;
-import com.google.zxing.common.BitMatrix;
+  import com.google.zxing.*;
+  import com.google.zxing.client.j2se.MatrixToImageWriter;
+  import com.google.zxing.common.BitMatrix;
 
-public class Generate {
-  public static JsonObject main(JsonObject args) throws Exception {
-    String property = "text";
-    String text = "Hello. Try with a 'text' value next time.";
-    if (args.has(property)) {
-      text = args.get(property).toString();
+  public class Generate {
+    public static JsonObject main(JsonObject args) throws Exception {
+      String property = "text";
+      String text = "Hello. Try with a 'text' value next time.";
+      if (args.has(property)) {
+        text = args.get(property).toString();
+      }
+
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      OutputStream b64os = Base64.getEncoder().wrap(baos);
+
+      BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
+      MatrixToImageWriter.writeToStream(matrix, "png", b64os);
+      b64os.close();
+
+      String output = baos.toString("utf-8");
+
+      JsonObject response = new JsonObject();
+      JsonObject headers = new JsonObject();
+      headers.addProperty("content-type", "image/png; charset=UTF-8");
+      response.add("headers", headers);
+      response.addProperty("body", output);
+      return response;
     }
-
-    ByteArrayOutputStream baos = new ByteArrayOutputStream();
-    OutputStream b64os = Base64.getEncoder().wrap(baos);
-
-    BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
-    MatrixToImageWriter.writeToStream(matrix, "png", b64os);
-    b64os.close();
-
-    String output = baos.toString("utf-8");
-
-    JsonObject response = new JsonObject();
-    JsonObject headers = new JsonObject();
-    headers.addProperty("content-type", "image/png; charset=UTF-8");
-    response.add("headers", headers);
-    response.addProperty("body", output);
-    return response;
   }
-}
-```
+  ```
 {: codeblock}
-
 
 3. Build the Web Action jar by running the following command from the directory `java_example` where the file `build.gradle` is located.
 
-```bash
-gradle jar
-```
+  ```bash
+  gradle jar
+  ```
 {: pre}
 
 4. Deploy the web action by using the jar `build/libs/java_example-1.0.jar`.
 
-```bash
-ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
-```
+  ```bash
+  ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
+  ```
 {: pre}
 
 5. Retrieve the public URL of the web action endpoint and assign it to an environment variable.
 
-```bash
-ibmcloud fn action get QRGenerate --url
-URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
-```
+  ```bash
+  ibmcloud fn action get QRGenerate --url
+  URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
+  ```
 {: pre}
 
 6. You can open a web browser by using this `URL` and appending the query parameter `text` with the message to be encoded into the QR image. You can also use an HTTP client like `curl` to download a QR image.
 
-```bash
-curl -o QRImage.png $URL\?text=https://cloud.ibm.com
-```
+  ```bash
+  curl -o QRImage.png $URL\?text=https://cloud.ibm.com
+  ```
 {: pre}

@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: composer, openwhisk, compositions, sequence, branch
 
@@ -181,7 +181,7 @@ def main():
 ```
 {: codeblock}
 </br>
-<img src="images/composer-sequence.png" width="35%" title="Simple Sequence" style="width:250px; border-style: none"/></br>
+<img src="images/composer-sequence.png" width="35%" title="Simple Sequence" alt="Sequence with two actions" style="width:250px; border-style: none"/></br>
 _Figure 1. Sequence with two actions_
 
 You aren't limited to chaining together functions in Composer. Composer includes a family of [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) or [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md) based combinators that enhance the expressiveness of sequences. You can see common examples in the following sections.
@@ -210,7 +210,7 @@ def main():
 ```
 {: codeblock}
 </br>
-<img src="images/composer-error.png" width="400" title="Try Sequence" style="width:400px; border-style: none"/></br>
+<img src="images/composer-error.png" width="400" title="Try Sequence" alt="Sequence with error handling" style="width:400px; border-style: none"/></br>
 _Figure 2. Sequence with error handling_
 
 ### Conditional branching
@@ -234,7 +234,7 @@ def main():
 ```
 {: codeblock}
 </br>
-<img src="images/composer-conditional.png" width="250" title="If Sequence" style="width:250px; border-style: none"/></br>
+<img src="images/composer-conditional.png" width="250" title="If Sequence" alt="Sequence with conditional branching" style="width:250px; border-style: none"/></br>
 _Figure 3. Sequence with conditional branching_
 
 ### Loops
@@ -258,7 +258,7 @@ def main():
 ```
 {: codeblock}
 </br>
-<img src="images/composer-loop.png" width="250" title="While Sequence" style="width:250px; border-style: none"/></br>
+<img src="images/composer-loop.png" width="250" title="While Sequence" alt="Sequence with while loop" style="width:250px; border-style: none"/></br>
 _Figure 4. Sequence with `while` loop_
 
 ### Inline definition of Actions
@@ -282,7 +282,7 @@ def main():
 ```
 {: codeblock}
 </br>
-<img src="images/composer-inline.png" width="250" title="While Sequence" style="width:250px; border-style: none"/></br>
+<img src="images/composer-inline.png" width="250" title="While Sequence" alt="Sequence with inline action definition" style="width:250px; border-style: none"/></br>
 _Figure 5. Sequence with inline action definition_
 
 ## Using other combinator definitions

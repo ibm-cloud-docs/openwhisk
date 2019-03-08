@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: actions, serverless, swift
 
@@ -396,7 +396,6 @@ Swift 3 example syntax.
   {: pre}
 
   This process created `hello.zip` in the `build`.
-
 
 2. Upload it to OpenWhisk with the action name helloSwifty.
 

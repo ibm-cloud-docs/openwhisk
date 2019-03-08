@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-06"
+lastupdated: "2019-03-08"
 
 keywords: docker, actions, serverless
 
@@ -286,8 +286,6 @@ invoke:
 	$(CLI) action invoke $(NAME) -r -p name Gopher
 ```
 {: codeblock}
-
-</br>
 
 2. Delete the zip archives and vendor directory.
 
