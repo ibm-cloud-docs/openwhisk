@@ -269,9 +269,9 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
     ```
     {: codeblock}
 
-A call is made to the NASA APOD API, and fields are extracted from the JSON result. For more information about which Node.js packages you can use in your actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript).
+2. A call is made to the NASA APOD API, and fields are extracted from the JSON result. For more information about which Node.js packages you can use in your actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript).
 
-2. Create an action named `apod`.
+3. Create an action named `apod`.
     ```
     ibmcloud fn action create apod apod.js --kind nodejs:10
     ```
