@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: actions, serverless, python
 
@@ -46,7 +46,6 @@ def main(args):
     
   * Python actions always consume a dictionary and produce a dictionary.
   * The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
-  </br>
 
 2. Create a `helloPython` action.
 

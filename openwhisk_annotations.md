@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: annotations, annotate, package, parameters, actions
 
@@ -20,7 +20,7 @@ subcollection: cloud-functions
 # Annotations
 {: #openwhisk_annotations}
 
-{{site.data.keyword.openwhisk}} actions, triggers, rules, and packages (collectively referred to as entities) can be documented with annotations.
+{{site.data.keyword.openwhisk}} actions, triggers, rules, and packages (collectively referred to as entities) can include annotations.
 {: shortdesc}
 
 Annotations are attached to entities like parameters. Annotations consist of a `key` that defines a name and `value` that defines the value. Annotations are most commonly used to document actions and packages. Many of the packages in the {{site.data.keyword.openwhisk_short}} catalog carry annotations, such as a description of the functionality that is offered by its actions, parameters to use at package binding time, invoke-time parameters, or whether a parameter is a secret. Annotations are invented as needed, for example, to allow for UI integration.
@@ -36,6 +36,11 @@ Annotations that describe actions include:
 - `parameters`: An array that describes actions that are required to execute the action.
 - `sampleInput`: An example that shows the input schema with typical values.
 - `sampleOutput`: An example that shows the output schema, usually for the `sampleInput`.
+
+**Other annotations** 
+* The `provide-api-key` annotation may be attached to actions that require access to an API key. For example, making REST API calls to other actions or services. 
+
+**Note:** The absence of this annotation, or its presence with a value that is not _falsy_ (i.e., a value that is different from zero, null, false, and the empty string) will cause an API key to be present in the action execution context. This annotation is added to new actions, if not already specified, with a default false value.
 
 The following code is an example set of annotations for an `echo` action, which returns its input arguments unmodified. This action is useful for logging input parameters, for example, as part of a sequence or rule.
 ```

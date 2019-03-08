@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-08"
 
 keywords: faq, runtimes, actions, memory, monitoring
 
@@ -59,9 +59,10 @@ The following languages are supported:
     <td><code>java (JDK 8)</code></td>
   </tr>
   <tr>
-    <td colspan="2">Any other language by using Docker actions.</td>
+    <td colspan="2">Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
+{: caption="Table 1. Supported runtimes" caption-side="top"}
 
 
 ## What's the maximum time my function can run?
