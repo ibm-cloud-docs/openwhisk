@@ -141,7 +141,6 @@ The `runtimes` section contains the set of available runtimes.
   - [us-east](https://us-east.functions.cloud.ibm.com/)
   - [eu-gb](https://eu-gb.functions.cloud.ibm.com/)
   - [eu-de](https://eu-de.functions.cloud.ibm.com/)
-  - ...
 
 The `image` section contains the name of the runtime image on [DockerHub](https://hub.docker.com/) and the tag that is used. 
 
