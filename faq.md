@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-12"
 
 keywords: faq, runtimes, actions, memory, monitoring
 
@@ -31,35 +31,35 @@ The following languages are supported:
 
 <table>
   <tr>
-    <th>Language</th>
-    <th>Kind identifier</th>
+    <th id="language-col">Language</th>
+    <th id="kind-identifier-col">Kind identifier</th>
   </tr>
   <tr>
-    <td>Node.js</td>
-    <td><code>nodejs:6</code>, <code>nodejs:8</code></td>
+    <td id="language-col-nodejs" headers="language-col">Node.js</td>
+    <td headers="kind-identifier-col language-col-nodejs"><code>nodejs:6</code>, <code>nodejs:8</code></td>
   </tr>
   <tr>
-    <td>Python</td>
-    <td><code>python:3.7</code>, <code>python:3.6</code></td>
+    <td id="language-col-python" headers="language-col">Python</td>
+    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code></td>
   </tr>
   <tr>
-    <td>Swift</td>
-    <td><code>swift:4.1</code>, <code>swift:3.1.1</code></td>
+    <td id="language-col-swift" headers="language-col">Swift</td>
+    <td headers="kind-identifier-col language-col-swift"><code>swift:4.1</code>, <code>swift:3.1.1</code></td>
   </tr>
   <tr>
-    <td>PHP</td>
-    <td><code>php:7.2</code>, <code>php:7.1</code></td>
+    <td id="language-col-php" headers="language-col">PHP</td>
+    <td headers="kind-identifier-col language-col-php"><code>php:7.2</code>, <code>php:7.1</code></td>
   </tr>
   <tr>
-    <td>Ruby</td>
-    <td><code>ruby:2.5</code></td>
+    <td id="language-col-ruby" headers="language-col">Ruby</td>
+    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code></td>
   </tr>
   <tr>
-    <td>Java</td>
-    <td><code>java (JDK 8)</code></td>
+    <td id="language-col-java" headers="language-col">Java</td>
+    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code></td>
   </tr>
   <tr>
-    <td colspan="2">Other languages are supported by using Docker actions.</td>
+    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
