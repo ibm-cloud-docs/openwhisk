@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-15"
 
 keywords: getting started, creating actions, invoking actions, 
 
@@ -33,16 +33,19 @@ With {{site.data.keyword.openwhisk}}, you can create stateless code snippets tha
 {:shortdesc}
 
 **What is an action?**
+{: #what_is_an_action}
 
 An action is a small piece of code that can be invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
 
 **Why would I use an action?**
+{: #why_use_an_action}
 
 By using actions, you limit the amount of time that your code is running, which lowers your overhead costs.
 
 For example, you can use actions to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
 
 **Can I use more than one action at a time?**
+{: #more_than_one_action}
 
 Yes! You can use actions to call other actions, or you can string actions together to create sequences. To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences by calling the package instead of configuring the action or sequence again.
 
