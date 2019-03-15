@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-15"
 
 keywords: push notifications, events, parameters, triggers, service activity
 
@@ -32,9 +32,9 @@ For information about the `/whisk.system/pushnotifications` package itself, see 
 {: #push_notif_parameters}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
-- **appId:** The {{site.data.keyword.Bluemix_notm}} app GUID.
-- **appSecret:** The {{site.data.keyword.Bluemix_notm}} push notification service appSecret.
-- **events:** _onDeviceRegister_, _onDeviceUnregister_, _onDeviceUpdate_, _onSubscribe_, _onUnsubscribe_
+- `appId`: The {{site.data.keyword.Bluemix_notm}} app GUID.
+- `appSecret`: The {{site.data.keyword.Bluemix_notm}} push notification service `appSecret`.
+- `events`: `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`
 
   You can use the wildcard character "`*`" to be notified for all events.
 
@@ -43,7 +43,7 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
 
-1. Create a package binding that is configured for your Push Notifications service by using your **appId** and **appSecret**.
+1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
   ```
   ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```

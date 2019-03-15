@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-15"
 
 keywords: actions, serverless, java
 
@@ -59,7 +59,7 @@ Create a Java action.
     ```
     {: codeblock}
 
-2. Compile `Hello.java` into a JAR file named `hello.jar`. **Note**: [google-gson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/google/gson) must exist in your Java CLASSPATH.
+2. Compress `Hello.java` into a JAR file named `hello.jar`. **Note**: [google-gson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/google/gson) must exist in your Java CLASSPATH.
 
     ```
     javac Hello.java
@@ -100,10 +100,10 @@ Create a Java action.
 
 ## Including dependencies in Java actions
 
-To use a 3rd party dependency in your Java action, the action jar archive must include all libraries.
-You can use a build a tool such as [Gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final jar archive that includes your code and all dependencies.
+To use a 3rd party dependency in your Java action, the action JAR archive must include all libraries.
+You can use a build a tool such as [Gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final JAR archive that includes your code and all dependencies.
 
-Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to genrate a QR code image.
+Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
 1. Create a file `build.gradle` and specify the dependencies.
 
@@ -139,8 +139,8 @@ Here is an example using Gradle to build a Java action that leverages the librar
   ```
 {: codeblock}
 
-2. Run the command `gradle jar`, which generates a jar archive in the directory `build/libs/`.
-Use this jar archive to deploy the action as described in the previous section.
+2. Run the command `gradle jar`, which generates a JAR archive in the directory `build/libs/`.
+Use this JAR archive to deploy the action as described in the previous section.
 For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies).
 
 Here is an example of a Java Web Action that takes `text` as input and generates a QR code image. Create a file `Generate.java` in the directory `java_example/src/main/java/qr`.
@@ -185,14 +185,14 @@ Here is an example of a Java Web Action that takes `text` as input and generates
   ```
 {: codeblock}
 
-3. Build the Web Action jar by running the following command from the directory `java_example` where the file `build.gradle` is located.
+3. Build the Web Action JAR by running the following command from the directory `java_example` where the file `build.gradle` is located.
 
   ```bash
   gradle jar
   ```
 {: pre}
 
-4. Deploy the web action by using the jar `build/libs/java_example-1.0.jar`.
+4. Deploy the web action by using the JAR `build/libs/java_example-1.0.jar`.
 
   ```bash
   ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-14"
+lastupdated: "2019-03-15"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -427,7 +427,7 @@ For example, consider a directory with the following files:
 
     * The action is exposed through `exports.main`.
     * The action handler can have any name as long as it conforms to the conventional signature of accepting an object and returning an object (or a `Promise` of an object).
-    * You must either name this file **index.js** or specify the file name that you prefer as the `main` property in **package.json**.
+    * You must either name this file `index.js` or specify the file name that you prefer as the `main` property in `package.json`.
 
 3. Install all dependencies locally.
 
@@ -445,7 +445,7 @@ For example, consider a directory with the following files:
     ```
     {: pre}
 
-    Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
+    Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} .zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
     {: tip}
 
 5. Create the action. When you create an action from a `.zip` archive, you must set a value for the `--kind` parameter to specify your Node.js runtime version. Choose between `nodejs:8` or `nodejs:10`.
@@ -479,12 +479,12 @@ For example, consider a directory with the following files:
 {: #webpack_javascript}
 {: #openwhisk_js_webpack_action}
 
-If packaging the action as a zip includes too many unnecessary files or if you need a faster deployment, you can write the minimal code into a single `.js` file that includes dependencies.
+If packaging the action as a .zip includes too many unnecessary files or if you need a faster deployment, you can write the minimal code into a single `.js` file that includes dependencies.
 {: shortdesc}
 
 You can package an action by using a JavaScript module bundler such as [webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/). When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 
-1. Save the following code in a file named `package.json`. `webpack` is added as a development depency.
+1. Save the following code in a file named `package.json`. `webpack` is added as a development dependency.
 
     ```json
     {
@@ -564,7 +564,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
         ```
         {: pre}
 
-    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary dependencies because this is not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary file dependencies because this is not included with the file `bundle.js`.
     {: tip}
 
 ## Reducing the size of a Node.js app.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-14"
+lastupdated: "2019-03-15"
 
 keywords: runtimes, support
 
@@ -61,11 +61,11 @@ Node.js version 6 is the default version, but is deprecated as of 6 December 201
 The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
 #### Migrating from `nodejs:8` to `nodejs:10`
-- The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` package doesn't support nodejs10. You can track progress in this issue [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541).
+- The `ibm_db` npm package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in this issue [issue ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541).
 - The `cloudant` npm package is not available in `nodejs:10`, the package is deprecated, you need to use the official npm package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodejs module (i.e `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` npm package is not available in `nodejs:10`.
-- The `log4js` npm package is not available in `nodejs10`. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
-- The `watson-developer-cloud` npm package is not availble in `nodejs:10`. You can track progress on the new version in this  issue [watson-developer-cloud/node-sdk/issues/780](https://github.com/watson-developer-cloud/node-sdk/issues/780)
+- The `log4js` npm package is not available in `nodejs:10`. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
+- The `watson-developer-cloud` npm package is not available in `nodejs:10`. You can track progress on the new version in this  issue [watson-developer-cloud/node-sdk/issues/780](https://github.com/watson-developer-cloud/node-sdk/issues/780)
 
 Detailed information about the nodejs version 10 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md).
 

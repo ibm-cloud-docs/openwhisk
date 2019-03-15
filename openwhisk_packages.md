@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-15"
 
 keywords: packages, browse, binding, trigger, feeds, share
 
@@ -263,7 +263,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: screen}
 
-3. Create a file named **hello.js** with the following action code:
+3. Create a file named `hello.js` with the following action code:
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -277,7 +277,7 @@ Feeds offer a convenient way to configure an external event source to fire these
   ```
   {: pre}
 
-5. Create a rule that invokes the **hello** action every time the `everyOneMinute` trigger fires.
+5. Create a rule that invokes the `hello` action every time the `everyOneMinute` trigger fires.
   ```
   ibmcloud fn rule create myRule everyOneMinute hello
   ```
@@ -305,7 +305,7 @@ It also allows for parameters to be shared across all entities in the package.
 
 To create a custom package with a simple action in it, try the following example:
 
-1. Create a package called **custom**.
+1. Create a package called `custom`.
   ```
   ibmcloud fn package create custom
   ```
@@ -337,7 +337,7 @@ To create a custom package with a simple action in it, try the following example
   ```
   {: codeblock}
 
-4. Create an action called **identity** in the `custom` package.
+4. Create an action called `identity` in the `custom` package.
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -364,7 +364,7 @@ To create a custom package with a simple action in it, try the following example
   ```
   {: screen}
 
-  You can see the **custom/identity** action in your namespace now.
+  You can see the `custom/identity` action in your namespace now.
 
 6. Invoke the action in the package.
   ```
@@ -380,7 +380,7 @@ To create a custom package with a simple action in it, try the following example
 
 You can set default parameters for all the entities in a package by setting package-level parameters that are inherited by all actions in the package. To see how this inheritance works, try the following example:
 
-1. Update the **custom** package with two parameters: `city` and `country`.
+1. Update the `custom` package with two parameters: `city` and `country`.
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -392,7 +392,7 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: screen}
 
-2. Display the parameters in the **custom** package and **identidy** action, and see how the **identity** action in the package inherits parameters from the package.
+2. Display the parameters in the `custom` package and `identity` action, and see how the `identity` action in the package inherits parameters from the package.
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -437,7 +437,7 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: screen}
 
-3. Invoke the **identity** action without any parameters to verify that the action indeed inherits the parameters.
+3. Invoke the `identity` action without any parameters to verify that the action indeed inherits the parameters.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -452,7 +452,7 @@ You can set default parameters for all the entities in a package by setting pack
   ```
   {: screen}
 
-4. Invoke the **identity** action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
+4. Invoke the `identity` action with some parameters. Invocation parameters are merged with the package parameters; the invocation parameters override the package parameters.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -499,7 +499,7 @@ After the actions and feeds that comprise a package are debugged and tested, the
   ```
   {: screen}
 
-Others can now use your **custom** package, including binding to the package or directly invoking an action in it. Other users must know the fully qualified names of the package to bind it or invoke actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
+Others can now use your `custom` package, including binding to the package or directly invoking an action in it. Other users must know the fully qualified names of the package to bind it or invoke actions in it. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 
 1. Get a description of the package to show the fully qualified names of the package and action.
   ```
@@ -514,4 +514,4 @@ Others can now use your **custom** package, including binding to the package or 
   ```
   {: screen}
 
-  In the previous example, you're working with the **myNamespace** namespace, and this namespace appears in the fully qualified name.
+  In the previous example, you're working with the `myNamespace` namespace, and this namespace appears in the fully qualified name.

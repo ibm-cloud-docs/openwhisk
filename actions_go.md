@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-15"
 
 keywords: docker, actions, serverless
 
@@ -158,7 +158,7 @@ func Hello(name string) map[string]interface{} {
 ```
 {: codeblock}
 
-You can compile by using the runtime environment. Create a .zip the content of the `src` directory. Do **not** include the top level project directory `go-action-project/`. To create the zip archive `hello-src.zip`:
+You can compile by using the runtime environment. Create a .zip archive the content of the `src` directory. Do **not** include the top level project directory `go-action-project/`. To create the .zip archive `hello-src.zip`:
 
 ```bash
 cd src
@@ -167,7 +167,7 @@ cd ..
 ```
 {: pre}
 
-Compile and package the Go executable as `exec` in the root of the .zip. Build the `hello-bin.zip` archive by running the following command. This assumes you have Docker CLI installed in your workstation and `docker` in your `PATH`.
+Compile and package the Go executable as `exec` in the root of the .zip archive. Build the `hello-bin.zip` archive by running the following command. This assumes you have Docker CLI installed in your workstation and `docker` in your `PATH`.
 
 ```bash
 docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
@@ -177,9 +177,9 @@ docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >he
 In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`.
 The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
 
-The container gets the contents of the source zip in `stdin`, compiles the content, and creates a new zip archive with the executabled `exec` in the root. The zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
+The container gets the contents of the source .zip in `stdin`, compiles the content, and creates a new .zip archive with the executable `exec` in the root. The .zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
 
-Now, you can update your action for production by using the CLI and new zip archive `hello-bin.zip`.
+Now, you can update your action for production by using the CLI and new .zip archive `hello-bin.zip`.
 
 ```bash
 ibmcloud fn action update helloGo hello-bin.zip --kind go:1.11
@@ -189,7 +189,7 @@ ibmcloud fn action update helloGo hello-bin.zip --kind go:1.11
 ### Working with vendor libraries
 {: #vendor-libs-go-actions}
 
-You can include dependencies by populating a `vendor` directory inside the source `zip` when you compile the Go Action. The `vendor` directory does not work at the top level. You need to place the `vendor` directory within `src/` and inside a package directory.
+You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go Action. The `vendor` directory does not work at the top level. You need to place the `vendor` directory within `src/` and inside a package directory.
 {: shortdesc}
 
 Continuing with the previous example, use the log package `logrus` in `hello.go`.
@@ -287,14 +287,14 @@ invoke:
 ```
 {: codeblock}
 
-2. Delete the zip archives and vendor directory.
+2. Delete the .zip archives and vendor directory.
 
 ```bash
 make clean
 ```
 {: pre}
 
-3. Populate the vendor directory, create the source zip, compile the source code, archive the exec into a .zip, and deploy the Go action by running.
+3. Populate the vendor directory, create the source .zip, compile the source code, archive the exec into a .zip, and deploy the Go action by running.
 
 ```bash
 make deploy
