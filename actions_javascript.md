@@ -159,7 +159,7 @@ Review the following steps and examples to create your first JavaScript action.
 
 {{site.data.keyword.openwhisk_short}} JavaScript actions run in a Node.js runtime.
 
-actions that are written in JavaScript must be confined to a single file. The file can contain multiple functions, but by convention, a function that is called `main` must exist, and is the one called when the action is invoked. For example, the following example shows an action with multiple functions.
+Actions that are written in JavaScript must be confined to a single file. The file can contain multiple functions, but by convention, a function that is called `main` must exist, and is the one called when the action is invoked. For example, the following example shows an action with multiple functions.
 ```javascript
 function main() {
     return { payload: helper() }

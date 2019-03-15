@@ -25,7 +25,7 @@ Actions can be coded and executed in several programming languages (e.g. Javascr
 
 The following links return a JSON response that shows the available runtimes for IBM Cloud Functions in each region.
 
-The `runtimes` section contains the set of available runtimes.
+The `runtimes` section of the response contains the set of available runtimes.
 
   - [us-south](https://us-south.functions.cloud.ibm.com/)
   - [us-east](https://us-east.functions.cloud.ibm.com/)

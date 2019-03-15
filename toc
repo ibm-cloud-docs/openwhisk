@@ -61,9 +61,10 @@ IBM Cloud Functions
     openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
+    at-events.md
     deploy.md
     deploy_templates.md
-    at-events.md
+
 
     {: .topicgroup}
     Pre-installed packages
