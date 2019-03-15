@@ -4,10 +4,10 @@
 {: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
 IBM Cloud Functions
 
-    getting_started.md
+    index.md
 
     {: .navgroup id="learn"}
-    index.md
+    getting_started.md
 
     {: .topicgroup}
     Overview
