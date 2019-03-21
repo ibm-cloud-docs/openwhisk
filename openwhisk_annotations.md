@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-12"
 
 keywords: annotations, annotate, package, parameters, actions
 
@@ -40,7 +40,7 @@ Annotations that describe actions include:
 **Other annotations** 
 * The `provide-api-key` annotation may be attached to actions that require access to an API key. For example, making REST API calls to other actions or services. 
 
-**Note:** The absence of this annotation, or its presence with a value that is not _falsy_ (i.e., a value that is different from zero, null, false, and the empty string) will cause an API key to be present in the action execution context. This annotation is added to new actions, if not already specified, with a default false value.
+**Note:** The absence of this annotation, or its presence with a value that is not _falsy_ (i.e., a value that is different from zero, null, false, and the empty string) will cause an API key to be present in the [action execution context](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#accessing-action-metadata-within-the-action-body). This annotation is added to new actions, if not already specified, with a default false value.
 
 The following code is an example set of annotations for an `echo` action, which returns its input arguments unmodified. This action is useful for logging input parameters, for example, as part of a sequence or rule.
 ```

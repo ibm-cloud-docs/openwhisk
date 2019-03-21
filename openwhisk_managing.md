@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-19"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -356,7 +356,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 ## Changing action runtime
 {: #changing-action-runtime}
 
-You can change the runtime `kind` to migrate to a newer version of the action runtime. For example, since Node.js version 8 is in maintenance mode, you may want to switch the runtime to Node.js 10. You can use the following steps to change an action runtime.
+You can change the runtime `kind` to migrate to a newer version of the action runtime. For example, since Node.js version 8 is in maintenance mode, you may want to switch the runtime to Node.js 10. You can use the following steps to change an action runtime. **Note:** You may need to change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
 
 1. Save the action code in a file.
 
@@ -365,8 +365,6 @@ You can change the runtime `kind` to migrate to a newer version of the action ru
   ```
   {: pre}
 
-**Note:** You may need to change the code in `actionName.js` to comply with the new runtime version. This depends on the whether such changes are needed by the runtime switch. In most cases, the runtime versions are compatible.
-
 2. Update the action by specifying the new runtime.
 
   ```
@@ -374,7 +372,7 @@ You can change the runtime `kind` to migrate to a newer version of the action ru
   ```
   {: pre}
 
-For a list of available runtimes, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_reference)
+For a list of available runtimes, see [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)
 
 ## Managing large actions
 {: #large-app-support}

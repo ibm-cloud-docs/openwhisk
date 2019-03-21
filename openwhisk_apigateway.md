@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-20"
 
 keywords: serverless, rest api, gateway, web actions
 
@@ -303,8 +303,8 @@ To export or import a configuration, you can continue using the book club exampl
 After you have created your configuration, you can use the [**APIs tab**](https://cloud.ibm.com/openwhisk/apimanagement) in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
 
 * [Create a {{site.data.keyword.openwhisk_short}} API](https://cloud.ibm.com/openwhisk/apimanagement) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
-* [Secure your API](https://cloud.ibm.com/docs/apis/management/manage_apis.html#settings_api) by applying API security and rate limiting policies.
-* [Manage traffic](https://cloud.ibm.com/docs/apis/management/manage_apis.html#settings_api) by viewing API usage statistics and checking out response logs.
-* [Socialize and share](https://cloud.ibm.com/docs/apis/management/manage_apis.html#share_api) your API with developers both within and outside {{site.data.keyword.Bluemix_notm}}.
+* [Secure your API](https://cloud.ibm.com/openwhisk/apimanagement by applying API security and rate limiting policies.
+* [Manage traffic](https://cloud.ibm.com/openwhisk/apimanagement) by viewing API usage statistics and checking out response logs.
+* [Socialize and share](https://cloud.ibm.com/openwhisk/apimanagement) your API with developers both within and outside {{site.data.keyword.Bluemix_notm}}.
 
 Once you are done updating the configuration, you can download the definition file in JSON format, and then re-import it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You also have the option to upload and re-import the API definition file using the UI.

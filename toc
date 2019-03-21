@@ -4,11 +4,10 @@
 {: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
 IBM Cloud Functions
 
-    getting_started.md
-    openwhisk_actions.md
+    index.md
 
     {: .navgroup id="learn"}
-    index.md
+    getting_started.md
 
     {: .topicgroup}
     Overview
@@ -62,8 +61,10 @@ IBM Cloud Functions
     openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
+    at-events.md
     deploy.md
     deploy_templates.md
+
 
     {: .topicgroup}
     Pre-installed packages
@@ -107,6 +108,7 @@ IBM Cloud Functions
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
+    runtimes.md
     openwhisk_reference.md
     openwhisk_regions.md
 
@@ -115,14 +117,11 @@ IBM Cloud Functions
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
-    at-events.md
-
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
         [Pricing](https://cloud.ibm.com/openwhisk/learn/pricing){: new_window}
         [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
-        [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
         [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
     {: .navgroup-end}
 

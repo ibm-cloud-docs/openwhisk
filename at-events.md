@@ -18,7 +18,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 
 
-# {{site.data.keyword.cloudaccesstrailshort}} events
+# Viewing {{site.data.keyword.cloudaccesstrailshort}} events
 {: #activity_tracker}
 
 You can view, manage, and audit user-initiated activities made in your {{site.data.keyword.openwhisk}} service instance by using the {{site.data.keyword.cloudaccesstrailshort}} service.

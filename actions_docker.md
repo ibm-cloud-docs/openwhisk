@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-06"
+lastupdated: "2019-03-15"
 
 keywords: docker, actions, serverless
 
@@ -49,7 +49,7 @@ You must have a Docker Hub account. You can set up a free Docker ID and account 
   ```
   {: pre}
 
-2. Set up your custom binary in the blackbox skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
+2. Set up your custom binary in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
   ```
   cat dockerSkeleton/example.c
   ```
@@ -126,7 +126,7 @@ You must have a Docker Hub account. You can set up a free Docker ID and account 
     ```
     {: pre}
 
-9. Optional: You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument makes it easier to create and deploy executables that run inside the standard Docker action SDK.
+9. Optional: You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument makes it easier to create and deploy an executable that runs inside the standard Docker action SDK.
     1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zip it into `exec.zip`.
     2. Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.
         ```

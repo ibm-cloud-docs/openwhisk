@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-15"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -153,6 +153,98 @@ Review the following steps and examples to create your first JavaScript action.
     6bf1f670ee614a7eb5af3c9fde813043         hello
     ```
     {: screen}
+    
+### Javascript function prototype
+{: #openwhisk_ref_javascript_fnproto}
+
+{{site.data.keyword.openwhisk_short}} JavaScript actions run in a Node.js runtime.
+
+Actions that are written in JavaScript must be confined to a single file. The file can contain multiple functions, but by convention, a function that is called `main` must exist, and is the one called when the action is invoked. For example, the following example shows an action with multiple functions.
+```javascript
+function main() {
+    return { payload: helper() }
+}
+
+function helper() {
+    return new Date();
+}
+```
+{: codeblock}
+
+The action input parameters are passed as a JSON object as a parameter to the `main` function. The result of a successful activation is also a JSON object but is returned differently depending on whether the action is synchronous or asynchronous as described in the following section.
+
+### Synchronous and asynchronous behavior
+{: #openwhisk_ref_javascript_synchasynch}
+
+It is common for JavaScript functions to continue execution in a callback function even after a return. To accommodate this behavior, an activation of a JavaScript action can be *synchronous* or *asynchronous*.
+
+A JavaScript action's activation is **synchronous** if the main function exits under one of the following conditions:
+
+- The main function exits without executing a `return` statement.
+- The main function exits by executing a `return` statement that returns any value *except* a Promise.
+
+See the following example of a synchronous action:
+
+```javascript
+// an action in which each path results in a synchronous activation
+function main(params) {
+  if (params.payload == 0) {
+     return;
+  } else if (params.payload == 1) {
+     return {payload: 'Hello, World!'};
+  } else if (params.payload == 2) {
+     return {error: 'payload must be 0 or 1'};
+  }
+}
+```
+{: codeblock}
+
+A JavaScript action's activation is **asynchronous** if the main function exits by returning a Promise. In this case, the system assumes that the action is still running until the Promise is fulfilled or rejected.
+Start by instantiating a new Promise object and passing it a callback function. The callback takes two arguments, resolve and reject, which are both functions. All your asynchronous code goes inside that callback.
+
+In the following example, you can see how to fulfill a Promise by calling the resolve function.
+```javascript
+function main(args) {
+     return new Promise(function(resolve, reject) {
+       setTimeout(function() {
+         resolve({ done: true });
+       }, 100);
+     })
+}
+```
+{: codeblock}
+
+This example shows how to reject a Promise by calling the reject function.
+```javascript
+function main(args) {
+     return new Promise(function(resolve, reject) {
+       setTimeout(function() {
+         reject({ done: true });
+       }, 100);
+     })
+}
+```
+{: codeblock}
+
+It is possible for an action to be synchronous on some inputs and asynchronous on others as shown in the following example.
+```javascript
+function main(params) {
+     if (params.payload) {
+        // asynchronous activation
+        return new Promise(function(resolve, reject) {
+          setTimeout(function() {
+            resolve({ done: true });
+          }, 100);
+        })
+     }  else {
+        // synchronous activation
+        return {done: true};
+     }
+}
+```
+{: codeblock}
+
+Regardless of whether an activation is synchronous or asynchronous, the invocation of the action can be blocking or non-blocking.
 
 ## Creating asynchronous actions
 {: #asynchronous_javascript}
@@ -335,7 +427,7 @@ For example, consider a directory with the following files:
 
     * The action is exposed through `exports.main`.
     * The action handler can have any name as long as it conforms to the conventional signature of accepting an object and returning an object (or a `Promise` of an object).
-    * You must either name this file **index.js** or specify the file name that you prefer as the `main` property in **package.json**.
+    * You must either name this file `index.js` or specify the file name that you prefer as the `main` property in `package.json`.
 
 3. Install all dependencies locally.
 
@@ -353,7 +445,7 @@ For example, consider a directory with the following files:
     ```
     {: pre}
 
-    Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
+    Using the Windows Explorer action for creating the zip file results in an incorrect structure. {{site.data.keyword.openwhisk_short}} .zip actions must have `package.json` at the root of the zip, while Windows Explorer places it inside a nested folder. The safest option is to use the command line `zip` command.
     {: tip}
 
 5. Create the action. When you create an action from a `.zip` archive, you must set a value for the `--kind` parameter to specify your Node.js runtime version. Choose between `nodejs:8` or `nodejs:10`.
@@ -387,12 +479,12 @@ For example, consider a directory with the following files:
 {: #webpack_javascript}
 {: #openwhisk_js_webpack_action}
 
-If packaging the action as a zip includes too many unnecessary files or if you need a faster deployment, you can write the minimal code into a single `.js` file that includes dependencies.
+If packaging the action as a .zip includes too many unnecessary files or if you need a faster deployment, you can write the minimal code into a single `.js` file that includes dependencies.
 {: shortdesc}
 
 You can package an action by using a JavaScript module bundler such as [webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/). When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 
-1. Save the following code in a file named `package.json`. `webpack` is added as a development depency.
+1. Save the following code in a file named `package.json`. `webpack` is added as a development dependency.
 
     ```json
     {
@@ -472,7 +564,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
         ```
         {: pre}
 
-    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary dependencies because this is not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary file dependencies because this is not included with the file `bundle.js`.
     {: tip}
 
 ## Reducing the size of a Node.js app.
