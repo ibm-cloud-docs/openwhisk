@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-03-22"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -62,7 +62,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information, see the Node.js [reference](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript_environments).
+  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information about the Node.js runtime, see [Runtimes](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments).
   {: shortdesc}
 
 3. Verify that your `hello` action is in your actions list.
@@ -361,7 +361,7 @@ The following example invokes the NASA Astronomy Picture of the Day (APOD) servi
     ```
     {: codeblock}
 
-2. A call is made to the NASA APOD API, and fields are extracted from the JSON result. For more information about which Node.js packages you can use in your actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_javascript).
+2. A call is made to the NASA APOD API, and fields are extracted from the JSON result. For more information about which Node.js packages you can use in your actions, see [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments).
 
 3. Create an action named `apod`.
     ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-22"
 
 keywords: actions, serverless, python
 
@@ -34,20 +34,20 @@ The following sections guide you through creating and invoking a single Python a
 An action is simply a top-level Python function. To create a Python action:
 
 1. Save the following code in a file called `hello.py`.
-
-```python
-def main(args):
-    name = args.get("name", "stranger")
-    greeting = "Hello " + name + "!"
-    print(greeting)
-    return {"greeting": greeting}
-    ```
-    {: codeblock}
+```
+  python
+  def main(args):
+      name = args.get("name", "stranger")
+      greeting = "Hello " + name + "!"
+      print(greeting)
+      return {"greeting": greeting}
+  ```
+{: codeblock}
     
-  * Python actions always consume a dictionary and produce a dictionary.
-  * The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
+Python actions always consume a dictionary and produce a dictionary. The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
+{: note}
 
-2. Create a `helloPython` action.
+2. Create a `helloPython` action. The type of action is determined by using the source file extension. For `.py` source files, the action runs by using a Python 2 runtime.
 
     ```
     ibmcloud fn action create helloPython hello.py
@@ -60,11 +60,6 @@ def main(args):
     ok: created action helloPython
     ```
     {: screen}
-
-    The type of action is determined by using the source file extension.
-    For `.py` source files, the action runs by using a Python 2 runtime.
-
-You can also create an action that runs with Python 3.x, for Python 3.6 use the parameter `--kind python:3.6` (previously named `python-jessie:3`), for Python 3.7 use the parameter `--kind python:3.7`, both contain additional packages for IBM Cloud Services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}. For more information about the packages  that are included in these Python 3 runtimes, see the Python runtime [reference](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_python_environments).
 
 3. Invoke the action.
 
@@ -81,6 +76,14 @@ You can also create an action that runs with Python 3.x, for Python 3.6 use the 
       }
     ```
     {: screen}
+    
+    You can also create an action that runs with Python 3.x. 
+    * For Python 3.6, use the parameter `--kind python:3.6` (previously named `python-jessie:3`).
+    * For Python 3.7, use the parameter `--kind python:3.7`
+    
+    Both runtimes contain additional packages for IBM Cloud services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}.
+    
+For more information about the packages that are included in these Python 3 runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
 
 ## Packaging Python actions in zip files
 {: #actions_python_zip}
@@ -114,9 +117,9 @@ You can install dependencies, package them in a virtual environment, and create 
 
 2. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. To ensure compatibility with the OpenWhisk runtime container, package installations inside a virtual environment must use the image that corresponds to the kind.
 
-    * For kind `python:3.7` use the Docker image `ibmfunctions/action-python-v3.7`.
-    * For kind `python:3.6` use the Docker image `ibmfunctions/action-python-v3.6`.
-    * For kind `python:2` use the Docker image `openwhisk/python2action`.
+    * For kind `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
+    * For kind `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
+    * For kind `python:2`, use the Docker image `openwhisk/python2action`.
 
    ```
    docker pull ibmfunctions/action-python-v3.7
