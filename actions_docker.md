@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-03-22"
 
 keywords: docker, actions, serverless
 
@@ -29,7 +29,7 @@ subcollection: cloud-functions
 With {{site.data.keyword.openwhisk_short}} Docker actions, you can write your actions in any language.
 {: shortdesc}
 
-Your code is compiled into an executable binary and embedded into a Docker image. The binary program interacts with the system by taking input from `stdin` and replying through `stdout`.   You can find more information about creating Docker actions in the [References](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_ref_docker) section.
+Your code is compiled into an executable binary and embedded into a Docker image. The binary program interacts with the system by taking input from `stdin` and replying through `stdout`.   You can find more information about creating Docker actions in the [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker) section.
 
 You can use actions to call images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
 {: tip}

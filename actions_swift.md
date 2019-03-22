@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-03-22"
 
 keywords: actions, serverless, swift
 
@@ -32,7 +32,7 @@ The following sections guide you through creating and invoking a single Swift ac
 
 **Note:** Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on MacOS.
 
-For more information about the Swift runtime, see the Swift [reference](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#swift-actions).
+For more information about the Swift runtime, [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions).
 {: tip}
 
 ## Creating and invoking a Swift action
