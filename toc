@@ -5,6 +5,7 @@
 IBM Cloud Functions
 
     index.md
+    openwhisk_actions.md
 
     {: .navgroup id="learn"}
     getting_started.md
@@ -17,10 +18,10 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Tutorials
-        ../tutorials/slack-chatbot-database-watson.md
-        ../tutorials/serverless-github-traffic-analytics.md
-        ../tutorials/serverless-mobile-backend.md
-        ../tutorials/serverless-api-webapp.md
+        /tutorials/slack-chatbot-database-watson.md
+        /tutorials/serverless-github-traffic-analytics.md
+        /tutorials/serverless-mobile-backend.md
+        /tutorials/serverless-api-webapp.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -74,7 +75,7 @@ IBM Cloud Functions
         openwhisk_watson_translator.md
         openwhisk_watson_texttospeech.md
         openwhisk_watson_speechtotext.md
-        ../services/IoT/gateways/iotgw.md
+        /services/IoT/gateways/iotgw.md
         openwhisk_weather.md
         openwhisk_slack.md
         openwhisk_websocket.md
