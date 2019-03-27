@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-14"
+lastupdated: "2019-03-27"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -150,9 +150,9 @@ The following table lists the default limits for actions.
 | [memory](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
 | [minuteRate](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
 | [openulimit](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
-| [parameters](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 1 | 0 | 1 |
+| [parameters](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
 | [proculimit](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
-| [result](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_result) | The maximum size of the action invocation result in MB. | 1 | 0 | 1 |
+| [result](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
 | [sequenceMaxActions](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
 | [timeout](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
@@ -201,9 +201,9 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
-#### parameters (Fixed: 1 MB)
+#### parameters (Fixed: 5 MB)
 {: #openwhisk_syslimits_parameters}
-* The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 1 MB.
+* The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB.
 * An entity with too large parameters is rejected on trying to create or update it.
 * This limit is fixed and cannot be changed.
 
@@ -214,7 +214,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
 * For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
 
-#### result (Fixed: 1 MB)
+#### result (Fixed: 5 MB)
 {: #openwhisk_syslimits_result}
 * The maximum output size of an action invocation result in MB.
 * This limit is fixed and cannot be changed.

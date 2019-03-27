@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-22"
+lastupdated: "2019-03-27"
 
 keywords: actions, serverless, python
 
@@ -137,18 +137,11 @@ You can install dependencies, package them in a virtual environment, and create 
 4. Create the action `helloPython`.
 
     ```
-    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython2 --kind python:3.7 helloPython.zip
     ```
     {: pre}
 
 Add only modules that are not part of the selected runtime environment to the `requirements.txt`. This helps to keep the `virtualenv` to a minimum size.
 {: tip}
 
-## Reducing the size of a Python app.
-{: #reducing_python_app_size}
-To reduce the code size of a Python app.
 
-1. Place the library `opencv-python` into `opencv`.
-2. Install the opencv binary into the OS image.
-3. Augment the image with more Python libraries by running `pip install requirements.txt`.
-4. Use `action.py` with the new image.
