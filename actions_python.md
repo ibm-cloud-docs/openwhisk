@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-22"
+lastupdated: "2019-03-27"
 
 keywords: actions, serverless, python
 
@@ -137,7 +137,7 @@ You can install dependencies, package them in a virtual environment, and create 
 4. Create the action `helloPython`.
 
     ```
-    ibmcloud fn action create helloPython --kind python-jessie:3 helloPython.zip
+    ibmcloud fn action create helloPython2 --kind python:3.7 helloPython.zip
     ```
     {: pre}
 
