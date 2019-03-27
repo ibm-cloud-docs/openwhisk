@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-07"
+lastupdated: "2019-03-27"
 
 keywords: getting started, creating actions, invoking actions, 
 
@@ -136,7 +136,7 @@ Get up and running quickly with the HelloWorld JavaScript example code. This exa
 Good work! You created your first action. To clean up this action, run `ibmcloud fn action delete hello`.
 
 ## What's next?
-{: #next-steps}
+{: #getting_started_next_steps}
 
 So you've completed your first template deploy, where do you go from here? You can:
 
