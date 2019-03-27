@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-22"
+lastupdated: "2019-03-27"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -566,27 +566,7 @@ You can package an action by using a JavaScript module bundler such as [webpack 
 
     The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary file dependencies because this is not included with the file `bundle.js`.
     {: tip}
+    
 
-## Reducing the size of a Node.js app.
-{: #reducing_nodejs_action size}
-{: #large-app-reduce}
-
-To reduce the code size of a Node.js app.
-
-1. Install `opencv`.
-
-   ```
-   npm install opencv
-   ```
-   {: pre}
-
-2. Install `package.json`.
-
-   ```
-   npm install package.json
-   ```
-   {: pre}
-
-3. Use `action.js` with the new image.
 
 

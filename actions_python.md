@@ -144,11 +144,4 @@ You can install dependencies, package them in a virtual environment, and create 
 Add only modules that are not part of the selected runtime environment to the `requirements.txt`. This helps to keep the `virtualenv` to a minimum size.
 {: tip}
 
-## Reducing the size of a Python app.
-{: #reducing_python_app_size}
-To reduce the code size of a Python app.
 
-1. Place the library `opencv-python` into `opencv`.
-2. Install the opencv binary into the OS image.
-3. Augment the image with more Python libraries by running `pip install requirements.txt`.
-4. Use `action.py` with the new image.
