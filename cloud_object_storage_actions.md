@@ -36,7 +36,7 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 | `/cloud-object-storage/bucket-cors-delete` | action | bucket | Delete the CORS configuration of a bucket. |
 | `/cloud-object-storage/client-get-signed-url` | action | bucket, key, operation | Obtain a signed URL to restrict the Write, Read, and Delete of an object from a bucket. |
 
-## Creating an {{site.data.keyword.cos_full_notm}} service instance
+## Creating an IBM Cloud Object Storage service instance
 {: #cloud_object_storage_service_instance}
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
