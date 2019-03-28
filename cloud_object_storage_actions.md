@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-28"
 
 keywords: object storage, bucket, package
 
@@ -59,7 +59,6 @@ After you have an {{site.data.keyword.cos_short}} service instance, use either t
 Before you begin:
 
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
-  2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.cos_short}} package:
 
