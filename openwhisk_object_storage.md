@@ -217,7 +217,7 @@ ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
 ```
 {: pre}
 
-[Bind the {{site.data.keyword.cos_full_notm}} credentials]((/docs/openwhisk/openwhisk_object_storage.html#binding_credentials_to_your_action) to this action. Then, [create a rule](/docs/openwhisk/openwhisk_object_storage.html#associating_the_action_with_the_change_trigger) to invoke this action when the trigger fires.
+[Bind the {{site.data.keyword.cos_full_notm}} credentials]((/docs/openwhisk/openwhisk_object_storage.html#binding_credentials_to_your_action) to this action. Then, [create a rule](#associating_action_with_the_change_trigger) to invoke this action when the trigger fires.
 
 ### Creating an action sequence to retrieve and process the object
 
