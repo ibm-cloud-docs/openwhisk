@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-29"
 
 keywords: iam, access managment, roles, service roles, policies, access
 
@@ -59,13 +59,13 @@ The following table details the actions that are mapped to platform management r
   </thead>
   <tbody>
     <tr>
-      <td>Editor</td>
+      <td>Administrator</td>
       <td>Users are able to create namespaces.</td>
     </tr>
   </tbody>
 </table>
 
-Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam?topic=iam-userroles).
+You need to have the administrator role for platform management to work with the service. For more information about the roles, check out [Platform management roles](/docs/iam?topic=iam-userroles).
 
 </br>
 
