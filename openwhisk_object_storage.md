@@ -36,7 +36,7 @@ In this example, you will learn how to:
 ## About IBM Cloud Object Storage
 {: #cloud_object_storage_info}
 
-**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-object-storage#about-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [{{site.data.keyword.cos_full_notm}} actions](/docs/services/cloud-object-storage/basics/developers.html#provision-an-instance-of-ibm-cloud-object-storage).
+**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-object-storage#about-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}} actions](/docs/services/cloud-object-storage/basics/developers.html#provision-an-instance-of-ibm-cloud-object-storage).
 
 ## Listening for changes to a IBM Cloud Object Storage bucket
 {: #listening_to_cos_bucket_changes}
@@ -55,7 +55,7 @@ You can use the `changes` feed to configure the {{site.data.keyword.cos_full_not
 
 Parameters that are used in this example:
 
-**apikey**: _(Required, unless bound to the package)_.The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.  Normally, this value is bound to the package. However, if the `apikey` value is specified when using the `changes` feed action, the specified value is used for the credentials instead of the bound credentials' apikey.
+**apikey**: _(Required, unless bound to the package)_ .The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.  Normally, this value is bound to the package. However, if the `apikey` value is specified when using the `changes` feed action, the specified value is used for the credentials instead of the bound credentials' apikey.
 
 **auth_endpoint**: _(Optional)_. The `auth_endpoint` parameter is the authorization endpoint used by {{site.data.keyword.cos_full_notm}} to generate a token from the `apikey`.  The default endpoint is the {{site.data.keyword.cos_full_notm}} endpoint.
 
