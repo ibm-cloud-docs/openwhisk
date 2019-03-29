@@ -33,12 +33,12 @@ In this example, you will learn how to:
 
 **Sample use case:** With the `/whisk.system/cos-experimental` package, you can listen for changes to GPS street data stored in a {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map, so that users can have access to the latest street data for their GPS application.
 
-## About {{site.data.keyword.cos_full}}
+## About IBM Cloud Object Storage
 {: #cloud_object_storage_info}
 
 **Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-object-storage#about-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [{{site.data.keyword.cos_full_notm}} actions](/docs/services/cloud-object-storage/basics/developers.html#provision-an-instance-of-ibm-cloud-object-storage).
 
-## Listening for changes to a {{site.data.keyword.cloud_object_storage_short_notm}} bucket
+## Listening for changes to a IBM Cloud Object Storage bucket
 {: #listening_to_cos_bucket_changes}
 
 You can use {{site.data.keyword.openwhisk}} to listen for changes to an [{{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-about-ibm-cloud-object-storage#about-ibm-cloud-object-storage) bucket and use an action to process one or more objects from the bucket. 
