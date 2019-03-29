@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-29"
 
 keywords: object storage, bucket, package
 
@@ -28,15 +28,46 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/cloud-object-storage` | package | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Work with an {{site.data.keyword.cos_full_notm}} instance. |
-| `/cloud-object-storage/object-write` | action | bucket, key, body | Write an object to a bucket. |
-| `/cloud-object-storage/object-read` | action | bucket, key | Read an object from a bucket. |
-| `/cloud-object-storage/object-delete` | action | bucket, key | Delete an object from a bucket. |
-| `/cloud-object-storage/bucket-cors-put` | action | bucket, corsConfig | Assign a CORS configuration to a bucket. |
-| `/cloud-object-storage/bucket-cors-get` | action | bucket | Read the CORS configuration of a bucket. |
-| `/cloud-object-storage/bucket-cors-delete` | action | bucket | Delete the CORS configuration of a bucket. |
-| `/cloud-object-storage/client-get-signed-url` | action | bucket, key, operation | Obtain a signed URL to restrict the Write, Read, and Delete of an object from a bucket. |
+| `/cloud-object-storage/object-write` | action | bucket, key, body, endpoint, ibmAuthEndpoint | Write an object to a bucket. |
+| `/cloud-object-storage/object-read` | action | bucket, key, endpoint, ibmAuthEndpoint | Read an object from a bucket. |
+| `/cloud-object-storage/object-delete` | action | bucket, key, endpoint, ibmAuthEndpoint | Delete an object from a bucket. |
+| `/cloud-object-storage/bucket-cors-put` | action | bucket, corsConfig, endpoint, ibmAuthEndpoint | Assign a CORS configuration to a bucket. |
+| `/cloud-object-storage/bucket-cors-get` | action | bucket, endpoint, ibmAuthEndpoint | Read the CORS configuration of a bucket. |
+| `/cloud-object-storage/bucket-cors-delete` | action | bucket, endpoint, ibmAuthEndpoint | Delete the CORS configuration of a bucket. |
+| `/cloud-object-storage/client-get-signed-url` | action | bucket, key, operation, expires, endpoint, ibmAuthEndpoint | Obtain a signed URL to restrict the Write, Read, and Delete of an object from a bucket. |
 
-## Creating an {{site.data.keyword.cos_full_notm}} service instance
+## Package and action parameters
+
+#### Package parameters
+
+The following parameters are expected to be bound to the package; this will make them automatically available for all actions. It is also possible to specify these parameters when invoking one of the actions.
+
+**apikey**: The `apikey ` parameter is IAM API key for the {{site.data.keyword.cloud_object_storage_short_notm}} instance.
+
+**resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} instance indentifier.
+
+**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) for instructions on how to generate HMAC credentials for your {site.data.keyword.cloud_object_storage_short_notm} instance.
+
+#### Action parameters
+
+The following parameters are specified when invoking the individual actions.  Not all of these parameters are suppoted by every action; refer to the above table to see which parameters are supporte by which action.
+
+**bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short_notm}} bucket.
+
+**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} endpoint used to connect to your {{site.data.keyword.cloud_object_storage_short_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cloud_object_storage_short_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
+
+**expires**: The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes.
+
+**ibmAuthEndpoint**: The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint used by {{site.data.keyword.cloud_object_storage_short_notm}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions.
+
+**key**: The `key` parameter is the bucket object key.
+
+**operation**: The `operation` parameter is the pre-signed URL's operation to call.
+
+**corsConfig**: The `corsConfig` parameter is a bucket's CORS configuration.
+
+
+## Creating an IBM Cloud Object Storage service instance
 {: #cloud_object_storage_service_instance}
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
@@ -50,7 +81,7 @@ Before you install the package, you must request an instance of {{site.data.keyw
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}
 
-After you have an {{site.data.keyword.cos_short}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_short}} package into your namespace.
+After you have an {{site.data.keyword.cos_short}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_short}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -59,7 +90,6 @@ After you have an {{site.data.keyword.cos_short}} service instance, use either t
 Before you begin:
 
   1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
-  2. Install the `wskdeploy` command. See the [Apache OpenWhisk documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
 
 To install the {{site.data.keyword.cos_short}} package:
 
@@ -141,15 +171,15 @@ To install the {{site.data.keyword.cos_short}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the {{site.data.keyword.cos_short}} package into. Namespaces are formed from the combined org and space names.
+2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace in which you want to install the {{site.data.keyword.cos_short}} package. Namespaces are formed from the combined `org` and `space` names.
 
 3. Click **Install Packages**.
 
-4. Click the **IBM Cloud Object Storage** Package group, and then click the **IBM Cloud Object Storage** Package.
+4. Click the **IBM Cloud Object Storage** Package group, then click the **IBM Cloud Object Storage** Package.
 
-5. In the Available Runtimes section, select either NodeJS or Python from the drop-down list and then click **Install**.
+5. In the **Available Runtimes** section, select either `Node.JS` or `Python` from the drop-down list. Then, click **Install**.
 
-6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **cloud-object-storage**.
+6. Once the package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **cloud-object-storage**.
 
 7. To use the actions in the **cloud-object-storage** package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-03-28"
 
 keywords: watson discovery, functions, watson, cognitive
 
@@ -173,7 +173,7 @@ To install the {{site.data.keyword.discoveryshort}} package:
 6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **discovery-v1**.
 
 7. To use the actions in the **discovery-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
+  * To bind service credentials to all actions in the package, complete step 4 in the CLI instructions listed above.
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
     1. Click on an action from the **discovery-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click on the **Parameters** section.
