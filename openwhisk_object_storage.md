@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-03-29"
+lastupdated: "2019-03-30"
 
 keywords: object storage, bucket, event, action, trigger
 
@@ -30,6 +30,7 @@ In this example, you will learn how to:
 * [Create a trigger](#creating_a_trigger_cos) to respond to respond to those changes.
 * [Create actions](#creating_action_to_process_object) to retrieve and process the changes.
 * [Create a rule](#associating_action_with_change_trigger) to associate your action to the change trigger.
+<br>
 
 **Sample use case:** With the `/whisk.system/cos-experimental` package, you can listen for changes to GPS street data stored in a {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map, so that users can have access to the latest street data for their GPS application.
 
@@ -55,7 +56,7 @@ You can use the `changes` feed to configure the {{site.data.keyword.cos_full_not
 
 Parameters that are used in this example:
 
-**apikey**: _(Required, unless bound to the package)_ .The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.  Normally, this value is bound to the package. However, if the `apikey` value is specified when using the `changes` feed action, the specified value is used for the credentials instead of the bound credentials' apikey.
+**apikey**: _(Required, unless bound to the package)_. The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.  Normally, this value is bound to the package. However, if the `apikey` value is specified when using the `changes` feed action, the specified value is used for the credentials instead of the bound credentials' apikey.
 
 **auth_endpoint**: _(Optional)_. The `auth_endpoint` parameter is the authorization endpoint used by {{site.data.keyword.cos_full_notm}} to generate a token from the `apikey`.  The default endpoint is the {{site.data.keyword.cos_full_notm}} endpoint.
 
@@ -217,7 +218,7 @@ ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
 ```
 {: pre}
 
-[Bind the {{site.data.keyword.cos_full_notm}} credentials]((/docs/openwhisk/openwhisk_object_storage.html#binding_credentials_to_your_action) to this action. Then, [create a rule](/docs/openwhisk/openwhisk_object_storage.html#associating_the_action_with_the_change_trigger) to invoke this action when the trigger fires.
+[Bind the {{site.data.keyword.cos_full_notm}} credentials]((/docs/openwhisk/openwhisk_object_storage.html#binding_credentials_to_your_action) to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
 ### Creating an action sequence to retrieve and process the object
 
@@ -253,7 +254,7 @@ ibmcloud fn action create myCosAction --sequence myCloudObjectStoragePackage/obj
 
 In addition to the `object-read` action, you can use other actions included in the installable {{site.data.keyword.cos_full_notm}} package.
 
-[Bind the {{site.data.keyword.cos_full_notm}} credentials](/docs/openwhisk?topic=cloud-object-storage#cos_binding_credentials_to_action) to this action. Then, [create a rule](/docs/openwhisk?topic=cloud-object-storage#associating_action_with_change_trigger) to invoke this action when the trigger fires.
+[Bind the {{site.data.keyword.cos_full_notm}} credentials](/docs/openwhisk?topic=cloud-object-storage#cos_binding_credentials_to_action) to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
  ## Binding credentials to your action
  {: #cos_binding_credentials_to_action}
