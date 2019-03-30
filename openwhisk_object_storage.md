@@ -72,40 +72,38 @@ Parameters that are used in this example:
 When creating the trigger, you can avoid passing your {{site.data.keyword.cos_full_notm}} credentials to the `changes` feed action by binding your credentials directly to the `cos-experimental` package.
  {: shortdesc}
  
- 1. First, create a package binding that can be modified to contain your credentials. The following creates a package binding, `myCosPkg`, in your namespace.
+  1. First, create a package binding that can be modified to contain your credentials. The following creates a package binding, `myCosPkg`, in your namespace.
   ```
   ibmcloud fn package bind /whisk.system/cos-experimental myCosPkg
   ```
   {: pre}
   
- 2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. 
+  2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. 
  Binding your {{site.data.keyword.cos_full_notm}} credentials to the package will bind the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked. {: note}
   ```
   ibmcloud fn service bind cloud-object-storage myCosPkg
   ```
   {: pre}
   
- 3. Create a trigger named `myCosTrigger` with the `changes` feed in the package binding that you created. Use your bucket name and {{site.data.keyword.cos_full_notm}} endpoint parameter values.
+  3. Create a trigger named `myCosTrigger` with the `changes` feed in the package binding that you created. Use your bucket name and {{site.data.keyword.cos_full_notm}} endpoint parameter values.
   ```
   ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
   --param bucket myBucket
   --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
   ```
   {: pre}
-
-  Example output:
-  ```
-  ok: created trigger feed myCosTrigger
-  ```
-  {: screen}
-
-4. Start polling for activations to give clear visibility of what is happening.
+    Example output:
+    ```
+    ok: created trigger feed myCosTrigger
+    ```
+    {: screen}
+  4. Start polling for activations to give clear visibility of what is happening.
   ```
   ibmcloud fn activation poll
   ```
   {: pre}
 
-5. Create an action to observe the change feed. For example, an action called `showCosChange` containing the following JavaScript code:
+  5. Create an action to observe the change feed. For example, an action called `showCosChange` containing the following JavaScript code:
   ```javascript
   function main(data) {
     console.log(data);
@@ -118,15 +116,15 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ```
   {: pre}
 
-6. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger:
+  6. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger:
   ```
   ibmcloud fn rule create myCosRule myCosTrigger showCosChange
   ```
   {: pre}
 
-7. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-add-objects).
+  7. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-add-objects).
 
-8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear within the configured bucket polling interval.
+  8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear within the configured bucket polling interval.
 
 If you are unable to observe new activations, verify that the `apikey`, `endpoint` and `bucket` parameter values are correct.
   ```
