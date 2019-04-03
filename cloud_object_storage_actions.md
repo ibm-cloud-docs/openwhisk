@@ -27,7 +27,7 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/cloud-object-storage` | package | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Work with an {{site.data.keyword.cos_full_notm}} instance. |
+| `/cloud-object-storage` | package | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Work with an {{site.data.keyword.cos_short}} instance. |
 | `/cloud-object-storage/object-write` | action | bucket, key, body, endpoint, ibmAuthEndpoint | Write an object to a bucket. |
 | `/cloud-object-storage/object-read` | action | bucket, key, endpoint, ibmAuthEndpoint | Read an object from a bucket. |
 | `/cloud-object-storage/object-delete` | action | bucket, key, endpoint, ibmAuthEndpoint | Delete an object from a bucket. |
@@ -42,11 +42,11 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 
 The following parameters are expected to be bound to the package; this will make them automatically available for all actions. It is also possible to specify these parameters when invoking one of the actions.
 
-**apikey**: The `apikey ` parameter is IAM API key for the {{site.data.keyword.cloud_object_storage_short_notm}} instance.
+**apikey**: The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_short}} instance.
 
-**resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} instance indentifier.
+**resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cos_short}} instance indentifier.
 
-**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) for instructions on how to generate HMAC credentials for your {site.data.keyword.cloud_object_storage_short_notm} instance.
+**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_short}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac/credentials.html#using-hmac-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_short}} instance.
 
 #### Action parameters
 
@@ -54,11 +54,11 @@ The following parameters are specified when invoking the individual actions.  No
 
 **bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short_notm}} bucket.
 
-**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cloud_object_storage_short_notm}} endpoint used to connect to your {{site.data.keyword.cloud_object_storage_short_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cloud_object_storage_short_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
+**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_short}} endpoint used to connect to your {{site.data.keyword.cos_short}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_short}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
 
 **expires**: The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes.
 
-**ibmAuthEndpoint**: The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint used by {{site.data.keyword.cloud_object_storage_short_notm}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions.
+**ibmAuthEndpoint**: The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint used by {site.data.keyword.cos_full_notm}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions.
 
 **key**: The `key` parameter is the bucket object key.
 
@@ -72,7 +72,7 @@ The following parameters are specified when invoking the individual actions.  No
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
+1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
 
 2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
