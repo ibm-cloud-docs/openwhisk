@@ -78,7 +78,8 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ```
   {: pre}
  2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. 
- Binding your {{site.data.keyword.cos_full_notm}} credentials to the package will bind the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked. {: note}
+ Binding your {{site.data.keyword.cos_full_notm}} credentials to the package will bind the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked. 
+{: note}
   ```
   ibmcloud fn service bind cloud-object-storage myCosPkg
   ```
