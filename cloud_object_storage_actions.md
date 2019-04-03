@@ -58,7 +58,7 @@ The following parameters are specified when invoking the individual actions.  No
 
 **expires**: The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes.
 
-**ibmAuthEndpoint**: The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint used by {site.data.keyword.cos_full_notm}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions.
+**ibmAuthEndpoint**: The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint used by {site.data.keyword.cos_short}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions.
 
 **key**: The `key` parameter is the bucket object key.
 
