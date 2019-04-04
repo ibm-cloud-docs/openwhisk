@@ -211,11 +211,11 @@ ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
 ```
 {: pre}
 
-[Bind the {{site.data.keyword.cos_full_notm}} credentials]((/docs/openwhisk/openwhisk_object_storage.html#binding_credentials_to_your_action) to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
+[Bind](#binding_credentials_to_your_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
 ### Creating an action sequence to retrieve and process the object
 
-Instead of including the object retrieval code in your action, you can use the `object-read` action from the {{site.data.keyword.cos_full_notm}} package, which must be [manually installed](/docs/openwhisk/cloud_object_storage_actions.html#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
+Instead of including the object retrieval code in your action, you can use the `object-read` action from the {{site.data.keyword.cos_short}} package, which must be [manually installed](/docs/openwhisk/cloud_object_storage_actions.html#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
 
 Example code of an action that only processes the bucket object:
 ```javascript
@@ -245,7 +245,7 @@ ibmcloud fn action create myCosAction --sequence myCloudObjectStoragePackage/obj
 
 In addition to the `object-read` action, you can use other actions included in the installable {{site.data.keyword.cos_short}} package.
 
-[Bind the {{site.data.keyword.cos_short}} credentials](/docs/openwhisk?topic=cloud-object-storage#cos_binding_credentials_to_action) to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
+[Bind](#cos_binding_credentials_to_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
  ## Binding credentials to your action
  {: #cos_binding_credentials_to_action}
