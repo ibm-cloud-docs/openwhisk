@@ -18,10 +18,10 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Tutorials
-        ../tutorials/slack-chatbot-database-watson.md
-        ../tutorials/serverless-github-traffic-analytics.md
-        ../tutorials/serverless-mobile-backend.md
-        ../tutorials/serverless-api-webapp.md
+        ../docs/tutorials/slack-chatbot-database-watson.md
+        ../docs/tutorials/serverless-github-traffic-analytics.md
+        ../docs/tutorials/serverless-mobile-backend.md
+        ../docs/tutorials/serverless-api-webapp.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
