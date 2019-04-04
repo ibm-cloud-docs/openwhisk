@@ -37,7 +37,7 @@ In this example, you will learn how to:
 ## About IBM Cloud Object Storage
 {: #cloud_object_storage_info}
 
-**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-object-storage#about-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage/basics/developers.html#provision-an-instance-of-ibm-cloud-object-storage).
+**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-object-storage#about-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-for-developers#provision-an-instance-of-ibm-cloud-object-storage).
 
 ## Listening for changes to a IBM Cloud Object Storage bucket
 {: #listening_to_cos_bucket_changes}
@@ -211,11 +211,11 @@ ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
 ```
 {: pre}
 
-[Bind](#binding_credentials_to_your_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
+[Bind](#cos_binding_credentials_to_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
 ### Creating an action sequence to retrieve and process the object
 
-Instead of including the object retrieval code in your action, you can use the `object-read` action from the {{site.data.keyword.cos_short}} package, which must be [manually installed](/docs/openwhisk/cloud_object_storage_actions.html#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
+Instead of including the object retrieval code in your action, you can use the `object-read` action from the {{site.data.keyword.cos_short}} package, which must be [manually installed](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
 
 Example code of an action that only processes the bucket object:
 ```javascript
