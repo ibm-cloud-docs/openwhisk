@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-12"
+lastupdated: "2019-04-05"
 
 keywords: functions cli, serverless, bluemix cli, install, functions plug-in
 
@@ -179,6 +179,10 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 {: #version_history}
 
 A historical record of versions that show highlights and bug fixes.
+
+v1.0.30 (2019-04-03)
+* Improved the `service bind` handling of IAM and org and space-based services.
+* Added a fix for handling API endpoint https://cloud.ibm.com.
 
 v1.0.29 (2019-02-06)
 * Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](/docs/openwhisk?topic=cloud-functions-deploy#deploy) documentation.
