@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-04"
+lastupdated: "2019-04-05"
 
 keywords: object storage, bucket, package
 
@@ -46,7 +46,7 @@ The following parameters are expected to be bound to the package; this will make
 
 **resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cos_short}} instance indentifier.
 
-**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_short}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#using-hmac-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_short}} instance.
+**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_short}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_short}} instance.
 
 #### Action parameters
 
@@ -76,7 +76,7 @@ Before you install the package, you must request an instance of {{site.data.keyw
 
 2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
-3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-console-#create-buckets).
+3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
 
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}
