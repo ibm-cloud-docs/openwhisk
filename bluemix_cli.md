@@ -180,6 +180,10 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all comman
 
 A historical record of versions that show highlights and bug fixes.
 
+v1.0.30 (2019-04-03)
+* Improved the `service bind` handling of IAM and org/space based services
+* Added a fix for handling api endpoint https://cloud.ibm.com properly.
+
 v1.0.29 (2019-02-06)
 * Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, refer to the [Deployment](/docs/openwhisk?topic=cloud-functions-deploy#deploy) documentation.
 
