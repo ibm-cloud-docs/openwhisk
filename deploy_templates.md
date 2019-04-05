@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-05"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -119,7 +119,7 @@ The Upload Image template creates a web action that allows you to upload an imag
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
       2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
-      3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-console-#create-buckets).
+      3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
   * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
   * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
