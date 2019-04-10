@@ -62,7 +62,7 @@ Parameters that are used in this example:
 
 **bucket**: _(Required)_. The `bucket` parameter is the name of the {{site.data.keyword.cos_full_notm}} bucket.
 
-**endpoint**:  _(Required)_. The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
+**endpoint**:  _(Required)_. The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 **interval**: _(Optional)_. The `interval` parameter is the bucket polling interval, in whole minutes. The `interval` value must be at least 1 minute and is set to 1 minute by default.
 
