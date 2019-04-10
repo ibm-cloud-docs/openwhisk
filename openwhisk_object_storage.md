@@ -86,8 +86,8 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
  3. Create a trigger named `myCosTrigger` with the `changes` feed in the package binding that you created. Use your bucket name and {{site.data.keyword.cos_short}} endpoint parameter values.
   ```
   ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
-  --param bucket myBucket
-  --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
+--param bucket myBucket \
+--param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
   ```
   {: pre}
     Example output:
@@ -102,9 +102,9 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   {: pre}
  5. Create an action to observe the change feed. For example, an action called `showCosChange` containing the following JavaScript code:
   ```javascript
-  function main(data) {
-    console.log(data);
-  }
+function main(data) {
+console.log(data);
+}
   ```
   {: codeblock}
 
@@ -160,6 +160,8 @@ Example JSON representation of the bucket change trigger event:
 }
 ```
 {: codeblock}
+
+For more information, see [List objects in a specific bucket](/docs/infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket)
 
 ## Creating an action to process the changed object
 {: #creating_action_to_process_object}
