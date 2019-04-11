@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-11"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
 
@@ -83,7 +83,7 @@ You can find specific activation logs by using Kibana's query syntax. The follow
 Get insight into the performance of your actions deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or when you've hit action activation limits.
 {: shortdesc}
 
-Metrics are collected automatically for all entities. Depending on whether your actions are in an IAM-based or a Cloud Foundry-based namespace, metrics are located in the IBM Cloud account or space. These metrics are sent to {{site.data.keyword.monitoringlong}} and are made available through Grafana, where you can configure your dashboards, create alerts based on the metrics event values, and more. For more information about metrics, see the [{{site.data.keyword.monitoringlong_notm}} documentation](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started-with-ibm-cloud-monitoring).
+Metrics are collected automatically for all entities. Depending on whether your actions are in an IAM-based or a Cloud Foundry-based namespace, metrics are located in the IBM Cloud account or space. These metrics are sent to {{site.data.keyword.monitoringlong}} and are made available through Grafana, where you can configure your dashboards, create alerts based on the metrics event values, and more. For more information about metrics, see the [{{site.data.keyword.monitoringlong_notm}} documentation](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started).
 
 ### Creating a dashboard
 {: #create_dashboard}
