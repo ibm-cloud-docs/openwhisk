@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-04-11"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -62,7 +62,7 @@ Review the following steps and examples to create your first JavaScript action.
   ```
   {: screen}
 
-  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information about the Node.js runtime, see [Runtimes](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments).
+  The type of action is determined by using the source file extension. For `.js` source files, the action runs by using a Node.js runtime. You can specify the Node.js runtime version for your JavaScript action by setting the `--kind` parameter to `nodejs:10` or `nodejs:8`. For more information about the Node.js runtime, see [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments).
   {: shortdesc}
 
 3. Verify that your `hello` action is in your actions list.

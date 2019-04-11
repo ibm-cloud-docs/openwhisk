@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-22"
+lastupdated: "2019-04-11"
 
 keywords: actions, serverless, php
 
@@ -58,7 +58,7 @@ An action is simply a top-level PHP function. To create a PHP action:
     ```
     {: pre}
 
-    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information about the PHP runtime, see [Runtimes](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php).
+    The type of action is determined by using the source file extension. For `.php` source files, the action runs by using a PHP 7.3 runtime. For more information about the PHP runtime, see [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php).
 
 3. Invoke the action.
 

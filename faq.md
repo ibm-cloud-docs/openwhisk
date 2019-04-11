@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-12"
+lastupdated: "2019-04-11"
 
 keywords: faq, runtimes, actions, memory, monitoring
 
@@ -24,8 +24,7 @@ This FAQ provides answers to common questions about the {{site.data.keyword.open
 
 
 ## What language runtimes are supported?
-{: #runtimes}
-{: faq}
+{: #supported-runtimes}
 
 The following languages are supported:
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-11"
 
 keywords: speech to text, watson, package, cognitive, 
 
@@ -22,7 +22,7 @@ subcollection: cloud-functions
 The {{site.data.keyword.speechtotextfull}} service provides an API that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
-The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](https://cloud.ibm.com/docs/services/speech-to-text/index.html).
+The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](/docs/services/speech-to-text/index.html).
 
 The {{site.data.keyword.speechtotextshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.speechtotextshort}} API reference by clicking the entity name.
 
