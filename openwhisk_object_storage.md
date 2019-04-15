@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-04-10"
+lastupdated: "2019-04-15"
 
 keywords: object storage, bucket, event, action, trigger
 
@@ -100,26 +100,30 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ibmcloud fn activation poll
   ```
   {: pre}
- 5. Create an action to observe the change feed. For example, an action called `showCosChange` containing the following JavaScript code:
+ 4. Create a simple action that only serves to verify the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
   ```javascript
-function main(data) {
-console.log(data);
-}
+  function main(data) {
+    console.log(data);
+  }
   ```
   {: codeblock}
-
   ```
   ibmcloud fn action create showCosChange showCosChange.js
   ```
   {: pre}
- 6. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger:
+Sample code showing
+ 5. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger:
   ```
   ibmcloud fn rule create myCosRule myCosTrigger showCosChange
   ```
   {: pre}
+ 6. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command will list the activation records for each of these operations as they occur.
+  ```
+  ibmcloud fn activation poll
+  ```
  7. In your {{site.data.keyword.cos_short}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-add-objects).
  
- 8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear within the configured bucket polling interval.
+ 8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear in your window running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
 
 If you are unable to observe new activations, verify that the `apikey`, `endpoint` and `bucket` parameter values are correct.
   ```
@@ -133,7 +137,7 @@ If you are unable to observe new activations, verify that the `apikey`, `endpoin
 
 The content of the generated events has the following parameters:
 
-  - `file`: The file or object metadata.
+  - `file`: The file or object metadata. This structure is described in [List objects in a specific bucket](infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket).
   - `status`: The detected change.  This value is either `added`, `modified` or `deleted`.
   - `bucket`: The name of the {{site.data.keyword.cos_short}} bucket.
   - `endpoint`:  The {{site.data.keyword.cos_short}} endpoint used to connect to the {{site.data.keyword.cos_short}} instance.
@@ -160,8 +164,6 @@ Example JSON representation of the bucket change trigger event:
 }
 ```
 {: codeblock}
-
-For more information, see [List objects in a specific bucket](/docs/infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket)
 
 ## Creating an action to process the changed object
 {: #creating_action_to_process_object}
@@ -201,12 +203,13 @@ function main(params){
     })
   });
 }
+exports.main = main;
 ```
 {: codeblock}
 
 Because this action uses the `ibm-cos-sdk` npm package, the action must be packaged as either a [Node.js module](/docs/openwhisk?topic=cloud-functions-creating-javascript-actions#openwhisk_js_packaged_action) or a [single bundle](/docs/openwhisk?topic=cloud-functions-creating-javascript-actions#openwhisk_js_webpack_action).
 
-After packaging this action into a .zip file, create the action to retrieve and process the object from {{site.data.keyword.cos_short}}:
+After packaging this action into a .zip file, `myCosAction.zip`, create the action to retrieve and process the object from {{site.data.keyword.cos_short}}:
 
 ```
 ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
