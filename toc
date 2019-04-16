@@ -64,7 +64,6 @@ IBM Cloud Functions
     deploy.md
     deploy_templates.md
 
-
     {: .topicgroup}
     Pre-installed packages
         cloudant_actions.md
