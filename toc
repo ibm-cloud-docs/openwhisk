@@ -37,7 +37,7 @@ IBM Cloud Functions
         actions_java.md
         actions_net.md
         openwhisk_webactions.md
-        
+
     {: topicgroup}
     Managing actions
         openwhisk_managing.md
