@@ -60,7 +60,14 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 6. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
 
-7. Optional: Click **Change Input** to change the action or try your own. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
+7. Optional: Click **Change Input** to change the action or try your own. 
+
+  a. Paste the following code into the **Change Input** box and change the name value. 
+  ```
+  { "name": "xxxx" }
+  ```
+  {: codeblock}
+  b. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
 
 Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.
 
