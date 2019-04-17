@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-05"
+lastupdated: "2019-04-17"
 
 keywords: object storage, bucket, package
 
@@ -263,7 +263,7 @@ Example output:
 You can use the `object-read` action to read from an object in an {{site.data.keyword.cos_short}} bucket.
 {: shortdesc}
 
-**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_full_notm}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
+**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_short}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
 
 ### Read from a bucket from the CLI
 {: #read_bucket_cli}
