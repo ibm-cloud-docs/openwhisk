@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-18"
 
 keywords: slack package, token-based, api
 
@@ -20,7 +20,7 @@ subcollection: cloud-functions
 # Slack package
 {: #openwhisk_catalog_slack}
 
-The `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
+The pre-installed `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
 {: shortdesc}
 
 The package includes the following actions:
