@@ -227,20 +227,20 @@ function main(data) {
 {: codeblock}
 
 1. Create the action to process only the object from {{site.data.keyword.cos_short}}:
-```
-ibmcloud fn action create myCosProcessObjectAction myCosAction.js
-```
-{: pre}
+  ```
+  ibmcloud fn action create myCosProcessObjectAction myCosAction.js
+  ```
+  {: pre}
 2. Bind your {{site.data.keyword.cos_short}} credentials to your manually installed `cloud-object-storage` package.
-```
-ibmcloud fn service bind cloud-object-storage cloud-object-storage
-```
-{: pre}
+  ```
+  ibmcloud fn service bind cloud-object-storage cloud-object-storage
+  ```
+  {: pre}
 3. The `object-read` action can be composed with `myCosProcessObjectAction` to create an action sequence.
-```
-ibmcloud fn action create myCosAction --sequence cloud-object-storage/object-read,myCosProcessObjectAction
-```
-{: pre}
+  ```
+  ibmcloud fn action create myCosAction --sequence cloud-object-storage/object-read,myCosProcessObjectAction
+  ```
+  {: pre}
 
 In addition to the `object-read` action, you can use other actions included in the installable `cloud-object-storage` package.
 
