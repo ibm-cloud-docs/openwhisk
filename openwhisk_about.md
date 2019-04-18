@@ -64,7 +64,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
     <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
 </dl>
 
-## How {{site.data.keyword.openwhisk_short}} works
+## How invocation works
 {: #openwhisk_how}
 
 To explain all the components in more detail, let's trace an invocation of an action through the {{site.data.keyword.openwhisk_short}} system. An invocation executes the code the user feeds into the system, and returns the results of that execution. The following figure shows the high-level {{site.data.keyword.openwhisk_short}} architecture.
