@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-17"
+lastupdated: "2019-04-18"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Platform architecture
+# How {{site.data.keyword.openwhisk_short}} works
 {: #openwhisk_about}
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
