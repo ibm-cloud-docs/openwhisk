@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-17"
+lastupdated: "2019-04-18"
 
 keywords: getting started, creating actions, invoking actions, 
 
@@ -48,7 +48,7 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 1. Create an [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard(../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
