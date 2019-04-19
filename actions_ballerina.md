@@ -57,24 +57,24 @@ To create an action called `hello` complete the following steps.
   ```
   ballerina build hello.bal
   ```
-{: pre}
+  {: pre}
 
 2. Create the action by using the .balx file.
   ```
   ibmcloud fn action create bello hello.balx --kind ballerina:0.990
   ```
-{: pre}
+  {: pre}
 
 3. The CLI does not yet determine the type of the action from the source file extension. You must specify the kind explicitly. For `.balx` source files, the action runs by using the Ballerina 0.990.2 runtime.
   ```
   ibmcloud fn action invoke --result bello --param name World
   ```
-{: pre}
+  {: pre}
 
 Example output.
-```json
-{
-  "greeting": "Hello World!"
-}
-```
-{: screen}
+  ```json
+  {
+    "greeting": "Hello World!"
+  }
+  ```
+  {: screen}
