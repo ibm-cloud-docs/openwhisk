@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-22"
+lastupdated: "2019-04-19"
 
 keywords: actions, serverless, swift
 
@@ -43,7 +43,7 @@ For more information about the Swift runtime, [Runtimes](/docs/openwhisk?topic=c
 {: #actions_swift4_invoke}
 {: #openwhisk_actions_swift4_invoke}
 
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [Codable ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types). 
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [Codable ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
 
 1. Save the following code in a file called `hello.swift`.
 
@@ -142,7 +142,7 @@ When you create an {{site.data.keyword.openwhisk_short}} Swift action with a Swi
 
 The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions.
 
-##### Compiling a single source file for Swift 4.2
+#### Compiling a single source file for Swift 4.2
 
 Compile a single source file that doesn't depend on external libaries by using the following command.
 

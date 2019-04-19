@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-04-19"
 
 keywords: ballerina, serverless, actions
 
@@ -25,7 +25,7 @@ subcollection: cloud-functions
 # Creating Ballerina actions
 {: #ballerina-actions}
 
-The following sections guide you through creating and invoking a single Ballerina action and adding parameters to that action. An action is a top-level Ballerina function which accepts and returns a JSON object. 
+The following sections guide you through creating and invoking a single Ballerina action and adding parameters to that action. An action is a top-level Ballerina function which accepts and returns a JSON object.
 
 Ballerina actions are executed in Ballerina [0.990.2](https://ballerina.io/downloads). You will need a compatible version of the compiler locally available to generate the executable. Without the Ballerina compiler, you cannot create an action.
 
@@ -33,7 +33,7 @@ Ballerina actions are executed in Ballerina [0.990.2](https://ballerina.io/downl
 
 **Before you begin:** Create a file called `hello.bal` with the following source code.
 
-```ballerina
+```
 import ballerina/io;
 
 public function main(json data) returns json {
@@ -47,7 +47,7 @@ public function main(json data) returns json {
 ```
 {: codeblock}
 
-The entry method for the action is `main` by default. You can specify this variable when you create the action with the `wsk` CLI by using `--main`. 
+The entry method for the action is `main` by default. You can specify this variable when you create the action with the `wsk` CLI by using `--main`.
 
 **Note:** that the Ballerina compiler expects the presence of a function called `main` to generate the executable, so your source file must include a place holder called `main`.
 
