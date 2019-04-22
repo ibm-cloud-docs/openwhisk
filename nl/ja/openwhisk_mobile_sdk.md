@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # モバイル SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk は、iOS デバイスおよび watchOS デバイス向けのモバイル SDK を提供しています。これを使用すると、モバイル・アプリは、リモート・トリガーの起動およびリモート・アクションの呼び出しを簡単に行うことができます。 Android 用のバージョンはありませんが、Android 開発者は、直接、OpenWhisk REST API を使用できます。
-
-モバイル SDK は、Swift 4 で作成されており、iOS 11 以降のリリースをサポートしています。 Xcode 9 を使用してモバイル SDK をビルドできます。
+OpenWhisk は、iOS デバイスおよび watchOS デバイス向けのモバイル SDK を提供しています。これを使用すると、モバイル・アプリは、リモート・トリガーの起動およびリモート・アクションの呼び出しを行うことができます。 Android 用のバージョンはありませんが、Android 開発者は、直接、OpenWhisk REST API を使用できます。 モバイル SDK は、Swift 4 で作成されており、iOS 11 以降のリリースをサポートしています。 Xcode 9 を使用してモバイル SDK をビルドできます。
 {: shortdesc}
+
+
 
 ## アプリへの SDK の追加
 
@@ -122,7 +128,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 ## OpenWhisk アクションの呼び出し
 
-リモート・アクションを呼び出すために、アクション名を指定して `invokeAction` を呼び出すことができます。 アクションが属している名前空間を指定するか、またはブランクのままにしてデフォルト名前空間を受け入れることができます。 必要に応じて、ディクショナリーを使用してパラメーターをアクションに渡します。
+リモート・アクションを呼び出すために、アクション名を指定して `invokeAction` を呼び出すことができます。 必要に応じて、ディクショナリーを使用してパラメーターをアクションに渡します。
 
 例えば次のようにします。
 ```swift
@@ -143,8 +149,6 @@ do {
 }
 ```
 {: codeblock}
-
-前の例では、デフォルト名前空間を使用して `helloConsole` アクションを呼び出しています。
 
 ## OpenWhisk トリガーの起動
 
@@ -207,7 +211,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-この例では、http://localhost:8080 で実行されているインストール済み環境が使用されます。 baseUrl を指定しない場合、モバイル SDK は https://openwhisk.ng.bluemix.net で実行されているインスタンスを使用します。
+この例では、http://localhost:8080 で実行されているインストール済み環境が使用されます。 baseUrl を指定しない場合、モバイル SDK は https://us-south.functions.cloud.ibm.com で実行されているインスタンスを使用します。
 
 特殊なネットワーク処理が必要な場合、カスタム NSURLSession を渡すことができます。 例えば、自己署名証明書を使用する独自の OpenWhisk インストール済み環境がある場合などです。
 

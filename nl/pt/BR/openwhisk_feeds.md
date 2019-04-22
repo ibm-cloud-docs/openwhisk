@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Criando feeds do provedor de eventos customizados
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ Há pelo menos três padrões arquiteturais para criar um feed: **Ganchos**, **P
 ### Ganchos
 No padrão *Ganchos*, um feed é configurado usando um recurso [webhook](https://en.wikipedia.org/wiki/Webhook) que é exposto por outro serviço.   Nessa estratégia, um webhook é configurado em um serviço externo para POSTAR diretamente em uma URL para disparar um acionador. Esse método é de longe a opção mais fácil e mais atraente para implementar feeds de baixa frequência.
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### Chamada Seletiva
 No padrão "Pesquisa", uma ação do {{site.data.keyword.openwhisk_short}} é organizada para pesquisar um terminal periodicamente para buscar novos dados. Esse padrão é relativamente fácil de construir, mas as frequências de eventos são limitadas pelo intervalo de pesquisa.
@@ -34,10 +40,9 @@ No padrão "Pesquisa", uma ação do {{site.data.keyword.openwhisk_short}} é or
 ### Economia Conectada
 No padrão "Conexões", um serviço separado mantém uma conexão persistente com uma origem do feed. A implementação baseada em conexão pode interagir com um terminal em serviço usando intervalos de pesquisa longa ou para configurar uma notificação push.
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## Diferença entre feed e acionador
 
@@ -82,7 +87,7 @@ Um protocolo de ação de feed semelhante ocorre para `ibmcloud fn trigger delet
 
 Será fácil configurar um feed usando um gancho se o produtor de evento suportar um recurso webhook/retorno de chamada.
 
-Com esse método, _não há necessidade_ de levantar qualquer serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio de *ações de feed* stateless do {{site.data.keyword.openwhisk_short}}, que negociam diretamente com um API de webhook de terceiro.
+Com esse método, _não há necessidade_ de levantar qualquer serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio das *ações de feed* do {{site.data.keyword.openwhisk_short}} stateless, que negociam diretamente com uma API do webhook de terceiro.
 
 Quando chamada com `CREATE`, a ação de feed simplesmente instala um webhook para algum outro serviço, solicitando que o serviço remoto efetue POST de notificações para a URL apropriada do `fireTrigger` no {{site.data.keyword.openwhisk_short}}.
 
@@ -115,7 +120,7 @@ Como as ações do {{site.data.keyword.openwhisk_short}} devem ser de execução
 O serviço do provedor tem uma API de REST que permite que a *ação de feed* do {{site.data.keyword.openwhisk_short}} controle o feed. O serviço do provedor age como um proxy entre o provedor de evento e o {{site.data.keyword.openwhisk_short}}. Quando ele recebe eventos do terceiro, ele os envia para o {{site.data.keyword.openwhisk_short}} disparando um acionador.
 
 O feed *changes* do {{site.data.keyword.cloudant_short_notm}} é o exemplo canônico, já que ele aciona um serviço `cloudanttrigger`, que media entre as notificações do {{site.data.keyword.cloudant_short_notm}} sobre uma conexão persistente e os acionadores do {{site.data.keyword.openwhisk_short}}.
-<!-- TODO: add a reference to the open source implementation -->
+
 
 O feed *alarme* é implementado com um padrão semelhante.
 

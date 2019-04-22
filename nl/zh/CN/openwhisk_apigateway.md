@@ -1,30 +1,37 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2019
+lastupdated: "2019-04-04"
+
+keywords: serverless, rest api, gateway, web actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 创建无服务器 REST API
 {: #openwhisk_apigateway}
 
-使用 API 来直接管理 {{site.data.keyword.openwhisk}} 操作。API 网关充当 [Web 操作](./openwhisk_webactions.html)的代理，并提供 HTTP 方法路由、客户机标识和密钥、速率限制和 CORS，并可查看 API 使用情况以及查看响应日志和 API 共享策略。
+使用 API 来直接管理 {{site.data.keyword.openwhisk}} 操作。API 网关充当 [Web 操作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)的代理，并提供 HTTP 方法路由、客户机标识和密钥、速率限制和 CORS，并可查看 API 使用情况以及查看响应日志和 API 共享策略。
 {: shortdesc}
 
-有关 API Management 的更多信息，可以阅读 [API Management 文档](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis)。
+有关 API Management 的更多信息，可以阅读 [API Management 文档](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)。
+
+
 
 
 ## 创建第一个 API
 {: #create_cli_api}
 
-开始之前，请安装 [{{site.data.keyword.openwhisk_short}} CLI 插件](bluemix_cli.html)。
+开始之前，请安装 [{{site.data.keyword.openwhisk_short}} CLI 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)。
 
 1. 将以下代码保存在名为 `hello.js` 的 JavaScript 文件中。
   ```javascript
@@ -61,7 +68,7 @@ lastupdated: "2018-07-30"
 
   这将生成新 URL，用于使用 GET HTTP 方法公开 `hello` 操作。
 
-4. 使用 cURL 命令向 URL 发送 HTTP 请求。
+4. 使用 cURL 命令向 URL 发送测试 HTTP 请求。
   ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
   ```
@@ -75,14 +82,14 @@ lastupdated: "2018-07-30"
   ```
   {: screen}
 
-这将调用 Web 操作 `hello`，其返回的 JSON 对象包含查询参数中的 **name** 参数。可以通过简单的查询参数或使用请求主体将参数传递到操作。Web 操作可在不使用 {{site.data.keyword.openwhisk_short}} 授权 API 密钥的情况下，公开调用操作。
+这将调用 Web 操作 `hello`，它返回的 JSON 对象包含查询参数中的 **name** 参数。可以通过简单的查询参数或使用请求主体将参数传递到操作。Web 操作可在不使用认证的情况下，公开调用操作。
 
-## 使用完全控制 HTTP 响应
+## 使用对 HTTP 响应的完全控制
 {: #full_control}
 
 `--response-type` 标志用于控制将由 API 网关代理的 Web 操作的目标 URL。例如，使用 `--response-type json` 标志时，将以 JSON 格式返回操作的完整结果，并且 **Content-Type** 头会自动设置为 `application/json`。
 
-要在主体中返回其他内容类型，请使用完全控制 HTTP 响应属性，例如 **statusCode** 和 **headers**。可以使用 `--response-type http` 标志来配置具有 `http` 扩展名的 Web 操作的目标 URL。您可以更改操作码，以符合返回具有 `http` 扩展名的 Web 操作的要求，或者将操作包含在序列中，以将其结果传递给新操作。然后，新的操作可以对结果进行变换，以便正确设置其格式以用于 HTTP 响应。您可以在 [Web 操作](./openwhisk_webactions.html)文档中阅读有关响应类型和 Web 操作扩展名的更多信息。
+要在主体中返回其他内容类型，请使用对 HTTP 响应的完全控制属性，例如 **statusCode** 和 **headers**。可以使用 `--response-type http` 标志来配置具有 `http` 扩展名的 Web 操作的目标 URL。您可以更改操作的代码，以符合返回具有 `http` 扩展名的 Web 操作的要求，或者将操作包含在序列中，以将其结果传递给新操作。然后，新的操作可以对结果进行变换，以便正确设置其格式以用于 HTTP 响应。您可以在 [Web 操作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)文档中阅读有关响应类型和 Web 操作扩展名的更多信息。
 
 1. 更改 `hello.js` 操作的代码，以返回 JSON 属性 `body`、`statusCode` 和 `headers`。
   ```javascript
@@ -135,7 +142,7 @@ lastupdated: "2018-07-30"
 |putBooks|PUT|更新书籍详细信息|
 |deleteBooks|DELETE|删除书籍|
 
-在此示例中，API 是使用路径参数定义的。使用路径参数时，必须使用响应类型 `http` 来定义 API。路径值（以基本路径开头，并包括实际路径参数值）在操作的 JSON 参数的 `__ow_path` 字段中提供。有关 HTTP 上下文字段的更多详细信息，请参阅 [Web 操作 HTTP 上下文](./openwhisk_webactions.html#http-context)文档。
+在此示例中，API 是使用路径参数定义的。使用路径参数时，必须使用响应类型 `http` 来定义 API。路径值（以基本路径开头，并包括实际路径参数值）在操作的 JSON 参数的 `__ow_path` 字段中提供。有关 HTTP 上下文字段的更多详细信息，请参阅 [Web 操作 HTTP 上下文](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#http-context)文档。
 
 要试用此读书俱乐部 Web 操作示例，请执行以下操作：
 
@@ -149,7 +156,7 @@ lastupdated: "2018-07-30"
   ```
   {: pre}
 
-  使用基本路径 `/club` 公开的第一个操作将标记有名称 `Book Club`。在 `/club` 下公开的其他所有操作现在都将与 `Book Club` 相关联。
+  使用基本路径 `/club` 公开的第一个操作将标注有名称 `Book Club`。在 `/club` 下公开的其他所有操作现在都将与 `Book Club` 相关联。
 
 2. 列出公开的所有 `Book Club` 操作。
   ```
@@ -296,11 +303,11 @@ ok: deleted API /club
 ## 修改配置
 {: #modify_config}
 
-创建配置后，可以使用 {{site.data.keyword.openwhisk_short}} 仪表板中的 [**API 选项卡**](https://console.bluemix.net/openwhisk/apimanagement)，通过以下方式来修改配置。
+创建配置后，可以使用 {{site.data.keyword.openwhisk_short}} 仪表板中的 [**API 选项卡**](https://cloud.ibm.com/openwhisk/apimanagement)，通过以下方式来修改配置。
 
-* [创建 {{site.data.keyword.openwhisk_short}} API](https://console.bluemix.net/openwhisk/apimanagement)，用于包装一组 {{site.data.keyword.openwhisk_short}} 操作。
-* [保护 API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)，通过应用 API 安全性和速率限制策来实现。
-* [管理流量](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)，通过查看 API 使用情况统计信息并查看响应日志来实现。
-* [社交化和共享](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api)，与 {{site.data.keyword.Bluemix_notm}} 内部和外部开发者共享 API。
+* [创建 {{site.data.keyword.openwhisk_short}} API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)，用于包装一组 {{site.data.keyword.openwhisk_short}} 操作。
+* [保护 API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)，通过应用 API 安全性和速率限制策略来实现。
+* [管理流量](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)，通过查看 API 使用情况统计信息并查看响应日志来实现。
+* [社交化和共享](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis)，与 {{site.data.keyword.Bluemix_notm}} 内部和外部的开发者社交化并共享您的 API。
 
 完成更新配置后，可以下载 JSON 格式的定义文件，然后使用 CLI 将其重新导入。例如，对于持续集成和部署 (CICD) 管道中的无人照管部署，下载并导入配置会非常有用。您还可以选择使用 UI 来上传和重新导入 API 定义文件。

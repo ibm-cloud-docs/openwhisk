@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson assistant, openwhisk, functions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -21,7 +26,7 @@ Le package {{site.data.keyword.conversationshort}} contient les entités suivant
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| [`assistant-v1`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Gestion du service {{site.data.keyword.conversationshort}}. |
+| [`assistant-v1`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Gestion du service {{site.data.keyword.conversationshort}}. |
 | [message](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#message) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    input, alternate_intents, context, entities, intents, output,     nodes_visited_details,  | Obtention de la réponse à une entrée utilisateur. |
 | [create-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-workspace) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, description, language, intents, entities, dialog_nodes, counterexamples, metadata, learning_opt_out,  | Création d'un espace de travail. |
 | [delete-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-workspace) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,  | Suppression d'un espace de travail. |
@@ -68,15 +73,15 @@ Le package {{site.data.keyword.conversationshort}} contient les entités suivant
 | [delete-user-data](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Suppression de données de libellé. |
 
 ## Création d'une instance de service {{site.data.keyword.conversationshort}}
-{: #service_instance}
+{: #service_instance_conversation}
 
 Avant d'installer le package, vous devez créer une instance de service {{site.data.keyword.conversationshort}} et des données d'identification du service.
 
-1. [Créez une instance de service {{site.data.keyword.conversationshort}}![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/catalog/services/conversation).
+1. [Créez une instance de service {{site.data.keyword.conversationshort}}![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/catalog/services/conversation).
 2. Une fois l'instance de service créée, des données d'identification du service à génération automatique sont également créées pour vous.
 
 ## Installation du package {{site.data.keyword.conversationshort}}
-{: #install}
+{: #install_conversation}
 
 Dès que vous disposez d'une instance de service {{site.data.keyword.conversationshort}}, utilisez l'interface de ligne de commande {{site.data.keyword.openwhisk}} pour installer le package {{site.data.keyword.conversationshort}} dans votre espace de nom.
 {: shortdesc}
@@ -85,8 +90,7 @@ Dès que vous disposez d'une instance de service {{site.data.keyword.conversatio
 {: #conversation_cli}
 
 Avant de commencer :
-  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](bluemix_cli.html#cloudfunctions_cli).
-  2. Installez la commande [`wskdeploy`![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) et ajoutez le fichier binaire téléchargé à votre variable PATH.
+  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Pour installer le package {{site.data.keyword.conversationshort}} :
 
@@ -98,7 +102,7 @@ Pour installer le package {{site.data.keyword.conversationshort}} :
 
 2. Déployez le package.
     ```
-    wskdeploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
     ```
     {: pre}
 
@@ -153,12 +157,12 @@ Pour installer le package {{site.data.keyword.conversationshort}} :
     ```
     {: screen}
 
-### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}} 
+### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}}
 {: #conversation_ui}
 
-1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/openwhisk/create).
+1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create).
 
-2. A l'aide des listes **Cloud Foundry Org** et **Cloud Foundry Space**, sélectionnez l'espace de nom dans lequel vous voulez installer le package {{site.data.keyword.cos_short}}. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
+2. A l'aide des listes **Organisation Cloud Foundry** et **Espace Cloud Foundry**, sélectionnez l'espace de nom où vous voulez installer le package. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
 
 3. Cliquez sur **Installer les packages**.
 
@@ -171,14 +175,14 @@ Pour installer le package {{site.data.keyword.conversationshort}} :
 6. Une fois le package installé, vous êtes redirigé vers la page Actions et vous pouvez rechercher votre nouveau package, nommé **assistant-v1**.
 
 7. Pour utiliser les Actions du package **assistant-v1**, vous devez lier les données d'identification du service aux actions.
-  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus. 
+  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus.
   * Pour lier les données d'identification du service à des actions individuelles, suivez les étapes ci-après dans l'interface utilisateur. **Remarque **: Vous devez suivre les étapes ci-après pour chaque action que vous voulez utiliser.
-    1. Cliquez sur une action du package **assistant-v1** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche. 
-    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**. 
+    1. Cliquez sur une action du package **assistant-v1** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche.
+    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**.
     3. Entrez un nouveau **paramètre**. Pour le paramètre key, entrez `__bx_creds`. Comme valeur, collez l'objet JSON des données d'identification du service de l'instance de service que vous avez créée plus haut.
 
 ## Utilisation du package {{site.data.keyword.conversationshort}}
-{: #usage}
+{: #usage_conversation}
 
 Pour utiliser les actions de ce package, exécutez les commandes au format suivant :
 

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 공통 유스 케이스
 {: #openwhisk_common_use_cases}
@@ -47,18 +53,18 @@ IoT(Internet of Things) 시나리오는 종종 기본적으로 센서 구동형�
 
 전통적인 서버 아키텍처를 사용하는 IoT 애플리케이션을 구현할 수는 있습니다. 그러나 대부분의 경우에 서로 다른 서비스와 데이터 브릿지의 조합에서는 고성능의 유연한 파이프라인이 요구됩니다. IoT 디바이스에서 클라우드 스토리지와 분석 플랫폼에 이르기까지 그 범위가 걸쳐 있습니다. 종종 사전 구성된 브릿지에는 특정 솔루션 아키텍처를 구현하고 미세 조정해야 하는 데 필요한 프로그래밍 가능성이 부족합니다. 다양한 파이프라인이 제공되며 일반적으로(특히 IoT) 데이터 결합에서 표준화가 부족한 경우에는 파이프라인이 사용자 정의 데이터 변환을 필요로 하는 환경을 찾는 것이 일반적입니다. 이러한 사용자 정의 데이터 변환은 형식 변환, 필터링 또는 기능 보강에 적용됩니다. {{site.data.keyword.openwhisk_short}}는 '서버리스' 방식으로 해당 변환을 구현하기 위한 탁월한 도구이며, 여기서 사용자 정의 로직은 완벽히 관리되는 탄력적 클라우드 플랫폼에서 호스팅됩니다.
 
-{{site.data.keyword.openwhisk_short}},  NodeRed, Cognitive 및 기타 서비스를 사용하는 다음의 샘플 IoT 애플리케이션을 보십시오. [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
+{{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive 및 기타 서비스를 사용하는 다음의 샘플 IoT 애플리케이션을 보십시오. [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c).
 
 ![IoT 솔루션 아키텍처 예제](images/IoT_solution_architecture_example.png)
 
 ## API 백엔드
 {: #openwhisk_api_backend}
 
-서버리스 컴퓨팅 플랫폼은 서버 없이 API를 빌드하는 빠른 방법을 개발자에게 제공합니다. {{site.data.keyword.openwhisk_short}}는 액션에 대한 REST API의 자동 생성을 지원합니다. {{site.data.keyword.openwhisk_short}}의 [실험적 기능](./openwhisk_apigateway.html)은 {{site.data.keyword.openwhisk_short}} API 게이트웨이를 통한 액션의 권한 부여 API 키 없이 POST 이외의 HTTP 메소드로 액션을 호출할 수 있습니다. 이 기능은 API를 외부 이용자에게 노출시키는 데는 물론 마이크로서비스 애플리케이션을 빌드하는 데도 유용합니다.
+서버리스 컴퓨팅 플랫폼은 서버 없이 API를 빌드하는 빠른 방법을 개발자에게 제공합니다. {{site.data.keyword.openwhisk_short}}는 액션에 대한 REST API의 자동 생성을 지원합니다. [{{site.data.keyword.openwhisk_short}} 기능](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway)은 {{site.data.keyword.openwhisk_short}} API 게이트웨이를 통한 액션의 권한 부여 API 키 없이 POST 이외의 HTTP 메소드로 액션을 호출할 수 있습니다. 이 기능은 API를 외부 이용자에게 노출시키는 데는 물론 마이크로서비스 애플리케이션을 빌드하는 데도 유용합니다.
 
 또한 {{site.data.keyword.openwhisk_short}} 액션은 선택한 API 관리 도구(예: [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) 또는 기타)에 연결될 수 있습니다. 기타 유스 케이스와 유사하게, 확장성과 기타 서비스 품질(QoS)에 대한 모든 고려사항이 적용됩니다.
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting)은 REST API를 통해 {{site.data.keyword.openwhisk_short}} 액션을 사용하는 샘플 앱입니다.
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting)은 REST API를 통해 {{site.data.keyword.openwhisk_short}} 액션을 사용하는 샘플 앱입니다.
 
 [API 백엔드로서 서버리스 사용](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples)의 논의가 포함된 다음 예제를 참조하십시오.
 
@@ -83,7 +89,7 @@ IoT(Internet of Things) 시나리오는 종종 기본적으로 센서 구동형�
 
 코그너티브 기술을 {{site.data.keyword.openwhisk_short}}와 효과적으로 결합하여 강력한 애플리케이션을 작성할 수 있습니다. 예를 들어, IBM Alchemy API 및 Watson Visual Recognition을 {{site.data.keyword.openwhisk_short}}와 함께 사용하여 따로 지켜보지 않고도 동영상에서 유용한 정보를 자동으로 추출할 수 있습니다. 이 기술은 앞에서 논의된 [데이터 처리](#data-processing) 유스 케이스의 “코그너티브” 확장기능입니다. {{site.data.keyword.openwhisk_short}}의 다른 유용한 용도는 코그너티브 서비스와 결합된 Bot 기능의 구현입니다.
 
-샘플 애플리케이션인 [Dark Vision](https://github.com/IBM-Bluemix/openwhisk-darkvisionapp)이 제공되며 바로 이를 수행합니다. 이 애플리케이션에서 사용자는 {{site.data.keyword.cloudant_short_notm}} DB에 동영상이나 이미지를 저장하는 Dark Vision 웹 애플리케이션을 사용하여 이를 업로드합니다. 일단 동영상이 업로드된 경우, {{site.data.keyword.openwhisk_short}}는 {{site.data.keyword.cloudant_short_notm}} 변경사항(트리거)을 청취하여 새 동영상을 발견합니다. {{site.data.keyword.openwhisk_short}}는 동영상 추출기 액션을 트리거합니다. 이의 실행 중에 추출기는 프레임(이미지)를 생성하고 이를 {{site.data.keyword.cloudant_short_notm}}에 저장합니다. 그리고 프레임은 Watson Visual Recognition으로 처리되며 결과는 동일한 {{site.data.keyword.cloudant_short_notm}} DB에 저장됩니다. Dark Vision 웹 애플리케이션이나 iOS 애플리케이션을 사용하면 해당 결과를 볼 수 있습니다. {{site.data.keyword.cloudant_short_notm}}에 추가하여 {{site.data.keyword.cos_full_notm}}를 사용할 수 있습니다. 여기서 비디오와 이미지 메타데이터는 {{site.data.keyword.cloudant_short_notm}}에 저장되며, 미디어 파일은 {{site.data.keyword.cos_short}}에 저장됩니다.
+샘플 애플리케이션인 [Dark Vision](https://github.com/IBM-Bluemix/openwhisk-darkvisionapp)이 제공되며 바로 이를 수행합니다. 이 애플리케이션에서 사용자는 {{site.data.keyword.cloudant_short_notm}} DB에 동영상이나 이미지를 저장하는 Dark Vision 웹 애플리케이션을 사용하여 이를 업로드합니다. 일단 동영상이 업로드된 경우, {{site.data.keyword.openwhisk_short}}는 {{site.data.keyword.cloudant_short_notm}} 변경사항(트리거)을 청취하여 새 동영상을 발견합니다. {{site.data.keyword.openwhisk_short}}는 동영상 추출기 액션을 트리거합니다. 이의 실행 중에 추출기는 프레임(이미지)를 생성하고 이를 {{site.data.keyword.cloudant_short_notm}}에 저장합니다. 그리고 프레임은 Watson Visual Recognition으로 처리되며 결과는 동일한 {{site.data.keyword.cloudant_short_notm}} DB에 저장됩니다. Dark Vision 웹 애플리케이션이나 iOS 애플리케이션을 사용하면 해당 결과를 볼 수 있습니다. {{site.data.keyword.cloudant_short_notm}}에 추가하여 {{site.data.keyword.cos_full_notm}}를 사용할 수 있습니다. 여기서 동영상과 이미지 메타데이터는 {{site.data.keyword.cloudant_short_notm}}에 저장되며, 미디어 파일은 {{site.data.keyword.cos_short}}에 저장됩니다.
 
 {{site.data.keyword.openwhisk_short}}, IBM Mobile Analytics 및 Watson을 사용하여 어조를 분석하고 Slack 채널에 게시하는 [예제 iOS Swift 애플리케이션](https://github.com/gconan/BluemixMobileServicesDemoApp)이 사용 가능합니다.
 

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Organizando ações em pacotes
 {: #openwhisk_packages}
@@ -18,10 +24,10 @@ No {{site.data.keyword.openwhisk}}, é possível usar pacotes para empacotar um 
 {: shortdesc}
 
 Um pacote pode incluir *ações* e *feeds*.
-- Uma ação é uma parte do código executada no {{site.data.keyword.openwhisk_short}}. Por exemplo, o pacote do {{site.data.keyword.cloudant}} inclui ações para ler e gravar registros em um banco de dados {{site.data.keyword.cloudant_short_notm}}.
+- Uma ação é uma parte do código executada no {{site.data.keyword.openwhisk_short}}. Por exemplo, o pacote {{site.data.keyword.cloudant}}inclui ações para ler e gravar registros em um banco de dados {{site.data.keyword.cloudant_short_notm}}.
 - Um feed é usado para configurar uma origem de eventos externos para disparar eventos acionadores. Por exemplo, o pacote Alarme inclui um feed que pode disparar um acionador a uma frequência especificada.
 
-Cada entidade do {{site.data.keyword.openwhisk_short}}, incluindo pacotes, pertence a um *namespace* e o nome completo de uma entidade é `/namespaceName[/packageName]/entityName`. Para obter mais informações, consulte as [diretrizes de nomenclatura](./openwhisk_reference.html#openwhisk_entities).
+Cada entidade do {{site.data.keyword.openwhisk_short}}, incluindo pacotes, pertence a um *namespace*, e o nome completo de uma entidade é `/namespaceName/[packageName]/entityName`. Para obter mais informações, consulte as [diretrizes de nomenclatura](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities).
 
 As seções a seguir descrevem como procurar pacotes e usar acionadores e feeds nos mesmos. Além
 disso, se você estiver interessado em contribuir com seus próprios pacotes para o
@@ -71,8 +77,7 @@ Vários pacotes são registrados com o {{site.data.keyword.openwhisk_short}}. É
   ```
   {: screen}
 
-  Essa saída mostra que o pacote do {{site.data.keyword.cloudant_short_notm}} fornece duas ações, `read` e `write`, e um feed de acionador chamado `changes`. 
-O feed `changes` faz com que os acionadores sejam disparados quando os documentos
+  Essa saída mostra que o pacote do {{site.data.keyword.cloudant_short_notm}} fornece duas ações, `read` e `write`, e um feed de acionador chamado `changes`. O feed `changes` faz com que os acionadores sejam disparados quando os documentos
 são incluídos no banco de dados do {{site.data.keyword.cloudant_short_notm}}.
 
   O pacote do {{site.data.keyword.cloudant_short_notm}} também define os parâmetros `username`, `password`, `host` e `port`. Esses parâmetros devem ser especificados para que as ações e os feeds sejam significativos. Os parâmetros permitem que as ações operem em uma conta específica do {{site.data.keyword.cloudant_short_notm}}, por exemplo.
@@ -218,7 +223,7 @@ No exemplo simples a seguir, você faz a ligação com o pacote `/whisk.system/s
 ## Criar e usar feeds acionadores
 {: #openwhisk_package_trigger}
 
-Feeds oferecem uma maneira conveniente para configurar uma origem de eventos externos para disparar esses eventos para um acionador do {{site.data.keyword.openwhisk_short}}. Este exemplo mostra como usar um feed no pacote Alarmes para disparar um acionador a cada segundo e como usar uma regra para chamar uma ação a cada segundo.
+Feeds oferecem uma maneira conveniente para configurar uma origem de eventos externos para disparar esses eventos para um acionador do {{site.data.keyword.openwhisk_short}}. Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acionador uma vez por minuto e como usar uma regra para chamar uma ação uma vez por minuto.
 
 1. Obtenha uma descrição do feed no pacote `/whisk.system/alarms`.
   ```
@@ -249,19 +254,19 @@ Feeds oferecem uma maneira conveniente para configurar uma origem de eventos ext
   - `cron`: uma especificação de crontab de quando disparar o acionador.
   - `trigger_payload`: o valor de parâmetro de payload para configurar em cada evento acionador.
 
-2. Crie um acionador que dispare a cada 8 segundos.
+2. Crie um acionador que dispare a cada minuto.
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   Exemplo de Saída:
   ```
-  ok: feed acionador everyEightSeconds criado
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. Crie um arquivo nomeado **hello.js** com o código de ação a seguir:
+3. Crie um arquivo nomeado `hello.js` com o código de ação a seguir:
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -275,9 +280,9 @@ Feeds oferecem uma maneira conveniente para configurar uma origem de eventos ext
   ```
   {: pre}
 
-5. Crie uma regra que chama a ação **hello** toda vez que o acionador `everyEightSeconds` é disparado.
+5. Crie uma regra que chame a ação `hello` toda vez que o acionador `everyOneMinute` for disparado.
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -293,7 +298,7 @@ Feeds oferecem uma maneira conveniente para configurar uma origem de eventos ext
   ```
   {: pre}
 
-  É possível ver que as ativações são observadas a cada 8 segundos para o acionador, a regra e a ação. A ação recebe os parâmetros `{"name":"Mork", "place":"Ork"}` em cada chamada.
+  É possível ver que as ativações são observadas a cada minuto para o acionador, a regra e a ação. A ação recebe os parâmetros `{"name":"Mork", "place":"Ork"}` em cada chamada.
 
 ## Criar um pacote
 {: #openwhisk_packages_create}
@@ -303,7 +308,7 @@ Também permite que os parâmetros sejam compartilhados entre todas as entidades
 
 Para criar um pacote customizado com uma ação simples nele, tente o exemplo a seguir:
 
-1. Crie um pacote chamado **custom**.
+1. Crie um pacote chamado `custom`.
   ```
   ibmcloud fn package create custom
   ```
@@ -335,7 +340,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   ```
   {: codeblock}
 
-4. Crie uma ação chamada **identity** no pacote `custom`.
+4. Crie uma ação chamada `identity` no pacote `custom`.
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -362,7 +367,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   ```
   {: screen}
 
-  É possível ver a ação **custom/identity** em seu namespace agora.
+  É possível ver a ação `custom/identity` em seu namespace agora.
 
 6. Chame a ação no pacote.
   ```
@@ -378,7 +383,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
 
 É possível configurar parâmetros padrão para todas as entidades em um pacote configurando os parâmetros no nível do pacote que são herdados por todas as ações no pacote. Para ver como essa herança funciona, tente o exemplo a seguir:
 
-1. Atualize o pacote **custom** com dois parâmetros: `city` e `country`.
+1. Atualize o pacote `custom` com dois parâmetros: `city` e `country`.
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -390,7 +395,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   ```
   {: screen}
 
-2. Exiba os parâmetros no pacote **custom** e ação **identidy** e veja como a ação **identity** no pacote herda os parâmetros do pacote.
+2. Exiba os parâmetros no pacote `custom` e na ação `identity` e veja como a ação `identity` no pacote herda os parâmetros do pacote.
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -435,7 +440,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   ```
   {: screen}
 
-3. Chame a ação **identity** sem nenhum parâmetro para verificar se a ação realmente herda os parâmetros.
+3. Chame a ação `identity` sem nenhum parâmetro para verificar se a ação realmente herda os parâmetros.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -450,7 +455,7 @@ Para criar um pacote customizado com uma ação simples nele, tente o exemplo a 
   ```
   {: screen}
 
-4. Chame a ação **identity** com alguns parâmetros. Parâmetros de chamada são mesclados com os parâmetros do pacote; os parâmetros de chamada substituem os parâmetros do pacote.
+4. Chame a ação `identity` com alguns parâmetros. Parâmetros de chamada são mesclados com os parâmetros do pacote; os parâmetros de chamada substituem os parâmetros do pacote.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -497,7 +502,7 @@ Após as ações e os feeds que formam um pacote serem depuradas e testadas, o p
   ```
   {: screen}
 
-Outros usuários agora podem usar seu pacote **custom**, incluindo ligação com o pacote ou chamando diretamente uma ação no mesmo. Outros usuários devem saber os nomes completos do pacote para ligá-lo ou chamar ações nele. As ações e os feeds dentro de um pacote compartilhado são _públicos_. Se
+Outros usuários agora podem usar seu pacote `custom`, incluindo ligação com o pacote ou chamando diretamente uma ação no mesmo. Outros usuários devem saber os nomes completos do pacote para ligá-lo ou chamar ações nele. Ações e feeds dentro de um pacote compartilhado são _public_. Se
 o pacote for privado, então, todo o seu conteúdo também será privado.
 
 1. Obtenha uma descrição do pacote para mostrar os nomes completos do pacote e da ação.
@@ -513,4 +518,4 @@ o pacote for privado, então, todo o seu conteúdo também será privado.
   ```
   {: screen}
 
-  No exemplo anterior, você está trabalhando com o namespace **myNamespace** e esse namespace aparece no nome completo.
+  No exemplo anterior, você está trabalhando com o namespace `myNamespace` e esse namespace aparece no nome completo.

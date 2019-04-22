@@ -1,18 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, converting, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
-
+{:tip: .tip}
 # Watson: Text to Speech 패키지
 {: #openwhisk_catalog_watson_texttospeech}
+
+이 사전 설치된 패키지는 도쿄 지역에서는 사용할 수 없습니다. IAM 인증을 사용하여 설치 가능한 [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) 패키지를 참조하십시오.
+{: tip}
 
 `/whisk.system/watson-textToSpeech` 패키지는 Watson API를 호출하여 텍스트를 음성으로 변환하는 편리한 방법을 제공합니다.
 {: shortdesc}
@@ -24,13 +32,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-textToSpeech` |패키지 |username, password |텍스트를 음성으로 변환하기 위한 패키지 |
 |`/whisk.system/watson-textToSpeech/textToSpeech` |액션 |payload, voice, accept, encoding, username, password |텍스트를 오디오로 변환 |
 
-**참고**: `/whisk.system/watson` 패키지는 `/whisk.system/watson/textToSpeech` 액션을 포함하여 더 이상 사용되지 않습니다.
+**참고**: `/whisk.system/watson` 패키지는 `/whisk.system/watson/textToSpeech` 액션을 포함하여 더 이상 사용되지 않습니다. 대신 [설치 가능 {{site.data.keyword.texttospeechshort}} 패키지](/docs/openwhisk?topic=cloud-functions-text-to-speech-package)를 참조하십시오. 
 
 ## {{site.data.keyword.Bluemix_notm}}에서 Watson Text to Speech 패키지 설정
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk}}를 사용 중인 경우 패키지 바인딩이 {{site.data.keyword.Bluemix_notm}} Watson 서비스 인스턴스에 대해 자동으로 작성됩니다.
 
-1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://console.bluemix.net)에서 Watson Text to Speech 서비스 인스턴스를 작성하십시오.
+1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://cloud.ibm.com)에서 Watson Text to Speech 서비스 인스턴스를 작성하십시오.
 
   자신이 속한 {{site.data.keyword.Bluemix_notm}} 조직과 영역 및 서비스 인스턴스의 이름을 반드시 기억하십시오.
 
@@ -91,6 +99,6 @@ ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result 
 ```
 {
   "payload": "<base64 encoding of a .wav file>"
-  }
+}
 ```
 {: screen}

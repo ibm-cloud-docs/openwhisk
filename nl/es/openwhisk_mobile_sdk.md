@@ -1,24 +1,30 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # SDK móvil
 {: #openwhisk_mobile_sdk}
 
 OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar
-fácilmente desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk.
-
-El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
+desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk. El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
 {: shortdesc}
+
+
 
 ## Añadir el SDK a su app
 
@@ -127,8 +133,7 @@ La serie anterior a los dos puntos es la clave y la serie posterior a los dos pu
 
 ## Invocación de una acción de OpenWhisk
 
-Para invocar una acción remota, puede llamar `invokeAction` con el nombre de acción. Puede especificar el espacio de nombres al
-que pertenece la acción, o dejarlo en blanco para aceptar el espacio de nombres predeterminado. Utilice un diccionario para pasar parámetros a la acción, según sea necesario.
+Para invocar una acción remota, puede llamar `invokeAction` con el nombre de acción. Utilice un diccionario para pasar parámetros a la acción, según sea necesario.
 
 Por ejemplo:
 ```swift
@@ -149,8 +154,6 @@ do {
 }
 ```
 {: codeblock}
-
-En el ejemplo anterior, se invoca la acción `helloConsole` usando el espacio de nombres predeterminado.
 
 ## Activación de un desencadenante de OpenWhisk
 
@@ -218,7 +221,7 @@ whisk.baseURL = "http://localhost:8080"
 {: codeblock}
 
 En este ejemplo, se utiliza una instalación que se ejecuta en http://localhost:8080. Si no especifica baseUrl, el SDK móvil usa
-la instancia en ejecución en https://openwhisk.ng.bluemix.net.
+la instancia en ejecución en https://us-south.functions.cloud.ibm.com.
 
 Puede pasar una sesión NSURLSession personalizada en caso de que necesite gestión especial de red. Por ejemplo, podría tener su propia
 instalación de OpenWhisk que utilice certificados autofirmados:

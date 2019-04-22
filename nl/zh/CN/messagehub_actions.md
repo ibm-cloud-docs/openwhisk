@@ -1,19 +1,25 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: message hub, package, messages, events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # {{site.data.keyword.messagehub}} 包
 
-{: #openwhisk_catalog_message_hub}
+{: #catalog_message_hub}
 
 此包支持与 [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。
 {: shortdesc}
@@ -65,35 +71,20 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 
 ## 使用事件侦听消息
 
-有关如何使用 {{site.data.keyword.messagehub}} 中的触发器来侦听消息的详细信息，请参阅 [{{site.data.keyword.messagehub}} 事件源](./openwhisk_messagehub.html)主题，其中涵盖以下任务：
-* [创建用于侦听 {{site.data.keyword.messagehub}} 实例的触发器](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [在 {{site.data.keyword.Bluemix_notm}} 外部创建 {{site.data.keyword.messagehub}} 包的触发器](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [侦听消息](./openwhisk_messagehub.html#message_hub_listen)
-* [示例](./openwhisk_messagehub.html#examples)
+有关如何使用 {{site.data.keyword.messagehub}} 中的触发器来侦听消息的详细信息，请参阅 [{{site.data.keyword.messagehub}} 事件源](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub)主题，其中涵盖以下任务：
+* [创建用于侦听 {{site.data.keyword.messagehub}} 实例的触发器](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger)
+* [在 {{site.data.keyword.Bluemix_notm}} 外部创建 {{site.data.keyword.messagehub}} 包的触发器](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger_outside)
+* [侦听消息](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#message_hub_listen)
+* [示例](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#examples)
 
 ## 将消息生成到 {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-不推荐使用 `/messaging/messageHubProduce` 操作，该操作未来会除去。为了保持最佳性能，在将数据生成到 {{site.data.keyword.messagehub}}/Kafka 时，请将使用 `/messaging/messageHubProbate` 操作迁移为使用持久连接。
+不推荐使用 `/messaging/messageHubProduce` 操作，该操作未来会除去。东京区域中已除去该操作。为了保持最佳性能，在将数据生成到 {{site.data.keyword.messagehub}}/Kafka 时，请将使用 `/messaging/messageHubProbate` 操作迁移为使用持久连接。
 {: tip}
 
-如果要使用 {{site.data.keyword.openwhisk_short}} 操作来方便地将消息生成到 {{site.data.keyword.messagehub}}，您可以使用 `/messaging/messageHubProduce` 操作。此操作将采用以下参数：
-
-|名称|类型|描述|
-|---|---|---|
-|kafka_brokers_sasl|字符串的 JSON 数组|此参数是一组 `<host>:<port>` 字符串，包含 {{site.data.keyword.messagehub}} 实例中的代理程序。|
-|user|字符串|您的 {{site.data.keyword.messagehub}} 用户名。|
-|password|字符串|您的 {{site.data.keyword.messagehub}} 密码。|
-|topic|字符串|希望触发器侦听的主题。|
-|value|字符串|要生成的消息的值。|
-|key|字符串（可选）|要生成的消息的键。|
-
-前三个参数可使用 `ibmcloud fn package refresh` 自动绑定，请参阅以下使用所有必需参数调用操作的示例：
-```
-ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
-```
-{: pre}
+要了解有关生成消息的更多信息，请查看 [Event Streams 文档](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages)。
 
 ## 参考
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
+- [Apache Kafka](https://kafka.apache.org)

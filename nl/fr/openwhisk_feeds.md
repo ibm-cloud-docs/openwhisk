@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Création de flux de fournisseur d'événement
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ Il existe aux moins trois modèles d'architecture pour la création d'un flux : 
 ### Points d'ancrage
 Dans le modèle *Points d'ancrage*, un flux est configuré à l'aide d'une fonction de [webhook](https://en.wikipedia.org/wiki/Webhook) qui est exposée par un autre service.   Dans cette stratégie, un webhook est configuré sur un service externe afin d'envoyer des données directement à une adresse URL pour exécuter un déclencheur. Il s'agit de loin de la méthode la plus simple et la plus attrayante pour l'implémentation de flux à faible fréquence.
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### Interrogation
 Dans le modèle "Interrogation", une action {{site.data.keyword.openwhisk_short}} est définie de manière à interroger un noeud final régulièrement afin d'extraire de nouvelles données. Ce modèle est relativement facile à générer, mais la fréquence des événements est limitée par l'intervalle d'interrogation.
@@ -34,10 +40,9 @@ Dans le modèle "Interrogation", une action {{site.data.keyword.openwhisk_short}
 ### Connexions
 Dans le modèle "Connexions", un service distinct maintient une connexion permanente à une source de flux. L'implémentation reposant sur la connexion peut interagir avec un noeud final de service pour définir de longs intervalles d'interrogation ou configurer une notification push.
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## Différence entre un flux et un déclencheur
 
@@ -118,7 +123,7 @@ Etant donné que les actions {{site.data.keyword.openwhisk_short}} doivent être
 Le service fournisseur possède une API REST qui permet à l'*action de flux* {{site.data.keyword.openwhisk_short}} de contrôler le flux. Le service fournisseur agit comme un proxy entre le fournisseur d'événements et {{site.data.keyword.openwhisk_short}}. Lorsqu'il reçoit des événements d'un tiers, il les envoie à {{site.data.keyword.openwhisk_short}} en exécutant un déclencheur.
 
 Le flux *changes* de {{site.data.keyword.cloudant_short_notm}} en est un exemple canonique car il établit un service `cloudanttrigger`, qui fait office de médiateur entre les notifications {{site.data.keyword.cloudant_short_notm}} sur une connexion permanente et des déclencheurs {{site.data.keyword.openwhisk_short}}.
-<!-- TODO: add a reference to the open source implementation -->
+
 
 Le flux *alarm* est implémenté avec un modèle similaire.
 

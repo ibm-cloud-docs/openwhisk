@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -22,10 +27,10 @@ Apprenez à être à l'écoute des changements intervenant dans une base de donn
 | `/whisk.system/cloudant` | package | dbname, host, username, password | Utiliser une base de données Cloudant. |
 | `/whisk.system/cloudant/read` | action | dbname, id | Lire un document dans une base de données. |
 | `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Ecrire un document dans une base de données. |
-| `/whisk.system/cloudant/changes` | flux | dbname, filter, query_params, maxTriggers | Exécuter des événements déclencheurs en cas de modifications effectuées dans une base de données. |
+| `/whisk.system/cloudant/changes` | flux | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Exécuter des événements déclencheurs en cas de modifications effectuées dans une base de données. |
 {: shortdesc}
 
-Les sections suivantes vous guident pour configurer un package associé et utiliser des actions et des flux dans le package `/whisk.system/cloudant`. Pour plus d'informations sur la configuration de la base de données {{site.data.keyword.cloudant_short_notm}} et savoir comment y effectuer des opérations de lecture/écriture, voir [Actions {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).
+Les sections suivantes vous guident pour configurer un package associé et utiliser des actions et des flux dans le package `/whisk.system/cloudant`. Pour plus d'informations sur la configuration de la base de données {{site.data.keyword.cloudant_short_notm}} et savoir comment y effectuer des opérations de lecture/écriture, voir [Actions {{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions).
 
 ## Créez un déclencheur à l'aide de la fonction de filtrage
 
@@ -34,6 +39,10 @@ Vous pouvez utiliser le flux `changes` pour configurer un service afin d'exécut
 Les paramètres utilisés dans cet exemple sont les suivants :
 
 **dbname** : nom de la base de données {{site.data.keyword.cloudant_short_notm}} _(obligatoire)_.
+
+**iamApiKey** : clé d'API IAM pour la base de données Cloudant. Si elle est indiquée, elle sera utilisée comme données d'identification au lieu du nom d'utilisateur et du mot de passe _(facultatif)_. 
+
+**iamUrl** : URL du service de jeton IAM qui est utilisée quand `iamApiKey` est spécifié. Par défaut, il s'agit de `https://iam.bluemix.net/identity/token` _(facultatif)_.  
 
 **maxTriggers** : l'exécution de déclencheurs s'arrête une fois cette limite atteinte _(facultatif)_. Par défaut, cette valeur est infinie.
 
@@ -84,7 +93,7 @@ Les paramètres utilisés dans cet exemple sont les suivants :
 
 7. Observez que, compte tenu de la fonction de filtrage et des paramètres de requête, les nouvelles activations du déclencheur **myCloudantTrigger** pour chaque modification de document interviennent uniquement si le statut du document indique **new**.
 
-Si vous ne parvenez pas à observer de nouvelles activations, voir la rubrique [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) qui illustre comment lire et écrire dans une base de données {{site.data.keyword.cloudant_short_notm}}. Testez les étapes de lecture et d'écriture pour vérifier que vos données d'identification {{site.data.keyword.cloudant_short_notm}} sont correctes.
+Si vous ne parvenez pas à observer de nouvelles activations, voir la rubrique [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions) qui illustre comment lire et écrire dans une base de données {{site.data.keyword.cloudant_short_notm}}. Testez les étapes de lecture et d'écriture pour vérifier que vos données d'identification {{site.data.keyword.cloudant_short_notm}} sont correctes.
 {: tip}
 
 ## Structure de données d'un événement déclencheur

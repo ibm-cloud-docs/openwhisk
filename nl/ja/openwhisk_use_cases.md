@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 一般的なユース・ケース
 {: #openwhisk_common_use_cases}
@@ -47,18 +53,18 @@ lastupdated: "2018-06-22"
 
 従来のサーバー・アーキテクチャーを使用する IoT アプリケーションを実装することは可能です。 ただし、多くの場合、異なるサービスとデータ・ブリッジの組み合わせには、ハイパフォーマンスで柔軟なパイプラインが必要となります。 それは、IoT デバイスからクラウド・ストレージ、分析プラットフォームまでにわたります。 特定のソリューション・アーキテクチャーを実装して微調整するにためにプログラム可能であることが必要であっても、事前構成されているブリッジにはそれが欠けていることがよくあります。 パイプラインは多様で、一般的に (特に IoT では) データ融合に関する標準化がないことから、パイプラインでカスタムのデータ変換を必要とする環境がよく見受けられます。 このようなカスタム・データ変換は、フォーマット変換、フィルタリング、または拡張に適用されます。 {{site.data.keyword.openwhisk_short}} は、そういった変換を「サーバーレス」な方法で実装するのに適した優れたツールであり、弾力性のある完全管理のクラウド・プラットフォームでカスタム・ロジックがホストされます。
 
-{{site.data.keyword.openwhisk_short}}、NodeRed、Cognitive、およびその他のサービスを使用する、以下のサンプル IoT アプリケーションを参照してください。[Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt)
+{{site.data.keyword.openwhisk_short}}、NodeRed、Cognitive、およびその他のサービスを使用する、以下のサンプル IoT アプリケーションを参照してください。[Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c)
 
 ![IoT ソリューション・アーキテクチャーの例](images/IoT_solution_architecture_example.png)
 
 ## API バックエンド
 {: #openwhisk_api_backend}
 
-サーバーレス・コンピューティング・プラットフォームは、サーバーなしで API を素早く作成する方法を開発者に提供します。 {{site.data.keyword.openwhisk_short}} では、アクションに対する REST API の自動生成がサポートされます。 {{site.data.keyword.openwhisk_short}} の[試験的フィーチャー](./openwhisk_apigateway.html)を使用すると、{{site.data.keyword.openwhisk_short}} API ゲートウェイを介して、アクションの許可 API キーなしで、POST 以外の HTTP メソッドを使用してアクションを起動することができます。 この機能は、API を外部利用者に公開するだけでなく、マイクロサービス・アプリケーションの作成にも役立ちます。
+サーバーレス・コンピューティング・プラットフォームは、サーバーなしで API を素早く作成する方法を開発者に提供します。 {{site.data.keyword.openwhisk_short}} では、アクションに対する REST API の自動生成がサポートされます。 [{{site.data.keyword.openwhisk_short}} フィーチャー](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway)を使用すると、{{site.data.keyword.openwhisk_short}} API ゲートウェイを介して、アクションの許可 API キーなしで、POST 以外にも HTTP メソッドを使用してアクションを呼び出すことができます。この機能は、API を外部利用者に公開するだけでなく、マイクロサービス・アプリケーションの作成にも役立ちます。
 
 さらに、{{site.data.keyword.openwhisk_short}} アクションは、適した API 管理ツール ([IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) など) に接続できます。 他のユース・ケースと同様に、スケーラビリティーおよび他の QoS (Qualities of Services) に関するすべての考慮事項が当てはまります。
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) は、REST API を通して {{site.data.keyword.openwhisk_short}} アクションを使用するサンプル・アプリです。
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting) は、REST API を通して {{site.data.keyword.openwhisk_short}} アクションを使用するサンプル・アプリです。
 
 [API バックエンドとしてのサーバーレスの使用](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples)の説明を含む例を参照してください。
 

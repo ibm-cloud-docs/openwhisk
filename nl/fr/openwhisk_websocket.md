@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-16"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: websocket, functions, actions, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Package WebSocket
 {: #openwhisk_catalog_websocket}

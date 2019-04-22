@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson：Speech to Text 套件
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+在東京地區無法使用此預先安裝的套件。請參閱使用 IAM 鑑別可安裝的 [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) 套件。
+{: tip}
 
 `/whisk.system/watson-speechToText` 套件提供一種簡便的方式來呼叫要將語音轉換為文字的 Watson API。
 {: shortdesc}
@@ -24,13 +33,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-speechToText` |套件|username、password|將語音轉換為文字的套件|
 |`/whisk.system/watson-speechToText/speechToText` |動作|payload、content_type、encoding、username、password、continuous、inactivity_timeout、interim_results、keywords、keywords_threshold、max_alternatives、model、timestamps、watson-token、word_alternatives_threshold、word_confidence、X-Watson-Learning-Opt-Out|將音訊轉換為文字|
 
-**附註**：已淘汰套件 `/whisk.system/watson`（包括 `/whisk.system/watson/speechToText` 動作）。
+**附註**：已淘汰套件 `/whisk.system/watson`（包括 `/whisk.system/watson/speechToText` 動作）。請改為參閱 [{{site.data.keyword.speechtotextshort}} 套件](/docs/openwhisk?topic=cloud-functions-speech-to-text-package)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中設定 Watson Speech to Text 套件
 
 如果您是從 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，則會自動為 {{site.data.keyword.Bluemix_notm}} Watson 服務實例建立套件連結。
 
-1. 在 {{site.data.keyword.Bluemix_notm}} [儀表板](http://console.ng.Bluemix.net)中，建立 Watson Speech to Text 服務實例。
+1. 在 {{site.data.keyword.Bluemix_notm}} [儀表板](http://cloud.ibm.com)中，建立 Watson Speech to Text 服務實例。
 
   請務必記住服務實例名稱，以及您所在的 {{site.data.keyword.Bluemix_notm}} 組織及空間。
 

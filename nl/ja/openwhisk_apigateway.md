@@ -1,29 +1,36 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2019
+lastupdated: "2019-04-04"
+
+keywords: serverless, rest api, gateway, web actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # サーバーレス REST API の作成
 {: #openwhisk_apigateway}
 
-API を使用して、{{site.data.keyword.openwhisk}} アクションを直接管理します。API ゲートウェイは、[Web アクション](./openwhisk_webactions.html)に対するプロキシーとして機能し、HTTP メソッド・ルーティング、クライアント ID と秘密、速度制限、CORS、API 使用量の表示、応答ログの表示、および API 共有ポリシーを提供します。
+API を使用して、{{site.data.keyword.openwhisk}} アクションを直接管理します。 API ゲートウェイは、[Web アクション](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)に対するプロキシーとして機能し、HTTP メソッド・ルーティング、クライアント ID と秘密、速度制限、CORS、API 使用量の表示、応答ログの表示、および API 共有ポリシーを提供します。
 {: shortdesc}
 
-API 管理について詳しくは、[API 管理の資料](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis)をお読みください。
+API 管理について詳しくは、[API 管理の資料](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)をお読みください。
+
+
 
 ## 最初の API の作成
 {: #create_cli_api}
 
-始めに、[{{site.data.keyword.openwhisk_short}} CLI プラグイン](bluemix_cli.html)をインストールします。
+始めに、[{{site.data.keyword.openwhisk_short}} CLI プラグイン](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)をインストールします。
 
 1. 以下のコードを `hello.js` という名前の JavaScript ファイルに保存します。
   ```javascript
@@ -33,7 +40,7 @@ API 管理について詳しくは、[API 管理の資料](/docs/api-management/
   ```
   {: codeblock}
 
-2. 作成したファイルを使用して、`hello` という名前の Web アクションを作成します。**注:** 必ず、フラグ `--web true` を追加してください。
+2. 作成したファイルを使用して、`hello` という名前の Web アクションを作成します。 **注:** 必ず、フラグ `--web true` を追加してください。
   ```
   ibmcloud fn action create hello hello.js --web true
   ```
@@ -74,14 +81,14 @@ API 管理について詳しくは、[API 管理の資料](/docs/api-management/
   ```
   {: screen}
 
-Web アクション `hello` が呼び出され、照会パラメーターにパラメーター **name** を含む JSON オブジェクトが返されます。パラメーターは、単純な照会パラメーターを使用してアクションに渡すことも、要求本文を使用して渡すこともできます。 Web アクションは、{{site.data.keyword.openwhisk_short}} 許可 API キーを使用せずに、アクションをパブリックに呼び出すことができます。
+Web アクション `hello` が呼び出され、照会パラメーターにパラメーター **name** を含む JSON オブジェクトが返されます。 パラメーターは、単純な照会パラメーターを使用してアクションに渡すことも、要求本文を使用して渡すこともできます。 Web アクションは、認証を使用せずに、アクションをパブリックに呼び出すことができます。
 
 ## HTTP 応答の完全な制御の使用
 {: #full_control}
 
 `--response-type` フラグは、API ゲートウェイによってプロキシー処理される Web アクションのターゲット URL を制御します。 例えば、`--response-type json` フラグを使用すると、アクションの完全な結果が JSON フォーマットで返され、**Content-Type** ヘッダーが自動的に `application/json` に設定されます。
 
-本文で異なるコンテンツ・タイプを返すには、**statusCode** や **headers** などの HTTP 応答プロパティーを完全に制御します。`--response-type http` フラグを使用して、`http` 拡張によって Web アクションのターゲット URL を構成することができます。`http` 拡張を使用して Web アクションの戻りに準拠するようにアクションのコードを変更するか、シーケンスにアクションを含めてその結果を新規アクションに渡すことができます。その後、新規アクションで結果を変換し、HTTP 応答として適切なフォーマット設定になるようにすることができます。 応答タイプおよび Web アクション拡張について詳しくは、[Web アクション](./openwhisk_webactions.html)の資料を参照してください。
+本文で異なるコンテンツ・タイプを返すには、**statusCode** や **headers** などの HTTP 応答プロパティーを完全に制御します。 `--response-type http` フラグを使用して、`http` 拡張子を使用する Web アクションのターゲット URL を構成することができます。 `http` 拡張子を使用する Web アクションの戻りに準拠するようにアクションのコードを変更するか、シーケンスにアクションを含めてその結果を新規アクションに渡すことができます。 その後、新規アクションで結果を変換し、HTTP 応答として適切なフォーマット設定になるようにすることができます。 応答タイプおよび Web アクション拡張について詳しくは、[Web アクション](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)の資料を参照してください。
 
 1. `hello.js` アクションのコードを変更して、JSON プロパティー `body`、`statusCode`、および `headers` を返すようにします。
   ```javascript
@@ -124,7 +131,7 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
 ## 複数の Web アクションの公開
 {: #multiple_web_actions}
 
-複数の Web アクションを公開して、アプリケーション・バックエンドを実装することができます。例えば、ブック・クラブ用の一連のアクションを公開するには、以下のような一連のアクションを使用して、ブック・クラブ用のバックエンドを実装します。
+複数の Web アクションを公開して、アプリケーション・バックエンドを実装することができます。 例えば、ブック・クラブ用の一連のアクションを公開するには、以下のような一連のアクションを使用して、ブック・クラブ用のバックエンドを実装します。
 
 | アクション | HTTP メソッド | 説明 |
 | ----------- | ----------- | ------------ |
@@ -133,7 +140,7 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
 | putBooks    | PUT | 本の詳細を更新 |
 | deleteBooks | DELETE | 本を削除 |
 
-この例では、API はパス・パラメーターを使用して定義されます。 パス・パラメーターを使用する場合、API には応答タイプ `http` が定義される必要があります。 パスの値 (基本パスで始まり、実際のパス・パラメーター値を含む) は、アクションの JSON パラメーターの `__ow_path` フィールドで使用できます。 HTTP コンテキスト・フィールドについて詳しくは、[Web アクションの HTTP コンテキスト](./openwhisk_webactions.html#http-context)の資料を参照してください。
+この例では、API はパス・パラメーターを使用して定義されます。 パス・パラメーターを使用する場合、API には応答タイプ `http` が定義される必要があります。 パスの値 (基本パスで始まり、実際のパス・パラメーター値を含む) は、アクションの JSON パラメーターの `__ow_path` フィールドで使用できます。 HTTP コンテキスト・フィールドについて詳しくは、[Web アクションの HTTP コンテキスト](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#http-context)の資料を参照してください。
 
 このブック・クラブ Web アクションの例を試すには、以下のようにします。
 
@@ -147,7 +154,7 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
   ```
   {: pre}
 
-  基本パス `/club` を使用して公開されている最初のアクションには、`Book Club` という名前のラベルが付けられています。これで、`/club` の下に公開されるその他すべてのアクションが、`Book Club` に関連付けられます。
+  基本パス `/club` を使用して公開されている最初のアクションには、`Book Club` という名前のラベルが付けられています。 これで、`/club` の下に公開されるその他すべてのアクションが、`Book Club` に関連付けられます。
 
 2. 公開されているすべての `Book Club` アクションをリストします。
   ```
@@ -219,7 +226,7 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
   ```
   {: screen}
 
-5. `deleteBooks` アクションに対する HTTP DELETE 呼び出しを使用して、特定のブックを削除します。この例の場合、`deleteBooks` アクションの `__ow_path` フィールド値は、`/club/books/978-0596517748` です。ここで、`978-0596517748` はパスの `{isbn}` の実際の値です。
+5. `deleteBooks` アクションに対する HTTP DELETE 呼び出しを使用して、特定のブックを削除します。 この例の場合、`deleteBooks` アクションの `__ow_path` フィールド値は、`/club/books/978-0596517748` です。ここで、`978-0596517748` はパスの `{isbn}` の実際の値です。
   ```bash
   curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
   ```
@@ -230,7 +237,7 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
 
 構成をエクスポートまたはインポートするには、ブック・クラブの例を引き続き使用します。
 
-1. `Book Club` API を `club-swagger.json` という名前のファイルにエクスポートします。ファイルを入力として使用して API を再作成するための基盤として、このファイルを使用できます。
+1. `Book Club` API を `club-swagger.json` という名前のファイルにエクスポートします。 ファイルを入力として使用して API を再作成するための基盤として、このファイルを使用できます。
   ```
   ibmcloud fn api get "Book Club" > club-swagger.json
   ```
@@ -293,11 +300,11 @@ Web アクション `hello` が呼び出され、照会パラメーターにパ�
 ## 構成の変更
 {: #modify_config}
 
-構成を作成した後、{{site.data.keyword.openwhisk_short}} ダッシュボードの[**「API」タブ**](https://console.bluemix.net/openwhisk/apimanagement) を使用して、以下の方法で構成を変更できます。
+構成を作成した後、{{site.data.keyword.openwhisk_short}} ダッシュボードの[**「API」タブ**](https://cloud.ibm.com/openwhisk/apimanagement) を使用して、以下の方法で構成を変更できます。
 
-* 一連の {{site.data.keyword.openwhisk_short}} アクションをラップする [{{site.data.keyword.openwhisk_short}} API を作成](https://console.bluemix.net/openwhisk/apimanagement)します。
-* API セキュリティー・ポリシーおよび速度制限ポリシーを適用することで、[API を保護](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)します。
-* API 使用量統計を表示し、応答ログを確認することで、[トラフィックを管理](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)します。
-* API を {{site.data.keyword.Bluemix_notm}} 内部および外部の開発者と[ソーシャル化および共有](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api)します。
+* 一連の {{site.data.keyword.openwhisk_short}} アクションをラップする [{{site.data.keyword.openwhisk_short}} API を作成](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)します。
+* API セキュリティー・ポリシーおよび速度制限ポリシーを適用することで、[API を保護](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)します。
+* API 使用量統計を表示し、応答ログを確認することで、[トラフィックを管理](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)します。
+* API を {{site.data.keyword.Bluemix_notm}} 内部および外部の開発者と[ソーシャル化および共有](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis)します。
 
-構成の更新が完了したら、定義ファイルを JSON 形式でダウンロードし、CLI を使用してそれを再インポートできます。 構成のダウンロードとインポートは、例えば、継続的な統合およびデプロイメント (CICD) パイプラインでの無人デプロイメントなどに役立ちます。また、UI を使用して API 定義ファイルをアップロードおよび再インポートするオプションもあります。
+構成の更新が完了したら、定義ファイルを JSON 形式でダウンロードし、CLI を使用してそれを再インポートできます。 構成のダウンロードとインポートは、例えば、継続的な統合およびデプロイメント (CICD) パイプラインでの無人デプロイメントなどに役立ちます。 また、UI を使用して API 定義ファイルをアップロードおよび再インポートするオプションもあります。

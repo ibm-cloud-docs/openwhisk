@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Package Watson : Speech to Text
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+Ce package préinstallé n'est pas disponible dans la région Tokyo. Veuillez consulter le package installable [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) en utilisant l'authentification IAM.
+{: tip}
 
 Le package `/whisk.system/watson-speechToText` permet d'appeler diverses API Watson pour convertir des paroles en texte.
 {: shortdesc}
@@ -24,13 +33,13 @@ Le package inclut les actions ci-dessous.
 | `/whisk.system/watson-speechToText` | package | username, password | Package pour la conversion de paroles en texte |
 | `/whisk.system/watson-speechToText/speechToText` | action | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convertir le contenu audio en texte |
 
-**Remarque** : Le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/speechToText`.
+**Remarque** : Le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/speechToText`. Consultez plutôt le [package {{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=cloud-functions-speech-to-text-package). 
 
 ## Configuration du package Watson Speech to Text dans {{site.data.keyword.Bluemix_notm}}
 
 Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Bluemix_notm}}, les liaisons de package sont automatiquement créées pour vos instances de service {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Créez une instance de service Watson Speech to Text dans votre [tableau de bord](http://console.ng.Bluemix.net) {{site.data.keyword.Bluemix_notm}}.
+1. Créez une instance de service Watson Speech to Text dans votre [tableau de bord](http://cloud.ibm.com) {{site.data.keyword.Bluemix_notm}}.
 
   Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
 

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-27"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: weather package, forecast, functions, serverless 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Weather 패키지
 {: #openwhisk_catalog_weather}
@@ -24,13 +30,13 @@ lastupdated: "2018-03-27"
 | `/whisk.system/weather` |패키지 |username, password |{{site.data.keyword.Bluemix_notm}} API에 대한 Weather Company Data의 서비스  |
 |`/whisk.system/weather/forecast` |액션 |latitude, longitude, timePeriod |지정된 기간에 대한 예보|
 
-`username` 및 `password` 값으로 패키지 바인딩을 작성하도록 제안합니다. 이 방법을 사용하면 패키지에서 액션을 호출할 때마다 신임 정보를 지정할 필요가 없습니다.
+`username` 및 `password` 값으로 패키지 바인딩을 작성하도록 제안합니다. 이 방법을 사용하면 패키지에서 액션을 호출할 때마다 인증 정보를 지정할 필요가 없습니다.
 
 ## {{site.data.keyword.Bluemix_notm}}에서 Weather 패키지 설정
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk}}를 사용 중인 경우 패키지 바인딩이 {{site.data.keyword.Bluemix_notm}} Weather 서비스 인스턴스에 대해 자동으로 작성됩니다.
 
-1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://console.bluemix.net)에서 Weather Company Data 서비스 인스턴스를 작성하십시오.
+1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://cloud.ibm.com)에서 Weather Company Data 서비스 인스턴스를 작성하십시오.
 
   자신이 속한 {{site.data.keyword.Bluemix_notm}} 조직과 영역 및 서비스 인스턴스의 이름을 반드시 기억하십시오.
 
@@ -64,7 +70,7 @@ lastupdated: "2018-03-27"
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk_short}}를 사용하지 않거나 {{site.data.keyword.Bluemix_notm}} 외부에서 Weather Company Data 서비스를 설정하려는 경우 Weather Company Data 서비스에 대한 패키지 바인딩을 수동으로 작성해야 합니다. Weather Company Data 서비스 사용자 이름 및 비밀번호가 반드시 필요합니다.
 
-Weather 서비스에 대해 구성된 패키지 바인딩을 작성하십시오. 
+Weather 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
 ```
 ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME -p password MYPASSWORD
 ```

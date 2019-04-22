@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, translator, cognitive, translating text, language
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Package Watson : Translator
 {: #openwhisk_catalog_watson_translator}
+
+Ce package préinstallé n'est plus disponible dans aucune région. Veuillez consulter le package installable [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) en utilisant la nouvelle API V3 avec l'authentification IAM.
+{: tip}
 
 Le package `/whisk.system/watson-translator` permet d'appeler diverses API Watson pour la traduction.
 {: shortdesc}
@@ -27,13 +36,13 @@ Le package inclut les actions ci-dessous.
 
 **Remarque** : Le package
 `/whisk.system/watson` est obsolète, y compris les actions
-`/whisk.system/watson/translate` et `/whisk.system/watson/languageId`.
+`/whisk.system/watson/translate` et `/whisk.system/watson/languageId`. Consultez plutôt le [package installable {{site.data.keyword.languagetranslatorshort}}](/docs/openwhisk?topic=cloud-functions-language-translator-package). 
 
 ## Configuration du package Watson Translator dans {{site.data.keyword.Bluemix_notm}}
 
 Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Bluemix_notm}}, les liaisons de package sont automatiquement créées pour vos instances de service {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Créez une instance de service Watson Translator dans votre [tableau de bord](http://console.bluemix.net) {{site.data.keyword.Bluemix_notm}}. Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
+1. Créez une instance de service Watson Translator dans votre [tableau de bord](http://cloud.ibm.com) {{site.data.keyword.Bluemix_notm}}. Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
 
 2. Actualisez les packages dans votre espace de nom. L'actualisation crée automatiquement une liaison de package pour l'instance de service Watson que vous avez créée.
   ```

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 平台体系结构
 {: #openwhisk_about}
@@ -23,21 +29,21 @@ lastupdated: "2018-07-13"
 了解 {{site.data.keyword.openwhisk_short}} 背后技术的一些基本概念：
 
 <dl>
-<dt>操作</dt>
-<dd>[操作](openwhisk_actions.html)是用于执行一个特定任务的一段代码。可以使用所选语言来编写操作，例如在 Docker 容器中嵌入的 JavaScript 或 Swift 代码或者定制二进制代码小型片段。您以源代码或 Docker 映像形式向 Cloud Functions 提供操作。
+  <dt>操作</dt>
+    <dd>[操作](/docs/openwhisk?topic=cloud-functions-openwhisk_actions)是用于执行一个特定任务的一段代码。可以使用所选语言来编写操作，例如在 Docker 容器中嵌入的 JavaScript 或 Swift 代码或者定制二进制代码小型片段。您以源代码或 Docker 映像形式向 Cloud Functions 提供操作。
 <br><br>使用 {{site.data.keyword.openwhisk_short}} API、CLI 或 iOS SDK 来直接调用操作时，操作将正常工作。操作还可以使用触发器自动响应来自 {{site.data.keyword.Bluemix_notm}} 服务和第三方服务的事件。</dd>
-<dt>序列</dt>
-<dd>可以将一组操作链接成一个[序列](openwhisk_actions.html#openwhisk_create_action_sequence)，而不必编写任何代码。序列是按顺序调用的操作链，其中一个操作的输出作为输入传递给下一个操作。这允许您将现有操作组合在一起，以便快速、轻松地复用。然后，序列可以像操作一样，通过 REST API 或自动进行调用以响应事件。</dd>
-<dt>事件</dt>
-<dd>事件的示例包括对数据库记录进行更改、IoT 传感器读数超过特定温度、新代码落实到 GitHub 存储库，或者从 Web 或移动应用程序发起简单 HTTP 请求。来自外部和内部事件源的事件将通过触发器进行传递，并且规则允许操作对这些事件做出反应。</dd>
-<dt>触发器</dt>
-<dd>[触发器](openwhisk_triggers_rules.html#openwhisk_triggers_create)是为某类事件指定的通道。触发器是指要对特定类型的事件做出反应的声明，事件可来自用户或来自事件源。</dd>
-<dt>规则</dt>
-<dd>[规则](openwhisk_triggers_rules.html#openwhisk_rules_use)将触发器与操作关联在一起。每次触发器触发时，规则都会将触发器事件作为输入，并调用关联的操作。使用相应的规则集时，可以通过单个触发器事件来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。</dd>
-<dt>订阅源</dt>
-<dd>通过[订阅源](openwhisk_feeds.html#openwhisk_feeds)，可以方便地配置外部事件源来触发 {{site.data.keyword.openwhisk_short}} 可使用的触发器事件。例如，Git 订阅源可针对 Git 存储库中的每次落实，触发触发器事件。</dd>
-<dt>包</dt>
-<dd>可以随包添加与服务和事件提供程序的集成。[包](openwhisk_packages.html)是捆绑在一起的一组订阅源和操作。订阅源是一段代码，用于配置外部事件源以触发触发器事件。例如，使用 {{site.data.keyword.cloudant}} 更改订阅源创建的触发器可将服务配置为每次修改文档或将文档添加到 {{site.data.keyword.cloudant_short_notm}} 数据库时都触发该触发器。包中的操作表示可复用逻辑，服务提供者可提供此逻辑，以便开发者不仅能够将服务用作事件源，还能调用该服务的 API。<br><br>通过包的现有目录，能够迅速借助多个有用的功能来增强应用程序，也能访问生态系统中的外部服务。具有 {{site.data.keyword.openwhisk_short}} 包的外部服务的示例包括 {{site.data.keyword.cloudant_short_notm}}、The Weather Company、Slack 和 GitHub。</dd>
+  <dt>序列</dt>
+    <dd>可以将一组操作链接成一个[序列](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence)，而不必编写任何代码。序列是按顺序调用的操作链，其中一个操作的输出作为输入传递给下一个操作。这允许您将现有操作组合在一起，以便快速、轻松地复用。然后，序列可以像操作一样，通过 REST API 或自动进行调用以响应事件。</dd>
+  <dt>事件</dt>
+    <dd>事件的示例包括对数据库记录进行更改、IoT 传感器读数超过特定温度、新代码落实到 GitHub 存储库，或者从 Web 或移动应用程序发起简单 HTTP 请求。来自外部和内部事件源的事件将通过触发器进行传递，并且规则允许操作对这些事件做出反应。</dd>
+  <dt>触发器</dt>
+    <dd>[触发器](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create)是为某类事件指定的通道。触发器是指要对特定类型的事件做出反应的声明，事件可来自用户或来自事件源。</dd>
+  <dt>规则</dt>
+    <dd>[规则](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use)将触发器与操作关联在一起。每次触发器触发时，规则都会将触发器事件作为输入，并调用关联的操作。使用相应的规则集时，可以通过单个触发器事件来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。</dd>
+  <dt>订阅源</dt>
+    <dd>通过[订阅源](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds)，可以方便地配置外部事件源来触发 {{site.data.keyword.openwhisk_short}} 可使用的触发器事件。例如，Git 订阅源可针对 Git 存储库中的每次落实，触发触发器事件。</dd>
+  <dt>包</dt>
+    <dd>可以随包添加与服务和事件提供程序的集成。[包](/docs/openwhisk?topic=cloud-functions-openwhisk_packages)是捆绑在一起的一组订阅源和操作。订阅源是一段代码，用于配置外部事件源以触发触发器事件。例如，使用 {{site.data.keyword.cloudant}} 更改订阅源创建的触发器可将服务配置为每次修改文档或将文档添加到 {{site.data.keyword.cloudant_short_notm}} 数据库时都触发该触发器。包中的操作表示可复用逻辑，服务提供者可提供此逻辑，以便开发者不仅能够将服务用作事件源，还能调用该服务的 API。<br><br>通过包的现有目录，能够迅速借助多个有用的功能来增强应用程序，也能访问生态系统中的外部服务。具有 {{site.data.keyword.openwhisk_short}} 包的外部服务的示例包括 {{site.data.keyword.cloudant_short_notm}}、The Weather Company、Slack 和 GitHub。</dd>
 </dl>
 
 ## {{site.data.keyword.openwhisk_short}} 的工作方式
@@ -54,7 +60,7 @@ lastupdated: "2018-07-13"
 
 在 OpenWhisk 中后台发生了什么？
 
-OpenWhisk 是一个开放式源代码项目，组合了多个组件，包括 Nginx、Kafka、Docker 和 CouchDB，构成了基于事件的无服务器编程服务。
+OpenWhisk 是一个开放式源代码项目，组合了多个组件（包括 Nginx、Kafka、Docker 和 CouchDB）以构成基于事件的无服务器编程服务。
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="OpenWhisk 中的后台内部处理流程" style="width:550px; border-style: none"/>
 
@@ -155,11 +161,11 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### 总结
 
-您已经了解了简单的 **ibmcloud fn action 调用的 myAction** 是如何经历 {{site.data.keyword.openwhisk_short}} 系统的不同阶段的。该系统本身主要只包含两个定制组件：**控制器**和**调用者**。其他一切都是现成的，是开放式源代码社团中的许多人员开发的。
+您已经了解了简单的 **ibmcloud fn action 调用的 myAction** 是如何经历 {{site.data.keyword.openwhisk_short}} 系统的不同阶段的。该系统本身主要只包含两个定制组件：**控制器**和**调用者**。其他一切都是现成的，是开放式源代码社区中的许多人员开发的。
 
 可以在以下主题中找到有关 {{site.data.keyword.openwhisk_short}} 的更多信息：
 
-* [实体名称](./openwhisk_reference.html#openwhisk_entities)
-* [操作语义](./openwhisk_reference.html#openwhisk_semantics)
-* [限制](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 参考](https://console.bluemix.net/apidocs/functions)
+* [实体名称](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [操作语义](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
+* [限制](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [REST API 参考](/apidocs/functions)

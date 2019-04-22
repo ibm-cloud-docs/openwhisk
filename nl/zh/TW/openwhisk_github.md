@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-16"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: github, actions, trigger, event
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # GitHub 事件來源
 {: #openwhisk_catalog_github}
+
+在東京地區無法使用此預先安裝的套件。
+{: tip}
 
 `/whisk.system/github` 套件提供一種簡便的方來使用 [GitHub API](https://developer.github.com/)。
 {: shortdesc}

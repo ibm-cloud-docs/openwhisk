@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson assistant, openwhisk, functions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -28,8 +33,7 @@ clicando no nome da entidade.
 | [`assistant-v1`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html) | pacote | username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url,  | Trabalhe com o serviço  {{site.data.keyword.conversationshort}} . |
 | [message](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#message) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    input, alternate_intents, context, entities, intents, output,     nodes_visited_details,  | Obtenha a resposta para a entrada do usuário. |
 | [create-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-workspace) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, description, language, intents, entities, dialog_nodes, counterexamples, metadata, learning_opt_out,  | Criar uma área de trabalho. |
-| [delete-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-workspace) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,  |
-Excluir uma área de trabalho. |
+| [delete-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-workspace) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,  | Excluir uma área de trabalho. |
 | [get-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-workspace) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     export,     include_audit,  | Obtenha informações sobre uma área de trabalho. |
 | [list-workspaces](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-workspaces) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    page_limit,     include_count,     sort,     cursor,     include_audit,  | Listar áreas de trabalho. |
 | [update-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-workspace) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    name, description, language, intents, entities, dialog_nodes, counterexamples, metadata, learning_opt_out,     append,  | Atualizar uma área de trabalho. |
@@ -40,18 +44,15 @@ Excluir uma área de trabalho. |
 | [update-intent](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-intent) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,    new_intent, new_description, new_examples,  | Atualizar uma intenção. |
 | [create-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-example) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, intent, text,  | Crie um exemplo de entrada do usuário. |
 | [delete-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-example) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, intent, text,  | Exclua um exemplo de entrada do usuário. |
-| [get-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-example) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,     text,     include_audit,  |
-Obter informações sobre um exemplo de entrada do usuário. |
-| [list-examples](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-examples) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,     page_limit,     include_count,     sort,     cursor,     include_audit,  |
-Listar exemplos de entrada do usuário. |
+| [get-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-example) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,     text,     include_audit,  | Obter informações sobre um exemplo de entrada do usuário. |
+| [list-examples](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-examples) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,     page_limit,     include_count,     sort,     cursor,     include_audit,  | Listar exemplos de entrada do usuário. |
 | [update-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-example) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     intent,     text,    new_text,  | Atualize um exemplo de entrada do usuário. |
 | [create-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-counterexample) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, text,  | Crie um contra-exemplo. |
 | [delete-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-counterexample) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, text,  | Exclua um contra-exemplo. |
 | [get-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-counterexample) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     text,     include_audit,  | Obtenha informações sobre um contra-exemplo. |
 | [list-counterexamples](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-counterexamples) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, page_limit, include_count, sort, cursor, include_audit,  | Listar contra-exemplos. |
 | [update-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-counterexample) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     text,    new_text,  | Atualize um contra-exemplo. |
-| [create-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-entity) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    entity, description, metadata, values, fuzzy_match,  |
-Criar uma entidade. |
+| [create-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-entity) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    entity, description, metadata, values, fuzzy_match,  | Criar uma entidade. |
 | [delete-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-entity) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,  | Excluir uma entidade. |
 | [get-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-entity) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     export,     include_audit,  | Obtenha informações sobre uma entidade. |
 | [list-entities](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-entities) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, export, page_limit, include_count, sort, cursor, include_audit,  | Listar entidades. |
@@ -63,8 +64,7 @@ Criar uma entidade. |
 | [update-value](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-value) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     value,    new_value, new_metadata, new_type, new_synonyms, new_patterns,  | Atualize um valor de entidade. |
 | [create-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-synonym) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, entity, value, synonym,  | Incluir um sinônimo de valor de entidade. |
 | [delete-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-synonym) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, workspace_id, entity, value, synonym,  | Exclua um sinônimo de valor de entidade. |
-| [get-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-synonym) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     value,     synonym,     include_audit,  |
-Obter um sinônimo de valor de entidade. |
+| [get-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-synonym) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     value,     synonym,     include_audit,  | Obter um sinônimo de valor de entidade. |
 | [list-synonyms](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-synonyms) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     value,     page_limit,     include_count,     sort,     cursor,     include_audit,  | Listar sinônimos de valor de entidade. |
 | [update-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-synonym) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,     entity,     value,     synonym,    new_synonym,  | Atualizar um sinônimo de valor da entidade. |
 | [create-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-dialog-node) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    workspace_id,    dialog_node, description, conditions, parent, previous_sibling, output, context, metadata, next_step, actions, title, node_type, event_name, variable, digress_in, digress_out, digress_out_slots,  | Crie um nó de diálogo. |
@@ -77,18 +77,16 @@ Obter um sinônimo de valor de entidade. |
 | [delete-user-data](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-user-data) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, customer_id,  | Exclua os dados rotulados. |
 
 ## Criando uma instância de serviço do  {{site.data.keyword.conversationshort}}
-{: #service_instance}
+{: #service_instance_conversation}
 
 Antes de instalar o pacote, deve-se criar uma instância de serviço e credenciais de serviço do
 {{site.data.keyword.conversationshort}}.
 
-1. [Criar uma instância de serviço
-do {{site.data.keyword.conversationshort}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link
-externo")](https://console.bluemix.net/catalog/services/conversation).
+1. [Crie uma instância de serviço do {{site.data.keyword.conversationshort}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/catalog/services/conversation).
 2. Quando a instância de serviço for criada, as credenciais de serviço geradas automaticamente também serão criadas para você.
 
 ## Instalando o pacote do  {{site.data.keyword.conversationshort}}
-{: #install}
+{: #install_conversation}
 
 Depois que você tem uma instância de serviço do {{site.data.keyword.conversationshort}}, use a CLI
 do {{site.data.keyword.openwhisk}} para instalar o pacote do
@@ -99,8 +97,7 @@ do {{site.data.keyword.openwhisk}} para instalar o pacote do
 {: #conversation_cli}
 
 Antes de Iniciar:
-  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale o comando [`wskdeploy`![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) e inclua o binário transferido por download em seu PATH.
+  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar o pacote do  {{site.data.keyword.conversationshort}} :
 
@@ -112,7 +109,7 @@ Para instalar o pacote do  {{site.data.keyword.conversationshort}} :
 
 2. Implemente o pacote.
     ```
-    wskdeploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
     ```
     {: pre}
 
@@ -172,9 +169,9 @@ ao pacote.
 ### Instalando a partir da UI do  {{site.data.keyword.openwhisk_short}}
 {: #conversation_ui}
 
-1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/create).
+1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Usando as listas de **Organizações do Cloud Foundry** e **Espaços do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio da organização combinada e nomes de espaço.
+2. Usando as listas **Organização do Cloud Foundry** e **Espaço do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote. Os namespaces são formados por meio de nomes de organização e de espaço combinados.
 
 3. Clique em  ** Instalar pacotes **.
 
@@ -189,15 +186,14 @@ procurar pelo seu novo Pacote, que é denominado **assistant-v1**.
 
 7. Para usar as Ações no pacote **assistant-v1**, deve-se ligar as credenciais
 de serviço às ações.
-  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima. 
+  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima.
   * Para ligar as credenciais de serviço a ações individuais, conclua as etapas a seguir na IU. **Nota**: deve-se concluir as etapas a seguir para cada ação que você deseja usar.
-    1. Clique em uma Ação no pacote **assistant-v1** que você deseja
-usar. A página de detalhes para essa Ação é aberta. 
-    2. Na navegação à esquerda, clique na seção **Parâmetros**. 
+    1. Clique em uma ação por meio do Pacote **assistant-v1** que você deseja usar. A página de detalhes para essa ação é aberta.
+    2. Na navegação à esquerda, clique na seção **Parâmetros**.
     3. Insira um novo  ** parâmetro **. Para a chave, insira  ` __bx_creds `. Para o valor, cole no objeto da JSON de credenciais de serviço por meio da instância de serviço que você criou anteriormente.
 
 ## Usando o pacote do  {{site.data.keyword.conversationshort}}
-{: #usage}
+{: #usage_conversation}
 
 Para usar as ações neste pacote, execute comandos no formato a seguir:
 
@@ -206,8 +202,7 @@ ibmcloud fn action invoke assistant-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
-Todas as ações exigirão um parâmetro de versão no formato AAAA-MM-DD. Quando a API mudar de uma maneira inversa de forma incompatível, uma nova data da versão será liberada. 
-Consulte mais detalhes na
+Todas as ações exigirão um parâmetro de versão no formato AAAA-MM-DD. Quando a API mudar de uma maneira inversa de forma incompatível, uma nova data da versão será liberada. Consulte mais detalhes na
 [Referência da API](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning).
 
 As funções deste pacote usam a versão atual do Watson Assistant, 2018-07-10. Experimente a ação  ` list-workspaces ` .

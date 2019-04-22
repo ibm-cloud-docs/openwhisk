@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-23"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: alarms, triggers, event, schedule, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 使用警示來排定觸發程式
 {: #openwhisk_catalog_alarm}
@@ -24,7 +30,7 @@ lastupdated: "2018-07-23"
 |`/whisk.system/alarms` |套件| - |警示和定期公用程式。|
 |`/whisk.system/alarms/once` |資訊來源| date, trigger_payload, deleteAfterFire |在特定日期發動觸發程式事件一次。|
 |`/whisk.system/alarms/interval` |資訊來源|minutes, trigger_payload, startDate, stopDate | 根據間隔型排程發動觸發程式事件。|
-|`/whisk.system/alarms/alarm` |資訊來源|cron, trigger_payload, startDate, stopDate |使用 cron 根據時間型排程發動觸發程式事件。|
+|`/whisk.system/alarms/alarm` |資訊來源| cron、timezone、trigger_payload、startDate、stopDate |使用 cron 根據時間型排程發動觸發程式事件。|
 
 ## 發動觸發程式事件一次
 
@@ -150,6 +156,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <tr>
 <td><code>--param cron</code></td>
 <td>將 <code>&lt;cron&gt;</code> 取代為以「世界標準時間 (UTC)」指出何時發動觸發程式的字串。該字串是根據 <a href="http://crontab.org">UNIX crontab 語法</a>，且是一個上限為 5 個欄位的序列。依 <code>X X X X X</code> 格式，以空格區隔欄位。下列字串是使用不同頻率期間的範例：<ul><li><code>\* \* \* \* \*</code>：觸發程式在每分鐘準時發動。</li><li><code>0 \* \* \* \*</code>：觸發程式在每小時準時發動。</li><li><code>0 \*/2 \* \* \*</code>：觸發程式每隔兩小時準時發動（亦即 02:00:00、04:00:00 ...)。</li><li><code>0 9 8 \* \*</code>：觸發程式在每月第八天上午 9:00:00 (UTC) 發動。</li></ul></td>
+</tr>
+<tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>選用項目：將 <code>&lt;timezone&gt;</code> 取代為指定時區的字串。然後，會根據指定的時區來修改發動觸發程式的實際時間。如果時區無效，則會擲出錯誤。您可以檢查 Moment Timezone 網站 (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names) 中可用的所有時區。</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>

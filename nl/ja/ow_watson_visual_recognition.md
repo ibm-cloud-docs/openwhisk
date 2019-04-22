@@ -1,27 +1,32 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: visual recognition, watson, functions, cognitive, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # {{site.data.keyword.visualrecognitionshort}} パッケージ 
 
-{{site.data.keyword.visualrecognitionfull}} サービスは、ディープ・ラーニング・アルゴリズムを使用して、このサービスにアップロードするイメージ内のシーン、オブジェクト、および顔を識別します。カスタム種別を作成して、ニーズに合った対象を識別するようにトレーニングすることができます。
+{{site.data.keyword.visualrecognitionfull}} サービスは、ディープ・ラーニング・アルゴリズムを使用して、このサービスにアップロードするイメージ内のシーン、オブジェクト、および顔を識別します。 カスタム種別を作成して、ニーズに合った対象を識別するようにトレーニングすることができます。
 {:shortdesc}
 
-{{site.data.keyword.visualrecognitionshort}} パッケージには、以下のエンティティーが含まれています。エンティティー名をクリックすると、{{site.data.keyword.visualrecognitionshort}} API 参照で追加の詳細を確認できます。
+{{site.data.keyword.visualrecognitionshort}} パッケージには、以下のエンティティーが含まれています。 エンティティー名をクリックすると、{{site.data.keyword.visualrecognitionshort}} API 参照で追加の詳細を確認できます。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| [`visual-recognition-v3`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url |{{site.data.keyword.visualrecognitionshort}} サービスを操作します。 |
+| [`visual-recognition-v3`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url  | {{site.data.keyword.visualrecognitionshort}} サービスを操作します。 |
 | [classify](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#classify) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、images_file、accept_language、url、threshold、owners、classifier_ids、images_file_content_type  | イメージを分類します。 |
 | [detect-faces](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#detect-faces) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、images_file、url、images_file_content_type  | イメージ内の顔を検出します。 |
 | [create-classifier](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#create-classifier) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、name、classname_positive_examples、negative_examples  | 種別を作成します。 |
@@ -30,33 +35,32 @@ lastupdated: "2018-07-17"
 | [list-classifiers](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#list-classifiers) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、verbose  | 種別のリストを取得します。 |
 | [update-classifier](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#update-classifier) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、classifier_id、classname_positive_examples、negative_examples  | 種別を更新します。 |
 | [get-core-ml-model](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#get-core-ml-model) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、classifier_id  | 種別の Core ML モデルを取得します。 |
-| [delete-user-data](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。|
+| [delete-user-data](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。 |
 
-## {{site.data.keyword.}} サービス・インスタンスの作成
-{: #service_instance}
+## {{site.data.keyword.visualrecognitionshort}} サービス・インスタンスの作成
+{: #service_instance_recognition}
 
-パッケージをインストールする前に、{{site.data.keyword.}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
+パッケージをインストールする前に、{{site.data.keyword.visualrecognitionshort}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
 {: shortdesc}
 
-1. [{{site.data.keyword.}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/services/watson_vision_combined) します。
+1. [{{site.data.keyword.visualrecognitionshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](https://cloud.ibm.com/catalog/services/watson_vision_combined)。
 2. サービス・インスタンスの作成時に、自動生成されたサービス資格情報も作成されます。
 
-## {{site.data.keyword.}} パッケージのインストール
-{: #install}
+## {{site.data.keyword.visualrecognitionshort}} パッケージのインストール
+{: #install_recognition}
 
-{{site.data.keyword.}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.}} パッケージを名前空間にインストールします。
+{{site.data.keyword.visualrecognitionshort}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.visualrecognitionshort}} パッケージを名前空間にインストールします。
 {: shortdesc}
 
 ### {{site.data.keyword.openwhisk_short}} CLI からのインストール
 {: #visualrecognition_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](bluemix_cli.html#cloudfunctions_cli)。
-  2. [`wskdeploy` コマンド ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) をインストールして、ダウンロードしたバイナリーを PATH に追加します。
+  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
-{{site.data.keyword.}} パッケージをインストールするには、次のようにします。
+{{site.data.keyword.visualrecognitionshort}} パッケージをインストールするには、以下のようにします。
 
-1. {{site.data.keyword.}} パッケージ・リポジトリーを複製します。
+1. {{site.data.keyword.visualrecognitionshort}} パッケージ・リポジトリーを複製します。
     ```
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
@@ -64,7 +68,7 @@ lastupdated: "2018-07-17"
 
 2. パッケージをデプロイします。
     ```
-    wskdeploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
     ```
     {: pre}
 
@@ -81,7 +85,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-4. 作成した {{site.data.keyword.}} インスタンスの資格情報をパッケージにバインドします。
+4. 作成した {{site.data.keyword.visualrecognitionshort}} インスタンスの資格情報をパッケージにバインドします。
     ```
     ibmcloud fn service bind watson-vision-combined visual-recognition-v3
     ```
@@ -93,7 +97,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-5. パッケージが {{site.data.keyword.}} サービス・インスタンス資格情報を使用して構成されていることを確認します。
+5. パッケージが {{site.data.keyword.visualrecognitionshort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
     ibmcloud fn package get visual-recognition-v3 parameters
     ```
@@ -125,9 +129,9 @@ lastupdated: "2018-07-17"
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #visualrecognition_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
 
-2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、{{site.data.keyword.cos_short}} パッケージのインストール先の名前空間を選択します。名前空間は、組織名とスペース名の組み合わせから形成されます。
+2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、パッケージのインストール先の名前空間を選択します。 名前空間は、組織名とスペース名の組み合わせから形成されます。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
@@ -135,19 +139,19 @@ lastupdated: "2018-07-17"
 
 5. **「Visual Recognition」**パッケージをクリックします。
 
-5. **「インストール (Install)」**をクリックします。 
+5. **「インストール (Install)」**をクリックします。
 
-6. パッケージのインストール後に「アクション」ページにリダイレクトされ、**visual-recognition-v3** という名前の新規パッケージを検索できます。
+6. パッケージのインストール後にアクション・ページにリダイレクトされ、**visual-recognition-v3** という名前の新規パッケージを検索できます。
 
 7. **visual-recognition-v3** パッケージでアクションを使用するには、サービス資格情報をアクションにバインドする必要があります。
-  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。 
-  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。**注**: 使用するアクションごとに以下のステップを実行する必要があります。
-    1. 使用する **visual-recognition-v3** パッケージのアクションをクリックします。そのアクションの詳細ページが開きます。 
-    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。 
-    3. 新しい**パラメーター**を入力します。key には `__bx_creds` を入力します。value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
+  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。
+  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。 **注**: 使用するアクションごとに以下のステップを実行する必要があります。
+    1. 使用する **visual-recognition-v3** パッケージのアクションをクリックします。 そのアクションの詳細ページが開きます。
+    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。
+    3. 新しい**パラメーター**を入力します。 key には `__bx_creds` を入力します。 value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
 
 ## {{site.data.keyword.visualrecognitionshort}} パッケージの使用
-{: #usage}
+{: #usage_recognition}
 
 このパッケージのアクションを使用するには、次の形式でコマンドを実行します。
 
@@ -156,9 +160,9 @@ ibmcloud fn action invoke visual-recognition-v3/<action_name> -b -p <param name>
 ```
 {: pre}
 
-すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。[API 参照](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#versioning)で詳細を確認してください。
+すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。 API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。 [API 参照](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#versioning)で詳細を確認してください。
 
-このパッケージの機能は、Visual Recognition の現行バージョンである 2018-03-19 を使用します。`list-classifiers` アクションを試行します。
+このパッケージの機能は、Visual Recognition の現行バージョンである 2018-03-19 を使用します。 `list-classifiers` アクションを試行します。
 ```
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```

@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # Liaison de services à des actions
 {: #binding_services}
 
-Vous pouvez utiliser le [plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk}}](./bluemix_cli.html) pour lier un service à une action ou un package. La commande `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} rend vos données d'identification au service {{site.data.keyword.Bluemix_notm}} disponibles pour votre code {{site.data.keyword.openwhisk_short}} en phase d'exécution.
+Vous pouvez utiliser le [plug-in d'interface de ligne de commande {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) pour lier un service à une action ou un package. La commande `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} rend vos données d'identification au service {{site.data.keyword.Bluemix_notm}} disponibles pour votre code {{site.data.keyword.openwhisk_short}} en phase d'exécution.
 {: shortdesc}
+
 
 Ne confondez pas la commande `ibmcloud fn service bind` avec la commande `cf bind-service` disponible dans Cloud Foundry.
 {: tip}
+
 
 ## Liaison d'un service à une action ou un package
 {: #cli_bind}
 
 Liez n'importe quel service {{site.data.keyword.Bluemix_notm}} à une action définie dans {{site.data.keyword.openwhisk_short}}. Cette liaison crée un nouveau paramètre dans votre action existante, qui comprend les données d'identification de l'instance de service.
 
-**Remarque** : vous ne pouvez lier qu'un service de chaque type à une action ou un package. La liaison de plusieurs services du même type n'est pas prise en charge.
+**Remarque** : vous ne pouvez lier qu'un service de chaque type à une action ou un package. La liaison de services du même type n'est pas prise en charge.
 
-Avant de commencer, [définissez les données d'identification](/docs/apps/reqnsi.html#accser_external) du service que vous souhaitez lier.
+Avant de commencer, [définissez les données d'identification](/docs/resources?topic=resources-externalapp#externalapp) du service que vous souhaitez lier.
 
 1. Obtenez le nom de l'instance de service que vous souhaitez lier à une action ou un package.
     ```
@@ -139,7 +147,11 @@ Credentials-2
 
     Dans cet exemple, les données d'identification du service de conversation, ainsi que les autres données d'identification d'autres types de service, appartiennent à un paramètre nommé `__bx_creds`. L'action recherche le paramètre lié `__bx_creds` et supprime la référence au type de service répertorié. S'il s'agit de l'unique service répertorié, l'action retire la valeur du paramètre `__bx_cSreds`. S'il y a plusieurs services liés à l'action, le paramètre `__bx_creds` est conservé avec les services liés.
 
-Pour plus d'informations sur la transmission de paramètres à une action ou un package et comment les données d'identification sont affectées lors des opérations `update`, voir [Utilisation des paramètres](./parameters.html#pass-params-action).
+Pour plus d'informations sur la transmission de paramètres à une action ou un package et comment les données d'identification sont affectées lors des opérations `update`, voir [Utilisation des paramètres](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action).
+
+
+Si vous modifiez le nom de l'organisation ou de l'espace qui contientldes entités, un espace de nom est créé avec le nouveau nom. Les entités contenues dans votre ancien espace de nom ne sont pas visibles dans le nouvel espace de nom et vont être supprimées. Si vous avez effectué la modification par mégarde, vous pouvez l'annuler et vous pourrez sauvegarder vos entités avant leur suppression.
+{: tip}
 
 
 ## Suppression de la liaison d'un service d'une action ou d'un package

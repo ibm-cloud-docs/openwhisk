@@ -1,18 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, converting, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
-
+{:tip: .tip}
 # Watson: Text to Speech パッケージ
 {: #openwhisk_catalog_watson_texttospeech}
+
+この事前インストール済みパッケージは、東京地域では利用できません。IAM 認証を使用してインストール可能な [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) パッケージを参照してください。
+{: tip}
 
 `/whisk.system/watson-textToSpeech` パッケージを利用して、テキストをスピーチに変換するための Watson API を簡単に呼び出すことができます。
 {: shortdesc}
@@ -24,13 +32,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-textToSpeech` | パッケージ | username、password | テキストをスピーチに変換するパッケージ |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | アクション | payload、voice、accept、encoding、username、password | テキストの音声への変換 |
 
-**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/textToSpeech` を含めて非推奨です。
+**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/textToSpeech` を含めて非推奨です。 代わりに、[インストール可能な {{site.data.keyword.texttospeechshort}} パッケージ](/docs/openwhisk?topic=cloud-functions-text-to-speech-package)を参照してください。
 
 ## {{site.data.keyword.Bluemix_notm}} での Watson Text to Speech パッケージのセットアップ
 
 {{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用している場合、パッケージ・バインディングは {{site.data.keyword.Bluemix_notm}} Watson サービス・インスタンス用に自動的に作成されます。
 
-1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.bluemix.net)で Watson Text to Speech のサービス・インスタンスを作成します。
+1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://cloud.ibm.com)で Watson Text to Speech のサービス・インスタンスを作成します。
 
   サービス・インスタンスの名前、および自分が所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
 

@@ -1,20 +1,25 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: nlc, natural language classifier, machine learning
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # {{site.data.keyword.nlclassifiershort}} 包
 
-{{site.data.keyword.nlclassifierfull}} 使用机器学习算法来返回简短文本输入的最匹配预定义类。您可以创建并培训一个分类器，用于将预定义的类连接到示例文本，以便该服务可以将这些类应用于新输入。
+{{site.data.keyword.nlclassifierfull}} 使用机器学习算法来返回简短文本输入的最匹配预定义类。您可以创建并训练一个分类器，用于将预定义的类连接到示例文本，以便该服务可以将这些类应用于新输入。
 {: shortdesc}
 
 {{site.data.keyword.nlclassifiershort}} 包中包含以下实体。您可以通过单击实体名称在 {{site.data.keyword.nlclassifiershort}} API 参考中找到其他详细信息。
@@ -31,16 +36,16 @@ lastupdated: "2018-07-17"
 |[list-classifiers](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#list-classifiers)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url|列出分类器。|
 
 ## 创建 {{site.data.keyword.nlclassifiershort}} 服务实例
-{: #service_instance}
+{: #service_instance_classifier}
 
 安装包之前，必须创建 {{site.data.keyword.nlclassifiershort}} 服务实例和服务凭证。
 {: shortdesc}
 
-1. [创建 {{site.data.keyword.nlclassifiershort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/catalog/services/natural_language_classifier)。
+1. [创建 {{site.data.keyword.nlclassifiershort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/catalog/services/natural_language_classifier)。
 2. 创建服务实例时，还会为您创建自动生成的服务凭证。
 
 ## 安装 {{site.data.keyword.nlclassifiershort}} 包
-{: #install}
+{: #install_classifier}
 
 具有 {{site.data.keyword.nlclassifiershort}} 服务实例后，请使用 {{site.data.keyword.openwhisk}} CLI 将 {{site.data.keyword.nlclassifiershort}} 包安装到名称空间中。
 {: shortdesc}
@@ -49,8 +54,7 @@ lastupdated: "2018-07-17"
 {: #nlclassifier_cli}
 
 开始之前：
-  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](bluemix_cli.html#cloudfunctions_cli)。
-  2. 安装 [`wskdeploy` 命令 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases)，并将下载的二进制文件添加到 PATH 中。
+  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 要安装 {{site.data.keyword.nlclassifiershort}} 包，请执行以下操作：
 
@@ -62,7 +66,7 @@ lastupdated: "2018-07-17"
 
 2. 部署包。
     ```
-    wskdeploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
     ```
     {: pre}
 
@@ -80,7 +84,6 @@ lastupdated: "2018-07-17"
     {: screen}
 
 4. 将所创建的 {{site.data.keyword.nlclassifiershort}} 实例中的凭证绑定到包。
-      
     ```
     ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
     ```
@@ -127,9 +130,9 @@ lastupdated: "2018-07-17"
 ### 通过 {{site.data.keyword.openwhisk_short}} UI 进行安装
 {: #nlclassifier_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/create)。
 
-2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将 {{site.data.keyword.cos_short}} 包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
+2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
 
 3. 单击**安装包**。
 
@@ -141,15 +144,15 @@ lastupdated: "2018-07-17"
 
 6. 安装包后，会将您重定向到“操作”页面，您可以在其中搜索名为 **natural-language-classifier-v1** 的新包。
 
-7. 要使用 **natural-language-classifier-v1** 包中的操作，必须将服务凭证绑定到操作。
-  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。 
+7. 要使用 **natural-language-classifier-v1** 包中的操作，必须将服务凭证绑定到这些操作。
+  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。
   * 要将服务凭证绑定到单个操作，请在 UI 中完成以下步骤。**注**：对于要使用的每个操作，必须完成以下步骤。
-    1. 单击 **natural-language-classifier-v1** 包中要使用的操作。这将打开该操作的详细信息页面。 
-    2. 在左侧导航中，单击**参数**部分。 
+    1. 单击 **natural-language-classifier-v1** 包中要使用的操作。这将打开该操作的详细信息页面。
+    2. 在左侧导航中，单击**参数**部分。
     3. 输入新的**参数**。对于键，输入 `__bx_creds`。对于值，请从先前创建的服务实例中粘贴服务凭证 JSON 对象。
 
 ## 使用 {{site.data.keyword.nlclassifiershort}} 包
-{: #usage}
+{: #usage_classifier}
 
 要使用此包中的操作，请运行以下格式的命令：
 

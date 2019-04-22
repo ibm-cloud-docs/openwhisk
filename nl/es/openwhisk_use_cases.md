@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Casos de uso comunes
 {: #openwhisk_common_use_cases}
@@ -47,18 +53,20 @@ De forma inherente, los escenarios de Internet de las cosas se suelen controlar 
 
 Se pueden implementar aplicaciones IoT que utilizan arquitecturas de servidor tradicional. Sin embargo, en muchos casos la combinación de distintos servicios y puentes de datos requiere conductos flexibles y de alto rendimiento. Abarcan desde dispositivos IoT hasta almacén en la nube y una plataforma de análisis. A menudo los puentes preconfigurados no ofrecen las funciones de programación deseables para implementar una arquitectura para una solución particular y adaptada. Dada la gran variedad de conductos y la falta de estandarización en lo referente a fusión de datos en general (en IoT en particular), es común ver entornos en los que el conducto requiere una transformación de datos personalizada. Estas transformaciones de datos personalizadas se aplican a la conversión de formato, filtrado o amplificación. {{site.data.keyword.openwhisk_short}} constituye una excelente herramienta para implementar dicha transformación, en modalidad ‘sin servidor’, donde la lógica personalizada se aloja en una plataforma de nube elástica y completamente gestionada.
 
-Consulte el siguiente ejemplo de aplicación IoT que utiliza {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive y otros servicios: [Transformación sin servidor de datos en movimiento IoT con {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
+Consulte el siguiente ejemplo de aplicación IoT que utiliza {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive y otros servicios: [Transformación sin servidor de datos en movimiento IoT con {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c).
 
 ![Ejemplo de arquitectura de una solución IoT](images/IoT_solution_architecture_example.png)
 
 ## Programa de fondo de API
 {: #openwhisk_api_backend}
 
-Las plataformas de cálculo sin servidor ofrecen a los programadores un método rápido de crear API sin servidores. {{site.data.keyword.openwhisk_short}} da soporte a la generación automática de API REST para acciones. La [característica experimental](./openwhisk_apigateway.html) de {{site.data.keyword.openwhisk_short}} puede invocar una acción con métodos HTTP que no sean POST y sin la clave API de autorización de la acción a través de {{site.data.keyword.openwhisk_short}} API Gateway. Esta característica resulta útil no sólo para exponer las API a consumidores externos, sino también para crear aplicaciones de microservicios.
+Las plataformas de cálculo sin servidor ofrecen a los programadores un método rápido de crear API sin servidores. {{site.data.keyword.openwhisk_short}} da soporte a la generación automática de API REST para acciones. La
+[característica de {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway) puede invocar una acción con métodos HTTP que no sean POT y sin la clave de API de autorización de la acción a través de la pasarela de API de
+{{site.data.keyword.openwhisk_short}}. Esta característica resulta útil no sólo para exponer las API a consumidores externos, sino también para crear aplicaciones de microservicios.
 
 Además, las acciones de {{site.data.keyword.openwhisk_short}} se pueden conectar a la herramienta de gestión de API que elija (como por ejemplo [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) y otra). Al igual que en otros casos de uso, se aplican todas las consideraciones sobre escalabilidad y otras Calidades de servicio (QoS).
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) es una app de ejemplo que utiliza acciones de {{site.data.keyword.openwhisk_short}} a través de una API REST.
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting) es una app de ejemplo que utiliza acciones de {{site.data.keyword.openwhisk_short}} a través de una API REST.
 
 Consulte el siguiente ejemplo que incluye una descripción de [utilización de un sistema sin servidor como programa de fondo de API](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples).
 

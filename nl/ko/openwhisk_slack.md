@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-29"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: slack package, token-based, api
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Slack 패키지
 {: #openwhisk_catalog_slack}
@@ -42,7 +48,7 @@ lastupdated: "2018-03-29"
 
   Slack이 구성된 후에는 `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc` 같이 표시되는 웹훅 URL을 가져옵니다. 웹훅은 다음 단계에서 필요합니다.
 
-2. Slack 신임 정보, 게시되는 채널 및 게시자의 사용자 이름을 사용하여 패키지 바인딩을 작성하십시오.
+2. Slack 인증 정보, 게시되는 채널 및 게시자의 사용자 이름을 사용하여 패키지 바인딩을 작성하십시오.
   ```
   ibmcloud fn package bind /whisk.system/slack mySlack \
     --param url "https://hooks.slack.com/services/..." \

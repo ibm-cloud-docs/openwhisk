@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: tone analyzer, functions, serverless, watson
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -26,20 +31,20 @@ O pacote do  {{site.data.keyword.toneanalyzershort}}  contém as entidades a seg
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
 | [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html) | pacote | username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url,  | Trabalhe com o serviço  {{site.data.keyword.toneanalyzershort}} . |
-| [tone](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    tone_input,     content_type,     sentences,     tones,     content_language,     accept_language,  |Analisar o tom geral. |
+| [tone](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    tone_input,     content_type,     sentences,     tones,     content_language,     accept_language,  | Analisar o tom geral. |
 | [tone-chat](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   utterances,     content_language,     accept_language,  | Analise o tom de engajamento do cliente |
 
 ## Criando uma instância de serviço do  {{site.data.keyword.toneanalyzershort}}
-{: #service_instance}
+{: #service_instance_tone}
 
 Antes de instalar o pacote, deve-se criar uma instância de serviço e credenciais de serviço do {{site.data.keyword.toneanalyzershort}}.
 {: shortdesc}
 
-1. [Criar uma instância de serviço do {{site.data.keyword.toneanalyzershort}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/catalog/services/tone_analyzer).
+1. [Crie uma instância de serviço do {{site.data.keyword.toneanalyzershort}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/catalog/services/tone_analyzer).
 2. Quando a instância de serviço for criada, as credenciais de serviço geradas automaticamente também serão criadas para você.
 
 ## Instalando o pacote do  {{site.data.keyword.toneanalyzershort}}
-{: #install}
+{: #install_tone}
 
 Depois que você tem uma instância de serviço do {{site.data.keyword.toneanalyzershort}}, use a CLI do {{site.data.keyword.openwhisk}} para instalar o pacote do {{site.data.keyword.toneanalyzershort}} em seu namespace.
 {: shortdesc}
@@ -48,8 +53,7 @@ Depois que você tem uma instância de serviço do {{site.data.keyword.toneanaly
 {: #toneanalyzer_cli}
 
 Antes de Iniciar:
-  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale o comando [`wskdeploy`![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) e inclua o binário transferido por download em seu PATH.
+  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar o pacote do  {{site.data.keyword.toneanalyzershort}} :
 
@@ -61,7 +65,7 @@ Para instalar o pacote do  {{site.data.keyword.toneanalyzershort}} :
 
 2. Implemente o pacote.
     ```
-    wskdeploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
     ```
     {: pre}
 
@@ -124,29 +128,29 @@ Para instalar o pacote do  {{site.data.keyword.toneanalyzershort}} :
 ### Instalando a partir da UI do  {{site.data.keyword.openwhisk_short}}
 {: #toneanalyzer_ui}
 
-1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/create).
+1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Usando as listas de **Organizações do Cloud Foundry** e **Espaços do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio da organização combinada e nomes de espaço.
+2. Usando as listas **Organização do Cloud Foundry** e **Espaço do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote. Os namespaces são formados por meio de nomes de organização e de espaço combinados.
 
 3. Clique em  ** Instalar pacotes **.
 
-4. Clique no grupo de pacotes do  ** Watson ** .
+4. Clique no grupo de pacotes **Watson**.
 
-5. Clique no pacote  ** Tone Analyzer ** .
+5. Clique no pacote **Analisador de sinal**.
 
 5. Clique em  ** Instalar **.
 
-6. Depois que o Pacote tiver sido instalado, você será redirecionado para a página Ações e poderá procurar pelo seu novo Pacote, que é denominado **tone-analyzer-v3**.
+6. Depois que o pacote tiver sido instalado, você será redirecionado para a página de ações e poderá procurar por seu novo pacote, que é denominado **tone-analyzer-v3**.
 
-7. Para usar as Ações no pacote **tone-analyzer-v3**, deve-se ligar as credenciais de serviço às ações.
-  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima. 
+7. Para usar as ações no pacote **tone-analyzer-v3**, deve-se ligar as credenciais de serviço às ações.
+  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima.
   * Para ligar as credenciais de serviço a ações individuais, conclua as etapas a seguir na IU. **Nota**: deve-se concluir as etapas a seguir para cada ação que você deseja usar.
-    1. Clique em uma Ação no Pacote **tone-analyzer-v3** que você deseja usar. A página de detalhes para essa Ação é aberta. 
-    2. Na navegação à esquerda, clique na seção **Parâmetros**. 
+    1. Clique em uma ação por meio do pacote **tone-analyzer-v3** que você deseja usar. A página de detalhes para essa ação é aberta.
+    2. Na navegação à esquerda, clique na seção **Parâmetros**.
     3. Insira um novo  ** parâmetro **. Para a chave, insira  ` __bx_creds `. Para o valor, cole no objeto da JSON de credenciais de serviço por meio da instância de serviço que você criou anteriormente.
 
 ## Usando o pacote do  {{site.data.keyword.toneanalyzershort}}
-{: #usage}
+{: #usage_tone}
 
 Para usar as ações neste pacote, execute comandos no formato a seguir:
 

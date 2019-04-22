@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: language translator, functions, actions, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -31,16 +36,16 @@ lastupdated: "2018-07-17"
 | [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-models) |動作|  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、source、target、default_models、 | 列出模型。|
 
 ## 建立 {{site.data.keyword.languagetranslatorshort}} 服務實例
-{: #service_instance}
+{: #service_instance_translator}
 
 在安裝套件之前，您必須先建立 {{site.data.keyword.languagetranslatorshort}} 服務實例和服務認證。
 {: shortdesc}
 
-1. [建立 {{site.data.keyword.languagetranslatorshort}} 服務實例 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://console.bluemix.net/catalog/services/language_translator)。
+1. [建立 {{site.data.keyword.languagetranslatorshort}} 服務實例 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/catalog/services/language_translator)。
 2. 建立服務實例時，也會為您建立自動產生的服務認證。
 
 ## 安裝 {{site.data.keyword.languagetranslatorshort}} 套件
-{: #install}
+{: #install_translator}
 
 在您具有 {{site.data.keyword.languagetranslatorshort}} 服務實例之後，請使用 {{site.data.keyword.openwhisk}} CLI 將 {{site.data.keyword.languagetranslatorshort}} 套件安裝到您的名稱空間中。
 {: shortdesc}
@@ -49,8 +54,7 @@ lastupdated: "2018-07-17"
 {: #languagetranslator_cli}
 
 開始之前：
-  1. [安裝 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](bluemix_cli.html#cloudfunctions_cli)。
-  2. 安裝 [`wskdeploy` 指令 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases)，並將下載的二進位檔新增至您的 PATH。
+  1. [安裝 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 若要安裝 {{site.data.keyword.languagetranslatorshort}} 套件，請執行下列動作：
 
@@ -62,7 +66,7 @@ lastupdated: "2018-07-17"
 
 2. 部署套件。
     ```
-    wskdeploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
     ```
     {: pre}
 
@@ -123,9 +127,9 @@ lastupdated: "2018-07-17"
 ### 透過 {{site.data.keyword.openwhisk_short}} 使用者介面安裝
 {: #languagetranslator_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 主控台中，移至[建立頁面 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://console.bluemix.net/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 主控台中，移至[建立頁面 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/openwhisk/create)。
 
-2. 使用 **Cloud Foundry 組織**和 **Cloud Foundry 空間**清單，選取您要在其中安裝 {{site.data.keyword.cos_short}} 套件的名稱空間。名稱空間是由合併的組織及空間名稱組成。
+2. 使用 **Cloud Foundry 組織**和 **Cloud Foundry 空間**清單，選取您要在其中安裝此套件的名稱空間。名稱空間是由合併的組織及空間名稱組成。
 
 3. 按一下**安裝套件**。
 
@@ -135,17 +139,17 @@ lastupdated: "2018-07-17"
 
 5. 按一下**安裝**。
 
-6. 安裝好「套件」之後，您將被重新導向至「動作」頁面，您可以搜尋新的套件，其名稱為 **language-translator-v3**。
+6. 安裝好套件之後，您會被重新導向至動作頁面，而且您可以搜尋新的套件，其名稱為 **language-translator-v3**。
 
-7. 若要使用 **language-translator-v3** 套件中的「動作」，您必須將服務認證連結至動作。
-  * 若要將服務認證連結至套件中的所有動作，請遵循上述 CLI 指令中的步驟 5 及 6。 
+7. 若要使用 **language-translator-v3** 套件中的動作，您必須將服務認證連結至動作。
+  * 若要將服務認證連結至套件中的所有動作，請遵循上述 CLI 指令中的步驟 5 及 6。
   * 若要將服務認證連結至個別動作，請在使用者介面中完成下列步驟。**附註**：您必須針對要使用的每一個動作，完成下列步驟。
-    1. 按一下您要使用的 **language-translator-v3** 套件中的「動作」。即會開啟該「動作」的詳細資料頁面。 
-    2. 在左側導覽中，按一下**參數**區段。 
+    1. 按一下您要使用的 **language-translator-v3** 套件中的動作。即會開啟該動作的詳細資料頁面。
+    2. 在左側導覽中，按一下**參數**區段。
     3. 輸入新的**參數**。對於索引鍵，輸入 `__bx_creds`。針對該值，請貼上先前建立之服務實例中的服務認證 JSON 物件。
 
 ## 使用 {{site.data.keyword.languagetranslatorshort}} 套件
-{: #usage}
+{: #usage_translator}
 
 若要使用此套件中的動作，請以下列格式執行指令：
 

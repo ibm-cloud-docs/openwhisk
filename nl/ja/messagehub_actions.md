@@ -1,19 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: message hub, package, messages, events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# {{site.data.keyword.messagehub}} パッケージ 
-
-{: #openwhisk_catalog_message_hub}
+# {{site.data.keyword.messagehub}} パッケージ
+{: #catalog_message_hub}
 
 ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームと行うための [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にするパッケージ。
 {: shortdesc}
@@ -66,35 +71,20 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ## イベントを使用したメッセージの listen
 
 {{site.data.keyword.messagehub}} 内でトリガーを使用して、メッセージを listen する方法について詳しくは、
-[{{site.data.keyword.messagehub}} イベント・ソース](./openwhisk_messagehub.html)のトピックを参照してください。そこでは、以下のタスクがカバーされています。
-* [{{site.data.keyword.messagehub}} インスタンスを listen するトリガーの作成](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [{{site.data.keyword.Bluemix_notm}} の外部にある {{site.data.keyword.messagehub}} パッケージ用のトリガーの作成](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [メッセージの listen](./openwhisk_messagehub.html#message_hub_listen)
-* [Examples](./openwhisk_messagehub.html#examples)
+[{{site.data.keyword.messagehub}} イベント・ソース](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub)のトピックを参照してください。そこでは、以下のタスクがカバーされています。
+* [{{site.data.keyword.messagehub}} インスタンスを listen するトリガーの作成](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger)
+* [{{site.data.keyword.Bluemix_notm}} 外部の {{site.data.keyword.messagehub}} パッケージ用のトリガーの作成](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger_outside)
+* [メッセージの listen](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#message_hub_listen)
+* [例](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#examples)
 
 ## {{site.data.keyword.messagehub}} へのメッセージの生成
 {: #producing_messages}
 
-`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、データが {{site.data.keyword.messagehub}}/Kafka に生成されるときには持続接続を使用するようにしてください。
+`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 東京地域では既に削除されています。最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、データが {{site.data.keyword.messagehub}}/Kafka に生成されるときには持続接続を使用するようにしてください。
 {: tip}
 
-{{site.data.keyword.messagehub}} へのメッセージを容易に生成するために {{site.data.keyword.openwhisk_short}} アクションの使用を望む場合、`/messaging/messageHubProduce` アクションを使用できます。 このアクションには以下のパラメーターがあります。
-
-|名前|タイプ|説明|
-|---|---|---|
-|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、{{site.data.keyword.messagehub}} インスタンス内のブローカーからなる `<host>:<port>` ストリングの配列です。|
-|user|ストリング|{{site.data.keyword.messagehub}} ユーザー名。|
-|password|ストリング|{{site.data.keyword.messagehub}} パスワード。|
-|topic|ストリング|トリガーが listen するようにしたいトピック。|
-|value|ストリング|生成したいメッセージの値。|
-|key|ストリング (オプション)|生成したいメッセージのキー。|
-
-最初の 3 つのパラメーターは `ibmcloud fn package refresh` を使用して自動的にバインドできますが、すべての必要なパラメーターを指定してアクションを呼び出す以下の例を参照してください。
-```
-ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
-```
-{: pre}
+メッセージの生成について詳しくは、[Event Streams の資料](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages)を確認してください。
 
 ## 参照
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
+- [Apache Kafka](https://kafka.apache.org)

@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -22,10 +27,10 @@ lastupdated: "2018-06-22"
 | `/whisk.system/cloudant` | パッケージ | dbname、host、username、password | Cloudant データベースを処理。 |
 | `/whisk.system/cloudant/read` | アクション | dbname、id | データベースから文書を読み取る。 |
 | `/whisk.system/cloudant/write` | アクション | dbname、overwrite、doc | データベースに文書を書き込む。 |
-| `/whisk.system/cloudant/changes` | フィード | dbname、filter、query_params、maxTriggers | データベース変更時のトリガー・イベントの起動。 |
+| `/whisk.system/cloudant/changes` | フィード | dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers | データベース変更時のトリガー・イベントの起動。 |
 {: shortdesc}
 
-以下のセクションでは、関連パッケージを構成する方法、および `/whisk.system/cloudant` パッケージ内のアクションとフィードを使用する方法を順に説明します。 {{site.data.keyword.cloudant_short_notm}} データベースのセットアップ、およびそのデータベースの読み取りまたは書き込みについて詳しくは、[{{site.data.keyword.cloudant_short_notm}} アクション](./cloudant_actions.html)を参照してください。
+以下のセクションでは、関連パッケージを構成する方法、および `/whisk.system/cloudant` パッケージ内のアクションとフィードを使用する方法を順に説明します。 {{site.data.keyword.cloudant_short_notm}} データベースのセットアップ、およびそのデータベースの読み取りまたは書き込みについて詳しくは、[{{site.data.keyword.cloudant_short_notm}} アクション](/docs/openwhisk?topic=cloud-functions-cloudant_actions)を参照してください。
 
 ## フィルター関数を使用したトリガーの作成
 
@@ -34,6 +39,10 @@ lastupdated: "2018-06-22"
 この例で使用されるパラメーターは、以下のとおりです。
 
 **dbname**: {{site.data.keyword.cloudant_short_notm}} データベースの名前 _(必須)_。
+
+**iamApiKey**: Cloudant データベースの IAM API キー。指定した場合は、ユーザー名とパスワードの代わりに資格情報として使用されます _(オプション)_。
+
+**iamUrl**: `iamApiKey` が指定されている場合に使用される IAM トークン・サービスの URL。デフォルトは `https://iam.bluemix.net/identity/token` _(オプション)_ です。 
 
 **maxTriggers**: この制限に達するとトリガー起動を停止します _(オプション)_。 デフォルトは無限です。
 
@@ -84,7 +93,7 @@ lastupdated: "2018-06-22"
 
 7. フィルター関数および照会パラメーターに基づいて、文書の状況が **new** の場合のみ、文書変更のたびに **myCloudantTrigger** トリガーの新規アクティベーションがあることを確認します。
 
-新規アクティベーションを確認できない場合は、{{site.data.keyword.cloudant_short_notm}} データベースの読み取りおよび書き込みの方法を示している、[{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html)のトピックを参照してください。 読み取りおよび書き込みのステップを試すと、ご使用の {{site.data.keyword.cloudant_short_notm}} 資格情報が正しいかどうかを検証するのに役立ちます。
+新規アクティベーションを確認できない場合は、{{site.data.keyword.cloudant_short_notm}} データベースの読み取りおよび書き込みの方法を示している、[{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions)のトピックを参照してください。 読み取りおよび書き込みのステップを試すと、ご使用の {{site.data.keyword.cloudant_short_notm}} 資格情報が正しいかどうかを検証するのに役立ちます。
 {: tip}
 
 ## トリガー・イベントのデータ構造

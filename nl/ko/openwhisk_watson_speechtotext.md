@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: Speech to Text 패키지
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+이 사전 설치된 패키지는 도쿄 지역에서는 사용할 수 없습니다. IAM 인증을 사용하여 설치 가능한 [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) 패키지를 참조하십시오.
+{: tip}
 
 `/whisk.system/watson-speechToText` 패키지는 음성을 텍스트로 변환하는 Watson API를 호출하는 편리한 방법을 제공합니다.
 {: shortdesc}
@@ -24,13 +33,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-speechToText` |패키지 |username, password |음성을 텍스트로 변환하기 위한 패키지 |
 |`/whisk.system/watson-speechToText/speechToText` |액션 |payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out |오디오를 텍스트로 변환 |
 
-**참고**: `/whisk.system/watson/speechToText` 액션을 포함하여 `/whisk.system/watson` 패키지는 더 이상 사용되지 않습니다.
+**참고**: `/whisk.system/watson/speechToText` 액션을 포함하여 `/whisk.system/watson` 패키지는 더 이상 사용되지 않습니다. 대신 [{{site.data.keyword.speechtotextshort}} 패키지](/docs/openwhisk?topic=cloud-functions-speech-to-text-package)를 참조하십시오. 
 
 ## {{site.data.keyword.Bluemix_notm}}에서 Watson Speech to Text 텍스트 설정
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk}}를 사용 중인 경우 패키지 바인딩이 {{site.data.keyword.Bluemix_notm}} Watson 서비스 인스턴스에 대해 자동으로 작성됩니다.
 
-1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://console.ng.Bluemix.net)에서 Watson Speech to Text 서비스 인스턴스를 작성하십시오.
+1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://cloud.ibm.com)에서 Watson Speech to Text 서비스 인스턴스를 작성하십시오.
 
   자신이 속한 {{site.data.keyword.Bluemix_notm}} 조직과 영역 및 서비스 인스턴스의 이름을 반드시 기억하십시오.
 
@@ -87,7 +96,7 @@ ibmcloud fn package bind /whisk.system/watson-speechToText myWatsonSpeechToText 
 - `max_alternatives`: 리턴되는 대체 문서의 최대 수입니다.
 - `model`: 인식 요청에 사용되는 모델의 ID입니다.
 - `timestamps`: 각 단어마다 시간 맞추기가 리턴되는지 여부를 표시합니다.
-- `watson-token`: 서비스 신임 정보 제공의 대안으로서 서비스에 대한 인증 토큰을 제공합니다.
+- `watson-token`: 서비스 인증 정보 제공의 대안으로서 서비스에 대한 인증 토큰을 제공합니다.
 - `word_alternatives_threshold`: 가능한 단어 대체로서 가설을 식별하기 위한 하한인 신뢰 값입니다.
 - `word_confidence`: 0 - 1 범위의 신뢰 측정치가 각 단어마다 리턴되는지 여부를 표시합니다.
 - `X-Watson-Learning-Opt-Out`: 호출에 대한 데이터 콜렉션을 제외하는지 여부를 표시합니다.
@@ -102,6 +111,6 @@ ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result 
 ```
 {
   "data": "Hello Watson"
-  }
+}
 ```
 {: screen}

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Mobile Push 包
 {: #openwhisk_catalog_pushnotifications}
+
+此预安装包在东京区域中不可用。请使用 IAM 认证来查看可安装的 [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) 包中的操作 `sendMessage`。
+{: tip}
 
 了解如何创建 Push 包绑定，并使用 `/whisk.system/pushnotifications` 包发送简单的推送通知，这将使您能够使用 Push 服务。
 {: shortdesc}
@@ -24,9 +33,9 @@ lastupdated: "2018-06-22"
 | --- | --- | --- | --- |
 |`/whisk.system/pushnotifications`|包|appId、appSecret、admin_url|使用 Push 服务。|
 |`/whisk.system/pushnotifications/sendMessage`|操作|text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload|将推送通知发送到一个或多个指定设备。|
-|`/whisk.system/pushnotifications/webhook`|订阅源|事件|对 Push 服务上的设备活动（设备注册、取消注册、预订或取消预订）触发触发器事件。|
 
-有关在存在设备活动时触发触发器事件的信息，请参阅[设备事件上的 Mobile Push](./openwhisk_pushnotifications.html) 主题。
+
+有关在存在设备活动时触发触发器事件的信息，请参阅[设备事件上的 Mobile Push](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications) 主题。
 
 ## 创建 Push 包绑定
 {: #create_push_binding}
@@ -38,11 +47,11 @@ lastupdated: "2018-06-22"
 
 要创建包绑定，请参阅以下步骤：
 
-1. 在 [{{site.data.keyword.Bluemix_notm}} 仪表板](http://console.bluemix.net)中创建 {{site.data.keyword.Bluemix_notm}} 应用程序。
+1. 在 [{{site.data.keyword.Bluemix_notm}} 仪表板](http://cloud.ibm.com)中创建 {{site.data.keyword.Bluemix_notm}} 应用程序。
 
 2. 初始化 Push Notification 服务，并将该服务绑定到 {{site.data.keyword.Bluemix_notm}} 应用程序。
 
-3. 配置 [Push Notification 应用程序](https://console.bluemix.net/docs/services/mobilepush/index.html)。
+3. 配置 [Push Notification 应用程序](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)。
 
   确保记住您所创建的 {{site.data.keyword.Bluemix_notm}} 应用程序的 **App GUID** 和 **App Secret**。
 

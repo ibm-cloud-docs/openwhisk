@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Arquitetura da plataforma
 {: #openwhisk_about}
@@ -23,24 +29,23 @@ O {{site.data.keyword.openwhisk}} é uma plataforma de cálculo acionado por eve
 Aprenda sobre alguns conceitos básicos da tecnologia por trás do {{site.data.keyword.openwhisk_short}}:
 
 <dl>
-<dt>Ação</dt>
-<dd>Uma [ação](openwhisk_actions.html) é uma parte do código que executa uma tarefa específica. Uma ação pode ser escrita na linguagem de sua escolha, como pequenos fragmentos de código JavaScript ou Swift ou código binário customizado integrado em um contêiner do Docker. Você fornece a ação do Cloud Functions como código-fonte ou como uma imagem do Docker.
-<br><br>Uma ação executa trabalho quando ela é chamada diretamente usando a API, CLI ou iOS SDK do {{site.data.keyword.openwhisk_short}}. Uma ação também pode responder automaticamente a eventos de serviços {{site.data.keyword.Bluemix_notm}} e serviços de terceiros usando um acionador.</dd>
-<dt>Sequência</dt>
-<dd>Um conjunto de ações que podem ser encadeadas em uma [sequência](openwhisk_actions.html#openwhisk_create_action_sequence) sem ter que gravar qualquer código. Uma sequência é uma cadeia de ações, chamadas em ordem, em que a saída de uma ação é passada como entrada para a próxima ação. Isso permite combinar ações existentes para reutilização rápida e fácil. Uma sequência pode então ser chamada exatamente como uma ação, por meio de uma API de REST ou automaticamente em resposta a eventos.
-</dd>
-<dt>Evento</dt>
-<dd>Exemplos de eventos incluem mudanças em registros do banco de dados, leituras do sensor IoT que excedem uma determinada temperatura, novas consolidações de código para um repositório GitHub ou solicitações de HTTP simples de apps da web ou móveis. Os eventos de origens de eventos externos e internos são canalizados por meio de um acionador e as regras permitem que as ações reajam a esses eventos.</dd>
-<dt>Acionador</dt>
-<dd>[Acionadores](openwhisk_triggers_rules.html#openwhisk_triggers_create) são um canal nomeado para uma classe de eventos. Um acionador é uma declaração de que você deseja reagir a um determinado tipo de evento, seja de um usuário ou por uma origem de eventos.</dd>
-<dt>Regra</dt>
-<dd>Uma [regra](openwhisk_triggers_rules.html#openwhisk_rules_use) associa um acionador a uma ação. Toda vez que o acionador for disparado, a regra usará o evento acionador como entrada e chamará a ação associada. Com o conjunto apropriado de regras, é possível que um único evento acionador chame várias ações ou que uma ação seja chamada como uma resposta a eventos de vários acionadores.</dd>
-<dt>Feed</dt>
-<dd>Um [feed](openwhisk_feeds.html#openwhisk_feeds) é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. 
-Por exemplo, um feed do Git pode disparar um evento acionador para cada confirmação em um repositório Git.</dd>
-<dt>Pacote</dt>
-<dd>Integrações com serviços e provedores de eventos podem ser incluídas com pacotes. Um [pacote](openwhisk_packages.html) é um pacote configurável de feeds e ações. Um feed é uma parte do código que configura uma origem de eventos externos para disparar eventos acionadores. Por exemplo, um acionador que é criado com um feed de mudanças do {{site.data.keyword.cloudant}} configura um serviço para disparar o acionador toda vez que um documento é modificado ou incluído em um banco de dados {{site.data.keyword.cloudant_short_notm}}. As ações em pacotes representam lógica reutilizável que um provedor de serviços pode disponibilizar para que os desenvolvedores podem usar o serviço como uma origem de eventos e chamar as APIs desse serviço.
-<br><br>Um catálogo de pacotes existente oferece uma forma rápida de aprimorar aplicativos com recursos úteis e de acessar serviços externos no ecossistema. Exemplos de serviços externos que têm pacotes do {{site.data.keyword.openwhisk_short}} incluem {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack e GitHub.</dd>
+  <dt>Ação</dt>
+    <dd>Uma [ação](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) é uma parte do código que executa uma tarefa específica. Uma ação pode ser escrita na linguagem de sua escolha, como pequenos fragmentos de código JavaScript ou Swift ou código binário customizado integrado em um contêiner do Docker. Você fornece a ação do Cloud Functions como código-fonte ou como uma imagem do Docker.
+    <br><br>Uma ação executa trabalho quando ela é chamada diretamente usando a API, CLI ou iOS SDK do {{site.data.keyword.openwhisk_short}}. Uma ação também pode responder automaticamente a eventos de serviços {{site.data.keyword.Bluemix_notm}} e serviços de terceiros usando um acionador.</dd>
+  <dt>Sequência</dt>
+    <dd>Um conjunto de ações que podem ser encadeadas em uma [sequência](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence) sem ter que gravar qualquer código. Uma sequência é uma cadeia de ações, chamadas em ordem, em que a saída de uma ação é passada como entrada para a próxima ação. Isso permite combinar ações existentes para reutilização rápida e fácil. Uma sequência pode então ser chamada exatamente como uma ação, por meio de uma API de REST ou automaticamente em resposta a eventos.
+  </dd>
+  <dt>Evento</dt>
+    <dd>Exemplos de eventos incluem mudanças em registros do banco de dados, leituras do sensor IoT que excedem uma determinada temperatura, novas consolidações de código para um repositório GitHub ou solicitações de HTTP simples de apps da web ou móveis. Os eventos de origens de eventos externos e internos são canalizados por meio de um acionador e as regras permitem que as ações reajam a esses eventos.</dd>
+  <dt>Acionador</dt>
+    <dd>[Acionadores](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create) são um canal nomeado para uma classe de eventos. Um acionador é uma declaração de que você deseja reagir a um determinado tipo de evento, seja de um usuário ou por uma origem de eventos.</dd>
+  <dt>Regra</dt>
+    <dd>Uma [regra](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use) associa um acionador a uma ação. Toda vez que o acionador for disparado, a regra usará o evento acionador como entrada e chamará a ação associada. Com o conjunto apropriado de regras, é possível que um único evento acionador chame várias ações ou que uma ação seja chamada como uma resposta a eventos de vários acionadores.</dd>
+  <dt>Feed</dt>
+    <dd>Um [feed](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds) é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. Por exemplo, um feed do Git pode disparar um evento acionador para cada confirmação em um repositório Git.</dd>
+  <dt>Pacote</dt>
+    <dd>Integrações com serviços e provedores de eventos podem ser incluídas com pacotes. Um [pacote](/docs/openwhisk?topic=cloud-functions-openwhisk_packages) é um pacote configurável de feeds e ações. Um feed é uma parte do código que configura uma origem de eventos externos para disparar eventos acionadores. Por exemplo, um acionador que é criado com um feed de mudança do {{site.data.keyword.cloudant}} configura um serviço para disparar o acionador toda vez que um documento é modificado ou incluído em um banco de dados do {{site.data.keyword.cloudant_short_notm}}. As ações em pacotes representam lógica reutilizável que um provedor de serviços pode disponibilizar para que os desenvolvedores podem usar o serviço como uma origem de eventos e chamar as APIs desse serviço.
+    <br><br>Um catálogo de pacotes existente oferece uma forma rápida de aprimorar aplicativos com recursos úteis e de acessar serviços externos no ecossistema. Exemplos de serviços externos que têm pacotes do {{site.data.keyword.openwhisk_short}} incluem {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack e GitHub.</dd>
 </dl>
 
 ## Como o {{site.data.keyword.openwhisk_short}} funciona
@@ -56,7 +61,7 @@ Para explicar todos os componentes em mais detalhes, vamos rastrear uma chamada 
 
 O que acontece atrás dos cenários do OpenWhisk?
 
-O OpenWhisk é um projeto de software livre que combina componentes, incluindo Nginx, Kafka, Docker e CouchDB, para formar um serviço de programação baseada em evento sem servidor.
+O OpenWhisk é um projeto de software livre que combina componentes que incluem Nginx, Kafka, Docker e CouchDB para formar um serviço de programação baseado em evento sem servidor.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="O fluxo interno de processamento por trás do OpenWhisk" style="width:550px; border-style: none"/>
 
@@ -162,8 +167,8 @@ passa por diferentes estágios do sistema {{site.data.keyword.openwhisk_short}}.
 
 É possível localizar informações adicionais sobre o {{site.data.keyword.openwhisk_short}} nos tópicos a seguir:
 
-* [Nomes de entidades](./openwhisk_reference.html#openwhisk_entities)
-* [Semântica de ação](./openwhisk_reference.html#openwhisk_semantics)
+* [Nomes de entidades](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [Semântica de ação](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
 * [  Limites
-](./openwhisk_reference.html#openwhisk_syslimits)
-* [referência de API REST](https://console.bluemix.net/apidocs/functions)
+](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [referência de API REST](/apidocs/functions)

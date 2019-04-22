@@ -1,31 +1,36 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Origem de eventos do Message Hub
+# Origem de Eventos do Streams de Eventos
 {: #openwhisk_catalog_message_hub}
 
-É possível criar um acionador que reaja quando as mensagens são postadas em uma instância do
-{{site.data.keyword.messagehub_full}} usando feeds. Saiba como criar acionadores do {{site.data.keyword.messagehub}} com ou sem o {{site.data.keyword.Bluemix}}, receber mensagens e manipular mensagens em lote.
+É possível criar um acionador que reaja quando as mensagens forem postadas em uma instância do {{site.data.keyword.messagehub_full}} usando feeds. Saiba como criar acionadores do {{site.data.keyword.messagehub}} com ou sem o {{site.data.keyword.Bluemix}}, detectar mensagens e manipular mensagens em lote.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} pacote 
 
-A ação `/messaging/messageHubProduce` foi descontinuada e será removida em uma data futura. Para manter o desempenho ideal, migre seu uso da ação `/messaging/messageHubProduce` para usar uma conexão persistente quando dados forem produzidos para o Message Hub/Kafka.
-{: tip}
+A ação `/messaging/messageHubProduce` foi descontinuada e será removida em uma data futura. Ela já foi removida na região de Tóquio. Para manter o desempenho ideal, migre seu uso da ação `/messaging/messageHubProduce` para usar uma conexão persistente quando dados forem produzidos para o Message Hub/Kafka.
+{: deprecated}
 
-Esse pacote permite a comunicação com instâncias do [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) para publicar e consumir mensagens usando a API nativa do Kafka de alto desempenho. Para obter mais informações sobre o pacote do {{site.data.keyword.messagehub}}, como configurá-lo e como produzir mensagens, veja o tópico [Pacote do {{site.data.keyword.messagehub}}](./messagehub_actions.html).
+Esse pacote permite a comunicação com instâncias do [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) para publicar e consumir mensagens usando a API nativa do Kafka de alto desempenho. Para obter mais informações sobre o pacote do {{site.data.keyword.messagehub}}, como configurá-lo e como produzir mensagens, consulte o tópico [pacote do {{site.data.keyword.messagehub}}](/docs/openwhisk?topic=cloud-functions-catalog_message_hub).
 
-## Criando um acionador que receba em uma instância do {{site.data.keyword.messagehub}}
+## Criando um acionador que atenda a uma instância do {{site.data.keyword.messagehub}}
 {: #create_message_hub_trigger}
 
 Para criar um acionador que reaja quando as mensagens são postadas em uma instância do
@@ -255,5 +260,6 @@ Tenha em mente ao codificar ações que são disparadas por seu acionador que o 
 Um exemplo que integra o OpenWhisk ao serviço {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}}, IBM Data Science Experience (Spark) pode ser [localizado aqui](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).
 
 ## Referência
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

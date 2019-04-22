@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson assistant, openwhisk, functions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,12 +22,12 @@ lastupdated: "2018-07-17"
 {{site.data.keyword.conversationfull}} サービスは、機械学習、自然言語理解、統合ダイアログの各ツールを組み合わせて、アプリケーションとユーザーの間の対話の流れを作成します。
 {: shortdesc}
 
-{{site.data.keyword.conversationshort}} パッケージには、以下のエンティティーが含まれています。エンティティー名をクリックすると、{{site.data.keyword.conversationshort}} API 参照で追加の詳細を確認できます。
+{{site.data.keyword.conversationshort}} パッケージには、以下のエンティティーが含まれています。 エンティティー名をクリックすると、{{site.data.keyword.conversationshort}} API 参照で追加の詳細を確認できます。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| [`assistant-v1`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url | {{site.data.keyword.conversationshort}} サービスを操作します。 |
-| [message](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#message) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、input、alternate_intents、context、entities、intents、output、nodes_visited_details | ユーザー入力に対する応答を取得します。 |
+| [`assistant-v1`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url  | {{site.data.keyword.conversationshort}} サービスを操作します。 |
+| [message](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#message) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、input、alternate_intents、context、entities、intents、output、nodes_visited_details  | ユーザー入力に対する応答を取得します。 |
 | [create-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-workspace) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、name、description、language、intents、entities、dialog_nodes、counterexamples、metadata、learning_opt_out  | ワークスペースを作成します。 |
 | [delete-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-workspace) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id  | ワークスペースを削除します。 |
 | [get-workspace](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-workspace) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、export、include_audit  | ワークスペースに関する情報を取得します。 |
@@ -38,11 +43,11 @@ lastupdated: "2018-07-17"
 | [get-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-example) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、intent、text、include_audit  | ユーザー入力の例に関する情報を取得します。 |
 | [list-examples](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-examples) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、intent、page_limit、include_count、sort、cursor、include_audit  | ユーザー入力の例をリストします。 |
 | [update-example](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-example) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、intent、text、new_text  | ユーザー入力の例を更新します。 |
-| [create-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text  | 反例を作成します。|
-| [delete-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text  | 反例を削除します。|
+| [create-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text  | 反例を作成します。 |
+| [delete-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text  | 反例を削除します。 |
 | [get-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text、include_audit  | 反例に関する情報を取得します。 |
 | [list-counterexamples](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-counterexamples) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、page_limit、include_count、sort、cursor、include_audit  | 反例をリストします。 |
-| [update-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text、new_text  | 反例を更新します。|
+| [update-counterexample](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-counterexample) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、text、new_text  | 反例を更新します。 |
 | [create-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-entity) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、description、metadata、values、fuzzy_match  | エンティティーを作成します。 |
 | [delete-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-entity) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity  | エンティティーを削除します。 |
 | [get-entity](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-entity) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、export、include_audit  | エンティティーに関する情報を取得します。 |
@@ -53,30 +58,30 @@ lastupdated: "2018-07-17"
 | [get-value](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-value) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、export、include_audit  | エンティティー値を取得します。 |
 | [list-values](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-values) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、export、page_limit、include_count、sort、cursor、include_audit  | エンティティー値をリストします。 |
 | [update-value](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-value) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、new_value、new_metadata、new_type、new_synonyms、new_patterns  | エンティティー値を更新します。 |
-| [create-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym  | エンティティー値シノニムを追加します。|
-| [delete-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym  | エンティティー値シノニムを削除します。|
-| [get-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym、include_audit  | エンティティー値シノニムを取得します。|
+| [create-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym  | エンティティー値シノニムを追加します。 |
+| [delete-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym  | エンティティー値シノニムを削除します。 |
+| [get-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym、include_audit  | エンティティー値シノニムを取得します。 |
 | [list-synonyms](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-synonyms) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、page_limit、include_count、sort、cursor、include_audit  | エンティティー値シノニムをリストします。 |
-| [update-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym、new_synonym  | エンティティー値シノニムを更新します。|
-| [create-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、description、conditions、parent、previous_sibling、output、context、metadata、next_step、actions、title、node_type、event_name、variable、digress_in、digress_out、digress_out_slots  | ダイアログ・ノードを作成します。|
-| [delete-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node  | ダイアログ・ノードを削除します。|
-| [get-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、include_audit  | ダイアログ・ノードを取得します。|
+| [update-synonym](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-synonym) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、entity、value、synonym、new_synonym  | エンティティー値シノニムを更新します。 |
+| [create-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、description、conditions、parent、previous_sibling、output、context、metadata、next_step、actions、title、node_type、event_name、variable、digress_in、digress_out、digress_out_slots  | ダイアログ・ノードを作成します。 |
+| [delete-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node  | ダイアログ・ノードを削除します。 |
+| [get-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、include_audit  | ダイアログ・ノードを取得します。 |
 | [list-dialog-nodes](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-dialog-nodes) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、page_limit、include_count、sort、cursor、include_audit  | ダイアログ・ノードをリストします。 |
-| [update-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、new_dialog_node、new_description、new_conditions、new_parent、new_previous_sibling、new_output、new_context、new_metadata、new_next_step、new_title、new_type、new_event_name、new_variable、new_actions、new_digress_in、new_digress_out、new_digress_out_slots  | ダイアログ・ノードを更新します。|
+| [update-dialog-node](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-dialog-node) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、dialog_node、new_dialog_node、new_description、new_conditions、new_parent、new_previous_sibling、new_output、new_context、new_metadata、new_next_step、new_title、new_type、new_event_name、new_variable、new_actions、new_digress_in、new_digress_out、new_digress_out_slots  | ダイアログ・ノードを更新します。 |
 | [list-all-logs](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-all-logs) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、filter、sort、page_limit、cursor  | すべてのワークスペースのログ・イベントをリストします。 |
 | [list-logs](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-logs) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、workspace_id、sort、filter、page_limit、cursor  | あるワークスペースのログ・イベントをリストします。 |
-| [delete-user-data](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。|
+| [delete-user-data](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。 |
 
 ## {{site.data.keyword.conversationshort}} サービス・インスタンスの作成
-{: #service_instance}
+{: #service_instance_conversation}
 
 パッケージをインストールする前に、{{site.data.keyword.conversationshort}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
 
-1. [{{site.data.keyword.conversationshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/services/conversation) します。
+1. [{{site.data.keyword.conversationshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](https://cloud.ibm.com/catalog/services/conversation)。
 2. サービス・インスタンスの作成時に、自動生成されたサービス資格情報も作成されます。
 
 ## {{site.data.keyword.conversationshort}} パッケージのインストール
-{: #install}
+{: #install_conversation}
 
 {{site.data.keyword.conversationshort}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.conversationshort}} パッケージを名前空間にインストールします。
 {: shortdesc}
@@ -85,8 +90,7 @@ lastupdated: "2018-07-17"
 {: #conversation_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](bluemix_cli.html#cloudfunctions_cli)。
-  2. [`wskdeploy` コマンド ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) をインストールして、ダウンロードしたバイナリーを PATH に追加します。
+  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 {{site.data.keyword.conversationshort}} パッケージをインストールするには、次のようにします。
 
@@ -98,7 +102,7 @@ lastupdated: "2018-07-17"
 
 2. パッケージをデプロイします。
     ```
-    wskdeploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
     ```
     {: pre}
 
@@ -127,7 +131,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-5. パッケージが {{site.data.keyword.conversationshort}} サービス・インスタンス資格情報を使用して構成されていることを確認します。
+5. パッケージが {{site.data.keyword.conversationshort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
     ibmcloud fn package get assistant-v1 parameters
     ```
@@ -156,9 +160,9 @@ lastupdated: "2018-07-17"
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #conversation_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
 
-2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、{{site.data.keyword.cos_short}} パッケージのインストール先の名前空間を選択します。名前空間は、組織名とスペース名の組み合わせから形成されます。
+2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、パッケージのインストール先の名前空間を選択します。 名前空間は、組織名とスペース名の組み合わせから形成されます。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
@@ -166,19 +170,19 @@ lastupdated: "2018-07-17"
 
 5. **「Watson Assistant」**パッケージをクリックします。
 
-5. **「インストール (Install)」**をクリックします。 
+5. **「インストール (Install)」**をクリックします。
 
-6. パッケージのインストール後に「アクション」ページにリダイレクトされ、**assistant-v1** という名前の新規パッケージを検索できます。
+6. パッケージのインストール後にアクション・ページにリダイレクトされ、**assistant-v1** という名前の新規パッケージを検索できます。
 
 7. **assistant-v1** パッケージで「アクション」を使用するには、サービス資格情報をアクションにバインドする必要があります。
-  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。 
-  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。**注**: 使用するアクションごとに以下のステップを実行する必要があります。
-    1. 使用する **assistant-v1** パッケージのアクションをクリックします。そのアクションの詳細ページが開きます。 
-    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。 
-    3. 新しい**パラメーター**を入力します。key には `__bx_creds` を入力します。value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
+  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。
+  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。 **注**: 使用するアクションごとに以下のステップを実行する必要があります。
+    1. 使用する **assistant-v1** パッケージのアクションをクリックします。 そのアクションの詳細ページが開きます。
+    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。
+    3. 新しい**パラメーター**を入力します。 key には `__bx_creds` を入力します。 value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
 
 ## {{site.data.keyword.conversationshort}} パッケージの使用
-{: #usage}
+{: #usage_conversation}
 
 このパッケージのアクションを使用するには、次の形式でコマンドを実行します。
 
@@ -187,9 +191,9 @@ ibmcloud fn action invoke assistant-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
-すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。[API 参照](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning)で詳細を確認してください。
+すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。 API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。 [API 参照](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning)で詳細を確認してください。
 
-このパッケージの機能は、Watson Assistant の現行バージョンである 2018-07-10 を使用します。`list-workspaces` アクションを試行します。
+このパッケージの機能は、Watson Assistant の現行バージョンである 2018-07-10 を使用します。 `list-workspaces` アクションを試行します。
 ```
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```

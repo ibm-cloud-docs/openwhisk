@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, translator, cognitive, translating text, language
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson：Translator 包
 {: #openwhisk_catalog_watson_translator}
+
+此预安装包在任何区域中都不再可用。请使用采用 IAM 认证的新 V3 API 来查看可安装的 [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) 包。
+{: tip}
 
 通过 `/whisk.system/watson-translator` 包，可以方便地调用 Watson API 以进行翻译。
 {: shortdesc}
@@ -26,13 +35,13 @@ lastupdated: "2018-03-26"
 |`/whisk.system/watson-translator/translator`|操作|payload、translateFrom、translateTo、translateParam、username、password|翻译文本|
 |`/whisk.system/watson-translator/languageId`|操作|payload、username 和 password|识别语言|
 
-**注**：不推荐使用包含 `/whisk.system/watson/translate` 和 `/whisk.system/watson/languageId` 操作的 `/whisk.system/watson` 包。
+**注**：不推荐使用包含 `/whisk.system/watson/translate` 和 `/whisk.system/watson/languageId` 操作的 `/whisk.system/watson` 包。请改为查看[可安装的 {{site.data.keyword.languagetranslatorshort}} 包](/docs/openwhisk?topic=cloud-functions-language-translator-package)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中设置 Watson Translator 包
 
 如果是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，那么将为 {{site.data.keyword.Bluemix_notm}} Watson 服务实例自动创建包绑定。
 
-1. 在 {{site.data.keyword.Bluemix_notm}} [仪表板](http://console.bluemix.net)中创建 Watson Translator 服务实例。请务必记住服务实例的名称以及您所在的 {{site.data.keyword.Bluemix_notm}} 组织和空间的名称。
+1. 在 {{site.data.keyword.Bluemix_notm}} [仪表板](http://cloud.ibm.com)中创建 Watson Translator 服务实例。请务必记住服务实例的名称以及您所在的 {{site.data.keyword.Bluemix_notm}} 组织和空间的名称。
 
 2. 刷新名称空间中的包。刷新操作将自动为已创建的 Watson 服务实例创建包绑定。
   ```

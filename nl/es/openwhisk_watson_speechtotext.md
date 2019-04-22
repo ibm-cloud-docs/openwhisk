@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Paquete Watson: Speech to Text
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+Este paquete preinstalado no está disponible en la región de Tokio. Consulte el paquete [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) instalable que utiliza autenticación de IAM.
+{: tip}
 
 El paquete `/whisk.system/watson-speechToText` ofrece una forma cómoda de invocar API Watson para convertir la voz a texto.
 {: shortdesc}
@@ -24,13 +33,14 @@ El paquete incluye las acciones siguientes.
 | `/whisk.system/watson-speechToText` | paquete | usuario, contraseña | Paquete para convertir habla en texto |
 | `/whisk.system/watson-speechToText/speechToText` | acción | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convertir audio en texto |
 
-**Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/speechToText`.
+**Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/speechToText`. Consulte el
+[paquete {{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) en su lugar.
 
 ## Configuración del paquete Watson Speech to Text en {{site.data.keyword.Bluemix_notm}}
 
 Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_notm}}, se crean automáticamente los enlaces de paquete para sus instancias de servicio de {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Cree una instancia de servicio de Watson Speech to Text en el [panel de control](http://console.ng.Bluemix.net) de {{site.data.keyword.Bluemix_notm}}.
+1. Cree una instancia de servicio de Watson Speech to Text en el [panel de control](http://cloud.ibm.com) de {{site.data.keyword.Bluemix_notm}}.
 
   Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de
 {{site.data.keyword.Bluemix_notm}} en el que se encuentra.

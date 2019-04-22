@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Respondendo aos eventos com acionadores e regras
 {: #openwhisk_triggers}
@@ -31,15 +37,12 @@ Um acionador é uma declaração de que você deseja reagir a um determinado tip
 - Um acionador de uploads de documento para um website
 - Um acionador de e-mails recebidos
 
-Os acionadores podem ser disparados ou ativados usando um dicionário de pares chave-valor.
-Às vezes, esse dicionário é referido como o evento. Os acionadores podem ser explicitamente disparados por um usuário ou disparados em nome de um usuário por uma origem de eventos externos. 
-Como com as ações, cada disparo de um acionador que está associado a uma regra resulta em um ID de ativação. 
-Um acionador que não estiver associado com uma regra não terá efeito visível quando ele for disparado.
+Os acionadores podem ser disparados ou ativados usando um dicionário de pares chave-valor. Às vezes, esse dicionário é referido como o evento. Os acionadores podem ser explicitamente disparados por um usuário ou disparados em nome de um usuário por uma origem de eventos externos. Como com as ações, cada disparo de um acionador que está associado a uma regra resulta em um ID de ativação. Um acionador que não estiver associado com uma regra não terá efeito visível quando ele for disparado.
 
 Um feed é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos
 acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. A seguir estão exemplos de feeds.
 - Um feed de mudança de dados do {{site.data.keyword.cloudant}} que dispara um evento
-acionador toda vez que um documento é incluído ou modificado em um banco de dados 
+acionador toda vez que um documento é incluído ou modificado em um banco de dados
 - Um feed do Git que dispara um evento acionador para cada confirmação em um repositório Git
 
 ### Regras
@@ -150,8 +153,7 @@ ser criadas dentro de pacotes.
     ```
     {: pre}
 
-4. Dispare o acionador `locationUpdate`. Cada vez que um evento acionador ocorre, a ação
-`hello` é chamada com os parâmetros de evento.
+4. Dispare o acionador `locationUpdate`. Toda vez que um evento acionador ocorre, a ação `hello` é chamada com os parâmetros de evento.
     ```
     ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```

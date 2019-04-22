@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 建立自訂事件提供者資訊來源
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ lastupdated: "2018-07-13"
 ### 連結鉤
 在*連結鉤* 型樣中，使用另一個服務所公開的 [Webhook](https://en.wikipedia.org/wiki/Webhook) 機能來設定資訊來源。在此策略中，於外部服務上配置 Webhook，以直接 POST 至 URL 來發動觸發程式。到目前為止，對於實作低頻率資訊來源，這個方法是最簡單且最具吸引力的選項。
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### 輪詢
 在「輪詢」型樣中，安排 {{site.data.keyword.openwhisk_short}} 動作定期輪詢端點，以提取新的資料。此型樣相當容易建置，但事件頻率受限於輪詢間隔。
@@ -34,10 +40,9 @@ lastupdated: "2018-07-13"
 ### 連線
 在「連線」型樣中，個別服務會維護連至資訊饋送來源的持續性連線。連線型實作可能會使用長時間輪詢間隔來與服務端點互動，或設定推送通知。
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## 資訊來源與觸發程式的差異
 
@@ -82,7 +87,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 如果事件生產者支援 Webhook/回呼機能，則使用連結鉤可以輕鬆地設定資訊來源。
 
-運用此方法，_不需要_ 在 {{site.data.keyword.openwhisk_short}} 外部使用任何持續性服務。所有資訊來源管理都會透過 Stateless {{site.data.keyword.openwhisk_short}} *資訊來源動作* 自然進行，而這些資訊來源動作會直接與協力廠商的 Webhook API 進行協議。
+運用此方法，_不需要_ 在 {{site.data.keyword.openwhisk_short}} 外部使用任何持續性服務。所有資訊來源管理都會透過無狀態 {{site.data.keyword.openwhisk_short}} *資訊來源動作* 自然進行，而這些資訊來源動作會直接與協力廠商的 Webhook API 進行協議。
 
 使用 `CREATE` 呼叫時，資訊來源動作只會安裝某個其他服務的 Webhook，並要求遠端服務將通知 POST 至 {{site.data.keyword.openwhisk_short}} 中的適當 `fireTrigger` URL。
 
@@ -115,7 +120,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 提供者服務有一個 REST API，其容許 {{site.data.keyword.openwhisk_short}} *資訊來源動作* 控制資訊來源。提供者服務會作為事件提供者與 {{site.data.keyword.openwhisk_short}} 之間的 Proxy。當它收到來自協力廠商的事件時，會透過發動觸發程式將它們傳送至 {{site.data.keyword.openwhisk_short}}。
 
 {{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源是標準範例，因為它是一個 `cloudanttrigger` 服務，在持續性連線的 {{site.data.keyword.cloudant_short_notm}} 通知與 {{site.data.keyword.openwhisk_short}} 觸發程式之間調解。
-<!-- TODO: add a reference to the open source implementation -->
+
 
 *警示* 資訊來源是使用類似的型樣進行實作。
 

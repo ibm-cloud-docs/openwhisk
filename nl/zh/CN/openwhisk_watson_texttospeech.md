@@ -1,18 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, converting, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
-
+{:tip: .tip}
 # Watson：Text to Speech 包
 {: #openwhisk_catalog_watson_texttospeech}
+
+此预安装包在东京区域中不可用。请使用 IAM 认证来查看可安装的 [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) 包。
+{: tip}
 
 通过 `/whisk.system/watson-textToSpeech` 包，可以方便地调用要将文本转换为语音的 Watson API。
 {: shortdesc}
@@ -25,13 +33,13 @@ lastupdated: "2018-03-26"
 |`/whisk.system/watson-textToSpeech`|包|username 和 password|用于将文本转换为语音的包|
 |`/whisk.system/watson-textToSpeech/textToSpeech`|操作|payload、voice、accept、encoding、username、password|将文本转换为音频|
 
-**注**：不推荐使用包含 `/whisk.system/watson/textToSpeech` 操作的 `/whisk.system/watson` 包。
+**注**：不推荐使用包含 `/whisk.system/watson/textToSpeech` 操作的 `/whisk.system/watson` 包。请改为查看[可安装的 {{site.data.keyword.texttospeechshort}} 包](/docs/openwhisk?topic=cloud-functions-text-to-speech-package)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中设置 Watson Text to Speech 包
 
 如果是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，那么将为 {{site.data.keyword.Bluemix_notm}} Watson 服务实例自动创建包绑定。
 
-1. 在 {{site.data.keyword.Bluemix_notm}} [仪表板](http://console.bluemix.net)中创建 Watson Text to Speech 服务实例。
+1. 在 {{site.data.keyword.Bluemix_notm}} [仪表板](http://cloud.ibm.com)中创建 Watson Text to Speech 服务实例。
 
   请务必记住服务实例的名称以及您所在的 {{site.data.keyword.Bluemix_notm}} 组织和空间的名称。
 

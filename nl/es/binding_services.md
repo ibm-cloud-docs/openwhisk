@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # Enlace de servicios con acciones
 {: #binding_services}
 
-Puede utilizar el [plugin {{site.data.keyword.openwhisk}}](./bluemix_cli.html) CLI para enlazar un servicio con una acción o paquete. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
+Puede utilizar el [plugin {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) CLI para enlazar un servicio con una acción o paquete. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en el tiempo de ejecución.
 {: shortdesc}
+
 
 No confunda el mandato `ibmcloud fn service bind` con el mandato `cf bind-service`, que está disponible en Cloud Foundry.
 {: tip}
+
 
 ## Enlace de un servicio a una acción o paquete
 {: #cli_bind}
 
 Puede enlazar cualquier servicio de {{site.data.keyword.Bluemix_notm}} con cualquier acción definida en {{site.data.keyword.openwhisk_short}}. Al enlazar un servicio, se crea un nuevo parámetro en la acción existente que contiene las credenciales de la instancia de servicio.
 
-**Nota**: Sólo puede enlazar un servicio de cada tipo a una acción o paquete. Enlazar varios servicios del mismo tipo no está admitido.
+**Nota**: Sólo puede enlazar un servicio de cada tipo a una acción o paquete. No se admite el enlace de servicios del mismo tipo.
 
-Antes de empezar, [defina las credenciales](/docs/apps/reqnsi.html#accser_external) para el servicio que desea enlazar.
+Antes de empezar, [defina las credenciales](/docs/resources?topic=resources-externalapp#externalapp) para el servicio que desea enlazar.
 
 1. Obtenga el nombre de la instancia de servicio que desea enlazar a una acción o paquete.
     ```
@@ -139,7 +147,11 @@ Credentials-2
 
     En este ejemplo, las credenciales correspondiente al servicio de conversación, junto con cualquier otra credencial correspondiente a otros tipos de servicio, pertenecen a un parámetro denominado `__bx_creds`. La acción busca el parámetro de enlace `__bx_creds` y elimina la referencia al tipo de servicio listado. Si ese tipo de servicio es el único que se lista, la acción presenta un valor nulo en el valor de parámetro de `__bx_creds`. Si hay más de un servicio enlazado a la acción, el parámetro `__bx_creds` se mantiene con los servicios que todavía están enlazados.
 
-Para obtener más información sobre cómo pasar parámetros a una acción o a un paquete y sobre cómo se ven afectadas las credenciales durante las operaciones `update`, consulte el apartado sobre [Cómo trabajar con parámetros](./parameters.html#pass-params-action).
+Para obtener más información sobre cómo pasar parámetros a una acción o a un paquete y sobre cómo se ven afectadas las credenciales durante las operaciones `update`, consulte el apartado sobre [Cómo trabajar con parámetros](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action).
+
+
+Si cambia el nombre de la organización o el espacio que contiene las entidades, se creará un espacio de nombres con el nuevo nombre. Las entidades que contiene el espacio de nombres antiguo no serán visibles en el nuevo espacio de nombres y se planificará su supresión. Si ha realizado el cambio de forma accidental, puede revertirlo y guardar las entidades antes de que se supriman.
+{: tip}
 
 
 ## Desenlace de un servicio de una acción o paquete

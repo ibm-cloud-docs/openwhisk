@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # トリガーおよびルールによるイベントへの応答
 {: #openwhisk_triggers}
@@ -43,7 +49,7 @@ lastupdated: "2018-06-28"
 ルールは、トリガーをアクションと関連付けます。
 {: shortdesc}
 
-トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用して、関連付けられたアクションを呼び出します。適切なルール・セットを使用して、単一のトリガー・イベントが
+トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用して、関連付けられたアクションを呼び出します。 適切なルール・セットを使用して、単一のトリガー・イベントが
 複数のアクションを呼び出すことも、複数のトリガーからのイベントに対する応答として 1 つのアクションを呼び出すこともできます。
 
 例えば、以下のアクションを持つシステムがあるとします。
@@ -130,7 +136,7 @@ lastupdated: "2018-06-28"
     ```
     {: pre}
 
-3. `locationUpdate` トリガーを `hello` アクションに関連付ける `myRule` ルールを作成します。ルールは、名前空間内に直接作成する必要があり、パッケージ内には作成できません。
+3. `locationUpdate` トリガーを `hello` アクションに関連付ける `myRule` ルールを作成します。 ルールは、名前空間内に直接作成する必要があり、パッケージ内には作成できません。
     ```
     ibmcloud fn rule create myRule locationUpdate hello
     ```
@@ -182,7 +188,7 @@ lastupdated: "2018-06-28"
     ```
     {: pre}
 
-また、ルールを使用して、トリガーをシーケンスに関連付けることもできます。例えば、ルール `anotherRule` によってアクティブ化される、`recordLocationAndHello` というアクション・シーケンスを作成することができます。
+また、ルールを使用して、トリガーをシーケンスに関連付けることもできます。 例えば、ルール `anotherRule` によってアクティブ化される、`recordLocationAndHello` というアクション・シーケンスを作成することができます。
 ```
 ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
 ```

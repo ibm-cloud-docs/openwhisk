@@ -1,20 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-22"
+
+keywords: annotations, annotate, package, parameters, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
 
 # 註釋
 {: #openwhisk_annotations}
 
-可以使用註釋來記載 {{site.data.keyword.openwhisk}} 動作、觸發程式、規則及套件（統稱為實體）。
+{{site.data.keyword.openwhisk}} 動作、觸發程式、規則及套件（統稱為實體）可以包括註釋。
 {: shortdesc}
 
 註釋會附加至實體，就像參數一樣。註釋包含定義名稱的 `key`，及定義值的 `value`。註釋最常用來記載動作和套件。{{site.data.keyword.openwhisk_short}} 型錄中的許多套件都帶有註釋，例如，其動作所提供之功能的說明、套件連結期間所使用的參數、呼叫期間參數，或者參數是否為密碼。例如，視需要建立註釋來容許使用者介面整合。
@@ -31,7 +39,10 @@ lastupdated: "2018-07-13"
 - `sampleInput`：顯示含一般值的輸入綱目的範例。
 - `sampleOutput`：顯示輸出綱目的範例，通常適用於 `sampleInput`。
 
+
+
 下列程式碼是 `echo` 動作的一組註釋範例，此動作會傳回其未經修改的輸入引數。例如，此動作適用於將輸入參數記載為某個序列或規則的一部分。
+
 ```
 ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
@@ -46,11 +57,11 @@ ibmcloud fn action create echo echo.js \
 
 下列 Web 動作註釋必須明確地設為 `true`，才能啟用 API 互動。
 
-- `web-export`：套用至動作時，動作會變成 [Web 動作](openwhisk_webactions.html)。REST 呼叫不需鑑別即可存取此動作，以便使用者從瀏覽器存取動作。
+- `web-export`：套用至動作時，動作會變成 [Web 動作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)。REST 呼叫不需鑑別即可存取此動作，以便使用者從瀏覽器存取動作。
     * **附註**：Web 動作的擁有者會引發在系統中執行它們的成本。換言之，動作的擁有者也擁有啟動記錄。
 - `final`：套用至動作時，先前已定義的任何動作參數都會變成不可變。參數無法被呼叫期間提供的參數所置換。
 - `raw-http`：套用至具有 `web-export` 註釋的動作時，會 HTTP 要求查詢和內文參數當作保留內容傳遞至動作。
-- `web-custom-options`：會啟用 Web 動作，以回應具有自訂標頭的 OPTIONS 要求。否則，會套用[預設 CORS 回應](openwhisk_webactions.html#options-requests)。
+- `web-custom-options`：會啟用 Web 動作，以回應具有自訂標頭的 OPTIONS 要求。否則，會套用[預設 CORS 回應](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#options-requests)。
 - `require-whisk-auth`：Web 動作只能由提供適當的鑑別認證的要求呼叫。
     * 設為布林值時，可控制是否鑑別要求的「基本鑑別」值。`true` 值會鑑別認證，而 `false` 值會呼叫動作，而不進行任何鑑別。
     * 設為整數或字串時，此值必須符合要求的 `X-Require-Whisk-Auth` 標頭值。

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-27"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: weather package, forecast, functions, serverless 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Package Weather
 {: #openwhisk_catalog_weather}
@@ -30,7 +36,7 @@ Il est recommandé de créer une liaison de package avec les valeurs `username` 
 
 Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Bluemix_notm}}, les liaisons de package sont automatiquement créées pour vos instances de service {{site.data.keyword.Bluemix_notm}} Weather.
 
-1. Créez une instance de service Weather Company Data dans votre [tableau de bord](http://console.bluemix.net) {{site.data.keyword.Bluemix_notm}}.
+1. Créez une instance de service Weather Company Data dans votre [tableau de bord](http://cloud.ibm.com) {{site.data.keyword.Bluemix_notm}}.
 
   Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
 

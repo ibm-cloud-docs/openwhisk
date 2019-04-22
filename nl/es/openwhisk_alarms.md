@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-23"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: alarms, triggers, event, schedule, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Utilización de alarmas para planificar desencadenantes
 {: #openwhisk_catalog_alarm}
@@ -24,7 +30,7 @@ El paquete incluye el canal de información siguiente.
 | `/whisk.system/alarms` | paquete | - | Utilidad de alarmas y periodicidad. |
 | `/whisk.system/alarms/once` | canal de información | date, trigger_payload, deleteAfterFire | Se activa un suceso desencadenante una vez en una fecha específica. |
 | `/whisk.system/alarms/interval` | canal de información | minutes, trigger_payload, startDate, stopDate | Se activa un suceso desencadenante en una planificación basada en intervalos. |
-| `/whisk.system/alarms/alarm` | canal de información | cron, trigger_payload, startDate, stopDate | Se activa un suceso desencadenante en una planificación basada en el tiempo mediante cron. |
+| `/whisk.system/alarms/alarm` | canal de información | cron, timezone, trigger_payload, startDate, stopDate | Se activa un suceso desencadenante en una planificación basada en el tiempo mediante cron. |
 
 ## Activación de un suceso desencadenante una vez
 
@@ -150,6 +156,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <tr>
 <td><code>--param cron</code></td>
 <td>Sustituya <code>&lt;cron&gt;</code> con una serie que indica cuándo se activará el desencadenante en Hora universal coordinada (UTC). La serie se basa en la <a href="http://crontab.org">sintaxis de crontab de UNIX</a> y es una secuencia con un máximo de 5 campos. Los campos se separan con espacios en el formato <code>X X X X X X</code>. Las series siguientes son ejemplos de distintas duraciones de frecuencia:<ul><li><code>\* \* \* \* \*</code>: El desencadenante se activa al principio de cada minuto.</li><li><code>0 \* \* \* \*</code>: El desencadenante se activa al principio de cada hora.</li><li><code>0 \*/2 \* \* \*</code>: El desencadenante se activa cada 2 horas (esto es, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code>: El desencadenante se activa a las 9:00:00 (UTC) en el octavo día de cada mes.</li></ul></td>
+</tr>
+<tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>Opcional: sustituya <code>&lt;timezone&gt;</code> por una serie que especifique el huso horario. La hora real a la que se activa el desencadenante se modificará según el huso horario especificado. Si el huso horario no es válido, se genera un error. Puede comprobar todos los husos horarios disponibles en el sitio web de Moment Timezone (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names).</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>

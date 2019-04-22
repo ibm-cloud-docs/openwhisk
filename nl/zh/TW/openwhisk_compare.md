@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: functions compared, openwhisk, architecture, limitless
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 函數即服務比較
 {: #openwhisk_faas_compared}
@@ -22,15 +28,15 @@ lastupdated: "2018-05-31"
 
 比較下列 OpenWhisk 架構：
 
-1. [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk) 上的**函數即服務 (FaaS)**。IBM 是唯一提供受管理 OpenWhisk 的供應商。您可以在 [Martin Fowler 部落格](https://martinfowler.com/articles/serverless.html)上找到關於使用 FaaS 平台的無伺服器程式設計模型的良好簡介，而且您可以看到使用無伺服器設計執行 OpenWhisk 的[使用案例](./openwhisk_use_cases.html)。
+1. [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk) 上的**函數即服務 (FaaS)**。IBM 是唯一提供受管理 OpenWhisk 的供應商。您可以在 [Martin Fowler 部落格](https://martinfowler.com/articles/serverless.html)上找到關於使用 FaaS 平台的無伺服器程式設計模型的良好簡介，而且您可以看到使用無伺服器設計執行 OpenWhisk 的[使用案例](/docs/openwhisk?topic=cloud-functions-openwhisk_common_use_cases)。
 
-2. 含「OpenWhisk 自行開發 (RYO)」的**基礎架構即服務 (IaaS)**。您可以從 Apache Incubation Project 下載 OpenWhisk，並在 [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices) 上執行它。
+2. 含「OpenWhisk 自行開發 (RYO)」的**基礎架構即服務 (IaaS)**。您可以從 Apache Incubation Project 下載 OpenWhisk，並在 [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices) 上執行它。
 
-3. **平台即服務 (PaaS)** 作為受管理應用程式運行環境。建議範例是 {{site.data.keyword.Bluemix_notm}} Foundry 實作所管理的 [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java) 運行環境。
+3. **平台即服務 (PaaS)** 作為受管理應用程式運行環境。建議範例是 {{site.data.keyword.Bluemix_notm}} Foundry 實作所管理的 [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) 運行環境。
 
-4. **容器即服務 (CaaS)** 作為受管理容器環境。建議範例是 [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index)。
+4. **容器即服務 (CaaS)** 作為受管理容器環境。建議範例是 [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-container_index#container_index)。
 
-5. 含 Java EE 執行時期的**基礎架構即服務 (IaaS)**。建議範例是 [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server)。
+5. 含 Java EE 執行時期的**基礎架構即服務 (IaaS)**。建議範例是 [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server)。
 
 下表比較建立及操作應用程式之開發人員觀點的每一個架構元素：
 
@@ -51,10 +57,10 @@ lastupdated: "2018-05-31"
 |	開發人員速度	|	最高	|	最高	|	最高	|	普通|	慢速	|
 |	資源使用率（仍然需要付費的閒置資源）|	資源絕不會閒置，因為只有在要求時才會進行呼叫。工作負載不存在時，不會發生成本或資源配置。|	因為此選項使用 IaaS 或 CaaS，所以會套用直欄 (4) 及 (5) 中的類似考量|	部分資源可以閒置，而自動調整有助於刪除閒置資源。許多執行中實例必須一直存在，且可能會使用於小於 50% 的容量。已停止的實例沒有任何成本|	與直欄 (3) 類似|	部分資源可以閒置，但不支援自動調整。某些執行中實例必須一直存在，且可能使用的容量少於 50% 的容量。已停止的實例會造成儲存體的成本|
 |	期滿 |	提早期滿	|	提早期滿	|	提早期滿	|	中度期滿	|	非常成熟|
-|	資源限制	|	[有些限制](./openwhisk_reference.html#openwhisk_syslimits)	|	取決於配置的資源|	否	|	否	|	否	|
+|	資源限制	|	[有些限制](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)	|	取決於配置的資源|	否	|	否	|	否	|
 |	罕用服務的延遲|	罕見要求一開始會經歷數秒回應時間，但後續要求會在毫秒範圍內完成。|	視情況而定	|	低|	低|	低 - 假設系統具有足夠的資源|
-|	甜蜜點類型的應用程式|	事件處理、IoT、行動後端系統、微服務。絕對不適用於龐大應用程式。請參閱[使用案例](./openwhisk_use_cases.html)	|	與直欄 (1) 相同，但在使用者想要在非 IBM Cloud 或內部部署上執行時。|	需要長期間開啟連線的全年無休工作負載、有狀態服務的 Web 應用程式。可以用來執行微服務或龐大的應用程式|	適用於微服務應用程式。|	從內部部署移轉至雲端的傳統企業應用程式。適用於整合型應用程式|
-|	費用精度及計費|	[每個區塊 100 毫秒](https://console.ng.bluemix.net/openwhisk/learn/pricing)	|	視實作而定，如果使用 IaaS 或 CaaS，則適用類似的考量，請參閱直欄 (4) 及 (5)|	對於資源組（CPU + 記憶體 + 部分磁碟空間），通常是每小時收費（極少的情況下是每分鐘）|	與直欄 (3) 類似|	與直欄 (3) 類似|
+|	甜蜜點類型的應用程式|	事件處理、IoT、行動後端系統、微服務。絕對不適用於龐大應用程式。請參閱[使用案例](/docs/openwhisk?topic=cloud-functions-openwhisk_common_use_cases)	|	與直欄 (1) 相同，但在使用者想要在非 IBM Cloud 或內部部署上執行時。|	需要長期間開啟連線的全年無休工作負載、有狀態服務的 Web 應用程式。可以用來執行微服務或龐大的應用程式|	適用於微服務應用程式。|	從內部部署移轉至雲端的傳統企業應用程式。適用於整合型應用程式|
+|	費用精度及計費|	[每個區塊 100 毫秒](https://cloud.ibm.com/openwhisk/learn/pricing)	|	視實作而定，如果使用 IaaS 或 CaaS，則適用類似的考量，請參閱直欄 (4) 及 (5)|	對於資源組（CPU + 記憶體 + 部分磁碟空間），通常是每小時收費（極少的情況下是每分鐘）|	與直欄 (3) 類似|	與直欄 (3) 類似|
 |	總擁有成本 (TCO)|	對於其優點，應用程式的執行成本量級可能會低於替代方案。因為資源會自動調整大小，所以不會發生過度佈建。|	對於雲端部署，這可能會比 OpenWhisk FaaS 更為昂貴，但對於內部部署，部署可能會比傳統架構還要便宜|	相對低 - 使用者不需要佈建或管理資源，可以著重於應用程式開發。相較於無伺服器，某層級的過度佈建|	中 - 使用者需要佈建及管理容器和應用程式，但相較於無伺服器及 PaaS，會看到某層級的過度佈建|	相對高 - 考量到從舊式應用程式移轉至雲端原生模型可能過於昂貴，這可為應用程式的可行且經濟實惠的選擇。|
 
 ## 成本考量
@@ -63,7 +69,7 @@ lastupdated: "2018-05-31"
 測試、暫置、負載測試及其他環境的基礎架構可能成本高昂。設定它們需要一些時間，而且，因為它們通常會全年無休地運作，所以通常未充分利用並耗用大量容量。使用無伺服器架構，會根據負載來產生任意數目環境的成本，而非所定義數目的環境。
 {: shortdesc}
 
-若要預估無伺服器應用程式的成本，您可以使用[定價計算機 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://console.bluemix.net/openwhisk/learn/pricing)。
+若要預估無伺服器應用程式的成本，您可以使用[定價計算機 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/openwhisk/learn/pricing)。
 
 ### 無限容量
 {: #limitless_capacity}

@@ -1,59 +1,95 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-31"
+  years: 2017, 2019
+lastupdated: "2019-04-05"
+
+keywords: object storage, bucket, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
-# Pacote do Object Storage
+# Pacote do Cloud Object Storage
 {: #cloud_object_storage_actions}
 
-O pacote do {{site.data.keyword.cos_full_notm}} fornece um conjunto de ações para interação com instâncias do {{site.data.keyword.cos_full}}. Essas ações permitem leitura, gravação e exclusão nos depósitos que estão presentes em uma instância do {{site.data.keyword.cos_short}}.
+O pacote do {{site.data.keyword.cos_full}} fornece um conjunto de ações para interação com instâncias do {{site.data.keyword.cos_full_notm}}. Essas ações permitem que você leia, grave e exclua dos depósitos que estão presentes em uma instância do {{site.data.keyword.cos_short}}.
 {: shortdesc}
 
 O pacote do  {{site.data.keyword.cos_short}}  inclui as ações a seguir:
 
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/cloud-object-storage` | pacote | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Trabalhe com uma instância do  {{site.data.keyword.cos_full_notm}} . |
-| `/cloud-object-storage/object-write` | ação | depósito, chave, corpo | Gravar um objeto em um depósito. |
-| `/cloud-object-storage/object-read` | ação | depósito, chave | Ler um objeto a partir de um depósito. |
-| `/cloud-object-storage/object-delete` | ação | depósito, chave | Excluir um objeto de um depósito. |
-| `/cloud-object-storage/bucket-cors-put` | ação | depósito, corsConfig | Designar uma configuração do CORS a um depósito. |
-| `/cloud-object-storage/bucket-cors-get` | ação | bucket | Ler a configuração de CORS de um depósito. |
-| `/cloud-object-storage/bucket-cors-delete` | ação | bucket | Excluir a configuração de CORS de um depósito. |
-| `/cloud-object-storage/client-get-signed-url` | ação | bucket, key, operation | Obter uma URL assinada para restringir a Gravação, a Leitura e a Exclusão de um objeto em um depósito. |
+| `/cloud-object-storage` | pacote | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Trabalhe com uma instância do  {{site.data.keyword.cos_short}} . |
+| `/cloud-object-storage/object-write` | ação | bucket, key, body, endpoint, ibmAuthEndpoint | Gravar um objeto em um depósito. |
+| `/cloud-object-storage/object-read` | ação | bucket, key, endpoint, ibmAuthEndpoint | Ler um objeto a partir de um depósito. |
+| `/cloud-object-storage/object-delete` | ação | bucket, key, endpoint, ibmAuthEndpoint | Excluir um objeto de um depósito. |
+| `/cloud-object-storage/bucket-cors-put` | ação | bucket, corsConfig, endpoint, ibmAuthEndpoint | Designar uma configuração do CORS a um depósito. |
+| `/cloud-object-storage/bucket-cors-get` | ação | bucket, endpoint, ibmAuthEndpoint | Ler a configuração de CORS de um depósito. |
+| `/cloud-object-storage/bucket-cors-delete` | ação | bucket, endpoint, ibmAuthEndpoint | Excluir a configuração de CORS de um depósito. |
+| `/cloud-object-storage/client-get-signed-url` | ação | bucket, key, operation, expires, endpoint, ibmAuthEndpoint | Obter uma URL assinada para restringir a Gravação, a Leitura e a Exclusão de um objeto em um depósito. |
 
-## Criando uma instância de serviço do {{site.data.keyword.cos_full_notm}}
+## Parâmetros de pacote e de ação
+
+#### Parâmetros do Pacote
+
+Os parâmetros a seguir devem ser ligados ao pacote; isso os tornará automaticamente disponíveis para todas as ações. Também é possível especificar esses parâmetros ao chamar uma das ações.
+
+**apikey**: o parâmetro `apikey` é a chave de API do IAM para a instância do {{site.data.keyword.cos_short}}.
+
+**resource_instance_id**: o parâmetro `resource_instance_id` é o identificador de instância do {{site.data.keyword.cos_short}}.
+
+**cos_hmac_keys**: o parâmetro `cos_hmac_keys` são as credenciais HMAC da instância do {{site.data.keyword.cos_short}}, que inclui os valores `access_key_id` e `secret_access_key`. Essas credenciais são usadas exclusivamente pela ação `client-get-signed-url`.  Consulte [Usando credenciais HMAC](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) para obter instruções sobre como gerar credenciais HMAC para sua instância do {{site.data.keyword.cos_short}}.
+
+#### Parâmetros de ação
+
+Os parâmetros a seguir são especificados ao chamar as ações individuais. Nem todos esses parâmetros são suportados por cada ação; consulte a tabela acima para ver quais parâmetros são suportados por qual ação.
+
+**bucket**: o parâmetro `bucket` é o nome do depósito do {{site.data.keyword.cloud_object_storage_short_notm}}.
+
+**endpoint**: O parâmetro `endpoint`é o {{site.data.keyword.cos_short}}terminal usado para se conectar à sua instância do {{site.data.keyword.cos_short}}. É possível localizar seu terminal na [documentação do {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
+
+**expires**: o parâmetro `expires` é o número de segundos para expirar a operação de URL pré-assinada. O valor `expires` padrão é 15 minutos.
+
+**ibmAuthEndpoint**: o parâmetro `ibmAuthEndpoint ` é o terminal de autorização do IBM Cloud usado pelo {site.data.keyword.cos_short}} para gerar um token do `apikey`. O terminal de autorização padrão deve funcionar para todas as regiões do IBM Cloud.
+
+**key**: o parâmetro `key` é a chave do objeto de depósito.
+
+**operation**: o parâmetro `operation` é a operação da URL pré-assinada para chamada.
+
+**corsConfig**: o parâmetro `corsConfig` é uma configuração CORS de um depósito.
+
+
+## Criando uma instância de serviço do IBM Cloud Object Storage
 {: #cloud_object_storage_service_instance}
 
 Antes de instalar o pacote, deve-se solicitar uma instância do {{site.data.keyword.cos_short}} e criar pelo menos um depósito.
 
-1. [Criar uma instância de serviço do {{site.data.keyword.cos_full_notm}}![Ícone de link externo](../icons/launch-glyph.svg "ícone de link externo")](/docs/services/cloud-object-storage/basics/order-storage.html#creating-a-new-service-instance).
+1. [Crie uma instância de serviço do {{site.data.keyword.cos_short}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
 
-2. [Criar um conjunto de credenciais de serviço do HMAC![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](/docs/services/cloud-object-storage/iam/service-credentials.html#service-credentials) para a instância de serviço do {{site.data.keyword.cos_short}}. No campo **Incluir parâmetros de configuração sequenciais (opcional)**, inclua `{"HMAC":true}`.
+2. [Criar um conjunto de credenciais de serviço do HMAC![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) para a instância de serviço do {{site.data.keyword.cos_short}}. No campo **Incluir parâmetros de configuração sequenciais (opcional)**, inclua `{"HMAC":true}`.
 
-3. [Criar pelo menos um depósito ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](/docs/services/cloud-object-storage/getting-started.html#create-buckets).
+3. [Criar pelo menos um depósito ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
 
 ## Instalando o pacote do  {{site.data.keyword.cos_short}}
 {: #cloud_object_storage_installation}
 
-Depois que você tem uma instância de serviço do {{site.data.keyword.cos_short}}, use a CLI ou a UI do {{site.data.keyword.openwhisk}} para instalar o pacote do {{site.data.keyword.cos_short}} em seu namespace.
+Depois de ter uma instância de serviço do {{site.data.keyword.cos_short}}, é possível usar a CLI ou a UI do {{site.data.keyword.openwhisk}} para instalar o pacote do {{site.data.keyword.cos_short}} em seu namespace.
 {: shortdesc}
 
 ### Instalando a partir da CLI do  {{site.data.keyword.openwhisk_short}}
 {: #cloud_object_storage_cli}
 
 Antes de Iniciar:
-  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale o comando  ` wskdeploy ` . Consulte a [Documentação do Apache OpenWhisk ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://github.com/apache/incubator-openwhisk-wskdeploy#building-the-project).
+
+[ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar o pacote do  {{site.data.keyword.cos_short}} :
 
@@ -69,9 +105,9 @@ Para instalar o pacote do  {{site.data.keyword.cos_short}} :
     ```
     {: pre}
 
-3. Implemente o pacote. Se você decidir posteriormente executar as ações nesse pacote no outro tempo deexecução, será possível repetir a etapa anterior e esta etapa para reimplementar o pacote.
+3. Implemente o pacote. É possível repetir as etapas anteriores para reimplementar o pacote em outro tempo de execução.
     ```
-    wskdeploy -m manifest.yaml
+    ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
@@ -84,31 +120,31 @@ Para instalar o pacote do  {{site.data.keyword.cos_short}} :
     Saída:
     ```
     packages
-    /myOrg_mySpace/cloud-object-storage-pkg private
+    /myOrg_mySpace/cloud-object-storage private
     ```
     {: screen}
 
 5. Ligue as credenciais da instância do {{site.data.keyword.cos_short}} que você criou ao pacote.
     ```
-    ibmcloud fn service bind cloud-object-storage cloud cloud-object-storage-pkg
+    ibmcloud fn service bind cloud-object-storage cloud-object-storage
     ```
     {: pre}
 
     Exemplo de Saída:
     ```
-    Credentials 'Credentials-1' from 'cloud-object-storage' service instance 'Cloud Object Storage-r1' bound to 'cloud-object-storage-pkg'.
+    Credentials 'Credentials-1' from 'cloud-object-storage' service instance 'Cloud Object Storage-r1' bound to 'cloud-object-storage'.
     ```
     {: screen}
 
 6. Verifique se o pacote está configurado com suas credenciais de instância de serviço do {{site.data.keyword.cos_short}}.
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage-storage-pkg parameters
+    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage parameters
     ```
     {: pre}
 
     Exemplo de Saída:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/cloud-object-storage-pkg, displaying field parameters
+    ok: got package /myBluemixOrg_myBluemixSpace/cloud-object-storage, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -133,22 +169,22 @@ Para instalar o pacote do  {{site.data.keyword.cos_short}} :
 ### Instalando a partir da UI do  {{site.data.keyword.openwhisk_short}}
 {: #cloud_object_storage_ui}
 
-1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/create).
+1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Usando as listas de **Organizações do Cloud Foundry** e **Espaços do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio da organização combinada e nomes de espaço.
+2. Usando as listas **Organização do Cloud Foundry** e **Espaço do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio de nomes combinados de `org` e `space`.
 
 3. Clique em  ** Instalar pacotes **.
 
-4. Clique no grupo de Pacotes do **IBM Cloud Object Storage** e, em seguida, clique no Pacote do **IBM Cloud Object Storage**.
+4. Clique no grupo de pacotes **IBM Cloud Object Storage** e, em seguida, clique no pacote **IBM Cloud Object Storage**.
 
-5. Na seção Tempos de execução disponíveis, selecione NodeJS ou Python na lista suspensa e, em seguida, clique em **Instalar**.
+5. Na seção **Tempos de Execução Disponíveis**, selecione `Node.JS`ou `Python`a partir da lista suspensa. Em seguida, clique em **Instalar**.
 
-6. Depois que o Pacote tiver sido instalado, você será redirecionado para a página Ações e poderá procurar pelo seu novo pacote, que é denominado **cloud-object-storage**.
+6. Depois que o pacote tiver sido instalado, você será redirecionado para a página Ações e poderá procurar por seu novo Pacote, que é denominado **cloud-object-storage**.
 
-7. Para usar as Ações no pacote **cloud-object-storage**, deve-se ligar as credenciais de serviço às ações.
+7. Para usar as ações no pacote **cloud-object-storage**, deve-se ligar as credenciais de serviço às ações.
   * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima.
   * Para ligar as credenciais de serviço a ações individuais, conclua as etapas a seguir na IU. **Nota**: deve-se concluir as etapas a seguir para cada ação que você deseja usar.
-    1. Clique em uma Ação no pacote **cloud-object-storage** que você deseja usar. A página de detalhes para essa Ação é aberta.
+    1. Clique em uma ação por meio do pacote **cloud-object-storage** que você deseja usar. A página de detalhes para essa ação é aberta.
     2. Na navegação à esquerda, clique na seção **Parâmetros**.
     3. Insira um novo  ** parâmetro **. Para a chave, insira  ` __bx_creds `. Para o valor, cole no objeto da JSON de credenciais de serviço por meio da instância de serviço que você criou anteriormente.
 
@@ -184,7 +220,7 @@ Exemplo de Saída:
 ### Gravar em um depósito na UI
 {: #write_bucket_ui}
 
-1. Acesse a página Ações do [ no console do {{site.data.keyword.openwhisk_short}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/actions).
+1. Acesse a página [Ações no console do {{site.data.keyword.openwhisk_short}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/actions).
 
 2. No pacote `cloud-object-storage`, clique na ação **object-write**.
 
@@ -245,7 +281,7 @@ Exemplo de Saída:
 ### Ler em um depósito na UI
 {: #read_bucket_ui}
 
-1. Acesse a página Ações do [ no console do {{site.data.keyword.openwhisk_short}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/actions).
+1. Acesse a página [Ações no console do {{site.data.keyword.openwhisk_short}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/actions).
 
 2. No pacote `cloud-object-storage`, clique na ação **object-read**.
 
@@ -264,7 +300,7 @@ Exemplo de Saída:
 
 6. Clique em  ** Invoke **.
 
-7. Verifique se a saída é semelhante à seguinte:   
+7. Verifique se a saída é semelhante à seguinte:
     ```
     object-write 3855 ms 6/7/2018, 14:56:09 Activation ID: bb6eba3cf69wereaeba3cf691a1aad8 Results: {
       "bucket": "testbucketeweit",

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Réponse à des événements avec des déclencheurs et des règles
 {: #openwhisk_triggers}
@@ -26,7 +32,7 @@ Les déclencheurs et les règles {{site.data.keyword.openwhisk}} apportent des c
 Les déclencheurs constituent un canal nommé pour une classe d'événements.
 {: shortdesc}
 
-Un déclencheur est une déclaration qui doit réagir à un certain type d'événement, provenant d'un utilisateur ou d'une source d'événements. Voici des exemples de déclencheur. 
+Un déclencheur est une déclaration qui doit réagir à un certain type d'événement, provenant d'un utilisateur ou d'une source d'événements. Voici des exemples de déclencheur.
 - Déclencheur d'événements de mise à jour d'emplacement
 - Déclencheur de mises à jour de document sur un site Web
 - Déclencheur de courriers électroniques entrants
@@ -34,7 +40,7 @@ Un déclencheur est une déclaration qui doit réagir à un certain type d'évé
 Les déclencheurs peuvent être exécutés, ou activés, à l'aide d'un dictionnaire de paires clé-valeur. Parfois, ce dictionnaire est
 appelé événement. Les déclencheurs peuvent être exécutés explicitement par un utilisateur ou pour le compte d'un utilisateur par une source d'événements d'externe. Comme pour les actions, chaque exécution de déclencheur génère un ID d'activation. Un déclencheur qui n'est pas associé à une règle n'a aucun effet visible lorsqu'il est exécuté.
 
-Un flux est pratique pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs qui peuvent être consommés par {{site.data.keyword.openwhisk_short}}. Voici des exemples de flux : 
+Un flux est pratique pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs qui peuvent être consommés par {{site.data.keyword.openwhisk_short}}. Voici des exemples de flux :
 - Flux de modification de données {{site.data.keyword.cloudant}} qui exécute un déclencheur à chaque ajout ou modification d'un document dans une base de données.
 - Flux Git qui exécute un déclencheur pour chaque validation dans un référentiel Git
 
@@ -182,7 +188,7 @@ Après que vous avez créé le déclencheur [`locationUpdate`](#openwhisk_trigge
     ```
     {: pre}
 
-Vous pouvez également utiliser des règles pour associer des déclencheurs à des séquences. Vous pouvez ainsi créer une séquence d'actions appelée `recordLocationAndHello`, qui est activée par la règle `anotherRule` : 
+Vous pouvez également utiliser des règles pour associer des déclencheurs à des séquences. Vous pouvez ainsi créer une séquence d'actions appelée `recordLocationAndHello`, qui est activée par la règle `anotherRule` :
 ```
 ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
 ```

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-23"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: alarms, triggers, event, schedule, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Utilisation d'alarmes pour planifier des déclencheurs
 {: #openwhisk_catalog_alarm}
@@ -24,7 +30,7 @@ Le package comprend les flux suivants :
 | `/whisk.system/alarms` | package | - | Alarmes et utilitaire périodique. |
 | `/whisk.system/alarms/once` | flux | date, trigger_payload, deleteAfterFire | Exécution d'un événement déclencheur une fois à une date spécifique. |
 | `/whisk.system/alarms/interval` | flux | minutes, trigger_payload, startDate, stopDate | Exécution d'un événement déclencheur selon une planification basée sur des intervalles. |
-| `/whisk.system/alarms/alarm` | flux | cron, trigger_payload, startDate, stopDate | Exécution d'un événement déclencheur selon une planification horaire à l'aide de cron. |
+| `/whisk.system/alarms/alarm` | flux | cron, timezone, trigger_payload, startDate, stopDate | Exécution d'un événement déclencheur selon une planification horaire à l'aide de cron. |
 
 ## Exécution ponctuelle d'un événement déclencheur
 
@@ -62,7 +68,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 </tbody></table>
 
-Voici un exemple de création d'un déclencheur qui sera exécuté une seule fois le 25 décembre 2019 à 12:30:00 TUC. Chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`.Une fois le déclencheur exécuté, ce dernier ainsi que toutes les règles associées seront supprimés.
+Voici un exemple de création d'un déclencheur qui sera exécuté une seule fois le 25 décembre 2019 à 12:30:00 TUC. Chaque événement déclencheur possède les paramètres `name=Odin` et `place=Asgard`. Une fois le déclencheur exécuté, ce dernier ainsi que toutes les règles associées seront supprimés.
 
 ```
 ibmcloud fn trigger create fireOnce \
@@ -150,6 +156,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <tr>
 <td><code>--param cron</code></td>
 <td>Remplacez <code>&lt;cron&gt;</code> par une chaîne indiquant l'heure d'exécution du déclencheur en Temps Universel Coordonné (UTC). La chaîne repose sur la <a href="http://crontab.org">syntaxe UNIX crontab</a> et figure dans une séquence comportant 5 zones au maximum. Les zones sont séparées par des espaces au format <code>X X X X X</code>. Les chaînes suivantes sont des exemples qui utilisent différentes durées fréquence :<ul><li><code>\* \* \* \* \*</code> : le déclencheur s'exécute au début de chaque minute.</li><li><code>\* \* \* \* \*</code> : le déclencheur s'exécute au début de chaque heure.</li><li><code>0 \*/2 \* \* \*</code> : le déclencheur s'exécute toutes les 2 heures (02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code> : le déclencheur s'exécute à 9:00:00AM (UTC) le huitième jour de chaque mois.</li></ul></td>
+</tr>
+<tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>Facultatif : Remplacez <code>&lt;timezone&gt;</code> par une chaîne indiquant le fuseau horaire. L'heure réelle d'exécution du déclencheur sera ensuite modifiée en fonction du fuseau horaire indiqué. Si le fuseau horaire n'est pas valide, une erreur est générée. Vous pouvez vérifier tous les fuseaux horaires disponibles sur le site Web Moment TimeZone (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names). </td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>

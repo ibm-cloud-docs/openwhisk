@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Message Hub イベント・ソース
+# Event Streams イベント・ソース
 {: #openwhisk_catalog_message_hub}
 
 {{site.data.keyword.messagehub_full}} インスタンスにメッセージがポストされたときに反応するトリガーを、フィードを使用して作成できます。 ここでは、{{site.data.keyword.Bluemix}} を使用して、または使用せずに、{{site.data.keyword.messagehub}} トリガーを作成する方法、メッセージを listen する方法、およびメッセージを一括処理する方法について説明します。
@@ -19,10 +25,10 @@ lastupdated: "2018-06-22"
 
 ## {{site.data.keyword.messagehub}} パッケージ 
 
-`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、Message Hub/Kafka へのデータの生成が行われる場合は持続接続を使用するようにしてください。
-{: tip}
+`/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 東京地域では既に削除されています。最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、Message Hub/Kafka へのデータの生成が行われる場合は持続接続を使用するようにしてください。
+{: deprecated}
 
-このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にします。 {{site.data.keyword.messagehub}} パッケージの詳細、パッケージのセットアップ方法、およびメッセージの生成方法については、[{{site.data.keyword.messagehub}} パッケージ](./messagehub_actions.html)のトピックを参照してください。
+このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にします。 {{site.data.keyword.messagehub}} パッケージの詳細、パッケージのセットアップ方法、およびメッセージの生成方法については、[{{site.data.keyword.messagehub}} パッケージ](/docs/openwhisk?topic=cloud-functions-catalog_message_hub)のトピックを参照してください。
 
 ## {{site.data.keyword.messagehub}} インスタンスを listen するトリガーの作成
 {: #create_message_hub_trigger}
@@ -246,5 +252,6 @@ lastupdated: "2018-06-22"
 OpenWhisk と {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full}}、IBM Data Science Experience (Spark) サービスを統合する例は、[ここにあります](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)。
 
 ## 参照
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

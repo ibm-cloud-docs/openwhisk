@@ -1,19 +1,25 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: message hub, package, messages, events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # {{site.data.keyword.messagehub}} pacote 
 
-{: #openwhisk_catalog_message_hub}
+{: #catalog_message_hub}
 
 Um pacote que permite a comunicação com instâncias do [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) para publicar e consumir mensagens usando a API nativa do Kafka de alto desempenho.
 {: shortdesc}
@@ -38,7 +44,7 @@ Um pacote que permite a comunicação com instâncias do [{{site.data.keyword.me
   ```
   {: screen}
 
-4. Liste os pacotes em seu namespace para mostrar que sua ligação de pacote agora está disponível.
+4. Liste os pacotes em seu namespace para mostrar que sua ligação de pacote está agora disponível.
   ```
   ibmcloud fn package list
   ```
@@ -68,37 +74,21 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 
 ## Recebendo mensagens usando eventos
 
-Para obter informações detalhadas sobre como usar acionadores no {{site.data.keyword.messagehub}} para receber mensagens, veja o tópico
-[Origem de eventos do {{site.data.keyword.messagehub}}](./openwhisk_messagehub.html) no qual as tarefas a seguir são cobertas:
-* [Criando um acionador que receba em uma instância do {{site.data.keyword.messagehub}}](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [Criando um acionador para um pacote do {{site.data.keyword.messagehub}} fora do {{site.data.keyword.Bluemix_notm}}](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [Atendendo mensagens](./openwhisk_messagehub.html#message_hub_listen)
-* [Exemplos](./openwhisk_messagehub.html#examples)
+Para obter informações detalhadas sobre como usar acionadores no {{site.data.keyword.messagehub}}para detectar mensagens, consulte o seguinte
+Tópico[{{site.data.keyword.messagehub}}origem de eventos](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub), em que as seguintes tarefas são abordadas:
+* [Criando um acionador que atenda a uma instância do {{site.data.keyword.messagehub}}](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger)
+* [Criando um acionador para um pacote do {{site.data.keyword.messagehub}} fora do {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger_outside)
+* [Atendendo mensagens](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#message_hub_listen)
+* [Exemplos](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#examples)
 
 ## Produzindo mensagens para o {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-A ação `/messaging/messageHubProduce` foi descontinuada e será removida em uma data futura. Para manter o desempenho ideal, migre seu uso da ação `/messaging/messageHubProduce` para usar uma conexão persistente quando os dados são produzidos para o {{site.data.keyword.messagehub}}/Kafka.
+A ação `/messaging/messageHubProduce` foi descontinuada e será removida em uma data futura. Ela já foi removida na região de Tóquio. Para manter o desempenho ideal, migre seu uso da ação `/messaging/messageHubProduce` para usar uma conexão persistente quando os dados são produzidos para o {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
-Se você deseja usar uma ação do {{site.data.keyword.openwhisk_short}} para produzir de forma conveniente uma mensagem para o {{site.data.keyword.messagehub}}, é possível usar a ação `/messaging/messageHubProduce`. Essa ação usa os parâmetros a seguir:
-
-|Nome|Digite|Descrição|
-|---|---|---|
-|kafka_brokers_sasl|Matriz JSON de sequência de caracteres|Esse parâmetro é uma matriz de sequências `<host>:<port>` que compõem os brokers em sua instância do {{site.data.keyword.messagehub}}.|
-|usuário|Sequência|Seu nome do usuário do {{site.data.keyword.messagehub}}.|
-|Senha|Sequência|Sua senha do {{site.data.keyword.messagehub}}.|
-|tópico|Sequência|O tópico que você gostaria que o acionador atendesse.|
-|valor|Sequência|O valor para a mensagem que você gostaria de produzir.|
-|Chave|Sequência (opcional)|A chave para a mensagem que você gostaria de produzir.|
-
-Embora os três primeiros parâmetros possam ser ligados automaticamente usando `ibmcloud fn
-package refresh`, veja o exemplo a seguir que chama a ação com todos os parâmetros necessários:
-```
-ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
-```
-{: pre}
+Para saber mais sobre a produção de mensagens, confira a [documentação do Event Streams](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 ## Referência
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
+- [Apache Kafka](https://kafka.apache.org)

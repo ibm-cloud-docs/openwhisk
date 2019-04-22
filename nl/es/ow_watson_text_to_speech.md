@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, functions, packages
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,7 +22,7 @@ lastupdated: "2018-07-17"
 El servicio {{site.data.keyword.texttospeechfull}} proporciona API que utilizan las funcionalidades de síntesis de voz de IBM para sintetizar texto en un habla natural en distintos idiomas, dialectos y voces.
 {:shortdesc}
 
-El servicio da soporte a una voz masculina o a una voz femenina como mínimo, a veces a ambas, para cada idioma. El audio se transmite de vuelta al cliente con un retardo mínimo. Para obtener más información sobre el servicio, consulte la [documentación de IBM Cloud](https://console.bluemix.net/docs/services/text-to-speech/index.html).
+El servicio da soporte a una voz masculina o a una voz femenina como mínimo, a veces a ambas, para cada idioma. El audio se transmite de vuelta al cliente con un retardo mínimo. Para obtener más información sobre el servicio, consulte la [documentación de IBM Cloud](https://cloud.ibm.com/docs/services/text-to-speech/index.html).
 
 El paquete {{site.data.keyword.texttospeechshort}} contiene las siguientes entidades. Puede encontrar más información en la referencia de {{site.data.keyword.texttospeechshort}} API pulsando en el nombre de entidad.
 
@@ -41,16 +46,16 @@ El paquete {{site.data.keyword.texttospeechshort}} contiene las siguientes entid
 | [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | acción |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Suprimir datos etiquetados. |
 
 ## Creación de una instancia de servicio de {{site.data.keyword.texttospeechshort}}
-{: #service_instance}
+{: #service_instance_texttospeech}
 
 Antes de instalar el paquete, debe crear una instancia de servicio y las credenciales de servicio de {{site.data.keyword.texttospeechshort}}.
 {: shortdesc}
 
-1. [Cree una instancia de servicio de {{site.data.keyword.texttospeechshort}} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://console.bluemix.net/catalog/services/text_to_speech).
+1. [Cree una instancia de servicio de {{site.data.keyword.texttospeechshort}} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/catalog/services/text_to_speech).
 2. Cuando se crea una instancia de servicio, se generan las credenciales de forma automática.
 
 ## Instalación del paquete {{site.data.keyword.texttospeechshort}}
-{: #install}
+{: #install_texttospeech}
 
 Una vez tenga una instancia de servicio de {{site.data.keyword.texttospeechshort}}, utilice la CLI de {{site.data.keyword.openwhisk}} para instalar el paquete {{site.data.keyword.texttospeechshort}} en su espacio de nombres.
 {: shortdesc}
@@ -59,8 +64,7 @@ Una vez tenga una instancia de servicio de {{site.data.keyword.texttospeechshort
 {: #texttospeech_cli}
 
 Antes de empezar:
-  1. [Instale el plugin {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.Bluemix_notm}}](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale el [mandato `wskdeploy` ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) y añada el binario descargado a su PATH.
+  1. [Instale el plugin de {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar el paquete {{site.data.keyword.texttospeechshort}}:
 
@@ -72,7 +76,7 @@ Para instalar el paquete {{site.data.keyword.texttospeechshort}}:
 
 2. Despliegue el paquete.
     ```
-    wskdeploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
@@ -135,29 +139,29 @@ Para instalar el paquete {{site.data.keyword.texttospeechshort}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #texttospeech_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://console.bluemix.net/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Con la ayuda de las listas **Cloud Foundry Org** y **Cloud Foundry Space**, seleccione el espacio de nombres en el que desea instalar el paquete {{site.data.keyword.cos_short}}. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
+2. Con la ayuda de las listas **Cloud Foundry Org** y **Cloud Foundry Space**, seleccione el espacio de nombres en el que desee instalar el paquete. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
 
 3. Pulse **Instalar paquetes**.
 
-4. Pulse el grupo de Paquetes de **Watson**.
+4. Pulse el grupo de paquetes de **Watson**.
 
-5. Pulse en el paquete **Text To Speech**.
+5. Pulse sobre el paquete **Text To Speech**.
 
 5. Pulse **Instalar**.
 
-6. Una vez que se haya instalado el paquete, se le redirigirá a la página Acciones y puede buscar el nuevo paquete, que se denomina **text-to-speech-v1**.
+6. Una vez que se haya instalado el paquete, se le redirigirá a la página Acciones donde podrá buscar su nuevo paquete, que se denomina **text-to-speech-v1**.
 
-7. Para utilizar las acciones en el paquete **text-to-speech-v1**, debe enlazar las credenciales de servicio con las acciones.
-  * Para enlazar las credenciales de servicio con todas las acciones del paquete, siga los pasos 5 y 6 en las instrucciones de la CLI listadas más arriba. 
+7. Para utilizar las acciones del paquete **text-to-speech-v1**, debe enlazar las credenciales de servicio con las acciones.
+  * Para enlazar las credenciales de servicio con todas las acciones del paquete, siga los pasos 5 y 6 en las instrucciones de la CLI listadas más arriba.
   * Para enlazar las credenciales de servicio con acciones individuales, realice los pasos siguientes en la interfaz de usuario. **Nota**: Debe completar los pasos siguientes con cada acción que desee utilizar.
-    1. Pulse en una Acción del paquete **text-to-speech-v1** que desee utilizar. Se abre la página de detalles de dicha acción. 
-    2. En la navegación del lado izquierdo, pulse en la sección **Parámetros**. 
+    1. Pulse sobre una acción del paquete **text-to-speech-v1** que desee utilizar. Se abrirá la página de detalles de dicha acción.
+    2. En la navegación del lado izquierdo, pulse en la sección **Parámetros**.
     3. Especifique un nuevo **parámetro**. Para la clave, especifique `__bx_creds`. Para el valor, pegue en el objeto JSON de credenciales de servicio de la instancia de servicio que ha creado anteriormente.
 
 ## Utilización del paquete {{site.data.keyword.texttospeechshort}}
-{: #usage}
+{: #usage_texttospeech}
 
 Para utilizar las acciones de este paquete, ejecute los mandatos en el formato siguiente:
 

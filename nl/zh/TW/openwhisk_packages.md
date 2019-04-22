@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 在套件中組織動作
 {: #openwhisk_packages}
@@ -21,7 +27,7 @@ lastupdated: "2018-06-22"
 - 動作是在 {{site.data.keyword.openwhisk_short}} 上執行的程式碼片段。例如，{{site.data.keyword.cloudant}} 套件包括在 {{site.data.keyword.cloudant_short_notm}} 資料庫中讀取及寫入記錄的動作。
 - 資訊來源是用來配置外部事件來源，以發動觸發程式事件。例如，「警示」套件包含可依指定的頻率發動觸發程式的資訊來源。
 
-每個 {{site.data.keyword.openwhisk_short}} 實體（包括套件）都屬於*名稱空間*，而實體的完整名稱是 `/namespaceName[/packageName]/entityName`。如需相關資訊，請參閱[命名準則](./openwhisk_reference.html#openwhisk_entities)。
+每個 {{site.data.keyword.openwhisk_short}} 實體（包括套件）都屬於*名稱空間*，而實體的完整名稱是 `/namespaceName/[packageName]/entityName`。如需相關資訊，請參閱[命名準則](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)。
 
 下列各節說明如何瀏覽套件，以及如何使用其中的觸發程式及資訊來源。此外，如果您對將自己的套件提出至型錄感興趣，請閱讀有關建立及共用套件的各節。
 
@@ -157,7 +163,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  ok: created binding valhallaSamples
+ok: created binding valhallaSamples
   ```
   {: screen}
 
@@ -214,7 +220,7 @@ lastupdated: "2018-06-22"
 ## 建立及使用觸發程式資訊來源
 {: #openwhisk_package_trigger}
 
-資訊來源提供一種簡便的方法，將外部事件來源配置成向 {{site.data.keyword.openwhisk_short}} 觸發程式發動這些事件。此範例顯示如何使用「警示」套件中的資訊來源來每秒發動觸發程式，以及如何使用規則來每秒呼叫動作。
+資訊來源提供一種簡便的方法，將外部事件來源配置成向 {{site.data.keyword.openwhisk_short}} 觸發程式發動這些事件。此範例顯示如何使用「警示」套件中的資訊來源每分鐘發動觸發程式一次，以及如何使用規則每分鐘呼叫動作一次。
 
 1. 取得 `/whisk.system/alarms` 套件中資訊來源的說明。
   ```
@@ -224,7 +230,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  package /whisk.system/alarms
+package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
   ```
   {: screen}
@@ -245,19 +251,19 @@ lastupdated: "2018-06-22"
   - `cron`：何時發動觸發程式的 crontab 規格。
   - `trigger_payload`：要在每一個觸發程式事件中設定的有效負載參數值。
 
-2. 建立每 8 秒發動一次的觸發程式。
+2. 建立每分鐘發動一次的觸發程式。
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   輸出範例：
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. 建立名為 **hello.js** 且具有下列動作碼的檔案：
+3. 建立名為 `hello.js` 且具有下列動作碼的檔案：
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -271,9 +277,9 @@ lastupdated: "2018-06-22"
   ```
   {: pre}
 
-5. 建立規則，以在每次 **everyEightSeconds** 觸發程式發動時呼叫 `hello` 動作。
+5. 建立規則，以在每次 `everyOneMinute` 觸發程式發動時呼叫 `hello` 動作。
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -289,7 +295,7 @@ lastupdated: "2018-06-22"
   ```
   {: pre}
 
-  您可以看到每 8 秒就會觀察到觸發程式、規則及動作的啟動。在每次呼叫時，動作都會接收到參數 `{"name":"Mork", "place":"Ork"}`。
+  您可以看到每分鐘觀察到觸發程式、規則及動作的啟動。在每次呼叫時，動作都會接收到參數 `{"name":"Mork", "place":"Ork"}`。
 
 ## 建立套件
 {: #openwhisk_packages_create}
@@ -298,7 +304,7 @@ lastupdated: "2018-06-22"
 
 若要建立具有簡單動作的自訂套件，請嘗試下列範例：
 
-1. 建立稱為 **custom** 的套件。
+1. 建立稱為 `custom` 的套件。
   ```
   ibmcloud fn package create custom
   ```
@@ -306,7 +312,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  ok: created package custom
+ok: created package custom
   ```
   {: screen}
 
@@ -318,7 +324,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  package /myNamespace/custom
+package /myNamespace/custom
   ```
   {: screen}
 
@@ -330,7 +336,7 @@ lastupdated: "2018-06-22"
   ```
   {: codeblock}
 
-4. 在 `custom` 套件中，建立稱為 **identity** 的動作。
+4. 在 `custom` 套件中，建立稱為 `identity` 的動作。
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -338,7 +344,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  ok: created action custom/identity
+ok: created action custom/identity
   ```
   {: screen}
 
@@ -352,12 +358,12 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  package /myNamespace/custom
+package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
   {: screen}
 
-  現在，您可以在名稱空間中看到 **custom/identity** 動作。
+  現在，您可以在名稱空間中看到 `custom/identity` 動作。
 
 6. 在套件中呼叫動作。
   ```
@@ -373,7 +379,7 @@ lastupdated: "2018-06-22"
 
 您可以設定套件中所有動作所繼承的套件層次參數，來設定套件中所有實體的預設參數。若要查看此繼承作業的運作方式，請嘗試下列範例：
 
-1. 使用兩個參數來更新 **custom** 套件：`city` 及 `country`。
+1. 使用兩個參數來更新 `custom` 套件：`city` 及 `country`。
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -381,11 +387,11 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  ok: updated package custom
+ok: updated package custom
   ```
   {: screen}
 
-2. 顯示 **custom** 套件及 **identidy** 動作中的參數，以及查看套件中的 **identity** 動作如何繼承套件中的參數。
+2. 顯示 `custom` 套件及 `identity` 動作中的參數，以及查看套件中的 `identity` 動作如何繼承套件中的參數。
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -430,7 +436,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-3. 不使用任何參數來呼叫 **identity** 動作，以驗證動作確實繼承參數。
+3. 不使用任何參數來呼叫 `identity` 動作，以驗證動作確實繼承參數。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -445,7 +451,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-4. 使用一些參數來呼叫 **identity** 動作。呼叫參數會與套件參數合併；呼叫參數會置換套件參數。
+4. 使用一些參數來呼叫 `identity` 動作。呼叫參數會與套件參數合併；呼叫參數會置換套件參數。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -474,7 +480,7 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  ok: updated package custom
+ok: updated package custom
   ```
   {: screen}
 
@@ -492,7 +498,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-其他人現在可以使用 **custom** 套件（包括連結至套件，或直接呼叫其中的動作）。其他使用者必須知道套件的完整名稱，才能連結套件或呼叫其中的動作。共用套件內的動作及資訊來源為_公用_。如果套件為專用，則其所有內容也會是專用。
+其他人現在可以使用 `custom` 套件（包括連結至套件，或直接呼叫其中的動作）。其他使用者必須知道套件的完整名稱，才能連結套件或呼叫其中的動作。共用套件內的動作及資訊來源為_公用_。如果套件為專用，則其所有內容也會是專用。
 
 1. 取得套件的說明，以顯示套件及動作的完整名稱。
   ```
@@ -502,9 +508,9 @@ lastupdated: "2018-06-22"
 
   輸出範例：
   ```
-  package /myNamespace/custom
+package /myNamespace/custom
    action /myNamespace/custom/identity
   ```
   {: screen}
 
-  在前一個範例中，您是使用 **myNamespace** 名稱空間，而此名稱空間是以完整名稱顯示。
+  在前一個範例中，您是使用 `myNamespace` 名稱空間，而此名稱空間是以完整名稱顯示。

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 常見使用案例
 {: #openwhisk_common_use_cases}
@@ -47,18 +53,18 @@ Internet of Things 情境本質上經常是由感應器所驅動。例如，如�
 
 還是有可能實作使用傳統伺服器架構的 IoT 應用程式。不過，在許多情況下，不同服務與資料橋接器的組合需要高效能及彈性管線。範圍從 IoT 裝置到雲端儲存空間及分析平台。預先配置的橋接器通常會缺乏實作及細部調整特定解決方案架構所需的程式設計能力。如果有各種管線，而且一般會缺乏資料融合的標準化（特別是在 IoT 中），常會看到管線需要自訂資料轉換的環境。這些自訂資料轉換適用於格式轉換、過濾或擴增。{{site.data.keyword.openwhisk_short}} 是一個可使用「無伺服器」方式來實作這類轉換的傑出工具，其中，自訂邏輯是在完整受管理及彈性的雲端平台上進行管理。
 
-查看下列範例 IoT 應用程式，其使用 {{site.data.keyword.openwhisk_short}}、NodeRed、Cognitive 及其他服務：[使用 {{site.data.keyword.openwhisk_short}} 進行 IoT 動態資料的無伺服器轉換](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt)。
+查看下列範例 IoT 應用程式，其使用 {{site.data.keyword.openwhisk_short}}、NodeRed、Cognitive 及其他服務：[使用 {{site.data.keyword.openwhisk_short}} 進行 IoT 動態資料的無伺服器轉換](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c)。
 
 ![IoT 解決方案架構範例](images/IoT_solution_architecture_example.png)
 
 ## API 後端
 {: #openwhisk_api_backend}
 
-無伺服器運算平台可讓開發人員在沒有伺服器的情況下快速建置 API。{{site.data.keyword.openwhisk_short}} 支援為動作自動產生 REST API。{{site.data.keyword.openwhisk_short}} 的這個[實驗性特性](./openwhisk_apigateway.html)可以使用 POST 以外的 HTTP 方法來呼叫動作，而不需要動作的授權 API 金鑰（透過「{{site.data.keyword.openwhisk_short}} API 閘道」）。此功能不僅有助於向外部消費者公開 API，也有助於建置微服務應用程式。
+無伺服器運算平台可讓開發人員在沒有伺服器的情況下快速建置 API。{{site.data.keyword.openwhisk_short}} 支援為動作自動產生 REST API。[{{site.data.keyword.openwhisk_short}} 特性](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway)可以使用 POST 以外的 HTTP 方法來呼叫動作，而不需要動作的授權 API 金鑰（透過「{{site.data.keyword.openwhisk_short}} API 閘道」）。此功能不僅有助於向外部消費者公開 API，也有助於建置微服務應用程式。
 
 此外，{{site.data.keyword.openwhisk_short}} 動作還可以連接至所選擇的 API Management 工具（例如 [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) 或其他工具）。與其他使用案例類似，適用可擴充性的所有考量以及其他「服務品質 (QoS)」。
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) 是透過 REST API 使用 {{site.data.keyword.openwhisk_short}} 動作的範例應用程式。
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting) 是透過 REST API 使用 {{site.data.keyword.openwhisk_short}} 動作的範例應用程式。
 
 請參閱下列範例，其中包括[使用無伺服器作為 API 後端](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples)的討論。
 

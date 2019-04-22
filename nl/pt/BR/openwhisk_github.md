@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-16"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: github, actions, trigger, event
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Origem de eventos do GitHub
 {: #openwhisk_catalog_github}
+
+Esse pacote pré-instalado não está disponível na região de Tóquio.
+{: tip}
 
 O pacote `/whisk.system/github` oferece uma maneira conveniente de usar as [APIs do GitHub](https://developer.github.com/).
 {: shortdesc}

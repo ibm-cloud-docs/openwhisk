@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Source d'événements Message Hub
+# Source d'événements Event Streams
 {: #openwhisk_catalog_message_hub}
 
 Vous pouvez créer un déclencheur qui réagit à la publication de messages dans une instance {{site.data.keyword.messagehub_full}} en utilisant des flux. Apprenez à créer des déclencheurs {{site.data.keyword.messagehub}} avec ou sans {{site.data.keyword.Bluemix}}, écouter des messages et traiter des messages par lots.
@@ -19,10 +25,10 @@ Vous pouvez créer un déclencheur qui réagit à la publication de messages dan
 
 ## Package {{site.data.keyword.messagehub}} 
 
-L'action `/messaging/messageHubProduce` est obsolète et sera supprimée prochainement. Pour conserver des performances optimales, au lieu d'utiliser l'action `/messaging/messageHubProduce`, passez par une connexion persistante lorsque les données sont produites dans Message Hub/Kafka.
-{: tip}
+L'action `/messaging/messageHubProduce` est obsolète et sera supprimée prochainement. Il est déjà retiré de la région Tokyo. Pour conserver des performances optimales, au lieu d'utiliser l'action `/messaging/messageHubProduce`, passez par une connexion persistante lorsque les données sont produites dans Message Hub/Kafka.
+{: deprecated}
 
-Ce package permet de communiquer avec des instances [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) pour publier et consommer des messages via l'API Kafka native à hautes performances. Pour plus d'informations sur le package {{site.data.keyword.messagehub}} et savoir comment le configurer et produire des messages, voir la rubrique [Package {{site.data.keyword.messagehub}}](./messagehub_actions.html).
+Ce package permet de communiquer avec des instances [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) pour publier et consommer des messages via l'API Kafka native à hautes performances. Pour plus d'informations sur le package {{site.data.keyword.messagehub}} et savoir comment le configurer et produire des messages, voir la rubrique [Package {{site.data.keyword.messagehub}}](/docs/openwhisk?topic=cloud-functions-catalog_message_hub).
 
 ## Création d'un déclencheur à l'écoute d'une instance {{site.data.keyword.messagehub}}
 {: #create_message_hub_trigger}
@@ -32,7 +38,7 @@ Pour créer un déclencheur qui réagit lorsque des messages sont publiés dans 
 |Nom|Type|Description|
 |---|---|---|
 |kafka_brokers_sasl|Tableau JSON de chaînes|Ce paramètre est un tableau de chaînes `<host>:<port>` composé des courtiers de votre instance {{site.data.keyword.messagehub}} instance|
-|user|Chaîne|Votre nom d'utilisateur {{site.data.keyword.messagehub}}.|
+|utilisateur|Chaîne|Votre nom d'utilisateur {{site.data.keyword.messagehub}}.|
 |password|Chaîne|Votre mot de passe {{site.data.keyword.messagehub}}.|
 |topic|Chaîne|Rubrique que le déclencheur doit écouter.|
 |kafka_admin_url|Chaîne d'URL|URL de l'interface REST d'administration de {{site.data.keyword.messagehub}}.|
@@ -246,5 +252,6 @@ Lorsque vous codez des actions exécutées par votre déclencheur, gardez à l'e
 Pour obtenir un exemple d'intégration d'OpenWhisk avec un service {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}}, IBM Data Science Experience (Spark), [cliquez ici](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).
 
 ## Références
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

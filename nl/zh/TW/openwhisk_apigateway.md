@@ -1,30 +1,37 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2019
+lastupdated: "2019-04-04"
+
+keywords: serverless, rest api, gateway, web actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 建立無伺服器 REST API
 {: #openwhisk_apigateway}
 
-使用 API 可直接管理 {{site.data.keyword.openwhisk}} 動作。「API 閘道」擔任 [Web 動作](./openwhisk_webactions.html)的 Proxy，並且提供 HTTP 方法遞送、用戶端 ID 與密碼、比率限制、CORS、檢視 API 用量、檢視回應日誌，以及 API 共用原則。
+使用 API 可直接管理 {{site.data.keyword.openwhisk}} 動作。「API 閘道」擔任 [Web 動作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)的 Proxy，並且提供 HTTP 方法遞送、用戶端 ID 與密碼、比率限制、CORS、檢視 API 用量、檢視回應日誌，以及 API 共用原則。
 {: shortdesc}
 
-如需 API 管理的相關資訊，您可以閱讀 [API Management 文件](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis)。
+如需 API 管理的相關資訊，您可以閱讀 [API Management 文件](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)。
+
+
 
 
 ## 建立第一個 API
 {: #create_cli_api}
 
-開始之前，請安裝 [{{site.data.keyword.openwhisk_short}} CLI 外掛程式](bluemix_cli.html)。
+開始之前，請安裝 [{{site.data.keyword.openwhisk_short}} CLI 外掛程式](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)。
 
 1. 將下列程式碼儲存至名為 `hello.js` 的 JavaScript 檔案中。
   ```javascript
@@ -75,20 +82,20 @@ lastupdated: "2018-07-30"
   ```
   {: screen}
 
-會呼叫 Web 動作 `hello`，它會傳回 JSON 物件，其中包括查詢參數中的 **name** 參數。您可以使用簡單查詢參數，或使用要求內文，將參數傳遞至動作。Web 動作可以公開呼叫動作，而不使用 {{site.data.keyword.openwhisk_short}} 授權 API 金鑰。
+會呼叫 Web 動作 `hello`，它會傳回 JSON 物件，其中包括查詢參數中的 **name** 參數。您可以使用簡單查詢參數，或使用要求內文，將參數傳遞至動作。Web 動作可以公開呼叫動作，而不使用鑑別。
 
 ## 使用 HTTP 回應的完整控制
 {: #full_control}
 
 `--response-type` 旗標控制要透過「API 閘道」進行 Proxy 處理之 Web 動作的目標 URL。例如，當您使用 `--response-type json` 旗標，動作的完整結果會以 JSON 格式傳回，且 **Content-Type** 標頭會自動設為 `application/json`。
 
-若要在內文傳回不同的內容類型，請使用 HTTP 回應的完整控制內容，例如 **statusCode** 和 **headers**。您可以使用 `--response-type http` 旗標，以使用 `http` 副檔名來配置 Web 動作的目標 URL。您可以使用 `http` 副檔名來變更動作的程式碼以符合 Web 動作的傳回值，或包括一連串的動作以將其結果傳遞給新動作。然後，新的動作可以將結果轉換為 HTTP 回應的正確格式。您可以在 [Web 動作](./openwhisk_webactions.html)文件中深入閱讀回應類型及 Web 動作副檔名。
+若要在內文傳回不同的內容類型，請使用 HTTP 回應的完整控制內容，例如 **statusCode** 和 **headers**。您可以使用 `--response-type http` 旗標，以使用 `http` 副檔名來配置 Web 動作的目標 URL。您可以使用 `http` 副檔名來變更動作的程式碼以符合 Web 動作的傳回值，或包括一連串的動作以將其結果傳遞給新動作。然後，新的動作可以將結果轉換為 HTTP 回應的正確格式。您可以在 [Web 動作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)文件中深入閱讀回應類型及 Web 動作副檔名。
 
 1. 變更傳回 JSON 內容 `body`、`statusCode` 及 `headers` 之 `hello.js` 動作的程式碼。
   ```javascript
   function main({name:name='Serverless API'}) {
-      return {
-        body: {payload:`Hello world ${name}`},
+      return { 
+    body: {payload:`Hello world ${name}`},
         statusCode:200,
         headers:{ 'Content-Type': 'application/json'}
       };
@@ -134,7 +141,7 @@ lastupdated: "2018-07-30"
 |putBooks|PUT|更新書籍詳細資料|
 |deleteBooks|DELETE|刪除書籍|
 
-在此範例中，會使用路徑參數來定義 API。使用路徑參數時，必須使用 `http` 回應類型來定義 API。動作 JSON 參數的 `__ow_path` 欄位中提供路徑值，其開頭為基本路徑，並包括實際路徑參數值。如需 HTTP 環境定義欄位的詳細資料，請參閱 [Web 動作 HTTP 環境定義](./openwhisk_webactions.html#http-context)文件。
+在此範例中，會使用路徑參數來定義 API。使用路徑參數時，必須使用 `http` 回應類型來定義 API。動作 JSON 參數的 `__ow_path` 欄位中提供路徑值，其開頭為基本路徑，並包括實際路徑參數值。如需 HTTP 環境定義欄位的詳細資料，請參閱 [Web 動作 HTTP 環境定義](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#http-context)文件。
 
 若要嘗試這個讀書會 Web 動作範例，請執行下列動作：
 
@@ -295,11 +302,11 @@ lastupdated: "2018-07-30"
 ## 修改配置
 {: #modify_config}
 
-建立配置之後，您可以使用 {{site.data.keyword.openwhisk_short}} 儀表板中的 [**API 標籤**](https://console.bluemix.net/openwhisk/apimanagement)，以下列方式修改配置。
+建立配置之後，您可以使用 {{site.data.keyword.openwhisk_short}} 儀表板中的 [**API 標籤**](https://cloud.ibm.com/openwhisk/apimanagement)，以下列方式修改配置。
 
-* [建立 {{site.data.keyword.openwhisk_short}} API](https://console.bluemix.net/openwhisk/apimanagement)，包裹一組 {{site.data.keyword.openwhisk_short}} 動作。
-* 藉由套用 API 安全和限制原則的比率，以[保護 API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)。
-* 藉由檢視 API 用量統計資料，及檢查回應日誌，以[管理資料流量](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api)。
-* 與 {{site.data.keyword.Bluemix_notm}} 內外的開發人員[進行社交並共用](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) API。
+* [建立 {{site.data.keyword.openwhisk_short}} API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis)，包裹一組 {{site.data.keyword.openwhisk_short}} 動作。
+* 藉由套用 API 安全和限制原則的比率，以[保護 API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)。
+* 藉由檢視 API 用量統計資料，及檢查回應日誌，以[管理資料流量](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis)。
+* 與 {{site.data.keyword.Bluemix_notm}} 內外的開發人員[進行社交並共用](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) API。
 
 在完成配置的更新之後，您可以下載採用 JSON 格式的定義檔，然後使用 CLI 重新匯入該檔案。例如，在持續整合及部署 (CICD) 管線中進行自動式部署時，下載及匯入配置可能十分有用。您也可以選擇使用使用者介面來上傳及重新匯入 API 定義檔。

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, translator, cognitive, translating text, language
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: Translator 패키지
 {: #openwhisk_catalog_watson_translator}
+
+이 사전 설치된 패키지는 더 이상 어떤 지역에서도 사용할 수 없습니다. IAM 인증으로 새 V3 API를 사용하여 설치 가능한 [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) 패키지를 참조하십시오.
+{: tip}
 
 `/whisk.system/watson-translator` 패키지는 Watson API를 호출하여 변환하는 편리한 방법을 제공합니다.
 {: shortdesc}
@@ -25,13 +34,13 @@ lastupdated: "2018-03-26"
 |`/whisk.system/watson-translator/translator` |액션 |payload, translateFrom, translateTo, translateParam, username, password |텍스트 변환 |
 |`/whisk.system/watson-translator/languageId` |액션 |payload, username, password |언어 식별 |
 
-**참고**: `/whisk.system/watson` 패키지는 `/whisk.system/watson/translate` 및 `/whisk.system/watson/languageId` 액션을 포함하여 더 이상 사용되지 않습니다.
+**참고**: `/whisk.system/watson` 패키지는 `/whisk.system/watson/translate` 및 `/whisk.system/watson/languageId` 액션을 포함하여 더 이상 사용되지 않습니다. 대신 [설치 가능 {{site.data.keyword.languagetranslatorshort}} 패키지](/docs/openwhisk?topic=cloud-functions-language-translator-package)를 참조하십시오. 
 
 ## {{site.data.keyword.Bluemix_notm}}에서 Watson Translator 패키지 설정
 
 {{site.data.keyword.Bluemix_notm}}에서 {{site.data.keyword.openwhisk}}를 사용 중인 경우 패키지 바인딩이 {{site.data.keyword.Bluemix_notm}} Watson 서비스 인스턴스에 대해 자동으로 작성됩니다.
 
-1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://console.bluemix.net)에서 Watson Translator 서비스 인스턴스를 작성하십시오. 자신이 속한 {{site.data.keyword.Bluemix_notm}} 조직과 영역 및 서비스 인스턴스의 이름을 반드시 기억하십시오.
+1. {{site.data.keyword.Bluemix_notm}} [대시보드](http://cloud.ibm.com)에서 Watson Translator 서비스 인스턴스를 작성하십시오. 자신이 속한 {{site.data.keyword.Bluemix_notm}} 조직과 영역 및 서비스 인스턴스의 이름을 반드시 기억하십시오.
 
 2. 네임스페이스의 패키지를 새로 고치십시오. 새로 고치기를 수행하면 작성된 Watson 서비스 인스턴스에 대한 패키지 바인딩이 자동으로 작성됩니다.
   ```
@@ -93,7 +102,7 @@ ibmcloud fn action invoke myWatsonTranslator/translator \
 ```
 {
     "payload": "Ciel bleu a venir"
-  }
+}
 ```
 {: screen}
 

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 모바일 푸시 패키지
 {: #openwhisk_catalog_pushnotifications}
+
+이 사전 설치된 패키지는 도쿄 지역에서는 사용할 수 없습니다. IAM 인증을 사용하여 `sendMessage` 액션에 대해 설치 가능한 [푸시 알림](/docs/openwhisk?topic=cloud-functions-push-notifications-package) 패키지를 참조하십시오.
+{: tip}
 
 푸시 패키지 바인딩을 작성하는 방법을 알아보고 푸시 서비스에 대한 작업을 수행하는 기능을 제공하는 `/whisk.system/pushnotifications` 패키지를 사용하여 단순 푸시 알림을 전송하십시오.
 {: shortdesc}
@@ -23,9 +32,9 @@ lastupdated: "2018-06-22"
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` |패키지 | appId, appSecret, admin_url | 푸시 서비스 관련 작업을 수행합니다. |
 |`/whisk.system/pushnotifications/sendMessage` |액션 |text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | 하나 이상의 지정된 디바이스에 푸시 알림을 전송합니다. |
-|`/whisk.system/pushnotifications/webhook` |피드 |events | 푸시 서비스에서 디바이스 활동(디바이스 등록, 등록 해제, 구독 또는 구독 해제)의 트리거 이벤트를 실행합니다. |
 
-디바이스 활동이 있는 경우 트리거 이벤트 실행에 대한 정보는 [디바이스 이벤트의 모바일 푸시](./openwhisk_pushnotifications.html) 주제를 참조하십시오.
+
+디바이스 활동이 있는 경우 트리거 이벤트 실행에 대한 정보는 [디바이스 이벤트의 모바일 푸시](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications) 주제를 참조하십시오.
 
 ## 푸시 패키지 바인딩 작성
 {: #create_push_binding}
@@ -33,15 +42,15 @@ lastupdated: "2018-06-22"
 푸시 알림 패키지 바인딩을 작성하려면 다음 매개변수를 지정해야 합니다.
 
 -  **appId**: {{site.data.keyword.Bluemix}} **앱 GUID**.
--  **appSecret**: {{site.data.keyword.Bluemix_notm}} 푸시 알림 서비스 **앱 시크릿**.
+-  **appSecret**: {{site.data.keyword.Bluemix_notm}} Push Notificiations 서비스 **앱 시크릿**.
 
 패키지 바인딩을 작성하려면 다음 단계를 참조하십시오.
 
-1. [{{site.data.keyword.Bluemix_notm}} 대시보드](http://console.bluemix.net)에서 {{site.data.keyword.Bluemix_notm}} 애플리케이션을 작성하십시오.
+1. [{{site.data.keyword.Bluemix_notm}} 대시보드](http://cloud.ibm.com)에서 {{site.data.keyword.Bluemix_notm}} 애플리케이션을 작성하십시오.
 
-2. 푸시 알림 서비스를 초기화하고 이 서비스를 {{site.data.keyword.Bluemix_notm}} 애플리케이션에 바인드하십시오.
+2. Push Notificiations 서비스를 초기화하고 이 서비스를 {{site.data.keyword.Bluemix_notm}} 애플리케이션에 바인딩하십시오.
 
-3. [푸시 알림 애플리케이션](https://console.bluemix.net/docs/services/mobilepush/index.html)을 구성하십시오.
+3. [푸시 알림 애플리케이션](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)을 구성하십시오.
 
   작성된 {{site.data.keyword.Bluemix_notm}} 앱의 **앱 GUID** 및 **앱 시크릿**을 반드시 기억하십시오.
 
@@ -106,7 +115,7 @@ lastupdated: "2018-06-22"
 - `apnsLocArgs`: `locKey`에서 형식 지정자 대신 나타나는 변수 문자열 값입니다.
 - `apnstitle`: 리치 푸시 알림의 제목입니다(iOS 10 이상에서만 지원됨).
 - `apnsSubtitle`: 리치 알림의 하위 제목입니다. (iOS 10 이상에서만 지원됨).
-- `apnsAttachmentUrl`: iOS 알림 미디어에 대한 링크입니다(비디오, 오디오, GIF 및 이미지 - iOS 10 이상에서만 지원됨).
+- `apnsAttachmentUrl`: iOS 알림 미디어에 대한 링크입니다(동영상, 오디오, GIF 및 이미지 - iOS 10 이상에서만 지원됨).
 - `fireFoxTitle`: WebPush 알림에 대해 설정되는 제목을 지정합니다.
 - `fireFoxIconUrl`: WebPush 알림에 대해 설정되는 아이콘의 URL입니다.
 - `fireFoxTimeToLive`: 이 매개변수는 디바이스가 오프라인인 경우에 메시지가 GCM 스토리지에 보관되는 기간(초)을 지정합니다.

@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: language translator, functions, actions, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -25,22 +30,22 @@ O pacote do  {{site.data.keyword.languagetranslatorshort}}  contém as entidades
 | [translate](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#translate) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Converter texto. |
 | [identify](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#identify) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Identifique a linguagem do texto. |
 | [list-identifiable-languages](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-identifiable-languages) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, | Liste os idiomas identificáveis. |
-| [create-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#create-model) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,  |Criar um modelo. |
+| [create-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#create-model) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    base_model_id,     name,     forced_glossary,     parallel_corpus,  | Criar um modelo. |
 | [delete-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#delete-model) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, model_id,  | Excluir um modelo. |
 | [get-model](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#get-model) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, model_id,  | Obter detalhes do modelo. |
 | [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-models) | ação |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | Listar modelos. |
 
 ## Criando uma instância de serviço do {{site.data.keyword.languagetranslatorshort}}
-{: #service_instance}
+{: #service_instance_translator}
 
 Antes de instalar o pacote, deve-se criar uma instância de serviço e credenciais de serviço do {{site.data.keyword.languagetranslatorshort}}.
 {: shortdesc}
 
-1. [Criar uma instância de serviço do {{site.data.keyword.languagetranslatorshort}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/catalog/services/language_translator).
+1. [Crie uma instância de serviço do {{site.data.keyword.languagetranslatorshort}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/catalog/services/language_translator).
 2. Quando a instância de serviço for criada, as credenciais de serviço geradas automaticamente também serão criadas para você.
 
 ## Instalando o pacote do  {{site.data.keyword.languagetranslatorshort}}
-{: #install}
+{: #install_translator}
 
 Depois que você tem uma instância de serviço do {{site.data.keyword.languagetranslatorshort}}, use a CLI do {{site.data.keyword.openwhisk}} para instalar o pacote do {{site.data.keyword.languagetranslatorshort}} em seu namespace.
 {: shortdesc}
@@ -49,8 +54,7 @@ Depois que você tem uma instância de serviço do {{site.data.keyword.languaget
 {: #languagetranslator_cli}
 
 Antes de Iniciar:
-  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale o comando [`wskdeploy`![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) e inclua o binário transferido por download em seu PATH.
+  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar o pacote do  {{site.data.keyword.languagetranslatorshort}} :
 
@@ -62,7 +66,7 @@ Para instalar o pacote do  {{site.data.keyword.languagetranslatorshort}} :
 
 2. Implemente o pacote.
     ```
-    wskdeploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
     ```
     {: pre}
 
@@ -123,29 +127,29 @@ Para instalar o pacote do  {{site.data.keyword.languagetranslatorshort}} :
 ### Instalando a partir da UI do  {{site.data.keyword.openwhisk_short}}
 {: #languagetranslator_ui}
 
-1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/create).
+1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Usando as listas de **Organizações do Cloud Foundry** e **Espaços do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio da organização combinada e nomes de espaço.
+2. Usando as listas **Organização do Cloud Foundry** e **Espaço do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote. Os namespaces são formados por meio de nomes de organização e de espaço combinados.
 
 3. Clique em  ** Instalar pacotes **.
 
-4. Clique no grupo de pacotes do  ** Watson ** .
+4. Clique no grupo de pacotes **Watson**.
 
-5. Clique no pacote  ** Language Translator ** .
+5. Clique no pacote **Tradutor de idiomas**.
 
 5. Clique em  ** Instalar **.
 
-6. Depois que o Pacote tiver sido instalado, você será redirecionado para a página Ações e poderá procurar pelo seu novo Pacote, que é denominado **language-translator-v3**.
+6. Depois que o pacote tiver sido instalado, você será redirecionado para a página de ações e poderá procurar por seu novo pacote, que é denominado **language-translator-v3**.
 
-7. Para usar as Ações no pacote **language-translator-v3**, deve-se ligar as credenciais de serviço às ações.
-  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima. 
+7. Para usar as ações no Pacote **language-translator-v3**, você deve ligar as credenciais de serviço às ações.
+  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima.
   * Para ligar as credenciais de serviço a ações individuais, conclua as etapas a seguir na IU. **Nota**: deve-se concluir as etapas a seguir para cada ação que você deseja usar.
-    1. Clique em uma Ação no Pacote **language-translator-v3** que você deseja usar. A página de detalhes para essa Ação é aberta. 
-    2. Na navegação à esquerda, clique na seção **Parâmetros**. 
+    1. Clique em uma ação por meio do pacote **language-translator-v3** que você deseja usar. A página de detalhes para essa ação é aberta.
+    2. Na navegação à esquerda, clique na seção **Parâmetros**.
     3. Insira um novo  ** parâmetro **. Para a chave, insira  ` __bx_creds `. Para o valor, cole no objeto da JSON de credenciais de serviço por meio da instância de serviço que você criou anteriormente.
 
 ## Usando o pacote do  {{site.data.keyword.languagetranslatorshort}}
-{: #usage}
+{: #usage_translator}
 
 Para usar as ações neste pacote, execute comandos no formato a seguir:
 

@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 行動 SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk 提供適用於 iOS 及 watchOS 裝置的行動 SDK，讓行動應用程式輕鬆地發動遠端觸發程式以及呼叫遠端動作。沒有適用於 Android 的版本，因此 Android 開發人員可以直接使用 OpenWhisk REST API。
-
-行動 SDK 是以 Swift 4 撰寫而成，並且支援 iOS 11 以及更新版本。您可以使用 Xcode 9 來建置行動 SDK。
+OpenWhisk 提供適用於 iOS 及 watchOS 裝置的行動 SDK，讓行動應用程式發動遠端觸發程式以及呼叫遠端動作。沒有適用於 Android 的版本，因此 Android 開發人員可以直接使用 OpenWhisk REST API。行動 SDK 是以 Swift 4 撰寫而成，並且支援 iOS 11 以及更新版本。您可以使用 Xcode 9 來建置行動 SDK。
 {: shortdesc}
+
+
 
 ## 將 SDK 新增至應用程式
 
@@ -123,7 +129,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 ## 呼叫 OpenWhisk 動作
 
-若要呼叫遠端動作，您可以使用動作名稱來呼叫 `invokeAction`。您可以指定動作所屬的名稱空間，或讓它保留空白，以接受預設名稱空間。請視需要使用字典將參數傳遞給動作。
+若要呼叫遠端動作，您可以使用動作名稱來呼叫 `invokeAction`。請視需要使用字典將參數傳遞給動作。
 
 例如：
 
@@ -146,8 +152,6 @@ do {
 }
 ```
 {: codeblock}
-
-在前一個範例中，您可以使用預設名稱空間來呼叫 `helloConsole` 動作。
 
 ## 發動 OpenWhisk 觸發程式
 
@@ -210,7 +214,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-在此範例中，您使用在 http://localhost:8080 上執行的安裝。如果您未指定 baseUrl，行動 SDK 會使用在 https://openwhisk.ng.bluemix.net 執行的實例。
+在此範例中，您使用在 http://localhost:8080 上執行的安裝。如果您未指定 baseUrl，行動 SDK 會使用在 https://us-south.functions.cloud.ibm.com 執行的實例。
 
 如果您需要特殊網路處理，則可以傳入自訂 NSURLSession。例如，您可能自己有使用自簽憑證的 OpenWhisk 安裝：
 

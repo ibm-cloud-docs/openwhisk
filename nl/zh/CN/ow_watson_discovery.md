@@ -1,20 +1,25 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-28"
+
+keywords: watson discovery, functions, watson, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # {{site.data.keyword.discoveryshort}} 包
 
-{{site.data.keyword.discoveryfull}} 服务是一种认知搜索和内容分析引擎，可以将其添加到应用程序以识别模式、趋势和切实可行的洞察，从而推动更好的决策。将结构化数据和非结构化数据与预先扩充的内容进行安全整合，并使用简化查询语言以避免手动过滤结果。
+{{site.data.keyword.discoveryfull}} 服务是一种认知搜索和内容分析引擎，可以将其添加到应用程序以识别模式、趋势和切实可行的洞察，从而推动更好的决策。将结构化数据和非结构化数据与预先扩充的内容进行安全整合，并使用简化查询语言，从而不必手动过滤结果。
 {: shortdesc}
 
 {{site.data.keyword.discoveryshort}} 包中包含以下实体。您可以通过单击实体名称在 {{site.data.keyword.discoveryshort}} API 参考中找到其他详细信息。
@@ -54,28 +59,28 @@ lastupdated: "2018-07-17"
 |[query-entities](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#query-entities)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、feature、entity、context、count、evidence_count|查询知识图实体。|
 |[query-notices](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#query-notices)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、filter、query、natural_language_query、passages、aggregation、count、return_fields、offset、sort、highlight、passages_fields、passages_count、passages_characters、deduplicate_field、similar、similar_document_ids、similar_fields|查询系统通知。|
 |[query-relations](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#query-relations)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、entities、context、sort、filter、count、evidence_count|查询知识图关系。|
-|[add-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#add-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、natural_language_query、filter、examples|向培训数据添加查询。|
-|[create-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#create-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、document_id、cross_reference、relevance|向培训数据查询添加示例。|
-|[delete-all-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-all-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id|删除所有培训数据。|
-|[delete-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id|删除培训数据查询。|
-|[delete-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、example_id|删除培训数据查询的示例。|
+|[add-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#add-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、natural_language_query、filter、examples|向训练数据添加查询。|
+|[create-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#create-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、document_id、cross_reference、relevance|向训练数据查询添加示例。|
+|[delete-all-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-all-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id|删除所有训练数据。|
+|[delete-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id|删除训练数据查询。|
+|[delete-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、example_id|删除训练数据查询的示例。|
 |[get-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#get-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id|获取有关查询的详细信息。|
-|[get-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#get-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、example_id|获取培训数据示例的详细信息。|
-|[list-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#list-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id|列出培训数据。|
-|[list-training-examples](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#list-training-examples)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id|列出培训数据查询的示例。|
+|[get-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#get-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、example_id|获取训练数据示例的详细信息。|
+|[list-training-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#list-training-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id|列出训练数据。|
+|[list-training-examples](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#list-training-examples)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id|列出训练数据查询的示例。|
 |[update-training-example](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#update-training-example)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、environment_id、collection_id、query_id、example_id、cross_reference、relevance|更改示例的标签或交叉引用。|
-|[delete-user-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-user-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id|删除标记的数据。|
+|[delete-user-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-user-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id|删除标注的数据。|
 
 ## 创建 {{site.data.keyword.discoveryshort}} 服务实例
-{: #service_instance}
+{: #service_instance_discovery}
 
 安装包之前，必须创建 {{site.data.keyword.discoveryshort}} 服务实例和服务凭证。
 
-1. [创建 {{site.data.keyword.discoveryshort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/catalog/services/discovery)。
+1. [创建 {{site.data.keyword.discoveryshort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/catalog/services/discovery)。
 2. 创建服务实例时，还会为您创建自动生成的服务凭证。
 
 ## 安装 {{site.data.keyword.discoveryshort}} 包
-{: #install}
+{: #install_discovery}
 
 具有 {{site.data.keyword.discoveryshort}} 服务实例后，请使用 {{site.data.keyword.openwhisk}} CLI 将 {{site.data.keyword.discoveryshort}} 包安装到名称空间中。
 {: shortdesc}
@@ -84,8 +89,7 @@ lastupdated: "2018-07-17"
 {: #discovery_cli}
 
 开始之前：
-  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](bluemix_cli.html#cloudfunctions_cli)。
-  2. 安装 [`wskdeploy` 命令 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases)，并将下载的二进制文件添加到 PATH 中。
+  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 要安装 {{site.data.keyword.discoveryshort}} 包，请执行以下操作：
 
@@ -97,7 +101,7 @@ lastupdated: "2018-07-17"
 
 2. 部署包。
     ```
-    wskdeploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
@@ -155,9 +159,9 @@ lastupdated: "2018-07-17"
 ### 通过 {{site.data.keyword.openwhisk_short}} UI 进行安装
 {: #discovery_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/create)。
 
-2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将 {{site.data.keyword.cos_short}} 包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
+2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
 
 3. 单击**安装包**。
 
@@ -169,15 +173,15 @@ lastupdated: "2018-07-17"
 
 6. 安装包后，会将您重定向到“操作”页面，您可以在其中搜索名为 **discovery-v1** 的新包。
 
-7. 要使用 **discovery-v1** 包中的操作，必须将服务凭证绑定到操作。
-  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。 
+7. 要使用 **discovery-v1** 包中的操作，必须将服务凭证绑定到这些操作。
+  * 要将服务凭证绑定到包中的所有操作，请完成上面列出的 CLI 指示信息中的步骤 4。
   * 要将服务凭证绑定到单个操作，请在 UI 中完成以下步骤。**注**：对于要使用的每个操作，必须完成以下步骤。
-    1. 单击 **discovery-v1** 包中要使用的操作。这将打开该操作的详细信息页面。 
-    2. 在左侧导航中，单击**参数**部分。 
+    1. 单击 **discovery-v1** 包中要使用的操作。这将打开该操作的详细信息页面。
+    2. 在左侧导航中，单击**参数**部分。
     3. 输入新的**参数**。对于键，输入 `__bx_creds`。对于值，请从先前创建的服务实例中粘贴服务凭证 JSON 对象。
 
 ## 使用 {{site.data.keyword.discoveryshort}} 包
-{: #usage}
+{: #usage_discovery}
 
 要使用此包中的操作，请运行以下格式的命令：
 

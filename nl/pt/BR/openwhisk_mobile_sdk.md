@@ -1,24 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # SDK móvel
 {: #openwhisk_mobile_sdk}
 
-O OpenWhisk fornece um SDK móvel para dispositivos iOS e watchOS que
-permite que apps móveis disparem facilmente acionadores remotos e chamem ações remotas. Uma versão para Android não está disponível para Android, portanto os desenvolvedores podem usar a API de REST do OpenWhisk diretamente.
-
-O SDK móvel é gravado em Swift 4 e suporta o iOS 11 e liberações mais recentes. É possível construir o SDK móvel usando o Xcode 9.
+O OpenWhisk fornece um SDK móvel para dispositivos iOS e watchOS que permite que os apps móveis disparem acionadores remotos e chamem ações remotas. Uma versão para Android não está disponível, portanto, os desenvolvedores Android podem usar a API de REST OpenWhisk diretamente. O SDK móvel é gravado em Swift 4 e suporta o iOS 11 e liberações mais recentes. É possível construir o SDK móvel usando o Xcode 9.
 {: shortdesc}
+
+
 
 ## Incluir o SDK em seu app
 
@@ -135,9 +140,7 @@ seu token.
 
 ## Chamar uma ação do OpenWhisk
 
-Para chamar uma ação remota, é possível chamar `invokeAction` com o nome da ação. É
-possível especificar o namespace ao qual a ação pertence ou apenas deixá-lo em branco
-para aceitar o namespace padrão. Use um dicionário para passar parâmetros para a ação conforme necessário.
+Para chamar uma ação remota, é possível chamar `invokeAction` com o nome da ação. Use um dicionário para passar parâmetros para a ação conforme necessário.
 
 Exemplo:
 ```swift
@@ -157,8 +160,6 @@ do {
 }
 ```
 {: codeblock}
-
-No exemplo anterior, você chama a ação `helloConsole` usando o namespace padrão.
 
 ## Disparar um acionador do OpenWhisk
 
@@ -221,9 +222,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-Neste exemplo, você usa uma instalação que está em execução em http://localhost:8080. Se você não
-especificar a URL base, o SDK móvel usará a instância em execução em
-https://openwhisk.ng.bluemix.net.
+Neste exemplo, você usa uma instalação que está em execução em http://localhost:8080. Se você não especificar o baseUrl, o SDK móvel usará a instância que está em execução em https://us-south.functions.cloud.ibm.com.
 
 É possível passar um NSURLSession customizado caso requeira manipulação de rede especial. Por exemplo,
 é possível ter sua própria instalação do OpenWhisk que usa certificados

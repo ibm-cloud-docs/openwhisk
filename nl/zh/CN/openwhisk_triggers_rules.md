@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 通过触发器和规则响应事件
 {: #openwhisk_triggers}
@@ -32,7 +38,7 @@ lastupdated: "2018-06-28"
 - 传入电子邮件的触发器
 
 触发器可以使用键/值对的字典来触发（或激活）。有时，此字典称为事件。触发器可以由用户显式触发，也可以由外部事件源代表用户触发。
-与操作一样，每次触发与规则关联的触发器都会生成一个激活标识。未与规则关联的触发器在触发时没有任何可视结果。
+与操作一样，每次触发与规则关联的触发器都会生成一个激活标识。未与规则关联的触发器在触发时没有任何可视效果。
 
 通过订阅源，可以方便地配置外部事件源来触发 {{site.data.keyword.openwhisk_short}} 可使用的触发器事件。下面是订阅源示例。
 - {{site.data.keyword.cloudant}} 数据更改订阅源，用于每次在数据库中添加或修改文档时，触发触发器事件
@@ -64,7 +70,7 @@ lastupdated: "2018-06-28"
 - 对上传的图像分类。
 - 生成缩略图版本。
 
-## 创建通道事件的触发器
+## 创建触发器作为事件的通道
 {: #openwhisk_triggers_fire}
 
 以下步骤说明如何创建用于发送用户位置更新的示例触发器，以及如何手动触发该触发器。
@@ -136,7 +142,7 @@ lastupdated: "2018-06-28"
     ```
     {: pre}
 
-4. 触发 `locationUpdate` 触发器。每次触发事件时，都会通过事件参数来调用 `hello` 操作。
+4. 触发 `locationUpdate` 触发器。每次发生触发器事件时，都会通过事件参数来调用 `hello` 操作。
     ```
     ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```

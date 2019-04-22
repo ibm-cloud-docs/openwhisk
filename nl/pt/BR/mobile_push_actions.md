@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Pacote push móvel
 {: #openwhisk_catalog_pushnotifications}
+
+Esse pacote pré-instalado não está disponível na região de Tóquio. Consulte o pacote [Notificação push](/docs/openwhisk?topic=cloud-functions-push-notifications-package) instalável para a ação `sendMessage` usando a autenticação do IAM.
+{: tip}
 
 Saiba como criar uma ligação de pacote Push e enviar uma notificação Push simples usando o pacote `/whisk.system/pushnotifications`, que fornece a você a capacidade de trabalhar com um serviço de Push.
 {: shortdesc}
@@ -23,9 +32,9 @@ O pacote inclui as ações e os feeds a seguir:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | pacote | appId, appSecret, admin_url | Trabalhe com o serviço de Push. |
 | `/whisk.system/pushnotifications/sendMessage` | ação | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Envie notificação push para um ou mais dispositivos especificados. |
-| `/whisk.system/pushnotifications/webhook` | alimentação | eventos | Dispare eventos acionadores em atividades de dispositivo (registro de dispositivo, remoção de registro, assinatura ou cancelamento de assinatura) no serviço de Push. |
 
-Para obter informações sobre como disparar eventos acionadores quando houver atividade de dispositivo, veja o tópico [Push móvel em eventos de dispositivo](./openwhisk_pushnotifications.html).
+
+Para obter informações sobre como disparar eventos acionadores quando houver atividade de dispositivo, veja o tópico [Push móvel em eventos de dispositivo](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications).
 
 ## Criando uma ligação de pacote de Push
 {: #create_push_binding}
@@ -37,11 +46,12 @@ Para criar uma ligação de pacote de Notificações push, deve-se especificar o
 
 Para criar uma ligação de pacote, veja as etapas a seguir:
 
-1. Crie um aplicativo do {{site.data.keyword.Bluemix_notm}} no [Painel do {{site.data.keyword.Bluemix_notm}}](http://console.bluemix.net).
+1. Crie um aplicativo {{site.data.keyword.Bluemix_notm}} no [Painel do {{site.data.keyword.Bluemix_notm}}](http://cloud.ibm.com).
 
 2. Inicialize o Serviço de notificação push e ligue o serviço ao aplicativo {{site.data.keyword.Bluemix_notm}}.
 
-3. Configure o [aplicativo de Notificação push](https://console.bluemix.net/docs/services/mobilepush/index.html).
+3. Configure o [aplicativo
+de Notificação push](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate).
 
   Certifique-se de lembrar do **App GUID** e do **App Secret** do app do {{site.data.keyword.Bluemix_notm}} que você criou.
 

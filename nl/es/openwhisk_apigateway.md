@@ -1,29 +1,36 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2019
+lastupdated: "2019-04-04"
+
+keywords: serverless, rest api, gateway, web actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Creación de API REST sin servidor
 {: #openwhisk_apigateway}
 
-Las API permiten gestionar directamente las acciones de {{site.data.keyword.openwhisk}}. API Gateway actúa como un proxy para las [acciones web](./openwhisk_webactions.html) y proporciona direccionamiento de métodos HTTP, secretos e ID de cliente, límites de tasas, CORS, visualización del uso de las API, visualización de registros de respuesta y políticas de compartición.
+Las API permiten gestionar directamente las acciones de {{site.data.keyword.openwhisk}}. API Gateway actúa como un proxy para las [acciones web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions) y proporciona direccionamiento de métodos HTTP, secretos e ID de cliente, límites de tasas, CORS, visualización del uso de las API, visualización de registros de respuesta y políticas de compartición.
 {: shortdesc}
 
-Para obtener más información sobre la gestión de API consulte la [documentación de gestión de API](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+Para obtener más información sobre la gestión de API consulte la [documentación de gestión de API](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis).
+
+
 
 ## Creación de su primera API
 {: #create_cli_api}
 
-Antes de empezar, instale el [plugin de CLI de {{site.data.keyword.openwhisk_short}}](bluemix_cli.html).
+Antes de empezar, instale el [plugin de CLI de {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
 1. Guarde el código siguiente en un archivo de JavaScript denominado `hello.js`.
   ```javascript
@@ -74,14 +81,14 @@ Antes de empezar, instale el [plugin de CLI de {{site.data.keyword.openwhisk_sho
   ```
   {: screen}
 
-Se invoca la acción web `hello`, que devuelve un objeto JSON que incluye el parámetro **name** en el parámetro de consulta. Puede pasar parámetros a la acción con parámetros de consulta sencillos o utilizando el cuerpo de la solicitud. Las acciones web pueden invocar públicamente una acción sin utilizar la clave de API de autorización de {{site.data.keyword.openwhisk_short}}.
+Se invoca la acción web `hello`, que devuelve un objeto JSON que incluye el parámetro **name** en el parámetro de consulta. Puede pasar parámetros a la acción con parámetros de consulta sencillos o utilizando el cuerpo de la solicitud. Las acciones web pueden invocar públicamente una acción sin utilizar autenticación.
 
 ## Utilización del control completo sobre respuestas HTTP
 {: #full_control}
 
-El distintivo `--response-type` controla el URL de destino de la acción web que la pasarela API debe intermediar. Por ejemplo, cuando se utiliza el distintivo `--response-type json`, el resultado completo de la acción se devuelve en formato JSON y la cabecera **Content-Type** se establece automáticamente en `application/json `.
+El distintivo `--response-type` controla el URL de destino de la acción web que la pasarela API debe intermediar. Por ejemplo, cuando se utiliza el distintivo `--response-type json`, el resultado completo de la acción se devuelve en formato JSON y la cabecera **Content-Type** se establece automáticamente en `application/json`.
 
-Para devolver tipos de contenido diferentes en el cuerpo, utilice el control completo sobre las propiedades de respuesta HTTP como, por ejemplo, **statusCode** y **headers**. Utilice el distintivo `--response-type http` para configurar el URL de destino de la acción web con la extensión `http`. Puede cambiar el código de la acción para satisfacer con la devolución de las acciones web con la extensión `http`, o incluir la acción en una secuencia pasando su resultado a una nueva acción. Entonces la nueva acción puede transformar el resultado para que corresponda al formato adecuado para una respuesta HTTP. Puede obtener más información sobre los tipos de respuesta y las extensiones de acciones web en la documentación de [acciones web](./openwhisk_webactions.html).
+Para devolver tipos de contenido diferentes en el cuerpo, utilice el control completo sobre las propiedades de respuesta HTTP como, por ejemplo, **statusCode** y **headers**. Utilice el distintivo `--response-type http` para configurar el URL de destino de la acción web con la extensión `http`. Puede cambiar el código de la acción para satisfacer con la devolución de las acciones web con la extensión `http`, o incluir la acción en una secuencia pasando su resultado a una nueva acción. Entonces la nueva acción puede transformar el resultado para que corresponda al formato adecuado para una respuesta HTTP. Puede obtener más información sobre los tipos de respuesta y las extensiones de acciones web en la documentación de [acciones web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions).
 
 1. Cambie el código de la acción `hello.js` que devuelve las propiedades JSON `body`, `statusCode` y `headers`.
   ```javascript
@@ -101,7 +108,7 @@ Para devolver tipos de contenido diferentes en el cuerpo, utilice el control com
   ```
   {: pre}
 
-3. Actualice el tipo de respuesta de la API mediante el distintivo `-- response-type http`.
+3. Actualice el tipo de respuesta de la API mediante el distintivo `--response-type http`.
   ```
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
@@ -133,7 +140,7 @@ Puede exponer varias acciones web para implementar el sistema de fondo de su app
 | putBooks    | PUT | Actualizar detalles de libros |
 | deleteBooks | DELETE | Suprimir un libro |
 
-En este ejemplo, la API se ha definido con un parámetro path. Cuando se utilizan parámetros path, la API se debe definir con el tipo de respuesta `http`. El valor de path, empezando por la vía de acceso básica e incluidos los valores actuales del parámetro path, está disponible en el campo `__ow_path` del parámetro JSON de la acción. Para obtener más detalles sobre los campos de contexto HTTP, consulte la documentación de [web actions Contexto HTTP de acciones web](./openwhisk_webactions.html#http-context).
+En este ejemplo, la API se ha definido con un parámetro path. Cuando se utilizan parámetros path, la API se debe definir con el tipo de respuesta `http`. El valor de path, empezando por la vía de acceso básica e incluidos los valores actuales del parámetro path, está disponible en el campo `__ow_path` del parámetro JSON de la acción. Para obtener más detalles sobre los campos de contexto HTTP, consulte la documentación de [web actions Contexto HTTP de acciones web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#http-context).
 
 Para intentar este ejemplo de acciones web de Book Club:
 
@@ -230,7 +237,7 @@ Para intentar este ejemplo de acciones web de Book Club:
 
 Para exportar o importar una configuración, puede continuar utilizando el ejemplo de Book Club.
 
-1. Exporte la API de `Book Club` en un archivo denominado `club-swagger.json `. Este archivo se puede utilizar como una base para volver a crear las API utilizando un archivo como la entrada.
+1. Exporte la API de `Book Club` en un archivo denominado `club-swagger.json`. Este archivo se puede utilizar como una base para volver a crear las API utilizando un archivo como la entrada.
   ```
   ibmcloud fn api get "Book Club" > club-swagger.json
   ```
@@ -293,11 +300,11 @@ Para exportar o importar una configuración, puede continuar utilizando el ejemp
 ## Modificación de la configuración
 {: #modify_config}
 
-Una vez haya creado la configuración, puede utilizar el [**separador de API**](https://console.bluemix.net/openwhisk/apimanagement) en el panel de control de {{site.data.keyword.openwhisk_short}} para modificar la configuración de las siguientes maneras.
+Una vez haya creado la configuración, puede utilizar el [**separador de API**](https://cloud.ibm.com/openwhisk/apimanagement) en el panel de control de {{site.data.keyword.openwhisk_short}} para modificar la configuración de las siguientes maneras.
 
-* [Crear una API de {{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk/apimanagement) que abarque un conjunto de acciones de {{site.data.keyword.openwhisk_short}}.
-* [Proteger su API](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) aplicando seguridad de API y políticas de limitación de tasas de uso.
-* [Gestionar el tráfico](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api) visualizando las estadísticas de uso de la API y verificando los registros de respuesta.
-* [Socializar y compartir](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api) sus API con desarrolladores dentro y fuera de {{site.data.keyword.Bluemix_notm}}.
+* [Crear una API de {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis) que abarque un conjunto de acciones de {{site.data.keyword.openwhisk_short}}.
+* [Proteger su API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) aplicando seguridad de API y políticas de limitación de tasas de uso.
+* [Gestionar el tráfico](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) visualizando las estadísticas de uso de la API y verificando los registros de respuesta.
+* [Socializar y compartir](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) sus API con desarrolladores dentro y fuera de {{site.data.keyword.Bluemix_notm}}.
 
 Una vez que haya terminado de actualizar la configuración, puede descargar el archivo de definiciones en formato JSON y volver a importarlo mediante la CLI. La descarga y la importación de la configuración puede resultar útil, por ejemplo, para un despliegue desatendido en una integración continua y un conducto de despliegue (CICD). También tiene la opción de cargar y volver a importar el archivo de definiciones de la API mediante la interfaz de usuario.

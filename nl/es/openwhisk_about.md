@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Arquitectura de la plataforma
 {: #openwhisk_about}
@@ -23,25 +29,25 @@ lastupdated: "2018-07-13"
 Obtenga más información acerca de algunos conceptos básicos de la tecnología subyacente a {{site.data.keyword.openwhisk_short}}:
 
 <dl>
-<dt>Acción</dt>
-<dd>Una [acción ](openwhisk_actions.html) es una parte de código que realiza una tarea específica. Una acción se puede escribir en el lenguaje de su elección, como pequeños fragmentos de código JavaScript o código Swift, o bien código binario personalizado. Especifique la acción en Cloud Functions como código fuente o como una imagen de Docker.
-<br><br>Una acción realiza un trabajo cuando se invoca directamente utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. Una acción también puede responder automáticamente a los sucesos desde servicios de {{site.data.keyword.Bluemix_notm}} y servicios de terceros utilizando un desencadenante.</dd>
-<dt>Secuencia</dt>
-<dd>Se puede encadenar un conjunto de acciones en una [secuencia](openwhisk_actions.html#openwhisk_create_action_sequence) sin tener que escribir código. Una secuencia es una cadena de acciones, invocadas en orden, donde el resultado de una se pasa como entrada a la siguiente acción. Esto le permite combinar acciones existentes juntas para una reutilización rápida y sencilla. A continuación, se puede invocar una secuencia como si fuera una acción, mediante una API REST o automáticamente en respuesta a sucesos.
-</dd>
-<dt>Suceso</dt>
-<dd>Como ejemplos de sucesos se pueden citar cambios en los registros de base de datos, lecturas de sensor IoT que sobrepasen una
+  <dt>Acción</dt>
+    <dd>Una [acción](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) es una parte de código que realiza una tarea específica. Una acción se puede escribir en el lenguaje de su elección, como pequeños fragmentos de código JavaScript o código Swift, o bien código binario personalizado. Especifique la acción en Cloud Functions como código fuente o como una imagen de Docker.
+    <br><br>Una acción realiza un trabajo cuando se invoca directamente utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. Una acción también puede responder automáticamente a los sucesos desde servicios de {{site.data.keyword.Bluemix_notm}} y servicios de terceros utilizando un desencadenante.</dd>
+  <dt>Secuencia</dt>
+    <dd>Se puede encadenar un conjunto de acciones en una [secuencia](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence) sin tener que escribir código. Una secuencia es una cadena de acciones, invocadas en orden, donde el resultado de una se pasa como entrada a la siguiente acción. Esto le permite combinar acciones existentes juntas para una reutilización rápida y sencilla. A continuación, se puede invocar una secuencia como si fuera una acción, mediante una API REST o automáticamente en respuesta a sucesos.
+  </dd>
+  <dt>Suceso</dt>
+    <dd>Como ejemplos de sucesos se pueden citar cambios en los registros de base de datos, lecturas de sensor IoT que sobrepasen una
 temperatura determinada, nuevas confirmaciones de código en un repositorio GitHub o solicitudes HTTP sencillas desde apps web o de móvil. Los sucesos de orígenes de sucesos externos e internos se ponen en el canal por medio de un desencadenante, y las reglas permiten acciones de respuesta para dichos sucesos.</dd>
-<dt>Desencadenante</dt>
-<dd>Los [desencadenantes](openwhisk_triggers_rules.html#openwhisk_triggers_create) son un canal con nombre para una clase de sucesos. Un desencadenante es una declaración a la que desea reaccionar en un determinado tipo de suceso, ya sea un usuario o mediante un origen de sucesos.</dd>
-<dt>Regla</dt>
-<dd>Una [regla](openwhisk_triggers_rules.html#openwhisk_rules_use) asocia un desencadenante con una acción. Cada vez que se activa el desencadenante, la regla utiliza el suceso desencadenante como entrada e invoca a la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
+  <dt>Desencadenante</dt>
+    <dd>Los [desencadenantes](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create) son un canal con nombre para una clase de sucesos. Un desencadenante es una declaración a la que desea reaccionar en un determinado tipo de suceso, ya sea un usuario o mediante un origen de sucesos.</dd>
+  <dt>Regla</dt>
+    <dd>Una [regla](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use) asocia un desencadenante con una acción. Cada vez que se activa el desencadenante, la regla utiliza el suceso desencadenante como entrada e invoca a la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
 una acción se invoque como respuesta a sucesos de distintos desencadenantes.</dd>
-<dt>Canal de información</dt>
-<dd>Un [canal de información](openwhisk_feeds.html#openwhisk_feeds) es una forma cómoda de configurar un origen de sucesos externo para activar sucesos desencadenantes que {{site.data.keyword.openwhisk_short}} pueda consumir. Por ejemplo, un canal de información Git podría activar un suceso desencadenante para cada confirmación en un repositorio Git.</dd>
-<dt>Paquete</dt>
-<dd>Las integraciones con servicios y proveedores de sucesos se pueden añadir con paquetes. Un [paquete](openwhisk_packages.html) es una agrupación de canales de información y acciones. Un canal de información es un fragmento de código que configura un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, un desencadenante creado con un canal de información de cambios de {{site.data.keyword.cloudant}} configura un servicio para que active el desencadenante siempre que se modifique un documento o se añada a una base de datos {{site.data.keyword.cloudant_short_notm}}. Las acciones en paquetes representan lógica reutilizable que un proveedor de servicios puede poner a disponibilidad de los desarrolladores para que puedan utilizar el servicio como un origen de sucesos e invocar las API de dicho servicio.
-<br><br>Un catálogo de paquetes existente ofrece una forma rápida de mejorar las aplicaciones con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que tienen paquetes de {{site.data.keyword.openwhisk_short}} son {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack y GitHub.</dd>
+  <dt>Canal de información</dt>
+    <dd>Un [canal de información](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds) es una forma cómoda de configurar un origen de sucesos externo para activar sucesos desencadenantes que {{site.data.keyword.openwhisk_short}} pueda consumir. Por ejemplo, un canal de información Git podría activar un suceso desencadenante para cada confirmación en un repositorio Git.</dd>
+  <dt>Paquete</dt>
+    <dd>Las integraciones con servicios y proveedores de sucesos se pueden añadir con paquetes. Un [paquete](/docs/openwhisk?topic=cloud-functions-openwhisk_packages) es una agrupación de canales de información y acciones. Un canal de información es un fragmento de código que configura un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, un desencadenante creado con un canal de información de cambios de {{site.data.keyword.cloudant}} configura un servicio para que active el desencadenante siempre que se modifique un documento o se añada a una base de datos {{site.data.keyword.cloudant_short_notm}}. Las acciones en paquetes representan lógica reutilizable que un proveedor de servicios puede poner a disponibilidad de los desarrolladores para que puedan utilizar el servicio como un origen de sucesos e invocar las API de dicho servicio.
+    <br><br>Un catálogo de paquetes existente ofrece una forma rápida de mejorar las aplicaciones con prestaciones útiles, y para acceder a servicios externos en el ecosistema. Algunos de los servicios externos que tienen paquetes de {{site.data.keyword.openwhisk_short}} son {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack y GitHub.</dd>
 </dl>
 
 ## Funcionamiento de {{site.data.keyword.openwhisk_short}}
@@ -162,7 +168,7 @@ Puede ver cómo una sencilla acción **ibmcloud fn action invoked myAction** pas
 
 Puede encontrar información adicional sobre {{site.data.keyword.openwhisk_short}} en los temas siguientes:
 
-* [Nombres de entidad](./openwhisk_reference.html#openwhisk_entities)
-* [Semánticas de acción](./openwhisk_reference.html#openwhisk_semantics)
-* [Límites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Referencia de API REST](https://console.bluemix.net/apidocs/functions)
+* [Nombres de entidad](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [Semánticas de acción](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
+* [Límites](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [Referencia de API REST](/apidocs/functions)

@@ -1,26 +1,32 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: visual recognition, watson, functions, cognitive, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Package {{site.data.keyword.visualrecognitionshort}}
 
-Le service {{site.data.keyword.visualrecognitionfull}} utilise des algorithmes d'apprentissage en profondeur pour identifier des scènes, des objets et des visages dans les images que vous téléchargez dans le service. Vous pouvez créer et entraîner un discriminant personnalisé pour identifier les sujets qui répondent à vos besoins.{:shortdesc}
+Le service {{site.data.keyword.visualrecognitionfull}} utilise des algorithmes d'apprentissage en profondeur pour identifier des scènes, des objets et des visages dans les images que vous téléchargez dans le service. Vous pouvez créer et entraîner un discriminant personnalisé pour identifier les sujets qui répondent à vos besoins.
+{:shortdesc}
 
 Le package {{site.data.keyword.visualrecognitionshort}} contient les entités suivantes. Vous trouverez des détails supplémentaires dans la référence d'API {{site.data.keyword.visualrecognitionshort}} en cliquant sur le nom d'entité.
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| [`visual-recognition-v3`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Gestion du service {{site.data.keyword.visualrecognitionshort}}. |
+| [`visual-recognition-v3`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Gestion du service {{site.data.keyword.visualrecognitionshort}}. |
 | [classify](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#classify) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    images_file,     accept_language,     url,     threshold,     owners,     classifier_ids,     images_file_content_type,  | Classement des images. |
 | [detect-faces](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#detect-faces) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    images_file,     url,     images_file_content_type,  | Détection des visages dans les images. |
 | [create-classifier](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#create-classifier) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    name,     classname_positive_examples,     negative_examples,  | Création d'un discriminant. |
@@ -31,31 +37,30 @@ Le package {{site.data.keyword.visualrecognitionshort}} contient les entités su
 | [get-core-ml-model](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#get-core-ml-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    classifier_id,  | Extraction d'un modèle Core ML d'un discriminant. |
 | [delete-user-data](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Suppression de données de libellé. |
 
-## Création d'une instance de service {{site.data.keyword.}} 
-{: #service_instance}
+## Création d'une instance de service {{site.data.keyword.visualrecognitionshort}}
+{: #service_instance_recognition}
 
-Avant d'installer le package, vous devez créer une instance de service {{site.data.keyword.}} et des données d'identification du service.
+Avant d'installer le package, vous devez créer une instance de service {{site.data.keyword.visualrecognitionshort}} et des données d'identification du service.
 {: shortdesc}
 
-1. [Créez une instance de service {{site.data.keyword.}}![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/catalog/services/watson_vision_combined).
+1. [Créez une instance de service {{site.data.keyword.visualrecognitionshort}} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/catalog/services/watson_vision_combined).
 2. Une fois l'instance de service créée, des données d'identification du service à génération automatique sont également créées pour vous.
 
-## Installation du package {{site.data.keyword.}}
-{: #install}
+## Installation du package {{site.data.keyword.visualrecognitionshort}}
+{: #install_recognition}
 
-Dès que vous disposez d'une instance de service {{site.data.keyword.}}, utilisez l'interface de ligne de commande {{site.data.keyword.openwhisk}} pour installer le package {{site.data.keyword.}} dans votre espace de nom.
+Dès que vous disposez d'une instance de service {{site.data.keyword.visualrecognitionshort}}, utilisez l'interface de ligne de commande {{site.data.keyword.openwhisk}} pour installer le package {{site.data.keyword.visualrecognitionshort}} dans votre espace de nom.
 {: shortdesc}
 
 ### Installation depuis l'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
 {: #visualrecognition_cli}
 
 Avant de commencer :
-  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](bluemix_cli.html#cloudfunctions_cli).
-  2. Installez la commande [`wskdeploy`![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) et ajoutez le fichier binaire téléchargé à votre variable PATH.
+  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
-Pour installer le package {{site.data.keyword.}} :
+Pour installer le package {{site.data.keyword.visualrecognitionshort}} :
 
-1. Clonez le référentiel de package {{site.data.keyword.}}.
+1. Clonez le référentiel de package {{site.data.keyword.visualrecognitionshort}}.
     ```
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
@@ -63,7 +68,7 @@ Pour installer le package {{site.data.keyword.}} :
 
 2. Déployez le package.
     ```
-    wskdeploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
     ```
     {: pre}
 
@@ -80,7 +85,7 @@ Pour installer le package {{site.data.keyword.}} :
     ```
     {: screen}
 
-4. Liez les données d'identification de l'instance {{site.data.keyword.}} que vous avez créée au package.
+4. Liez les données d'identification de l'instance {{site.data.keyword.visualrecognitionshort}} que vous avez créée au package.
     ```
     ibmcloud fn service bind watson-vision-combined visual-recognition-v3
     ```
@@ -92,7 +97,7 @@ Pour installer le package {{site.data.keyword.}} :
     ```
     {: screen}
 
-5. Vérifiez que le package est configuré avec les données d'identification de votre instance de service {{site.data.keyword.}}.
+5. Vérifiez que le package est configuré avec les données d'identification de votre instance de service {{site.data.keyword.visualrecognitionshort}}.
     ```
     ibmcloud fn package get visual-recognition-v3 parameters
     ```
@@ -121,12 +126,12 @@ Pour installer le package {{site.data.keyword.}} :
     ```
     {: screen}
 
-### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}} 
+### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}}
 {: #visualrecognition_ui}
 
-1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/openwhisk/create).
+1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create).
 
-2. A l'aide des listes **Cloud Foundry Org** et **Cloud Foundry Space**, sélectionnez l'espace de nom dans lequel vous voulez installer le package {{site.data.keyword.cos_short}}. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
+2. A l'aide des listes **Organisation Cloud Foundry** et **Espace Cloud Foundry**, sélectionnez l'espace de nom où vous voulez installer le package. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
 
 3. Cliquez sur **Installer les packages**.
 
@@ -138,15 +143,15 @@ Pour installer le package {{site.data.keyword.}} :
 
 6. Une fois le package installé, vous êtes redirigé vers la page Actions et vous pouvez rechercher votre nouveau package, nommé **visual-recognition-v3**.
 
-7. Pour utiliser les Actions du package **visual-recognition-v3**, vous devez lier les données d'identification du service aux actions.
-  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus. 
+7. Pour utiliser les actions du package **visual-recognition-v3**, vous devez lier les données d'identification du service aux actions.
+  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus.
   * Pour lier les données d'identification du service à des actions individuelles, suivez les étapes ci-après dans l'interface utilisateur. **Remarque **: Vous devez suivre les étapes ci-après pour chaque action que vous voulez utiliser.
-    1. Cliquez sur une action du package **visual-recognition-v3** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche. 
-    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**. 
+    1. Cliquez sur une action du package **visual-recognition-v3** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche.
+    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**.
     3. Entrez un nouveau **paramètre**. Pour le paramètre key, entrez `__bx_creds`. Comme valeur, collez l'objet JSON des données d'identification du service de l'instance de service que vous avez créée plus haut.
 
 ## Utilisation du package {{site.data.keyword.visualrecognitionshort}}
-{: #usage}
+{: #usage_recognition}
 
 Pour utiliser les actions de ce package, exécutez les commandes au format suivant :
 

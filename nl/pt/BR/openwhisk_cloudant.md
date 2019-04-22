@@ -1,35 +1,37 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Origem de eventos do Cloudant
 {: #openwhisk_cloudant}
 
-Saiba como receber mudanças para um banco de dados {{site.data.keyword.cloudant}}, filtrar os eventos de mudança do banco de dados e usar uma sequência de ações para processar um documento de um banco de dados {{site.data.keyword.cloudant_short_notm}}. 
-O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados
-do {{site.data.keyword.cloudant_short_notm}} e inclui as ações e os feeds a seguir:
+Saiba como detectar mudanças em um banco de dados {{site.data.keyword.cloudant}}, filtrar eventos de mudança de banco de dados e usar uma sequência de ações para processar um documento de um banco de dados do {{site.data.keyword.cloudant_short_notm}}. O pacote `/whisk.system/cloudant` permite trabalhar com um banco de dados do {{site.data.keyword.cloudant_short_notm}} e inclui as ações e os feeds a seguir:
 
 | Entity | Digite | Parâmetros | Descrição |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | pacote | dbname, host, username, password | Trabalhe com um banco de dados Cloudant. |
 | `/whisk.system/cloudant/read` | ação | dbname, id | Leia um documento de um banco de dados. |
 | `/whisk.system/cloudant/write` | ação | dbname, overwrite, doc | Grave um documento em um banco de dados. |
-| `/whisk.system/cloudant/changes` | alimentação | Dbname, filtro, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
+| `/whisk.system/cloudant/changes` | alimentação | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
 {: shortdesc}
 
 As seções a seguir conduzem você pela configuração de um pacote associado e ensinam como usar
-ações e feeds no pacote `/whisk.system/cloudant`.
-Para obter mais informações sobre como configurar o banco de dados {{site.data.keyword.cloudant_short_notm}} e ler ou gravar nele, veja [Ações do {{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html).
+ações e feeds no pacote `/whisk.system/cloudant`. Para obter mais informações sobre como configurar o banco de dados do {{site.data.keyword.cloudant_short_notm}} e ler ou gravar nele, consulte [Ações do {{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions).
 
 ## Criar um acionador usando a função de filtro
 
@@ -39,6 +41,10 @@ em cada mudança em seu banco de dados do {{site.data.keyword.cloudant_short_not
 Os parâmetros usados neste exemplo são como a seguir:
 
 **dbname**: o nome do banco de dados {{site.data.keyword.cloudant_short_notm}} _(necessário)_.
+
+**iamApiKey**: a chave de API do IAM para o banco de dados Cloudant. Se especificado, será usado como as credenciais em vez do nome do usuário e da senha _(opcional)_.
+
+**iamUrl**: A URL do serviço de token do IAM que é usada quando `iamApiKey`é especificado.  Padronizado para `https://iam.bluemix.net/identity/token`_(opcional)_. 
 
 **maxTriggers**: parar de disparar acionadores quando esse limite for atingido _(opcional)_. O padrão é definido como infinite.
 
@@ -89,7 +95,7 @@ Os parâmetros usados neste exemplo são como a seguir:
 
 7. Observe novas ativações para o acionador **myCloudantTrigger** para cada mudança de documento somente se o status do documento for **new** com base na função de filtro e no parâmetro de consulta.
 
-Se você não puder observar novas ativações, veja o tópico [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) que demonstra como ler de um banco de dados {{site.data.keyword.cloudant_short_notm}} e gravar nele. Teste as etapas de leitura e gravação para ajudar a verificar se suas credenciais do {{site.data.keyword.cloudant_short_notm}} estão corretas.
+Se não for possível observar novas ativações, consulte o tópico [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions) que demonstra como ler e gravar em um banco de dados do {{site.data.keyword.cloudant_short_notm}}. Teste as etapas de leitura e gravação para ajudar a verificar se suas credenciais do {{site.data.keyword.cloudant_short_notm}} estão corretas.
 {: tip}
 
 ## Estrutura de dados de um evento acionador
@@ -150,7 +156,7 @@ As informações para o novo documento de design são impressas na tela:
 ```
 {: screen}
 
-## Usando uma sequência de ações e um acionador de mudança para processar um documento de um banco de dados {{site.data.keyword.cloudant_short_notm}}
+## Usando uma sequência de ações e um acionador de mudanças para processar um documento por meio de um banco de dados do {{site.data.keyword.cloudant_short_notm}}
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
 É possível usar uma sequência de ações em uma regra para buscar e processar o documento que está associado a um evento de mudança do {{site.data.keyword.cloudant_short_notm}}.

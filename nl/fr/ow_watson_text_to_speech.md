@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, functions, packages
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,13 +22,13 @@ lastupdated: "2018-07-17"
 Le service {{site.data.keyword.texttospeechfull}} fournit une API qui utilise les fonctions de reconnaissance vocale d'IBM pour synthétiser du texte sous forme de voix naturelle dans une variété de langues, dialectes et voix.
 {:shortdesc}
 
-Le service prend en charge au moins une voix masculine ou féminine, parfois les deux, pour chaque langue. Le contenu audio est diffusé jusqu'au client dans un délai minimal. Pour plus d'informations sur le service, consultez la [documentation IBM Cloud](https://console.bluemix.net/docs/services/text-to-speech/index.html).
+Le service prend en charge au moins une voix masculine ou féminine, parfois les deux, pour chaque langue. Le contenu audio est diffusé jusqu'au client dans un délai minimal. Pour plus d'informations sur le service, consultez la [documentation IBM Cloud](https://cloud.ibm.com/docs/services/text-to-speech/index.html).
 
 Le package {{site.data.keyword.texttospeechshort}} contient les entités suivantes. Vous trouverez des détails supplémentaires dans la référence d'API {{site.data.keyword.texttospeechshort}} en cliquant sur le nom d'entité.
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Gestion du service {{site.data.keyword.texttospeechshort}}. |
+| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Gestion du service {{site.data.keyword.texttospeechshort}}. |
 | [get-voice](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    voice,     customization_id,  | Obtention d'une voix. |
 | [list-voices](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | Affichage de la liste des voix. |
 | [synthesize](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text,     accept,     voice,     customization_id,  | Synthétisation audio. |
@@ -34,23 +39,23 @@ Le package {{site.data.keyword.texttospeechshort}} contient les entités suivant
 | [list-voice-models](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voice-models) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    language,  | Affichage de la liste des modèles personnalisés. |
 | [update-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#update-voice-model) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    name, description, words,  | Mise à jour d'un modèle personnalisé. |
 | [add-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,    translation, part_of_speech,  | Ajout d'un mot personnalisé. |
-| [add-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    words,  |Ajout de mots personnalisés. |
+| [add-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    words,  | Ajout de mots personnalisés. |
 | [delete-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Suppression d'un mot personnalisé. |
 | [get-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-word) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Obtention d'un mot personnalisé. |
 | [list-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Affichage de la liste de mots personnalisés. |
 | [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Suppression de données de libellé. |
 
 ## Création d'une instance de service {{site.data.keyword.texttospeechshort}}
-{: #service_instance}
+{: #service_instance_texttospeech}
 
 Avant d'installer le package, vous devez créer une instance de service {{site.data.keyword.texttospeechshort}} et des données d'identification du service.
 {: shortdesc}
 
-1. [Créez une instance de service {{site.data.keyword.texttospeechshort}}![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/catalog/services/text_to_speech).
+1. [Créez une instance de service {{site.data.keyword.texttospeechshort}} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/catalog/services/text_to_speech).
 2. Une fois l'instance de service créée, des données d'identification du service à génération automatique sont également créées pour vous.
 
 ## Installation du package {{site.data.keyword.texttospeechshort}}
-{: #install}
+{: #install_texttospeech}
 
 Dès que vous disposez d'une instance de service {{site.data.keyword.texttospeechshort}}, utilisez l'interface de ligne de commande {{site.data.keyword.openwhisk}} pour installer le package {{site.data.keyword.texttospeechshort}} dans votre espace de nom.
 {: shortdesc}
@@ -59,8 +64,7 @@ Dès que vous disposez d'une instance de service {{site.data.keyword.texttospeec
 {: #texttospeech_cli}
 
 Avant de commencer :
-  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](bluemix_cli.html#cloudfunctions_cli).
-  2. Installez la commande [`wskdeploy`![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) et ajoutez le fichier binaire téléchargé à votre variable PATH.
+  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Pour installer le package {{site.data.keyword.texttospeechshort}} :
 
@@ -72,7 +76,7 @@ Pour installer le package {{site.data.keyword.texttospeechshort}} :
 
 2. Déployez le package.
     ```
-    wskdeploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
@@ -132,12 +136,12 @@ Pour installer le package {{site.data.keyword.texttospeechshort}} :
     ```
     {: screen}
 
-### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}} 
+### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}}
 {: #texttospeech_ui}
 
-1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://console.bluemix.net/openwhisk/create).
+1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à [Create page ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create).
 
-2. A l'aide des listes **Cloud Foundry Org** et **Cloud Foundry Space**, sélectionnez l'espace de nom dans lequel vous voulez installer le package {{site.data.keyword.cos_short}}. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
+2. A l'aide des listes **Organisation Cloud Foundry** et **Espace Cloud Foundry**, sélectionnez l'espace de nom où vous voulez installer le package. Les espaces de nom sont formés à partir de la combinaison des espaces de nom org et space.
 
 3. Cliquez sur **Installer les packages**.
 
@@ -149,15 +153,15 @@ Pour installer le package {{site.data.keyword.texttospeechshort}} :
 
 6. Une fois le package installé, vous êtes redirigé vers la page Actions et vous pouvez rechercher votre nouveau package, nommé **text-to-speech-v1**.
 
-7. Pour utiliser les Actions du package **text-to-speech-v1**, vous devez lier les données d'identification du service aux actions.
-  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus. 
+7. Pour utiliser les actions du package **text-to-speech-v1**, vous devez lier les données d'identification du service aux actions.
+  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus.
   * Pour lier les données d'identification du service à des actions individuelles, suivez les étapes ci-après dans l'interface utilisateur. **Remarque **: Vous devez suivre les étapes ci-après pour chaque action que vous voulez utiliser.
-    1. Cliquez sur une action du package **text-to-speech-v1** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche. 
-    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**. 
+    1. Cliquez sur une action du package **text-to-speech-v1** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche.
+    2. Dans le volet de navigation gauche, cliquez sur la section **Parameters**.
     3. Entrez un nouveau **paramètre**. Pour le paramètre key, entrez `__bx_creds`. Comme valeur, collez l'objet JSON des données d'identification du service de l'instance de service que vous avez créée plus haut.
 
 ## Utilisation du package {{site.data.keyword.texttospeechshort}}
-{: #usage}
+{: #usage_texttospeech}
 
 Pour utiliser les actions de ce package, exécutez les commandes au format suivant :
 

@@ -1,18 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-25"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: managing actions, manage, activation, action logs, changing runtime, delete
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 管理動作
+{: #managing_actions}
 {: #openwhisk_managing}
 
 藉由監視動作輸出、取得動作的特定資訊或刪除動作來管理動作。
@@ -30,7 +36,7 @@ ibmcloud fn action list
 ```
 {: pre}
 
-在建立其他動作時，將相關動作分組成[套件](./openwhisk_packages.html)會非常實用。若要將您的動作清單過濾成只有特定套件內的動作，請執行下列指令：
+在建立其他動作時，將相關動作分組成[套件](/docs/openwhisk?topic=cloud-functions-openwhisk_packages)會非常實用。若要將您的動作清單過濾成只有特定套件內的動作，請執行下列指令：
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -99,7 +105,7 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>此動作的註釋。如需可能的註釋清單，請參閱[動作註釋](openwhisk_annotations.html#action)和 [Web 動作註釋](openwhisk_annotations.html#annotations-specific-to-web-actions)參照主題。</td>
+<td>此動作的註釋。如需可能的註釋清單，請參閱[動作註釋](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action)和 [Web 動作註釋](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions)參照主題。</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
@@ -114,7 +120,7 @@ ok: got action hello
 </tbody></table>
 
 ## 檢視啟動詳細資料
-{: #activation}
+{: #activation_details}
 
 其他使用者可呼叫 {{site.data.keyword.openwhisk_short}} 動作來回應各種事件，或是作為動作序列的一部分。每次呼叫動作時，都會建立該呼叫的啟動記錄。若要取得動作呼叫結果的相關資訊，您可以取得啟動的相關詳細資料。
 
@@ -134,7 +140,7 @@ ibmcloud fn activation get <activation_ID>
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "BobsOrg_dev",
+    "namespace": "myNamespace",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -154,7 +160,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "BobsOrg_dev/hello"
+            "value": "myNamespace/hello"
         },
         {
             "key": "waitTime",
@@ -235,7 +241,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>此動作的註釋。如需可能的啟動註釋清單，請參閱[註釋參考主題](openwhisk_annotations.html#activation)。</td>
+<td>此動作的註釋。如需可能的啟動註釋清單，請參閱[註釋參考主題](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation)。</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -251,7 +257,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 | 內容 |說明|
 | -------- | ----------- |
 | `__OW_API_HOST` | 執行此動作之 OpenWhisk 部署的 API 主機。|
-| `__OW_API_KEY` | 呼叫動作之主題的 API 金鑰，此金鑰可能是受限的 API 金鑰。|
+| `__OW_API_KEY` | 呼叫動作之主題的 API 金鑰。除非明確要求，否則此金鑰可能是受限 API 金鑰且不存在，請參閱[註釋](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations)。|
 | `__OW_NAMESPACE` | 啟動的名稱空間。此名稱空間可能與動作的名稱空間不同。|
 | `__OW_ACTION_NAME` | 執行中動作的完整名稱。|
 | `__OW_ACTIVATION_ID` | 此執行中動作實例的啟動 ID。|
@@ -276,14 +282,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-[Web 動作](./openwhisk_webactions.html)的輸出範例：
+[Web 動作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)的輸出範例：
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**附註：**針對標準動作，透過 HTTPS 要求呼叫時，必須提供鑑別。如需使用 REST 介面來呼叫動作的相關資訊，請參閱 [REST API 參照](https://console.bluemix.net/apidocs/functions)。
+**附註：**針對標準動作，透過 HTTPS 要求呼叫時，必須提供鑑別。如需使用 REST 介面來呼叫動作的相關資訊，請參閱 [REST API 參照](https://cloud.ibm.com/apidocs/functions)。
 
 ## 儲存動作碼
 {: #save-action}
@@ -347,6 +353,34 @@ ibmcloud fn action get actionName --save-as codeFile.js
     ```
     {: screen}
     您也可以即時查看在 {{site.data.keyword.openwhisk_short}} 中代表您執行之任何動作的日誌。
+    
+## 變更動作運行環境
+{: #changing-action-runtime}
+
+您可以變更運行環境 `kind`，以移轉至新版的動作運行環境。例如，因為 Node.js 第 8 版處於維護模式，所以建議您將運行環境切換至 Node.js 10。您可以使用下列步驟來變更動作運行環境。**附註：**您可能需要變更 `actionName.js` 中的程式碼，以符合新的運行環境版本。這取決於運行環境切換是否需要這類變更。在大部分情況下，運行環境版本會相容。
+
+1. 將動作碼儲存在檔案中。
+
+  ```
+ibmcloud fn action get actionName --save
+```
+  {: pre}
+
+2. 指定新的運行環境，以更新動作。
+
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
+
+如需可用的運行環境清單，請參閱[運行環境](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)
+
+## 管理大型動作
+{: #large-app-support}
+
+動作的程式碼大小上限為 48 MB。包含許多協力廠商模組、原生程式庫或外部工具的應用程式可能會達到此限制。如果您建立大於 48 MB 的 .zip 或 .jar 套件動作，您必須擴充具有相依關係的運行環境映像檔，然後使用單一原始檔或小於 48 MB 的保存檔。
+
+例如，透過建置包含必要共用程式庫的自訂 Docker 運行環境，相依關係並不需要存在於保存檔中。專用原始檔仍可組合在保存檔中，並在執行時期注入。
 
 ## 刪除動作
 {: #deleting-actions}

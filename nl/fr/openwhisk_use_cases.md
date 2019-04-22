@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Scénarios d'utilisation courants
 {: #openwhisk_common_use_cases}
@@ -33,7 +39,7 @@ Un autre argument important en faveur de {{site.data.keyword.openwhisk_short}} e
 
 Vu que {{site.data.keyword.openwhisk_short}} est géré par des événements, il offre plusieurs avantages aux applications destinées aux utilisateurs, tandis que les demandes HTTP provenant du navigateur de l'utilisateur servent d'événements. Les applications {{site.data.keyword.openwhisk_short}} n'utilisent des capacités de traitement et ne sont facturées que lorsqu'elles traitent des demandes d'utilisateurs. Le mode de secours en veille ou d'attente est inexistant. Cette fonction rend {{site.data.keyword.openwhisk_short}} considérablement moins onéreux que les applications de conteneurs ou Cloud Foundry traditionnelles. Ces applications peuvent passer le plus clair de leur temps simplement en attente d'une demande utilisateur entrante et sont facturées pour tout ce temps de "sommeil".
 
-Une application Web complète peut être construite et exécutée avec {{site.data.keyword.openwhisk_short}}. Le fait de combiner des API sans serveur avec un hébergement de fichier statique pour des ressources de site, c'est-à-dire, des ressources HTML, JavaScript et CSS, signifie que vous pouvez construire entièrement des applications Web sans serveur. La simplicité d'exploitation d'un environnement {{site.data.keyword.openwhisk_short}} hébergé est liée au fait d'en être totalement exempté. Le fait que {{site.data.keyword.openwhisk_short}} soit hébergé sur {{site.data.keyword.Bluemix_notm}} est un avantage considérable par rapport à la mise en oeuvre et à l'exploitation d'un serveur Node.js Express ou tout autre contexte d'exécution de serveur traditionnel..
+Une application Web complète peut être construite et exécutée avec {{site.data.keyword.openwhisk_short}}. Le fait de combiner des API sans serveur avec un hébergement de fichier statique pour des ressources de site, c'est-à-dire, des ressources HTML, JavaScript et CSS, signifie que vous pouvez construire entièrement des applications Web sans serveur. La simplicité d'exploitation d'un environnement {{site.data.keyword.openwhisk_short}} hébergé est liée au fait d'en être totalement exempté. Le fait que {{site.data.keyword.openwhisk_short}} soit hébergé sur {{site.data.keyword.Bluemix_notm}} est un avantage considérable par rapport à la mise en oeuvre et à l'exploitation d'un serveur Node.js Express ou tout autre contexte d'exécution de serveur traditionnel.
 
 Examinez les exemples ci-dessous illustrant l'utilisation de {{site.data.keyword.openwhisk_short}} pour construire une application Web :
 - [Web actions: Serverless Web Apps with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/web-actions-serverless-web-apps-with-openwhisk-f21db459f9ba).
@@ -47,18 +53,18 @@ Souvent, les scénarios Internet of Things dépendent intrinsèquement d'un capt
 
 Il est possible d'implémenter des applications IoT qui utilisent des architectures de serveur traditionnelles. Toutefois, dans de nombreux cas, la combinaison de différents services et ponts de données nécessite des pipelines extrêmement performants et flexibles, allant des périphériques IoT au stockage en cloud et à une plateforme d'analyse. Souvent les ponts préconfigurés ne disposent pas de la programmabilité souhaitée pour implémenter et ajuster une solution d'architecture spécifique. Etant donné la grande variété de pipelines possibles et le manque de standardisation en matière de fusion des données en général (pour IoT en particulier), il arrive souvent que le pipeline nécessite une transformation des données personnalisées. Ces transformations de données personnalisées concernent la conversion de format, le filtrage ou l'augmentation. {{site.data.keyword.openwhisk_short}} est un outil idéal pour implémenter ce type de transformation selon une méthode "sans serveur" où la logique personnalisée est hébergée sur une plateforme cloud élastique et entièrement gérée.
 
-Examinez l'exemple d'application IoT suivant qui utilise {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive et d'autres services : [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
+Examinez l'exemple d'application IoT suivant qui utilise {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive et d'autres services : [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c).
 
 ![Exemple d'architecture de solution IoT](images/IoT_solution_architecture_example.png)
 
 ## Système de back end d'API
 {: #openwhisk_api_backend}
 
-Les plateformes informatiques sans serveur permettent aux développeurs de créer rapidement des API sans utiliser de serveurs. {{site.data.keyword.openwhisk_short}} prend en charge la génération automatique d'API REST pour les actions. La [fonction expérimentale](./openwhisk_apigateway.html) de {{site.data.keyword.openwhisk_short}} peut appeler une action via la passerelle d'API {{site.data.keyword.openwhisk_short}} avec des méthodes HTTP autres que POST et sans la clé d'API d'autorisation de l'action. Cette possibilité est utile non seulement pour exposer des API à des consommateurs externes, mais aussi pour construire des applications de microservices.
+Les plateformes informatiques sans serveur permettent aux développeurs de créer rapidement des API sans utiliser de serveurs. {{site.data.keyword.openwhisk_short}} prend en charge la génération automatique d'API REST pour les actions. La [fonction ](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway) de {{site.data.keyword.openwhisk_short}} peut appeler une action via la passerelle d'API {{site.data.keyword.openwhisk_short}} avec des méthodes HTTP autres que POST et sans la clé d'API d'autorisation de l'action. Cette possibilité est utile non seulement pour exposer des API à des consommateurs externes, mais aussi pour construire des applications de microservices.
 
 De plus, les actions {{site.data.keyword.openwhisk_short}} peuvent être connectées à un outil de gestion d'API de votre choix (tel qu'[IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) ou un autre). A l'instar d'autres scénarios d'utilisation, toutes les remarques concernant l'évolutivité et d'autres qualités de service s'appliquent.
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) est un exemple d'application qui utilise des actions {{site.data.keyword.openwhisk_short}} au moyen d'une API REST.
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting) est un exemple d'application qui utilise des actions {{site.data.keyword.openwhisk_short}} au moyen d'une API REST.
 
 Examinez l'exemple ci-après qui inclut une discussion portant sur l'[utilisation d'une plateforme sans serveur en tant que système de back end d'API](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples).
 

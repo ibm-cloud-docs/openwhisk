@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Origen de sucesos de Message Hub
+# Origen de sucesos de Event Streams
 {: #openwhisk_catalog_message_hub}
 
 Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una instancia de {{site.data.keyword.messagehub_full}} mediante canales de información. Aprenda a crear desencadenantes de {{site.data.keyword.messagehub}} con o sin {{site.data.keyword.Bluemix}}, a escuchar mensajes y a manejar mensajes por lotes.
@@ -19,10 +25,10 @@ Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una 
 
 ## Paquete {{site.data.keyword.messagehub}}
 
-La acción `/messaging/messageHubProduce` ha quedado en desuso y se eliminará en una fecha futura. Para mantener un rendimiento óptimo, migre el uso de la acción `/messaging/messageHubProduce` para utilizar una conexión permanente cuando los datos se generen en Message Hub o Kafka.
-{: tip}
+La acción `/messaging/messageHubProduce` ha quedado en desuso y se eliminará en una fecha futura. Ya se ha eliminado en la región de Tokio. Para mantener un rendimiento óptimo, migre el uso de la acción `/messaging/messageHubProduce` para utilizar una conexión permanente cuando los datos se generen en Message Hub o Kafka.
+{: deprecated}
 
-Este paquete permite la comunicación con las instancias de [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento. Para obtener más información sobre el paquete de {{site.data.keyword.messagehub}}, cómo configurarlo y cómo generar mensajes, consulte el tema sobre el [paquete de {{site.data.keyword.messagehub}}](./messagehub_actions.html).
+Este paquete permite la comunicación con las instancias de [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento. Para obtener más información sobre el paquete de {{site.data.keyword.messagehub}}, cómo configurarlo y cómo generar mensajes, consulte el tema sobre el [paquete de {{site.data.keyword.messagehub}}](/docs/openwhisk?topic=cloud-functions-catalog_message_hub).
 
 ## Creación de un desencadenante que realice la escucha de una instancia de {{site.data.keyword.messagehub}}
 {: #create_message_hub_trigger}
@@ -85,7 +91,7 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
 
 Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para el servicio {{site.data.keyword.messagehub}}. Necesita la información sobre conexión y credenciales del servicio {{site.data.keyword.messagehub}}.
 
-1. Cree un enlace de paquete configurado para el servicio de {{site.data.keyword.messagehub}}.
+1. Cree un enlace de paquete configurado para el servicio {{site.data.keyword.messagehub}}.
   ```
   ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
   ```
@@ -246,5 +252,6 @@ Tenga en cuenta que, si el desencadenante activa acciones de codificación, el n
 [Aquí puede encontrar](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0) un ejemplo que integra OpenWhisk con {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}} y el servicio de IBM Data Science Experience (Spark).
 
 ## Referencias
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

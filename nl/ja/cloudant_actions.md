@@ -1,55 +1,52 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-04-05"
+
+keywords: cloudant, database, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Cloudant パッケージ
 {: #cloudant_actions}
 
-`/whisk.system/cloudant` パッケージを使用すると、[{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) データベースを操作できます。このパッケージには、以下のアクションとフィードが含まれています。
+`/whisk.system/cloudant` パッケージを使用すると、[{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) データベースを操作できます。このパッケージには、以下のアクションとフィードが含まれています。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | パッケージ | dbname、host、username、password | Cloudant データベースを処理。 |
 | `/whisk.system/cloudant/read` | アクション | dbname、id | データベースから文書を読み取る。 |
 | `/whisk.system/cloudant/write` | アクション | dbname、overwrite、doc | データベースに文書を書き込む。 |
-| `/whisk.system/cloudant/changes` | フィード | dbname、filter、query_params、maxTriggers | データベース変更時のトリガー・イベントの起動。 |
+| `/whisk.system/cloudant/changes` | フィード | dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers | データベース変更時のトリガー・イベントの起動。 |
 {: shortdesc}
 
 以下のセクションでは、{{site.data.keyword.cloudant_short_notm}} データベースをセットアップする方法と、データベースの読み取りおよび書き込みの方法を説明します。
-`/whisk.system/cloudant` パッケージでフィードを使用する方法について詳しくは、[{{site.data.keyword.cloudant_short_notm}} イベント・ソース](./openwhisk_cloudant.html)を参照してください。
+`/whisk.system/cloudant` パッケージでフィードを使用する方法について詳しくは、[{{site.data.keyword.cloudant_short_notm}} イベント・ソース](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant)を参照してください。
 
 ## {{site.data.keyword.Bluemix_notm}} での {{site.data.keyword.cloudant_short_notm}} データベースのセットアップ
 {: #cloudantdb_cloud}
 
-{{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用する場合、{{site.data.keyword.cloudant_short_notm}} サービス・インスタンス用のパッケージ・バインディングを {{site.data.keyword.openwhisk_short}} が自動的に作成します。 {{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk_short}} および {{site.data.keyword.cloudant_short_notm}} を使用していない場合は、次のセクションにスキップしてください。
+{{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用する場合は、[{{site.data.keyword.openwhisk}} CLI プラグイン](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)を使用して、サービスをアクションまたはパッケージにバインドできます。
 
-1. [{{site.data.keyword.Bluemix_notm}}ダッシュボード](http://console.bluemix.net)で {{site.data.keyword.cloudant_short_notm}} サービス・インスタンスを作成します。
+まず、{{site.data.keyword.cloudant_short_notm}} アカウント用のパッケージ・バインディングを手動で作成する必要があります。
 
-  新規サービス・インスタンスごとに 1 つの資格情報キーを作成するように注意してください。
-
-2. 名前空間でパッケージを最新表示します。 このリフレッシュにより、資格情報キーが定義された各 {{site.data.keyword.cloudant_short_notm}} サービス・インスタンスごとに 1 つのパッケージ・バインディングが自動的に作成されます。
+1. {{site.data.keyword.cloudant_short_notm}} アカウント用に構成されるパッケージ・バインディングを作成します。
   ```
-  ibmcloud fn package refresh
+  ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
-  出力例:
-  ```
-  created bindings:
-  Bluemix_testCloudant_Credentials-1
-  ```
-  {: screen}
-
+2. このパッケージ・バインディングが存在することを確認します。
   ```
   ibmcloud fn package list
   ```
@@ -58,64 +55,85 @@ lastupdated: "2018-07-13"
   出力例:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
+  /myNamespace/myCloudant private
   ```
   {: screen}
+  
+3. アクションまたはパッケージにバインドするサービス・インスタンスの名前を取得します。
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
 
-  これで、パッケージ・バインディングには、{{site.data.keyword.cloudant_short_notm}} サービス・インスタンスと関連付けられた資格情報が含まれるようになります。
+    出力例:
+    ```
+    Name          Location   State    Type
+    Cloudant-gm   us-south   active   service_instance
+    ```
+    {: screen}
 
-3. 前に作成されたパッケージ・バインディングが {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} サービス・インスタンスのホストと資格情報で構成されていることを確認します。
+4. 前のステップで取得したサービス・インスタンスに定義された資格情報の名前を取得します。
+    ```
+    ibmcloud resource service-keys --instance-name Cloudant-gm
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
-  ```
-  {: pre}
+    出力例:
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
 
-  出力例:
-  ```
-  ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
+5. ステップ 1 で作成したパッケージにサービスをバインドします。
+    ```
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ```
+    {: pre}
 
-  [
-      {
-          "key": "username",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix"
-      },
-      {
-          "key": "host",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix.cloudant.com"
-      },
-      {
-          "key": "password",
-          "value": "c9088667484a9ac827daf8884972737"
-      }
-  ]
-  ```
-  {: screen}
+6. 資格情報が正常にバインドされたことを確認します。
+    ```
+    ibmcloud fn package get myCloudant parameters
+    ```
+    {: pre}
 
-## {{site.data.keyword.Bluemix_notm}} 外部での {{site.data.keyword.cloudant_short_notm}} データベースのセットアップ
-{: #cloudantdb_nocloud}
+    出力例:
+    ```
+    ok: got package myCloudant, displaying field parameters
+    {
+        "parameters": [
+        {
+                "key": "bluemixServiceName",
+                "value": "cloudantNoSQLDB"
+            },
+            {
+                "key": "apihost",
+                "value": "us-south.functions.cloud.ibm.com"
+            },
+            {
+                "key": "__bx_creds",
+            "value": {
+                    "cloudantnosqldb": {
+                        "apikey": "[Service apikey]",
+                        "credentials": "Service credentials-1",
+                        "iam_apikey_description": "[Service description]",
+                        "iam_apikey_name": "[Service apikey name]",
+                        "iam_role_crn": "[Service role crn]",
+                        "iam_serviceid_crn": "[Service id crn]",
+                        "instance": "Cloudant-gm",
+                        "url": "[Service url]",
+                        "username": "[Service username]"
+                    }
+                }
+            }
+        ],
+    }
+    ```
+    {: screen}
 
-{{site.data.keyword.openwhisk_short}} を {{site.data.keyword.Bluemix_notm}} で使用しない場合、または、{{site.data.keyword.cloudant_short_notm}} データベースを {{site.data.keyword.Bluemix_notm}} の外部でセットアップしたい場合は、ご使用の {{site.data.keyword.cloudant_short_notm}} アカウント用のパッケージ・バインディングを手動で作成する必要があります。 {{site.data.keyword.cloudant_short_notm}} アカウントのホスト名、ユーザー名、およびパスワードが必要です。
-
-1. {{site.data.keyword.cloudant_short_notm}} アカウント用に構成されるパッケージ・バインディングを作成します。
-  ```
-  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
-  ```
-  {: pre}
-
-
-2. このパッケージ・バインディングが存在することを確認します。
-  ```
-  wsk package list
-  ```
-  {: pre}
-
-  出力例:
-  ```
-  packages
-  /myNamespace/myCloudant private binding
-  ```
-  {: screen}
+    この例では、Cloudant サービスの資格情報が `__bx_creds` という名前のパラメーターに入っています。
+  
 
 ## {{site.data.keyword.cloudant_short_notm}} データベースからの読み取り
 {: #cloudant_read}

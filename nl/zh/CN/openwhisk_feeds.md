@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 创建定制事件提供程序订阅源
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ lastupdated: "2018-07-13"
 ### Hook
 在 *Hook* 模式下，使用由其他服务公开的 [Webhook](https://en.wikipedia.org/wiki/Webhook) 工具来设置订阅源。在此策略中，Webhook 在外部服务上进行配置，用于直接向 URL 执行 POST 操作来触发触发器。此方法是目前为止实现低频率订阅源最简单、最有吸引力的选项。
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### 轮询
 在“轮询”模式下，{{site.data.keyword.openwhisk_short}} 操作安排为定期轮询端点以访存新数据。此模式构建起来相对容易，但事件频率会受到轮询时间间隔的限制。
@@ -34,10 +40,9 @@ lastupdated: "2018-07-13"
 ### 连接
 在“连接”模式下，单独的服务用于保持与源订阅源的持续连接。基于连接的实现可能会通过使用较长的轮询时间间隔与服务端点进行交互，或者设置推送通知。
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## 订阅源与触发器的区别
 
@@ -56,7 +61,7 @@ an open repo -->
 * **triggerName**：包含从此订阅源所生成事件的触发器的标准名称。
 * **authKey**：拥有触发器的 {{site.data.keyword.openwhisk_short}} 用户的基本认证凭证。
 
-订阅源操作还可以接受管理订阅源所需的其他任何参数。例如，{{site.data.keyword.cloudant}} changes 订阅源操作预期会接收多个参数，包括“*dbname*”、“*username*”等。
+订阅源操作还可以接受管理订阅源所需的其他任何参数。例如，{{site.data.keyword.cloudant}} changes 订阅源操作期望接收多个参数，包括“*dbname*”、“*username*”等。
 
 用户使用 **--feed** 参数通过 CLI 创建触发器时，系统会自动使用相应参数调用订阅源操作。
 
@@ -72,7 +77,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 ```
 {: pre}
 
-名为 *changes* 的订阅源操作将采用这些参数，并预计执行设置来自 {{site.data.keyword.cloudant_short_notm}} 的事件流所需的任何操作。订阅源操作是使用相应的配置来执行的，此操作将定向到触发器 *T*。
+名为 *changes* 的订阅源操作将采用这些参数，并且系统期望该操作执行设置来自 {{site.data.keyword.cloudant_short_notm}} 的事件流所需的任何操作。订阅源操作是使用相应的配置来执行的，此配置将定向到触发器 *T*。
 
 对于 {{site.data.keyword.cloudant_short_notm}} *changes* 订阅源，该操作恰好与通过基于连接的体系结构实现的 *{{site.data.keyword.cloudant_short_notm}} trigger* 服务直接对话。
 
@@ -82,7 +87,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 如果事件发起者支持 Webhook/回调工具，那么通过 Hook 设置订阅源非常简单。
 
-通过此方法，_无需_在 {{site.data.keyword.openwhisk_short}} 外部维持任何持久服务。所有订阅源管理工作均通过无状态的 {{site.data.keyword.openwhisk_short}} *订阅源操作*很自然地执行，这些操作直接与第三方 Webhook API 进行协商。
+通过此方法，_无需_在 {{site.data.keyword.openwhisk_short}} 外部维持任何持久服务。所有订阅源管理工作均通过无状态的 {{site.data.keyword.openwhisk_short}} *订阅源操作*正常执行，这些操作直接与第三方 Webhook API 进行协商。
 
 使用 `CREATE` 进行调用时，订阅源操作只会为其他某个服务安装 Webhook，并请求远程服务执行 POST 操作将通知发布到 {{site.data.keyword.openwhisk_short}} 中的相应 `fireTrigger` URL。
 
@@ -115,7 +120,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 提供者服务的 REST API 允许 {{site.data.keyword.openwhisk_short}} *订阅源操作*控制订阅源。提供者服务充当事件提供程序和 {{site.data.keyword.openwhisk_short}} 之间的代理。当提供者服务收到来自第三方的事件时，会通过触发触发器来将其发送给 {{site.data.keyword.openwhisk_short}}。
 
 {{site.data.keyword.cloudant_short_notm}} *changes* 订阅源是典型示例，因为它维持 `cloudanttrigger` 服务，该服务用于调解通过持续连接发送的 {{site.data.keyword.cloudant_short_notm}} 通知和 {{site.data.keyword.openwhisk_short}} 触发器。
-<!-- TODO: add a reference to the open source implementation -->
+
 
 *alarm* 订阅源通过类似模式实现。
 

@@ -1,18 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-25"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: managing actions, manage, activation, action logs, changing runtime, delete
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Gerenciando ações
+{: #managing_actions}
 {: #openwhisk_managing}
 
 Gerencie ações monitorando a saída da ação, obtendo informações específicas sobre uma ação ou excluindo
@@ -33,7 +39,7 @@ ibmcloud fn action list
 {: pre}
 
 À medida que você cria mais ações, pode ser útil agrupar ações relacionadas em
-[pacotes](./openwhisk_packages.html). Para filtrar sua lista de ações para somente ações em
+[pacotes](/docs/openwhisk?topic=cloud-functions-openwhisk_packages). Para filtrar sua lista de ações para somente ações em
 um pacote específico:
 ```
 ibmcloud fn action list [ PACKAGE NAME ]
@@ -105,8 +111,8 @@ python:3, python-jessie:3, swift:3.1.1, swift:4.1, java, blackbox e sequence.</l
 <tr>
 <td><code> annotations </code></td>
 <td>Anotações sobre esta ação. Para obter uma lista de anotações possíveis, consulte os tópicos de referência
-[Anotações de ação](openwhisk_annotations.html#action) e
-[Anotações da web](openwhisk_annotations.html#annotations-specific-to-web-actions).</td>
+[Anotações de ação](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action) e
+[Anotações da web](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions).</td>
 </tr>
 <tr>
 <td><code> limites </code></td>
@@ -122,10 +128,9 @@ ação é finalizada. Padrão: 6000</li>
 </tbody></table>
 
 ## Visualizando detalhes de ativação
-{: #activation}
+{: #activation_details}
 
-As ações do {{site.data.keyword.openwhisk_short}} podem ser chamadas por outros usuários, em resposta a vários eventos ou como parte de uma sequência de ações. 
-Sempre que uma ação é chamada, um registro de ativação é criado para essa chamada. Para obter informações
+As ações do {{site.data.keyword.openwhisk_short}} podem ser chamadas por outros usuários, em resposta a vários eventos ou como parte de uma sequência de ações. Sempre que uma ação é chamada, um registro de ativação é criado para essa chamada. Para obter informações
 sobre o resultado da chamada de ação, é possível obter detalhes sobre ativações.
 
 Para obter todos os IDs de registro de ativação em um namespace:
@@ -144,7 +149,7 @@ Exemplo de Saída:
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "BobsOrg_dev",
+    "namespace": "myNamespace",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -164,7 +169,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "BobsOrg_dev/hello"
+            "value": "myNamespace/hello"
         },
         {
             "key": "waitTime",
@@ -248,7 +253,7 @@ encontra.</td>
 <tr>
 <td><code> annotations </code></td>
 <td>Anotações sobre esta ação. Para obter uma lista de possíveis anotações de ativação, consulte o
-[Tópico de referência de anotações](openwhisk_annotations.html#activation).</td>
+[Tópico de referência de anotações](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation).</td>
 </tr>
 <tr>
 <td><code> publicar </code></td>
@@ -268,11 +273,10 @@ Python, Swift, Java e Docker ao usar a estrutura básica do OpenWhisk Docker.
 | Propriedade | Descrição |
 | -------- | ----------- |
 | `__OW_API_HOST` | O host da API para a implementação do OpenWhisk que executa esta ação. |
-| `__OW_API_KEY` | A chave API para o assunto que chama a ação, essa chave pode ser uma chave
-de API restrita. |
+| `__OW_API_KEY` | A chave de API para o assunto que chama a ação. Essa chave pode ser uma chave de API restrita e está ausente, a menos que solicitado explicitamente, consulte [Anotações](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations). |
 | `__OW_NAMESPACE` | O namespace para a ativação. Esse namespace pode não ser o mesmo
 namespace da ação. |
-| `__OW_ACTION_NAME` |O nome completo da ação em execução. |
+| `__OW_ACTION_NAME` | O nome completo da ação em execução. |
 | `__OW_ACTIVATION_ID` | O ID de ativação para esta instância de ação em execução. |
 | `__OW_DEADLINE` | O tempo aproximado, em milissegundos, em que essa ação consome sua cota de duração inteira. |
 
@@ -295,14 +299,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-Exemplo de saída para  [ ações da web ](./openwhisk_webactions.html):
+Exemplo de saída para  [ ações da web ](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Nota:** para ações padrão, a autenticação deve ser fornecida quando chamada por meio de uma solicitação de HTTPS. Para obter mais informações sobre as chamadas de ação usando a interface REST, veja a [Referência da API de REST](https://console.bluemix.net/apidocs/functions).
+**Nota:** para ações padrão, a autenticação deve ser fornecida quando chamada por meio de uma solicitação de HTTPS. Para obter mais informações sobre as chamadas de ação usando a interface REST, veja a [Referência da API de REST](https://cloud.ibm.com/apidocs/functions).
 
 ## Salvando o código de ação
 {: #save-action}
@@ -340,8 +344,7 @@ ok: saved action code to /absolutePath/currentDirectory/codeFile.js
 ## Monitorando logs de ações
 {: #monitor-action-output}
 
-As ações do {{site.data.keyword.openwhisk_short}} podem ser chamadas por outros usuários, em resposta a vários eventos ou como parte de uma sequência de ações. 
-Para obter informações sobre quando as ações foram chamadas e qual foi a saída, pode ser útil monitorar os
+As ações do {{site.data.keyword.openwhisk_short}} podem ser chamadas por outros usuários, em resposta a vários eventos ou como parte de uma sequência de ações. Para obter informações sobre quando as ações foram chamadas e qual foi a saída, pode ser útil monitorar os
 logs de ação.
 
 É possível usar a CLI do {{site.data.keyword.openwhisk_short}} para observar a saída de ações à medida que são chamadas.
@@ -370,8 +373,36 @@ logs de ação.
     2016-02-11T16:46:56.842065025Z stdout: hello bob!
     ```
     {: screen}
-Também é possível ver os logs de qualquer ação que for executada em seu nome no
+    Também é possível ver os logs de qualquer ação que for executada em seu nome no
 {{site.data.keyword.openwhisk_short}} em tempo real.
+    
+## Mudando o tempo de execução
+{: #changing-action-runtime}
+
+É possível alterar o `tipo de tempo de execução`para migrar para uma versão mais recente do tempo de execução de ação. Por exemplo, uma vez que o Node.js versão 8 está no modo de manutenção, talvez você queira alternar o tempo de execução para o Node.js 10. É possível usar as etapas a seguir para mudar um tempo de execução de ação. **Nota:** você pode precisar mudar o código em `actionName.js` para estar em conformidade com a nova versão de runtime. Isso depende se essas mudanças são necessárias para o comutador de tempo de execução. Na maioria dos casos, as versões de runtime são compatíveis.
+
+1. Salve o código de ação em um arquivo.
+
+  ```
+  ibmcloud fn action get actionName -- save
+  ```
+  {: pre}
+
+2. Atualize a ação especificando o novo tempo de execução.
+
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
+
+Para obter uma lista de tempos de execução disponíveis, consulte [Tempos de execução](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)
+
+## Gerenciando ações grandes
+{: #large-app-support}
+
+O tamanho máximo do código para uma ação é 48 MB. Os aplicativos que contêm muitos módulos de terceiros, bibliotecas nativas ou ferramentas externas podem atingir esse limite. Se você criar uma ação de pacote .zip ou .jar que seja maior que 48 MB, deverá estender a imagem de tempo de execução com dependências e, em seguida, usar um único arquivo de origem ou archive menor do que 48 MB.
+
+Por exemplo, ao construir um tempo de execução do Docker customizado que inclui bibliotecas compartilhadas necessárias, as dependências não precisam estar presentes no archive. Os arquivos de origem privados podem ser empacotados no archive e injetados no tempo de execução.
 
 ## Excluindo ações
 {: #deleting-actions}

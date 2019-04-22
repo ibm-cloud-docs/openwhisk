@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: web actions, http requests, functions, extensions, parameters
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 웹 액션 작성
 {: #openwhisk_webactions}
@@ -42,16 +48,16 @@ ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-`true` 또는 `yes` 값으로 `--web` 플래그를 사용하면 신임 정보를 요구하지 않고도 REST 인터페이스를 통해 액션에 액세스할 수 있습니다. 신임 정보를 사용하여 웹 액션을 구성하려면 [웹 액션 보안](./openwhisk_webactions.html#securing-web-actions) 절을 참조하십시오. 웹 액션은 다음과 같이 구성된 URL을 사용하여 호출될 수 있습니다.
+`true` 또는 `yes` 값으로 `--web` 플래그를 사용하면 인증 정보를 요구하지 않고도 REST 인터페이스를 통해 액션에 액세스할 수 있습니다. 인증 정보를 사용하여 웹 액션을 구성하려면 [웹 액션 보안](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#securing-web-actions) 절을 참조하십시오. 웹 액션은 다음과 같이 구성된 URL을 사용하여 호출될 수 있습니다.
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
 액션이 이름 지정된 패키지에 없는 경우, 패키지 이름은 **default**입니다.
 
 `guest/demo/hello`가 예입니다. 웹 액션 API 경로는 API 키 없이 `curl` 또는 `wget`에서 사용될 수 있습니다. 브라우저에서 이를 직접 입력할 수도 있습니다.
 
-웹 브라우저에서 [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane)을 열어 보십시오. 또는 `curl`을 사용하여 액션 호출을 시도하십시오.
+웹 브라우저에서 `https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane`을 열어 보십시오. 또는 `curl`을 사용하여 액션 호출을 시도하십시오.
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
@@ -90,7 +96,7 @@ function main() {
         'SessionID=asdfgh123456; Path = /'
       ],
       'Content-Type': 'text/html'
-    },
+    }, 
     statusCode: 200,
     body: '<html><body><h3>hello</h3></body></html>' }
 }
@@ -122,20 +128,21 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-[응답 크기 한계](./openwhisk_reference.html)를 액션에 대해 인지하는 게 중요합니다. 사전 정의된 시스템 한계를 초과하는 응답은 실패하기 때문입니다. 대형 오브젝트는 {{site.data.keyword.openwhisk_short}}를 통해 인라인으로 전송되지 않고 대신 오브젝트 저장소로 연기됩니다. 
+It is important to be aware of the [응답 크기 한계](/docs/openwhisk?topic=cloud-functions-openwhisk_reference)를 액션에 대해 인지하는 게 중요합니다. 사전 정의된 시스템 한계를 초과하는 응답은 실패하기 때문입니다. 대형 오브젝트는 {{site.data.keyword.openwhisk_short}}를 통해 인라인으로 전송되지 않고 대신 오브젝트 저장소로 연기됩니다.
 
 ## 액션에서 HTTP 요청 처리
 {: #openwhisk_webactions_http}
 
-웹 액션이 아닌 {{site.data.keyword.openwhisk_short}} 액션은 두 인증을 모두 요구하며 JSON 오브젝트로 응답해야 합니다. 이와는 대조적으로 웹 액션은 인증 없이 호출될 수 있으며, 다양한 유형의 _headers_, _statusCode_ 및 _body_ 컨텐츠로 응답하는 HTTP 핸들러를 구현하는 데 사용될 수 있습니다. 웹 액션은 JSON 오브젝트를 리턴해야 합니다. 그러나 해당 결과에 하나 이상의 다음 최상위 레벨 JSON 특성이 포함된 경우에는 {{site.data.keyword.openwhisk_short}} 시스템(즉, `controller`)이 웹 액션을 다르게 처리합니다. 
+웹 액션이 아닌 {{site.data.keyword.openwhisk_short}} 액션은 인증을 필요로 하며 JSON 오브젝트로 응답해야 합니다. 
 
-- `headers`: 키가 header-name이며 값이 해당 헤더(기본값은 헤더 없음)에 대해 문자열, 숫자 또는 부울 값인 JSON 오브젝트입니다. 단일 헤더에 대해 다중 값을 전송하려면 헤더의 값이 JSON 배열 값이어야 합니다.
-- `statusCode`: 유효한 HTTP 상태 코드입니다(기본값: 200 OK).
-- `body`: 일반 텍스트 또는 base64 인코딩된 문자열(2진 데이터의 경우)인 문자열입니다.
+웹 액션은 인증 없이 호출될 수 있으며, 다양한 유형의 `headers`, `statusCode` 및 `body` 컨텐츠로 응답하는 HTTP 핸들러를 구현하는 데 사용될 수 있습니다. 웹 액션은 JSON 오브젝트를 리턴해야 합니다. 그러나 해당 결과에 하나 이상의 다음 최상위 레벨 JSON 특성이 포함된 경우에는 제어기가 웹 액션을 다르게 처리합니다. 
 
-제어기는 요청/응답을 종료하는 HTTP 클라이언트에 액션 지정 헤더(있는 경우)를 전달합니다. 이와 유사하게 제어기는 상태 코드로 응답합니다(존재하는 경우). 마지막으로, 본문은 응답의 본문으로 전달됩니다. `Content-Type` 헤더가 액션 결과의 `headers`에 선언되지 않는 한, 문자열인 경우 본문은 있는 그대로 전달됩니다(그 외의 경우에는 결과적으로 오류가 발생함). `Content-Type`이 정의된 경우, 제어기는 응답이 2진 데이터인지 또는 일반 텍스트인지 여부를 판별하며 필요에 따라 base64 디코더를 사용하여 문자열을 디코드합니다. 본문의 올바른 디코드에 실패하면 오류가 호출자에게 리턴됩니다.
+- `headers`: 키가 헤더 이름이고 값이 문자열, 숫자 또는 부울 값인 JSON 오브젝트입니다. 단일 헤더에 대해 다중 값을 전송하려면 헤더의 값이 다중 값의 JSON 배열입니다. 기본적으로 헤더는 설정되지 않습니다.
+- `statusCode`: 유효한 HTTP 상태 코드입니다. 본문 컨텐츠가 있는 경우, 기본값은 `200 OK`입니다. 본문 컨텐츠가 없는 경우, 기본값은 `204 No`입니다. 
+- `body`: 일반 텍스트, JSON 오브젝트나 배열, 또는 base64 인코딩된 문자열(2진 데이터의 경우)인 문자열입니다. `null`, 빈 문자열 `""` 또는 정의되지 않은 경우, 본문이 비어 있는 것으로 간주됩니다. 비어 있는 본문이 기본값입니다.
 
-_참고_: JSON 오브젝트 또는 배열은 2진 데이터로서 처리되며 base64 인코딩되어야 합니다.
+제어기는 요청 또는 응답을 종료하는 액션별 헤더, 상태 코드 또는 본문을 HTTP 클라이언트로 전달합니다. `Content-Type` 헤더가 액션 결과의 `headers`에서 선언되지 않은 경우, 본문은 빈 문자열 값인 경우 `application/json`로 해석되고 다른 경우 `text/html`로 해석됩니다. `Content-Type` 헤더가 정의된 경우, 제어기는 응답이 2진 데이터인지 또는 일반 텍스트인지 여부를 판별하며 필요에 따라 base64 디코더를 사용하여 문자열을 디코드합니다. 본문이 올바르게 디코딩되지 않은 경우, 클라이언트로 오류가 리턴됩니다. 
+
 
 ## HTTP 컨텍스트
 {: #http-context}
@@ -147,19 +154,19 @@ _참고_: JSON 오브젝트 또는 배열은 2진 데이터로서 처리되며 b
 - `__ow_method`(유형: 문자열). 요청의 HTTP 메소드입니다.
 - `__ow_headers`(유형: 문자열 대 문자열 맵핑): 요청 헤더입니다.
 - `__ow_path`(유형: 문자열): 요청의 일치하지 않는 경로입니다(일단 액션 확장자가 이용되면 일치가 중지됨).
-- `__ow_user`(유형: 문자열): {{site.data.keyword.openwhisk_short}} 인증 제목을 식별하는 네임스페이스입니다. 
+- `__ow_user`(유형: 문자열): {{site.data.keyword.openwhisk_short}} 인증 제목을 식별하는 네임스페이스입니다.
 - `__ow_body`(유형: 문자열): base64 인코딩된 문자열(컨텐츠가 2진인 경우) 또는 일반 문자열(그 외의 경우)로서의 요청 본문 엔티티입니다.
 - `__ow_query`(유형: 문자열): 구문 분석되지 않은 문자열로서의 요청의 조회 매개변수입니다.
 
 요청은 이름 지정된 `__ow_` 매개변수를 대체할 수 없습니다. 이를 수행하면 결과적으로 "400 잘못된 요청"과 동일한 상태로 요청이 실패합니다.
 
-`__ow_user`는 웹 액션에 [인증을 요구하는 어노테이션이 있는](./openwhisk_annotations.html#annotations-specific-to-web-actions) 경우에만 존재하며, 웹 액션이 자체 권한 부여 정책을 구현할 수 있도록 합니다. `__ow_query`는 웹 액션이 ["원시" HTTP 요청](#raw-http-handling)을 처리하도록 선택한 경우에만 사용 가능합니다. 이는 (`&`로 분리된) URI에서 구문 분석된 조회 매개변수가 포함된 문자열입니다. `__ow_body` 특성은 "원시" HTTP 요청에 존재하거나 HTTP 요청 엔티티가 JSON 오브젝트 또는 양식 데이터가 아닌 경우에 존재합니다. 그렇지 않으면, 웹 액션이 액션 인수의 첫 번째 클래스 특성으로서 조회 및 본문 매개변수를 수신합니다. 본문 매개변수는 조회 매개변수에 우선하며, 조회 매개변수는 다시 액션 및 패키지 매개변수에 우선합니다.
+`__ow_user`는 웹 액션에 [인증을 요구하는 어노테이션이 있는](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions) 경우에만 존재하며, 웹 액션이 자체 권한 부여 정책을 구현할 수 있도록 합니다. `__ow_query`는 웹 액션이 ["원시" HTTP 요청](#raw-http-handling)을 처리하도록 선택한 경우에만 사용 가능합니다. 이는 (`&`로 분리된) URI에서 구문 분석된 조회 매개변수가 포함된 문자열입니다. `__ow_body` 특성은 "원시" HTTP 요청에 존재하거나 HTTP 요청 엔티티가 JSON 오브젝트 또는 양식 데이터가 아닌 경우에 존재합니다. 그렇지 않으면, 웹 액션이 액션 인수의 첫 번째 클래스 특성으로서 조회 및 본문 매개변수를 수신합니다. 본문 매개변수는 조회 매개변수에 우선하며, 조회 매개변수는 다시 액션 및 패키지 매개변수에 우선합니다.
 
 ## HTTPS 엔드포인트 지원
 
-지원되는 SSL 프로토콜: TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3([드래프트 버전 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+지원되는 SSL 프로토콜: TLS 1.2, TLS 1.3([드래프트 버전 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
 
-미지원 SSL 프로토콜: SSLv2, SSLv3
+지원되지 않는 SSL 프로토콜: SSLv2, SSLv3, TLS 1.0, TLS 1.1
 
 ## 추가 기능
 {: #extra-features}
@@ -185,7 +192,7 @@ function main(params) {
 
 예를 들어, 전체 오브젝트를 리턴하고 액션이 수신하는 인수를 보려면 다음을 수행하십시오.
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
  ```
 {: pre}
 
@@ -208,7 +215,7 @@ function main(params) {
 
 조회 매개변수로 실행하려면 다음 예제 명령을 참조하십시오.
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
  ```
 {: pre}
 
@@ -232,7 +239,7 @@ function main(params) {
 
 양식 데이터로 실행할 수도 있습니다.
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
  ```
 {: pre}
 
@@ -258,7 +265,7 @@ function main(params) {
 
 JSON 오브젝트에 대해 다음 명령을 실행하십시오.
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -284,7 +291,7 @@ JSON 오브젝트에 대해 다음 명령을 실행하십시오.
 
 다음 명령을 실행하여 (텍스트로서) 이름을 투영하십시오.
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
 {: pre}
 
@@ -298,7 +305,7 @@ Jane
 
 이전에 표시된 대로 "텍스트" 컨텐츠 유형을 사용하는 다음 예제를 참조하십시오.
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
 {: pre}
 
@@ -336,12 +343,12 @@ ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web
 ```
 {: pre}
 
-이러한 변경의 결과로 `name`은 `Jane`에 바인드되며. 이는 최종 어노테이션 때문에 조회 또는 본문 매개변수로 대체될 수 없습니다. 이 디자인은 우연하든 또는 의도적이든 여부와 무관하게 이 값의 변경을 시도하는 조회 또는 본문 매개변수에 대해 액션을 보호합니다.
+이러한 변경의 결과로 `name`은 `Jane`에 바인딩되며. 이는 최종 어노테이션 때문에 조회 또는 본문 매개변수로 대체될 수 없습니다. 이 디자인은 우연하든 또는 의도적이든 여부와 무관하게 이 값의 변경을 시도하는 조회 또는 본문 매개변수에 대해 액션을 보호합니다.
 
 ## 웹 액션 보안
 {: #securing-web-actions}
 
-기본적으로 웹 액션은 웹 액션의 호출 URL을 가진 사용자가 호출할 수 있습니다. `require-whisk-auth` [웹 액션 어노테이션](./openwhisk_annotations.html#annotations-specific-to-web-actions)을 사용하여 웹 액션을 보호하십시오. `require-whisk-auth` 어노테이션이 `true`로 설정된 경우 액션이 액션 소유자의 whisk 인증 키에 대해 호출 요청의 기본 권한 부여 신임 정보를 인증합니다. 숫자 또는 대소문자 구분 문자열로 설정된 경우 액션의 호출 요청에 이 동일한 값을 갖는 `X-Require-Whisk-Auth` 헤더가 포함되어야 합니다. 신임 정보 유효성 검증이 실패하면 보안된 웹 액션이 메시지 `Not Authorized`를 리턴합니다.
+기본적으로 웹 액션은 웹 액션의 호출 URL을 가진 사용자가 호출할 수 있습니다. `require-whisk-auth` [웹 액션 어노테이션](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions)을 사용하여 웹 액션을 보호하십시오. `require-whisk-auth` 어노테이션이 `true`로 설정된 경우 액션이 액션 소유자의 whisk 인증 키에 대해 호출 요청의 기본 권한 부여 인증 정보를 인증합니다. 숫자 또는 대소문자 구분 문자열로 설정된 경우 액션의 호출 요청에 이 동일한 값을 갖는 `X-Require-Whisk-Auth` 헤더가 포함되어야 합니다. 인증 정보 유효성 검증이 실패하면 보안된 웹 액션이 메시지 `Not Authorized`를 리턴합니다.
 
 또는 `--web-secure` 플래그를 사용하여 `require-whisk-auth` 어노테이션을 자동으로 설정하십시오.  `true`로 설정되면 난수가 `require-whisk-auth` 어노테이션 값으로 생성됩니다. `false`로 설정된 경우에는 `require-whisk-auth` 어노테이션이 제거됩니다.  다른 값으로 설정되면 이 값은 `require-whisk-auth` 어노테이션 값으로 사용됩니다.
 
@@ -375,9 +382,9 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## 원시 HTTP 처리
 
-웹 액션은 액션 입력에 사용 가능한 첫 번째 클래스 특성으로 JSON 오브젝트를 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` versus parsing `args.__ow_query`). 이 프로세스는 `raw-http` [어노테이션](./openwhisk_annotations.html)을 통해 수행됩니다. 이전에 나타난 동일한 예제를 사용하되 이제는 `name`을 수신하는 "원시" HTTP 웹 액션으로서(둘 다 조회 매개변수로서), 그리고 HTTP 요청 본문의 JSON 값으로서 다음을 수행하십시오.
+웹 액션은 액션 입력에 사용 가능한 첫 번째 클래스 특성으로 JSON 오브젝트를 승격하지 않고 수신 HTTP 본문을 직접 해석하고 처리하도록 선택할 수 있습니다(예: `args.name` versus parsing `args.__ow_query`). 이 프로세스는 `raw-http` [어노테이션](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations)을 통해 수행됩니다. 이전에 나타난 동일한 예제를 사용하되 이제는 `name`을 수신하는 "원시" HTTP 웹 액션으로서(둘 다 조회 매개변수로서), 그리고 HTTP 요청 본문의 JSON 값으로서 다음을 수행하십시오.
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -402,7 +409,7 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 ```
 {: screen}
 
-OpenWhisk는 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) 프레임워크를 사용하여 2진인 컨텐츠 유형과 일반 텍스트인 컨텐츠 유형을 [판별](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)합니다.
+OpenWhisk는 [Akka Http](https://doc.akka.io/docs/akka-http/current/?language=scala) 프레임워크를 사용하여 2진인 컨텐츠 유형과 일반 텍스트인 컨텐츠 유형을 [판별](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)합니다.
 
 ### 원시 HTTP 처리 사용
 
@@ -484,7 +491,7 @@ ok: created action decode
 {: screen}
 
 ```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
+curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
 
@@ -549,7 +556,7 @@ $ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTI
 ```
 {: screen}
 
-## 오류 핸들링
+## 오류 처리
 {: #openwhisk_webactions_errors}
 
 {{site.data.keyword.openwhisk_short}} 액션은 두 개의 서로 다른 가능한 실패 모드로 실패합니다. 첫 번째는 _애플리케이션 오류_라고 하며, 이는 발견된 예외와 유사합니다. 액션에서 최상위 레벨 `error` 특성이 포함된 JSON 오브젝트를 리턴합니다. 두 번째는 _개발자 오류_입니다. 이는 액션의 갑작스런 실패 시에 발생하며 응답을 생성하지 않습니다(미발견 예외와 유사함). 웹 액션의 경우, 제어기는 애플리케이션 오류를 다음과 같이 처리합니다.

@@ -1,54 +1,51 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-04-05"
+
+keywords: cloudant, database, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Cloudant 套件
 {: #cloudant_actions}
 
-`/whisk.system/cloudant` 套件可讓您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 資料庫，並包括下列動作及資訊來源：
+`/whisk.system/cloudant` 套件可讓您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) 資料庫，並包括下列動作及資訊來源：
 
 |實體|類型|參數|說明|
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` |套件|dbname、host、username、password|使用 Cloudant 資料庫。|
 |`/whisk.system/cloudant/read` |動作|dbname、id|讀取資料庫中的文件。|
 |`/whisk.system/cloudant/write` |動作|dbname、overwrite、doc|將文件寫入資料庫。|
-|`/whisk.system/cloudant/changes` |資訊來源|dbname、filter、query_params、maxTriggers|在資料庫變更時發動觸發程式事件。|
+|`/whisk.system/cloudant/changes` |資訊來源| dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers |在資料庫變更時發動觸發程式事件。|
 {: shortdesc}
 
-下列各節將引導您逐步設定 {{site.data.keyword.cloudant_short_notm}} 資料庫，並且說明如何在其中讀取及寫入。如需如何使用資訊來源與 `/whisk.system/cloudant` 套件搭配的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 事件來源](./openwhisk_cloudant.html)。
+下列各節將引導您逐步設定 {{site.data.keyword.cloudant_short_notm}} 資料庫，並且說明如何在其中讀取及寫入。如需如何使用資訊來源與 `/whisk.system/cloudant` 套件搭配的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 事件來源](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中設定 {{site.data.keyword.cloudant_short_notm}} 資料庫
 {: #cloudantdb_cloud}
 
-如果您是從 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，則 {{site.data.keyword.openwhisk_short}} 會自動為 {{site.data.keyword.cloudant_short_notm}} 服務實例建立套件連結。如果您不是從 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}} 及 {{site.data.keyword.cloudant_short_notm}}，請跳到下一節。
+如果您從 {{site.data.keyword.Bluemix_notm}} 使用 {{site.data.keyword.openwhisk}}，則可以使用 [{{site.data.keyword.openwhisk}} CLI 外掛程式](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)，將服務連結至動作或套件。
 
-1. 在 [{{site.data.keyword.Bluemix_notm}}儀表板](http://console.bluemix.net)中，建立 {{site.data.keyword.cloudant_short_notm}} 服務實例。
+您必須先手動建立 {{site.data.keyword.cloudant_short_notm}} 帳戶的套件連結。
 
-  務必為每一個新的服務實例建立認證金鑰。
-
-2. 重新整理名稱空間中的套件。重新整理會自動為每一個 {{site.data.keyword.cloudant_short_notm}} 服務實例建立一個套件連結，並定義認證金鑰。
+1. 建立針對 {{site.data.keyword.cloudant_short_notm}} 帳戶所配置的套件連結。
   ```
-  ibmcloud fn package refresh
+  ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
-  輸出範例：
-  ```
-  created bindings:
-  Bluemix_testCloudant_Credentials-1
-  ```
-  {: screen}
-
+2. 驗證套件連結已存在。
   ```
   ibmcloud fn package list
   ```
@@ -57,66 +54,87 @@ lastupdated: "2018-07-13"
   輸出範例：
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
+  /myNamespace/myCloudant private
   ```
   {: screen}
+  
+3. 取得您要連結至動作或套件之服務實例的名稱。
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
 
-  您的套件連結現在包含與 {{site.data.keyword.cloudant_short_notm}} 服務實例相關聯的認證。
+    輸出範例：
+    ```
+    Name          Location   State    Type
+    Cloudant-gm   us-south   active   service_instance
+    ```
+    {: screen}
 
-3. 確認先前建立的套件連結是使用 {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} 服務實例主機及認證進行配置。
+4. 取得針對您在前一個步驟中所取得之服務實例而定義的認證名稱。
+    ```
+    ibmcloud resource service-keys --instance-name Cloudant-gm
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
-  ```
-  {: pre}
+    輸出範例：
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
 
-  輸出範例：
-  ```
-  ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
+5. 將服務連結至您在步驟 1 中建立的套件。
+    ```
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ```
+    {: pre}
 
-  [
-      {
-          "key": "username",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix"
-      },
-      {
-          "key": "host",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix.cloudant.com"
-      },
-      {
-          "key": "password",
-          "value": "c9088667484a9ac827daf8884972737"
-      }
-      ]
-  ```
-  {: screen}
+6. 驗證認證已順利連結。
+    ```
+    ibmcloud fn package get myCloudant parameters
+    ```
+    {: pre}
 
-## 在 {{site.data.keyword.Bluemix_notm}} 外部設定 {{site.data.keyword.cloudant_short_notm}} 資料庫
-{: #cloudantdb_nocloud}
+    輸出範例：
+    ```
+    ok: got package myCloudant, displaying field parameters
+    {
+        "parameters": [
+            {
+                "key": "bluemixServiceName",
+                "value": "cloudantNoSQLDB"
+            },
+            {
+                "key": "apihost",
+                "value": "us-south.functions.cloud.ibm.com"
+            },
+            {
+                "key": "__bx_creds",
+                "value": {
+                    "cloudantnosqldb": {
+                        "apikey": "[Service apikey]",
+                        "credentials": "Service credentials-1",
+                        "iam_apikey_description": "[Service description]",
+                        "iam_apikey_name": "[Service apikey name]",
+                        "iam_role_crn": "[Service role crn]",
+                        "iam_serviceid_crn": "[Service id crn]",
+                        "instance": "Cloudant-gm",
+                        "url": "[Service url]",
+                        "username": "[Service username]"
+                    }
+                }
+            }
+        ],
+    }
+    ```
+    {: screen}
 
-如果您未在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或如果要在 {{site.data.keyword.Bluemix_notm}} 外部設定 {{site.data.keyword.cloudant_short_notm}} 資料庫，則必須手動建立 {{site.data.keyword.cloudant_short_notm}} 帳戶的套件連結。您需要 {{site.data.keyword.cloudant_short_notm}} 帳戶主機名稱、使用者名稱及密碼。
+    在此範例中，Cloudant 服務的認證屬於名為 `__bx_creds` 的參數。
+  
 
-1. 建立針對 {{site.data.keyword.cloudant_short_notm}} 帳戶所配置的套件連結。
-  ```
-  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
-  ```
-  {: pre}
-
-
-2. 驗證套件連結已存在。
-  ```
-wsk package list
-  ```
-  {: pre}
-
-  輸出範例：
-  ```
-packages
-  /myNamespace/myCloudant private binding
-  ```
-  {: screen}
-
-## 讀取 {{site.data.keyword.cloudant_short_notm}} 資料庫
+## 從 {{site.data.keyword.cloudant_short_notm}} 資料庫中讀取
 {: #cloudant_read}
 
 您可以使用動作，從稱為 **testdb** 的 {{site.data.keyword.cloudant_short_notm}} 資料庫中提取文件。請確定此資料庫存在於 {{site.data.keyword.cloudant_short_notm}} 帳戶中。

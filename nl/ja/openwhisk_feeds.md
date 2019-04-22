@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # カスタム・イベント・プロバイダー・フィードの作成
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ lastupdated: "2018-07-13"
 ### フック
 *フック*・パターンでは、別のサービスによって公開されている [Webhook](https://en.wikipedia.org/wiki/Webhook) 機能を使用してフィードがセットアップされます。   この戦略では、URL に直接 POST してトリガーを起動するように、外部サービスで Webhook が構成されます。 この方法は、頻度が低いフィードを実装するのに適した、非常に簡単で最も魅力的な選択肢です。
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### ポーリング
 ポーリング・パターンでは、定期的にエンドポイントをポーリングして新しいデータをフェッチするよう {{site.data.keyword.openwhisk_short}} アクションが調整されます。 このパターンは、比較的簡単に構築できますが、イベントの頻度はポーリング間隔によって制限されます。
@@ -34,10 +40,9 @@ lastupdated: "2018-07-13"
 ### 接続
 接続パターンでは、分離したサービスがフィード・ソースへの持続的な接続を保持します。 接続ベースの実装は、長いポーリング間隔を使用して、または、プッシュ通知をセットアップするため、サービス・エンドポイントと対話する可能性があります。
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## フィードとトリガーの違い
 
@@ -115,7 +120,7 @@ Webhook は使用できないが、大量の処理も低い応答待ち時間も
 プロバイダー・サービスには、{{site.data.keyword.openwhisk_short}} *フィード・アクション* がフィードを制御するのを可能にする REST API があります。 プロバイダー・サービスは、イベント・プロバイダーと {{site.data.keyword.openwhisk_short}} の間のプロキシーとして機能します。 　サード・パーティーからイベントを受け取ると、トリガーを起動することによってそれらを {{site.data.keyword.openwhisk_short}} に送信します。
 
 {{site.data.keyword.cloudant_short_notm}} *changes* フィードは規範的な例です。これが立ち上げる `cloudanttrigger` サービスは、持続的な接続を介して {{site.data.keyword.cloudant_short_notm}} 通知と {{site.data.keyword.openwhisk_short}} トリガーの間を仲介します。
-<!-- TODO: add a reference to the open source implementation -->
+
 
 *alarm* フィードは、同様のパターンで実装されます。
 

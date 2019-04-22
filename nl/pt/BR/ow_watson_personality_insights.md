@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: personality insights, watson, cognitive, serverless, functions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -18,8 +23,8 @@ O serviço do {{site.data.keyword.personalityinsightsfull}} permite que os aplic
 {: shortdesc}
 
 O serviço pode inferir automaticamente, por meio de mídias sociais potencialmente barulhentas, retratos de indivíduos que refletem as suas características de personalidade. O serviço pode inferir preferências de consumo com base nos resultados de sua análise e, para o conteúdo do JSON que é registrado com data e hora, pode relatar o comportamento temporal.
-* Para obter informações sobre o significado dos modelos que o serviço usa para descrever características de personalidade, consulte [Modelos de personalidade](https://console.bluemix.net/docs/services/personality-insights/models.html).
-* Para obter informações sobre o significado das preferências de consumo, consulte [Preferências de consumo](https://console.bluemix.net/docs/services/personality-insights/preferences.html).
+* Para obter informações sobre o significado dos modelos que o serviço usa para descrever características de personalidade, consulte [Modelos de personalidade](https://cloud.ibm.com/docs/services/personality-insights/models.html).
+* Para obter informações sobre o significado das preferências de consumo, consulte [Preferências de consumo](https://cloud.ibm.com/docs/services/personality-insights/preferences.html).
 
 **Nota:** a criação de log de solicitação está desativada para o serviço do {{site.data.keyword.personalityinsightsshort}}. O serviço não registra nem retém dados de solicitações e respostas, independentemente de o cabeçalho de solicitação `X-Watson-Learning-Opt-Out` estar configurado.
 
@@ -32,16 +37,16 @@ O pacote do  {{site.data.keyword.personalityinsightsshort}}  contém as entidade
 | [profile-as-csv](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | ação |  username, password, iam_access_token, iam_apikey, iam_url, headers, headers[X-Watson-Learning-Opt-Out], url, content, content_type, content_language, accept_language, raw_scores, csv_headers, consumption_preferences,  | Obtenha um perfil como arquivo CSV. |
 
 ## Criando uma instância de serviço do  {{site.data.keyword.personalityinsightsshort}}
-{: #service_instance}
+{: #service_instance_insights}
 
 Antes de instalar o pacote, deve-se criar uma instância de serviço e credenciais de serviço do {{site.data.keyword.personalityinsightsshort}}.
 {: shortdesc}
 
-1. [Criar uma instância de serviço do {{site.data.keyword.personalityinsightsshort}}![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/catalog/services/personality_insights).
+1. [Crie uma instância de serviço do {{site.data.keyword.personalityinsightsshort}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/catalog/services/personality_insights).
 2. Quando a instância de serviço for criada, as credenciais de serviço geradas automaticamente também serão criadas para você.
 
 ## Instalando o pacote do  {{site.data.keyword.personalityinsightsshort}}
-{: #install}
+{: #install_insights}
 
 Depois que você tem uma instância de serviço do {{site.data.keyword.personalityinsightsshort}}, use a CLI do {{site.data.keyword.openwhisk}} para instalar o pacote do {{site.data.keyword.personalityinsightsshort}} em seu namespace.
 {: shortdesc}
@@ -50,8 +55,7 @@ Depois que você tem uma instância de serviço do {{site.data.keyword.personali
 {: #personalityinsights_cli}
 
 Antes de Iniciar:
-  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](bluemix_cli.html#cloudfunctions_cli).
-  2. Instale o comando [`wskdeploy`![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) e inclua o binário transferido por download em seu PATH.
+  1. [ Instale o plug-in do  {{site.data.keyword.openwhisk_short}}  para a  {{site.data.keyword.Bluemix_notm}}  CLI ](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Para instalar o pacote do  {{site.data.keyword.personalityinsightsshort}} :
 
@@ -63,7 +67,7 @@ Para instalar o pacote do  {{site.data.keyword.personalityinsightsshort}} :
 
 2. Implemente o pacote.
     ```
-    wskdeploy -m openwhisk-sdk/packages/personalidade-insights-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
     ```
     {: pre}
 
@@ -127,29 +131,29 @@ Para instalar o pacote do  {{site.data.keyword.personalityinsightsshort}} :
 ### Instalando a partir da UI do  {{site.data.keyword.openwhisk_short}}
 {: #personalityinsights_ui}
 
-1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://console.bluemix.net/openwhisk/create).
+1. No console do {{site.data.keyword.openwhisk_short}}, acesse a [página Criar ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk/create).
 
-2. Usando as listas de **Organizações do Cloud Foundry** e **Espaços do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote do {{site.data.keyword.cos_short}}. Os namespaces são formados por meio da organização combinada e nomes de espaço.
+2. Usando as listas **Organização do Cloud Foundry** e **Espaço do Cloud Foundry**, selecione o namespace no qual você deseja instalar o pacote. Os namespaces são formados por meio de nomes de organização e de espaço combinados.
 
 3. Clique em  ** Instalar pacotes **.
 
-4. Clique no grupo de pacotes do  ** Watson ** .
+4. Clique no grupo de pacotes **Watson**.
 
-5. Clique no pacote  ** Personality Insights ** .
+5. Clique no pacote **Personality Insights**.
 
 5. Clique em  ** Instalar **.
 
-6. Depois que o Pacote tiver sido instalado, você será redirecionado para a página Ações e poderá procurar pelo seu novo Pacote, que é denominado **personality-insights-v3**.
+6. Depois que o pacote tiver sido instalado, você será redirecionado para a página de ações e poderá procurar seu novo pacote, que é denominado **personality-insights-v3**.
 
-7. Para usar as Ações no pacote **personality-insights-v3**, deve-se ligar as credenciais de serviço às ações.
-  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima. 
+7. Para usar as ações no pacote **personality-insights-v3**, deve-se ligar as credenciais de serviço às ações.
+  * Para ligar as credenciais de serviço a todas as ações no pacote, siga as etapas 5 e 6 nas instruções da CLI listadas acima.
   * Para ligar as credenciais de serviço a ações individuais, conclua as etapas a seguir na IU. **Nota**: deve-se concluir as etapas a seguir para cada ação que você deseja usar.
-    1. Clique em uma Ação no Pacote **personality-insights-v3** que você deseja usar. A página de detalhes para essa Ação é aberta. 
-    2. Na navegação à esquerda, clique na seção **Parâmetros**. 
+    1. Clique em uma ação por meio do Pacote **personality-insights-v3** que você deseja usar. A página de detalhes para essa ação é aberta.
+    2. Na navegação à esquerda, clique na seção **Parâmetros**.
     3. Insira um novo  ** parâmetro **. Para a chave, insira  ` __bx_creds `. Para o valor, cole no objeto da JSON de credenciais de serviço por meio da instância de serviço que você criou anteriormente.
 
 ## Usando o pacote do  {{site.data.keyword.personalityinsightsshort}}
-{: #usage}
+{: #usage_insights}
 
 Para usar as ações neste pacote, execute comandos no formato a seguir:
 

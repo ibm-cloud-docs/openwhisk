@@ -1,56 +1,54 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-04-05"
+
+keywords: cloudant, database, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Paquete Cloudant
 {: #cloudant_actions}
 
-El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) e incluye las siguientes acciones y canales de información:
+El paquete `/whisk.system/cloudant` le permite trabajar con una base de datos [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) e incluye las siguientes acciones y canales de información:
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
 | `/whisk.system/cloudant` | paquete | dbname, host, username, password | Trabajar con una base de datos Cloudant. |
 | `/whisk.system/cloudant/read` | acción | dbname, id | Leer un documento de la base de datos. |
 | `/whisk.system/cloudant/write` | acción | dbname, overwrite, doc | Escribir un documento en la base de datos. |
-| `/whisk.system/cloudant/changes` | canal de información | dbname, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
+| `/whisk.system/cloudant/changes` | canal de información | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Activar sucesos desencadenantes para cambios en una base de datos. |
 {: shortdesc}
 
 Las siguientes secciones le indican cómo configurar una base de datos de {{site.data.keyword.cloudant_short_notm}} y cómo leerla y escribir en la misma.
-Para obtener más información sobre cómo utilizar canales de información con el paquete `/whisk.system/cloudant`, consulte [Origen de sucesos de {{site.data.keyword.cloudant_short_notm}}](./openwhisk_cloudant.html).
+Para obtener más información sobre cómo utilizar canales de información con el paquete `/whisk.system/cloudant`, consulte [Origen de sucesos de {{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant).
 
 ## Configuración de una base de datos {{site.data.keyword.cloudant_short_notm}} en {{site.data.keyword.Bluemix_notm}}
 {: #cloudantdb_cloud}
 
-Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_notm}}, {{site.data.keyword.openwhisk_short}} crea automáticamente enlaces de paquete para sus instancias de servicio de {{site.data.keyword.cloudant_short_notm}}. Si no utiliza {{site.data.keyword.openwhisk_short}} y {{site.data.keyword.cloudant_short_notm}} desde
-{{site.data.keyword.Bluemix_notm}}, continúe en la siguiente sección.
+Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_notm}}, puede utilizar el
+[plugin de CLI de {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) para enlazar un servicio a una acción o paquete.
 
-1. Cree una instancia de servicio de {{site.data.keyword.cloudant_short_notm}} en su [panel de control de {{site.data.keyword.Bluemix_notm}}](http://console.bluemix.net).
+En primer lugar debe crear manualmente un enlace de paquete para la cuenta de
+{{site.data.keyword.cloudant_short_notm}}.
 
-  Asegúrese de crear una clave de credenciales para cada nueva instancia de servicio.
-
-2. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para cada instancia de servicio {{site.data.keyword.cloudant_short_notm}} con una clave de credencial definida.
+1. Cree un enlace de paquete configurado para su cuenta {{site.data.keyword.cloudant_short_notm}}.
   ```
-  ibmcloud fn package refresh
+  ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
-  Salida de ejemplo:
-  ```
-  created bindings:
-  Bluemix_testCloudant_Credentials-1
-  ```
-  {: screen}
-
+2. Comprobar que el enlace de paquete existe.
   ```
   ibmcloud fn package list
   ```
@@ -59,66 +57,87 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
   Salida de ejemplo:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
+  /myNamespace/myCloudant private
   ```
   {: screen}
+  
+3. Obtenga el nombre de la instancia de servicio que desea enlazar a una acción o paquete.
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
 
-  Ahora su enlace de paquete contiene credenciales que están asociadas a la instancia de servicio de {{site.data.keyword.cloudant_short_notm}}.
+    Salida de ejemplo:
+    ```
+    Name          Location   State    Type
+    Cloudant-gm   us-south   active   service_instance
+    ```
+    {: screen}
 
-3. Compruebe si el enlace de paquete creado anteriormente está configurado con su host de instancia de servicio de {{site.data.keyword.Bluemix_notm}} de {{site.data.keyword.cloudant_short_notm}} y las credenciales.
+4. Obtenga el nombre de las credenciales definidas para la instancia de servicio que ha obtenido en el paso anterior.
+    ```
+    ibmcloud resource service-keys --instance-name Cloudant-gm
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
-  ```
-  {: pre}
+    Salida de ejemplo:
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
 
-  Salida de ejemplo:
-  ```
-  ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
+5. Enlace el servicio al paquete que ha creado en el paso 1.
+    ```
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ```
+    {: pre}
 
-  [
-      {
-          "key": "username",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix"
-      },
-      {
-          "key": "host",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix.cloudant.com"
-      },
-      {
-          "key": "password",
-          "value": "c9088667484a9ac827daf8884972737"
-      }
-  ]
-  ```
-  {: screen}
+6. Verifique que las credenciales se han enlazado correctamente.
+    ```
+    ibmcloud fn package get myCloudant parameters
+    ```
+    {: pre}
 
-## Configuración de una base de datos {{site.data.keyword.cloudant_short_notm}} fuera de {{site.data.keyword.Bluemix_notm}}
-{: #cloudantdb_nocloud}
+    Salida de ejemplo:
+    ```
+    ok: got package myCloudant, displaying field parameters
+    {
+        "parameters": [
+        {
+                "key": "bluemixServiceName",
+                "value": "cloudantNoSQLDB"
+            },
+            {
+                "key": "apihost",
+                "value": "us-south.functions.cloud.ibm.com"
+            },
+            {
+                "key": "__bx_creds",
+            "value": {
+                    "cloudantnosqldb": {
+                        "apikey": "[Service apikey]",
+                        "credentials": "Service credentials-1",
+                        "iam_apikey_description": "[Service description]",
+                        "iam_apikey_name": "[Service apikey name]",
+                        "iam_role_crn": "[Service role crn]",
+                        "iam_serviceid_crn": "[Service id crn]",
+                        "instance": "Cloudant-gm",
+                        "url": "[Service url]",
+                        "username": "[Service username]"
+                    }
+                }
+            }
+        ],
+    }
+    ```
+    {: screen}
 
-Si no utiliza {{site.data.keyword.openwhisk_short}} en {{site.data.keyword.Bluemix_notm}} o si quiere configurar su base de datos {{site.data.keyword.cloudant_short_notm}} fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para su cuenta {{site.data.keyword.cloudant_short_notm}}. Necesita el nombre de host, nombre de usuario y contraseña de la cuenta {{site.data.keyword.cloudant_short_notm}}.
+    En este ejemplo, las credenciales del servicio Cloudant pertenecen a un parámetro denominado `__bx_creds`.
+  
 
-1. Cree un enlace de paquete configurado para su cuenta {{site.data.keyword.cloudant_short_notm}}.
-  ```
-  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
-  ```
-  {: pre}
-
-
-2. Comprobar que el enlace de paquete existe.
-  ```
-  wsk package list
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  packages
-  /myNamespace/myCloudant private binding
-  ```
-  {: screen}
-
-## Leer de una base de datos {{site.data.keyword.cloudant_short_notm}}
+## Lectura desde una base de datos {{site.data.keyword.cloudant_short_notm}}
 {: #cloudant_read}
 
 Puede utilizar una acción para obtener un documento de una base de datos {{site.data.keyword.cloudant_short_notm}} llamada **testdb**. Asegúrese de que

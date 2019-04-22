@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # モバイル・プッシュ・パッケージ
 {: #openwhisk_catalog_pushnotifications}
+
+この事前インストール済みパッケージは、東京地域では利用できません。IAM 認証を使用する `sendMessage` アクションについては、インストール可能な[プッシュ通知](/docs/openwhisk?topic=cloud-functions-push-notifications-package)パッケージを参照してください
+{: tip}
 
 プッシュ・パッケージ・バインディングを作成し、`/whisk.system/pushnotifications` パッケージを使用して単純なプッシュ通知を送信する方法を説明します。このパッケージは、プッシュ・サービスを操作する機能を提供します。
 {: shortdesc}
@@ -23,9 +32,9 @@ lastupdated: "2018-06-22"
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | パッケージ | appId、appSecret、admin_url | プッシュ・サービスを使用した処理を行う。 |
 | `/whisk.system/pushnotifications/sendMessage` | アクション | text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
-| `/whisk.system/pushnotifications/webhook` | フィード | events | プッシュ・サービスでデバイスのアクティビティー (デバイスの登録、登録解除、サブスクリプション、アンサブスクリプション) に基づいてトリガー・イベントを起動する。 |
 
-デバイス・アクティビティーが発生したときにトリガー・イベントを起動する方法については、トピック『[デバイス・イベントでのモバイル・プッシュ](./openwhisk_pushnotifications.html)』を参照してください。
+
+デバイス・アクティビティーが発生したときにトリガー・イベントを起動する方法については、トピック『[デバイス・イベントでのモバイル・プッシュ](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications)』を参照してください。
 
 ## プッシュ通知パッケージ・バインディングの作成
 {: #create_push_binding}
@@ -37,11 +46,11 @@ lastupdated: "2018-06-22"
 
 以下の手順を参照して、パッケージ・バインディングを作成します。
 
-1. [{{site.data.keyword.Bluemix_notm}} ダッシュボード](http://console.bluemix.net)で {{site.data.keyword.Bluemix_notm}} アプリケーションを作成します。
+1. [{{site.data.keyword.Bluemix_notm}} ダッシュボード](http://cloud.ibm.com)で {{site.data.keyword.Bluemix_notm}} アプリケーションを作成します。
 
 2. プッシュ通知サービスを初期化し、{{site.data.keyword.Bluemix_notm}} アプリケーションにバインドします。
 
-3. [プッシュ通知アプリケーション](https://console.bluemix.net/docs/services/mobilepush/index.html)を構成します。
+3. [プッシュ通知アプリケーション](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)を構成します。
 
   作成した {{site.data.keyword.Bluemix_notm}} アプリの **App GUID** と **App Secret** を必ず覚えておいてください。
 

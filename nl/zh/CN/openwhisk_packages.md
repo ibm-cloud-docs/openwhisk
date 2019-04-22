@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 组织包中的操作
 {: #openwhisk_packages}
@@ -21,7 +27,7 @@ lastupdated: "2018-06-22"
 - 操作是在 {{site.data.keyword.openwhisk_short}} 上运行的一段代码。例如，{{site.data.keyword.cloudant}} 包中包含用于在 {{site.data.keyword.cloudant_short_notm}} 数据库中读写记录的操作。
 - 订阅源用于配置外部事件源以触发触发器事件。例如，“警报”包中包含可按指定频率触发触发器的订阅源。
 
-每个 {{site.data.keyword.openwhisk_short}} 实体（包括包）都属于*名称空间*，并且实体的标准名称为 `/namespaceName[/packageName]/entityName`。有关更多信息，请参阅[命名准则](./openwhisk_reference.html#openwhisk_entities)。
+每个 {{site.data.keyword.openwhisk_short}} 实体（包括包）都属于*名称空间*，并且实体的标准名称为 `/namespaceName/[packageName]/entityName`。有关更多信息，请参阅[命名准则](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)。
 
 以下部分描述了如何浏览包以及使用包中的触发器和订阅源。此外，如果您想要将自己的包提供给目录，请阅读有关创建和共享包的部分。
 
@@ -69,7 +75,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  此输出显示了 {{site.data.keyword.cloudant_short_notm}} 包提供有两个操作（`read` 和 `write`）和一个名为 `changes` 的触发器订阅源。将文档添加到指定的{{site.data.keyword.cloudant_short_notm}} 数据库时，`changes` 订阅源会使触发器触发。
+  此输出显示了 {{site.data.keyword.cloudant_short_notm}} 包提供有两个操作（`read` 和 `write`）和一个名为 `changes` 的触发器订阅源。将文档添加到指定的 {{site.data.keyword.cloudant_short_notm}} 数据库时，`changes` 订阅源会使触发器触发。
 
   {{site.data.keyword.cloudant_short_notm}} 包还定义了参数 `username`、`password`、`host` 和 `port`。必须指定这些参数，操作和订阅源才有意义。例如，这些参数允许操作对特定 {{site.data.keyword.cloudant_short_notm}} 帐户执行。
 
@@ -214,7 +220,7 @@ ok: created binding valhallaSamples
 ## 创建并使用触发器订阅源
 {: #openwhisk_package_trigger}
 
-通过订阅源，可以方便地配置外部事件源来对 {{site.data.keyword.openwhisk_short}} 触发器触发这些事件。此示例显示了如何使用“警报”包中的订阅源来每秒触发一次触发器，以及如何使用规则来每秒调用一次操作。
+通过订阅源，可以方便地配置外部事件源来对 {{site.data.keyword.openwhisk_short}} 触发器触发这些事件。此示例显示了如何使用“警报”包中的订阅源来每分钟触发一次触发器，以及如何使用规则来每分钟调用一次操作。
 
 1. 获取 `/whisk.system/alarms` 包中订阅源的描述。
   ```
@@ -245,19 +251,19 @@ package /whisk.system/alarms
   - `cron`：关于何时触发触发器的 crontab 规范。
   - `trigger_payload`：要在每个触发器事件中设置的有效内容参数值。
 
-2. 创建每 8 秒触发一次的触发器。
+2. 创建每一分钟触发一次的触发器。
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   示例输出：
   ```
-ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. 创建名为 **hello.js** 的文件并包含以下操作码：
+3. 创建名为 `hello.js` 的文件并包含以下操作码：
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -271,9 +277,9 @@ ok: created trigger feed everyEightSeconds
   ```
   {: pre}
 
-5. 创建规则，用于在每次 **everyEightSeconds** 触发器触发时调用 `hello` 操作。
+5. 创建规则，用于在每次 `everyOneMinute` 触发器触发时调用 `hello` 操作。
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -289,7 +295,7 @@ ok: created trigger feed everyEightSeconds
   ```
   {: pre}
 
-  您可以看到针对触发器、规则和操作，每 8 秒激活一次。操作会在每次调用时收到参数 `{"name":"Mork", "place":"Ork"}`。
+  您可以看到针对触发器、规则和操作，每一分钟激活一次。操作会在每次调用时收到参数 `{"name":"Mork", "place":"Ork"}`。
 
 ## 创建包
 {: #openwhisk_packages_create}
@@ -299,7 +305,7 @@ ok: created trigger feed everyEightSeconds
 
 要创建定制包并在其中包含简单操作，请尝试以下示例：
 
-1. 创建名为 **custom** 的包。
+1. 创建名为 `custom` 的包。
   ```
   ibmcloud fn package create custom
   ```
@@ -331,7 +337,7 @@ package /myNamespace/custom
   ```
   {: codeblock}
 
-4. 在 `custom` 包中创建名为 **identity** 的操作。
+4. 在 `custom` 包中创建名为 `identity` 的操作。
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -358,7 +364,7 @@ package /myNamespace/custom
   ```
   {: screen}
 
-  现在，可以在名称空间中看到 **custom/identity** 操作。
+  现在，可以在名称空间中看到 `custom/identity` 操作。
 
 6. 调用包中的操作。
   ```
@@ -374,7 +380,7 @@ package /myNamespace/custom
 
 您可通过设置由包中所有操作继承的包级别参数，设置用于该包中所有实体的缺省参数。要了解此继承的工作方式，请尝试以下示例：
 
-1. 使用以下两个参数来更新 **custom** 包：`city` 和 `country`。
+1. 使用以下两个参数来更新 `custom` 包：`city` 和 `country`。
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -386,7 +392,7 @@ ok: updated package custom
   ```
   {: screen}
 
-2. 显示 **custom** 包和 **identity** 操作中的参数，并查看包中的 **identity** 操作是如何从包继承参数的。
+2. 显示 `custom` 包和 `identity` 操作中的参数，并查看包中的 `identity` 操作是如何从包继承参数的。
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -431,7 +437,7 @@ ok: updated package custom
   ```
   {: screen}
 
-3. 在不使用任何参数的情况下调用 **identity** 操作，以验证该操作是否确实继承了这些参数。
+3. 在不使用任何参数的情况下调用 `identity` 操作，以验证该操作是否确实继承了这些参数。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -446,7 +452,7 @@ ok: updated package custom
   ```
   {: screen}
 
-4. 使用某些参数调用 **identity** 操作。调用参数会与包参数合并；调用参数会覆盖包参数。
+4. 使用某些参数调用 `identity` 操作。调用参数会与包参数合并；调用参数会覆盖包参数。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -492,7 +498,7 @@ ok: updated package custom
   ```
   {: screen}
 
-现在，其他人可以使用您的 **custom** 包，包括绑定到该包或直接调用该包中的操作。其他用户必须知道包的标准名称，才能绑定包或调用包中的操作。共享包中的操作和订阅源是_公共_的。如果包是私有的，那么其所有内容也是私有的。
+现在，其他人可以使用您的 `custom` 包，包括绑定到该包或直接调用该包中的操作。其他用户必须知道包的标准名称，才能绑定包或调用包中的操作。共享包中的操作和订阅源是_公共_的。如果包是私有的，那么其所有内容也是私有的。
 
 1. 获取包的描述，以显示包和操作的标准名称。
   ```
@@ -507,4 +513,4 @@ package /myNamespace/custom
   ```
   {: screen}
 
-  在上面的示例中，您使用的是 **myNamespace** 名称空间，并且此名称空间显示为标准名称。
+  在上面的示例中，您使用的是 `myNamespace` 名称空间，并且此名称空间显示为标准名称。

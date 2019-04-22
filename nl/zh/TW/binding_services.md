@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # 將服務連結至動作
 {: #binding_services}
 
-您可以使用 [{{site.data.keyword.openwhisk}} CLI 外掛程式](./bluemix_cli.html)，將服務連結至動作或套件。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 指令，讓您的 {{site.data.keyword.Bluemix_notm}} 服務認證可供您的 {{site.data.keyword.openwhisk_short}} 程式碼在運行環境使用。
+您可以使用 [{{site.data.keyword.openwhisk}} CLI 外掛程式](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)，將服務連結至動作或套件。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 指令，讓您的 {{site.data.keyword.Bluemix_notm}} 服務認證可供您的 {{site.data.keyword.openwhisk_short}} 程式碼在運行環境使用。
 {: shortdesc}
+
 
 不要混淆 `ibmcloud fn service bind` 指令與 Cloud Foundry 中可用的 `cf bind-service` 指令。
 {: tip}
+
 
 ## 將服務連結至動作或套件
 {: #cli_bind}
 
 將任何 {{site.data.keyword.Bluemix_notm}} 服務連結至 {{site.data.keyword.openwhisk_short}} 中所定義的任何動作。連結服務時，會在包含服務實例認證的現有動作上建立新參數。
 
-**附註**：每一種類型只能有一個服務連結到動作或套件。不支援連結多個相同類型的服務。
+**附註**：每一種類型只能有一個服務連結到動作或套件。不支援連結相同類型的服務。
 
-開始之前，請為您要連結的服務[定義認證](/docs/apps/reqnsi.html#accser_external)。
+開始之前，請為您要連結的服務[定義認證](/docs/resources?topic=resources-externalapp#externalapp)。
 
 1. 取得您要連結至動作或套件之服務實例的名稱。
     ```
@@ -139,7 +147,11 @@ lastupdated: "2018-06-21"
 
     在此範例中，Conversation 服務的認證以及其他服務類型的任何其他認證，都屬於名為 `__bx_creds` 的參數。動作會尋找 `__bx_creds` 連結參數，並移除所列服務類型的參照。如果該服務類型是唯一列出的服務類型，則動作會將 `__bx_creds` 參數值設為空值。如果有多個服務連結至動作，則會保留 `__bx_creds` 參數與任何仍連結的服務。
 
-如需將參數傳遞給動作或套件以及 `update` 作業期間對認證之影響的相關資訊，請參閱[使用參數](./parameters.html#pass-params-action)。
+如需將參數傳遞給動作或套件以及 `update` 作業期間對認證之影響的相關資訊，請參閱[使用參數](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action)。
+
+
+如果您變更包含實體的組織或空間名稱，則會使用新的名稱來建立名稱空間。在新的名稱空間中看不到舊名稱空間所含的實體，因此排定成予以刪除。如果您不小心做了變更，可以回復它，而且或許能夠在實體被刪除之前，先儲存實體。
+{: tip}
 
 
 ## 取消服務與動作或套件的連結

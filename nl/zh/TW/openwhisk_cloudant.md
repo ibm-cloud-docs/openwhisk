@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -19,13 +24,13 @@ lastupdated: "2018-06-22"
 
 |實體|類型|參數|說明|
 | --- | --- | --- | --- |
-| `/whisk.system/cloudant` |套件|dbname、host、username、password|使用 Cloudant 資料庫。|
+|`/whisk.system/cloudant` |套件|dbname、host、username、password|使用 Cloudant 資料庫。|
 |`/whisk.system/cloudant/read` |動作|dbname、id|讀取資料庫中的文件。|
 |`/whisk.system/cloudant/write` |動作|dbname、overwrite、doc|將文件寫入資料庫。|
-|`/whisk.system/cloudant/changes` |資訊來源|dbname、filter、query_params、maxTriggers|在資料庫變更時發動觸發程式事件。|
+|`/whisk.system/cloudant/changes` |資訊來源| dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers |在資料庫變更時發動觸發程式事件。|
 {: shortdesc}
 
-下列各節將引導您逐步配置相關聯的套件，並且說明如何使用 `/whisk.system/cloudant` 套件中的動作及資訊來源。如需設定 {{site.data.keyword.cloudant_short_notm}} 資料庫以及讀取或寫入其中的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 動作](./cloudant_actions.html)。
+下列各節將引導您逐步配置相關聯的套件，並且說明如何使用 `/whisk.system/cloudant` 套件中的動作及資訊來源。如需設定 {{site.data.keyword.cloudant_short_notm}} 資料庫以及讀取或寫入其中的相關資訊，請參閱 [{{site.data.keyword.cloudant_short_notm}} 動作](/docs/openwhisk?topic=cloud-functions-cloudant_actions)。
 
 ## 使用過濾器函數建立觸發程式
 
@@ -34,6 +39,10 @@ lastupdated: "2018-06-22"
 此範例中使用的參數如下所示：
 
 **dbname**：{{site.data.keyword.cloudant_short_notm}} 資料庫的名稱_（必要）_。
+
+**iamApiKey**：Cloudant 資料庫的 IAM API 金鑰。如果已指定，則會用來作為認證，而非使用者名稱和密碼_（選用）_。
+
+**iamUrl**：指定 `iamApiKey` 時使用的 IAM 記號服務 URL。預設值為 `https://iam.bluemix.net/identity/token`_（選用）_。 
 
 **maxTriggers**：在達到此限制時停止發動觸發程式_（選用）_。預設值為無限。
 
@@ -85,7 +94,7 @@ lastupdated: "2018-06-22"
 
 7. 根據過濾器函數及查詢參數，只有在文件狀態為 **new** 時，才會觀察到每一個文件變更的 **myCloudantTrigger** 觸發程式的新啟動。
 
-如果您無法觀察到新啟動，請參閱 [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) 主題，以示範如何在 {{site.data.keyword.cloudant_short_notm}} 資料庫中讀取及寫入。測試讀取及寫入步驟，有助於驗證 {{site.data.keyword.cloudant_short_notm}} 認證正確無誤。
+如果您無法觀察到新啟動，請參閱 [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions) 主題，其示範如何在 {{site.data.keyword.cloudant_short_notm}} 資料庫中讀取及寫入。測試讀取及寫入步驟，有助於驗證 {{site.data.keyword.cloudant_short_notm}} 認證正確無誤。
 {: tip}
 
 ## 觸發程式事件的資料結構

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, translator, cognitive, translating text, language
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: Translator パッケージ
 {: #openwhisk_catalog_watson_translator}
+
+この事前インストール済みパッケージは、どの地域でも使用できなくなりました。IAM 認証による新しい V3 API を使用してインストール可能な [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) パッケージを参照してください。
+{: tip}
 
 `/whisk.system/watson-translator` パッケージを利用して、翻訳を行う Watson API を簡単に呼び出すことができます。
 {: shortdesc}
@@ -25,13 +34,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-translator/translator` | アクション | payload、translateFrom、translateTo、translateParam、username、password | テキストの翻訳 |
 | `/whisk.system/watson-translator/languageId` | アクション | payload、username、password | 言語の識別 |
 
-**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/translate` および `/whisk.system/watson/languageId` を含めて非推奨です。
+**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/translate` および `/whisk.system/watson/languageId` を含めて非推奨です。 代わりに、[インストール可能な {{site.data.keyword.languagetranslatorshort}} パッケージ](/docs/openwhisk?topic=cloud-functions-language-translator-package)を参照してください。
 
 ## {{site.data.keyword.Bluemix_notm}} での Watson Translator パッケージのセットアップ
 
 {{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用している場合、パッケージ・バインディングは {{site.data.keyword.Bluemix_notm}} Watson サービス・インスタンス用に自動的に作成されます。
 
-1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.bluemix.net)で Watson Translator のサービス・インスタンスを作成します。 サービス・インスタンスの名前、および自分が所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
+1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://cloud.ibm.com)で Watson Translator のサービス・インスタンスを作成します。 サービス・インスタンスの名前、および自分が所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
 
 2. 名前空間でパッケージを最新表示します。 最新表示により、作成した Watson サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```

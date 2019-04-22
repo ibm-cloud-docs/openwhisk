@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -22,18 +27,22 @@ lastupdated: "2018-06-22"
 | `/whisk.system/cloudant` |패키지 |dbname, host, username, password | Cloudant 데이터베이스 관련 작업을 수행합니다. |
 |`/whisk.system/cloudant/read` |액션 |dbname, id | 데이터베이스에서 문서를 읽습니다. |
 |`/whisk.system/cloudant/write` |액션 |dbname, overwrite, doc | 데이터베이스에 문서를 작성합니다. |
-|`/whisk.system/cloudant/changes` |피드 |dbname, filter, query_params, maxTriggers | 데이터베이스 변경 시 트리거 이벤트를 실행합니다. |
+|`/whisk.system/cloudant/changes` |피드 | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | 데이터베이스 변경 시 트리거 이벤트를 실행합니다. |
 {: shortdesc}
 
-다음 절에서는 연관된 패키지의 구성 및 `/whisk.system/cloudant` 패키지에서 액션과 피드를 사용하는 방법에 대해 안내합니다. {{site.data.keyword.cloudant_short_notm}} 데이터베이스 설정 및 이 데이터베이스 읽기 또는 쓰기에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 액션](./cloudant_actions.html)을 참조하십시오.
+다음 절에서는 연관된 패키지의 구성 및 `/whisk.system/cloudant` 패키지에서 액션과 피드를 사용하는 방법에 대해 안내합니다. {{site.data.keyword.cloudant_short_notm}} 데이터베이스 설정 및 이 데이터베이스 읽기 또는 쓰기에 대한 자세한 정보는 [{{site.data.keyword.cloudant_short_notm}} 액션](/docs/openwhisk?topic=cloud-functions-cloudant_actions)을 참조하십시오.
 
 ## 필터 함수를 사용하여 트리거 작성
 
-`changes` 피드를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 변경 시마다 트리거를 실행하도록 서비스를 구성할 수 있습니다. 
+`changes` 피드를 사용하여 {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 변경 시마다 트리거를 실행하도록 서비스를 구성할 수 있습니다.
 
 이 예제에서 사용된 매개변수는 다음과 같습니다.
 
 **dbname**: {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 이름입니다_(필수)_.
+
+**iamApiKey**: Cloudant 데이터베이스의 IAM API 키입니다. 지정된 경우 사용자 이름 및 비밀번호_(선택사항)_ 대신 인증 정보로 사용됩니다.
+
+**iamUrl**: `iamApiKey`가 지정될 때 사용되는 IAM 토큰 서비스 URL입니다. `https://iam.bluemix.net/identity/token`_(선택사항)_으로 기본값을 설정하십시오. 
 
 **maxTriggers**: 이 한계에 도달하면 트리거 실행을 중지합니다_(선택사항)_. 기본값은 무제한입니다.
 
@@ -84,7 +93,7 @@ lastupdated: "2018-06-22"
 
 7. 필터 함수 및 조회 매개변수를 기반으로 문서 상태가 **new**인 경우에만 각 문서 변경에 대해 **myCloudantTrigger** 트리거에 대한 새 활성화를 관찰하십시오.
 
-새 활성화를 관찰할 수 없는 경우 {{site.data.keyword.cloudant_short_notm}} 데이터베이스를 읽고 쓰는 방법을 보여주는 [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) 주제를 참조하십시오. {{site.data.keyword.cloudant_short_notm}} 신임 정보가 올바른지 확인하는 데 도움이 되도록 읽기 및 쓰기 단계를 테스트하십시오.
+새 활성화를 관찰할 수 없는 경우 {{site.data.keyword.cloudant_short_notm}} 데이터베이스를 읽고 쓰는 방법을 보여주는 [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions) 주제를 참조하십시오. {{site.data.keyword.cloudant_short_notm}} 인증 정보가 올바른지 확인하는 데 도움이 되도록 읽기 및 쓰기 단계를 테스트하십시오.
 {: tip}
 
 ## 트리거 이벤트의 데이터 구조

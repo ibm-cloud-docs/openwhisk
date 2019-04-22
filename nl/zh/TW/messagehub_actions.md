@@ -1,19 +1,25 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: message hub, package, messages, events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # {{site.data.keyword.messagehub}} 套件
 
-{: #openwhisk_catalog_message_hub}
+{: #catalog_message_hub}
 
 此套件可讓您利用原生高效能 Kafka API 與 [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) 實例進行通訊，以發佈及使用訊息。
 {: shortdesc}
@@ -25,7 +31,7 @@ lastupdated: "2018-07-13"
 
 2. 驗證您要接聽的主題現已在 {{site.data.keyword.messagehub}} 中提供，或建立新主題，例如，標題為 **mytopic**。
 
-3. 重新整理「名稱空間」中的套件。重新整理會自動建立您所建立之 {{site.data.keyword.messagehub}} 服務實例的套件連結。
+3. 重新整理名稱空間中的套件。重新整理會自動建立您所建立之 {{site.data.keyword.messagehub}} 服務實例的套件連結。
   ```
   ibmcloud fn package refresh
   ```
@@ -38,7 +44,7 @@ lastupdated: "2018-07-13"
   ```
   {: screen}
 
-4. 列出您「名稱空間」中的套件，以顯示您的套件連結現在可供使用。
+4. 列出您名稱空間中的套件，以顯示您的套件連結現在可供使用。
   ```
   ibmcloud fn package list
   ```
@@ -65,35 +71,20 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 
 ## 使用事件來接聽訊息
 
-如需如何在 {{site.data.keyword.messagehub}} 中使用觸發程式接聽訊息的詳細資訊，請參閱涵蓋下列作業的下列 [{{site.data.keyword.messagehub}} 事件來源](./openwhisk_messagehub.html)主題：
-* [建立接聽 {{site.data.keyword.messagehub}} 實例的觸發程式](./openwhisk_messagehub.html#create_message_hub_trigger)
-* [在 {{site.data.keyword.Bluemix_notm}} 外部建立 {{site.data.keyword.messagehub}} 套件的觸發程式](./openwhisk_messagehub.html#create_message_hub_trigger_outside)
-* [接聽訊息](./openwhisk_messagehub.html#message_hub_listen)
-* [範例](./openwhisk_messagehub.html#examples)
+如需如何在 {{site.data.keyword.messagehub}} 中使用觸發程式接聽訊息的詳細資訊，請參閱涵蓋下列作業的下列 [{{site.data.keyword.messagehub}} 事件來源](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub)主題：
+* [建立接聽 {{site.data.keyword.messagehub}} 實例的觸發程式](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger)
+* [在 {{site.data.keyword.Bluemix_notm}} 外部建立 {{site.data.keyword.messagehub}} 套件的觸發程式](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#create_message_hub_trigger_outside)
+* [接聽訊息](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#message_hub_listen)
+* [範例](/docs/openwhisk?topic=cloud-functions-openwhisk_catalog_message_hub#examples)
 
 ## 將訊息產生至 {{site.data.keyword.messagehub}}
 {: #producing_messages}
 
-`/messaging/messageHubProduce` 動作已遭淘汰，將在未來予以移除。若要維護最佳效能，請移轉 `/messaging/messageHubProduce` 動作的使用，以在將資料產生至 {{site.data.keyword.messagehub}}/Kafka 時使用持續性連線。
+`/messaging/messageHubProduce` 動作已遭淘汰，將在未來予以移除。它在東京地區已被移除。若要維護最佳效能，請移轉 `/messaging/messageHubProduce` 動作的使用，以在將資料產生至 {{site.data.keyword.messagehub}}/Kafka 時使用持續性連線。
 {: tip}
 
-如果您要使用 {{site.data.keyword.openwhisk_short}} 動作，以方便將訊息產生至 {{site.data.keyword.messagehub}}，您可以使用 `/messaging/messageHubProduce` 動作。此動作會採用下列參數：
-
-|名稱|類型|說明|
-|---|---|---|
-|kafka_brokers_sasl|JSON 字串陣列|此參數是在 {{site.data.keyword.messagehub}} 實例中包含分配管理系統的 `<host>:<port>` 字串陣列。|
-|使用者|字串|您的 {{site.data.keyword.messagehub}} 使用者名稱。|
-|password|字串|您的 {{site.data.keyword.messagehub}} 密碼。|
-|topic|字串|您想要觸發程式接聽的主題。|
-|value|字串|您想要產生之訊息的值。|
-|key|字串（選用）|您想要產生之訊息的金鑰。|
-
-雖然前三個參數可以使用 `ibmcloud fn package refresh` 自動連結，但還是請參閱下列範例，其使用所有必要參數來呼叫動作：
-```
-ibmcloud fn action invoke /messaging/messageHubProduce -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p topic mytopic -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p value "This is the content of my message"
-```
-{: pre}
+若要進一步瞭解如何產生訊息，請參閱 [Event Streams 文件](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages)。
 
 ## 參考資料
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
+- [Apache Kafka](https://kafka.apache.org)

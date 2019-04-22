@@ -1,18 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, converting, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
-
+{:tip: .tip}
 # Pacote Watson: Text to Speech
 {: #openwhisk_catalog_watson_texttospeech}
+
+Esse pacote pré-instalado não está disponível na região de Tóquio. Consulte o pacote instalável [Texto para Discurso](/docs/openwhisk?topic=cloud-functions-text-to-speech-package)usando a autenticação IAM. 
+{: tip}
 
 O pacote `/whisk.system/watson-textToSpeech` oferece uma maneira conveniente de chamar APIs do Watson para converter o texto em fala.
 {: shortdesc}
@@ -24,14 +32,14 @@ O pacote inclui as ações a seguir.
 | `/whisk.system/watson-textToSpeech` | pacote | username, password | Pacote para converter texto em fala |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | ação | payload, voice, accept, encoding, username, password | Converter texto em áudio |
 
-**Nota**: o pacote `/whisk.system/watson` está descontinuado, incluindo a ação `/whisk.system/watson/textToSpeech`.
+**Nota**: o pacote `/whisk.system/watson` está descontinuado, incluindo a ação `/whisk.system/watson/textToSpeech`. Consulte o [pacote instalável do {{site.data.keyword.texttospeechshort}}](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) em vez disso.
 
 ## Configurando o pacote Watson Text to Speech no {{site.data.keyword.Bluemix_notm}}
 
 Se você estiver usando o {{site.data.keyword.openwhisk}} por meio do {{site.data.keyword.Bluemix_notm}}, as ligações de pacote serão criadas automaticamente
 para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Crie uma instância de serviço Watson Text to Speech em seu [painel](http://console.bluemix.net) do {{site.data.keyword.Bluemix_notm}}.
+1. Crie uma instância de serviço de Texto para fala do Watson em seu painel do {{site.data.keyword.Bluemix_notm}}[](http://cloud.ibm.com).
 
   Certifique-se de lembrar do nome da instância de serviço e da organização e do espaço do {{site.data.keyword.Bluemix_notm}} no qual você se encontra.
 

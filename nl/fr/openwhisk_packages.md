@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Organisation d'actions en packages
 {: #openwhisk_packages}
@@ -18,10 +24,10 @@ Dans {{site.data.keyword.openwhisk}}, vous pouvez utiliser des packages afin de 
 {: shortdesc}
 
 Un package peut inclure des *actions* et des *flux*.
-- Une action est un élément de code qui s'exécute sur {{site.data.keyword.openwhisk_short}}. Par exemple, le package {{site.data.keyword.cloudant}} contient des actions permettant de lire et d'écrire des enregistrements dans une base de données {{site.data.keyword.cloudant_short_notm}}.
+- Une action est un élément de code qui s'exécute sur {{site.data.keyword.openwhisk_short}}. Par exemple, le package {{site.data.keyword.cloudant}} contient des actions permettant de lire et d'écrire des enregistrements dans une base de données {{site.data.keyword.cloudant_short_notm}}. 
 - Un flux est utilisé pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs. Par exemple, le package Alarm inclut un flux qui peut exécuter un déclencheur à la fréquence spécifiée.
 
-Chaque entité {{site.data.keyword.openwhisk_short}}, notamment les packages, appartient à un *espace de nom*, et le nom qualifié complet d'une entité est `/nom_espace_nom[/nom_package]/nom_entité`. Pour plus d'informations, voir les [instructions de désignation](./openwhisk_reference.html#openwhisk_entities).
+Chaque entité {{site.data.keyword.openwhisk_short}}, notamment les packages, appartient à un *espace de nom*, et le nom qualifié complet d'une entité est `/nom_espace_nom/[nom_package]/nom_entité`. Pour plus d'informations, voir les [instructions de désignation](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities).
 
 Les sections ci-après expliquent comment parcourir les packages et utiliser les déclencheurs et les flux qu'ils contiennent. De plus, si vous souhaitez ajouter vos propres packages au catalogue, lisez les sections relatives à la création et au partage de packages.
 
@@ -214,8 +220,7 @@ Dans l'exemple simple ci-dessous, vous établissez une liaison au package `/whis
 ## Création et utilisation de flux de déclencheurs
 {: #openwhisk_package_trigger}
 
-Les flux sont pratiques pour configurer une source d'événements externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exécuter un
-déclencheur toutes les secondes, et comment utiliser une règle permettant d'appeler une action toutes les secondes.
+Les flux sont pratiques pour configurer une source d'événements externe afin de déclencher ces événements dans un déclencheur {{site.data.keyword.openwhisk_short}}. Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exécuter un déclencheur toutes les minutes, et comment utiliser une règle permettant d'appeler une action toutes les minutes. 
 
 1. Obtenez une description du flux dans le package `/whisk.system/alarms`.
   ```
@@ -246,19 +251,19 @@ déclencheur toutes les secondes, et comment utiliser une règle permettant d'ap
   - `cron` : spécification crontab indiquant à quel moment exécuter le déclencheur.
   - `trigger_payload` : valeur de paramètre de contenu à définir dans chaque événement déclencheur.
 
-2. Créez un déclencheur qui s'exécute toutes les huit secondes.
+2. Créez un déclencheur qui s'exécute toutes les minutes. 
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   Exemple de sortie :
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. Créez un fichier nommé **hello.js** avec le code d'action suivant :
+3. Créez un fichier nommé `hello.js` avec le code d'action suivant :
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -272,9 +277,9 @@ déclencheur toutes les secondes, et comment utiliser une règle permettant d'ap
   ```
   {: pre}
 
-5. Créez une règle qui appelle l'action **hello** à chaque fois que le déclencheur `everyEightSeconds` s'exécute.
+5. Créez une règle qui appelle l'action `hello` chaque fois que le déclencheur `everyOneMinute` s'exécute. 
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -290,7 +295,7 @@ déclencheur toutes les secondes, et comment utiliser une règle permettant d'ap
   ```
   {: pre}
 
-  Comme vous pouvez le constater, les activations sont observées toutes les huit secondes pour le déclencheur, la règle et l'action. L'action reçoit les paramètres `{"name":"Mork", "place":"Ork"}` à chaque appel.
+  Comme vous pouvez le constater, les activations sont observées toutes les minutes pour le déclencheur, la règle et l'action. L'action reçoit les paramètres `{"name":"Mork", "place":"Ork"}` à chaque appel.
 
 ## Création d'un package
 {: #openwhisk_packages_create}
@@ -300,7 +305,7 @@ Il permet également de partager des paramètres entre toutes les entités du pa
 
 Pour créer un package personnalisé contenant une action simple, procédez comme suit.
 
-1. Créez un package appelé **custom**.
+1. Créez un package appelé `custom`.
   ```
   ibmcloud fn package create custom
   ```
@@ -332,7 +337,7 @@ Pour créer un package personnalisé contenant une action simple, procédez comm
   ```
   {: codeblock}
 
-4. Créez une action appelée **identity** dans le package `custom`.
+4. Créez une action appelée `identity` dans le package `custom`.
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -359,7 +364,7 @@ Pour créer un package personnalisé contenant une action simple, procédez comm
   ```
   {: screen}
 
-  A présent, vous pouvez voir l'action **custom/identity** dans votre espace de nom.
+  A présent, vous pouvez voir l'action `custom/identity` dans votre espace de nom.
 
 6. Appelez l'action dans le package.
   ```
@@ -375,7 +380,7 @@ Pour créer un package personnalisé contenant une action simple, procédez comm
 
 Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un package en définissant des paramètres au niveau du package qui sont hérités par toutes les actions du package. L'exemple suivant montre comment cet héritage fonctionne :
 
-1. Mettez à jour le package **custom** avec deux paramètres : `city` et `country`.
+1. Mettez à jour le package `custom` avec deux paramètres : `city` et `country`.
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -387,7 +392,7 @@ Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un
   ```
   {: screen}
 
-2. Affichez les paramètres dans le package **custom** et l'action **identity**, et observez comment l'action **identity** dans le package hérite des paramètres du package.
+2. Affichez les paramètres dans le package `custom` et l'action `identity`, et observez comment l'action `identity` dans le package hérite des paramètres du package. 
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -432,7 +437,7 @@ Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un
   ```
   {: screen}
 
-3. Appelez l'action **identity** sans paramètre afin de vérifier qu'elle hérite effectivement des paramètres.
+3. Appelez l'action `identity` sans paramètre afin de vérifier qu'elle hérite effectivement des paramètres.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -447,7 +452,7 @@ Vous pouvez configurer des paramètres par défaut pour toutes les entités d'un
   ```
   {: screen}
 
-4. Appelez l'action **identity** avec quelques paramètres. Les paramètres d'appel sont fusionnés avec les paramètres du package et les remplacent.
+4. Appelez l'action `identity` avec quelques paramètres. Les paramètres d'appel sont fusionnés avec les paramètres du package et les remplacent.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -495,7 +500,7 @@ utilisateurs d'{{site.data.keyword.openwhisk_short}}. Le partage du package perm
   ```
   {: screen}
 
-Désormais, d'autres utilisateurs peuvent se servir de votre package **custom**, et notamment établir une liaison au package ou appeler directement une action qu'il contient. Pour ce faire, ils doivent connaître les noms qualifiés complets du package. Les actions et les flux qui se trouvent dans un package partagé sont _publics_. Si le package est privé, son contenu est également privé.
+Désormais, d'autres utilisateurs peuvent se servir de votre package `custom`, et notamment établir une liaison au package ou appeler directement une action qu'il contient. Pour ce faire, ils doivent connaître les noms qualifiés complets du package. Les actions et les flux qui se trouvent dans un package partagé sont _publics_. Si le package est privé, son contenu est également privé.
 
 1. Obtenez une description du package pour afficher les noms qualifiés complets du package et de l'action.
   ```
@@ -510,4 +515,4 @@ Désormais, d'autres utilisateurs peuvent se servir de votre package **custom**,
   ```
   {: screen}
 
-  Dans l'exemple précédent, vous utilisiez l'espace de nom **myNamespace** et cet espace de nom figure dans le nom qualifié complet.
+  Dans l'exemple précédent, vous utilisiez l'espace de nom `myNamespace` et cet espace de nom figure dans le nom qualifié complet.

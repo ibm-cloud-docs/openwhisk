@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 모바일 SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk는 모바일 앱이 쉽게 원격 트리거를 실행하고 원격 액션을 호출할 수 있도록 하는 iOS 및 watchOS 디바이스용 모바일 SDK를 제공합니다. Android용 버전은 사용할 수 없습니다. 따라서 Android 개발자는 OpenWhisk REST API를 직접 사용하십시오.
-
-모바일 SDK는 Swift 4로 작성되며 iOS 11 이상의 릴리스를 지원합니다. Xcode 9을 사용하여 모바일 SDK를 빌드할 수 있습니다.
+OpenWhisk는 모바일 앱이 원격 트리거를 실행하고 원격 액션을 호출할 수 있도록 하는 iOS 및 watchOS 디바이스용 모바일 SDK를 제공합니다. Android용 버전은 사용할 수 없습니다. 따라서 Android 개발자는 OpenWhisk REST API를 직접 사용하십시오. 모바일 SDK는 Swift 4로 작성되며 iOS 11 이상의 릴리스를 지원합니다. Xcode 9을 사용하여 모바일 SDK를 빌드할 수 있습니다.
 {: shortdesc}
+
+
 
 ## 앱에 SDK 추가
 
@@ -97,9 +103,9 @@ pod install
 
 ## SDK 시작하기
 
-빠르게 시작하고 실행하려면, OpenWhisk API 신임 정보로 WhiskCredentials 오브젝트를 작성하고 오브젝트에서 OpenWhisk 인스턴스를 작성하십시오.
+빠르게 시작하고 실행하려면, OpenWhisk API 인증 정보로 WhiskCredentials 오브젝트를 작성하고 오브젝트에서 OpenWhisk 인스턴스를 작성하십시오.
 
-예를 들어, 다음 예제 코드를 사용하여 신임 정보 오브젝트를 작성하십시오.
+예를 들어, 다음 예제 코드를 사용하여 인증 정보 오브젝트를 작성하십시오.
 ```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
@@ -122,7 +128,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 ## OpenWhisk 액션 호출
 
-원격 액션을 호출하기 위해 액션 이름으로 `invokeAction`을 호출할 수 있습니다. 액션이 속한 네임스페이스를 지정하거나 기본 네임스페이스를 승인하도록 공백으로 둘 수 있습니다. 사전을 사용하여 필요에 따라 매개변수를 액션으로 전달할 수 있습니다.
+원격 액션을 호출하기 위해 액션 이름으로 `invokeAction`을 호출할 수 있습니다. 사전을 사용하여 필요에 따라 매개변수를 액션으로 전달할 수 있습니다.
 
 예:
 ```swift
@@ -143,8 +149,6 @@ do {
 }
 ```
 {: codeblock}
-
-앞의 예제에서 기본 네임스페이스를 사용하여 `helloConsole` 액션을 호출합니다.
 
 ## OpenWhisk 트리거 실행
 
@@ -207,7 +211,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-이 예제에서는 http://localhost:8080에서 실행 중인 설치를 사용합니다. baseUrl을 지정하지 않은 경우, 모바일 SDK는 https://openwhisk.ng.bluemix.net에서 실행 중인 인스턴스를 사용합니다.
+이 예제에서는 http://localhost:8080에서 실행 중인 설치를 사용합니다. baseUrl을 지정하지 않은 경우, 모바일 SDK는 https://us-south.functions.cloud.ibm.com에서 실행 중인 인스턴스를 사용합니다.
 
 특수 네트워크 처리가 필요한 경우에는 사용자 정의 NSURLSession을 전달할 수 있습니다. 예를 들어, 자체 서명된 인증서를 사용하는 자체 OpenWhisk 설치가 있을 수 있습니다.
 

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: Speech to Text パッケージ
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+この事前インストール済みパッケージは、東京地域では利用できません。IAM 認証を使用してインストール可能な [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) パッケージを参照してください。
+{: tip}
 
 `/whisk.system/watson-speechToText` パッケージを利用して、スピーチをテキストに変換するための Watson API を簡単に呼び出すことができます。
 {: shortdesc}
@@ -24,13 +33,13 @@ lastupdated: "2018-03-26"
 | `/whisk.system/watson-speechToText` | パッケージ | username、password | スピーチをテキストに変換するパッケージ |
 | `/whisk.system/watson-speechToText/speechToText` | アクション | payload、content_type、encoding、username、password、continuous、inactivity_timeout、interim_results、keywords、keywords_threshold、max_alternatives、model、timestamps、watson-token、word_alternatives_threshold、word_confidence、X-Watson-Learning-Opt-Out | 音声のテキストへの変換 |
 
-**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/speechToText` を含めて非推奨です。
+**注**: パッケージ `/whisk.system/watson` は、アクション `/whisk.system/watson/speechToText` を含めて非推奨です。 代わりに [{{site.data.keyword.speechtotextshort}} パッケージ](/docs/openwhisk?topic=cloud-functions-speech-to-text-package)を参照してください。
 
 ## {{site.data.keyword.Bluemix_notm}} での Watson Speech to Text パッケージのセットアップ
 
 {{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用している場合、パッケージ・バインディングは {{site.data.keyword.Bluemix_notm}} Watson サービス・インスタンス用に自動的に作成されます。
 
-1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.ng.Bluemix.net)で Watson Speech to Text のサービス・インスタンスを作成します。
+1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://cloud.ibm.com)で Watson Speech to Text のサービス・インスタンスを作成します。
 
   サービス・インスタンスの名前、およびユーザーが所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
 

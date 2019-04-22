@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: natural language, understanding, watson knowledge studio
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,28 +22,28 @@ lastupdated: "2018-07-17"
 {{site.data.keyword.nlufull}} サービスは、大規模のテキスト・コンテンツのさまざまな特徴を分析するために役立ちます。
 {: shortdesc}
 
-テキスト、生の HTML、またはパブリック URL を指定すると、要求した特徴の結果が {{site.data.keyword.nlushort}} によって表示されます。このサービスは、デフォルトで分析前に HTML コンテンツをクリーニングするため、結果では、ほとんどの広告やその他の不要なコンテンツを無視することができます。Watson Knowledge Studio を使用して、カスタムのエンティティーと関係を Natural Language Understanding で検出するために使用できる<a target="_blank" href="https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html">カスタム・モデル</a>を作成できます。
+テキスト、生の HTML、またはパブリック URL を指定すると、要求した特徴の結果が {{site.data.keyword.nlushort}} によって表示されます。 このサービスは、デフォルトで分析前に HTML コンテンツをクリーニングするため、結果では、ほとんどの広告やその他の不要なコンテンツを無視することができます。 Watson Knowledge Studio を使用して、カスタムのエンティティーと関係を Natural Language Understanding で検出するために使用できる<a target="_blank" href="https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html">カスタム・モデル</a>を作成できます。
 
-{{site.data.keyword.nlushort}} パッケージには、以下のエンティティーが含まれています。エンティティー名をクリックすると、{{site.data.keyword.nlushort}} API 参照で追加の詳細を確認できます。
+{{site.data.keyword.nlushort}} パッケージには、以下のエンティティーが含まれています。 エンティティー名をクリックすると、{{site.data.keyword.nlushort}} API 参照で追加の詳細を確認できます。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url |{{site.data.keyword.nlushort}} サービスを操作します。 |
-| [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、features、text、html、url、clean、xpath、fallback_to_raw、return_analyzed_text、language、limit_text_characters  | テキスト、HTML、または公開 Web ページを分析します。 |
-| [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、model_id  | モデルを削除します。 |
-| [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models) | アクション | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url | モデルをリストします。 |
+| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | パッケージ | `username`、`password`、 `iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、  |  {{site.data.keyword.nlushort}} サービスを操作します。 |
+| [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze) | アクション |  `username`、`password`、 `iam_access_token`、`iam_apikey`、`iam_url`、 `headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、`features`、`text`、`html`、`url`、`clean`、`xpath`、`fallback_to_raw`、`return_analyzed_text`、`language`、`limit_text_characters`、  | テキスト、HTML、または公開 Web ページを分析します。 |
+| [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model) | アクション |  `username`、`password`、`iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、`model_id`、  | モデルを削除します。 |
+| [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models) | アクション |  `username`、`password`、 `iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、 | モデルをリストします。 |
 
 ## {{site.data.keyword.nlushort}} サービス・インスタンスの作成
-{: #service_instance}
+{: #service_instance_understanding}
 
 パッケージをインストールする前に、{{site.data.keyword.nlushort}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
 {: shortdesc}
 
-1. [{{site.data.keyword.nlushort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/services/natural-language-understanding) します。
+1. [{{site.data.keyword.nlushort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](https://cloud.ibm.com/catalog/services/natural-language-understanding)。
 2. サービス・インスタンスの作成時に、自動生成されたサービス資格情報も作成されます。
 
 ## {{site.data.keyword.nlushort}} パッケージのインストール
-{: #install}
+{: #install_understanding}
 
 {{site.data.keyword.nlushort}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.nlushort}} パッケージを名前空間にインストールします。
 {: shortdesc}
@@ -47,8 +52,7 @@ lastupdated: "2018-07-17"
 {: #nlus_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](bluemix_cli.html#cloudfunctions_cli)。
-  2. [`wskdeploy` コマンド ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) をインストールして、ダウンロードしたバイナリーを PATH に追加します。
+  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 {{site.data.keyword.nlushort}} パッケージをインストールするには、次のようにします。
 
@@ -60,7 +64,7 @@ lastupdated: "2018-07-17"
 
 2. パッケージをデプロイします。
     ```
-    wskdeploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
     ```
     {: pre}
 
@@ -89,7 +93,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-5. パッケージが {{site.data.keyword.nlushort}} サービス・インスタンス資格情報を使用して構成されていることを確認します。
+5. パッケージが {{site.data.keyword.nlushort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
     ibmcloud fn package get natural-language-understanding-v1 parameters
     ```
@@ -118,9 +122,9 @@ lastupdated: "2018-07-17"
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #nlus_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
 
-2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、{{site.data.keyword.cos_short}} パッケージのインストール先の名前空間を選択します。名前空間は、組織名とスペース名の組み合わせから形成されます。
+2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、パッケージのインストール先の名前空間を選択します。 名前空間は、組織名とスペース名の組み合わせから形成されます。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
@@ -128,19 +132,19 @@ lastupdated: "2018-07-17"
 
 5. **「Natural Language Understanding」**パッケージをクリックします。
 
-5. **「インストール (Install)」**をクリックします。 
+5. **「インストール (Install)」**をクリックします。
 
-6. パッケージのインストール後に「アクション」ページにリダイレクトされ、**natural-language-understanding-v1** という名前の新規パッケージを検索できます。
+6. パッケージのインストール後にアクション・ページにリダイレクトされ、**natural-language-understanding-v1** という名前の新規パッケージを検索できます。
 
 7. **natural-language-understanding-v1** パッケージでアクションを使用するには、サービス資格情報をアクションにバインドする必要があります。
-  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。 
-  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。**注**: 使用するアクションごとに以下のステップを実行する必要があります。
-    1. 使用する **natural-language-understanding-v1** パッケージのアクションをクリックします。そのアクションの詳細ページが開きます。 
-    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。 
-    3. 新しい**パラメーター**を入力します。key には `__bx_creds` を入力します。value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
+  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。
+  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。 **注**: 使用するアクションごとに以下のステップを実行する必要があります。
+    1. 使用する **natural-language-understanding-v1** パッケージのアクションをクリックします。 そのアクションの詳細ページが開きます。
+    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。
+    3. 新しい**パラメーター**を入力します。 key には `__bx_creds` を入力します。 value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
 
 ## {{site.data.keyword.nlushort}} パッケージの使用
-{: #usage}
+{: #usage_understanding}
 
 このパッケージのアクションを使用するには、次の形式でコマンドを実行します。
 
@@ -149,9 +153,9 @@ ibmcloud fn action invoke natural-language-understanding-v1/<action_name> -b -p 
 ```
 {: pre}
 
-すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。[API 参照](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#versioning)で詳細を確認してください。
+すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。 API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。 [API 参照](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#versioning)で詳細を確認してください。
 
-このパッケージの機能は、Natural Language Understanding の現行バージョンである 2018-03-16 を使用します。`list-models` アクションを試行します。
+このパッケージの機能は、Natural Language Understanding の現行バージョンである 2018-03-16 を使用します。 `list-models` アクションを試行します。
 ```
 ibmcloud fn action invoke natural-language-understanding-v1/list-models -b -p version 2018-03-16
 ```

@@ -1,28 +1,34 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Message Hub 事件來源
+# Event Streams 事件來源
 {: #openwhisk_catalog_message_hub}
 
-您可以使用資訊來源，來建立在將訊息張貼至 {{site.data.keyword.messagehub_full}} 實例時做出反應的觸發程式。瞭解如何在使用或未使用 {{site.data.keyword.Bluemix}} 的情況下建立 {{site.data.keyword.messagehub}} 觸發程式、接聽訊息，以及處理批次的訊息。
+您可以使用資訊來源，來建立在訊息張貼至 {{site.data.keyword.messagehub_full}} 實例時做出反應的觸發程式。瞭解如何在使用或未使用 {{site.data.keyword.Bluemix}} 的情況下建立 {{site.data.keyword.messagehub}} 觸發程式、接聽訊息，以及處理批次的訊息。
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} 套件
 
-`/messaging/messageHubProduce` 動作已遭淘汰，將在未來予以移除。若要維護最佳效能，請移轉 `/messaging/messageHubProduce` 動作的使用，以在將資料產生至 Message Hub/Kafka 時使用持續性連線。
-{: tip}
+`/messaging/messageHubProduce` 動作已遭淘汰，將在未來予以移除。它在東京地區已被移除。若要維護最佳效能，請移轉 `/messaging/messageHubProduce` 動作的使用，以在將資料產生至 Message Hub/Kafka 時使用持續性連線。
+{: deprecated}
 
-此套件可讓您利用原生高效能 Kafka API，與 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 實例進行通訊，以發佈及使用訊息。如需 {{site.data.keyword.messagehub}} 套件、其設定方式及訊息產生方式的相關資訊，請參閱 [{{site.data.keyword.messagehub}} 套件](./messagehub_actions.html)主題。
+此套件可讓您利用原生高效能 Kafka API，與 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 實例進行通訊，以發佈及使用訊息。如需 {{site.data.keyword.messagehub}} 套件、其設定方式及訊息產生方式的相關資訊，請參閱 [{{site.data.keyword.messagehub}} 套件](/docs/openwhisk?topic=cloud-functions-catalog_message_hub)主題。
 
 ## 建立接聽 {{site.data.keyword.messagehub}} 實例的觸發程式
 {: #create_message_hub_trigger}
@@ -246,5 +252,6 @@ lastupdated: "2018-06-22"
 您可以[在這裡找到](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)將 OpenWhisk 與 {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full}}、IBM Data Science Experience (Spark) 服務整合的範例。
 
 ## 參考資料
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

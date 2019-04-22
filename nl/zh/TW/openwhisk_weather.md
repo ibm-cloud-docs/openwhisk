@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-27"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: weather package, forecast, functions, serverless 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Weather 套件
 {: #openwhisk_catalog_weather}
@@ -30,7 +36,7 @@ lastupdated: "2018-03-27"
 
 如果您是從 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，則會自動為 {{site.data.keyword.Bluemix_notm}} Weather 服務實例建立套件連結。
 
-1. 在 {{site.data.keyword.Bluemix_notm}} [儀表板](http://console.bluemix.net)中，建立 Weather Company Data 服務實例。
+1. 在 {{site.data.keyword.Bluemix_notm}} [儀表板](http://cloud.ibm.com)中，建立 Weather Company Data 服務實例。
 
   請務必記住服務實例名稱，以及您所在的 {{site.data.keyword.Bluemix_notm}} 組織及空間。
 

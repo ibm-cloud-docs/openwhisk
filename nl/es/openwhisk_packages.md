@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Organización de acciones en paquetes
 {: #openwhisk_packages}
@@ -21,7 +27,8 @@ Un paquete puede incluir *actions* y *feeds* (acciones y canales de información
 - Una acción es un segmento de código que se ejecuta en {{site.data.keyword.openwhisk_short}}. Por ejemplo, el paquete {{site.data.keyword.cloudant}} incluye acciones para leer y escribir registros en una base de datos {{site.data.keyword.cloudant_short_notm}}.
 - Un canal de información sirve para configurar un origen de suceso externo para activar sucesos desencadenantes. Por ejemplo, el paquete Alarma incluye un canal de información que puede activar un desencadenante en una frecuencia especificada.
 
-Toda entidad de {{site.data.keyword.openwhisk_short}}, incluyendo los paquetes, pertenecen a un *namespace* (espacio de nombres), y el nombre completo de una entidad es `/namespaceName[/packageName]/entityName`. Para obtener más información, consulte las [directrices de denominación](./openwhisk_reference.html#openwhisk_entities).
+Toda entidad de {{site.data.keyword.openwhisk_short}}, incluyendo los paquetes, pertenece a un
+*espacio de nombres*, y el nombre completo de una entidad es `/namespaceName/[packageName]/entityName`. Para obtener más información, consulte las [directrices de denominación](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities).
 
 En las secciones siguientes se describe cómo examinar paquetes y usar para ellos los desencadenantes y canales de información. Además, si está interesado en contribuir con sus propios paquetes al catálogo, lea las secciones sobre la creación y compartición de paquetes.
 
@@ -220,7 +227,7 @@ el valor predeterminado establecido en el enlace del paquete `valhallaSamples`.
 ## Creación y uso de canales de información de desencadenante
 {: #openwhisk_package_trigger}
 
-Los canales de información ofrecen una forma cómoda de configurar un origen de suceso externo para activar dichos sucesos para un desencadenante de {{site.data.keyword.openwhisk_short}}. En este ejemplo se muestra cómo utilizar un canal de información del paquete Alarms para activar un desencadenante cada segundo y cómo usar una regla para invocar una acción cada segundo.
+Los canales de información ofrecen una forma cómoda de configurar un origen de suceso externo para activar dichos sucesos para un desencadenante de {{site.data.keyword.openwhisk_short}}. En este ejemplo se muestra cómo utilizar un canal de información del paquete Alarms para activar un desencadenante una vez por minuto y cómo usar una regla para invocar una acción una vez por minuto.
 
 1. Obtener una descripción del canal de información en el paquete `/whisk.system/alarms`.
   ```
@@ -251,19 +258,19 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
   - `cron`: una especificación crontab de cuándo activar el desencadenante.
   - `trigger_payload`: el valor de parámetro payload a establecer en cada suceso desencadenante.
 
-2. Crear un desencadenante que se active cada 8 segundos.
+2. Crear un desencadenante que se active cada minuto.
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   Salida de ejemplo:
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. Cree un archivo denominado **hello.js** con el código de acción siguiente:
+3. Cree un archivo denominado `hello.js` con el código de acción siguiente:
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -277,10 +284,10 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
   ```
   {: pre}
 
-5. Crear una regla que invoque la acción **hello** cada vez que se active el desencadenante
-`everyEightSeconds`.
+5. Crear una regla que invoque la acción `hello` cada vez que se active el desencadenante
+`everyOneMinute`.
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -296,7 +303,7 @@ Los canales de información ofrecen una forma cómoda de configurar un origen de
   ```
   {: pre}
 
-  Puede ver que se observan activaciones cada 8 segundos para el desencadenante, la regla y la acción. La acción recibe los parámetros `{"name":"Mork", "place":"Ork"}` en cada invocación.
+  Puede ver que se observan activaciones cada minuto para el desencadenante, la regla y la acción. La acción recibe los parámetros `{"name":"Mork", "place":"Ork"}` en cada invocación.
 
 ## Creación de un paquete
 {: #openwhisk_packages_create}
@@ -306,7 +313,7 @@ También permite la compartición de los parámetros entre todas las entidades d
 
 Para crear un paquete personalizado con una acción sencilla en él, pruebe el ejemplo siguiente:
 
-1. Cree un paquete llamado **custom**.
+1. Cree un paquete llamado `custom`.
   ```
   ibmcloud fn package create custom
   ```
@@ -339,7 +346,7 @@ devuelve todos los parámetros de entrada.
   ```
   {: codeblock}
 
-4. Crear una acción denominada **identity** en el paquete `custom`.
+4. Crear una acción denominada `identity` en el paquete `custom`.
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -367,7 +374,7 @@ anidamiento de paquetes. Un paquete solo puede contener acciones y no puede cont
   ```
   {: screen}
 
-  Ahora podrá ver la acción **custom/identity** en su espacio de nombres.
+  Ahora podrá ver la acción `custom/identity` en su espacio de nombres.
 
 6. Invocar la acción en el paquete.
   ```
@@ -383,7 +390,7 @@ anidamiento de paquetes. Un paquete solo puede contener acciones y no puede cont
 
 Puede establecer parámetros predeterminados para todas las entidades de un paquete estableciendo los parámetros a nivel de paquete, que todas las acciones del paquete heredan. Para ver cómo funciona esta herencia, pruebe el ejemplo siguiente:
 
-1. Actualizar el paquete **custom** con dos parámetros: `city` y `country`.
+1. Actualizar el paquete `custom` con dos parámetros: `city` y `country`.
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -395,7 +402,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
   ```
   {: screen}
 
-2. Mostrar los parámetros en el paquete **custom** y acción **identidy**, y ver cómo la acción **identity** del paquete hereda los parámetros del paquete.
+2. Mostrar los parámetros en el paquete `custom` y acción `identity`, y ver cómo la acción `identity` del paquete hereda los parámetros del paquete.
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -440,7 +447,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
   ```
   {: screen}
 
-3. Invocar la acción **identity** sin parámetros para comprobar que la acción realmente hereda los parámetros.
+3. Invocar la acción `identity` sin parámetros para comprobar que la acción realmente hereda los parámetros.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -455,7 +462,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
   ```
   {: screen}
 
-4. Invocar la acción **identity** con algunos parámetros. Los parámetros de invocación se fusionan con los parámetros del paquete; los parámetros de invocación prevalecen sobre los parámetros del paquete.
+4. Invocar la acción `identity` con algunos parámetros. Los parámetros de invocación se fusionan con los parámetros del paquete; los parámetros de invocación prevalecen sobre los parámetros del paquete.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -502,8 +509,9 @@ Tras depurar y probar las acciones y los canales de información que comprende u
   ```
   {: screen}
 
-Ahora otros pueden utilizar su paquete **custom**, incluyendo el enlace al paquete o directamente invocando una
-acción sobre él. Otros usuarios deben conocer los nombres completos del paquete para enlazar o invocar acciones sobre él. Las acciones y los canales de información dentro de un paquete compartido son _públicos_. Si el paquete es privado, todo su contenido es también privado.
+Ahora otros pueden utilizar su paquete `custom`, incluyendo el enlace al paquete o directamente invocando una
+acción sobre él. Otros usuarios deben conocer los nombres completos del paquete para enlazar o invocar acciones sobre él. Las acciones
+e información de entrada dentro de un paquete compartido son _públicas_. Si el paquete es privado, todo su contenido es también privado.
 
 1. Obtener una descripción del paquete para mostrar los nombres completos del paquete y la acción.
   ```
@@ -518,4 +526,4 @@ acción sobre él. Otros usuarios deben conocer los nombres completos del paquet
   ```
   {: screen}
 
-  En el ejemplo anterior, se trabaja con el espacio de nombres **myNamespace** y este espacio de nombres aparece en el nombre completo.
+  En el ejemplo anterior, se trabaja con el espacio de nombres `myNamespace` y este espacio de nombres aparece en el nombre completo.

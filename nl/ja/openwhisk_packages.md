@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # パッケージ内のアクションの編成
 {: #openwhisk_packages}
@@ -21,7 +27,7 @@ lastupdated: "2018-06-22"
 - アクションは、{{site.data.keyword.openwhisk_short}} で実行されるコードです。 例えば、{{site.data.keyword.cloudant}} パッケージには、{{site.data.keyword.cloudant_short_notm}} データベースのレコードの読み取りや書き込みのためのアクションが含まれています。
 - フィードは、トリガー・イベントを起動するための外部イベント・ソースを構成するために使用されます。 例えば、Alarm パッケージには、指定された頻度でトリガーを起動できるフィードが含まれています。
 
-パッケージも含めて各 {{site.data.keyword.openwhisk_short}} エンティティーは*名前空間* に属し、エンティティーの完全修飾名は `/namespaceName[/packageName]/entityName` です。 詳しくは、[命名のガイドライン](./openwhisk_reference.html#openwhisk_entities)を参照してください。
+パッケージも含めて各 {{site.data.keyword.openwhisk_short}} エンティティーは*名前空間* に属し、エンティティーの完全修飾名は `/namespaceName/[packageName]/entityName` です。 詳しくは、[命名のガイドライン](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)を参照してください。
 
 以降のセクションでは、パッケージの参照方法と、パッケージ内のトリガーおよびフィードの使用方法について説明します。 また、独自のパッケージをカタログに提供することに関心がある場合は、パッケージの作成と共有に関するセクションをお読みください。
 
@@ -214,7 +220,7 @@ lastupdated: "2018-06-22"
 ## トリガー・フィードの作成と使用
 {: #openwhisk_package_trigger}
 
-フィードは、{{site.data.keyword.openwhisk_short}} トリガーへこれらのイベントを起動するための外部イベント・ソースを構成する簡便な方法を提供します。 次の例は、Alarms パッケージ内のフィードを使用して毎秒 1 つのトリガーを起動する方法と、ルールを使用して毎秒 1 つのアクションを呼び出す方法を示します。
+フィードは、{{site.data.keyword.openwhisk_short}} トリガーへこれらのイベントを起動するための外部イベント・ソースを構成する簡便な方法を提供します。 この例は、Alarms パッケージ内のフィードを使用して 1 分ごとにトリガーを発生させる方法と、ルールを使用して 1 分ごとにアクションを呼び出す方法を示しています。
 
 1. `/whisk.system/alarms` パッケージ内のフィードの説明を取得します。
   ```
@@ -245,19 +251,19 @@ lastupdated: "2018-06-22"
   - `cron`: トリガーをいつ起動するのかについての crontab 指定。
   - `trigger_payload`: 各トリガー・イベントに設定するペイロード・パラメーター値。
 
-2. 8 秒ごとに起動されるトリガーを作成します。
+2. 1 分ごとに起動するトリガーを作成します。
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   出力例:
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. 以下のアクション・コードを含んでいる **hello.js** という名前のファイルを作成します。
+3. 以下のアクション・コードを含んでいる `hello.js` という名前のファイルを作成します。
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -271,9 +277,9 @@ lastupdated: "2018-06-22"
   ```
   {: pre}
 
-5. **everyEightSeconds** トリガーが起動されるたびに `hello` アクションを呼び出すルールを作成します。
+5. `everyOneMinute` トリガーが起動するたびに `hello` アクションを呼び出すルールを作成します。
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -289,7 +295,7 @@ lastupdated: "2018-06-22"
   ```
   {: pre}
 
-  トリガー、ルール、およびアクションに関して、8 秒ごとにアクティベーションが観察されることを確認できます。 アクションは、すべての呼び出しでパラメーター `{"name":"Mork", "place":"Ork"}` を受け取ります。
+  トリガー、ルール、およびアクションに関して、1 分ごとにアクティベーションが観察されることを確認できます。アクションは、すべての呼び出しでパラメーター `{"name":"Mork", "place":"Ork"}` を受け取ります。
 
 ## パッケージの作成
 {: #openwhisk_packages_create}
@@ -299,7 +305,7 @@ lastupdated: "2018-06-22"
 
 単純なアクションを 1 つ含んでいるカスタム・パッケージを作成する例を以下に示します。
 
-1. **「custom」**という名前のパッケージを作成します。
+1. `「custom」`という名前のパッケージを作成します。
   ```
   ibmcloud fn package create custom
   ```
@@ -331,7 +337,7 @@ lastupdated: "2018-06-22"
   ```
   {: codeblock}
 
-4. `custom` パッケージ内に、**identity** という名前のアクションを作成します。
+4. `custom` パッケージ内に、`identity` という名前のアクションを作成します。
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -358,7 +364,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  今回は名前空間に **custom/identity** アクションがあることを確認できます。
+  今回は名前空間に `custom/identity` アクションがあることを確認できます。
 
 6. パッケージ内のアクションを呼び出します。
   ```
@@ -374,7 +380,7 @@ lastupdated: "2018-06-22"
 
 パッケージ内のすべてのアクションで継承されるパッケージ・レベルのパラメーターを設定することによって、パッケージ内のすべてのエンティティーのデフォルト・パラメーターを設定できます。 この継承がどのように機能するのかを以下の例で示します。
 
-1. 2 つのパラメーター **city** と `country` で `custom` パッケージを更新します。
+1. 2 つのパラメーター `city` と `country` で `custom` パッケージを更新します。
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -386,7 +392,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-2. **custom** パッケージおよび **identidy** アクションのパラメーターを表示し、パッケージ内の **identity** アクションがパッケージからパラメーターをどのように継承しているのかを確認します。
+2. `custom` パッケージおよび `identidy` アクションのパラメーターを表示し、パッケージ内の `identity` アクションがパッケージからパラメーターをどのように継承しているのかを確認します。
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -431,7 +437,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-3. **identity** アクションをパラメーターを指定せずに呼び出して、アクションが本当にパラメーターを継承することを確認します。
+3. `identity` アクションをパラメーターを指定せずに呼び出して、アクションが本当にパラメーターを継承することを確認します。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -446,7 +452,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-4. 一部のパラメーターを指定して **identity** アクションを呼び出します。 呼び出しパラメーターはパッケージ・パラメーターとマージされます。その際、呼び出しパラメーターがパッケージ・パラメーターをオーバーライドします。
+4. 一部のパラメーターを指定して `identity` アクションを呼び出します。 呼び出しパラメーターはパッケージ・パラメーターとマージされます。その際、呼び出しパラメーターがパッケージ・パラメーターをオーバーライドします。
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -493,7 +499,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-これで、パッケージへのバインドや、パッケージ内のアクションを直接呼び出すことも含めて、**custom** パッケージの使用を他のユーザーが行えるようになりました。 他のユーザーは、パッケージのバインドやパッケージ内のアクションの呼び出しを行うために、パッケージの完全修飾名を知る必要があります。 共有パッケージ内のアクションおよびフィードは、_パブリック_ です。 パッケージがプライベートの場合は、そのコンテンツもすべてプライベートになります。
+これで、パッケージへのバインドや、パッケージ内のアクションを直接呼び出すことも含めて、`custom` パッケージの使用を他のユーザーが行えるようになりました。 他のユーザーは、パッケージのバインドやパッケージ内のアクションの呼び出しを行うために、パッケージの完全修飾名を知る必要があります。 共有パッケージ内のアクションおよびフィードは、_パブリック_ です。 パッケージがプライベートの場合は、そのコンテンツもすべてプライベートになります。
 
 1. パッケージの説明を取得して、パッケージおよびアクションの完全修飾名を表示します。
   ```
@@ -508,4 +514,4 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  上の例では、**myNamespace** 名前空間で作業していて、この名前空間が完全修飾名に含まれています。
+  上の例では、`myNamespace` 名前空間で作業していて、この名前空間が完全修飾名に含まれています。

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 使用觸發程式和規則來回應事件
 {: #openwhisk_triggers}

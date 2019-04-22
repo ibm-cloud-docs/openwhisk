@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Message Hub 이벤트 소스
+# 이벤트 스트림 이벤트 소스
 {: #openwhisk_catalog_message_hub}
 
 피드를 사용하여 메시지가 {{site.data.keyword.messagehub_full}} 인스턴스에 게시될 때 반응하는 트리거를 작성할 수 있습니다. {{site.data.keyword.Bluemix}}를 사용하거나 사용하지 않고 {{site.data.keyword.messagehub}} 트리거를 작성하는 방법을 알아보고 메시지를 청취하고 일괄처리된 메시지를 처리하십시오.
@@ -19,28 +25,28 @@ lastupdated: "2018-06-22"
 
 ## {{site.data.keyword.messagehub}} 패키지 
 
-`/messaging/messageHubProduce` 액션은 더 이상 사용되지 않으며 나중에 제거됩니다. 최적의 성능을 유지하려면 데이터가 Message Hub/Kafka에 생성될 때 `/messaging/messageHubProduce` 액션의 사용을 마이그레이션하여 지속적 연결을 사용하십시오.
-{: tip}
+`/messaging/messageHubProduce` 액션은 더 이상 사용되지 않으며 나중에 제거됩니다. 도쿄 지역에서 이미 제거되었습니다. 최적의 성능을 유지하려면 데이터가 Message Hub/Kafka에 생성될 때 `/messaging/messageHubProduce` 액션의 사용을 마이그레이션하여 지속적 연결을 사용하십시오.
+{: deprecated}
 
-이 패키지는 기본 고성능 Kafka API를 사용하여 메시지를 공개하고 이용하기 위한 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 인스턴스와의 통신을 가능하게 합니다. {{site.data.keyword.messagehub}} 패키지, 설정 방법 및 메시지 생성 방법에 대한 자세한 정보는 [{{site.data.keyword.messagehub}} 패키지](./messagehub_actions.html) 주제를 참조하십시오.
+이 패키지는 기본 고성능 Kafka API를 사용하여 메시지를 공개하고 이용하기 위한 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 인스턴스와의 통신을 가능하게 합니다. {{site.data.keyword.messagehub}} 패키지, 설정 방법 및 메시지 생성 방법에 대한 자세한 정보는 [{{site.data.keyword.messagehub}} 패키지](/docs/openwhisk?topic=cloud-functions-catalog_message_hub) 주제를 참조하십시오.
 
 ## {{site.data.keyword.messagehub}} 인스턴스를 청취하는 트리거 작성
 {: #create_message_hub_trigger}
 
-메시지가 {{site.data.keyword.messagehub}} 인스턴스에 게시될 때 반응하는 트리거를 작성하려면 이름이 `/messaging/messageHubFeed`인 피드를 사용해야 합니다. 피드 액션은 다음 매개변수를 지원합니다. 
+메시지가 {{site.data.keyword.messagehub}} 인스턴스에 게시될 때 반응하는 트리거를 작성하려면 이름이 `/messaging/messageHubFeed`인 피드를 사용해야 합니다. 피드 액션은 다음 매개변수를 지원합니다.
 
 |이름|유형|설명|
 |---|---|---|
 |kafka_brokers_sasl|JSON 문자열 배열|이 매개변수는 {{site.data.keyword.messagehub}} 인스턴스에서 브로커를 구성하는 `<host>:<port>` 문자열의 배열입니다.|
 |user|문자열|{{site.data.keyword.messagehub}} 사용자 이름입니다.|
-|password|문자열|{{site.data.keyword.messagehub}} 비밀번호입니다.|
+|비밀번호|문자열|{{site.data.keyword.messagehub}} 비밀번호입니다.|
 |topic|문자열|트리거가 청취하도록 할 주제입니다.|
 |kafka_admin_url|URL 문자열|{{site.data.keyword.messagehub}} 관리 REST 인터페이스의 URL입니다.|
 |isJSONData|부울(선택사항 - 기본값=false)|`true`로 설정된 경우, 제공자는 메시지 값을 트리거 페이로드로서 전달하기 전에 JSON으로 구문 분석하려고 시도합니다.|
 |isBinaryKey|부울(선택사항 - 기본값=false)|`true`로 설정된 경우, 제공자는 키 값을 트리거 페이로드로서 전달하기 전에 Base64로 인코딩합니다.|
 |isBinaryValue|부울(선택사항 - 기본값=false)|`true`로 설정된 경우, 제공자는 메시지 값을 트리거 페이로드로서 전달하기 전에 Base64로 인코딩합니다.|
 
-이 매개변수의 목록이 어려워보일 수 있지만, 이는 `ibmcloud fn package refresh` CLI 플러그인 명령을 사용하여 자동으로 설정될 수 있습니다. 
+이 매개변수의 목록이 어려워보일 수 있지만, 이는 `ibmcloud fn package refresh` CLI 플러그인 명령을 사용하여 자동으로 설정될 수 있습니다.
 
 1. {{site.data.keyword.openwhisk}}에 사용 중인 현재 조직 및 영역 아래에서 {{site.data.keyword.messagehub}} 서비스의 인스턴스를 작성하십시오.
 
@@ -72,7 +78,7 @@ lastupdated: "2018-06-22"
   ```
   {: screen}
 
-  이제 패키지 바인딩에 {{site.data.keyword.messagehub}} 인스턴스와 연관된 신임 정보가 포함됩니다.
+  이제 패키지 바인딩에 {{site.data.keyword.messagehub}} 인스턴스와 연관된 인증 정보가 포함됩니다.
 
 5. 이제 새 메시지가 {{site.data.keyword.messagehub}} 주제에 게시될 때 실행되는 트리거를 작성하기만 하면 됩니다.
   ```
@@ -83,7 +89,7 @@ lastupdated: "2018-06-22"
 ## {{site.data.keyword.Bluemix_notm}} 외부에서 {{site.data.keyword.messagehub}} 패키지에 대한 트리거 작성
 {: #create_message_hub_trigger_outside}
 
-{{site.data.keyword.Bluemix_notm}} 외부에서 {{site.data.keyword.messagehub}}를 설정하려면 {{site.data.keyword.messagehub}} 서비스에 대한 패키지 바인딩을 수동으로 작성해야 합니다. {{site.data.keyword.messagehub}} 서비스 신임 정보 및 연결 정보가 필요합니다.
+{{site.data.keyword.Bluemix_notm}} 외부에서 {{site.data.keyword.messagehub}}를 설정하려면 {{site.data.keyword.messagehub}} 서비스에 대한 패키지 바인딩을 수동으로 작성해야 합니다. {{site.data.keyword.messagehub}} 서비스 인증 정보 및 연결 정보가 필요합니다.
 
 1. {{site.data.keyword.messagehub}} 서비스에 대해 구성된 패키지 바인딩을 작성하십시오.
   ```
@@ -246,5 +252,6 @@ Kafka 용어에서 필드는 자명합니다. 그러나 `key`에는 `key`가 2�
 {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}}, IBM Data Science Experience(Spark) 서비스와 OpenWhisk를 통합하는 예제는 [여기서 찾을 수](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0) 있습니다.
 
 ## 참조
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

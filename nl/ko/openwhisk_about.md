@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 플랫폼 아키텍처
 {: #openwhisk_about}
@@ -23,23 +29,23 @@ lastupdated: "2018-07-13"
 {{site.data.keyword.openwhisk_short}}에 대한 기술의 몇 가지 기본 개념에 대해 알아보십시오.
 
 <dl>
-<dt>액션</dt>
-<dd>[액션](openwhisk_actions.html)은 하나의 특정 태스크를 수행하는 코드 조각입니다. 액션은 JavaScript 또는 Swift 코드의 소형 스니펫이거나 Docker 컨테이너에 임베드된 사용자 정의 2진 코드와 같은 선택한 언어로 작성될 수 있습니다. 액션을 소스 코드 또는 Docker 이미지로 Cloud Functions에 제공합니다.
-<br><br>액션은 {{site.data.keyword.openwhisk_short}} API, CLI 또는 iOS SDK를 사용하여 직접 호출되면 작업을 수행합니다. 또한 트리거를 사용하여 {{site.data.keyword.Bluemix_notm}} 서비스 및 써드파티 서비스에서 이벤트에 자동으로 응답할 수 있습니다.</dd>
-<dt>시퀀스</dt>
-<dd>일련의 액션은 코드를 작성하지 않고도 [시퀀스](openwhisk_actions.html#openwhisk_create_action_sequence)에 연결될 수 있습니다. 시퀀스는 순서대로 호출되는 액션의 체인이며, 여기서 하나의 액션의 출력은 다음 액션에 입력으로 전달됩니다. 이를 통해 기존 액션을 결합하여 쉽고 빠르게 다시 사용할 수 있습니다. 그런 다음 시퀀스는 이벤트에 대한 응답으로 REST API를 통해 또는 자동으로 액션처럼 호출될 수 있습니다.
-</dd>
-<dt>이벤트</dt>
-<dd>이벤트의 예에는 데이터베이스 레코드에 대한 변경, 특정 온도를 초과하는 IoT 센서 측정값, GitHub 저장소에 대한 새 코드 커미트 또는 웹이나 모바일 앱의 단순 HTTP 요청 등이 포함됩니다. 외부 및 내부 이벤트 소스의 이벤트는 트리거를 통해 전달되며 룰은 액션이 이러한 이벤트에 대해 반응하도록 합니다.</dd>
-<dt>트리거</dt>
-<dd>[트리거](openwhisk_triggers_rules.html#openwhisk_triggers_create)는 이벤트 클래스의 이름 지정된 채널입니다. 트리거는 사용자 또는 이벤트 소스에 의한 특정 유형의 이벤트에 반응하려는 선언입니다.</dd>
-<dt>룰</dt>
-<dd>[룰](openwhisk_triggers_rules.html#openwhisk_rules_use)은 트리거를 액션과 연관시킵니다. 트리거가 실행될 때마다 룰은 입력으로서 트리거 이벤트를 사용하고 연관된 액션을 호출합니다. 적절한 룰 세트를 사용하면 단일 트리거 이벤트가 다중 액션을 호출하거나 액션이 다중 트리거의 이벤트에 대한 응답으로 호출될 수 있습니다.</dd>
-<dt>피드</dt>
-<dd>[피드](openwhisk_feeds.html#openwhisk_feeds)는 {{site.data.keyword.openwhisk_short}}에서 이용할 수 있는 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성하는 편리한 방법입니다 예를 들어, Git 피드는 Git 저장소에 대한 모든 커미트에 대해 트리거 이벤트를 실행할 수 있습니다. </dd>
-<dt>패키지</dt>
-<dd>서비스 및 이벤트 제공자와의 통합이 패키지에서 추가될 수 있습니다. [패키지](openwhisk_packages.html)는 피드 및 액션의 번들입니다. 피드는 트리거 이벤트를 실행하기 위해 외부 이벤트 소스를 구성하는 코드 조각입니다. 예를 들어, {{site.data.keyword.cloudant}} 변경 피드로 작성된 트리거는 문서가 수정되거나 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에 추가될 때마다 트리거를 실행하도록 서비스를 구성합니다. 서비스 제공자가 가용성을 제공할 수 있는 재사용 가능한 로직을 패키지의 액션에서 표시하므로, 개발자는 서비스를 이벤트 소스로서 사용하고 해당 서비스의 API를 호출할 수 있습니다.
-<br><br>패키지의 기존 카탈로그는 유용한 기능으로 애플리케이션을 강화하고 에코시스템의 외부 서비스에 액세스할 수 있는 빠른 방법을 제공합니다. {{site.data.keyword.openwhisk_short}} 패키지가 포함된 외부 서비스의 예에는 {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack 및 GitHub가 있습니다.</dd>
+  <dt>액션</dt>
+    <dd>[액션](/docs/openwhisk?topic=cloud-functions-openwhisk_actions)은 하나의 특정 태스크를 수행하는 코드 조각입니다. 액션은 JavaScript 또는 Swift 코드의 소형 스니펫이거나 Docker 컨테이너에 임베드된 사용자 정의 2진 코드와 같은 선택한 언어로 작성될 수 있습니다. 액션을 소스 코드 또는 Docker 이미지로 Cloud Functions에 제공합니다.
+    <br><br>액션은 {{site.data.keyword.openwhisk_short}} API, CLI 또는 iOS SDK를 사용하여 직접 호출되면 작업을 수행합니다. 또한 트리거를 사용하여 {{site.data.keyword.Bluemix_notm}} 서비스 및 서드파티 서비스에서 이벤트에 자동으로 응답할 수 있습니다.</dd>
+  <dt>시퀀스</dt>
+    <dd>일련의 액션은 코드를 작성하지 않고도 [시퀀스](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence)에 연결될 수 있습니다. 시퀀스는 순서대로 호출되는 액션의 체인이며, 여기서 하나의 액션의 출력은 다음 액션에 입력으로 전달됩니다. 이를 통해 기존 액션을 결합하여 쉽고 빠르게 다시 사용할 수 있습니다. 그런 다음 시퀀스는 이벤트에 대한 응답으로 REST API를 통해 또는 자동으로 액션처럼 호출될 수 있습니다.
+  </dd>
+  <dt>이벤트</dt>
+    <dd>이벤트의 예에는 데이터베이스 레코드에 대한 변경, 특정 온도를 초과하는 IoT 센서 측정값, GitHub 저장소에 대한 새 코드 커미트 또는 웹이나 모바일 앱의 단순 HTTP 요청 등이 포함됩니다. 외부 및 내부 이벤트 소스의 이벤트는 트리거를 통해 전달되며 룰은 액션이 이러한 이벤트에 대해 반응하도록 합니다.</dd>
+  <dt>트리거</dt>
+    <dd>[트리거](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create)는 이벤트 클래스의 이름 지정된 채널입니다. 트리거는 사용자 또는 이벤트 소스에 의한 특정 유형의 이벤트에 반응하려는 선언입니다.</dd>
+  <dt>룰</dt>
+    <dd>[룰](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use)은 트리거를 액션과 연관시킵니다. 트리거가 실행될 때마다 룰은 입력으로서 트리거 이벤트를 사용하고 연관된 액션을 호출합니다. 적절한 룰 세트를 사용하면 단일 트리거 이벤트가 다중 액션을 호출하거나 액션이 다중 트리거의 이벤트에 대한 응답으로 호출될 수 있습니다.</dd>
+  <dt>피드</dt>
+    <dd>[피드](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds)는 {{site.data.keyword.openwhisk_short}}에서 이용할 수 있는 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성하는 편리한 방법입니다 예를 들어, Git 피드는 Git 저장소에 대한 모든 커미트에 대해 트리거 이벤트를 실행할 수 있습니다.</dd>
+  <dt>패키지</dt>
+    <dd>서비스 및 이벤트 제공자와의 통합이 패키지에서 추가될 수 있습니다. [패키지](/docs/openwhisk?topic=cloud-functions-openwhisk_packages)는 피드 및 액션의 번들입니다. 피드는 트리거 이벤트를 실행하기 위해 외부 이벤트 소스를 구성하는 코드 조각입니다. 예를 들어, {{site.data.keyword.cloudant}} 변경 피드로 작성된 트리거는 문서가 수정되거나 {{site.data.keyword.cloudant_short_notm}} 데이터베이스에 추가될 때마다 트리거를 실행하도록 서비스를 구성합니다. 서비스 제공자가 가용성을 제공할 수 있는 재사용 가능한 로직을 패키지의 액션에서 표시하므로, 개발자는 서비스를 이벤트 소스로서 사용하고 해당 서비스의 API를 호출할 수 있습니다.
+    <br><br>패키지의 기존 카탈로그는 유용한 기능으로 애플리케이션을 강화하고 에코시스템의 외부 서비스에 액세스할 수 있는 빠른 방법을 제공합니다. {{site.data.keyword.openwhisk_short}} 패키지가 포함된 외부 서비스의 예에는 {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack 및 GitHub가 있습니다.</dd>
 </dl>
 
 ## {{site.data.keyword.openwhisk_short}}의 작동 방식
@@ -82,7 +88,7 @@ Nginx는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 H
 
 ### 인증 및 권한 부여: CouchDB
 
-이제 제어기는 사용자가 누구인지(*인증*)와 해당 엔티티에서 수행할 작업에 대한 권한이 있는지(*권한*) 여부를 확인합니다. 요청에 포함된 신임 정보에 대한 확인은 **CouchDB** 인스턴스의 이른바 **제목** 데이터베이스에 대해 이루어집니다.
+이제 제어기는 사용자가 누구인지(*인증*)와 해당 엔티티에서 수행할 작업에 대한 권한이 있는지(*권한*) 여부를 확인합니다. 요청에 포함된 인증 정보에 대한 확인은 **CouchDB** 인스턴스의 이른바 **제목** 데이터베이스에 대해 이루어집니다.
 
 이 경우에는 사용자가 OpenWhisk의 데이터베이스에 있는지와 *myAction* 액션(사용자가 소유하는 네임스페이스의 액션으로 가정됨)을 호출할 권한이 있는지가 확인됩니다. 후자는 액션을 호출하는 권한을 효과적으로 사용자에게 제공합니다.
 
@@ -156,11 +162,11 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### 요약
 
-단순한 **ibmcloud fn action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 서로 다른 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다.
+단순한 **ibmcloud fn action invoked myAction**이 {{site.data.keyword.openwhisk_short}} 시스템의 서로 다른 단계를 거치는 방법을 볼 수 있습니다. 시스템 자체는 기본적으로 2개의 사용자 정의 컴포넌트인 **제어기** 및 **호출기**로만 구성되어 있습니다. 기타 모든 컴포넌트는 오픈 소스 커뮤니티의 많은 개발자들에 의해 개발되어 이미 마련되어 있습니다. 
 
 다음 주제에서 {{site.data.keyword.openwhisk_short}}에 대한 추가 정보를 찾을 수 있습니다.
 
-* [엔티티 이름](./openwhisk_reference.html#openwhisk_entities)
-* [액션 시맨틱](./openwhisk_reference.html#openwhisk_semantics)
-* [한계](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST API 참조](https://console.bluemix.net/apidocs/functions)
+* [엔티티 이름](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [액션 시맨틱](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
+* [한계](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [REST API 참조](/apidocs/functions)

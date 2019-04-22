@@ -1,18 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-25"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: managing actions, manage, activation, action logs, changing runtime, delete
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 管理操作
+{: #managing_actions}
 {: #openwhisk_managing}
 
 通过监视操作输出、获取有关操作的特定信息或删除操作来管理操作。
@@ -24,13 +30,13 @@ lastupdated: "2018-07-25"
 创建操作后，可以获取有关操作详细信息的更多信息，并列出名称空间中的操作。
 {: shortdesc}
 
-要列出已创建的操作，请运行以下命令：
+要列出已创建的所有操作，请运行以下命令：
 ```
 ibmcloud fn action list
 ```
 {: pre}
 
-随着您创建的操作越来越多，将相关操作分组成[包](./openwhisk_packages.html)会非常有用。要过滤操作列表以只列出特定包中的操作，请运行以下命令：
+随着您创建的操作越来越多，将相关操作分组成[包](/docs/openwhisk?topic=cloud-functions-openwhisk_packages)会非常有用。要过滤操作列表以只列出特定包中的操作，请运行以下命令：
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -99,13 +105,13 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>有关此操作的注释。要获取可能的注释的列表，请参阅[操作注释](openwhisk_annotations.html#action)和 [Web 操作注释](openwhisk_annotations.html#annotations-specific-to-web-actions)参考主题。</td>
+<td>有关此操作的注释。要获取可能的注释的列表，请参阅[操作注释](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action)和 [Web 操作注释](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions)参考主题。</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
 <td><ul><li><code>timeout</code>：为操作设置的超时（以毫秒为单位），在此时间后操作会终止。缺省值：6000</li>
 <li><code>memory</code>：为操作设置的最大内存限制（以 MB 为单位）。缺省值：256</li>
-<li><code>logs</code>：为操作设置的最大日志限制（以 MB 为单位）。缺省值：10</li></ul></td>
+<li><code>logs</code>：为操作设置的最大日志大小限制（以 MB 为单位）。缺省值：10</li></ul></td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -114,7 +120,7 @@ ok: got action hello
 </tbody></table>
 
 ## 查看激活详细信息
-{: #activation}
+{: #activation_details}
 
 {{site.data.keyword.openwhisk_short}} 操作可以由其他用户调用、响应各种事件或作为操作序列的组成部分。每当调用操作时，都会为该调用创建激活记录。要获取有关操作调用结果的信息，您可以获取有关激活的详细信息。
 
@@ -134,7 +140,7 @@ ibmcloud fn activation get <activation_ID>
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "BobsOrg_dev",
+    "namespace": "myNamespace",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -154,7 +160,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "BobsOrg_dev/hello"
+            "value": "myNamespace/hello"
         },
         {
             "key": "waitTime",
@@ -213,9 +219,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <td>激活的开始时间。</td>
 </tr>
 <tr>
-<td><code>end
-</code></td>
-<td>激活的结束时间。</td>
+<td><code>end</code></td>
+<td>激活的完成时间。</td>
 </tr>
 <tr>
 <td><code>duration</code></td>
@@ -230,11 +235,12 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </ul></td>
 </tr>
 <tr>
-<td><code>logs</code></td><td>此激活的日志。</td>
+<td><code>logs</code></td>
+<td>此激活的日志。</td>
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>有关此操作的注释。有关可能的激活注释的列表，请参阅[注释参考主题](openwhisk_annotations.html#activation)。</td>
+<td>有关此操作的注释。有关可能的激活注释的列表，请参阅[注释参考主题](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation)。</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -251,7 +257,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 |
 | -------- | ----------- |
 |`__OW_API_HOST`|运行此操作的 OpenWhisk 部署的 API 主机。|
-|`__OW_API_KEY`|调用此操作的主体的 API 密钥，此密钥可能是受限制的 API 密钥。|
+|`__OW_API_KEY`|调用此操作的主体的 API 密钥。此密钥可能是受限 API 密钥，除非显式请求，否则此密钥不会存在。请参阅[注释](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations)。|
 |`__OW_NAMESPACE`|激活的名称空间。此名称空间可能与操作的名称空间不同。|
 |`__OW_ACTION_NAME`|运行中操作的标准名称。|
 |`__OW_ACTIVATION_ID`|此运行中操作实例的激活标识。|
@@ -276,14 +282,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-[Web 操作](./openwhisk_webactions.html)的示例输出：
+[Web 操作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions)的示例输出：
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**注：**对于标准操作，当通过 HTTPS 请求进行调用时，必须提供认证。有关使用 REST 接口调用操作的更多信息，请参阅 [REST API 参考](https://console.bluemix.net/apidocs/functions)。
+**注：**对于标准操作，当通过 HTTPS 请求进行调用时，必须提供认证。有关使用 REST 接口调用操作的更多信息，请参阅 [REST API 参考](https://cloud.ibm.com/apidocs/functions)。
 
 
 ## 保存操作代码
@@ -298,7 +304,7 @@ ibmcloud fn action get actionName --save
 ```
 {: pre}
 
-将使用与操作类型相对应的文件扩展名。对于作为 zip 文件的操作码，将使用扩展名 .zip。示例输出：
+将使用与操作 kind 相对应的文件扩展名。对于作为 zip 文件的操作码，将使用扩展名 .zip。示例输出：
 ```
   ok: saved action code to /absolutePath/currentDirectory/actionName.js
   ```
@@ -347,7 +353,35 @@ ibmcloud fn action get actionName --save-as codeFile.js
     2016-02-11T16:46:56.842065025Z stdout: hello bob!
   ```
     {: screen}
-    您还可以在 {{site.data.keyword.openwhisk_short}} 中实时查看 OpenWhisk 中代表您运行的任何操作的日志。
+    您还可以在 {{site.data.keyword.openwhisk_short}} 中实时查看代表您运行的任何操作的日志。
+    
+## 更改操作运行时
+{: #changing-action-runtime}
+
+您可以更改运行时 `kind` 以迁移到更新版本的操作运行时。例如，由于 Node.js V8 处于维护方式，因此您可能希望将运行时切换为 Node.js 10。可以使用以下步骤来更改操作运行时。**注：**您可能需要更改 `actionName.js` 中的代码以符合新的运行时版本。这取决于运行时切换是否需要此类更改。在大多数情况下，运行时版本是兼容的。
+
+1. 将操作代码保存在文件中。
+
+  ```
+ibmcloud fn action get actionName --save
+```
+  {: pre}
+
+2. 通过指定新运行时来更新操作。
+
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
+
+有关可用运行时的列表，请参阅[运行时](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)。
+
+## 管理大型操作
+{: #large-app-support}
+
+操作的最大代码大小为 48 MB。包含大量第三方模块、本机库或外部工具的应用程序可能会达到此限制。如果您创建了大于 48 MB 的 .zip 或 .jar 包操作，那么必须使用依赖项来扩展运行时映像，然后使用单个源文件或小于 48 MB 的归档。
+
+例如，通过构建包含必要共享库的定制 Docker 运行时，无需在归档文件中提供这些依赖项。仍可在归档中捆绑专用源文件，并在运行时注入这些文件。
 
 ## 删除操作
 {: #deleting-actions}

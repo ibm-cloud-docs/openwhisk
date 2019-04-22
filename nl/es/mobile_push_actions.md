@@ -1,18 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Paquete Mobile Push
 {: #openwhisk_catalog_pushnotifications}
+
+Este paquete preinstalado no está disponible en la región de Tokio. Consulte el paquete [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) instalable para la acción
+`sendMessage` que utiliza autenticación de IAM 
+{: tip}
 
 Aprenda a crear un enlace de paquete Push y a enviar una notificación Push simple con el paquete `/whisk.system/pushnotifications`, que le ofrece la posibilidad de trabajar con un servicio de envío por push.
 {: shortdesc}
@@ -23,9 +33,9 @@ El paquete incluye las siguientes acciones y canales de información:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | paquete | appId, appSecret, admin_url | Trabajar con el servicio Push. |
 | `/whisk.system/pushnotifications/sendMessage` | acción | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Enviar notificaciones push a uno o más dispositivos especificados. |
-| `/whisk.system/pushnotifications/webhook` | canal de información | events | Activar sucesos desencadenantes en actividades de dispositivo (registro, anulación del registro, suscripción o anulación de suscripción de dispositivos) en el servicio Push. |
 
-Para obtener información sobre cómo activar sucesos desencadenantes cuando hay actividad de dispositivo, consulte el tema [Mobile Push en sucesos de dispositivo](./openwhisk_pushnotifications.html).
+
+Para obtener información sobre cómo activar sucesos desencadenantes cuando hay actividad de dispositivo, consulte el tema [Mobile Push en sucesos de dispositivo](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications).
 
 ## Creación de un enlace de paquete Push
 {: #create_push_binding}
@@ -37,11 +47,11 @@ Para crear un enlace de paquete de notificaciones push: debe especificar los par
 
 Para crear un enlace de paquete, siga los siguientes pasos:
 
-1. Cree una aplicación de {{site.data.keyword.Bluemix_notm}} en el [Panel de control de {{site.data.keyword.Bluemix_notm}}](http://console.bluemix.net).
+1. Cree una aplicación de {{site.data.keyword.Bluemix_notm}} en el [Panel de control de {{site.data.keyword.Bluemix_notm}}](http://cloud.ibm.com).
 
 2. Inicialice el servicio de notificación push y enlace el servicio con la aplicación de {{site.data.keyword.Bluemix_notm}}.
 
-3. Configure la [aplicación de notificación push](https://console.bluemix.net/docs/services/mobilepush/index.html).
+3. Configure la [aplicación de notificación push](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate).
 
   Asegúrese de recordar el **GUID de App** y el **Secreto de App** de la app de {{site.data.keyword.Bluemix_notm}} que ha creado.
 
@@ -74,7 +84,7 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones P
 - `deviceIds`: la lista de dispositivos especificados. Por ejemplo, `-p deviceIds ["deviceID1"]`.
 - `plataformas`: enviar una notificación a los dispositivos de las plataformas especificadas. 'A' para dispositivos Apple (iOS) y 'G' para dispositivos Google (Android). Por ejemplo, `-p platforms ["A"]`.
 - `userIds`: enviar notificaciones a dispositivos de los usuarios que especifique. Por ejemplo, `-p userIds "[\"testUser\"]"`
-- `tagNames`: enviar una notificación a los dispositivos que están suscritos a cualquiera de estas etiquetas. Por ejemplo, `-p tagNames "[\"tag1\"]" `.
+- `tagNames`: enviar una notificación a los dispositivos que están suscritos a cualquiera de estas etiquetas. Por ejemplo, `-p tagNames "[\"tag1\"]"`.
 - `gcmCollapseKey`: este parámetro identifica un grupo de mensajes
 - `gcmCategory`: identificador de categoría a utilizar para las notificaciones push interactivas.
 - `gcmIcon`: especifica el nombre del icono a visualizar en la notificación. Asegúrese de que el icono ya está empaquetado con la aplicación de cliente.

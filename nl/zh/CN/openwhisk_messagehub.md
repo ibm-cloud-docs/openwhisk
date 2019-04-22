@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Message Hub 事件源
+# Event Streams 事件源
 {: #openwhisk_catalog_message_hub}
 
 您可以创建用于在消息使用订阅源发布到 {{site.data.keyword.messagehub_full}} 实例时做出反应的触发器。了解如何使用或不使用 {{site.data.keyword.Bluemix}} 创建 {{site.data.keyword.messagehub}}，侦听消息以及处理批量消息。
@@ -19,10 +25,10 @@ lastupdated: "2018-06-22"
 
 ## {{site.data.keyword.messagehub}} 包
 
-不推荐使用 `/messaging/messageHubProduce` 操作，该操作未来会除去。为了保持最佳性能，在将数据生成到 Message Hub/Kafka 时，请将使用 `/messaging/messageHubProbate` 操作迁移为使用持久连接。
-{: tip}
+不推荐使用 `/messaging/messageHubProduce` 操作，该操作未来会除去。东京区域中已除去该操作。为了保持最佳性能，在将数据生成到 Message Hub/Kafka 时，请将使用 `/messaging/messageHubProbate` 操作迁移为使用持久连接。
+{: deprecated}
 
-此包支持与 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。有关 {{site.data.keyword.messagehub}} 包以及如何设置包和生成消息的更多信息，请参阅 [{{site.data.keyword.messagehub}} 包](./messagehub_actions.html)主题。
+此包支持与 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。有关 {{site.data.keyword.messagehub}} 包以及如何设置包和生成消息的更多信息，请参阅 [{{site.data.keyword.messagehub}} 包](/docs/openwhisk?topic=cloud-functions-catalog_message_hub)主题。
 
 ## 创建用于侦听 {{site.data.keyword.messagehub}} 实例的触发器
 {: #create_message_hub_trigger}
@@ -246,5 +252,6 @@ lastupdated: "2018-06-22"
 有关用于将 OpenWhisk 与 {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full}} 和 IBM Data Science Experience (Spark) 服务集成的示例[位于此处](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)。
 
 ## 参考
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

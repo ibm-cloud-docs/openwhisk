@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: web actions, http requests, functions, extensions, parameters
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 创建 Web 操作
 {: #openwhisk_webactions}
@@ -42,15 +48,15 @@ ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-使用值为 `true` 或 `yes` 的 `--web` 标志时，将允许通过 REST 接口访问操作，而无需凭证。要使用凭证配置 Web 操作，请参阅[保护 Web 操作](./openwhisk_webactions.html#securing-web-actions)部分。可以使用如下所示构造的 URL 来调用 Web 操作：`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`。
+使用值为 `true` 或 `yes` 的 `--web` 标志时，将允许通过 REST 接口访问操作，而无需凭证。要使用凭证配置 Web 操作，请参阅[保护 Web 操作](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#securing-web-actions)部分。可以使用如下所示构造的 URL 来调用 Web 操作：`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`。
 
 如果操作不在指定的包中，那么包名为 **default**。
 
 例如，`guest/demo/hello`。Web 操作 API 路径可与 `curl` 或 `wget` 配合使用，而不使用 API 密钥。甚至可以直接在浏览器中进行输入。
 
-尝试在 Web 浏览器中打开 [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane)。或者，尝试使用 `curl` 来调用该操作：
+尝试在 Web 浏览器中打开 `https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane`。或者，尝试使用 `curl` 来调用该操作：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
@@ -121,20 +127,21 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [响应大小限制](./openwhisk_reference.html)，因为超过预定义系统限制的响应将失败。例如，大对象不会通过 {{site.data.keyword.openwhisk_short}} 内嵌发送，而是会转移到对象存储。
+It is important to be aware of the [响应大小限制](/docs/openwhisk?topic=cloud-functions-openwhisk_reference)，因为超过预定义系统限制的响应将失败。例如，大对象不会通过 {{site.data.keyword.openwhisk_short}} 内嵌发送，而是会转移到对象存储。
 
 ## 使用操作处理 HTTP 请求
 {: #openwhisk_webactions_http}
 
-不属于 Web 操作的 {{site.data.keyword.openwhisk_short}} 操作不仅需要认证，而且必须使用 JSON 对象进行响应。相反，Web 操作可以在无认证的情况下进行调用，也可用于实现通过不同类型的 _headers_、_statusCode_ 和 _body_ 内容进行响应的 HTTP 处理程序。Web 操作必须返回 JSON 对象。但是，{{site.data.keyword.openwhisk_short}} 系统（即`控制器`）在其结果包含以下一个或多个顶级 JSON 属性的情况下，将以不同的方式处理 Web 操作：
+不是 Web 操作的 {{site.data.keyword.openwhisk_short}} 操作需要认证，并且必须使用 JSON 对象进行响应。
 
-- `headers`：JSON 对象，其中键是头名称，值是这些头的字符串值、数字值或布尔值（缺省情况下没有 headers）。要为单个头发送多个值，该头的值为 JSON 值数组。
-- `statusCode`：有效 HTTP 状态码（缺省值为 200 OK）。
-- `body`：字符串，为明文或基本 64 位编码的字符串（对于二进制数据）。
+Web 操作可以在无需认证的情况下进行调用，也可用于实现通过不同类型的 `headers`、`statusCode` 和 `body` 内容进行响应的 HTTP 处理程序。Web 操作必须返回 JSON 对象。但是，控制器在其结果包含以下一个或多个属性作为顶级 JSON 属性的情况下，将以不同的方式处理 Web 操作：
 
-控制器会将操作指定的头（如有）传递到终止请求/响应的 HTTP 客户机。与此类似，控制器将使用状态码（如果存在）进行响应。最后，主体会作为响应主体进行传递。除非在操作结果的 `headers` 中声明 `Content-Type` 头，否则 body 会视为字符串进行传递（不然将导致出错）。定义了 `Content-Type` 后，控制器将确定响应是二进制数据还是明文，然后根据需要使用基本 64 位解码器对字符串进行解码。如果 body 未能正确解码，那么会向调用者返回错误。
+- `headers`：JSON 对象，其中键是头名称，值是字符串值、数字值或布尔值。要为单个头发送多个值，该头的值为 JSON 多值数组。缺省情况下，不会设置任何头。
+- `statusCode`：有效的 HTTP 状态码。如果存在 body 内容，那么缺省值为 `200 OK`。如果不存在 body 内容，那么缺省值为 `204 No Content`。
+- `body`：字符串，为明文、JSON 对象或数组，或者为 Base64 编码的字符串（对于二进制数据）。如果 body 为 `null`、空字符串 `""` 或未定义，那么会将 body 视为空。缺省值为空主体。
 
-_注_：JSON 对象或数组会视为二进制数据，并且必须进行基本 64 位编码。
+控制器将任何操作指定的头、状态码或主体传递到 HTTP 客户机，后者将终止请求或响应。如果操作结果的 `headers` 中未声明 `Content-Type` 头，那么 body 将解释为 `application/json`（表示非字符串值），否则将解释为 `text/html`。 如果定义了 `Content-Type` 头，控制器将确定响应是二进制数据还是明文，然后根据需要使用 Base64 解码器对字符串进行解码。如果 body 未能正确解码，那么会向客户机返回错误。
+
 
 ## HTTP 上下文
 {: #http-context}
@@ -152,13 +159,13 @@ _注_：JSON 对象或数组会视为二进制数据，并且必须进行基本 
 
 请求不得覆盖任何指定的 `__ow_` 参数。加以覆盖会导致请求失败，并返回状态“400 错误请求”。
 
-仅当 Web 操作[注释为需要认证](./openwhisk_annotations.html#annotations-specific-to-web-actions)并允许 Web 操作实现其自己的授权策略时，才会显示 `__ow_user`。仅当 Web 操作选择处理[“原始”HTTP 请求](#raw-http-handling)时，`__ow_query` 才可用。这是包含从 URI 中解析出的查询参数（用 `&` 分隔）的字符串。处理“原始”HTTP 请求时或者 HTTP 请求实体不是 JSON 对象或表单数据时，会显示 `__ow_body` 属性。在其他情况下，Web 操作接收查询和主体参数作为操作自变量中的第一类属性。主体参数优先于查询参数，而查询参数又优先于操作和包参数。
+仅当 Web 操作[注释为需要认证](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions)并允许 Web 操作实现其自己的授权策略时，才会显示 `__ow_user`。仅当 Web 操作选择处理[“原始”HTTP 请求](#raw-http-handling)时，`__ow_query` 才可用。这是包含从 URI 中解析出的查询参数（用 `&` 分隔）的字符串。处理“原始”HTTP 请求时或者 HTTP 请求实体不是 JSON 对象或表单数据时，会显示 `__ow_body` 属性。在其他情况下，Web 操作接收查询和主体参数作为操作自变量中的第一类属性。主体参数优先于查询参数，而查询参数又优先于操作和包参数。
 
 ## HTTPS 端点支持
 
-支持的 SSL 协议：TLS 1.0、TLS 1.1、TLS 1.2 和 TLS 1.3（[草稿版本 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18)）
+支持的 SSL 协议：TLS 1.2 和 TLS 1.3（[草稿版本 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18)）
 
-不支持的 SSL 协议：SSLv2 和 SSLv3
+不支持的 SSL 协议：SSLv2、SSLv3、TLS 1.0 和 TLS 1.1
 
 ## 额外功能
 {: #extra-features}
@@ -184,8 +191,8 @@ Web 操作额外提供了一些功能，包括：
 
 例如，要返回整个对象，并查看操作接收的自变量：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
-```
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
+ ```
 {: pre}
 
 示例输出：
@@ -207,8 +214,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
 
 要使用查询参数运行，请参阅以下示例命令：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
-```
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
+ ```
 {: pre}
 
 示例输出：
@@ -231,8 +238,8 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 
 还可以使用表单数据来运行：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
-```
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ ```
 {: pre}
 
 示例输出：
@@ -257,7 +264,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name"
 
 对 JSON 对象运行以下命令：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -283,7 +290,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Conte
 
 运行以下命令以对名称（作为文本）进行投影：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
 {: pre}
 
@@ -297,7 +304,7 @@ Jane
 
 请参阅以下示例，其中使用的 content-type 是“text”，如先前所示。
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
 {: pre}
 
@@ -340,7 +347,7 @@ ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web
 ## 保护 Web 操作
 {: #securing-web-actions}
 
-缺省情况下，任何具有 Web 操作调用 URL 的人员都可以调用 Web 操作。使用 `require-whisk-auth` [Web 操作注释](./openwhisk_annotations.html#annotations-specific-to-web-actions)可保护 Web 操作。`require-whisk-auth` 注释设置为 `true` 时，操作将根据操作所有者的 Whisk 认证密钥来认证调用请求的基本授权凭证。设置为数字或区分大小写的字符串时，操作的调用请求必须包含具有此相同值的 `X-Require-Whisk-Auth` 头。受保护的 Web 操作在凭证验证失败时，将返回消息`未授权`。
+缺省情况下，任何具有 Web 操作调用 URL 的人员都可以调用 Web 操作。使用 `require-whisk-auth` [Web 操作注释](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions)可保护 Web 操作。`require-whisk-auth` 注释设置为 `true` 时，操作将根据操作所有者的 Whisk 认证密钥来认证调用请求的基本授权凭证。设置为数字或区分大小写的字符串时，操作的调用请求必须包含具有此相同值的 `X-Require-Whisk-Auth` 头。受保护的 Web 操作在凭证验证失败时，将返回消息`未授权`。
 
 或者，使用 `--web-secure` 标志来自动设置 `require-whisk-auth` 注释。设置为 `true` 时，将生成随机数作为 `require-whisk-auth` 注释值。设置为 `false` 时，将除去 `require-whisk-auth` 注释。设置为其他任何值时，该值将用作 `require-whisk-auth` 注释值。
 
@@ -374,9 +381,9 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## 原始 HTTP 处理
 
-Web 操作可选择直接解释和处理入局 HTTP 主体，而不将 JSON 对象提升为操作输入可用的第一类属性（例如，`args.name`，而不是解析 `args.__ow_query`）。此过程通过 `raw-http` [注释](./openwhisk_annotations.html)来执行。使用上文所示的相同示例，但现在作为将 `name` 同时接收为查询参数和 HTTP 请求主体中 JSON 值的“原始”HTTP Web 操作：
+Web 操作可选择直接解释和处理入局 HTTP 主体，而不将 JSON 对象提升为操作输入可用的第一类属性（例如，`args.name`，而不是解析 `args.__ow_query`）。此过程通过 `raw-http` [注释](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations)来执行。使用上文所示的相同示例，但现在作为将 `name` 同时接收为查询参数和 HTTP 请求主体中 JSON 值的“原始”HTTP Web 操作：
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -401,7 +408,7 @@ curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
 ```
 {: screen}
 
-OpenWhisk 使用 [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) 框架来[确定](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)哪些内容类型是二进制，哪些是明文。
+OpenWhisk 使用 [Akka Http](https://doc.akka.io/docs/akka-http/current/?language=scala) 框架来[确定](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)哪些内容类型是二进制，哪些是明文。
 
 ### 启用原始 HTTP 处理
 
@@ -484,7 +491,7 @@ ok: created action decode
 {: screen}
 
 ```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
+curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
 

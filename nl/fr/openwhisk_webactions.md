@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: web actions, http requests, functions, extensions, parameters
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Création d'actions Web
 {: #openwhisk_webactions}
@@ -42,16 +48,16 @@ ibmcloud fn action create /guest/demo/hello hello.js --web true
 ```
 {: pre}
 
-L'utilisation de l'indicateur `--web` avec la valeur `true` ou `yes` rend une action accessible au moyen d'une interface REST sans avoir à spécifier des données d'identification. Pour configurer une action Web avec des données d'identification, voir la section [Sécurisation des actions Web](./openwhisk_webactions.html#securing-web-actions). Une action Web peut être appelée en utilisant une URL structurée comme suit :
+L'utilisation de l'indicateur `--web` avec la valeur `true` ou `yes` rend une action accessible au moyen d'une interface REST sans avoir à spécifier des données d'identification. Pour configurer une action Web avec des données d'identification, voir la section [Sécurisation des actions Web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#securing-web-actions). Une action Web peut être appelée en utilisant une URL structurée comme suit :
 `https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
 
 Le nom du package est **default** si l'action n'est pas un package nommé.
 
 Par exemple, `guest/demo/hello`. Le chemin de l'API de l'action Web peut être utilisé avec `curl` ou `wget` sans clé d'API. Il peut même être entré directement dans votre navigateur.
 
-Tentez d'ouvrir [https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane](https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane) dans votre navigateur Web. Ou essayez d'appeler l'action en utilisant `curl` :
+Tentez d'ouvrir `https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane` dans votre navigateur Web. Ou essayez d'appeler l'action en utilisant `curl` :
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
 ```
 {: pre}
 
@@ -122,20 +128,22 @@ function main(params) {
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
-It is important to be aware of the [taille limite de la réponse](./openwhisk_reference.html) pour les actions car une réponse dépassant les limites du système prédéfinies est vouée à l'échec. Les objets volumineux ne sont pas envoyés en ligne via {{site.data.keyword.openwhisk_short}}, mais différés vers un conteneur d'objets, par exemple.
+It is important to be aware of the [taille limite de la réponse](/docs/openwhisk?topic=cloud-functions-openwhisk_reference) pour les actions car une réponse dépassant les limites du système prédéfinies est vouée à l'échec. Les objets volumineux ne sont pas envoyés en ligne via {{site.data.keyword.openwhisk_short}}, mais différés vers un conteneur d'objets, par exemple.
 
 ## Traitement des demandes HTTP à l'aide d'actions
 {: #openwhisk_webactions_http}
 
-Une action {{site.data.keyword.openwhisk_short}} qui n'est pas une action Web requiert les deux authentifications et doit répondre avec un objet JSON. En revanche, les actions Web peuvent être appelées sans authentification et peuvent être utilisées pour implémenter des gestionnaires HTTP qui répondent avec un contenu _headers_, _statusCode_ et _body_ de différents types. L'action Web doit renvoyer un objet JSON. Toutefois, le système {{site.data.keyword.openwhisk_short}} (c'est-à-dire le contrôleur (`controller`)), traite une action Web différemment si son résultat comprend une ou plusieurs des propriétés JSON de niveau supérieur suivantes :
+Une action {{site.data.keyword.openwhisk_short}} qui n'est pas une action Web requiert une authentification et doit répondre avec un objet JSON. 
 
-- `headers` : objet JSON dans lequel les clés sont des noms d'en-tête et les valeurs sont des valeurs de chaîne, numériques ou booléennes pour ces en-têtes (par défaut, il n'y a aucune valeur d'en-tête). Pour que plusieurs valeurs puissent être envoyées pour un seul en-tête, la valeur de l'en-tête est un tableau de valeurs JSON.
-- `statusCode`: code d'état HTTP valide (la valeur par défaut est 200 OK).
-- `body` : chaîne qui est un texte en clair ou une chaîne codée en base64 (pour les données binaires).
+Les actions Web peuvent être appelées sans authentification et peuvent être utilisées pour implémenter des gestionnaires HTTP qui répondent avec un contenu `headers`, `statusCode` et `body` de différents types. Les actions Web doivent renvoyer un objet JSON. Toutefois, le contrôleur traite une action Web différemment si
+son résultat comprend une ou plusieurs des propriétés JSON de niveau supérieur suivantes :
 
-Le contrôleur est censé transmettre les en-têtes spécifiés par l'action, le cas échéant, au client HTTP qui finalise la demande-réponse. De même, le contrôleur répondra avec le code d'état, lorsque celui-ci existe. Enfin, le corps sera transmis en tant que corps de la réponse. Sauf si un en-tête `Content-Type` est déclaré dans la zone `headers` du résultat de l'action, le corps est transmis en l'état s'il s'agit d'une chaîne (sinon, une erreur est générée). Lorsque l'élément `Content-Type` est défini, le contrôleur détermine si la réponse contient des données binaires ou un texte en clair et décode la chaîne à l'aide d'un décodeur de base64 si besoin. Si le corps ne peut pas être correctement décodé, une erreur est renvoyée à l'appelant.
+- `headers` : objet JSON dans lequel les clés sont des noms d'en-tête et les valeurs sont des valeurs de chaîne, numériques ou booléennes. Pour que plusieurs valeurs puissent être envoyées pour un seul en-tête, la valeur de l'en-tête est un tableau de ces valeurs. Aucun en-tête n'est défini par défaut. 
+- `statusCode` : code d'état HTTP valide. Si le corps comporte un contenu, la valeur par défaut est `200 OK`. Si aucun contenu n'est présent pour le corps, la valeur par défaut est `204 No Content`. 
+- `body` : chaîne qui est un texte en clair, un tableau ou un objet JSON, ou une chaîne codée en base64 pour les données binaires. Le corps est considéré comme vide s'il comporte la valeur `null`, la chaîne vide `""`, ou s'il n'est pas défini. La valeur par défaut est un corps vide. 
 
-_Remarque_ : un objet ou tableau JSON est traité en tant que données binaires et doit être codé en base64.
+Le contrôleur transmet les en-têtes spécifiés par une action, le code d'état ou le corps au client HTTP qui met fin à la demande ou à la réponse. Si l'en-tête `Content-Type` n'est pas déclaré dans le contenu `headers` du résultat de l'action, le corps est interprété en tant que `application/json` pour les valeurs qui ne sont pas des chaînes, et en tant que `text/html` pour les autres. Lorsque l'en-tête `Content-Type` est défini, le contrôleur détermine si la réponse contient des données binaires ou un texte en clair et décode la chaîne à l'aide                  *d'un décodeur de base64 si besoin. Si le corps n'est pas décodé correctement, une erreur est renvoyée au client. 
+
 
 ## Contexte HTTP
 {: #http-context}
@@ -153,13 +161,13 @@ Examinez les paramètres HTTP suivants :
 
 Une demande ne peut remplacer aucun des paramètres `__ow_` nommés. Si cela se produit, la demande échoue avec l'état 400 Bad Request.
 
-Le paramètre `__ow_user` n'est présent que lorsque l'action Web est [annotée pour indiquer que l'authentification est requise](./openwhisk_annotations.html#annotations-specific-to-web-actions) et permet à une action Web d'implémenter sa propre règle d'autorisation. Le paramètre `__ow_query` n'est disponible que lorsqu'une action Web choisit de traiter la [demande HTTP "raw"](#raw-http-handling). Il s'agit d'une chaîne contenant les paramètres de requête qui sont analysés à partir de l'URI (séparés par `&`). La propriété `__ow_body` est présente dans les demandes HTTP brutes ou lorsque l'entité de demande HTTP n'est pas un objet JSON ni des données de formulaire. Sinon, les actions Web reçoivent les paramètres de requête et de corps comme propriétés de première classe dans les arguments d'action. Les paramètres de corps sont prioritaires sur les paramètres de requête, lesquels sont prioritaires sur les paramètres d'action et de package.
+Le paramètre `__ow_user` n'est présent que lorsque l'action Web est [annotée pour indiquer que l'authentification est requise](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions) et permet à une action Web d'implémenter sa propre règle d'autorisation. Le paramètre `__ow_query` n'est disponible que lorsqu'une action Web choisit de traiter la [demande HTTP "raw"](#raw-http-handling). Il s'agit d'une chaîne contenant les paramètres de requête qui sont analysés à partir de l'URI (séparés par `&`). La propriété `__ow_body` est présente dans les demandes HTTP brutes ou lorsque l'entité de demande HTTP n'est pas un objet JSON ni des données de formulaire. Sinon, les actions Web reçoivent les paramètres de requête et de corps comme propriétés de première classe dans les arguments d'action. Les paramètres de corps sont prioritaires sur les paramètres de requête, lesquels sont prioritaires sur les paramètres d'action et de package.
 
 ## Prise en charge de noeud final HTTPS
 
-Protocoles SSL pris en charge : TLS 1.0, TLS 1.1, TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+Protocoles SSL pris en charge : TLS 1.2, TLS 1.3 ([version brouillon 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
 
-Protocoles SSL non pris en charge : SSLv2, SSLv3
+Protocoles SSL non pris en charge : SSLv2, SSLv3, TLS 1.0, TLS 1.1
 
 ## Fonctions supplémentaires
 {: #extra-features}
@@ -185,7 +193,7 @@ Lorsque cette action est appelée en tant qu'action Web, vous pouvez modifier la
 
 Par exemple, pour renvoyer la totalité de l'objet et voir les arguments que l'action reçoit :
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
  ```
 {: pre}
 
@@ -208,7 +216,7 @@ Exemple de sortie :
 
 Pour effectuer une exécution avec un paramètre de requête, examinez l'exemple de commande suivant :
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
  ```
 {: pre}
 
@@ -232,7 +240,7 @@ Exemple de sortie :
 
 Vous pouvez également effectuer une exécution avec des données de formulaire :
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -d "name":"Jane"
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
  ```
 {: pre}
 
@@ -258,7 +266,7 @@ Exemple de sortie :
 
 Exécutez la commande suivante pour un objet JSON :
 ```
- curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -284,7 +292,7 @@ Exemple de sortie :
 
 Exécutez la commande suivante pour projeter le nom (en tant que texte) :
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.text/response/name?name=Jane
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
 ```
 {: pre}
 
@@ -298,7 +306,7 @@ Par souci de commodité, les paramètres de requête, les données de formulaire
 
 Examinez l'exemple suivant qui utilise un type de contenu "text", comme illustré précédemment :
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
 ```
 {: pre}
 
@@ -341,7 +349,7 @@ Ces modifications ont pour conséquence de lier `name` à `Jane`, ce qui ne peut
 ## Sécurisation des actions Web
 {: #securing-web-actions}
 
-Par défaut, une action Web peut être appelée par toute personne disposant de l'URL d'appel de l'action Web. Utilisez l'[annotation d'action Web](./openwhisk_annotations.html#annotations-specific-to-web-actions) `require-whisk-auth` pour sécuriser l'action Web. Lorsque l'annotation `require-whisk-auth` a la valeur `true`, l'action authentifie les données d'identification pour l'autorisation de base de la demande d'appel par rapport à la clé d'authentification Whisk du propriétaire de l'action. Lorsqu'elle est définie avec un nombre ou une chaîne sensible à la casse, la demande d'appel de l'action doit inclure un en-tête `X-Require-Whisk-Auth` ayant la même valeur. Les actions Web sécurisées renverront le message `Not Authorized` en cas d'échec de validation des données d'identification.
+Par défaut, une action Web peut être appelée par toute personne disposant de l'URL d'appel de l'action Web. Utilisez l'[annotation d'action Web](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions) `require-whisk-auth` pour sécuriser l'action Web. Lorsque l'annotation `require-whisk-auth` a la valeur `true`, l'action authentifie les données d'identification pour l'autorisation de base de la demande d'appel par rapport à la clé d'authentification Whisk du propriétaire de l'action. Lorsqu'elle est définie avec un nombre ou une chaîne sensible à la casse, la demande d'appel de l'action doit inclure un en-tête `X-Require-Whisk-Auth` ayant la même valeur. Les actions Web sécurisées renverront le message `Not Authorized` en cas d'échec de validation des données d'identification.
 
 Sinon, utilisez l'indicateur `--web-secure` pour définir automatiquement l'annotation `require-whisk-auth`.  Si la valeur définie est `true`, un nombre aléatoire est généré comme valeur pour l'annotation `require-whisk-auth`. Si la valeur définie est `false`, l'annotation `require-whisk-auth` est retirée.  Avec une autre valeur définie, c'est cette valeur qui est utilisée comme valeur pour l'annotation `require-whisk-auth`.
 
@@ -375,9 +383,9 @@ ibmcloud fn action update /guest/demo/hello hello.js --web false
 
 ## Traitement de demande HTTP brute
 
-Une action Web peut choisir d'interpréter et de traiter directement un corps HTTP entrant, sans la promotion d'un objet JSON vers les propriétés de première classe disponibles pour l'entrée d'action (par exemple, `args.name` par rapport à l'analyse `args.__ow_query`). Ce processus est effectué via une [annotation](./openwhisk_annotations.html) `raw-http`. Utilisation de l'exemple précédent, mais cette fois-ci avec une action Web HTTP brute qui reçoit `name` comme paramètre de requête et comme valeur JSON dans le corps de demande HTTP :
+Une action Web peut choisir d'interpréter et de traiter directement un corps HTTP entrant, sans la promotion d'un objet JSON vers les propriétés de première classe disponibles pour l'entrée d'action (par exemple, `args.name` par rapport à l'analyse `args.__ow_query`). Ce processus est effectué via une [annotation](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations) `raw-http`. Utilisation de l'exemple précédent, mais cette fois-ci avec une action Web HTTP brute qui reçoit `name` comme paramètre de requête et comme valeur JSON dans le corps de demande HTTP :
 ```
-curl https://openwhisk.ng.bluemix.net/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
@@ -402,7 +410,7 @@ Exemple de sortie :
 ```
 {: screen}
 
-OpenWhisk utilise l'infrastructure [Akka Http](http://doc.akka.io/docs/akka-http/current/scala/http/) pour [déterminer](http://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) les types de contenu binaires et les types de contenu de texte en clair.
+OpenWhisk utilise l'infrastructure [Akka Http](https://doc.akka.io/docs/akka-http/current/?language=scala) pour [déterminer](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) les types de contenu binaires et les types de contenu de texte en clair.
 
 ### Activation du traitement de demande HTTP brute
 
@@ -484,7 +492,7 @@ ok: created action decode
 {: screen}
 
 ```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// openwhisk.ng.bluemix.net/api/v1/web/guest/default/decodeNode.json
+curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
 ```
 {: pre}
 

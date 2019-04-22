@@ -1,47 +1,52 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: personality insights, watson, cognitive, serverless, functions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # {{site.data.keyword.personalityinsightsshort}} パッケージ 
 
-{{site.data.keyword.personalityinsightsfull}} サービスを使用すると、アプリケーションは、ソーシャル・メディア、エンタープライズ・データ、その他のデジタル通信から洞察を導き出すことができます。このサービスは、言語分析を使用して、E メール、テキスト・メッセージ、ツイート、フォーラム投稿などのデジタル通信から、ビッグ・ファイブ、ニーズ、価値を含む個人の本質的なパーソナリティー特性を推測します。
+{{site.data.keyword.personalityinsightsfull}} サービスを使用すると、アプリケーションは、ソーシャル・メディア、エンタープライズ・データ、その他のデジタル通信から洞察を導き出すことができます。 このサービスは、言語分析を使用して、E メール、テキスト・メッセージ、ツイート、フォーラム投稿などのデジタル通信から、ビッグ・ファイブ、ニーズ、価値を含む個人の本質的なパーソナリティー特性を推測します。
 {: shortdesc}
 
-このサービスは、混乱を招くようなソーシャル・メディアから、パーソナリティー特性を反映する個人の人物像を自動的に推測できます。このサービスでは、分析の結果に基づいて消費嗜好性を推測することができ、タイム・スタンプが付いた JSON コンテンツでは、時間的な行動を報告できます。
-* サービスがパーソナリティー特性を説明するために使用するモデルの意味については、[パーソナリティー・モデル](https://console.bluemix.net/docs/services/personality-insights/models.html)を参照してください。
-* 消費嗜好性の意味については、[消費嗜好性](https://console.bluemix.net/docs/services/personality-insights/preferences.html)を参照してください。
+このサービスは、混乱を招くようなソーシャル・メディアから、パーソナリティー特性を反映する個人の人物像を自動的に推測できます。 このサービスでは、分析の結果に基づいて消費嗜好性を推測することができ、タイム・スタンプが付いた JSON コンテンツでは、時間的な行動を報告できます。
+* サービスがパーソナリティー特性を説明するために使用するモデルの意味については、[パーソナリティー・モデル](https://cloud.ibm.com/docs/services/personality-insights/models.html)を参照してください。
+* 消費嗜好性の意味については、[消費嗜好性](https://cloud.ibm.com/docs/services/personality-insights/preferences.html)を参照してください。
 
-**注:** {{site.data.keyword.personalityinsightsshort}} サービスの要求ロギングは使用不可になっています。このサービスは、`X-Watson-Learning-Opt-Out` 要求ヘッダーが設定されているかどうかに関係なく、要求と応答からのデータをログに記録することも、保存することもありません。
+**注:** {{site.data.keyword.personalityinsightsshort}} サービスの要求ロギングは使用不可になっています。 このサービスは、`X-Watson-Learning-Opt-Out` 要求ヘッダーが設定されているかどうかに関係なく、要求と応答からのデータをログに記録することも、保存することもありません。
 
-{{site.data.keyword.personalityinsightsshort}} パッケージには、以下のエンティティーが含まれています。エンティティー名をクリックすると、{{site.data.keyword.personalityinsightsshort}} API 参照で追加の詳細を確認できます。
+{{site.data.keyword.personalityinsightsshort}} パッケージには、以下のエンティティーが含まれています。 エンティティー名をクリックすると、{{site.data.keyword.personalityinsightsshort}} API 参照で追加の詳細を確認できます。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url | {{site.data.keyword.personalityinsightsshort}} V3 サービスを操作します。 |
+| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url  | {{site.data.keyword.personalityinsightsshort}} V3 サービスを操作します。 |
 | [profile](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、content、content_type、content_language、accept_language、raw_scores、csv_headers、consumption_preferences  | プロファイルを取得します。 |
 | [profile-as-csv](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、content、content_type、content_language、accept_language、raw_scores、csv_headers、consumption_preferences  | プロファイルを CSV ファイルとして取得します。 |
 
 ## {{site.data.keyword.personalityinsightsshort}} サービス・インスタンスの作成
-{: #service_instance}
+{: #service_instance_insights}
 
 パッケージをインストールする前に、{{site.data.keyword.personalityinsightsshort}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
 {: shortdesc}
 
-1. [{{site.data.keyword.personalityinsightsshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/services/personality_insights) します。
+1. [{{site.data.keyword.personalityinsightsshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](https://cloud.ibm.com/catalog/services/personality_insights)。
 2. サービス・インスタンスの作成時に、自動生成されたサービス資格情報も作成されます。
 
 ## {{site.data.keyword.personalityinsightsshort}} パッケージのインストール
-{: #install}
+{: #install_insights}
 
 {{site.data.keyword.personalityinsightsshort}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.personalityinsightsshort}} パッケージを名前空間にインストールします。
 {: shortdesc}
@@ -50,8 +55,7 @@ lastupdated: "2018-07-17"
 {: #personalityinsights_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](bluemix_cli.html#cloudfunctions_cli)。
-  2. [`wskdeploy` コマンド ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) をインストールして、ダウンロードしたバイナリーを PATH に追加します。
+  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 {{site.data.keyword.personalityinsightsshort}} パッケージをインストールするには、次のようにします。
 
@@ -63,7 +67,7 @@ lastupdated: "2018-07-17"
 
 2. パッケージをデプロイします。
     ```
-    wskdeploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
     ```
     {: pre}
 
@@ -86,7 +90,7 @@ lastupdated: "2018-07-17"
     ```
     {: pre}
 
-    これは IAM サービスであるため、サービス・インスタンスを作成した地域によっては、サービス・インスタンスの名前が異なる場合があります。上記のコマンドが失敗した場合は、bind コマンドに以下のサービス名を使用します。
+    これは IAM サービスであるため、サービス・インスタンスを作成した地域によっては、サービス・インスタンスの名前が異なる場合があります。 上記のコマンドが失敗した場合は、bind コマンドに以下のサービス名を使用します。
     ```
     ibmcloud fn service bind personality-insights personality-insights-v3
     ```
@@ -98,7 +102,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-5. パッケージが {{site.data.keyword.personalityinsightsshort}} サービス・インスタンス資格情報を使用して構成されていることを確認します。
+5. パッケージが {{site.data.keyword.personalityinsightsshort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
     ibmcloud fn package get personality-insights-v3 parameters
     ```
@@ -127,9 +131,9 @@ lastupdated: "2018-07-17"
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #personalityinsights_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
 
-2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、{{site.data.keyword.cos_short}} パッケージのインストール先の名前空間を選択します。名前空間は、組織名とスペース名の組み合わせから形成されます。
+2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、パッケージのインストール先の名前空間を選択します。 名前空間は、組織名とスペース名の組み合わせから形成されます。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
@@ -137,19 +141,19 @@ lastupdated: "2018-07-17"
 
 5. **「Personality Insights」**パッケージをクリックします。
 
-5. **「インストール (Install)」**をクリックします。 
+5. **「インストール (Install)」**をクリックします。
 
-6. パッケージのインストール後に「アクション」ページにリダイレクトされ、**personality-insights-v3** という名前の新規パッケージを検索できます。
+6. パッケージのインストール後にアクション・ページにリダイレクトされ、**personality-insights-v3** という名前の新規パッケージを検索できます。
 
 7. **personality-insights-v3** パッケージでアクションを使用するには、サービス資格情報をアクションにバインドする必要があります。
-  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。 
-  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。**注**: 使用するアクションごとに以下のステップを実行する必要があります。
-    1. 使用する **personality-insights-v3** パッケージのアクションをクリックします。そのアクションの詳細ページが開きます。 
-    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。 
-    3. 新しい**パラメーター**を入力します。key には `__bx_creds` を入力します。value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
+  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。
+  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。 **注**: 使用するアクションごとに以下のステップを実行する必要があります。
+    1. 使用する **personality-insights-v3** パッケージのアクションをクリックします。 そのアクションの詳細ページが開きます。
+    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。
+    3. 新しい**パラメーター**を入力します。 key には `__bx_creds` を入力します。 value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
 
 ## {{site.data.keyword.personalityinsightsshort}} パッケージの使用
-{: #usage}
+{: #usage_insights}
 
 このパッケージのアクションを使用するには、次の形式でコマンドを実行します。
 
@@ -158,9 +162,10 @@ ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param nam
 ```
 {: pre}
 
-すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。[API 参照](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning)で詳細を確認してください。
+すべてのアクションに、YYYY-MM-DD 形式の version パラメーターが必要です。 API が後方非互換の方法で変更された場合、新しいバージョン日付がリリースされます。 [API 参照](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning)で詳細を確認してください。
 
-このパッケージの機能は、Personality Insights の現行バージョンである 2017-10-13 を使用します。`profile` アクションを試行します。
+このパッケージの機能は、Personality Insights の現行バージョンである 2017-10-13 を使用します。 `profile` アクションを試行します。
 ```
-ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "自分自身に関する抜粋をここに記述できますが、少なくとも 100 語の長さにする必要があります。この抜粋は単なる充てんテキストであり、Personality Insights サービスからは重要な内容は返されません。このサービスは、言語分析を使用して、E メール、テキスト・メッセージ、ツイート、フォーラム投稿などのデジタル通信から、ビッグ・ファイブ、ニーズ、価値を含む個人の本質的なパーソナリティー特性を推測します。このサービスは、混乱を招くようなソーシャル・メディアから、パーソナリティー特性を反映する個人の人物像を自動的に推測できます。このサービスでは、分析の結果に基づいて消費嗜好性を推測することができ、タイム・スタンプが付いた JSON コンテンツでは、時間的な行動を報告できます。```
+ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "自分自身に関する抜粋をここに記述できますが、少なくとも 100 語の長さにする必要があります。 この抜粋は単なる充てんテキストであり、Personality Insights サービスからは重要な内容は返されません。 このサービスは、言語分析を使用して、E メール、テキスト・メッセージ、ツイート、フォーラム投稿などのデジタル通信から、ビッグ・ファイブ、ニーズ、価値を含む個人の本質的なパーソナリティー特性を推測します。 このサービスは、混乱を招くようなソーシャル・メディアから、パーソナリティー特性を反映する個人の人物像を自動的に推測できます。 このサービスでは、分析の結果に基づいて消費嗜好性を推測することができ、タイム・スタンプが付いた JSON コンテンツでは、時間的な行動を報告できます。
+```
 {: pre}

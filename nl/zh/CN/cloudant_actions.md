@@ -1,21 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-04-05"
+
+keywords: cloudant, database, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
 # Cloudant 包
 {: #cloudant_actions}
 
-`/whisk.system/cloudant` 包支持您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant/getting-started.html#getting-started-with-cloudant) 数据库，并包含以下操作和订阅源：
+`/whisk.system/cloudant` 包支持您使用 [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) 数据库，并包含以下操作和订阅源：
 
 |实体|类型|参数|描述
 |
@@ -23,33 +28,25 @@ lastupdated: "2018-07-13"
 |`/whisk.system/cloudant`|包|dbname、host、username 和 password|使用 Cloudant 数据库。|
 |`/whisk.system/cloudant/read`|操作|dbname 和 id|从数据库中读取文档。|
 |`/whisk.system/cloudant/write`|操作|dbname、overwrite 和 doc|将文档写入数据库。|
-|`/whisk.system/cloudant/changes`|订阅源|dbname、filter、query_params、maxTriggers|对数据库进行更改时触发触发器事件。|
+|`/whisk.system/cloudant/changes`|订阅源|dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers|对数据库进行更改时触发触发器事件。|
 {: shortdesc}
 
-以下各部分将逐步指导您设置 {{site.data.keyword.cloudant_short_notm}} 数据库以及如何对其进行读写。有关如何将订阅源与 `/whisk.system/cloudant` 包配合使用的更多信息，请参阅 [{{site.data.keyword.cloudant_short_notm}} 事件源](./openwhisk_cloudant.html)。
+以下各部分将逐步指导您设置 {{site.data.keyword.cloudant_short_notm}} 数据库以及如何对其进行读写。有关如何将订阅源与 `/whisk.system/cloudant` 包配合使用的更多信息，请参阅 [{{site.data.keyword.cloudant_short_notm}} 事件源](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant)。
 
 ## 在 {{site.data.keyword.Bluemix_notm}} 中设置 {{site.data.keyword.cloudant_short_notm}} 数据库
 {: #cloudantdb_cloud}
 
-如果是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk}}，那么 {{site.data.keyword.openwhisk_short}} 将为 {{site.data.keyword.cloudant_short_notm}} 服务实例自动创建包绑定。如果不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}} 和 {{site.data.keyword.cloudant_short_notm}}，请跳至下一部分。
+如果使用的是 {{site.data.keyword.Bluemix_notm}} 的 {{site.data.keyword.openwhisk}}，那么可以使用 [{{site.data.keyword.openwhisk}} CLI 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)将服务绑定到操作或包。
 
-1. 在 [{{site.data.keyword.Bluemix_notm}} 仪表板](http://console.bluemix.net)中创建 {{site.data.keyword.cloudant_short_notm}} 服务实例。
+必须首先为 {{site.data.keyword.cloudant_short_notm}} 帐户手动创建包绑定。
 
-  请确保为每个新服务实例创建一个凭证密钥。
-
-2. 刷新名称空间中的包。刷新操作将自动为已定义凭证密钥的每个 {{site.data.keyword.cloudant_short_notm}} 服务实例创建包绑定。
+1. 创建为 {{site.data.keyword.cloudant_short_notm}} 帐户配置的包绑定。
   ```
-  ibmcloud fn package refresh
+  ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
-  示例输出：
-  ```
-  created bindings:
-  Bluemix_testCloudant_Credentials-1
-  ```
-  {: screen}
-
+2. 验证包绑定是否存在。
   ```
   ibmcloud fn package list
   ```
@@ -58,64 +55,85 @@ lastupdated: "2018-07-13"
   示例输出：
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 private binding
+  /myNamespace/myCloudant private
   ```
   {: screen}
+  
+3. 获取要绑定到操作或包的服务实例的名称。
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
 
-  现在，包绑定包含与 {{site.data.keyword.cloudant_short_notm}} 服务实例关联的凭证。
+    示例输出：
+    ```
+    Name          Location   State    Type
+    Cloudant-gm   us-south   active   service_instance
+    ```
+    {: screen}
 
-3. 检查以确认先前创建的包绑定是否已配置为使用 {{site.data.keyword.cloudant_short_notm}} {{site.data.keyword.Bluemix_notm}} 服务实例主机和凭证。
+4. 获取为您在上一步中获取的服务实例所定义的凭证的名称。
+    ```
+    ibmcloud resource service-keys --instance-name Cloudant-gm
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package get /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1 parameters
-  ```
-  {: pre}
+    示例输出：
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
 
-  示例输出：
-  ```
-  ok: got package /myBluemixOrg_myBluemixSpace/Bluemix_testCloudant_Credentials-1, displaying field parameters
+5. 将服务绑定到步骤 1 中创建的包。
+    ```
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ```
+    {: pre}
 
-  [
-      {
-          "key": "username",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix"
-      },
-      {
-          "key": "host",
-          "value": "cdb18832-2bbb-4df2-b7b1-Bluemix.cloudant.com"
-      },
-      {
-          "key": "password",
-          "value": "c9088667484a9ac827daf8884972737"
-      }
-      ]
-  ```
-  {: screen}
+6. 验证凭证是否已成功绑定。
+    ```
+    ibmcloud fn package get myCloudant parameters
+    ```
+    {: pre}
 
-## 在 {{site.data.keyword.Bluemix_notm}} 外部设置 {{site.data.keyword.cloudant_short_notm}} 数据库
-{: #cloudantdb_nocloud}
+    示例输出：
+    ```
+    ok: got package myCloudant, displaying field parameters
+    {
+        "parameters": [
+        {
+            "key": "bluemixServiceName",
+                "value": "cloudantNoSQLDB"
+            },
+            {
+                "key": "apihost",
+                "value": "us-south.functions.cloud.ibm.com"
+            },
+            {
+                "key": "__bx_creds",
+            "value": {
+                "cloudantnosqldb": {
+                        "apikey": "[Service apikey]",
+                        "credentials": "Service credentials-1",
+                        "iam_apikey_description": "[Service description]",
+                        "iam_apikey_name": "[Service apikey name]",
+                        "iam_role_crn": "[Service role crn]",
+                        "iam_serviceid_crn": "[Service id crn]",
+                        "instance": "Cloudant-gm",
+                        "url": "[Service url]",
+                        "username": "[Service username]"
+                    }
+                }
+            }
+        ],
+    }
+    ```
+    {: screen}
 
-如果不是在 {{site.data.keyword.Bluemix_notm}} 中使用 {{site.data.keyword.openwhisk_short}}，或者如果要在 {{site.data.keyword.Bluemix_notm}} 外部设置 {{site.data.keyword.cloudant_short_notm}} 数据库，那么必须为 {{site.data.keyword.cloudant_short_notm}} 帐户手动创建包绑定。您需要 {{site.data.keyword.cloudant_short_notm}} 帐户主机名、用户名和密码。
-
-1. 创建为 {{site.data.keyword.cloudant_short_notm}} 帐户配置的包绑定。
-  ```
-  wsk package bind /whisk.system/cloudant myCloudant -p username MYUSERNAME -p password MYPASSWORD -p host MYCLOUDANTACCOUNT.cloudant.com
-  ```
-  {: pre}
-
-
-2. 验证包绑定是否存在。
-  ```
-  wsk package list
-  ```
-  {: pre}
-
-  示例输出：
-  ```
-packages
-  /myNamespace/myCloudant private binding
-  ```
-  {: screen}
+    在此示例中，Cloudant 服务的凭证属于名为 `__bx_creds` 的参数。
+  
 
 ## 从 {{site.data.keyword.cloudant_short_notm}} 数据库进行读取
 {: #cloudant_read}

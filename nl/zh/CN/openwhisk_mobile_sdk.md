@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 移动 SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk 提供了用于 iOS 和 watchOS 设备的移动 SDK，以支持移动应用程序轻松触发远程触发器以及调用远程操作。Android 的版本不可用，因此 Android 开发者可直接使用 OpenWhisk REST API。
-
-移动 SDK 是用 Swift 4 编写的，支持 iOS 11 及更高发行版。可以使用 Xcode 9 来构建移动 SDK。
+OpenWhisk 提供了用于 iOS 和 watchOS 设备的移动 SDK，以支持移动应用程序触发远程触发器以及调用远程操作。Android 的版本不可用，因此 Android 开发者可直接使用 OpenWhisk REST API。移动 SDK 是用 Swift 4 编写的，支持 iOS 11 及更高发行版。可以使用 Xcode 9 来构建移动 SDK。
 {: shortdesc}
+
+
 
 ## 向应用程序添加 SDK
 
@@ -97,7 +103,7 @@ pod install
 
 ## SDK 入门
 
-要快速入门和熟悉运用，请使用 OpenWhisk API 凭证创建 WhiskCredentials 对象，然后通过该对象创建 OpenWhisk 实例。
+要快速入门并熟练运用，请使用 OpenWhisk API 凭证创建 WhiskCredentials 对象，然后通过该对象创建 OpenWhisk 实例。
 
 例如，使用以下示例代码来创建凭证对象：
 ```
@@ -122,7 +128,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 ## 调用 OpenWhisk 操作
 
-要调用远程操作，可以使用操作名称来调用 `invokeAction`。可以指定该操作所属的名称空间，或者将其保留为空白以接受缺省名称空间。使用字典来根据需要将参数传递到该操作。
+要调用远程操作，可以使用操作名称来调用 `invokeAction`。使用字典来根据需要将参数传递到该操作。
 
 例如：
 ```swift
@@ -144,8 +150,6 @@ do {
 }
 ```
 {: codeblock}
-
-在上面的示例中，您使用缺省名称空间调用了 `helloConsole` 操作。
 
 ## 触发 OpenWhisk 触发器
 
@@ -208,7 +212,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-在此示例中，使用的是在 http://localhost:8080 上运行的安装。如果未指定 baseUrl，那么移动 SDK 将使用在 https://openwhisk.ng.bluemix.net 上运行的实例。
+在此示例中，使用的是在 http://localhost:8080 上运行的安装。如果未指定 baseUrl，那么移动 SDK 将使用在 https://us-south.functions.cloud.ibm.com 上运行的实例。
 
 可以传入定制 NSURLSession，以便在需要特殊网络处理的情况下使用。例如，您自己可能有使用自签名证书的 OpenWhisk 安装：
 

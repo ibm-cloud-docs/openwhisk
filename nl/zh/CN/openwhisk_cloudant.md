@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -23,10 +28,10 @@ lastupdated: "2018-06-22"
 |`/whisk.system/cloudant`|包|dbname、host、username 和 password|使用 Cloudant 数据库。|
 |`/whisk.system/cloudant/read`|操作|dbname 和 id|从数据库中读取文档。|
 |`/whisk.system/cloudant/write`|操作|dbname、overwrite 和 doc|将文档写入数据库。|
-|`/whisk.system/cloudant/changes`|订阅源|dbname、filter、query_params、maxTriggers|对数据库进行更改时触发触发器事件。|
+|`/whisk.system/cloudant/changes`|订阅源|dbname、iamApiKey、iamUrl、filter、query_params、maxTriggers|对数据库进行更改时触发触发器事件。|
 {: shortdesc}
 
-以下各部分将逐步指导您配置关联的包以及如何使用 `/whisk.system/cloudant` 包中的操作和订阅源。有关设置 {{site.data.keyword.cloudant_short_notm}} 数据库以及对其进行读写操作的更多信息，请参阅 [{{site.data.keyword.cloudant_short_notm}} 操作](./cloudant_actions.html)。
+以下各部分将逐步指导您配置关联的包以及如何使用 `/whisk.system/cloudant` 包中的操作和订阅源。有关设置 {{site.data.keyword.cloudant_short_notm}} 数据库以及对其进行读写操作的更多信息，请参阅 [{{site.data.keyword.cloudant_short_notm}} 操作](/docs/openwhisk?topic=cloud-functions-cloudant_actions)。
 
 ## 使用过滤函数创建触发器
 
@@ -35,6 +40,10 @@ lastupdated: "2018-06-22"
 此示例中使用的参数如下所示：
 
 **dbname**：{{site.data.keyword.cloudant_short_notm}} 数据库的名称_（必需）_。
+
+**iamApiKey**：Cloudant 数据库的 IAM API 密钥。如果指定，将用作凭证以取代用户名和密码_（可选）_。
+
+**iamUrl**：指定 `iamApiKey` 时使用的 IAM 令牌服务 URL。缺省值为 `https://iam.bluemix.net/identity/token`_（可选）_。 
 
 **maxTriggers**：达到此限制时，停止触发触发器_（可选）_。缺省值为无限。
 
@@ -85,7 +94,7 @@ ok: created trigger feed myCloudantTrigger
 
 7. 针对每次文档更改，仅在文档状态根据过滤函数和查询参数为 **new** 时，才会观察到 **myCloudantTrigger** 触发器的新激活。
 
-如果无法观察到新的激活，请参阅 [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html) 主题，其中演示了如何对 {{site.data.keyword.cloudant_short_notm}} 数据库执行读写操作。测试读写步骤以帮助验证 {{site.data.keyword.cloudant_short_notm}} 凭证是否正确。
+如果无法观察到新的激活，请参阅 [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions) 主题，其中演示了如何对 {{site.data.keyword.cloudant_short_notm}} 数据库执行读写操作。测试读写步骤以帮助验证 {{site.data.keyword.cloudant_short_notm}} 凭证是否正确。
 {: tip}
 
 ## 触发器事件的数据结构
@@ -146,10 +155,10 @@ ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true
 ```
 {: screen}
 
-## 使用操作序列和更改触发器处理 {{site.data.keyword.cloudant_short_notm}} 数据库中的文档
+## 使用操作序列和更改触发器来处理 {{site.data.keyword.cloudant_short_notm}} 数据库中的文档
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-可以使用规则中的操作序列来访存和处理与 {{site.data.keyword.cloudant_short_notm}} 更改事件关联的文档。
+可以使用规则中的操作序列来访存并处理与 {{site.data.keyword.cloudant_short_notm}} 更改事件关联的文档。
 
 下面是处理文档的操作的样本代码：
 ```javascript

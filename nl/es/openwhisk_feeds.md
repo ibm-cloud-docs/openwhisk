@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Creación de canales de información de proveedores de sucesos personalizados
 {: #openwhisk_feeds}
@@ -26,7 +32,7 @@ Existen al menos tres patrones de arquitectura para crear un canal de informaci�
 ### Ganchos
 En el patrón *Ganchos*, se configura un canal de información utilizando un recurso [webhook](https://en.wikipedia.org/wiki/Webhook) expuesto por otro servicio.   En esta estrategia, se configura un webhook en un servicio externo para PUBLICAR directamente en un URL y activar un desencadenante. Este método es, sin duda, la opción más fácil y atractiva para implementar canales de información de baja frecuencia.
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### Sondeo
 En el patrón "Sondeo", se organiza una acción de {{site.data.keyword.openwhisk_short}} para sondear un punto final periódicamente y obtener datos nuevos. La creación de este patrón es relativamente fácil, pero la frecuencia de los sucesos está limitada, como es lógico, por el intervalo de sondeo.
@@ -34,10 +40,9 @@ En el patrón "Sondeo", se organiza una acción de {{site.data.keyword.openwhisk
 ### Conexiones
 En el patrón "Conexiones", un servicio independiente mantiene una conexión persistente con una fuente de canal de información. La implementación basada en conexión puede interactuar con un punto final de servicio mediante un sondeo largo o configurar una notificación push.
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## Diferencia entre el canal de información y el desencadenante
 
@@ -115,7 +120,7 @@ Puesto que las acciones de {{site.data.keyword.openwhisk_short}} deben ser de ej
 El servicio del proveedor tiene una API REST que permite a la *acción de canal de información* de {{site.data.keyword.openwhisk_short}} controlar el canal de información. El servicio de proveedor actúa como un proxy entre el proveedor de suceso y {{site.data.keyword.openwhisk_short}}. Cuando recibe sucesos de un tercero, los envía a {{site.data.keyword.openwhisk_short}} activando un desencadenante.
 
 El canal *changes* de {{site.data.keyword.cloudant_short_notm}} es el ejemplo canónico, ya que configura un servicio `cloudanttrigger` que media entre las notificaciones de {{site.data.keyword.cloudant_short_notm}} a través de una conexión persistente y desencadenantes de {{site.data.keyword.openwhisk_short}}.
-<!-- TODO: add a reference to the open source implementation -->
+
 
 El canal de información *alarm* se implementa con un patrón parecido.
 

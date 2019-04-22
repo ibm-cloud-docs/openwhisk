@@ -1,31 +1,40 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-16"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: push notifications, events, parameters, triggers, service activity
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # デバイス・イベントでのモバイル・プッシュ
 {: #openwhisk_pushnotifications}
 
+この事前インストール済みパッケージは、東京地域では利用できません。
+{: tip}
+
 ここでは、指定されたアプリケーションでデバイス・アクティビティー (デバイスの登録/登録解除、サブスクライブ/アンサブスクライブなど) があるとトリガーを起動するプッシュ・サービスを構成する方法を説明します。
 {: shortdesc}
 
-`/whisk.system/pushnotifications` パッケージ自体については、『[モバイル・プッシュ](./mobile_push_actions.html)』トピックを参照してください。そのトピックでは、プッシュ・パッケージ・バインディングの作成およびプッシュ通知の送信について説明されています。
+`/whisk.system/pushnotifications` パッケージ自体については、『[モバイル・プッシュ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a#push_step_1a)』トピックを参照してください。そのトピックでは、プッシュ・パッケージ・バインディングの作成およびプッシュ通知の送信について説明されています。
 
 ## プッシュのパラメーター
-{: #push_parameters}
+{: #push_notif_parameters}
 
 `/whisk.system/pushnotifications/webhook` パラメーターは以下のとおりです。
-- **appId:** {{site.data.keyword.Bluemix_notm}} アプリ GUID。
-- **appSecret:** {{site.data.keyword.Bluemix_notm}} プッシュ通知サービスの appSecret。
-- **events:** _onDeviceRegister_、_onDeviceUnregister_、_onDeviceUpdate_、_onSubscribe_、_onUnsubscribe_
+- `appId`: {{site.data.keyword.Bluemix_notm}} アプリ GUID。
+- `appSecret`: {{site.data.keyword.Bluemix_notm}} プッシュ通知サービスの `appSecret`。
+- `events`: `onDeviceRegister`、`onDeviceUnregister`、`onDeviceUpdate`、`onSubscribe`、`onUnsubscribe`
 
   ワイルドカード文字「`*`」を使用して、すべてのイベントに対して通知されるようにすることができます。
 
@@ -34,7 +43,7 @@ lastupdated: "2018-03-16"
 
 プッシュ通知サービス・アプリケーションに新規デバイスが登録されるたびに起動されるトリガーを作成するには、以下の例を参照してください。
 
-1. **appId** と **appSecret** を使用して、プッシュ通知サービス用に構成されたパッケージ・バインディングを作成します。
+1. `appId` と `appSecret` を使用して、プッシュ通知サービス用に構成されたパッケージ・バインディングを作成します。
   ```
   ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
@@ -58,6 +67,6 @@ lastupdated: "2018-03-16"
   ```
   {: pre}
 
-5. {{site.data.keyword.Bluemix_notm}} アプリケーションでデバイスを登録します。 {{site.data.keyword.openwhisk}} [ダッシュボード](https://console.bluemix.net/openwhisk/dashboard)で、`rule`、`trigger`、および `action` が実行されるのを確認できます。
+5. {{site.data.keyword.Bluemix_notm}} アプリケーションでデバイスを登録します。 {{site.data.keyword.openwhisk}} [ダッシュボード](https://cloud.ibm.com/openwhisk/dashboard)で、`rule`、`trigger`、および `action` が実行されるのを確認できます。
 
   アクションはプッシュ通知を送信します。

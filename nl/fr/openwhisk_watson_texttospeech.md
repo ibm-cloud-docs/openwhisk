@@ -1,18 +1,26 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, converting, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
-
+{:tip: .tip}
 # Package Watson : Text to Speech
 {: #openwhisk_catalog_watson_texttospeech}
+
+Ce package préinstallé n'est pas disponible dans la région Tokyo. Veuillez consulter le package installable [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) en utilisant l'authentification IAM.
+{: tip}
 
 Le package `/whisk.system/watson-textToSpeech` permet d'appeler diverses API Watson pour convertir le texte en parole.
 {: shortdesc}
@@ -24,13 +32,13 @@ Le package inclut les actions ci-dessous.
 | `/whisk.system/watson-textToSpeech` | package | username, password | Package pour la conversion de texte en paroles |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | action | payload, voice, accept, encoding, username, password | Convertir le texte en contenu audio |
 
-**Remarque** : Le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/textToSpeech`.
+**Remarque** : Le package `/whisk.system/watson` est obsolète, y compris l'action `/whisk.system/watson/textToSpeech`. Consultez plutôt le [package installable {{site.data.keyword.texttospeechshort}}](/docs/openwhisk?topic=cloud-functions-text-to-speech-package). 
 
 ## Configuration du package Watson Text to Speech dans {{site.data.keyword.Bluemix_notm}}
 
 Si vous utilisez {{site.data.keyword.openwhisk}} depuis {{site.data.keyword.Bluemix_notm}}, les liaisons de package sont automatiquement créées pour vos instances de service {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Créez une instance de service Watson Text to Speech dans votre [tableau de bord](http://console.bluemix.net) {{site.data.keyword.Bluemix_notm}}.
+1. Créez une instance de service Watson Text to Speech dans votre [tableau de bord](http://cloud.ibm.com) {{site.data.keyword.Bluemix_notm}}.
 
   Mémorisez le nom de l'instance de service ainsi que l'organisation et l'espace {{site.data.keyword.Bluemix_notm}} dans lesquels vous vous trouvez.
 

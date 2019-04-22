@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-28"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: trigger rules, triggers, actions, channel events
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Respuestas ante sucesos con reglas y desencadenantes
 {: #openwhisk_triggers}
@@ -136,7 +142,7 @@ Después de crear el [desencadenante `locationUpdate`](#openwhisk_triggers_fire)
     ```
     {: pre}
 
-4. Active el desencadenante `locationUpdate`. Cada vez que se da un suceso desencadenante, se llama a la acción `hello` con los parámetros del suceso.
+4. Active el desencadenante `locationUpdate`. Cada vez que se produce un suceso desencadenante, se llama a la acción `hello` con los parámetros del suceso.
     ```
     ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
     ```

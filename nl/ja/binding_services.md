@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # アクションへのサービスのバインド
 {: #binding_services}
 
-[{{site.data.keyword.openwhisk}} CLI プラグイン](./bluemix_cli.html)を使用して、サービスをアクションまたはパッケージにバインドできます。 {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` コマンドよって、実行時に {{site.data.keyword.Bluemix_notm}} サービス資格情報を {{site.data.keyword.openwhisk_short}} コードで使用できるようになります。
+[{{site.data.keyword.openwhisk}} CLI プラグイン](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)を使用して、サービスをアクションまたはパッケージにバインドできます。 {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` コマンドよって、実行時に {{site.data.keyword.Bluemix_notm}} サービス資格情報を {{site.data.keyword.openwhisk_short}} コードで使用できるようになります。
 {: shortdesc}
+
 
 `ibmcloud fn service bind` コマンドを、Cloud Foundry で使用可能な `cf bind-service` コマンドと混同しないようにしてください。
 {: tip}
+
 
 ## アクションまたはパッケージへのサービスのバインド
 {: #cli_bind}
 
 任意の {{site.data.keyword.Bluemix_notm}} サービスを {{site.data.keyword.openwhisk_short}} に定義されている任意のアクションにバインドできます。 サービスをバインドすると、既存のアクションにサービス・インスタンス資格情報を含む新規パラメーターが作成されます。
 
-**注**: アクションまたはパッケージにバインドできる各タイプのサービスは 1 つのみです。 同じタイプの複数のサービスをバインドする操作はサポートされません。
+**注**: アクションまたはパッケージにバインドできる各タイプのサービスは 1 つのみです。 同じタイプの複数のサービスをバインドすることはできません。
 
-開始する前に、バインドするサービスの[資格情報を定義](/docs/apps/reqnsi.html#accser_external)します。
+開始する前に、バインドするサービスの[資格情報を定義](/docs/resources?topic=resources-externalapp#externalapp)します。
 
 1. アクションまたはパッケージにバインドするサービス・インスタンスの名前を取得します。
     ```
@@ -139,7 +147,11 @@ Credentials-2
 
     この例では、conversation サービスの資格情報は、他のサービス・タイプのその他の資格情報とともに、`__bx_creds` という名前のパラメーターに属しています。 アクションは、`__bx_creds` バインド済みパラメーターを検索し、リストされているサービス・タイプへの参照を削除します。 当該サービス・タイプがリストされている唯一のものである場合、アクションは、`__bx_creds` パラメーターの値をヌルにします。 複数のサービスがアクションにバインドされている場合、`__bx_creds` パラメーターは、まだバインドされているサービスに残ります。
 
-アクションまたはパッケージへのパラメーターの引き渡し、および資格情報が `update` 操作時に受ける影響について詳しくは、[パラメーターの処理](./parameters.html#pass-params-action)を参照してください。
+アクションまたはパッケージへのパラメーターの引き渡し、および資格情報が `update` 操作時に受ける影響について詳しくは、[パラメーターの処理](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action)を参照してください。
+
+
+エンティティーが入っている組織またはスペースの名前を変更すると、その新しい名前の名前空間が作成されます。古い名前空間に入っていたエンティティーは新しい名前空間に表示されず、削除のスケジュールが設定されます。間違って変更した場合は、元に戻せます。削除前にエンティティーを保存できる場合もあります。
+{: tip}
 
 
 ## アクションまたはパッケージからのサービスのアンバインド

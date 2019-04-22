@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-27"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: weather package, forecast, functions, serverless 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Weather パッケージ
 {: #openwhisk_catalog_weather}
@@ -30,7 +36,7 @@ lastupdated: "2018-03-27"
 
 {{site.data.keyword.Bluemix_notm}} から {{site.data.keyword.openwhisk}} を使用している場合、パッケージ・バインディングは {{site.data.keyword.Bluemix_notm}} Weather サービス・インスタンス用に自動的に作成されます。
 
-1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://console.bluemix.net)で Weather Company Data のサービス・インスタンスを作成します。
+1. {{site.data.keyword.Bluemix_notm}} [ダッシュボード](http://cloud.ibm.com)で Weather Company Data のサービス・インスタンスを作成します。
 
   サービス・インスタンスの名前、および自分が所属している {{site.data.keyword.Bluemix_notm}} の組織とスペースの名前を忘れないようにしてください。
 

@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # SDK pour applications mobiles
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk fournit un SDK pour applications mobiles destiné aux périphériques iOS et watchOS qui permet à ces applications de lancer sans difficulté des déclencheurs distants et d'appeler des actions à distance. Une version pour Android n'étant pas disponible, les développeurs Android peuvent utiliser directement l'API REST OpenWhisk.
-
-Le logiciel SDK pour applications mobiles est écrit en langage Swift 4 et prend en charge iOS 11 et les éditions ultérieures. Vous pouvez générer le logiciel SDK pour applications mobiles avec Xcode 9.
+OpenWhisk fournit un SDK pour applications mobiles destiné aux périphériques iOS et watchOS qui permet à ces applications de lancer des déclencheurs distants et d'appeler des actions à distance. Une version pour Android n'étant pas disponible, les développeurs Android peuvent utiliser directement l'API REST OpenWhisk. Le logiciel SDK pour applications mobiles est écrit en langage Swift 4 et prend en charge iOS 11 et les éditions ultérieures. Vous pouvez générer le logiciel SDK pour applications mobiles avec Xcode 9.
 {: shortdesc}
+
+
 
 ## Ajout du logiciel SDK à votre application
 
@@ -122,7 +128,7 @@ Les chaînes qui précèdent le signe deux-points correspondent à votre clé et
 
 ## Appel d'une action OpenWhisk
 
-Pour appeler une action distante, vous pouvez appeler `invokeAction` avec le nom d'action. Vous pouvez spécifier l'espace de noms auquel l'action appartient ou ne rien indiquer pour accepter l'espace de noms par défaut. Utilisez un dictionnaire pour transmettre des paramètres à l'action, selon les besoins.
+Pour appeler une action distante, vous pouvez appeler `invokeAction` avec le nom d'action. Utilisez un dictionnaire pour transmettre des paramètres à l'action, selon les besoins.
 
 Par exemple :
 ```swift
@@ -143,8 +149,6 @@ do {
 }
 ```
 {: codeblock}
-
-Dans l'exemple précédent, vous appelez l'action `helloConsole` en utilisant l'espace de nom par défaut.
 
 ## Exécution d'un déclencheur OpenWhisk
 
@@ -207,7 +211,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-Dans cet exemple, vous utilisez une installation qui s'exécute sur http://localhost:8080. Si vous ne spécifiez pas le paramètre baseUrl, le logiciel SDK pour applications mobiles utilise l'instance qui s'exécute sur https://openwhisk.ng.bluemix.net.
+Dans cet exemple, vous utilisez une installation qui s'exécute sur http://localhost:8080. Si vous ne spécifiez pas le paramètre baseUrl, le logiciel SDK pour applications mobiles utilise l'instance qui s'exécute sur https://us-south.functions.cloud.ibm.com. 
 
 Vous pouvez transmettre un paramètre NSURLSession personnalisé si vous nécessitez un traitement réseau spécial. Par exemple, votre propre installation OpenWhisk pourrait utiliser des certificats autosignés :
 

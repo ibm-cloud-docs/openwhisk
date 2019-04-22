@@ -1,21 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-22"
+
+keywords: annotations, annotate, package, parameters, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
 
 # Anotações
 {: #openwhisk_annotations}
 
-Ações, acionadores, regras e pacotes do {{site.data.keyword.openwhisk}} (coletivamente
-referidos como entidades) podem ser documentados com anotações.
+As ações do {{site.data.keyword.openwhisk}}, os acionadores, as regras e os pacotes (coletivamente mencionados como entidades) podem incluir anotações.
 {: shortdesc}
 
 As anotações são anexadas às entidades como parâmetros. As anotações consistem em uma `key`
@@ -38,8 +45,11 @@ Anotações que descrevem ações incluem:
 - `sampleInput`: um exemplo que mostra o esquema de entrada com valores típicos.
 - `sampleOutput`: um exemplo que mostra o esquema de saída, geralmente para o `sampleInput`.
 
+
+
 O código a seguir é um conjunto de exemplo de anotações para uma ação `echo`, que
 retorna seus argumentos de entrada não modificados. Essa ação é útil para registrar parâmetros de entrada, por exemplo, como parte de uma sequência ou regra.
+
 ```
 ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
@@ -56,7 +66,7 @@ As anotações de ação da web a seguir devem ser configuradas explicitamente c
 para ativar a interatividade da API:
 
 - `web-export`: quando aplicada a uma ação, a ação se torna uma
-[ação da web](openwhisk_webactions.html). A ação se torna acessível às chamadas REST sem
+[ação da web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions). A ação se torna acessível às chamadas REST sem
 autenticação para que os usuários possam acessar as ações por meio de um navegador.
     * **Nota**: o proprietário da ação da web incorre no custo de executá-los no sistema. Em outras palavras, o proprietário da ação também tem o registro de ativações.
 - `final`: quando aplicado a uma ação, qualquer parâmetro de ação que tiver sido
@@ -66,7 +76,7 @@ durante a chamada.
 a consulta de solicitação e os parâmetros de corpo HTTP são passados para a ação como
 propriedades reservadas.
 - `web-custom-options`: permite que uma ação da web responda às solicitações
-OPTIONS com cabeçalhos customizados. Caso contrário, uma  [ resposta CORS padrão ](openwhisk_webactions.html#options-requests)  se aplicará.
+OPTIONS com cabeçalhos customizados. Caso contrário, uma  [ resposta CORS padrão ](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#options-requests)  se aplicará.
 - `require-whisk-auth`: a ação da web pode ser chamada somente por solicitações que
 fornecem credenciais de autenticação apropriadas.
     * Quando configurado como um valor booleano, ele controla se o valor de Autenticação básica da

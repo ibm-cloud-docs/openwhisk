@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: speech to text, watson, package, cognitive, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,7 +22,7 @@ lastupdated: "2018-07-17"
 {{site.data.keyword.speechtotextfull}} 服务提供了一个 API，该 API 使用 IBM 的语音识别功能来生成语音音频的抄本。
 {:shortdesc}
 
-此服务可以转录各种语言和音频格式的语音。除了基本转录外，该服务还可以生成有关音频的许多方面的详细信息。对于大多数语言，此服务支持两个采样率：宽带和窄带。此服务会以 UTF-8 字符集返回所有 JSON 响应内容。有关此服务的更多信息，请参阅 [IBM&reg; Cloud 文档](https://console.bluemix.net/docs/services/speech-to-text/index.html)。
+此服务可以转录各种语言和音频格式的语音。除了基本转录外，该服务还可以生成有关音频的许多方面的详细信息。对于大多数语言，此服务支持两个采样率：宽带和窄带。此服务会以 UTF-8 字符集返回所有 JSON 响应内容。有关此服务的更多信息，请参阅 [IBM&reg; Cloud 文档](https://cloud.ibm.com/docs/services/speech-to-text/index.html)。
 
 {{site.data.keyword.speechtotextshort}} 包中包含以下实体。您可以通过单击实体名称在 {{site.data.keyword.speechtotextshort}} API 参考中找到其他详细信息。
 
@@ -39,11 +44,11 @@ lastupdated: "2018-07-17"
 |[get-language-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-language-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|获取定制语言模型。|
 |[list-language-models](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#list-language-models)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、language|列出定制语言模型。|
 |[reset-language-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#reset-language-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|重置定制语言模型。|
-|[train-language-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#train-language-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、word_type_to_add、customization_weight|培训定制语言模型。|
+|[train-language-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#train-language-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、word_type_to_add、customization_weight|训练定制语言模型。|
 |[upgrade-language-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#upgrade-language-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|升级定制语言模型。|
 |[add-corpus](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#add-corpus)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、corpus_name、corpus_file、allow_overwrite|添加语料库。|
 |[delete-corpus](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#delete-corpus)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、corpus_name|删除语料库。|
-|[get-corpus](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-corpus)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、corpus_name|获取语料库|
+|[get-corpus](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-corpus)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、corpus_name|获取语料库。|
 |[list-corpora](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#list-corpora)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|列出语料库。|
 |[add-word](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#add-word)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、word_name、word、sounds_like、display_as|添加一个定制字。|
 |[add-words](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#add-words)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、words|添加多个定制字。|
@@ -55,25 +60,25 @@ lastupdated: "2018-07-17"
 |[get-acoustic-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-acoustic-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|获取定制声学模型。|
 |[list-acoustic-models](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#list-acoustic-models)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、language|列出定制声学模型。|
 |[reset-acoustic-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#reset-acoustic-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|重置定制声学模型。|
-|[train-acoustic-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#train-acoustic-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、custom_language_model_id|培训定制声学模型。|
+|[train-acoustic-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#train-acoustic-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、custom_language_model_id|训练定制声学模型。|
 |[upgrade-acoustic-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#upgrade-acoustic-model)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、custom_language_model_id|升级定制声学模型。|
 |[add-audio](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#add-audio)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、audio_name、audio_resource、content_type、contained_content_type、allow_overwrite|添加音频资源。|
 |[delete-audio](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#delete-audio)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、audio_name|删除音频资源。|
 |[get-audio](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-audio)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、audio_name|获取音频资源。|
 |[list-audio](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#list-audio)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id|列出音频资源。|
-|[delete-user-data](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#delete-user-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id|删除标记的数据。|
+|[delete-user-data](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#delete-user-data)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id|删除标注的数据。|
 
 ## 创建 {{site.data.keyword.speechtotextshort}} 服务实例
-{: #service_instance}
+{: #service_instance_speechtotext}
 
 安装包之前，必须创建 {{site.data.keyword.speechtotextshort}} 服务实例和服务凭证。
 {: shortdesc}
 
-1. [创建 {{site.data.keyword.speechtotextshort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/catalog/services/speech_to_text)。
+1. [创建 {{site.data.keyword.speechtotextshort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/catalog/services/speech_to_text)。
 2. 创建服务实例时，还会为您创建自动生成的服务凭证。
 
 ## 安装 {{site.data.keyword.speechtotextshort}} 包
-{: #install}
+{: #install_speechtotext}
 
 具有 {{site.data.keyword.speechtotextshort}} 服务实例后，请使用 {{site.data.keyword.openwhisk}} CLI 将 {{site.data.keyword.speechtotextshort}} 包安装到名称空间中。
 {: shortdesc}
@@ -82,8 +87,7 @@ lastupdated: "2018-07-17"
 {: #speechtotext_cli}
 
 开始之前：
-  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](bluemix_cli.html#cloudfunctions_cli)。
-  2. 安装 [`wskdeploy` 命令 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases)，并将下载的二进制文件添加到 PATH 中。
+  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 要安装 {{site.data.keyword.speechtotextshort}} 包，请执行以下操作：
 
@@ -95,7 +99,7 @@ lastupdated: "2018-07-17"
 
 2. 部署包。
     ```
-    wskdeploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
     ```
     {: pre}
 
@@ -159,9 +163,9 @@ lastupdated: "2018-07-17"
 ### 通过 {{site.data.keyword.openwhisk_short}} UI 进行安装
 {: #speechtotext_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://console.bluemix.net/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/create)。
 
-2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将 {{site.data.keyword.cos_short}} 包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
+2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将包安装到其中的名称空间。名称空间由组合的组织和空间名称构成。
 
 3. 单击**安装包**。
 
@@ -173,15 +177,15 @@ lastupdated: "2018-07-17"
 
 6. 安装包后，会将您重定向到“操作”页面，您可以在其中搜索名为 **speech-to-text-v1** 的新包。
 
-7. 要使用 **speech-to-text-v1** 包中的操作，必须将服务凭证绑定到操作。
-  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。 
+7. 要使用 **speech-to-text-v1** 包中的操作，必须将服务凭证绑定到这些操作。
+  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。
   * 要将服务凭证绑定到单个操作，请在 UI 中完成以下步骤。**注**：对于要使用的每个操作，必须完成以下步骤。
-    1. 单击 **speech-to-text-v1** 包中要使用的操作。这将打开该操作的详细信息页面。 
-    2. 在左侧导航中，单击**参数**部分。 
+    1. 单击 **speech-to-text-v1** 包中要使用的操作。这将打开该操作的详细信息页面。
+    2. 在左侧导航中，单击**参数**部分。
     3. 输入新的**参数**。对于键，输入 `__bx_creds`。对于值，请从先前创建的服务实例中粘贴服务凭证 JSON 对象。
 
 ## 使用 {{site.data.keyword.speechtotextshort}} 包
-{: #usage}
+{: #usage_speechtotext}
 
 要使用此包中的操作，请运行以下格式的命令：
 

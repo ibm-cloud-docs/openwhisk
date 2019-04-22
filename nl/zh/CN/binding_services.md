@@ -1,25 +1,33 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # 将服务绑定到操作
 {: #binding_services}
 
-您可以使用 [{{site.data.keyword.openwhisk}} CLI 插件](./bluemix_cli.html)将服务绑定到操作或包。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 命令可使您的 {{site.data.keyword.Bluemix_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
+您可以使用 [{{site.data.keyword.openwhisk}} CLI 插件](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli)将服务绑定到操作或包。{{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 命令可使您的 {{site.data.keyword.Bluemix_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
 {: shortdesc}
+
 
 不要将 `ibmcloud fn service bind` 命令与 Cloud Foundry 中提供的 `cf bind-service` 命令相混淆。
 {: tip}
+
 
 ## 将服务绑定到操作或包
 {: #cli_bind}
@@ -28,7 +36,7 @@ lastupdated: "2018-06-21"
 
 **注**：每种类型只能有一个服务绑定到一个操作或包。不支持绑定同一类型的多个服务。
 
-开始之前，请为要绑定的服务[定义凭证](/docs/apps/reqnsi.html#accser_external)。
+开始之前，请为要绑定的服务[定义凭证](/docs/resources?topic=resources-externalapp#externalapp)。
 
 1. 获取要绑定到操作或包的服务实例的名称。
     ```
@@ -139,7 +147,11 @@ Credentials-2
 
     在此示例中，Conversation 服务的凭证（以及其他服务类型的其他任何凭证）属于名为 `__bx_creds` 的参数。该操作将查找 `__bx_creds` 绑定参数，并除去对所列出的服务类型的引用。如果该服务类型是唯一列出的服务类型，那么该操作将使 `__bx_creds` 参数的值无效。如果有多个服务绑定到该操作，那么 `__bx_creds` 参数将保持与仍绑定的任何服务一起使用。
 
-有关将参数传递到操作或包以及在 `update` 操作期间凭证如何受到影响的更多信息，请参阅[使用参数](./parameters.html#pass-params-action)。
+有关将参数传递到操作或包以及在 `update` 操作期间凭证如何受到影响的更多信息，请参阅[使用参数](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action)。
+
+
+如果更改包含实体的组织或空间的名称，那么名称空间将使用新名称进行创建。旧名称空间包含的实体不会在新名称空间中显示，并且会计划进行删除。如果是意外进行了更改，那么可以还原该更改，并且在删除实体之前，您可能可以保存这些实体。
+{: tip}
 
 
 ## 取消服务与操作或包的绑定

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-23"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: alarms, triggers, event, schedule, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Usando alarmes para planejar acionadores
 {: #openwhisk_catalog_alarm}
@@ -24,9 +30,8 @@ O pacote inclui os feeds a seguir.
 | --- | --- | --- | --- |
 | `/whisk.system/alarms` | pacote | - | Alarmes e utilitário periódico. |
 | `/whisk.system/alarms/once` | alimentação | date, trigger_payload, deleteAfterFire | Disparar evento acionador uma vez em uma data específica. |
-| `/whisk.system/alarms/interval` | alimentação | minutes, trigger_payload, startDate, stopDate |
-Disparar evento acionador em um planejamento baseado em intervalo. |
-| `/whisk.system/alarms/alarm` | alimentação | cron, trigger_payload, startDate, stopDate | Disparar evento acionador em um planejamento baseado em tempo usando cron. |
+| `/whisk.system/alarms/interval` | alimentação | minutes, trigger_payload, startDate, stopDate | Disparar evento acionador em um planejamento baseado em intervalo. |
+| `/whisk.system/alarms/alarm` | alimentação | cron, timezone, trigger_payload, startDate, stopDate | Disparar evento acionador em um planejamento baseado em tempo usando cron. |
 
 ## Disparando um evento acionador uma vez
 
@@ -65,16 +70,14 @@ número inteiro ou de sequência. O valor de número inteiro representa o númer
 </tr>
 <tr>
 <td><code> -- param deleteAfterFire </code></td>
-<td>Opcional: se o acionador e quaisquer regras associadas serão excluídos após o acionador ser disparado. 
-Substitua <code>&lt;delete_option&gt;</code> por um dos seguintes:<ul><li><code>false</code> (padrão):
+<td>Opcional: se o acionador e quaisquer regras associadas serão excluídos após o acionador ser disparado. Substitua <code>&lt;delete_option&gt;</code> por um dos seguintes:<ul><li><code>false</code> (padrão):
 nenhuma ação é executada depois que o acionador é disparado.</li><li><code>true</code>: o acionador é
 excluído depois que ele é disparado.</li><li><code>rules</code>: o acionador e todas as suas regras associadas
 são excluídos depois que ele é disparado.</li></ul></td>
 </tr>
 </tbody></table>
 
-A seguir está um exemplo de criação de um acionador que será disparado uma vez em 25 de dezembro de 2019, 12h30 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`. 
-Após o acionador ser disparado, o acionador e todas as regras associadas serão excluídos.
+A seguir está um exemplo de criação de um acionador que será disparado uma vez em 25 de dezembro de 2019, 12h30 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`. Após o acionador ser disparado, o acionador e todas as regras associadas serão excluídos.
 
 ```
 ibmcloud fn trigger create fireOnce \
@@ -143,8 +146,7 @@ ibmcloud fn trigger create interval \
 
 ## Disparando um acionador em um planejamento baseado em tempo usando cron
 
-O feed `/whisk.system/alarms/alarm` configura o serviço de Alarme para disparar um evento acionador a uma frequência especificada. 
-Para criar um alarme baseado em tempo, execute o comando a seguir:
+O feed `/whisk.system/alarms/alarm` configura o serviço de Alarme para disparar um evento acionador a uma frequência especificada. Para criar um alarme baseado em tempo, execute o comando a seguir:
 ```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -167,14 +169,17 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code> -- param cron </code></td>
-<td>Substitua <code>&lt;cron&gt;</code> por uma sequência que indica quando o acionador deverá ser disparado
-na Hora Universal Coordenada (UTC). A sequência é baseada na <a href="http://crontab.org">sintaxe de crontab
+<td>Substitua <code>&lt;cron&gt;</code> por uma sequência que indica quando disparar o acionador em Hora Universal Coordenada (UTC). A sequência é baseada na <a href="http://crontab.org">sintaxe de crontab
 do UNIX</a> e é uma sequência que tem no máximo 5 campos. Esses campos são separados por espaços no formato
-<code>X X X X X</code>. As sequências a seguir são exemplos que usam durações variadas de frequência:<ul><li>
-<code>\* \* \* \* \*</code>: o acionador é disparado no início de cada minuto.</li><li><code>0 \* \* \* \*</code>: o
+<code>X X X X X</code>. As sequências a seguir são exemplos que usam durações variadas de frequência:<ul><li><code>\* \* \* \* \*</code>: o acionador é disparado no início de cada minuto.</li><li><code>0 \* \* \* \*</code>: o
 acionador é disparado no início de cada hora.</li><li><code>0 \*/2 \* \* \*</code>: o acionador é
 disparado a cada 2 horas (ou seja, 02:00:00, 04:00:00,...).</li><li><code> 0 9 8 \* \*</code>: o acionador
 é disparado às 9h (UTC) no oitavo dia de cada mês.</li></ul></td>
+</tr>
+<tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>Opcional: substitua <code>&lt;timezone&gt;</code> por uma sequência que especifica o fuso horário. O tempo real para disparar o acionador será, então, modificado em relação ao fuso horário especificado. Se o fuso horário for inválido, um erro será lançado. É possível verificar todos os fusos horários disponíveis no website Moment Timezone (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names).</td>
 </tr>
 <tr>
 <td><code> -- param trigger_payload </code></td>

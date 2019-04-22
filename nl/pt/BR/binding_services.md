@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # Ligando serviços a ações
 {: #binding_services}
 
-É possível usar o [Plug-in da CLI do {{site.data.keyword.openwhisk}}](./bluemix_cli.html) para ligar um serviço a uma ação ou um pacote. O comando `ibmcloud fn service bind` do {{site.data.keyword.openwhisk_short}} disponibiliza suas credenciais de serviço do {{site.data.keyword.Bluemix_notm}} para o seu código do {{site.data.keyword.openwhisk_short}} no tempo de execução.
+É possível usar o [plug-in da CLI do {{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) para ligar um serviço a uma ação ou a um pacote. O comando `ibmcloud fn service bind` do {{site.data.keyword.openwhisk_short}} disponibiliza suas credenciais de serviço do {{site.data.keyword.Bluemix_notm}} para o seu código do {{site.data.keyword.openwhisk_short}} no tempo de execução.
 {: shortdesc}
+
 
 Não confunda o comando `ibmcloud fn service bind` com o comando `cf bind-service` que está disponível no Cloud Foundry.
 {: tip}
+
 
 ## Ligando um serviço a uma ação ou um pacote
 {: #cli_bind}
 
 Ligue qualquer serviço {{site.data.keyword.Bluemix_notm}} a qualquer ação que esteja definida no {{site.data.keyword.openwhisk_short}}. Ligar um serviço cria um novo parâmetro em sua ação existente que contém as credenciais da instância de serviço.
 
-**Nota**: é possível ligar somente um serviço de cada tipo a uma ação ou um pacote. A ligação de múltiplos serviços do mesmo tipo não é suportada.
+**Nota**: é possível ligar somente um serviço de cada tipo a uma ação ou um pacote. Os serviços de ligação do mesmo tipo não são suportados.
 
-Antes de iniciar, [defina credenciais](/docs/apps/reqnsi.html#accser_external) para o serviço que você deseja ligar.
+Antes de iniciar, [defina credenciais](/docs/resources?topic=resources-externalapp#externalapp) para o serviço que você deseja ligar.
 
 1. Obtenha o nome da instância de serviço que você deseja ligar a uma ação ou um pacote.
     ```
@@ -101,7 +109,7 @@ Credentials-2
     ```
     {: screen}
 
-4. Verifique se as credenciais foram ligadas com êxito. A ação à qual o serviço está ligado não suporta sinalizações customizadas, mas suporta as sinalizações detalhadas e de depuração.
+4. Verifique se as credenciais foram ligadas com êxito. A ação à qual o serviço está ligado não suporta nenhum sinalizador customizado, mas suporta os sinalizadores de depuração e detalhado.
     ```
     ibmcloud fn action get hello parameters
     ```
@@ -138,7 +146,11 @@ Credentials-2
 
     Neste exemplo, as credenciais para o serviço de conversa, juntamente com quaisquer outras credenciais para outros tipos de serviço, pertencem a um parâmetro nomeado `__bx_creds`. A ação é para o parâmetro ligado `__bx_creds` e remove a referência ao tipo de serviço listado. Se esse tipo de serviço é o único listado, a ação anula o valor do parâmetro `__bx_creds`. Se mais de um serviço é ligado à ação, o parâmetro `__bx_creds` permanece com os serviços que ainda estão ligados.
 
-Para obter mais informações sobre como passar parâmetros para uma ação ou um pacote e como as credenciais são afetadas durante as operações `update`, veja [Trabalhando com parâmetros](./parameters.html#pass-params-action).
+Para obter mais informações sobre como passar parâmetros para uma ação ou um pacote e como as credenciais são afetadas durante as operações `update`, veja [Trabalhando com parâmetros](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action).
+
+
+Se você mudar o nome da organização ou do espaço que contém entidades, um namespace será criado com o novo nome. As entidades que seu namespace antigo continha não estão visíveis no novo namespace e estão planejadas para serem excluídas. Se você fez a mudança acidentalmente, é possível revertê-la e talvez você possa salvar suas entidades antes que elas sejam excluídas.
+{: tip}
 
 
 ## Desvinculando um serviço de uma ação ou um pacote

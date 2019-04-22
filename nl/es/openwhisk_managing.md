@@ -1,18 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-25"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: managing actions, manage, activation, action logs, changing runtime, delete
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Gestión de acciones
+{: #managing_actions}
 {: #openwhisk_managing}
 
 Gestione acciones supervisando su salida, obteniendo información específica sobre una acción o suprimiendo acciones.
@@ -30,7 +36,7 @@ ibmcloud fn action list
 ```
 {: pre}
 
-A medida que cree más acciones, puede resultar útil agrupar las acciones relacionadas en [paquetes](./openwhisk_packages.html). Para filtrar la lista de acciones para limitarla a las contenidas en un paquete concreto:
+A medida que cree más acciones, puede resultar útil agrupar las acciones relacionadas en [paquetes](/docs/openwhisk?topic=cloud-functions-openwhisk_packages). Para filtrar la lista de acciones para limitarla a las contenidas en un paquete concreto:
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -99,7 +105,7 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Anotaciones en esta acción. Para obtener una lista de posibles anotaciones, consulte los temas de referencia [anotaciones de acción](openwhisk_annotations.html#action) y [anotaciones de acción web](openwhisk_annotations.html#annotations-specific-to-web-actions).</td>
+<td>Anotaciones en esta acción. Para obtener una lista de posibles anotaciones, consulte los temas de referencia [anotaciones de acción](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action) y [anotaciones de acción web](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions).</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
@@ -114,7 +120,7 @@ ok: got action hello
 </tbody></table>
 
 ## Visualización de detalles de activación
-{: #activation}
+{: #activation_details}
 
 Las acciones de {{site.data.keyword.openwhisk_short}} las pueden invocar otros usuarios, en respuesta a varios sucesos, o como parte de una secuencia de acciones. Siempre que se invoca una acción, se crea un registro de activación para dicha invocación. Para obtener información sobre el resultado de la invocación de la acción, puede obtener detalles sobre las activaciones.
 
@@ -134,7 +140,7 @@ Salida de ejemplo:
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "BobsOrg_dev",
+    "namespace": "myNamespace",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -154,7 +160,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "BobsOrg_dev/hello"
+            "value": "myNamespace/hello"
         },
         {
             "key": "waitTime",
@@ -235,7 +241,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Anotaciones en esta acción. Para obtener una lista de las posibles anotaciones de activación, consulte el [tema de referencia de anotaciones](openwhisk_annotations.html#activation).</td>
+<td>Anotaciones en esta acción. Para obtener una lista de las posibles anotaciones de activación, consulte el [tema de referencia de anotaciones](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation).</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -251,7 +257,7 @@ El entorno de acción contiene varias propiedades que son específicas de la acc
 | Propiedad | Descripción |
 | -------- | ----------- |
 | `__OW_API_HOST` | El host de API para el despliegue de OpenWhisk ejecutando esta acción. |
-| `__OW_API_KEY` | La clave de API para quien invoca la acción. Esta clave puede ser una clave de API restringida. |
+| `__OW_API_KEY` | La clave de API para quien invoca la acción. Esta clave puede ser una clave de API restringida y estar ausente a menos que se solicite explícitamente; consulte [Anotaciones](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations). |
 | `__OW_NAMESPACE` | El espacio de nombres para la activación. Este espacio de nombres podría no ser el mismo que el espacio de nombres para la acción. |
 | `__OW_ACTION_NAME` | El nombre completo calificado de la acción en ejecución. |
 | `__OW_ACTIVATION_ID` | El ID de activación para esta instancia de acción en ejecución. |
@@ -276,14 +282,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-Ejemplo de salida para [acciones web](./openwhisk_webactions.html):
+Ejemplo de salida para [acciones web](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Nota:** para las acciones estándares, la autenticación se debe proporcionar cuando se invoca mediante una solicitud HTTPS. Para obtener más información sobre las invocaciones de acciones mediante la interfaz REST, vea la [documentación de consulta de API REST](https://console.bluemix.net/apidocs/functions).
+**Nota:** para las acciones estándares, la autenticación se debe proporcionar cuando se invoca mediante una solicitud HTTPS. Para obtener más información sobre las invocaciones de acciones mediante la interfaz REST, vea la [documentación de consulta de API REST](https://cloud.ibm.com/apidocs/functions).
 
 ## Guardado del código de acción
 {: #save-action}
@@ -347,6 +353,34 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
     ```
     {: screen}
     También podría ver los registros para las acciones que se ejecutan en nombre de {{site.data.keyword.openwhisk_short}} en tiempo real.
+    
+## Cambio del entorno de ejecución de acciones
+{: #changing-action-runtime}
+
+Puede cambiar el `kind` del entorno de ejecución para migrar a una versión más reciente del entorno de ejecución de acciones. Por ejemplo, debido a que Node.js versión 8 está en la modalidad de mantenimiento, es posible que desee cambiar el entorno de ejecución a Node.js 10. Puede utilizar los pasos siguientes para cambiar un entorno de ejecución de acciones. **Nota:** es posible que necesite cambiar el código de `actionName.js` para que se ajuste a la nueva versión del entorno de ejecución. Esto depende de si los cambios son necesarios o no para el conmutador del entorno de ejecución. En la mayoría de los casos, las versiones de entorno de ejecución son compatibles.
+
+1. Guarde el código de acción en un archivo.
+
+  ```
+  ibmcloud fn action get actionName --save
+  ```
+  {: pre}
+
+2. Actualice la acción especificando el nuevo entorno de ejecución.
+
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
+
+Para ver una lista de los entornos de ejecución disponibles, consulte [Entornos de ejecución](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)
+
+## Gestión de acciones grandes
+{: #large-app-support}
+
+El tamaño máximo de código de una acción es de 48 MB. Las aplicaciones que contienen muchos módulos de terceros, bibliotecas nativas o herramientas externas pueden alcanzar este límite. Si crea una acción de paquete .zip o .jar mayor de 48 MB, debe ampliar la imagen del entorno de tiempo de ejecución con dependencias y, a continuación, utilizar un archivo de origen individual o un archivador más pequeño de 48 MB.
+
+Por ejemplo, mediante la creación de un tiempo de ejecución de Docker personalizado, que incluye bibliotecas compartidas necesarias, no es necesario que estas dependencias estén presentes en el archivo de archivado. Los archivos de origen privado se pueden empaquetar en el archivado e introducirse en el tiempo de ejecución.
 
 ## Supresión de acciones
 {: #deleting-actions}

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Pacote Watson: Speech to Text
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+Esse pacote pré-instalado não está disponível na região de Tóquio. Consulte o pacote [Fala para texto](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) instalável usando a autenticação do IAM.
+{: tip}
 
 O pacote `/whisk.system/watson-speechToText` oferece uma maneira conveniente de chamar APIs do Watson para converter a fala em texto.
 {: shortdesc}
@@ -25,14 +34,14 @@ O pacote inclui as ações a seguir.
 | `/whisk.system/watson-speechToText/speechToText` | ação | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Converter
 áudio em texto |
 
-**Nota**: o pacote `/whisk.system/watson` está descontinuado, incluindo a ação `/whisk.system/watson/speechToText`.
+**Nota**: o pacote `/whisk.system/watson` está descontinuado, incluindo a ação `/whisk.system/watson/speechToText`. Em vez disso, consulte o [pacote do {{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=cloud-functions-speech-to-text-package).
 
 ## Configurando o pacote Watson Speech to Text no {{site.data.keyword.Bluemix_notm}}
 
 Se você estiver usando o {{site.data.keyword.openwhisk}} por meio do {{site.data.keyword.Bluemix_notm}}, as ligações de pacote serão criadas automaticamente
 para suas instâncias de serviço do {{site.data.keyword.Bluemix_notm}} Watson.
 
-1. Crie uma instância de serviço do Watson Speech to Text em seu [painel](http://console.ng.Bluemix.net) do {{site.data.keyword.Bluemix_notm}}.
+1. Cie uma instância de serviço Fala para texto do Watson em seu painel do {{site.data.keyword.Bluemix_notm}} [](http://cloud.ibm.com).
 
   Certifique-se de lembrar do nome da instância de serviço e da organização e do espaço do {{site.data.keyword.Bluemix_notm}} no qual você se encontra.
 

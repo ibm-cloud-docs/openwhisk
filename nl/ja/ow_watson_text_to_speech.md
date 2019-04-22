@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: text to speech, watson, cognitive, functions, packages
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,15 +22,15 @@ lastupdated: "2018-07-17"
 {{site.data.keyword.texttospeechfull}} サービスが提供する API は、IBM の音声合成機能を使用して、テキストをさまざまな言語、方言、および発声の自然に聞こえる音声に合成します。
 {:shortdesc}
 
-このサービスでは、言語ごとに少なくとも 1 つの男性または女性の声 (場合によっては両方) がサポートされます。音声は、最小限の遅延でクライアントにストリーム化されて返されます。このサービスについて詳しくは、[IBM Cloud 資料](https://console.bluemix.net/docs/services/text-to-speech/index.html)を参照してください。
+このサービスでは、言語ごとに少なくとも 1 つの男性または女性の声 (場合によっては両方) がサポートされます。 音声は、最小限の遅延でクライアントにストリーム化されて返されます。 このサービスについて詳しくは、[IBM Cloud 資料](https://cloud.ibm.com/docs/services/text-to-speech/index.html)を参照してください。
 
-{{site.data.keyword.texttospeechshort}} パッケージには、以下のエンティティーが含まれています。エンティティー名をクリックすると、{{site.data.keyword.texttospeechshort}} API 参照で追加の詳細を確認できます。
+{{site.data.keyword.texttospeechshort}} パッケージには、以下のエンティティーが含まれています。 エンティティー名をクリックすると、{{site.data.keyword.texttospeechshort}} API 参照で追加の詳細を確認できます。
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url |{{site.data.keyword.texttospeechshort}} サービスを操作します。 |
+| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | パッケージ | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url  | {{site.data.keyword.texttospeechshort}} サービスを操作します。 |
 | [get-voice](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、voice、customization_id  | 音声を取得します。 |
-| [list-voices](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices) | アクション | username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url | 音声をリストします。 |
+| [list-voices](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url | 音声をリストします。 |
 | [synthesize](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、text、accept、voice、customization_id  | 音声を合成します。 |
 | [get-pronunciation](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-pronunciation) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、text、voice、format、customization_id  | 発音を取得します。 |
 | [create-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#create-voice-model) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、name、language、description  | カスタム・モデルを作成します。 |
@@ -38,19 +43,19 @@ lastupdated: "2018-07-17"
 | [delete-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-word) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、word  | カスタムの単語を削除します。 |
 | [get-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-word) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id、word  | カスタムの単語を取得します。 |
 | [list-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customization_id  | カスタムの単語をリストします。 |
-| [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。|
+| [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | アクション |  username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、customer_id  | ラベル付きデータを削除します。 |
 
 ## {{site.data.keyword.texttospeechshort}} サービス・インスタンスの作成
-{: #service_instance}
+{: #service_instance_texttospeech}
 
 パッケージをインストールする前に、{{site.data.keyword.texttospeechshort}} サービス・インスタンスおよびサービス資格情報を作成する必要があります。
 {: shortdesc}
 
-1. [{{site.data.keyword.texttospeechshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/catalog/services/text_to_speech) します。
+1. [{{site.data.keyword.texttospeechshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](https://cloud.ibm.com/catalog/services/text_to_speech)。
 2. サービス・インスタンスの作成時に、自動生成されたサービス資格情報も作成されます。
 
 ## {{site.data.keyword.texttospeechshort}} パッケージのインストール
-{: #install}
+{: #install_texttospeech}
 
 {{site.data.keyword.texttospeechshort}} サービス・インスタンスの作成後に、{{site.data.keyword.openwhisk}} CLI を使用して、{{site.data.keyword.texttospeechshort}} パッケージを名前空間にインストールします。
 {: shortdesc}
@@ -59,8 +64,7 @@ lastupdated: "2018-07-17"
 {: #texttospeech_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](bluemix_cli.html#cloudfunctions_cli)。
-  2. [`wskdeploy` コマンド ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) をインストールして、ダウンロードしたバイナリーを PATH に追加します。
+  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli)。
 
 {{site.data.keyword.texttospeechshort}} パッケージをインストールするには、次のようにします。
 
@@ -72,7 +76,7 @@ lastupdated: "2018-07-17"
 
 2. パッケージをデプロイします。
     ```
-    wskdeploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
@@ -95,7 +99,7 @@ lastupdated: "2018-07-17"
     ```
     {: pre}
 
-    これは IAM サービスであるため、サービス・インスタンスを作成した地域によっては、サービス・インスタンスの名前が異なる場合があります。上記のコマンドが失敗した場合は、bind コマンドに以下のサービス名を使用します。
+    これは IAM サービスであるため、サービス・インスタンスを作成した地域によっては、サービス・インスタンスの名前が異なる場合があります。 上記のコマンドが失敗した場合は、bind コマンドに以下のサービス名を使用します。
     ```
     ibmcloud fn service bind text-to-speech text-to-speech-v1
     ```
@@ -106,7 +110,7 @@ lastupdated: "2018-07-17"
     ```
     {: screen}
 
-5. パッケージが {{site.data.keyword.texttospeechshort}} サービス・インスタンス資格情報を使用して構成されていることを確認します。
+5. パッケージが {{site.data.keyword.texttospeechshort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
     ibmcloud fn package get text-to-speech-v1 parameters
     ```
@@ -135,9 +139,9 @@ lastupdated: "2018-07-17"
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #texttospeech_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://console.bluemix.net/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
 
-2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、{{site.data.keyword.cos_short}} パッケージのインストール先の名前空間を選択します。名前空間は、組織名とスペース名の組み合わせから形成されます。
+2. **「Cloud Foundry 組織」**リストと**「Cloud Foundry スペース」**リストを使用して、パッケージのインストール先の名前空間を選択します。 名前空間は、組織名とスペース名の組み合わせから形成されます。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
@@ -145,19 +149,19 @@ lastupdated: "2018-07-17"
 
 5. **「Text To Speech」**パッケージをクリックします。
 
-5. **「インストール (Install)」**をクリックします。 
+5. **「インストール (Install)」**をクリックします。
 
-6. パッケージのインストール後に「アクション」ページにリダイレクトされ、**text-to-speech-v1** という名前の新規パッケージを検索できます。
+6. パッケージのインストール後にアクション・ページにリダイレクトされ、**text-to-speech-v1** という名前の新規パッケージを検索できます。
 
 7. **text-to-speech-v1** パッケージでアクションを使用するには、サービス資格情報をアクションにバインドする必要があります。
-  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。 
-  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。**注**: 使用するアクションごとに以下のステップを実行する必要があります。
-    1. 使用する **text-to-speech-v1** パッケージのアクションをクリックします。そのアクションの詳細ページが開きます。 
-    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。 
-    3. 新しい**パラメーター**を入力します。key には `__bx_creds` を入力します。value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
+  * サービス資格情報をパッケージ内のすべてのアクションにバインドするには、上にリストされている CLI の手順のステップ 5 と 6 に従います。
+  * サービス資格情報を個々のアクションにバインドするには、UI で以下のステップを実行します。 **注**: 使用するアクションごとに以下のステップを実行する必要があります。
+    1. 使用する **text-to-speech-v1** パッケージのアクションをクリックします。 そのアクションの詳細ページが開きます。
+    2. 左側のナビゲーションで、**「パラメーター」**セクションをクリックします。
+    3. 新しい**パラメーター**を入力します。 key には `__bx_creds` を入力します。 value には、前に作成したサービス・インスタンスのサービス資格情報 JSON オブジェクトを貼り付けます。
 
 ## {{site.data.keyword.texttospeechshort}} パッケージの使用
-{: #usage}
+{: #usage_texttospeech}
 
 このパッケージのアクションを使用するには、次の形式でコマンドを実行します。
 

@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # 行動推送套件
 {: #openwhisk_catalog_pushnotifications}
+
+在東京地區無法使用此預先安裝的套件。請參閱使用 IAM 鑑別可安裝的 [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) 套件，以進行動作 `sendMessage`。
+{: tip}
 
 瞭解如何建立 Push 套件連結，並使用 `/whisk.system/pushnotifications` 套件傳送簡單推送通知，而此套件可讓您使用推送服務。
 {: shortdesc}
@@ -23,9 +32,9 @@ lastupdated: "2018-06-22"
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` |套件| appId、appSecret、admin_url |使用 Push 服務。|
 |`/whisk.system/pushnotifications/sendMessage` |動作|text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload|將推送通知傳送至一個以上的指定裝置。|
-|`/whisk.system/pushnotifications/webhook` |資訊來源|事件|在 Push 服務上產生裝置活動（裝置登錄、取消登錄、訂閱或取消訂閱）時發動觸發程式事件。|
 
-如需在有裝置活動時發動「觸發程式」事件的相關資訊，請參閱[裝置事件上的行動推送](./openwhisk_pushnotifications.html)主題。
+
+如需在有裝置活動時發動「觸發程式」事件的相關資訊，請參閱[裝置事件上的行動推送](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications)主題。
 
 ## 建立 Push 套件連結
 {: #create_push_binding}
@@ -37,11 +46,11 @@ lastupdated: "2018-06-22"
 
 若要建立套件連結，請參閱下列步驟：
 
-1. 在 [{{site.data.keyword.Bluemix_notm}} 儀表板](http://console.bluemix.net)中建立 {{site.data.keyword.Bluemix_notm}} 應用程式。
+1. 在 [{{site.data.keyword.Bluemix_notm}} 儀表板](http://cloud.ibm.com)中建立 {{site.data.keyword.Bluemix_notm}} 應用程式。
 
 2. 起始設定「Push Notification 服務」，並將服務連結至 {{site.data.keyword.Bluemix_notm}} 應用程式。
 
-3. 配置 [Push Notification 應用程式](https://console.bluemix.net/docs/services/mobilepush/index.html)。
+3. 配置 [Push Notification 應用程式](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)。
 
   請務必記住您建立之 {{site.data.keyword.Bluemix_notm}} 應用程式的 **App GUID** 和 **App Secret**。
 

@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Architecture de la plateforme
 {: #openwhisk_about}
@@ -23,24 +29,24 @@ lastupdated: "2018-07-13"
 Découvrez quelques concepts de base de la technologie derrière {{site.data.keyword.openwhisk_short}} :
 
 <dl>
-<dt>Action</dt>
-<dd>Une [action](openwhisk_actions.html) est un élément de code qui effectue une tâche spécifique. Une action peut être écrite dans le langage de votre choix, par exemple en petits fragments de code Swift ou JavaScript, ou de code binaire personnalisé imbriqué dans un conteneur Docker. Vous soumettez votre action à Cloud Functions sous forme de code source ou d'image Docker.
-<br><br>Une action effectue une tâche lorsqu'elle est directement appelée à l'aide de l'API {{site.data.keyword.openwhisk_short}}, de l'interface de ligne de commande ou du logiciel SDK pour iOS. Une action peut également répondre automatiquement à des événements à partir des services {{site.data.keyword.Bluemix_notm}} et de services tiers au moyen d'un déclencheur.</dd>
-<dt>Séquence</dt>
-<dd>Ensemble d'actions pouvant être chaînées et regroupées dans une [séquence](openwhisk_actions.html#openwhisk_create_action_sequence) sans avoir à écrire de code. Une séquence est une suite d'actions, appelées dans un certain ordre, où la sortie de la première devient l'entrée de la suivante. Vous pouvez ainsi combiner des actions existantes afin de pouvoir les réutiliser rapidement et facilement. Une séquence peut ensuite être appelée comme une action, via une API REST ou automatiquement, en réponse à des événements.
-</dd>
-<dt>Evénement</dt>
-<dd>Par exemple, les événements peuvent être des modifications apportées aux enregistrements d'une base de données, des relevés de capteur IoT dépassant une certaine température, de nouvelles validations de code dans un référentiel GitHub ou des demandes HTTP simples provenant d'applications Web ou mobiles. Les événements provenant de sources d'événements externes et internes sont canalisés via un déclencheur, et des règles permettent de réagir à ces événements par le biais d'actions.</dd>
-<dt>Déclencheur</dt>
-<dd>Les [déclencheurs](openwhisk_triggers_rules.html#openwhisk_triggers_create) constituent un canal nommé correspondant à une classe d'événements. Un déclencheur est une déclaration qui doit réagir à un certain type d'événement, provenant d'un utilisateur ou d'une source d'événements.</dd>
-<dt>Règle</dt>
-<dd>Une [règle](openwhisk_triggers_rules.html#openwhisk_rules_use) associe un déclencheur à une action. A chaque fois que le déclencheur s'exécute, la règle utilise l'événement déclencheur comme entrée et appelle l'action associée. Avec le jeu de règles approprié, un événement déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.</dd>
-<dt>Flux </dt>
-<dd>Un
-[flux](openwhisk_feeds.html#openwhisk_feeds) est pratique pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs qui peuvent être consommés par {{site.data.keyword.openwhisk_short}}. Par exemple, un flux Git peut exécuter un déclencheur pour chaque validation dans un référentiel Git.</dd>
-<dt>Package</dt>
-<dd>Des intégrations à des services et à des fournisseurs d'événements peuvent être ajoutées à l'aide de packages. Un [package](openwhisk_packages.html) est un regroupement de flux et d'actions. Un flux est un élément de code qui configure une source d'événements externe en vue de l'exécution d'événements déclencheurs. Par exemple, un déclencheur créé avec un flux de modifications {{site.data.keyword.cloudant}} configure un service de sorte qu'il exécute le déclencheur à chaque fois qu'un document est modifié ou ajouté dans une base de données {{site.data.keyword.cloudant_short_notm}}. Les actions des packages représentent une logique réutilisable qu'un fournisseur de services peut mettre à disposition pour que les développeurs puissent utiliser le service en tant que source d'événements et appeler les API de ce service.
-<br><br>Un catalogue de packages existant permet d'améliorer les applications avec des fonctions utiles et d'accéder à des services externes dans l'écosystème rapidement. Parmi les exemples de services externes comprenant des packages {{site.data.keyword.openwhisk_short}} figurent {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack et GitHub.</dd>
+  <dt>Action</dt>
+    <dd>Une [action](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) est un élément de code qui effectue une tâche spécifique. Une action peut être écrite dans le langage de votre choix, par exemple en petits fragments de code Swift ou JavaScript, ou de code binaire personnalisé imbriqué dans un conteneur Docker. Vous soumettez votre action à Cloud Functions sous forme de code source ou d'image Docker.
+    <br><br>Une action effectue une tâche lorsqu'elle est directement appelée à l'aide de l'API {{site.data.keyword.openwhisk_short}}, de l'interface de ligne de commande ou du logiciel SDK pour iOS. Une action peut également répondre automatiquement à des événements à partir des services {{site.data.keyword.Bluemix_notm}} et de services tiers au moyen d'un déclencheur.</dd>
+  <dt>Séquence</dt>
+    <dd>Ensemble d'actions pouvant être chaînées et regroupées dans une [séquence](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence) sans avoir à écrire de code. Une séquence est une suite d'actions, appelées dans un certain ordre, où la sortie de la première devient l'entrée de la suivante. Vous pouvez ainsi combiner des actions existantes afin de pouvoir les réutiliser rapidement et facilement. Une séquence peut ensuite être appelée comme une action, via une API REST ou automatiquement, en réponse à des événements.
+  </dd>
+  <dt>Evénement</dt>
+    <dd>Par exemple, les événements peuvent être des modifications apportées aux enregistrements d'une base de données, des relevés de capteur IoT dépassant une certaine température, de nouvelles validations de code dans un référentiel GitHub ou des demandes HTTP simples provenant d'applications Web ou mobiles. Les événements provenant de sources d'événements externes et internes sont canalisés via un déclencheur, et des règles permettent de réagir à ces événements par le biais d'actions.</dd>
+  <dt>Déclencheur</dt>
+    <dd>Les [déclencheurs](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create) constituent un canal nommé correspondant à une classe d'événements. Un déclencheur est une déclaration qui doit réagir à un certain type d'événement, provenant d'un utilisateur ou d'une source d'événements.</dd>
+  <dt>Règle</dt>
+    <dd>Une [règle](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use) associe un déclencheur à une action. A chaque fois que le déclencheur s'exécute, la règle utilise l'événement déclencheur comme entrée et appelle l'action associée. Avec le jeu de règles approprié, un événement déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.</dd>
+  <dt>Flux</dt>
+    <dd>Un
+[flux](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds) est pratique pour configurer une source d'événements externe afin d'exécuter des événements déclencheurs qui peuvent être consommés par {{site.data.keyword.openwhisk_short}}. Par exemple, un flux Git peut exécuter un déclencheur pour chaque validation dans un référentiel Git.</dd>
+  <dt>Package</dt>
+    <dd>Des intégrations à des services et à des fournisseurs d'événements peuvent être ajoutées à l'aide de packages. Un [package](/docs/openwhisk?topic=cloud-functions-openwhisk_packages) est un regroupement de flux et d'actions. Un flux est un élément de code qui configure une source d'événements externe en vue de l'exécution d'événements déclencheurs. Par exemple, un déclencheur créé avec un flux de modifications {{site.data.keyword.cloudant}} configure un service de sorte qu'il exécute le déclencheur à chaque fois qu'un document est modifié ou ajouté dans une base de données {{site.data.keyword.cloudant_short_notm}}. Les actions des packages représentent une logique réutilisable qu'un fournisseur de services peut mettre à disposition pour que les développeurs puissent utiliser le service en tant que source d'événements et appeler les API de ce service.
+    <br><br>Un catalogue de packages existant permet d'améliorer les applications avec des fonctions utiles et d'accéder à des services externes dans l'écosystème rapidement. Parmi les exemples de services externes comprenant des packages {{site.data.keyword.openwhisk_short}} figurent {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack et GitHub.</dd>
 </dl>
 
 ## Fonctionnement de {{site.data.keyword.openwhisk_short}}
@@ -161,7 +167,7 @@ Vous pouvoir voir de quelle façon une simple action **ibmcloud fn action invoke
 
 Vous trouverez des informations supplémentaires sur {{site.data.keyword.openwhisk_short}} dans les rubriques suivantes :
 
-* [Noms d'entité](./openwhisk_reference.html#openwhisk_entities)
-* [Sémantique d'action](./openwhisk_reference.html#openwhisk_semantics)
-* [Limites](./openwhisk_reference.html#openwhisk_syslimits)
-* [Référence de l'API REST](https://console.bluemix.net/apidocs/functions)
+* [Noms d'entité](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [Sémantique d'action](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
+* [Limites](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [Référence de l'API REST](/apidocs/functions)
