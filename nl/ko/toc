@@ -1,11 +1,11 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
+{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting_started" path="openwhisk"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
-    index.md
+    getting_started.md
 
     {: .topicgroup}
     개요
@@ -15,10 +15,10 @@ IBM Cloud Functions
 
     {: .topicgroup}
     튜토리얼
-        ../tutorials/slack-chatbot-database-watson.md
-        ../tutorials/serverless-github-traffic-analytics.md
-        ../tutorials/serverless-mobile-backend.md
-        ../tutorials/serverless-api-webapp.md
+        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
+        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
+        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
+        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -26,12 +26,22 @@ IBM Cloud Functions
 
     {: .topicgroup}
     액션 작성
-        openwhisk_actions.md
+        actions_javascript.md
+        actions_go.md
+        actions_swift.md
+        actions_python.md
+        actions_ruby.md
+        actions_docker.md
+        actions_ballerina.md
+        actions_php.md
+        actions_java.md
+        actions_net.md
         openwhisk_webactions.md
         openwhisk_managing.md
         parameters.md
         binding_services.md
         openwhisk_packages.md
+        cloud_object_storage_actions.md
 
     {: .topicgroup}
     이벤트로 액션 호출
@@ -42,6 +52,7 @@ IBM Cloud Functions
         openwhisk_pushnotifications.md
         openwhisk_github.md
         openwhisk_feeds.md
+        openwhisk_object_storage.md
 
     openwhisk_apigateway.md
     openwhisk_logs.md
@@ -84,7 +95,9 @@ IBM Cloud Functions
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
+    runtimes.md
     openwhisk_reference.md
+    openwhisk_regions.md
 
     {: .topicgroup}
     API 문서
@@ -100,3 +113,6 @@ IBM Cloud Functions
         [튜토리얼 및 샘플](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
 
     {: .navgroup-end}
+
+    index.md
+    openwhisk_actions.md
