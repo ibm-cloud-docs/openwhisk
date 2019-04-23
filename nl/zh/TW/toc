@@ -1,11 +1,11 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
+{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/getting_started.html" path="openwhisk"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
-    index.md
+    getting_started.md
 
     {: .topicgroup}
     概觀
@@ -100,3 +100,5 @@ IBM Cloud Functions
         [指導教學及範例](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
 
     {: .navgroup-end}
+    
+    index.md
