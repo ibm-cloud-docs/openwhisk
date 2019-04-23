@@ -1,18 +1,24 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-25"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: managing actions, manage, activation, action logs, changing runtime, delete
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Aktionen verwalten
+{: #managing_actions}
 {: #openwhisk_managing}
 
 Sie können Aktionen verwalten, indem Sie die Aktionsausgabe überwachen, bestimmte Informationen zu einer Aktion abrufen oder Aktionen löschen.
@@ -30,7 +36,7 @@ ibmcloud fn action list
 ```
 {: pre}
 
-Mit dem Erstellen weiterer Aktionen kann es sinnvoll sein, zusammengehörige Aktionen in [Paketen](./openwhisk_packages.html) zu gruppieren. Ihre Liste von Aktionen können Sie wie folgt nach Aktionen in nur einem bestimmten Paket filtern:
+Mit dem Erstellen weiterer Aktionen kann es sinnvoll sein, zusammengehörige Aktionen in [Paketen](/docs/openwhisk?topic=cloud-functions-openwhisk_packages) zu gruppieren. Ihre Liste von Aktionen können Sie wie folgt nach Aktionen in nur einem bestimmten Paket filtern:
 ```
 ibmcloud fn action list [PACKAGE NAME]
 ```
@@ -99,7 +105,7 @@ ok: got action hello
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotationen für diese Aktion. Eine Liste der gültigen Annotationen enthalten die Referenzinformationen in [Annotationen für Aktionen](openwhisk_annotations.html#action) und [Annotationen für Webaktionen](openwhisk_annotations.html#annotations-specific-to-web-actions).</td>
+<td>Annotationen für diese Aktion. Eine Liste der gültigen Annotationen enthalten die Referenzinformationen in [Annotationen für Aktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#action) und [Annotationen für Webaktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#annotations-specific-to-web-actions).</td>
 </tr>
 <tr>
 <td><code>limits</code></td>
@@ -114,7 +120,7 @@ ok: got action hello
 </tbody></table>
 
 ## Aktivierungsdetails anzeigen
-{: #activation}
+{: #activation_details}
 
 {{site.data.keyword.openwhisk_short}}-Aktionen können von anderen Benutzern, als Reaktion auf verschiedene Ereignisse oder als Teil einer Aktionssequenz aufgerufen werden. Wann immer eine Aktion aufgerufen wird, wird für diesen Aufruf ein Aktivierungsdatensatz erstellt. Wenn Sie Informationen zum Ergebnis des Aktionsaufrufs wünschen, können Sie Details zu Aktivierungen abrufen.
 
@@ -134,7 +140,7 @@ Beispielausgabe:
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "BobsOrg_dev",
+    "namespace": "myNamespace",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -154,7 +160,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "BobsOrg_dev/hello"
+            "value": "myNamespace/hello"
         },
         {
             "key": "waitTime",
@@ -234,7 +240,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotationen für diese Aktion. Eine Liste der gültigen Annotationen enthalten die Referenzinformationen zu [Annotationen](openwhisk_annotations.html#activation).</td>
+<td>Annotationen für diese Aktion. Eine Liste der gültigen Annotationen enthalten die Referenzinformationen zu [Annotationen](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#activation).</td>
 </tr>
 <tr>
 <td><code>publish</code></td>
@@ -250,7 +256,7 @@ Die Aktionsumgebung enthält mehrere Eigenschaften, die für die aktive Aktion s
 | Eigenschaft | Beschreibung |
 | -------- | ----------- |
 | `__OW_API_HOST` | Der API-Host für die OpenWhisk-Bereitstellung, die diese Aktion ausführt. |
-| `__OW_API_KEY` | Der API-Schlüssel für das Subjekt, das die Aktion aufruft. Dieser Schlüssel kann ein eingeschränkter API-Schlüssel sein. |
+| `__OW_API_KEY` | Der API-Schlüssel für das Subjekt, das die Aktion aufruft. Dieser Schlüssel kann ein eingeschränkter API-Schlüssel sein und ist nicht angegeben, es sei denn, er wird explizit angefordert. Siehe [Annotationen](/docs/openwhisk?topic=cloud-functions-openwhisk_annotations#openwhisk_annotations). |
 | `__OW_NAMESPACE` | Der Namensbereich für die Aktivierung. Dieser Namensbereich kann ein anderer als der Namensbereich für die Aktion sein. |
 | `__OW_ACTION_NAME` | Der vollständig qualifizierte Name der Aktion, die ausgeführt wird. |
 | `__OW_ACTIVATION_ID` | Die Aktivierungs-ID für die Instanz dieser in der Ausführung befindlichen Aktion. |
@@ -275,14 +281,14 @@ https://${APIHOST}/api/v1/namespaces/${NAMESPACE}/actions/actionName
 ```
 {: screen}
 
-Beispielausgabe für [Webaktionen](./openwhisk_webactions.html):
+Beispielausgabe für [Webaktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions):
 ```
 ok: got action actionName
 https://${APIHOST}/api/v1/web/${NAMESPACE}/${PACKAGE}/actionName
 ```
 {: screen}
 
-**Hinweis:** Bei Standardaktionen ist eine Authentifizierung erforderlich, wenn der Aufruf über eine HTTPS-Anforderung erfolgt. Weitere Informationen zu Aktionsaufrufen über die REST-Schnittstelle finden Sie in der [REST-API-Referenz](https://console.bluemix.net/apidocs/functions).
+**Hinweis:** Bei Standardaktionen ist eine Authentifizierung erforderlich, wenn der Aufruf über eine HTTPS-Anforderung erfolgt. Weitere Informationen zu Aktionsaufrufen über die REST-Schnittstelle finden Sie in der [REST-API-Referenz](https://cloud.ibm.com/apidocs/functions).
 
 ## Aktionscode speichern
 {: #save-action}
@@ -346,6 +352,34 @@ Sie können die Ausgabe von Aktionen, wenn sie aufgerufen werden, über die {{si
     ```
     {: screen}
     Gegebenenfalls werden auch die Protokolle für Aktionen, die für Sie in {{site.data.keyword.openwhisk_short}} ausgeführt werden, in Echtzeit angezeigt.
+    
+## Aktionslaufzeit ändern
+{: #changing-action-runtime}
+
+Sie können die Art der Laufzeit (`kind`) ändern, um zu einer neueren Version der Aktionslaufzeit zu migrieren. Da sich Node.js Version 8 beispielsweise im Wartungsmodus befindet, möchten Sie die Laufzeit möglicherweise in Node.js 10 ändern. Führen Sie die folgenden Schritte aus, um eine Aktionslaufzeit zu ändern. **Hinweis:** Möglicherweise müssen Sie den Code in `actionName.js` ändern, um mit der neuen Laufzeitversion kompatibel zu sein. Dies hängt davon ab, ob solche Änderungen von dem Laufzeitswitch benötigt werden. In den meisten Fällen sind die Laufzeitversionen kompatibel. 
+
+1. Speichern Sie den Aktionscode in einer Datei. 
+
+  ```
+  ibmcloud fn action get actionName --save
+  ```
+  {: pre}
+
+2. Aktualisieren Sie die Aktion, indem Sie die neue Laufzeit angeben. 
+
+  ```
+  ibmcloud fn action update actionName actionName.js --kind nodejs:10
+  ```
+  {: pre}
+
+Eine Liste der verfügbaren Laufzeiten finden Sie unter [Laufzeiten](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes)
+
+## Umfangreiche Aktionen verwalten
+{: #large-app-support}
+
+Die maximale Codegröße für eine Aktion ist 48 MB. Anwendungen, die viele Drittanbietermodule, native Bibliotheken oder externe Tools enthalten, erreichen diesen Grenzwert gegebenenfalls. Wenn Sie eine Aktion mit einem ZIP- oder JAR-Paket mit einer Größe von über 48 MB erstellen, müssen Sie das Laufzeitimage um Abhängigkeiten erweitern und anschließend eine einzelne Quellendatei oder ein Archiv mit einer Größe von weniger als 48 MB verwenden.
+
+Wenn zum Beispiel eine Docker-Laufzeit erstellt wird, die erforderliche gemeinsam genutzte Bibliotheken einschließt, müssen eventuelle Abhängigkeiten nicht in der Archivdatei enthalten sein. Private Quellendateien können weiterhin in das Archiv eingebunden und während der Ausführung eingefügt werden.
 
 ## Aktionen löschen
 {: #deleting-actions}

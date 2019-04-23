@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: feed, event, polling, hooks, trigger, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Angepasste Feeds für Ereignisprovider erstellen
 {: #openwhisk_feeds}
@@ -24,9 +30,9 @@ Die folgenden Informationen sind für erfahrene {{site.data.keyword.openwhisk_sh
 Es gibt mindestens drei Architekturmuster für die Erstellung eines Feeds: **Hooks**, **Polling** und **Verbindungen**.
 
 ### Hooks
-Im Muster *Hooks* wird der Feed mit einer [Webhook-Funktion](https://en.wikipedia.org/wiki/Webhook) eingerichtet, die von einem anderen Service verfügbar gemacht wird. Bei diesem Verfahren wird ein Webhook in einem externen Service konfiguriert, um direkt POST-Anforderungen an eine URL zu senden, durch die ein Auslöser aktiviert wird. Diese Methode ist mit Abstand die einfachste und bequemste Option, Feeds mit geringer Häufigkeit zu implementieren.
+Im Muster *Hooks* wird der Feed mit einer [Webhook-Funktion](https://en.wikipedia.org/wiki/Webhook) eingerichtet, die von einem anderen Service verfügbar gemacht wird.   Bei diesem Verfahren wird ein Webhook in einem externen Service konfiguriert, um direkt POST-Anforderungen an eine URL zu senden, durch die ein Auslöser aktiviert wird. Diese Methode ist mit Abstand die einfachste und bequemste Option, Feeds mit geringer Häufigkeit zu implementieren.
 
-<!-- The github feed is implemented using webhooks.  Put a link here when we have the open repo ready -->
+
 
 ### Polling
 Im Muster "Polling" wird eine {{site.data.keyword.openwhisk_short}}-Aktion so eingerichtet, dass sie einen Endpunkt regelmäßig abfragt, um neue Daten abzurufen. Dieses Muster ist relativ einfach zu erstellen, aber die Häufigkeiten der Ereignisse werden durch das Polling-Intervall begrenzt.
@@ -34,10 +40,9 @@ Im Muster "Polling" wird eine {{site.data.keyword.openwhisk_short}}-Aktion so ei
 ### Verbindungen
 Im Muster "Verbindungen" verwaltet ein separater Service eine persistente Verbindung zu einer Feedquelle. Die verbindungsbasierte Implementierung kann mit einem Serviceendpunkt durch lange Polling-Intervalle interagieren. Es kann auch eine Push-Benachrichtigung eingerichtet werden.
 
-<!-- Our cloudant changes feed is connection based.  Put a link here to
-an open repo -->
 
-<!-- What is the foundation for the Message Hub feed? If it is "connections" then lets put a link here as well -->
+
+
 
 ## Unterschied zwischen Feed und Auslöser
 
@@ -82,7 +87,7 @@ Ein ähnliches Feedaktionsprotokoll trifft bei `ibmcloud fn trigger delete`, `ib
 
 Das Einrichten eines Feeds über einen Hook ist einfach, wenn der Ereignisproduzent eine Webhook/Callback-Funktion unterstützt.
 
-Mit dieser Methode ist es _nicht erforderlich_, einen persistenten Service außerhalb von {{site.data.keyword.openwhisk_short}} automatisch zu installieren. Die gesamte Feedverwaltung erfolgt natürlich über statusunabhängige {{site.data.keyword.openwhisk_short}}-*Feedaktionen*, die direkt mit der Webhook-API eines Drittanbieters kommunizieren.
+Mit dieser Methode ist es _nicht erforderlich_, einen persistenten Service außerhalb von {{site.data.keyword.openwhisk_short}} automatisch zu installieren. Die gesamte Feedverwaltung erfolgt natürlich über statusunabhängige {{site.data.keyword.openwhisk_short}}-*Feedaktionen*, die direkt mit der Webhook-API eines Drittanbieters kommunizieren. 
 
 Bei einem Aufruf mit `CREATE` installiert die Feedaktion einfach einen Webhook für einen anderen Service und fordert diesen fernen Service dazu auf, POST-Benachrichtigungen an die entsprechende URL für die Auslöseraktivierung (`fireTrigger`) in {{site.data.keyword.openwhisk_short}} zu senden.
 
@@ -115,7 +120,7 @@ Da {{site.data.keyword.openwhisk_short}}-Aktionen eine kurze Laufzeit haben müs
 Der Provider-Service hat eine REST-API, die es der {{site.data.keyword.openwhisk_short}}-*Feedaktion* ermöglicht, den Feed zu steuern. Der Provider-Service fungiert als Proxy zwischen dem Ereignisprovider und {{site.data.keyword.openwhisk_short}}. Wenn er vom Drittanbieter Ereignisse empfängt, sendet er sie an {{site.data.keyword.openwhisk_short}}, indem er einen Auslöser aktiviert.
 
 Der {{site.data.keyword.cloudant_short_notm}}-Feed *changes* ist ein kanonisches Beispiel. Er veranlasst die automatische Installation des Service `cloudanttrigger`, der über eine persistente Verbindung zwischen {{site.data.keyword.cloudant_short_notm}}-Benachrichtigungen und {{site.data.keyword.openwhisk_short}}-Auslösern vermittelt.
-<!-- TODO: add a reference to the open source implementation -->
+
 
 Der Feed *alarm* wird anhand eines ähnlichen Musters implementiert.
 

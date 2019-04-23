@@ -1,23 +1,29 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, sdk, cocoapods, carthage
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Mobil-SDK
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk stellt ein Mobile-SDK für iOS- und watchOS-Geräte bereit, mit dem mobile Apps dazu eingerichtet werden können, ohne großen Aufwand ferne Auslöser zu aktivieren und ferne Aktionen aufzurufen. Da keine Version für Android verfügbar ist, können Android-Entwickler die OpenWhisk-REST-API direkt verwenden.
-
-Das Mobil-SDK wurde in Swift 4 geschrieben und unterstützt iOS 11 und höhere Releases. Sie können das Mobil-SDK mithilfe von Xcode 9 erstellen.
+OpenWhisk stellt ein Mobile-SDK für iOS- und watchOS-Geräte bereit, mit dem mobile Apps dazu eingerichtet werden können, ferne Auslöser zu aktivieren und ferne Aktionen aufzurufen. Da keine Version für Android verfügbar ist, können Android-Entwickler die OpenWhisk-REST-API direkt verwenden. Das Mobil-SDK wurde in Swift 4 geschrieben und unterstützt iOS 11 und höhere Releases. Sie können das Mobil-SDK mithilfe von Xcode 9 erstellen.
 {: shortdesc}
+
+
 
 ## SDK der App hinzufügen
 
@@ -122,7 +128,7 @@ Die Zeichenfolgen vor dem Doppelpunkt sind der Schlüssel und die Zeichenfolge n
 
 ## OpenWhisk-Aktion aufrufen
 
-Zum Aufrufen einer fernen Aktion können Sie `invokeAction` mit dem Aktionsnamen aufrufen. Sie können den Namensbereich angeben, zu dem die Aktion gehört, oder Sie können den Namensbereich leer lassen, um den Standardnamensbereich zu übernehmen. Verwenden Sie ein Wörterverzeichnis (Dictionary), um Parameter nach Bedarf an die Aktion zu übergeben.
+Zum Aufrufen einer fernen Aktion können Sie `invokeAction` mit dem Aktionsnamen aufrufen. Verwenden Sie ein Wörterverzeichnis (Dictionary), um Parameter nach Bedarf an die Aktion zu übergeben.
 
 Beispiel:
 ```swift
@@ -143,8 +149,6 @@ do {
 }
 ```
 {: codeblock}
-
-Im obigen Beispiel wird die Aktion `helloConsole` unter Verwendung des Standardnamensbereichs aufgerufen.
 
 ## OpenWhisk-Auslöser aktivieren
 
@@ -207,7 +211,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-In diesem Beispiel wird eine Installation verwendet, die unter 'http://localhost:8080' ausgeführt wird. Wenn Sie den Parameter 'baseUrl' nicht angeben, verwendet das Mobil-SDK die Instanz, die unter https://openwhisk.ng.bluemix.net ausgeführt wird.
+In diesem Beispiel wird eine Installation verwendet, die unter 'http://localhost:8080' ausgeführt wird. Wenn Sie den Parameter 'baseUrl' nicht angeben, verwendet das Mobil-SDK die Instanz, die unter 'https://us-south.functions.cloud.ibm.com' ausgeführt wird. 
 
 Sie können einen angepassten Parameter NSURLSession übergeben, wenn Sie eine besondere Netzverwaltung benötigen. Sie könnten zum Beispiel eine eigene OpenWhisk-Installation haben, die mit selbst signierten Zertifikaten arbeitet:
 

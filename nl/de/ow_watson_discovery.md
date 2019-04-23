@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-28"
+
+keywords: watson discovery, functions, watson, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -21,7 +26,7 @@ Das {{site.data.keyword.discoveryshort}}-Paket enthält die folgenden Entitäten
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| [`discovery-v1`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Ermöglicht das Arbeiten mit dem {{site.data.keyword.discoveryshort}}-Service. |
+| [`discovery-v1`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Ermöglicht das Arbeiten mit dem {{site.data.keyword.discoveryshort}}-Service. |
 | [create-environment](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#create-environment) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, description, size,  | Erstellt eine Umgebung. |
 | [delete-environment](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-environment) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    environment_id,  | Löscht eine Umgebung. |
 | [get-environment](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#get-environment) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    environment_id,  | Ruft Informationen zu einer Umgebung ab. |
@@ -66,15 +71,15 @@ Das {{site.data.keyword.discoveryshort}}-Paket enthält die folgenden Entitäten
 | [delete-user-data](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#delete-user-data) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Löscht gekennzeichnete Daten. |
 
 ## {{site.data.keyword.discoveryshort}}-Serviceinstanz erstellen
-{: #service_instance}
+{: #service_instance_discovery}
 
 Vor dem Installieren des Pakets müssen Sie eine Instanz des {{site.data.keyword.discoveryshort}}-Service und Serviceberechtigungsnachweise erstellen.
 
-1. [Erstellen Sie eine {{site.data.keyword.discoveryshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/catalog/services/discovery).
+1. [Erstellen Sie eine {{site.data.keyword.discoveryshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/catalog/services/discovery).
 2. Während der Erstellung der Serviceinstanz werden ebenfalls automatisch generierte Serviceberechtigungsnachweise erstellt.
 
 ## {{site.data.keyword.discoveryshort}}-Paket installieren
-{: #install}
+{: #install_discovery}
 
 Nachdem Sie über eine Instanz des {{site.data.keyword.discoveryshort}}-Service verfügen, verwenden Sie die Befehlszeilenschnittstelle (CLI) von {{site.data.keyword.openwhisk}}, um das {{site.data.keyword.discoveryshort}}-Paket in Ihrem Namensbereich zu installieren.
 {: shortdesc}
@@ -83,8 +88,7 @@ Nachdem Sie über eine Instanz des {{site.data.keyword.discoveryshort}}-Service 
 {: #discovery_cli}
 
 Vorbereitende Schritte:
-  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Installieren Sie den Befehl [`wskdeploy` ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) und fügen Sie die heruntergeladene Binärdatei zu Ihrem Pfad (PATH) hinzu.
+  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Gehen Sie zum Installieren des {{site.data.keyword.discoveryshort}}-Pakets wie folgt vor:
 
@@ -96,7 +100,7 @@ Gehen Sie zum Installieren des {{site.data.keyword.discoveryshort}}-Pakets wie f
 
 2. Stellen Sie das Paket bereit.
     ```
-    wskdeploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
@@ -151,12 +155,12 @@ Gehen Sie zum Installieren des {{site.data.keyword.discoveryshort}}-Pakets wie f
     ```
     {: screen}
 
-### Installation über die {{site.data.keyword.openwhisk_short}}-UI durchführen
+### Installation über die Benutzerschnittstelle von {{site.data.keyword.openwhisk_short}} durchführen
 {: #discovery_ui}
 
-1. Öffnen Sie die [Seite 'Erstellen' in der {{site.data.keyword.openwhisk_short}}-Konsole ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/openwhisk/create).
+1. Öffnen Sie die [Seite 'Erstellen' ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/openwhisk/create) in der {{site.data.keyword.openwhisk_short}}-Konsole. 
 
-2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbreich aus, in dem die Installation des {{site.data.keyword.cos_short}}-Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
+2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbereich aus, in dem die Installation des Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
 
 3. Klicken Sie auf **Pakete installieren**.
 
@@ -168,15 +172,15 @@ Gehen Sie zum Installieren des {{site.data.keyword.discoveryshort}}-Pakets wie f
 
 6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **discovery-v1**.
 
-7. Um die Aktionen im Paket **discovery-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden.
-  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus. 
+7. Um die Aktionen im Paket **discovery-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden. 
+  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie Schritt 4 in den oben aufgeführten CLI-Anweisungen aus. 
   * Wenn Sie Serviceberechtigungsnachweise an einzelne Aktionen binden wollen, führen Sie die nachfolgend aufgeführten Schritte in der UI (Benutzerschnittstelle) aus. **Hinweis**: Für jede Aktion, die Sie verwenden wollen, müssen Sie die nachfolgend aufgeführten Schritte ausführen.
     1. Klicken Sie auf eine Aktion aus dem Paket **discovery-v1**, die Sie verwenden wollen. Die Detailseite für diese Aktion wird geöffnet. 
-    2. Klicken Sie im Navigationsbereich links auf den Abschnitt **Parameter**. 
+    2. Klicken Sie im Navigationsbereich links auf den Abschnitt **Parameter**.
     3. Geben Sie einen neuen **Parameter** ein. Geben Sie als Schlüssel die Zeichenfolge `__bx_creds` ein. Fügen Sie als Wert das JSON-Serviceberechtigungsnachweisobjekt aus der Serviceinstanz ein, die Sie zuvor erstellt haben.
 
 ## {{site.data.keyword.discoveryshort}}-Paket verwenden
-{: #usage}
+{: #usage_discovery}
 
 Um die Aktionen in diesem Paket verwenden zu können, führen Sie Befehle in folgendem Format aus:
 

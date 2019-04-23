@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: packages, browse, binding, trigger, feeds, share
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Aktionen in Paketen organisieren
 {: #openwhisk_packages}
@@ -18,10 +24,10 @@ In {{site.data.keyword.openwhisk}} können Sie Pakete verwenden, um eine Gruppe 
 {: shortdesc}
 
 Ein Paket kann *Aktionen* und *Feeds* enthalten.
-- Eine Aktion ist ein Abschnitt Code, der in {{site.data.keyword.openwhisk_short}} ausgeführt wird. Zum Beispiel enthält das {{site.data.keyword.cloudant}}-Paket Aktionen zum Lesen und Schreiben von Datensätzen in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank.
+- Eine Aktion ist ein Abschnitt Code, der in {{site.data.keyword.openwhisk_short}} ausgeführt wird. Zum Beispiel enthält das {{site.data.keyword.cloudant}}-Paket Aktionen zum Lesen und Schreiben von Datensätzen in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank. 
 - Ein Feed dient zum Konfigurieren einer externen Ereignisquelle, sodass diese Auslöserereignisse aktiviert. Das Paket für Alarme enthält zum Beispiel einen Feed, der einen Auslöser mit einer angegebenen Häufigkeit anwenden kann.
 
-Jede {{site.data.keyword.openwhisk_short}}-Entität, einschließlich Paketen, gehört in einen *Namensbereich*. Der vollständig qualifizierte Name einer Entität setzt sich dementsprechend wie folgt zusammen: `/Namensbereichsname[/Paketname]/Entitätsname`. Weitere Informationen finden Sie unter [Benennungsrichtlinien](./openwhisk_reference.html#openwhisk_entities).
+Jede {{site.data.keyword.openwhisk_short}}-Entität, einschließlich Paketen, gehört in einen *Namensbereich*. Der vollständig qualifizierte Name einer Entität setzt sich dementsprechend wie folgt zusammen: `/Namensbereichsname/[Paketname]/Entitätsname`. Weitere Informationen finden Sie unter [Benennungsrichtlinien](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities).
 
 In den folgenden Abschnitten wird beschrieben, wie Pakete durchsucht und die in ihnen enthaltenen Auslöser und Feeds verwendet werden. Wenn Sie daran interessiert sind, eigene Pakete für den Katalog beizutragen, lesen Sie außerdem die Abschnitte zur Erstellung und gemeinsamen Nutzung von Paketen.
 
@@ -106,7 +112,7 @@ Sie können Aktionen in einem Paket ebenso wie bei anderen Aktionen aufrufen. Di
   ```
   {: screen}
 
-  Notice that the `greeting` action takes two parameters: `name` and `place`.
+  Beachten Sie, dass die Aktion `greeting` zwei Parameter verwendet: `name` und `place`. 
 
 2. Rufen Sie die Aktion ohne Parameter auf.
   ```
@@ -214,7 +220,7 @@ In dem folgenden einfachen Beispiel erstellen Sie eine Bindung an das Paket `/wh
 ## Auslöserfeeds erstellen und verwenden
 {: #openwhisk_package_trigger}
 
-Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle zum Auslösen von Ereignissen für einen {{site.data.keyword.openwhisk_short}}-Auslöser. Das folgende Beispiel zeigt, wie ein Feed im Paket für Alarme verwendet wird, um einen Auslöser einmal pro Sekunde zu aktivieren und eine Regel zu verwenden, um jede Sekunde eine Aktion aufzurufen.
+Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle zum Auslösen von Ereignissen für einen {{site.data.keyword.openwhisk_short}}-Auslöser. Das folgende Beispiel zeigt, wie ein Feed im Paket für Alarme verwendet wird, um einen Auslöser einmal pro Minute zu aktivieren, und eine Regel verwendet wird, um jede Minute eine Aktion aufzurufen. 
 
 1. Rufen Sie eine Beschreibung des Feeds im Paket `/whisk.system/alarms` ab.
   ```
@@ -245,19 +251,19 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
   - `cron`: Eine crontab-Angabe für den Zeitpunkt, wann der Auslöser zu aktivieren ist.
   - `trigger_payload`: Der Payload-Parameterwert, der in jedem Auslöserereignis festgelegt werden soll.
 
-2. Erstellen Sie einen Auslöser, der alle acht Sekunden aktiviert wird.
+2. Erstellen Sie einen Auslöser, der einmal in der Minute aktiviert wird. 
   ```
-  ibmcloud fn trigger create everyEightSeconds --feed /whisk.system/alarms/alarm -p cron "*/8 * * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
   Beispielausgabe:
   ```
-  ok: created trigger feed everyEightSeconds
+  ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. Erstellen Sie eine Datei **hello.js** mit dem folgenden Aktionscode:
+3. Erstellen Sie eine Datei `hello.js` mit dem folgenden Aktionscode:
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -271,9 +277,9 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
   ```
   {: pre}
 
-5. Erstellen Sie eine Regel, die die Aktion **hello** jedes Mal aufruft, wenn der Auslöser `everyEightSeconds` aktiviert wird.
+5. Erstellen Sie eine Regel, die die Aktion `hello` jedes Mal aufruft, wenn der Auslöser `everyOneMinute` aktiviert wird. 
   ```
-  ibmcloud fn rule create myRule everyEightSeconds hello
+  ibmcloud fn rule create myRule everyOneMinute hello
   ```
   {: pre}
 
@@ -289,7 +295,7 @@ Feeds sind eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle 
   ```
   {: pre}
 
-  Es ist zu erkennen, dass die Aktivierungen alle acht Sekunden für den Auslöser, die Regel und die Aktion beobachtet werden. Die Aktion empfängt die Parameter `{"name":"Mork", "place":"Ork"}` bei jedem Aufruf.
+  Es ist zu erkennen, dass die Aktivierungen einmal pro Minute für den Auslöser, die Regel und die Aktion beobachtet werden. Die Aktion empfängt die Parameter `{"name":"Mork", "place":"Ork"}` bei jedem Aufruf.
 
 ## Paket erstellen
 {: #openwhisk_packages_create}
@@ -299,7 +305,7 @@ Es bietet außerdem die Möglichkeit, Parameter über alle Entitäten in dem Pak
 
 Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfachen Aktion zu erstellen:
 
-1. Erstellen Sie ein Paket mit dem Namen **custom**.
+1. Erstellen Sie ein Paket mit dem Namen `custom`.
   ```
   ibmcloud fn package create custom
   ```
@@ -331,7 +337,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
   ```
   {: codeblock}
 
-4. Erstellen Sie eine Aktion mit dem Namen **identity** im Paket `custom`.
+4. Erstellen Sie eine Aktion mit dem Namen `identity` im Paket `custom`.
   ```
   ibmcloud fn action create custom/identity identity.js
   ```
@@ -358,7 +364,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
   ```
   {: screen}
 
-  Die Aktion **custom/identity** wird jetzt in Ihrem Namensbereich angezeigt.
+  Die Aktion `custom/identity` wird jetzt in Ihrem Namensbereich angezeigt.
 
 6. Rufen Sie die Aktion in dem Paket auf.
   ```
@@ -374,7 +380,7 @@ Versuchen Sie das folgende Beispiel, um ein angepasstes Paket mit einer einfache
 
 Sie können Standardparameter für alle Entitäten in einem Paket festlegen, indem Sie Parameter auf Paketebene festlegen, die von allen Aktionen in dem Paket übernommen werden. Versuchen Sie das folgende Beispiel, um zu sehen, wie diese Übernahme funktioniert:
 
-1. Aktualisieren Sie das Paket **custom** mit zwei Parametern: `city` und `country`.
+1. Aktualisieren Sie das Paket `custom` mit zwei Parametern: `city` und `country`.
   ```
   ibmcloud fn package update custom --param city Austin --param country USA
   ```
@@ -386,7 +392,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
   ```
   {: screen}
 
-2. Zeigen Sie die Parameter im Paket **custom** und in der Aktion **identidy** an und beachten Sie, wie die Aktion **identity** in dem Paket die Parameter aus dem Paket übernimmt.
+2. Zeigen Sie die Parameter im Paket `custom` und in der Aktion `identity` an und beachten Sie, wie die Aktion `identity` in dem Paket die Parameter aus dem Paket übernimmt.
   ```
   ibmcloud fn package get custom parameters
   ```
@@ -431,7 +437,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
   ```
   {: screen}
 
-3. Rufen Sie die Aktion **identity** ohne Parameter auf, um zu prüfen, ob die Aktion die Parameter tatsächlich übernimmt.
+3. Rufen Sie die Aktion `identity` ohne Parameter auf, um zu prüfen, ob die Aktion die Parameter tatsächlich übernimmt.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity
   ```
@@ -446,7 +452,7 @@ Sie können Standardparameter für alle Entitäten in einem Paket festlegen, ind
   ```
   {: screen}
 
-4. Rufen Sie die Aktion **identity** mit Parametern auf. Die Aufrufparameter werden mit den Paketparametern gemischt, wobei die Aufrufparameter die Paketparameter überschreiben.
+4. Rufen Sie die Aktion `identity` mit Parametern auf. Die Aufrufparameter werden mit den Paketparametern gemischt, wobei die Aufrufparameter die Paketparameter überschreiben.
   ```
   ibmcloud fn action invoke --blocking --result custom/identity --param city Dallas --param state Texas
   ```
@@ -493,7 +499,7 @@ Nachdem die Aktionen und Feeds, die ein Paket bilden, auf Fehler geprüft und ge
   ```
   {: screen}
 
-Andere Benutzer können Ihr Paket **custom** jetzt verwenden, indem sie Bindungen an das Paket erstellen oder eine Aktion in dem Paket direkt aufrufen. Andere Benutzer müssen die vollständig qualifizierten Namen des Pakets kennen, um es binden zu können oder um Aktionen in dem Paket aufrufen zu können. Aktionen und Feeds in einem gemeinsam genutzten Paket sind _öffentlich_. Wenn ein Paket privat ist, ist auch sein gesamter Inhalt privat.
+Andere Benutzer können Ihr Paket `custom` jetzt verwenden, indem sie Bindungen an das Paket erstellen oder eine Aktion in dem Paket direkt aufrufen. Andere Benutzer müssen die vollständig qualifizierten Namen des Pakets kennen, um es binden zu können oder um Aktionen in dem Paket aufrufen zu können. Aktionen und Feeds in einem gemeinsam genutzten Paket sind _öffentlich_. Wenn ein Paket privat ist, ist auch sein gesamter Inhalt privat.
 
 1. Rufen Sie eine Beschreibung des Pakets ab, um die vollständig qualifizierten Namen des Pakets und der Aktion anzuzeigen.
   ```
@@ -508,4 +514,4 @@ Andere Benutzer können Ihr Paket **custom** jetzt verwenden, indem sie Bindunge
   ```
   {: screen}
 
-  Im obigen Beispiel wird der Namensbereich **myNamespace** verwendet und dieser Namensbereich ist in dem vollständig qualifizierten Namen enthalten.
+  Im obigen Beispiel wird der Namensbereich `myNamespace` verwendet und dieser Namensbereich ist in dem vollständig qualifizierten Namen enthalten.

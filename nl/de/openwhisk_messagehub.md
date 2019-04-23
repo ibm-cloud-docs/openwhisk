@@ -1,17 +1,23 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-19"
+
+keywords: message hub, event, trigger, messages, batch, listen
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
-# Message Hub-Ereignisquelle
+# Event Streams-Ereignisquelle
 {: #openwhisk_catalog_message_hub}
 
 Sie können einen Auslöser erstellen, der reagiert, wenn Nachrichten unter Verwendung von Feeds an eine {{site.data.keyword.messagehub_full}}-Instanz gesendet werden. Dieser Abschnitt enthält Informationen zum Erstellen von {{site.data.keyword.messagehub}}-Auslösern mit oder ohne {{site.data.keyword.Bluemix}}, zur Überwachung von Nachrichten und zur Verarbeitung von Stapelnachrichten.
@@ -19,10 +25,10 @@ Sie können einen Auslöser erstellen, der reagiert, wenn Nachrichten unter Verw
 
 ## {{site.data.keyword.messagehub}}-Paket
 
-Die Aktion `/messaging/messageHubProduce` ist veraltet und wird in Zukunft entfernt. Um eine optimale Leistung zu erzielen, stellen Sie Ihre Nutzung der Aktion `/messaging/messageHubProduce` um, indem Sie eine persistente Verbindung verwenden, wenn Daten für Message Hub/Kafka generiert werden.
-{: tip}
+Die Aktion `/messaging/messageHubProduce` ist veraltet und wird in Zukunft entfernt. Sie wurde bereits aus der Region 'Tokio' entfernt. Um eine optimale Leistung zu erzielen, stellen Sie Ihre Nutzung der Aktion `/messaging/messageHubProduce` um, indem Sie eine persistente Verbindung verwenden, wenn Daten für Message Hub/Kafka generiert werden.
+{: deprecated}
 
-Dieses Paket ermöglicht die Kommunikation mit [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub)-Instanzen zur Veröffentlichung und Verarbeitung von Nachrichten unter Verwendung der nativen hochleistungsfähigen Kafka-API. Weitere Informationen zum {{site.data.keyword.messagehub}}-Paket, zum Einrichten des Pakets und zum Generieren von Nachrichten finden Sie im Abschnitt [{{site.data.keyword.messagehub}}-Paket](./messagehub_actions.html).
+Dieses Paket ermöglicht die Kommunikation mit [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub)-Instanzen zur Veröffentlichung und Verarbeitung von Nachrichten unter Verwendung der nativen hochleistungsfähigen Kafka-API. Weitere Informationen zum {{site.data.keyword.messagehub}}-Paket, zum Einrichten des Pakets und zum Generieren von Nachrichten finden Sie im Abschnitt [{{site.data.keyword.messagehub}}-Paket](/docs/openwhisk?topic=cloud-functions-catalog_message_hub).
 
 ## Auslöser erstellen, der für eine {{site.data.keyword.messagehub}}-Instanz empfangsbereit ist
 {: #create_message_hub_trigger}
@@ -246,5 +252,6 @@ Berücksichtigen Sie beim Codieren von Aktionen, die von Ihrem Auslöser gestart
 Ein Beispiel, das OpenWhisk mit {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}} und dem Service von IBM Data Science Experience (Spark) integriert, finden Sie [hier](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).
 
 ## Referenzinformationen
+{: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org/)
+- [Apache Kafka](https://kafka.apache.org)

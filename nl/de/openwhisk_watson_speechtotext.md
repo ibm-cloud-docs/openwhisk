@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, speech to text, package, converting, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: 'Speech to Text'-Paket
-{: #openwhisk_catalog_watson_texttospeech}
+{: #openwhisk_catalog_watson_speechtotext}
+
+Dieses vorinstallierte Paket ist nicht in der Region 'Tokio' verfügbar. Informationen finden Sie im installierbaren [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package)-Paket mit IAM-Authentifizierung.
+{: tip}
 
 Das Paket `/whisk.system/watson-speechToText` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für die Konvertierung von Sprache in Text.
 {: shortdesc}
@@ -24,13 +33,13 @@ Das Paket enthält die folgenden Aktionen.
 | `/whisk.system/watson-speechToText` | Paket | username, password | Paket zum Umwandeln von Sprache in Text |
 | `/whisk.system/watson-speechToText/speechToText` | Aktion | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Umsetzung von Sprache in Text |
 
-**Hinweis:** Das Paket `/whisk.system/watson` ist einschließlich der Aktion `/whisk.system/watson/speechToText` veraltet.
+**Hinweis:** Das Paket `/whisk.system/watson` ist einschließlich der Aktion `/whisk.system/watson/speechToText` veraltet. Weitere Informationen finden sie stattdessen im [{{site.data.keyword.speechtotextshort}}-Paket](/docs/openwhisk?topic=cloud-functions-speech-to-text-package). 
 
 ## Watson-Paket 'Speech to Text' in {{site.data.keyword.Bluemix_notm}} einrichten
 
 Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}} verwenden, werden die Paketbindungen automatisch für Ihre {{site.data.keyword.Bluemix_notm}} Watson-Serviceinstanzen erstellt.
 
-1. Erstellen Sie eine Watson-Serviceinstanz für 'Speech to Text' in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.ng.Bluemix.net).
+1. Erstellen Sie eine Watson-Serviceinstanz für 'Speech to Text' in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://cloud.ibm.com). 
 
   Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
 
@@ -102,6 +111,6 @@ Beispielausgabe:
 ```
 {
   "data": "Hello Watson"
-  }
+}
 ```
 {: screen}

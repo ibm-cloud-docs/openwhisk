@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-27"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: weather package, forecast, functions, serverless 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Paket 'Weather'
 {: #openwhisk_catalog_weather}
@@ -30,7 +36,7 @@ Es wird empfohlen, eine Paketbindung mit den Werten `username` und `password` zu
 
 Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}} verwenden, werden die Paketbindungen automatisch für Ihre {{site.data.keyword.Bluemix_notm}} Weather-Serviceinstanzen erstellt.
 
-1. Erstellen Sie eine Serviceinstanz von Weather Company Data in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.bluemix.net).
+1. Erstellen Sie eine Serviceinstanz von Weather Company Data in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://cloud.ibm.com). 
 
   Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
 

@@ -1,18 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-26"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: watson, translator, cognitive, translating text, language
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Watson: Translator-Paket
 {: #openwhisk_catalog_watson_translator}
+
+Dieses vorinstallierte Paket ist in keiner Region mehr verfügbar.
+Weitere Informationen finden Sie im installierbaren [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package)-Paket, das die neue V3-API mit IAM-Authentifizierung verwendet.
+{: tip}
 
 Das Paket `/whisk.system/watson-translator` bietet eine komfortable Methode zum Aufrufen der Watson-APIs für Übersetzungen.
 {: shortdesc}
@@ -25,13 +35,13 @@ Das Paket enthält die folgenden Aktionen.
 | `/whisk.system/watson-translator/translator` | Aktion | payload, translateFrom, translateTo, translateParam, username, password | Übersetzung von Text |
 | `/whisk.system/watson-translator/languageId` | Aktion | payload, username, password | Ermittlung einer Sprache |
 
-**Hinweis:** Das Paket `/whisk.system/watson` ist einschließlich der Aktionen `/whisk.system/watson/translate` und `/whisk.system/watson/languageId` veraltet.
+**Hinweis:** Das Paket `/whisk.system/watson` ist einschließlich der Aktionen `/whisk.system/watson/translate` und `/whisk.system/watson/languageId` veraltet. Weitere Informationen finden Sie stattdessen im [installierbaren {{site.data.keyword.languagetranslatorshort}}-Paket](/docs/openwhisk?topic=cloud-functions-language-translator-package). 
 
 ## Watson Translator-Paket in {{site.data.keyword.Bluemix_notm}} einrichten
 
 Wenn Sie {{site.data.keyword.openwhisk}} über {{site.data.keyword.Bluemix_notm}} verwenden, werden die Paketbindungen automatisch für Ihre {{site.data.keyword.Bluemix_notm}} Watson-Serviceinstanzen erstellt.
 
-1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://console.bluemix.net). Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
+1. Erstellen Sie eine Watson Translator-Serviceinstanz in Ihrem {{site.data.keyword.Bluemix_notm}}-[Dashboard](http://cloud.ibm.com). Stellen Sie sicher, dass Sie sich den Namen der Serviceinstanz sowie der {{site.data.keyword.Bluemix_notm}}-Organisation und den Bereich, in dem Sie sich befinden, merken.
 
 2. Aktualisieren Sie die Pakete in Ihrem Namensbereich. Die Aktualisierung erstellt automatisch eine Paketbindung für die Watson-Serviceinstanz, die Sie erstellt haben.
   ```
@@ -117,8 +127,8 @@ Beispielausgabe:
 ```
 {
   "payload": "Ciel bleu a venir",
-    "language": "fr",
-    "confidence": 0.710906
-  }
+  "language": "fr",
+  "confidence": 0.710906
+}
 ```
 {: screen}

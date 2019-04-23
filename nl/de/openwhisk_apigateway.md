@@ -1,29 +1,36 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-30"
+  years: 2017, 2019
+lastupdated: "2019-04-04"
+
+keywords: serverless, rest api, gateway, web actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Serverunabhängige REST-APIs erstellen
 {: #openwhisk_apigateway}
 
-Mit APIs können Sie {{site.data.keyword.openwhisk}}-Aktionen direkt verwalten. Das API-Gateway fungiert als Proxy für [Webaktionen](./openwhisk_webactions.html) und stellt HTTP-Methodenrouting, Client-IDs und geheime Schlüssel, Ratenbegrenzungen, CORS, Anzeigen der API-Nutzung, Anzeigen von Antwortprotokollen und Definieren von Richtlinien zur gemeinsamen Nutzung von APIs bereit.
+Mit APIs können Sie {{site.data.keyword.openwhisk}}-Aktionen direkt verwalten. Das API-Gateway fungiert als Proxy für [Webaktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions) und stellt HTTP-Methodenrouting, Client-IDs und geheime Schlüssel, Ratenbegrenzungen, CORS, Anzeigen der API-Nutzung, Anzeigen von Antwortprotokollen und Definieren von Richtlinien zur gemeinsamen Nutzung von APIs bereit.
 {: shortdesc}
 
-Weitere Informationen zum API-Management finden Sie in der [Dokumentation zum API-Management](/docs/api-management/manage_openwhisk_apis.html#manage_openwhisk_apis).
+Weitere Informationen zum API-Management finden Sie in der [Dokumentation zum API-Management](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis).
+
+
 
 ## Erste API erstellen
 {: #create_cli_api}
 
-Bevor Sie beginnen, installieren Sie das [{{site.data.keyword.openwhisk_short}} CLI-Plug-in](bluemix_cli.html).
+Bevor Sie beginnen, installieren Sie das [{{site.data.keyword.openwhisk_short}} CLI-Plug-in](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
 1. Speichern Sie den folgenden Code in einer JavaScript-Datei namens `hello.js`.
   ```javascript
@@ -74,14 +81,14 @@ Bevor Sie beginnen, installieren Sie das [{{site.data.keyword.openwhisk_short}} 
   ```
   {: screen}
 
-Es wird die Webaktion `hello` aufgerufen. Diese gibt ein JSON-Objekt zurück, das den Parameter **name** im Abfrageparameter enthält. Sie können Parameter mit einfachen Abfrageparametern oder mit dem Anforderungshauptteil an die Aktion übergeben. Webaktionen können eine Aktion öffentlich aufrufen, ohne den Berechtigungs-API-Schlüssel für {{site.data.keyword.openwhisk_short}} zu verwenden.
+Es wird die Webaktion `hello` aufgerufen. Diese gibt ein JSON-Objekt zurück, das den Parameter **name** im Abfrageparameter enthält. Sie können Parameter mit einfachen Abfrageparametern oder mit dem Anforderungshauptteil an die Aktion übergeben. Webaktionen können eine Aktion ohne Authentifizierung öffentlich aufrufen. 
 
 ## Uneingeschränkte Kontrolle über die HTTP-Antwort ausüben
 {: #full_control}
 
 Das Flag `--response-type` steuert die Ziel-URL der Webaktion, sodass sie durch das API-Gateway als Proxy geleitet wird. Wenn Sie zum Beispiel das Flag `--response-type json` verwenden, wird das vollständige Ergebnis der Aktion in JSON-Format zurückgegeben und der Header **Content-Type** wird automatisch auf den Wert `application/json` gesetzt.
 
-Damit verschiedene Inhaltstypen im Hauptteil zurückgegeben werden, sollten Sie die volle Bandbreite an Kontrolle über die Eigenschaften in HTTP-Antworten wie **statusCode** und **headers** nutzen. Durch Verwenden des Flags `--response-type http` können Sie die Ziel-URL der Webaktion mit der Erweiterung `http` konfigurieren. Sie können den Code der Aktion so zu ändern, dass er mit der Rückgabe von Webaktionen mit der Erweiterung `http` konform ist, oder Sie können die Aktion in eine Sequenz einfügen, um ihr Ergebnis an eine neue Aktion zu übergeben. Die neue Aktion kann dann das Ergebnis in das ordnungsgemäße Format für eine HTTP-Antwort umsetzen. Weitere Informationen zu Antworttypen und Erweiterungen von Webaktionen finden Sie in der Dokumentation zu [Webaktionen](./openwhisk_webactions.html).
+Damit verschiedene Inhaltstypen im Hauptteil zurückgegeben werden, sollten Sie die volle Bandbreite an Kontrolle über die Eigenschaften in HTTP-Antworten wie **statusCode** und **headers** nutzen. Durch Verwenden des Flags `--response-type http` können Sie die Ziel-URL der Webaktion mit der Erweiterung `http` konfigurieren. Sie können den Code der Aktion so zu ändern, dass er mit der Rückgabe von Webaktionen mit der Erweiterung `http` konform ist, oder Sie können die Aktion in eine Sequenz einfügen, um ihr Ergebnis an eine neue Aktion zu übergeben. Die neue Aktion kann dann das Ergebnis in das ordnungsgemäße Format für eine HTTP-Antwort umsetzen. Weitere Informationen zu Antworttypen und Erweiterungen von Webaktionen finden Sie in der Dokumentation zu [Webaktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions).
 
 1. Ändern Sie den Code für die Aktion `hello.js` so, dass er die JSON-Eigenschaften `body`, `statusCode` und `headers` zurückgibt.
   ```javascript
@@ -133,7 +140,7 @@ Es ist möglich, zum Bereitstellen des Back-Ends Ihrer App mehrere Webaktionen v
 | putBooks    | PUT | Aktualisieren von Buchdetails |
 | deleteBooks | DELETE | Löschen eines Buches |
 
-In diesem Beispiel wird die API mit einem Pfadparameter definiert. Wenn Sie Pfadparameter verwenden, muss die API mit dem Antworttyp `http` definiert werden. Der Pfadwert, der mit dem Basispfad beginnt und die tatsächlichen Pfadparameterwerte enthält, ist im Feld `__ow_path` des JSON-Parameters der Aktion verfügbar. Weitere Details zu HTTP-Kontextfeldern enthält die Dokumentation zum [HTTP-Kontext bei Webaktionen](./openwhisk_webactions.html#http-context).
+In diesem Beispiel wird die API mit einem Pfadparameter definiert. Wenn Sie Pfadparameter verwenden, muss die API mit dem Antworttyp `http` definiert werden. Der Pfadwert, der mit dem Basispfad beginnt und die tatsächlichen Pfadparameterwerte enthält, ist im Feld `__ow_path` des JSON-Parameters der Aktion verfügbar. Weitere Details zu HTTP-Kontextfeldern enthält die Dokumentation zum [HTTP-Kontext bei Webaktionen](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#http-context).
 
 Gehen Sie wie folgt vor, um das Buchclub-Beispiel für Webaktionen auszuprobieren:
 
@@ -293,11 +300,11 @@ Zum Exportieren oder Importieren einer Konfiguration können Sie weiterhin das B
 ## Konfiguration ändern
 {: #modify_config}
 
-Nachdem Sie Ihre Konfiguration erstellt haben, können Sie sie im {{site.data.keyword.openwhisk_short}}-Dashboard über die [**Registerkarte 'APIs'**](https://console.bluemix.net/openwhisk/apimanagement) auf die folgenden Arten ändern.
+Nachdem Sie Ihre Konfiguration erstellt haben, können Sie sie im {{site.data.keyword.openwhisk_short}}-Dashboard über die [**Registerkarte 'APIs'**](https://cloud.ibm.com/openwhisk/apimanagement) auf die folgenden Arten ändern.
 
-* [{{site.data.keyword.openwhisk_short}}-API erstellen](https://console.bluemix.net/openwhisk/apimanagement): Erstellen Sie eine API, die eine Gruppe von {{site.data.keyword.openwhisk_short}}-Aktionen einschließt.
-* [API sichern](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api): Sichern Sie Ihre API durch Anwendung von Richtlinien für die API-Sicherheit und die Ratenbegrenzung.
-* [Datenverkehr verwalten](https://console.bluemix.net/docs/apis/management/manage_apis.html#settings_api): Verwalten Sie den Datenverkehr durch Anzeigen von API-Nutzungsstatistiken und Überprüfen von Antwortprotokollen.
-* [Teilen und gemeinsam nutzen](https://console.bluemix.net/docs/apis/management/manage_apis.html#share_api): Nutzen Sie Ihre API mit Entwicklern innerhalb und außerhalb von {{site.data.keyword.Bluemix_notm}}.
+* [Erstellen Sie eine {{site.data.keyword.openwhisk_short}} API](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis), die eine Gruppe von {{site.data.keyword.openwhisk_short}}-Aktionen einschließt. 
+* [API sichern](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis): Sichern Sie Ihre API durch Anwendung von Richtlinien für die API-Sicherheit und die Ratenbegrenzung.
+* [Datenverkehr verwalten](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis): Verwalten Sie den Datenverkehr durch Anzeigen von API-Nutzungsstatistiken und Überprüfen von Antwortprotokollen.
+* [Teilen und gemeinsam nutzen](https://cloud.ibm.com/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis): Nutzen Sie Ihre API mit Entwicklern innerhalb und außerhalb von {{site.data.keyword.Bluemix_notm}}.
 
 Nachdem Sie die Konfiguration aktualisiert haben, können Sie die Definitionsdatei im JSON-Format herunterladen und sie anschließend über die CLI erneut importieren. Das Herunterladen und Importieren der Konfiguration kann beispielsweise bei einer unbeaufsichtigten Bereitstellung in einer CICD-Pipeline (CICD = Continuous Integration and Deployment) nützlich sein. Sie haben auch die Möglichkeit, die API-Definitionsdatei unter Verwendung der Benutzerschnittstelle hochzuladen und erneut zu importieren.

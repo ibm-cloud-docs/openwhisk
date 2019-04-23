@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: speech to text, watson, package, cognitive, 
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -17,13 +22,13 @@ lastupdated: "2018-07-17"
 Der {{site.data.keyword.speechtotextfull}}-Service stellt eine API zur Verfügung, die die Spracherkennung von IBM nutzt, um Transkripte von gesprochenem Audiomaterial zu erzeugen.
 {:shortdesc}
 
-Der Service ist in der Lage, Gesprochenes aus verschiedenen Sprachen und Audioformaten zu transkribieren. Neben der grundlegenden Transkription kann der Service detaillierte Informationen zu zahlreichen Aspekten des Audiomaterials liefern. Für die meisten Sprachen unterstützt der Service zwei Abtastraten, Breitband und Schmalband. Er gibt den gesamten JSON-Antwortinhalt im UTF-8-Zeichensatz zurück. Weitere Informationen zu diesem Service finden Sie in der [IBM&reg; Cloud-Dokumentation](https://console.bluemix.net/docs/services/speech-to-text/index.html).
+Der Service ist in der Lage, Gesprochenes aus verschiedenen Sprachen und Audioformaten zu transkribieren. Neben der grundlegenden Transkription kann der Service detaillierte Informationen zu zahlreichen Aspekten des Audiomaterials liefern. Für die meisten Sprachen unterstützt der Service zwei Abtastraten, Breitband und Schmalband. Er gibt den gesamten JSON-Antwortinhalt im UTF-8-Zeichensatz zurück. Weitere Informationen zu diesem Service finden Sie in der [IBM&reg; Cloud-Dokumentation](https://cloud.ibm.com/docs/services/speech-to-text/index.html).
 
 Das {{site.data.keyword.speechtotextshort}}-Paket enthält die folgenden Entitäten. Weitere Details können Sie in der Referenz für die {{site.data.keyword.speechtotextshort}}-API abrufen, indem Sie auf den Namen der betreffenden Entität klicken.
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| [`speech-to-text-v1`](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Ermöglicht das Arbeiten mit dem {{site.data.keyword.speechtotextshort}} V1-Service. |
+| [`speech-to-text-v1`](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Ermöglicht das Arbeiten mit dem {{site.data.keyword.speechtotextshort}} V1-Service. |
 | [get-model](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#get-model) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Ruft ein Modell ab. |
 | [list-models](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#list-models) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | Listet Modelle auf. |
 | [recognize-sessionless](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#recognize-sessionless) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    audio,     content_type,     model,     customization_id,     acoustic_customization_id,     base_model_version,     customization_weight,     inactivity_timeout,     keywords,     keywords_threshold,     max_alternatives,     word_alternatives_threshold,     word_confidence,     timestamps,     profanity_filter,     smart_formatting,     speaker_labels,  | Erkennt Audio (ohne Sitzung). |
@@ -63,16 +68,16 @@ Das {{site.data.keyword.speechtotextshort}}-Paket enthält die folgenden Entitä
 | [delete-user-data](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html?curl#delete-user-data) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Löscht gekennzeichnete Daten. |
 
 ## {{site.data.keyword.speechtotextshort}}-Serviceinstanz erstellen
-{: #service_instance}
+{: #service_instance_speechtotext}
 
 Vor dem Installieren des Pakets müssen Sie eine Instanz des {{site.data.keyword.speechtotextshort}}-Service und Serviceberechtigungsnachweise erstellen.
 {: shortdesc}
 
-1. [Erstellen Sie eine {{site.data.keyword.speechtotextshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/catalog/services/speech_to_text).
+1. [Erstellen Sie eine {{site.data.keyword.speechtotextshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/catalog/services/speech_to_text).
 2. Während der Erstellung der Serviceinstanz werden ebenfalls automatisch generierte Serviceberechtigungsnachweise erstellt.
 
 ## {{site.data.keyword.speechtotextshort}}-Paket installieren
-{: #install}
+{: #install_speechtotext}
 
 Nachdem Sie über eine Instanz des {{site.data.keyword.speechtotextshort}}-Service verfügen, verwenden Sie die Befehlszeilenschnittstelle (CLI) von {{site.data.keyword.openwhisk}}, um das {{site.data.keyword.speechtotextshort}}-Paket in Ihrem Namensbereich zu installieren.
 {: shortdesc}
@@ -81,8 +86,7 @@ Nachdem Sie über eine Instanz des {{site.data.keyword.speechtotextshort}}-Servi
 {: #speechtotext_cli}
 
 Vorbereitende Schritte:
-  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Installieren Sie den Befehl [`wskdeploy` ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) und fügen Sie die heruntergeladene Binärdatei zu Ihrem Pfad (PATH) hinzu.
+  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Gehen Sie zum Installieren des {{site.data.keyword.speechtotextshort}}-Pakets wie folgt vor:
 
@@ -94,7 +98,7 @@ Gehen Sie zum Installieren des {{site.data.keyword.speechtotextshort}}-Pakets wi
 
 2. Stellen Sie das Paket bereit.
     ```
-    wskdeploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
     ```
     {: pre}
 
@@ -155,32 +159,32 @@ Gehen Sie zum Installieren des {{site.data.keyword.speechtotextshort}}-Pakets wi
     ```
     {: screen}
 
-### Installation über die {{site.data.keyword.openwhisk_short}}-UI durchführen
+### Installation über die Benutzerschnittstelle von {{site.data.keyword.openwhisk_short}} durchführen
 {: #speechtotext_ui}
 
-1. Öffnen Sie die [Seite 'Erstellen' in der {{site.data.keyword.openwhisk_short}}-Konsole ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/openwhisk/create).
+1. Öffnen Sie die [Seite 'Erstellen' ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/openwhisk/create) in der {{site.data.keyword.openwhisk_short}}-Konsole. 
 
-2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbreich aus, in dem die Installation des {{site.data.keyword.cos_short}}-Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
+2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbereich aus, in dem die Installation des Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
 
 3. Klicken Sie auf **Pakete installieren**.
 
-4. Klicken Sie auf die Paketgruppe **Watson**.
+4. Klicken Sie auf die Paketgruppe **Watson**. 
 
 5. Klicken Sie auf das Paket **Speech To Text**.
 
 5. Klicken Sie auf **Installieren**.
 
-6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **speech-to-text-v1**.
+6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **speech-to-text-v1**. 
 
-7. Um die Aktionen im Paket **speech-to-text-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden.
-  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus. 
+7. Um die Aktionen im Paket **speech-to-text-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden. 
+  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus.
   * Wenn Sie Serviceberechtigungsnachweise an einzelne Aktionen binden wollen, führen Sie die nachfolgend aufgeführten Schritte in der UI (Benutzerschnittstelle) aus. **Hinweis**: Für jede Aktion, die Sie verwenden wollen, müssen Sie die nachfolgend aufgeführten Schritte ausführen.
     1. Klicken Sie auf eine Aktion aus dem Paket **speech-to-text-v1**, die Sie verwenden wollen. Die Detailseite für diese Aktion wird geöffnet. 
     2. Klicken Sie im Navigationsbereich links auf den Abschnitt **Parameter**. 
     3. Geben Sie einen neuen **Parameter** ein. Geben Sie als Schlüssel die Zeichenfolge `__bx_creds` ein. Fügen Sie als Wert das JSON-Serviceberechtigungsnachweisobjekt aus der Serviceinstanz ein, die Sie zuvor erstellt haben.
 
 ## {{site.data.keyword.speechtotextshort}}-Paket verwenden
-{: #usage}
+{: #usage_speechtotext}
 
 Um die Aktionen in diesem Paket verwenden zu können, führen Sie Befehle in folgendem Format aus:
 

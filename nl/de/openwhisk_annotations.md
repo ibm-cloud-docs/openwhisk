@@ -1,20 +1,28 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-22"
+
+keywords: annotations, annotate, package, parameters, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
 
 # Annotationen
 {: #openwhisk_annotations}
 
-Aktionen, Auslöser, Regeln und Pakete von {{site.data.keyword.openwhisk}}, die in ihrer Gesamtheit als Entitäten bezeichnet werden, können mittels Annotationen dokumentiert werden.
+Aktionen, Auslöser, Regeln und Pakete von {{site.data.keyword.openwhisk}}, die in ihrer Gesamtheit als Entitäten bezeichnet werden, können Annotationen einschließen.
 {: shortdesc}
 
 Annotationen sind wie Parameter an Entitäten angehängt. Annotationen bestehen aus einem Element `key` (Schlüssel), das einen Namen definiert, und einem Element `value` (Wert), das den Wert definiert. Am häufigsten werden Annotationen zum Dokumentieren von Aktionen und Paketen verwendet. Viele der Pakete im {{site.data.keyword.openwhisk_short}}-Katalog sind mit Annotationen versehen, wie zum eine Beschreibung der Funktionalität, die anhand der Aktionen eines Pakets bereitgestellt werden, die Parameter, die beim Binden des Pakets zu verwenden sind, die Aufrufparameter oder die Angabe, ob es sich bei einem Parameter um einen geheimen Schlüssel ('secret') handelt. Annotationen werden nach Bedarf entwickelt, zum Beispiel um eine Benutzerschnittstellenintegration (UI-Integration) zu ermöglichen.
@@ -31,7 +39,10 @@ Die folgenden Annotationen beschreiben Aktionen:
 - `sampleInput`: Ein Beispiel für das Eingabeschema mit typischen Werten.
 - `sampleOutput`: Ein Beispiel für das Ausgabeschema, in der Regel für die Beispieleingabe (`sampleInput`).
 
+
+
 Der folgende Code stellt einen Beispielsatz von Annotationen für eine Aktion `echo` dar, die ihre Eingabeargumente unverändert zurückgibt. Diese Aktion kann zur Protokollierung von Eingabeparametern zum Beispiel im Zusammenhang mit einer Sequenz oder Regel verwendet werden.
+
 ```
 ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
@@ -46,14 +57,14 @@ ibmcloud fn action create echo echo.js \
 
 Für die folgenden Annotationen für Webaktionen muss explizit der Wert `true` festgelegt werden, um die API-Interaktivität zu aktivieren:
 
-- `web-export`: Bei Anwendung auf eine Aktion wird aus dieser Aktion eine [Webaktion](openwhisk_webactions.html). Die Aktion wird für REST-Aufrufe ohne Authentifizierung zugänglich, sodass Benutzer über einen Browser auf die Aktionen zugreifen können.
+- `web-export`: Bei Anwendung auf eine Aktion wird aus dieser Aktion eine [Webaktion](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions). Die Aktion wird für REST-Aufrufe ohne Authentifizierung zugänglich, sodass Benutzer über einen Browser auf die Aktionen zugreifen können.
     * **Hinweis**: Der Eigner der Webaktion trägt die Kosten für ihre Ausführung im System. Anders ausgedrückt bedeutet das, dass der Eigner der Aktion auch Eigner des Aktivierungsdatensatzes ist.
 - `final`: Bei Anwendung auf eine Aktion werden alle zuvor definierten Aktionsparameter unveränderlich. Die Parameter können nicht durch Parameter überschrieben werden, die während des Aufrufs angegeben werden.
 - `raw-http`: Bei Anwendung auf eine Aktion, die mit der Annotation `web-export` versehen ist, werden die Abfrage- und Hauptteilparameter der HTTP-Anforderung als reservierte Eigenschaften an die Aktion übergeben.
-- `web-custom-options`: Ermöglicht einer Webaktion, mit angepassten Headern auf OPTIONS-Anforderungen zu antworten. Andernfalls wird eine [Standard-CORS-Antwort](openwhisk_webactions.html#options-requests) angewendet.
+- `web-custom-options`: Ermöglicht einer Webaktion, mit angepassten Headern auf OPTIONS-Anforderungen zu antworten. Andernfalls wird eine [Standard-CORS-Antwort](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#options-requests) angewendet.
 - `require-whisk-auth`: Die Webaktion kann nur von Anforderungen aufgerufen werden, die entsprechende Authentifizierungsnachweise bereitstellen.
     * Durch Angabe eines booleschen Werts wird gesteuert, ob der Wert für die Basisauthentifizierung der Anforderung authentifiziert ist. Der Wert `true` authentifiziert die Berechtigungsnachweise, und der Wert `false` ruft die Aktion ohne Authentifizierung auf.
-    * Bei Festlegung einer Zahl oder Zeichenfolge muss dieser Wert mit dem Headerwert `X-Require-Whisk-Auth` der Anforderung übereinstimmen. 
+    * Bei Festlegung einer Zahl oder Zeichenfolge muss dieser Wert mit dem Headerwert `X-Require-Whisk-Auth` der Anforderung übereinstimmen.
     * **Hinweis**: Der Eigner der Webaktion trägt die Kosten für ihre Ausführung im System. Anders ausgedrückt bedeutet das, dass der Eigner der Aktion auch Eigner des Aktivierungsdatensatzes ist.
 
 ## Annotationen für Pakete

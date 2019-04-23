@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-23"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: alarms, triggers, event, schedule, actions
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Alarme zum Planen von Triggern verwenden
 {: #openwhisk_catalog_alarm}
@@ -24,7 +30,7 @@ Das Paket enthält die folgenden Feeds.
 | `/whisk.system/alarms` | Paket | - | Alarme und Dienstprogramm für regelmäßige Ausführung. |
 | `/whisk.system/alarms/once` | Feed | date, trigger_payload, deleteAfterFire | Einmaliges Aktivieren eines Auslöserereignisses an einem bestimmten Datum. |
 | `/whisk.system/alarms/interval` | Feed | minutes, trigger_payload, startDate, stopDate | Auslösen eines Auslöserereignisses nach einem intervallbasierten Zeitplan. |
-| `/whisk.system/alarms/alarm` | Feed | cron, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem zeitbasierten Zeitplan unter Verwendung von Cron. |
+| `/whisk.system/alarms/alarm` | Feed | cron, timezone, trigger_payload, startDate, stopDate | Aktivieren eines Auslöserereignisses nach einem zeitbasierten Zeitplan unter Verwendung von Cron. |
 
 ## Auslöserereignis einmal aktivieren
 
@@ -58,7 +64,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code>--param deleteAfterFire</code></td>
-<td>Optional: Gibt an, ob der Auslöser und alle zugehörigen Regeln gelöscht werden, nachdem der Auslöser gestartet wurde. Ersetzen Sie <code>&lt;delete_option&gt;</code> durch einen der folgenden Werte: <ul><li><code>false</code> (Standardwert): Es wird keine Aktion ausgeführt, nachdem der Auslöser angewendet wurde.</li><li><code>true</code>: Der Auslöser wird nach seiner Anwendung gelöscht.</li><li><code>rules</code>: Der Auslöser wird zusammen mit den zugehörigen Regeln nach seiner Anwendung gelöscht.</li></ul></td>
+<td>Optional: Gibt an, ob der Auslöser und alle zugehörigen Regeln gelöscht werden, nachdem der Auslöser gestartet wurde. Ersetzen Sie <code>&lt;delete_option&gt;</code> durch einen der folgenden Werte:<ul><li><code>false</code> (Standardwert): Es wird keine Aktion ausgeführt, nachdem der Auslöser angewendet wurde.</li><li><code>true</code>: Der Auslöser wird nach seiner Anwendung gelöscht.</li><li><code>rules</code>: Der Auslöser wird zusammen mit den zugehörigen Regeln nach seiner Anwendung gelöscht.</li></ul></td>
 </tr>
 </tbody></table>
 
@@ -114,7 +120,7 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 </tr>
 </tbody></table>
 
-Im folgenden Beispiel wird ein Auslöser erstellt, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers erfolgt so bald wie möglich und endet am 31. Januar 2019 um 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`. 
+Im folgenden Beispiel wird ein Auslöser erstellt, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers erfolgt so bald wie möglich und endet am 31. Januar 2019 um 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`.
 
 ```
 ibmcloud fn trigger create interval \
@@ -152,6 +158,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <td>Ersetzen Sie <code>&lt;cron&gt;</code> durch eine Zeichenfolge, die in koordinierter Weltzeit (UTC) angibt, wann die Aktivierung des Auslösers erfolgen soll. Diese Zeichenfolge basiert auf der <a href="http://crontab.org">UNIX-crontab-Syntax</a> und umfasst eine Folge von höchstens 5 Feldern. Die einzelnen Felder werden jeweils durch Leerzeichen im Format <code>X X X X X</code> getrennt. Die folgenden Zeichenfolgen sind Beispiele für die Angabe verschiedener Wiederholungshäufigkeiten:<ul><li><code>\* \* \* \* \*</code>: Der Auslöser wird zu Beginn einer jeden Minute aktiviert.</li><li><code>0 \* \* \* \*</code>: Der Auslöser wird zu Beginn einer jeden Stunde aktiviert.</li><li><code>0 \*/2 \* \* \*</code>: Der Auslöser wird alle zwei Stunden aktiviert (d. h. um 02:00:00, 04:00:00 ...).</li><li><code>0 9 8 \* \*</code>: Der Auslöser wird jeweils um 9:00:00 Uhr (UTC) am achten Tag eines jeden Monats ausgelöst.</li></ul></td>
 </tr>
 <tr>
+<tr>
+<td><code>--param timezone</code></td>
+<td>Optional: Ersetzen Sie <code>&lt;timezone&gt;</code> durch eine Zeichenfolge, die die Zeitzone angibt. Die tatsächliche Zeit zum Auslösen des Auslösers wird dann relativ zur angegebenen Zeitzone geändert. Wenn die Zeitzone ungültig ist, wird ein Fehler ausgegeben. Sie können alle verfügbaren Zeitzonen auf der Moment Timezone-Website (http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names) prüfen. </td>
+</tr>
+<tr>
 <td><code>--param trigger_payload</code></td>
 <td>Optional: Ersetzen Sie <code>&lt;key&gt;</code> und <code>&lt;value&gt;</code> durch die Parameter des Auslösers zum Anwenden des Auslösers.</td>
 </tr>
@@ -165,7 +176,7 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 </tbody></table>
 
-Das folgende Beispiel veranschaulicht die Erstellung eines Auslösers, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers beginnt erst ab dem 01. Januar 2019 um 00:00:00 Uhr (UTC) und endet am 31. Januar 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`. 
+Das folgende Beispiel veranschaulicht die Erstellung eines Auslösers, der in Zeitabständen von je 2 Minuten aktiviert wird. Die Anwendung des Auslösers beginnt erst ab dem 01. Januar 2019 um 00:00:00 Uhr (UTC) und endet am 31. Januar 23:59:00 Uhr (UTC). Für jedes Auslöserereignis gelten die Parameter `name=Odin` und `place=Asgard`.
 
 ```
 ibmcloud fn trigger create periodic \

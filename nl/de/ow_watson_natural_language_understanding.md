@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: natural language, understanding, watson knowledge studio
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -23,22 +28,22 @@ Das {{site.data.keyword.nlushort}}-Paket enthält die folgenden Entitäten. Weit
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Ermöglicht das Arbeiten mit dem {{site.data.keyword.nlushort}}-Service. |
-| [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   features, text, html, url, clean, xpath, fallback_to_raw, return_analyzed_text, language, limit_text_characters,  | Analysiert Text, HTML-Material oder eine öffentliche Webseite. |
-| [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    model_id,  | Löscht ein Modell. |
-| [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | Listet Modelle auf. |
+| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | Paket | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,  | Ermöglicht das Arbeiten mit dem {{site.data.keyword.nlushort}}-Service. |
+| [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze) | Aktion |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `features`, `text`, `html`, `url`, `clean`, `xpath`, `fallback_to_raw`, `return_analyzed_text`, `language`, `limit_text_characters`,  | Analysiert Text, HTML-Material oder eine öffentliche Webseite. |
+| [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model) | Aktion |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id`,  | Löscht ein Modell. |
+| [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models) | Aktion |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, | Listet Modelle auf. |
 
 ## {{site.data.keyword.nlushort}}-Serviceinstanz erstellen
-{: #service_instance}
+{: #service_instance_understanding}
 
 Vor dem Installieren des Pakets müssen Sie eine Instanz des {{site.data.keyword.nlushort}}-Service und Serviceberechtigungsnachweise erstellen.
 {: shortdesc}
 
-1. [Erstellen Sie eine {{site.data.keyword.nlushort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/catalog/services/natural-language-understanding).
+1. [Erstellen Sie eine {{site.data.keyword.nlushort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/catalog/services/natural-language-understanding).
 2. Während der Erstellung der Serviceinstanz werden ebenfalls automatisch generierte Serviceberechtigungsnachweise erstellt.
 
 ## {{site.data.keyword.nlushort}}-Paket installieren
-{: #install}
+{: #install_understanding}
 
 Nachdem Sie über eine Instanz des {{site.data.keyword.nlushort}}-Service verfügen, verwenden Sie die Befehlszeilenschnittstelle (CLI) von {{site.data.keyword.openwhisk}}, um das {{site.data.keyword.nlushort}}-Paket in Ihrem Namensbereich zu installieren.
 {: shortdesc}
@@ -47,8 +52,7 @@ Nachdem Sie über eine Instanz des {{site.data.keyword.nlushort}}-Service verfü
 {: #nlus_cli}
 
 Vorbereitende Schritte:
-  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Installieren Sie den Befehl [`wskdeploy` ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) und fügen Sie die heruntergeladene Binärdatei zu Ihrem Pfad (PATH) hinzu.
+  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Gehen Sie zum Installieren des {{site.data.keyword.nlushort}}-Pakets wie folgt vor:
 
@@ -60,7 +64,7 @@ Gehen Sie zum Installieren des {{site.data.keyword.nlushort}}-Pakets wie folgt v
 
 2. Stellen Sie das Paket bereit.
     ```
-    wskdeploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
     ```
     {: pre}
 
@@ -115,32 +119,32 @@ Gehen Sie zum Installieren des {{site.data.keyword.nlushort}}-Pakets wie folgt v
     ```
     {: screen}
 
-### Installation über die {{site.data.keyword.openwhisk_short}}-UI durchführen
+### Installation über die Benutzerschnittstelle von {{site.data.keyword.openwhisk_short}} durchführen
 {: #nlus_ui}
 
-1. Öffnen Sie die [Seite 'Erstellen' in der {{site.data.keyword.openwhisk_short}}-Konsole ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/openwhisk/create).
+1. Öffnen Sie die [Seite 'Erstellen' ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/openwhisk/create) in der {{site.data.keyword.openwhisk_short}}-Konsole. 
 
-2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbreich aus, in dem die Installation des {{site.data.keyword.cos_short}}-Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
+2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbereich aus, in dem die Installation des Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
 
 3. Klicken Sie auf **Pakete installieren**.
 
-4. Klicken Sie auf die Paketgruppe **Watson**.
+4. Klicken Sie auf die Paketgruppe **Watson**. 
 
-5. Klicken Sie auf das Paket **Natural Language Understanding**.
+5. Klicken Sie auf das Paket **Natural Language Understanding**. 
 
 5. Klicken Sie auf **Installieren**.
 
-6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **natural-language-understanding-v1**.
+6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **natural-language-understanding-v1**. 
 
-7. Um die Aktionen im Paket **natural-language-understanding-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden.
-  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus. 
+7. Um die Aktionen im Paket **natural-language-understanding-v1** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden. 
+  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus.
   * Wenn Sie Serviceberechtigungsnachweise an einzelne Aktionen binden wollen, führen Sie die nachfolgend aufgeführten Schritte in der UI (Benutzerschnittstelle) aus. **Hinweis**: Für jede Aktion, die Sie verwenden wollen, müssen Sie die nachfolgend aufgeführten Schritte ausführen.
     1. Klicken Sie auf eine Aktion aus dem Paket **natural-language-understanding-v1**, die Sie verwenden wollen. Die Detailseite für diese Aktion wird geöffnet. 
     2. Klicken Sie im Navigationsbereich links auf den Abschnitt **Parameter**. 
     3. Geben Sie einen neuen **Parameter** ein. Geben Sie als Schlüssel die Zeichenfolge `__bx_creds` ein. Fügen Sie als Wert das JSON-Serviceberechtigungsnachweisobjekt aus der Serviceinstanz ein, die Sie zuvor erstellt haben.
 
 ## {{site.data.keyword.nlushort}}-Paket verwenden
-{: #usage}
+{: #usage_understanding}
 
 Um die Aktionen in diesem Paket verwenden zu können, führen Sie Befehle in folgendem Format aus:
 

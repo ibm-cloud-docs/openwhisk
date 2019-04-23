@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: cloudant, event, action, trigger, sequence
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -22,18 +27,22 @@ Hier erfahren Sie, wie Sie Änderungen an einer {{site.data.keyword.cloudant}}-D
 | `/whisk.system/cloudant` | Paket | dbname, host, username, password | Für die Arbeit mit einer Cloudant-Datenbank. |
 | `/whisk.system/cloudant/read` | Aktion | dbname, id | Lesen eines Dokuments aus einer Datenbank. |
 | `/whisk.system/cloudant/write` | Aktion | dbname, overwrite, doc | Schreiben eines Dokuments in eine Datenbank. |
-| `/whisk.system/cloudant/changes` | Feed | dbname, filter, query_params, maxTriggers | Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank. |
+| `/whisk.system/cloudant/changes` | Feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Aktivieren eines Auslöserereignisses bei Änderungen an einer Datenbank. |
 {: shortdesc}
 
-In den folgenden Abschnitten wird schrittweise die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` erläutert. Weitere Informationen zum Einrichten der {{site.data.keyword.cloudant_short_notm}}-Datenbank und zum Lesen oder Schreiben in dieser Datenbank finden Sie im Abschnitt [{{site.data.keyword.cloudant_short_notm}}-Aktionen](./cloudant_actions.html).
+In den folgenden Abschnitten wird schrittweise die Konfiguration eines zugeordneten Pakets sowie die Verwendung der Aktionen und Feeds im Paket `/whisk.system/cloudant` erläutert. Weitere Informationen zum Einrichten der {{site.data.keyword.cloudant_short_notm}}-Datenbank und zum Lesen oder Schreiben in dieser Datenbank finden Sie im Abschnitt [{{site.data.keyword.cloudant_short_notm}}-Aktionen](/docs/openwhisk?topic=cloud-functions-cloudant_actions).
 
 ## Auslöser mithilfe der Filterfunktion erstellen
 
-Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Änderung an Ihrer {{site.data.keyword.cloudant_short_notm}}-Datenbank einen Auslöser aktiviert. 
+Mit dem Feed `changes` können Sie einen Service konfigurieren, der bei jeder Änderung an Ihrer {{site.data.keyword.cloudant_short_notm}}-Datenbank einen Auslöser aktiviert.
 
 In diesem Beispiel werden die folgenden Parameter verwendet:
 
 **dbname**: Der Name der {{site.data.keyword.cloudant_short_notm}}-Datenbank _(erforderlich)_.
+
+**iamApiKey**: Der IAM-API-Schlüssel für die Cloudant-Datenbank. Ist er angegeben, wird er _(optional)_ anstelle des Benutzernamens und Kennworts als Berechtigungsnachweis verwendet. 
+
+**iamUrl**: Die URL des IAM-Token-Service, die verwendet wird, wenn `iamApiKey` angegeben ist. Der Standardwert ist `https://iam.bluemix.net/identity/token` _(optional)_.  
 
 **maxTriggers**: Stoppt die Aktivierung von Auslösern, wenn dieser Grenzwert erreicht wird _(optional)_. Standardwert: unbegrenzt.
 
@@ -84,7 +93,7 @@ In diesem Beispiel werden die folgenden Parameter verwendet:
 
 7. Beobachten Sie die neuen Aktivierungen für den Auslöser **myCloudantTrigger** für jede Dokumentänderung mithilfe der Filterfunktion und des Abfrageparameters nur dann, wenn das Dokument den Status **new** hat.
 
-Wenn Sie keine neuen Aktivierungen beobachten können, lesen Sie den [{{site.data.keyword.cloudant_short_notm}}](./cloudant_actions.html)-Thema über das Lesen und Schreiben in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank. Testen Sie die zum Lesen und Schreiben, um zu prüfen, ob Ihre {{site.data.keyword.cloudant_short_notm}}-Berechtigungsnachweise korrekt sind.
+Wenn Sie keine neuen Aktivierungen beobachten können, lesen Sie den [{{site.data.keyword.cloudant_short_notm}}](/docs/openwhisk?topic=cloud-functions-cloudant_actions)-Thema über das Lesen und Schreiben in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank. Testen Sie die zum Lesen und Schreiben, um zu prüfen, ob Ihre {{site.data.keyword.cloudant_short_notm}}-Berechtigungsnachweise korrekt sind.
 {: tip}
 
 ## Datenstruktur eines Auslöserereignisses
@@ -148,7 +157,7 @@ Die Informationen für das neue Entwurfsdokument werden auf dem Bildschirm angez
 ## Aktionssequenz und Änderungsauslöser zur Verarbeitung eines Dokuments aus einer {{site.data.keyword.cloudant_short_notm}}-Datenbank verwenden
 {: #openwhisk_catalog_cloudant_read_change notoc}
 
-Sie können eine Aktionssequenz in einer Regel verwenden, um das Dokument, das einem {{site.data.keyword.cloudant_short_notm}}-Änderungsereignis zugeordnet ist, abzurufen und zu verarbeiten.
+Sie können eine Aktionssequenz in einer Regel verwenden, um das Dokument, das einem {{site.data.keyword.cloudant_short_notm}}-Änderungsereignis zugeordnet ist, abzurufen und zu verarbeiten. 
 
 Beispielcode einer Aktion, die ein Dokument verarbeitet:
 ```javascript
@@ -165,7 +174,7 @@ ibmcloud fn action create myAction myAction.js
 {: pre}
 
 Zum Lesen eines Dokuments aus der Datenbank können Sie die Aktion `read` aus dem {{site.data.keyword.cloudant_short_notm}}-Paket verwenden.
-Die Aktion `read` kann mit `myAction` zusammengesetzt werden, um eine Aktionsfolge zu erstellen.
+Die Aktion `read` kann mit `myAction` zusammengesetzt werden, um eine Aktionssequenz zu erstellen.
 ```
 ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
 ```

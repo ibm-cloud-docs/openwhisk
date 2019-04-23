@@ -1,18 +1,27 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: mobile, push notifications, binding, notifications
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Mobile Push-Paket
 {: #openwhisk_catalog_pushnotifications}
+
+Dieses vorinstallierte Paket ist nicht in der Region 'Tokio' verfügbar. Die Aktion `sendMessage` mit IAM-Authentifizierung finden Sie im installierbaren Paket [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package).
+{: tip}
 
 Hier erfahren Sie, wie Sie eine Push-Paketbindung erstellen und eine einfache Push-Benachrichtigung mit dem Paket `/whisk.system/pushnotifications` senden, das Ihnen die Möglichkeit bietet, mit einem Push-Service zu arbeiten.
 {: shortdesc}
@@ -23,9 +32,9 @@ Das Paket enthält die folgende Aktionen und Feeds:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | Paket | appId, appSecret, admin_url | Arbeiten mit dem Push-Service. |
 | `/whisk.system/pushnotifications/sendMessage` | Aktion | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Senden einer Push-Benachrichtigung an angegebene Geräte. |
-| `/whisk.system/pushnotifications/webhook` | Feed | events | Aktivieren von Auslöserereignissen für Geräteaktivitäten (Registrierung des Geräts, Rücknahme der Registrierung, Abonnement für Gerät, Beendigung des Abonnements) für den Push-Service. |
 
-Informationen zum Aktivieren von Auslöserereignissen bei einer Geräteaktivität finden Sie im Abschnitt [Mobile Push bei Geräteereignissen](./openwhisk_pushnotifications.html).
+
+Informationen zum Aktivieren von Auslöserereignissen bei einer Geräteaktivität finden Sie im Abschnitt [Mobile Push bei Geräteereignissen](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications).
 
 ## Push-Paketbindung erstellen
 {: #create_push_binding}
@@ -37,11 +46,11 @@ Zum Erstellen einer Paketbindung für Push-Benachrichtigungen müssen Sie die fo
 
 Führen Sie zum Erstellen einer Paketbindung die folgenden Schritte aus:
 
-1. Erstellen Sie eine {{site.data.keyword.Bluemix_notm}}-Anwendung im [{{site.data.keyword.Bluemix_notm}}-Dashboard](http://console.bluemix.net).
+1. Erstellen Sie eine {{site.data.keyword.Bluemix_notm}}-Anwendung im [{{site.data.keyword.Bluemix_notm}}-Dashboard](http://cloud.ibm.com).
 
 2. Initialisieren Sie den Push-Benachrichtigungsservice und binden Sie den Service an die {{site.data.keyword.Bluemix_notm}}-Anwendung.
 
-3. Konfigurieren Sie die [Push Notifications-Anwendung](https://console.bluemix.net/docs/services/mobilepush/index.html).
+3. Konfigurieren Sie die [Push Notifications-Anwendung](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate).
 
   Notieren Sie sich die Werte für **App GUID** und **App Secret** der von Ihnen erstellten {{site.data.keyword.Bluemix_notm}}-App.
 
@@ -105,7 +114,7 @@ Von der Aktion `/whisk.system/pushnotifications/sendMessage` werden Push-Benachr
 - `pnsTitleLocArgs`: Variablenzeichenfolgewerte, die anstelle der Formatkennungen in `title-loc-key` angezeigt werden.
 - `apnsLocArgs`: Variablenzeichenfolgewerte, die anstelle der Formatkennungen in `locKey` angezeigt werden.
 - `apnstitle`: Der Titel von Rich-Push-Benachrichtigungen (nur unterstützt ab iOS 10).
-- `apnsSubtitle`: Der Untertitel der Rich-Benachrichtigungen (nur unterstützt ab iOS 10).
+- `apnsSubtitle`: Der Untertitel der Rich-Benachrichtigungen. (Nur unterstützt ab iOS 10.)
 - `apnsAttachmentUrl`: Der Link zu den iOS-Benachrichtigungsmedien (Video, Audio, GIF, Images - unterstützt nur ab iOS 10).
 - `fireFoxTitle`: Gibt den Titel an, der für die WebPush Notification festgelegt werden soll.
 - `fireFoxIconUrl`: Die URL des Symbols, das für die WebPush Notification festgelegt werden soll.

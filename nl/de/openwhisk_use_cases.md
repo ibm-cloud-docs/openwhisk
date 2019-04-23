@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-06-22"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: use cases, microservices, web apps, iot, serverless, cognitive
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Häufige Anwendungsfälle
 {: #openwhisk_common_use_cases}
@@ -47,18 +53,18 @@ IoT-Szenarios sind ihrer Spezifik nach häufig sensorgesteuert. Zum Beispiel kö
 
 Es ist möglich, IoT-Anwendungen zu implementieren, die traditionelle Serverarchitekturen nutzen. In vielen Fällen erfordert die Kombination verschiedener Services und Datenbridges eine sehr hohe Leistung und flexible Pipelines. Dies beginnt bei IoT-Geräten, setzt sich über Cloudspeicher fort und reicht bis hin zu einer Analyseplattform. Bridges, die häufig vorkonfiguriert sind, bieten nicht die Programmierbarkeit, die zur Implementierung und Feinabstimmung der Architektur einer bestimmten Lösung wünschenswert ist. Angesichts der Auswahl an Pipelines und der fehlenden Standardisierung im Bereich der Datenfusion im Allgemeinen und im IoT-Bereich im Besonderen, erfordert die Pipeline in vielen Fällen eine angepasste Datenumsetzung. Diese angepasste Datenumsetzung gilt für die Formatkonvertierung, die Filterung und die Erweiterungen. {{site.data.keyword.openwhisk_short}} ist ein hervorragendes Tool zur Implementierung einer solchen Transformation in einer 'serverunabhängigen' Weise, bei der die angepasste Logik in einer vollständig verwalteten und elastischen Cloudplattform bereitgestellt wird.
 
-Betrachten Sie das folgende Beispiel für eine IoT-Anwendung, die {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive und andere Services verwendet: [Serverunabhängige Transformation von bewegten IoT-Daten mit {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c#.akt3ocjdt).
+Betrachten Sie das folgende Beispiel für eine IoT-Anwendung, die {{site.data.keyword.openwhisk_short}}, NodeRed, Cognitive und andere Services verwendet: [Serverunabhängige Transformation von bewegten IoT-Daten mit {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c).
 
 ![Beispiel für die Architektur einer IoT-Lösung](images/IoT_solution_architecture_example.png)
 
 ## API-Back-End
 {: #openwhisk_api_backend}
 
-Serverunabhängige IT-Plattformen bieten Entwicklern eine schnelle Möglichkeit zum Erstellen von APIs ohne Server. {{site.data.keyword.openwhisk_short}} unterstützt die automatische Generierung von REST-APIs für Aktionen. Die [experimentelle Funktion](./openwhisk_apigateway.html) von {{site.data.keyword.openwhisk_short}} ermöglicht Ihnen den Aufruf einer Aktion mit anderen HTTP-Methoden als POST und ohne den Berechtigungs-API-Schlüssel der Aktion über das {{site.data.keyword.openwhisk_short}}-API-Gateway. Diese Fähigkeit ist nicht nur zur Bereitstellung von APIs für externe Konsumenten, sondern auch zur Erstellung von Mikroserviceanwendungen hilfreich.
+Serverunabhängige IT-Plattformen bieten Entwicklern eine schnelle Möglichkeit zum Erstellen von APIs ohne Server. {{site.data.keyword.openwhisk_short}} unterstützt die automatische Generierung von REST-APIs für Aktionen. Das [{{site.data.keyword.openwhisk_short}}-Feature](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway) kann eine Aktion mit anderen HTTP-Methoden als POST und ohne den Berechtigungs-API-Schlüssel der Aktion über das {{site.data.keyword.openwhisk_short}}-API-Gateway aufrufen. Diese Fähigkeit ist nicht nur zur Bereitstellung von APIs für externe Konsumenten, sondern auch zur Erstellung von Mikroserviceanwendungen hilfreich.
 
 Außerdem können {{site.data.keyword.openwhisk_short}}-Aktionen mit einem API-Management-Tool Ihrer Wahl verbunden werden (z. B. [IBM API Connect](https://www-03.ibm.com/software/products/en/api-connect) oder ein anderes Tool). Ähnlich wie für andere Anwendungsfälle gelten auch hier alle Gesichtspunkte der Skalierbarkeit und anderer Aspekte der Servicequalität (QoS).
 
-[Emoting](https://github.com/l2fprod/openwhisk-emoting) ist eine Beispielapp, die {{site.data.keyword.openwhisk_short}}-Aktionen durch eine REST-API verwendet.
+[Emoting](https://github.com/IBM-Cloud/openwhisk-emoting) ist eine Beispielapp, die {{site.data.keyword.openwhisk_short}}-Aktionen durch eine REST-API verwendet.
 
 Schauen Sie sich das folgende Beispiel an, das eine Beschreibung der [Verwendung einer serverunabhängigen Plattform als API-Back-End](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples) enthält.
 

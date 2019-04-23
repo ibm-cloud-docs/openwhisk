@@ -1,34 +1,42 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-06-21"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: binding services, serverless, actions, unbinding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
+
 
 # Services an Aktionen binden
 {: #binding_services}
 
-Sie können das [-CLI-Plug-in für {{site.data.keyword.openwhisk}}](./bluemix_cli.html) dazu verwenden, einen Service an eine Aktion oder ein Paket zu binden. Der {{site.data.keyword.openwhisk_short}}-Befehl `ibmcloud fn service bind` bewirkt, dass Ihre Berechtigungsnachweise für den {{site.data.keyword.Bluemix_notm}}-Service für Ihren {{site.data.keyword.openwhisk_short}}-Code zur Laufzeit verfügbar gemacht werden.
+Sie können das [{{site.data.keyword.openwhisk}}Befehlszeilenschnittstellen-Plug-in](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli) dazu verwenden, einen Service an eine Aktion oder ein Paket zu binden. Der {{site.data.keyword.openwhisk_short}}-Befehl `ibmcloud fn service bind` bewirkt, dass Ihre Berechtigungsnachweise für den {{site.data.keyword.Bluemix_notm}}-Service für Ihren {{site.data.keyword.openwhisk_short}}-Code zur Laufzeit verfügbar gemacht werden.
 {: shortdesc}
+
 
 Der Befehl `ibmcloud fn service bind` darf nicht mit dem Befehl `cf bind-service` verwechselt werden, der in Cloud Foundry verfügbar ist.
 {: tip}
+
 
 ## Service an eine Aktion oder ein Paket binden
 {: #cli_bind}
 
 Sie können einen beliebigen {{site.data.keyword.Bluemix_notm}}-Service an eine beliebige Aktion binden, die in {{site.data.keyword.openwhisk_short}} definiert ist. Beim Binden eines Service wird ein neuer Parameter für Ihre vorhandene Aktion erstellt, der Berechtigungsnachweise für die Serviceinstanz enthält.
 
-**Hinweis**: Sie können nur einen Service für jeden Typ an eine Aktion oder ein Paket binden. Das Binden mehrerer Services desselben Typs wird nicht unterstützt.
+**Hinweis**: Sie können nur einen Service für jeden Typ an eine Aktion oder ein Paket binden. Das Binden von Services desselben Typs wird nicht unterstützt.
 
-Bevor Sie beginnen, müssen Sie für den Service, den Sie binden wollen, [Berechtigungsnachweise definieren](/docs/apps/reqnsi.html#accser_external).
+Bevor Sie beginnen, müssen Sie für den Service, den Sie binden wollen, [Berechtigungsnachweise definieren](/docs/resources?topic=resources-externalapp#externalapp).
 
 1. Rufen Sie den Namen der Serviceinstanz ab, die an eine Aktion oder ein Paket gebunden werden soll.
     ```
@@ -139,7 +147,11 @@ Credentials-2
 
     In diesem Beispiel gehören die Berechtigungsnachweise für den Service 'conversation' - zusammen mit anderen Berechtigungsnachweisen für andere Servicetypen - zu einem Parameter mit dem Namen `__bx_creds`. Die Aktion sucht nach dem gebundenen Parameter `__bx_creds` und entfernt die Referenz auf den aufgelisteten Servicetyp. Wenn dieser Servicetyp der einzige aufgelistete Typ ist, füllt die Aktion den Wert des Parameters `__bx_creds` mit Nullen. Wenn mehr als ein Service an die Aktion gebunden ist, bleibt der Parameter `__bx_creds` mit den Services bestehen, die noch gebunden sind.
 
-Weitere Informationen zum Übergeben von Parametern an eine Aktion oder ein Paket und zu den Auswirkungen auf Berechtigungsnachweise bei `update`-Operationen finden Sie im Abschnitt [Mit Parametern arbeiten](./parameters.html#pass-params-action).
+Weitere Informationen zum Übergeben von Parametern an eine Aktion oder ein Paket und zu den Auswirkungen auf Berechtigungsnachweise bei `update`-Operationen finden Sie im Abschnitt [Mit Parametern arbeiten](/docs/openwhisk?topic=cloud-functions-working-with-parameters#pass-params-action).
+
+
+Wenn Sie den Namen der Organisation oder des Bereichs ändern, der Entitäten enthält, wird ein Namensbereich mit dem neuen Namen erstellt. Die Entitäten, die in Ihrem alten Namensbereich enthalten waren, sind im neuen Namensbereich nicht sichtbar und werden geplant gelöscht. Falls die Änderung unbeabsichtigt war, können Sie sie zurücksetzen und Ihre Entitäten möglicherweise sichern, bevor sie gelöscht werden.
+{: tip}
 
 
 ## Bindung eines Service an eine Aktion oder ein Paket aufheben

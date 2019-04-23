@@ -1,14 +1,19 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-17"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: language translator, functions, actions, package
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
 {:tip: .tip}
 
@@ -21,7 +26,7 @@ Das {{site.data.keyword.languagetranslatorshort}}-Paket enthält die folgenden E
 
 | Entität | Typ | Parameter | Beschreibung |
 | --- | --- | --- | --- |
-| [`language-translator-v3`](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  |Ermöglicht das Arbeiten mit dem {{site.data.keyword.languagetranslatorshort}}-Service. |
+| [`language-translator-v3`](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html) | Paket | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Ermöglicht das Arbeiten mit dem {{site.data.keyword.languagetranslatorshort}}-Service. |
 | [translate](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#translate) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text, model_id, source, target,  | Übersetzt Text. |
 | [identify](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#identify) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,  | Erkennt die Sprache eines Texts. |
 | [list-identifiable-languages](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-identifiable-languages) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | Listet erkennbare Sprachen auf. |
@@ -31,16 +36,16 @@ Das {{site.data.keyword.languagetranslatorshort}}-Paket enthält die folgenden E
 | [list-models](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#list-models) | Aktion |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    source,     target,     default_models,  | Listet Modelle auf. |
 
 ## {{site.data.keyword.languagetranslatorshort}}-Serviceinstanz erstellen
-{: #service_instance}
+{: #service_instance_translator}
 
 Vor dem Installieren des Pakets müssen Sie eine Instanz des {{site.data.keyword.languagetranslatorshort}}-Service und Serviceberechtigungsnachweise erstellen.
 {: shortdesc}
 
-1. [Erstellen Sie eine {{site.data.keyword.languagetranslatorshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/catalog/services/language_translator).
+1. [Erstellen Sie eine {{site.data.keyword.languagetranslatorshort}}-Serviceinstanz ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/catalog/services/language_translator).
 2. Während der Erstellung der Serviceinstanz werden ebenfalls automatisch generierte Serviceberechtigungsnachweise erstellt.
 
 ## {{site.data.keyword.languagetranslatorshort}}-Paket installieren
-{: #install}
+{: #install_translator}
 
 Nachdem Sie über eine Instanz des {{site.data.keyword.languagetranslatorshort}}-Service verfügen, verwenden Sie die Befehlszeilenschnittstelle (CLI) von {{site.data.keyword.openwhisk}}, um das {{site.data.keyword.languagetranslatorshort}}-Paket in Ihrem Namensbereich zu installieren.
 {: shortdesc}
@@ -49,8 +54,7 @@ Nachdem Sie über eine Instanz des {{site.data.keyword.languagetranslatorshort}}
 {: #languagetranslator_cli}
 
 Vorbereitende Schritte:
-  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](bluemix_cli.html#cloudfunctions_cli).
-  2. Installieren Sie den Befehl [`wskdeploy` ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://github.com/apache/incubator-openwhisk-wskdeploy/releases) und fügen Sie die heruntergeladene Binärdatei zu Ihrem Pfad (PATH) hinzu.
+  1. [Installieren Sie das {{site.data.keyword.openwhisk_short}}-Plug-in für die {{site.data.keyword.Bluemix_notm}}-CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 Gehen Sie zum Installieren des {{site.data.keyword.languagetranslatorshort}}-Pakets wie folgt vor:
 
@@ -62,7 +66,7 @@ Gehen Sie zum Installieren des {{site.data.keyword.languagetranslatorshort}}-Pak
 
 2. Stellen Sie das Paket bereit.
     ```
-    wskdeploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
+    ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
     ```
     {: pre}
 
@@ -120,32 +124,32 @@ Gehen Sie zum Installieren des {{site.data.keyword.languagetranslatorshort}}-Pak
     ```
     {: screen}
 
-### Installation über die {{site.data.keyword.openwhisk_short}}-UI durchführen
+### Installation über die Benutzerschnittstelle von {{site.data.keyword.openwhisk_short}} durchführen
 {: #languagetranslator_ui}
 
-1. Öffnen Sie die [Seite 'Erstellen' in der {{site.data.keyword.openwhisk_short}}-Konsole ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/openwhisk/create).
+1. Öffnen Sie die [Seite 'Erstellen' ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/openwhisk/create) in der {{site.data.keyword.openwhisk_short}}-Konsole. 
 
-2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbreich aus, in dem die Installation des {{site.data.keyword.cos_short}}-Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
+2. Wählen Sie anhand der Listen **Cloud Foundry-Organisation** und **Cloud Foundry-Bereich** den Namensbereich aus, in dem die Installation des Pakets erfolgen soll. Namensbereiche werden aus einer Kombination des Organisations- und des Bereichsnamens gebildet.
 
 3. Klicken Sie auf **Pakete installieren**.
 
-4. Klicken Sie auf die Paketgruppe **Watson**.
+4. Klicken Sie auf die Paketgruppe **Watson**. 
 
-5. Klicken Sie auf das Paket **Language Translator**.
+5. Klicken Sie auf das Paket **Language Translator**. 
 
 5. Klicken Sie auf **Installieren**.
 
-6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **language-translator-v3**.
+6. Nachdem das Paket installiert worden ist, werden Sie zur Seite 'Aktionen' weitergeleitet, auf der Sie nach Ihrem neuen Paket suchen können. Dieses trägt die Bezeichnung **language-translator-v3**. 
 
-7. Um die Aktionen im Paket **language-translator-v3** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden.
-  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus. 
+7. Um die Aktionen im Paket **language-translator-v3** verwenden zu können, müssen Sie Serviceberechtigungsnachweise an die Aktionen binden. 
+  * Wenn Sie Serviceberechtigungsnachweise an alle Aktionen im Paket binden wollen, führen Sie die Schritte 5 und 6 in den oben aufgeführten CLI-Anweisungen aus.
   * Wenn Sie Serviceberechtigungsnachweise an einzelne Aktionen binden wollen, führen Sie die nachfolgend aufgeführten Schritte in der UI (Benutzerschnittstelle) aus. **Hinweis**: Für jede Aktion, die Sie verwenden wollen, müssen Sie die nachfolgend aufgeführten Schritte ausführen.
     1. Klicken Sie auf eine Aktion aus dem Paket **language-translator-v3**, die Sie verwenden wollen. Die Detailseite für diese Aktion wird geöffnet. 
     2. Klicken Sie im Navigationsbereich links auf den Abschnitt **Parameter**. 
     3. Geben Sie einen neuen **Parameter** ein. Geben Sie als Schlüssel die Zeichenfolge `__bx_creds` ein. Fügen Sie als Wert das JSON-Serviceberechtigungsnachweisobjekt aus der Serviceinstanz ein, die Sie zuvor erstellt haben.
 
 ## {{site.data.keyword.languagetranslatorshort}}-Paket verwenden
-{: #usage}
+{: #usage_translator}
 
 Um die Aktionen in diesem Paket verwenden zu können, führen Sie Befehle in folgendem Format aus:
 

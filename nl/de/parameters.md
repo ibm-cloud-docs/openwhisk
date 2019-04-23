@@ -1,230 +1,222 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: parameters, passing, invocation, binding
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Mit Parametern arbeiten
 
-Hier erfahren Sie, wie Sie Parameter bei Paketen und Aktionen für die Bereitstellung festlegen und wie Parameter beim Aufruf an Aktionen übergeben werden können. Sie können auch eine Datei verwenden, um Parameter zu speichern und den Dateinamen an die Aktion zu übergeben, anstatt jeden Parameter einzeln in der Befehlszeile anzugeben.
+Bei serverunabhängigen Aktionen werden Daten bereitgestellt, indem Parameter zu den Aktionen hinzugefügt werden. Parameter werden als Argument für die wichtigste serverunabhängige Funktion deklariert.
 {: shortdesc}
 
-Bei serverunabhängigen Aktionen werden Daten bereitgestellt, indem Parameter zu den Aktionen hinzugefügt werden, die als Argument für die wichtigste serverunabhängige Funktion deklariert werden. Alle Daten werden auf diese Weise empfangen und die Werte können auf verschiedene Arten festgelegt werden. Die erste Option ist das Angeben von Parametern, wenn eine Aktion oder ein Paket erstellt (oder aktualisiert) wird. Diese Option ist nützlich für Daten, die bei jeder Ausführung gleich bleiben, vergleichbar mit Umgebungsvariablen auf anderen Plattformen, oder für Standardwerte, die beim Aufruf überschrieben werden können. Die zweite Option besteht darin, Parameter zu anzugeben, wenn die Aktion aufgerufen wird, wodurch alle zuvor festgelegten Parameter überschrieben werden.
+Sie können Werte für Parameter auf zwei Arten angeben: 
+* **Parameter während des Aufrufs an eine Aktion übergeben**: Stellen Sie Parameter bereit, wenn die Aktion aufgerufen wird, entweder über CLI-Flags oder über eine Datei. Parameter, die beim Aufruf angegeben werden, überschreiben alle Standardparameter, die zuvor festgelegt wurden. 
+* **Parameter an eine Aktion oder ein Paket binden**: Legen Sie Standardparameter fest, wenn eine Aktion oder ein Paket erstellt oder aktualisiert wird. Diese Option ist nützlich für Daten, die bei jeder Ausführung gleich bleiben, vergleichbar mit Umgebungsvariablen auf anderen Plattformen, oder für Standardwerte, die beim Aufruf überschrieben werden können.
 
 ## Parameter beim Aufruf an eine Aktion übergeben
 {: #pass-params-action}
 
-Beim Aufruf können Parameter an eine Aktion übergeben werden. Die bereitgestellten Beispiele verwenden JavaScript, aber alle anderen Sprachen funktionieren auf die gleiche Weise. Detaillierte Beispiele finden Sie in den folgenden Abschnitten zu [Javascript-Aktionen](./openwhisk_actions.html#creating-and-invoking-javascript-actions), [Swift-Aktionen](./openwhisk_actions.html#creating-swift-actions), [Python-Aktionen](./openwhisk_actions.html#creating-python-actions), [Java-Aktionen](./openwhisk_actions.html#creating-java-actions), [PHP-Aktionen](./openwhisk_actions.html#creating-php-actions), [Docker-Aktionen](./openwhisk_actions.html#creating-docker-actions) oder [Go-Aktionen](./openwhisk_actions.html#creating-go-actions).
+Beim Aufruf können Parameter an eine Aktion übergeben werden.
 
-1. Verwenden Sie Parameter in der Aktion. Erstellen Sie zum Beispiel eine Datei mit dem Namen **hello.js** und dem folgenden Inhalt:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+1. Speichern Sie den folgenden Code in einer Datei mit dem Namen `hello.js`.
+
+    ```javascript
+    function main(params) {
+       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
   }
-  ```
-  {: codeblock}
+    ```
+    {: codeblock}
 
-  Die Eingabeparameter werden in Form eines JSON-Objektparameters an die Funktion **main** übergeben. Beachten Sie, wie die Parameter `name` und `place` in diesem Beispiel aus dem Objekt `params` abgerufen werden.
+2. Erstellen Sie die Aktion `hello`.
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
-2. Aktualisieren Sie die Aktion **hello** so, dass sie verwendet werden kann:
-  ```
-  ibmcloud fn action update hello hello.js
-  ```
-  {: pre}
+3. Wenn Sie diese Aktion zuvor verwendet haben, stellen Sie sicher, dass alle zuvor festgelegten Parameter gelöscht werden, indem Sie sie aktualisieren.
+```
+    ibmcloud fn action update hello hello.js
+    ```
+    {: pre}
 
-  Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern, werden durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Wenn Sie `action update -p key1 new-value -p key2 new-value` ausführen, aber andere festgelegte Parameter auslassen, sind diese Parameter nach dem Aktualisieren der Aktion nicht mehr vorhanden. Alle Services, die an die Aktion gebunden wurden, werden ebenfalls entfernt. Nachdem Sie andere Parameter aktualisiert haben, müssen Sie wieder [Services an Ihre Aktion binden](./binding_services.html).
-  {: tip}
+4. Rufen Sie die Aktion auf, indem Sie die Parameter `name` und `place` übergeben.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
+    ```
+    {: pre}
 
-3. Parameter können in der Befehlszeile explizit angegeben oder [in einer Datei angegeben](./parameters.html#using-parameter-files) werden, die die gewünschten Parameter enthält.
+    **Hinweis**: Sie können stattdessen eine Datei mit JSON-formatierten Parametern übergeben.
+    ```
+    ibmcloud fn action invoke --result hello --param-file parameters.json
+    ```
+    {: pre}
 
-  Zur Übergabe von Parametern direkt über die Befehlszeile geben Sie ein Schlüssel/Wert-Paar für das Flag `--param` an:
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy --param place Kansas
-  ```
-  {: pre}
-
-  **Antwort:**
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
+    Beispielausgabe:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-  Beachten Sie die Verwendung der Option `--result`: Sie bewirkt einen blockierenden Aufruf, bei dem die Befehlszeilenschnittstelle auf den Abschluss der Aktivierung wartet und dann nur das Ergebnis anzeigt. Aus Gründen des Bedienungskomforts kann diese Option ohne die Option `--blocking` verwendet werden, die automatisch abgeleitet wird.
-
-  Darüber hinaus gilt: Wenn die in der Befehlszeile angegebenen Parameterwerte gültige JSON-Werte sind, dann werden sie analysiert und als strukturiertes Objekt an Ihre Aktion gesendet.
-
-  Aktualisieren Sie die Aktion **hello** zum Beispiel wie folgt:
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+5. Sie können auch Parameter in einem strukturierten Objekt an Ihre Aktion übergeben. Aktualisieren Sie die Aktion `hello` zum Beispiel wie folgt:
+    ```javascript
+    function main(params) {
+        return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
   }
-  ```
-  {: codeblock}
+    ```
+    {: codeblock}
 
-  Jetzt erwartet die Aktion, dass ein einzelner Parameter `person` die Felder `name` und `place` aufweist.
+    Jetzt erwartet die Aktion, dass ein einzelner Parameter `person` die Felder `name` und `place` aufweist. 
 
-  Rufen Sie als Nächstes die Aktion mit einem einzelnen Parameter `person` auf, der ein gültiger JSON-Wert ist, wie im folgenden Beispiel:
-  ```
-  ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
-  ```
-  {: pre}
+6. Rufen Sie die Aktion mit einem einfachen Parameter `person` auf, der ein gültiges JSON-Objekt ist.
+    ```
+    ibmcloud fn action invoke --result hello -p person '{"name": "Dorothy", "place": "Kansas"}'
+    ```
+    {: pre}
 
-  **Antwort:**
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
+    Beispielausgabe:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
   }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-  Das Ergebnis ist dasselbe, weil die CLI automatisch den Parameter `person` in das strukturierte Objekt analysiert, das jetzt von der Aktion erwartet wird.
-
-## Standardparameter für eine Aktion festlegen
+## Parameter an eine Aktion binden
 {: #default-params-action}
 
-Aktionen können mit mehreren benannten Parameter aufgerufen werden. Die Aktion **hello** aus dem vorherigen Beispiel erwartet beispielsweise zwei Parameter: den Namen (*name*) einer Person und den Ort (*place*), aus dem sie kommt.
+Aktionen können mit mehreren benannten Parametern aufgerufen werden. Die Basisaktion `hello` erwartet zwei Parameter: den Namen (`name`) einer Person und den Ort (`place`), an dem sie sich aufhält. 
 
-Anstatt nun jedes Mal alle Parameter an eine Aktion zu übergeben, können Sie bestimmte Parameter binden. Im folgenden Beispiel wird der Parameter *place* gebunden, sodass die Aktion mit dem Standardwert "Kansas" arbeitet:
-
-1. Aktualisieren Sie die Aktion mit der Option `--param`, um Parameterwerte zu binden, oder durch die Übergabe einer Datei mit den Parametern an `--param-file`. (Beispiele für die Verwendung von Dateien finden Sie im Abschnitt [Parameterdateien verwenden](./parameters.html#using-parameter-files).
-
-  Zur expliziten Angabe von Standardparametern über die Befehlszeile übergeben Sie ein Schlüssel/Wert-Paar an das Flag `param`:
-  ```
-  ibmcloud fn action update hello --param place Kansas
-  ```
-  {: pre}
-
-2. Rufen Sie die Aktion auf, indem Sie diesmal nur den Parameter `name` übergeben.
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy
-  ```
-  {: pre}
-
-  Beispielausgabe:
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
+```javascript
+function main(params) {
+   return {payload:  'Hello, ' + params.name + ' from ' + params.place};
   }
-  ```
-  {: screen}
+```
+{: screen}
 
-  Sie stellen fest, dass Sie den Parameter "place" beim Aufruf der Aktion nicht angeben mussten. Gebundene Parameter können weiterhin durch eine entsprechende Angabe eines Parameterwerts im Aufruf überschrieben werden.
+Anstatt nun jedes Mal alle Parameter an eine Aktion zu übergeben, können Sie Standardparameter an die Aktion binden. Die folgenden Schritte demonstrieren, wie Sie den Parameter `place` an die Basisaktion `hello` binden, sodass für die Aktion standardmäßig der Ort 'Kansas' angegeben ist. 
 
-3. Rufen Sie die Aktion auf, indem Sie die Werte `name` und `place` übergeben und die Ausgabe beobachten:
+1. Speichern Sie den folgenden Code in einer Datei mit dem Namen `hello.js`.
 
-  Rufen Sie die Aktion mit dem Flag `--param` auf:
-  ```
-  ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
-  ```
-  {: pre}
-
-  Beispielausgabe:
-  ```
-  {  
-      "payload": "Hello, Dorothy from Washington, DC"
+    ```javascript
+    function main(params) {
+       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
   }
-  ```
-  {: screen}
+    ```
+    {: codeblock}
 
-  Die Parameter für eine Aktion, die bei ihrer Erstellung oder Aktualisierung festgelegt wurden, werden immer durch einen Parameter überschrieben, der direkt beim Aufruf angegeben wird.
-  {: tip}
+2. Erstellen Sie die Aktion `hello`.
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
-## Standardparameter für ein Paket festlegen
+3. Aktualisieren Sie die Aktion, um Parameterwerte mithilfe des Flags `--param` und einem Schlüssel/Wert-Paar zu binden. 
+
+    ```
+    ibmcloud fn action update hello --param place Kansas
+    ```
+    {: pre}
+
+    **Hinweis**: Sie können stattdessen eine Datei mit JSON-formatierten Parametern übergeben.
+    ```
+    ibmcloud fn action update hello --param-file parameters.json
+    ```
+    {: pre}
+
+    Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern, werden durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Wenn Sie `action update -p key1 new-value -p key2 new-value` ausführen, aber andere festgelegte Parameter auslassen, sind diese Parameter nach dem Aktualisieren der Aktion nicht mehr vorhanden. Alle Services, die an die Aktion gebunden wurden, werden ebenfalls entfernt. Nachdem Sie andere Parameter aktualisiert haben, müssen Sie wieder [Services an Ihre Aktion binden](/docs/openwhisk?topic=cloud-functions-binding_services).
+    {: tip}
+
+4. Rufen Sie die Aktion auf, indem Sie nur den Parameter `name` übergeben.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy
+    ```
+    {: pre}
+
+    Beispielausgabe:
+    ```
+    {
+        "payload": "Hello, Dorothy from Kansas"
+  }
+    ```
+    {: screen}
+
+    Da Sie den Parameter `place` beim Aufruf der Aktion nicht angegeben haben, wird der Wert des gebundenen Standardparameters, `Kansas`, verwendet. 
+
+5. Gebundene Parameter können durch eine entsprechende Angabe eines Parameterwerts im Aufruf überschrieben werden. Rufen Sie die Aktion auf, indem Sie sowohl `name` als auch `place` übergeben.
+    ```
+    ibmcloud fn action invoke --result hello --param name Dorothy --param place "Washington, DC"
+    ```
+    {: pre}
+
+    Beispielausgabe:
+    ```
+    {  
+        "payload": "Hello, Dorothy from Washington, DC"
+    }
+    ```
+    {: screen}
+
+## Parameter an ein Paket binden
 {: #default-params-package}
 
-Parameter können auf Paketebene festgelegt werden und dienen als Standardparameter für Aktionen, _es sei denn_:
+Standardparameter können auch auf Paketebene festgelegt werden. Gebundene Parameter dienen als Standardparameter für Aktionen im Paket, es sei denn, Folgendes gilt: 
 
-- Die Aktion hat selbst einen Standardparameter.
-- Die Aktion verfügt über einen Parameter, der beim Aufruf angegeben wird. Dieser hat stets "Priorität", wenn mehr als ein Parameter verfügbar ist.
+- Die Aktion selbst hat einen Standardparameter. 
+- Die Aktion hat einen Parameter, der zur Zeit des Aufrufs bereitgestellt wird. 
 
-Im folgenden Beispiel wird der Standardparameter `name` im Paket **MyApp** festgelegt und eine Aktion angezeigt, die ihn verwendet.
+Im folgenden Beispiel wird der Standardparameter `name` im Paket `MyApp` festgelegt und eine Aktion angezeigt, die ihn verwendet.
 
-1. Erstellen Sie ein Paket mit einem eingestellten Parameter:
+1. Erstellen Sie ein Paket und binden Sie den Standardparameter `name` an das Paket.
+```
+    ibmcloud fn package update MyApp --param name World
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn package update MyApp --param name World
-  ```
-  {: pre}
+2. Speichern Sie den folgenden Code in einer Datei mit dem Namen `helloworld.js`. 
 
-2. Erstellen Sie eine Aktion im Paket **MyApp**:
-  ```javascript
-     function main(params) {
-         return {payload: "Hello, " + params.name};
+    ```javascript
+       function main(params) {
+           return {payload: "Hello, " + params.name};
      }
-  ```
-  {: codeblock}
+    ```
+    {: codeblock}
 
-  Erstellen Sie die Aktion:
-  ```
-  ibmcloud fn action update MyApp/hello hello.js
-  ```
-  {: pre}
+3. Erstellen Sie die Aktion im Paket `MyApp`.
+```
+    ibmcloud fn action update MyApp/hello helloworld.js
+    ```
+    {: pre}
 
-3. Rufen Sie die Aktion auf und beobachten Sie den Standardpaketparameter bei seiner Verwendung:
-  ```
-  ibmcloud fn action invoke --result MyApp/hello
-  ```
-  {: pre}
+    Wenn Sie Ihre nicht zum Service gehörenden Berechtigungsnachweisparameter ändern, werden durch einen Befehl `action update` mit neuen Parametern alle Parameter entfernt, die zurzeit vorhanden sind, jedoch nicht in dem Befehl `action update` angegeben werden. Beispiel: Wenn Sie `action update -p key1 new-value -p key2 new-value` ausführen, aber andere festgelegte Parameter auslassen, sind diese Parameter nach dem Aktualisieren der Aktion nicht mehr vorhanden. Alle Services, die an die Aktion gebunden wurden, werden ebenfalls entfernt. Nachdem Sie andere Parameter aktualisiert haben, müssen Sie wieder [Services an Ihre Aktion binden](/docs/openwhisk?topic=cloud-functions-binding_services).
+    {: tip}
 
-  Beispielausgabe:
-  ```
-     {
-         "payload": "Hello, World"
+3. Rufen Sie die Aktion ohne Übergabe von Parametern auf.
+    ```
+    ibmcloud fn action invoke --result MyApp/hello
+    ```
+    {: pre}
+
+    Beispielausgabe:
+    ```
+       {
+           "payload": "Hello, World"
      }
-  ```
-  {: screen}
+    ```
+    {: screen}
 
-## Parameterdateien verwenden
-{: #using-parameter-files}
-
-Sie können Parameter in eine Datei im JSON-Format einfügen und anschließend die Parameter übergeben, indem Sie den Dateinamen mit dem Flag `--param-file` angeben. Diese Methode kann für die Erstellung (oder Aktualisierung) von Paketen und Aktionen und während des Aktionsaufrufs verwendet werden.
-
-1. Nehmen Sie als Beispiel **hello** von weiter oben, indem Sie `hello.js` mit folgendem Inhalt verwenden:
-
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
-
-2. Aktualisieren Sie die Aktion mit dem geänderten Inhalt von `hello.js`:
-
-  ```
-  ibmcloud fn action update hello hello.js
-  ```
-  {: pre}
-
-3. Erstellen Sie eine Parameterdatei mit dem Namen `parameters.json`, die JSON-formatierte Parameter enthält:
-
-  ```json
-  {
-      "name": "Dorothy",
-      "place": "Kansas"
-  }
-  ```
-  {: codeblock}
-
-4. Verwenden Sie den Dateinamen `parameters.json`, wenn Sie die Aktion **hello** aufrufen, und beobachten Sie die Ausgabe:
-
-  ```
-  ibmcloud fn action invoke --result hello --param-file parameters.json
-  ```
-
-  Beispielausgabe:
-  ```
-  {
-      "payload": "Hello, Dorothy from Kansas"
-  }
-  ```
-  {: screen}
+    Der Standardparameter, der an das Paket gebunden ist, wird verwendet.

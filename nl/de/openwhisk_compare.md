@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-05-31"
+  years: 2017, 2019
+lastupdated: "2019-03-05"
+
+keywords: functions compared, openwhisk, architecture, limitless
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Function as a Service (FaaS) im Vergleich
 {: #openwhisk_faas_compared}
@@ -22,15 +28,15 @@ lastupdated: "2018-05-31"
 
 Die folgenden OpenWhisk-Architekturen werden verglichen:
 
-1. **Function as a Service (FaaS)** unter [{{site.data.keyword.openwhisk_short}}](https://console.bluemix.net/openwhisk). IBM ist der einzige Anbieter für verwaltetes OpenWhisk. Eine gute Einführung in das serverunabhängige Programmiermodell mit einer FaaS-Plattform finden Sie unter [Martin Fowlers Blog](https://martinfowler.com/articles/serverless.html) und es stehen [Anwendungsfälle](./openwhisk_use_cases.html) für die Ausführung von OpenWhisk mit einem serverunabhängigen Design zur Verfügung.
+1. **Function as a Service (FaaS)** unter [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk). IBM ist der einzige Anbieter für verwaltetes OpenWhisk. Eine gute Einführung in das serverunabhängige Programmiermodell mit einer FaaS-Plattform finden Sie unter [Martin Fowlers Blog](https://martinfowler.com/articles/serverless.html) und es stehen [Anwendungsfälle](/docs/openwhisk?topic=cloud-functions-openwhisk_common_use_cases) für die Ausführung von OpenWhisk mit einem serverunabhängigen Design zur Verfügung.
 
-2. **Infrastructure as a Service (IaaS)** mit OpenWhisk Roll Your Own (RYO). Sie können OpenWhisk von Apache Incubation Project herunterladen und in [{{site.data.keyword.Bluemix_notm}} IaaS](https://console.ng.bluemix.net/catalog/?category=devices) ausführen.
+2. **Infrastructure as a Service (IaaS)** mit OpenWhisk Roll Your Own (RYO). Sie können OpenWhisk von Apache Incubation Project herunterladen und in [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices) ausführen.
 
-3. **Platform as a Service (PaaS)** als verwaltete Anwendungslaufzeit. Ein gutes Beispiel ist die [Liberty for Java](https://console.ng.bluemix.net/catalog/starters/liberty-for-java)-Laufzeit, die von der {{site.data.keyword.Bluemix_notm}} Foundry-Implementierung verwaltet wird.
+3. **Platform as a Service (PaaS)** als verwaltete Anwendungslaufzeit. Ein gutes Beispiel ist die [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java)-Laufzeit, die von der {{site.data.keyword.Bluemix_notm}} Foundry-Implementierung verwaltet wird.
 
-4. **Container as a Service (CaaS)** als verwaltete Containerumgebung. Ein gutes Beispiel ist [{{site.data.keyword.containerlong_notm}}](/docs/containers/container_index.html#container_index).
+4. **Container as a Service (CaaS)** als verwaltete Containerumgebung. Ein gutes Beispiel ist [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-container_index#container_index).
 
-5. **Infrastructure as a Service (IaaS)** mit Java EE-Laufzeit. Ein gutes Beispiel ist [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://console.ng.bluemix.net/catalog/services/websphere-application-server).
+5. **Infrastructure as a Service (IaaS)** mit Java EE-Laufzeit. Ein gutes Beispiel ist [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server).
 
 In der folgenden Tabelle werden die Elemente der einzelnen Architekturen aus der Perspektive eines Entwicklers verglichen, der Anwendungen erstellt und betreibt:
 
@@ -51,10 +57,10 @@ In der folgenden Tabelle werden die Elemente der einzelnen Architekturen aus der
 |	Geschwindigkeit für Entwickler	|	Am höchsten	|	Am höchsten	|	Am höchsten	|	Durchschnittlich	|	Langsam	|
 |	Auslastung von Ressourcen (inaktive Ressourcen, für die gezahlt werden muss)	|	Ressourcen sind nie inaktiv, da sie nur auf Anforderung aufgerufen werden. Wenn keine Auslastung vorhanden ist, treten keine Kosten oder Ressourcenzuordnungen auf.	|	Da diese Option mit IaaS oder CaaS arbeitet, gilt Ähnliches wie in den Spalten (4) und (5).	|	Einige Ressourcen können inaktiv sein und automatisches Skalieren hilft beim Vermeiden inaktiver Ressourcen. Eine Reihe aktiver Instanzen muss immer vorhanden sein und wird wahrscheinlich zu weniger als 50% ihrer Kapazität ausgelastet. Gestoppte Instanzen kosten nichts.	|	Ähnlich wie Spalte (3)	|	Einige Ressourcen können inaktiv sein, jedoch wird automatisches Skalieren nicht unterstützt. Eine Reihe aktiver Instanzen muss immer vorhanden sein und wird wahrscheinlich zu weniger als 50% ihrer Kapazität ausgelastet. Für gestoppte Instanzen können Kosten für Speicher anfallen.	|
 |	Reife	|	Früher Reifegrad.	|	Früher Reifegrad.	|	Früher Reifegrad.	|	Mittlerer Reifegrad.	|	Hoch ausgereift.	|
-|	Ressourcengrenzen	|	[Einige Begrenzungen gelten.](./openwhisk_reference.html#openwhisk_syslimits)	|	Abhängig von zugeordneten Ressourcen.	|	Nein	|	Nein	|	Nein	|
+|	Ressourcengrenzen	|	[Einige Begrenzungen gelten.](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)	|	Abhängig von zugeordneten Ressourcen.	|	Nein	|	Nein	|	Nein	|
 |	Latenz für selten genutzte Services	|	Seltene Anforderungen können zu Anfang mit einigen Sekunden Antwortzeit verbunden sein, was sich jedoch im Millisekundenbereich für nachfolgende Anforderungen bewegt.	|	Jeweils abhängig.	|	Niedrig.	|	Niedrig.	|	Niedrig - sofern das System über ausreichend Ressourcen verfügt	|
-|	Optimaler Anwendungstyp	|	Ereignisverarbeitung, Internet der Dinge, Mobile-Back-End, Microservices. Definitiv nicht für monolithische Anwendungen. Siehe [Anwendungsfälle](./openwhisk_use_cases.html).	|	Wie in Spalte (1), jedoch wenn der Benutzer in einer anderen Cloud als IBM Cloud oder lokal (On-Premises) arbeiten möchte.	|	Webanwendungen mit 24x7-Auslastung, statusabhängige Services, die die Verbindung über lange Zeiträume offen halten müssen. Geeignet zur Ausführung von Microservices oder monolithischen Anwendungen.	|	Ideal geeignet für Microservice-Anwendungen.	|	Traditionelle Unternehmensanwendungen, die aus lokalen Umgebungen in die Cloud migriert wurden. Ideal geeignet für monolithische Anwendungen.	|
-|	Gebührenaufteilung und Abrechnung	|	[Pro Block von 100 Millisekunden](https://console.ng.bluemix.net/openwhisk/learn/pricing).	|	Abhängig von der Implementierung - Wenn IaaS oder CaaS verwendet werden, gilt Ähnliches - siehe Spalten (4) und (5).	|	In der Regel Gebühr auf Stundenbasis (selten pro Minute) für ein Ressourcenpaket (CPU + Arbeitsspeicher + Plattenspeicher).	|	Ähnlich wie Spalte (3)	|	Ähnlich wie Spalte (3)	|
+|	Optimaler Anwendungstyp	|	Ereignisverarbeitung, Internet der Dinge, Mobile-Back-End, Microservices. Definitiv nicht für monolithische Anwendungen. Siehe [Anwendungsfälle](/docs/openwhisk?topic=cloud-functions-openwhisk_common_use_cases).	|	Wie in Spalte (1), jedoch wenn der Benutzer in einer anderen Cloud als IBM Cloud oder lokal (On-Premises) arbeiten möchte.	|	Webanwendungen mit 24x7-Auslastung, statusabhängige Services, die die Verbindung über lange Zeiträume offen halten müssen. Geeignet zur Ausführung von Microservices oder monolithischen Anwendungen.	|	Ideal geeignet für Microservice-Anwendungen.	|	Traditionelle Unternehmensanwendungen, die aus lokalen Umgebungen in die Cloud migriert wurden. Ideal geeignet für monolithische Anwendungen.	|
+|	Gebührenaufteilung und Abrechnung	|	[Pro Block von 100 Millisekunden](https://cloud.ibm.com/openwhisk/learn/pricing).	|	Abhängig von der Implementierung - Wenn IaaS oder CaaS verwendet werden, gilt Ähnliches - siehe Spalten (4) und (5).	|	In der Regel Gebühr auf Stundenbasis (selten pro Minute) für ein Ressourcenpaket (CPU + Arbeitsspeicher + Plattenspeicher).	|	Ähnlich wie Spalte (3)	|	Ähnlich wie Spalte (3)	|
 |	Anschaffungs- und Betriebskosten (TCO)	|	Bei Verwendung für optimal geeignete Anwendungen liegt die Größenordnung der Gebühren sehr wahrscheinlich unter der von Alternativen. Da Ressourcen automatisch skaliert werden, erfolgt keine Überbereitstellung.	|	Für Cloudbereitstellungen ist es wahrscheinlich teurer als OpenWhisk FaaS, jedoch kann eine lokale Bereitstellung (On-Premises) jedoch günstiger als traditionelle Architekturen sein.	|	Relativ gering - Der Benutzer muss keine Ressourcen bereitstellen oder verwalten und kann sich auf seine Anwendungsentwicklung konzentrieren. Im Vergleich zu Serverless ist eine gewisse Überbereitstellung möglich.	|	Moderat - Der Benutzer muss Container und Anwendung bereitstellen und verwalten und es ist im Vergleich zu Serverless oder PaaS eine gewisse Überbereitstellung möglich.	|	Relativ hoch - In Anbetracht der möglicherweise sehr hohen Kosten für die Migration der traditionellen Anwendungen auf ein natives Cloudmodell kann dies ein durchaus gangbarer und ökonomischer Weg für die betreffenden Apps sein.	|
 
 ## Kostenaspekte
@@ -63,7 +69,7 @@ In der folgenden Tabelle werden die Elemente der einzelnen Architekturen aus der
 Die Infrastruktur für die Umgebungen, die Sie für Tests, Staging, Belastungstests usw. benötigen, kann hohe Kosten verursachen. Es ist zeitaufwendig, sie einzurichten, und da sie normalerweise rund um die Uhr in Betrieb sein müssen, sind sie in der Regel nicht ausgelastet, binden aber viel Kapazität. Wenn Sie eine serverunabhängige Architektur verwenden, werden die Kosten für eine beliebige Anzahl von Umgebungen auf der Basis der tatsächlichen Auslastung und nicht der Anzahl der definierten Umgebungen generiert.
 {: shortdesc}
 
-Zum Berechnen der Kosten für eine serverunabhängige Anwendung können Sie den [Preisrechner ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://console.bluemix.net/openwhisk/learn/pricing) verwenden.
+Zum Berechnen der Kosten für eine serverunabhängige Anwendung können Sie den [Preisrechner ![Symbol für externen Link](../icons/launch-glyph.svg "Symbol für externen Link")](https://cloud.ibm.com/openwhisk/learn/pricing) verwenden.
 
 ### Sehr hohe Kapazität
 {: #limitless_capacity}

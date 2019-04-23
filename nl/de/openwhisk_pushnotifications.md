@@ -1,31 +1,40 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-03-16"
+  years: 2017, 2019
+lastupdated: "2019-03-15"
+
+keywords: push notifications, events, parameters, triggers, service activity
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Mobile Push bei Geräteereignissen
 {: #openwhisk_pushnotifications}
 
+Dieses vorinstallierte Paket ist nicht in der Region 'Tokio' verfügbar.
+{: tip}
+
 Hier erfahren Sie, wie Sie den Push-Service so konfigurieren, dass ein Auslöser aktiviert wird, wenn eine Geräteaktivität wie eine Geräteregistrierung bzw. die Rücknahme einer Geräteregistrierung oder ein Abonnement bzw. das Beenden eines Abonnements für eine angegebene Anwendung erfolgt.
 {: shortdesc}
 
-Weitere Informationen zum Paket `/whisk.system/pushnotifications` selbst finden Sie im Abschnitt [Mobile Push](./mobile_push_actions.html), in dem das Erstellen einer Push-Paketbindung und das Senden einer Push-Benachrichtigung beschrieben wird.
+Weitere Informationen zum Paket `/whisk.system/pushnotifications` selbst finden Sie im Abschnitt [Mobile Push](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a#push_step_1a), in dem das Erstellen einer Push-Paketbindung und das Senden einer Push-Benachrichtigung beschrieben wird.
 
 ## Push-Parameter
-{: #push_parameters}
+{: #push_notif_parameters}
 
 Für `/whisk.system/pushnotifications/webhook` gelten folgende Parameter:
-- **appId:** Die GUID für die {{site.data.keyword.Bluemix_notm}}-App.
-- **appSecret:** Der geheime Schlüssel des Push Notifications-Service von {{site.data.keyword.Bluemix_notm}}.
-- **events:** _onDeviceRegister_, _onDeviceUnregister_, _onDeviceUpdate_, _onSubscribe_, _onUnsubscribe_
+- `appId`: Die {{site.data.keyword.Bluemix_notm}}-App-GUID. 
+- `appSecret`: Der geheime App-Schlüssel des {{site.data.keyword.Bluemix_notm}} Push-Benachrichtigungsservice. 
+- `events`: `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`
 
   Sie können das Platzhalterzeichen "`*`" verwenden, um sich über alle Ereignisse benachrichtigen zu lassen.
 
@@ -34,7 +43,7 @@ Für `/whisk.system/pushnotifications/webhook` gelten folgende Parameter:
 
 Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der jedes Mal aktiviert wird, wenn ein neues Gerät in der Anwendung des Push Notifications-Service registriert wird:
 
-1. Erstellen Sie eine Paketbindung, die für den Push Notifications-Service konfiguriert ist, und verwenden Sie dabei Ihre Werte **appId** und **appSecret**.
+1. Erstellen Sie eine Paketbindung, die für den Push Notifications-Service konfiguriert ist, und verwenden Sie dabei Ihre Werte `appId` und `appSecret`.
   ```
   ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
   ```
@@ -58,6 +67,6 @@ Das folgende Beispiel zeigt, wie ein Auslöser erstellt wird, der jedes Mal akti
   ```
   {: pre}
 
-5. Registrieren Sie ein Gerät in Ihrer {{site.data.keyword.Bluemix_notm}}-Anwendung. Im {{site.data.keyword.openwhisk}}-[Dashboard](https://console.bluemix.net/openwhisk/dashboard) ist zu sehen, wie die `Regel`, der `Auslöser` und die `Aktion` ausgeführt werden.
+5. Registrieren Sie ein Gerät in Ihrer {{site.data.keyword.Bluemix_notm}}-Anwendung. Im [Dashboard](https://cloud.ibm.com/openwhisk/dashboard) von {{site.data.keyword.openwhisk}} ist zu sehen, wie die `Regel`, der `Auslöser` und die `Aktion` ausgeführt werden. 
 
   Die Aktion sendet eine Push-Benachrichtigung.

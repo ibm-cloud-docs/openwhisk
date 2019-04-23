@@ -1,15 +1,21 @@
 ---
 
 copyright:
-  years: 2016, 2018
-lastupdated: "2018-07-13"
+  years: 2017, 2019
+lastupdated: "2019-03-08"
+
+keywords: platform architecture, openwhisk, couchdb, kafka
+
+subcollection: cloud-functions
 
 ---
 
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:codeblock: .codeblock}
 {:pre: .pre}
+{:tip: .tip}
 
 # Plattformarchitektur
 {: #openwhisk_about}
@@ -23,23 +29,23 @@ lastupdated: "2018-07-13"
 Im Folgenden werden einige grundlegende Konzepte der Technologie beschrieben, die {{site.data.keyword.openwhisk_short}} zugrunde liegt:
 
 <dl>
-<dt>Aktion</dt>
-<dd>Eine [Aktion](openwhisk_actions.html) ist ein Abschnitt Code, der eine bestimmte Task ausführt. Aktionen können in einer Sprache Ihrer Wahl geschrieben sein und es kann sich um kleine Snippets aus JavaScript- oder Swift-Code oder angepasstem Binärcode handeln, die in einem Docker-Container eingebettet sind. Sie stellen Ihre Aktion für Cloud Functions entweder als Quellcode oder als Docker-Image bereit.
-<br><br>Eine Aktion führt Verarbeitungsprozesse aus, wenn sie direkt über die API, die CLI oder das iOS-SDK von {{site.data.keyword.openwhisk_short}} aufgerufen wird. Eine Aktion kann auch automatisch auf Ereignisse von {{site.data.keyword.Bluemix_notm}}-Services und Services von Drittanbietern unter Verwendung eines Auslösers reagieren.</dd>
-<dt>Sequenz</dt>
-<dd>Eine Gruppe von Aktionen kann außerdem zu einer [Sequenz](openwhisk_actions.html#openwhisk_create_action_sequence) verkettet werden, ohne dass dazu Code geschrieben werden muss. Eine Sequenz ist eine Kette von Aktionen, die nacheinander aufgerufen werden, wobei die Ausgabe einer Aktion als Eingabe an die nächste Aktion übergeben wird. Auf diese Weise können Sie vorhandene Aktionen kombinieren und so schnell und einfach wiederverwenden. Eine Sequenz kann dann genau wie eine Aktion über eine REST-API oder automatisch als Reaktion auf Ereignisse aufgerufen werden.
-</dd>
-<dt>Ereignis</dt>
-<dd>Beispiele für Ereignisse sind Änderungen an Datenbanksätzen, IoT-Sensormesswerte (IoT, Internet of Things - Internet der Dinge), die einen bestimmten Temperaturwert überschreiten, neue Codefestschreibungen (Commits) in einem GitHub-Repository oder einfache HTTP-Anforderungen von Web-Apps oder mobilen Apps. Ereignisse aus externen und internen Ereignisquellen werden durch einen Auslöser kanalisiert. Regeln ermöglichen es Aktionen, auf diese Ereignisse zu reagieren.</dd>
-<dt>Auslöser</dt>
-<dd>Ein [Auslöser](openwhisk_triggers_rules.html#openwhisk_triggers_create) ist ein benannter Kanal für eine Klasse von Ereignissen. Bei einem Auslöser handelt es sich um eine Deklaration, die auf einen bestimmten Typ von Ereignis reagieren soll, entweder durch einen Benutzer oder eine Ereignisquelle.</dd>
-<dt>Regel</dt>
-<dd>Eine [Regel](openwhisk_triggers_rules.html#openwhisk_rules_use) ordnet einen Auslöser einer Aktion zu. Jedes Mal, wenn der Auslöser zur Anwendung kommt, verwendet die Regel das Auslöserereignis als Eingabe und ruft die zugehörige Aktion auf. Mit dem entsprechenden Satz von Regeln kann ein einzelnes Auslöserereignis mehrere Aktionen aufrufen oder eine Aktion als Reaktion auf Ereignisse aus mehreren Auslösern aufgerufen werden.</dd>
-<dt>Feed</dt>
-<dd>Ein [Feed](openwhisk_feeds.html#openwhisk_feeds) ist eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle, damit diese Auslöserereignisse aktiviert, die von {{site.data.keyword.openwhisk_short}} verarbeitet werden können. Ein Git-Feed könnte zum Beispiel ein Auslöserereignis für jede Festschreibung (Commit) in einem Git-Repository aktivieren.</dd>
-<dt>Paket</dt>
-<dd>Integrationen in Services und Ereignisprovider können durch Pakete hinzugefügt werden. Ein [Paket](openwhisk_packages.html) ist ein Bündel aus Feeds und Aktionen. Ein Feed ist ein Codeabschnitt, der eine externe Ereignisquelle zum Aktivieren (Auslösen) von Auslöserereignissen konfiguriert. Zum Beispiel konfiguriert ein Auslöser, der mit einem Feed für {{site.data.keyword.cloudant}}-Änderungen erstellt wurde, einen Service, der den Auslöser jedes Mal dann aktiviert, wenn ein Dokument in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank geändert oder hinzugefügt wird. Aktionen in Paketen stellen wiederverwendbare Logik da, die ein Service-Provider verfügbar machen kann, sodass Entwickler den Service als Ereignisquelle verwenden und APIs dieses Service aufrufen können.
-<br><br>Ein bestehender Katalog mit Paketen bietet eine schnelle Möglichkeit, Anwendungen um nützliche Funktionen zu erweitern und auf externe Services im direkten Geschäftsumfeld zuzugreifen. Zu den externen Services, die über {{site.data.keyword.openwhisk_short}}-Paket verfügen, gehören zum Beispiel {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack und GitHub.</dd>
+  <dt>Aktion</dt>
+    <dd>Eine [Aktion](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) ist ein Abschnitt Code, der eine bestimmte Task ausführt. Aktionen können in einer Sprache Ihrer Wahl geschrieben sein und es kann sich um kleine Snippets aus JavaScript- oder Swift-Code oder angepasstem Binärcode handeln, die in einem Docker-Container eingebettet sind. Sie stellen Ihre Aktion für Cloud Functions entweder als Quellcode oder als Docker-Image bereit.
+    <br><br>Eine Aktion führt Verarbeitungsprozesse aus, wenn sie direkt über die API, die CLI oder das iOS-SDK von {{site.data.keyword.openwhisk_short}} aufgerufen wird. Eine Aktion kann auch automatisch auf Ereignisse von {{site.data.keyword.Bluemix_notm}}-Services und Services von Drittanbietern unter Verwendung eines Auslösers reagieren.</dd>
+  <dt>Sequenz</dt>
+    <dd>Eine Gruppe von Aktionen kann außerdem zu einer [Sequenz](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence) verkettet werden, ohne dass dazu Code geschrieben werden muss. Eine Sequenz ist eine Kette von Aktionen, die nacheinander aufgerufen werden, wobei die Ausgabe einer Aktion als Eingabe an die nächste Aktion übergeben wird. Auf diese Weise können Sie vorhandene Aktionen kombinieren und so schnell und einfach wiederverwenden. Eine Sequenz kann dann genau wie eine Aktion über eine REST-API oder automatisch als Reaktion auf Ereignisse aufgerufen werden.
+  </dd>
+  <dt>Ereignis</dt>
+    <dd>Beispiele für Ereignisse sind Änderungen an Datenbanksätzen, IoT-Sensormesswerte (IoT, Internet of Things - Internet der Dinge), die einen bestimmten Temperaturwert überschreiten, neue Codefestschreibungen (Commits) in einem GitHub-Repository oder einfache HTTP-Anforderungen von Web-Apps oder mobilen Apps. Ereignisse aus externen und internen Ereignisquellen werden durch einen Auslöser kanalisiert. Regeln ermöglichen es Aktionen, auf diese Ereignisse zu reagieren.</dd>
+  <dt>Auslöser</dt>
+    <dd>Ein [Auslöser](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create) ist ein benannter Kanal für eine Klasse von Ereignissen. Bei einem Auslöser handelt es sich um eine Deklaration, die auf einen bestimmten Typ von Ereignis reagieren soll, entweder durch einen Benutzer oder eine Ereignisquelle.</dd>
+  <dt>Regel</dt>
+    <dd>Eine [Regel](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use) ordnet einen Auslöser einer Aktion zu. Jedes Mal, wenn der Auslöser zur Anwendung kommt, verwendet die Regel das Auslöserereignis als Eingabe und ruft die zugehörige Aktion auf. Mit dem entsprechenden Satz von Regeln kann ein einzelnes Auslöserereignis mehrere Aktionen aufrufen oder eine Aktion als Reaktion auf Ereignisse aus mehreren Auslösern aufgerufen werden.</dd>
+  <dt>Feed</dt>
+    <dd>Ein [Feed](/docs/openwhisk?topic=cloud-functions-openwhisk_feeds#openwhisk_feeds) ist eine bequeme Methode zum Konfigurieren einer externen Ereignisquelle, damit diese Auslöserereignisse aktiviert, die von {{site.data.keyword.openwhisk_short}} verarbeitet werden können. Ein Git-Feed könnte zum Beispiel ein Auslöserereignis für jede Festschreibung (Commit) in einem Git-Repository aktivieren.</dd>
+  <dt>Paket</dt>
+    <dd>Integrationen in Services und Ereignisprovider können durch Pakete hinzugefügt werden. Ein [Paket](/docs/openwhisk?topic=cloud-functions-openwhisk_packages) ist ein Bündel aus Feeds und Aktionen. Ein Feed ist ein Codeabschnitt, der eine externe Ereignisquelle zum Aktivieren (Auslösen) von Auslöserereignissen konfiguriert. Zum Beispiel konfiguriert ein Auslöser, der mit einem Feed für {{site.data.keyword.cloudant}}-Änderungen erstellt wurde, einen Service, der den Auslöser jedes Mal dann aktiviert, wenn ein Dokument in einer {{site.data.keyword.cloudant_short_notm}}-Datenbank geändert oder hinzugefügt wird. Aktionen in Paketen stellen wiederverwendbare Logik da, die ein Service-Provider verfügbar machen kann, sodass Entwickler den Service als Ereignisquelle verwenden und APIs dieses Service aufrufen können.
+    <br><br>Ein bestehender Katalog mit Paketen bietet eine schnelle Möglichkeit, Anwendungen um nützliche Funktionen zu erweitern und auf externe Services im direkten Geschäftsumfeld zuzugreifen. Zu den externen Services, die über {{site.data.keyword.openwhisk_short}}-Paket verfügen, gehören zum Beispiel {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack und GitHub.</dd>
 </dl>
 
 ## Funktionsweise von {{site.data.keyword.openwhisk_short}}
@@ -55,7 +61,7 @@ Zur eingehenderen Erläuterung aller Komponenten soll ein Aufruf einer Aktion du
 
 Was geschieht hinter den Kulissen in OpenWhisk?
 
-OpenWhisk ist ein Open-Source-Projekt, das Komponenten wie Nginx, Kafka, Docker und CouchDB umfasst und so einen serverunabhängigen ereignisbasierten Programmierservice darstellt.
+OpenWhisk ist ein Open-Source-Projekt, das Komponenten wie Nginx, Kafka, Docker und CouchDB umfasst und so einen serverunabhängigen ereignisbasierten Programmierservice darstellt. 
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="Der interne Verarbeitungsablauf hinter den Kulissen in OpenWhisk" style="width:550px; border-style: none"/>
 
@@ -156,11 +162,11 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 
 ### Zusammenfassung
 
-Sie haben gesehen, wie ein einfacher Befehl **ibmcloud fn action invoked myAction** verschiedene Stufen des {{site.data.keyword.openwhisk_short}}-Systems durchläuft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community.
+Sie haben gesehen, wie ein einfacher Befehl **ibmcloud fn action invoked myAction** verschiedene Stufen des {{site.data.keyword.openwhisk_short}}-Systems durchläuft. Das System besteht selbst hauptsächlich aus zwei angepassten Komponenten: dem **Controller** und dem **Aufrufer** (Invoker). Alles andere ist bereits vorhanden - entwickelt von vielen Mitarbeitern in der Open-Source-Community. 
 
 Weitere Informationen zu {{site.data.keyword.openwhisk_short}} finden Sie in den folgenden Abschnitten:
 
-* [Entitätsnamen](./openwhisk_reference.html#openwhisk_entities)
-* [Aktionssemantik](./openwhisk_reference.html#openwhisk_semantics)
-* [Begrenzungen](./openwhisk_reference.html#openwhisk_syslimits)
-* [REST-API-Referenz](https://console.bluemix.net/apidocs/functions)
+* [Entitätsnamen](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_entities)
+* [Aktionssemantik](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
+* [Begrenzungen](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
+* [REST-API-Referenz](/apidocs/functions)
