@@ -41,6 +41,7 @@ IBM Cloud Functions
         parameters.md
         binding_services.md
         openwhisk_packages.md
+        cloud_object_storage_actions.md
 
     {: .topicgroup}
     이벤트로 액션 호출
