@@ -92,9 +92,10 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    openwhisk_annotations.md 
-    openwhisk_reference.md
+    openwhisk_annotations.md
     runtimes.md
+    openwhisk_reference.md
+    openwhisk_regions.md
 
     {: .topicgroup}
     Documentação da API [Referência da API de REST](https://console.bluemix.net/apidocs/functions){: new_window}[Gerenciamento
