@@ -51,7 +51,8 @@ IBM Cloud Functions
         openwhisk_pushnotifications.md
         openwhisk_github.md
         openwhisk_feeds.md
-
+        openwhisk_object_storage.md
+        
     openwhisk_apigateway.md
     openwhisk_logs.md
     deploy_templates.md
