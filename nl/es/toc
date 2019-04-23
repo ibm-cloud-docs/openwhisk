@@ -26,7 +26,16 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Creación de acciones
-        openwhisk_actions.md
+        actions_javascript.md
+        actions_go.md
+        actions_swift.md
+        actions_python.md
+        actions_ruby.md
+        actions_docker.md
+        actions_ballerina.md
+        actions_php.md
+        actions_java.md
+        actions_net.md 
         openwhisk_webactions.md
         openwhisk_managing.md
         parameters.md
@@ -102,3 +111,4 @@ IBM Cloud Functions
     {: .navgroup-end}
     
     index.md
+    openwhisk_actions.md
