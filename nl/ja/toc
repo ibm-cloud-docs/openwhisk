@@ -15,10 +15,10 @@ IBM Cloud Functions
 
     {: .topicgroup}
     チュートリアル
-        ../tutorials/slack-chatbot-database-watson.md
-        ../tutorials/serverless-github-traffic-analytics.md
-        ../tutorials/serverless-mobile-backend.md
-        ../tutorials/serverless-api-webapp.md
+        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
+        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
+        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
+        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
