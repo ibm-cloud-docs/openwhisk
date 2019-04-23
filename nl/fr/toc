@@ -93,8 +93,9 @@ IBM Cloud Functions
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
-    openwhisk_reference.md
     runtimes.md
+    openwhisk_reference.md
+    openwhisk_regions.md
 
     {: .topicgroup}
     Documentation API
