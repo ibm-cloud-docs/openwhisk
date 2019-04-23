@@ -41,6 +41,7 @@ IBM Cloud Functions
         parameters.md
         binding_services.md
         openwhisk_packages.md
+        cloud_object_storage_actions.md
 
     {: .topicgroup}
     Aktionen mit Ereignissen aufrufen
