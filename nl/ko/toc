@@ -5,7 +5,7 @@
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
-    index.md
+    getting_started.md
 
     {: .topicgroup}
     개요
@@ -100,3 +100,5 @@ IBM Cloud Functions
         [튜토리얼 및 샘플](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
 
     {: .navgroup-end}
+
+    index.md
