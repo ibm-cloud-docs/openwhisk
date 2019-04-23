@@ -1,42 +1,53 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/index.html" path="openwhisk"}
+{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk/getting_started.html" path="openwhisk"}
 IBM Cloud Functions
-
-    index.md
 
     {: .navgroup id="learn"}
     getting_started.md
 
     {: .topicgroup}
-    Übersicht
+    Overview
         openwhisk_use_cases.md
         openwhisk_about.md
         openwhisk_compare.md
 
     {: .topicgroup}
-    Lernprogramme
-        ../tutorials/slack-chatbot-database-watson.md
-        ../tutorials/serverless-github-traffic-analytics.md
-        ../tutorials/serverless-mobile-backend.md
-        ../tutorials/serverless-api-webapp.md
+    Tutorials
+        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
+        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
+        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
+        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
     bluemix_cli.md
 
     {: .topicgroup}
-    Aktionen erstellen
-        openwhisk_actions.md
+    Creating actions
+        actions_javascript.md
+        actions_go.md
+        actions_swift.md
+        actions_python.md
+        actions_ruby.md
+        actions_docker.md
+        actions_ballerina.md
+        actions_php.md
+        actions_java.md
+        actions_net.md
         openwhisk_webactions.md
+        
+    {: topicgroup}
+    Managing actions
         openwhisk_managing.md
-        parameters.md
+        creating_action_sequence.md
         binding_services.md
+        parameters.md
         openwhisk_packages.md
 
     {: .topicgroup}
-    Aktionen mit Ereignissen aufrufen
+    Invoking actions with events
         openwhisk_triggers_rules.md
         openwhisk_alarms.md
         openwhisk_cloudant.md
@@ -44,13 +55,18 @@ IBM Cloud Functions
         openwhisk_pushnotifications.md
         openwhisk_github.md
         openwhisk_feeds.md
+        openwhisk_object_storage.md
 
+    openwhisk_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
+    at-events.md
+    deploy.md
     deploy_templates.md
 
+
     {: .topicgroup}
-    Vorinstallierte Pakete
+    Pre-installed packages
         cloudant_actions.md
         messagehub_actions.md
         mobile_push_actions.md
@@ -63,42 +79,54 @@ IBM Cloud Functions
         openwhisk_websocket.md
 
     {: .topicgroup}
-    Installierbare Pakete
+    Installable packages
         installable_packages_overview.md
+        ow_watson_speech_to_text.md
+        ow_watson_text_to_speech.md
+        ow_push_notifications.md
         cloud_object_storage_actions.md
         ow_watson_assistant.md
         ow_watson_discovery.md
         ow_watson_visual_recognition.md
         ow_watson_natural_language_understanding.md
-        ow_watson_speech_to_text.md
-        ow_watson_text_to_speech.md
         ow_watson_natural_language_classifer.md
         ow_watson_personality_insights.md
         ow_watson_tone_analyzer.md
         ow_watson_language_translator.md
 
-
     {: .topicgroup}
-    SDK und Frameworks
+    SDK and frameworks
         openwhisk_goserverless.md
         openwhisk_mobile_sdk.md
+
+    {: .topicgroup}
+    Managing Functions in Tokyo
+        openwhisk_namespaces.md
+        iam.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
     openwhisk_annotations.md
+    runtimes.md
     openwhisk_reference.md
+    openwhisk_regions.md
 
     {: .topicgroup}
-    API-Dokumentation
-        [REST-API-Referenz](https://console.bluemix.net/apidocs/functions){: new_window}
-        [Verwaltung nativer APIs in IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
+    API documentation
+        [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
+        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
     {: .topicgroup}
-    Zugehörige Links
-        [IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
-        [Preisstruktur](https://console.ng.bluemix.net/openwhisk/learn/pricing){: new_window}
+    Related links
+        [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
+        [Pricing](https://cloud.ibm.com/openwhisk/learn/pricing){: new_window}
         [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
-        [Apache OpenWhisk FAQ](http://openwhisk.org/faq){: new_window}
-        [Lernprogramme und Beispiele](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
-
+        [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
     {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    faq.md
+    ts_index.md
+    {: .navgroup-end}
+
+    index.md
