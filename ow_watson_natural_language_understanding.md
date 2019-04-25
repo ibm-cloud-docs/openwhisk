@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-04-18"
 
 keywords: natural language, understanding, watson knowledge studio
 
@@ -19,7 +19,7 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.nlushort}} package
 
-The {{site.data.keyword.nlufull}} service helps you analyze various features of text content at scale.
+The installable {{site.data.keyword.nlufull}} service helps you analyze various features of text content at scale.
 {: shortdesc}
 
 Provide text, raw HTML, or a public URL, and {{site.data.keyword.nlushort}} gives you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content. You can create <a target="_blank" href="https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html">custom models</a> with Watson Knowledge Studio that can be used to detect custom entities and relations in Natural Language Understanding.

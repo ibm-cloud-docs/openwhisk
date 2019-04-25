@@ -37,7 +37,7 @@ IBM Cloud Functions
         actions_java.md
         actions_net.md
         openwhisk_webactions.md
-        
+
     {: topicgroup}
     Managing actions
         openwhisk_managing.md
@@ -63,7 +63,6 @@ IBM Cloud Functions
     at-events.md
     deploy.md
     deploy_templates.md
-
 
     {: .topicgroup}
     Pre-installed packages

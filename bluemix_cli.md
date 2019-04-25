@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-05"
+lastupdated: "2019-04-19"
 
 keywords: functions cli, serverless, bluemix cli, install, functions plug-in
 
@@ -74,28 +74,20 @@ To see everything that you can do with the {{site.data.keyword.openwhisk_short}}
 2. Verify that the plug-in is installed.
 
   ```
-  ibmcloud plugin list cloud-functions
+  ibmcloud plugin list
   ```
   {: pre}
 
   Output:
   ```
   Plugin Name          Version
-  Cloud-Functions      1.0.16
+  cloud-functions/wsk/functions/fn      1.0.30
   ```
   {: screen}
 
 Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
 {:tip}
 
-
-
-## Using services from actions
-{: #binding_services_cli}
-
-{{site.data.keyword.openwhisk_short}} provides the `service bind` command to make your {{site.data.keyword.Bluemix_notm}} service credentials available to your code at run time. You can then use the `service bind` command to bind any {{site.data.keyword.Bluemix_notm}} service to any action that is defined in {{site.data.keyword.openwhisk_short}}.
-
-For detailed steps on how to use services from actions, see [Binding services to actions](/docs/openwhisk?topic=cloud-functions-binding_services).
 
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-18"
 
 keywords: language translator, functions, actions, package
 
@@ -19,7 +19,7 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.languagetranslatorshort}} package
 
-The {{site.data.keyword.languagetranslatorfull}} translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
+The installable {{site.data.keyword.languagetranslatorfull}} translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
 {: shortdesc}
 
 The {{site.data.keyword.languagetranslatorshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.languagetranslatorshort}} API reference by clicking the entity name.

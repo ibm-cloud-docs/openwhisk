@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-11"
+lastupdated: "2019-04-18"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -19,7 +19,7 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.texttospeechshort}} package
 
-The {{site.data.keyword.texttospeechfull}} service provides an API that uses IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a variety of languages, dialects, and voices.
+The installable {{site.data.keyword.texttospeechfull}} service provides an API that uses IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a variety of languages, dialects, and voices.
 {:shortdesc}
 
 The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see the [IBM Cloud documentation](/docs/services/text-to-speech/index.html).

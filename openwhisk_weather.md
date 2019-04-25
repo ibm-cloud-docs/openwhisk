@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-18"
 
 keywords: weather package, forecast, functions, serverless 
 
@@ -20,7 +20,7 @@ subcollection: cloud-functions
 # Weather package
 {: #openwhisk_catalog_weather}
 
-The `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.Bluemix}} API.
+The pre-installed `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.Bluemix}} API.
 {: shortdesc}
 
 The package includes the following action.

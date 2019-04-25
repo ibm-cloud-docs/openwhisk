@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-05"
+lastupdated: "2019-04-19"
 
 keywords: object storage, bucket, package
 
@@ -38,7 +38,7 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 
 ## Package and action parameters
 
-#### Package parameters
+### Package parameters
 
 The following parameters are expected to be bound to the package; this will make them automatically available for all actions. It is also possible to specify these parameters when invoking one of the actions.
 
@@ -48,7 +48,7 @@ The following parameters are expected to be bound to the package; this will make
 
 **cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_short}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_short}} instance.
 
-#### Action parameters
+### Action parameters
 
 The following parameters are specified when invoking the individual actions.  Not all of these parameters are suppoted by every action; refer to the above table to see which parameters are supporte by which action.
 
@@ -263,7 +263,7 @@ Example output:
 You can use the `object-read` action to read from an object in an {{site.data.keyword.cos_short}} bucket.
 {: shortdesc}
 
-**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_full_notm}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
+**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_short}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
 
 ### Read from a bucket from the CLI
 {: #read_bucket_cli}

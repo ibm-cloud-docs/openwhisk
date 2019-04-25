@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-18"
 
 keywords: watson assistant, openwhisk, functions
 
@@ -19,7 +19,7 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.conversationshort}} package
 
-The {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users.
+The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users.
 {: shortdesc}
 
 The {{site.data.keyword.conversationshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.conversationshort}} API reference by clicking the entity name.

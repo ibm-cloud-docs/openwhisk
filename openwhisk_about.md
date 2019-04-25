@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-04-19"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Platform architecture
+# How {{site.data.keyword.openwhisk_short}} works
 {: #openwhisk_about}
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
@@ -26,7 +26,23 @@ subcollection: cloud-functions
 ## {{site.data.keyword.openwhisk_short}} technology
 {: #technology}
 
-Learn about some basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
+Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
+
+**What is an action?**
+
+An action is a small piece of code that can be invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
+
+**Why would I use an action?**
+
+By using actions, you limit the amount of time that your code is running, which lowers your overhead costs.
+
+For example, you can use actions to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
+
+**Can I use more than one action at a time?**
+
+Yes! You can use actions to call other actions, or you can string actions together to [create sequences](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence#openwhisk_create_action_sequence). To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences by calling the package instead of configuring the action or sequence again.
+
+## {{site.data.keyword.openwhisk_short}} terminology
 
 <dl>
   <dt>Action</dt>
@@ -48,18 +64,15 @@ Learn about some basic concepts of the technology behind {{site.data.keyword.ope
     <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
 </dl>
 
-## How {{site.data.keyword.openwhisk_short}} works
-{: #openwhisk_how}
+
+## How OpenWhisk internal processing works
+{: #openwhisk_internal}
 
 To explain all the components in more detail, let's trace an invocation of an action through the {{site.data.keyword.openwhisk_short}} system. An invocation executes the code the user feeds into the system, and returns the results of that execution. The following figure shows the high-level {{site.data.keyword.openwhisk_short}} architecture.
 
 ![{{site.data.keyword.openwhisk_short}} architecture](./images/OpenWhisk.png)
 
-
-## How OpenWhisk internal processing works
-{: #openwhisk_internal}
-
-What happens behind the scenes in OpenWhisk?
+### What happens behind the scenes in OpenWhisk?
 
 OpenWhisk is an open source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 

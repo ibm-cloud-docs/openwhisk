@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-05"
+lastupdated: "2019-04-18"
 
 keywords: cloudant, database, actions
 
@@ -20,7 +20,7 @@ subcollection: cloud-functions
 # Cloudant package
 {: #cloudant_actions}
 
-The `/whisk.system/cloudant` package enables you to work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database, and includes the following actions and feeds:
+The pre-installed `/whisk.system/cloudant` package enables you to work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database, and includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |

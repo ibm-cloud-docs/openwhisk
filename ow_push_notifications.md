@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-18"
 
 keywords: push notifications, functions, webhooks
 
@@ -19,7 +19,7 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.mobilepushshort}} package
 
-The {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
+The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
 {: shortdesc}
 
 The {{site.data.keyword.mobilepushshort}} package includes the following actions:

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-11"
+lastupdated: "2019-04-18"
 
 keywords: functions compared, openwhisk, architecture, limitless
 
@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Function as a Service compared
+# Function as a Service architecture
 {: #openwhisk_faas_compared}
 
 {{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}}'s serverless architecture and cost-effective computing with other architecture models.

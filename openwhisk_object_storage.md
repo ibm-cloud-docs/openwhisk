@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-04-15"
+lastupdated: "2019-04-18"
 
 keywords: object storage, bucket, event, action, trigger
 
@@ -89,16 +89,10 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
 --param bucket myBucket \
 --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
   ```
-  {: pre}
     Example output:
     ```
     ok: created trigger feed myCosTrigger
     ```
-    {: screen}
-  4. Start polling for activations to give clear visibility of what is happening.
-  ```
-  ibmcloud fn activation poll
-  ```
   {: pre}
  4. Create a simple action that only serves to verify the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
   ```javascript
@@ -220,9 +214,9 @@ ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
 
 ### Creating an action sequence to retrieve and process the object
 
-Instead of including the object retrieval code in your action, you can use the `object-read` action from the {{site.data.keyword.cos_short}} package, which must be [manually installed](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
+Instead of including the object retrieval code in your action, you can use the `object-read` action from the `cloud-object-storage` package, which must be [manually installed](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_installation).  Your action code would only need to process the results returned from `object-read`.
 
-Example code of an action that only processes the bucket object:
+Example `myCosAction.js` code of an action that only processes the bucket object:
 ```javascript
 function main(data) {
   if (data) {
@@ -233,22 +227,22 @@ function main(data) {
 {: codeblock}
 
 1. Create the action to process only the object from {{site.data.keyword.cos_short}}:
-```
-ibmcloud fn action create myCosProcessObjectAction myCosAction.js
-```
-{: pre}
-2. Bind your {{site.data.keyword.cos_short}} credentials to your `cos-experimental` package binding.
-```
-ibmcloud fn service bind cloud-object-storage myCloudObjectStoragePackage
-```
-{: pre}
+  ```
+  ibmcloud fn action create myCosProcessObjectAction myCosAction.js
+  ```
+  {: pre}
+2. Bind your {{site.data.keyword.cos_short}} credentials to your manually installed `cloud-object-storage` package.
+  ```
+  ibmcloud fn service bind cloud-object-storage cloud-object-storage
+  ```
+  {: pre}
 3. The `object-read` action can be composed with `myCosProcessObjectAction` to create an action sequence.
-```
-ibmcloud fn action create myCosAction --sequence myCloudObjectStoragePackage/object-read,myCosProcessObjectAction
-```
-{: pre}
+  ```
+  ibmcloud fn action create myCosAction --sequence cloud-object-storage/object-read,myCosProcessObjectAction
+  ```
+  {: pre}
 
-In addition to the `object-read` action, you can use other actions included in the installable {{site.data.keyword.cos_short}} package.
+In addition to the `object-read` action, you can use other actions included in the installable `cloud-object-storage` package.
 
 [Bind](#cos_binding_credentials_to_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
