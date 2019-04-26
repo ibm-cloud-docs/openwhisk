@@ -32,7 +32,6 @@ IBM Cloud Functions
         actions_python.md
         actions_ruby.md
         actions_docker.md
-        actions_ballerina.md
         actions_php.md
         actions_java.md
         actions_net.md
