@@ -34,6 +34,7 @@ The `runtimes` section of the response contains the set of available runtimes.
 
 The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/) and the tag that is used.
 
+
 The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs6action`.
 The tags can be version numbers like `1.9.0` or the short form of a git commit hash, like `b99d71e`.
 
