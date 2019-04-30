@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-18"
+lastupdated: "2019-04-30"
 
 keywords: getting started, creating actions, invoking actions, 
 
@@ -22,8 +22,6 @@ subcollection: cloud-functions
 
 With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
-
-Because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the languages that you can use and you don't have to spend time explicitly provisioning backend infrastructure. You can focus on writing app logic instead of worrying about auto-scaling, high availability, updates, or maintenance. Out of the box, IBM provides the hardware, networking, software administration, load balancing, plug-ins, and so on. You just have to bring the code!
 
 ## Working with actions
 {: #creating_actions}
@@ -48,7 +46,7 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 1. Create an [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard(../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 

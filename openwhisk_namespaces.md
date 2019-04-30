@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-04-30"
 
 keywords: namespaces, actions, create
 
@@ -21,7 +21,7 @@ subcollection: cloud-functions
 # Creating namespaces
 {: #openwhisk_namespaces}
 
-In the Tokyo region, {{site.data.keyword.openwhisk_short}} uses Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create access policies for the namespace.
+{{site.data.keyword.openwhisk_short}} uses Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create access policies for the namespace.
 {: shortdesc}
 
 When you create an {{site.data.keyword.openwhisk_short}} namespace it is identified as an IAM service instance. IAM managed service instances must be created within a

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-04-18"
+lastupdated: "2019-04-30"
 
 keywords: object storage, bucket, event, action, trigger
 
@@ -244,7 +244,7 @@ function main(data) {
 
 In addition to the `object-read` action, you can use other actions included in the installable `cloud-object-storage` package.
 
-[Bind](#cos_binding_credentials_to_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
+If your `myCosAction.js` code needs access to your {{site.data.keyword.cos_short}} data, [bind](#cos_binding_credentials_to_action) the {{site.data.keyword.cos_short}} credentials to this action. Then, [create a rule](#associating_action_with_change_trigger) to invoke this action when the trigger fires.
 
  ## Binding credentials to your action
  {: #cos_binding_credentials_to_action}

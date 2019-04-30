@@ -98,7 +98,7 @@ IBM Cloud Functions
         openwhisk_mobile_sdk.md
 
     {: .topicgroup}
-    Managing Functions in Tokyo
+    Managing Functions in IAM
         openwhisk_namespaces.md
         iam.md
     {: .navgroup-end}

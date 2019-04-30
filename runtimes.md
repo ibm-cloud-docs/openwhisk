@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-10"
+lastupdated: "2019-04-29"
 
 keywords: runtimes, support
 
@@ -19,20 +19,21 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 
 # Runtimes
+{: #runtimes}
+Your apps can be coded and executed in programming languages such as Javascript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
+{: shortdesc}
 
-## Action runtimes
-Actions can be coded and executed in several programming languages (e.g. Javascript, Python, etc.). The available runtime environments are shown in the following sections.
-
-The following links return a JSON response that shows the available runtimes for IBM Cloud Functions in each region.
-
-The `runtimes` section of the response contains the set of available runtimes.
+View the available runtimes for IBM Cloud Functions in each region. The following links return a JSON response.
 
   - [us-south](https://us-south.functions.cloud.ibm.com/)
   - [us-east](https://us-east.functions.cloud.ibm.com/)
   - [eu-gb](https://eu-gb.functions.cloud.ibm.com/)
   - [eu-de](https://eu-de.functions.cloud.ibm.com/)
 
-The `image` section contains the name of the runtime image on [DockerHub](https://hub.docker.com/) and the tag that is used. 
+The `runtimes` section of the response contains the set of available runtimes.
+
+The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/) and the tag that is used.
+
 
 The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs6action`.
 The tags can be version numbers like `1.9.0` or the short form of a git commit hash, like `b99d71e`.
@@ -45,16 +46,21 @@ Example image fields.
   image:   "openwhisk/nodejs6action:b99d71e"
   ```
 
-- Action runtimes are updated on a regular basis. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. There is no automatic migration to a newer runtime of the same type.
-- Actions that on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#changing-action-runtime)
+Runtimes are updated on a regular basis. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-## JavaScript runtime environments
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#changing-action-runtime)
+
+
+
+## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
 JavaScript actions can be executed in Node.js version 8 or 10. 
 
 Node.js version 6 is the default version, but is deprecated as of 6 December 2018. To continue using a JavaScript action, update to Node.js version 8 or 10.
 {: deprecated}
+
+
 
 ### Node.js version 10 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_10}
@@ -72,7 +78,7 @@ Detailed information about the nodejs version 10 runtime environment can be foun
 #### Node.js 10.15 packages
 
    - [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
- 
+
  NPM Packages:
    - [amqplib v0.5.3](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
    - [apn v2.2.0](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
@@ -218,7 +224,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
    - [xml2js v0.4.19](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
    - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
    - [yauzl v2.10.0](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
- 
+
 Detailed information about the Node.js version 8 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md).
 
 ### Node.js version 6 environment (deprecated)
@@ -230,7 +236,7 @@ Node.js version 6 is the default version, but is deprecated. To continue using a
 
  NodeJS version:
    - [6.16.0](https://nodejs.org/en/blog/release/v6.16.0/)
- 
+
  The following packages are available to be used in the Node.js 6 environment:
  - [apn v2.1.2](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
  - [async v2.1.4](https://www.npmjs.com/package/async) - Provides asynchronous function capabilities.
@@ -286,10 +292,11 @@ Node.js version 6 is the default version, but is deprecated. To continue using a
 
 Detailed information about the nodejs version 6 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-nodejs/blob/master/core/nodejs6Action/CHANGELOG.md).
 
-## Python runtime environments
+## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-OpenWhisk supports running Python actions by using two different runtime versions.
+You can choose from two different runtime versions for Python actions.
+
 
 ### Python 3.7 actions (Debian Stretch based)
 {: #openwhisk_ref_python_environments_3.7}
@@ -301,7 +308,7 @@ The runtime contains SDK packages for IBM Cloud services available for use by Py
 #### Python 3.7.2 packages
 
  - [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile)
- 
+
  Python packages:
  - asn1crypto==0.24.0
  - attrs==18.2.0
@@ -390,7 +397,7 @@ The runtime contains SDK packages for IBM Cloud services available for use by Py
 
 Python version:
  - [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile)
- 
+
  - Python packages:
  - asn1crypto==0.24.0
  - attrs==18.2.0
@@ -523,7 +530,7 @@ The following packages are available for use by Python 2 actions, in addition to
 
 Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
 
-## Swift actions
+## Swift runtimes
 {: #swift-actions}
 
 Swift 3.1.1 and 4.1 runtimes are deprecated and are available until 28 February 2019.
@@ -558,7 +565,7 @@ Swift 4.2 actions can use the following packages when using single Swift source 
 #### SwiftyJSON using a single source action file
 If you have a `swift:3.1.1` action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action. Take into account that starting with Swift 4.1, there are improvements to managing JSON data.
 
-## PHP actions
+## PHP runtimes
 {: #openwhisk_ref_php}
 
 PHP 7.1 and 7.2 are deprecated as of 11 January 2019. To continue using a PHP action, update to PHP 7.3.
@@ -582,7 +589,7 @@ The following PHP extensions are available in addition to the standard ones:
 - soap
 - zip
 
-## Docker actions
+## Docker runtimes
 {: #openwhisk_ref_docker}
 
 Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
