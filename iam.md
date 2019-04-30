@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-29"
+lastupdated: "2019-04-30"
 
 keywords: iam, access managment, roles, service roles, policies, access
 
@@ -27,18 +27,15 @@ subcollection: cloud-functions
 {{site.data.keyword.openwhisk}} supports Identity and Access Management (IAM). You can now define IAM policies for your resources such as namespaces.
 {: shortdesc}
 
-IAM policies are available in the Tokyo region only for {{site.data.keyword.openwhisk_short}}. If you operate in the Tokyo region, you must use IAM policies to control access.
-{: tip}
-
 </br>
 
 ## Mapping IAM roles to {{site.data.keyword.openwhisk_short}}
 {: #user-roles}
 
-In {{site.data.keyword.openwhisk_short}}, namespace's are considered an IBM Cloud resource which allows you to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
+In {{site.data.keyword.openwhisk_short}}, namespace's are considered an {{site.data.keyword.Bluemix_notm}} resource which allows you to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
 {: shortdesc}
 
-{{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, while using the service roles to manage interaction with the namespaces themselves.
+{{site.data.keyword.openwhisk_short}} uses both the platform and service management roles. You can set policies about who can create namespaces at the platform level, while using the service roles to manage interaction with the namespaces themselves.
 
 Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamconcepts#iamconcepts).
 {: tip}
@@ -70,6 +67,7 @@ You need to have the administrator role for platform management to work with the
 </br>
 
 ### Service specific roles
+{: #service_specific_roles}
 
 Service specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
 {: shortdesc}
@@ -150,10 +148,10 @@ For information about assigning user roles in the UI, see [Managing IAM access](
 </br>
 
 
-## Setting IAM access policies
+## Setting IAM access policies for a namespace
 {: #set-iam}
 
-When a service invokes an action, the action has a response. Because the response is sent from the namespace or action to a service, it is considered outbound information. If want to limit the amount of influence that your namespace has on other services, you might want to create an access policy.
+When managing a namespace or the entities inside, you can grant access to other users by using the [service specific roles](#service_specific_roles) listed above. During creation of the namespace, a service ID is created which represents the namespace along with a functional user ID. By default, the functional user ID is assigned the Reader role. Readers can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions.
 {: shortdesc}
 
 For information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser).
@@ -168,11 +166,10 @@ For information about how to assign, edit, review, or delete resource access pol
 ## Accessing other resources from a namespace
 {: #namespace-access}
 
-You can access other resources from an IAM managed namespace by using an IAM token. A token represents authentication and verifies the identity of the resource. The IAM token is needed to authenticate when accessing IAM managed services or resources.
-{: shortdesc}
+Actions typically call other {{site.data.keyword.Bluemix_notm}} resources and services which require the appropriate authentication.
+If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
+As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles using IAM policy management.
 
-Similar to how a user ID identifies a user, a service ID represents a specific resource. This means that IAM policies can be applied to those resources that manage access permissions. Just like a user, a resource must authenticate to verify its identity. Within Functions, this can be leveraged by the actions' implementation when accessing other services or resources.
-
-When you create a new IAM managed namespace, Functions automatically creates a corresponding service ID that identifies the namespace and an API key. At runtime, Cloud Functions passes the API key to the action code as the value of the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported SDKs such as Cloudant, Watson, and COS authenticate with the IAM key itself. Other IAM managed services or resources that use a REST API, authenticate with the token that is derived from the IAM key.
+At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the value of the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
 Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
