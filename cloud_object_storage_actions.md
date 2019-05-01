@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-19"
+lastupdated: "2019-05-01"
 
 keywords: object storage, bucket, package
 
@@ -52,7 +52,7 @@ The following parameters are expected to be bound to the package; this will make
 
 The following parameters are specified when invoking the individual actions.  Not all of these parameters are suppoted by every action; refer to the above table to see which parameters are supporte by which action.
 
-**bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short_notm}} bucket.
+**bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short}} bucket.
 
 **endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_short}} endpoint used to connect to your {{site.data.keyword.cos_short}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_short}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
 
@@ -194,7 +194,7 @@ To install the {{site.data.keyword.cos_short}} package:
 You can use the `object-write` action to write an object to an {{site.data.keyword.cos_short}} bucket.
 {: shortdesc}
 
-**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_full_notm}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
+**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_short}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
 
 ### Write to a bucket from the CLI
 {: #write_bucket_cli}
