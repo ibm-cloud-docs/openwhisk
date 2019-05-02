@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-02"
 
 keywords: deploying actions, manifest, manifest file
 
@@ -32,85 +32,83 @@ This example takes some simple Node.js code (`helloworld.js`), creates a web act
 
 1. Create a `helloworld.js` file with the following code.
 
-```javascript
-function main() {
-   return {body: 'Hello world'};
-}
-```
-{: codeblock}
+    ```javascript
+    function main() {
+       return {body: 'Hello world'};
+    }
+    ```
+    {: codeblock}
 
-The deployment manifest file defines the following variables.
-* The package name.
-* The action name.
-* The action annotation that indicates it is to be a web action.
-* The action code file name.
-* The API with a base path of `/hello`.
-* The endpoint path of `/world`.
+    The deployment manifest file defines the following variables.
+    * The package name.
+    * The action name.
+    * The action annotation that indicates it is to be a web action.
+    * The action code file name.
+    * The API with a base path of `/hello`.
+    * The endpoint path of `/world`.
 
 2. Create the `hello_world_manifest.yml` file.
 
-```yaml
-packages:
-  hello_world_package:
-    version: 1.0
-    license: Apache-2.0
-    actions:
-      hello_world:
-        function: helloworld.js
-        web-export: true
-    apis:
-      hello-world:
-        hello:
-          world:
-            hello_world:
-              method: GET
-              response: http
-```
-{: codeblock}
+    ```yaml
+    packages:
+      hello_world_package:
+        version: 1.0
+        license: Apache-2.0
+        actions:
+          hello_world:
+            function: helloworld.js
+            web-export: true
+        apis:
+          hello-world:
+            hello:
+              world:
+                hello_world:
+                  method: GET
+                  response: http
+    ```
+    {: codeblock}
 
 3. Use the `deploy` command to deploy the package, action, and API.
 
+    ```sh
+    ibmcloud fn deploy --manifest hello_world_manifest.yml
+    ```
+    {: pre}
+
+4. You can list the actions, packages, and APIs to confirm the three expected entities were created successfully.
+
+    1. List the actions by using the following command.
+
+      ```sh
+      ibmcloud fn action list
+      ```
+      {: pre}
+
+    2. List the packages by using the following command.
+
+      ```sh
+      ibmcloud fn package list
+      ```
+      {: pre}
+
+    3. List the APIs by using the following command.
+
+      ```sh
+      ibmcloud fn api list
+      ```
+      {: pre}
+
+5. Invoke the API.
+
+    ```sh
+    curl URL-FROM-API-LIST-OUTPUT
+    ```
+    {: codeblock}
+
+Optional: You can undeploy the same entities by using the `undeploy` command.
+
 ```sh
-$ ibmcloud fn deploy --manifest hello_world_manifest.yml
-```
-{: pre}
-
-You can list the actions, packages, and APIs to confirm the three expected entities were created successfully.
-{: shortdesc}
-
-1. List the actions by using the following command.
-
-```sh
-$ ibmcloud fn action list
-```
-{: pre}
-
-2. List the packages by using the following command.
-
-```sh
-$ ibmcloud fn package list
-```
-{: pre}
-
-3. List the APIs by using the following command.
-```sh
-$ ibmcloud fn api list
-```
-{: pre}
-
-4. Invoke the API.
-
-```sh
-$ curl URL-FROM-API-LIST-OUTPUT
-Hello World
-```
-{: codeblock}
-
-You can undeploy the same entities by using the `undeploy` command.
-
-```sh
-$ ibmcloud fn undeploy --manifest hello_world_manifest.yml
-Success: Undeployment completed successfully.
+ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
@@ -123,5 +121,3 @@ The Functions deployment is based on the OpenWhisk deployment project, which has
 {: manifest_specification}
 
 Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification) for details.
-
-

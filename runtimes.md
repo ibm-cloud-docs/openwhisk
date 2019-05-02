@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-02"
 
 keywords: runtimes, support
 
@@ -301,7 +301,7 @@ You can choose from two different runtime versions for Python actions.
 ### Python 3.7 actions (Debian Stretch based)
 {: #openwhisk_ref_python_environments_3.7}
 
-Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.7` when you create or update an action.
+Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
 
@@ -389,7 +389,7 @@ Detailed information about the Python 3.7 runtime environment can be found in th
 ### Python 3.6.8 actions (Debian Jessie based)
 {: #openwhisk_ref_python_environments_3.6}
 
-Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.6` when you create or update an action.
+Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
@@ -571,7 +571,7 @@ If you have a `swift:3.1.1` action that is not compiled, and uses the **SwiftyJS
 PHP 7.1 and 7.2 are deprecated as of 11 January 2019. To continue using a PHP action, update to PHP 7.3.
 {: deprecated}
 
-PHP actions are executed with PHP 7.3.0. To use this runtime, specify the `wsk` CLI parameter `--kind php:7.3` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
+PHP actions are executed with PHP 7.3.0. To use this runtime, specify the CLI parameter `--kind php:7.3` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
 
 The PHP 7.1 and 7.2 runtime are deprecated. Migrate all actions to PHP 7.3 for better latency and faster runs end to end.
 
