@@ -177,6 +177,87 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 
 
+  
+  ## Using feeds as triggers
+  {: #trigger_feeds}
+
+  Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger once a minute, and how to use a rule to invoke an action once a minute.
+
+  1. Get a description of the feed in the `/whisk.system/alarms` package.
+    ```
+    ibmcloud fn package get --summary /whisk.system/alarms
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    package /whisk.system/alarms
+     feed   /whisk.system/alarms/alarm
+    ```
+    {: screen}
+
+    ```
+    ibmcloud fn action get --summary /whisk.system/alarms/alarm
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
+       (params: cron trigger_payload)
+    ```
+    {: screen}
+
+    The `/whisk.system/alarms/alarm` feed takes two parameters:
+    - `cron`: A crontab specification of when to fire the trigger.
+    - `trigger_payload`: The payload parameter value to set in each trigger event.
+
+  2. Create a trigger that fires every one minute.
+    ```
+    ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    ok: created trigger feed everyOneMinute
+    ```
+    {: screen}
+
+  3. Create a file named `hello.js` with the following action code:
+    ```javascript
+    function main(params) {
+        return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+    }
+    ```
+    {: codeblock}
+
+  4. Make sure that the action exists.
+    ```
+    ibmcloud fn action update hello hello.js
+    ```
+    {: pre}
+
+  5. Create a rule that invokes the `hello` action every time the `everyOneMinute` trigger fires.
+    ```
+    ibmcloud fn rule create myRule everyOneMinute hello
+    ```
+    {: pre}
+
+    Example output:
+    ```
+    ok: created rule myRule
+    ```
+    {: screen}
+
+  6. Check that the action is being invoked by polling for activation logs.
+    ```
+    ibmcloud fn activation poll
+    ```
+    {: pre}
+
+    You can see that the activations are observed every one minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+
 
 ## Adding your own packages
 {: #installing}
