@@ -17,29 +17,23 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Using packages
-{: #installable-packages-overview}
+# Incorporating packages in your serverless app
+{: #pkgs_ov}
 
-Some packages are installed already with {{site.data.keyword.openwhisk}} for you to use, but you can also install others.
+Packages are bundled sets of related actions and feeds. Each package is designed for specific interaction with services and event providers. Some packages are installed already with {{site.data.keyword.openwhisk}} for you to use, but you can also install others.
 {: shortdesc}
 
 ## Overview
-{: #overview}
+{: #pkgs_overview}
 
-**What are installable packages?**
+[Pre-installed packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
 
-Packages are bundled sets of related actions and feeds. Each package is designed for specific interaction with services and event providers. Installable packages are packages that are available for you to choose, install, and edit based on your needs.
-
-**How are installable packages different from pre-installed packages?**
-
-[Pre-installed packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. To store credentials or other parameters in a pre-installed package, you must create [package bindings](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#openwhisk_package_bind).
-
-Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories. You can install these packages directly into your own namespace by using the `ibmcloud fn deploy` command, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
+Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories. You can install these packages directly into your own namespace by using the `ibmcloud fn deploy` command, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 
 
 
 ## Browsing pre-installed packages
-{: #browse-packages}
+{: #pkgs_browse}
 
 Several packages are registered with {{site.data.keyword.openwhisk_short}}. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
 
@@ -104,7 +98,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
 
 
 ## Binding parameters to pre-installed packages
-{: #openwhisk_package_bind}
+{: #pkgs_bind}
 
 Although you can use the entities in a package directly, you might find yourself passing the same parameters to the action every time. You can simplify the process by binding to a package and specifying default parameters, which are inherited by the actions in the package.
 {: shortdesc}
@@ -177,9 +171,9 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 
 
-  
+
   ## Using feeds as triggers
-  {: #trigger_feeds}
+  {: #pkgs_feeds}
 
   Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger once a minute, and how to use a rule to invoke an action once a minute.
 
@@ -260,7 +254,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 
 ## Adding your own packages
-{: #installing}
+{: #pkgs_add}
 
 You can create a package of local code or a clone of any Github repository.
 {: shortdesc}
@@ -290,7 +284,7 @@ To install a package:
     {: pre}
 
 ### Example using the {{site.data.keyword.cos_full_notm}} package
-{: #example}
+{: #pkgs_ex}
 
 To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions), you must first create an {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
