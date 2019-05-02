@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-02"
 
 keywords: github, actions, trigger, event
 
@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# GitHub events source
+# GitHub package
 {: #openwhisk_catalog_github}
 
 This pre-installed package is not available in the Tokyo region. 
