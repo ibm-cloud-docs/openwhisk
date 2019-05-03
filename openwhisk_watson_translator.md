@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-03"
 
 keywords: watson, translator, cognitive, translating text, language
 
@@ -20,8 +20,9 @@ subcollection: cloud-functions
 # Watson: Translator package
 {: #openwhisk_catalog_watson_translator}
 
-This pre-installed package is not longer available in any region. Please see the installable [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) package using the new V3 API with IAM authentication. 
+This pre-installed package is not longer available in any region. Please see the installable [Language Translator](/docs/openwhisk?topic=cloud-functions-language-translator-package) package using the new V3 API with IAM authentication.
 {: tip}
+{: #language-translator-package}
 
 The `/whisk.system/watson-translator` package offers a convenient way to call Watson APIs to translate.
 {: shortdesc}

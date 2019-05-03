@@ -25,10 +25,10 @@ subcollection: cloud-functions
 
 # Adding IBM Cloud services
 {: #services}
-{: #binding_services}
 
 You can bind an IBM Cloud service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
 {: shortdesc}
+{: #binding_services}
 
 Don't confuse `ibmcloud fn service bind` command with the `cf bind-service` command that is available for Cloud Foundry.
 {: tip}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-01"
+lastupdated: "2019-05-03"
 
 keywords: object storage, bucket, package
 
@@ -72,7 +72,7 @@ The following parameters are specified when invoking the individual actions.  No
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
+1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
 
 2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
