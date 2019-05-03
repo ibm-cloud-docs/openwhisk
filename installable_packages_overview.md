@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Incorporating packages in your serverless app
+# Incorporating packages
 {: #pkgs_ov}
 
 Packages are bundled sets of related actions and feeds. Each package is designed for specific interaction with services and event providers. Some packages are installed already with {{site.data.keyword.openwhisk}} for you to use, but you can also install others.
@@ -28,14 +28,17 @@ Packages are bundled sets of related actions and feeds. Each package is designed
 
 [Pre-installed packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
 
-Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories. You can install these packages directly into your own namespace by using the `ibmcloud fn deploy` command, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
+Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories.
+
+You can install these packages or your own directly into your namespace, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 
 
 
 ## Browsing pre-installed packages
 {: #pkgs_browse}
 
-Several packages are registered with {{site.data.keyword.openwhisk_short}}. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
+Several packages are registered with {{site.data.keyword.openwhisk_short}} already for you. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
+{: shortdesc}
 
 1. Get a list of packages in the `/whisk.system` namespace.
   ```
@@ -46,21 +49,28 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   Package list output:
   ```
   packages
-  /whisk.system/cloudant                                                 shared
-  /whisk.system/alarms                                                   shared
-  /whisk.system/watson                                                   shared
-  /whisk.system/websocket                                                shared
-  /whisk.system/weather                                                  shared
-  /whisk.system/system                                                   shared
-  /whisk.system/utils                                                    shared
-  /whisk.system/slack                                                    shared
-  /whisk.system/samples                                                  shared
-  /whisk.system/github                                                   shared
-  /whisk.system/pushnotifications                                        shared
+  /whisk.system/cloudant               shared
+  /whisk.system/alarms                 shared
+  /whisk.system/watson                 shared
+  /whisk.system/websocket              shared
+  /whisk.system/weather                shared
+  /whisk.system/system                 shared
+  /whisk.system/utils                  shared
+  /whisk.system/slack                  shared
+  /whisk.system/samples                shared
+  /whisk.system/github                 shared
+  /whisk.system/pushnotifications      shared
   ```
   {: screen}
 
-2. Get a list of entities in the `/whisk.system/cloudant` package.
+2. Get a list of entities in a package.
+
+  ```
+  ibmcloud fn package get --summary PACKAGE_NAME
+  ```
+  {: pre}
+
+  Example:
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
@@ -76,11 +86,13 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}}. You 
   ```
   {: screen}
 
-  This output shows that the {{site.data.keyword.cloudant_short_notm}} package provides two actions, `read` and `write`, and one trigger feed called `changes`. The `changes` feed causes triggers to be fired when documents are added to the specified {{site.data.keyword.cloudant_short_notm}} database.
+  This output shows that the {{site.data.keyword.cloudant_short_notm}} package includes actions and a feed. For example, two actions, `read` and `write`, and one trigger feed called `changes`. The `changes` feed causes triggers to be fired when documents are added to the specified {{site.data.keyword.cloudant_short_notm}} database.
 
   The {{site.data.keyword.cloudant_short_notm}} package also defines the parameters `username`, `password`, `host`, and `port`. These parameters must be specified for the actions and feeds to be meaningful. The parameters allow the actions to operate on a specific {{site.data.keyword.cloudant_short_notm}} account, for example.
 
-3. Get a description of the `/whisk.system/cloudant/read` action.
+3. Get a description of an action or feed to see the parameters that are required.
+
+  Example:
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
@@ -105,7 +117,7 @@ Although you can use the entities in a package directly, you might find yourself
 
 For example, in the `/whisk.system/cloudant` package, you can set default `username`, `password`, and `dbname` values in a package binding and these values are automatically passed to any actions in the package.
 
-In the following simple example, you bind to the `/whisk.system/samples` package.
+In the following example, you bind to the `/whisk.system/samples` package.
 
 1. Bind to the `/whisk.system/samples` package and set a default `place` parameter value.
   ```
@@ -172,85 +184,6 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 
 
 
-  ## Using feeds as triggers
-  {: #pkgs_feeds}
-
-  Feeds offer a convenient way to configure an external event source to fire these events to a {{site.data.keyword.openwhisk_short}} trigger. This example shows how to use a feed in the Alarms package to fire a trigger once a minute, and how to use a rule to invoke an action once a minute.
-
-  1. Get a description of the feed in the `/whisk.system/alarms` package.
-    ```
-    ibmcloud fn package get --summary /whisk.system/alarms
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    package /whisk.system/alarms
-     feed   /whisk.system/alarms/alarm
-    ```
-    {: screen}
-
-    ```
-    ibmcloud fn action get --summary /whisk.system/alarms/alarm
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
-       (params: cron trigger_payload)
-    ```
-    {: screen}
-
-    The `/whisk.system/alarms/alarm` feed takes two parameters:
-    - `cron`: A crontab specification of when to fire the trigger.
-    - `trigger_payload`: The payload parameter value to set in each trigger event.
-
-  2. Create a trigger that fires every one minute.
-    ```
-    ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    ok: created trigger feed everyOneMinute
-    ```
-    {: screen}
-
-  3. Create a file named `hello.js` with the following action code:
-    ```javascript
-    function main(params) {
-        return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-    }
-    ```
-    {: codeblock}
-
-  4. Make sure that the action exists.
-    ```
-    ibmcloud fn action update hello hello.js
-    ```
-    {: pre}
-
-  5. Create a rule that invokes the `hello` action every time the `everyOneMinute` trigger fires.
-    ```
-    ibmcloud fn rule create myRule everyOneMinute hello
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    ok: created rule myRule
-    ```
-    {: screen}
-
-  6. Check that the action is being invoked by polling for activation logs.
-    ```
-    ibmcloud fn activation poll
-    ```
-    {: pre}
-
-    You can see that the activations are observed every one minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
 
 
 ## Adding your own packages
@@ -259,9 +192,7 @@ In the following simple example, you bind to the `/whisk.system/samples` package
 You can create a package of local code or a clone of any Github repository.
 {: shortdesc}
 
-Before you begin:
-
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+Before you begin, [install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
 
 To install a package:
 

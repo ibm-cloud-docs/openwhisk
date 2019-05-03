@@ -23,7 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 
 
-# Adding IBM Cloud services to apps
+# Adding IBM Cloud services
 {: #services}
 {: #binding_services}
 
