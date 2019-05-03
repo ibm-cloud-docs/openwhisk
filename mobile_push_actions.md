@@ -20,7 +20,7 @@ subcollection: cloud-functions
 # Push Notification package
 {: #openwhisk_catalog_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
 {: tip}
 
 Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
@@ -34,7 +34,7 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
 
 
-For information about firing trigger events when there is device activity, see [Mobile push on device events]({: #openwhisk_pushnotifications}).
+For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications).
 
 ## Creating a Push package binding
 {: #create_push_binding}

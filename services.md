@@ -23,7 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 
 
-## Adding IBM Cloud services to apps
+# Adding IBM Cloud services to apps
 {: #services}
 
 You can bind an IBM Cloud service to an action or package. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
@@ -150,7 +150,7 @@ Before you begin, [define credentials](/docs/resources?topic=resources-externala
 
     In this example, the credentials for the conversation service, along with any other credentials for other service types, belong to a parameter named `__bx_creds`. The action looks for the `__bx_creds` bound parameter, and removes the reference to the service type listed. If that service type is the only one listed, the action nulls out the `__bx_creds` parameter's value. If more than one service is bound to the action, the `__bx_creds` parameter remains with whatever services are still bound.
 
-For more information about passing parameters to an action or package and how credentials are affected during `update` operations, see [Working with parameters](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
+For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
 
 If you change the name of the org or space that contains entities, then a namespace is created with the new name. The entities that your old namespace contained aren't visible in the new namespace and are scheduled to be deleted. If you made the change accidentally, you can revert it and you might be able to save your entities before they are deleted.
 {: tip}
