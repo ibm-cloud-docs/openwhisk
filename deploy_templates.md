@@ -19,10 +19,10 @@ subcollection: cloud-functions
 
 # Deploying quickstart templates
 {: #templates}
-{: #serviceauth}
 
 {{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other service instances from {{site.data.keyword.Bluemix_notm}}. By using templates, you can quickly and easily create a project, and start coding right away.
 {: shortdesc}
+{: #serviceauth}
 
 ## Available quickstart templates
 {: #available-templates}
