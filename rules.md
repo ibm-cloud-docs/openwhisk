@@ -29,6 +29,9 @@ subcollection: cloud-functions
 Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
+# Associating triggers with actions
+{: #rules}
+
 For example, consider a system with the following actions.
 - `classifyImage` - An action that detects the objects in an image and classifies them.
 - `thumbnailImage` - An action that creates a thumbnail version of an image.
@@ -52,8 +55,6 @@ The three rules establish the following behavior.
 {: #rules_create}
 
 Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the parameters from the trigger event.
-
-After you create the [`locationUpdate` trigger](#triggers_fire), create an example rule that calls the `hello` action whenever a location update is posted.
 
 1. Create a file named 'hello.js' with the following action code:
     ```javascript
