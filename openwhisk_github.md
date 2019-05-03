@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-02"
+lastupdated: "2019-05-03"
 
 keywords: github, actions, trigger, event
 
