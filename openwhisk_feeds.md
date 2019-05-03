@@ -29,7 +29,7 @@ Examples of feeds:
 - An {{site.data.keyword.cloudant}} data change feed that fires a trigger event each time a document in a database is added or modified
 - A Git feed that fires a trigger event for every commit to a Git repository
 
-### Difference between feed and trigger
+## Difference between feed and trigger
 {: #feeds_triggers}
 
 Feeds and triggers are closely related, but technically distinct concepts.
