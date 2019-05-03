@@ -29,7 +29,7 @@ subcollection: cloud-functions
 Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
-# Associating triggers with actions
+## Associating triggers with actions
 {: #rules_assoc}
 
 For example, consider a system with the following actions.
