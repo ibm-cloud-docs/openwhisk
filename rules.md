@@ -30,7 +30,7 @@ Every time the trigger fires, the rule uses the trigger event as input and invok
 {: shortdesc}
 
 # Associating triggers with actions
-{: #rules}
+{: #rules_assoc}
 
 For example, consider a system with the following actions.
 - `classifyImage` - An action that detects the objects in an image and classifies them.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-18"
+lastupdated: "2019-05-03"
 
 keywords: personality insights, watson, cognitive, serverless, functions
 
@@ -23,8 +23,8 @@ The installable {{site.data.keyword.personalityinsightsfull}} service enables ap
 {: shortdesc}
 
 The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
-* For information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/services/personality-insights/models.html).
-* For information about the meaning of the consumption preferences, see [Consumption preferences](/docs/services/personality-insights/preferences.html).
+* For information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/services/personality-insights?topic=personality-insights-models).
+* For information about the meaning of the consumption preferences, see [Consumption preferences](/docs/services/personality-insights?topic=personality-insights-preferences).
 
 **Note:** Request logging is disabled for the {{site.data.keyword.personalityinsightsshort}} service. The service neither logs nor retains data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 

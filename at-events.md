@@ -25,7 +25,7 @@ You can view, manage, and audit user-initiated activities made in your {{site.da
 {: shortdesc}
 
 
-For more information about how the service works, see the [{{site.data.keyword.cloudaccesstrailshort}} docs](/docs/services/cloud-activity-tracker?topic=cloud-activity-tracker-getting-started-with-cla).
+For more information about how the service works, see the [{{site.data.keyword.cloudaccesstrailshort}} docs](/docs/services/cloud-activity-tracker?topic=cloud-activity-tracker-getting-started).
 
 
 ## Where to view events
