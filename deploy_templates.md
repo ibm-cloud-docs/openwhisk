@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-06"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -29,12 +29,12 @@ subcollection: cloud-functions
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](/docs/openwhisk?topic=cloud-functions-serviceauth#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
-| [Get HTTP Resource](/docs/openwhisk?topic=cloud-functions-serviceauth#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](/docs/openwhisk?topic=cloud-functions-serviceauth#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Periodic Slack Reminder](/docs/openwhisk?topic=cloud-functions-serviceauth#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-06"
 
 keywords: object storage, bucket, event, action, trigger
 
@@ -131,7 +131,7 @@ If you are unable to observe new activations, verify that the `apikey`, `endpoin
 
 The content of the generated events has the following parameters:
 
-  - `file`: The file or object metadata. This structure is described in [List objects in a specific bucket](infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket ).
+  - `file`: The file or object metadata. This structure is described in [List objects in a specific bucket](/docs/infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket ).
   - `status`: The detected change.  This value is either `added`, `modified` or `deleted`.
   - `bucket`: The name of the {{site.data.keyword.cos_short}} bucket.
   - `endpoint`:  The {{site.data.keyword.cos_short}} endpoint used to connect to the {{site.data.keyword.cos_short}} instance.

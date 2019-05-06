@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-06"
 
 keywords: message hub, package, messages, events
 
@@ -88,3 +88,4 @@ To learn more about producing messages, check out the [Event Streams documentati
 ## References
 - [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
 - [Apache Kafka](https://kafka.apache.org)
+

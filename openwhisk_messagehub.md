@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-05-06"
 
 keywords: message hub, event, trigger, messages, batch, listen
 
@@ -255,3 +255,4 @@ Example that integrates OpenWhisk with {{site.data.keyword.messagehub}}, Node Re
 {: #message_references}
 - [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
 - [Apache Kafka](https://kafka.apache.org)
+

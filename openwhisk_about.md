@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-19"
+lastupdated: "2019-05-06"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -54,7 +54,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
   <dt>Event</dt>
     <dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events.</dd>
   <dt>Trigger</dt>
-    <dd>[Triggers](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers_create) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
+    <dd>[Triggers](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
   <dt>Rule</dt>
     <dd>A [rule](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_rules_use) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.</dd>
   <dt>Feed</dt>
