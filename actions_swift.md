@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-19"
+lastupdated: "2019-05-06"
 
 keywords: actions, serverless, swift
 
@@ -256,7 +256,7 @@ actions/
 Create script `compile.sh` file the following.
 
 ```bash
-#!/bin/bash
+# !/bin/bash
 set -ex
 
 if [ -z "$1" ] ; then
@@ -319,7 +319,7 @@ cp /owexec/actions/$1/Package.swift $DEST_PACKAGE_SWIFT
 swift build ${BUILD_FLAGS} -c release
 
 echo 'Creating archive $1.zip...'
-#.build/release/Action
+# .build/release/Action
 mkdir -p /owexec/$OUTPUT_DIR
 zip \"/owexec/$OUTPUT_DIR/$1.zip\" .build/release/Action
 
