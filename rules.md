@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-06"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -29,7 +29,43 @@ subcollection: cloud-functions
 Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
-## Associating triggers with actions
+
+
+
+## Creating rules from the CLI
+{: #rules_create}
+
+Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the parameters from the trigger event.
+
+Before you begin, create [an action](/docs/openwhisk?topic=cloud-functions-actions) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
+
+
+Create a rule to associate a trigger with an action. Rules must be created directly within a namespace and can't be created inside packages.
+```
+ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
+```
+{: pre}
+
+
+To disable the rule, you can run the following command.
+```
+ibmcloud fn rule disable RULE_NAME
+```
+{: pre}
+
+
+## Creating rules for action sequences
+{: #rules_seq}
+
+You can use rules to associate triggers with action sequences. For example, you can create an action sequence called `recordLocationAndHello` that is activated by the rule `anotherRule`.
+
+```
+ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
+```
+{: pre}
+
+
+## Associating a single trigger with multiple actions
 {: #rules_assoc}
 
 For example, consider a system with the following actions.
@@ -49,91 +85,3 @@ The three rules establish the following behavior.
 - Images in both tweets are classified.
 - Uploaded images are classified
 - A thumbnail version is generated.
-
-
-## Creating rules from the CLI
-{: #rules_create}
-
-Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the parameters from the trigger event.
-
-1. Create a file named 'hello.js' with the following action code:
-    ```javascript
-    function main(params) {
-       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-    }
-    ```
-    {: pre}
-
-2. Create the `hello` action.
-    ```
-    ibmcloud fn action create hello hello.js
-    ```
-    {: pre}
-
-3. Create the `myRule` rule to associate the `locationUpdate` trigger with the `hello` action. Rules must be created directly within a namespace and can't be created inside packages.
-    ```
-    ibmcloud fn rule create myRule locationUpdate hello
-    ```
-    {: pre}
-
-4. Fire the `locationUpdate` trigger. Each time a trigger event occurs, the `hello` action is called with the event parameters.
-    ```
-    ibmcloud fn trigger fire locationUpdate --param name Human --param place "Earth"
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    ok: triggered locationUpdate with id d5583d8e2d754b518a9fe6914e6ffb1e
-    ```
-    {: screen}
-
-5. Verify that the `hello` action was invoked by checking the most recent activation record.
-    ```
-    ibmcloud fn activation list --limit 1 hello
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    activations
-    9c98a083b924426d8b26b5f41c5ebc0d             hello
-    ```
-    {: screen}
-
-6. Get more information on the activation ID from the previous command output.
-    ```
-    ibmcloud fn activation result 9c98a083b924426d8b26b5f41c5ebc0d
-    ```
-    {: pre}
-
-    Example output:
-    ```
-    {
-       "payload": "Hello, Human from Earth"
-    }
-    ```
-    {: screen}
-    You see that the `hello` action received the event payload and returned the expected string.
-
-7. To disable the rule, you can run the following command.
-    ```
-    ibmcloud fn rule disable myRule
-    ```
-    {: pre}
-
-
-## Creating rules for action sequences
-{: #rules_seq}
-
-You can also use rules to associate triggers with sequences. For example, you can create an action sequence called `recordLocationAndHello` that is activated by the rule `anotherRule`.
-
-```
-ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/echo,hello
-```
-{: pre}
-
-```
-ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
-```
-{: pre}
