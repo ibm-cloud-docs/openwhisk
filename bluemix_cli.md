@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-19"
+lastupdated: "2019-05-06"
 
 keywords: functions cli, serverless, bluemix cli, install, functions plug-in
 

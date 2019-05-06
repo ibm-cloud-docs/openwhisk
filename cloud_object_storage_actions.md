@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-06"
 
 keywords: object storage, bucket, package
 
@@ -76,7 +76,7 @@ Before you install the package, you must request an instance of {{site.data.keyw
 
 2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
-3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
+3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}

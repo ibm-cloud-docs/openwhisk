@@ -115,7 +115,7 @@ Sample code showing
   ```
   ibmcloud fn activation poll
   ```
- 7. In your {{site.data.keyword.cos_short}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-add-objects).
+ 7. In your {{site.data.keyword.cos_short}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
 
  8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear in your window running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
 
@@ -267,3 +267,4 @@ Create a rule that activates `MyCosAction` action on new {{site.data.keyword.cos
 ibmcloud fn rule create myRule myCosTrigger myCosAction
 ```
 {: pre}
+

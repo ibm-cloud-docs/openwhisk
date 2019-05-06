@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-06"
 
 keywords: binding services, serverless, actions, unbinding
 
@@ -163,3 +163,4 @@ Unbind a service from an action or package. Unbinding a service removes existing
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
+

@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-06"
 
 keywords: composer, openwhisk, compositions, sequence, branch
 
@@ -139,7 +139,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
         pydeploy demo demo.json -w
         ```
         {: pre}
-4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers) in {{site.data.keyword.openwhisk}}.
+4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers) in {{site.data.keyword.openwhisk}}.
     ```
     ibmcloud fn action invoke demo
     ```

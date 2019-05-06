@@ -107,6 +107,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 {: #image-template}
 
 The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
+{: #cos-upload-image}
 
 ### Deploying the Upload Image template from the UI
 {: #image-template-ui}
