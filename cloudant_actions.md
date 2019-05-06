@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-18"
+lastupdated: "2019-05-06"
 
 keywords: cloudant, database, actions
 
@@ -58,7 +58,7 @@ You must first manually create a package binding for your {{site.data.keyword.cl
   /myNamespace/myCloudant private
   ```
   {: screen}
-  
+
 3. Get the name of the service instance that you want to bind to an action or package.
     ```
     ibmcloud resource service-instances
@@ -88,7 +88,7 @@ You must first manually create a package binding for your {{site.data.keyword.cl
 
 5. Bind the service to the package you created in step 1.
     ```
-    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1' 
+    ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1'
     ```
     {: pre}
 
@@ -133,7 +133,7 @@ You must first manually create a package binding for your {{site.data.keyword.cl
     {: screen}
 
     In this example, the credentials for the Cloudant service belong to a parameter named `__bx_creds`.
-  
+
 
 ## Reading from an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_read}
@@ -182,3 +182,4 @@ You can use an action to store a document in an {{site.data.keyword.cloudant_sho
 2. Verify that the document exists by browsing for it in your {{site.data.keyword.cloudant_short_notm}} dashboard.
 
   The dashboard URL for the **testdb** database looks something like the following: `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
+

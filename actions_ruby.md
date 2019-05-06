@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-06"
 
 keywords: actions, serverless, ruby
 
@@ -25,7 +25,7 @@ subcollection: cloud-functions
 # Creating Ruby actions
 {: #creating-ruby-actions}
 
-The following sections guide you through creating and invoking a single Ruby action and adding parameters to that action. 
+The following sections guide you through creating and invoking a single Ruby action and adding parameters to that action.
 
 Ruby actions are executed in Ruby 2.5. To use this runtime, specify the `ibmcloud fn` CLI parameter
 `--kind ruby:2.5` when creating or updating an action.
@@ -98,3 +98,4 @@ You can package a PHP action and other files or dependent packages in a .zip fil
 
 The gems `mechanize` and `jwt` are available in addition to the default and bundled gems.
 You can use arbitrary gems so long as you use zipped actions to package all the dependencies.
+

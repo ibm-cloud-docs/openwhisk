@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-06"
 
 keywords: trigger rules, triggers, actions, channel events
 
@@ -197,3 +197,4 @@ ibmcloud fn action create recordLocationAndHello --sequence /whisk.system/utils/
 ibmcloud fn rule create anotherRule locationUpdate recordLocationAndHello
 ```
 {: pre}
+

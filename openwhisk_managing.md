@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-05-06"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -352,7 +352,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
     ```
     {: screen}
     You might also see the logs for any actions that are run on your behalf in {{site.data.keyword.openwhisk_short}} in real time.
-    
+
 ## Changing action runtime
 {: #changing-action-runtime}
 
@@ -409,3 +409,4 @@ You can clean up by deleting actions that you do not want to use.
     actions
     ```
     {: screen}
+
