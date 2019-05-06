@@ -220,3 +220,4 @@ The following example sets a default parameter of `name` on the `MyApp` package 
     {: screen}
 
     The default parameter that is bound to the package is used.
+

@@ -30,7 +30,7 @@ subcollection: cloud-functions
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
 | [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Upload Image](#image-template) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
 | [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
 | [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
 | [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
@@ -107,7 +107,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 {: #image-template}
 
 The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
-{: #cos-upload-image}
+
 
 ### Deploying the Upload Image template from the UI
 {: #image-template-ui}
@@ -141,7 +141,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 ### Deploying the Upload Image template from the CLI
 {: #image-template-cli}
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli).
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli.
 
 2. Clone the template repo.
     ```
