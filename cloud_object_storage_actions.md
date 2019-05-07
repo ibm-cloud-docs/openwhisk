@@ -2,13 +2,16 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-06"
+lastupdated: "2019-05-07"
 
 keywords: object storage, bucket, package
 
 subcollection: cloud-functions
 
 ---
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}

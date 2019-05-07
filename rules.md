@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-06"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -57,7 +57,9 @@ ibmcloud fn rule disable RULE_NAME
 ## Creating rules for action sequences
 {: #rules_seq}
 
-You can use rules to associate triggers with action sequences. For example, you can create an action sequence called `recordLocationAndHello` that is activated by the rule `anotherRule`.
+You can use rules to associate triggers with action sequences.
+
+Before you begin, create [an action sequence](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
 
 ```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
@@ -65,10 +67,12 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 {: pre}
 
 
-## Associating a single trigger with multiple actions
+## Associating multiple triggers and actions
 {: #rules_assoc}
 
-For example, consider a system with the following actions.
+You can use different combinations of triggers and actions by creating a rule for each combination. You are not required to have a one to one ratio for actions and triggers.
+
+For example, consider the following actions.
 - `classifyImage` - An action that detects the objects in an image and classifies them.
 - `thumbnailImage` - An action that creates a thumbnail version of an image.
 

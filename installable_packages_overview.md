@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-06"
+lastupdated: "2019-05-07"
 
 keywords: packages, installable packages
 
@@ -18,7 +18,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Incorporating packages
-{: #pkgs_ov}
+{: #installable-packages-overview}
 
 Packages are bundled sets of related actions and feeds. Each package is designed for specific interaction with services and event providers. Some packages are installed already with {{site.data.keyword.openwhisk}} for you to use, but you can also install others.
 {: shortdesc}
@@ -192,25 +192,34 @@ In the following example, you bind to the `/whisk.system/samples` package.
 You can create a package of local code or a clone of any Github repository.
 {: shortdesc}
 
-Before you begin, [install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+Before you begin:
+- [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+- Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [wskdeploy documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
 
-To install a package:
+To add a package:
 
-1. Clone the package repo. Package repos can be found on the individual pages for each package in this documentation set.
+1. Clone the package repo.
     ```
-    git clone https://github.com/<package_repo>
+    git clone https://github.com/ORG_NAME/REPOSITORY_NAME
     ```
     {: pre}
 
-2. Navigate to the package directory that contains a `manifest.yaml` or `manifest.yml` file. The `manifest.yaml` file specifies the overall structure of the package, including the package and actions to be installed into your namespace and any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [wskdeploy documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
+2. Navigate to the directory that contains the `manifest.yaml` file.
     ```
     cd <filepath>/<package_name>
     ```
     {: pre}
 
-3. Deploy the package. Some packages require certain environment variables to enable the package to function properly.
+3. Deploy the package.
     ```
     ibmcloud fn deploy -m manifest.yaml
+    ```
+    {: pre}
+
+    Some packages require certain environment variables to enable the package to function properly. If so, include the environment variables with the `deploy` command. For example, you can choose a name for the package and specify it with the PACKAGE_NAME variable.
+
+    ```
+    PACKAGE_NAME=CUSTOM_PACKAGE_NAME VARIABLE_NAME=VARIABLE_VALUE ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 

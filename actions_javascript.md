@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-06"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -24,7 +28,7 @@ subcollection: cloud-functions
 
 
 # Creating JavaScript actions
-{: #actions_javascript
+{: #actions_javascript}
 {: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with actions in JavaScript. Start by creating and invoking a simple action. Then, add parameters to the action and invoke that action with parameters. Next, set default parameters and invoke them. Finally, create asynchronous actions.
