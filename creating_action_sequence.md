@@ -28,8 +28,9 @@ subcollection: cloud-functions
 
 
 # Creating action sequences
-{: #create_action_sequence}
 {: #openwhisk_create_action_sequence}
+{: #create_action_sequence}
+
 
 You can create an action that chains together a sequence of actions. The result of one action is passed as an argument to the next action.
 {: shortdesc}

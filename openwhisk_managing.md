@@ -23,8 +23,9 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Managing actions
-{: #managing_actions}
 {: #openwhisk_managing}
+{: #managing_actions}
+
 
 Manage actions by monitoring action output, getting specific information on an action, or deleting actions.
 {: shortdec}

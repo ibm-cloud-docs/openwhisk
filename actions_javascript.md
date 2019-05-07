@@ -28,7 +28,7 @@ subcollection: cloud-functions
 
 
 # Creating JavaScript actions
-{: #actions_javascript}
+{: #creating-javascript-actions}
 {: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with actions in JavaScript. Start by creating and invoking a simple action. Then, add parameters to the action and invoke that action with parameters. Next, set default parameters and invoke them. Finally, create asynchronous actions.
