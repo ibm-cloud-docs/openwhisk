@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-05-07"
 
-keywords: getting started, creating actions, invoking actions, 
+keywords: getting started, creating actions, invoking actions,
 
 subcollection: cloud-functions
 
@@ -13,9 +13,15 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 # Getting started
 {: #getting_started}
@@ -58,9 +64,9 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 
 6. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
 
-7. Optional: Click **Change Input** to change the action or try your own. 
+7. Optional: Click **Change Input** to change the action or try your own.
 
-  a. Paste the following code into the **Change Input** box and change the name value. 
+  a. Paste the following code into the **Change Input** box and change the name value.
   ```
   { "name": "xxxx" }
   ```

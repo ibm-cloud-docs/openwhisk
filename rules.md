@@ -21,6 +21,7 @@ subcollection: cloud-functions
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
+{:gif: data-image-type='gif'}
 
 
 # Associating triggers with actions
@@ -30,6 +31,15 @@ Every time the trigger fires, the rule uses the trigger event as input and invok
 {: shortdesc}
 
 
+## Rule creation from the UI
+{: #rules_ui}
+
+From the user interface, a rule to associate an action and a trigger is created for you.
+{: shortdesc}
+
+When you create or access the details for an action or trigger, you have the option of connecting an existing or a new action or trigger. When you make the connection, a rule is created for you and is named in the format `ACTION_NAME-TRIGGER_NAME`.
+
+From the CLI, you can run `ibmcloud fn rule list` to verify that the rule was created for you.
 
 
 ## Creating rules from the CLI

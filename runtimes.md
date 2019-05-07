@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-07"
 
 keywords: runtimes, support
 
@@ -13,10 +13,15 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
 {:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 # Runtimes
 {: #runtimes}

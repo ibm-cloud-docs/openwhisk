@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2018
 lastupdated: "2018-10-08"
 
-keywords: troubleshooting actions, functions, help, support, 
+keywords: troubleshooting actions, functions, help, support,
 
 subcollection: cloud-functions
 
@@ -12,8 +12,16 @@ subcollection: cloud-functions
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
+{:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 {:tsSymptoms: .tsSymptoms}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
