@@ -48,15 +48,15 @@ IBM Cloud Functions
     {: .topicgroup}
     Invoking actions with events
         openwhisk_triggers_rules.md
-        openwhisk_alarms.md
-        openwhisk_cloudant.md
+        pkg_alarms.md
+        pkg_cloudant.md
         pkg_event_streams.md
         openwhisk_pushnotifications.md
-        openwhisk_github.md
+        pkg_github.md
         openwhisk_feeds.md
         openwhisk_object_storage.md
 
-    openwhisk_composer.md
+    pkg_composer.md
     openwhisk_apigateway.md
     openwhisk_logs.md
     at-events.md
