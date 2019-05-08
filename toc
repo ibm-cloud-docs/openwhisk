@@ -124,5 +124,5 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
-    
+
     ow_watson_text_to_speech.md
