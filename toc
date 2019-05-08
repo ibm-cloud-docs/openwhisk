@@ -84,7 +84,7 @@ IBM Cloud Functions
         ow_push_notifications.md
         cloud_object_storage_actions.md
         ow_watson_assistant.md
-        ow_watson_discovery.md
+        pkg_discovery.md
         ow_watson_visual_recognition.md
         ow_watson_natural_language_understanding.md
         ow_watson_natural_language_classifer.md
