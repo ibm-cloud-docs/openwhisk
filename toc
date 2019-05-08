@@ -88,7 +88,6 @@ IBM Cloud Functions
         ow_watson_natural_language_classifer.md
         pkg_person_insights.md
         pkg_tone_analyzer.md
-        openwhisk_watson_translator.md
 
     {: .topicgroup}
     SDK and frameworks
@@ -126,3 +125,4 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     ow_watson_text_to_speech.md
+    openwhisk_watson_translator.md
