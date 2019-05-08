@@ -17,7 +17,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Weather package
+# Weather
 {: #openwhisk_catalog_weather}
 
 The pre-installed `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.Bluemix}} API.
