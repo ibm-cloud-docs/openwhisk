@@ -61,37 +61,33 @@ IBM Cloud Functions
     openwhisk_logs.md
     at-events.md
     deploy.md
-    deploy_templates.md
+    templates.md
 
     {: .topicgroup}
     Pre-installed packages
         cloudant_actions.md
-        z_archive_messagehub_actions.md
         mobile_push_actions.md
         pkg_translator.md
-        openwhisk_watson_texttospeech.md
         ../services/IoT/gateways/iotgw.md
         pkg_weather.md
         pkg_slack.md
         openwhisk_websocket.md
-
-    {: .topicgroup}
-    Installable packages
+        pkg_text_to_speech.md
         installable_packages_overview.md
         pkg_speech_to_text.md
-        ow_push_notifications.md
+        pkg_push_notifications.md
         cloud_object_storage_actions.md
         pkg_watson_assistant.md
         pkg_discovery.md
         pkg_visual_recognition.md
-        ow_watson_natural_language_understanding.md
-        ow_watson_natural_language_classifer.md
+        pkg_natlang_understanding.md
+        pkg_natlang_classifer.md
         pkg_person_insights.md
         pkg_tone_analyzer.md
 
     {: .topicgroup}
     SDK and frameworks
-        openwhisk_goserverless.md
+        serverless_framework.md
         openwhisk_mobile_sdk.md
 
     {: .topicgroup}
@@ -124,5 +120,6 @@ IBM Cloud Functions
     ts_index.md
     {: .navgroup-end}
 
-    ow_watson_text_to_speech.md
     openwhisk_watson_translator.md
+    z_archive_openwhisk_watson_texttospeech.md
+    z_archive_messagehub_actions.md
