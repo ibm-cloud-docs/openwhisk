@@ -72,7 +72,7 @@ IBM Cloud Functions
         openwhisk_watson_texttospeech.md
         openwhisk_watson_speechtotext.md
         ../services/IoT/gateways/iotgw.md
-        openwhisk_weather.md
+        pkg_weather.md
         pkg_slack.md
         openwhisk_websocket.md
 
