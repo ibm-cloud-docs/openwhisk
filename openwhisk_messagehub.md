@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-07"
+lastupdated: "2019-05-08"
 
 keywords: message hub, event, trigger, messages, batch, listen
 
@@ -21,7 +21,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Event Streams events source
+# Event Streams
 {: #openwhisk_catalog_message_hub}
 
 You can create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
