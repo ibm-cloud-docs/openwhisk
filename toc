@@ -88,7 +88,7 @@ IBM Cloud Functions
         ow_watson_visual_recognition.md
         ow_watson_natural_language_understanding.md
         ow_watson_natural_language_classifer.md
-        ow_watson_personality_insights.md
+        pkg_person_insights.md
         ow_watson_tone_analyzer.md
         openwhisk_watson_translator.md
 
