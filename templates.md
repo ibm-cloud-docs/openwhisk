@@ -33,8 +33,8 @@ subcollection: cloud-functions
 ## Available quickstart templates
 {: #available-templates}
 
-| Name | Description | Supported Runtimes |
-|:-----------------|:-----------------|:-----------------|
+| Name | Description | Supported Runtimes | Source repository |
+|:-----------------|:-----------------|:-----------------|:-----------------|
 | [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger) |
 | [Upload Image](#image-template) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js | [Code](https://github.com/ibm-functions/template-cloud-object-storage)
 | [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource)
