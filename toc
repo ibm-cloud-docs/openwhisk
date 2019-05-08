@@ -81,7 +81,7 @@ IBM Cloud Functions
         pkg_speech_to_text.md
         ow_push_notifications.md
         cloud_object_storage_actions.md
-        ow_watson_assistant.md
+        pkg_watson_assistant.md
         pkg_discovery.md
         pkg_visual_recognition.md
         ow_watson_natural_language_understanding.md
