@@ -68,7 +68,7 @@ IBM Cloud Functions
         cloudant_actions.md
         z_archive_messagehub_actions.md
         mobile_push_actions.md
-        openwhisk_watson_translator.md
+        pkg_translator.md
         openwhisk_watson_texttospeech.md
         ../services/IoT/gateways/iotgw.md
         pkg_weather.md
@@ -83,7 +83,7 @@ IBM Cloud Functions
         cloud_object_storage_actions.md
         ow_watson_assistant.md
         pkg_discovery.md
-        ow_watson_visual_recognition.md
+        pkg_visual_recognition.md
         ow_watson_natural_language_understanding.md
         ow_watson_natural_language_classifer.md
         pkg_person_insights.md
