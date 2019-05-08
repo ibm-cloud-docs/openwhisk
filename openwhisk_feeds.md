@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-03"
+lastupdated: "2019-05-08"
 
 keywords: feed, event, polling, hooks, trigger,
 
@@ -19,7 +19,6 @@ subcollection: cloud-functions
 
 
 # Incorporating feeds
-{: #feeds}
 {: #openwhisk_feeds}
 
 A feed is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. Pre-installed packages, installable packages, and you own custom packages might contain feeds.
@@ -227,3 +226,5 @@ The {{site.data.keyword.cloudant_short_notm}} *changes* feed is the canonical ex
 The *alarm* feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but imposes more overhead on operations that are compared to the polling and hook architectures.
+
+
