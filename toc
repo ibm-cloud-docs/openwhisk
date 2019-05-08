@@ -70,7 +70,6 @@ IBM Cloud Functions
         mobile_push_actions.md
         openwhisk_watson_translator.md
         openwhisk_watson_texttospeech.md
-        openwhisk_watson_speechtotext.md
         ../services/IoT/gateways/iotgw.md
         pkg_weather.md
         pkg_slack.md
@@ -79,8 +78,7 @@ IBM Cloud Functions
     {: .topicgroup}
     Installable packages
         installable_packages_overview.md
-        ow_watson_speech_to_text.md
-        ow_watson_text_to_speech.md
+        pkg_speech_to_text.md
         ow_push_notifications.md
         cloud_object_storage_actions.md
         ow_watson_assistant.md
@@ -126,3 +124,5 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
+    
+    ow_watson_text_to_speech.md
