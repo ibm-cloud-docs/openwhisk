@@ -23,10 +23,14 @@ subcollection: cloud-functions
 
 | Name | Availability | Description |
 | --- | --- | --- | --- |
-| [`speech-to-text-v1`](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html) | Installable | Works with the {{site.data.keyword.speechtotextshort}} V1 service. |
-| `/whisk.system/watson-speechToText` | Pre-installed (Not available in Tokyo) | Call Watson APIs to convert the speech into text |
+| [`speech-to-text-v1`](#speech_to_text) | Installable | Works with the {{site.data.keyword.speechtotextshort}} V1 service. |
+| [`/whisk.system/watson-speechToText`](#openwhisk_catalog_watson_speechtotext) | Pre-installed (Not available in Tokyo) | Call Watson APIs to convert the speech into text |
 
-The installable {{site.data.keyword.speechtotextfull}} service provides an API that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
+
+## {{site.data.keyword.speechtotextshort}} service
+{: #speech_to_text}
+
+The installable {{site.data.keyword.speechtotextfull}} service provides an [API]((https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html)) that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
 The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](/docs/services/speech-to-text?topic=speech-to-text-about).

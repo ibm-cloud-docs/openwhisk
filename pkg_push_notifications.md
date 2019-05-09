@@ -177,7 +177,7 @@ Example output:
 ```
 {: screen}
 
-# Mobile push on device events package
+# Mobile push on device events
 {: #openwhisk_pushnotifications}
 
 This pre-installed package is not available in the Tokyo region.
