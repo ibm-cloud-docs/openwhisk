@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-08"
+lastupdated: "2019-05-09"
 
 keywords: websocket, functions, actions, package
 
@@ -18,7 +18,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # WebSocket
-{: #openwhisk_catalog_websocket}
+{: #pkg_websocket}
 
 The pre-installed `/whisk.system/websocket` package offers a convenient way to post messages to a WebSocket.
 {: shortdesc}

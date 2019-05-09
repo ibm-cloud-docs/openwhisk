@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -23,7 +27,7 @@ subcollection: cloud-functions
 {:download: .download}
 
 # Composer
-{: #pkg_composer}
+{: #openwhisk_composer}
 
 {{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with additional combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), which let you create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
 
@@ -288,3 +292,4 @@ _Figure 5. Sequence with inline action definition_
 ## Using other combinator definitions
 {: #combinator-def}
 See the documentation for Composer on Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) or [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)) for the full list of combinators definitions.
+

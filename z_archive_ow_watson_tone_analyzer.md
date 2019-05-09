@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +22,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.toneanalyzershort}}
-{: #tone-analyzer-package}
+{: #ow_watson_tone_analyzer}
 
 The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic analysis to detect emotional and language tones in written text.
 {:shortdesc}
@@ -167,3 +171,4 @@ This package's functions use the current version of Tone Analyzer, 2017-09-21. T
 ibmcloud fn action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}
+

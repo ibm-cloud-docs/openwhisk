@@ -10,6 +10,9 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +21,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # GitHub
-{: #pkg_github}
+{: #openwhisk_catalog_github}
 
 This pre-installed package is not available in the Tokyo region.
 {: tip}
@@ -64,3 +67,4 @@ In the following example, a trigger is created that fires each time a new commit
   {: pre}
 
   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload](https://developer.github.com/v3/activity/events/types/) API documentation.
+

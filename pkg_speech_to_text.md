@@ -18,8 +18,9 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.speechtotextshort}}
+{: #pkg_speech_to_text}
 
-## Packages 
+## Packages
 
 | Name | Availability | Description |
 | --- | --- | --- | --- |

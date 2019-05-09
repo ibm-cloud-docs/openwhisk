@@ -10,6 +10,8 @@ subcollection: cloud-functions
 
 ---
 
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +20,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Weather
-{: #pkg_weather}
+{: #openwhisk_catalog_weather}
 
 The pre-installed `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.Bluemix}} API.
 {: shortdesc}
@@ -125,3 +127,4 @@ Example output:
 }
 ```
 {: screen}
+

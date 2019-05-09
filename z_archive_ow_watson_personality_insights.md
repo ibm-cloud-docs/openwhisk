@@ -10,6 +10,8 @@ subcollection: cloud-functions
 
 ---
 
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +20,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.personalityinsightsshort}}
-{: #pkg_person_insights}
+{: #ow_watson_personality_insights}
 
 The installable {{site.data.keyword.personalityinsightsfull}} service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
 {: shortdesc}
@@ -170,3 +172,4 @@ This package's functions use the current version of Personality Insights, 2017-1
 ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}
+

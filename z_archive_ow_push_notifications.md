@@ -10,6 +10,9 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +21,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Push Notifications
-{: #pkg_push_notifications}
+{: #ow_push_notifications}
 
 ## Package options
 

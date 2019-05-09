@@ -10,6 +10,8 @@ subcollection: cloud-functions
 
 ---
 
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +20,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.visualrecognitionshort}}
-{: #pkg_visual_recognition}
+{: #ow_watson_visual_recognition}
 
 The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
 {:shortdesc}
@@ -168,3 +170,4 @@ This package's functions use the current version of Visual Recognition, 2018-03-
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
 {: pre}
+

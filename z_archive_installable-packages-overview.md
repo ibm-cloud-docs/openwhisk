@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,13 +22,13 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Incorporating packages
-{: #pkg_ov}
+{: #installable-packages-overview}
 
 Packages are bundled sets of related actions and feeds. Each package is designed for specific interaction with services and event providers. Some packages are installed already with {{site.data.keyword.openwhisk}} for you to use, but you can also install others.
 {: shortdesc}
 
 ## Overview
-{: #pkg_overview}
+{: #pkgs_overview}
 
 [Pre-installed packages](/docs/openwhisk?topic=cloud-functions-openwhisk_packages#browse-packages) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
 
@@ -35,7 +39,7 @@ You can install these packages or your own directly into your namespace, and can
 
 
 ## Browsing pre-installed packages
-{: #pkg_browse}
+{: #pkgs_browse}
 
 Several packages are registered with {{site.data.keyword.openwhisk_short}} already for you. You can get a list of packages in a namespace, list the entities in a package, and get a description of the individual entities in a package.
 {: shortdesc}
@@ -110,7 +114,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
 
 ## Binding parameters to pre-installed packages
-{: #pkg_bind}
+{: #pkgs_bind}
 
 Although you can use the entities in a package directly, you might find yourself passing the same parameters to the action every time. You can simplify the process by binding to a package and specifying default parameters, which are inherited by the actions in the package.
 {: shortdesc}
@@ -187,7 +191,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 
 ## Adding your own packages
-{: #pkg_add}
+{: #pkgs_add}
 
 You can create a package of local code or a clone of any Github repository.
 {: shortdesc}
@@ -224,7 +228,7 @@ To add a package:
     {: pre}
 
 ### Example using the {{site.data.keyword.cos_full_notm}} package
-{: #pkg_ex}
+{: #pkgs_ex}
 
 To see an example of how to install a package, check out the [{{site.data.keyword.cos_short}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_short}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions), you must first create an {{site.data.keyword.cos_short}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
@@ -247,3 +251,4 @@ After creating the service instance and bucket, installing the package requires 
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+

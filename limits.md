@@ -19,7 +19,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 
 # System details and limits
-{: #openwhisk_reference}
+{: #limits}
 
 The following sections provide technical details about the {{site.data.keyword.openwhisk}} system and limit settings.
 {: shortdesc}

@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +22,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.discoveryshort}}
-{: #pkg_discovery}
+{: #discovery-package}
 
 The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results.
 {: shortdesc}
@@ -197,3 +201,4 @@ This package's functions use the current version of Discovery, 2018-03-05. Try o
 ibmcloud fn action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}
+

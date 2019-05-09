@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-08"
+lastupdated: "2019-05-09"
 
 keywords: watson, translator, cognitive, translating text, language
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -129,3 +133,4 @@ Example output:
 }
 ```
 {: screen}
+

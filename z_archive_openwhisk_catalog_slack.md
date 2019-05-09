@@ -10,6 +10,8 @@ subcollection: cloud-functions
 
 ---
 
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +20,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Slack
-{: #pkg_slack}
+{: #openwhisk_catalog_slack}
 
 The pre-installed `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
 {: shortdesc}
@@ -67,3 +69,4 @@ The following example shows how to configure Slack, create a package binding, an
 ## Using the Slack token-based API
 
 If you prefer, you can choose to use Slack's token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens). Then, you can use any of the [Slack API methods](https://api.slack.com/methods) as your `url` parameter. For example, to post a message, you would use a `url` parameter value of [slack.postMessage](https://api.slack.com/methods/chat.postMessage).
+

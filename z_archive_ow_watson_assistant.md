@@ -10,6 +10,8 @@ subcollection: cloud-functions
 
 ---
 
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,7 +20,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # {{site.data.keyword.conversationshort}}
-{: #pkg_watson_assistant}
+{: #ow_watson_assistant}
 
 The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users.
 {: shortdesc}
@@ -199,3 +201,4 @@ This package's functions use the current version of Watson Assistant, 2018-07-10
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```
 {: pre}
+

@@ -48,15 +48,15 @@ IBM Cloud Functions
     {: .topicgroup}
     Invoking actions with events
         z_archive_openwhisk_triggers_rules.md
-        pkg_alarms.md
-        pkg_cloudant.md
-        pkg_event_streams.md
-        openwhisk_pushnotifications.md
-        pkg_github.md
+        z_archive_openwhisk_alarms.md
+        z_archive_openwhisk_cloudant.md
+        z_archive_eventstreams.md
+        z_archive_openwhisk_pushnotifications.md
+        z_archive_openwhisk_catalog_github.md
         z_archive_openwhisk_feeds.md
         z_archive_openwhisk_object_storage.md
 
-    pkg_composer.md
+    z_archive_openwhisk_composer.md
     apigateway.md
     z_archive_openwhisk_logs.md
     activity_tracker.md
@@ -64,31 +64,32 @@ IBM Cloud Functions
     templates.md
 
     {: .topicgroup}
-    Pre-installed packages
+    Packages
         z_archive_cloudant_actions.md
         z_archive_mobile_push_actions.md
-        pkg_translator.md
+        z_archive.md
         ../services/IoT/gateways/iotgw.md
-        pkg_weather.md
-        pkg_slack.md
+        z_archive_openwhisk_catalog_weather.md
+        z_archive_openwhisk_catalog_slack.md
         z_archive_openwhisk_websocket.md
-        pkg_text_to_speech.md
-        pkg_ov.md
-        pkg_speech_to_text.md
-        pkg_push_notifications.md
+        z_archive_watson_texttospeech.md
+        z_archive_watson_speechtotext.md
+        z_archive_installable-packages-overview.md
+        z_archive_openwhisk_pushnotifications.md
         z_archive_cloud_object_storage_actions.md
-        pkg_watson_assistant.md
-        pkg_discovery.md
-        pkg_visual_recognition.md
-        pkg_natlang_understanding.md
-        pkg_natlang_classifer.md
-        pkg_person_insights.md
-        pkg_tone_analyzer.md
+        z_archive_ow_watson_assistant.md
+        z_archive_ow_watson_discovery.md
+        z_archive_ow_watson_visual_recognition.md
+        z_archive_ow_watson_natural_language_understanding.md
+        z_archive_ow_watson_natural_language_classifer.md
+        z_archive_ow_watson_personality_insights.md
+        z_archive_ow_watson_tone_analyzer.md
+        z_archive_openwhisk_catalog_watson_translator.md
 
     {: .topicgroup}
     SDK and frameworks
         z_archive_serverless_framework.md
-        pkg_mobile_sdk.md
+        z_archive_openwhisk_mobile_sdk.md
 
     {: .topicgroup}
     Managing Functions in IAM
@@ -123,6 +124,5 @@ IBM Cloud Functions
     z_archive_eventstreams.md
     z_archive_messagehub_actions.md
     z_archive_openwhisk_cloudant.md
-    z_archive_openwhisk_watson_texttospeech.md
-    z_archive_openwhisk_watson_speechtotext.md
+
     
