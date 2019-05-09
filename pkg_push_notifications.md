@@ -230,7 +230,7 @@ To create a trigger that is fired each time a new device registers with the Push
   The action sends a push notification.
 
 
-# {{site.data.keyword.mobilepushshort}}
+## {{site.data.keyword.mobilepushshort}}
 
 The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
 {: shortdesc}
@@ -419,7 +419,7 @@ Example output:
 ```
 {: screen}
 
-# Mobile push on device events
+## Mobile push on device events
 {: #openwhisk_pushnotifications}
 
 This pre-installed package is not available in the Tokyo region.
@@ -430,7 +430,7 @@ Learn how to configure the Push service to fire a trigger when there is device a
 
 For information about the `/whisk.system/pushnotifications` package itself, see the [Mobile push](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a#push_step_1a) topic which covers creating a Push package binding, and sending a Push notification.
 
-## Push parameters
+### Push parameters
 {: #push_notif_parameters}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
@@ -440,7 +440,7 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 
   You can use the wildcard character "`*`" to be notified for all events.
 
-## Firing a trigger event on Push Notifications service activity
+### Firing a trigger event on Push Notifications service activity
 {: #trigger_push_notify}
 
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
