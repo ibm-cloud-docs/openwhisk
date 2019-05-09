@@ -21,14 +21,14 @@ subcollection: cloud-functions
 
 # Push Notifications
 
-
 ## Package options
 
 | Package | Availability | Description |
 | --- | --- | --- |
 | [`/whisk.system/pushnotifications`](#openwhisk_catalog_pushnotifications) | Pre-installed (Not available in Tokyo) | Work with the Push Notification service. |
-| [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 | [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications) | Pre-installed (Not available in Tokyo) | Mobile push on device events. |
+| [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
+
 
 
 ## Push notifications
@@ -377,9 +377,6 @@ To install the {{site.data.keyword.mobilepushshort}} package:
     1. Click an action from the **push-notifications** package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
-
-## Using the {{site.data.keyword.mobilepushshort}} package
-{: #usage_push}
 
 ### Send a push notification
 {: #push_notif}
