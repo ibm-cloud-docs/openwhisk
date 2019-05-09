@@ -29,7 +29,6 @@ subcollection: cloud-functions
 | [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
 | [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 
-
 ## Push notifications
 {: #openwhisk_catalog_pushnotifications}
 
