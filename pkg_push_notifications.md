@@ -198,7 +198,7 @@ This pre-installed package is not available in the Tokyo region.
 Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
 {: shortdesc}
 
-## Push parameters
+### Parameters
 {: #push_notif_parameters}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
