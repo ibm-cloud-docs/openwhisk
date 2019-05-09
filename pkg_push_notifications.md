@@ -27,8 +27,8 @@ subcollection: cloud-functions
 | Package | Availability | Description |
 | --- | --- | --- |
 | [`/whisk.system/pushnotifications`](#openwhisk_catalog_pushnotifications) | Pre-installed (Not available in Tokyo) | Work with the Push Notification service. |
+| [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 | [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications) | Pre-installed (Not available in Tokyo) | Mobile push on device events. |
-| [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, create, update, or delete a webhook |
 
 
 ## Push notifications
