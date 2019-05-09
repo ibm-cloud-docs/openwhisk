@@ -18,7 +18,8 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Push Notifications
-{: #pkg_push_notifications}
+{: #openwhisk_catalog_pushnotifications}
+
 
 ## Package options
 
@@ -29,7 +30,7 @@ subcollection: cloud-functions
 | [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 
 ## Push notifications
-{: #openwhisk_catalog_pushnotifications}
+{: #pkg_push_notifications}
 
 The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
 {: tip}
