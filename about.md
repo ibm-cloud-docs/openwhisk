@@ -1,50 +1,4 @@
----
 
-copyright:
-  years: 2017, 2019
-lastupdated: "2019-05-09"
-
-keywords: platform architecture, openwhisk, couchdb, kafka
-
-subcollection: cloud-functions
-
----
-
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
-
-# How {{site.data.keyword.openwhisk_short}} works
-{: #about}
-
-{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
-{: shortdesc}
-
-## {{site.data.keyword.openwhisk_short}} technology
-{: #about_technology}
-
-Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
-
-**What is an action?**
-
-An action is a small piece of code that can be invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
-
-**Why would I use an action?**
-
-By using actions, you limit the amount of time that your code is running, which lowers your overhead costs.
-
-For example, you can use actions to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
-
-**Can I use more than one action at a time?**
-
-Yes! You can use actions to call other actions, or you can string actions together to [create sequences](/docs/openwhisk?topic=cloud-functions-openwhisk_create_action_sequence#openwhisk_create_action_sequence). To make this work, the output of one action would be the input for another action which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package you can reuse common actions or sequences by calling the package instead of configuring the action or sequence again.
-
-## {{site.data.keyword.openwhisk_short}} terminology
-
-<dl>
   <dt>Action</dt>
     <dd>An [action](/docs/openwhisk?topic=cloud-functions-openwhisk_actions) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
     <br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.Bluemix_notm}} services and third party services using a trigger.</dd>
@@ -193,3 +147,4 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Action semantics](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
 * [Limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
 * [REST API reference](/apidocs/functions)
+</staging>

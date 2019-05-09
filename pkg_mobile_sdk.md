@@ -1,28 +1,3 @@
----
-
-copyright:
-  years: 2017, 2019
-lastupdated: "2019-05-09"
-
-keywords: mobile, sdk, cocoapods, carthage
-
-subcollection: cloud-functions
-
----
-
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:codeblock: .codeblock}
-{:pre: .pre}
-{:tip: .tip}
-
-# Mobile SDK
-{: #pkg_mobile_sdk}
-
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK using Xcode 9.
-{: shortdesc}
-
 
 
 ## Add the SDK to your app
@@ -274,3 +249,4 @@ do {
 }
 ```
 {: codeblock}
+</staging>

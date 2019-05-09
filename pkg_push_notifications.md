@@ -18,7 +18,7 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Push Notifications
-{: #openwhisk_catalog_pushnotifications}
+{: #pkg_push_notifications}
 
 
 ## Package options
