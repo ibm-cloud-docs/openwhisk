@@ -17,8 +17,6 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
----
-
 # Push Notifications
 
 ## Package options
