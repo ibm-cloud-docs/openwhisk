@@ -68,7 +68,6 @@ IBM Cloud Functions
         z_archive_cloudant_actions.md
         z_archive_mobile_push_actions.md
         z_archive.md
-        ../services/IoT/gateways/iotgw.md
         z_archive_openwhisk_catalog_weather.md
         z_archive_openwhisk_catalog_slack.md
         z_archive_openwhisk_websocket.md
