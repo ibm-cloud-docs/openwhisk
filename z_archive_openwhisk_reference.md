@@ -1,6 +1,46 @@
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-05-09"
+
+keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
+
+subcollection: cloud-functions
+
+---
 
 
-You can create new Cloud Foundry-based namespaces by creating Cloud Foundry orgs and spaces. The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
+
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:screen: .screen}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:tip: .tip}
+{:deprecated: .deprecated}
+
+# System details and limits
+{: #openwhisk_reference}
+
+The following sections provide technical details about the {{site.data.keyword.openwhisk}} system and limit settings.
+{: shortdesc}
+
+## {{site.data.keyword.openwhisk_short}} entities
+{: #openwhisk_entities}
+
+### Namespaces and packages
+{: #openwhisk_entities_namespaces}
+
+{{site.data.keyword.openwhisk_short}} actions, triggers, and rules belong in a namespace, and sometimes a package.
+
+Packages can contain actions and feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
+
+In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
+
+
+
+You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry orgs and spaces](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#region_info). The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
 
 ### Fully qualified names
@@ -108,17 +148,17 @@ The following table lists the default limits for actions.
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [codeSize](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
-| [concurrent](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
-| [logs](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
-| [memory](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
-| [minuteRate](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
-| [openulimit](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
-| [parameters](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
-| [proculimit](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
-| [result](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
-| [sequenceMaxActions](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
-| [timeout](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
+| [codeSize](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
+| [concurrent](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
+| [logs](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| [memory](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
+| [minuteRate](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
+| [openulimit](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
+| [parameters](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
+| [proculimit](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
+| [result](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
+| [sequenceMaxActions](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
+| [timeout](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
 {: #increase_fixed_limit}
@@ -138,7 +178,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 #### concurrent (Fixed: 1000*)
 {: #openwhisk_syslimits_concurrent}
 * The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_limit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
 #### logs (MB) (Default: 10 MB)
 {: #openwhisk_syslimits_logs}
@@ -156,7 +196,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 {: #openwhisk_syslimits_minuterate}
 * The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_limit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#increase_fixed_limit) for detailed instructions on how to increase this limit.
 
 #### openulimit (Fixed: 1024:1024)
 {: #openwhisk_syslimits_openulimit}
@@ -201,7 +241,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [minuteRate](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_tminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
+| [minuteRate](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits_tminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #increase_fixed_tlimit}
@@ -218,5 +258,5 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
 * A user cannot change the trigger limit when a trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_tlimit) for detailed instructions on how to increase this limit.
-</staging>
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#increase_fixed_tlimit) for detailed instructions on how to increase this limit.
+

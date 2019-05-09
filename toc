@@ -100,7 +100,7 @@ IBM Cloud Functions
     {: .navgroup id="reference"}
     z_archive_openwhisk_annotations.md
     runtimes.md
-    limits.md
+    z_archive_openwhisk_reference.md
     regions.md
 
     {: .topicgroup}

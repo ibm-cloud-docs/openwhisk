@@ -93,7 +93,7 @@ After you have an {{site.data.keyword.conversationshort}} service instance, use 
 {: #conversation_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
 To install the {{site.data.keyword.conversationshort}} package:
 

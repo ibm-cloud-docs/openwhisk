@@ -197,7 +197,7 @@ You can create a package of local code or a clone of any Github repository.
 {: shortdesc}
 
 Before you begin:
-- [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+- [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 - Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [wskdeploy documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
 
 To add a package:

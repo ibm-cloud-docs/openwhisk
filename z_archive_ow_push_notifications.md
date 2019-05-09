@@ -34,7 +34,7 @@ subcollection: cloud-functions
 ## Push notifications
 {: #openwhisk_catalog_pushnotifications}
 
-The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
+The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-ow_push_notifications) package for the action `sendMessage` using IAM authentication
 {: tip}
 
 Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
@@ -276,7 +276,7 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #install_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 

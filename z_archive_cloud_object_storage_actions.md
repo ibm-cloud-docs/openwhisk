@@ -92,7 +92,7 @@ After you have an {{site.data.keyword.cos_short}} service instance, you can use 
 
 Before you begin:
 
-[Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli).
+[Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
 To install the {{site.data.keyword.cos_short}} package:
 
