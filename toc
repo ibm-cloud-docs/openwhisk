@@ -97,7 +97,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    annotations.md
+    z_archive_openwhisk_annotations.md
     runtimes.md
     limits.md
     regions.md
