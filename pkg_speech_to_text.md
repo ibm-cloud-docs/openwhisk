@@ -34,7 +34,7 @@ ibmcloud fn action invoke speech-to-text-v1/list-models -b
 {: pre}
 
 ## Watson: Speech to Text
-{: #openwhisk_catalog_watson_speechtotext}
+{: #preinstall_speechtotext}
 
 This pre-installed package is not available in the Tokyo region. Please see the installable [Speech to Text](#install_speechtotext) package using IAM authentication.
 {: tip}
@@ -49,7 +49,7 @@ The package includes the following actions.
 | `/whisk.system/watson-speechToText` | package | username, password | Package to convert speech into text |
 | `/whisk.system/watson-speechToText/speechToText` | action | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convert audio into text |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/speechToText`. See the [{{site.data.keyword.speechtotextshort}} package](/docs/openwhisk?topic=cloud-functions-speech-to-text#setting-up-the-watson-speech-to-text-package-in-ibm-cloud) instead.
+**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/speechToText`. See the [{{site.data.keyword.speechtotextshort}} package](#setting-up-the-watson-speech-to-text-package-in-ibm-cloud) instead.
 
 ## Setting up the Watson Speech to Text package in {{site.data.keyword.Bluemix_notm}}
 

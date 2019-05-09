@@ -34,7 +34,7 @@ If you have problems while you're working with {{site.data.keyword.openwhisk}}, 
 
 
 ## System limits were reached
-{: #limits}
+{: #ts_limit_reached}
 
 {: tsSymptoms}
 Your function is not running properly because a limit has been reached, such as memory usage maximum or a timeout.
