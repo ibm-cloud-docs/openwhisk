@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -226,3 +230,4 @@ To create a trigger that is fired each time a new device registers with the Push
 5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
 
   The action sends a push notification.
+

@@ -9,9 +9,9 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Overview
-        use_cases.md
-        about.md
-        faas.md
+        z_archive_openwhisk_common_use_cases.md
+        z_archive_openwhisk_about.md
+        z_archive_openwhisk_faas_compared.md
 
     {: .topicgroup}
     Tutorials
@@ -22,7 +22,7 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    cli_install.md
+    z_archive_bluemix_cli.md
 
     {: .topicgroup}
     Creating actions
@@ -59,7 +59,7 @@ IBM Cloud Functions
     pkg_composer.md
     apigateway.md
     z_archive_openwhisk_logs.md
-    at-events.md
+    activity_tracker.md
     deploy.md
     templates.md
 

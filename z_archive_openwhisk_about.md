@@ -10,6 +10,11 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -18,13 +23,13 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # How {{site.data.keyword.openwhisk_short}} works
-{: #about}
+{: #openwhisk_about}
 
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
 {: shortdesc}
 
 ## {{site.data.keyword.openwhisk_short}} technology
-{: #about_technology}
+{: #technology}
 
 Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
 
@@ -66,21 +71,19 @@ Yes! You can use actions to call other actions, or you can string actions togeth
 
 
 ## How OpenWhisk internal processing works
-{: #about_internal}
+{: #openwhisk_internal}
 
 To explain all the components in more detail, let's trace an invocation of an action through the {{site.data.keyword.openwhisk_short}} system. An invocation executes the code the user feeds into the system, and returns the results of that execution. The following figure shows the high-level {{site.data.keyword.openwhisk_short}} architecture.
 
 ![{{site.data.keyword.openwhisk_short}} architecture](./images/OpenWhisk.png)
 
 ### What happens behind the scenes in OpenWhisk?
-{: #about_scenes}
 
 OpenWhisk is an open source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
 ### Entering the system: nginx
-{: #about_ngnix}
 
 First, OpenWhisk’s user-facing API is completely HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to:
 ```
@@ -94,7 +97,6 @@ Note the *$userNamespace* variable here. A user has access to at least one names
 The first entry point into the system is through **nginx**, “an HTTP and reverse proxy server”. It is used for SSL termination and forwarding appropriate HTTP calls to the next component.
 
 ### Entering the system: Controller
-{: #about_controller}
 
 Nginx forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) requests for your entities in OpenWhisk, and invocation of actions.
 
@@ -103,7 +105,6 @@ The Controller first disambiguates what the user is trying to do. It does so bas
 Given the central role of the Controller (hence the name), the following steps will all involve it to a certain extent.
 
 ### Authentication and Authorization: CouchDB
-{: #about_auth}
 
 Now the Controller verifies who you are (*Authentication*) and if you have the privilege to do what you want to do with that entity (*Authorization*). The credentials included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
 
@@ -112,7 +113,6 @@ In this case, it is checked that the user exists in OpenWhisk’s database, and 
 As everything is sound, the gate opens for the next stage of processing.
 
 ### Getting the action: CouchDB… again
-{: #about_couchdb}
 
 As the Controller is now sure that the user is allowed in, and has the privileges to invoke the action, it loads this action (in this case *myAction*) from the **whisks** database in CouchDB.
 
@@ -122,12 +122,10 @@ In this particular case, the action doesn’t take any parameters (the function�
 
 
 ### Who’s there to invoke the action: Load Balancer
-{: #about_lb}
 
 The Load Balancer, which is part of the Controller, has a global view of the executors available in the system by checking their health status continuously. Those executors are called **Invokers**. The Load Balancer, knowing which Invokers are available, chooses one of them to invoke the action requested.
 
 ### Please form a line: Kafka
-{: #about_kafka}
 
 From now on, mainly two bad things can happen to the invocation request you sent in:
 
@@ -141,7 +139,6 @@ To get the action invoked then, the Controller publishes a message to Kafka, whi
 Once Kafka confirms that it got the message, the HTTP request to the user is responded to with an **ActivationId**. The user can use that later on, to get access to the results of this specific invocation. This is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
 
 ### Invoking the code: Invoker
-{: #about_invoker}
 
 The **Invoker** is the heart of OpenWhisk. The Invoker’s duty is to invoke an action. It is also implemented in Scala. But there’s much more to it. To execute actions in an isolated and safe way it uses **Docker**.
 
@@ -150,7 +147,6 @@ Docker is used to setup a new self-encapsulated environment (called *container*)
 In this case, having a *Node.js* based action at hand, the Invoker starts a Node.js container. Then, injects the code from *myAction*, runs it with no parameters, extracts the result, saves the logs, and destroys the Node.js container again.
 
 ### Storing the results: CouchDB again
-{: #about_storing}
 
 As the result is obtained by the Invoker, it is stored into the **whisks** database as an activation under the ActivationId. The **whisks** database lives in **CouchDB**.
 
@@ -183,7 +179,6 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 {: pre}
 
 ### Summary
-{: #about_summary}
 
 You can see how a simple **ibmcloud fn action invoked myAction** passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components, the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community.
 
@@ -193,3 +188,4 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Action semantics](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
 * [Limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
 * [REST API reference](/apidocs/functions)
+

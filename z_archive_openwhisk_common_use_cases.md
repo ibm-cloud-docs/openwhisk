@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -99,3 +103,4 @@ An [example iOS Swift application](https://github.com/gconan/BluemixMobileServic
 {{site.data.keyword.openwhisk_short}} is ideally to be used in combination with Kafka, {{site.data.keyword.messagehub_full}} (Kafka based), and other messaging systems. The event driven nature of those systems requires an event driven runtime to process messages. The runtime can apply business logic to those messages, which is exactly what {{site.data.keyword.openwhisk_short}} provides, with its feeds, triggers, and actions. Kafka and {{site.data.keyword.messagehub}} are often used for high and unpredictable workload volumes, and require that consumers of those messages need to be scalable on a moment's notice. This situation is, once again, a sweet spot for {{site.data.keyword.openwhisk_short}}. {{site.data.keyword.openwhisk_short}} has built-in capability to consume messages as well as publish messages that are provided in the [openwhisk-package-kafka](https://github.com/openwhisk/openwhisk-package-kafka) package.
 
 An [example application that implements event processing scenario](https://github.com/IBM/openwhisk-data-processing-message-hub) is provided with {{site.data.keyword.openwhisk_short}}, {{site.data.keyword.messagehub}}, and Kafka.
+

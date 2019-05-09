@@ -10,6 +10,10 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -38,3 +42,4 @@ The `/whisk.system/websocket/send` action sends a payload to a WebSocket URI. Th
 
 - `uri`: The URI of the websocket server (for example, ws://mywebsockethost:80).
 - `payload`: The message that you wish to send to the WebSocket.
+

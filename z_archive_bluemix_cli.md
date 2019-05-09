@@ -1,4 +1,27 @@
+---
 
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-05-09"
+
+keywords: functions cli, serverless, bluemix cli, install, functions plug-in
+
+subcollection: cloud-functions
+
+---
+
+
+
+
+
+{:new_window: target="blank"}
+{:shortdesc: .shortdesc}
+{:screen: .screen}
+{:codeblock: .codeblock}
+{:pre: .pre}
+{:tip: .tip}
+
+# Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cloudfunctions_cli}
 
 
@@ -229,4 +252,4 @@ v1.0.25 (2018-11-23)
 
 1.0.6 (2018-01-30)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
-</staging>
+

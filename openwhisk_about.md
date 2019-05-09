@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-06"
+lastupdated: "2019-05-09"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -183,3 +183,4 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Action semantics](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_semantics)
 * [Limits](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits)
 * [REST API reference](/apidocs/functions)
+

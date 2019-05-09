@@ -10,6 +10,11 @@ subcollection: cloud-functions
 
 ---
 
+
+
+
+
+
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
@@ -188,3 +193,4 @@ ibmcloud fn trigger create periodic \
   --param stopDate "2019-01-31T23:59:00.000Z"
 ```
 {: pre}
+
