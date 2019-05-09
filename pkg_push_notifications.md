@@ -20,9 +20,21 @@ subcollection: cloud-functions
 ---
 
 # Push Notifications
+
+
+## Package options
+
+| Package | Availability | Description |
+| --- | --- | --- |
+| [`/whisk.system/pushnotifications`](#openwhisk_catalog_pushnotifications) | Pre-installed (Not available in Tokyo) | Work with the Push Notification service. |
+| [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications) | Pre-installed (Not available in Tokyo) | Mobile push on device events. |
+| [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, create, update, or delete a webhook |
+
+
+## Push notifications
 {: #openwhisk_catalog_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
+The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
 {: tip}
 
 Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
@@ -38,7 +50,7 @@ The package includes the following actions and feeds:
 
 For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications).
 
-## Creating a Push package binding
+### Creating a Push package binding
 {: #create_push_binding}
 
 To create a Push Notifications package binding, you must specify the following parameters:
@@ -75,7 +87,7 @@ To create a package binding, see the following steps:
   ```
   {: screen}
 
-## Push notification parameters
+### Push notification parameters
 {: #push_parameters}
 
 The `/whisk.system/pushnotifications/sendMessage` action sends push notifications to registered devices. The parameters are as follows:
@@ -136,7 +148,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 - `chromeAppExtTimeToLive`: This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline.
 - `chromeAppExtPayload`: Custom JSON payload that is sent as part of the notification message.
 
-## Sending push notifications
+### Sending push notifications
 {: #send_push_notifications}
 
 See the following example to send a push notification from the Push notification package.
@@ -177,7 +189,7 @@ Example output:
 ```
 {: screen}
 
-# Mobile push on device events
+## Mobile push on device events
 {: #openwhisk_pushnotifications}
 
 This pre-installed package is not available in the Tokyo region.
@@ -231,6 +243,7 @@ To create a trigger that is fired each time a new device registers with the Push
 
 
 ## {{site.data.keyword.mobilepushshort}}
+{: #mobile_push}
 
 The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
 {: shortdesc}
@@ -243,7 +256,7 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 | `/push-notifications/send-message` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
 | `/push-notifications/webhook` | action | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
 
-## Creating a {{site.data.keyword.mobilepushshort}} service instance
+### Creating a {{site.data.keyword.mobilepushshort}} service instance
 {: #service_instance_push}
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
@@ -254,7 +267,7 @@ Before you install the package, you must create a {{site.data.keyword.mobilepush
 
 3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
 
-## Installing the {{site.data.keyword.mobilepushshort}} package
+### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #install_push}
 
 After you have a {{site.data.keyword.mobilepushshort}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.mobilepushshort}} package into your namespace.
@@ -395,7 +408,7 @@ Example output:
 ```
 {: screen}
 
-## Create a webhook
+### Create a webhook
 {: #webhook}
 
 To create a webhook for the {{site.data.keyword.mobilepushshort}} service for onDeviceRegister events:
