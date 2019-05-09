@@ -9,9 +9,9 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Overview
-        openwhisk_use_cases.md
-        openwhisk_about.md
-        openwhisk_compare.md
+        use_cases.md
+        about.md
+        faas.md
 
     {: .topicgroup}
     Tutorials
@@ -22,61 +22,61 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    bluemix_cli.md
+    cli_install.md
 
     {: .topicgroup}
     Creating actions
-        actions_javascript.md
-        actions_go.md
-        actions_swift.md
-        actions_python.md
-        actions_ruby.md
-        actions_docker.md
-        actions_php.md
-        actions_java.md
-        actions_net.md
-        openwhisk_webactions.md
+        z_archive_actions_javascript.md
+        z_archive_actions_go.md
+        z_archive_actions_swift.md
+        z_archive_actions_python.md
+        z_archive_actions_ruby.md
+        z_archive_actions_docker.md
+        z_archive_actions_php.md
+        z_archive_actions_java.md
+        z_archive_actions_net.md
+        z_archive_openwhisk_webactions.md
 
     {: topicgroup}
     Managing actions
-        openwhisk_managing.md
-        creating_action_sequence.md
-        binding_services.md
-        parameters.md
-        openwhisk_packages.md
+        z_archive_openwhisk_managing.md
+        z_archive_creating_action_sequence.md
+        z_archive_binding_services.md
+        z_archive_parameters.md
+        z_archive_openwhisk_packages.md
 
     {: .topicgroup}
     Invoking actions with events
-        openwhisk_triggers_rules.md
+        z_archive_openwhisk_triggers_rules.md
         pkg_alarms.md
         pkg_cloudant.md
         pkg_event_streams.md
         openwhisk_pushnotifications.md
         pkg_github.md
-        openwhisk_feeds.md
-        openwhisk_object_storage.md
+        z_archive_openwhisk_feeds.md
+        z_archive_openwhisk_object_storage.md
 
     pkg_composer.md
-    openwhisk_apigateway.md
-    openwhisk_logs.md
+    apigateway.md
+    z_archive_openwhisk_logs.md
     at-events.md
     deploy.md
     templates.md
 
     {: .topicgroup}
     Pre-installed packages
-        cloudant_actions.md
-        mobile_push_actions.md
+        z_archive_cloudant_actions.md
+        z_archive_mobile_push_actions.md
         pkg_translator.md
         ../services/IoT/gateways/iotgw.md
         pkg_weather.md
         pkg_slack.md
-        openwhisk_websocket.md
+        z_archive_openwhisk_websocket.md
         pkg_text_to_speech.md
-        installable_packages_overview.md
+        pkg_ov.md
         pkg_speech_to_text.md
         pkg_push_notifications.md
-        cloud_object_storage_actions.md
+        z_archive_cloud_object_storage_actions.md
         pkg_watson_assistant.md
         pkg_discovery.md
         pkg_visual_recognition.md
@@ -87,20 +87,20 @@ IBM Cloud Functions
 
     {: .topicgroup}
     SDK and frameworks
-        serverless_framework.md
-        openwhisk_mobile_sdk.md
+        z_archive_serverless_framework.md
+        pkg_mobile_sdk.md
 
     {: .topicgroup}
     Managing Functions in IAM
-        openwhisk_namespaces.md
-        iam.md
+        z_archive_openwhisk_namespaces.md
+        z_archive_iam.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    openwhisk_annotations.md
+    annotations.md
     runtimes.md
-    openwhisk_reference.md
-    openwhisk_regions.md
+    limits.md
+    regions.md
 
     {: .topicgroup}
     API documentation
@@ -120,6 +120,9 @@ IBM Cloud Functions
     ts_index.md
     {: .navgroup-end}
 
-    openwhisk_watson_translator.md
-    z_archive_openwhisk_watson_texttospeech.md
+    z_archive_eventstreams.md
     z_archive_messagehub_actions.md
+    z_archive_openwhisk_cloudant.md
+    z_archive_openwhisk_watson_texttospeech.md
+    z_archive_openwhisk_watson_speechtotext.md
+    
