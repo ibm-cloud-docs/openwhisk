@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-08"
+lastupdated: "2019-05-09"
 
 keywords: speech to text, watson, package, cognitive,
 
@@ -19,7 +19,14 @@ subcollection: cloud-functions
 
 # {{site.data.keyword.speechtotextshort}}
 
-This installable {{site.data.keyword.speechtotextfull}} service provides an API that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
+## Packages 
+
+| Name | Availability | Description |
+| --- | --- | --- | --- |
+| [`speech-to-text-v1`](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html) | Installable | Works with the {{site.data.keyword.speechtotextshort}} V1 service. |
+| `/whisk.system/watson-speechToText` | Pre-installed (Not available in Tokyo) | Call Watson APIs to convert the speech into text |
+
+The installable {{site.data.keyword.speechtotextfull}} service provides an API that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
 The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see the [IBM&reg; Cloud documentation](/docs/services/speech-to-text?topic=speech-to-text-about).
@@ -202,7 +209,7 @@ ibmcloud fn action invoke speech-to-text-v1/list-models -b
 ## Watson: Speech to Text
 {: #openwhisk_catalog_watson_speechtotext}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Speech to Text](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) package using IAM authentication.
+This pre-installed package is not available in the Tokyo region. Please see the installable [Speech to Text](#install_speechtotext) package using IAM authentication.
 {: tip}
 
 The `/whisk.system/watson-speechToText` package offers a convenient way to call Watson APIs to convert the speech into text.
