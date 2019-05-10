@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-10"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -155,7 +155,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 ### Deploying the Upload Image template from the CLI
 {: #image-template-cli}
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli.
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli)
 
 2. Clone the template repo.
     ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-10"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -37,8 +37,6 @@ The following sections provide technical details about the {{site.data.keyword.o
 Packages can contain actions and feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
 
 In {{site.data.keyword.Bluemix_notm}}, an organization+space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
-
-
 
 You can create new Cloud Foundry-based namespaces by [creating Cloud Foundry orgs and spaces](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#region_info). The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
