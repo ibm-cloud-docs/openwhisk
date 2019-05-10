@@ -198,7 +198,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [minuteRate](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_tminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
+| [minuteRate](#limits_triggersminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #limits_triggersfixed}
@@ -215,5 +215,5 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
 * A user cannot change the trigger limit when a trigger is created.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_tlimit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit.
 </staging>

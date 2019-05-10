@@ -143,8 +143,8 @@ You can see how a simple **ibmcloud fn action invoked myAction** passes through 
 
 You can find additional information about {{site.data.keyword.openwhisk_short}} in the following topics:
 
-* [Entity names](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_entities)
-* [Action semantics](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_semantics)
-* [Limits](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits)
+* [Entity names](/docs/openwhisk?topic=cloud-functions-limits#limits_entities)
+* [Action semantics](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
+* [Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [REST API reference](/apidocs/functions)
 </staging>
