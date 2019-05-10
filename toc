@@ -42,7 +42,7 @@ IBM Cloud Functions
         z_archive_openwhisk_managing.md
         z_archive_creating_action_sequence.md
         z_archive_binding_services.md
-        z_archive_parameters.md
+        z_archive_working-with-actions.md
         z_archive_openwhisk_packages.md
 
     {: .topicgroup}
@@ -87,7 +87,7 @@ IBM Cloud Functions
 
     {: .topicgroup}
     SDK and frameworks
-        z_archive_serverless_framework.md
+        z_archive_openwhisk_goserverless.md
         z_archive_openwhisk_mobile_sdk.md
 
     {: .topicgroup}

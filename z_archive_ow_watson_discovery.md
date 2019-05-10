@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-10"
 
 keywords: watson discovery, functions, watson, cognitive
 
