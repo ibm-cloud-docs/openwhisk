@@ -201,7 +201,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 | [minuteRate](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_syslimits_tminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
-{: #limits_increase_fixed}
+{: #limits_triggersfixed}
 
 Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
   1. Select **Support**
@@ -210,7 +210,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   4. Select **Functions** for Technical area of support.
 
 #### minuteRate (Fixed: 5000*)
-{: #limits_minuterate}
+{: #limits_triggersminuterate}
 
 * The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
 * A user cannot change the trigger limit when a trigger is created.

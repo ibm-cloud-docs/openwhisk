@@ -2,16 +2,13 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-10"
 
 keywords: iam, access managment, roles, service roles, policies, access
 
 subcollection: cloud-functions
 
 ---
-
-
-
 
 
 {:new_window: target="_blank"}

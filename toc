@@ -61,7 +61,7 @@ IBM Cloud Functions
     z_archive_openwhisk_logs.md
     activity_tracker.md
     deploy.md
-    templates.md
+    z_archive_serviceauth.md
 
     {: .topicgroup}
     Packages
