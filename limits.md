@@ -105,17 +105,17 @@ The following table lists the default limits for actions.
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [codeSize](/docs/openwhisk?topic=cloud-functions-limits#limits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
-| [concurrent](/docs/openwhisk?topic=cloud-functions-limits#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
-| [logs](/docs/openwhisk?topic=cloud-functions-limits#limits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
-| [memory](/docs/openwhisk?topic=cloud-functions-limits#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
-| [minuteRate](/docs/openwhisk?topic=cloud-functions-limits#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
-| [openulimit](/docs/openwhisk?topic=cloud-functions-limits#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
-| [parameters](/docs/openwhisk?topic=cloud-functions-limits#limits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
-| [proculimit](/docs/openwhisk?topic=cloud-functions-limits#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
-| [result](/docs/openwhisk?topic=cloud-functions-limits#limits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
-| [sequenceMaxActions](/docs/openwhisk?topic=cloud-functions-limits#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
-| [timeout](/docs/openwhisk?topic=cloud-functions-limits#limits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
+| [codeSize](#limits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
+| [concurrent](#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
+| [logs](#limits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| [memory](#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
+| [minuteRate](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
+| [openulimit](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
+| [parameters](#limits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
+| [proculimit](#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
+| [result](#limits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
+| [sequenceMaxActions](#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
+| [timeout](#limits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
 {: #limits_increase}
