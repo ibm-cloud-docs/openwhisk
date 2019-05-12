@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-12"
 
 keywords: mobile, push notifications, binding, notifications
 
@@ -41,7 +41,7 @@ The package includes the following actions and feeds:
 For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications).
 
 ## Creating a Push package binding
-{: #create_push_binding}
+{: #create_push_binding_mobile}
 
 To create a Push Notifications package binding, you must specify the following parameters:
 
@@ -78,7 +78,7 @@ To create a package binding, see the following steps:
   {: screen}
 
 ## Push notification parameters
-{: #push_parameters}
+{: #push_parameters_mobile}
 
 The `/whisk.system/pushnotifications/sendMessage` action sends push notifications to registered devices. The parameters are as follows:
 - `text`: The notification message to be shown to the user. For example, `-p text "Hi, OpenWhisk send a notification"`.
@@ -139,7 +139,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 - `chromeAppExtPayload`: Custom JSON payload that is sent as part of the notification message.
 
 ## Sending push notifications
-{: #send_push_notifications}
+{: #send_push_notifications_mobile}
 
 See the following example to send a push notification from the Push notification package.
 
@@ -189,7 +189,7 @@ Learn how to configure the Push Notification service to fire a trigger when ther
 {: shortdesc}
 
 ## Push parameters
-{: #push_notif_parameters}
+{: #push_notif_parameters_mobile}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 - `appId`: The {{site.data.keyword.Bluemix_notm}} app GUID.
@@ -199,7 +199,7 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
   You can use the wildcard character "`*`" to be notified for all events.
 
 ## Firing a trigger event on Push Notifications service activity
-{: #trigger_push_notify}
+{: #trigger_push_notify_mobile}
 
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
 
