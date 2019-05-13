@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-10"
+lastupdated: "2019-05-13"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -120,7 +120,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 ## Deploying the Upload Image template
 {: #image-template}
 
-The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
+The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_full_notm}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
 
 ### Deploying the Upload Image template from the UI
@@ -134,13 +134,13 @@ The Upload Image template creates a web action that allows you to upload an imag
 
 4. Enter a name for your package or use the default name `upload-image`, and click **Next**.
 
-6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_short}}** list, select one of the following options:
+6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_full_notm}}** list, select one of the following options:
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
       2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
       3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
-  * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
-  * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
+  * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_full_notm}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
+  * **Existing Instances**: If you have any existing {{site.data.keyword.cos_full_notm}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
 7. Click **Deploy**.
 
@@ -149,7 +149,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 9. In the **Web Action** section, copy the link without the .json suffix and paste it into your browser's address bar. The interface for the template's web action is displayed.
 
 10. Optional: After the template deploys, you can navigate to the **Actions** dashboard to customize the code in the two new packages:
-    * The `cloud-object-storage` package, which contains actions that work with {{site.data.keyword.cos_short}} instances
+    * The `cloud-object-storage` package, which contains actions that work with {{site.data.keyword.cos_full_notm}} instances
     * The template package (default name `upload-image`), which contains the `app` action
 
 ### Deploying the Upload Image template from the CLI
@@ -169,7 +169,7 @@ The Upload Image template creates a web action that allows you to upload an imag
     ```
     {: pre}
 
-3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_short}} bucket as environment variables.
+3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_full_notm}} bucket as environment variables.
     ```
     PACKAGE_NAME=<name> BUCKET_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-13"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive
 
@@ -93,7 +93,7 @@ With the amount of data now available, application development requires the abil
 
 Cognitive technologies can be effectively combined with {{site.data.keyword.openwhisk_short}} to create powerful applications. For example, IBM Alchemy API and Watson Visual Recognition can be used with {{site.data.keyword.openwhisk_short}} to automatically extract useful information from videos without having to watch them. This technology is the “cognitive” extension of the [Data Processing](#data-processing) use case that was discussed earlier. Another good use for {{site.data.keyword.openwhisk_short}} is to implement Bot function that is combined with cognitive services.
 
-A sample application, [Dark vision](https://github.com/IBM-Bluemix/openwhisk-darkvisionapp), is provided and does just that. In this application, the user uploads a video or image by using the Dark Vision web application, which stores it in an {{site.data.keyword.cloudant_short_notm}} DB. Once the video is uploaded, {{site.data.keyword.openwhisk_short}} detect the new video by listening to {{site.data.keyword.cloudant_short_notm}} changes (trigger). {{site.data.keyword.openwhisk_short}} then triggers the video extractor action. During its execution, the extractor produces frames (images) and stores them in {{site.data.keyword.cloudant_short_notm}}. The frames are then processed with Watson Visual Recognition, and the results are stored in the same {{site.data.keyword.cloudant_short_notm}} DB. The results can be viewed by using the Dark Vision web application or an iOS application. {{site.data.keyword.cos_full_notm}} can be used in addition to {{site.data.keyword.cloudant_short_notm}}, where video and image metadata are stored in {{site.data.keyword.cloudant_short_notm}}, and the media files are stored in {{site.data.keyword.cos_short}}.
+A sample application, [Dark vision](https://github.com/IBM-Bluemix/openwhisk-darkvisionapp), is provided and does just that. In this application, the user uploads a video or image by using the Dark Vision web application, which stores it in an {{site.data.keyword.cloudant_short_notm}} DB. Once the video is uploaded, {{site.data.keyword.openwhisk_short}} detect the new video by listening to {{site.data.keyword.cloudant_short_notm}} changes (trigger). {{site.data.keyword.openwhisk_short}} then triggers the video extractor action. During its execution, the extractor produces frames (images) and stores them in {{site.data.keyword.cloudant_short_notm}}. The frames are then processed with Watson Visual Recognition, and the results are stored in the same {{site.data.keyword.cloudant_short_notm}} DB. The results can be viewed by using the Dark Vision web application or an iOS application. {{site.data.keyword.cos_full_notm}} can be used in addition to {{site.data.keyword.cloudant_short_notm}}, where video and image metadata are stored in {{site.data.keyword.cloudant_short_notm}}, and the media files are stored in {{site.data.keyword.cos_full_notm}}.
 
 An [example iOS Swift application](https://github.com/gconan/BluemixMobileServicesDemoApp) is available that uses {{site.data.keyword.openwhisk_short}}, IBM Mobile Analytics, and Watson to analyze tone and post to a Slack channel.
 

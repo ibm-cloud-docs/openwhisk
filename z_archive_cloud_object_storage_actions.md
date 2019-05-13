@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-13"
 
 keywords: object storage, bucket, package
 
@@ -23,14 +23,14 @@ subcollection: cloud-functions
 # Cloud Object Storage package
 {: #cloud_object_storage_actions}
 
-The {{site.data.keyword.cos_full}} package provides a set of actions for interacting with {{site.data.keyword.cos_full_notm}} instances. These actions allow you to read, write, and delete from the buckets that are present on an {{site.data.keyword.cos_short}} instance.
+The {{site.data.keyword.cos_full}} package provides a set of actions for interacting with {{site.data.keyword.cos_full_notm}} instances. These actions allow you to read, write, and delete from the buckets that are present on an {{site.data.keyword.cos_full_notm}} instance.
 {: shortdesc}
 
-The {{site.data.keyword.cos_short}} package includes the following actions:
+The {{site.data.keyword.cos_full_notm}} package includes the following actions:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/cloud-object-storage` | package | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Work with an {{site.data.keyword.cos_short}} instance. |
+| `/cloud-object-storage` | package | apikey, resource_instance_id, cos_hmac_keys.access_key_id, cos_hmac_keys.secret_access_key | Work with an {{site.data.keyword.cos_full_notm}} instance. |
 | `/cloud-object-storage/object-write` | action | bucket, key, body, endpoint, ibmAuthEndpoint | Write an object to a bucket. |
 | `/cloud-object-storage/object-read` | action | bucket, key, endpoint, ibmAuthEndpoint | Read an object from a bucket. |
 | `/cloud-object-storage/object-delete` | action | bucket, key, endpoint, ibmAuthEndpoint | Delete an object from a bucket. |
@@ -45,11 +45,11 @@ The {{site.data.keyword.cos_short}} package includes the following actions:
 
 The following parameters are expected to be bound to the package; this will make them automatically available for all actions. It is also possible to specify these parameters when invoking one of the actions.
 
-**apikey**: The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_short}} instance.
+**apikey**: The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.
 
-**resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cos_short}} instance indentifier.
+**resource_instance_id**: The `resource_instance_id` parameter is the {{site.data.keyword.cos_full_notm}} instance indentifier.
 
-**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_short}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_short}} instance.
+**cos_hmac_keys**: The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which includes the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance.
 
 ### Action parameters
 
@@ -57,7 +57,7 @@ The following parameters are specified when invoking the individual actions.  No
 
 **bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short}} bucket.
 
-**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_short}} endpoint used to connect to your {{site.data.keyword.cos_short}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_short}} documentation](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
+**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 **expires**: The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes.
 
@@ -73,18 +73,18 @@ The following parameters are specified when invoking the individual actions.  No
 ## Creating an IBM Cloud Object Storage service instance
 {: #cloud_object_storage_service_instance}
 
-Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
+Before you install the package, you must request an instance of {{site.data.keyword.cos_full_notm}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision).
+1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision).
 
-2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
+2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_full_notm}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
 3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
-## Installing the {{site.data.keyword.cos_short}} package
+## Installing the {{site.data.keyword.cos_full_notm}} package
 {: #cloud_object_storage_installation}
 
-After you have an {{site.data.keyword.cos_short}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_short}} package into your namespace.
+After you have an {{site.data.keyword.cos_full_notm}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_full_notm}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -94,15 +94,15 @@ Before you begin:
 
 [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 
-To install the {{site.data.keyword.cos_short}} package:
+To install the {{site.data.keyword.cos_full_notm}} package:
 
-1. Clone the {{site.data.keyword.cos_short}} package repo.
+1. Clone the {{site.data.keyword.cos_full_notm}} package repo.
     ```
     git clone https://github.com/ibm-functions/package-cloud-object-storage.git
     ```
     {: pre}
 
-2. Navigate to either the `runtimes/nodejs` or `runtimes/python` directory. Actions in the {{site.data.keyword.cos_short}} package are deployed in the runtime that you choose.
+2. Navigate to either the `runtimes/nodejs` or `runtimes/python` directory. Actions in the {{site.data.keyword.cos_full_notm}} package are deployed in the runtime that you choose.
     ```
     cd package-cloud-object-storage/runtimes/nodejs
     ```
@@ -127,7 +127,7 @@ To install the {{site.data.keyword.cos_short}} package:
     ```
     {: screen}
 
-5. Bind the credentials from the {{site.data.keyword.cos_short}} instance you created to the package.
+5. Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package.
     ```
     ibmcloud fn service bind cloud-object-storage cloud-object-storage
     ```
@@ -139,7 +139,7 @@ To install the {{site.data.keyword.cos_short}} package:
     ```
     {: screen}
 
-6. Verify that the package is configured with your {{site.data.keyword.cos_short}} service instance credentials.
+6. Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.
     ```
     ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage parameters
     ```
@@ -174,7 +174,7 @@ To install the {{site.data.keyword.cos_short}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace in which you want to install the {{site.data.keyword.cos_short}} package. Namespaces are formed from the combined `org` and `space` names.
+2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package. Namespaces are formed from the combined `org` and `space` names.
 
 3. Click **Install Packages**.
 
@@ -191,13 +191,13 @@ To install the {{site.data.keyword.cos_short}} package:
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
-## Writing to an {{site.data.keyword.cos_short}} bucket
+## Writing to an {{site.data.keyword.cos_full_notm}} bucket
 {: #cloud_object_storage_write}
 
-You can use the `object-write` action to write an object to an {{site.data.keyword.cos_short}} bucket.
+You can use the `object-write` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket.
 {: shortdesc}
 
-**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_short}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
+**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_full_notm}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
 
 ### Write to a bucket from the CLI
 {: #write_bucket_cli}
@@ -260,13 +260,13 @@ Example output:
     ```
     {: screen}
 
-## Reading from an {{site.data.keyword.cos_short}} bucket
+## Reading from an {{site.data.keyword.cos_full_notm}} bucket
 {: #cloud_object_storage_read}
 
-You can use the `object-read` action to read from an object in an {{site.data.keyword.cos_short}} bucket.
+You can use the `object-read` action to read from an object in an {{site.data.keyword.cos_full_notm}} bucket.
 {: shortdesc}
 
-**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_short}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
+**Note**: In the following steps, the name `testbucket` is used as an example. Buckets in {{site.data.keyword.cos_full_notm}} must be globally unique, so you must replace `testbucket` with a unique bucket name.
 
 ### Read from a bucket from the CLI
 {: #read_bucket_cli}
