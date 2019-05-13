@@ -34,7 +34,7 @@ subcollection: cloud-functions
 ## Push notifications
 {: #ow_pushnotifications}
 
-The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-mobile_push) package for the action `sendMessage` using IAM authentication
+The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](#mobile_push) package for the action `sendMessage` using IAM authentication
 {: tip}
 
 Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
