@@ -123,5 +123,6 @@ IBM Cloud Functions
     z_archive_eventstreams.md
     z_archive_messagehub_actions.md
     z_archive_openwhisk_cloudant.md
+    z_archive_ow_push_notifications.md
 
     

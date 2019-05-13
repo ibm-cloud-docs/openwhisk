@@ -135,7 +135,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 #### concurrent (Fixed: 1000*)
 {: #limits_concurrent}
 * The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_limit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
 
 #### logs (MB) (Default: 10 MB)
 {: #limits_logs}
@@ -153,7 +153,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 {: #limits_minuterate}
 * The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#increase_fixed_limit) for detailed instructions on how to increase this limit.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
 
 #### openulimit (Fixed: 1024:1024)
 {: #limits_openulimit}

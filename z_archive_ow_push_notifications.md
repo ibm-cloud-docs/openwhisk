@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-10"
+lastupdated: "2019-05-13"
 
 keywords: push notifications, functions, webhooks
 
@@ -27,12 +27,12 @@ subcollection: cloud-functions
 
 | Package | Availability | Description |
 | --- | --- | --- |
-| [`/whisk.system/pushnotifications`](#openwhisk_catalog_pushnotifications) | Pre-installed (Not available in Tokyo) | Send push notification to one or more specified devices. |
-| [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
+| [`/whisk.system/pushnotifications`](#ow_pushnotifications) | Pre-installed (Not available in Tokyo) | Send push notification to one or more specified devices. |
+| [`/whisk.system/pushnotifications/webhook`](#openwhisk_pushnotifications_mobile) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
 | [`/push-notifications`](#mobile_push) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 
 ## Push notifications
-{: #openwhisk_catalog_pushnotifications}
+{: #ow_pushnotifications}
 
 The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-ow_push_notifications) package for the action `sendMessage` using IAM authentication
 {: tip}
@@ -48,7 +48,7 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
 
 
-For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications).
+For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications_mobile).
 
 ### Creating a Push package binding
 {: #create_push_binding}
@@ -190,7 +190,7 @@ Example output:
 {: screen}
 
 ## Mobile push on device events
-{: #openwhisk_pushnotifications}
+{: #openwhisk_pushnotifications_mobile}
 
 This pre-installed package is not available in the Tokyo region.
 {: tip}
