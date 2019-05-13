@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-12"
+lastupdated: "2019-05-13"
 
 keywords: mobile, push notifications, binding, notifications
 
@@ -23,9 +23,6 @@ subcollection: cloud-functions
 
 # Push Notification package
 {: #openwhisk_catalog_pushnotifications}
-
-This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-ow_push_notifications) package for the action `sendMessage` using IAM authentication
-{: tip}
 
 Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
 {: shortdesc}
