@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-13"
 
 keywords: docker, actions, serverless
 
@@ -130,7 +130,7 @@ You must have a Docker Hub account. You can set up a free Docker ID and account 
     {: pre}
 
 9. Optional: You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument makes it easier to create and deploy an executable that runs inside the standard Docker action SDK.
-    1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zip it into `exec.zip`.
+    1. The above steps create a binary executable inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.
     2. Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.
         ```
         ibmcloud fn action create example exec.zip --native

@@ -53,7 +53,7 @@ The following parameters are expected to be bound to the package; this will make
 
 ### Action parameters
 
-The following parameters are specified when invoking the individual actions.  Not all of these parameters are suppoted by every action; refer to the above table to see which parameters are supporte by which action.
+The following parameters are specified when invoking the individual actions.  Not all of these parameters are supported by every action; refer to the above table to see which parameters are supported by which action.
 
 **bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short}} bucket.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-13"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -70,7 +70,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
 
 ## Setting up a Weather package outside {{site.data.keyword.Bluemix_notm}}
 
-If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Weather Company Data service outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your WWeather Company Data service. You need the Weather Company Data service user name, and password.
+If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Weather Company Data service outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Weather Company Data service. You need the Weather Company Data service user name, and password.
 
 Create a package binding that is configured for your Weather service.
 ```

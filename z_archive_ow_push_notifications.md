@@ -263,7 +263,7 @@ Before you install the package, you must create a {{site.data.keyword.mobilepush
 
 1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
 
-2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notificiations service instance.
+2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
 
 3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
 
