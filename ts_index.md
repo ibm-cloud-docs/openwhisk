@@ -33,6 +33,21 @@ If you have problems while you're working with {{site.data.keyword.openwhisk}}, 
 {: shortdesc}
 
 
+
+## Action is failing
+{: #ts_action_fails}
+
+{: tsSymptoms}
+The action is failing.
+
+{: tsCauses}
+One explanation for a failing app is that a deprecated runtime is being used. An action cannot be completed successfully until the runtime is updated to a supported one.
+
+{: tsResolve}
+To see which runtime is used for the action, run `ibmcloud fn action get ACTION_NAME` and check for `deprecated=true` in the query response. If the runtime is deprecated, [update the runtime](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#changing-action-runtime)
+
+
+
 ## System limits were reached
 {: #ts_limit_reached}
 
