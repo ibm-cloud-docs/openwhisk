@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-13"
+lastupdated: "2019-05-14"
 
 keywords: faq, runtimes, actions, memory, monitoring
 
@@ -13,6 +13,15 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
+{:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
 
 

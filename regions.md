@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-09"
+lastupdated: "2019-05-14"
 
 keywords: regions, endpoints, api, cli, plug-in
 
@@ -10,12 +10,18 @@ subcollection: cloud-functions
 
 ---
 
-{:new_window: target="blank"}
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 # Regions
 {: #cloudfunctions_regions}
@@ -26,7 +32,7 @@ subcollection: cloud-functions
   ibmcloud login -a <endpoint>
   ```
   {: pre}
-  
+
   <table>
     <tr>
       <th>Region</th>

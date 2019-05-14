@@ -12,10 +12,16 @@ subcollection: cloud-functions
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
-{:codeblock: .codeblock}
 {:screen: .screen}
-{:tip: .tip}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 
 # Viewing {{site.data.keyword.cloudaccesstrailshort}} events
