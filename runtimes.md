@@ -40,7 +40,7 @@ The `runtimes` section of the response contains the set of available runtimes.
 The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/) and the tag that is used.
 
 
-The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs6action`.
+The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action`.
 The tags can be version numbers like `1.9.0` or the short form of a git commit hash, like `b99d71e`.
 
 Example image fields.
@@ -48,7 +48,7 @@ Example image fields.
   image:   "ibmfunctions/action-nodejs-v10:1.9.0"
   ```
   ```
-  image:   "openwhisk/nodejs6action:b99d71e"
+  image:   "openwhisk/nodejs8action:b99d71e"
   ```
 
 Runtimes are updated on a regular basis. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
@@ -73,6 +73,8 @@ These runtimes are deprecated:
     <li><code>swift:4.1</code> (deprecated)</li>
     </ul></li>
 </ul>
+
+
 
 
 
@@ -504,7 +506,7 @@ If you have an action that is not compiled, and uses the **SwiftyJSON** package,
 ## PHP runtimes
 {: #openwhisk_ref_php}
 
-By default, all PHP actions are executed in a version 7.3 environment. 
+By default, all PHP actions are executed in a version 7.3 environment.
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -520,7 +522,7 @@ The following PHP extensions are available in addition to the standard ones:
 - soap
 - zip
 
-## Docker runtimes
+## Docker runtime
 {: #openwhisk_ref_docker}
 
 Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
@@ -530,3 +532,27 @@ The Docker skeleton is a convenient way to build OpenWhisk compatible Docker ima
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
+
+
+## Go runtime
+{: #runtimes_go}
+
+By default, all Go actions are executed in a version 1.11 environment.
+
+
+## Java runtimes
+{: #runtimes_java}
+
+By default, all Java actions are executed in a version 8 environment.
+
+
+## Ruby runtimes
+{: #runtimes_ruby}
+
+By default, all Ruby actions are executed in a version 2.5 environment.
+
+
+## .NET Core runtimes
+{: #runtimes_dotnet}
+
+By default, all .NET Core actions are executed in a version 2.2 environment.
