@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-05-15"
 
-keywords: message hub, package, messages, events
+keywords: event streams, package, messages, events
 
 subcollection: cloud-functions
 
