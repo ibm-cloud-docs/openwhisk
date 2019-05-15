@@ -74,8 +74,15 @@ Some limits can be increased if a business case can justify higher safety limit 
 ## Getting help and support
 {: #gettinghelp}
 
-You can get help by searching for information or by asking questions through a forum. You can also open a support ticket. When you are using the forums to ask a question, be sure to tag your question so that it is seen by the {{site.data.keyword.Bluemix_notm}} development teams.
+Still having issues with your function?
+{: shortdesc}
 
-  * If you have technical questions about {{site.data.keyword.openwhisk_short}}, post your question on [Stack Overflow ![External link icon](../icons/launch-glyph.svg "External link icon")](https://stackoverflow.com/search?q=ibm-cloud-functions) and tag your question with "ibm-cloud-functions".
-
-For more information about getting support, see [How do I get the support that I need?](/docs/get-support?topic=get-support-getting-customer-support#getting-customer-support).
+-   To see whether {{site.data.keyword.Bluemix_notm}} is available, [check the {{site.data.keyword.Bluemix_notm}} status page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/status?selected=status).
+    - From the console, check if you have any relevant **Notifications** ![Notifications icon](../icons/Notification_PUP.svg "Notifications icon").
+-   Review the forums to see whether other users ran into the same issue. When you use the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.Bluemix_notm}} development teams.
+    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ![External link icon](../icons/launch-glyph.svg "External link icon")](https://stackoverflow.com/search?q=ibm-cloud-functions) and tag your question with with `ibm-cloud-functions`.
+    -   For questions about the service and getting started instructions, use the [IBM Developer Answers ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.ibm.com/answers/topics/functions/?smartspace=bluemix) forum. Include the `ibm-cloud` and `functions` tags.
+    See [Getting help](/docs/get-support?topic=get-support-getting-customer-support#using-avatar) for more details about using the forums.
+-   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
+When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
+{: tip}
