@@ -56,7 +56,16 @@ Runtimes are updated on a regular basis. These updates include security fixes an
 Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
-{[runtimes_deprecated.md]}
+<ul>
+  <li><code>nodejs:6</code> (deprecated)</li>
+  <li><code>php:7.1</code> (deprecated)</li>
+  <li><code>php:7.2</code> (deprecated)</li>
+  <li><code>swift:3</code> (deprecated)</li>
+  <li><code>swift:3.1.1</code> (deprecated)</li>
+  <li><code>swift:4.1</code> (deprecated)</li>
+  <li><code>ballerina:0.990</code> (deprecated)</li>
+</ul>
+
 
 
 
@@ -489,7 +498,7 @@ Swift 4.2 actions can use the following packages when using single Swift source 
 If you have an action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action.
 
 
-## PHP runtimes
+## PHP runtime
 {: #openwhisk_ref_php}
 
 By default, all PHP actions are executed in a version 7.3 environment.
@@ -520,25 +529,29 @@ The main binary program must be located in `/action/exec` inside the container. 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 
 
+
 ## Go runtime
 {: #runtimes_go}
 
 By default, all Go actions are executed in a version 1.11 environment.
 
 
-## Java runtimes
+
+## Java runtime
 {: #runtimes_java}
 
 By default, all Java actions are executed in a version 8 environment.
 
 
-## Ruby runtimes
+
+## Ruby runtime
 {: #runtimes_ruby}
 
 By default, all Ruby actions are executed in a version 2.5 environment.
 
 
-## .NET Core runtimes
+
+## .NET Core runtime
 {: #runtimes_dotnet}
 
 By default, all .NET Core actions are executed in a version 2.2 environment.
