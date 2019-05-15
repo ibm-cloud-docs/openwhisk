@@ -39,7 +39,7 @@ Click an option to get started:
 
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
-<area href="#openwhisk_start_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
+<area href="#gs_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
 <area href="/docs/openwhisk?topic=cloud-functions-cli_install" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
 <area href="/docs/openwhisk?topic=cloud-functions-about" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
 </map>
