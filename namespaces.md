@@ -64,7 +64,7 @@ When you create your namespace, the following artifacts are created at the same 
 
 **What do I do if I have a Cloud Foundry-based namespace?**
 
-Your Cloud Foundry-based namespaces will continue to work. However, in order to take advantage of new features, you must [migrate your namespaces to IAM](#namespaces_migrating).
+Your Cloud Foundry-based namespaces will continue to work. However, in order to take advantage of new features, you must [migrate your namespaces to IAM](/docs/resources?topic=resources-migrate).
 
 </br>
 

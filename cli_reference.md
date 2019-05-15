@@ -274,7 +274,7 @@ ibmcloud fn action invoke <em>ACTION_NAME</em> [--blocking] [--param <em>KEY</em
    <dd>The name of the action. This value is required. </dd>
 
    <dt>--blocking, -b</dt>
-   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time <em>LIMIT</em> <em>VALUE</em>](/docs/openwhisk?topic=cloud-functions-<em>LIMIT</em>s#<em>LIMIT</em>s_sys<em>LIMIT</em>s). This flag is optional.</dd>
+   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time <em>LIMIT</em> <em>VALUE</em>](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
 
    <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
    <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
@@ -1441,7 +1441,7 @@ Set global properties for your CLI environment or view properties about the <cod
 
 <br />
 ### ibmcloud fn property get
-{: #cli_prop_unset}
+{: #cli_prop_get}
 
 View the metadata details for a property from the <code>wsk</code> CLI.
 
