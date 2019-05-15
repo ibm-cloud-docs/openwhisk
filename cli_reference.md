@@ -41,7 +41,7 @@ Run these commands to manage the entities that make up your functions.
 {: #cli_action}
 
 
-<br />
+
 ### ibmcloud fn action create
 {: #cli_action_create}
 
@@ -452,7 +452,7 @@ ibmcloud fn action update hello folder/hello_world.js
 ## Activation commands
 {: #cli_activation}
 
-<br />
+
 ### ibmcloud fn activation get
 {: #cli_activation_get}
 
@@ -644,7 +644,7 @@ ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 ## API commands
 {: #cli_api}
 
-<br />
+
 ### ibmcloud fn api create
 {: #cli_api_create}
 
@@ -834,7 +834,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 ## Deployment commands
 {: #cli_deploy_cmds}
 
-<br />
+
 ### ibmcloud fn deploy
 {: #cli_deploy}
 
@@ -993,7 +993,7 @@ ibmcloud fn list [--name-sort]
 ## Namespace commands
 {: #cli_namespace}
 
-<br />
+
 ### ibmcloud fn namespace create
 {: #cli_namespace_create}
 
@@ -1176,7 +1176,7 @@ ibmcloud fn namespace update <em>NAMESPACE<em> [NEW_<em>NAMESPACE<em>_NAME] [--d
 ## Package commands
 {: #cli_pkg}
 
-<br />
+
 ### ibmcloud fn package bind
 {: #cli_pkg_bind}
 
@@ -1439,7 +1439,7 @@ ibmcloud fn package update <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 
 Set global properties for your CLI environment or view properties about the <code>wsk</code> CLI, which runs as part of the `ibmcloud fn` CLI.
 
-<br />
+
 ### ibmcloud fn property get
 {: #cli_prop_get}
 
@@ -1588,7 +1588,7 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION<em>] [--au
 ## Rule commands
 {: #cli_rule}
 
-<br />
+
 ### ibmcloud fn rule create
 {: #cli_rule_create}
 
@@ -1827,7 +1827,7 @@ ibmcloud fn sdk install <em>COMPONENT</em> [--limit <em>NUMBER_OF_TRIGGERS</em>]
 ## Service commands
 {: #cli_service}
 
-<br />
+
 ### ibmcloud fn service bind
 {: #cli_service_bind}
 
@@ -1901,7 +1901,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_<em>ACTION_NAME</em>
 ## Trigger commands
 {: #cli_trigger}
 
-<br />
+
 ### ibmcloud fn trigger create
 {: #cli_trigger_create}
 
