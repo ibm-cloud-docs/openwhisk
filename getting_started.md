@@ -30,10 +30,9 @@ With {{site.data.keyword.openwhisk}} you can use your favorite programming langu
 {: shortdesc}
 
 ## Working with actions
-{: #creating_actions}
-{: #openwhisk_actions}
+{: #gs_actions}
 
-With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one specific task that is called an action. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about)
+With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one specific task that is called an action. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about).
 {:shortdesc}
 
 Click an option to get started:
@@ -46,7 +45,7 @@ Click an option to get started:
 </map>
 
 ## Creating an action in the GUI
-{: #openwhisk_start_hello_world}
+{: #gs_hello_world}
 
 To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWorld quickstart template.
 
@@ -76,12 +75,12 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWo
 Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.
 
 ## Creating an action in the CLI
-{: #openwhisk_start_hello_world_cli}
+{: #gs_hello_world_cli}
 
 Get up and running quickly with the [HelloWorld JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
 ## What's next?
-{: #getting_started_next_steps}
+{: #gs_next_steps}
 
 So you've completed your first template deploy, where do you go from here? You can:
 
