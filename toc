@@ -165,3 +165,4 @@ IBM Cloud Functions
     z_archive_working-with-actions.md
     z_archive_openwhisk_goserverless.md
     z_archive_serviceauth.md
+    openwhisk_watson_translator.md

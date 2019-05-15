@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-14"
+lastupdated: "2019-05-15"
 
 keywords: regions, endpoints, api, cli, plug-in
 
@@ -32,6 +32,8 @@ subcollection: cloud-functions
   ibmcloud login -a <endpoint>
   ```
   {: pre}
+
+  <br />
 
   <table>
     <tr>
