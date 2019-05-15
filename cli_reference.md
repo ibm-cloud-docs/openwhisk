@@ -79,45 +79,48 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
    <dt>--kind <em>LANGUAGE</em></dt>
    <dd>The runtime for your app. This flag is optional. If no <em>VALUE</em> is specified, the default version for the detected runtime is used.
      Possible <em>VALUES</em> for the --kind option:
-     <ul>
-  <li>Go
-    <ul>
-    <li><code>go:1.11</code> (default)</li>
-    </ul></li>
-  <li>Java
-    <ul>
-    <li><code>java:8</code> (default)</li>
-    </ul></li>
-  <li>JavaScript
-    <ul>
-    <li><code>nodejs:8</code></li>
-    <li><code>nodejs:10</code> (default)</li>
-    </ul></li>
-  <li>PHP
-    <ul>
-    <li><code>php:7.3</code> (default)</li>
-    </ul></li>
-  <li>Python
-    <ul>
-    <li><code>python:2</code> (default)</li>
-    <li><code>python:3</code></li>
-    <li><code>python:3.6</code></li>
-    <li><code>python:3.7</code></li>
-    <li><code>python-jessie:3</code></li>
-    </ul></li>
-  <li>Ruby
-    <ul>
-    <li><code>ruby:2.5</code> (default)</li>
-    </ul></li>
-  <li>Swift
-    <ul>
-    <li><code>swift:4.2</code> (default)</li>
-    </ul></li>
-  <li>.NET Core
-    <ul><li><code>dotnet:2.2</code> (default)</li>
-    </ul></li>
-</ul>
-
+     <table>
+  <tr>
+    <th id="language-col">Language</th>
+    <th id="kind-identifier-col">Kind identifier</th>
+  </tr>
+  <tr>
+    <td id="language-col-nodejs" headers="language-col">Node.js</td>
+    <td headers="kind-identifier-col language-col-nodejs"> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+  </tr>
+  <tr>
+    <td id="language-col-python" headers="language-col">Python</td>
+    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code>,<code>python:2</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-swift" headers="language-col">Swift</td>
+    <td headers="kind-identifier-col language-col-swift"><code>swift:4.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-php" headers="language-col">PHP</td>
+    <td headers="kind-identifier-col language-col-php"><code>php:7.3</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-ruby" headers="language-col">Go</td>
+    <td headers="kind-identifier-col language-col-ruby"><code>go:1.11</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-ruby" headers="language-col">Ruby</td>
+    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-java" headers="language-col">Java</td>
+    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-java" headers="language-col">.NET Core</td>
+    <td headers="kind-identifier-col language-col-java"><code>dotnet:2.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
+  </tr>
+</table>
+{: caption="Table 1. Supported runtimes" caption-side="top"}
        </dd>
 
    <dt>--logsize <em>LIMIT</em>, -l <em>LIMIT</em></dt>
@@ -368,45 +371,48 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
   <dt>--kind LANGUAGE</dt>
   <dd>The runtime for your app. This flag is optional. If no <em>VALUE</em> is specified, the default version for the detected runtime is used.
     Possible values for the --kind option:
-    <ul>
-  <li>Go
-    <ul>
-    <li><code>go:1.11</code> (default)</li>
-    </ul></li>
-  <li>Java
-    <ul>
-    <li><code>java:8</code> (default)</li>
-    </ul></li>
-  <li>JavaScript
-    <ul>
-    <li><code>nodejs:8</code></li>
-    <li><code>nodejs:10</code> (default)</li>
-    </ul></li>
-  <li>PHP
-    <ul>
-    <li><code>php:7.3</code> (default)</li>
-    </ul></li>
-  <li>Python
-    <ul>
-    <li><code>python:2</code> (default)</li>
-    <li><code>python:3</code></li>
-    <li><code>python:3.6</code></li>
-    <li><code>python:3.7</code></li>
-    <li><code>python-jessie:3</code></li>
-    </ul></li>
-  <li>Ruby
-    <ul>
-    <li><code>ruby:2.5</code> (default)</li>
-    </ul></li>
-  <li>Swift
-    <ul>
-    <li><code>swift:4.2</code> (default)</li>
-    </ul></li>
-  <li>.NET Core
-    <ul><li><code>dotnet:2.2</code> (default)</li>
-    </ul></li>
-</ul>
-
+    <table>
+  <tr>
+    <th id="language-col">Language</th>
+    <th id="kind-identifier-col">Kind identifier</th>
+  </tr>
+  <tr>
+    <td id="language-col-nodejs" headers="language-col">Node.js</td>
+    <td headers="kind-identifier-col language-col-nodejs"> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+  </tr>
+  <tr>
+    <td id="language-col-python" headers="language-col">Python</td>
+    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code>,<code>python:2</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-swift" headers="language-col">Swift</td>
+    <td headers="kind-identifier-col language-col-swift"><code>swift:4.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-php" headers="language-col">PHP</td>
+    <td headers="kind-identifier-col language-col-php"><code>php:7.3</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-ruby" headers="language-col">Go</td>
+    <td headers="kind-identifier-col language-col-ruby"><code>go:1.11</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-ruby" headers="language-col">Ruby</td>
+    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-java" headers="language-col">Java</td>
+    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code> (default)</td>
+  </tr>
+  <tr>
+    <td id="language-col-java" headers="language-col">.NET Core</td>
+    <td headers="kind-identifier-col language-col-java"><code>dotnet:2.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
+  </tr>
+</table>
+{: caption="Table 1. Supported runtimes" caption-side="top"}
       </dd>
 
   <dt>--logsize <em>LIMIT</em>, -l <em>LIMIT</em></dt>
@@ -1438,7 +1444,6 @@ ibmcloud fn package update <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 {: #cli_prop}
 
 Set global properties for your CLI environment or view properties about the <code>wsk</code> CLI, which runs as part of the `ibmcloud fn` CLI.
-
 
 ### ibmcloud fn property get
 {: #cli_prop_get}

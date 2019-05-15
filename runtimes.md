@@ -56,28 +56,7 @@ Runtimes are updated on a regular basis. These updates include security fixes an
 Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
-<ul>
-  <li>JavaScript
-    <ul>
-    <li><code>nodejs:6</code> (deprecated)</li>
-    </ul></li>
-  <li>PHP
-    <ul>
-    <li><code>php:7.1</code> (deprecated)</li>
-    <li><code>php:7.2</code> (deprecated)</li>
-    </ul></li>
-  <li>Swift
-    <ul>
-    <li><code>swift:3</code> (deprecated)</li>
-    <li><code>swift:3.1.1</code> (deprecated)</li>
-    <li><code>swift:4.1</code> (deprecated)</li>
-    </ul></li>
-  <li>Ballerina
-    <ul>
-    <li><code>ballerina:0.990</code> (deprecated)</li>
-    </ul></li>
-</ul>
-
+{[runtimes_deprecated.md]}
 
 
 
@@ -494,6 +473,7 @@ The following packages are available for use by Python 2 actions, in addition to
 
 Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
 
+
 ## Swift runtime
 {: #swift-actions}
 
@@ -504,8 +484,10 @@ Swift 4.x action runtimes don't embed any packages, follow the instructions for 
 Swift 4.2 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
+
 ### SwiftyJSON using a single source action file
 If you have an action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action.
+
 
 ## PHP runtimes
 {: #openwhisk_ref_php}
