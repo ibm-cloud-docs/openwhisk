@@ -51,6 +51,7 @@ The maximum timeout is 10 minutes. The default value is set to 1 minute, but can
 You can use up to 2048MB of memory for each function. The default is set to 256MB, but you can change it by using the `--memory` flag or through the GUI in the action details section.
 
 
+
 ## What's the difference between an action and and a web action?
 {: #difference}
 

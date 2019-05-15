@@ -81,43 +81,43 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
      Possible <em>VALUES</em> for the --kind option:
      <table>
   <tr>
-    <th id="language-col">Language</th>
-    <th id="kind-identifier-col">Kind identifier</th>
+    <th>Language</th>
+    <th>Kind identifier</th>
   </tr>
   <tr>
-    <td id="language-col-nodejs" headers="language-col">Node.js</td>
-    <td headers="kind-identifier-col language-col-nodejs"> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+    <td>Node.js</td>
+    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
   </tr>
   <tr>
-    <td id="language-col-python" headers="language-col">Python</td>
-    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code>,<code>python:2</code> (default)</td>
+    <td>Python</td>
+    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-swift" headers="language-col">Swift</td>
-    <td headers="kind-identifier-col language-col-swift"><code>swift:4.2</code> (default)</td>
+    <td>Swift</td>
+    <td><code>swift:4.2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-php" headers="language-col">PHP</td>
-    <td headers="kind-identifier-col language-col-php"><code>php:7.3</code> (default)</td>
+    <td>PHP</td>
+    <td><code>php:7.3</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-ruby" headers="language-col">Go</td>
-    <td headers="kind-identifier-col language-col-ruby"><code>go:1.11</code> (default)</td>
+    <td>Go</td>
+    <td><code>go:1.11</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-ruby" headers="language-col">Ruby</td>
-    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code> (default)</td>
+    <td>Ruby</td>
+    <td><code>ruby:2.5</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-java" headers="language-col">Java</td>
-    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code> (default)</td>
+    <td>Java</td>
+    <td><code>java (JDK 8)</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-java" headers="language-col">.NET Core</td>
-    <td headers="kind-identifier-col language-col-java"><code>dotnet:2.2</code> (default)</td>
+    <td>.NET Core</td>
+    <td><code>dotnet:2.2</code> (default)</td>
   </tr>
   <tr>
-    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
+    <td>Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
@@ -165,6 +165,7 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
   ok: created hello
   ```
   {: screen}
+
 
 <br />
 
@@ -373,43 +374,43 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
     Possible values for the --kind option:
     <table>
   <tr>
-    <th id="language-col">Language</th>
-    <th id="kind-identifier-col">Kind identifier</th>
+    <th>Language</th>
+    <th>Kind identifier</th>
   </tr>
   <tr>
-    <td id="language-col-nodejs" headers="language-col">Node.js</td>
-    <td headers="kind-identifier-col language-col-nodejs"> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+    <td>Node.js</td>
+    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
   </tr>
   <tr>
-    <td id="language-col-python" headers="language-col">Python</td>
-    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code>,<code>python:2</code> (default)</td>
+    <td>Python</td>
+    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-swift" headers="language-col">Swift</td>
-    <td headers="kind-identifier-col language-col-swift"><code>swift:4.2</code> (default)</td>
+    <td>Swift</td>
+    <td><code>swift:4.2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-php" headers="language-col">PHP</td>
-    <td headers="kind-identifier-col language-col-php"><code>php:7.3</code> (default)</td>
+    <td>PHP</td>
+    <td><code>php:7.3</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-ruby" headers="language-col">Go</td>
-    <td headers="kind-identifier-col language-col-ruby"><code>go:1.11</code> (default)</td>
+    <td>Go</td>
+    <td><code>go:1.11</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-ruby" headers="language-col">Ruby</td>
-    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code> (default)</td>
+    <td>Ruby</td>
+    <td><code>ruby:2.5</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-java" headers="language-col">Java</td>
-    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code> (default)</td>
+    <td>Java</td>
+    <td><code>java (JDK 8)</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-java" headers="language-col">.NET Core</td>
-    <td headers="kind-identifier-col language-col-java"><code>dotnet:2.2</code> (default)</td>
+    <td>.NET Core</td>
+    <td><code>dotnet:2.2</code> (default)</td>
   </tr>
   <tr>
-    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
+    <td>Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
