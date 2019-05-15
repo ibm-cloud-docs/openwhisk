@@ -28,7 +28,7 @@ subcollection: cloud-functions
 ## {{site.data.keyword.languagetranslatorshort}} package
 {: #pkg_translator}
 
-The installable {{site.data.keyword.languagetranslatorfull}} translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
+The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
 {: shortdesc}
 
 The {{site.data.keyword.languagetranslatorshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.languagetranslatorshort}} API reference by clicking the entity name.
