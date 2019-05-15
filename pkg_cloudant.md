@@ -30,7 +30,6 @@ subcollection: cloud-functions
 The pre-installed `/whisk.system/cloudant` package enables you to work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database. No service binding is required to use this package.
 
 
-
 ## Available actions and feed
 {: #cloudant_available}
 
