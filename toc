@@ -57,6 +57,7 @@ IBM Cloud Functions
         pkg_speech_to_text.md
         pkg_text_to_speech.md
         pkg_tone_analyzer.md
+        pkg_translator.md
         pkg_utils.md
         pkg_visual_recognition.md
         pkg_watson_assistant.md
