@@ -56,8 +56,7 @@ IBM Cloud Functions
         pkg_slack.md
         pkg_speech_to_text.md
         pkg_text_to_speech.md
-        pkg_tone_analyzer.md<staging
-        pkg_translator.md</staging>
+        pkg_tone_analyzer.md
         pkg_utils.md
         pkg_visual_recognition.md
         pkg_watson_assistant.md
