@@ -15,5 +15,5 @@ subcollection: cloud-functions
 # The content that you are looking for moved
 {: #ow_watson_tone_analyzer}
 
-The content that you are looking for has moved. [See the latest information from its new location](docs/openwhisk?topic=cloud-functions-pkg_tone_analyzer).
+The content that you are looking for has moved. [See the latest information from its new location](/docs/openwhisk?topic=cloud-functions-pkg_tone_analyzer).
 {:shortdesc}

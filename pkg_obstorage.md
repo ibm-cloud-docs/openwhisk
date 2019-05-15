@@ -192,7 +192,7 @@ The following parameters are expected to be bound to the package; this will make
 
 The following parameters are specified when invoking the individual actions.  Not all of these parameters are supported by every action; refer to the above table to see which parameters are supported by which action.
 
-**bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short_notm}} bucket.
+**bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cos_full_notm}} bucket.
 
 **endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints).
 

@@ -72,7 +72,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
     <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
 </dl>
 
-#### What's next?
+### What's next?
 {: #quiz}
 Test your knowledge and [take a quiz ![External link icon](../icons/launch-glyph.svg "External link icon")](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php)!
 
