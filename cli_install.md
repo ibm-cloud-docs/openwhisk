@@ -29,8 +29,6 @@ subcollection: cloud-functions
 {{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
 {:shortdesc}
 
-You can now use the alias `fn` in your {{site.data.keyword.openwhisk_short}} plug-in commands: `ibmcloud fn <command>`
-{: tip}
 
 ## Setting up the {{site.data.keyword.Bluemix_notm}} CLI
 {: #cli_setup}
