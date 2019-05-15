@@ -36,8 +36,7 @@ This FAQ provides answers to common questions about the {{site.data.keyword.open
 {: #supported-runtimes}
 
 The following languages are supported:
-
-{[runtimes_available.md]}
+  {[runtimes_available.md]}
 
 
 ## What's the maximum time my function can run?
