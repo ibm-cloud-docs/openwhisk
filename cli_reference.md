@@ -968,7 +968,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</
 ## List command
 {: #cli_list_cmd}
 
-<br />
+
 ### ibmcloud fn list
 {: #cli_list}
 
@@ -1796,7 +1796,7 @@ ibmcloud fn rule update <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME
 ## SDK command
 {: #cli_sdk}
 
-<br />
+
 ### ibmcloud fn sdk install
 {: #cli_sdk_install}
 
