@@ -49,6 +49,7 @@ The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trig
 ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
 ```
 {: pre}
+</br>
 
 <table>
 <caption>Understanding the <code>trigger create fireOnce</code> command components</caption>
@@ -98,6 +99,7 @@ The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a 
 ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
 {: pre}
+</br>
 
 <table>
 <caption>Understanding the <code>trigger create interval</code> command components</caption>
@@ -152,6 +154,7 @@ The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a tri
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
 {: pre}
+</br>
 
 <table>
 <caption>Understanding the <code>trigger create periodic</code> command components</caption>
