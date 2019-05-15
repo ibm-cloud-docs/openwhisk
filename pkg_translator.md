@@ -23,7 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Language Translator
+# Translator
 
 ## Package options
 
