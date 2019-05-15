@@ -1371,7 +1371,7 @@ ibmcloud fn package refresh /<em>NAMESPACE<em>
    <dl>
 
    <dt>/<em>NAMESPACE<em></em></dt>
-   <dd>A namespace, beginning with /. This flag isrequired. Run <code>ibmcloud fn namespace list</code> to get a list of namespaces to choose from.</dd>
+   <dd>A namespace, beginning with /. This flag is required. Run <code>ibmcloud fn namespace list</code> to get a list of namespaces to choose from.</dd>
    </dl>
 
 <br /><strong>Example</strong>:
