@@ -606,8 +606,7 @@ You can use `dep` by creating a file `src/main/Gopkg.toml` describing the versio
 
 Populate the `vendor` directory, run `dep ensure`.
 
-You can automate this process by using a deployment tool or script such as a [Makefile](/docs/openwhisk?topic=cloud-functions-automate#makefile).
-{: tip}
+
 
 
 
