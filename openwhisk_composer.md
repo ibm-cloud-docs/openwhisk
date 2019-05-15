@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-05-06"
 
 keywords: composer, openwhisk, compositions, sequence, branch
 
@@ -22,7 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 
-# Creating action compositions with Composer
+# Composer libraries
 {: #openwhisk_composer}
 
 {{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with additional combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), which let you create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
@@ -139,7 +139,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
         pydeploy demo demo.json -w
         ```
         {: pre}
-4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers#openwhisk_triggers) in {{site.data.keyword.openwhisk}}.
+4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers) in {{site.data.keyword.openwhisk}}.
     ```
     ibmcloud fn action invoke demo
     ```

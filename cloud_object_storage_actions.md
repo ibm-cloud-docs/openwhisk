@@ -2,13 +2,16 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-01"
+lastupdated: "2019-05-07"
 
 keywords: object storage, bucket, package
 
 subcollection: cloud-functions
 
 ---
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -54,7 +57,7 @@ The following parameters are specified when invoking the individual actions.  No
 
 **bucket**: The `bucket` parameter is the name of the {{site.data.keyword.cloud_object_storage_short}} bucket.
 
-**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_short}} endpoint used to connect to your {{site.data.keyword.cos_short}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_short}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
+**endpoint**: The `endpoint` parameter is the {{site.data.keyword.cos_short}} endpoint used to connect to your {{site.data.keyword.cos_short}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_short}} documentation](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-endpoints).
 
 **expires**: The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes.
 
@@ -72,11 +75,11 @@ The following parameters are specified when invoking the individual actions.  No
 
 Before you install the package, you must request an instance of {{site.data.keyword.cos_short}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-order-storage#creating-a-new-service-instance).
+1. [Create an {{site.data.keyword.cos_short}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-provision).
 
 2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_short}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
-3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
+3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
 ## Installing the {{site.data.keyword.cos_short}} package
 {: #cloud_object_storage_installation}
@@ -322,3 +325,4 @@ Example output:
     []
     ```
     {: screen}
+

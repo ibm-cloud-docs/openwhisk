@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-18"
+lastupdated: "2019-05-15"
 
-keywords: language translator, functions, actions, package
+keywords: watson, translator, cognitive, translating text, language
 
 subcollection: cloud-functions
 
@@ -13,13 +13,22 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
-# {{site.data.keyword.languagetranslatorshort}} package
+# Translator
 
-The installable {{site.data.keyword.languagetranslatorfull}} translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
+## {{site.data.keyword.languagetranslatorshort}} package
+{: #pkg_translator}
+
+The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
 {: shortdesc}
 
 The {{site.data.keyword.languagetranslatorshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.languagetranslatorshort}} API reference by clicking the entity name.
@@ -165,3 +174,6 @@ This package's functions use the current version of Language Translator, 2018-05
 ibmcloud fn action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```
 {: pre}
+
+
+

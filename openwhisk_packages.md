@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-05-07"
 
 keywords: packages, browse, binding, trigger, feeds, share
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -515,3 +519,4 @@ Others can now use your `custom` package, including binding to the package or di
   {: screen}
 
   In the previous example, you're working with the `myNamespace` namespace, and this namespace appears in the fully qualified name.
+

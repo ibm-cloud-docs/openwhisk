@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-11"
+lastupdated: "2019-05-07"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -309,3 +313,4 @@ To get the output displayed in the Activity Log by using the CLI, use the follow
 ibmcloud fn activation poll
 ```
 {: pre}
+

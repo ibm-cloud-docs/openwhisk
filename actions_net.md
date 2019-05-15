@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-08"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, .NET, net
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -108,7 +112,7 @@ Create a .NET Core action.
     The value for `main` needs to be in the following format.
     `{Assembly}::{Class Full Name}::{Method}`, e.q.,
     `Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main`
-    
+
 7. Invoke the action.
 
     ```
@@ -124,3 +128,4 @@ Create a .NET Core action.
       }
     ```
     {: screen}
+

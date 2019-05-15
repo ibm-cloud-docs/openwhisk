@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-05-06"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -138,6 +138,8 @@ Information about the {{site.data.keyword.openwhisk_short}} REST API can be foun
 {: #openwhisk_syslimits}
 
 ### Actions
+{: #actions_ref}
+
 {{site.data.keyword.openwhisk_short}} has a few system limits, including how much memory an action can use and how many action invocations are allowed per minute.
 
 The following table lists the default limits for actions.
@@ -231,6 +233,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * A container that runs longer than N milliseconds is terminated.
 
 ### Triggers
+{: #triggers_ref}
 
 Triggers are subject to a firing rate per minute as documented in the following table.
 

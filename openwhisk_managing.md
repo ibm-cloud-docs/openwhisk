@@ -2,13 +2,18 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-19"
+lastupdated: "2019-05-07"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -18,8 +23,9 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Managing actions
-{: #managing_actions}
 {: #openwhisk_managing}
+{: #managing_actions}
+
 
 Manage actions by monitoring action output, getting specific information on an action, or deleting actions.
 {: shortdec}
@@ -352,7 +358,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
     ```
     {: screen}
     You might also see the logs for any actions that are run on your behalf in {{site.data.keyword.openwhisk_short}} in real time.
-    
+
 ## Changing action runtime
 {: #changing-action-runtime}
 
@@ -409,3 +415,4 @@ You can clean up by deleting actions that you do not want to use.
     actions
     ```
     {: screen}
+

@@ -2,13 +2,17 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-05-07"
 
 keywords: object storage, bucket, event, action, trigger
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -25,7 +29,7 @@ subcollection: cloud-functions
 The `/whisk.system/cos-experimental` package might be unstable, change frequently in ways that aren't compatible with earlier versions, and might be discontinued with a short notice. This package isn't recommended for use in production environments. This experimental package is currently available only in the US-South region.
 {: important}
 
-In this example, you will learn how to: 
+In this example, you will learn how to:
 * [Listen for changes](#listening_to_cos_bucket_changes) to a {{site.data.keyword.cos_full}} instance.
 * [Create a trigger](#creating_a_trigger_cos) to respond to respond to those changes.
 * [Create actions](#creating_action_to_process_object) to retrieve and process the changes.
@@ -37,12 +41,12 @@ In this example, you will learn how to:
 ## About IBM Cloud Object Storage
 {: #cloud_object_storage_info}
 
-**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about-ibm-cloud-object-storage#about-ibm-cloud-object-storage). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-about). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
 ## Listening for changes to a IBM Cloud Object Storage bucket
 {: #listening_to_cos_bucket_changes}
 
-You can use {{site.data.keyword.openwhisk}} to listen for changes to an [{{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/api-reference?topic=cloud-object-storage-about-ibm-cloud-object-storage#about-ibm-cloud-object-storage) bucket and use an action to process one or more objects from the bucket. 
+You can use {{site.data.keyword.openwhisk}} to listen for changes to an [{{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api) bucket and use an action to process one or more objects from the bucket.
 
 The `/whisk.system/cos-experimental` package enables you to configure events from a {{site.data.keyword.cos_full_notm}} instance, and includes the following feed:
 
@@ -71,14 +75,14 @@ Parameters that are used in this example:
 
 When creating the trigger, you can avoid passing your {{site.data.keyword.cos_full_notm}} credentials to the `changes` feed action by binding your credentials directly to the `cos-experimental` package.
  {: shortdesc}
- 
+
  1. First, create a package binding that can be modified to contain your credentials. The following creates a package binding, `myCosPkg`, in your namespace.
   ```
   ibmcloud fn package bind /whisk.system/cos-experimental myCosPkg
   ```
   {: pre}
- 2. Bind your {{site.data.keyword.cos_short}} credentials to the package. 
- Binding your {{site.data.keyword.cos_short}} credentials to the package will bind the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked. 
+ 2. Bind your {{site.data.keyword.cos_short}} credentials to the package.
+ Binding your {{site.data.keyword.cos_short}} credentials to the package will bind the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked.
   ```
   ibmcloud fn service bind cloud-object-storage myCosPkg
   ```
@@ -115,8 +119,8 @@ Sample code showing
   ```
   ibmcloud fn activation poll
   ```
- 7. In your {{site.data.keyword.cos_short}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-add-objects).
- 
+ 7. In your {{site.data.keyword.cos_short}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
+
  8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. These activations appear in your window running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
 
 If you are unable to observe new activations, verify that the `apikey`, `endpoint` and `bucket` parameter values are correct.
@@ -131,7 +135,7 @@ If you are unable to observe new activations, verify that the `apikey`, `endpoin
 
 The content of the generated events has the following parameters:
 
-  - `file`: The file or object metadata. This structure is described in [List objects in a specific bucket](infrastructure/cloud-object-storage-infrastructure?topic=cloud-object-storage-infrastructure-bucket-operations#list-objects-in-a-specific-bucket).
+  - `file`: The file or object metadata. This structure is described in [List objects in a specific bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api-bucket-operations#compatibility-api-list-buckets).
   - `status`: The detected change.  This value is either `added`, `modified` or `deleted`.
   - `bucket`: The name of the {{site.data.keyword.cos_short}} bucket.
   - `endpoint`:  The {{site.data.keyword.cos_short}} endpoint used to connect to the {{site.data.keyword.cos_short}} instance.
@@ -248,7 +252,7 @@ If your `myCosAction.js` code needs access to your {{site.data.keyword.cos_short
 
  ## Binding credentials to your action
  {: #cos_binding_credentials_to_action}
- 
+
  You can avoid passing sensitive credentials during invocation by binding the {{site.data.keyword.cos_short}} credentials to the action with the following command:
  ```
  ibmcloud fn service bind cloud-object-storage myCosAction
@@ -267,6 +271,4 @@ Create a rule that activates `MyCosAction` action on new {{site.data.keyword.cos
 ibmcloud fn rule create myRule myCosTrigger myCosAction
 ```
 {: pre}
-
-
 

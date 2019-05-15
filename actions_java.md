@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-15"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, java
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -213,3 +217,4 @@ Here is an example of a Java Web Action that takes `text` as input and generates
   curl -o QRImage.png $URL\?text=https://cloud.ibm.com
   ```
 {: pre}
+

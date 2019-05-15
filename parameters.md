@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-07"
 
 keywords: parameters, passing, invocation, binding
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -165,7 +169,7 @@ Rather than pass all the parameters to an action every time, you can bind defaul
 
     Example output:
     ```
-    {  
+    {
         "payload": "Hello, Dorothy from Washington, DC"
     }
     ```
@@ -220,3 +224,4 @@ The following example sets a default parameter of `name` on the `MyApp` package 
     {: screen}
 
     The default parameter that is bound to the package is used.
+

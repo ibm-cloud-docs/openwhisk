@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-03"
 
 keywords: mobile, push notifications, binding, notifications
 
@@ -17,13 +17,13 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Mobile push package
+# Push Notification package
 {: #openwhisk_catalog_pushnotifications}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication 
+This pre-installed package is not available in the Tokyo region. Please see the installable [Push Notification](/docs/openwhisk?topic=cloud-functions-push-notifications-package) package for the action `sendMessage` using IAM authentication
 {: tip}
 
-Learn how to create a Push package binding, and send a simple Push notification using the `/whisk.system/pushnotifications` package, which provides you with the ability to work with a push service.
+Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
 {: shortdesc}
 
 The package includes the following actions and feeds:
@@ -34,7 +34,7 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
 
 
-For information about firing Trigger events when there is device activity, see the [Mobile push on device events](/docs/openwhisk?topic=cloud-functions-openwhisk_pushnotifications) topic.
+For information about firing trigger events when there is device activity, see [Mobile push on device events](#openwhisk_pushnotifications).
 
 ## Creating a Push package binding
 {: #create_push_binding}
@@ -42,7 +42,7 @@ For information about firing Trigger events when there is device activity, see t
 To create a Push Notifications package binding, you must specify the following parameters:
 
 -  **appId**: The {{site.data.keyword.Bluemix}} **App GUID**.
--  **appSecret**: The {{site.data.keyword.Bluemix_notm}} Push notification service **App Secret**.
+-  **appSecret**: The {{site.data.keyword.Bluemix_notm}} Push Notification service **App Secret**.
 
 To create a package binding, see the following steps:
 
@@ -76,7 +76,7 @@ To create a package binding, see the following steps:
 ## Push notification parameters
 {: #push_parameters}
 
-The `/whisk.system/pushnotifications/sendMessage` action sends Push notifications to registered devices. The parameters are as follows:
+The `/whisk.system/pushnotifications/sendMessage` action sends push notifications to registered devices. The parameters are as follows:
 - `text`: The notification message to be shown to the user. For example, `-p text "Hi, OpenWhisk send a notification"`.
 - `url`: A URL that can be sent along with the alert. For example, `-p url "https:\\www.w3.ibm.com"`.
 - `apiHost`: An optional string that specifies the API host. The default is `mobile.ng.bluemix.net`.  For example: `-p apiHost "mobile.eu-gb.bluemix.net"`
@@ -137,9 +137,9 @@ The `/whisk.system/pushnotifications/sendMessage` action sends Push notification
 ## Sending push notifications
 {: #send_push_notifications}
 
-See the following example to send a Push notification from the Push notification package.
+See the following example to send a push notification from the Push notification package.
 
-Send a Push notification by using the **sendMessage** action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
+Send a push notification by using the **sendMessage** action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
 ```
 ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
@@ -174,3 +174,55 @@ Example output:
 }
 ```
 {: screen}
+
+# Mobile push on device events package
+{: #openwhisk_pushnotifications}
+
+This pre-installed package is not available in the Tokyo region.
+{: tip}
+
+Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
+{: shortdesc}
+
+## Push parameters
+{: #push_notif_parameters}
+
+The `/whisk.system/pushnotifications/webhook` parameters are as follows:
+- `appId`: The {{site.data.keyword.Bluemix_notm}} app GUID.
+- `appSecret`: The {{site.data.keyword.Bluemix_notm}} Push Notification service `appSecret`.
+- `events`: `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`
+
+  You can use the wildcard character "`*`" to be notified for all events.
+
+## Firing a trigger event on Push Notifications service activity
+{: #trigger_push_notify}
+
+To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
+
+1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
+  ```
+  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+  ```
+  {: pre}
+
+2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
+  ```
+  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+  ```
+  {: pre}
+
+3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
+  ```
+  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
+  ```
+  {: pre}
+
+4. Check the results by using the `ibmcloud fn activation poll` command.
+  ```
+  ibmcloud fn activation poll
+  ```
+  {: pre}
+
+5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
+
+  The action sends a push notification.

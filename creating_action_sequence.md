@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-07"
+lastupdated: "2019-05-07"
 
 keywords: action sequence, serverless,
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -24,8 +28,9 @@ subcollection: cloud-functions
 
 
 # Creating action sequences
-{: #create_action_sequence}
 {: #openwhisk_create_action_sequence}
+{: #create_action_sequence}
+
 
 You can create an action that chains together a sequence of actions. The result of one action is passed as an argument to the next action.
 {: shortdesc}
@@ -78,3 +83,4 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
 **Note**:
 * Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters. For more information about invoking action sequences with multiple named parameters, see [Setting default parameters on an action](/docs/openwhisk?topic=cloud-functions-working-with-parameters#default-params-action).
 * A sequence does not have an overall timeout separate from the timeouts of each action within the sequence. Because a sequence is a pipeline of operations, a failure in one action breaks the pipeline. If one action times out, the entire sequence is exited with that failure.
+

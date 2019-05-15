@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-07"
 
 keywords: web actions, http requests, functions, extensions, parameters
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -35,7 +39,7 @@ function main({name}) {
   return {body: `<html><body><h3>${msg}</h3></body></html>`}
 }
 ```
-{: codeblock}  
+{: codeblock}
 
 You can create a _web action_ **hello**  in the package `demo` for the Namespace `guest` by using the CLI's `--web` flag with a value of `true` or `yes`:
 ```
@@ -70,7 +74,7 @@ function main() {
   }
 }
 ```
-{: codeblock}    
+{: codeblock}
 
 In the following example, a web action sets a single cookie:
 ```javascript
@@ -84,7 +88,7 @@ function main() {
     body: '<html><body><h3>hello</h3></body></html>' }
 }
 ```
-{: codeblock}  
+{: codeblock}
 
 In the following example, a web action sets multiple cookies:
 ```javascript
@@ -112,7 +116,7 @@ function main() {
              body: png };
 }
 ```
-{: codeblock}  
+{: codeblock}
 
 The following example returns `application/json`:
 ```javascript
@@ -124,7 +128,7 @@ function main(params) {
     };
 }
 ```
-{: codeblock}  
+{: codeblock}
 
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
 
@@ -253,8 +257,8 @@ Example output:
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "10",      
-      "content-type": "application/x-www-form-urlencoded",      
+      "content-length": "10",
+      "content-type": "application/x-www-form-urlencoded",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
     },
@@ -279,7 +283,7 @@ Example output:
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "15",      
+      "content-length": "15",
       "content-type": "application/json",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
@@ -318,7 +322,7 @@ Example output:
     "__ow_headers": {
       "accept": "*/*",
       "connection": "close",
-      "content-length": "4",      
+      "content-length": "4",
       "content-type": "text/plain",
       "host": "172.17.0.1",
       "user-agent": "curl/7.43.0"
@@ -402,7 +406,7 @@ Example output:
       "content-length": "15",
       "content-type": "application/json",
       "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"      
+      "user-agent": "curl/7.43.0"
     },
     "__ow_path": ""
   }
@@ -566,3 +570,4 @@ A {{site.data.keyword.openwhisk_short}} action fails in two different possible f
 - The controller applies the content handling that is implied by the action extension to the value of the `error` property.
 
 Developers must know how web actions might be used, and generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response like `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
+

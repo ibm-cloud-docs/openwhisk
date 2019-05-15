@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-05"
+lastupdated: "2019-05-07"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -10,30 +10,37 @@ subcollection: cloud-functions
 
 ---
 
-{:new_window: target="blank"}
+{:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 # Deploying quickstart templates
-{: #serviceauth}
+{: #templates}
 
 {{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other service instances from {{site.data.keyword.Bluemix_notm}}. By using templates, you can quickly and easily create a project, and start coding right away.
 {: shortdesc}
+{: #serviceauth}
 
 ## Available quickstart templates
 {: #available-templates}
 
 | Name | Description | Supported Runtimes |
 |:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Upload Image](/docs/openwhisk?topic=cloud-functions-serviceauth#cos-upload-image) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
-| [Get HTTP Resource](/docs/openwhisk?topic=cloud-functions-serviceauth#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
-| [Hello World](/docs/openwhisk?topic=cloud-functions-serviceauth#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
-| [{{site.data.keyword.messagehub}} Events](/docs/openwhisk?topic=cloud-functions-serviceauth#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
-| [Periodic Slack Reminder](/docs/openwhisk?topic=cloud-functions-serviceauth#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Upload Image](#image-template) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js |
+| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python |
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP |
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP |
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP |
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
@@ -41,6 +48,7 @@ subcollection: cloud-functions
 The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions and a trigger that kicks off that sequence. The trigger is fired when a change is made in the connected {{site.data.keyword.cloudant_short_notm}} example database of cats. The expected data item is a cat, with a name and a color defined. When a new cat is added to the database or a current cat is edited, the data is logged to the console.
 
 ### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the UI
+{: #cloudant-template-ui}
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -66,6 +74,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the CLI
+{: #cloudant-template-cli}
 
 1. Clone the template repo.
     ```
@@ -101,11 +110,13 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
     </tbody></table>
 
 ## Deploying the Upload Image template
-{: #cos-upload-image}
+{: #image-template}
 
 The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_short}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
+
 ### Deploying the Upload Image template from the UI
+{: #image-template-ui}
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -119,7 +130,7 @@ The Upload Image template creates a web action that allows you to upload an imag
   * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
       2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
-      3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started-tutorial#gs-create-buckets).
+      3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
   * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_short}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
   * **Existing Instances**: If you have any existing {{site.data.keyword.cos_short}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
@@ -134,8 +145,9 @@ The Upload Image template creates a web action that allows you to upload an imag
     * The template package (default name `upload-image`), which contains the `app` action
 
 ### Deploying the Upload Image template from the CLI
+{: #image-template-cli}
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli).
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-cloud_object_storage_actions#cloud_object_storage_cli.
 
 2. Clone the template repo.
     ```
@@ -167,6 +179,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publicly available to anyone who calls it.
 
 ### Deploying the Get HTTP Resource template from the UI
+{: #get-http-resource-template-ui}
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -189,6 +202,7 @@ The Get HTTP Resource template creates an action to fetch an external resource, 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the Get HTTP Resource template from the CLI
+{: #get-http-resource-template-cli}
 
 1. Clone the template repo.
     ```
@@ -220,6 +234,7 @@ After template deployment, you can make further edits to the code to customize i
 You can deploy this basic Hello World action to get started with {{site.data.keyword.openwhisk_short}} or to test other entities you create, such as triggers and rules.
 
 ### Deploying the Hello World template from the UI
+{: #hello-world-template-ui}
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -236,6 +251,7 @@ You can deploy this basic Hello World action to get started with {{site.data.key
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the Hello World template from the CLI
+{: #hello-world-template-cli}
 
 1. Clone the Hello World template repo.
     ```
@@ -261,6 +277,7 @@ After template deployment, you can make further edits to the code to customize i
 The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever there is a new item added to the {{site.data.keyword.messagehub}} topic that is chosen during template creation.
 
 ### Deploying the {{site.data.keyword.messagehub}} Events template from the UI
+{: #messagehub-events-template-ui}
 
 1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -290,6 +307,7 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the {{site.data.keyword.messagehub}} Events template from the CLI
+{: #messagehub-events-template-cli}
 
 1. Clone the template repo.
     ```
@@ -330,6 +348,7 @@ After template deployment, you can make further edits to the code to customize i
 The Periodic Slack Reminder template posts to Slack on an interval provided by the user during trigger creation.
 
 ### Deploying the Periodic Slack Reminder template from the UI
+{: #slack-reminder-template-ui}
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
@@ -356,6 +375,7 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the Periodic Slack Reminder template from the CLI
+{: #slack-reminder-template-cli}
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 

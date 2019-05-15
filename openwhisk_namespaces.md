@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-30"
+lastupdated: "2019-05-07"
 
 keywords: namespaces, actions, create
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -241,3 +245,4 @@ For more information about working with HTTP REST, check out the [Cloud Function
 {: #next}
 
 Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam#iam). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](https://cloud.ibm.com/apidocs/functions).
+

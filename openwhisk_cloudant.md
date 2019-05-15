@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-07"
 
 keywords: cloudant, event, action, trigger, sequence
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -42,7 +46,7 @@ The parameters used in this example are as follows:
 
 **iamApiKey**: The IAM API key for the Cloudant database.  If specified will be used as the credentials instead of username and password _(optional)_.
 
-**iamUrl**: The IAM token service url that is used when `iamApiKey` is specified.  Defaults to `https://iam.bluemix.net/identity/token` _(optional)_. 
+**iamUrl**: The IAM token service url that is used when `iamApiKey` is specified.  Defaults to `https://iam.bluemix.net/identity/token` _(optional)_.
 
 **maxTriggers**: Stop firing triggers when this limit is reached _(optional)_. Defaults to infinite.
 
@@ -200,3 +204,4 @@ ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --para
 {: pre}
 
 The example can be used to create an action sequence to read the changed document and call your existing actions. Remember to disable any rules that are no longer valid, and create new ones by using the action sequence pattern.
+

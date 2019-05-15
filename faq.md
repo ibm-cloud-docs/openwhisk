@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-11"
+lastupdated: "2019-05-15"
 
 keywords: faq, runtimes, actions, memory, monitoring
 
@@ -13,6 +13,15 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
+{:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
 
 
@@ -30,35 +39,43 @@ The following languages are supported:
 
 <table>
   <tr>
-    <th id="language-col">Language</th>
-    <th id="kind-identifier-col">Kind identifier</th>
+    <th>Language</th>
+    <th>Kind identifier</th>
   </tr>
   <tr>
-    <td id="language-col-nodejs" headers="language-col">Node.js</td>
-    <td headers="kind-identifier-col language-col-nodejs"><code>nodejs:6</code>, <code>nodejs:8</code></td>
+    <td>Node.js</td>
+    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
   </tr>
   <tr>
-    <td id="language-col-python" headers="language-col">Python</td>
-    <td headers="kind-identifier-col language-col-python"><code>python:3.7</code>, <code>python:3.6</code></td>
+    <td>Python</td>
+    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-swift" headers="language-col">Swift</td>
-    <td headers="kind-identifier-col language-col-swift"><code>swift:4.1</code>, <code>swift:3.1.1</code></td>
+    <td>Swift</td>
+    <td><code>swift:4.2</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-php" headers="language-col">PHP</td>
-    <td headers="kind-identifier-col language-col-php"><code>php:7.2</code>, <code>php:7.1</code></td>
+    <td>PHP</td>
+    <td><code>php:7.3</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-ruby" headers="language-col">Ruby</td>
-    <td headers="kind-identifier-col language-col-ruby"><code>ruby:2.5</code></td>
+    <td>Go</td>
+    <td><code>go:1.11</code> (default)</td>
   </tr>
   <tr>
-    <td id="language-col-java" headers="language-col">Java</td>
-    <td headers="kind-identifier-col language-col-java"><code>java (JDK 8)</code></td>
+    <td>Ruby</td>
+    <td><code>ruby:2.5</code> (default)</td>
   </tr>
   <tr>
-    <td headers="language-col" colspan="2">Other languages are supported by using Docker actions.</td>
+    <td>Java</td>
+    <td><code>java (JDK 8)</code> (default)</td>
+  </tr>
+  <tr>
+    <td>.NET Core</td>
+    <td><code>dotnet:2.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
@@ -66,35 +83,33 @@ The following languages are supported:
 
 ## What's the maximum time my function can run?
 {: #max-runtime}
-{: faq}
 
 The maximum timeout is 10 minutes. The default value is set to 1 minute, but can be changed through the CLI by specifying a new value in milliseconds by using the `--timeout` flag. You can also change the value through the GUI in the action details section.
 
 
 ## What's the maximum memory my function can use?
 {: #max-memory}
-{: faq}
 
 You can use up to 2048MB of memory for each function. The default is set to 256MB, but you can change it by using the `--memory` flag or through the GUI in the action details section.
 
 
+
 ## What's the difference between an action and and a web action?
 {: #difference}
-{: faq}
 
-The main difference between an action and a web action is the response output object. For [web actions](/docs/openwhisk?topic=cloud-functions-openwhisk_webactions#openwhisk_webactions), the result represents an HTTP response, where are a minimum, the JSON output should have a `body` field. Optionally, it might also contain a statusCode and headers.
+The main difference between an action and a web action is the response output object. For [web actions](/docs/openwhisk?topic=cloud-functions-actions_web), the result represents an HTTP response, where are a minimum, the JSON output should have a `body` field. Optionally, it might also contain a statusCode and headers.
 
 ## How can I see my action logs?
-{: #logs}
-{: faq}
+{: #logs_faq}
 
-After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](/docs/openwhisk?topic=cloud-functions-openwhisk_logs#view-logs).
+After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](/docs/openwhisk?topic=cloud-functions-logs).
 
 
 ## How does monitoring work?
-{: #monitor}
-{: faq}
+{: #monitor_faq}
 
 You can get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk_short}} by using {{site.data.keyword.monitoringlong}}. You can also monitor the health and performance of your actions by using the dashboard to see a graphical summary of your activity.
+
+
 
 

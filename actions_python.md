@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-27"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, python
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -43,7 +47,7 @@ An action is simply a top-level Python function. To create a Python action:
       return {"greeting": greeting}
   ```
 {: codeblock}
-    
+
 Python actions always consume a dictionary and produce a dictionary. The entry method for the action is `main` by default but can be specified to create the action with the `wsk` CLI by using the `--main` flag.
 {: note}
 
@@ -76,13 +80,13 @@ Python actions always consume a dictionary and produce a dictionary. The entry m
       }
     ```
     {: screen}
-    
-    You can also create an action that runs with Python 3.x. 
+
+    You can also create an action that runs with Python 3.x.
     * For Python 3.6, use the parameter `--kind python:3.6` (previously named `python-jessie:3`).
     * For Python 3.7, use the parameter `--kind python:3.7`
-    
+
     Both runtimes contain additional packages for IBM Cloud services like {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.Db2_on_Cloud_long_notm}}, {{site.data.keyword.cos_full_notm}}, and {{site.data.keyword.ibmwatson_notm}}.
-    
+
 For more information about the packages that are included in these Python 3 runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
 
 ## Packaging Python actions in zip files
@@ -143,5 +147,6 @@ You can install dependencies, package them in a virtual environment, and create 
 
 Add only modules that are not part of the selected runtime environment to the `requirements.txt`. This helps to keep the `virtualenv` to a minimum size.
 {: tip}
+
 
 

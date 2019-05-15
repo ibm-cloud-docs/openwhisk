@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-29"
+lastupdated: "2019-05-15"
 
 keywords: runtimes, support
 
@@ -13,10 +13,15 @@ subcollection: cloud-functions
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
 {:screen: .screen}
-{:codeblock: .codeblock}
 {:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
 {:tip: .tip}
+{:note: .note}
+{:important: .important}
 {:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
 
 # Runtimes
 {: #runtimes}
@@ -35,7 +40,7 @@ The `runtimes` section of the response contains the set of available runtimes.
 The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/) and the tag that is used.
 
 
-The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs6action`.
+The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action`.
 The tags can be version numbers like `1.9.0` or the short form of a git commit hash, like `b99d71e`.
 
 Example image fields.
@@ -43,22 +48,33 @@ Example image fields.
   image:   "ibmfunctions/action-nodejs-v10:1.9.0"
   ```
   ```
-  image:   "openwhisk/nodejs6action:b99d71e"
+  image:   "openwhisk/nodejs8action:b99d71e"
   ```
 
 Runtimes are updated on a regular basis. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#changing-action-runtime)
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
+
+These runtimes are deprecated:
+<ul>
+  <li><code>nodejs:6</code> (deprecated)</li>
+  <li><code>php:7.1</code> (deprecated)</li>
+  <li><code>php:7.2</code> (deprecated)</li>
+  <li><code>swift:3</code> (deprecated)</li>
+  <li><code>swift:3.1.1</code> (deprecated)</li>
+  <li><code>swift:4.1</code> (deprecated)</li>
+  <li><code>ballerina:0.990</code> (deprecated)</li>
+</ul>
+
+
+
 
 
 
 ## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
-JavaScript actions can be executed in Node.js version 8 or 10. 
-
-Node.js version 6 is the default version, but is deprecated as of 6 December 2018. To continue using a JavaScript action, update to Node.js version 8 or 10.
-{: deprecated}
+JavaScript actions can be executed in Node.js version 8 or 10. By default, all Node.js actions are executed in a version 10 environment.
 
 
 
@@ -227,81 +243,17 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 
 Detailed information about the Node.js version 8 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md).
 
-### Node.js version 6 environment (deprecated)
-{: #openwhisk_ref_javascript_environments_6}
-Node.js version 6 is the default version, but is deprecated. To continue using a JavaScript action, update to Node.js version 8 or 10.
-{: deprecated}
-
-#### Node.js 6.16 packages
-
- NodeJS version:
-   - [6.16.0](https://nodejs.org/en/blog/release/v6.16.0/)
-
- The following packages are available to be used in the Node.js 6 environment:
- - [apn v2.1.2](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
- - [async v2.1.4](https://www.npmjs.com/package/async) - Provides asynchronous function capabilities.
- - [btoa v1.1.2](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
- - [cheerio v0.22.0](https://www.npmjs.com/package/cheerio) - Fast, flexible, and lean implementation of core jQuery designed specifically for the server.
- - [cloudant v1.6.2](https://www.npmjs.com/package/cloudant) - The official Cloudant library for Node.js.
- - [commander v2.9.0](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
- - [consul v0.27.0](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
- - [cookie-parser v1.4.3](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names.
- - [cradle v0.7.1](https://www.npmjs.com/package/cradle) - A high-level, caching, CouchDB client for Node.js.
- - [errorhandler v1.5.0](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
- - [glob v7.1.1](https://www.npmjs.com/package/glob) - Match files by using patterns that the shell uses, like stars and stuff.
- - [gm v1.23.0](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
- - [lodash v4.17.2](https://www.npmjs.com/package/lodash) - The Lodash library that is exported as Node.js modules.
- - [log4js v0.6.38](https://www.npmjs.com/package/log4js) - A conversion of the log4js framework designed to work with Node.
- - [iconv-lite v0.4.15](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
- - [marked v0.3.6](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, which is written in JavaScript. Built for speed.
- - [merge v1.2.0](https://www.npmjs.com/package/merge) - Merge multiple objects into one, to create a new cloned object.
- - [moment v2.17.0](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
- - [mongodb v2.2.11](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
- - [mustache v2.3.0](https://www.npmjs.com/package/mustache) - Mustache.js is an implementation of the mustache template system in JavaScript.
- - [nano v6.2.0](https://www.npmjs.com/package/nano) - Minimalistic couchdb driver for Node.js.
- - [node-uuid v1.4.7](https://www.npmjs.com/package/node-uuid) - Deprecated UUID packaged.
- - [nodemailer v2.6.4](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
- - [oauth2-server v2.4.1](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and well tested module for implementing an OAuth2 Server/Provider with express in Node.js.
- - [openwhisk v3.18.0](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
- - [pkgcloud v1.4.0](https://www.npmjs.com/package/pkgcloud) - pkgcloud is a standard library for Node.js that abstracts away differences among multiple cloud providers.
- - [process v0.11.9](https://www.npmjs.com/package/process) - require('process'); just like any other module.
- - [pug v2.0.0-beta6](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
- - [redis v2.6.3](https://www.npmjs.com/package/redis) - A complete and feature-rich Redis client for Node.js.
- - [request v2.79.0](https://www.npmjs.com/package/request) - Request is the simplest way possible to make HTTP calls.
- - [request-promise v4.1.1](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
- - [rimraf v2.5.4](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
- - [semver v5.3.0](https://www.npmjs.com/package/semver) - Supports semantic versioning.
- - [sendgrid v4.7.1](https://www.npmjs.com/package/sendgrid) - Provides email support with the SendGrid API.
- - [serve-favicon v2.3.2](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
- - [socket.io v1.6.0](https://www.npmjs.com/package/socket.io) - Socket.IO enables real-time bidirectional event-based communication.
- - [socket.io-client v1.6.0](https://www.npmjs.com/package/socket.io-client) - Client-side support for Socket.IO.
- - [superagent v3.0.0](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
- - [swagger-tools v0.10.1](https://www.npmjs.com/package/swagger-tools) - Tools that are related to working with Swagger, a way to document APIs.
- - [tmp v0.0.31](https://www.npmjs.com/package/tmp) - A simple temporary file and directory creator for node.js.
- - [twilio v2.11.1](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
- - [underscore v1.8.3](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
- - [uuid v3.0.0](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
- - [validator v6.1.0](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
- - [watson-developer-cloud v2.29.0](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
- - [when v3.7.7](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
- - [winston v2.3.0](https://www.npmjs.com/package/winston) - A multi-transport async logging library for node.js. "CHILL WINSTON! ... I put it in the logs."
- - [ws v1.1.1](https://www.npmjs.com/package/ws) - ws is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
- - [xml2js v0.4.17](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
- - [xmlhttprequest v1.8.0](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
- - [yauzl v2.7.0](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
-
-Detailed information about the nodejs version 6 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-nodejs/blob/master/core/nodejs6Action/CHANGELOG.md).
 
 ## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-You can choose from two different runtime versions for Python actions.
+You can choose from two different runtime versions for Python actions. By default, all Python actions are executed in a version 2 environment.
 
 
 ### Python 3.7 actions (Debian Stretch based)
 {: #openwhisk_ref_python_environments_3.7}
 
-Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.7` when you create or update an action.
+Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
 
@@ -389,7 +341,7 @@ Detailed information about the Python 3.7 runtime environment can be found in th
 ### Python 3.6.8 actions (Debian Jessie based)
 {: #openwhisk_ref_python_environments_3.6}
 
-Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the `wsk` CLI parameter `--kind python:3.6` when you create or update an action.
+Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
@@ -474,7 +426,7 @@ Detailed information about the Python 3.6 runtime environment can be found in th
 
 ### Python 2 actions
 
-Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action. To explicitly select this runtime, use `--kind python:2`.
+Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action.
 
 When creating python actions using virtualenv, use the docker image `openwhisk/python2action`.
 The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
@@ -530,50 +482,26 @@ The following packages are available for use by Python 2 actions, in addition to
 
 Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
 
-## Swift runtimes
+
+## Swift runtime
 {: #swift-actions}
 
-Swift 3.1.1 and 4.1 runtimes are deprecated and are available until 28 February 2019.
-Start any new actions or migrate any existing actions to Swift 4.2 runtime using the kind `swift:4.2` and new compile process.
-{: tip}
+By default, all Swift actions are executed in a version 4.2 environment.
 
-### Swift 3
-Swift 3 actions are executed with Swift 3.1.1 `--kind swift:3.1.1`. Always specify kind `swift:3.1.1` as previous versions of Swift are unsupported.
-
-You must migrate all Swift actions to use kind `swift:3.1.1`. As a best practice, always provide the specific kind when you create or update actions.
-{: tip}
-
-Swift 3.1.1 actions can use the following packages when using a single Swift source file:
-- KituraNet version 1.7.6, https://github.com/IBM-Swift/Kitura-net
-- SwiftyJSON version 15.0.1, https://github.com/IBM-Swift/SwiftyJSON
-- Watson Developer Cloud SDK version 0.16.0, https://github.com/watson-developer-cloud/swift-sdk
-
-### Swift 4
-Swift 4 actions can be executed using Swift 4.1 or 4.2 using `--kind swift:4.1` or `--kind swift:4.2` respectively.
-The default `--kind swift:default` is Swift 4.2.
-
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-creating-swift-actions#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
-
-Swift 4.1 actions can use the following packages when using single Swift source file:
-- Watson Developer Cloud SDK version 0.38.1, https://github.com/watson-developer-cloud/swift-sdk
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies using a Package.swift.
 
 Swift 4.2 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
-### Migrating Swift 3.1.1 to Swift 4.1
 
-#### SwiftyJSON using a single source action file
-If you have a `swift:3.1.1` action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action. Take into account that starting with Swift 4.1, there are improvements to managing JSON data.
+### SwiftyJSON using a single source action file
+If you have an action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action.
 
-## PHP runtimes
+
+## PHP runtime
 {: #openwhisk_ref_php}
 
-PHP 7.1 and 7.2 are deprecated as of 11 January 2019. To continue using a PHP action, update to PHP 7.3.
-{: deprecated}
-
-PHP actions are executed with PHP 7.3.0. To use this runtime, specify the `wsk` CLI parameter `--kind php:7.3` when you create or update an action. This behavior is the default when you create an action with a file that has a `.php` extension.
-
-The PHP 7.1 and 7.2 runtime are deprecated. Migrate all actions to PHP 7.3 for better latency and faster runs end to end.
+By default, all PHP actions are executed in a version 7.3 environment.
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -589,7 +517,7 @@ The following PHP extensions are available in addition to the standard ones:
 - soap
 - zip
 
-## Docker runtimes
+## Docker runtime
 {: #openwhisk_ref_docker}
 
 Docker actions run a user-supplied binary in a Docker container. The binary runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/r/library/python), so the binary must be compatible with this distribution.
@@ -599,3 +527,31 @@ The Docker skeleton is a convenient way to build OpenWhisk compatible Docker ima
 The main binary program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
+
+
+
+## Go runtime
+{: #runtimes_go}
+
+By default, all Go actions are executed in a version 1.11 environment.
+
+
+
+## Java runtime
+{: #runtimes_java}
+
+By default, all Java actions are executed in a version 8 environment.
+
+
+
+## Ruby runtime
+{: #runtimes_ruby}
+
+By default, all Ruby actions are executed in a version 2.5 environment.
+
+
+
+## .NET Core runtime
+{: #runtimes_dotnet}
+
+By default, all .NET Core actions are executed in a version 2.2 environment.

@@ -2,13 +2,17 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-04-11"
+lastupdated: "2019-05-07"
 
 keywords: actions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
 ---
+
+
+
+
 
 {:new_window: target="_blank"}
 {:shortdesc: .shortdesc}
@@ -24,7 +28,7 @@ subcollection: cloud-functions
 
 
 # Creating JavaScript actions
-{: #actions_javascript
+{: #creating-javascript-actions}
 {: #creating-and-invoking-javascript-actions}
 
 The following sections guide you through working with actions in JavaScript. Start by creating and invoking a simple action. Then, add parameters to the action and invoke that action with parameters. Next, set default parameters and invoke them. Finally, create asynchronous actions.
@@ -56,7 +60,7 @@ Review the following steps and examples to create your first JavaScript action.
   {: pre}
 
   Example output:
-  
+
   ```
   ok: created action hello
   ```
@@ -73,7 +77,7 @@ Review the following steps and examples to create your first JavaScript action.
   {: pre}
 
   Example output:
-  
+
   ```
   actions
   hello       private
@@ -103,7 +107,7 @@ Review the following steps and examples to create your first JavaScript action.
     }
     ```
     {: screen}
-    
+
     For tips on monitoring activations, see [Monitoring action output](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#monitor-action-output).
     {: tip}
 
@@ -153,7 +157,7 @@ Review the following steps and examples to create your first JavaScript action.
     6bf1f670ee614a7eb5af3c9fde813043         hello
     ```
     {: screen}
-    
+
 ### Javascript function prototype
 {: #openwhisk_ref_javascript_fnproto}
 
@@ -566,7 +570,8 @@ You can package an action by using a JavaScript module bundler such as [webpack 
 
     The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary file dependencies because this is not included with the file `bundle.js`.
     {: tip}
-    
+
+
 
 
 

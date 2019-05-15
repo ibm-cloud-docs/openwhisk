@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-05"
+lastupdated: "2019-05-08"
 
-keywords: feed, event, polling, hooks, trigger, 
+keywords: feed, event, polling, hooks, trigger,
 
 subcollection: cloud-functions
 
@@ -17,44 +17,142 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:tip: .tip}
 
-# Creating custom event provider feeds
+
+# Incorporating feeds
 {: #openwhisk_feeds}
+
+A feed is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. Pre-installed packages, installable packages, and you own custom packages might contain feeds.
+{: shortdesc}
+
+Examples of feeds:
+- An {{site.data.keyword.cloudant}} data change feed that fires a trigger event each time a document in a database is added or modified
+- A Git feed that fires a trigger event for every commit to a Git repository
+
+## Difference between feed and trigger
+{: #feeds_triggers}
+
+Feeds and triggers are closely related, but technically distinct concepts.
+
+- {{site.data.keyword.openwhisk_short}} processes **events** that flow into the system.
+
+- A **trigger** is a name for a class of events. Each event belongs to exactly one trigger; by analogy, a trigger resembles a *topic* in topic-based pub-sub systems. A **rule** *T -> A* means "whenever an event from trigger *T* arrives, invoke action *A* with the trigger payload.
+
+- A **feed** is a stream of events that all belong to some trigger *T*. A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
+
+This example shows how to use a feed in the Alarms package to fire a trigger once a minute, and how to use a rule to invoke an action once a minute.
+
+1. Get a description of the feed in the `/whisk.system/alarms` package.
+  ```
+  ibmcloud fn package get --summary /whisk.system/alarms
+  ```
+  {: pre}
+
+  Example output:
+  ```
+  package /whisk.system/alarms
+   feed   /whisk.system/alarms/alarm
+  ```
+  {: screen}
+
+  ```
+  ibmcloud fn action get --summary /whisk.system/alarms/alarm
+  ```
+  {: pre}
+
+  Example output:
+  ```
+  action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
+     (params: cron trigger_payload)
+  ```
+  {: screen}
+
+  The `/whisk.system/alarms/alarm` feed takes two parameters:
+  - `cron`: A crontab specification of when to fire the trigger.
+  - `trigger_payload`: The payload parameter value to set in each trigger event.
+
+2. Create a trigger that fires every one minute.
+  ```
+  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+  ```
+  {: pre}
+
+  Example output:
+  ```
+  ok: created trigger feed everyOneMinute
+  ```
+  {: screen}
+
+3. Create a file named `hello.js` with the following action code:
+  ```javascript
+  function main(params) {
+      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+  }
+  ```
+  {: codeblock}
+
+4. Make sure that the action exists.
+  ```
+  ibmcloud fn action update hello hello.js
+  ```
+  {: pre}
+
+5. Create a rule that invokes the `hello` action every time the `everyOneMinute` trigger fires.
+  ```
+  ibmcloud fn rule create myRule everyOneMinute hello
+  ```
+  {: pre}
+
+  Example output:
+  ```
+  ok: created rule myRule
+  ```
+  {: screen}
+
+6. Check that the action is being invoked by polling for activation logs.
+  ```
+  ibmcloud fn activation poll
+  ```
+  {: pre}
+
+  You can see that the activations are observed every one minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+
+
+
+## Creating custom event provider feeds
+{: #feeds_custom}
 
 {{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a feed in a package. The following section describes architectural, and implementation options for providing your own custom feed.
 {: shortdesc}
 
 This material is intended for advanced {{site.data.keyword.openwhisk_short}} users who intend to publish their own feeds. Most {{site.data.keyword.openwhisk_short}} users can safely skip the following architecture section.
 
-## Feed architecture
+### Feed architecture
+{: #feeds_arch}
 
 There are at least three architectural patterns for creating a feed: **Hooks**, **Polling**, and **Connections**.
 
-### Hooks
+#### Hooks
+
 In the *Hooks* pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook) facility that is exposed by another service.   In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
 
 
-### Polling
+#### Polling
+
 In the "Polling" pattern, a {{site.data.keyword.openwhisk_short}} action is arranged to poll an endpoint periodically to fetch new data. This pattern is relatively easy to build, but the frequencies of events are limited by the polling interval.
 
-### Connections
+#### Connections
+
 In the "Connections"  pattern, a separate service maintains a persistent connection to a feed source. The connection-based implementation might interact with a service endpoint to by using long polling intervals, or to set up a push notification.
 
 
 
 
 
-## Difference between feed and trigger
 
-Feeds and triggers are closely related, but technically distinct concepts.   
 
-- {{site.data.keyword.openwhisk_short}} processes **events** that flow into the system.
-
-- A **trigger** is technically a name for a class of events. Each event belongs to exactly one trigger; by analogy, a trigger resembles a *topic* in topic-based pub-sub systems. A **rule** *T -> A* means "whenever an event from trigger *T* arrives, invoke action *A* with the trigger payload.
-
-- A **feed** is a stream of events that all belong to some trigger *T*. A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
-
-##  Implementing feed actions
+###  Implementing feed actions
+{: #feeds_actions}
 
 The *feed action* is a normal {{site.data.keyword.openwhisk_short}} *action*, and accepts the following parameters:
 * **lifecycleEvent**: One of 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE', or 'UNPAUSE'.
@@ -83,7 +181,8 @@ For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action hap
 
 A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` and `ibmcloud fn trigger get`.
 
-## Implementing feeds with Hooks
+## Implementing feeds with hooks
+{: #feeds_hooks}
 
 It is easy to set up a feed by using a hook if the event producer supports a webhook/callback facility.
 
@@ -97,7 +196,8 @@ The webhook is directed to send notifications to a URL such as:
 
 The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire as a result of the event.
 
-## Implementing feeds with Polling
+## Implementing feeds with polling
+{: #feeds_polling}
 
 It is possible to set up an {{site.data.keyword.openwhisk_short}} *action* to poll a feed source entirely within {{site.data.keyword.openwhisk_short}}, without the need to stand up any persistent connections or external service.
 
@@ -111,7 +211,8 @@ To set up a polling-based feed, the feed action takes the following steps when c
 
 This procedure implements a polling-based trigger entirely by using {{site.data.keyword.openwhisk_short}} actions, without any need for a separate service.
 
-## Implementing feeds by using Connections
+## Implementing feeds by using connections
+{: #feeds_connections}
 
 The previous two architectural choices are simple and easy to implement. However, if you want a high-performance feed, there is no substitute for persistent connections and long-polling or similar techniques.
 
@@ -125,3 +226,5 @@ The {{site.data.keyword.cloudant_short_notm}} *changes* feed is the canonical ex
 The *alarm* feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but imposes more overhead on operations that are compared to the polling and hook architectures.
+
+
