@@ -55,10 +55,10 @@ When you create your namespace, the following artifacts are created at the same 
 
 **Are there any limitations for namespaces?**
 
-[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM managed namespaces.
+[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces.
 
-    {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_entities) documentation.
-    {: tip}
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#openwhisk_entities) documentation.
+{: tip}
 
 
 
