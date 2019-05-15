@@ -42,11 +42,7 @@ The pre-installed `/whisk.system/cloudant` package enables you to work with a [{
 | `/whisk.system/cloudant/changes` | feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
 {: shortdesc}
 
-For more information on how to use feeds with the `/whisk.system/cloudant` package, see [{{site.data.keyword.cloudant_short_notm}} events source](#cloudant_events).
-
-
-
-## Setting up an {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
+### Setting up an {{site.data.keyword.cloudant_short_notm}} database in the {{site.data.keyword.Bluemix_notm}}
 {: #cloudant_db}
 
 If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.Bluemix_notm}} you can use the {{site.data.keyword.openwhisk}} CLI plug-in to bind a service to an action or package.
@@ -148,7 +144,7 @@ You must first manually create a package binding for your {{site.data.keyword.cl
     In this example, the credentials for the Cloudant service belong to a parameter named `__bx_creds`.
 
 
-## Reading from an {{site.data.keyword.cloudant_short_notm}} database
+### Reading from an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_read}
 
 You can use an action to fetch a document from an {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
@@ -169,7 +165,7 @@ You can use an action to fetch a document from an {{site.data.keyword.cloudant_s
   ```
   {: screen}
 
-## Writing to an {{site.data.keyword.cloudant_short_notm}} database
+### Writing to an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_write}
 
 You can use an action to store a document in an {{site.data.keyword.cloudant_short_notm}} database called **testdb**. Make sure that this database exists in your {{site.data.keyword.cloudant_short_notm}} account.
