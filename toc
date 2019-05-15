@@ -67,7 +67,8 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Securing serverless apps
-         namespaces.mdz_archive_iam.md
+         namespaces.md
+         z_archive_iam.md
 
     {: .topicgroup}
     Setting up an automated tool chain
