@@ -36,7 +36,8 @@ This FAQ provides answers to common questions about the {{site.data.keyword.open
 {: #supported-runtimes}
 
 The following languages are supported:
-<li><table>
+
+<table>
   <tr>
     <th>Language</th>
     <th>Kind identifier</th>
@@ -77,7 +78,7 @@ The following languages are supported:
     <td>Other languages are supported by using Docker actions.</td>
   </tr>
 </table>
-{: caption="Table 1. Supported runtimes" caption-side="top"}</li>
+{: caption="Table 1. Supported runtimes" caption-side="top"}
 
 
 ## What's the maximum time my function can run?

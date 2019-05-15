@@ -136,6 +136,7 @@ IBM Cloud Functions
     z_archive_openwhisk_annotations.md
     z_archive_openwhisk_catalog_github.md
     z_archive_openwhisk_catalog_slack.md
+    z_archive_openwhisk_catalog_watson_translator.md
     z_archive_openwhisk_catalog_weather.md
     z_archive_openwhisk_cloudant.md
     z_archive_openwhisk_common_use_cases.md
