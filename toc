@@ -127,7 +127,6 @@ IBM Cloud Functions
     z_archive_cloudant_actions.md
     z_archive_creating_action_sequence.md
     z_archive_eventstreams.md
-    z_archive_iam.md
     z_archive_installable-packages-overview.md
     z_archive_messagehub_actions.md
     z_archive_mobile_push_actions.md
