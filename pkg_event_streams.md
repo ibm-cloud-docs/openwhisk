@@ -109,7 +109,7 @@ You can create a trigger that reacts when messages are posted to an {{site.data.
 ## {{site.data.keyword.messagehub}} package
 {: #eventstreams_pkg}
 
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to Event Streams/Kafka.
+The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: deprecated}
 
 This package enables communication with [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
