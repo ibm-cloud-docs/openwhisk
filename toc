@@ -8,10 +8,10 @@ IBM Cloud Functions
     getting_started.md
 
     {: .topicgroup}
-    Overview
-        z_archive_openwhisk_common_use_cases.md
-        z_archive_openwhisk_about.md
-        z_archive_openwhisk_faas_compared.md
+    About
+        use_cases.md
+        about.md
+        faas.md
 
     {: .topicgroup}
     Tutorials
@@ -22,90 +22,80 @@ IBM Cloud Functions
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    z_archive_bluemix_cli.md
+    cli_install.md
 
     {: .topicgroup}
-    Creating actions
-        z_archive_actions_javascript.md
-        z_archive_actions_go.md
-        z_archive_actions_swift.md
-        z_archive_actions_python.md
-        z_archive_actions_ruby.md
-        z_archive_actions_docker.md
-        z_archive_actions_php.md
-        z_archive_actions_java.md
-        z_archive_actions_net.md
-        z_archive_openwhisk_webactions.md
+    Developing serverless apps
+        plan.md
+        templates.md
+        prep.md
+        actions.md
+        actions_web.md
+        triggers.md
+        rules.md
+        apigateway.md
 
-    {: topicgroup}
-    Managing actions
-        z_archive_openwhisk_managing.md
-        z_archive_creating_action_sequence.md
-        z_archive_binding_services.md
-        z_archive_working-with-actions.md
-        z_archive_openwhisk_packages.md
+    test.md
 
     {: .topicgroup}
-    Invoking actions with events
-        z_archive_openwhisk_triggers_rules.md
-        z_archive_openwhisk_alarms.md
-        z_archive_openwhisk_cloudant.md
-        z_archive_eventstreams.md
-        z_archive_openwhisk_pushnotifications.md
-        z_archive_openwhisk_catalog_github.md
-        z_archive_openwhisk_feeds.md
-        z_archive_openwhisk_object_storage.md
+    Integrating serverless apps
+        services.md
+        pkg_ov.md
+        pkg_alarms.md
+        pkg_cloudant.md
+        pkg_composer.md
+        pkg_discovery.md
+        pkg_event_streams.md
+        pkg_github.md
+        pkg_mobile_sdk.md
+        pkg_natlang_classifer.md
+        pkg_natlang_understanding.md
+        pkg_obstorage.md
+        pkg_person_insights.md
+        pkg_push_notifications.md
+        pkg_slack.md
+        pkg_speech_to_text.md
+        pkg_text_to_speech.md
+        pkg_tone_analyzer.md<staging
+        >pkg_translator.md</staging>
+        pkg_utils.md
+        pkg_visual_recognition.md
+        pkg_watson_assistant.md
+        pkg_weather.md
+        pkg_websocket.md
+        feeds_custom.md
 
-    z_archive_openwhisk_composer.md
-    apigateway.md
-    z_archive_openwhisk_logs.md
-    activity_tracker.md
-    deploy.md
-    z_archive_serviceauth.md
-
-    {: .topicgroup}
-    Packages
-        z_archive_cloudant_actions.md
-        z_archive_mobile_push_actions.md
-        z_archive.md
-        z_archive_openwhisk_catalog_weather.md
-        z_archive_openwhisk_catalog_slack.md
-        z_archive_openwhisk_websocket.md
-        z_archive_watson_texttospeech.md
-        z_archive_watson_speechtotext.md
-        z_archive_installable-packages-overview.md
-        z_archive_openwhisk_pushnotifications.md
-        z_archive_cloud_object_storage_actions.md
-        z_archive_ow_watson_assistant.md
-        z_archive_ow_watson_discovery.md
-        z_archive_ow_watson_visual_recognition.md
-        z_archive_ow_watson_natural_language_understanding.md
-        z_archive_ow_watson_natural_language_classifer.md
-        z_archive_ow_watson_personality_insights.md
-        z_archive_ow_watson_tone_analyzer.md
-        z_archive_openwhisk_catalog_watson_translator.md
 
     {: .topicgroup}
-    SDK and frameworks
-        z_archive_openwhisk_goserverless.md
-        z_archive_openwhisk_mobile_sdk.md
+    Securing serverless apps
+         namespaces.mdz_archive_iam.md
 
     {: .topicgroup}
-    Managing Functions in IAM
-        z_archive_openwhisk_namespaces.md
-        z_archive_iam.md
+    Setting up an automated tool chain
+        deploy.md
+
+    {: .topicgroup}
+    Logging events 
+        logs.md
+        activity_tracker.md
+
+    {: .topicgroup}
+    Monitoring health
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    z_archive_openwhisk_annotations.md
+    annotations.md
     runtimes.md
-    z_archive_openwhisk_reference.md
+    limits.md
+    cli_reference.md
     regions.md
 
     {: .topicgroup}
     API documentation
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
+
 
     {: .topicgroup}
     Related links
@@ -120,9 +110,59 @@ IBM Cloud Functions
     ts_index.md
     {: .navgroup-end}
 
-    z_archive_eventstreams.md
-    z_archive_messagehub_actions.md
-    z_archive_openwhisk_cloudant.md
-    z_archive_ow_push_notifications.md
 
-    
+    z_archive_actions_javascript.md
+    z_archive_actions_go.md
+    z_archive_actions_swift.md
+    z_archive_actions_python.md
+    z_archive_actions_ruby.md
+    z_archive_actions_docker.md
+    z_archive_actions_php.md
+    z_archive_actions_java.md
+    z_archive_actions_net.md
+    z_archive_binding_services.md
+    z_archive_bluemix_cli.md
+    z_archive_cloud_object_storage_actions.md
+    z_archive_cloudant_actions.md
+    z_archive_creating_action_sequence.md
+    z_archive_eventstreams.md
+    z_archive_iam.md
+    z_archive_installable-packages-overview.md
+    z_archive_messagehub_actions.md
+    z_archive_mobile_push_actions.md
+    z_archive_openwhisk_about.md
+    z_archive_openwhisk_access.md
+    z_archive_openwhisk_alarms.md
+    z_archive_openwhisk_annotations.md
+    z_archive_openwhisk_catalog_github.md
+    z_archive_openwhisk_catalog_slack.md
+    z_archive_openwhisk_catalog_watson_translator.md
+    z_archive_openwhisk_catalog_weather.md
+    z_archive_openwhisk_cloudant.md
+    z_archive_openwhisk_common_use_cases.md
+    z_archive_openwhisk_composer.md
+    z_archive_openwhisk_faas_compared.md
+    z_archive_openwhisk_feeds.md
+    z_archive_openwhisk_logs.md
+    z_archive_openwhisk_managing.md
+    z_archive_openwhisk_mobile_sdk.md
+    z_archive_openwhisk_namespaces.md
+    z_archive_openwhisk_object_storage.md
+    z_archive_openwhisk_packages.md
+    z_archive_openwhisk_reference.md
+    z_archive_openwhisk_triggers_rules.md
+    z_archive_openwhisk_watson_texttospeech.md
+    z_archive_openwhisk_watson_speechtotext.md
+    z_archive_openwhisk_webactions.md
+    z_archive_openwhisk_websocket.md
+    z_archive_ow_push_notifications.md
+    z_archive_ow_watson_assistant.md
+    z_archive_ow_watson_discovery.md
+    z_archive_ow_watson_natural_language_classifer.md
+    z_archive_ow_watson_natural_language_understanding.md
+    z_archive_ow_watson_personality_insights.md
+    z_archive_ow_watson_tone_analyzer.md
+    z_archive_ow_watson_visual_recognition.md
+    z_archive_working-with-actions.md
+    z_archive_openwhisk_goserverless.md
+    z_archive_serviceauth.md

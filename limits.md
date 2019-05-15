@@ -1,3 +1,157 @@
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-05-15"
+
+keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
+
+subcollection: cloud-functions
+
+---
+
+{:new_window: target="_blank"}
+{:shortdesc: .shortdesc}
+{:screen: .screen}
+{:pre: .pre}
+{:table: .aria-labeledby="caption"}
+{:codeblock: .codeblock}
+{:tip: .tip}
+{:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
+{:download: .download}
+{:gif: data-image-type='gif'}
+
+# System details and limits
+{: #limits}
+
+The following sections provide technical details about the {{site.data.keyword.openwhisk}} system and limit settings.
+{: shortdesc}
+
+## System limits
+{: #limits_syslimits}
+
+### Actions
+{: #limits_actions}
+
+{{site.data.keyword.openwhisk_short}} has a few system limits, including how much memory an action can use and how many action invocations are allowed per minute.
+
+The following table lists the default limits for actions.
+
+| Limit | Description | Default | Min | Max |
+| ----- | ----------- | :-------: | :---: | :---: |
+| [codeSize](#limits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
+| [concurrent](#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
+| [logs](#limits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| [memory](#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
+| [minuteRate](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
+| [openulimit](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
+| [parameters](#limits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
+| [proculimit](#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
+| [result](#limits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
+| [sequenceMaxActions](#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
+| [timeout](#limits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
+
+### Increasing fixed limits
+{: #limits_increase}
+
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
+  1. Select **Support**
+  2. Select **Add Ticket** from the drop down menu.
+  3. Select **Technical** for the ticket type.
+  4. Select **Functions** for Technical area of support.
+
+#### codeSize (MB) (Fixed: 48 MB)
+{: #limits_codesize}
+* The maximum code size for the action is 48 MB.
+* For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
+* This limit is fixed and cannot be changed.
+
+#### concurrent (Fixed: 1000*)
+{: #limits_concurrent}
+* The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
+
+#### logs (MB) (Default: 10 MB)
+{: #limits_logs}
+* The log limit N is in the range [0 MB..10 MB] and is set per action.
+* A user can change the action log limit when an action is created or updated.
+* Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
+
+#### memory (MB) (Default: 256 MB)
+{: #limits_memory}
+* The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB.
+* A user can change the memory limit when an action is created.
+* A container cannot use more memory than is allocated by the limit.
+
+#### minuteRate (Fixed: 5000*)
+{: #limits_minuterate}
+* The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
+* A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
+
+#### openulimit (Fixed: 1024:1024)
+{: #limits_openulimit}
+* The maximum number of open files for an action is 1024 (for both hard and soft limits).
+* This limit is fixed and cannot be changed.
+* When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
+* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
+
+#### parameters (Fixed: 5 MB)
+{: #limits_parameters}
+* The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB.
+* An entity with too large parameters is rejected on trying to create or update it.
+* This limit is fixed and cannot be changed.
+
+#### proculimit (Fixed: 1024:1024)
+{: #limits_proculimit}
+* The maximum number of processes available to the action container is 1024.
+* This limit is fixed and cannot be changed.
+* When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
+* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
+
+#### result (Fixed: 5 MB)
+{: #limits_result}
+* The maximum output size of an action invocation result in MB.
+* This limit is fixed and cannot be changed.
+
+#### sequenceMaxActions (Fixed: 50*)
+{: #limits_sequencemax}
+* The maximum number of actions that comprise a given sequence.
+* This limit is fixed and cannot be changed.
+
+#### timeout (ms) (Default: 60s)
+{: #limits_timeout}
+* The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds.
+* A user can change the timeout limit when an action is created.
+* A container that runs longer than N milliseconds is terminated.
+
+### Triggers
+{: #limits_triggers}
+
+Triggers are subject to a firing rate per minute as documented in the following table.
+
+| Limit | Description | Default | Min | Max |
+| ----- | ----------- | :-------: | :---: | :---: |
+| [minuteRate](#limits_triggersminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
+
+### Increasing fixed limits
+{: #limits_triggersfixed}
+
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
+  1. Select **Support**
+  2. Select **Add Ticket** from the drop down menu.
+  3. Select **Technical** for the ticket type.
+  4. Select **Functions** for Technical area of support.
+
+#### minuteRate (Fixed: 5000*)
+{: #limits_triggersminuterate}
+
+* The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
+* A user cannot change the trigger limit when a trigger is created.
+* A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
+* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit.
 
 
 ## {{site.data.keyword.openwhisk_short}} entities

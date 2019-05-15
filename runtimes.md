@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-14"
+lastupdated: "2019-05-15"
 
 keywords: runtimes, support
 
@@ -53,7 +53,7 @@ Example image fields.
 
 Runtimes are updated on a regular basis. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-openwhisk_managing#changing-action-runtime)
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
 <ul>
@@ -63,14 +63,18 @@ These runtimes are deprecated:
     </ul></li>
   <li>PHP
     <ul>
-    <li><code>php:7.1 (deprecated)</code></li>
-    <li><code>php:7.2 (deprecated)</code></li>
+    <li><code>php:7.1</code> (deprecated)</li>
+    <li><code>php:7.2</code> (deprecated)</li>
     </ul></li>
   <li>Swift
     <ul>
     <li><code>swift:3</code> (deprecated)</li>
     <li><code>swift:3.1.1</code> (deprecated)</li>
     <li><code>swift:4.1</code> (deprecated)</li>
+    </ul></li>
+  <li>Ballerina
+    <ul>
+    <li><code>ballerina:0.990</code> (deprecated)</li>
     </ul></li>
 </ul>
 
@@ -495,7 +499,7 @@ Detailed information about the Python 2 runtime environment can be found in the 
 
 By default, all Swift actions are executed in a version 4.2 environment.
 
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-creating-swift-actions#packaging-an-action-as-a-swift-executable) to include dependencies using a Package.swift.
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies using a Package.swift.
 
 Swift 4.2 actions can use the following packages when using single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
