@@ -197,21 +197,6 @@ You can use an action to store a document in an {{site.data.keyword.cloudant_sho
   The dashboard URL for the **testdb** database looks something like the following: `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
 
 
-## Cloudant events source
-{: #cloudant_events}
-
-Learn how to listen for changes to an {{site.data.keyword.cloudant}} database, filter database change events, and use an action sequence to process a document from an {{site.data.keyword.cloudant_short_notm}} database. The `/whisk.system/cloudant` package enables you to work with an {{site.data.keyword.cloudant_short_notm}} database, and includes the following actions and feeds:
-
-| Entity | Type | Parameters | Description |
-| --- | --- | --- | --- |
-| `/whisk.system/cloudant` | package | dbname, host, username, password | Work with a Cloudant database. |
-| `/whisk.system/cloudant/read` | action | dbname, id | Read a document from a database. |
-| `/whisk.system/cloudant/write` | action | dbname, overwrite, doc | Write a document to a database. |
-| `/whisk.system/cloudant/changes` | feed | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Fire trigger events on changes to a database. |
-{: shortdesc}
-
-
-
 ### Create a trigger by using the filter function
 {: #cloudant_trigger}
 
