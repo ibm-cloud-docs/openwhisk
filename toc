@@ -88,7 +88,7 @@ IBM Cloud Functions
     annotations.md
     runtimes.md
     limits.md
-    cli_reference.md
+    /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
     regions.md
 
     {: .topicgroup}
