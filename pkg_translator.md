@@ -25,12 +25,6 @@ subcollection: cloud-functions
 
 # Translator
 
-## Package options
-
-| Package | Availability | Description |
-| --- | --- | --- | --- |
-| [`language-translator-v3`](#pkg_translator) | Installable | Work with the {{site.data.keyword.languagetranslatorshort}} service. |
-
 ## {{site.data.keyword.languagetranslatorshort}} package
 {: #pkg_translator}
 
