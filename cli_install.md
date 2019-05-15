@@ -100,15 +100,14 @@ The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS pro
 
 
 
-## Switching to different regions, organizations, and spaces
+## Switching to different regions, organizations, and spaces<
 {: #cli_regions}
 
 If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
 
-
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
-You can create spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_account#ibmcloud_account_space_create) to create more spaces under your organization such "staging" and "production":
+You can create IAM-based spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_account#ibmcloud_account_space_create) to create more spaces under your organization such "staging" and "production":
 
 ```
 ibmcloud iam space-create "staging"
@@ -136,7 +135,7 @@ All `wsk` commands, except the `wsk bluemix login` command that is no longer nee
 ### API Authentication and Host
 {: #cli_api_auth}
 
-The OpenWhisk CLI required you to configure the authentication API key and the API host. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login` and target your region and namespace by using the `ibmcloud target` command. After logging in, all commands begin with `ibmcloud fn`.
+The OpenWhisk CLI required you to configure the authentication API key and the API host. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace NAME` or a Cloud Foundry-based namespace by running `ibmcloud target -o ORG -s SPACE`. After logging in, all commands begin with `ibmcloud fn`.
 
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:
@@ -165,7 +164,6 @@ The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to conf
 {: #cli_migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
-
 
 
 
