@@ -36,7 +36,48 @@ This FAQ provides answers to common questions about the {{site.data.keyword.open
 {: #supported-runtimes}
 
 The following languages are supported:
-{{runtimes_available.md}}
+<li><table>
+  <tr>
+    <th>Language</th>
+    <th>Kind identifier</th>
+  </tr>
+  <tr>
+    <td>Node.js</td>
+    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+  </tr>
+  <tr>
+    <td>Python</td>
+    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Swift</td>
+    <td><code>swift:4.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td>PHP</td>
+    <td><code>php:7.3</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Go</td>
+    <td><code>go:1.11</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Ruby</td>
+    <td><code>ruby:2.5</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Java</td>
+    <td><code>java (JDK 8)</code> (default)</td>
+  </tr>
+  <tr>
+    <td>.NET Core</td>
+    <td><code>dotnet:2.2</code> (default)</td>
+  </tr>
+  <tr>
+    <td>Other languages are supported by using Docker actions.</td>
+  </tr>
+</table>
+{: caption="Table 1. Supported runtimes" caption-side="top"}</li>
 
 
 ## What's the maximum time my function can run?
