@@ -65,7 +65,6 @@ IBM Cloud Functions
         pkg_websocket.md
         feeds_custom.md
 
-
     {: .topicgroup}
     Securing serverless apps
          namespaces.md
@@ -97,7 +96,6 @@ IBM Cloud Functions
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
-
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
@@ -110,7 +108,6 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
-
 
     z_archive_actions_javascript.md
     z_archive_actions_go.md
