@@ -141,7 +141,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package. Namespaces are formed from the combined `org` and `space` names.
+2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package. 
 
 3. Click **Install Packages**.
 

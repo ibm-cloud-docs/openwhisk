@@ -164,11 +164,9 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 Packages can contain actions and feeds. A package cannot contain another package, so package nesting is not allowed. Also, entities do not have to be contained in a package.
 
-In {{site.data.keyword.Bluemix_notm}}, an organization and space pair corresponds to a {{site.data.keyword.openwhisk_short}} namespace. For example, the organization `BobsOrg` and space `dev` would correspond to the {{site.data.keyword.openwhisk_short}} namespace `/BobsOrg_dev`.
+You can create new IAM-based namespaces by running `ibmcloud fn namespace create`.  Cloud Foundry-based namespaces are made from a combination of an org and space name. For example, if you are targeted to the `user@email.com` org and the `dev` space, then you are targeting the {{site.data.keyword.openwhisk_short}} Cloud Foundry-based namespace called `user@email.com_dev`. 
 
-
-
-You can create new Cloud Foundry-based namespaces by creating Cloud Foundry orgs and spaces. The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
+The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
 
 ### Fully qualified names
@@ -177,9 +175,7 @@ You can create new Cloud Foundry-based namespaces by creating Cloud Foundry orgs
 The fully qualified name of an entity is
 `/namespaceName/[packageName]/entityName`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, namespaces must be prefixed with a `/`.
 
-For convenience, the Namespace can be left off if it is the user's default namespace. For example, consider a user whose default Namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
-
-
+For convenience, the namespace can be left off if it is the user's default namespace. For example, consider a user whose default namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
 
 | Fully qualified name | Alias | Namespace | Package | Name |
 | --- | --- | --- | --- | --- |
