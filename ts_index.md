@@ -54,10 +54,10 @@ To see which runtime is used for the action, run `ibmcloud fn action get ACTION_
 {: #ts_limit_reached}
 
 {: tsSymptoms}
-Your function is not running properly because a limit has been reached, such as memory usage maximum or a timeout.
+Your function is not running properly and might result in a message like `{"error":"signal: killed"}`.
 
 {: tsCauses}
-All functions have minimum and maximum [system limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits).
+All functions have minimum and maximum [system limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits), such as memory usage maximum or a timeout.
 
 {: tsResolve}
 Some limits can be increased if a business case can justify higher safety limit values. To increase the limit value, contact IBM support by opening a ticket directly from the IBM Cloud Functions web console.
