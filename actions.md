@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -32,8 +32,6 @@ Create an action, which is a top-level function that returns a JSON object. You 
 
 Before you begin:
 To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single file before you create the action. See [Preparing your app code for serverless](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for each runtime.
-
-
 
 
 ## Creating actions from the CLI
@@ -112,10 +110,8 @@ When you migrate to a new runtime version, you might need to change the code in 
     ```
     {: screen}
 
-    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>` with your create command instead of the path to the local app.
-    {: tip}
-
-
+If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>` with your create command instead of the path to the local app. When updating an action within a Docker image, make sure to include an image tag that is not `latest`. By default, the image tagged `latest` is used, which could mean that the actual latest image is not used.  
+{: tip}
 
 
 ## Binding parameters to actions
