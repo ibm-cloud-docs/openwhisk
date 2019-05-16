@@ -89,7 +89,7 @@ When you migrate to a new runtime version, you might need to change the code in 
 
 1. Update your app locally.
 
-2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there is a warm container that uses a previous version of your Docker image, any new invocations continue to use that image. You must continue and run the update command so that new invocations begin using the new image.
+2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there is a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin using the new image.
 
 3. Update an action and include the local path to your app or the Docker image.
     ```
