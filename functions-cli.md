@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
-subcollection: cloud-functions
+subcollection: cloud-functions-cli-plugin
 
 ---
 
