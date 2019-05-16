@@ -57,13 +57,13 @@ IBM Cloud Functions
         pkg_speech_to_text.md
         pkg_text_to_speech.md
         pkg_tone_analyzer.md
+        pkg_translator.md
         pkg_utils.md
         pkg_visual_recognition.md
         pkg_watson_assistant.md
         pkg_weather.md
         pkg_websocket.md
         feeds_custom.md
-
 
     {: .topicgroup}
     Securing serverless apps
@@ -88,14 +88,13 @@ IBM Cloud Functions
     annotations.md
     runtimes.md
     limits.md
-    cli_reference.md
+    /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
     regions.md
 
     {: .topicgroup}
     API documentation
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
         [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
-
 
     {: .topicgroup}
     Related links
@@ -109,7 +108,6 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
-
 
     z_archive_actions_javascript.md
     z_archive_actions_go.md
@@ -126,7 +124,6 @@ IBM Cloud Functions
     z_archive_cloudant_actions.md
     z_archive_creating_action_sequence.md
     z_archive_eventstreams.md
-    z_archive_iam.md
     z_archive_installable-packages-overview.md
     z_archive_messagehub_actions.md
     z_archive_mobile_push_actions.md
