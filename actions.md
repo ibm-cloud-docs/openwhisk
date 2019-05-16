@@ -57,7 +57,7 @@ To create an action, your source code must meet certain requirements. For exampl
   {: screen}
 
   Tips:
-  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>` with your create command instead of the local path to your app.
+  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the local path to your app. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.  
   - To save on cost, you can set limits.
       - To set a limit for memory usage, include `--memory VALUE` with your create command, where the value is in megabytes.
       - To set a timeout, include `--timeout VALUE` with your create command, where the value is in milliseconds.
@@ -110,8 +110,8 @@ When you migrate to a new runtime version, you might need to change the code in 
     ```
     {: screen}
 
-If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>` with your create command instead of the path to the local app. When updating an action within a Docker image, make sure to include an image tag that is not `latest`. By default, the image tagged `latest` is used, which could mean that the actual latest image is not used.  
-{: tip}
+    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the path to the local app. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
+    {: tip}
 
 
 ## Binding parameters to actions
