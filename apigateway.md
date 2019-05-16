@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: serverless, rest api, gateway, web actions
 
@@ -133,6 +133,9 @@ To return different content types in the body, use full control over the HTTP re
   }
   ```
   {: screen}
+
+
+<staging books>
 
 ## Exposing multiple web actions
 {: #api_multiple_web}
@@ -302,6 +305,9 @@ To export or import a configuration, you can continue using the book club exampl
   deleteBooks             delete         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
   ```
   {: screen}
+
+
+</staging book>
 
 ## Modifying the configuration
 {: #api_modify_config}
