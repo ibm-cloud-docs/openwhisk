@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -28,7 +28,17 @@ subcollection: cloud-functions
 # Text to Speech
 {: #pkg_text_to_speech}
 
-This pre-installed package is not available in the Tokyo region. Please see the installable [Text to Speech](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) package using IAM authentication.
+## Package options
+
+| Package | Availability | Description |
+| --- | --- | --- | --- |
+| [`/whisk.system/watson-textToSpeech`](#text_to_speech) | Pre-installed (Not available in Tokyo) | Package to convert text into speech |
+| [`text-to-speech-v1`](#text_to_speech_ins) | Installable | Work with the {{site.data.keyword.texttospeechshort}} service. |
+
+## Watson Text to Speech
+{: #text_to_speech}
+
+This pre-installed package is not available in the Tokyo region. See the installable [Text to Speech](#text_to_speech_ins) package using IAM authentication.
 {: tip}
 
 The `/whisk.system/watson-textToSpeech` package offers a convenient way to call Watson APIs to convert the text into speech.
@@ -43,7 +53,7 @@ The package includes the following actions.
 
 **Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) instead.
 
-## Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
+### Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix_notm}}, the package bindings are automatically created for your {{site.data.keyword.Bluemix_notm}} Watson service instances.
 
@@ -77,7 +87,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.Bluemix
   ```
   {: screen}
 
-## Setting up a Watson Text to Speech package outside {{site.data.keyword.Bluemix_notm}}
+### Setting up a Watson Text to Speech package outside {{site.data.keyword.Bluemix_notm}}
 
 If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} or if you want to set up your Watson Text to Speech outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your Watson Text to Speech service. You need the Watson Text to Speech service user name, and password.
 
@@ -87,7 +97,7 @@ ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech 
 ```
 {: pre}
 
-## Converting some text to speech
+### Converting text to speech
 
 The `/whisk.system/watson-textToSpeech/textToSpeech` action converts some text into an audio speech. The parameters are as follows:
 
@@ -113,7 +123,8 @@ Example output:
 {: screen}
 
 
-# {{site.data.keyword.texttospeechshort}} package
+## {{site.data.keyword.texttospeechshort}}
+{: #text_to_speech_ins}
 
 The installable {{site.data.keyword.texttospeechfull}} service provides an API that uses IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a variety of languages, dialects, and voices.
 {:shortdesc}
@@ -141,7 +152,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 | [list-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | List custom words. |
 | [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Delete labeled data. |
 
-## Creating a {{site.data.keyword.texttospeechshort}} service instance
+### Creating a {{site.data.keyword.texttospeechshort}} service instance
 {: #service_instance_texttospeech}
 
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} service instance and service credentials.
@@ -150,7 +161,7 @@ Before you install the package, you must create a {{site.data.keyword.texttospee
 1. [Create a {{site.data.keyword.texttospeechshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/text_to_speech).
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
-## Installing the {{site.data.keyword.texttospeechshort}} package
+### Installing the {{site.data.keyword.texttospeechshort}} package
 {: #install_texttospeech}
 
 After you have an {{site.data.keyword.texttospeechshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.texttospeechshort}} package into your namespace.
