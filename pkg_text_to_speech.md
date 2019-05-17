@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-05-17"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -51,7 +51,7 @@ The package includes the following actions.
 | `/whisk.system/watson-textToSpeech` | package | username, password | Package to convert text into speech |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | action | payload, voice, accept, encoding, username, password | Convert text into audio |
 
-**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) instead.
+**Note**: The package `/whisk.system/watson` is deprecated including the action `/whisk.system/watson/textToSpeech`. See the [installable {{site.data.keyword.texttospeechshort}} package](#text_to_speech_ins) instead.
 
 ### Setting up the Watson Text to Speech package in {{site.data.keyword.Bluemix_notm}}
 
