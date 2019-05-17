@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-05-16"
+lastupdated: "2019-05-17"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions-cli-plugin
 
 
 
-# CLI reference
+# {{site.data.keyword.openwhisk_short}} CLI
 {: #functions-cli}
 
 Run these commands to manage the entities that make up your functions.
