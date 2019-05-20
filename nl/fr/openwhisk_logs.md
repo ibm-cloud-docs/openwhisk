@@ -18,12 +18,12 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Activité de journalisation et de surveillance
-{: #openwhisk_logs}
+{: #logs}
 
 La journalisation et la surveillance sont automatiquement activés dans {{site.data.keyword.openwhisk}} pour vous aider à résoudre les problèmes et améliorer l'intégrité et les performances de vos actions. Vous pouvez également utiliser le service {{site.data.keyword.cloudaccesstraillong}} pour suivre la façon dont les utilisateurs et les applications interagissent avec le service {{site.data.keyword.openwhisk_short}}. 
 
 ## Affichage des journaux
-{: #view-logs}
+{: #logs_view}
 
 Vous pouvez consulter les journaux d'activation directement depuis le tableau de bord de surveillance {{site.data.keyword.openwhisk_short}}. Les journaux sont également transférés à [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) où ils sont indexés, afin de permettre une recherche en texte intégral à l'aide de tous les messages générés et d'une interrogation efficace basée sur des zones spécifiques.
 {:shortdesc}
@@ -39,7 +39,7 @@ Vous pouvez consulter les journaux d'activation directement depuis le tableau de
 4. Facultatif : pour afficher des journaux plus anciens, définissez la valeur de période par défaut sur 15 minutes en cliquant sur **15 dernières minutes** dans l'angle supérieur droit et en sélectionnant une période différente.
 
 ### Interrogation des journaux
-{: #query-logs}
+{: #logs_query}
 
 Vous pouvez trouver des journaux d'activation spécifiques dans [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) à l'aide de la syntaxe de requête de Kibana.
 
@@ -57,7 +57,7 @@ Les exemples de requête suivants peuvent vous aider à déboguer des erreurs :
       {: codeblock}
 
 ### Interrogation des résultats
-{: #query-results}
+{: #logs_query_results}
 
 Outre les lignes de journaux, [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) indexe également les résultats, ou les enregistrements d'activation, qui sont générés par {{site.data.keyword.openwhisk_short}}. Les résultats contiennent les métadonnées d'activation comme la durée d'activation ou le code de résultat d'activation. L'interrogation des zones de résultat peut vous aider à comprendre le comportement de vos actions {{site.data.keyword.openwhisk_short}}.
 
@@ -78,7 +78,7 @@ Vous pouvez trouver des journaux d'activation spécifiques à l'aide de la synta
 
 
 ## Surveillance des performances des actions
-{: #monitoring_performance}
+{: #monitor}
 
 Vous pouvez obtenir des informations sur les performances de vos actions déployées avec {{site.data.keyword.openwhisk}}. Les métriques peuvent vous aider à détecter des goulots d'étranglement ou à prévoir les éventuels problèmes de production d'après la durée de l'action et les résultats des activations d'action, ou à déterminer lorsque vous avez atteint les limites d'activation d'action.
 {: shortdesc}
@@ -86,7 +86,7 @@ Vous pouvez obtenir des informations sur les performances de vos actions déploy
 Les métriques sont collectées automatiquement pour toutes les entités. Selon que vos actions se trouvent dans un espace de nom IAM ou Cloud Foundry, les métriques sont situées dans le compte ou l'espace IBM Cloud. Ces métriques sont envoyées à {{site.data.keyword.monitoringlong}} et mises à disposition via Grafana, où vous pouvez configurer vos tableaux de bord, créer des alertes basées sur les valeurs d'événement des métriques, etc. Pour plus d'informations sur les métriques, consultez la [documentation {{site.data.keyword.monitoringlong_notm}}](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started-with-ibm-cloud-monitoring). 
 
 ### Création d'un tableau de bord
-{: #create_dashboard}
+{: #monitor_dash}
 
 Commencez par créer un tableau de bord de surveillance Grafana. 
 
@@ -139,7 +139,7 @@ Une fois qu'une action est exécutée, de nouvelles métriques sont générées 
 
 
 ### Format de métrique
-{: #metric_format}
+{: #monitor_metric}
 
 Les métriques reflètent les données collectées à partir de vos activations d'action, qui sont agrégées par minute. Les métriques sont consultables au niveau d'accès concurrent ou de performance de l'action. 
 
