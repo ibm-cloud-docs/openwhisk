@@ -357,7 +357,7 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
   <dt><em>ACTION_NAME</em></dt>
   <dd>The name of the action. To include the action in a package, enter the name in the format <em>PACKAGE_NAME</em>/<em>ACTION_NAME</em>. This value is required. </dd>
 
-  <dt><em>APP_<em>FILE</em></dt>
+  <dt><em>APP_FILE</em></dt>
   <dd>The path to the app file or package to run as an action. This option is required when you want to update your app within the action.</dd>
 
   <dt>--concurrency <em>ACTIVATION_LIMIT</em>, -c <em>ACTIVATION_LIMIT</em></dt>
