@@ -18,13 +18,13 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Comparaison de FaaS (Function as a Service)
-{: #openwhisk_faas_compared}
+{: #faas}
 
 {{site.data.keyword.openwhisk}} fournit OpenWhisk dans un environnement sans serveur hautement évolutif. Vous pouvez comparer l'architecture sans serveur et le traitement informatique abordable de {{site.data.keyword.openwhisk_short}} à d'autres modèles d'architecture.
 {: shortdesc}
 
 ## Comparaison d'architectures OpenWhisk
-{: #architecture_comparison}
+{: #faas_architecture}
 
 Les architectures OpenWhisk suivantes sont comparées :
 
@@ -64,7 +64,7 @@ Le tableau suivant compare les éléments de chaque architecture du point de vue
 |	Coût total de possession (TCO)	|	Pour ses applications sweet spot, ce coût sera probablement substantiellement moindre que les alternatives. Les ressources étant mises à l'échelle automatiquement, aucune allocation excédentaire ne se produit.	|	Pour les déploiements en cloud, probablement plus onéreux que OpenWhisk FaaS, mais pour un déploiement sur site, peut être moins coûteux que les architectures traditionnelles.	|	Relativement faible - L'utilisateur n'a pas besoin d'allouer ou de gérer des ressources et peut se concentrer sur son application. Un certain degré d'allocation excédentaire intervient comparé à l'architecture sans serveur	|	Modéré - L'utilisateur doit allouer et gérer des conteneurs et l'application, mais un certain degré d'allocation excédentaire intervient comparé à l'architecture sans serveur ou à PaaS	|	Relativement élevé - Du fait que la migration d'applications existantes vers le modèle de cloud natif peut avoir un coût prohibitif, cette solution peut constituer un choix viable et économique pour ces applications.	|
 
 ## Considérations en matière de coûts
-{: #cost_considerations}
+{: #faas_cost}
 
 L'infrastructure de vos environnement de test, de préproduction, de test de charge, ainsi que d'autres environnements peut s'avérer coûteuse. Il faut du temps pour les configurer et, comme ils fonctionnent en principe 24 heures sur 24 et 7 jours sur 7, ils sont souvent sous-exploités et consomment de la capacité en grandes quantités. En utilisant une architecture sans serveur, les coûts afférant à plusieurs environnements sont générés en fonction de la charge et non pas du nombre d'environnements définis.
 {: shortdesc}
@@ -72,18 +72,18 @@ L'infrastructure de vos environnement de test, de préproduction, de test de cha
 Pour estimer les coûts d'une application sans serveur, vous pouvez utiliser la [calculatrice de prix ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/learn/pricing).
 
 ### Capacité illimitée
-{: #limitless_capacity}
+{: #faas_capacity}
 
 Dans les architectures traditionnelles, chaque service consomme la quantité de capacité qui lui est alloué et vous êtes facturé pour la capacité consommée. L'architecture sans serveur de {{site.data.keyword.openwhisk_short}} réduit la contrainte liée à la granularité votre architecture de microservices.
 
 Lorsque vous ne l'utilisez pas, {{site.data.keyword.openwhisk_short}} ne coûte rien. Votre code s'exécute chaque fois que se produit un appel HTTP, un changement d'état de base de données ou tout autre type d'événement qui déclenche l'exécution de votre code. Vous êtes facturé en millisecondes de temps d'exécution arrondies aux 100ms les plus proches, et non par heure d'utilisation de la machine virtuelle, peu importe que le travail effectué par cette machine ait été utile ou non. Comme vous ne payez qu'en cas d'événements consommés et non pas en fonction du nombre d'environnements, vous pouvez subdiviser votre application en 100, 1000 microservices voire plus.
 
 ### Exécution d'actions dans n'importe quelle région
-{: #actions_region}
+{: #faas_region}
 
 Dans les architectures traditionnelles, le code doit être exploité et exécuté dans chaque région et l'infrastructure correspondant à ces régions doit être facturée. Avec {{site.data.keyword.openwhisk_short}}, les actions sont déployables et exécutables dans toutes les régions sans frais supplémentaires. Vous pouvez augmenter la disponibilité et la résilience de votre code sans les restrictions habituelles liées aux coûts.
 
 ### Redondance par conception
-{: #redundancy_design}
+{: #faas_redundancy}
 
 Dans les architectures traditionnelles, les applications doivent être redondantes. Avec {{site.data.keyword.openwhisk_short}}, les processus ne doivent pas être à haute disponibilité car, de par leur conception, les applications sans serveur sont sans état et gérées en fonction des demandes et des événements. En éliminant la nécessité de créer explicitement de la redondance, la nature sans état des applications sans serveur contribue à réduire considérablement les coûts d'infrastructure.
