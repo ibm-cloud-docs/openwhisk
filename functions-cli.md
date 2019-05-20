@@ -48,7 +48,7 @@ Run these commands to manage the entities that make up your functions.
 Create an action.
 
 ```
-ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--concurrency <em>ACTIVATION_LIMIT</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web] [--web-secure <em>SECRET</em>]
+ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--concurrency <em>ACTIVATION_LIMIT</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web yes|true|raw|no|false] [--web-secure <em>SECRET</em>]
 ```
 {: pre}
 
@@ -146,8 +146,8 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
    <dt>--timeout <em>LIMIT</em>, -t <em>LIMIT</em></dt>
    <dd>The timeout <em>LIMIT</em> in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
 
-   <dt>--web string yes|raw|no</dt>
-   <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify <code>yes</code> or no <em>VALUE</em> for a web action, <code>raw</code> for a raw HTTP web action, or <code>no</code> for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
+   <dt>--web yes|true|raw|no|false</dt>
+   <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify <code>yes</code> or <code>true</code> for a web action, <code>raw</code> for a raw HTTP web action, or <code>no</code> or <code>false</code> for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
 
    <dt>--web-secure <em>SECRET</em></dt>
    <dd>Secure the web action. The <em>VALUE</em> for <em>SECRET</em> can be <em>true</em>, <em>false</em>, or any string. This option can be used only with the `--web` option.</dd>
@@ -341,7 +341,7 @@ ibmcloud fn action list <em>ACTION_NAME</em> [--limit <em>NUMBER_OF_ACTIONS</em>
 Update an action or the app within an action.
 
 ```
-ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--concurrency <em>ACTIVATION_LIMIT</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web] [--web-secure <em>SECRET</em>]
+ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--concurrency <em>ACTIVATION_LIMIT</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web yes|true|raw|no|false] [--web-secure <em>SECRET</em>]
 ```
 {: pre}
 
@@ -439,8 +439,8 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
   <dt>--timeout <em>LIMIT</em>, -t <em>LIMIT</em></dt>
   <dd>The timeout limit in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
 
-  <dt>--web yes|raw|no</dt>
-  <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify yes or no <em>VALUE</em> for a web action, raw for a raw HTTP web action, or no for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
+  <dt>--web yes|true|raw|no|false</dt>
+  <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify <code>yes</code> or <code>true</code> for a web action, <code>raw</code> for a raw HTTP web action, or <code>no</code> or <code>false</code> for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
 
   <dt>--web-secure <em>SECRET</em></dt>
   <dd>Secure the web action. The <em>VALUE</em> for <em>SECRET</em> can be <em>true</em>, <em>false</em>, or any string. This option can be used only with the `--web` option.</dd>
