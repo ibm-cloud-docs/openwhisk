@@ -18,13 +18,13 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Scénarios d'utilisation courants
-{: #openwhisk_common_use_cases}
+{: #use_cases}
 
 Le modèle d'exécution qui est proposé par {{site.data.keyword.openwhisk_short}} prend en charge divers scénarios d'utilisation. Les sections ci-après présentent des exemples classiques. Pour obtenir une présentation plus détaillée de l'architecture sans serveur, voir l'excellent [article de Mike Roberts sur le blogue de Martin Fowler](https://martinfowler.com/articles/serverless.html) qui contient des scénarios d'utilisation et présente les avantages et les inconvénients, ainsi que les meilleures pratiques d'implémentation de cette architecture.
 {: shortdesc}
 
 ## Microservices
-{: #openwhisk_common_use_cases_microservices}
+{: #use_cases_microservices}
 
 En dépit des avantages qu'elles procurent, les solutions basées sur les microservices sont toujours aussi difficiles à générer à l'aide de technologies cloud traditionnelles nécessitant souvent de contrôler une chaîne d'outils complexe et d'avoir recours à des pipelines de génération et d'opérations distincts. Les équipes réduites mais agiles consacrent trop de temps à gérer les complexités d'infrastructure et de fonctionnement (par exemple, tolérance aux pannes, équilibrage de charge, mise à l'échelle automatique et journalisation). Elles souhaitent plus précisément pouvoir développer un code simplifié à valeur ajoutée à l'aide de langages de programmation qu'ils connaissent et apprécient et qui conviennent mieux pour la résolution de problèmes spécifiques.
 
@@ -35,7 +35,7 @@ Un autre argument important en faveur de {{site.data.keyword.openwhisk_short}} e
 [Logistics Wizard](https://www.ibm.com/blogs/bluemix/2017/02/microservices-multi-compute-approach-using-cloud-foundry-openwhisk/) est un exemple d'application au niveau de l'entreprise qui tire parti de {{site.data.keyword.openwhisk_short}} et de Cloud Foundry pour construire des applications de type 12 facteurs. Il s'agit d'une solution intelligente de gestion de la chaîne logistique globale qui vise à simuler un environnement qui exécute un système de planification des ressources d'entreprise (ERP). Elle enrichit le système ERP avec des applications améliorant la visibilité et l'agilité des gestionnaires de la chaîne logistique.
 
 ## Applications Web
-{: #openwhisk_common_use_cases_webapps}
+{: #use_cases_webapps}
 
 Vu que {{site.data.keyword.openwhisk_short}} est géré par des événements, il offre plusieurs avantages aux applications destinées aux utilisateurs, tandis que les demandes HTTP provenant du navigateur de l'utilisateur servent d'événements. Les applications {{site.data.keyword.openwhisk_short}} n'utilisent des capacités de traitement et ne sont facturées que lorsqu'elles traitent des demandes d'utilisateurs. Le mode de secours en veille ou d'attente est inexistant. Cette fonction rend {{site.data.keyword.openwhisk_short}} considérablement moins onéreux que les applications de conteneurs ou Cloud Foundry traditionnelles. Ces applications peuvent passer le plus clair de leur temps simplement en attente d'une demande utilisateur entrante et sont facturées pour tout ce temps de "sommeil".
 
@@ -47,7 +47,7 @@ Examinez les exemples ci-dessous illustrant l'utilisation de {{site.data.keyword
 - [Serverless HTTP handlers with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-http-handlers-with-openwhisk-90a986cc7cdd)
 
 ## IoT
-{: #openwhisk_common_use_cases_iot}
+{: #use_cases_iot}
 
 Souvent, les scénarios Internet of Things dépendent intrinsèquement d'un capteur. Par exemple, une action dans {{site.data.keyword.openwhisk_short}} peut être déclenchée s'il est nécessaire de réagir à un relevé de capteur dépassant une température particulière. Les interactions IoT sont généralement sans état et présentent une charge élevée potentielle dans le cas d'événements spontanés majeurs, tels que des catastrophes naturelles, des tempêtes importantes ou des bouchons de circulation. Ces situations nécessitent un système élastique qui doit pouvoir être capable de passer rapidement d'une charge de travail normale faible à une charge de travail beaucoup plus élevée avec des temps de réponse prévisibles. Par conséquent, la capacité à traiter un grand nombre d'événements simultanés sans avertissement préalable envoyé au système est souhaitable. Il est difficile de construire un système pour répondre à ces exigences qui font appel à des architectures de serveur traditionnelles. Celles-ci manquent généralement de puissance et sont incapables de gérer les pics de trafic ou bien sont surdimensionnées et extrêmement onéreuses.
 
@@ -58,7 +58,7 @@ Examinez l'exemple d'application IoT suivant qui utilise {{site.data.keyword.ope
 ![Exemple d'architecture de solution IoT](images/IoT_solution_architecture_example.png)
 
 ## Système de back end d'API
-{: #openwhisk_api_backend}
+{: #use_cases_backend}
 
 Les plateformes informatiques sans serveur permettent aux développeurs de créer rapidement des API sans utiliser de serveurs. {{site.data.keyword.openwhisk_short}} prend en charge la génération automatique d'API REST pour les actions. La [fonction ](/docs/openwhisk?topic=cloud-functions-openwhisk_apigateway) de {{site.data.keyword.openwhisk_short}} peut appeler une action via la passerelle d'API {{site.data.keyword.openwhisk_short}} avec des méthodes HTTP autres que POST et sans la clé d'API d'autorisation de l'action. Cette possibilité est utile non seulement pour exposer des API à des consommateurs externes, mais aussi pour construire des applications de microservices.
 
@@ -69,7 +69,7 @@ De plus, les actions {{site.data.keyword.openwhisk_short}} peuvent être connect
 Examinez l'exemple ci-après qui inclut une discussion portant sur l'[utilisation d'une plateforme sans serveur en tant que système de back end d'API](https://martinfowler.com/articles/serverless.html#ACoupleOfExamples).
 
 ## Système de back end mobile
-{: #openwhisk_common_use_cases_mobile}
+{: #use_cases_mobile}
 
 De nombreuses applications mobiles requièrent une logique côté serveur. Cela dit, les développeurs d'applications mobiles ne sont généralement pas familiers avec la gestion de la logique côté serveur et préfèrent se concentrer sur l'application qui s'exécute sur le périphérique. Cet objectif de développement peut être facilement atteint en utilisant {{site.data.keyword.openwhisk_short}} comme système de back end côté serveur, et représente une solution idoine. En outre, la prise en charge de Swift côté serveur permet aux développeurs de réutiliser leurs compétences existantes en matière de programmation iOS. Les modèles de charge des applications mobiles étant souvent imprévisibles, vous souhaiterez utiliser une solution {{site.data.keyword.openwhisk_short}}, telle que {{site.data.keyword.Bluemix}}. Cette solution est capable d'évoluer afin de répondre à pratiquement n'importe quelle demande en matière de charge de travail sans avoir à fournir des ressources à l'avance.
 
@@ -78,14 +78,14 @@ De nombreuses applications mobiles requièrent une logique côté serveur. Cela 
 [BluePic](https://github.com/IBM-Swift/BluePic) est une application de partage de photos et d'images qui permet de prendre des photos et de les partager avec d'autres utilisateurs de BluePic. Cette application montre comment exploiter, dans une application mobile iOS 10, une application serveur basée sur Kitura composée dans Swift et utilisant {{site.data.keyword.openwhisk_short}}, {{site.data.keyword.cloudant_short_notm}}, {{site.data.keyword.cos_full_notm}} pour les données image. AlchemyAPI est également utilisée dans la séquence {{site.data.keyword.openwhisk_short}} pour analyser l'image, extraire les balises de texte en fonction du contenu de l'image, puis envoyer une notification push à l'utilisateur.
 
 ## Traitement de données
-{: #data-processing}
+{: #use_cases_data}
 
 Etant donné la quantité de données désormais disponible, le développement d'applications doit pouvoir traiter de nouvelles données, et éventuellement y réagir. Cette exigence inclut le traitement d'enregistrements de base de données structurés ainsi que de vidéos, d'images ou de documents non structurés. {{site.data.keyword.openwhisk_short}} peut être configuré par des flux fournis par le système ou personnalisés afin de réagir aux changements de données et d'exécuter automatiquement des actions sur les flux de données entrants. Les actions peuvent être programmées pour traiter des modifications, transformer des formats de données, envoyer et recevoir des messages, appeler d'autres actions et mettre à jour différents magasins de données. Les magasins de données pris en charge sont notamment des bases de données relationnelles SQL, des grilles de données en mémoire, une base de données, des fichiers, des courtiers de messages NoSQL et une variété d'autres systèmes. Les règles et séquences {{site.data.keyword.openwhisk_short}} fournissent suffisamment de souplesse pour modifier le pipeline de traitement sans avoir à effectuer de tâche de programmation, simplement via des changements de configuration. Les options de magasin de données et la faible surcharge d'administration rendent un système basé sur {{site.data.keyword.openwhisk_short}} extrêmement agile et facilement adaptable aux exigences variables.
 
 [OpenChecks](https://github.com/krook/openchecks) est un projet de validation de concept qui illustre comment {{site.data.keyword.openwhisk_short}} peut être exploité pour le traitement des dépôts de chèques sur un compte bancaire à l'aide d'une reconnaissance optique de caractères. Il est généré dans le service {{site.data.keyword.openwhisk_short}} public d'{{site.data.keyword.Bluemix_notm}} et s'appuie sur {{site.data.keyword.cloudant}} et {{site.data.keyword.cos_full_notm}}. Sur site, il peut utiliser CouchDB et OpenStack Swift. D'autres services de stockage, comme FileNet ou Cleversafe, pourraient être utilisés. Tesseract fournit la bibliothèque OCR.
 
 ## Applications cognitives
-{: #openwhisk_common_use_cases_cognitive}
+{: #use_cases_cognitive}
 
 Les technologies cognitives peuvent être combinées efficacement avec {{site.data.keyword.openwhisk_short}} pour créer des applications puissantes. Par exemple, IBM Alchemy API et Watson Visual Recognition peuvent être utilisés avec {{site.data.keyword.openwhisk_short}} pour extraire automatiquement des informations utiles provenant de vidéos sans avoir à regarder ces dernières. Cette technologie est l'extension "cognitive" du scénario [Traitement de données](#data-processing) décrit auparavant. L'emploi de {{site.data.keyword.openwhisk_short}} pour implémenter une fonction Bot qui est combinée à d'autres services cognitifs est une autre utilisation pratique.
 
@@ -94,7 +94,7 @@ C'est ce que fait précisément l'exemple d'application [Dark vision](https://gi
 Il existe un [exemple d'application iOS Swift](https://github.com/gconan/BluemixMobileServicesDemoApp) qui illustre l'utilisation de {{site.data.keyword.openwhisk_short}}, d'IBM Mobile Analytics et de Watson pour analyser le ton et poster les conclusions sur un canal Slack.
 
 ## Traitement d'événements avec Kafka ou {{site.data.keyword.messagehub}}
-{: #openwhisk_event_processing}
+{: #use_cases_events}
 
 {{site.data.keyword.openwhisk_short}} est particulièrement bien adapté à une utilisation conjointe avec Kafka, {{site.data.keyword.messagehub_full}} (basé sur Kafka) et d'autres systèmes de messagerie. Ces systèmes étant par nature gérés par événements, un environnement d'exécution géré lui-aussi par événements est requis pour traiter les messages. L'environnement d'exécution peut appliquer une logique métier à ces messages, ce qui est exactement ce qu'offre {{site.data.keyword.openwhisk_short}} avec les flux, les déclencheurs et les actions. Kafka et {{site.data.keyword.messagehub}} sont souvent utilisés pour les volumes de charge de travail élevés et imprévisibles et nécessitent un redimensionnement au pied levé des consommateurs de ces messages. Cela constitue, là encore, un atout de {{site.data.keyword.openwhisk_short}}. {{site.data.keyword.openwhisk_short}} intègre d'office la capacité de consommer, tout comme de publier, des messages fournis dans le package [openwhisk-package-kafka](https://github.com/openwhisk/openwhisk-package-kafka).
 
