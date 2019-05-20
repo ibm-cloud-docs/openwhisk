@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -173,7 +173,7 @@ The JavaScript activation is synchronous when the main function either exits wit
 Example of synchronous code:
 
 ```javascript
-// an action in which each path results in a synchronous activation
+// each path results in a synchronous activation
 function main(params) {
   if (params.payload == 0) {
      return;

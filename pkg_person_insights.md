@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
-keywords: personality insights, watson, cognitive, serverless, functions
+keywords: personality insights, cognitive, serverless, functions
 
 subcollection: cloud-functions
 
@@ -40,8 +40,8 @@ The {{site.data.keyword.personalityinsightsshort}} package contains the followin
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Work with the {{site.data.keyword.personalityinsightsshort}} V3 service. |
-| [profile](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get a profile. |
-| [profile-as-csv](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get a profile as CSV file. |
+| [`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get a profile. |
+| [`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Get a profile as CSV file. |
 
 ## Creating a {{site.data.keyword.personalityinsightsshort}} service instance
 {: #service_instance_insights}
@@ -55,7 +55,7 @@ Before you install the package, you must create a {{site.data.keyword.personalit
 ## Installing the {{site.data.keyword.personalityinsightsshort}} package
 {: #install_insights}
 
-After you have an {{site.data.keyword.personalityinsightsshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.personalityinsightsshort}} package into your namespace.
+After you have a {{site.data.keyword.personalityinsightsshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.personalityinsightsshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -144,18 +144,18 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 3. Click **Install Packages**.
 
-4. Click the **Watson** Package group.
+4. Click the **Watson** package group.
 
-5. Click the **Personality Insights** Package.
+5. Click the **Personality Insights** package.
 
 5. Click **Install**.
 
 6. Once the package has been installed you will be redirected to the actions page and can search for your new package, which is named **personality-insights-v3**.
 
-7. To use the actions in the **personality-insights-v3** Package, you must bind service credentials to the actions.
+7. To use the actions in the **personality-insights-v3** package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
-    1. Click an action from the **personality-insights-v3** Package that you want to use. The details page for that action opens.
+    1. Click an action from the **personality-insights-v3** package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 

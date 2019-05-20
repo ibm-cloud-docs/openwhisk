@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-16"
 
 keywords: web actions, serverless
 
@@ -628,21 +628,21 @@ Here is an example of a Java Web Action that takes `text` as input and generates
     }
   }
   ```
-{: codeblock}
+  {: codeblock}
 
 3. Build the Web Action JAR by running the following command from the directory `java_example` where the file `build.gradle` is located.
 
   ```bash
   gradle jar
   ```
-{: pre}
+  {: pre}
 
 4. Deploy the web action by using the JAR `build/libs/java_example-1.0.jar`.
 
   ```bash
   ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
   ```
-{: pre}
+  {: pre}
 
 5. Retrieve the public URL of the web action endpoint and assign it to an environment variable.
 
@@ -650,11 +650,11 @@ Here is an example of a Java Web Action that takes `text` as input and generates
   ibmcloud fn action get QRGenerate --url
   URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
   ```
-{: pre}
+  {: pre}
 
 6. You can open a web browser by using this `URL` and appending the query parameter `text` with the message to be encoded into the QR image. You can also use an HTTP client like `curl` to download a QR image.
 
   ```bash
   curl -o QRImage.png $URL\?text=https://cloud.ibm.com
   ```
-{: pre}
+  {: pre}
