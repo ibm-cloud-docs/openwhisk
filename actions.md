@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-05-20"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -57,10 +57,15 @@ To create an action, your source code must meet certain requirements. For exampl
   {: screen}
 
   Tips:
-  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the local path to your app. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.  
   - To save on cost, you can set limits.
       - To set a limit for memory usage, include `--memory VALUE` with your create command, where the value is in megabytes.
       - To set a timeout, include `--timeout VALUE` with your create command, where the value is in milliseconds.
+  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the local path to your app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.  
+      ```
+      ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
+      ```
+      {: pre}
+  
 
 
 2. Verify that the action is in your actions list.
@@ -110,8 +115,13 @@ When you migrate to a new runtime version, you might need to change the code in 
     ```
     {: screen}
 
-    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the path to the local app. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
+    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the path to the local app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
+      ```
+      ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
+      ```
+      {: pre}
     {: tip}
+      
 
 
 ## Binding parameters to actions
