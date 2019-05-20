@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-05-17"
+lastupdated: "2019-05-20"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -64,10 +64,10 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
    <dt><em>ACTION_NAME</em></dt>
    <dd>The name of the action. To include the action in a package, enter the name in the format <em>PACKAGE_NAME</em>/<em>ACTION_NAME</em>. This value is required. </dd>
 
-   <dt><em>APP_<em>FILE</em></dt>
+   <dt><em>APP_FILE</em></dt>
    <dd>The path to the app file or package to run as an action. This option is required.</dd>
 
-   <dt>--concurrency <em><em>ACTIVATION_LIMIT</em>, -c <em><em>ACTIVATION_LIMIT</em></dt>
+   <dt>--concurrency <em>ACTIVATION_LIMIT</em>, -c <em>ACTIVATION_LIMIT</em></dt>
    <dd>The maximum intra-container concurrent activation <em>LIMIT</em> for the action. The default value is one activation.</dd>
 
    <dt>--copy</dt>
@@ -579,14 +579,14 @@ ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 View a streaming, live list of activations for an action or a namespace. You can press CTRL+C to exit the polling.
 
 ```
-ibmcloud fn activation poll [/<em>NAMESPACE<em></em>] [<em>ACTION_NAME</em>] [--exit <em>SECONDS</em>] [--since-days <em>DAYS</em>] [-since-hours <em>HOURS</em>] [--since-minutes <em>MINUTES</em>] [--since-seconds <em>SECONDS</em>]
+ibmcloud fn activation poll [/<em>NAMESPACE</em>] [<em>ACTION_NAME</em>] [--exit <em>SECONDS</em>] [--since-days <em>DAYS</em>] [-since-hours <em>HOURS</em>] [--since-minutes <em>MINUTES</em>] [--since-seconds <em>SECONDS</em>]
 ```
 {: pre}
 
 <br /><strong>Command options</strong>:
 
   <dl>
-  <dt>/<em>NAMESPACE<em></em></dt>
+  <dt>/<em>NAMESPACE</em></dt>
   <dd>A namespace, beginning with /. Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
 
   <dt><em>ACTION_NAME</em></dt>
@@ -848,7 +848,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 Use a manifest file to deploy a collection of packages, actions, triggers and rules.
 
 ```
-ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em>] [--deployment <em>FILE</em>] [--manifest <em>FILE</em>] [--namespace <em>NAMESPACE<em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--preview] [--project PATH] [--strict] [--verbose]
+ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em>] [--deployment <em>FILE</em>] [--manifest <em>FILE</em>] [--namespace <em>NAMESPACE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--preview] [--project PATH] [--strict] [--verbose]
 ```
 {: pre}
 
@@ -871,7 +871,7 @@ ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em
    <dt>--manifest <em>FILE</em>, -m <em>FILE</em></dt>
    <dd>The path to the manifest file. This flag is required if the manifest.yaml is not in the current directory.</dd>
 
-   <dt>--namespace <em>NAMESPACE<em>, -n <em>NAMESPACE<em></dt>
+   <dt>--namespace <em>NAMESPACE</em>, -n <em>NAMESPACE</em></dt>
    <dd>The name or ID for a namespace.</dd>
 
    <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
@@ -931,7 +931,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</
    <dt>--manifest <em>FILE</em>, -m <em>FILE</em></dt>
    <dd>The path to the manifest file. This flag is required if the manifest.yaml is not in the current directory.</dd>
 
-   <dt>--namespace <em>NAMESPACE<em>, -n <em>NAMESPACE<em></dt>
+   <dt>--namespace <em>NAMESPACE</em>, -n <em>NAMESPACE</em></dt>
    <dd>The name or ID for a namespace.</dd>
 
    <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
@@ -1007,7 +1007,7 @@ ibmcloud fn list [--name-sort]
 Create an IAM namespace.
 
 ```
-ibmcloud fn namespace create <em>NAMESPACE<em> [--description DESCRIPTION] 
+ibmcloud fn namespace create <em>NAMESPACE</em> [--description DESCRIPTION] 
 ```
 {: pre}
 
@@ -1015,7 +1015,7 @@ ibmcloud fn namespace create <em>NAMESPACE<em> [--description DESCRIPTION]
 
    <dl>
 
-   <dt><em>NAMESPACE<em></dt>
+   <dt><em>NAMESPACE</em></dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
    <dt>--description DESCRIPTION, -n DESCRIPTION</dt>
@@ -1038,7 +1038,7 @@ ibmcloud fn namespace create <em>NAMESPACE<em> [--description DESCRIPTION]
 Delete an IAM namespace.
 
 ```
-ibmcloud fn namespace delete <em>NAMESPACE<em>
+ibmcloud fn namespace delete <em>NAMESPACE</em>
 ```
 {: pre}
 
@@ -1059,7 +1059,7 @@ ibmcloud fn namespace delete <em>NAMESPACE<em>
 Get the entities for or the metadata information from a Cloud Foundry or IAM namespace.
 
 ```
-ibmcloud fn namespace list <em>NAMESPACE<em> [--auth <em>KEY</em>] [--name-sort] [--properties] 
+ibmcloud fn namespace list <em>NAMESPACE</em> [--auth <em>KEY</em>] [--name-sort] [--properties] 
 ```
 {: pre}
 
@@ -1067,7 +1067,7 @@ ibmcloud fn namespace list <em>NAMESPACE<em> [--auth <em>KEY</em>] [--name-sort]
 
    <dl>
 
-   <dt><em>NAMESPACE<em></dt>
+   <dt><em>NAMESPACE</em></dt>
    <dd>The name or ID for a namespace. This value is required.</dd>
 
    <dt>--auth <em>KEY</em>, -u <em>KEY</em></dt>
@@ -1107,7 +1107,7 @@ ibmcloud fn namespace list <em>NAMESPACE<em> [--auth <em>KEY</em>] [--name-sort]
 List the available Cloud Foundry and IAM namespaces.
 
 ```
-ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_OF_<em>NAMESPACE<em>S] [--name-sort] [--skip NUMBER_OF_<em>NAMESPACE<em>S] 
+ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_OF_<em>NAMESPACE</em>S] [--name-sort] [--skip NUMBER_OF_<em>NAMESPACE</em>S] 
 ```
 {: pre}
 
@@ -1124,13 +1124,13 @@ ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_
    <dt>--iam</dt>
    <dd>Display the IAM namespaces only. Cloud Foundry namespaces are not displayed. This flag is optional.</dd>
 
-   <dt>--limit NUMBER_OF_<em>NAMESPACE<em>S, -l NUMBER_OF_<em>NAMESPACE<em>S</dt>
+   <dt>--limit NUMBER_OF_<em>NAMESPACE</em>S, -l NUMBER_OF_<em>NAMESPACE</em>S</dt>
    <dd>List a specified number of namespaces. The default is 30 namespaces. This flag is optional. </dd>
 
    <dt>--name-sort, -n</dt>
    <dd>Sort the list of returned namespaces by name, otherwise the list is sorted by creation date. This flag is optional. </dd>
 
-   <dt>--skip NUMBER_OF_<em>NAMESPACE<em>S, -s NUMBER_OF_<em>NAMESPACE<em>S</dt>
+   <dt>--skip NUMBER_OF_<em>NAMESPACE</em>S, -s NUMBER_OF_<em>NAMESPACE</em>S</dt>
    <dd>Exclude a specified number of the most recently created namespaces from the result. This flag is optional. </dd>
 
    </dl>
@@ -1150,7 +1150,7 @@ ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_
 Change the name or description of an IAM namespace.
 
 ```
-ibmcloud fn namespace update <em>NAMESPACE<em> [NEW_<em>NAMESPACE<em>_NAME] [--description DESCRIPTION] 
+ibmcloud fn namespace update <em>NAMESPACE</em> [NEW_<em>NAMESPACE</em>_NAME] [--description DESCRIPTION] 
 ```
 {: pre}
 
@@ -1158,10 +1158,10 @@ ibmcloud fn namespace update <em>NAMESPACE<em> [NEW_<em>NAMESPACE<em>_NAME] [--d
 
    <dl>
 
-   <dt><em>NAMESPACE<em></dt>
+   <dt><em>NAMESPACE</em></dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
-   <dt>NEW_<em>NAMESPACE<em>_NAME</dt>
+   <dt>NEW_<em>NAMESPACE</em>_NAME</dt>
    <dd>The new name for a namespace. Do not include hyphens (-) in the name. This value is optional.</dd>
 
    <dt>--description DESCRIPTION, -n DESCRIPTION</dt>
@@ -1197,7 +1197,7 @@ ibmcloud fn package bind <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY<
 <br /><strong>Command options</strong>:
 
   <dl>
-  <dt><em><em>PACKAGE_NAME</em></em></dt>
+  <dt><em>PACKAGE_NAME</em></dt>
   <dd>The name of the package. This value is required. </dd>
 
   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
@@ -1236,7 +1236,7 @@ ibmcloud fn package create <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 <br /><strong>Command options</strong>:
 
   <dl>
-  <dt><em><em>PACKAGE_NAME</em></em></dt>
+  <dt><em>PACKAGE_NAME</em></dt>
   <dd>The name of the package. This value is required. </dd>
 
   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
@@ -1308,7 +1308,7 @@ ibmcloud fn package get <em>PACKAGE_NAME</em> [--summary]
 <br /><strong>Command options</strong>:
 
   <dl>
-   <dt><em><em>PACKAGE_NAME</em></em></dt>
+   <dt><em>PACKAGE_NAME</em></dt>
    <dd>The name of an package. This value is required.</dd>
 
    <dt>--summary</dt>
@@ -1330,14 +1330,14 @@ ibmcloud fn package get hello
 List all of the packages that you created or a specific number of packages.
 
 ```
-ibmcloud fn package list [<em>NAMESPACE<em>] [--limit NUMBER_OF_PACKAGES] [--name-sort] [--skip NUMBER_OF_PACKAGES]
+ibmcloud fn package list [<em>NAMESPACE</em>] [--limit NUMBER_OF_PACKAGES] [--name-sort] [--skip NUMBER_OF_PACKAGES]
 ```
 {: pre}
 
 <br /><strong>Command options</strong>:
 
    <dl>
-   <dt><em>NAMESPACE<em></em></dt>
+   <dt><em>NAMESPACE</em></dt>
    <dd>List the packages in a specific namespace. This value is optional. If not specified, all   packages are listed.</dd>
 
    <dt>--limit NUMBER_OF_PACKAGES, -l NUMBER_OF_PACKAGES</dt>
@@ -1369,7 +1369,7 @@ ibmcloud fn package list [<em>NAMESPACE<em>] [--limit NUMBER_OF_PACKAGES] [--nam
 Refresh the package bindings for all of the packages within a specific namespace.
 
 ```
-ibmcloud fn package refresh /<em>NAMESPACE<em>
+ibmcloud fn package refresh /<em>NAMESPACE</em>
 ```
 {: pre}
 
@@ -1377,7 +1377,7 @@ ibmcloud fn package refresh /<em>NAMESPACE<em>
 
    <dl>
 
-   <dt>/<em>NAMESPACE<em></em></dt>
+   <dt>/<em>NAMESPACE</em></dt>
    <dd>A namespace, beginning with /. This flag is required. Run <code>ibmcloud fn namespace list</code> to get a list of namespaces to choose from.</dd>
    </dl>
 
@@ -1404,7 +1404,7 @@ ibmcloud fn package update <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 
    <dl>
 
-   <dt><em><em>PACKAGE_NAME</em></em></dt>
+   <dt><em>PACKAGE_NAME</em></dt>
    <dd>The name of the package. This value is required. </dd>
 
    <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
@@ -1452,7 +1452,7 @@ Set global properties for your CLI environment or view properties about the <cod
 View the metadata details for a property from the <code>wsk</code> CLI.
 
 ```
-ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth <em>KEY</em>] [--cert <em>STRING<em>] [--key <em>STRING<em>] [--namespace <em>NAMESPACE<em>]
+ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
 ```
 {: pre}
 
@@ -1462,31 +1462,31 @@ ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth
    <dt>--all</dt>
    <dd>View all properties for the <code>wsk</code> CLI. This flag is optional.</dd>
 
-   <dt>---apibuild</em></dt>
+   <dt>---apibuild</dt>
    <dd>The <code>wsk</code> API build information. This flag is optional.</dd>
 
-   <dt>--apibuildno</em></dt>
+   <dt>--apibuildno</dt>
    <dd>The <code>wsk</code> API build number. This flag is optional.</dd>
 
    <dt>--apihost <em>HOST</em></dt>
    <dd>The <code>wsk</code> API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION<em></em></dt>
+   <dt>--apiversion <em>VERSION</em></dt>
    <dd>The <code>wsk</code> API version. This flag is optional.</dd>
 
    <dt>--auth <em>KEY</em>, -u <em>KEY</em></dt>
    <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING<em></dt>
+   <dt>--cert <em>STRING</em></dt>
    <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
 
    <dt>--cliversion</dt>
    <dd>The <code>wsk</code> CLI version. This flag is optional.</dd>
 
-   <dt>--key <em>STRING<em></dt>
+   <dt>--key <em>STRING</em></dt>
    <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE<em></dt>
+   <dt>--namespace <em>NAMESPACE</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1506,7 +1506,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth
 Set a property. At least one flag is required.
 
 ```
-ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth <em>KEY</em>] [--cert <em>STRING<em>] [--key <em>STRING<em>] [--namespace <em>NAMESPACE<em>]
+ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
 ```
 {: pre}
 
@@ -1516,19 +1516,19 @@ ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth
    <dt>--apihost <em>HOST</em></dt>
    <dd>The <code>wsk</code> API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION<em></dt>
+   <dt>--apiversion <em>VERSION</em></dt>
    <dd>The <code>wsk</code> API version. This flag is optional.</dd>
 
    <dt>--auth <em>KEY</em>, -u</dt>
    <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING<em></dt>
+   <dt>--cert <em>STRING</em></dt>
    <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
 
-   <dt>--key <em>STRING<em></dt>
+   <dt>--key <em>STRING</em></dt>
    <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE<em></dt>
+   <dt>--namespace <em>NAMESPACE</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1554,7 +1554,7 @@ ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth
 Unset a property for the <code>wsk</code> CLI. At least one flag is required.
 
 ```
-ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION<em>] [--auth <em>KEY</em>] [--cert <em>STRING<em>] [--key <em>STRING<em>] [--namespace <em>NAMESPACE<em>]
+ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
 ```
 {: pre}
 
@@ -1564,19 +1564,19 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION<em>] [--au
    <dt>--apihost <em>HOST</em></dt>
    <dd>The <code>wsk</code> API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION<em></dt>
+   <dt>--apiversion <em>VERSION</em></dt>
    <dd>The <code>wsk</code> API version. This flag is optional.</dd>
 
    <dt>--auth <em>KEY</em>, -u</dt>
    <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING<em></dt>
+   <dt>--cert <em>STRING</em></dt>
    <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
 
-   <dt>--key <em>STRING<em></dt>
+   <dt>--key <em>STRING</em></dt>
    <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE<em></dt>
+   <dt>--namespace <em>NAMESPACE</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
