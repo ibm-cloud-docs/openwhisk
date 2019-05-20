@@ -200,7 +200,7 @@ ibmcloud fn action delete <em>ACTION_NAME</em>
 Get metadata that describes a specific action.
 
 ```
-ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILE</em>NAME</em>] [--summary] [--url]
+ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILENAME</em>] [--summary] [--url]
 ```
 {: pre}
 
@@ -211,10 +211,10 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILE</em>NAME</em>] [
    <dd>The name of an action. This value is required.</dd>
 
    <dt>--save</dt>
-   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>FILE</em>NAME</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is a zip file, an extension of .zip is used. This flag is optional.</dd>
+   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>FILENAME</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is a zip file, an extension of .zip is used. This flag is optional.</dd>
 
-  <dt>--save-as <em>FILE</em>NAME</em></dt>
-  <dd>Save the code for actions in a custom-named file by providing a file path, <em>FILE</em>NAME</em>, and extension. This flag is optional.</dd>
+  <dt>--save-as <em>FILENAME</em></dt>
+  <dd>Save the code for actions in a custom-named file by providing a file path, <em>FILENAME</em>, and extension. This flag is optional.</dd>
 
   <dt>--summary</dt>
   <dd>Get a summary of the action details. Parameters with the prefix "*" are bound; parameters with the prefix "**" are bound and finalized. This flag is optional.</dd>
