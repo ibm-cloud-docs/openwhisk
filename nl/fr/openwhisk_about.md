@@ -18,13 +18,13 @@ subcollection: cloud-functions
 {:tip: .tip}
 
 # Architecture de la plateforme
-{: #openwhisk_about}
+{: #about}
 
 {{site.data.keyword.openwhisk}} est une plateforme de traitement gérée par des événements également appelée traitement sans serveur ou Function as a Service (FaaS) qui exécute un code en réponse à des événements ou des appels directs.
 {: shortdesc}
 
 ## Technologie de {{site.data.keyword.openwhisk_short}}
-{: #technology}
+{: #about_technology}
 
 Découvrez quelques concepts de base de la technologie derrière {{site.data.keyword.openwhisk_short}} :
 
@@ -50,7 +50,7 @@ Découvrez quelques concepts de base de la technologie derrière {{site.data.key
 </dl>
 
 ## Fonctionnement de {{site.data.keyword.openwhisk_short}}
-{: #openwhisk_how}
+{: #about_internal}
 
 Pour décrire en détails tous les composants, suivons l'appel d'une action via le système {{site.data.keyword.openwhisk_short}}. Un appel exécute le code que l'utilisateur ajoute dans le système et renvoie les résultats de cette exécution. La figure ci-dessous présente l'architecture générale de {{site.data.keyword.openwhisk_short}}.
 
@@ -58,7 +58,7 @@ Pour décrire en détails tous les composants, suivons l'appel d'une action via 
 
 
 ## Comment s'effectue le traitement interne dans OpenWhisk ?
-{: #openwhisk_internal}
+{: #about_scenes}
 
 Que se passe-t-il dans les coulisses d'OpenWhisk ?
 
