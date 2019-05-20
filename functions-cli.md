@@ -1536,13 +1536,13 @@ ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION</em>] [--aut
 <br /><strong>Example</strong>:
 
   ```
-  ibmcloud fn property set --namespace user@domain.com_dev
+  ibmcloud fn property set --namespace myNamespace
   ```
   {: pre}
 
   Output:
   ```
-  ok: whisk namespace set to user@domain.com_dev
+  ok: whisk namespace set to myNamespace
   ```
   {: screen}
 
