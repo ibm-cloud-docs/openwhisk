@@ -30,7 +30,7 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 {: shortdesc}
 
 
-### What is a namespace?
+## What is a namespace?
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 

@@ -36,8 +36,8 @@ IBM Cloud Functions
         apigateway.md
 
     test.md
-        {: .topicgroup}
-        
+    
+    {: .topicgroup}
     Securing serverless apps
         namespaces.md
         z_archive_iam.md
