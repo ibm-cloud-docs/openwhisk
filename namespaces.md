@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-17"
+lastupdated: "2019-05-23"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -23,8 +23,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
-
 # Managing namespaces
 {: #namespaces}
 
@@ -32,41 +30,41 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 {: shortdesc}
 
 
-**What is a namespace?**
+### What is a namespace?
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
 The fully qualified name of an entity is `/namespaceName/[packageName]/entityName`.
 
 
-**What happens when I create a namespace?**
+### What happens when I create a namespace?
 
 Namespaces that are created within {{site.data.keyword.openwhisk_short}}, are identified as an IAM service instance.
 During the creation of a namespace, you can specify the [resource group](/docs/resources?topic=resources-rgs) in which to add the service instance.
 
-When you create your namespace, the following artifacts are created at the same time:
+When you create a namespace, the following components are created:
 
-* A service ID that can be used as a functional id when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. To see all of your service IDs, run `ibmcloud iam service-ids`.
+| Component | Description |
+| --- | --- | 
+| A service ID | You can used the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. To see all of your service IDs, run `ibmcloud iam service-ids`. |
+| An API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.Bluemix_notm}} services. The API key is provided to actions as environment variable. |
 
-* An API key for the service ID which can be used to generate IAM tokens. You can then use the tokens to authenticate the namespace with other {{site.data.keyword.Bluemix_notm}} services. The API key is provided to the actions as environment variable.
-
-    Do not delete API keys.
-    {: tip}
-
-**Are there any limitations for namespaces?**
-
-[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces.
-
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities_ov) documentation.
+Do not delete API keys.
 {: tip}
 
+### Are there any limitations for namespaces?
 
+[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces. 
 
-**What do I do if I have a Cloud Foundry-based namespace?**
+The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
+* The first character must be an alphanumeric character, or an underscore.
+* The subsequent characters can be alphanumeric, spaces, or any of the following values: `_`, `@`, `.`, `-`.
+* The last character can't be a space.
 
-Your Cloud Foundry-based namespaces will continue to work. However, in order to take advantage of new features, you must [migrate your namespaces to IAM](/docs/resources?topic=resources-migrate).
+### What do I do if I have a Cloud Foundry-based namespace?
 
-</br>
+Your Cloud Foundry-based namespaces will continue to work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
+
 
 
 ## Creating a namespace with the CLI
@@ -124,11 +122,11 @@ You can create an IAM managed namespace as part of a resource group and manage a
   Example output:
 
   ```
-  Details of namespace: 'myNamespace'
-  Description: 'short description'
-  Resource Plan Id: 'functions-base-plan'
-  Location: 'jp-tok'
-  ID: '05bae599-ead6-4ccb-9ca3-94ce8c8b3e43'
+  Details of namespace: myNamespace
+  Description: short description
+  Resource Plan Id: functions-base-plan
+  Location: jp-tok
+  ID: 05bae599-ead6-4ccb-9ca3-94ce8c8b3e43
   ```
   {: screen}
 
@@ -146,14 +144,11 @@ You can create an IAM managed namespace as part of a resource group and manage a
   ```
   {: pre}
 
-</br>
-
 ## Creating a namespace with the API
 {: #namespaces_create_api}
 
 You can create an IAM managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
-
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
 
@@ -258,15 +253,28 @@ You can create an IAM managed namespace as part of a resource group and manage a
   ```
   {: screen}
 
-
 For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API docs](/apidocs/functions).
 {: tip}
 
+### Accessing other resources from a namespace
+{: #namespace-access}
 
+Actions typically call other {{site.data.keyword.Bluemix_notm}} resources and services which require appropriate authentication. If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
+{: shortdesc}
+
+As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles using IAM policy management.
+
+At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the value of the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
+
+Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
 
 ## Next steps
 {: #namespaces_next}
 
-Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). For more information about how you can manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).
+
+Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
+
+For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions/functions).
+
 
 

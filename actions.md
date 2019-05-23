@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-05-23"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -379,9 +379,12 @@ The action environment contains several environment variables that are specific 
 | Property | Description |
 | -------- | ----------- |
 | `__OW_API_HOST` | The API host for the deployment running this action. |
-| `__OW_API_KEY` | The API key for the subject invoking the action. This key might be a restricted API key and is absent unless explicitly requested, see [Annotations](/docs/openwhisk?topic=cloud-functions-annotations). |
-| `__OW_NAMESPACE` | The namespace for the activation. This namespace might not be the same as the namespace for the action. |
+| `__OW_API_KEY` | The API key for the subject invoking the action. This variable is only provided for classic CF based namespaces. |
+| `__OW_NAMESPACE` | The namespace id (GUID). For classic CF based namespaces this is the name constructed from org and space names. |
+| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/overview?topic=overview-crn). The CRN is only available for IAM-enabled namespaces
 | `__OW_ACTION_NAME` | The fully qualified name of the running action. |
+| `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
+| `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This varible is only available for IAM-enabled namespaces |
 | `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |
 | `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action will consume its entire duration quota. |
 
