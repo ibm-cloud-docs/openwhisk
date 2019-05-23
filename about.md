@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-23"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -91,7 +91,7 @@ OpenWhisk is an open source project that combines components including Nginx, Ka
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
-### Entering the system: nginx
+#### 1. Entering the system: nginx
 {: #about_ngnix}
 
 First, OpenWhisk’s user-facing API is completely HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to:
@@ -105,7 +105,7 @@ Note the *$userNamespace* variable here. A user has access to at least one names
 
 The first entry point into the system is through **nginx**, “an HTTP and reverse proxy server”. It is used for SSL termination and forwarding appropriate HTTP calls to the next component.
 
-### Entering the system: Controller
+#### 2. Entering the system: Controller
 {: #about_controller}
 
 Nginx forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) requests for your entities in OpenWhisk, and invocation of actions.
@@ -114,7 +114,7 @@ The Controller first disambiguates what the user is trying to do. It does so bas
 
 Given the central role of the Controller (hence the name), the following steps will all involve it to a certain extent.
 
-### Authentication and Authorization: CouchDB
+#### 3. Authentication and Authorization: CouchDB
 {: #about_auth}
 
 Now the Controller verifies who you are (*Authentication*) and if you have the privilege to do what you want to do with that entity (*Authorization*). The credentials included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
@@ -123,7 +123,7 @@ In this case, it is checked that the user exists in OpenWhisk’s database, and 
 
 As everything is sound, the gate opens for the next stage of processing.
 
-### Getting the action: CouchDB… again
+#### 4. Getting the action: CouchDB… again
 {: #about_couchdb}
 
 As the Controller is now sure that the user is allowed in, and has the privileges to invoke the action, it loads this action (in this case *myAction*) from the **whisks** database in CouchDB.
@@ -133,12 +133,12 @@ The record of the action contains mainly the code to execute, and default parame
 In this particular case, the action doesn’t take any parameters (the function’s parameter definition is an empty list). Thus, it is assumed that default parameters are not set, including specific parameters for the action, making for the most trivial case from this point-of-view.
 
 
-### Who’s there to invoke the action: Load Balancer
+#### 5. Who’s there to invoke the action: Load Balancer
 {: #about_lb}
 
 The Load Balancer, which is part of the Controller, has a global view of the executors available in the system by checking their health status continuously. Those executors are called **Invokers**. The Load Balancer, knowing which Invokers are available, chooses one of them to invoke the action requested.
 
-### Please form a line: Kafka
+#### 6. Please form a line: Kafka
 {: #about_kafka}
 
 From now on, mainly two bad things can happen to the invocation request you sent in:
@@ -152,7 +152,7 @@ To get the action invoked then, the Controller publishes a message to Kafka, whi
 
 Once Kafka confirms that it got the message, the HTTP request to the user is responded to with an **ActivationId**. The user can use that later on, to get access to the results of this specific invocation. This is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
 
-### Invoking the code: Invoker
+#### 7. Invoking the code: Invoker
 {: #about_invoker}
 
 The **Invoker** is the heart of OpenWhisk. The Invoker’s duty is to invoke an action. It is also implemented in Scala. But there’s much more to it. To execute actions in an isolated and safe way it uses **Docker**.
@@ -161,7 +161,7 @@ Docker is used to setup a new self-encapsulated environment (called *container*)
 
 In this case, having a *Node.js* based action at hand, the Invoker starts a Node.js container. Then, injects the code from *myAction*, runs it with no parameters, extracts the result, saves the logs, and destroys the Node.js container again.
 
-### Storing the results: CouchDB again
+#### 8. Storing the results: CouchDB again
 {: #about_storing}
 
 As the result is obtained by the Invoker, it is stored into the **whisks** database as an activation under the ActivationId. The **whisks** database lives in **CouchDB**.
