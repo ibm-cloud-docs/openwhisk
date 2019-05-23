@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-23"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -184,15 +184,6 @@ For convenience, the namespace can be left off if it is the user's default names
 | `/myOrg/filter` | `filter` | `/myOrg` |  | `filter` |
 
 You can use this naming scheme when you use the {{site.data.keyword.openwhisk_short}} CLI, among other places.
-
-### Entity names
-{: #limits_entities}
-
-The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
-
-* The first character must be an alphanumeric character, or an underscore.
-* The subsequent characters can be alphanumeric, spaces, or any of the following values: `_`, `@`, `.`, `-`.
-* The last character can't be a space.
 
 More precisely, a name must match the following regular expression (expressed with Java metacharacter syntax): `\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`.
 
