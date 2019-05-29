@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-29"
 
 keywords: functions cli, serverless, bluemix cli, install, functions plug-in
 
@@ -186,7 +186,6 @@ v1.0.28 (2019-01-21)
 v1.0.27 (2018-12-11)
 * Added `namespace get` fixes.
 * Added a fix for `--save-as` when an action is a black box action.
-* Added `--concurrency` flag for action create and action update commands.
 
 v1.0.26 (2018-11-30)
 * Enabled `fn property get --auth` to correctly return the auth key in a new environment.
