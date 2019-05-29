@@ -410,7 +410,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
     ok: created trigger feed myCosTrigger
     ```
   {: pre}
- 4. Create a simple action that only serves to verify the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
+ 4. Create a simple action to verify that the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
   ```javascript
   function main(data) {
       console.log(data);

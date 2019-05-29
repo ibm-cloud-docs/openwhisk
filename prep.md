@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-05-29"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -345,7 +345,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: codeblock}
 
-3. Prepare your app code. In this example, named `index.js`, the variable `global.main` is set to the main function of the app.
+3. Prepare your app code. In this example, which you can save as a file that is named `index.js`, the variable `global.main` is set as the main function of the app.
 
     Example:
     ```javascript
