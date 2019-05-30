@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-29"
 
 keywords: object storage, bucket, package
 
@@ -48,7 +48,7 @@ Before you can use either package, you must request an instance of {{site.data.k
 
 3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
-## Reading and writing to a bucket with the {{site.data.keyword.cos_full_notm}} package
+## Reading and writing to a bucket by using the {{site.data.keyword.cos_full_notm}} package
 {: #pkg_obstorage_install}
 
 After you have an {{site.data.keyword.cos_full_notm}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_full_notm}} package into your namespace.
@@ -343,7 +343,7 @@ Example output:
     {: screen}
 
 
-## Listening for changes to a bucket with the (Experimental) Object Storage events source
+## Listening for changes to a bucket by using the (Experimental) Object Storage events source
 {: #pkg_obstorage_ev}
 
 The `/whisk.system/cos-experimental` package might be unstable, change frequently in ways that aren't compatible with earlier versions, and might be discontinued with a short notice. This package isn't recommended for use in production environments. This experimental package is currently available only in the US-South region.
@@ -410,7 +410,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
     ok: created trigger feed myCosTrigger
     ```
   {: pre}
- 4. Create a simple action that only serves to verify the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
+ 4. Create a simple action to verify that the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
   ```javascript
   function main(data) {
       console.log(data);

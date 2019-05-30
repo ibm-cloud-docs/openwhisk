@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-05-28"
 
 keywords: annotations, annotate, package, parameters, actions
 
@@ -62,7 +62,7 @@ ibmcloud fn action create echo echo.js \
 The following web action annotations must be explicitly set to `true` to enable API interactivity:
 
 - `web-export`: When applied to an action, the action becomes a [web action](/docs/openwhisk?topic=cloud-functions-actions_web). The action becomes accessible to REST calls without authentication so that users can access the actions from a browser.
-    * **Note**: The owner of the web action incurs the cost of running them in the system. In other words, the owner of the action also owns the activations record.
+    * **Note**: The owner of the web action incurs the cost of running them. In other words, the owner of the action also owns the activations record.
 - `final`: When applied to an action, any action parameters that were previously defined become immutable. The parameters can't be overridden by parameters provided during invocation.
 - `raw-http`: When applied to an action that has the `web-export` annotation, the HTTP request query and body parameters are passed to the action as reserved properties.
 - `web-custom-options`: Enables a web action to respond to OPTIONS requests with customized headers. Otherwise, a [default CORS response](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options) applies.

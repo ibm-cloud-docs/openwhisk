@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-05-30"
 
 keywords: push notifications, functions, webhooks
 
@@ -69,7 +69,7 @@ To create a package binding, see the following steps:
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application.
 
-3. Configure the [Push Notification application](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate).
+3. Configure the [Push Notification application](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started).
 
   Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.Bluemix_notm}} app you created.
 

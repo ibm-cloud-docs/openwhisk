@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-23"
+lastupdated: "2019-05-29"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -209,7 +209,7 @@ The input to and output from an action is a dictionary of key-value pairs. The k
 
 Invocations of an action are not ordered. If the user invokes an action twice from the command line or the REST API, the second invocation might run before the first. If the actions have side effects, they might be observed in any order.
 
-Additionally, it is not guaranteed that actions execute automatically. Two actions can run concurrently and their side effects can be interleaved. OpenWhisk does not ensure any particular concurrent consistency model for side effects. Any concurrency side effects are implementation-dependent.
+Additionally, it is not guaranteed that actions execute automatically. Two actions can run concurrently and their side effects can be interleaved. OpenWhisk does not ensure any particular concurrent consistency model for side effects. 
 
 ### Action executions
 {: #limits_exec}
