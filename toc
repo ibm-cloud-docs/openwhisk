@@ -71,11 +71,6 @@ IBM Cloud Functions
         feeds_custom.md
 
     {: .topicgroup}
-    Securing serverless apps
-        namespaces.md
-        z_archive_iam.md
-
-    {: .topicgroup}
     Setting up an automated tool chain
         deploy.md
 
