@@ -109,8 +109,8 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones P
 - `apnsPayload`: carga útil JSON personalizada que se envía como parte del mensaje de notificación.
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: nombre del archivo de sonido del paquete de aplicación. El sonido de este archivo se reproduce como una alerta.
-- `apnsTitleLocKey` : clave de una serie de título en el archivo `Localizable.strings` con la traducción actual. La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz `titleLocArgs`.
-- `apnsLocKey` : Clave de una serie de mensaje de alerta en el archivo `Localizable.strings` para la traducción actual (que se establece en las preferencias de idioma del usuario). La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz locArgs.
+- `apnsTitleLocKey`: clave de una serie de título en el archivo `Localizable.strings` con la traducción actual. La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz `titleLocArgs`.
+- `apnsLocKey`: clave de una serie de mensaje de alerta en el archivo `Localizable.strings` para la traducción actual (que se establece en las preferencias de idioma del usuario). La serie de la clave se puede formatear con especificadores %@ y %n$@ para ser sustituidos con las variables especificadas en la matriz locArgs.
 - `apnsLaunchImage`: nombre de un archivo de imagen en el paquete de la app, con o sin la extensión del nombre de archivo. La imagen se utiliza como imagen de lanzamiento cuando los usuarios pulsan en el botón de acción o mueven el control deslizante de acción.
 - `pnsTitleLocArgs`: valores de serie de variable que aparecerán en lugar de los especificadores de formato en `title-loc-key`.
 - `apnsLocArgs`: valores de serie de variable que aparecerán en lugar de los especificadores de formato en `locKey`.
@@ -138,7 +138,7 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones P
 ## Envío de notificaciones push
 {: #send_push_notifications}
 
-Consulte el ejemplo siguiente para enviar una notificación Push desde el paquete de notificaciones Push.
+Consulte el ejemplo siguiente para enviar una notificación push desde el paquete Notificaciones Push.
 
 Enviar una notificación Push utilizando la acción **sendMessage** del enlace de paquete que ha creado anteriormente. Asegúrese de sustituir `/myNamespace/myPush` por su nombre de paquete.
 ```

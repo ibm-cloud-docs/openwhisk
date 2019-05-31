@@ -22,7 +22,7 @@ subcollection: cloud-functions
 El servicio {{site.data.keyword.speechtotextfull}} proporciona API que utilizan las funcionalidades de reconocimiento de habla de IBM para crear transcripciones de audio hablado.
 {:shortdesc}
 
-El servicio puede transcribir el habla de diversos idiomas y formatos de audio. Además de una transcripción básica, el servicio puede producir información detallada sobre muchos aspectos del audio. Para la mayoría de los idiomas, el servicio da soporte a dos tasas de muestreo, banda ancha y banda estrecha. Devuelve todo el contenido de la respuesta JSON en el conjunto de caracteres UTF-8. Para obtener más información sobre el servicio, consulte la [documentación de IBM Cloud](https://cloud.ibm.com/docs/services/speech-to-text/index.html).
+El servicio puede transcribir el habla de diversos idiomas y formatos de audio. Además de una transcripción básica, el servicio puede producir información detallada sobre muchos aspectos del audio. Para la mayoría de los idiomas, el servicio da soporte a dos tasas de muestreo, banda ancha y banda estrecha. Devuelve todo el contenido de la respuesta JSON en el conjunto de caracteres UTF-8. Para obtener más información sobre el servicio, consulte la [documentación de IBM&reg; Cloud](https://cloud.ibm.com/docs/services/speech-to-text/index.html).
 
 El paquete {{site.data.keyword.speechtotextshort}} contiene las siguientes entidades. Puede encontrar más información en la referencia de {{site.data.keyword.speechtotextshort}} API pulsando en el nombre de entidad.
 

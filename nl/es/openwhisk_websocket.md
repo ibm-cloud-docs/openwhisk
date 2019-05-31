@@ -34,7 +34,7 @@ Si tiene intención de enviar varios mensajes al mismo URI de WebSocket, se reco
 
 ## Envío de un mensaje a un WebSocket
 
-La acción `/whisk.system/websocket/enviar` envía una carga útil a un URI de WebSocket. Los parámetros son según se indica a continuación:
+La acción `/whisk.system/websocket/send` envía una carga útil a un URI de WebSocket. Los parámetros son según se indica a continuación:
 
 - `uri`: el URI del servidor websocket (por ejemplo, ws://mywebsockethost:80).
 - `payload`: el mensaje que desea enviar a WebSocket.

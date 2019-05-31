@@ -219,8 +219,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <td>Instante en el que comenzó la activación.</td>
 </tr>
 <tr>
-<td><code>end
-</code></td>
+<td><code>end</code></td>
 <td>Instante en el que se completó la activación.</td>
 </tr>
 <tr>
@@ -349,7 +348,7 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
 3. En la ventana de sondeo, puede ver el registro de activación.
     ```
     Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
-    2016-02-11T16:46:56.842065025Z stdout: hello bob!
+      2016-02-11T16:46:56.842065025Z stdout: hello bob!
     ```
     {: screen}
     También podría ver los registros para las acciones que se ejecutan en nombre de {{site.data.keyword.openwhisk_short}} en tiempo real.

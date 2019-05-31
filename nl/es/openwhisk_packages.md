@@ -35,7 +35,7 @@ En las secciones siguientes se describe cómo examinar paquetes y usar para ello
 ## Examinar paquetes
 {: #browse-packages}
 
-Hay varios paquetes registrados con {{site.data.keyword.openwhisk_short}}. Puede obtener una lista de paquetes de un espacio de nombres, lista de las entidades de un paquete y obtener una descripción de las entidades individuales en un paquete.
+Hay varios paquetes registrados con {{site.data.keyword.openwhisk_short}}. Puede obtener una lista de paquetes de un espacio de nombres, listar las entidades de un paquete y obtener una descripción de las entidades individuales que hay en un paquete.
 
 1. Obtener una lista de paquetes en el espacio de nombres `/whisk.system`.
   ```
@@ -481,7 +481,7 @@ Puede establecer parámetros predeterminados para todas las entidades de un paqu
 ## Compartición de un paquete
 {: #openwhisk_packages_share}
 
-Tras depurar y probar las acciones y los canales de información que comprende un paquete, éste se puede compartir con todos los usuarios de {{site.data.keyword.openwhisk_short}}. La compartición del paquete posibilita que los usuarios enlacen al paquete, invoquen acciones en el mismo y creen reglas de {{site.data.keyword.openwhisk_short}} y acciones de secuencia.
+Tras depurar y probar las acciones y los canales de información que comprende un paquete, éste se puede compartir con todos los usuarios de {{site.data.keyword.openwhisk_short}}. Compartir el paquete posibilita que los usuarios enlacen al paquete, invoquen acciones en el mismo y creen reglas de {{site.data.keyword.openwhisk_short}} y acciones de secuencia.
 
 1. Compartir el paquete con todos los usuarios:
   ```

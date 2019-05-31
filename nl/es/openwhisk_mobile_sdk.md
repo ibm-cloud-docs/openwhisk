@@ -105,7 +105,7 @@ pod install
 ```
 {: pre}
 
-## Iniciación con el SDK
+## Iniciación al SDK
 
 Para empezar rápidamente, cree un objeto WhiskCredentials con sus credenciales de API de OpenWhisk
 y cree una instancia de OpenWhisk a partir del objeto.

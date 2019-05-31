@@ -49,7 +49,7 @@ El nombre completo de una entidad es `/namespaceName/[packageName]/entityName`. 
 se utiliza `/` para delimitar espacios de nombres, paquetes y entidades. Además, los espacios de nombres deben
 tener una `/` como prefijo.
 
-Por comodidad, el espacio de nombres se puede dejar fuera si es el espacio de nombres predeterminado del usuario. Por ejemplo, supongamos un usuario cuyo espacio de nombres predeterminado es `/myOrg`. A continuación hay ejemplosde los nombres completos de una serie de entidades y sus alias.
+Para mayor comodidad, el espacio de nombres se puede obviar si es el espacio de nombres predeterminado del usuario. Por ejemplo, supongamos un usuario cuyo espacio de nombres predeterminado es `/myOrg`. A continuación se muestran ejemplos de los nombres completos de una serie de entidades y sus alias. 
 
 
 

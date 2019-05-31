@@ -253,7 +253,7 @@ Independientemente de si la activación es síncrona o asíncrona, la invocació
 {: #asynchronous_javascript}
 {: #openwhisk_asynchrony_js}
 
-Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver el resultado de la activación tras el retorno de la función `main`.
+Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver el resultado de la activación después de que de la función `main` retorne una promesa en la acción.
 
 1. Guarde el código siguiente en un archivo denominado `asyncAction.js`.
 
@@ -274,8 +274,8 @@ Las funciones de JavaScript que se ejecutan de forma asíncrona pueden devolver 
 
     * La devolución de llamada de Promise acepta los argumentos `resolve` y `reject`, que son ambos funciones.
 
-      * La llamada a `resolve()` rellena el Promise e indica que la activación se ha completado con normalidad.
-      * Una llamada a `reject()` se puede utilizar para rechazar el Promise e indicar que la activación se ha completado de forma anómala.
+      * La llamada a `resolve()` cumple la promesa e indica que la activación se ha completado con normalidad.
+      * Se puede utilizar una llamada a `reject()` para rechazar la promesa e indicar que la activación se ha completado de forma anómala.
 
 2. Cree una acción denominada `asyncAction`.
     ```
@@ -383,14 +383,14 @@ En el ejemplo siguiente se invoca el servicio Astronomy Picture of the Day (APOD
     ```
     {
       "copyright": "Eric Houck",
-    "date": "2018-03-28",
-    "explanation": "Does an alignment like this occur only once in a blue moon? ...",
-    "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
-    "media_type": "image",
-    "service_version": "v1",
-    "title": "Blue Moon Tree",
-    "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
-  }
+      "date": "2018-03-28",
+      "explanation": "Does an alignment like this occur only once in a blue moon? ...",
+      "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
+      "media_type": "image",
+      "service_version": "v1",
+      "title": "Blue Moon Tree",
+      "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
+    }
     ```
     {: screen}
 

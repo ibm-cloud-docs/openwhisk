@@ -8,8 +8,7 @@ Bienvenido al repositorio de documentos de IBM Cloud Functions. Los comentarios 
 
 
 
-
-Para sugerir cambios en la documentación:
+## Sugerir cambios
 
 1. Cree un fork de este repositorio y haga las actualizaciones en el fork.
 2. Cuando esté preparado para su revisión, realice una PR a la rama maestra y etiquete `Derek-Poindexter` para revisión.

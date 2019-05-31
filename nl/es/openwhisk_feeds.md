@@ -30,7 +30,7 @@ Este material está pensado para usuarios avanzados de {{site.data.keyword.openw
 Existen al menos tres patrones de arquitectura para crear un canal de información: **Ganchos**, **Sondeo** y **Conexiones**.
 
 ### Ganchos
-En el patrón *Ganchos*, se configura un canal de información utilizando un recurso [webhook](https://en.wikipedia.org/wiki/Webhook) expuesto por otro servicio.   En esta estrategia, se configura un webhook en un servicio externo para PUBLICAR directamente en un URL y activar un desencadenante. Este método es, sin duda, la opción más fácil y atractiva para implementar canales de información de baja frecuencia.
+En el patrón *Ganchos*, se configura un canal de información utilizando un recurso [webhook](https://en.wikipedia.org/wiki/Webhook) expuesto por otro servicio.   En esta estrategia, se configura un webhook en un servicio externo para realizar una solicitud POST directamente en un URL y activar un desencadenante. Este método es, sin duda, la opción más fácil y atractiva para implementar canales de información de baja frecuencia.
 
 
 
@@ -65,7 +65,7 @@ La acción de canal de información también puede aceptar otros parámetros nec
 
 Cuando el usuario crea un desencadenante desde la CLI con el parámetro **--feed**, el sistema invoca automáticamente la acción de canal de información con los parámetros apropiados.
 
-Por ejemplo, suponga que el usuario crea un enlace de **mycloudant** para el paquete `cloudant` con un nombre de usuario y contraseña como parámetros de enlace. Cuando el usuario emita el siguiente mandato desde la CLI:
+Por ejemplo, suponga que el usuario crea un enlace de **mycloudant** para el paquete `cloudant` con un nombre de usuario y contraseña como parámetros de enlace. Cuando el usuario emite el siguiente mandato desde la CLI:
 ```
 ibmcloud fn trigger create T --feed mycloudant/changes -p dbName myTable
 ```

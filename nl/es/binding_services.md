@@ -154,10 +154,10 @@ Si cambia el nombre de la organización o el espacio que contiene las entidades,
 {: tip}
 
 
-## Desenlace de un servicio de una acción o paquete
+## Desenlazar un servicio de una acción o paquete
 {: #cli_unbind}
 
-Puede desenlazar un servicio de una acción o paquete. Al desenlazar un servicio, se eliminan los enlaces existentes creados por el mandato `service bind`.
+Desenlazar un servicio de una acción o paquete. Al desenlazar un servicio, se eliminan los enlaces existentes creados por el mandato `service bind`.
 
 ```
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME

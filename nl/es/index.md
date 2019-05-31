@@ -86,7 +86,7 @@ Enhorabuena. Ha creado su primera acción. Para eliminar esta acción, pulse el 
 ## Creación de una acción en la CLI
 {: #openwhisk_start_hello_world_cli}
 
-Comience a trabajar rápidamente con el código de ejemplo JavaScript de HelloWorld. Este ejemplo se crea una acción `hello` básica, que puede invocar manualmente para ejecutar la lógica de la app.
+Comience a trabajar rápidamente con el código de ejemplo JavaScript 'HelloWorld'. En este ejemplo se crea una acción `hello` básica, que se puede invocar manualmente para ejecutar la lógica de la app.
 
 1. [Configure el plugin de CLI de {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli).
 

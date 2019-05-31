@@ -27,12 +27,12 @@ subcollection: cloud-functions
 {: #create_action_sequence}
 {: #openwhisk_create_action_sequence}
 
-Puede crear una acción que encadene juntas una secuencia de acciones. El resultado de una acción se pase como argumento a la acción siguiente.
+Puede crear una acción que encadene una secuencia de acciones. El resultado de una acción se pase como argumento a la acción siguiente.
 {: shortdesc}
 
 Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` que puede utilizar para crear su primera secuencia.
 
-1. Lista las acciones en el paquete `/whisk.system/utils`.
+1. Liste las acciones del paquete `/whisk.system/utils`.
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
@@ -62,7 +62,7 @@ Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` 
     ```
     {: pre}
 
-    En la salida, las líneas de split se clasifican alfabéticamente.
+    En la salida, las líneas divididas se clasifican alfabéticamente.
     ```
     {
         "length": 3,
