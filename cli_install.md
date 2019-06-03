@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-03"
 
 keywords: functions cli, serverless, bluemix cli, install, functions plug-in
 
@@ -38,18 +38,12 @@ Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
 
 1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an IBM Cloud region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
+2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an {{site.data.keyword.Bluemix_notm}} region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
 
   ```
   ibmcloud login
   ```
   {: pre}
-
-  You can specify the organization and space when you log in to skip the prompts for them by using the following flags: `ibmcloud login -o <ORG> -s <SPACE>`
-  {: tip}
-
-3. If you did not specify an org and space, complete the prompts that follow the login command.
-
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} plug-in
 {: #cli_plugin_setup}
@@ -64,7 +58,6 @@ You can use the plug-in to:
 * Learn how packages bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
 * Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](/docs/openwhisk?topic=cloud-functions-pkg_cloudant).
 
-To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 {: tip}
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
@@ -91,19 +84,32 @@ To see everything that you can do with the {{site.data.keyword.openwhisk_short}}
 Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
 {:tip}
 
+After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+{: note}
 
-
-## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
-{: #cli_proxy}
-
-The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
-
-
-
-## Switching to different regions, organizations, and spaces<
+## Selecting regions, organizations, and spaces
 {: #cli_regions}
 
 If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
+
+1. Target a namespace.
+  * Target an IAM-enabled namespace. 
+  ```
+  ibmcloud fn property set --namespace <name>
+  ``` 
+  {: pre}
+  
+  * Target a Cloud Foundry-based namespace.
+  ```
+  ibmcloud target -o <org> -s <space>
+  ```
+  {: pre}
+
+2. Create a namespace or select a previously created namespace.
+  ```
+  ibmcloud fn namespace create <namespace> [--description <description>]
+  ```
+  {: pre}
 
 To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
 
@@ -118,6 +124,11 @@ ibmcloud iam space-create "production"
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, refer to the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
 {: tip}
 
+## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
+{: #cli_proxy}
+
+The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
+
 **Warning**: Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
 
 
@@ -129,13 +140,12 @@ You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interac
 
 ### Command Syntax
 {: #cli_syntax}
-
-All `wsk` commands, except the `wsk bluemix login` command that is no longer needed, work the same way by using the command `ibmcloud fn`. All command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the commands for the OpenWhisk stand-alone CLI. For more information, see the [Apache OpenWhisk CLI project ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-cli).
+For command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}
 
-The OpenWhisk CLI required you to configure the authentication API key and the API host. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace NAME` or a Cloud Foundry-based namespace by running `ibmcloud target -o ORG -s SPACE`. After logging in, all commands begin with `ibmcloud fn`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <name>` or a Cloud Foundry-based namespace by running `ibmcloud target -o <org> -s <space>`. After logging in, all commands begin with `ibmcloud fn`.
 
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:

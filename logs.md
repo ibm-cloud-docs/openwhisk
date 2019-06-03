@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-03"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
 
@@ -200,6 +200,9 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 
 ## Viewing logs in {{site.data.keyword.loganalysisfull_notm}}
 {: #logs_view}
+
+{{site.data.keyword.loganalysislong_notm}} logs are not available for IAM-based namespaces.
+{: note}
 
 You can view activation logs directly from the {{site.data.keyword.openwhisk_short}} Monitoring dashboard. The logs are also forwarded to [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 {:shortdesc}
