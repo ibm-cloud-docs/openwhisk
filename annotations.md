@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-28"
+lastupdated: "2019-06-03"
 
 keywords: annotations, annotate, package, parameters, actions
 
@@ -69,7 +69,6 @@ The following web action annotations must be explicitly set to `true` to enable 
 - `require-whisk-auth`: The web action can only be invoked by requests that provide appropriate authentication credentials.
     * When set to a boolean value, it controls whether the request's Basic Authentication value is authenticated. A value of `true` authenticates the credentials, and a value of `false` invokes the action without any authentication.
     * When set to an integer or a string, this value must match the request's `X-Require-Whisk-Auth` header value.
-    * **Note**: The owner of the web action incurs the cost of running them in the system. In other words, the owner of the action also owns the activations record.
 
 ## Package annotations
 {: #annotations_package}
@@ -97,7 +96,7 @@ Annotations that describe parameters include:
 You can document activation records with the following annotations:
 
 - `path`: the fully qualified path name of the action that generated the activation. Note that if this activation was the result of an action in a package binding, the path refers to the parent package.
-- `kind`: the kind of action executed, and one of the support OpenWhisk runtime kinds.
+- `kind`: the kind of action executed, and one of the supported {{site.data.keyword.openwhisk_short}} runtime kinds.
 - `limits`: the time, memory and log limits that this activation were subject to.
 
 For sequence-related activations, the system generates the following annotations:
@@ -107,7 +106,7 @@ For sequence-related activations, the system generates the following annotations
 
 In order to provide performance transparency, activations also record:
 
-- `waitTime`: the time spent waiting in the internal OpenWhisk system. This is roughly the time spent between the controller receiving the activation request and when the invoker provisioned a container for the action. This value is currently only present for non-sequence related activations. For sequences, this information can be derived from the `topmost` sequence activation record.
+- `waitTime`: the time spent waiting in the internal {{site.data.keyword.openwhisk_short}} system. This is roughly the time spent between the controller receiving the activation request and when the invoker provisioned a container for the action. This value is currently only present for non-sequence related activations. For sequences, this information can be derived from the `topmost` sequence activation record.
 - `initTime`: the time spent initializing the function. If this value is present, the action required initialization and represents a cold start. A warm activation skips initialization, and in this case, the annotation is not generated.
 
 The following example shows these annotations as they might appear in an activation record:
