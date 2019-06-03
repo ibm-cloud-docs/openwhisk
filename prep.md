@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-03"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -203,7 +203,7 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          resolve({ done: true });
-       }, 100);
+       }, 2000);
      })
 }
 ```
@@ -215,7 +215,7 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          reject({ done: true });
-       }, 100);
+       }, 2000);
      })
 }
 ```
@@ -242,7 +242,7 @@ function main(params) {
         return new Promise(function(resolve, reject) {
           setTimeout(function() {
             resolve({ done: true });
-          }, 100);
+          }, 2000);
         })
      }  else {
         // synchronous activation

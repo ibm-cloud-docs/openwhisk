@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-03"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -1883,7 +1883,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_<em>ACTION_NAME</em>
    <dd>The name of the service.</dd>
 
    <dt>PACKAGE_or_<em>ACTION_NAME</em></dt>
-   <dd>The name of the package or action to bind the credentials to.</dd>
+   <dd>The name of the package or action to unbind the credentials from.</dd>
 
    </dl>
 
