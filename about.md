@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-23"
+lastupdated: "2019-06-04"
 
 keywords: platform architecture, openwhisk, couchdb, kafka
 
@@ -87,11 +87,11 @@ To explain all the components in more detail, let's trace an invocation of an ac
 ### What happens behind the scenes in OpenWhisk?
 {: #about_scenes}
 
-OpenWhisk is an open source project that combines components including Nginx, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
+OpenWhisk is an open source project that combines components including NGINX, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
-#### 1. Entering the system: nginx
+#### 1. Entering the system: NGINX
 {: #about_ngnix}
 
 First, OpenWhisk’s user-facing API is completely HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to:
@@ -108,7 +108,7 @@ The first entry point into the system is through **nginx**, “an HTTP and rever
 #### 2. Entering the system: Controller
 {: #about_controller}
 
-Nginx forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) requests for your entities in OpenWhisk, and invocation of actions.
+NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) requests for your entities in OpenWhisk, and invocation of actions.
 
 The Controller first disambiguates what the user is trying to do. It does so based on the HTTP method you use in your HTTP request. As per translation above, the user is issuing a POST request to an existing action, which the Controller translates to an **invocation of an action**.
 
