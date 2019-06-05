@@ -94,7 +94,7 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
 
    - [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
 
- **NPM Packages**
+ **NPM packages**
    - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS.
    - [`apn`](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
    - [`async`](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
