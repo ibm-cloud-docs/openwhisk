@@ -180,7 +180,7 @@ To install the {{site.data.keyword.discoveryshort}} package:
 5. Click **Install**.
 
 
-6. Once the package isinstalled you are redirected to the Actions page and can search for your new package, which is named **discovery-v1**.
+6. After the package is installed, you are redirected to the Actions page and can search for your new package, which is named **discovery-v1**.
 
 7. To use the actions in the `discovery-v1` package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, complete step 4 in the CLI instructions.
