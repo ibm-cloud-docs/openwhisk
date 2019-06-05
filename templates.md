@@ -369,9 +369,9 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
     4. Click **Next**.
 
 5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources.
-    1. Specify the trigger's time interval by using a Pattern or cron expression.
+    1. Specify the trigger's time interval by using a Pattern or <ph class="ignoreSpelling">Cron</ph> expression.
         * Pattern: Select UTC times for weekdays, hours, and minutes.
-        * Cron: Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
+        * <ph class="ignoreSpelling">Cron</ph>: Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
     2. Add the trigger JSON payload.
 
 6. Click **Deploy**.

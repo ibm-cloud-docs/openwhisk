@@ -1101,7 +1101,7 @@ To package your code:
       ```
       {: pre}
 
-  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json</ph> NuGet package](https://www.nuget.org/packages/Newtonsoft.Json/).
+  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> package](https://www.nuget.org/packages/Newtonsoft.Json/).
 
       ```bash
       dotnet add package Newtonsoft.Json -v 12.0.1

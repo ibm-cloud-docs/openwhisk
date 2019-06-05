@@ -128,7 +128,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: The name of the sound file in the application bundle. The sound of this file is played as an alert.
 - `apnsTitleLocKey`: The key to a title string in the `Localizable.strings` file for the current locale. The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the `titleLocArgs` array.
-- `apnsLocKey`: A key to an alert-message string in a `Localizable.strings` file for the current locale (which is set by the user’s language preference). The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the locArgs array.
+- `apnsLocKey`: A key to an alert-message string in a `Localizable.strings` file for the current locale (which is set by the user’s language preference). The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the `locArgs` array.
 - `apnsLaunchImage`: The filename of an image file in the app bundle, with or without the filename extension. The image is used as the launch image when users tap the action button or move the action slider.
 - `pnsTitleLocArgs`: Variable string values to appear in place of the format specifiers in `title-loc-key`.
 - `apnsLocArgs`: Variable string values to appear in place of the format specifiers in `locKey`.
@@ -413,7 +413,7 @@ Example output:
 ### Create a webhook
 {: #pkg_push_mobile_hook}
 
-To create a webhook for the {{site.data.keyword.mobilepushshort}} service for onDeviceRegister events:
+To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `onDeviceRegister` events:
 
 ```
  ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister

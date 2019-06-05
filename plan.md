@@ -45,7 +45,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
 1. Componentize your code.
 
-    If you already have an app that you want to make serverless, consider how you might need to break your app apart into smaller pieces. Each function contains a set of triggers for code that you want to run. For example, if an issue is created on Github, run this JavaScript code. If your app contains several of these events or actions, consider separating them into different functions.
+    If you already have an app that you want to make serverless, consider how you might need to break your app apart into smaller pieces. Each function contains a set of triggers for code that you want to run. For example, if an issue is created on GitHub, run this JavaScript code. If your app contains several of these events or actions, consider separating them into different functions.
 
 2. Use {{site.data.keyword.cloud_notm}} services instead of frameworks.
 
@@ -79,7 +79,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 ## Determine your event source
 {: #plan_source}
 
-Start thinking about your function in terms of the event you want to happen to trigger code to run. Maybe you want code to run on every commit to a Github repository. Or maybe you want your code to run every that an update is made in a Cloudant database.
+Start thinking about your function in terms of the event you want to happen to trigger code to run. Maybe you want code to run on every commit to a GitHub repository. Or maybe you want your code to run every that an update is made in a Cloudant database.
 {: shortdesc}
 
 After you choose an event to trigger your function, review the packages that are already available to use. You might be able to use one to simplify your function development. If not, you can create your own package for your event source.
