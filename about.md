@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-06-05"
 
-keywords: platform architecture, openwhisk, couchdb, kafka
+keywords: Platform architecture, openwhisk, couchdb, kafka
 
 subcollection: cloud-functions
 
@@ -86,7 +86,6 @@ To explain all the components in more detail, let's trace an invocation of an ac
 
 ### What happens behind the scenes in OpenWhisk?
 {: #about_scenes}
-
 
 OpenWhisk is an open source project that combines components such as NGINX, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
