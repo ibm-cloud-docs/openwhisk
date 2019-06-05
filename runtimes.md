@@ -95,19 +95,19 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
    - [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
 
  **NPM Packages**
-   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
+   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS.
    - [`apn`](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
    - [`async`](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
    - [`bent`](https://www.npmjs.com/package/bent) - Functional HTTP client for Node.js with async and await.
    - [`bodyparser`](https://www.npmjs.com/package/body-parser) - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
+   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's `btoa` function.
    - [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
    - [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant) - The official Cloudant library for Node.js.
    - [`commander`](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
    - [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
    - [`consul`](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
    - [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names.
-   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
+   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level ElasticSearch client for Node.js.
    - [`errorhandler`](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
    - [`etcd3`](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
    - [`formidable`](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
@@ -117,7 +117,7 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
    - [`ibm_db`](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix.
    - [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) - The Node.js client that is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
    - [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
+   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards.
    - [`jsforce`](https://www.npmjs.com/package/jsforce) - Salesforce API Library for JavaScript applications.
    - [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
    - [`lodash`](https://www.npmjs.com/package/lodash) - The `lodash` library is exported as Node.js modules.
@@ -125,14 +125,14 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
    - [`merge`](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
    - [`moment`](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
    - [`mongodb`](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for mysql.
+   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for MySQL.
    - [`mustache`](https://www.npmjs.com/package/mustache) - Mustache.js is an implementation of the mustache template system in JavaScript.
-   - [`nano`](https://www.npmjs.com/package/nano) - Minimalistic couchdb driver for Node.js.
+   - [`nano`](https://www.npmjs.com/package/nano) - Minimalistic CouchDB driver for Node.js.
    - [`nodemailer`](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
    - [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js.
    - [`openwhisk`](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
    - [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
-   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native libpq bindings.
+   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings.
    - [`process`](https://www.npmjs.com/package/process) - `require('process')`; just like any other module.
    - [`pug`](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
    - [`redis`](https://www.npmjs.com/package/redis) - A complete and feature rich Redis client for Node.js.
@@ -172,12 +172,12 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 
  - [8.15.0](https://nodejs.org/en/blog/release/v8.15.0)
 
-   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making AMQP 0-9-1 clients for Node.JS.
+   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS.
    - [`apn`](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
    - [`async`](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
    - [`bent`](https://www.npmjs.com/package/bent) - Functional HTTP client for Node.js w/ async/await.
    - [`bodyparser`](https://www.npmjs.com/package/body-parser) - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's btoa function.
+   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's `btoa` function.
    - [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
    - [`cloudant`](https://www.npmjs.com/package/cloudant) - The official Cloudant library for Node.js.
    - [`@cloudant/cloudant`](https://www.npmjs.com/package/cloudant) - The official Cloudant library for Node.js.
@@ -185,7 +185,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
    - [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
    - [`consul`](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
    - [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
-   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level Elasticsearch client for Node.js.
+   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level ElasticSearch client for Node.js.
    - [`errorhandler`](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
    - [`etcd3`](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
    - [`formidable`](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
@@ -195,7 +195,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
    - [`ibm_db`](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix.
    - [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) - The Node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
    - [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the WHATWG DOM and HTML Standards.
+   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards.
    - [`jsforce`](https://www.npmjs.com/package/jsforce)Salesforce API Library for JavaScript applications.
    - [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
    - [`lodash`](https://www.npmjs.com/package/lodash) - The `lodash` library exported as Node.js modules.
@@ -204,14 +204,14 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
    - [`merge`](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
    - [`moment`](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
    - [`mongodb`](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for mysql.
+   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for MySQL.
    - [`mustache`](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
-   - [`nano`](https://www.npmjs.com/package/nano) - minimalistic couchdb driver for Node.js.
+   - [`nano`](https://www.npmjs.com/package/nano) - Minimalistic CouchDB driver for Node.js.
    - [`nodemailer`](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
    - [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js.
    - [`openwhisk`](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
    - [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
-   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native libpq bindings.
+   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings.
    - [`process`](https://www.npmjs.com/package/process) - `require('process')`; just like any other module.
    - [`pug`](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
    - [`redis`](https://www.npmjs.com/package/redis) - A complete and feature rich Redis client for Node.js.
@@ -224,7 +224,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
    - [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
    - [`socket.io`](https://www.npmjs.com/package/socket.io) - `socket.io` enables real-time bidirectional event-based communication.
    - [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) - Realtime application framework for `socket.io`.
-   - [`superagent`](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
+   - [`superagent`](https://www.npmjs.com/package/superagent) - `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
    - [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) - Package that provides various tools for integrating and interacting with Swagger.
    - [`twilio`](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
    - [`underscore`](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
@@ -425,7 +425,7 @@ Detailed information about the Python 3.6 runtime environment can be found in th
 
 Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action.
 
-When creating python actions using virtualenv, use the docker image `openwhisk/python2action`.
+When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`.
 The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
 
 #### Python 2 packages
@@ -492,7 +492,7 @@ Swift 4.2 actions can use the following packages when using single Swift source 
 
 
 ### SwiftyJSON using a single source action file
-If you have an action that is not compiled, and uses the **SwiftyJSON** package, you need to pre-compile your action, and specify the version of SwiftyJSON you want to use for `swift:4.2` kind action.
+If you have an action that is not compiled, and uses the `SwiftyJSON` package, you need to pre-compile your action, and specify the version of `SwiftyJSON` you want to use for `swift:4.2` kind action.
 
 
 ## PHP runtime
