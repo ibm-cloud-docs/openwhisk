@@ -212,7 +212,6 @@ Parameters that used in this example:
 
 | Parameter | Description |
 | --- | --- |
-
 | `dbname` | (Required) The name of the {{site.data.keyword.cloudant_short_notm}} database. |
 | `iamApiKey` | (Optional) The IAM API key for the Cloudant database.  If specified will be used as the credentials instead of username and password. |
 | `iamUrl` | (Optional) The IAM token service URL that is used when `iamApiKey` is specified.  Defaults to `https://iam.cloud.ibm.com/identity/token`. | 
