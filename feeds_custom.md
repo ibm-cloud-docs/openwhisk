@@ -59,7 +59,7 @@ For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=
 {: #feeds_actions}
 
 The feed action is an action, and accepts the following parameters:
-* **lifecycleEvent**: 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE', or 'UNPAUSE'.
+* **lifecycleEvent**: `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`.
 * **triggerName**: The fully qualified name of the trigger, which contains events that are produced from this feed.
 * **authKey**: The basic authentication credentials of the {{site.data.keyword.openwhisk_short}} user who owns the trigger.
 
