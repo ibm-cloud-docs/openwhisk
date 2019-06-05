@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: packages, installable packages
 
@@ -34,7 +34,7 @@ Packages are bundled sets of related actions and feeds. Each package is designed
 
 [Pre-installed packages](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
 
-Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual Github repositories.
+Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual GitHub repositories.
 
 You can install these packages or your own directly into your namespace, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 
@@ -85,7 +85,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
   Example output:
   ```
   package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -195,12 +195,12 @@ In the following example, you bind to the `/whisk.system/samples` package.
 ## Adding your own packages
 {: #pkg_add}
 
-You can create a package of local code or a clone of any Github repository.
+You can create a package of local code or a clone of any GitHub repository.
 {: shortdesc}
 
 Before you begin:
-- [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
-- Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [wskdeploy documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
+- [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+- Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [<ph class="ignoreSpelling">wskdeploy</ph> documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
 
 To add a package:
 

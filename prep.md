@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-03"
+lastupdated: "2019-06-05"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -65,7 +65,7 @@ You can use images from public registries only, such as an image that is publicl
 ### Packaging code in Docker images
 {: #prep_docker_pkg}
 
-Your code is compiled into an executable binary and embedded into a Docker image. The binary program interacts with the system by taking input from `stdin` and replying through `stdout`.
+Your code is compiled into an executable and embedded into a Docker image. The executable interacts with the system by taking input from `stdin` and replying through `stdout`.
 {: shortdesc}
 
 Before you begin:
@@ -82,7 +82,7 @@ To package your code as a Docker image:
   ```
   {: pre}
 
-2. Set up your custom binary in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
+2. Set up your code in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
   ```
   cat dockerSkeleton/example.c
   ```
@@ -100,10 +100,10 @@ To package your code as a Docker image:
   {: codeblock}
 
 3. Optional: Add additional code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
-  * The binary must be located inside the container at `/action/exec`.
+  * Your code must be located inside the container at `/action/exec`.
   * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
   * The program can log to `stdout` or `stderr`.
-  * By convention, the last line of output must be a stringified JSON object which represents the result of the action.
+  * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object which represents the result of the action.
   For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 4. Build the Docker image and upload it using a supplied script.
@@ -302,10 +302,10 @@ Next, [create](/docs/openwhisk?topic=cloud-functions-actions) and [invoke the ac
 
 
 
-### Packaging JavaScript code with the webpack module
+### Packaging JavaScript code with the `webpack` module
 {: #prep_js_pkg}
 
-You can package an app by using a JavaScript module bundler such as [webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/). When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
+You can package an app by using a JavaScript module bundler such as `[webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/)`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
@@ -330,7 +330,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: codeblock}
 
-2. Save the following webpack configuration code in a file named `webpack.config.js`.
+2. Save the following `webpack` configuration code in a file named `webpack.config.js`.
 
     ```javascript
     var path = require('path');
@@ -366,7 +366,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: pre}
 
-5. Build the webpack bundle.
+5. Build the `webpack` bundle.
 
     ```
     npm run build
@@ -391,7 +391,7 @@ Before you begin, [review the packages that are included with the JavaScript run
         ```
         {: pre}
 
-    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends on binary file dependencies because this is not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends other dependencies because these are not included with the file `bundle.js`.
     {: tip}
 
 
@@ -446,7 +446,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable for better performance or multiple source file support, including vendor libraries.
 {: shortdesc}
 
-Although you can create a binary on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#prep_go_multi) or [vendor libraries](#prep_go_vendor).
+Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#prep_go_multi) or [vendor libraries](#prep_go_vendor).
 {: tip}
 
 
@@ -542,7 +542,7 @@ Example:
   ```
   {: pre}
 
-  You can compile locally by setting your `GOPATH` to the parent of the `src` directory. If you use VSCode, you must change the `go.inferGopath` setting to `true`.
+  You can compile locally by setting your `GOPATH` to the parent of the `src` directory. If you use VS Code, you must change the `go.inferGopath` setting to `true`.
   {: note}
 
 4. Compile and package the Go executable as `exec` in the root of the .zip archive. Build the `hello-bin.zip` archive by running the following command. You must have Docker CLI installed in your workstation and `docker` in your `PATH`.
@@ -615,9 +615,9 @@ Populate the `vendor` directory, run `dep ensure`.
 ## Preparing Swift apps
 {: #prep_swift}
 
-Swift files must be compiled into a binary before an action is run. This delay is known as the cold-start delay. To avoid the cold-start delay, you can compile your Swift file into a binary and then upload the binary to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container holding your action is purged.
+Swift files must be compiled before an action is run. This delay is known as the cold-start delay. To avoid the cold-start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container holding your action is purged.
 
-Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on MacOS.
+Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on macOS.
 {: important}
 
 
@@ -674,7 +674,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 {: codeblock}
 
 
-### Packaging a Swift 4.2 file into a binary
+### Packaging a Swift 4.2 file
 {: #prep_swift42_single}
 
 Compile a single source file that doesn't depend on external libraries. Use the flag `-compile` with the name of the main method.
@@ -1003,7 +1003,7 @@ To compile, test, and archive Java files, you must have [JDK 8 ![External link i
     ```
     {: pre}
 
-2. Compress the class file into a JAR file named `hello.jar`. **Note**: [google-gson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/google/gson) must exist in your Java CLASSPATH.
+2. Compress the class file into a .jar file named `hello.jar`. **Note**: [google-gson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/google/gson) must exist in your Java CLASSPATH.
 3.
     ```
     jar cvf hello.jar Hello.class
@@ -1014,7 +1014,7 @@ To compile, test, and archive Java files, you must have [JDK 8 ![External link i
 ### Packaging Java code with Gradle
 {: #prep_java_gradle}
 
-You can use a build a tool such as [Gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final JAR archive that includes your code and all dependencies.
+You can use a build a tool such as [Gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final .jar archive that includes your code and all dependencies.
 
 Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
@@ -1052,7 +1052,7 @@ Here is an example using Gradle to build a Java action that leverages the librar
   ```
   {: codeblock}
 
-2. Run the command `gradle jar`, which generates a JAR archive in the directory `build/libs/`.
+2. Run the command `gradle jar`, which generates a .jar archive in the directory `build/libs/`.
 
   For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies).
 
@@ -1101,7 +1101,7 @@ To package your code:
       ```
       {: pre}
 
-  3. Install the [Newtonsoft.Json](https://www.newtonsoft.com/json) NuGet package as follows.
+  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json</ph> NuGet package](https://www.nuget.org/packages/Newtonsoft.Json/).
 
       ```bash
       dotnet add package Newtonsoft.Json -v 12.0.1

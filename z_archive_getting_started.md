@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-23"
+lastupdated: "2019-06-05"
 
 keywords: docker, actions, serverless
 
@@ -17,7 +17,7 @@ subcollection: cloud-functions
 # Getting started
 {: #getting_started}
 
-With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.Bluemix_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
 ## Working with actions
@@ -38,9 +38,9 @@ Click an option to get started:
 ## Creating an action in the GUI
 {: #gs_hello_world}
 
-To get started with {{site.data.keyword.openwhisk_short}}, try using the HelloWorld quickstart template.
+To get started with {{site.data.keyword.openwhisk_short}}, try using the Hello World quickstart template.
 
-1. Create an [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
+1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
 
 2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
 
@@ -68,7 +68,7 @@ Good work! You created your first action. To clean up this action, click the ove
 ## Creating an action in the CLI
 {: #gs_hello_world_cli}
 
-Get up and running quickly with the [HelloWorld JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
+Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
 ## What's next?
 {: #gs_next_steps}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: regions, endpoints, api, cli, plug-in
 
@@ -26,7 +26,7 @@ subcollection: cloud-functions
 # Regions
 {: #cloudfunctions_regions}
 
-{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, and Tokyo {{site.data.keyword.Bluemix_notm}} regions. When you log in to the {{site.data.keyword.Bluemix_notm}} CLI, you can choose to include a specific region by including the API endpoint for the region with the `-a` flag.
+{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, and Tokyo {{site.data.keyword.cloud_notm}} regions. When you log in to the {{site.data.keyword.cloud_notm}} CLI, you can choose to include a specific region by including the API endpoint for the region with the `-a` flag.
 
   ```
   ibmcloud login -a <endpoint>

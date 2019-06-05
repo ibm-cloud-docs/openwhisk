@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-03"
+lastupdated: "2019-06-05"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -45,7 +45,7 @@ When you create a namespace, the following components are created:
 | Component | Description |
 | --- | --- | 
 | A service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
-| An API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.Bluemix_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
+| An API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
 
 View all of your service IDs.
 ```
@@ -79,7 +79,7 @@ Your Cloud Foundry-based namespaces will continue to work. However, in order to 
 ## Creating an IAM-based namespace in the UI
 {: #create_iam_ui}
 
-1. In the [{{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk), click the namespace dropdown.
+1. In the [{{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk), click the namespace drop-down menu.
 
 2. At the bottom of the namespace list, click **Create namespace**.
 
@@ -89,7 +89,7 @@ Your Cloud Foundry-based namespaces will continue to work. However, in order to 
 
 5. Click **Create**.
 
-6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.Bluemix_notm}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/dashboard/apps) and find your namespace name in the **Services** pane.
+6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/dashboard/apps) and find your namespace name in the **Services** pane.
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -207,7 +207,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
     <tbody>
       <tr>
         <td><code>&lt;IAM_token&gt;</code></td>
-        <td>Your {{site.data.keyword.Bluemix_notm}} Identity and Access Management (IAM) token. To retrieve your IAM token, run <code>ibmcloud iam oauth-tokens</code>.</td>
+        <td>Your {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) token. To retrieve your IAM token, run <code>ibmcloud iam oauth-tokens</code>.</td>
       </tr>
       <tr>
         <td><code>-n &lt;name&gt;</code></td>
@@ -289,7 +289,7 @@ For more information about working with HTTP REST, check out the [{{site.data.ke
 ### Accessing other resources from a namespace
 {: #namespace-access}
 
-Actions typically call other {{site.data.keyword.Bluemix_notm}} resources and services which require appropriate authentication. If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
+Actions typically call other {{site.data.keyword.cloud_notm}} resources and services which require appropriate authentication. If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
 {: shortdesc}
 
 As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/iam?topic=iam-serviceids#serviceids).

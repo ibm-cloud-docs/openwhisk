@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: github, actions, trigger, event
 
@@ -36,8 +36,8 @@ The package includes the following feed:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/github` | package | username, repository, accessToken | Interact with the GitHub API |
-| `/whisk.system/github/webhook` | feed | events, username, repository, accessToken | Fire trigger events on GitHub activity |
+| `/whisk.system/github` | Package | `username`, `repository`, `accessToken` | Interact with the GitHub API. |
+| `/whisk.system/github/webhook` | Feed | `events`, `username`, `repository`, `accessToken` | Fire trigger events on GitHub activity. |
 
 Creating a package binding with the `username`, `repository`, and `accessToken` values is suggested.  With binding, you don't need to specify the values each time that you use the feed in the package.
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-03"
+lastupdated: "2019-06-05"
 
-keywords: functions cli, serverless, bluemix cli, install, functions plug-in
+keywords: functions cli, serverless, cli, install, functions plug-in
 
 subcollection: cloud-functions
 
@@ -26,19 +26,19 @@ subcollection: cloud-functions
 # Installing the CLI and plug-in
 {: #cli_install}
 
-{{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.Bluemix_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
+{{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.cloud_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
 {:shortdesc}
 
 
-## Setting up the {{site.data.keyword.Bluemix_notm}} CLI
+## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
-Download and install the {{site.data.keyword.Bluemix_notm}} CLI, and log in.
+Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 {: shortdesc}
 
-1. Download and install the [{{site.data.keyword.Bluemix_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
+1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
-2. Log in to the {{site.data.keyword.Bluemix_notm}} CLI. To specify an {{site.data.keyword.Bluemix_notm}} region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
+2. Log in to the {{site.data.keyword.cloud_notm}} CLI. To specify an {{site.data.keyword.cloud_notm}} region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
 
   ```
   ibmcloud login
@@ -90,9 +90,15 @@ After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with 
 ## Selecting regions, organizations, and spaces
 {: #cli_regions}
 
-If you are already logged in, you can run the `ibmcloud target` command in the {{site.data.keyword.Bluemix_notm}} CLI to switch regions, organization, and spaces.
+If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI to switch regions, organization, and spaces.
 
-1. Target a namespace.
+1. Create or target a namespace.
+  * Create a namespace.
+  ```
+  ibmcloud fn namespace create <namespace> [--description <"description">]
+  ```
+  {: pre}
+
   * Target an IAM-enabled namespace. 
   ```
   ibmcloud fn property set --namespace <name>
@@ -102,12 +108,6 @@ If you are already logged in, you can run the `ibmcloud target` command in the {
   * Target a Cloud Foundry-based namespace.
   ```
   ibmcloud target -o <org> -s <space>
-  ```
-  {: pre}
-
-2. Create a namespace or select a previously created namespace.
-  ```
-  ibmcloud fn namespace create <namespace> [--description <description>]
   ```
   {: pre}
 
@@ -168,12 +168,12 @@ The API key is specific per region, organization, and space targeted by the {{si
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
-The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.Bluemix_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
+The OpenWhisk CLI required you to run the `wsk bluemix login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk bluemix login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}
 
-If you have scripts that use the OpenWhisk CLI with the `wsk` binary, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.Bluemix_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.Bluemix_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
+If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
 
 
 
@@ -236,7 +236,7 @@ v1.0.25 (2018-11-23)
 * Minor bug fixes and error handling improvements.
 
 1.0.12 (2018-04-30)
-* {{site.data.keyword.Bluemix_notm}} SDK updates to maintain `bx` CLI compatibility.
+* {{site.data.keyword.cloud_notm}} SDK updates to maintain `bx` CLI compatibility.
 
 1.0.11 (2018-04-23)
 * Minor bug fixes and improvements.
@@ -252,7 +252,7 @@ v1.0.25 (2018-11-23)
 * Enabled support for IAM service bind.
 
 1.0.7 (2018-02-02)
-* Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For info, see [API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway).
+* Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For more information, see [API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway).
 * Restored proxy support.
 * Removed `swift:3`.
 

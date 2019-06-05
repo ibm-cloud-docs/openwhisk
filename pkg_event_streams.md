@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: event streams, package, messages, events
 
@@ -40,7 +40,7 @@ subcollection: cloud-functions
 A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
 
-### Setting up a {{site.data.keyword.messagehub}} package using {{site.data.keyword.Bluemix_notm}}
+### Setting up a {{site.data.keyword.messagehub}} package using {{site.data.keyword.cloud}}
 {: #eventstreams_setup}
 
 1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
@@ -75,10 +75,10 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
 
   Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
 
-### Setting up a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}
+### Setting up a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
 
-If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
+If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
 
 Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 ```
@@ -103,7 +103,7 @@ References
 ## Event Streams events source
 {: #eventstreams_events}
 
-You can create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.Bluemix}}, listen for messages, and handle batched messages.
+You can create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.cloud}}, listen for messages, and handle batched messages.
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} package
@@ -119,16 +119,16 @@ This package enables communication with [{{site.data.keyword.messagehub}}](https
 
 In order to create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub}} instance, you need to use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
 
-|Name|Type|Description|
-|---|---|---|
-|kafka_brokers_sasl|JSON Array of Strings|This parameter is an array of `<host>:<port>` strings that comprise the brokers in your {{site.data.keyword.messagehub}} instance|
-|user|String|Your {{site.data.keyword.messagehub}} username.|
-|password|String|Your {{site.data.keyword.messagehub}} password.|
-|topic|String|The topic that you would like the trigger to listen to.|
-|kafka_admin_url|URL String|The URL of the {{site.data.keyword.messagehub}} admin REST interface.|
-|isJSONData|Boolean (Optional - default=false)|When set to `true`, the provider attempts to parse the message value as JSON before passing it along as the trigger payload.|
-|isBinaryKey|Boolean (Optional - default=false)|When set to `true`, the provider encodes the key value as Base64 before passing it along as the trigger payload.|
-|isBinaryValue|Boolean (Optional - default=false)|When set to `true`, the provider encodes the message value as Base64 before passing it along as the trigger payload.|
+| Name | Type | Description |
+| --- | --- | --- |
+| `kafka_brokers_sasl` | JSON array of strings | This parameter is an array of `<host>:<port>` strings that comprise the brokers in your {{site.data.keyword.messagehub}} instance. |
+| `user` | String | Your {{site.data.keyword.messagehub}} username. |
+| `password` | String | Your {{site.data.keyword.messagehub}} password. |
+| `topic` | String | The topic that you would like the trigger to listen to. |
+| `kafka_admin_url` | URL string | The URL of the {{site.data.keyword.messagehub}} admin REST interface. |
+| `isJSONData` | Boolean (Optional - default=false) | When set to `true`, the provider attempts to parse the message value as JSON before passing it along as the trigger payload. |
+| `isBinaryKey` | Boolean (Optional - default=false) | When set to `true`, the provider encodes the key value as Base64 before passing it along as the trigger payload. |
+| `isBinaryValue` | Boolean (Optional - default=false) | When set to `true`, the provider encodes the message value as Base64 before passing it along as the trigger payload. |
 
 While this list of parameters can seem daunting, they can be automatically set for you by using the `ibmcloud fn package refresh` CLI plug-in command.
 
@@ -170,10 +170,10 @@ While this list of parameters can seem daunting, they can be automatically set f
   ```
   {: pre}
 
-### Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.Bluemix_notm}}
+### Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
 
-If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.Bluemix_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
+If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
   ```
@@ -331,12 +331,6 @@ Keep in mind when coding actions that are fired by your trigger, that the number
 }
 ```
 
-
-
-## Integrating OpenWhisk with {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full_notm}}, and IBM Data Science Experience
-{: #eventstreams_example}
-
-Example that integrates OpenWhisk with {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}}, IBM Data Science Experience (Spark) service can be [found here](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).
 
 ## References
 {: #message_references}

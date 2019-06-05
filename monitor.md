@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health
 
@@ -47,15 +47,15 @@ Get started by creating a Grafana monitoring dashboard.
     <tbody>
       <tr>
         <td>EU Central</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>UK South</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>US South</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>US East</td>

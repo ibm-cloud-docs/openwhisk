@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -26,7 +26,7 @@ subcollection: cloud-functions
 # Deploying quickstart templates
 {: #templates}
 
-{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other service instances from {{site.data.keyword.Bluemix_notm}}. By using templates, you can quickly and easily create a project, and start coding right away.
+{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started quickly on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other service instances from {{site.data.keyword.cloud_notm}}. By using templates, you can quickly and easily create a project, and start coding right away.
 {: shortdesc}
 
 
@@ -369,9 +369,9 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
     4. Click **Next**.
 
 5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources.
-    1. Specify the trigger's time interval by using a Pattern or Cron expression.
+    1. Specify the trigger's time interval by using a Pattern or cron expression.
         * Pattern: Select UTC times for weekdays, hours, and minutes.
-        * Cron: Specify a Cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
+        * Cron: Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
     2. Add the trigger JSON payload.
 
 6. Click **Deploy**.
@@ -408,7 +408,7 @@ After template deployment, you can make further edits to the code to customize i
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>The webhook URL, such as <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td>A Cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields separated by spaces in the format <code>X X X X X</code>.</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td>A cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields separated by spaces in the format <code>X X X X X</code>.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>

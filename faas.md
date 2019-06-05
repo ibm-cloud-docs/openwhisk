@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
-keywords: functions compared, openwhisk, architecture, limitless
+keywords: functions compared, architecture, limitless
 
 subcollection: cloud-functions
 
@@ -45,13 +45,13 @@ The following OpenWhisk architectures are compared:
 
 1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk). IBM is the only vendor to offer managed OpenWhisk. A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html), and you can see [uses cases](/docs/openwhisk?topic=cloud-functions-use_cases) for running OpenWhisk with a serverless design.
 
-2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices).
+2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices).
 
-3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.Bluemix_notm}} Foundry implementation.
+3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.cloud_notm}} Foundry implementation.
 
 4. **Container as a Service (CaaS)** as a managed container environment. A good example is the [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index).
 
-5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server).
+5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server).
 
 The following table compares elements of each architecture from the perspective of a developer that is creating and operating applications:
 
@@ -60,7 +60,7 @@ The following table compares elements of each architecture from the perspective 
 | --- | --- | --- | --- | --- | --- |
 |	Application unit	|	Single function (usually small block of code in JavaScript, Swift, or Docker container) - can be less than one Kb, but can be larger. Usually not more than few Kb.	|	Same as column (1)	|	Depends on the runtime used. An EAR or WAR file, or other language-specific application bundle, usually relatively large - Kb or even Mb with many services in a bundle, but can be as small as a single service.	|	Docker container is the unit of deployment.	|	VM with App Server with EAR or WAR file and other dependencies - usually sized at Gb.	|
 |	Resource footprint	|	End user does not pay or care about memory, CPU, or other resources. Although the action does have some footprint, the user does not need to worry about it	|	High. The end user must first provision IaaS environment and only then install and configure OpenWhisk on top of it	|	Small. End user pays for memory and CPU for running apps, but nothing for apps that are not running	|	Small to Medium	|	High. End user has to pay for disk storage, memory, CPUs, and possibly other components when the app is running. When it is stopped only the storage costs occur	|
-|	Installation and setup	|	None required	|	Hard - all done by the end user	|	None required	|	Moderate - Hardware, networking, OS, container mgmt tools provided by CaaSs vendor, images, connectivity, and instances by end user	|	Hard - Hardware, networking, OS, initial Java EE installation provided by vendor, additional configuration, clustering, scaling by end user	|
+|	Installation and setup	|	None required	|	Hard - all done by the end user	|	None required	|	Moderate - Hardware, networking, OS, container management tools provided by CaaS vendor, images, connectivity, and instances by end user	|	Hard - Hardware, networking, OS, initial Java EE installation provided by vendor, additional configuration, clustering, scaling by end user	|
 |	Provisioning time	|	Milliseconds	|	See columns (4) and (5)	|	Minutes	|	Minutes	|	Hours	|
 |	Ongoing administration	|	None	|	Hard	|	None	|	Moderate	|	Hard	|
 |	Elastic scaling	|	Each action is always instantly and inherently scaled depending on the load. No need to provision VMs or other resources in advance	|	Not provided - end user must provide compute capacity on IaaS and manage scaling of VMs. Once VMs are scaled, OpenWhisk scales actions automatically, but the resources must already be provisioned in advance	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale action to complete. Auto scaling requires careful tuning	|	Automatic, but slow scaling. During increased load, for several minutes users might wait for scale action to complete. Auto scaling requires careful tuning	|	Not provided	|
@@ -76,7 +76,7 @@ The following table compares elements of each architecture from the perspective 
 |	Latency for rarely used services	|	Rare requests can initially see several seconds response time, but remain in ms range for subsequent requests	|	Depends	|	Low	|	Low	|	Low - assuming the system has enough resources	|
 |	Sweet spot type of application	|	Event processing, IoT, Mobile backend, microservices. Definitely not for monolithic applications. See [use cases](/docs/openwhisk?topic=cloud-functions-use_cases)	|	Same as column (1), but when user wants to run on non-IBM cloud or run on-prem.	|	Web applications with 24x7 workload load, stateful services that need to keep the connection open for long periods of time. Can be used to run microservices or monolithic applications	|	Ideal for microservices applications.	|	Traditional enterprise applications that are migrated from on-prem to the cloud. Ideal for monolithic applications	|
 |	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://cloud.ibm.com/openwhisk/learn/pricing)	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5)	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space)	|	Similar to column (3)	|	Similar to column (3)	|
-|	Total Cost of Ownership (TCO)	|	For its sweet spot, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on-prem deployment can be cheaper than traditional architectures	|	Relatively low - The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate - The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS	|	Relatively high - Consider that migration of legacy applications into the cloud native model could be prohibitively expensive, this can be a viable and economical choice for those apps.	|
+|	Total Cost of Ownership	|	For its sweet spot, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on-prem deployment can be cheaper than traditional architectures	|	Relatively low - The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate - The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS	|	Relatively high - Consider that migration of legacy applications into the cloud native model could be prohibitively expensive, this can be a viable and economical choice for those apps.	|
 
 ## Cost considerations
 {: #faas_cost}

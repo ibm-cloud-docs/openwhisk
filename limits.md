@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-29"
+lastupdated: "2019-06-05"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -45,12 +45,12 @@ The following table lists the default limits for actions.
 | [concurrent](#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
 | [logs](#limits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
 | [memory](#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
-| [minuteRate](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
-| [openulimit](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
+| [<ph class="ignoreSpelling">minuteRate</ph>](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
+| [<ph class="ignoreSpelling">openulimit</ph>](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
 | [parameters](#limits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
-| [proculimit](#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
+| [<ph class="ignoreSpelling">proculimit</ph>](#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
 | [result](#limits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
-| [sequenceMaxActions](#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
+| [<ph class="ignoreSpelling">sequenceMaxActions</ph>](#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
 | [timeout](#limits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
 
 ### Increasing fixed limits
@@ -85,13 +85,13 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * A user can change the memory limit when an action is created.
 * A container cannot use more memory than is allocated by the limit.
 
-#### minuteRate (Fixed: 5000*)
+#### <ph class="ignoreSpelling">minuteRate</ph> (Fixed: 5000*)
 {: #limits_minuterate}
 * The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
 * A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
 * This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
 
-#### openulimit (Fixed: 1024:1024)
+#### <ph class="ignoreSpelling">openulimit</ph> (Fixed: 1024:1024)
 {: #limits_openulimit}
 * The maximum number of open files for an action is 1024 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
@@ -104,7 +104,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * An entity with too large parameters is rejected on trying to create or update it.
 * This limit is fixed and cannot be changed.
 
-#### proculimit (Fixed: 1024:1024)
+#### <ph class="ignoreSpelling">proculimit</ph> (Fixed: 1024:1024)
 {: #limits_proculimit}
 * The maximum number of processes available to the action container is 1024.
 * This limit is fixed and cannot be changed.
@@ -116,7 +116,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The maximum output size of an action invocation result in MB.
 * This limit is fixed and cannot be changed.
 
-#### sequenceMaxActions (Fixed: 50*)
+#### <ph class="ignoreSpelling">sequenceMaxActions</ph> (Fixed: 50*)
 {: #limits_sequencemax}
 * The maximum number of actions that comprise a given sequence.
 * This limit is fixed and cannot be changed.
@@ -134,7 +134,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 | Limit | Description | Default | Min | Max |
 | ----- | ----------- | :-------: | :---: | :---: |
-| [minuteRate](#limits_triggersminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
+| [<ph class="ignoreSpelling">minuteRate</ph>](#limits_triggersminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #limits_triggersfixed}
@@ -145,7 +145,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
-#### minuteRate (Fixed: 5000*)
+#### <ph class="ignoreSpelling">minuteRate</ph> (Fixed: 5000*)
 {: #limits_triggersminuterate}
 
 * The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
@@ -228,7 +228,7 @@ The outcome is recorded in the `status` field of the activation record, as docum
 
 For every invocation that is successfully received, and that the user might be billed for, has an activation record.
 
-When the outcome is *action developer error*, the action might partially run, and generate external visible side effects. It is the user's responsibility to check whether such side effects happened, and issue retry logic if desired. Certain *whisk internal errors* indicate that an action starts to run, but fails before the action registers completion.
+When the outcome is *action developer error*, the action might partially run, and generate external visible side effects. It is the user's responsibility to check whether such side effects happened, and issue retry logic. Certain *whisk internal errors* indicate that an action starts to run, but fails before the action registers completion.
 
 ## Activation record
 {: #limits_activation}

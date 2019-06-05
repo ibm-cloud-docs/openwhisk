@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-03"
+lastupdated: "2019-06-05"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -128,7 +128,7 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
 
    <dt>--native</dt>
    <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument allows you to create and deploy an executable that runs inside the standard Docker action SDK.
-       <ol><li>When you create a Docker image, a binary executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zip it into `exec.zip`.</li>
+       <ol><li>When you create a Docker image, an executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
        <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
    <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
@@ -208,7 +208,7 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILENAME</em>] [--sum
    <dd>The name of an action. This value is required.</dd>
 
    <dt>--save</dt>
-   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>FILENAME</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is a zip file, an extension of .zip is used. This flag is optional.</dd>
+   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>FILENAME</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
 
   <dt>--save-as <em>FILENAME</em></dt>
   <dd>Save the code for actions in a custom-named file by providing a file path, <em>FILENAME</em>, and extension. This flag is optional.</dd>
@@ -418,7 +418,7 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
 
   <dt>--native</dt>
   <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument allows you to create and deploy an executable that runs inside the standard Docker action SDK.
-      <ol><li>When you create a Docker image, a binary executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and zip it into `exec.zip`.</li>
+      <ol><li>When you create a Docker image, an executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
       <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
@@ -570,7 +570,7 @@ ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 ### ibmcloud fn activation poll
 {: #cli_activation_poll}
 
-View a streaming, live list of activations for an action or a namespace. You can press CTRL+C to exit the polling.
+View a streaming, live list of activations for an action or a namespace. You can press `CTRL+C` to exit the polling.
 
 ```
 ibmcloud fn activation poll [/<em>NAMESPACE</em>] [<em>ACTION_NAME</em>] [--exit <em>SECONDS</em>] [--since-days <em>DAYS</em>] [-since-hours <em>HOURS</em>] [--since-minutes <em>MINUTES</em>] [--since-seconds <em>SECONDS</em>]
@@ -935,7 +935,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</
    <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
 
    <dt>--preview </dt>
-   <dd>Display the undeployment plan before deploying.</dd>
+   <dd>Display the result of the command without running the command.</dd>
 
    <dt>--project PATH</dt>
    <dd>The path to the serverless project. The default is <code>.</code> (current directory).</dd>
@@ -1808,7 +1808,7 @@ ibmcloud fn sdk install <em>COMPONENT</em> [--limit <em>NUMBER_OF_TRIGGERS</em>]
    <dd>The SDK component, such as `docker`, `iOS`, and `bashauto`. This value is required.</dd>
 
    <dt>--stdout, --s</dt>
-   <dd>Prints the bash command results to stdout. This flag is optional.</dd>
+   <dd>Prints the bash command results to STDOUT. This flag is optional.</dd>
 
 
    </dl>

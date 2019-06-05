@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: feeds, serverless
 
@@ -40,7 +40,7 @@ There are three architectural patterns for creating a feed: **Hooks**, **Polling
 
 With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook) that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
-For example, the [Github package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
+For example, the [GitHub package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
 
 
 ### Polling
@@ -109,7 +109,7 @@ For feeds where a webhook is not available, but do not need high-volume or low l
 
 To set up a polling-based feed, the feed action takes the following steps when called for `CREATE`:
 
-1. The feed action sets up a periodic trigger with the desired frequency, by using the `whisk.system/alarms` feed.
+1. The feed action sets up a periodic trigger with a specific frequency, by using the `whisk.system/alarms` feed.
 2. The feed developer creates a `pollMyService` action that polls the remote service and returns any new events.
 3. The feed action sets up a *rule* *T -> pollMyService*.
 
@@ -129,6 +129,6 @@ The {{site.data.keyword.cloudant_short_notm}} *changes* feed is the canonical ex
 
 The *alarm* feed is implemented with a similar pattern.
 
-The connection-based architecture is the highest performance option, but imposes more overhead on operations that are compared to the polling and hook architectures.
+The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
 
 
