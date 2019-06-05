@@ -145,7 +145,7 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
    - [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
    - [`socket.io`](https://www.npmjs.com/package/socket.io) - `socket.io` enables real-time bidirectional event-based communication.
    - [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) - Realtime application framework for `socket.io`.
-   - [`superagent`](https://www.npmjs.com/package/superagent) - SuperAgent is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
+   - [`superagent`](https://www.npmjs.com/package/superagent) - `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
    - [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) - Package that provides various tools for integrating and interacting with Swagger.
    - [`twilio`](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
    - [`underscore`](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
@@ -491,7 +491,7 @@ Swift 4.2 actions can use the following packages when using single Swift source 
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
 
-### SwiftyJSON using a single source action file
+### <ph class="ignoreSpelling">SwiftyJSON</ph> using a single source action file
 If you have an action that is not compiled, and uses the `SwiftyJSON` package, you need to pre-compile your action, and specify the version of `SwiftyJSON` you want to use for `swift:4.2` kind action.
 
 
