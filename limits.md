@@ -43,7 +43,7 @@ The following table lists the default limits for actions.
 | ----- | ----------- | :-------: | :---: | :---: |
 | [codeSize](#limits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
 | [concurrent](#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
-| [logs](#limits_logs) | A container is not allowed to write more than N MB to stdout. | 10 | 0 | 10 |
+| [logs](#limits_logs) | A container is not allowed to write more than N MB to STDOUT. | 10 | 0 | 10 |
 | [memory](#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
 | [<ph class="ignoreSpelling">minuteRate</ph>](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
 | [<ph class="ignoreSpelling">openulimit</ph>](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
@@ -62,7 +62,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
-#### codeSize (MB) (Fixed: 48 MB)
+#### <ph class="ignoreSpelling">codeSize</ph> (MB) (Fixed: 48 MB)
 {: #limits_codesize}
 * The maximum code size for the action is 48 MB.
 * For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file.

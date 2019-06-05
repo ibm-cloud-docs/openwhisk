@@ -1791,7 +1791,7 @@ ibmcloud fn rule update <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME
 {: #cli_sdk}
 
 
-### ibmcloud fn sdk install
+### ibmcloud fn <ph class="ignoreSpelling">sdk</ph> install
 {: #cli_sdk_install}
 
 Install an SDK.
