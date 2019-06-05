@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Weather
 {: #pkg_weather}
 

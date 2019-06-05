@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Common use cases
 {: #use_cases}
 

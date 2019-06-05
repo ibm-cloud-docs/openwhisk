@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Function as a Service architecture
 {: #faas}
 

@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Planning serverless apps
 {: #plan}
 

@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # {{site.data.keyword.visualrecognitionshort}}
 {: #pkg_visual_recognition}
 

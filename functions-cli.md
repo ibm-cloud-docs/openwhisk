@@ -27,6 +27,7 @@ subcollection: cloud-functions-cli-plugin
 
 
 
+
 # {{site.data.keyword.openwhisk_short}} CLI
 {: #functions-cli}
 

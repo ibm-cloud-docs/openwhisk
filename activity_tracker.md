@@ -24,6 +24,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Viewing {{site.data.keyword.cloudaccesstrailshort}} events
 {: #activity_tracker}
 

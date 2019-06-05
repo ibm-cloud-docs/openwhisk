@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # {{site.data.keyword.discoveryshort}}
 {: #pkg_discovery}
 

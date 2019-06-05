@@ -24,6 +24,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Creating custom event provider feeds
 {: #feeds_custom}
 

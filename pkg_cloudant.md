@@ -24,6 +24,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Cloudant
 {: #pkg_cloudant}
 

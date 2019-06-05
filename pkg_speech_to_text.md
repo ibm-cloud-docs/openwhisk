@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # {{site.data.keyword.speechtotextshort}}
 {: #pkg_speech_to_text}
 

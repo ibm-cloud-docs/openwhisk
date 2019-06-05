@@ -23,6 +23,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # How {{site.data.keyword.openwhisk_short}} works
 {: #about}
 
