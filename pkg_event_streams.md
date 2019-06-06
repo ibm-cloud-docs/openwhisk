@@ -41,6 +41,7 @@ subcollection: cloud-functions
 A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
 
+
 ### Setting up a {{site.data.keyword.messagehub}} package using {{site.data.keyword.cloud}}
 {: #eventstreams_setup}
 
