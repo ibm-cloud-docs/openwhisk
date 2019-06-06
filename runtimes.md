@@ -77,7 +77,7 @@ These runtimes are deprecated:
 
 JavaScript actions can be executed in Node.js version 8 or 10. By default, all Node.js actions are executed in a version 10 environment.
 
-### Node.js version 10 environment with IBM SDKs
+#### Node.js version 10 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_10}
 The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
 
@@ -92,16 +92,14 @@ Detailed information about the nodeJS version 10 runtime environment can be foun
 
 [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
 
-### Node.js version 8 environment with IBM SDKs
+#### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
-The Node.js version 8 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
+The Node.js version [8.15.0](https://nodejs.org/en/blog/release/v8.15.0) is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
 
 Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release).
 {: deprecated}
 
- [8.15.0](https://nodejs.org/en/blog/release/v8.15.0)
-
- ## Node.js packages
+## Node.js packages
 
 | Node.js 10 packages | Description |
 |:-----------------|:-----------------|
@@ -260,21 +258,21 @@ Detailed information about the Node.js version 8 runtime environment can be foun
 
 You can choose from two different runtime versions for Python actions. By default, all Python actions are executed in a version 2 environment.
 
-### Python 3.7 actions (Debian Stretch based)
+#### Python 3.7 actions (Debian Stretch based)
 {: #openwhisk_ref_python_environments_3.7}
 
 Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
 
-### Python 3.6.8 actions (Debian Jessie based)
+#### Python 3.6.8 actions (Debian Jessie based)
 {: #openwhisk_ref_python_environments_3.6}
 
 Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
-### Python 2 actions
+#### Python 2 actions
 
 Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action.
 
@@ -287,6 +285,138 @@ Python version:
  - Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
 
 ## Python packages
+
+| Python 2 packages | 
+|:-----------------|
+| `asn1crypto` |
+| `attrs` |
+| `Automat` |
+| `beautifulsoup4` |
+| `certifi` |
+| `cffi` |
+| `chardet` |
+| `Click` |
+| `constantly` |
+| `cryptography` |
+| `cssselect` |
+| `enum34` |
+| `Flask` |
+| `functools32` |
+| `gevent` |
+| `greenlet` |
+| `httplib2` |
+| `hyperlink` |
+| `idna` |
+| `incremental` |
+| `ipaddress` |
+| `itsdangerous` |
+| `Jinja2` |
+| `kafka-python` |
+| `lxml` |
+| `MarkupSafe` |
+| `parsel` |
+| `pyasn1` |
+| `pyasn1-modules` |
+| `pycparser` |
+| `PyDispatcher` |
+| `PyHamcrest` |
+| `pyOpenSSL` |
+| `python-dateutil` |
+| `queuelib` |
+| `requests` |
+| `Scrapy` |
+| `service-identity` |
+| `simplejson` |
+| `six` |
+| `Twisted` |
+| `urllib3` |
+| `virtualenv=` |
+| `w3lib` |
+| `Werkzeug` |
+| `zope.interface` |
+{: caption="Table 1. Python 2 packages." caption-side="top"}
+{: #python-1}
+{: tab-title="Python 2 packages"}
+{: tab-group="python"}
+{: class="simple-tab-table"}
+
+| Python 3.6.8 packages | 
+|:-----------------|
+| `asn1crypto` |
+| `attrs` |
+| `autobahn` |
+| `Automat` |
+| `beautifulsoup4` |
+| `botocore` |
+| `cassandra-driver` |
+| `certifi` |
+| `cffi` |
+| `chardet` |
+| `Click` |
+| `cloudant` |
+| `constantly` |
+| `cryptography` |
+| `cssselect` |
+| `docutils` |
+| `elasticsearch` |
+| `Flask` |
+| `gevent` |
+| `greenlet` |
+| `httplib2` |
+| `hyperlink` |
+| `ibm-cos-sdk` |
+| `ibm-cos-sdk-core` |
+| `ibm-cos-sdk-s3transfer` |
+| `ibm-db` |
+| `ibmcloudsql` |
+| `idna` |
+| `incremental` |
+| `itsdangerous` |
+| `Jinja2` |
+| `jmespath` |
+| `kafka-python` |
+| `lxml` |
+| `MarkupSafe` |
+| `numpy` |
+| `pandas` |
+| `parsel` |
+| `pika` |
+| `Pillow` |
+| `psycopg2` |
+| `pyarrow` |
+| `pyasn1` |
+| `pyasn1-modules` |
+| `pycparser` |
+| `PyDispatcher` |
+| `PyHamcrest` |
+| `pymongo` |
+| `pyOpenSSL` |
+| `python-dateutil` |
+| `pytz` |
+| `queuelib` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `Scrapy` |
+| `service-identity` |
+| `simplejson` |
+| `six=` |
+| `soupsieve` |
+| `tornado` |
+| `Twisted` |
+| `txaio` |
+| `urllib3` |
+| `virtualenv` |
+| `w3lib` |
+| `watson-developer-cloud` |
+| `Werkzeug` |
+| `zope.interface` |
+{: caption="Table 2. Python 3.6.8 packages." caption-side="top"}
+{: #python-2}
+{: tab-title="Python 3.6.8 packages"}
+{: tab-group="python"}
+{: class="simple-tab-table"}
 
 | Python 3.7.2 packages | 
 |:-----------------|
@@ -363,141 +493,9 @@ Python version:
 | `websocket-client` |
 | `Werkzeug` |
 | `zope.interface` |
-{: caption="Table 1. Python 3.7.2 packages." caption-side="top"}
-{: #python-1}
-{: tab-title="Python packages"}
-{: tab-group="python"}
-{: class="simple-tab-table"}
-
-| Python 3.6.8 packages | 
-|:-----------------|
-| `asn1crypto` |
-| `attrs` |
-| `autobahn` |
-| `Automat` |
-| `beautifulsoup4` |
-| `botocore` |
-| `cassandra-driver` |
-| `certifi` |
-| `cffi` |
-| `chardet` |
-| `Click` |
-| `cloudant` |
-| `constantly` |
-| `cryptography` |
-| `cssselect` |
-| `docutils` |
-| `elasticsearch` |
-| `Flask` |
-| `gevent` |
-| `greenlet` |
-| `httplib2` |
-| `hyperlink` |
-| `ibm-cos-sdk` |
-| `ibm-cos-sdk-core` |
-| `ibm-cos-sdk-s3transfer` |
-| `ibm-db` |
-| `ibmcloudsql` |
-| `idna` |
-| `incremental` |
-| `itsdangerous` |
-| `Jinja2` |
-| `jmespath` |
-| `kafka-python` |
-| `lxml` |
-| `MarkupSafe` |
-| `numpy` |
-| `pandas` |
-| `parsel` |
-| `pika` |
-| `Pillow` |
-| `psycopg2` |
-| `pyarrow` |
-| `pyasn1` |
-| `pyasn1-modules` |
-| `pycparser` |
-| `PyDispatcher` |
-| `PyHamcrest` |
-| `pymongo` |
-| `pyOpenSSL` |
-| `python-dateutil` |
-| `pytz` |
-| `queuelib` |
-| `redis` |
-| `requests` |
-| `scikit-learn` |
-| `scipy` |
-| `Scrapy` |
-| `service-identity` |
-| `simplejson` |
-| `six=` |
-| `soupsieve` |
-| `tornado` |
-| `Twisted` |
-| `txaio` |
-| `urllib3` |
-| `virtualenv` |
-| `w3lib` |
-| `watson-developer-cloud` |
-| `Werkzeug` |
-| `zope.interface` |
-{: caption="Table 1. Python 3.6.8 packages." caption-side="top"}
-{: #python-2}
-{: tab-title="Python 3.6.8 packages"}
-{: tab-group="python"}
-{: class="simple-tab-table"}
-
-| Python 2 packages | 
-|:-----------------|
-| `asn1crypto` |
-| `attrs` |
-| `Automat` |
-| `beautifulsoup4` |
-| `certifi` |
-| `cffi` |
-| `chardet` |
-| `Click` |
-| `constantly` |
-| `cryptography` |
-| `cssselect` |
-| `enum34` |
-| `Flask` |
-| `functools32` |
-| `gevent` |
-| `greenlet` |
-| `httplib2` |
-| `hyperlink` |
-| `idna` |
-| `incremental` |
-| `ipaddress` |
-| `itsdangerous` |
-| `Jinja2` |
-| `kafka-python` |
-| `lxml` |
-| `MarkupSafe` |
-| `parsel` |
-| `pyasn1` |
-| `pyasn1-modules` |
-| `pycparser` |
-| `PyDispatcher` |
-| `PyHamcrest` |
-| `pyOpenSSL` |
-| `python-dateutil` |
-| `queuelib` |
-| `requests` |
-| `Scrapy` |
-| `service-identity` |
-| `simplejson` |
-| `six` |
-| `Twisted` |
-| `urllib3` |
-| `virtualenv=` |
-| `w3lib` |
-| `Werkzeug` |
-| `zope.interface` |
-{: caption="Table 2. Python 2 packages." caption-side="top"}
+{: caption="Table 3. Python 3.7.2 packages." caption-side="top"}
 {: #python-3}
-{: tab-title="Python 2 packages"}
+{: tab-title="Python packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
 
