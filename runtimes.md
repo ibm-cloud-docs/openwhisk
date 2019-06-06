@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: runtimes, support
 
@@ -90,76 +90,7 @@ The Node.js version 10 environment is used if the `--kind` flag is explicitly sp
 
 Detailed information about the nodeJS version 10 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md).
 
-#### Node.js 10.15 packages
-
-   - [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
-
- **NPM packages**
-   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS.
-   - [`apn`](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
-   - [`async`](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
-   - [`bent`](https://www.npmjs.com/package/bent) - Functional HTTP client for Node.js with async and await.
-   - [`bodyparser`](https://www.npmjs.com/package/body-parser) - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's `btoa` function.
-   - [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
-   - [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant) - The official Cloudant library for Node.js.
-   - [`commander`](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
-   - [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
-   - [`consul`](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
-   - [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names.
-   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level ElasticSearch client for Node.js.
-   - [`errorhandler`](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
-   - [`etcd3`](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
-   - [`formidable`](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
-   - [`glob`](https://www.npmjs.com/package/glob) - Match files using the patterns the shell uses, like stars and stuff.
-   - [`gm`](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-   - [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) - {{site.data.keyword.cos_full}} SDK for Node.js
-   - [`ibm_db`](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix.
-   - [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) - The Node.js client that is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
-   - [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards.
-   - [`jsforce`](https://www.npmjs.com/package/jsforce) - Salesforce API Library for JavaScript applications.
-   - [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
-   - [`lodash`](https://www.npmjs.com/package/lodash) - The `lodash` library is exported as Node.js modules.
-   - [`marked`](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler that is written in JavaScript. Built for speed.
-   - [`merge`](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
-   - [`moment`](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-   - [`mongodb`](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for MySQL.
-   - [`mustache`](https://www.npmjs.com/package/mustache) - Mustache.js is an implementation of the mustache template system in JavaScript.
-   - [`nano`](https://www.npmjs.com/package/nano) - Minimalistic CouchDB driver for Node.js.
-   - [`nodemailer`](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
-   - [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js.
-   - [`openwhisk`](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
-   - [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
-   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings.
-   - [`process`](https://www.npmjs.com/package/process) - `require('process')`; just like any other module.
-   - [`pug`](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
-   - [`redis`](https://www.npmjs.com/package/redis) - A complete and feature rich Redis client for Node.js.
-   - [`request`](https://www.npmjs.com/package/request) - Make HTTP calls.
-   - [`request-promise`](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
-   - [`rimraf`](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
-   - [`semver`](https://www.npmjs.com/package/semver) - Semantic Versioning for nodeJS
-   - [`@sendgrid/mail`](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
-   - [`serialize-error`](https://www.npmjs.com/package/serialize-error) - Serialize an error into a plain object.
-   - [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
-   - [`socket.io`](https://www.npmjs.com/package/socket.io) - `socket.io` enables real-time bidirectional event-based communication.
-   - [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) - Realtime application framework for `socket.io`.
-   - [`superagent`](https://www.npmjs.com/package/superagent) - `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
-   - [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) - Package that provides various tools for integrating and interacting with Swagger.
-   - [`twilio`](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
-   - [`underscore`](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
-   - [`url-pattern`](https://www.npmjs.com/package/url-pattern) - Parse URLs for path parameters more easily than from using a regex string matcher.
-   - [`uuid`](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
-   - [`validator`](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-   - [`vcap_services`](https://www.npmjs.com/package/vcap_services) - Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides.
-   - [`when`](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
-   - [`winston`](https://www.npmjs.com/package/winston) - A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs."
-   - [`ws`](https://www.npmjs.com/package/ws) - `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
-   - [`xlsx`](https://www.npmjs.com/package/xlsx) - Parser and writer for various spreadsheet formats.
-   - [`xml2js`](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
-   - [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) - node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-   - [`yauzl`](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
+[10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
 
 ### Node.js version 8 environment with IBM SDKs
 {: #openwhisk_ref_javascript_environments_8}
@@ -168,77 +99,158 @@ The Node.js version 8 environment is used if the `--kind` flag is explicitly spe
 Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release).
 {: deprecated}
 
-#### Node.js 8.15 packages
+ [8.15.0](https://nodejs.org/en/blog/release/v8.15.0)
 
- - [8.15.0](https://nodejs.org/en/blog/release/v8.15.0)
+ ## Node.js packages
 
-   - [`amqplib`](https://www.npmjs.com/package/amqplib) - A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS.
-   - [`apn`](https://www.npmjs.com/package/apn) - A Node.js module for interfacing with the Apple Push Notification service.
-   - [`async`](https://www.npmjs.com/package/async) - Provides functions for working with asynchronous functions.
-   - [`bent`](https://www.npmjs.com/package/bent) - Functional HTTP client for Node.js w/ async/await.
-   - [`bodyparser`](https://www.npmjs.com/package/body-parser) - Parse incoming request bodies in a middleware before your handlers, available under the req.body property.
-   - [`btoa`](https://www.npmjs.com/package/btoa) - A port of the browser's `btoa` function.
-   - [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) - DataStax Node.js Driver for Apache Cassandra.
-   - [`cloudant`](https://www.npmjs.com/package/cloudant) - The official Cloudant library for Node.js.
-   - [`@cloudant/cloudant`](https://www.npmjs.com/package/cloudant) - The official Cloudant library for Node.js.
-   - [`commander`](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces.
-   - [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) - Address translator from Compose UI or API for Scylla databases.
-   - [`consul`](https://www.npmjs.com/package/consul) - A client for Consul, involving service discovery and configuration.
-   - [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) - Parse Cookie header and populate req.cookies with an object keyed by the cookie names.
-   - [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) - The official low-level ElasticSearch client for Node.js.
-   - [`errorhandler`](https://www.npmjs.com/package/errorhandler) - Development-only error handler middleware.
-   - [`etcd3`](https://www.npmjs.com/package/etcd3) - A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.
-   - [`formidable`](https://www.npmjs.com/package/formidable) - A Node.js module for parsing form data, especially file uploads.
-   - [`glob`](https://www.npmjs.com/package/glob) - Match files using the patterns the shell uses, like stars and stuff.
-   - [`gm`](https://www.npmjs.com/package/gm) - GraphicsMagick and ImageMagick for Node.
-   - [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) - {{site.data.keyword.cos_full}} SDK for Node.js
-   - [`ibm_db`](https://www.npmjs.com/package/ibm_db) - An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix.
-   - [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) - The Node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform.
-   - [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) - Pure JS character encoding conversion
-   - [`jsdom`](https://www.npmjs.com/package/jsdom) - `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards.
-   - [`jsforce`](https://www.npmjs.com/package/jsforce)Salesforce API Library for JavaScript applications.
-   - [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) - An implementation of JSON Web Tokens.
-   - [`lodash`](https://www.npmjs.com/package/lodash) - The `lodash` library exported as Node.js modules.
-   - [`log4js`](https://www.npmjs.com/package/log4js) - A conversion of the log4js framework to work with Node.
-   - [`marked`](https://www.npmjs.com/package/marked) - A full-featured markdown parser and compiler, written in JavaScript. Built for speed.
-   - [`merge`](https://www.npmjs.com/package/merge) - Merge multiple objects into one, optionally creating a new cloned object.
-   - [`moment`](https://www.npmjs.com/package/moment) - A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates.
-   - [`mongodb`](https://www.npmjs.com/package/mongodb) - The official MongoDB driver for Node.js.
-   - [`mysql`](https://www.npmjs.com/package/mysql) - A Node.js driver for MySQL.
-   - [`mustache`](https://www.npmjs.com/package/mustache) - mustache.js is an implementation of the mustache template system in JavaScript.
-   - [`nano`](https://www.npmjs.com/package/nano) - Minimalistic CouchDB driver for Node.js.
-   - [`nodemailer`](https://www.npmjs.com/package/nodemailer) - Send e-mails from Node.js – easy as cake!
-   - [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js.
-   - [`openwhisk`](https://www.npmjs.com/package/openwhisk) - JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs.
-   - [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) - Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
-   - [`pg`](https://www.npmjs.com/package/pg) - Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings.
-   - [`process`](https://www.npmjs.com/package/process) - `require('process')`; just like any other module.
-   - [`pug`](https://www.npmjs.com/package/pug) - Implements the Pug templating language.
-   - [`redis`](https://www.npmjs.com/package/redis) - A complete and feature rich Redis client for Node.js.
-   - [`request`](https://www.npmjs.com/package/request) - Request is designed to be the simplest way possible to make HTTP calls.
-   - [`request-promise`](https://www.npmjs.com/package/request-promise) - The simplified HTTP request client 'request' with Promise support. Powered by Bluebird.
-   - [`rimraf`](https://www.npmjs.com/package/rimraf) - The UNIX command rm -rf for node.
-   - [`semver`](https://www.npmjs.com/package/semver) - Semantic Versioning for nodeJS
-   - [`@sendgrid/mail`](https://www.npmjs.com/package/@sendgrid/mail) - Provides email support via the SendGrid API.
-   - [s`erialize-error`](https://www.npmjs.com/package/serialize-error) - Serialize an error into a plain object.
-   - [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) - Node.js middleware for serving a favicon.
-   - [`socket.io`](https://www.npmjs.com/package/socket.io) - `socket.io` enables real-time bidirectional event-based communication.
-   - [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) - Realtime application framework for `socket.io`.
-   - [`superagent`](https://www.npmjs.com/package/superagent) - `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features.
-   - [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) - Package that provides various tools for integrating and interacting with Swagger.
-   - [`twilio`](https://www.npmjs.com/package/twilio) - A wrapper for the Twilio API, related to voice, video, and messaging.
-   - [`underscore`](https://www.npmjs.com/package/underscore) - Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects.
-   - [`url-pattern`](https://www.npmjs.com/package/url-pattern) - Parse URLs for path parameters more easily than from using a regex string matcher.
-   - [`uuid`](https://www.npmjs.com/package/uuid) - Simple, fast generation of RFC4122 UUIDS.
-   - [`validator`](https://www.npmjs.com/package/validator) - A library of string validators and sanitizers.
-   - [`vcap_services`](https://www.npmjs.com/package/vcap_services) - Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides.
-   - [`watson-developer-cloud`](https://www.npmjs.com/package/watson-developer-cloud) - Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems.
-   - [`when`](https://www.npmjs.com/package/when) - When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim.
-   - [`winston`](https://www.npmjs.com/package/winston) - A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs."
-   - [`ws`](https://www.npmjs.com/package/ws) - `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation.
-   - [`xml2js`](https://www.npmjs.com/package/xml2js) - Simple XML to JavaScript object converter. It supports bi-directional conversion.
-   - [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) - `node-XMLHttpRequest` is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object.
-   - [`yauzl`](https://www.npmjs.com/package/yauzl) - Another extraction library for node.
+| Node.js 10 packages | Description |
+|:-----------------|:-----------------|
+| [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
+| [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service. |
+| [`async`](https://www.npmjs.com/package/async) | Provides functions for working with asynchronous functions. |
+| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async and await. |
+| [`bodyparser`](https://www.npmjs.com/package/body-parser) | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
+| [`btoa`](https://www.npmjs.com/package/btoa) | A port of the browser's `btoa` function. |
+| [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) | DataStax Node.js Driver for Apache Cassandra. |
+| [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant) - The official Cloudant library for Node.js. |
+| [`commander`](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces. |
+| [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) | Address translator from Compose UI or API for Scylla databases. |
+| [`consul`](https://www.npmjs.com/package/consul) | A client for Consul, involving service discovery and configuration. |
+| [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) | Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names. |
+| [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) | The official low-level ElasticSearch client for Node.js. |
+| [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
+| [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
+| [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
+| [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js |
+| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
+| [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) | The Node.js client that is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
+| [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) | Pure JS character encoding conversion. |
+| [`jsdom`](https://www.npmjs.com/package/jsdom) | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
+| [`jsforce`](https://www.npmjs.com/package/jsforce) | Salesforce API Library for JavaScript applications. |
+| [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) | An implementation of JSON Web Tokens. |
+| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library is exported as Node.js modules. |
+| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler that is written in JavaScript. Built for speed. |
+| [`merge`](https://www.npmjs.com/package/merge) | Merge multiple objects into one, optionally creating a new cloned object.
+| [`moment`](https://www.npmjs.com/package/moment) | A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. |
+| [`mongodb`](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. |
+| [`mysql`](https://www.npmjs.com/package/mysql) | A Node.js driver for MySQL. |
+| [`mustache`](https://www.npmjs.com/package/mustache) | Mustache.js is an implementation of the mustache template system in JavaScript. |
+| [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
+| [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
+| [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
+| [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
+| [`process`](https://www.npmjs.com/package/process) | `require('process')`; just like any other module. |
+| [`pug`](https://www.npmjs.com/package/pug) | Implements the Pug templating language. |
+| [`redis`](https://www.npmjs.com/package/redis) | A complete and feature rich Redis client for Node.js. |
+| [`request`](https://www.npmjs.com/package/request) | Make HTTP calls. |
+| [`request-promise`](https://www.npmjs.com/package/request-promise) | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |
+| [`rimraf`](https://www.npmjs.com/package/rimraf) | The UNIX command rm -rf for node. |
+| [`semver`](https://www.npmjs.com/package/semver) | Semantic Versioning for nodeJS. |
+| [`@sendgrid/mail`](https://www.npmjs.com/package/@sendgrid/mail) | Provides email support via the SendGrid API. |
+| [`serialize-error`](https://www.npmjs.com/package/serialize-error) | Serialize an error into a plain object. |
+| [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) | Node.js middleware for serving a favicon.
+| [`socket.io`](https://www.npmjs.com/package/socket.io) | `socket.io` enables real-time bidirectional event-based communication. |
+| [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) | Realtime application framework for `socket.io`. |
+| [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
+| [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
+| [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
+| [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
+| [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
+| [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
+| [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
+| [`xlsx`](https://www.npmjs.com/package/xlsx) | Parser and writer for various spreadsheet formats. |
+| [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
+| [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
+| [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
+{: caption="Table 1. Node.js 10 packages." caption-side="top"}
+{: #javascript-1}
+{: tab-title="Node.js 10 packages"}
+{: tab-group="javascript-10"}
+{: class="simple-tab-table"}
+
+| Node.js 8 packages | Description |
+|:-----------------|:-----------------|
+| [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
+| [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service.
+| [`async`](https://www.npmjs.com/package/async) | Provides functions for working with asynchronous functions. |
+| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async/await. |
+| [`bodyparser`](https://www.npmjs.com/package/body-parser) | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
+| [`btoa`](https://www.npmjs.com/package/btoa) | A port of the browser's `btoa` function. |
+| [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) | DataStax Node.js Driver for Apache Cassandra. |
+| [`cloudant`](https://www.npmjs.com/package/cloudant) | The official Cloudant library for Node.js. |
+| [`@cloudant/cloudant`](https://www.npmjs.com/package/cloudant) | The official Cloudant library for Node.js. |
+| [`commander`](https://www.npmjs.com/package/commander) | The complete solution for Node.js command-line interfaces. |
+| [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) | Address translator from Compose UI or API for Scylla databases. |
+| [`consul`](https://www.npmjs.com/package/consul) | A client for Consul, involving service discovery and configuration. |
+| [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) | Parse Cookie header and populate req.cookies with an object keyed by the cookie names. |
+| [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) | The official low-level ElasticSearch client for Node.js. |
+| [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
+| [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
+| [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
+| [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js. |
+| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
+| [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) | The Node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
+| [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) | Pure JS character encoding conversion. |
+| [`jsdom`](https://www.npmjs.com/package/jsdom) | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
+| [`jsforce`](https://www.npmjs.com/package/jsforce) | Salesforce API Library for JavaScript applications. |
+| [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) | An implementation of JSON Web Tokens. |
+| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library exported as Node.js modules. |
+| [`log4js`](https://www.npmjs.com/package/log4js) | A conversion of the log4js framework to work with Node. |
+| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler, written in JavaScript. Built for speed. |
+| [`merge`](https://www.npmjs.com/package/merge) | Merge multiple objects into one, optionally creating a new cloned object. |
+| [`moment`](https://www.npmjs.com/package/moment) | A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. |
+| [`mongodb`](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. |
+| [`mysql`](https://www.npmjs.com/package/mysql) | A Node.js driver for MySQL. |
+| [`mustache`](https://www.npmjs.com/package/mustache) | mustache.js is an implementation of the mustache template system in JavaScript. |
+| [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
+| [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
+| [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
+| [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
+| [`process`](https://www.npmjs.com/package/process) | `require('process')`; just like any other module. |
+| [`pug`](https://www.npmjs.com/package/pug) | Implements the Pug templating language. |
+| [`redis`](https://www.npmjs.com/package/redis) | A complete and feature rich Redis client for Node.js. |
+| [`request`](https://www.npmjs.com/package/request) | Request is designed to be the simplest way possible to make HTTP calls. |
+| [`request-promise`](https://www.npmjs.com/package/request-promise) | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |
+| [`rimraf`](https://www.npmjs.com/package/rimraf) | The UNIX command rm -rf for node. |
+| [`semver`](https://www.npmjs.com/package/semver) | Semantic Versioning for nodeJS. |
+| [`@sendgrid/mail`](https://www.npmjs.com/package/@sendgrid/mail) | Provides email support via the SendGrid API. |
+| [`serialize-error`](https://www.npmjs.com/package/serialize-error) | Serialize an error into a plain object. |
+| [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) | Node.js middleware for serving a favicon. |
+| [`socket.io`](https://www.npmjs.com/package/socket.io) | `socket.io` enables real-time bidirectional event-based communication. |
+| [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) | Realtime application framework for `socket.io`. |
+| [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
+| [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
+| [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
+| [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
+| [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
+| [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
+| [`watson-developer-cloud`](https://www.npmjs.com/package/watson-developer-cloud) | Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
+| [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
+| [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
+| [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | `node-XMLHttpRequest` is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
+| [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
+{: caption="Table 2. Node.js 8 packages." caption-side="top"}
+{: #javascript-2}
+{: tab-title="Node.js 8 packages"}
+{: tab-group="javascript-8"}
+{: class="simple-tab-table"}
+
 
 Detailed information about the Node.js version 8 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md).
 
@@ -248,93 +260,12 @@ Detailed information about the Node.js version 8 runtime environment can be foun
 
 You can choose from two different runtime versions for Python actions. By default, all Python actions are executed in a version 2 environment.
 
-
 ### Python 3.7 actions (Debian Stretch based)
 {: #openwhisk_ref_python_environments_3.7}
 
 Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action.
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
-
-#### Python 3.7.2 packages
-
- - [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile)
-
- - `asn1crypto`
- - `attrs`
- - `Automat`
- - `beautifulsoup4`
- - `botocore`
- - `cassandra-driver`
- - `certifi`
- - `cffi`
- - `chardet`
- - `Click`
- - `cloudant`
- - `constantly`
- - `cryptography`
- - `cssselect`
- - `docutils`
- - `elasticsearch`
- - `etcd3`
- - `Flask`
- - `gevent`
- - `greenlet`
- - `grpcio`
- - `httplib2`
- - `hyperlink`
- - `ibm-cos-sdk`
- - `ibm-cos-sdk-core`
- - `ibm-cos-sdk-s3transfer`
- - `ibm-db`
- - `ibmcloudsql`
- - `idna`
- - `incremental`
- - `itsdangerous`
- - `Jinja2`
- - `jmespath`
- - `kafka-python`
- - `lxml`
- - `MarkupSafe`
- - `numpy`
- - `pandas`
- - `parsel`
- - `pika`
- - `Pillow`
- - `protobuf`
- - `psycopg2`
- - `pyarrow`
- - `pyasn1`
- - `pyasn1-modules`
- - `pycparser`
- - `PyDispatcher`
- - `PyHamcrest`
- - `pymongo`
- - `pyOpenSSL`
- - `python-dateutil`
- - `pytz`
- - `queuelib`
- - `redis`
- - `requests`
- - `scikit-learn`
- - `scipy`
- - `Scrapy`
- - `service-identity`
- - `simplejson`
- - `six`
- - `soupsieve`
- - `tenacity`
- - `tornado`
- - `Twisted`
- - `urllib3`
- - `virtualenv`
- - `w3lib`
- - `watson-developer-cloud`
- - `websocket-client`
- - `Werkzeug`
- - `zope.interface`
-
-Detailed information about the Python 3.7 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md).
 
 ### Python 3.6.8 actions (Debian Jessie based)
 {: #openwhisk_ref_python_environments_3.6}
@@ -343,84 +274,6 @@ Python 3 actions are executed with Python 3.6.x. To use this runtime, specify th
 
 The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
 
-#### Python 3.6.8 packages
-
-Python version:
- - [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile)
-
- - `asn1crypto`
- - `attrs`
- - `autobahn`
- - `Automat`
- - `beautifulsoup4`
- - `botocore`
- - `cassandra-driver`
- - `certifi`
- - `cffi`
- - `chardet`
- - `Click`
- - `cloudant`
- - `constantly`
- - `cryptography`
- - `cssselect`
- - `docutils`
- - `elasticsearch`
- - `Flask`
- - `gevent`
- - `greenlet`
- - `httplib2`
- - `hyperlink`
- - `ibm-cos-sdk`
- - `ibm-cos-sdk-core`
- - `ibm-cos-sdk-s3transfer`
- - `ibm-db`
- - `ibmcloudsql`
- - `idna`
- - `incremental`
- - `itsdangerous`
- - `Jinja2`
- - `jmespath`
- - `kafka-python`
- - `lxml`
- - `MarkupSafe`
- - `numpy`
- - `pandas`
- - `parsel`
- - `pika`
- - `Pillow`
- - `psycopg2`
- - `pyarrow`
- - `pyasn1`
- - `pyasn1-modules`
- - `pycparser`
- - `PyDispatcher`
- - `PyHamcrest`
- - `pymongo`
- - `pyOpenSSL`
- - `python-dateutil`
- - `pytz`
- - `queuelib`
- - `redis`
- - `requests`
- - `scikit-learn`
- - `scipy`
- - `Scrapy`
- - `service-identity`
- - `simplejson`
- - `six=`
- - `soupsieve`
- - `tornado`
- - `Twisted`
- - `txaio`
- - `urllib3`
- - `virtualenv`
- - `w3lib`
- - `watson-developer-cloud`
- - `Werkzeug`
- - `zope.interface`
-
-Detailed information about the Python 3.6 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md).
-
 ### Python 2 actions
 
 Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action.
@@ -428,56 +281,225 @@ Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind`
 When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`.
 The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
 
-#### Python 2 packages
+Python version:
+ - [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile). Detailed information about the Python 3.7 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md).
+ - [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile). Detailed information about the Python 3.6 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md).
+ - Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
 
- - `asn1crypto`
- - `attrs`
- - `Automat`
- - `beautifulsoup4`
- - `certifi`
- - `cffi`
- - `chardet`
- - `Click`
- - `constantly`
- - `cryptography`
- - `cssselect`
- - `enum34`
- - `Flask`
- - `functools32`
- - `gevent`
- - `greenlet`
- - `httplib2`
- - `hyperlink`
- - `idna`
- - `incremental`
- - `ipaddress`
- - `itsdangerous`
- - `Jinja2`
- - `kafka-python`
- - `lxml`
- - `MarkupSafe`
- - `parsel`
- - `pyasn1`
- - `pyasn1-modules`
- - `pycparser`
- - `PyDispatcher`
- - `PyHamcrest`
- - `pyOpenSSL`
- - `python-dateutil`
- - `queuelib`
- - `requests`
- - `Scrapy`
- - `service-identity`
- - `simplejson`
- - `six`
- - `Twisted`
- - `urllib3`
- - `virtualenv=`
- - `w3lib`
- - `Werkzeug`
- - `zope.interface`
+## Python packages
 
-Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
+| Python 3.7.2 packages | 
+|:-----------------|
+| `asn1crypto` |
+| `attrs` |
+| `Automat` |
+| `beautifulsoup4` |
+| `botocore` |
+| `cassandra-driver` |
+| `certifi` |
+| `cffi` |
+| `chardet` |
+| `Click` |
+| `cloudant` |
+| `constantly` |
+| `cryptography` |
+| `cssselect` |
+| `docutils` |
+| `elasticsearch` |
+| `etcd3` |
+| `Flask` |
+| `gevent` |
+| `greenlet` |
+| `grpcio` |
+| `httplib2` |
+| `hyperlink` |
+| `ibm-cos-sdk` |
+| `ibm-cos-sdk-core` |
+| `ibm-cos-sdk-s3transfer` |
+| `ibm-db` |
+| `ibmcloudsql` |
+| `idna` |
+| `incremental` |
+| `itsdangerous` |
+| `Jinja2` |
+| `jmespath` |
+| `kafka-python` |
+| `lxml` |
+| `MarkupSafe` |
+| `numpy` |
+| `pandas` |
+| `parsel` |
+| `pika` |
+| `Pillow` |
+| `protobuf` |
+| `psycopg2` |
+| `pyarrow` |
+| `pyasn1` |
+| `pyasn1-modules` |
+| `pycparser` |
+| `PyDispatcher` |
+| `PyHamcrest` |
+| `pymongo` |
+| `pyOpenSSL` |
+| `python-dateutil` |
+| `pytz` |
+| `queuelib` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `Scrapy` |
+| `service-identity` |
+| `simplejson` |
+| `six` |
+| `soupsieve` |
+| `tenacity` |
+| `tornado` |
+| `Twisted` |
+| `urllib3` |
+| `virtualenv` |
+| `w3lib` |
+| `watson-developer-cloud` |
+| `websocket-client` |
+| `Werkzeug` |
+| `zope.interface` |
+{: caption="Table 1. Python 3.7.2 packages." caption-side="top"}
+{: #python-1}
+{: tab-title="Python 3.7.2 packages"}
+{: tab-group="python-3-7-2"}
+{: class="simple-tab-table"}
+
+| Python 3.6.8 packages | 
+|:-----------------|
+| `asn1crypto` |
+| `attrs` |
+| `autobahn` |
+| `Automat` |
+| `beautifulsoup4` |
+| `botocore` |
+| `cassandra-driver` |
+| `certifi` |
+| `cffi` |
+| `chardet` |
+| `Click` |
+| `cloudant` |
+| `constantly` |
+| `cryptography` |
+| `cssselect` |
+| `docutils` |
+| `elasticsearch` |
+| `Flask` |
+| `gevent` |
+| `greenlet` |
+| `httplib2` |
+| `hyperlink` |
+| `ibm-cos-sdk` |
+| `ibm-cos-sdk-core` |
+| `ibm-cos-sdk-s3transfer` |
+| `ibm-db` |
+| `ibmcloudsql` |
+| `idna` |
+| `incremental` |
+| `itsdangerous` |
+| `Jinja2` |
+| `jmespath` |
+| `kafka-python` |
+| `lxml` |
+| `MarkupSafe` |
+| `numpy` |
+| `pandas` |
+| `parsel` |
+| `pika` |
+| `Pillow` |
+| `psycopg2` |
+| `pyarrow` |
+| `pyasn1` |
+| `pyasn1-modules` |
+| `pycparser` |
+| `PyDispatcher` |
+| `PyHamcrest` |
+| `pymongo` |
+| `pyOpenSSL` |
+| `python-dateutil` |
+| `pytz` |
+| `queuelib` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `Scrapy` |
+| `service-identity` |
+| `simplejson` |
+| `six=` |
+| `soupsieve` |
+| `tornado` |
+| `Twisted` |
+| `txaio` |
+| `urllib3` |
+| `virtualenv` |
+| `w3lib` |
+| `watson-developer-cloud` |
+| `Werkzeug` |
+| `zope.interface` |
+{: caption="Table 2. Python 3.6.8 packages." caption-side="top"}
+{: #python-2}
+{: tab-title="Python 3.6.8 packages"}
+{: tab-group="python-3-6-8"}
+{: class="simple-tab-table"}
+
+| Python 2 packages | 
+|:-----------------|
+| `asn1crypto` |
+| `attrs` |
+| `Automat` |
+| `beautifulsoup4` |
+| `certifi` |
+| `cffi` |
+| `chardet` |
+| `Click` |
+| `constantly` |
+| `cryptography` |
+| `cssselect` |
+| `enum34` |
+| `Flask` |
+| `functools32` |
+| `gevent` |
+| `greenlet` |
+| `httplib2` |
+| `hyperlink` |
+| `idna` |
+| `incremental` |
+| `ipaddress` |
+| `itsdangerous` |
+| `Jinja2` |
+| `kafka-python` |
+| `lxml` |
+| `MarkupSafe` |
+| `parsel` |
+| `pyasn1` |
+| `pyasn1-modules` |
+| `pycparser` |
+| `PyDispatcher` |
+| `PyHamcrest` |
+| `pyOpenSSL` |
+| `python-dateutil` |
+| `queuelib` |
+| `requests` |
+| `Scrapy` |
+| `service-identity` |
+| `simplejson` |
+| `six` |
+| `Twisted` |
+| `urllib3` |
+| `virtualenv=` |
+| `w3lib` |
+| `Werkzeug` |
+| `zope.interface` |
+{: caption="Table 3. Python 2 packages." caption-side="top"}
+{: #python-3}
+{: tab-title="Python 2 packages"}
+{: tab-group="python-2"}
+{: class="simple-tab-table"}
 
 
 ## Swift runtime
