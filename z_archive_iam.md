@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: iam, access managment, roles, service roles, policies, access
 
@@ -165,7 +165,7 @@ For information about how to assign, edit, review, or delete resource access pol
 </br>
 
 ## Accessing other resources from a namespace
-{: #namespace-access}
+{: #namespace-access-resources}
 
 Actions typically call other {{site.data.keyword.cloud_notm}} resources and services which require the appropriate authentication.
 If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
