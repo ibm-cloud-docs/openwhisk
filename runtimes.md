@@ -173,7 +173,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 {: caption="Table 1. Node.js 10 packages." caption-side="top"}
 {: #javascript-1}
 {: tab-title="Node.js 10 packages"}
-{: tab-group="javascript-10"}
+{: tab-group="node"}
 {: class="simple-tab-table"}
 
 | Node.js 8 packages | Description |
@@ -248,7 +248,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 {: caption="Table 2. Node.js 8 packages." caption-side="top"}
 {: #javascript-2}
 {: tab-title="Node.js 8 packages"}
-{: tab-group="javascript-8"}
+{: tab-group="node"}
 {: class="simple-tab-table"}
 
 
@@ -365,8 +365,8 @@ Python version:
 | `zope.interface` |
 {: caption="Table 1. Python 3.7.2 packages." caption-side="top"}
 {: #python-1}
-{: tab-title="Python 3.7.2 packages"}
-{: tab-group="python-3-7-2"}
+{: tab-title="Python packages"}
+{: tab-group="python"}
 {: class="simple-tab-table"}
 
 | Python 3.6.8 packages | 
@@ -441,10 +441,10 @@ Python version:
 | `watson-developer-cloud` |
 | `Werkzeug` |
 | `zope.interface` |
-{: caption="Table 2. Python 3.6.8 packages." caption-side="top"}
+{: caption="Table 1. Python 3.6.8 packages." caption-side="top"}
 {: #python-2}
 {: tab-title="Python 3.6.8 packages"}
-{: tab-group="python-3-6-8"}
+{: tab-group="python"}
 {: class="simple-tab-table"}
 
 | Python 2 packages | 
@@ -495,10 +495,10 @@ Python version:
 | `w3lib` |
 | `Werkzeug` |
 | `zope.interface` |
-{: caption="Table 3. Python 2 packages." caption-side="top"}
+{: caption="Table 2. Python 2 packages." caption-side="top"}
 {: #python-3}
 {: tab-title="Python 2 packages"}
-{: tab-group="python-2"}
+{: tab-group="python"}
 {: class="simple-tab-table"}
 
 
