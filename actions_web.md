@@ -107,7 +107,7 @@ To create a web action:
   {: pre}
 
 
-4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Invoke or test a web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
   a. You can test the web action by either: 
     * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser.
