@@ -91,13 +91,11 @@ To create a web action:
   ```
   {: codeblock}
 
-
 2. Create the `demo` package. The package name is `default` unless explicitly specified.
   ```
   ibmcloud fn package create demo
   ```
   {: pre}
-
 
 3. Create the `hello` action. In this example, the `packageName/actionName` are `demo/hello`. Replace the `<filepath>` variable with the filepath of your `hello.js` file and set the `--web` flag to `true`. 
 
@@ -106,8 +104,7 @@ To create a web action:
   ```
   {: pre}
 
-
-4. Invoke or test a web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
   a. You can test the web action by either: 
     * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser.
@@ -132,14 +129,14 @@ To create a web action:
       {: pre}
 
 </br>
-  **Example output**
-  
-  Since the `<name>` parameter was not specified, the following message is returned.
+    **Example output**
+    
+    Since the `<name>` parameter was not specified, the following message is returned.
 
-    ```
-    <html><body><h3>You did not tell me who you are.</h3></body></html>
-    ```
-    {: screen}
+      ```
+      <html><body><h3>You did not tell me who you are.</h3></body></html>
+      ```
+      {: screen}
 
 5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
   * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
@@ -187,10 +184,12 @@ The owner of the web action owns all of the activations records, and incurs the 
 
 #### Protected parameters
 Action parameters are protected and can only be changed by updating your action. Parameters are automatically finalized to enable web actions.
+
 ```
 ibmcloud fn action create /<namespace>/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
+
 
 The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally.
 
@@ -204,6 +203,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 To create a web action that performs an HTTP redirect:
 
 1. Save the code as `hello.js`.
+
   ```javascript
   function main() {
     return {
@@ -236,7 +236,6 @@ To create a web action that performs an HTTP redirect:
     {: pre}
 </br>
 **Example result** 
-
   This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/).
 
 ### Setting cookies by using a web action
@@ -325,6 +324,7 @@ To create a web action that returns an `image/png`:
     {: pre}
 
 
+
 ### Returning JSON by using a web action
 {: #return_json}
 You might use this feature in a web application to return an JSON object of user IP information.
@@ -395,6 +395,7 @@ To create a web action that returns `application/json`:
 ```
 {: screen}
 
+
 ### HTTP Context
 {: #actions_web_context}
 
@@ -461,6 +462,7 @@ To alter the response a web action:
       {: pre}
 
 
+
   **Example output**
 
     ```
@@ -478,6 +480,7 @@ To alter the response a web action:
     }
     ```
     {: screen}
+
 
   b. Test the action by using a query parameter. You can test the action by either:
   {: #query_test}
@@ -515,6 +518,7 @@ To alter the response a web action:
     ```
     {: screen}
 
+
   c. You can also test the web action by using form data. You can test the web action by either:
   {: #form_data}
   
@@ -533,6 +537,7 @@ To alter the response a web action:
 
 
     **Example output**
+
     ```
     {
       "response": {
@@ -602,6 +607,7 @@ To alter the response a web action:
 
 
     **Example output**
+
     ```
     Jane
     ```
@@ -625,6 +631,7 @@ To alter the response a web action:
 
 
     **Example output**
+
     ```
     {
       "response": {
@@ -746,6 +753,7 @@ To test a secure web action:
 
 
     **Example output**
+
     ```
       {
       "code": "4c4423556547f6ac764ee192d4ed27a6",
@@ -772,6 +780,7 @@ To test a secure web action:
 
 
     **Example output**
+    
     ```
     {
     "body": "<html><body><h3>Hello, Jane!</h3></body></html>"
