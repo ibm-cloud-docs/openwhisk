@@ -79,6 +79,7 @@ Web actions support the following features:
 To create a web action: 
 
 1. Save the following JavaScript code as `hello.js`.
+
   ```javascript
   function main({name}) {
     var msg = 'You did not tell me who you are.';
@@ -90,19 +91,23 @@ To create a web action:
   ```
   {: codeblock}
 
+
 2. Create the `demo` package. The package name is `default` unless explicitly specified.
   ```
   ibmcloud fn package create demo
   ```
   {: pre}
 
+
 3. Create the `hello` action. In this example, the `packageName/actionName` are `demo/hello`. Replace the `<filepath>` variable with the filepath of your `hello.js` file and set the `--web` flag to `true`. 
+
   ```
   ibmcloud fn action create demo/hello <filepath>/hello.js --web true
   ```
   {: pre}
 
-4. Invoke or test a web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+
+4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
   a. You can test the web action by either: 
     * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser.
@@ -121,40 +126,45 @@ To create a web action:
   b. Since the action code returns the dictionary ```{body: `<html><body><h3>${msg}</h3></body></html>`}```, you can also test the action by returning just the `body` property by using the following command:
   {: #projecting_fields}
 
+      ```
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
+      ```
+      {: pre}
+
+</br>
+  **Example output**
+  
+  Since the `<name>` parameter was not specified, the following message is returned.
+
     ```
-    curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
+    <html><body><h3>You did not tell me who you are.</h3></body></html>
+    ```
+    {: screen}
+
+5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
+  * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
+  * Testing the action by using a cURL command.
+
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
+    ```
+    {: pre}
+  * Testing the action by using a `wget` command.  
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
     ```
     {: pre}
 
-  **Example output**
-  Since the `<name>` parameter was not specified, the following message is returned.
-
-  ```
-  <html><body><h3>You did not tell me who you are.</h3></body></html>
-  ```
-  {: screen}
-
-5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
-* Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
-* Testing the action by using a cURL command.
-
-  ```
-  curl https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
-  ```
-  {: pre}
-* Testing the action by using a `wget` command.  
-  ```
-  wget https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
-  ```
-  {: pre}
-
 **Example output**
-  ```
-  <html><body><h3>Hello, Jane!</h3></body></html>
-  ```
-  {: screen}
+
+    ```
+    <html><body><h3>Hello, Jane!</h3></body></html>
+    ```
+    {: screen}
+
 
 **Next steps**
+
 Add the URL for your `hello` web action to your web app and test it there.
 
 ### Web action JSON properties
@@ -204,13 +214,15 @@ To create a web action that performs an HTTP redirect:
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file. 
+2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+
   ```
   ibmcloud fn action create demo/hello <filepath>/hello.js --web true
   ```
   {: pre}
 
 3. Test the `hello` web action. Replace the `<apihost>` and `<namespace>` variables. You can test the web action by either:
+
   * Opening the URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser. 
   * Running the following cURL command:
     ```
@@ -222,8 +234,9 @@ To create a web action that performs an HTTP redirect:
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
-
+</br>
 **Example result** 
+
   This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/).
 
 ### Setting cookies by using a web action
@@ -253,6 +266,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
   {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+
   ```
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
@@ -278,6 +292,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 To create a web action that returns an `image/png`: 
 
 1. Save the code as `hello.js`.
+
   ```javascript
   function main() {
       let png = '<base 64 encoded string';
@@ -289,12 +304,14 @@ To create a web action that returns an `image/png`:
   {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+
   ```
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
   {: pre}
 
 3. Test the action in your browser or by using a cURL command. Replace the `<apihost>` and `<namespace>` variables. You can test the web action by either:
+
   * Opening the URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser. 
   * Running the following cURL command.
     ```
@@ -348,6 +365,7 @@ To create a web action that returns `application/json`:
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
+</br>
 
 **Example output**
 
@@ -384,12 +402,12 @@ All web actions, when invoked, receive HTTP request details as input parameters 
 
 | HTTP parameter | Type | Description |
 | --- | --- | --- |
-| `__ow_method` | (type: string) | The HTTP method of the request. |
-| `__ow_headers` | (type: map string to string) | The request headers. |
-| `__ow_path` | (type: string) | The unmatched path of the request (matching stops once the action extension is consumed). |
-| `__ow_user` | (type: string) | The namespace that identifies the {{site.data.keyword.openwhisk_short}}-authenticated subject |
-| `__ow_body` | (type: string) | The request body entity, as a base64 encoded string when content is a binary file, or plain string otherwise |
-| `__ow_query` | (type: string) | The query parameters from the request as an unparsed string |
+| `__ow_method` | String | The HTTP method of the request. |
+| `__ow_headers` | Map string to string) | The request headers. |
+| `__ow_path` | String) | The unmatched path of the request (matching stops once the action extension is consumed). |
+| `__ow_user` | String) | The namespace that identifies the {{site.data.keyword.openwhisk_short}}-authenticated subject |
+| `__ow_body` | String) | The request body entity, as a base64 encoded string when content is a binary file, or plain string otherwise |
+| `__ow_query` | String) | The query parameters from the request as an unparsed string |
 
 A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
 
@@ -402,17 +420,17 @@ Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf
 
 ### Altering the response content of web action
 {: #extra_features}
+You can alter the response content of a web action to return different content types by using [Content extensions](#actions_web_extra). 
+{: shortdesc}
 
 **Before you begin**
 
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-You can alter the response content of a web action to return different content types by using [Content extensions](#actions_web_extra). 
-{: shortdesc}
-
 To alter the response a web action:
 
-1. Save the following code as `hello.js`. 
+1. Save the following code as `hello.js`.
+
   ```javascript
   function main(params) {
       return { response: params };
@@ -421,6 +439,7 @@ To alter the response a web action:
   {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+
   ```bash
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
@@ -440,6 +459,7 @@ To alter the response a web action:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json
       ```
       {: pre}
+
 
   **Example output**
 
@@ -476,6 +496,7 @@ To alter the response a web action:
       ```
       {: pre}
 
+
   **Example output**
     ```
     {
@@ -510,6 +531,7 @@ To alter the response a web action:
       ```
       {: pre}
 
+
     **Example output**
     ```
     {
@@ -542,6 +564,7 @@ To alter the response a web action:
       wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
       ```
       {: pre}
+
 
     **Example output**
 
@@ -577,14 +600,15 @@ To alter the response a web action:
       ```
       {: pre}
 
-    Example output:
+
+    **Example output**
     ```
     Jane
     ```
     {: screen}
 
-    In stardard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
-    {: note}
+  In stardard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
+  {: note}
 
   f. You can set the `Content-Type` by either.
   * Running the following cURL command.  
@@ -599,7 +623,8 @@ To alter the response a web action:
       ```
       {: pre}
 
-    Example output:
+
+    **Example output**
     ```
     {
       "response": {
@@ -657,6 +682,7 @@ To test a secure web action:
   ```
   {: pre}
 
+
   **Example output**
 
   The `require-whisk-auth` value was set to `7819991076995522`.
@@ -701,7 +727,7 @@ To test a secure web action:
       "publish": false
     }
 
-    {: screen}
+  {: screen}
 
 4. To test that the authentication is working:
 
@@ -717,6 +743,7 @@ To test a secure web action:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
       ```
       {: pre}
+
 
     **Example output**
     ```
@@ -743,6 +770,7 @@ To test a secure web action:
       ```
       {: pre}
 
+
     **Example output**
     ```
     {
@@ -751,14 +779,13 @@ To test a secure web action:
     ```
     {: screen}
 
-  
 5. To test a web action by using a custom `require-whisk-auth` value. Update your `hello` web action with your own `require-whisk-auth` value. Then try testing your web action by specifying the `X-Require-Whisk-Auth` value during invocation.
 
   a. Set a `require-whisk-auth` value where `<my-secret>` is your case-sensitive authentication token.
-  ```bash
-  ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true --require-whisk-auth <mysecret>
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true --require-whisk-auth <mysecret>
+    ```
+    {: pre}
   
   b. Test the web action and include your `<my-secret>` value. You can test the web action by either:
   * Testing the web action by using a cURL command.
@@ -782,7 +809,8 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ```
 {: pre}
 
-Example output:
+
+**Example output**
 ```
 {
   "response": {
@@ -821,55 +849,55 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
 
 1. Save the sample code in your preferred language to a file called `decode.<ext>`. Replace `<ext>` with the file extension of the sample code of your preferred language.
 
-#### Node
-{: #actions_web_decode_js}
+  #### Node
+  {: #actions_web_decode_js}
 
-```javascript
-function main(args) {
-    decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
-    return {body: decoded}
-}
-```
-{: codeblock}
+  ```javascript
+  function main(args) {
+      decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
+      return {body: decoded}
+  }
+  ```
+  {: codeblock}
 
-#### Python
-{: #actions_web_decode_python}
+  #### Python
+  {: #actions_web_decode_python}
 
-```python
-def main(args):
-    try:
-        decoded = args['__ow_body'].decode('base64').strip()
-        return {"body": decoded}
-    except:
-        return {"body": "Could not decode body from Base64."}
-```
-{: codeblock}
+  ```python
+  def main(args):
+      try:
+          decoded = args['__ow_body'].decode('base64').strip()
+          return {"body": decoded}
+      except:
+          return {"body": "Could not decode body from Base64."}
+  ```
+  {: codeblock}
 
-#### Swift
-{: #actions_web_decode_swift}
+  #### Swift
+  {: #actions_web_decode_swift}
 
-```swift
-extension String {
-    func base64Decode() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
+  ```swift
+  extension String {
+      func base64Decode() -> String? {
+          guard let data = Data(base64Encoded: self) else {
+              return nil
+          }
 
-        return String(data: data, encoding: .utf8)
-    }
-}
+          return String(data: data, encoding: .utf8)
+      }
+  }
 
-func main(args: [String:Any]) -> [String:Any] {
-    if let body = args["__ow_body"] as? String {
-        if let decoded = body.base64Decode() {
-            return [ "body" : decoded ]
-        }
-    }
+  func main(args: [String:Any]) -> [String:Any] {
+      if let body = args["__ow_body"] as? String {
+          if let decoded = body.base64Decode() {
+              return [ "body" : decoded ]
+          }
+      }
 
-    return ["body": "Could not decode body from Base64."]
-}
-```
-{: codeblock}
+      return ["body": "Could not decode body from Base64."]
+  }
+  ```
+  {: codeblock}
 
 2. Create a raw HTTP web action with the sample code by running the following command. In this example, the Node function is saved as `decode.js`. Replace the filepath with the filepath of your `decode` file and update the file extension to match the extension of the sample code you used.
 
@@ -890,18 +918,18 @@ func main(args: [String:Any]) -> [String:Any] {
     ```
     {: pre}
 
-**Example output**
-  ```
-  {
-    "body": "Decoded body"
-  }
-  ```
-  {: screen}
+  **Example output**
+    ```
+    {
+      "body": "Decoded body"
+    }
+    ```
+    {: screen}
 
 ## Options requests
 {: #actions_web_options}
 
-By default, an OPTIONS request made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the options, get, delete, post, put, head, and patch HTTP verbs.
+By default, an `OPTIONS` request made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the `OPTIONS`, `GET`, `DELETE`, `POST`, `PUT`, `HEAD`, and `PATCH` HTTP verbs.
 {: shortdesc}
 
 See the following headers:
@@ -911,9 +939,9 @@ Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
 Access-Control-Allow-Headers: Authorization, Content-Type
 ```
 
-Alternatively, OPTIONS requests can be handled manually by a web action. To enable this option, add a `web-custom-options` annotation with a value of `true` to a web action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, you must append your headers programmatically.
+Alternatively, `OPTIONS` requests can be handled manually by a web action. To enable this option, add a `web-custom-options` annotation with a value of `true` to a web action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, you must append your headers programmatically.
 
-To create custom responses to OPTIONS requests:
+To create custom responses to `OPTIONS` requests:
 
 1. Save the following code to a file `custom-options.js`.
 
@@ -945,6 +973,7 @@ To create custom responses to OPTIONS requests:
   $ curl https://<apihost>/api/v1/web/<namespace>/default/custom-option.http -kvX OPTIONS
   ```
   {: pre}
+
 
 **Example output**
 ```
