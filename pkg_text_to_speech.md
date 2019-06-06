@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -68,7 +68,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
   **Example output**
   ```
   created bindings:
-  Bluemix_Watson_TextToSpeech_Credentials-1
+  Watson_TextToSpeech_Credentials-1
   ```
   {: screen}
 
@@ -81,7 +81,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
   **Example output**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Watson_TextToSpeec_Credentials-1 private
+  /myOrg_mySpace/Watson_TextToSpeec_Credentials-1 private
   ```
   {: screen}
 

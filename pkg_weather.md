@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -56,7 +56,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
   Example output:
   ```
   created bindings:
-  Bluemix_Weather_Company_Data_Credentials-1
+  Weather_Company_Data_Credentials-1
   ```
   {: screen}
 
@@ -69,7 +69,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
   Example output:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Weather Bluemix_Weather_Company_Data_Credentials-1 private
+  /myOrg_mySpace/Weather Weather_Company_Data_Credentials-1 private
   ```
   {: screen}
 

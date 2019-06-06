@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: object storage, bucket, package
 
@@ -109,13 +109,13 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 6. Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/cloud-object-storage parameters
+    ibmcloud fn package get /myBOrg_mySpace/cloud-object-storage parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/cloud-object-storage, displaying field parameters
+    ok: got package /myOrg_mySpace/cloud-object-storage, displaying field parameters
     [
       {
         "key": "__bx_creds",
