@@ -404,11 +404,11 @@ All web actions, when invoked, receive HTTP request details as input parameters 
 | HTTP parameter | Type | Description |
 | --- | --- | --- |
 | `__ow_method` | String | The HTTP method of the request. |
-| `__ow_headers` | Map string to string) | The request headers. |
-| `__ow_path` | String) | The unmatched path of the request (matching stops once the action extension is consumed). |
-| `__ow_user` | String) | The namespace that identifies the {{site.data.keyword.openwhisk_short}}-authenticated subject |
-| `__ow_body` | String) | The request body entity, as a base64 encoded string when content is a binary file, or plain string otherwise |
-| `__ow_query` | String) | The query parameters from the request as an unparsed string |
+| `__ow_headers` | Map string to string | The request headers. |
+| `__ow_path` | String | The unmatched path of the request (matching stops once the action extension is consumed). |
+| `__ow_user` | String | The namespace that identifies the {{site.data.keyword.openwhisk_short}}-authenticated subject. |
+| `__ow_body` | String | The request body entity, as a base64 encoded string when content is a binary file, or plain string otherwise. |
+| `__ow_query` | String | The query parameters from the request as an unparsed string. |
 
 A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
 
