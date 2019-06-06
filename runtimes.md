@@ -77,31 +77,26 @@ These runtimes are deprecated:
 
 JavaScript actions can be executed in Node.js version 8 or 10. By default, all Node.js actions are executed in a version 10 environment.
 
-#### Node.js version 10 environment with IBM SDKs
-{: #openwhisk_ref_javascript_environments_10}
-The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action.
+Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release). 
+{: deprecated}
 
-#### Migrating from `nodejs:8` to `nodejs:10`
+| Runtime | Description | Changelog |
+| --- | --- | --- |
+| [8.15.0](https://nodejs.org/en/blog/release/v8.15.0) | The Node.js version 8.15.0 is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action. | Detailed information about the Node.js version 8 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md). |
+| [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action. | Detailed information about the nodeJS version 10 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
+
+
+### Migrating from `nodejs:8` to `nodejs:10`
 - The `ibm_db` NPM package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in this issue [ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541).
 - The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodeJS module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` NPM package is not available in `nodejs:10`.
 - The `log4js` NPM package is not available in `nodejs:10`. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805)
 - The `watson-developer-cloud` NPM package is not available in `nodejs:10`. You can track progress on the new version in this issue [`watson-developer-cloud/node-sdk/issues/780`](https://github.com/watson-developer-cloud/node-sdk/issues/780)
 
-Detailed information about the nodeJS version 10 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md).
 
-[10.15.0](https://nodejs.org/en/blog/release/v10.15.0/)
+### Node.js packages
 
-#### Node.js version 8 environment with IBM SDKs
-{: #openwhisk_ref_javascript_environments_8}
-The Node.js version [8.15.0](https://nodejs.org/en/blog/release/v8.15.0) is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action.
-
-Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release).
-{: deprecated}
-
-## Node.js packages
-
-| Node.js 10 packages | Description |
+| Node.js 10.15 packages | Description |
 |:-----------------|:-----------------|
 | [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
 | [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service. |
@@ -110,8 +105,8 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 | [`bodyparser`](https://www.npmjs.com/package/body-parser) | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
 | [`btoa`](https://www.npmjs.com/package/btoa) | A port of the browser's `btoa` function. |
 | [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) | DataStax Node.js Driver for Apache Cassandra. |
-| [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant) - The official Cloudant library for Node.js. |
-| [`commander`](https://www.npmjs.com/package/commander) - The complete solution for Node.js command-line interfaces. |
+| [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant) | The official Cloudant library for Node.js. |
+| [`commander`](https://www.npmjs.com/package/commander) | The complete solution for Node.js command-line interfaces. |
 | [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator) | Address translator from Compose UI or API for Scylla databases. |
 | [`consul`](https://www.npmjs.com/package/consul) | A client for Consul, involving service discovery and configuration. |
 | [`cookie-parser`](https://www.npmjs.com/package/cookie-parser) | Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names. |
@@ -137,7 +132,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 | [`mustache`](https://www.npmjs.com/package/mustache) | Mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
 | [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) - Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
 | [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
@@ -174,7 +169,7 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
-| Node.js 8 packages | Description |
+| Node.js 8.15 packages | Description |
 |:-----------------|:-----------------|
 | [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
 | [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service.
@@ -250,41 +245,19 @@ Node.js version 8 is in maintenance mode and is available until December 2019. S
 {: class="simple-tab-table"}
 
 
-Detailed information about the Node.js version 8 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md).
-
-
 ## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-You can choose from two different runtime versions for Python actions. By default, all Python actions are executed in a version 2 environment.
+By default, all Python actions are executed in a version 2.7.15 environment.
 
-#### Python 3.7 actions (Debian Stretch based)
-{: #openwhisk_ref_python_environments_3.7}
+| Python version | Description | Changelog |
+| --- | --- | --- |
+| 2.7.15 | Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md). |
+| [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile). | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | Detailed information about the Python 3.6 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md). |
+| [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile). | Python 3.7 actions (Debian Stretch based) actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | Detailed information about the Python 3.7 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md). |
 
-Python 3.7 actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action.
 
-The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries.
-
-#### Python 3.6.8 actions (Debian Jessie based)
-{: #openwhisk_ref_python_environments_3.6}
-
-Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action.
-
-The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries.
-
-#### Python 2 actions
-
-Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action.
-
-When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`.
-The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library.
-
-Python version:
- - [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile). Detailed information about the Python 3.7 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md).
- - [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile). Detailed information about the Python 3.6 runtime environment can be found in the [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md).
- - Detailed information about the Python 2 runtime environment can be found in the [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md).
-
-## Python packages
+### Python packages
 
 | Python 2 packages | 
 |:-----------------|
@@ -545,30 +518,43 @@ The main executable program must be located in `/action/exec` inside the contain
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 
+## Additional runtime support
+
+| Runtime |
+| --- | --- | 
+| By default, all Go actions are executed in a version 1.11 environment. |
+{: caption="Table 1. Go runtime." caption-side="top"}
+{: #runtimes-1}
+{: tab-title="Go"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
+
+| Runtime |
+| --- | --- | 
+| By default, all Java actions are executed in a version 8 environment. |
+{: caption="Table 2. Java runtime." caption-side="top"}
+{: #runtimes-2}
+{: tab-title="Java"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
+
+| Runtime |
+| --- |
+| By default, all Ruby actions are executed in a version 2.5 environment. |
+{: caption="Table 3. Ruby runtime." caption-side="top"}
+{: #runtimes-3}
+{: tab-title="Ruby"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
+
+| Runtime |
+| --- |
+| By default, all .NET Core actions are executed in a version 2.2 environment. |
+{: caption="Table 4. .NET runtime." caption-side="top"}
+{: #runtimes-4}
+{: tab-title=".NET"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
 
 
-## Go runtime
-{: #runtimes_go}
 
-By default, all Go actions are executed in a version 1.11 environment.
-
-
-
-## Java runtime
-{: #runtimes_java}
-
-By default, all Java actions are executed in a version 8 environment.
-
-
-
-## Ruby runtime
-{: #runtimes_ruby}
-
-By default, all Ruby actions are executed in a version 2.5 environment.
-
-
-
-## .NET Core runtime
-{: #runtimes_dotnet}
-
-By default, all .NET Core actions are executed in a version 2.2 environment.

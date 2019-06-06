@@ -164,6 +164,5 @@ IBM Cloud Functions
     z_archive_ow_watson_visual_recognition.md
     z_archive_openwhisk_goserverless.md
     z_archive_parameters.md
-    z_archive_serverless_framework.md
     z_archive_serviceauth.md
     z_archive_working-with-actions.md
