@@ -495,7 +495,7 @@ Python version:
 | `zope.interface` |
 {: caption="Table 3. Python 3.7.2 packages." caption-side="top"}
 {: #python-3}
-{: tab-title="Python packages"}
+{: tab-title="Python 3.7.2 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
 
