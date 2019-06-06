@@ -126,7 +126,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
             "endpoints": "https://cos-service-s.us-south.containers.mybluemix.net/endpoints",
             "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:staging:public:cloud-object-storage:global:a/ddkgdaf89uawefoujhasdf:sd8238-sdfhwej33-234234-23423-213d::",
             "iam_apikey_name": "auto-generated-apikey-sduoiw98wefuhw23erbsdufwdf7ugw",
-            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Reader",
+            "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Reader",
             "iam_serviceid_crn": "crn:v1:staging:public:iam-identity::a/dd166ddkjadf89uawefoujhasdf3bc1f8e4d6818b8da577757528e::serviceid:ServiceId-sd8238-sdfhwej33-234234-23423-213d",
             "instance": "Cloud Object Storage-r1",
             "resource_instance_id": "crn:v1:staging:public:cloud-object-storage:global:a/dd166ddkjadf89uawefoujhasdf3bc1f8e4d6818b8da577757528e:sd8238-sdfhwej33-234234-23423-213d::"

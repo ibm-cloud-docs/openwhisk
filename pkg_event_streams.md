@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: event streams, package, messages, events
 
@@ -57,7 +57,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
   Example output:
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -70,7 +70,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
   Example output:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -146,7 +146,7 @@ While this list of parameters can seem daunting, they can be automatically set f
   Example output:
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -159,7 +159,7 @@ While this list of parameters can seem daunting, they can be automatically set f
   Example output:
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -167,7 +167,7 @@ While this list of parameters can seem daunting, they can be automatically set f
 
 5. Now all you need to do is create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
   ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-06"
 
 keywords: cloudant, event, action, trigger, sequence
 
@@ -121,7 +121,7 @@ You must first manually create a package binding for your {{site.data.keyword.cl
     {
         "parameters": [
             {
-                "key": "bluemixServiceName",
+                "key": "serviceName",
                 "value": "cloudantNoSQLDB"
             },
             {
