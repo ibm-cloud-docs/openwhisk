@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: watson discovery, functions, watson, cognitive
 
@@ -170,19 +170,17 @@ To install the {{site.data.keyword.discoveryshort}} package:
 
 2. Select the namespace that you want to install the package into by using the namespace switcher.
 
-
 3. Click **Install Packages**.
 
 4. Click on the **Watson** package group.
 
 5. Click on the **Discovery** package.
 
-5. Click **Install**.
+6. Click **Install**.
 
+7. After the package is installed, you are redirected to the Actions page and can search for your new package, which is named **discovery-v1**.
 
-6. After the package is installed, you are redirected to the Actions page and can search for your new package, which is named **discovery-v1**.
-
-7. To use the actions in the `discovery-v1` package, you must bind service credentials to the actions.
+8. To use the actions in the `discovery-v1` package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, complete step 4 in the CLI instructions.
   * To bind service credentials to individual actions, complete the following steps in the UI.
 
