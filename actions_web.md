@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: web actions, serverless
 
@@ -128,7 +128,7 @@ To create a web action:
       ```
       {: pre}
 
-</br>
+  </br>
     **Example output**
     
     Since the `<name>` parameter was not specified, the following message is returned.
@@ -138,6 +138,7 @@ To create a web action:
       ```
       {: screen}
 
+  </br>
 5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
   * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
   * Testing the action by using a cURL command.
@@ -235,6 +236,7 @@ To create a web action that performs an HTTP redirect:
     ```
     {: pre}
 </br>
+
 **Example result** 
   This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/).
 
@@ -365,6 +367,7 @@ To create a web action that returns `application/json`:
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
+    
 </br>
 
 **Example output**
@@ -463,7 +466,7 @@ To alter the response a web action:
 
 
 
-  **Example output**
+    **Example output**
 
     ```
     {
@@ -500,7 +503,7 @@ To alter the response a web action:
       {: pre}
 
 
-  **Example output**
+    **Example output**
     ```
     {
       "response": {
@@ -733,12 +736,12 @@ To test a secure web action:
       },
       "publish": false
     }
-
   {: screen}
 
-4. To test that the authentication is working:
+To test that the authentication is working:
 
-  a. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test will result in an error. You can test the web action by either:
+1. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test will result in an error. You can test the web action by either:
+
   * Testing the web action by using a cURL command.
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
@@ -752,7 +755,7 @@ To test a secure web action:
       {: pre}
 
 
-    **Example output**
+   **Example output**
 
     ```
       {
@@ -765,7 +768,7 @@ To test a secure web action:
     The invocation fails because the `X-Require-Whisk-Auth` value was not provided.
     {: note}
 
-  b. Now, test the `hello` web action and provide the randomly generated `X-Require-Whisk-Auth` value. Replace the `<apihost>` and `<namespace>` values. Replace the `<my-secret>` value with the randomly generated number you created in step 3. You can test the web action by either:
+2. Now, test the `hello` web action and provide the randomly generated `X-Require-Whisk-Auth` value. Replace the `<apihost>` and `<namespace>` values. Replace the `<my-secret>` value with the randomly generated number you created in step 3. You can test the web action by either:
   * Testing the web action by using a cURL command.
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
@@ -779,7 +782,7 @@ To test a secure web action:
       {: pre}
 
 
-    **Example output**
+  **Example output**
     
     ```
     {
@@ -788,7 +791,9 @@ To test a secure web action:
     ```
     {: screen}
 
-5. To test a web action by using a custom `require-whisk-auth` value. Update your `hello` web action with your own `require-whisk-auth` value. Then try testing your web action by specifying the `X-Require-Whisk-Auth` value during invocation.
+To test a web action by using a custom `require-whisk-auth` value:
+
+1. Update your `hello` web action with your own `require-whisk-auth` value. Then try testing your web action by specifying the `X-Require-Whisk-Auth` value during invocation.
 
   a. Set a `require-whisk-auth` value where `<my-secret>` is your case-sensitive authentication token.
     ```bash
@@ -1005,7 +1010,85 @@ A {{site.data.keyword.openwhisk_short}} action fails in two different possible f
 
 Developers must know how web actions might be used, and generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response like `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
 
+<hidden QR>
 
+## Example: Generating a QR code image from input
+{: #actions_web_qr}
+
+Here is an example of a Java web action that takes text as input and generates a QR code image.
+
+1. Create a file `Generate.java` in the directory `java_example/src/main/java/qr`.
+
+  ```java
+  package qr;
+
+  import java.io.*;
+  import java.util.Base64;
+
+  import com.google.gson.JsonObject;
+
+  import com.google.zxing.*;
+  import com.google.zxing.client.j2se.MatrixToImageWriter;
+  import com.google.zxing.common.BitMatrix;
+
+  public class Generate {
+    public static JsonObject main(JsonObject args) throws Exception {
+      String property = "text";
+      String text = "Hello. Try with a 'text' value next time.";
+      if (args.has(property)) {
+        text = args.get(property).toString();
+      }
+
+      ByteArrayOutputStream baos = new ByteArrayOutputStream();
+      OutputStream b64os = Base64.getEncoder().wrap(baos);
+
+      BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
+      MatrixToImageWriter.writeToStream(matrix, "png", b64os);
+      b64os.close();
+
+      String output = baos.toString("utf-8");
+
+      JsonObject response = new JsonObject();
+      JsonObject headers = new JsonObject();
+      headers.addProperty("content-type", "image/png; charset=UTF-8");
+      response.add("headers", headers);
+      response.addProperty("body", output);
+      return response;
+    }
+  }
+  ```
+  {: codeblock}
+
+3. Package your code as a .jar file by running the following command from the directory `java_example` where the file `build.gradle` is located.
+
+  ```bash
+  gradle jar
+  ```
+  {: pre}
+
+4. Deploy the web action by using the `build/libs/java_example-1.0.jar` file.
+
+  ```bash
+  ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
+  ```
+  {: pre}
+
+5. Retrieve the public URL of the web action endpoint and assign it to an environment variable.
+
+  ```bash
+  ibmcloud fn action get QRGenerate --url
+  URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
+  ```
+  {: pre}
+
+6. You can open a web browser by using this URL and appending the query parameter `text` to the message to be encoded into the QR image. You can also use an HTTP client like cURL to download a QR image.
+
+  ```bash
+  curl -o QRImage.png $URL\?text=https://cloud.ibm.com
+  ```
+  {: pre}
+
+</hidden QR>
 
 ## Disabling web actions
 {: #actions_web_disable}
