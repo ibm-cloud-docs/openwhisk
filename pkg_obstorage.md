@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: object storage, bucket, package
 
@@ -385,19 +385,24 @@ Parameters that are used in this example:
 {: #pkg_obstorage_ev_trig}
 
 When creating the trigger, you can avoid passing your {{site.data.keyword.cos_full_notm}} credentials to the `changes` feed action by binding your credentials directly to the `cos-experimental` package.
- {: shortdesc}
+{: shortdesc}
 
  1. First, create a package binding that can be modified to contain your credentials. The following creates a package binding, `myCosPkg`, in your namespace.
+
   ```
   ibmcloud fn package bind /whisk.system/cos-experimental myCosPkg
   ```
   {: pre}
+
  2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. Binding your {{site.data.keyword.cos_full_notm}} credentials to the package binds the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked.
+
   ```
   ibmcloud fn service bind cloud-object-storage myCosPkg
   ```
   {: pre}
+
  3. Create a trigger named `myCosTrigger` with the `changes` feed in the package binding that you created. Use your bucket name and {{site.data.keyword.cos_full_notm}} endpoint parameter values.
+
   ```
   ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
   --param bucket myBucket \
@@ -405,40 +410,51 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
     ```
     {: pre}
 
-    Example output:
+  **Example output**
+
     ```
     ok: created trigger feed myCosTrigger
     ```
   {: pre}
- 4. Create a simple action to verify that the trigger, the change feed, and the rule are all configured and working correctly. For example, create an action called `showCosChange` containing the following `showCosChange.js` JavaScript code:
+ 
+
+Create a simple action to verify that the trigger, the change feed, and the rule are all configured and working correctly. For example:
+ 
+  1. Save the following JavaScript code as `showCosChange.js`. 
+
   ```javascript
   function main(data) {
       console.log(data);
   }
   ```
   {: codeblock}
+
+  2. Create an action called `showCosChange` by using the `showCosChange.js` code.
+
   ```
-  ibmcloud fn action create showCosChange showCosChange.js
+  ibmcloud fn action create showCosChange <filepath>/showCosChange.js
   ```
   {: pre}
 
- 5. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger:
+  3. Create a rule to connect the `showCosChange` action to the `myCosTrigger` trigger.
+
   ```
   ibmcloud fn rule create myCosRule myCosTrigger showCosChange
   ```
   {: pre}
 
- 6. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command will list the activation records for each of these operations as they occur.
+  4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command will list the activation records for each of these operations as they occur.
+
   ```
   ibmcloud fn activation poll
   ```
   {: pre}
-
- 7. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
-
- 8. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. You can view these activations by running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
-
- 9. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
+  
+  5. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
+  
+  6. For each bucket object change, observe new activations for the `myCosTrigger` trigger and `showCosChange` action. You can view these activations by running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
+  
+  7. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
   ```
   ibmcloud fn trigger get myCosTrigger
   ```
@@ -490,46 +506,46 @@ You can create a single action that retrieves and processes the object. Or, you 
 
 This sample action code retrieves and processes the bucket change notification document. You can pass the `apikey` and `serviceInstanceId` parameters directly to the action during manual action invocation, but when this action invoked by a trigger these values must be obtained from your {{site.data.keyword.cos_full_notm}} which must be bound to the action with the `ibmcloud fn service bind` command.
 
-Save the following code into a .zip file, `myCosAction.zip`, c
+1. Save the following code into a .zip file called `myCosAction.zip`.
 
-```javascript
-const COS = require('ibm-cos-sdk')
+  ```javascript
+  const COS = require('ibm-cos-sdk')
 
-function main(params){
-  const apikey = params.apikey || params.__bx_creds['cloud-object-storage'].apikey
-  const serviceInstanceId = params.serviceInstanceId || params.__bx_creds['cloud-object-storage'].resource_instance_id
-  const ibmAuthEndpoint = params.ibmAuthEndpoint
-  const endpoint = params.endpoint
-  const bucket = params.bucket
-  const file = params.key
+  function main(params){
+    const apikey = params.apikey || params.__bx_creds['cloud-object-storage'].apikey
+    const serviceInstanceId = params.serviceInstanceId || params.__bx_creds['cloud-object-storage'].resource_instance_id
+    const ibmAuthEndpoint = params.ibmAuthEndpoint
+    const endpoint = params.endpoint
+    const bucket = params.bucket
+    const file = params.key
 
-  const cos_config = { endpoint: endpoint, apiKeyId: apikey, ibmAuthEndpoint: ibmAuthEndpoint, serviceInstanceId: serviceInstanceId }
-  const client = new COS.S3(cos_config);
+    const cos_config = { endpoint: endpoint, apiKeyId: apikey, ibmAuthEndpoint: ibmAuthEndpoint, serviceInstanceId: serviceInstanceId }
+    const client = new COS.S3(cos_config);
 
-  return new Promise(function(resolve, reject) {
-    client.getObject({ Bucket: bucket, Key: file }, (err, results) => {
-      if (err != null) {
-        console.log(err)
-        reject({ err: err })
-      } else {
-        console.log(results)
-        resolve({ contents: Buffer.from(results.Body).toString() })
-      }
-    })
-  });
-}
-exports.main = main;
-```
-{: codeblock}
+    return new Promise(function(resolve, reject) {
+      client.getObject({ Bucket: bucket, Key: file }, (err, results) => {
+        if (err != null) {
+          console.log(err)
+          reject({ err: err })
+        } else {
+          console.log(results)
+          resolve({ contents: Buffer.from(results.Body).toString() })
+        }
+      })
+    });
+  }
+  exports.main = main;
+  ```
+  {: codeblock}
 
-Because this action uses the `ibm-cos-sdk` NPM package, the action must be packaged as either a [Node.js module](/docs/openwhisk?topic=cloud-functions-prep#prep_js_npm) or a [single bundle](/docs/openwhisk?topic=cloud-functions-prep#prep_js_pkg).
+  Because this action uses the `ibm-cos-sdk` NPM package, the action must be packaged as either a [Node.js module](/docs/openwhisk?topic=cloud-functions-prep#prep_js_npm) or a [single bundle](/docs/openwhisk?topic=cloud-functions-prep#prep_js_pkg).
 
 2. Create the action to retrieve and process the object from {{site.data.keyword.cos_full_notm}}:
 
-```
-ibmcloud fn action create myCosAction myCosAction.zip --kind nodejs:10
-```
-{: pre}
+  ```
+  ibmcloud fn action create myCosAction <filepath>/myCosAction.zip --kind nodejs:10
+  ```
+  {: pre}
 
 ### Creating an action sequence to retrieve and process the object
 {: #pkg_obstorage_ev_act_seq}
@@ -541,25 +557,29 @@ To create an action that only processes the bucket object:
 
 1. Save the following code as `myCosAction.js`.
 
-```javascript
-function main(data) {
-  if (data) {
-    // Process the object
+  ```javascript
+  function main(data) {
+    if (data) {
+      // Process the object
+    }
   }
-}
-```
-{: codeblock}
-
-2. Create the action to process only the object from {{site.data.keyword.cos_full_notm}}:
   ```
-  ibmcloud fn action create myCosProcessObjectAction myCosAction.js
+  {: codeblock}
+
+2. Create the action to process only the object from {{site.data.keyword.cos_full_notm}}.
+
+  ```
+  ibmcloud fn action create myCosProcessObjectAction <filepath>/myCosAction.js
   ```
   {: pre}
+
 3. Bind your {{site.data.keyword.cos_full_notm}} credentials to your manually installed `cloud-object-storage` package.
+
   ```
   ibmcloud fn service bind cloud-object-storage cloud-object-storage
   ```
   {: pre}
+
 4. The `object-read` action can be composed with `myCosProcessObjectAction` to create an action sequence.
   ```
   ibmcloud fn action create myCosAction --sequence cloud-object-storage/object-read,myCosProcessObjectAction
@@ -571,11 +591,11 @@ In addition to the `object-read` action, you can use other actions included in t
 ### Binding credentials to your action
 {: #pkg_obstorage_ev_bind}
 
-You can avoid passing sensitive credentials during invocation by binding the {{site.data.keyword.cos_full_notm}} credentials to the action with the following command:
-```
-ibmcloud fn service bind cloud-object-storage myCosAction
-```
-{: pre}
+You can avoid passing sensitive credentials during invocation by binding the {{site.data.keyword.cos_full_notm}} credentials to the action by using the following command:
+  ```
+  ibmcloud fn service bind cloud-object-storage myCosAction
+  ```
+  {: pre}
 
 ### Creating a rule to associate the action with the change trigger
 {: #pkg_obstorage_ev_rule}
@@ -585,8 +605,8 @@ ibmcloud fn service bind cloud-object-storage myCosAction
 You can use an action or action sequence in a [rule](/docs/openwhisk?topic=cloud-functions-rules) to fetch and process the object that is associated with an {{site.data.keyword.cos_full_notm}} change event.
 
 Create a rule that activates `MyCosAction` action on new {{site.data.keyword.cos_full_notm}} trigger events.
-```
-ibmcloud fn rule create myRule myCosTrigger myCosAction
-```
-{: pre}
+  ```
+  ibmcloud fn rule create myRule myCosTrigger myCosAction
+  ```
+  {: pre}
 
