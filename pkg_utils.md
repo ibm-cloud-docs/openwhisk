@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-05"
 
 keywords: actions, serverless
 
@@ -31,12 +31,14 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
 {: shortdesc}
 
 1. List the actions in the `/whisk.system/utils` package.
+
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+    
     ```
     package /whisk.system/utils: Building blocks that format and assemble data
      action /whisk.system/utils/head: Extract prefix of an array
@@ -49,12 +51,14 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
     {: screen}
 
 2. Using the `split` and `sort` actions, create an action sequence so that the result of `split` is passed as an argument to `sort`. This action sequence converts some lines of text to an array, and sorts the lines.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Invoke the action.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```

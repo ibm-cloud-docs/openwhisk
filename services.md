@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-06-05"
 
 keywords: services, serverless
 
@@ -22,6 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Adding IBM Cloud services
@@ -46,7 +47,7 @@ These parameters might include values that make your app reusable with different
 ## Binding a service to an action or package
 {: #services_bind}
 
-Bind any {{site.data.keyword.Bluemix_notm}} service to any action. When a service is bound, a new parameter is created on your existing action that contains the service instance credentials.
+Bind any {{site.data.keyword.cloud_notm}} service to any action. When a service is bound, a new parameter is created on your existing action that contains the service instance credentials.
 
 **Note**: You cannot bind multiple instances of the same service to an action or package. You can only bind one instance of a service. 
 
@@ -92,7 +93,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
     ```
     {: screen}
 
-3. Bind the service to an action. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.Bluemix_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
+3. Bind the service to an action. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
     ```
     ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
     ```

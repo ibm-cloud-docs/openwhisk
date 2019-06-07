@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-23"
+lastupdated: "2019-06-05"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -24,10 +24,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Creating actions
 {: #actions}
 
-Create an action, which is a top-level function that returns a JSON object. You can combine actions into a package to simplify that the management of your actions.
+Create an action, which is a top-level function that returns a JSON object. You can combine actions into a package to simplify the management of your actions.
 {: shortdesc}
 
 Before you begin:
@@ -43,13 +44,13 @@ To create an action, your source code must meet certain requirements. For exampl
   ```
   {: pre}
 
-  Example:
+  **Example**
   ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
 
-  Example output:
+  **Example output**
 
   ```
   ok: created action hello
@@ -60,14 +61,13 @@ To create an action, your source code must meet certain requirements. For exampl
   - To save on cost, you can set limits.
       - To set a limit for memory usage, include `--memory VALUE` with your create command, where the value is in megabytes.
       - To set a timeout, include `--timeout VALUE` with your create command, where the value is in milliseconds.
-  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the local path to your app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.  
+  - If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the local path to your app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
       {: pre}
   
-
-
 2. Verify that the action is in your actions list.
 
   ```
@@ -75,7 +75,7 @@ To create an action, your source code must meet certain requirements. For exampl
   ```
   {: pre}
 
-  Example output:
+  **Example output**
 
   ```
   actions
@@ -94,28 +94,31 @@ When you migrate to a new runtime version, you might need to change the code in 
 
 1. Update your app locally.
 
-2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If there is a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin using the new image.
+2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If you have a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin running on the new image.
 
 3. Update an action and include the local path to your app or the Docker image.
+
     ```
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME
     ```
     {: pre}
 
-    Example:
+    **Example**
+
     ```
     ibmcloud fn action update hello hello.js --kind nodejs:10
     ```
     {: pre}
 
-    Example output:
+    **Example output**
 
     ```
     ok: updated action hello
     ```
     {: screen}
 
-    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the path to the local app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
+    If you packaged your code as a Docker image, include `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG` with your create command instead of the path to the local app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
@@ -141,13 +144,15 @@ To bind the parameters:
     ```
     {: pre}
 
-    Example:
+    **Example**
+
     ```
     ibmcloud fn action update MyApp --param name World
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+
     ```
     ok: updated action MyApp
     ```
@@ -157,12 +162,14 @@ To bind the parameters:
     {: tip}
 
 3. Verify that the parameters were bound to the action.
+
     ```
     ibmcloud fn action get MyApp parameters
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+
     ```
     ok: got action MyApp, displaying field parameters
 
@@ -176,6 +183,7 @@ To bind the parameters:
     {: screen}
 
 Optional: To clear the parameters that were previously bound, update the action without including any parameters.
+
 ```
 ibmcloud fn action update ACTION_NAME APP_FILE
 ```
@@ -200,8 +208,6 @@ A sequence does not have an overall timeout separate from the timeouts of each a
 Next, when you create a rule or invoke the actions, use the name of the sequence.
 
 
-
-
 ## Packaging actions
 {: #actions_pkgs}
 
@@ -213,20 +219,22 @@ A package can include *actions* and *feeds*.
 - A feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a feed that can fire a trigger at a specified frequency.
 
 
-
 1. Create a package.
+
   ```
   ibmcloud fn package create PACKAGE_NAME
   ```
   {: pre}
 
 2. Get a summary of the package. Notice that the package is empty.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   package /myNamespace/custom
   ```
@@ -240,12 +248,14 @@ A package can include *actions* and *feeds*.
   {: pre}
 
 5. Get a summary of the package.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -274,13 +284,15 @@ Before you begin, create a package that includes at least one action.
     ```
     {: pre}
 
-    Example:
+    **Example**
+
     ```
     ibmcloud fn package update MyApp --param name World
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+
     ```
     ok: updated package MyApp
     ```
@@ -290,12 +302,14 @@ Before you begin, create a package that includes at least one action.
     {: tip}
 
 3. Verify that the parameters were bound to the package.
+
     ```
     ibmcloud fn package get MyApp parameters
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+
     ```
     ok: got package MyApp, displaying field parameters
 
@@ -309,12 +323,14 @@ Before you begin, create a package that includes at least one action.
     {: screen}
 
 4. Verify that the parameters were inherited by the package.
+
     ```
     ibmcloud fn package get MyApp/MyAction parameters
     ```
     {: pre}
 
-    Example output:
+    **Example output**
+
     ```
     ok: got package MyApp/MyAction, displaying field parameters
 
@@ -335,19 +351,22 @@ Before you begin, create a package that includes at least one action.
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 {: shortdesc}
 
-1. Share the package with all users:
+1. Share the package with all users.
+
   ```
   ibmcloud fn package update PACKAGE_NAME --shared yes
   ```
   {: pre}
 
 2. Display the `publish` property of the package to verify that it is now true.
+
   ```
   ibmcloud fn package get PACKAGE_NAME publish
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   ok: got package PACKAGE_NAME, displaying field publish
 
@@ -356,12 +375,14 @@ After the actions and feeds that comprise a package are debugged and tested, the
   {: screen}
 
 3. Get a description of the package to provide others with the fully qualified name of the package so that they can bind it or invoke actions in it. The fully qualified name includes the namespace, which in this example is `myNamespace` namespace.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -378,22 +399,22 @@ The action environment contains several environment variables that are specific 
 
 | Property | Description |
 | -------- | ----------- |
-| `__OW_API_HOST` | The API host for the deployment running this action. |
-| `__OW_API_KEY` | The API key for the subject invoking the action. This variable is only provided for classic CF based namespaces. |
-| `__OW_NAMESPACE` | The namespace id (GUID). For classic CF based namespaces this is the name constructed from org and space names. |
+| `__OW_API_HOST` | The API host for the deployment that is running this action. |
+| `__OW_API_KEY` | The API key for the subject that is invoking the action. This variable is only provided for classic CF-based namespaces. |
+| `__OW_NAMESPACE` | The namespace id (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
 | `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/overview?topic=overview-crn). The CRN is only available for IAM-enabled namespaces
 | `__OW_ACTION_NAME` | The fully qualified name of the running action. |
 | `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
-| `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This varible is only available for IAM-enabled namespaces |
+| `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces |
 | `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |
-| `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action will consume its entire duration quota. |
+| `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action consumes its entire duration quota. |
 
 ### Incorporating action environment variables in your app
 {: #actions_envvars_app}
 
 To view the values for an action, include the display of them in your app code and output them in the results.
 
-Example for Python:
+**Example for Python**
 ```python
 def main(dict):
   import os
@@ -415,3 +436,4 @@ After you updated and activated the code in an action, the result includes the f
             }
 
 ```
+{: screen}

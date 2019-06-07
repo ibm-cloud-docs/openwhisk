@@ -24,6 +24,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Viewing {{site.data.keyword.cloudaccesstrailshort}} events
 {: #activity_tracker}
 
@@ -37,9 +38,9 @@ For more information about how the service works, see the [{{site.data.keyword.c
 ## Where to view events
 {: #view}
 
-Events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain** that is available in the {{site.data.keyword.Bluemix_notm}} region where the {{site.data.keyword.openwhisk_short}} namespace resource is available. For more information, see [Viewing account events](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
+Events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain** that is available in the {{site.data.keyword.cloud_notm}} region where the {{site.data.keyword.openwhisk_short}} namespace resource is available. For more information, see [Viewing account events](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
 
-1. Log in to your {{site.data.keyword.Bluemix_notm}} account.
+1. Log in to your {{site.data.keyword.cloud_notm}} account.
 2. From the catalog, provision an instance of the {{site.data.keyword.cloudaccesstrailshort}} service in the same account as your instance of {{site.data.keyword.openwhisk}}.
 3. On the **Manage** tab of the {{site.data.keyword.cloudaccesstrailshort}} dashboard, click the **View in Kibana**.
 4. Set the time frame that you want to view logs for. The default is 15 min.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-06-07"
 
 keywords: mobile, sdk, cocoapods, carthage
 
@@ -22,6 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Mobile SDK
 {: #pkg_mobile_sdk}
@@ -84,7 +85,7 @@ You must then add OpenWhisk.framework to the embedded frameworks in your Xcode p
 
 ### Install from source code
 
-Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.git.
+Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.
 Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
 The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
 Build the project for the targets that you need and add the resulting frameworks to your app (usually in ~/Library/Developer/Xcode/DerivedData/your app name).
@@ -99,7 +100,7 @@ ibmcloud fn sdk install iOS
 ```
 {: pre}
 
-This command downloads a compressed file that contains the starter app. Inside the project directory is a podfile.
+This command downloads a compressed file that contains the starter app. Inside the project directory is a Podfile.
 
 To install the SDK, enter the following command:
 ```
@@ -109,7 +110,7 @@ pod install
 
 ## Getting started with the SDK
 
-To get up and running quickly, create a WhiskCredentials object with your OpenWhisk API credentials and create an OpenWhisk instance from the object.
+To get up and running quickly, create a `WhiskCredentials` object with your OpenWhisk API credentials and create an OpenWhisk instance from the object.
 
 For example, use the following example code to create a credentials object:
 ```
@@ -182,7 +183,7 @@ In the previous example, you are firing a trigger that is called `locationChange
 
 ## Use actions that return a result
 
-If the action returns a result, set hasResult to true in the invokeAction call. The result of the action is returned in the reply dictionary, for example:
+If the action returns a result, set `hasResult` to true in the `invokeAction` call. The result of the action is returned in the reply dictionary, for example:
 
 ```swift
 do {
@@ -210,14 +211,14 @@ whisk.verboseReplies = true
 
 ## Configuring the SDK
 
-You can configure the SDK to work with different installations of OpenWhisk by using the baseURL parameter. For instance:
+You can configure the SDK to work with different installations of OpenWhisk by using the `baseURL` parameter. For instance:
 
 ```swift
 whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-In this example, you use an installation that is running at http://localhost:8080. If you do not specify the baseUrl, the mobile SDK uses the instance that is running at https://us-south.functions.cloud.ibm.com.
+In this example, you use an installation that is running at http://localhost:8080. If you do not specify the `baseURL`, the mobile SDK uses the instance that is running at https://us-south.functions.cloud.ibm.com.
 
 You can pass in a custom NSURLSession in case you require special network handling. For example, you might have your own OpenWhisk installation that uses self-signed certificates:
 
@@ -239,12 +240,12 @@ whisk.urlSession = session
 
 All actions and triggers have a fully qualified name that is made up of a namespace, a package, and an action or trigger name. The SDK can accept these elements as parameters when you are invoking an action or Firing a trigger. The SDK also provides a function that accepts a fully qualified name that looks like `/mynamespace/mypackage/nameOfActionOrTrigger`. The qualified name string supports unnamed default values for namespaces and packages that all OpenWhisk users have, so the following parsing rules apply:
 
-- qName = "foo" results in namespace = default, package = default, action/trrigger = "foo"
-- qName = "mypackage/foo" results in namespace = default, package = mypackage, action/trigger = "foo"
-- qName = "/mynamespace/foo" results in namespace = mynamespace, package = default, action/trigger = "foo"
-- qName = "/mynamespace/mypackage/foo results in namespace = mynamespace, package = mypackage, action/trigger = "foo"
+- `qName = "foo"` results in `namespace = default`, `package = default`, `action/trrigger = "foo"`
+- `qName = "mypackage/foo"` results in `namespace = default`, `package = mypackage`, `action/trigger = "foo"`
+- `qName = "/mynamespace/foo"` results in `namespace = mynamespace`, `package = default`, `action/trigger = "foo"`
+- `qName = "/mynamespace/mypackage/foo"` results in `namespace = mynamespace`, `package = mypackage`, `action/trigger = "foo"`
 
-All other combinations issue a WhiskError.QualifiedName error. Therefore, when you are using qualified names, you must wrap the call in a "`do/try/catch`" construct.
+All other combinations issue a `WhiskError.QualifiedName` error. Therefore, when you are using qualified names, you must wrap the call in a "`do/try/catch`" construct.
 
 ### SDK button
 

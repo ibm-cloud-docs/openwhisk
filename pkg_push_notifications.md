@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-30"
+lastupdated: "2019-06-07"
 
 keywords: push notifications, functions, webhooks
 
@@ -22,6 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Push Notifications
 {: #pkg_push_notifications}
@@ -49,8 +50,8 @@ The package includes the following actions and feeds:
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/whisk.system/pushnotifications` | package | appId, appSecret, admin_url | Work with the Push Service. |
-| `/whisk.system/pushnotifications/sendMessage` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
+| `/whisk.system/pushnotifications` | Package | `appId`, `appSecret`, `admin_url` | Work with the Push Service. |
+| `/whisk.system/pushnotifications/sendMessage` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
 
 
 For information about firing trigger events when there is device activity, see [Mobile push on device events](#pkg_push_mobile).
@@ -60,18 +61,18 @@ For information about firing trigger events when there is device activity, see [
 
 To create a Push Notifications package binding, you must specify the following parameters:
 
--  **appId**: The {{site.data.keyword.Bluemix}} **App GUID**.
--  **appSecret**: The {{site.data.keyword.Bluemix_notm}} Push Notification service **App Secret**.
+-  **appId**: The {{site.data.keyword.cloud}} **App GUID**.
+-  **appSecret**: The {{site.data.keyword.cloud_notm}} Push Notification service **App Secret**.
 
 To create a package binding, see the following steps:
 
-1. Create an {{site.data.keyword.Bluemix_notm}} application in the [{{site.data.keyword.Bluemix_notm}} Dashboard](http://cloud.ibm.com).
+1. Create an {{site.data.keyword.cloud_notm}} application in the [{{site.data.keyword.cloud_notm}} Dashboard](https://cloud.ibm.com).
 
-2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.Bluemix_notm}} application.
+2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 
 3. Configure the [Push Notification application](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started).
 
-  Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.Bluemix_notm}} app you created.
+  Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
   ```
@@ -127,29 +128,29 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 - `apnsPayload`: Custom JSON payload that is sent as part of the notification message.
 - `apnsType`: ['DEFAULT', 'MIXED', 'SILENT'].
 - `apnsSound`: The name of the sound file in the application bundle. The sound of this file is played as an alert.
-- `apnsTitleLocKey`: The key to a title string in the `Localizable.strings` file for the current localization. The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the `titleLocArgs` array.
-- `apnsLocKey`: A key to an alert-message string in a `Localizable.strings` file for the current localization (which is set by the user’s language preference). The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the locArgs array.
+- `apnsTitleLocKey`: The key to a title string in the `Localizable.strings` file for the current locale. The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the `titleLocArgs` array.
+- `apnsLocKey`: A key to an alert-message string in a `Localizable.strings` file for the current locale (which is set by the user’s language preference). The key string can be formatted with %@ and %n$@ specifiers to take the variables that are specified in the `locArgs` array.
 - `apnsLaunchImage`: The filename of an image file in the app bundle, with or without the filename extension. The image is used as the launch image when users tap the action button or move the action slider.
 - `pnsTitleLocArgs`: Variable string values to appear in place of the format specifiers in `title-loc-key`.
 - `apnsLocArgs`: Variable string values to appear in place of the format specifiers in `locKey`.
 - `apnstitle`: The title of Rich Push notifications (Supported only on iOS 10 and above).
 - `apnsSubtitle`: The subtitle of the Rich Notifications. (Supported only on iOS 10 and above).
 - `apnsAttachmentUrl`: The link to the iOS notifications media (video, audio, GIF, images - Supported only on iOS 10 and above).
-- `fireFoxTitle`: Specifies the title to be set for the WebPush Notification.
-- `fireFoxIconUrl`: The URL of the icon to be set for the WebPush Notification.
+- `fireFoxTitle`: Specifies the title to be set for the Web Push Notification.
+- `fireFoxIconUrl`: The URL of the icon to be set for the Web Push Notification.
 - `fireFoxTimeToLive`: This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline.
 - `fireFoxPayload`: Custom JSON payload that is sent as part of the notification message.
-- `chromeTitle`: Specifies the title to be set for the WebPush Notification.
-- `chromeIconUrl`: The URL of the icon to be set for the WebPush Notification.
+- `chromeTitle`: Specifies the title to be set for the Web Push Notification.
+- `chromeIconUrl`: The URL of the icon to be set for the Web Push Notification.
 - `chromeTimeToLive`: This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline.
 - `chromePayload`: Custom JSON payload that is sent as part of the notification message.
 - `safariTitle`: Specifies the title to be set for the Safari Push Notifications.
 - `safariUrlArgs`: The URL arguments that need to be used with this notification. These arguments are to be provided in the form of a JSON Array.
 - `safariAction`: The label of the action button.
-- `chromeAppExtTitle`: Specifies the title to be set for the WebPush Notification.
+- `chromeAppExtTitle`: Specifies the title to be set for the Web Push Notification.
 - `chromeAppExtCollapseKey`: This parameter identifies a group of messages.
 - `chromeAppExtDelayWhileIdle`: When this parameter is set to true, it indicates that the message is not sent until the device becomes active.
-- `chromeAppExtIconUrl`: The URL of the icon to be set for the WebPush Notification.
+- `chromeAppExtIconUrl`: The URL of the icon to be set for the Web Push Notification.
 - `chromeAppExtTimeToLive`: This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline.
 - `chromeAppExtPayload`: Custom JSON payload that is sent as part of the notification message.
 
@@ -207,8 +208,8 @@ Learn how to configure the Push Notification service to fire a trigger when ther
 {: #pkg_push_mobile_params}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
-- `appId`: The {{site.data.keyword.Bluemix_notm}} app GUID.
-- `appSecret`: The {{site.data.keyword.Bluemix_notm}} Push Notification service `appSecret`.
+- `appId`: The {{site.data.keyword.cloud_notm}} app GUID.
+- `appSecret`: The {{site.data.keyword.cloud_notm}} Push Notification service `appSecret`.
 - `events`: `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`
 
   You can use the wildcard character "`*`" to be notified for all events.
@@ -242,7 +243,7 @@ To create a trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-5. Register a device in your {{site.data.keyword.Bluemix_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
+5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
 
   The action sends a push notification.
 
@@ -257,9 +258,9 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| `/push-notifications` | package | apikey, appGuid | Work with a {{site.data.keyword.mobilepushshort}} instance. |
-| `/push-notifications/send-message` | action | text, url, deviceIds, platforms, userIds, tagNames, gcmCollapseKey, gcmCategory, gcmIcon, gcmDelayWhileIdle, gcmSync, gcmVisibility, gcmPayload, gcmPriority, gcmSound, gcmTimeToLive, gcmStyleType, gcmStyleTitle, gcmStyleUrl, gcmStyleText, gcmStyleLines, gcmLightsLedArgb, gcmLightsLedOnMs, gcmLightsLedOffMs, apnsBadge, apnsCategory, apnsIosActionKey, apnsPayload, apnsType, apnsSound, apnsTitleLocKey, apnsLocKey, apnsLaunchImage, apnsTitleLocArgs, apnsLocArgs, apnstitle, apnsSubtitle, apnsAttachmentUrl, fireFoxTitle, fireFoxIconUrl, fireFoxTimeToLive, fireFoxPayload, safariTitle, safariUrlArgs, safariAction, chromeTitle, chromeIconUrl, chromeTimeToLive, chromePayload, chromeAppExtTitle, chromeAppExtCollapseKey, chromeAppExtDelayWhileIdle, chromeAppExtIconUrl, chromeAppExtTimeToLive, chromeAppExtPayload | Send push notification to one or more specified devices. |
-| `/push-notifications/webhook` | action | events | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
+| `/push-notifications` | Package | `apikey`, `appGuid` | Work with a {{site.data.keyword.mobilepushshort}} instance. |
+| `/push-notifications/send-message` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
+| `/push-notifications/webhook` | Action | `events` | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
 
 ### Creating a {{site.data.keyword.mobilepushshort}} service instance
 {: #service_instance_push}
@@ -281,7 +282,7 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #pkg_push_mobile_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plugin for the {{site.data.keyword.Bluemix_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
@@ -330,13 +331,13 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 6. Verify that the package is configured with your {{site.data.keyword.mobilepushshort}} service instance credentials.
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/push-notifications parameters
+    ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
     ```
     {: pre}
 
     Example output:
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/push-notifications, displaying field parameters
+    ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -347,10 +348,10 @@ To install the {{site.data.keyword.mobilepushshort}} package:
             "appGuid": "12341-12345-1234-a1234-1abcd12345",
             "clientSecret": "1b1234ab-1234-1234-123a-ab12345abcd",
             "credentials": "Service credentials-1",
-            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:ibmcloud:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
             "iam_apikey_name": "auto-generated-apikey-abcd1234abcd1234abcd1234",
-            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-            "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
+            "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:ibmcloud:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
             "instance": "Push Notifications-ab",
             "plan": "LITE",
             "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
@@ -372,7 +373,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 4. Click the **IBM {{site.data.keyword.mobilepushshort}}** package group, and then click the **IBM {{site.data.keyword.mobilepushshort}}** package.
 
-5. In the Available Runtimes section, select NodeJS from the drop-down list and then click **Install**.
+5. In the Available Runtimes section, select nodeJS from the drop-down list and then click **Install**.
 
 6. Once the package has been installed you will be redirected to the Actions page and can search for your new package, which is named **push-notifications**.
 
@@ -413,7 +414,7 @@ Example output:
 ### Create a webhook
 {: #pkg_push_mobile_hook}
 
-To create a webhook for the {{site.data.keyword.mobilepushshort}} service for onDeviceRegister events:
+To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `onDeviceRegister` events:
 
 ```
  ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister

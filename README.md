@@ -1,8 +1,25 @@
+
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-06-06"
+
+keywords: serverless, functions
+
+subcollection: cloud-functions
+
+---
+
 # Cloud Functions
 
-[![Build Status](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs.svg?token=Rt7qrw9ADrkv4kFiywCq&branch=master)](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs)
 
 Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are always welcome.
+
+
+
+
+
 
 
 

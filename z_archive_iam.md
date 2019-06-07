@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-10"
+lastupdated: "2019-06-06"
 
 keywords: iam, access managment, roles, service roles, policies, access
 
@@ -33,7 +33,7 @@ subcollection: cloud-functions
 ## Mapping IAM roles to {{site.data.keyword.openwhisk_short}}
 {: #user-roles}
 
-In {{site.data.keyword.openwhisk_short}}, namespace's are considered an {{site.data.keyword.Bluemix_notm}} resource which allows you to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
+In {{site.data.keyword.openwhisk_short}}, namespace's are considered an {{site.data.keyword.cloud_notm}} resource which allows you to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
 {: shortdesc}
 
 {{site.data.keyword.openwhisk_short}} uses both the platform and service management roles. You can set policies about who can create namespaces at the platform level, while using the service roles to manage interaction with the namespaces themselves.
@@ -165,9 +165,9 @@ For information about how to assign, edit, review, or delete resource access pol
 </br>
 
 ## Accessing other resources from a namespace
-{: #namespace-access}
+{: #namespace-access-resources}
 
-Actions typically call other {{site.data.keyword.Bluemix_notm}} resources and services which require the appropriate authentication.
+Actions typically call other {{site.data.keyword.cloud_notm}} resources and services which require the appropriate authentication.
 If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
 As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles using IAM policy management.
 
