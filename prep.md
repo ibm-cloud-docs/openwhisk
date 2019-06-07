@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -71,7 +71,7 @@ Your code is compiled into an executable and embedded into a Docker image. The e
 
 Before you begin:
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub ![External link icon](../icons/launch-glyph.svg "External link icon")](https://hub.docker.com).
-- [Install Docker](https://hub.docker.com/search?offering=community&type=edition).
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
 To package your app:
@@ -652,7 +652,7 @@ This example takes an input parameter as `Codable Input` with field `name`, and 
 #### Handling errors in Swift
 {: #prep_swift_error}
 
-By using the Codable completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
+By using the Codable completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html) resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
 {: shortdesc}
 
 The following snippet shows an example of handling an error.
@@ -681,7 +681,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 Compile a single source file that doesn't depend on external libraries. Use the flag `-compile` with the name of the main method.
 
 Before you begin:
-- [Install Docker](https://hub.docker.com/search?offering=community&type=edition).
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 To package your app:
@@ -699,7 +699,7 @@ The Docker container reads the content of the file from `stdin`, and writes a .z
 {: #prep_swift42_multi}
 
 Before you begin:
-- [Install Docker](https://hub.docker.com/search?offering=community&type=edition).
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 To package your app:
@@ -807,7 +807,7 @@ zip -r helloPython.zip __main__.py helper.py
 ### Packaging Python code with a virtual environment in .zip files
 {: #prep_python_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. The virtual environment allows you to link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/installing/).
+You can package Python dependencies by using a virtual environment, `virtualenv`. The virtual environment allows you to link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/).
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
@@ -978,7 +978,7 @@ public class Hello {
 ### Packaging Java code
 {: #prep_java_pkg}
 
-To compile, test, and archive Java files, you must have [JDK 8 ![External link icon](../icons/launch-glyph.svg "External link icon")](http://openjdk.java.net/install) installed locally.
+To compile, test, and archive Java files, you must have [JDK 8 ![External link icon](../icons/launch-glyph.svg "External link icon")](http://openjdk.java.net/install/) installed locally.
 
 1. Save the following code in a file named `Hello.java`.
 

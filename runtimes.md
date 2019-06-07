@@ -76,7 +76,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 
 | Runtime | Description | Changelog |
 | --- | --- | --- |
-| [8.15.0](https://nodejs.org/en/blog/release/v8.15.0) | The Node.js version 8.15.0 is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md). |
+| [8.15.0](https://nodejs.org/en/blog/release/v8.15.0/) | The Node.js version 8.15.0 is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md). |
 | [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 
 
@@ -510,7 +510,7 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. The executable runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/r/library/python), so the executable must be compatible with this distribution.
+Docker actions run a user-supplied executable in a Docker container. The executable runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/_/python), so the executable must be compatible with this distribution.
 
 The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud fn sdk install docker` CLI plug-in command.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -90,7 +90,7 @@ Your Cloud Foundry-based namespaces will continue to work. However, in order to 
 
 5. Click **Create**.
 
-6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/dashboard/apps) and find your namespace name in the **Services** pane.
+6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/resources) and find your namespace name in the **Services** pane.
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 

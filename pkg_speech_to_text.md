@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: speech to text, watson, package, cognitive,
 
@@ -253,7 +253,7 @@ The package `/whisk.system/watson` is deprecated including the action `/whisk.sy
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_notm}}, the package bindings are automatically created for your {{site.data.keyword.cloud_notm}} Watson service instances.
 
-1. Create a Watson Speech to Text service instance in your {{site.data.keyword.cloud_notm}} [dashboard](http://cloud.ibm.com). Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
+1. Create a Watson Speech to Text service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com). Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```

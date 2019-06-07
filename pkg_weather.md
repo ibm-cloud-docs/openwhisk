@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -43,7 +43,7 @@ Creating a package binding with the `username` and `password` values is suggeste
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_notm}}, the package bindings are automatically created for your {{site.data.keyword.cloud_notm}} Weather service instances.
 
-1. Create a Weather Company Data service instance in your {{site.data.keyword.cloud_notm}} [dashboard](http://cloud.ibm.com).
+1. Create a Weather Company Data service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com).
 
   Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
 

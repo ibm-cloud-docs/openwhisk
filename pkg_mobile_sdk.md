@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: mobile, sdk, cocoapods, carthage
 
@@ -85,7 +85,7 @@ You must then add OpenWhisk.framework to the embedded frameworks in your Xcode p
 
 ### Install from source code
 
-Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.git.
+Source code is available at https://github.com/apache/incubator-openwhisk-client-swift.
 Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
 The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
 Build the project for the targets that you need and add the resulting frameworks to your app (usually in ~/Library/Developer/Xcode/DerivedData/your app name).

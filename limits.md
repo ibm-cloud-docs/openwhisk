@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -97,7 +97,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The maximum number of open files for an action is 1024 (for both hard and soft limits).
 * This limit is fixed and cannot be changed.
 * When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
-* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
+* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation.
 
 #### parameters (Fixed: 5 MB)
 {: #limits_parameters}
@@ -110,7 +110,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 * The maximum number of processes available to the action container is 1024.
 * This limit is fixed and cannot be changed.
 * When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
-* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run) command line reference documentation.
+* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation.
 
 #### result (Fixed: 5 MB)
 {: #limits_result}

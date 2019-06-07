@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: push notifications, functions, webhooks
 
@@ -66,7 +66,7 @@ To create a Push Notifications package binding, you must specify the following p
 
 To create a package binding, see the following steps:
 
-1. Create an {{site.data.keyword.cloud_notm}} application in the [{{site.data.keyword.cloud_notm}} Dashboard](http://cloud.ibm.com).
+1. Create an {{site.data.keyword.cloud_notm}} application in the [{{site.data.keyword.cloud_notm}} Dashboard](https://cloud.ibm.com).
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 

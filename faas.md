@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-07"
 
 keywords: functions compared, architecture, limitless
 
@@ -46,7 +46,7 @@ The following OpenWhisk architectures are compared:
 
 1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk). IBM is the only vendor to offer managed OpenWhisk. A good introduction to the serverless programming model by using a FaaS platform is available on [Martin Fowler's blog](https://martinfowler.com/articles/serverless.html), and you can see [uses cases](/docs/openwhisk?topic=cloud-functions-use_cases) for running OpenWhisk with a serverless design.
 
-2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices).
+2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute).
 
 3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) runtime that is managed by the {{site.data.keyword.cloud_notm}} Foundry implementation.
 
