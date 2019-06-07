@@ -80,7 +80,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 
 
-### Migrating from `nodejs:8` to `nodejs:10`
+### Migrating from Nodejs:8 to Nodejs:10
 - The `ibm_db` NPM package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in this issue [ibmdb/node-ibm_db/issues/482](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541).
 - The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the nodeJS module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x).
 - The `cradle` NPM package is not available in `nodejs:10`.
