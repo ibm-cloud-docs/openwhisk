@@ -97,7 +97,7 @@ To create a web action:
   ```
   {: pre}
 
-3. Create the `hello` action. In this example, the `packageName/actionName` are `demo/hello`. Replace the `<filepath>` variable with the filepath of your `hello.js` file and set the `--web` flag to `true`. 
+3. Create the `hello` action. In this example, the `packageName/actionName` are `demo/hello`. Replace the `<filepath>` variable with the file path of your `hello.js` file and set the `--web` flag to `true`. 
 
   ```
   ibmcloud fn action create demo/hello <filepath>/hello.js --web true
@@ -215,7 +215,7 @@ To create a web action that performs an HTTP redirect:
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
   ```
   ibmcloud fn action create demo/hello <filepath>/hello.js --web true
@@ -266,7 +266,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
   ```
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
@@ -304,7 +304,7 @@ To create a web action that returns an `image/png`:
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
   ```
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
@@ -349,7 +349,7 @@ To create a web action that returns `application/json`:
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
   ```
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
@@ -442,7 +442,7 @@ To alter the response a web action:
   ```
   {: codeblock}
 
-2. Update your `hello` web action with the new version of your `hello.js` code. Replace `<filepath>` with the filepath of your `hello.js` file.
+2. Update your `hello` web action with the new version of your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
   ```bash
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
@@ -616,7 +616,7 @@ To alter the response a web action:
     ```
     {: screen}
 
-  In stardard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
+  In standard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
   {: note}
 
   f. You can set the `Content-Type` by either.
@@ -845,7 +845,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ```
 {: screen}
 
-{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary and which are plain text.
+{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary files and which are plain text.
 
 ### Enabling raw HTTP handling
 {: #actions_web_raw_enable}
@@ -859,7 +859,7 @@ ibmcloud fn action create demo/hello /<filepath>/hello.js --web raw
 ### Decoding binary body content from Base64
 {: #actions_web_decode}
 
-When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is binary. The following functions demonstrate how to decode the body content in Node, Python, and Swift.
+When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is the binary type. The following functions demonstrate how to decode the body content in Node, Python, and Swift.
 
 1. Save the sample code in your preferred language to a file called `decode.<ext>`. Replace `<ext>` with the file extension of the sample code of your preferred language.
 
@@ -913,7 +913,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   ```
   {: codeblock}
 
-2. Create a raw HTTP web action with the sample code by running the following command. In this example, the Node function is saved as `decode.js`. Replace the filepath with the filepath of your `decode` file and update the file extension to match the extension of the sample code you used.
+2. Create a raw HTTP web action with the sample code by running the following command. In this example, the Node function is saved as `decode.js`. Replace the file path with the file path of your `decode` file and update the file extension to match the extension of the sample code you used.
 
   ```bash
   ibmcloud fn action create decode <filepath>/decode.js --web raw
@@ -1093,7 +1093,7 @@ Here is an example of a Java web action that takes text as input and generates a
 ## Disabling web actions
 {: #actions_web_disable}
 
-You can disable a web action by setting the `--web` flag to `false` or `no` in the CLI. Replace `<packageName>/<actionName>` and `<filepath>/<filename>` with the package name, web action name, filepath, and filename of your code file.
+You can disable a web action by setting the `--web` flag to `false` or `no` in the CLI. Replace `<packageName>/<actionName>` and `<filepath>/<filename>` with the package name, web action name, file path, and filename of your code file.
 
 ```bash
 ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
