@@ -123,22 +123,19 @@ To create a web action:
   b. Since the action code returns the dictionary ```{body: `<html><body><h3>${msg}</h3></body></html>`}```, you can also test the action by returning just the `body` property by using the following command:
   {: #projecting_fields}
 
-      ```
-      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
-      ```
-      {: pre}
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
+    ```
+    {: pre}
 
-  </br>
     **Example output**
-    
+
     Since the `<name>` parameter was not specified, the following message is returned.
+    ```
+    <html><body><h3>You did not tell me who you are.</h3></body></html>
+    ```
+    {: screen}
 
-      ```
-      <html><body><h3>You did not tell me who you are.</h3></body></html>
-      ```
-      {: screen}
-
-  </br>
 5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
   * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
   * Testing the action by using a cURL command.
@@ -153,12 +150,11 @@ To create a web action:
     ```
     {: pre}
 
-**Example output**
-
-    ```
-    <html><body><h3>Hello, Jane!</h3></body></html>
-    ```
-    {: screen}
+  **Example output**
+  ```
+  <html><body><h3>Hello, Jane!</h3></body></html>
+  ```
+  {: screen}
 
 
 **Next steps**
@@ -235,9 +231,9 @@ To create a web action that performs an HTTP redirect:
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
-</br>
 
-**Example result** 
+  **Example result** 
+  
   This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/).
 
 ### Setting cookies by using a web action
@@ -279,7 +275,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 **Result**
 
-Verify the cookies `UserID=Jane` and `SessionID=asdfgh123456` have been set by using your browser's developer tools.
+The cookies `UserID=Jane` and `SessionID=asdfgh123456` are set in your browser's developer tools.
 
 
 ### Returning an image by using a web action
@@ -367,36 +363,34 @@ To create a web action that returns `application/json`:
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
-    
-</br>
 
-**Example output**
+    **Example output**
 
-```
-{
-  "__ow_headers": {
-    "accept": "*/*",
-    "accept-encoding": "gzip",
-    "cdn-loop": "cloudflare",
-    "cf-connecting-ip": "XX.XXX.XXX.XXX",
-    "cf-ipcountry": "US",
-    "cf-ray": "4d9f3e442a86cf28-IAD",
-    "cf-visitor": "{\"scheme\":\"https\"}",
-    "host": "<apihost>",
-    "user-agent": "curl/7.54.0",
-    "x-forwarded-for": "XX.XXX.XX.XXX, XX.XXX.XX.XXX",
-    "x-forwarded-host": "<apihost>",
-    "x-forwarded-port": "443",
-    "x-forwarded-proto": "https",
-    "x-global-k8fdic-transaction-id": "11fd03071bd0841d3a00f52354ab880f",
-    "x-real-ip": "XXX.XX.XX.XX",
-    "x-request-id": "11fd03071bd0841d3a00f52354ab880f"
-  },
-  "__ow_method": "get",
-  "__ow_path": ""
-}
-```
-{: screen}
+    ```
+    {
+      "__ow_headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip",
+        "cdn-loop": "cloudflare",
+        "cf-connecting-ip": "XX.XXX.XXX.XXX",
+        "cf-ipcountry": "US",
+        "cf-ray": "4d9f3e442a86cf28-IAD",
+        "cf-visitor": "{\"scheme\":\"https\"}",
+        "host": "<apihost>",
+        "user-agent": "curl/7.54.0",
+        "x-forwarded-for": "XX.XXX.XX.XXX, XX.XXX.XX.XXX",
+        "x-forwarded-host": "<apihost>",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-global-k8fdic-transaction-id": "11fd03071bd0841d3a00f52354ab880f",
+        "x-real-ip": "XXX.XX.XX.XX",
+        "x-request-id": "11fd03071bd0841d3a00f52354ab880f"
+      },
+      "__ow_method": "get",
+      "__ow_path": ""
+    }
+    ```
+    {: screen}
 
 
 ### HTTP Context
@@ -464,136 +458,129 @@ To alter the response a web action:
       ```
       {: pre}
 
+      **Example output**
 
-
-    **Example output**
-
-    ```
-    {
-      "response": {
-        "__ow_method": "get",
-        "__ow_headers": {
-          "accept": "*/*",
-          "connection": "close",
-          "host": "172.17.0.1",
-          "user-agent": "curl/7.43.0"
-        },
-        "__ow_path": ""
+      ```
+      {
+        "response": {
+          "__ow_method": "get",
+          "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
       }
-    }
-    ```
-    {: screen}
-
+      ```
+      {: screen}
 
   b. Test the action by using a query parameter. You can test the action by either:
   {: #query_test}
 
-  * Running the following cURL command.
+    * Running the following cURL command.
 
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+    * Running the following `wget` command.
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+      **Example output**
       ```
-      {: pre}
-
-  * Running the following `wget` command.
-
-      ```
-      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
-      ```
-      {: pre}
-
-
-    **Example output**
-    ```
-    {
-      "response": {
-        "name": "Jane",
-        "__ow_method": "get",
-        "__ow_headers": {
-          "accept": "*/*",
-          "connection": "close",
-          "host": "172.17.0.1",
-          "user-agent": "curl/7.43.0"
-        },
-        "__ow_path": ""
+      {
+        "response": {
+          "name": "Jane",
+          "__ow_method": "get",
+          "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
       }
-    }
-    ```
-    {: screen}
-
+      ```
+      {: screen}
 
   c. You can also test the web action by using form data. You can test the web action by either:
   {: #form_data}
   
-  * Running the following cURL command.
+    * Running the following cURL command.
 
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
+      
+    * Running the following `wget` command.
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
+
+      **Example output**
+
       ```
-      {: pre}
-    
-  * Running the following `wget` command.
-      ```
-      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
-      ```
-      {: pre}
-
-
-    **Example output**
-
-    ```
-    {
-      "response": {
-        "name": "Jane",
-        "__ow_method": "post",
-        "__ow_headers": {
-          "accept": "*/*",
-          "connection": "close",
-          "content-length": "10",
-          "content-type": "application/x-www-form-urlencoded",
-          "host": "172.17.0.1",
-          "user-agent": "curl/7.43.0"
-        },
-        "__ow_path": ""
+      {
+        "response": {
+          "name": "Jane",
+          "__ow_method": "post",
+          "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "10",
+            "content-type": "application/x-www-form-urlencoded",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
       }
-    }
-    ```
-    {: screen}
+      ```
+      {: screen}
 
   d. You can specify a JSON object by running the following command. You can test the web action by either:
-  * Running the following cURL command.
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
-      ```
-      {: pre}
-    
-  * Running the following `wget` command.
-      ```
-      wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
-      ```
-      {: pre}
+    * Running the following cURL command.
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
+      
+    * Running the following `wget` command.
+        ```
+        wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
 
+      **Example output**
 
-    **Example output**
-
-    ```
-    {
-      "response": {
-        "name": "Jane",
-        "__ow_method": "post",
-        "__ow_headers": {
-          "accept": "*/*",
-          "connection": "close",
-          "content-length": "15",
-          "content-type": "application/json",
-          "host": "172.17.0.1",
-          "user-agent": "curl/7.43.0"
-        },
-        "__ow_path": ""
+      ```
+      {
+        "response": {
+          "name": "Jane",
+          "__ow_method": "post",
+          "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "15",
+            "content-type": "application/json",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
       }
-    }
-    ```
-    {: screen}
+      ```
+      {: screen}
 
   e. You can also return the `name` value as text by either:
   * Running the following cURL command.
@@ -608,7 +595,6 @@ To alter the response a web action:
       ```
       {: pre}
 
-
     **Example output**
 
     ```
@@ -616,8 +602,8 @@ To alter the response a web action:
     ```
     {: screen}
 
-  In standard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
-  {: note}
+    In standard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
+    {: note}
 
   f. You can set the `Content-Type` by either.
   * Running the following cURL command.  
@@ -631,7 +617,6 @@ To alter the response a web action:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
       ```
       {: pre}
-
 
     **Example output**
 
@@ -692,11 +677,9 @@ To test a secure web action:
   ```
   {: pre}
 
+    **Example output**
 
-  **Example output**
-
-  The `require-whisk-auth` value was set to `7819991076995522`.
-
+    The `require-whisk-auth` value was set to `7819991076995522`.
     ```
     {
       "namespace": "<namespace>/demo",
@@ -736,7 +719,8 @@ To test a secure web action:
       },
       "publish": false
     }
-  {: screen}
+    ```
+    {: screen}
 
 To test that the authentication is working:
 
@@ -753,7 +737,6 @@ To test that the authentication is working:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
       ```
       {: pre}
-
 
    **Example output**
 
@@ -780,7 +763,6 @@ To test that the authentication is working:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
-
 
   **Example output**
     
@@ -845,7 +827,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ```
 {: screen}
 
-{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) which content types are binary files and which are plain text.
+{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine which content types are binary files and which are plain text](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html).
 
 ### Enabling raw HTTP handling
 {: #actions_web_raw_enable}
