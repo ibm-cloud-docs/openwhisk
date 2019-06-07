@@ -65,15 +65,13 @@ These runtimes are deprecated:
 
 
 
-
-
-
 ## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
-JavaScript actions can be executed in Node.js version 8 or 10. By default, all Node.js actions are executed in a version 10 environment.
+By default, all Node.js actions are executed in a version 10 environment.
+{: note}
 
-Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release). 
+JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8 is in maintenance mode and is available until December 2019. See the [Node.js release schedule](https://github.com/nodejs/Release). 
 {: deprecated}
 
 | Runtime | Description | Changelog |
@@ -490,6 +488,7 @@ If you have an action that is not compiled, and uses the `SwiftyJSON` package, y
 {: #openwhisk_ref_php}
 
 By default, all PHP actions are executed in a version 7.3 environment.
+{: note}
 
 The following PHP extensions are available in addition to the standard ones:
 
@@ -521,7 +520,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 | Runtime |
 | --- | --- | 
 | By default, all Go actions are executed in a version 1.11 environment. |
-{: caption="Table 1. Go runtime." caption-side="top"}
+{: caption="Table 1. Go." caption-side="top"}
 {: #runtimes-1}
 {: tab-title="Go"}
 {: tab-group="runtimes"}
@@ -530,7 +529,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 | Runtime |
 | --- | --- | 
 | By default, all Java actions are executed in a version 8 environment. |
-{: caption="Table 2. Java runtime." caption-side="top"}
+{: caption="Table 2. Java." caption-side="top"}
 {: #runtimes-2}
 {: tab-title="Java"}
 {: tab-group="runtimes"}
@@ -539,7 +538,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 | Runtime |
 | --- |
 | By default, all Ruby actions are executed in a version 2.5 environment. |
-{: caption="Table 3. Ruby runtime." caption-side="top"}
+{: caption="Table 3. Ruby." caption-side="top"}
 {: #runtimes-3}
 {: tab-title="Ruby"}
 {: tab-group="runtimes"}
@@ -548,7 +547,7 @@ You can include any compilation steps or dependencies by modifying the `Dockerfi
 | Runtime |
 | --- |
 | By default, all .NET Core actions are executed in a version 2.2 environment. |
-{: caption="Table 4. .NET runtime." caption-side="top"}
+{: caption="Table 4. .NET Core." caption-side="top"}
 {: #runtimes-4}
 {: tab-title=".NET"}
 {: tab-group="runtimes"}
