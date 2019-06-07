@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Creating web actions
 {: #actions_web}
 
-Web actions allow developers to program backend logic that can be accessed from any web app anonymously, without requiring a {{site.data.keyword.openwhisk_short}} authentication key. 
+When you create a web action, the result is a URL that can be used to trigger the action from any web app. 
 {: shortdesc}
 
 ## Why use web actions instead of standard actions?
@@ -970,17 +970,16 @@ To create custom responses to `OPTIONS` requests:
   ```
   {: pre}
 
-
-**Example output**
-```
-< HTTP/1.1 200 OK
-< Server: nginx/1.11.13
-< Content-Length: 0
-< Connection: keep-alive
-< Access-Control-Allow-Methods: OPTIONS, GET
-< Access-Control-Allow-Origin: example.com
-```
-{: screen}
+  **Example output**
+  ```
+  < HTTP/1.1 200 OK
+  < Server: nginx/1.11.13
+  < Content-Length: 0
+  < Connection: keep-alive
+  < Access-Control-Allow-Methods: OPTIONS, GET
+  < Access-Control-Allow-Origin: example.com
+  ```
+  {: screen}
 
 ## Error handling
 {: #actions_web_errors}
