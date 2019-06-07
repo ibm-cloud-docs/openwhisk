@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-06"
+lastupdated: "2019-06-07"
 
 keywords: watson, translator, cognitive, translating text, language
 
@@ -65,7 +65,7 @@ After you have an {{site.data.keyword.languagetranslatorshort}} service instance
 
 **Before you begin**
 
-[Install the {{site.data.keyword.openwhisk_short}} plug-in](/docs/openwhisk?topic=cloud-functions-cloudfunctions_cli#cloudfunctions_cli) for the {{site.data.keyword.cloud_notm}} CLI.
+[Install the {{site.data.keyword.openwhisk_short}} plug-in](/docs/openwhisk?topic=cloud-functions-cli_install) for the {{site.data.keyword.cloud_notm}} CLI.
 
 To install the {{site.data.keyword.languagetranslatorshort}} package:
 
