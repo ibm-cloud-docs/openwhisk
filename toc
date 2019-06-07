@@ -115,7 +115,6 @@ IBM Cloud Functions
     z_archive_openwhisk_access.md
     z_archive_openwhisk_catalog_weather.md
     z_archive_openwhisk_cloudant.md
-    z_archive_openwhisk_namespaces.md
     z_archive_openwhisk_reference.md
     z_archive_openwhisk_webactions.md
     z_archive_ow_push_notifications.md
