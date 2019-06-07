@@ -190,7 +190,7 @@ ibmcloud fn action create /<namespace>/demo/hello hello.js --parameter name Jane
 
 The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally.
 
-### Performing an HTTP redirect by using web action
+### Performing an HTTP redirect by using a web action
 {: #http_redirect}
 You might use this feature in a web application to redirect a user to the new version of your site.
 
