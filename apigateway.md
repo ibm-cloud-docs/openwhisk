@@ -43,14 +43,14 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 1. Save the following code into a JavaScript file named `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
-      return {payload: `Hello world ${name}`};
+      return {payload: `Hello, ${name}`};
   }
   ```
   {: codeblock}
 
-2. Create a web action that is named `hello` using the file that you created. Be sure to add the flag `--web true`.
+2. Create a web action that is named `hello` using the file that you created. Be sure to add the flag `--web true`. Replace `<filepath>` with the file path of your `hello.js` file.
   ```
-  ibmcloud fn action create hello hello.js --web true
+  ibmcloud fn action create hello <filepath>/hello.js --web true
   ```
   {: pre}
 
@@ -84,12 +84,12 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   **Example output**
   ```
   {
-  "payload": "Hello world OpenWhisk"
+  "payload": "Hello, OpenWhisk"
   }
   ```
   {: screen}
 
-The web action `hello` is invoked, which returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
+The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
 
 ## Using full control over the HTTP response
 {: #api_control}
