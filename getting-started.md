@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-10"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -36,7 +36,7 @@ With {{site.data.keyword.openwhisk}} you can use your favorite programming langu
 With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one specific task that is called an action. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about).
 {:shortdesc}
 
-Click an option to get started:
+Click an option to get started.
 
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
@@ -48,7 +48,7 @@ Click an option to get started:
 ## Creating an action in the GUI
 {: #gs_hello_world}
 
-To get started with {{site.data.keyword.openwhisk_short}}, try using the Hello World quickstart template.
+To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quickstart template.
 
 1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
 
@@ -58,9 +58,9 @@ To get started with {{site.data.keyword.openwhisk_short}}, try using the Hello W
 
 3. Create a package for your actions by inputting a unique name in the **Package Name** field.
 
-4. Select a runtime from the drop down in the **Action helloworld** section. You can preview the code for the sample action in each available runtime before you deploy the template.
+4. Select a runtime from the drop-down menu in the **Action helloworld** section. You can preview the code for the sample action in each available runtime before you deploy the template.
 
-5. Click **Deploy**. You've created an action. Great job!
+5. Click **Deploy**. You created an action. Great job!
 
 6. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
 
@@ -83,9 +83,9 @@ Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?top
 ## What's next?
 {: #gs_next_steps}
 
-So you've completed your first template deploy, where do you go from here? You can:
+So you completed your first template deployment, where do you go from here? You can:
 
 * Become familiar with the [terminology](/docs/openwhisk?topic=cloud-functions-about#about_technology).
 * Get started with [your own actions](/docs/openwhisk?topic=cloud-functions-actions).
 * Learn about organizing actions in [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Advanced option: create a [serverless REST API](/docs/openwhisk?topic=cloud-functions-apigateway).
+* Advanced option: Create a [serverless REST API](/docs/openwhisk?topic=cloud-functions-apigateway).

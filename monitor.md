@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-10"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Monitoring activity
 {: #monitor}
 
-Get insight into the performance of your actions deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or when you've hit action activation limits.
+Get insight into the performance of your actions deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or when you hit action activation limits.
 {: shortdesc}
 
 Metrics are collected automatically for all entities. Depending on whether your actions are in an IAM-based or a Cloud Foundry-based namespace, metrics are located in the IBM Cloud account or space. These metrics are sent to {{site.data.keyword.monitoringlong}} and are made available through Grafana, where you can configure your dashboards, create alerts based on the metrics event values, and more. For more information about metrics, see the [{{site.data.keyword.monitoringlong_notm}} documentation](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started).
@@ -127,7 +127,7 @@ ibmcloud fn activation poll
 ## Metric format
 {: #monitor_metric}
 
-The metrics reflect data collected from your action activations that is aggregated on a per-minute basis. Metrics are searchable on the action performance or action concurrency level.
+The metrics reflect data that is collected from your action activations that is aggregated on a per-minute basis. Metrics are searchable on the action performance or action concurrency level.
 
 
 ### Action performance metrics
@@ -143,7 +143,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.<package>.<actio
 The following characters are converted to dashes (`-`): period (.), an at sign (@), whitespace ( ), ampersand (&), underscore (_), colon (:)
 {: tip}
 
-Example: If you have an action named `hello-world` in the Cloud Foundry-based namespace `user@email.com_dev` in the `us-south` region, an action performance metric would look similar to the following:
+Example: If you have an action that is named `hello-world` in the Cloud Foundry-based namespace `user@email.com_dev` in the `us-south` region, an action performance metric would look similar to the following:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.user-ibm-com-dev.action-performance.default.hello-world.duration
@@ -162,7 +162,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.action-performan
 ```
 {: codeblock}
 
-Example: If you have an IAM-based namespace named `myNamespace` in the `us-south` region, an action concurrency metric would look similar to the following:
+Example: If you have an IAM-based namespace that is named `myNamespace` in the `us-south` region, an action concurrency metric would look similar to the following:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -175,7 +175,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 Because you might have thousands or millions of action activations, the metric values are represented as an aggregation of events produced by many activations. The values are aggregated in the following ways:
-* Sum: All metric values are added together.
+* Sum: All metric values are added.
 * Average: An arithmetical mean is calculated.
 * Summed average: An arithmetical mean is calculated based on components and adding different components together.
 
@@ -199,13 +199,13 @@ Check out the following table to see the metrics that are available to you.
     </tr>
     <tr>
       <td><code>init-time</code></td>
-      <td>The time spent to initialize the action container.</td>
+      <td>The time that is spent to initialize the action container.</td>
       <td>Average</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>wait-time</code></td>
-      <td>The average time spent in a queue waiting for an activation to be scheduled.</td>
+      <td>The average time that is spent in a queue waiting for an activation to be scheduled.</td>
       <td>Average</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -223,13 +223,13 @@ Check out the following table to see the metrics that are available to you.
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>The number of unsuccessful activations caused by application errors. For example graceful errors from the actions. For more information about how the action-performance metrics are derived, check out [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+      <td>The number of unsuccessful activations that are caused by application errors. For example, graceful errors from the actions. For more information about how the action-performance metrics are derived, check out [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
       <td>Sum</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>The number of unsuccessful activations caused by the developer. For example the violation of the [action proxy interface](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) by unhandled exceptions in the action code.</td>
+      <td>The number of unsuccessful activations that are caused by the developer. For example, the violation of the [action proxy interface](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) by unhandled exceptions in the action code.</td>
       <td>Sum</td>
       <td><code>action-performance</code></td>
     </tr>
