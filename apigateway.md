@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Creating serverless REST APIs
 {: #apigateway}
 
-Use APIs to directly manage {{site.data.keyword.openwhisk}} actions. The API Gateway acts as a proxy to [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) and provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
+You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=cloud-functions-actions_web). The API Gateway acts as a proxy to web actions and provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
 {: shortdesc}
 
 For more information about API management, you can read the [API management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
@@ -43,12 +43,13 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 1. Save the following code into a JavaScript file named `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
-      return {payload: `Hello, ${name}`};
+      return {payload: `Hello, ${name}!`};
   }
   ```
   {: codeblock}
 
-2. Create a web action that is named `hello` using the file that you created. Be sure to add the flag `--web true`. Replace `<filepath>` with the file path of your `hello.js` file.
+2. Create a web action that is named `hello` by using the file that you created. Be sure to add the flag `--web true`. Replace `<filepath>` with the file path of your `hello.js` file.
+
   ```
   ibmcloud fn action create hello <filepath>/hello.js --web true
   ```
@@ -67,29 +68,32 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   {: pre}
 
   **Example output**
+  A new URL is generated exposing the `hello` action by using a GET HTTP method.
+
   ```
   ok: created API /hello/world GET for action /_/hello
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: screen}
 
-  A new URL is generated exposing the `hello` action by using a GET HTTP method.
-
+  
 4. Send a test HTTP request to the URL by using the following cURL command.
   ```
-  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
+  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
   ```
   {: pre}
 
   **Example output**
+  The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
+
   ```
   {
-  "payload": "Hello, OpenWhisk"
+  "payload": "Hello, Jane!"
   }
   ```
   {: screen}
 
-The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
+
 
 ## Using full control over the HTTP response
 {: #api_control}
@@ -98,11 +102,11 @@ The `--response-type` flag controls the target URL of the web action to be proxi
 
 To return different content types in the body, use full control over the HTTP response properties such as `statusCode` and `headers`. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) documentation.
 
-1. Save the code for the `hello` action that is returning the JSON properties `body`, `statusCode`, and `headers`.
+1. Save the following code as `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
-        body: {payload:`Hello world ${name}`},
+        body: {payload:`Hello, ${name}!`},
         statusCode:200,
         headers:{ 'Content-Type': 'application/json'}
       };
@@ -110,9 +114,9 @@ To return different content types in the body, use full control over the HTTP re
   ```
   {: codeblock}
 
-2. Update the action with the modified result.
+2. Update your `hello` web action with the new version of your `hello.js` code.
   ```
-  ibmcloud fn action update hello hello.js --web true
+  ibmcloud fn action update hello <filepath>/hello.js --web true
   ```
   {: pre}
 
