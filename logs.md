@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-10"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
 
@@ -51,7 +51,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -71,7 +71,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 ## Viewing activation details
 {: #activation_details}
 
-{{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. Whenever an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
+{{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. When an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
 
 To get all activation record IDs in a namespace:
 ```
@@ -85,7 +85,7 @@ ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-Example output:
+**Example output**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -178,8 +178,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>: The exit status of the activation.</li>
-<li><code>statusCode</code>: The status code. If the action errored, the HTTP error code.</li>
-<li><code>success</code>: Whether the action completed successfully.</li>
+<li><code>statusCode</code>: The status code. If the action resulted in an error, the HTTP error code.</li>
+<li><code>success</code>: The result of whether the action completed successfully.</li>
 <li><code>result</code>: The return value from the activation.</li>
 </ul></td>
 </tr>
@@ -193,7 +193,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>Whether the action is publicly published.</td>
+<td>The result of whether the action is published.</td>
 </tr>
 </tbody></table>
 
@@ -208,7 +208,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 You can view activation logs directly from the {{site.data.keyword.openwhisk_short}} Monitoring dashboard. The logs are also forwarded to [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 {:shortdesc}
 
-**Note**: Logging is not available for the US East region.
+Logging is not available for the US East region.
+{: important}
 
 1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/dashboard).
 
@@ -216,7 +217,7 @@ You can view activation logs directly from the {{site.data.keyword.openwhisk_sho
 
 3. In the left-hand navigation, click **Logs**. The {{site.data.keyword.loganalysisshort_notm}} Kibana page opens.
 
-4. Optional: To see older logs, change the default timeframe value of 15 minutes by clicking **Last 15 minutes** in the upper right-hand corner and selecting a different timeframe.
+4. Optional: To see older logs, change the default timeframe value of 15 minutes by clicking **Last 15 minutes** in the right-hand corner and selecting a different timeframe.
 
 ### Querying logs
 {: #logs_query}
@@ -243,14 +244,14 @@ In addition to log lines, [{{site.data.keyword.loganalysislong_notm}}](/docs/ser
 
 You can find specific activation logs by using Kibana's query syntax. The following example queries can help you debug errors:
 
-* Find all failed activations:
+* Find all failed activations.
     ```
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
     In the results, a `0` indicates a successfully exited action and all other values indicate an error.
 
-* Find all activations that failed with a specific error:
+* Find all activations that failed with a specific error.
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
