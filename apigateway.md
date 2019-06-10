@@ -120,11 +120,21 @@ To return different content types in the body, use full control over the HTTP re
   ```
   {: pre}
 
+  **Output**
+  ```
+  ok: updated action hello
+  ```
+  {: screen}
+
 3. Update the API response type by using the `--response-type http` flag.
   ```
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
+
+  **Output**
+  ```
+  ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
 
 4. Call the updated API by using the following cURL command.
   ```
@@ -135,7 +145,7 @@ To return different content types in the body, use full control over the HTTP re
   **Example output**
   ```
   {
-  "payload": "Hello world Serverless API"
+  "payload": "Hello, Serverless API!"
   }
   ```
   {: screen}
