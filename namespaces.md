@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -56,7 +56,7 @@ ibmcloud iam service-ids
 
 View the API keys that are associated with a service ID. 
 ```
-ibmcloud fn iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
+ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
 {: pre}
 
