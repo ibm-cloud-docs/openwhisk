@@ -40,19 +40,19 @@ The following sections provide technical details about the {{site.data.keyword.o
 
 The following table lists the default limits for actions.
 
-| Limit | Default | Min | Max | Description |
+| Limit | Description | Default | Min | Max |
 | --- | ---| --- | --- | --- |
-| `codeSize` | 48 | 1 | 48 | The maximum code size for the action is 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed.
-| `concurrent` | 1000 | 1 | 1000* | The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for instructions on how to increase this limit. |
-| `logs`| 10 | 0 | 10 | The log limit N is in the range [0 MB..10 MB] and is set per action. A user can change the action log limit when an action is created or updated. Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.  |
-| `memory` | 256 | 128 | 2048 | The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB. A user can change the memory limit when an action is created. A container cannot use more memory than is allocated by the limit.
-| `minuteRate` | 5000 | 1 | 5000* | No more than N activations can be submitted per namespace per minute. The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_increase) for instructions on how to increase this limit. |
-| `openulimit` | 1024 | 0 | 1024 | The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. |
-| `parameters` | 5 | 0 | 5 | The maximum size of the parameters that can be attached in MB. The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB. An entity with too large parameters is rejected on trying to create or update it. This limit is fixed and cannot be changed. |
-| `proculimit` | 1024 | 0 | 1024 | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. |
-| `result` | 5 | 0 | 5 | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed.
-| `sequenceMaxActions` | 50 | 0 | 50* | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed.
-| `timeout` | 60000 | 100 | 600000 | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. |
+| `codeSize` | The maximum code size for the action is 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. | 48 | 1 | 48 | 
+| `concurrent`| The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for instructions on how to increase this limit. | 1000 | 1 | 1000* |
+| `logs`| The log limit N is in the range [0 MB..10 MB] and is set per action. A user can change the action log limit when an action is created or updated. Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit. | 10 | 0 | 10 |
+| `memory` | The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB. A user can change the memory limit when an action is created. A container cannot use more memory than is allocated by the limit. | 256 | 128 | 2048 |
+| `minuteRate` | No more than N activations can be submitted per namespace per minute. The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_increase) for instructions on how to increase this limit. | 5000 | 1 | 5000* | 
+| `openulimit` | The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `parameters` | The maximum size of the parameters that can be attached in MB. The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB. An entity with too large parameters is rejected on trying to create or update it. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
+| `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `result` | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
+| `sequenceMaxActions` | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed. | 50 | 0 | 50* | 
+| `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 | 
 
 ### Increasing fixed limits
 {: #limits_increase}
@@ -68,9 +68,9 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
 
 Triggers are subject to a firing rate per minute as documented in the following table.
 
-| Limit | Default | Min | Max | Description |
-| ----- | ----------- | :-------: | :---: | :---: |
-| [`minuteRate`] | 5000* | 5000* | 5000* | The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows. A user cannot change the trigger limit when a trigger is created. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit. |
+| Limit | Description | Default | Min | Max |
+| --- | --- | --- | --- | --- |
+| `minuteRate` | The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows. A user cannot change the trigger limit when a trigger is created. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #limits_triggersfixed}
