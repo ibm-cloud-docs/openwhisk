@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: runtimes, support
 
@@ -86,8 +86,8 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | --- | --- |
 | `ibm_db` | The `ibm_db` NPM package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in [this issue](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541). |
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x). |
-| `cradle` | The `cradle`  NPM package is not available in nodejs:10. |
-| `log4js` | The `log4js`  NPM package is not available in nodejs:10. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805). |
+| `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
+| `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805). |
 | `watson-developer-cloud` | The `watson-developer-cloud` NPM package is not available in nodejs:10. You can track progress on the new version in [this issue](https://github.com/watson-developer-cloud/node-sdk/issues/780). |
 
 
