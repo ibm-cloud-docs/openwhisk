@@ -76,8 +76,8 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 
 | Runtime | Description | Changelog |
 | --- | --- | --- |
+| [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | By default, all Node.js actions are executed in a version 10 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 | [8.15.0](https://nodejs.org/en/blog/release/v8.15.0/) | The Node.js version 8.15.0 is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md). |
-| [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 
 
 ### Migrating from nodeJS 8 to nodeJS 10
@@ -160,9 +160,9 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
-{: caption="Table 1. Node.js 10 packages." caption-side="top"}
+{: caption="Table 1. Node.js 10.15 packages." caption-side="top"}
 {: #javascript-1}
-{: tab-title="Node.js 10 packages"}
+{: tab-title="Node.js 10.15 packages"}
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
@@ -235,9 +235,9 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | `node-XMLHttpRequest` is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
-{: caption="Table 2. Node.js 8 packages." caption-side="top"}
+{: caption="Table 2. Node.js 8.15 packages." caption-side="top"}
 {: #javascript-2}
-{: tab-title="Node.js 8 packages"}
+{: tab-title="Node.js 8.15 packages"}
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
@@ -250,14 +250,14 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 
 | Python version | Description | Changelog |
 | --- | --- | --- |
-| 2.7.15 | Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md). |
+| 2.7.15 | By default, all Python actions are executed in a version 2.7.15 environment unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md). |
 | [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile) | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md). |
 | [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile) | Python 3.7 actions (Debian Stretch based) actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md). |
 
 
 ### Python packages
 
-| Python 2 packages | 
+| Python 2.7.15 packages | 
 |:-----------------|
 | `asn1crypto` |
 | `attrs` |
@@ -305,9 +305,9 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 | `w3lib` |
 | `Werkzeug` |
 | `zope.interface` |
-{: caption="Table 1. Python 2 packages." caption-side="top"}
+{: caption="Table 1. Python 2.7.15 packages." caption-side="top"}
 {: #python-1}
-{: tab-title="Python 2 packages"}
+{: tab-title="Python 2.7.15 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
 
