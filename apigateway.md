@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: serverless, rest api, gateway, web actions
 
@@ -33,7 +33,7 @@ Use APIs to directly manage {{site.data.keyword.openwhisk}} actions. The API Gat
 For more information about API management, you can read the [API management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 Creating APIs with API Gateway is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
-{: tip}
+{: important}
 
 ## Creating your first API
 {: #api_create}
