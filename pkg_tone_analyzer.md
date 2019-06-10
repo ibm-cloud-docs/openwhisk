@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-10"
 
 keywords: tone analyzer, functions, serverless, watson
 
@@ -32,9 +32,10 @@ The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic a
 
 The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer appropriately, or to understand and improve their customer conversations.
 
-**Note:** Request logging is disabled for the Tone Analyzer service. The service neither logs nor retains data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
+Request logging is disabled for the Tone Analyzer service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
+{: note}
 
-The {{site.data.keyword.toneanalyzershort}} package contains the following entities. You can find additional details in the {{site.data.keyword.toneanalyzershort}} API reference by clicking the entity name.
+The {{site.data.keyword.toneanalyzershort}} package contains the following entities. You can find more details in the {{site.data.keyword.toneanalyzershort}} API reference by clicking the entity name.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -61,8 +62,8 @@ After you have an {{site.data.keyword.toneanalyzershort}} service instance, use 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #toneanalyzer_cli}
 
-Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+**Before you begin**
+[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 To install the {{site.data.keyword.toneanalyzershort}} package:
 
@@ -84,7 +85,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     ```
     {: pre}
 
-    Output:
+    **Output**
     ```
     packages
     /myOrg_mySpace/tone-analyzer-v3                        private
@@ -97,12 +98,13 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     ```
     {: pre}
 
-    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
     ```
     ibmcloud fn service bind tone-analyzer tone-analyzer-v3
     ```
     {: pre}
-    Example output:
+
+    **Example output**
     ```
     Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
     ```
@@ -114,7 +116,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     ok: got package tone-analyzer-v3, displaying field parameters
     [
@@ -149,10 +151,10 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 5. Click **Install**.
 
-6. Once the package has been installed you will be redirected to the actions page and can search for your new package, which is named **tone-analyzer-v3**.
+6. Once the package is installed you are redirected to the actions page and can search for your new package, which is named **`tone-analyzer-v3`**.
 
 7. To use the actions in the **tone-analyzer-v3** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
+  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#toneanalyzer_cli).
   * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
     1. Click an action from the **tone-analyzer-v3** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
