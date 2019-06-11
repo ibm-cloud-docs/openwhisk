@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: visual recognition, watson, functions, cognitive,
 
@@ -57,16 +57,16 @@ Before you install the package, you must create a {{site.data.keyword.visualreco
 ## Installing the {{site.data.keyword.visualrecognitionshort}} package
 {: #install_recognition}
 
-After you have an {{site.data.keyword.visualrecognitionshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.visualrecognitionshort}} package into your namespace.
+After you have a {{site.data.keyword.visualrecognitionshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.visualrecognitionshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #visualrecognition_cli}
 
-Before you begin:
+**Before you begin**
 [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-To install the {{site.data.keyword.visualrecognitionshort}} package:
+To install the {{site.data.keyword.visualrecognitionshort}} package:, run the following commands.
 
 1. Clone the {{site.data.keyword.visualrecognitionshort}} package repo.
     ```
@@ -153,7 +153,8 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:
 
 7. To use the actions in the **visual-recognition-v3** Package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#visualrecognition_cli).
-  * To bind service credentials to individual actions, complete the following steps in the UI. 
+  * To bind service credentials to individual actions, complete the following steps in the UI.
+   
   You must complete the following steps for each action that you want to use.
   {: note}
 
@@ -173,7 +174,7 @@ ibmcloud fn action invoke visual-recognition-v3/<action_name> -b -p <param name>
 
 All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#versioning).
 
-This package's functions use the current version of Visual Recognition, 2018-03-19. Try out the `list-classifiers` action.
+This package's functions use the current version of Visual Recognition, `2018-03-19`. Try out the `list-classifiers` action.
 ```
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
