@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: serverless, rest api, gateway, web actions
 
@@ -68,7 +68,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   {: pre}
 
   **Example output**
-  A new URL is generated exposing the `hello` action by using a GET HTTP method.
+  A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
 
   ```
   ok: created API /hello/world GET for action /_/hello
