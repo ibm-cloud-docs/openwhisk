@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: packages, installable packages
 
@@ -77,13 +77,13 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
   ```
   {: pre}
 
-  Example:
+  **Example**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
      (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
@@ -99,13 +99,13 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
 3. Get a description of an action or feed to see the parameters that are required.
 
-  Example:
+  **Example**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -132,7 +132,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   ok: created binding valhallaSamples
   ```
@@ -144,7 +144,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -162,7 +162,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -178,7 +178,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -190,16 +190,13 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 
 
-
-
-
 ## Adding your own packages
 {: #pkg_add}
 
 You can create a package of local code or a clone of any GitHub repository.
 {: shortdesc}
 
-Before you begin:
+**Before you begin**
 - [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 - Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [<ph class="ignoreSpelling">wskdeploy</ph> documentation ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
 
@@ -230,12 +227,12 @@ To add a package:
     ```
     {: pre}
 
-### Example using the {{site.data.keyword.cos_full_notm}} package
+### {{site.data.keyword.cos_full_notm}} package example
 {: #pkg_ex}
 
-To see an example of how to install a package, check out the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key/value pairs are stored in a bucket. So, to use the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), you must first create an {{site.data.keyword.cos_full_notm}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
+To see an example of how to install a package, check out the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key-value pairs is stored in a bucket. So, to use the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), you must first create an {{site.data.keyword.cos_full_notm}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
-After creating the service instance and bucket, installing the package requires the following commands:
+After you create the service instance and bucket, you can install the package by using the following commands:
 
 1. Clone the package repo.
     ```
@@ -249,7 +246,7 @@ After creating the service instance and bucket, installing the package requires 
     ```
     {: pre}
 
-3. Deploy the package, using your bucket as an environment variable. The dependency on the `PACKAGE_NAME` environment variable allows you to give this package a custom name.
+3. Deploy the package, using your bucket as an environment variable.  You can give the package a custom name by using the `PACKAGE_NAME` environment variable.
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```

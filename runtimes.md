@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: runtimes, support
 
@@ -50,7 +50,7 @@ Example image fields.
 
 Runtimes are updated regularly. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
 <ul>
@@ -111,7 +111,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
 | [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
 | [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
-| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
 | [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js |
 | [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
@@ -129,7 +129,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`mustache`](https://www.npmjs.com/package/mustache) | Mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
 | [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
 | [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
@@ -148,7 +148,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
 | [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
-| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
 | [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
 | [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
@@ -185,7 +185,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
 | [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
 | [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
-| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
 | [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js. |
 | [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
@@ -194,7 +194,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`jsdom`](https://www.npmjs.com/package/jsdom) | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
 | [`jsforce`](https://www.npmjs.com/package/jsforce) | Salesforce API Library for JavaScript applications. |
 | [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) | An implementation of JSON Web Tokens. |
-| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library exported as Node.js modules. |
+| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library that is exported as Node.js modules. |
 | [`log4js`](https://www.npmjs.com/package/log4js) | A conversion of the log4js framework to work with Node. |
 | [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler, written in JavaScript. Built for speed. |
 | [`merge`](https://www.npmjs.com/package/merge) | Merge multiple objects into one, optionally creating a new cloned object. |
@@ -211,7 +211,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`process`](https://www.npmjs.com/package/process) | `require('process')`; just like any other module. |
 | [`pug`](https://www.npmjs.com/package/pug) | Implements the Pug templating language. |
 | [`redis`](https://www.npmjs.com/package/redis) | A complete and feature rich Redis client for Node.js. |
-| [`request`](https://www.npmjs.com/package/request) | Request is designed to be the simplest way possible to make HTTP calls. |
+| [`request`](https://www.npmjs.com/package/request) | Make HTTP calls. |
 | [`request-promise`](https://www.npmjs.com/package/request-promise) | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |
 | [`rimraf`](https://www.npmjs.com/package/rimraf) | The UNIX command rm -rf for node. |
 | [`semver`](https://www.npmjs.com/package/semver) | Semantic Versioning for nodeJS. |
@@ -223,7 +223,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
 | [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
-| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
 | [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
 | [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
@@ -479,7 +479,7 @@ By default, all Swift actions are executed in a version 4.2 environment.
 
 Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies using a Package.swift.
 
-Swift 4.2 actions can use the following packages when using single Swift source file:
+Swift 4.2 actions can use the following packages when you are using a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
 
@@ -518,7 +518,7 @@ The main executable program must be located in `/action/exec` inside the contain
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 
-## Additional runtime support
+## More runtime support
 
 | Runtime |
 | --- | --- | 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -86,7 +86,7 @@ ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME 
 ## Getting a weather forecast for a location
 {: #pkg_weather_forecast}
 
-The `/whisk.system/weather/forecast` action returns a weather forecast for a location by calling an API from The Weather Company. The parameters are as follows:
+The `/whisk.system/weather/forecast` action returns a weather forecast for a location by calling an API from The Weather Company. The parameters are as follows.
 
 | Parameter | Description |
 | --- | --- |
@@ -94,11 +94,11 @@ The `/whisk.system/weather/forecast` action returns a weather forecast for a loc
 | `password` | Password for The Weather Company Data for {{site.data.keyword.cloud_notm}} that is entitled to invoke the forecast API. |
 | `latitude` | The latitude coordinate of the location. |
 | `longitude` | The longitude coordinate of the location. |
-| `timePeriod` | Time period for the forecast. Valid options are: `10day` - (default) Returns a daily 10-day forecast. `48hour` - Returns an hourly 2-day forecast. `current` - Returns the current weather conditions. `timeseries` - Returns both the current observations and up to 24 hours of past observations, from the current date and time.|
+| `timePeriod` | Time period for the forecast. `10day` - (default) Returns a daily 10-day forecast. `48hour` - Returns an hourly 2-day forecast. `current` - Returns the current weather conditions. `timeseries` - Returns both the current observations and up to 24 hours of past observations, from the current date and time.|
 
 The following example shows how to create a package binding and then getting a 10-day forecast.
 
-Invoke the **forecast** action in your package binding to get the weather forecast.
+Invoke the `forecast` action in your package binding to get the weather forecast.
 ```
 ibmcloud fn action invoke myWeather/forecast --result \
 --param latitude 43.7 \
@@ -106,7 +106,7 @@ ibmcloud fn action invoke myWeather/forecast --result \
 ```
 {: pre}
 
-Example output:
+**Example output**
 ```
 {
     "forecasts": [
