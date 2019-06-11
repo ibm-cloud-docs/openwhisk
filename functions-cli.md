@@ -1136,7 +1136,7 @@ ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESP
    <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned namespaces by name, otherwise the list is sorted by creation date. This flag is optional. </dd>
 
-   <dt>`--skip NUMBER_OF_<em>NAMESPACE</em>S`, `-s NUMBER_OF_<em>NAMESPACE</em>S`</dt>
+   <dt>`--skip NUMBER_OF_<em>NAMESPACE</em>S`, `-s NUMBER_OF_`<em>`NAMESPACE`</em>`S`</dt>
    <dd>Exclude a specified number of the most recently created namespaces from the result. This flag is optional. </dd>
 
    </dl>
@@ -1165,13 +1165,13 @@ ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCR
 
    <dl>
 
-   <dt><em>NAMESPACE</em></dt>
+   <dt><em>`NAMESPACE`</em></dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
-   <dt>NEW_<em>NAMESPACE</em>_NAME</dt>
+   <dt>`NEW_<em>NAMESPACE</em>_NAME`</dt>
    <dd>The new name for a namespace. Do not include hyphens (-) in the name. This value is optional.</dd>
 
-   <dt>--description DESCRIPTION, -n DESCRIPTION</dt>
+   <dt>`--description DESCRIPTION`, `-n DESCRIPTION`</dt>
    <dd>Write your own unique description to help you identify the namespace. If your description is more than one word, include quotation marks (") around your description. This flag is optional.</dd>
 
    </dl>
@@ -1204,20 +1204,20 @@ ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VA
 <br />**Command options**
 
   <dl>
-  <dt><em>PACKAGE_NAME</em></dt>
+  <dt><em>`PACKAGE_NAME`</em></dt>
   <dd>The name of the package. This value is required. </dd>
 
-  <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-  <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+  <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+  <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-  <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-  <dd>A JSON file that contains annotation in a <em>KEY</em> VALE format. This flag is optional.</dd>
+  <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+  <dd>A JSON file that contains annotation in a <em>`KEY`</em> `VALUE` format. This flag is optional.</dd>
 
-  <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-  <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+  <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+  <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-  <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-  <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+  <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+  <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
   </dl>
 
 <br />**Example**
@@ -1244,22 +1244,22 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
   <dl>
-  <dt><em>PACKAGE_NAME</em></dt>
+  <dt><em>`PACKAGE_NAME`</em></dt>
   <dd>The name of the package. This value is required. </dd>
 
-  <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-  <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+  <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+  <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-  <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-  <dd>A JSON file that contains annotation in a <em>KEY</em> VALE format. This flag is optional.</dd>
+  <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+  <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-  <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-  <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+  <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+  <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-  <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-  <dd>A JSON file that contains parameter <em>KEYS</em> and C. This flag is optional.</dd>
+  <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+  <dd>A JSON file that contains parameter <em>`KEYS`</em> and C. This flag is optional.</dd>
 
-  <dt>--shared yes|no</dt>
+  <dt>`--shared yes|no`</dt>
   <dd>When specified without a value or with a value of yes, the package is shared with other users.</dd>
   </dl>
 
@@ -1318,10 +1318,10 @@ ibmcloud fn package get <em>PACKAGE_NAME</em> [--summary]
 <br />**Command options**
 
   <dl>
-   <dt><em>PACKAGE_NAME</em></dt>
+   <dt><em>`PACKAGE_NAME`</em></dt>
    <dd>The name of an package. This value is required.</dd>
 
-   <dt>--summary</dt>
+   <dt>`--summary`</dt>
    <dd>Get a summary of the package details. Parameters with the prefix "*" are bound. This flag is optional.</dd>
    </dl>
 
@@ -1348,16 +1348,16 @@ ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] 
 <br />**Command options**
 
    <dl>
-   <dt><em>NAMESPACE</em></dt>
-   <dd>List the packages in a specific namespace. This value is optional. If not specified, all   packages are listed.</dd>
+   <dt><em>`NAMESPACE`</em></dt>
+   <dd>List the packages in a specific namespace. This value is optional. If not specified, all packages are listed.</dd>
 
-   <dt>--limit NUMBER_OF_PACKAGES, -l NUMBER_OF_PACKAGES</dt>
+   <dt>`--limit NUMBER_OF_PACKAGES`, `-l NUMBER_OF_PACKAGES`</dt>
    <dd>List a specified number of packages. The default is 30 packages.</dd>
 
-   <dt>--name-sort, -n</dt>
+   <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned packages by name, otherwise the list is sorted by creation date.</dd>
 
-   <dt>--skip NUMBER_OF_PACKAGES, -s NUMBER_OF_PACKAGES</dt>
+   <dt>`--skip NUMBER_OF_PACKAGES`, `-s NUMBER_OF_PACKAGES`</dt>
    <dd>Exclude a specified number of the most recently created packages from the result.</dd>
 
    </dl>
@@ -1389,8 +1389,8 @@ ibmcloud fn package refresh /NAMESPACE
 
    <dl>
 
-   <dt>/<em>NAMESPACE</em></dt>
-   <dd>A namespace, beginning with /. This flag is required. Run <code>ibmcloud fn namespace list</code> to get a list of namespaces to choose from.</dd>
+   <dt>/<em>`NAMESPACE`</em></dt>
+   <dd>A namespace, beginning with /. This flag is required. Run `ibmcloud fn namespace list` to get a list of namespaces to choose from.</dd>
    </dl>
 
 <br />**Example**
@@ -1417,23 +1417,23 @@ ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
    <dl>
 
-   <dt><em>PACKAGE_NAME</em></dt>
+   <dt><em>`PACKAGE_NAME`</em></dt>
    <dd>The name of the package. This value is required. </dd>
 
-   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-   <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-   <dd>A JSON file that contains annotation in a <em>KEY</em> VALE format. This flag is optional.</dd>
+   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
-   <dt>--shared yes|no</dt>
-   <dd>When specified without a value or with a value of <code>yes</code>, the package is shared with other users.</dd>
+   <dt>`--shared yes|no`</dt>
+   <dd>When specified without a value or with a value of `yes`, the package is shared with other users.</dd>
 
    </dl>
 
@@ -1457,7 +1457,7 @@ ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 ## Property commands
 {: #cli_prop}
 
-Set global properties for your CLI environment or view properties about the <code>wsk</code> CLI, which runs as part of the `ibmcloud fn` CLI.
+Set global properties for your CLI environment or view properties about the `wsk` CLI, which runs as part of the `ibmcloud fn` CLI.
 
 ### `ibmcloud fn property get`
 {: #cli_prop_get}
@@ -1472,34 +1472,34 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 <br />**Command options**
 
    <dl>
-   <dt>--all</dt>
-   <dd>View all properties for the <code>wsk</code> CLI. This flag is optional.</dd>
+   <dt>`--all`</dt>
+   <dd>View all properties for the `wsk` CLI. This flag is optional.</dd>
 
-   <dt>---apibuild</dt>
-   <dd>The <code>wsk</code> API build information. This flag is optional.</dd>
+   <dt>`---apibuild`</dt>
+   <dd>The `wsk` API build information. This flag is optional.</dd>
 
-   <dt>--apibuildno</dt>
-   <dd>The <code>wsk</code> API build number. This flag is optional.</dd>
+   <dt>`--apibuildno`</dt>
+   <dd>The `wsk` API build number. This flag is optional.</dd>
 
-   <dt>--apihost <em>HOST</em></dt>
-   <dd>The <code>wsk</code> API host. This flag is optional.</dd>
+   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION</em></dt>
-   <dd>The <code>wsk</code> API version. This flag is optional.</dd>
+   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>--auth <em>KEY</em>, -u <em>KEY</em></dt>
-   <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
+   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
+   <dt>`--cert` <em>`STRING`</em></dt>
+   <dd>The `wsk` client certificate. This flag is optional.</dd>
 
-   <dt>--cliversion</dt>
-   <dd>The <code>wsk</code> CLI version. This flag is optional.</dd>
+   <dt>`--cliversion`</dt>
+   <dd>The `wsk` CLI version. This flag is optional.</dd>
 
-   <dt>--key <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--key` <em>`STRING`</em></dt>
+   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE</em></dt>
+   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1527,22 +1527,22 @@ ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 <br />**Command options**
 
    <dl>
-   <dt>--apihost <em>HOST</em></dt>
-   <dd>The <code>wsk</code> API host. This flag is optional.</dd>
+   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION</em></dt>
-   <dd>The <code>wsk</code> API version. This flag is optional.</dd>
+   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>--auth <em>KEY</em>, -u</dt>
-   <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--auth` <em>`KEY`</em>, -u</dt>
+   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
+   <dt>`--cert` <em>`STRING`</em></dt>
+   <dd>The `wsk`client certificate. This flag is optional.</dd>
 
-   <dt>--key <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--key` <em>`STRING`</em></dt>
+   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE</em></dt>
+   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1565,7 +1565,7 @@ ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 ### `ibmcloud fn property unset`
 {: #cli_prop_unset}
 
-Unset a property for the <code>wsk</code> CLI. At least one flag is required.
+Unset a property for the `wsk` CLI. At least one flag is required.
 
 ```
 ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
@@ -1575,22 +1575,22 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 <br />**Command options**
 
    <dl>
-   <dt>--apihost <em>HOST</em></dt>
-   <dd>The <code>wsk</code> API host. This flag is optional.</dd>
+   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>--apiversion <em>VERSION</em></dt>
-   <dd>The <code>wsk</code> API version. This flag is optional.</dd>
+   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>--auth <em>KEY</em>, -u</dt>
-   <dd>The <code>wsk</code> authorization <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--auth` <em>`KEY`</em>, `-u`</dt>
+   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--cert <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client certificate. This flag is optional.</dd>
+   <dt>`--cert` <em>`STRING`</em></dt>
+   <dd>The `wsk` client certificate. This flag is optional.</dd>
 
-   <dt>--key <em>STRING</em></dt>
-   <dd>The <code>wsk</code> client <em>KEY</em>. This flag is optional.</dd>
+   <dt>`--key` <em>`STRING`</em></dt>
+   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
 
-   <dt>--namespace <em>NAMESPACE</em></dt>
+   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
