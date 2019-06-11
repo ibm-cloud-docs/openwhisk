@@ -43,7 +43,7 @@ Run these commands to manage the entities that make up your functions.
 
 
 
-### ibmcloud fn action create
+### `ibmcloud fn action create`
 {: #cli_action_create}
 
 Create an action.
@@ -56,27 +56,27 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 <br />**Command options**
 
    <dl>
-   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-   <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-   <dd>A JSON file that contains annotation in a <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt><em>ACTION_NAME</em></dt>
-   <dd>The name of the action. To include the action in a package, enter the name in the format <em>PACKAGE_NAME</em>/<em>ACTION_NAME</em>. This value is required. </dd>
+   <dt><em>`ACTION_NAME`</em></dt>
+   <dd>The name of the action. To include the action in a package, enter the name in the format <em>`PACKAGE_NAME`</em>/<em>`ACTION_NAME`</em>. This value is required. </dd>
 
-   <dt><em>APP_FILE</em></dt>
+   <dt><em>`APP_FILE`</em></dt>
    <dd>The path to the app file or package to run as an action. This option is required.</dd>
    
-   <dt>--copy</dt>
+   <dt>`--copy`</dt>
    <dd>Treat the action as the name of an existing action.</dd>
 
-   <dt>--docker <em>DOCKER_HUB_USERNAME</em>/<em>IMAGE_NAME</em></dt>
+   <dt>`--docker` <em>`DOCKER_HUB_USERNAME`</em>/<em>`IMAGE_NAME`</em></dt>
    <dd>The Docker Hub user name and the name of the Docker image in Docker Hub to run the action. This flag is required for creating actions from Docker images.</dd>
 
-   <dt>--kind <em>LANGUAGE</em></dt>
-   <dd>The runtime for your app. This flag is optional. If no <em>VALUE</em> is specified, the default version for the detected runtime is used.
-     Possible <em>VALUES</em> for the --kind option:
+   <dt>`--kind` <em>`LANGUAGE`</em></dt>
+   <dd>The runtime for your app. This flag is optional. If no <em>`VALUE`</em> is specified, the default version for the detected runtime is used.
+     Possible <em>`VALUES`</em> for the --kind option:
      <table>
   <tr>
     <th>Language</th>
@@ -121,22 +121,22 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 {: caption="Table 1. Supported runtimes" caption-side="top"}
        </dd>
 
-   <dt>--logsize <em>LIMIT</em>, -l <em>LIMIT</em></dt>
+   <dt>`--logsize` <em>`LIMIT`</em>, `-l` <em>`LIMIT`</em></dt>
    <dd>The maximum log size in MB for the action. The default value is 10 MB.</dd>
 
-   <dt>--main <em>ENTRY_METHOD_NAME</em></dt>
+   <dt>`--main` <em>`ENTRY_METHOD_NAME`</em></dt>
    <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully-qualified method.</dd>
 
-   <dt>--native</dt>
+   <dt>`--native`</dt>
    <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument allows you to create and deploy an executable that runs inside the standard Docker action SDK.
        <ol><li>When you create a Docker image, an executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
        <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
    <dt>--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em></dt>
    <dd>Create an action sequence and include the names of related actions separated by commas.</dd>
@@ -167,7 +167,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
 <br />
 
-### ibmcloud fn action delete
+### `ibmcloud fn action delete`
 {: #cli_action_delete}
 
 You can clean up your namespace by deleting actions that you do not want to use any longer.
@@ -192,7 +192,8 @@ ibmcloud fn action delete ACTION_NAME
 
 
 <br />
-### ibmcloud fn action get
+
+### `ibmcloud fn action get`
 {: #cli_action_get}
 
 Get metadata that describes a specific action.
@@ -259,7 +260,8 @@ ok: got action hello
 
 
 <br />
-### ibmcloud fn action invoke
+
+### `ibmcloud fn action invoke`
 {: #cli_action_invoke}
 
 Run an action to test it.
@@ -297,7 +299,8 @@ ibmcloud fn action invoke hello --blocking
 
 
 <br />
-### ibmcloud fn action list
+
+### `ibmcloud fn action list`
 {: #cli_action_list}
 
 List all of the actions that you created or a specific number of actions.
@@ -333,7 +336,8 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 
 
 <br />
-### ibmcloud fn action update
+
+### `ibmcloud fn action update`
 {: #cli_action_update}
 
 Update an action or the app within an action.
@@ -455,7 +459,7 @@ ibmcloud fn action update hello folder/hello_world.js
 {: #cli_activation}
 
 
-### ibmcloud fn activation get
+### `ibmcloud fn activation get`
 {: #cli_activation_get}
 
 Get metadata that describes a specific activation.
@@ -491,6 +495,7 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 
 
 <br />
+
 ### ibmcloud fn activation list
 {: #cli_activation_list}
 
@@ -537,7 +542,8 @@ activations
 
 
 <br />
-### ibmcloud fn activation logs
+
+### `ibmcloud fn activation logs`
 {: #cli_activation_logs}
 
 Get logs for a specific activation.
@@ -568,7 +574,8 @@ ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 
 
 <br />
-### ibmcloud fn activation poll
+
+### `ibmcloud fn activation poll`
 {: #cli_activation_poll}
 
 View a streaming, live list of activations for an action or a namespace. You can press `CTRL+C` to exit the polling.
@@ -611,7 +618,8 @@ ibmcloud fn activation poll
 
 
 <br />
-### ibmcloud fn activation result
+
+### `ibmcloud fn activation result`
 {: #cli_activation_result}
 
 Get the result from a specific activation.
@@ -647,7 +655,7 @@ ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 {: #cli_api}
 
 
-### ibmcloud fn api create
+### `ibmcloud fn api create`
 {: #cli_api_create}
 
 Create an API.
@@ -701,7 +709,8 @@ ibmcloud fn api create BASE_PATH API_PATH API_VERB ACTION_NAME] [--apiname API_N
 
 
 <br />
-### ibmcloud fn api delete
+
+### `ibmcloud fn api delete`
 {: #cli_api_delete}
 
 Delete an API.
@@ -745,7 +754,8 @@ ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
 
 
 <br />
-### ibmcloud fn api get
+
+### `ibmcloud fn api get`
 {: #cli_api_get}
 
 Get the metadata for an API.
@@ -782,7 +792,8 @@ ibmcloud fn api get BASE_PATH API_NAME [--format OUTPUT_TYPE] [--full]
 
 
 <br />
-### ibmcloud fn api list
+
+### `ibmcloud fn api list`
 {: #cli_api_list}
 
 List all of the APIs that you created or a specific number of APIs. If no name or base path is specified, all of the APIs are listed.
@@ -835,7 +846,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 {: #cli_deploy_cmds}
 
 
-### ibmcloud fn deploy
+### `ibmcloud fn deploy`
 {: #cli_deploy}
 
 Use a manifest file to deploy a collection of packages, actions, triggers and rules.
@@ -896,7 +907,8 @@ ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment F
 
 
 <br />
-### ibmcloud fn undeploy
+
+### `ibmcloud fn undeploy`
 {: #cli_undeploy}
 
 Use a manifest file to undeploy a collection of packages, actions, triggers and rules.
@@ -962,7 +974,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment
 {: #cli_list_cmd}
 
 
-### ibmcloud fn list
+### `ibmcloud fn list`
 {: #cli_list}
 
 View a grouped list of the packages, actions, triggers, and rules in the namespace.
@@ -994,7 +1006,7 @@ ibmcloud fn list [--name-sort]
 {: #cli_namespace}
 
 
-### ibmcloud fn namespace create
+### `ibmcloud fn namespace create`
 {: #cli_namespace_create}
 
 Create an IAM namespace.
@@ -1025,7 +1037,8 @@ ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION]
 
 
 <br />
-### ibmcloud fn namespace delete
+
+### `ibmcloud fn namespace delete`
 {: #cli_namespace_delete}
 
 Delete an IAM namespace.
@@ -1046,7 +1059,8 @@ ibmcloud fn namespace delete NAMESPACE
 
 
 <br />
-### ibmcloud fn namespace get
+
+### `ibmcloud fn namespace get`
 {: #cli_namespace_get}
 
 Get the entities for or the metadata information from a Cloud Foundry or IAM namespace.
@@ -1094,7 +1108,8 @@ ibmcloud fn namespace list NAMESPACE [--auth KEY] [--name-sort] [--properties]
 
 
 <br />
-### ibmcloud fn namespace list
+
+### `ibmcloud fn namespace list`
 {: #cli_namespace_list}
 
 List the available Cloud Foundry and IAM namespaces.
@@ -1137,7 +1152,8 @@ ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESP
 
 
 <br />
-### ibmcloud fn namespace update
+
+### `ibmcloud fn namespace update`
 {: #cli_namespace_update}
 
 Change the name or description of an IAM namespace.
@@ -1177,7 +1193,7 @@ ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCR
 {: #cli_pkg}
 
 
-### ibmcloud fn package bind
+### `ibmcloud fn package bind`
 {: #cli_pkg_bind}
 
 Bind parameters to a package. All of the actions within the package inherit those parameters unless otherwise specified.
@@ -1216,7 +1232,8 @@ ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VA
 
 
 <br />
-### ibmcloud fn package create
+
+### `ibmcloud fn package create`
 {: #cli_pkg_create}
 
 Create a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
@@ -1263,7 +1280,8 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 
 <br />
-### ibmcloud fn package delete
+
+### `ibmcloud fn package delete`
 {: #cli_pkg_delete}
 
 You can clean up your namespace by deleting packages that you do not want to use any longer.
@@ -1288,7 +1306,8 @@ ibmcloud fn package delete PACKAGE_NAME
 
 
 <br />
-### ibmcloud fn package get
+
+### `ibmcloud fn package get`
 {: #cli_pkg_get}
 
 Get metadata that describes a specific package.
@@ -1317,7 +1336,8 @@ ibmcloud fn package get hello
 
 
 <br />
-### ibmcloud fn package list
+
+### `ibmcloud fn package list`
 {: #cli_pkg_list}
 
 List all of the packages that you created or a specific number of packages.
@@ -1356,7 +1376,8 @@ ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] 
 
 
 <br />
-### ibmcloud fn package refresh
+
+### `ibmcloud fn package refresh`
 {: #cli_pkg_refresh}
 
 Refresh the package bindings for all of the packages within a specific namespace.
@@ -1383,7 +1404,8 @@ ibmcloud fn package refresh /NAMESPACE
 
 
 <br />
-### ibmcloud fn package update
+
+### `ibmcloud fn package update`
 {: #cli_pkg_update}
 
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
@@ -1439,7 +1461,7 @@ ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 Set global properties for your CLI environment or view properties about the <code>wsk</code> CLI, which runs as part of the `ibmcloud fn` CLI.
 
-### ibmcloud fn property get
+### `ibmcloud fn property get`
 {: #cli_prop_get}
 
 View the metadata details for a property from the `wsk` CLI.
@@ -1493,7 +1515,8 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 
 
 <br />
-### ibmcloud fn property set
+
+### `ibmcloud fn property set`
 {: #cli_prop_set}
 
 Set a property. At least one flag is required.
@@ -1541,7 +1564,7 @@ ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 
 <br />
 
-### ibmcloud fn property unset
+### `ibmcloud fn property unset`
 {: #cli_prop_unset}
 
 Unset a property for the <code>wsk</code> CLI. At least one flag is required.
@@ -1588,7 +1611,7 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 {: #cli_rule}
 
 
-### ibmcloud fn rule create
+### `ibmcloud fn rule create`
 {: #cli_rule_create}
 
 Create a rule to associate a trigger with an action. Before you can create a rule, create a trigger and an action first.
@@ -1613,7 +1636,8 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 
 
 <br />
-### ibmcloud fn rule delete
+
+### `ibmcloud fn rule delete`
 {: #cli_rule_delete}
 
 To clean up your namespace, remove rules you no longer need.
@@ -1643,7 +1667,8 @@ ibmcloud fn rule delete myrule
 
 
 <br />
-### ibmcloud fn rule disable
+
+### `ibmcloud fn rule disable`
 {: #cli_rule_disable}
 
 Change the status of a rule to inactive and stop it from running an action when a trigger is fired.
@@ -1662,7 +1687,7 @@ ibmcloud fn rule disable RULE_NAME
 
 <br />
 
-### ibmcloud fn rule enable
+### `ibmcloud fn rule enable`
 {: #cli_rule_enable}
 
 Change the status of a rule from inactive to active. When active, an action runs when a trigger is fired.
@@ -1681,7 +1706,7 @@ ibmcloud fn rule enable RULE_NAME
 
 <br />
 
-### ibmcloud fn rule get
+### `ibmcloud fn rule get`
 {: #cli_rule_get}
 
 Get metadata that describes a specific rule.
@@ -1710,7 +1735,8 @@ ibmcloud fn rule get myrule
 
 
 <br />
-### ibmcloud fn rule list
+
+### `ibmcloud fn rule list`
 {: #cli_rule_list}
 
 List all of the rules that you created or a specific number of rules.
@@ -1746,7 +1772,8 @@ ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip 
 
 
 <br />
-### ibmcloud fn rule status
+
+### `ibmcloud fn rule status`
 {: #cli_rule_status}
 
 See whether a rule is active or inactive. Run the `ibmcloud fn rule disable` or `ibmcloud fn run enable` commands to change the status.
@@ -1765,7 +1792,8 @@ ibmcloud fn rule status RULE_NAME
 
 
 <br />
-### ibmcloud fn rule update
+
+### `ibmcloud fn rule update`
 {: #cli_rule_update}
 
 To change which triggers are associated with which rules, you can update a rule.
@@ -1790,7 +1818,7 @@ ibmcloud fn rule update RULE_NAME TRIGGER_NAME ACTION_NAME
 {: #cli_sdk}
 
 
-### ibmcloud fn <ph class="ignoreSpelling">sdk</ph> install
+### `ibmcloud fn sdk install`
 {: #cli_sdk_install}
 
 Install an SDK.
@@ -1827,7 +1855,7 @@ ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 {: #cli_service}
 
 
-### ibmcloud fn service bind
+### `ibmcloud fn service bind`
 {: #cli_service_bind}
 
 Bind service credentials to an action or package.
@@ -1864,7 +1892,8 @@ ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INST
 
 
 <br />
-### ibmcloud fn service unbind
+
+### `ibmcloud fn service unbind`
 {: #cli_service_unbind}
 
 Unbind service credentials from an action or package.
@@ -1901,7 +1930,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
 {: #cli_trigger}
 
 
-### ibmcloud fn trigger create
+### `ibmcloud fn trigger create`
 {: #cli_trigger_create}
 
 Create a trigger.
@@ -1943,7 +1972,8 @@ ibmcloud fn trigger create mytrigger --param name Bob
 
 
 <br />
-### ibmcloud fn trigger delete
+
+### `ibmcloud fn trigger delete`
 {: #cli_trigger_delete}
 
 Delete a trigger.
@@ -1962,7 +1992,8 @@ ibmcloud fn trigger delete mytrigger
 
 
 <br />
-### ibmcloud fn trigger fire
+
+### `ibmcloud fn trigger fire`
 {: #cli_trigger_fire}
 
 Test a trigger by firing it, rather than waiting for it to be triggered automatically.
@@ -1996,7 +2027,8 @@ ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 
 
 <br />
-### ibmcloud fn trigger get
+
+### `ibmcloud fn trigger get`
 {: #cli_trigger_get}
 
 Get metadata that describes a specific trigger.
@@ -2025,7 +2057,7 @@ ibmcloud fn trigger get mytrigger
 
 <br />
 
-### ibmcloud fn trigger list
+### `ibmcloud fn trigger list`
 {: #cli_trigger_list}
 
 List all of the triggers that you created or a specific number of triggers.
@@ -2062,7 +2094,7 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 
 <br />
 
-### ibmcloud fn trigger update
+### `ibmcloud fn trigger update`
 {: #cli_trigger_update}
 
 Update a trigger.

@@ -34,7 +34,7 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
-The fully qualified name of an entity is `/namespaceName/[packageName]/entityName`.
+The fully qualified name of an entity is `/namespaceName/packageName/entityName`.
 
 ### What happens when I create a namespace?
 
@@ -59,6 +59,8 @@ View the API keys that are associated with a service ID.
 ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
 {: pre}
+
+</br>
 
 Do not delete API keys.
 {: tip}

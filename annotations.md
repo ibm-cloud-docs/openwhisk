@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: annotations, annotate, package, parameters, actions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 {{site.data.keyword.openwhisk}} actions, triggers, rules, and packages (collectively referred to as entities) can include annotations.
 {: shortdesc}
 
-Annotations are attached to entities like parameters. Annotations consist of a `key` that defines a name and `value` that defines the value. Annotations are most commonly used to document actions and packages. Many of the packages in the {{site.data.keyword.openwhisk_short}} catalog carry annotations, such as a description of the functionality that is offered by its actions, parameters to use at package binding time, invoke-time parameters, or whether a parameter is a secret. Annotations are invented as needed, for example, to allow for UI integration.
+Annotations are attached to entities like parameters. Annotations consist of a `key` that defines a name and `value` that defines the value. Annotations are most commonly used to document actions and packages. Packages in the {{site.data.keyword.openwhisk_short}} catalog carry annotations. These annotations include descriptions of the functionality that is offered by its actions, parameters to use at package binding time, invoke-time parameters, or whether a parameter is a secret. Annotations are invented as needed, for example, to allow for UI integration.
 
 You can document an entity from the CLI by using the `--annotation` or `-a` flag.
 
@@ -107,8 +107,8 @@ For sequence-related activations, the system generates the following annotations
 | --- | --- |
 | `topmost` | This annotation is only present for an outermost sequence action. |
 | `causedBy` | This annotation is only present for actions that are contained in a sequence. |
-| `waitTime` | The time spent waiting in the internal {{site.data.keyword.openwhisk_short}} system. This time is roughly the time spent between the controller receiving the activation request and when the invoker provisioned a container for the action. This value is only present for non-sequence related activations. For sequences, this information can be derived from the `topmost` sequence activation record. |
-| `initTime` | The time spent initializing the function. If this value is present, the action required initialization and represents a cold start. A warm activation skips initialization, and in this case, the annotation is not generated. |
+| `waitTime` | The time that is spent waiting in the internal {{site.data.keyword.openwhisk_short}} system. This time is roughly the time that is spent between the receipt of the activation request and when the invoker provisioned a container for the action. This value is only present for non-sequence related activations. For sequences, this information can be derived from the `topmost` sequence activation record. |
+| `initTime` | The time that is spent initializing the function. If this value is present, the action required initialization and represents a cold start. A warm activation skips initialization, and in this case, the annotation is not generated. |
 
 The following example shows these annotations as they might appear in an activation record:
 
