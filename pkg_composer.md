@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: composer, openwhisk, compositions, sequence, branch
 
@@ -29,7 +29,7 @@ subcollection: cloud-functions
 
 {{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with more combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), which you can use to create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
 
-You can also use the open source project [Kui](https://github.com/ibm/kui) to make it easier to create, deploy, and visualize your Composer source code. See [Kui on GitHub](https://github.com/ibm/kui) for more information on how to use Kui with Composer.
+You can also use the open source project [Kui](https://github.com/ibm/kui) to make it easier to create, deploy, and visualize your Composer source code. For more information, see [Kui on GitHub](https://github.com/ibm/kui).
 {: note}
 
 ## Installing the Composer library for JavaScript or Python 3
@@ -123,23 +123,23 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
 
 1.  Create Composer source code with the nodeJS or Python 3 libraries. For example, create a `demo.js` file.
 2.  Compile the Composer source code into a JSON file.
-    *   In JavaScript:
+    *   **JavaScript**
         ```
         compose demo.js > demo.json
         ```
         {: pre}
-    *   In Python 3:
+    *   **Python 3**
         ```
         pycompose demo.js > demo.json
         ```
         {: pre}
 3.  Deploy the code to {{site.data.keyword.openwhisk}}.
-    *   In JavaScript: Include the `-w` flag to overwrite any existing deployment that is named `demo`.
+    *   In JavaScript, include the `-w` flag to overwrite any existing deployment that is named `demo`.
         ```
         deploy demo demo.json -w
         ```
         {: pre}
-    *   In Python 3: Include the `-w` flag to overwrite any existing deployment that is named `demo`.
+    *   In Python 3, include the `-w` flag to overwrite any existing deployment that is named `demo`.
         ```
         pydeploy demo demo.json -w
         ```
@@ -150,7 +150,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
     ```
     {: pre}
 
-{{site.data.keyword.openwhisk}} executes the code that you deployed as a special kind of action. For more information, see the documentation on [conductor actions](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md).
+{{site.data.keyword.openwhisk}} executes the code that you deployed as a special action. For more information, see the documentation on [conductor actions](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md).
 
 ## Extending sequences with Composer
 {: #extending}

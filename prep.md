@@ -28,12 +28,12 @@ subcollection: cloud-functions
 # Preparing apps for actions
 {: #prep}
 
-Whether you bring an app with you to make it serverless or you write a script specifically to respond to an event, your code must meet certain requirements before you create an action from it.
+Whether you bring an app with you, or you write a script specifically to respond to an event, your code must meet certain requirements before you create an action from it.
 {: shortdesc}
 
 Each programming language has specific requirements to run, but most have the following general requirements:
 - The expected name for the entry point into the code is `main` by default. If your entry point is not `main`, a custom name can be specified when the action is created, so take note of that name.
-- Input parameters into your app and output results from your app must be formatted into a specific structure that can be passed between entities. The structure depends on your code language. For example, with Python apps, the input parameters must be a dictionary and the result of your app must be structured as a dictionary. Because you can also pass parameters in a structured object to your action, like JSON for example, you might structure your code to expect an input parameter with JSON values from certain fields, like `name` and `place`.
+- Input parameters into your app and output results from your app must be formatted into a specific structure that can be passed between entities. The structure depends on your code language. For example, with Python apps, the input parameters must be a dictionary and the result of your app must be structured as a dictionary. Because you can also pass parameters in a structured object to your action. In JSON, for example, you might structure your code to expect an input parameter with JSON values from certain fields, like `name` and `place`.
 
     **JSON input example**
     ```json
@@ -49,7 +49,7 @@ Each programming language has specific requirements to run, but most have the fo
     ```
     {: codeblock}
 - If your app contains multiple files, they must be combined into one single file to be used in an action. You can either rewrite your code into one file or you can package the files and dependencies into a single archive file. If your runtime is not supported, you can package your app in a Docker image.
-- Dependencies must also be packaged with your app. The available runtimes come with some pre-installed packages and extensions. [Review the reference information for your runtime](/docs/openwhisk?topic=cloud-functions-runtimes) to see if a dependency of your app is already included with the runtime. If your dependency is included, you are not required to package it with your app.
+- Dependencies must also be packaged with your app. The available runtimes come with some pre-installed packages and extensions. [Review the reference information for your runtime](/docs/openwhisk?topic=cloud-functions-runtimes) to see whether a dependency of your app is already included with the runtime. If your dependency is included, you are not required to package it with your app.
 
     Code compilation is not required, but if possible for your runtime, compiling your code in advance can improve performance.
     {: tip}
@@ -76,7 +76,7 @@ Your code is compiled into an executable and embedded into a Docker image. The e
 
 To package your app, complete the following steps.
 
-To package your code as a Docker image:
+To package your code as a Docker image, run the following command.
 1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
   ```
   ibmcloud fn sdk install docker
@@ -100,7 +100,7 @@ To package your code as a Docker image:
   ```
   {: codeblock}
 
-3. Optional: Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
+3. (Optional) Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
   * Your code must be located inside the container at `/action/exec`.
   * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
   * The program can log to `stdout` or `stderr`.
@@ -282,7 +282,7 @@ function main(params) {
 
 A call is made to the NASA APOD API, and fields are extracted from the JSON result.
 
-Next, [create](/docs/openwhisk?topic=cloud-functions-actions) and [invoke the action](/docs/openwhisk?topic=cloud-functions-test) to test it. The following example object is returned:
+Next, [create](/docs/openwhisk?topic=cloud-functions-actions), and [invoke the action](/docs/openwhisk?topic=cloud-functions-test) to test it. The following example object is returned:
 
 ```
 {
@@ -392,7 +392,7 @@ Before you begin, [review the packages that are included with the JavaScript run
         ```
         {: pre}
 
-    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle depends other dependencies because these are not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependcies are not included with the file `bundle.js`.
     {: tip}
 
 
@@ -460,7 +460,7 @@ Although you can create a compressed file on any Go platform by cross-compiling 
 - The expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created.
 - The package must be public.
 
-Example:
+**Example**
 ```go
     package main
 
@@ -486,7 +486,7 @@ Example:
 ### Packaging multiple Go source files
 {: #prep_go_multi}
 
-1. Create a top-level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
+1. Create a top level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
   ```
   go-action-hello/
   └── src
@@ -497,7 +497,7 @@ Example:
   ```
   {: screen}
 
-2. Import subpackages. Example of `main/main.go` importing the hello subpackage:
+2. Import subpackages. Example of `main/main.go` importing the hello subpackage.
 
   ```go
   package main
@@ -537,7 +537,7 @@ Example:
   ```
   {: codeblock}
 
-3. Compile the code. Create a .zip archive of the `src` directory. Do not include the top-level project directory `go-action-project/`.
+3. Compile the code. Create a .zip archive of the `src` directory. Do not include the top level project directory `go-action-project/`.
 
   ```bash
   cd src
@@ -566,7 +566,7 @@ Example:
 ### Packaging Go code with vendor libraries
 {: #prep_go_vendor}
 
-You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go files. The `vendor` directory does not work at the top-level. You must place the `vendor` directory within `src/` and inside a package directory.
+You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go files. The `vendor` directory does not work at the top level. You must place the `vendor` directory within `src/` and inside a package directory.
 {: shortdesc}
 
 Example log package `logrus` in a `hello.go` app.
@@ -684,7 +684,7 @@ Compile a single source file that doesn't depend on external libraries. Use the 
 
 **Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app.
 
@@ -702,7 +702,7 @@ The Docker container reads the content of the file from `stdin`, and writes a .z
 
 **Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app.
 
@@ -718,7 +718,7 @@ Package your app.
 
   The directory `Sources/` contains a file that is named `main.swift`.
 
-  The `Package.swift` must start with a comment specifying version `4.2` for the Swift tooling:
+  The `Package.swift` must start with a comment that specifies version `4.2` for the Swift tooling:
 
   ```swift
   // swift-tools-version:4.2
@@ -809,7 +809,7 @@ zip -r helloPython.zip __main__.py helper.py
 ### Packaging Python code with a virtual environment in .zip files
 {: #prep_python_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. The virtual environment allows you to link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/).
+You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/).
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
@@ -875,7 +875,7 @@ Before you create an action, get your Ruby code ready.
 
 You can package a Ruby app and dependent packages in a .zip file. For example, you can package an action with a second file called `helper.rb`.
 
-Create an archive containing your source files. The source file that contains the entry point must be named `main.rb`.
+Create an archive that contains your source files. The source file that contains the entry point must be named `main.rb`.
 
 ```bash
 zip -r helloRuby.zip main.rb helper.rb
@@ -949,7 +949,7 @@ public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 
 
 * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
-* You can customize the method name of your Java action. This is done by specifying the fully qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
+* You can customize the method name of your Java action by specifying the fully qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
 * The type of action is determined by using the source file extension.
 
 **Example**
@@ -1080,7 +1080,7 @@ To compile, test and archive .NET Core projects, you must:
 
 
 
-To package your code:
+To package your code, run the following commands.
 
   1. Create a C# project called `Apache.OpenWhisk.Example.Dotnet`.
 
