@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -49,14 +49,14 @@ Run these commands to manage the entities that make up your functions.
 Create an action.
 
 ```
-ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web yes|true|raw|no|false] [--web-secure <em>SECRET</em>]
+ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
-   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
+   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
    <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
    <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
@@ -151,7 +151,7 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
    <dd>Secure the web action. The <em>VALUE</em> for <em>SECRET</em> can be <em>true</em>, <em>false</em>, or any string. This option can be used only with the `--web` option.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn action create hello folder/hello_world.js
@@ -173,11 +173,11 @@ ibmcloud fn action create <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
 You can clean up your namespace by deleting actions that you do not want to use any longer.
 
 ```
-ibmcloud fn action delete <em>ACTION_NAME</em>
+ibmcloud fn action delete ACTION_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn action delete helloworld
@@ -198,11 +198,11 @@ ibmcloud fn action delete <em>ACTION_NAME</em>
 Get metadata that describes a specific action.
 
 ```
-ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILENAME</em>] [--summary] [--url]
+ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--url]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>ACTION_NAME</em></dt>
@@ -221,14 +221,14 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as <em>FILENAME</em>] [--sum
   <dd>Get the URL only for the action. This flag is optional.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn action get hello
 ```
 {: pre}
 
-Output:
+**Output**
 ```
 ok: got action hello
 {
@@ -241,11 +241,11 @@ ok: got action hello
     },
     "annotations": [
         {
-            "<em>KEY</em>": "exec",
-            "<em>VALUE</em>": "nodejs:6"
+            "KEY": "exec",
+            "VALUE": "nodejs:6"
         }
     ],
-    "<em>LIMIT</em>s": {
+    "LIMIT s": {
         "timeout": 60000,
         "memory": 256,
         "logs": 10
@@ -265,11 +265,11 @@ ok: got action hello
 Run an action to test it.
 
 ```
-ibmcloud fn action invoke <em>ACTION_NAME</em> [--blocking] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--result]
+ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-file FILE] [--result]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>ACTION_NAME</em></dt>
@@ -289,7 +289,7 @@ ibmcloud fn action invoke <em>ACTION_NAME</em> [--blocking] [--param <em>KEY</em
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn action invoke hello --blocking
 ```
@@ -303,11 +303,11 @@ ibmcloud fn action invoke hello --blocking
 List all of the actions that you created or a specific number of actions.
 
 ```
-ibmcloud fn action list <em>ACTION_NAME</em> [--limit <em>NUMBER_OF_ACTIONS</em>] [--name-sort] [--skip <em>NUMBER_OF_ACTIONS</em>]
+ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [--skip NUMBER_OF_ACTIONS]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>ACTION_NAME</em></dt>
@@ -324,7 +324,7 @@ ibmcloud fn action list <em>ACTION_NAME</em> [--limit <em>NUMBER_OF_ACTIONS</em>
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn action list
@@ -339,11 +339,11 @@ ibmcloud fn action list <em>ACTION_NAME</em> [--limit <em>NUMBER_OF_ACTIONS</em>
 Update an action or the app within an action.
 
 ```
-ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize <em>LIMIT</em>] [--main ENTRY_METHOD_NAME] [--native] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em>] [--timeout <em>LIMIT</em>] [--web yes|true|raw|no|false] [--web-secure <em>SECRET</em>]
+ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
@@ -441,7 +441,7 @@ ibmcloud fn action update <em>ACTION_NAME</em> APP_<em>FILE</em> [--annotation <
   <dd>Secure the web action. The <em>VALUE</em> for <em>SECRET</em> can be <em>true</em>, <em>false</em>, or any string. This option can be used only with the `--web` option.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn action update hello folder/hello_world.js
 ```
@@ -461,12 +461,12 @@ ibmcloud fn action update hello folder/hello_world.js
 Get metadata that describes a specific activation.
 
 ```
-ibmcloud fn activation get [<em>ACTIVATION_ID</em>] [<em>FIELD_FILTER</em>] [--last] [--summary]
+ibmcloud fn activation get [ACTIVATION_ID] [FIELD_FILTER] [--last] [--summary]
 ```
 {: pre}
 
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt><em>ACTIVATION_ID</em></dt>
@@ -483,7 +483,7 @@ ibmcloud fn activation get [<em>ACTIVATION_ID</em>] [<em>FIELD_FILTER</em>] [--l
   </dl>
 
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 ```
@@ -497,12 +497,12 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 List all of the activation IDs for all of the actions in a package.
 
 ```
-ibmcloud fn activation list [--full] [--limit <em>NUMBER_OF_ACTIVATIONS</em>] [--since <em>DAY_OF_THE_WEEK</em>, <em>DAY</em>, <em>MONTH</em>, <em>YEAR</em>] [--skip <em>NUMBER_OF_ACTIVATIONS</em>] [--upto <em>DAY_OF_THE_WEEK</em>, <em>DAY</em>, <em>MONTH</em>, <em>YEAR</em>]
+ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since DAY_OF_THE_WEEK, DAY, MONTH, YEAR] [--skip NUMBER_OF_ACTIVATIONS] [--upto DAY_OF_THE_WEEK, DAY, MONTH, YEAR]
 ```
 {: pre}
 
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt>--full, -f</dt>
@@ -521,7 +521,7 @@ ibmcloud fn activation list [--full] [--limit <em>NUMBER_OF_ACTIVATIONS</em>] [-
   <dd>List activations that were created before the date specified. Measured in milliseconds. Example: Th, 01, Jan 1970</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn activation list
 ```
@@ -543,11 +543,11 @@ activations
 Get logs for a specific activation.
 
 ```
-ibmcloud fn activation logs [<em>ACTIVATION_ID</em>] [--last] [--strip]
+ibmcloud fn activation logs [ACTIVATION_ID] [--last] [--strip]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt><em>ACTIVATION_ID</em></dt>
@@ -560,7 +560,7 @@ ibmcloud fn activation logs [<em>ACTIVATION_ID</em>] [--last] [--strip]
   <dd>Display the log message only; exclude the timestamp and stream information. This flag is optional.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 ```
@@ -574,11 +574,11 @@ ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 View a streaming, live list of activations for an action or a namespace. You can press `CTRL+C` to exit the polling.
 
 ```
-ibmcloud fn activation poll [/<em>NAMESPACE</em>] [<em>ACTION_NAME</em>] [--exit <em>SECONDS</em>] [--since-days <em>DAYS</em>] [-since-hours <em>HOURS</em>] [--since-minutes <em>MINUTES</em>] [--since-seconds <em>SECONDS</em>]
+ibmcloud fn activation poll [NAMESPACE] [ACTION_NAME] [--exit SECONDS] [--since-days DAYS] [-since-hours HOURS] [--since-minutes MINUTES] [--since-seconds SECONDS]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt>/<em>NAMESPACE</em></dt>
@@ -603,7 +603,7 @@ ibmcloud fn activation poll [/<em>NAMESPACE</em>] [<em>ACTION_NAME</em>] [--exit
   <dd>Start polling for activations a specified number of seconds ago. This flag is optional.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn activation poll
 ```
@@ -617,12 +617,12 @@ ibmcloud fn activation poll
 Get the result from a specific activation.
 
 ```
-ibmcloud fn activation result [<em>ACTIVATION_ID</em>] [--last] [--strip]
+ibmcloud fn activation result [ACTIVATION_ID] [--last] [--strip]
 ```
 {: pre}
 
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt><em>ACTIVATION_ID</em></dt>
@@ -633,7 +633,7 @@ ibmcloud fn activation result [<em>ACTIVATION_ID</em>] [--last] [--strip]
 
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 ```
@@ -653,11 +653,11 @@ ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 Create an API.
 
 ```
-ibmcloud fn api create BASE_PATH API_PATH API_VERB <em>ACTION_NAME</em>] [--apiname API_NAME] [--config-file <em>FILE</em>] [--response-type TYPE]
+ibmcloud fn api create BASE_PATH API_PATH API_VERB ACTION_NAME] [--apiname API_NAME] [--config-file FILE] [--response-type TYPE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -684,14 +684,14 @@ ibmcloud fn api create BASE_PATH API_PATH API_VERB <em>ACTION_NAME</em>] [--apin
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: created API /hello/world GET for action /_/hello
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
@@ -711,7 +711,7 @@ ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -735,7 +735,7 @@ ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn api delete /hello /world get
@@ -755,7 +755,7 @@ ibmcloud fn api get BASE_PATH API_NAME [--format OUTPUT_TYPE] [--full]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -773,7 +773,7 @@ ibmcloud fn api get BASE_PATH API_NAME [--format OUTPUT_TYPE] [--full]
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn api get /hello /world
@@ -792,7 +792,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -822,14 +822,12 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn api list
   ```
   {: pre}
-
-
 
 
 <br /><br />
@@ -843,11 +841,11 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 Use a manifest file to deploy a collection of packages, actions, triggers and rules.
 
 ```
-ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em>] [--deployment <em>FILE</em>] [--manifest <em>FILE</em>] [--namespace <em>NAMESPACE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--preview] [--project PATH] [--strict] [--verbose]
+ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment FILE] [--manifest FILE] [--namespace NAMESPACE] [--param KEY VALUE] [--param-file FILE] [--preview] [--project PATH] [--strict] [--verbose]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -889,7 +887,7 @@ ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn deploy --manifest folder/manifest.yaml
@@ -904,11 +902,11 @@ ibmcloud fn deploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em
 Use a manifest file to undeploy a collection of packages, actions, triggers and rules.
 
 ```
-ibmcloud fn undeploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</em>] [--deployment <em>FILE</em>] [--manifest <em>FILE</em>] [--namespace <em>NAMESPACE<em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>] [--preview] [--project PATH] [--strict] [--verbose]
+ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment FILE] [--manifest FILE] [--namespace NAMESPACE] [--param KEY VALUE] [--param-file FILE] [--preview] [--project PATH] [--strict] [--verbose]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt>--apihost HOST</dt>
@@ -949,7 +947,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth <em>KEY</em>] [--config <em>FILE</
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn undeploy --manifest folder/manifest.yaml
@@ -974,14 +972,14 @@ ibmcloud fn list [--name-sort]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt>--name-sort, -n</dt>
    <dd>Sort each group of returned entities by name, otherwise each group is sorted by creation date.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn list
@@ -1002,11 +1000,11 @@ ibmcloud fn list [--name-sort]
 Create an IAM namespace.
 
 ```
-ibmcloud fn namespace create <em>NAMESPACE</em> [--description DESCRIPTION] 
+ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION] 
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1018,7 +1016,7 @@ ibmcloud fn namespace create <em>NAMESPACE</em> [--description DESCRIPTION]
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn namespace create HBCTeamProd --description "HBC Team Prod Environment. See Beth for information about this namespace."
@@ -1033,12 +1031,12 @@ ibmcloud fn namespace create <em>NAMESPACE</em> [--description DESCRIPTION]
 Delete an IAM namespace.
 
 ```
-ibmcloud fn namespace delete <em>NAMESPACE</em>
+ibmcloud fn namespace delete NAMESPACE
 ```
 {: pre}
 
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn namespace delete mynamespace
@@ -1054,11 +1052,11 @@ ibmcloud fn namespace delete <em>NAMESPACE</em>
 Get the entities for or the metadata information from a Cloud Foundry or IAM namespace.
 
 ```
-ibmcloud fn namespace list <em>NAMESPACE</em> [--auth <em>KEY</em>] [--name-sort] [--properties] 
+ibmcloud fn namespace list NAMESPACE [--auth KEY] [--name-sort] [--properties] 
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1076,7 +1074,7 @@ ibmcloud fn namespace list <em>NAMESPACE</em> [--auth <em>KEY</em>] [--name-sort
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn namespace get user@domain.com_dev --properties
@@ -1102,11 +1100,11 @@ ibmcloud fn namespace list <em>NAMESPACE</em> [--auth <em>KEY</em>] [--name-sort
 List the available Cloud Foundry and IAM namespaces.
 
 ```
-ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_OF_<em>NAMESPACE</em>S] [--name-sort] [--skip NUMBER_OF_<em>NAMESPACE</em>S] 
+ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESPACES] [--name-sort] [--skip NUMBER_OF_NAMESPACES] 
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1130,7 +1128,7 @@ ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn namespace list
@@ -1145,11 +1143,11 @@ ibmcloud fn namespace list [--auth <em>KEY</em>] [--cf] [--iam] [--limit NUMBER_
 Change the name or description of an IAM namespace.
 
 ```
-ibmcloud fn namespace update <em>NAMESPACE</em> [NEW_<em>NAMESPACE</em>_NAME] [--description DESCRIPTION] 
+ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCRIPTION] 
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1164,7 +1162,7 @@ ibmcloud fn namespace update <em>NAMESPACE</em> [NEW_<em>NAMESPACE</em>_NAME] [-
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn namespace update HBCTeamProd HBCTeamStaging
@@ -1185,11 +1183,11 @@ ibmcloud fn namespace update <em>NAMESPACE</em> [NEW_<em>NAMESPACE</em>_NAME] [-
 Bind parameters to a package. All of the actions within the package inherit those parameters unless otherwise specified.
 
 ```
-ibmcloud fn package bind <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt><em>PACKAGE_NAME</em></dt>
@@ -1208,7 +1206,7 @@ ibmcloud fn package bind <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY<
   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package bind --param name Bob
@@ -1224,11 +1222,11 @@ ibmcloud fn package bind <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY<
 Create a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 
 ```
-ibmcloud fn package create <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
   <dt><em>PACKAGE_NAME</em></dt>
@@ -1250,7 +1248,7 @@ ibmcloud fn package create <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
   <dd>When specified without a value or with a value of yes, the package is shared with other users.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package create hellopkg
@@ -1271,18 +1269,18 @@ ibmcloud fn package create <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 You can clean up your namespace by deleting packages that you do not want to use any longer.
 
 ```
-ibmcloud fn package delete <em>PACKAGE_NAME</em>
+ibmcloud fn package delete PACKAGE_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package delete hello
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: deleted hello
   ```
@@ -1300,7 +1298,7 @@ ibmcloud fn package get <em>PACKAGE_NAME</em> [--summary]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
   <dl>
    <dt><em>PACKAGE_NAME</em></dt>
@@ -1310,7 +1308,7 @@ ibmcloud fn package get <em>PACKAGE_NAME</em> [--summary]
    <dd>Get a summary of the package details. Parameters with the prefix "*" are bound. This flag is optional.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn package get hello
@@ -1325,11 +1323,11 @@ ibmcloud fn package get hello
 List all of the packages that you created or a specific number of packages.
 
 ```
-ibmcloud fn package list [<em>NAMESPACE</em>] [--limit NUMBER_OF_PACKAGES] [--name-sort] [--skip NUMBER_OF_PACKAGES]
+ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] [--skip NUMBER_OF_PACKAGES]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>NAMESPACE</em></dt>
@@ -1346,7 +1344,7 @@ ibmcloud fn package list [<em>NAMESPACE</em>] [--limit NUMBER_OF_PACKAGES] [--na
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package list
@@ -1364,11 +1362,11 @@ ibmcloud fn package list [<em>NAMESPACE</em>] [--limit NUMBER_OF_PACKAGES] [--na
 Refresh the package bindings for all of the packages within a specific namespace.
 
 ```
-ibmcloud fn package refresh /<em>NAMESPACE</em>
+ibmcloud fn package refresh /NAMESPACE
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1376,7 +1374,7 @@ ibmcloud fn package refresh /<em>NAMESPACE</em>
    <dd>A namespace, beginning with /. This flag is required. Run <code>ibmcloud fn namespace list</code> to get a list of namespaces to choose from.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package refresh /user@domain.com_dev
@@ -1391,11 +1389,11 @@ ibmcloud fn package refresh /<em>NAMESPACE</em>
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 
 ```
-ibmcloud fn package update <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1419,14 +1417,14 @@ ibmcloud fn package update <em>PACKAGE_NAME</em> [--annotation <em>ANNOTATION_KE
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn package create hellopkg
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: created hellopkg
   ```
@@ -1444,14 +1442,14 @@ Set global properties for your CLI environment or view properties about the <cod
 ### ibmcloud fn property get
 {: #cli_prop_get}
 
-View the metadata details for a property from the <code>wsk</code> CLI.
+View the metadata details for a property from the `wsk` CLI.
 
 ```
-ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
+ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt>--all</dt>
@@ -1486,7 +1484,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION</em>] [--aut
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn property get --cliversion
@@ -1501,11 +1499,11 @@ ibmcloud fn property get [--apihost HOST] [--apiversion <em>VERSION</em>] [--aut
 Set a property. At least one flag is required.
 
 ```
-ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
+ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt>--apihost <em>HOST</em></dt>
@@ -1528,14 +1526,14 @@ ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION</em>] [--aut
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn property set --namespace myNamespace
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: whisk namespace set to myNamespace
   ```
@@ -1549,11 +1547,11 @@ ibmcloud fn property set [--apihost HOST] [--apiversion <em>VERSION</em>] [--aut
 Unset a property for the <code>wsk</code> CLI. At least one flag is required.
 
 ```
-ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION</em>] [--auth <em>KEY</em>] [--cert <em>STRING</em>] [--key <em>STRING</em>] [--namespace <em>NAMESPACE</em>]
+ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt>--apihost <em>HOST</em></dt>
@@ -1576,10 +1574,10 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION</em>] [--a
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
-  ibmcloud fn property unset --key my<em>KEY</em>
+  ibmcloud fn property unset --key myKEY
   ```
   {: pre}
 
@@ -1596,18 +1594,18 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion <em>VERSION</em>] [--a
 Create a rule to associate a trigger with an action. Before you can create a rule, create a trigger and an action first.
 
 ```
-ibmcloud fn rule create <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME</em>
+ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule create myrule mytrigger myaction
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: created myrule
   ```
@@ -1621,11 +1619,11 @@ ibmcloud fn rule create <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME
 To clean up your namespace, remove rules you no longer need.
 
 ```
-ibmcloud fn rule delete <em>RULE_NAME</em> [--disable]
+ibmcloud fn rule delete RULE_NAME [--disable]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>RULE_NAME</em></dt>
@@ -1636,7 +1634,7 @@ ibmcloud fn rule delete <em>RULE_NAME</em> [--disable]
   </dl>
 
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn rule delete myrule
@@ -1651,11 +1649,11 @@ ibmcloud fn rule delete myrule
 Change the status of a rule to inactive and stop it from running an action when a trigger is fired.
 
 ```
-ibmcloud fn rule disable <em>RULE_NAME</em>
+ibmcloud fn rule disable RULE_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule disable myrule
@@ -1670,11 +1668,11 @@ ibmcloud fn rule disable <em>RULE_NAME</em>
 Change the status of a rule from inactive to active. When active, an action runs when a trigger is fired.
 
 ```
-ibmcloud fn rule enable <em>RULE_NAME</em>
+ibmcloud fn rule enable RULE_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule enable myrule
@@ -1689,11 +1687,11 @@ ibmcloud fn rule enable <em>RULE_NAME</em>
 Get metadata that describes a specific rule.
 
 ```
-ibmcloud fn rule get <em>RULE_NAME</em> [--summary]
+ibmcloud fn rule get RULE_NAME [--summary]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>RULE_NAME</em></dt>
@@ -1703,7 +1701,7 @@ ibmcloud fn rule get <em>RULE_NAME</em> [--summary]
   <dd>Get a summary of the rule details.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn rule get myrule
@@ -1718,11 +1716,11 @@ ibmcloud fn rule get myrule
 List all of the rules that you created or a specific number of rules.
 
 ```
-ibmcloud fn rule list <em>RULE_NAME</em> [--limit NUMBER_OF_RULES] [--name-sort] [--skip NUMBER_OF_RULES]
+ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip NUMBER_OF_RULES]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>RULE_NAME</em></dt>
@@ -1739,7 +1737,7 @@ ibmcloud fn rule list <em>RULE_NAME</em> [--limit NUMBER_OF_RULES] [--name-sort]
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule list
@@ -1754,11 +1752,11 @@ ibmcloud fn rule list <em>RULE_NAME</em> [--limit NUMBER_OF_RULES] [--name-sort]
 See whether a rule is active or inactive. Run the `ibmcloud fn rule disable` or `ibmcloud fn run enable` commands to change the status.
 
 ```
-ibmcloud fn rule status <em>RULE_NAME</em>
+ibmcloud fn rule status RULE_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule status myrule
@@ -1773,11 +1771,11 @@ ibmcloud fn rule status <em>RULE_NAME</em>
 To change which triggers are associated with which rules, you can update a rule.
 
 ```
-ibmcloud fn rule update <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME</em>
+ibmcloud fn rule update RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn rule update myrule mytrigger myaction
@@ -1798,11 +1796,11 @@ ibmcloud fn rule update <em>RULE_NAME</em> <em>TRIGGER_NAME</em> <em>ACTION_NAME
 Install an SDK.
 
 ```
-ibmcloud fn sdk install <em>COMPONENT</em> [--limit <em>NUMBER_OF_TRIGGERS</em>]
+ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>COMPONENT</em></dt>
@@ -1814,7 +1812,7 @@ ibmcloud fn sdk install <em>COMPONENT</em> [--limit <em>NUMBER_OF_TRIGGERS</em>]
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn sdk install docker
@@ -1835,11 +1833,11 @@ ibmcloud fn sdk install <em>COMPONENT</em> [--limit <em>NUMBER_OF_TRIGGERS</em>]
 Bind service credentials to an action or package.
 
 ```
-ibmcloud fn service bind SERVICE PACKAGE_or_<em>ACTION_NAME</em> [--instance SERVICE_INSTANCE] [--keyname SERVICE_<em>KEY</em>]
+ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INSTANCE] [--keyname SERVICE_KEY]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1857,7 +1855,7 @@ ibmcloud fn service bind SERVICE PACKAGE_or_<em>ACTION_NAME</em> [--instance SER
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn service bind cloudant hello --instance CLOUDANT_SERVICE
@@ -1872,11 +1870,11 @@ ibmcloud fn service bind SERVICE PACKAGE_or_<em>ACTION_NAME</em> [--instance SER
 Unbind service credentials from an action or package.
 
 ```
-ibmcloud fn service unbind SERVICE PACKAGE_or_<em>ACTION_NAME</em>
+ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1888,7 +1886,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_<em>ACTION_NAME</em>
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn service unbind cloudant hello
@@ -1909,11 +1907,11 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_<em>ACTION_NAME</em>
 Create a trigger.
 
 ```
-ibmcloud fn trigger create <em>TRIGGER_NAME</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--feed <em>ACTION_NAME</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn trigger create TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--feed ACTION_NAME] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>TRIGGER_NAME</em></dt>
@@ -1937,7 +1935,7 @@ ibmcloud fn trigger create <em>TRIGGER_NAME</em> [--annotation <em>ANNOTATION_KE
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn trigger create mytrigger --param name Bob
 ```
@@ -1951,11 +1949,11 @@ ibmcloud fn trigger create mytrigger --param name Bob
 Delete a trigger.
 
 ```
-ibmcloud fn trigger delete <em>TRIGGER_NAME</em>
+ibmcloud fn trigger delete TRIGGER_NAME
 ```
 {: pre}
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn trigger delete mytrigger
@@ -1970,11 +1968,11 @@ ibmcloud fn trigger delete mytrigger
 Test a trigger by firing it, rather than waiting for it to be triggered automatically.
 
 ```
-ibmcloud fn trigger fire <em>TRIGGER_NAME</em> [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
 
@@ -1989,7 +1987,7 @@ ibmcloud fn trigger fire <em>TRIGGER_NAME</em> [--param <em>KEY</em> <em>VALUE</
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn trigger fire --param name Bob
@@ -2004,11 +2002,11 @@ ibmcloud fn trigger fire <em>TRIGGER_NAME</em> [--param <em>KEY</em> <em>VALUE</
 Get metadata that describes a specific trigger.
 
 ```
-ibmcloud fn trigger get <em>TRIGGER_NAME</em> [--summary]
+ibmcloud fn trigger get TRIGGER_NAME [--summary]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>TRIGGER_NAME</em></dt>
@@ -2018,7 +2016,7 @@ ibmcloud fn trigger get <em>TRIGGER_NAME</em> [--summary]
   <dd>Get a summary of the trigger details.</dd>
   </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
 ```
 ibmcloud fn trigger get mytrigger
@@ -2033,11 +2031,11 @@ ibmcloud fn trigger get mytrigger
 List all of the triggers that you created or a specific number of triggers.
 
 ```
-ibmcloud fn trigger list <em>TRIGGER_NAME</em> [--limit <em>NUMBER_OF_TRIGGERS</em>] [--name-sort] [--skip <em>NUMBER_OF_TRIGGERS</em>]
+ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort] [--skip NUMBER_OF_TRIGGERS]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>RULE_NAME</em></dt>
@@ -2054,7 +2052,7 @@ ibmcloud fn trigger list <em>TRIGGER_NAME</em> [--limit <em>NUMBER_OF_TRIGGERS</
 
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 
   ```
   ibmcloud fn trigger list
@@ -2070,11 +2068,11 @@ ibmcloud fn trigger list <em>TRIGGER_NAME</em> [--limit <em>NUMBER_OF_TRIGGERS</
 Update a trigger.
 
 ```
-ibmcloud fn trigger update <em>TRIGGER_NAME</em> [--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>] [--annotation-file <em>FILE</em>] [--param <em>KEY</em> <em>VALUE</em>] [--param-file <em>FILE</em>]
+ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
 
-<br /><strong>Command options</strong>:
+<br />**Command options**
 
    <dl>
    <dt><em>TRIGGER_NAME</em></dt>
@@ -2093,7 +2091,7 @@ ibmcloud fn trigger update <em>TRIGGER_NAME</em> [--annotation <em>ANNOTATION_KE
    <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
    </dl>
 
-<br /><strong>Example</strong>:
+<br />**Example**
 ```
 ibmcloud fn trigger update mytrigger --param name Jim
 ```
