@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-11"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -33,15 +33,15 @@ Whether you bring an app with you to make it serverless or you write a script sp
 
 Each programming language has specific requirements to run, but most have the following general requirements:
 - The expected name for the entry point into the code is `main` by default. If your entry point is not `main`, a custom name can be specified when the action is created, so take note of that name.
-- Input parameters into your app and output results from your app must be formatted into a specific structure that can be passed between entities. The structure depends on your code language. For example, with Python apps, the parameters must be input into your app as a dictionary and the result of your app must be structured as a dictionary. Because you can also pass parameters in a structured objects to your action, like JSON for example, you might structure your code to expect an input parameter with JSON values from certain fields, like `name` and `place`.
+- Input parameters into your app and output results from your app must be formatted into a specific structure that can be passed between entities. The structure depends on your code language. For example, with Python apps, the input parameters must be a dictionary and the result of your app must be structured as a dictionary. Because you can also pass parameters in a structured object to your action, like JSON for example, you might structure your code to expect an input parameter with JSON values from certain fields, like `name` and `place`.
 
-    JSON input example:
+    **JSON input example**
     ```json
     {"name": "Dorothy", "place": "Kansas"}
     ```
     {: codeblock}
 
-    JavaScript example:
+    **JavaScript example**
     ```javascript
     function main(params) {
         return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
@@ -69,12 +69,12 @@ You can use images from public registries only, such as an image that is publicl
 Your code is compiled into an executable and embedded into a Docker image. The executable interacts with the system by taking input from `stdin` and replying through `stdout`.
 {: shortdesc}
 
-Before you begin:
+**Before you begin**
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub ![External link icon](../icons/launch-glyph.svg "External link icon")](https://hub.docker.com).
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
-To package your app:
+To package your app, complete the following steps.
 
 To package your code as a Docker image:
 1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
@@ -89,7 +89,7 @@ To package your code as a Docker image:
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```c
   #include <stdio.h>
   int main(int argc, char *argv[]) {
@@ -100,11 +100,11 @@ To package your code as a Docker image:
   ```
   {: codeblock}
 
-3. Optional: Add additional code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
+3. Optional: Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
   * Your code must be located inside the container at `/action/exec`.
   * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
   * The program can log to `stdout` or `stderr`.
-  * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object which represents the result of the action.
+  * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object, which represents the result of the action.
   For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
 
 4. Build the Docker image and upload it using a supplied script.
@@ -132,7 +132,7 @@ To package your code as a Docker image:
 ## Preparing JavaScript apps
 {: #prep_js}
 
-Before you create an action, get your JavaScript code ready. Confirm that your code is structured properly, then decide if it needs packaged.
+Before you create an action, get your JavaScript code ready. Confirm that your code is structured properly, then decide whether it needs packaged.
 {: shortdesc}
 
 ### Structuring JavaScript code
@@ -144,14 +144,14 @@ Before you create an action, get your JavaScript code ready. Confirm that your c
 
 
 
-Example:
+**Example**
 ```javascript
   function main() {
       return {payload: 'Hello world'};
   }
   ```
 
-Example with multiple functions:
+**Example with multiple functions**
 
   ```javascript
   function main() {
@@ -171,7 +171,7 @@ Example with multiple functions:
 The JavaScript activation is synchronous when the main function either exits without executing a `return` statement or exits by executing a `return` statement that returns any value except a promise.
 {: shortdesc}
 
-Example of synchronous code:
+**Example of synchronous code.**
 
 ```javascript
 // each path results in a synchronous activation
@@ -222,7 +222,7 @@ function main(args) {
 ```
 {: codeblock}
 
-In the examples above, the following details are executed.
+In the examples, the following details are executed.
 * The `main` function returns a promise. The promise indicates that the activation isn't completed yet but is expected to in the future.
 * The `setTimeout()` JavaScript function waits for 2 seconds before calling the promise's callback function, which represents the asynchronous code.
 * The promise's callback accepts the arguments `resolve` and `reject`, which are both functions.
@@ -309,7 +309,7 @@ Next, [create](/docs/openwhisk?topic=cloud-functions-actions) and [invoke the ac
 You can package an app by using a JavaScript module bundler such as `[webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/)`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 1. Create a `package.json` file. Add `webpack` as a development dependency.
 
@@ -348,7 +348,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 3. Prepare your app code. In this example, which you can save as a file that is named `index.js`, the variable `global.main` is set as the main function of the app.
 
-    Example:
+    **Example**
     ```javascript
     function myAction(args) {
         const leftPad = require("left-pad")
@@ -378,14 +378,14 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 6. Create the action using the `npm` script or the CLI.
 
-    * Using the `npm` script:
+    * Run the following the `npm` script.
 
         ```
         npm run deploy
         ```
         {: pre}
 
-    * Using the CLI:
+    * Run the following CLI command.
 
         ```
         ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10
@@ -405,7 +405,9 @@ As an alternative to writing all your action code in a single JavaScript source 
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-1. In the root directory, create a `package.json` file. Example:
+1. In the root directory, create a `package.json` file. 
+
+**Example**
 
     ```json
     {
@@ -425,16 +427,17 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: pre}
 
-    **Note**: While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary dependencies, action invocations might not succeed.
+    While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary dependencies, action invocations might not succeed.
+    {: note}
 
-3. Create a `.zip` archive containing all files, including all dependencies.
+3. Create a `.zip` archive that contains all files, including all dependencies.
 
     ```
     zip -r action.zip *
     ```
     {: pre}
 
-    Windows users: Using the Windows Explorer action for creating the .zip file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} .zip actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the `zip` command instead.
+    **Windows users** Using the Windows Explorer action for creating the .zip file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} .zip actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the `zip` command instead.
     {: tip}
 
 
@@ -477,13 +480,13 @@ Example:
         // return the output JSON
         return msg
     }
-    ```
-    {: codeblock}
+  ```
+  {: codeblock}
 
 ### Packaging multiple Go source files
 {: #prep_go_multi}
 
-1. Create a top level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
+1. Create a top-level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
   ```
   go-action-hello/
   └── src
@@ -517,7 +520,7 @@ Example:
   ```
   {: codeblock}
 
-  Example of `hello/hello.go`:
+  Example of `hello/hello.go`.
 
   ```go
   package hello
@@ -534,7 +537,7 @@ Example:
   ```
   {: codeblock}
 
-3. Compile the code. Create a .zip archive of the `src` directory. Do **not** include the top level project directory `go-action-project/`.
+3. Compile the code. Create a .zip archive of the `src` directory. Do not include the top-level project directory `go-action-project/`.
 
   ```bash
   cd src
@@ -563,10 +566,10 @@ Example:
 ### Packaging Go code with vendor libraries
 {: #prep_go_vendor}
 
-You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go files. The `vendor` directory does not work at the top level. You must place the `vendor` directory within `src/` and inside a package directory.
+You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go files. The `vendor` directory does not work at the top-level. You must place the `vendor` directory within `src/` and inside a package directory.
 {: shortdesc}
 
-Example log package `logrus` in a `hello.go` app:
+Example log package `logrus` in a `hello.go` app.
 
 ```go
 package hello
@@ -594,7 +597,9 @@ func Hello(name string) map[string]interface{} {
 {: codeblock}
 
 </br>
-In this example, the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. You can use multiple tools such as [dep ![External link icon](../icons/launch-glyph.svg "External link icon")](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
+In this example, the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. 
+
+You can use multiple tools such as [<code>dep</code> ![External link icon](../icons/launch-glyph.svg "External link icon")](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
 
 You can use `dep` by creating a file `src/main/Gopkg.toml` describing the version and location of the libraries.
 
@@ -610,13 +615,10 @@ Populate the `vendor` directory, run `dep ensure`.
 
 
 
-
-
-
 ## Preparing Swift apps
 {: #prep_swift}
 
-Swift files must be compiled before an action is run. This delay is known as the cold-start delay. To avoid the cold-start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container holding your action is purged.
+Swift files must be compiled before an action is run. This delay is known as the cold-start delay. To avoid the cold-start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container with your action is purged.
 
 Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on macOS.
 {: important}
@@ -628,9 +630,9 @@ Swift actions run in a Linux environment. Swift on Linux is still in development
 
 The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [Codable ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [<code>Codable</code> ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
 
-Example:
+**Example**
 ```swift
 struct Input: Codable {
     let name: String?
@@ -652,7 +654,7 @@ This example takes an input parameter as `Codable Input` with field `name`, and 
 #### Handling errors in Swift
 {: #prep_swift_error}
 
-By using the Codable completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html) resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
+By using the `Codable` completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html) resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
 {: shortdesc}
 
 The following snippet shows an example of handling an error.
@@ -680,11 +682,11 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 
 Compile a single source file that doesn't depend on external libraries. Use the flag `-compile` with the name of the main method.
 
-Before you begin:
+**Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app:
+Package your app.
 
 ```bash
 docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
@@ -698,11 +700,11 @@ The Docker container reads the content of the file from `stdin`, and writes a .z
 ### Packaging Swift 4.2 multi-file projects and dependencies
 {: #prep_swift42_multi}
 
-Before you begin:
+**Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app:
+Package your app.
 
 1. To compile multiple files and include external dependencies, create the following directory structure.
 
@@ -714,7 +716,7 @@ To package your app:
   ```
   {: codeblock}
 
-  The directory `Sources/` contains a file named `main.swift`.
+  The directory `Sources/` contains a file that is named `main.swift`.
 
   The `Package.swift` must start with a comment specifying version `4.2` for the Swift tooling:
 
@@ -744,7 +746,7 @@ To package your app:
   ```
   {: codeblock}
 
-2. Create a .zip archive with the contents of the directory:
+2. Create a .zip archive with the contents of the directory.
 
   ```bash
   zip ../action-src.zip -r *
@@ -780,7 +782,7 @@ To package your app:
 - The expected name for the entry point method is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 {: shortdesc}
 
-Example:
+**Example**
 ```python
 def main(args):
 	name = args.get("name", "stranger")
@@ -796,7 +798,7 @@ Package Python code and dependent modules in a .zip file. In this example, the s
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app:
+To package your app, run the following command.
 
 ```bash
 zip -r helloPython.zip __main__.py helper.py
@@ -811,7 +813,7 @@ You can package Python dependencies by using a virtual environment, `virtualenv`
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app:
+Package your app by completing the following steps.
 
 1. Create a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install.
 
@@ -823,7 +825,7 @@ To package your app:
     * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
     * For `python:2`, use the Docker image `openwhisk/python2action`.
 
-   Example:
+   **Example**
    ```
    docker pull ibmfunctions/action-python-v3.7
    ```
@@ -844,9 +846,6 @@ To package your app:
     {: pre}
 
 
-
-
-
 ## Preparing Ruby apps
 {: #prep_ruby}
 
@@ -859,7 +858,8 @@ Before you create an action, get your Ruby code ready.
 * The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 
 
-Example:
+**Example**
+
 ```ruby
     def main(args)
       name = args["name"] || "stranger"
@@ -867,8 +867,8 @@ Example:
       puts greeting
       { "greeting" => greeting }
     end
-    ```
-    {: codeblock}
+```
+{: codeblock}
 
 ### Packaging Ruby code
 {: #prep_ruby_pkg}
@@ -897,7 +897,7 @@ Before you create an action, get your PHP code ready.
 - PHP actions always consume an associative array and return an associative array.
 - The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 
-Example:
+**Example**
 ```php
 <?php
 function main(array $args) : array
@@ -918,24 +918,18 @@ You can package PHP files or dependent packages in a .zip file.
 
 Before you begin, [review the packages that are included with the PHP runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app:
+To package your app, run the following command.
 
 ```bash
 zip -r ARCHIVE_NAME.zip FILE_1.php FILE_2.php
 ```
 {: pre}
 
-Example:
+**Example**
 ```bash
 zip -r helloPHP.zip index.php helper.php
 ```
 {: pre}
-
-
-
-
-
-
 
 ## Preparing Java apps
 {: #prep_java}
@@ -955,10 +949,10 @@ public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 
 
 * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
-* You can customize the method name of your Java action. This is done by specifying the fully-qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
+* You can customize the method name of your Java action. This is done by specifying the fully qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
 * The type of action is determined by using the source file extension.
 
-Example:
+**Example**
 ```java
 import com.google.gson.JsonObject;
 public class Hello {
@@ -1019,7 +1013,7 @@ You can use a build a tool such as [Gradle](https://gradle.org) to fetch the lib
 
 Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
-1. Create a file named `build.gradle` and specify the dependencies.
+1. Create a file that is named `build.gradle` and specify the dependencies.
 
   ```gradle
   apply plugin: 'java'
@@ -1071,7 +1065,7 @@ Before you create an action, get your .NET Core code ready.
 
 A .NET Core action is a .NET Core class library with a method that is expected to be named `Main`. If the method in your code is not `Main`, take note of the name to specify it when the action is created in the format: `--main {Assembly}::{Class Full Name}::{Method}`
 
-Example:
+**Example**
 ```
 Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ```
@@ -1079,7 +1073,7 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ### Packaging .NET Core code
 {: #prep_dotnet_pkg}
 
-Before you begin:
+**Before you begin**
 To compile, test and archive .NET Core projects, you must:
 - Install the [.NET Core SDK](https://dotnet.microsoft.com/download) locally.
 - Set the `DOTNET_HOME` environment variable to the location where the `dotnet` executable can be found.
@@ -1141,7 +1135,7 @@ To package your code:
       ```
       {: pre}
 
-  6. Navigate to the out directory.
+  6. Navigate to the `out` directory.
 
       ```bash
       cd out
