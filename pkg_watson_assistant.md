@@ -91,7 +91,7 @@ Before you install the package, you must create a {{site.data.keyword.conversati
 ## Installing the {{site.data.keyword.conversationshort}} package
 {: #install_conversation}
 
-After you have an {{site.data.keyword.conversationshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.conversationshort}} package into your namespace.
+After you have a {{site.data.keyword.conversationshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.conversationshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -100,7 +100,7 @@ After you have an {{site.data.keyword.conversationshort}} service instance, use 
 **Before you begin**
 [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-To install the {{site.data.keyword.conversationshort}} package:
+To install the {{site.data.keyword.conversationshort}} package, run the following commands.
 
 1. Clone the {{site.data.keyword.conversationshort}} package repo.
     ```
@@ -180,7 +180,7 @@ To install the {{site.data.keyword.conversationshort}} package:
 
 5. Click **Install**.
 
-6. Once the package is installed you will be redirected to the Actions page and can search for your new package, which is named **assistant-v1**.
+6. Once the package is installed you are redirected to the Actions page and can search for your new package, which is named **assistant-v1**.
 
 7. To use the Actions in the **assistant-v1** Package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#conversation_cli).
@@ -205,7 +205,7 @@ ibmcloud fn action invoke assistant-v1/<action_name> -b -p <param name> <param>
 
 All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. For more information, see the [API reference](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning).
 
-This package's functions use the current version of Watson Assistant, 2018-07-10. Try out the `list-workspaces` action.
+This package's functions use the current version of Watson Assistant, `2018-07-10`. Try out the `list-workspaces` action.
 ```
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```
