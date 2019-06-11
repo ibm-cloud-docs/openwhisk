@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: nlc, natural language classifier, machine learning
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.nlclassifiershort}}
 {: #pkg_natlang_classifier}
 
-The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the top matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
+The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
 {: shortdesc}
 
 The {{site.data.keyword.nlclassifiershort}} package contains the following entities. You can find additional details in the {{site.data.keyword.nlclassifiershort}} API reference by clicking the entity name.
@@ -60,10 +60,10 @@ After you have a {{site.data.keyword.nlclassifiershort}} service instance, use t
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #nlclassifier_cli}
 
-Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+**Before you begin**
+[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-To install the {{site.data.keyword.nlclassifiershort}} package:
+To install the {{site.data.keyword.nlclassifiershort}} package, run the following command.
 
 1. Clone the {{site.data.keyword.nlclassifiershort}} package repo.
     ```
@@ -83,7 +83,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: pre}
 
-    Output:
+    **Output**
     ```
     packages
     /myOrg_mySpace/natural-language-classifier-v1                        private
@@ -96,13 +96,13 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: pre}
 
-    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
     ```
     ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     Credentials 'Credentials-1' from 'natural_language_classifier' service instance 'Watson Natural Language Classifier' bound to 'natural-language-classifier-v1'.
     ```
@@ -114,7 +114,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     ok: got package natural-language-classifier-v1, displaying field parameters
     [
@@ -149,11 +149,15 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 
 5. Click **Install**.
 
-6. Once the package has been installed you will be redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
+6. Once the package is installed you are redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
 
 7. To use the actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
-  * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
+  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#nlclassifier_cli).
+  * To bind service credentials to individual actions, complete the following steps in the UI. 
+  
+  You must complete the following steps for each action that you want to use.
+  {: note}
+
     1. Click an action from the **natural-language-classifier-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
@@ -161,7 +165,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package:
 ## Using the {{site.data.keyword.nlclassifiershort}} package
 {: #usage_classifier}
 
-To use the actions in this package, run commands in the following format:
+To use the actions in this package, run commands in the following format.
 
 ```
 ibmcloud fn action invoke natural-language-classifier-v1/<action_name> -b -p <param name> <param>
