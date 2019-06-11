@@ -74,7 +74,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
    <dt>`--kind` <em>`LANGUAGE`</em></dt>
    <dd>The runtime for your app. This flag is optional. If no <em>`VALUE`</em> is specified, the default version for the detected runtime is used.
-     Possible <em>`VALUES`</em> for the --kind option:
+     Possible <em>`VALUES`</em> for the `--kind` option.
      <table>
   <tr>
     <th>Language</th>
@@ -123,11 +123,11 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
    <dd>The maximum log size in MB for the action. The default value is 10 MB.</dd>
 
    <dt>`--main` <em>`ENTRY_METHOD_NAME`</em></dt>
-   <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully-qualified method.</dd>
+   <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully qualified method.</dd>
 
    <dt>`--native`</dt>
-   <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument allows you to create and deploy an executable that runs inside the standard Docker action SDK.
-       <ol><li>When you create a Docker image, an executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
+   <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
+       <ol><li>When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
        <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
    <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
@@ -137,7 +137,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
    <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
    <dt>`--sequence` <em>`ACTION_NAME`</em>, <em>`ACTION_NAME`</em></dt>
-   <dd>Create an action sequence and include the names of related actions separated by commas.</dd>
+   <dd>Create an action sequence and include the names of the related actions. Separate the `ACTION_NAMEs` by commas.</dd>
 
    <dt>`--timeout` <em>`LIMIT`</em>, `-t` <em>`LIMIT`</em></dt>
    <dd>The timeout <em>`LIMIT`</em> in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
@@ -156,7 +156,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: created hello
   ```
@@ -208,7 +208,7 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--
    <dd>The name of an action. This value is required.</dd>
 
    <dt>`--save`</dt>
-   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>`FILENAME`</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
+   <dd>You can get and locally save the code that is associated with an existing action, except for sequences and Docker actions. The <em>`FILENAME`</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
 
   <dt>`--save-as` <em>`FILENAME`</em></dt>
   <dd>Save the code for actions in a custom-named file by providing a file path, <em>`FILENAME`</em>, and extension. This flag is optional.</dd>
@@ -368,7 +368,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
   <dt>`--kind LANGUAGE`</dt>
   <dd>The runtime for your app. This flag is optional. If no <em>VALUE</em> is specified, the default version for the detected runtime is used.
-    Possible values for the --kind option:
+    Possible values for the `--kind` option.
     <table>
   <tr>
     <th>Language</th>
@@ -417,11 +417,11 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   <dd>The maximum log size in MB for the action. The default value is 10 MB.</dd>
 
   <dt>`--main ENTRY_METHOD_NAME`</dt>
-  <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully-qualified method.</dd>
+  <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully qualified method.</dd>
 
   <dt>`--native`</dt>
-  <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. This argument allows you to create and deploy an executable that runs inside the standard Docker action SDK.
-      <ol><li>When you create a Docker image, an executable is created inside the container located at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
+  <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using th argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
+      <ol><li>When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
       <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
@@ -494,7 +494,7 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 
 <br />
 
-### ibmcloud fn activation list
+### `ibmcloud fn activation list`
 {: #cli_activation_list}
 
 List all of the activation IDs for all of the actions in a package.
@@ -509,7 +509,7 @@ ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since DA
 
   <dl>
   <dt>`--full, -f`</dt>
-  <dd>Display the full activation description</dd>
+  <dd>Display the full activation description.</dd>
 
   <dt>`--limit` <em>`NUMBER_OF_ACTIVATIONS`</em>, `-l` <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
   <dd>List a specified number of activations. The default is 30 activations and the maximum is 200 activations.</dd>
@@ -530,7 +530,7 @@ ibmcloud fn activation list
 ```
 {: pre}
 
-Output:
+**Output**
 ```
 activations
 44794bd6aab74415b4e42a308d880e5b         hello
@@ -729,7 +729,7 @@ ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
    <dd>The name of the API. The API name might be the same as the base path.</dd>
 
    <dt>`API_PATH`</dt>
-   <dd>The path to the API</dd>
+   <dd>The path to the API.</dd>
 
    <dt>`API_VERB`</dt>
    <dd>The verb for the API, such as `GET` or `POST`.</dd>
@@ -776,7 +776,7 @@ ibmcloud fn api get BASE_PATH API_NAME [--format OUTPUT_TYPE] [--full]
    <dt>`--format OUTPUT_TYPE`</dt>
    <dd>Specify the API output type as `json` or `yaml`. The default value is `json`.</dd>
 
-   <dt>--full, -f</dt>
+   <dt>`--full, -f`</dt>
    <dd>Display the full API configuration details.</dd>
 
    </dl>
@@ -812,7 +812,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
    <dd>The name of the API. The API name might be the same as the base path.</dd>
 
    <dt>`API_PATH`</dt>
-   <dd>The path to the API</dd>
+   <dd>The path to the API.</dd>
 
    <dt>`API_VERB`</dt>
    <dd>The verb for the API, such as `GET` or `POST`.</dd>
@@ -847,7 +847,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 ### `ibmcloud fn deploy`
 {: #cli_deploy}
 
-Use a manifest file to deploy a collection of packages, actions, triggers and rules.
+Use a manifest file to deploy a collection of packages, actions, triggers, and rules.
 
 ```
 ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment FILE] [--manifest FILE] [--namespace NAMESPACE] [--param KEY VALUE] [--param-file FILE] [--preview] [--project PATH] [--strict] [--verbose]
@@ -883,7 +883,7 @@ ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment F
    <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
    <dt>`--preview` </dt>
-   <dd>Display the deployment plan before deploying.</dd>
+   <dd>Display the deployment plan before you deploy.</dd>
 
    <dt>`--project PATH`</dt>
    <dd>The path to the serverless project. The default is <code>.</code> (current directory).</dd>
@@ -909,7 +909,7 @@ ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment F
 ### `ibmcloud fn undeploy`
 {: #cli_undeploy}
 
-Use a manifest file to undeploy a collection of packages, actions, triggers and rules.
+Use a manifest file to undeploy a collection of packages, actions, triggers, and rules.
 
 ```
 ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment FILE] [--manifest FILE] [--namespace NAMESPACE] [--param KEY VALUE] [--param-file FILE] [--preview] [--project PATH] [--strict] [--verbose]
@@ -1021,7 +1021,7 @@ ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION]
    <dt><em>`NAMESPACE`</em></dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
-   <dt>`--description DESCRIPTION, -n DESCRIPTION`</dt>
+   <dt>`--description DESCRIPTION`, `-n DESCRIPTION`</dt>
    <dd>Write your own unique description to help you identify the namespace. If your description is more than one word, include quotation marks (") around your description. This flag is optional.</dd>
 
    </dl>
@@ -1093,7 +1093,7 @@ ibmcloud fn namespace list NAMESPACE [--auth KEY] [--name-sort] [--properties]
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   Name: user@domain.com_dev
   Description: This is a description of my namespace.
@@ -1270,7 +1270,7 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
   ```
   {: pre}
 
-  Output:
+  **Output**
   ```
   ok: created hellopkg
   ```
@@ -1319,7 +1319,7 @@ ibmcloud fn package get PACKAGE_NAME [--summary]
 
   <dl>
    <dt><em>`PACKAGE_NAME`</em></dt>
-   <dd>The name of an package. This value is required.</dd>
+   <dd>The name of a package. This value is required.</dd>
 
    <dt>`--summary`</dt>
    <dd>Get a summary of the package details. Parameters with the prefix "*" are bound. This flag is optional.</dd>
@@ -1649,10 +1649,10 @@ ibmcloud fn rule delete RULE_NAME [--disable]
 
    <dl>
    <dt><em>`RULE_NAME`</em></dt>
-   <dd>The name of an rule. This value is required.</dd>
+   <dd>The name of a rule. This value is required.</dd>
 
   <dt>`--disable`</dt>
-  <dd>Disable the rule before deleting it.</dd>
+  <dd>Disable the rule before you deleting.</dd>
   </dl>
 
 
@@ -1718,7 +1718,7 @@ ibmcloud fn rule get RULE_NAME [--summary]
 
    <dl>
    <dt><em>`RULE_NAME`</em></dt>
-   <dd>The name of an rule. This value is required.</dd>
+   <dd>The name of a rule. This value is required.</dd>
 
   <dt>`--summary`</dt>
   <dd>Get a summary of the rule details.</dd>
@@ -2040,7 +2040,7 @@ ibmcloud fn trigger get TRIGGER_NAME [--summary]
 
    <dl>
    <dt><em>`TRIGGER_NAME`</em></dt>
-   <dd>The name of an trigger. This value is required.</dd>
+   <dd>The name of a trigger. This value is required.</dd>
 
   <dt>`--summary`</dt>
   <dd>Get a summary of the trigger details.</dd>
