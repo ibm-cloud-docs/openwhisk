@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: alarms, serverless, triggers
 
@@ -69,15 +69,15 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code>--param date</code></td>
-<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. Note that the `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. Note the `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>
-<td>Optional: Replace <code>&lt;key&gt;</code> and <code>&lt;value&gt;</code> with the parameters of the trigger when the trigger is fired.</td>
+<td>(Optional) Replace <code>&lt;key&gt;</code> and <code>&lt;value&gt;</code> with the parameters of the trigger when the trigger is fired.</td>
 </tr>
 <tr>
 <td><code>--param deleteAfterFire</code></td>
-<td>Optional: Whether the trigger and any associated rules are deleted after the trigger is fired. Replace <code>&lt;delete_option&gt;</code> with one of the following:<ul><li><code>false</code> (default) No action is taken after the trigger fires.</li><li><code>true</code>: The trigger is deleted after it fires.</li><li><code>rules</code>: The trigger and all of its associated rules are deleted after it fires.</li></ul></td>
+<td>(Optional) Whether the trigger and any associated rules are deleted after the trigger is fired. Replace <code>&lt;delete_option&gt;</code> with one of the following.<ul><li><code>false</code> (default) No action is taken after the trigger fires.</li><li><code>true</code>: The trigger is deleted after it fires.</li><li><code>rules</code>: The trigger and all of its associated rules are deleted after it fires.</li></ul></td>
 </tr>
 </tbody></table>
 
@@ -127,11 +127,11 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. Note that his parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. Note this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. Note that this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. Note this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
@@ -151,7 +151,7 @@ ibmcloud fn trigger create interval \
 ## Firing a trigger on a time-based schedule by using cron
 {: #pkg_alarms_cron}
 
-The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command:
+The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command.
 ```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -174,7 +174,7 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param cron</code></td>
-<td>Replace <code>&lt;cron&gt;</code> with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum five fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency:<ul><li><code>\* \* \* \* \*</code>: The trigger fires at the start of every minute.</li><li><code>0 \* \* \* \*</code>: The trigger fires at the start of every hour.</li><li><code>0 \*/2 \* \* \*</code>: The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code>: The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
+<td>Replace <code>&lt;cron&gt;</code> with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum five fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency.<ul><li><code>\* \* \* \* \*</code> - The trigger fires at the start of every minute.</li><li><code>0 \* \* \* \*</code> - The trigger fires at the start of every hour.</li><li><code>0 \*/2 \* \* \*</code> - The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code> - The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
 </tr>
 <tr>
 <tr>
@@ -187,11 +187,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length specified by the minutes parameter . Note: This parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length that is specified by the minutes parameter. Note this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. Note that this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. Note this parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
