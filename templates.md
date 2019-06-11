@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -70,11 +70,14 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
     2. Create the {{site.data.keyword.cloudant_short_notm}} service instance.
     3. Create a set of Service Credentials.
     4. Click **OK** to close the {{site.data.keyword.cloudant_short_notm}} setup page and return to the {{site.data.keyword.openwhisk_short}} console.
-    5. In the **Cloudant Instance** list, you can now select **Input your own credentials** and provide the following information:
-      * Username: Your {{site.data.keyword.cloudant_short_notm}} username
-      * Password: Your {{site.data.keyword.cloudant_short_notm}} password
-      * Host: `<username>.cloudant.com`
-      * Database: The name of your {{site.data.keyword.cloudant_short_notm}} database
+    5. In the **Cloudant Instance** list, you can now select **Input your own credentials** and provide the following information.
+        
+        | Parameter | Description |
+        | --- | --- |
+        | `Username` | Your {{site.data.keyword.cloudant_short_notm}} username. |
+        | `Password` | Your {{site.data.keyword.cloudant_short_notm}} password. |
+        | `Host` | `<username>.cloudant.com` |
+        | `Database` | The name of your {{site.data.keyword.cloudant_short_notm}} database. |
 
 5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
@@ -117,7 +120,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 ## Deploying the Upload Image template
 {: #image-template}
 
-The Upload Image template creates a web action that allows you to upload an image to an {{site.data.keyword.cos_full_notm}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
+The Upload Image template creates a web action that you can use to upload an image to an {{site.data.keyword.cos_full_notm}} bucket through a small interface. The template then retrieves the image as a thumbnail and displays it on the web action's interface.
 
 
 ### Deploying the Upload Image template from the UI
@@ -132,12 +135,12 @@ The Upload Image template creates a web action that allows you to upload an imag
 4. Enter a name for your package or use the default name `upload-image`, and click **Next**.
 
 6. The template requires service credentials from an {{site.data.keyword.cos_full_notm}} service instance. In the **{{site.data.keyword.cos_full_notm}}** list, select one of the following options:
-  * **Create an new instance**: If you do not have an existing service instance, select this option to create one.
+  * **Create an instance**. If you do not have an existing service instance, select this option to create one.
       1. In the {{site.data.keyword.cos_full_notm}} service instance creation page that opens, create a service instance.
       2. [Create a set of HMAC service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
       3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
-  * **Input your own credentials**: Select this option to manually enter your own credentials for an {{site.data.keyword.cos_full_notm}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
-  * **Existing Instances**: If you have any existing {{site.data.keyword.cos_full_notm}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
+  * **Input your own credentials**. Select this option to manually enter your own credentials for an {{site.data.keyword.cos_full_notm}} service instance. The credentials must have HMAC keys and the service instance must have at least one bucket.
+  * **Existing Instances**. If you have any existing {{site.data.keyword.cos_full_notm}} instances, select one of the instances from the list. The credentials must have HMAC keys and the service instance must have at least one bucket.
 
 7. Click **Deploy**.
 
@@ -152,7 +155,7 @@ The Upload Image template creates a web action that allows you to upload an imag
 ### Deploying the Upload Image template from the CLI
 {: #image-template-cli}
 
-1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage.
+1. [Install the {{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
 2. Clone the template repo.
     ```
@@ -166,7 +169,7 @@ The Upload Image template creates a web action that allows you to upload an imag
     ```
     {: pre}
 
-3. Deploy the template, using a custom package name and the name of your {{site.data.keyword.cos_full_notm}} bucket as environment variables.
+3. Deploy the template, by using a custom package name and the name of your {{site.data.keyword.cos_full_notm}} bucket as environment variables.
     ```
     PACKAGE_NAME=<name> BUCKET_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
@@ -181,7 +184,10 @@ The Upload Image template creates a web action that allows you to upload an imag
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}
 
-The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications. **Note**: By default, the `get-http-resource` endpoint is publicly available to anyone who calls it.
+The Get HTTP Resource template creates an action to fetch an external resource, the Yahoo Weather API, and then returns data. The action is enabled as a web action, allowing it to be invoked with a URL, which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications.
+
+By default, the `get-http-resource` endpoint is publicly available to anyone who calls it.
+{: note}
 
 ### Deploying the Get HTTP Resource template from the UI
 {: #get-http-resource-template-ui}
@@ -279,7 +285,7 @@ After template deployment, you can make further edits to the code to customize i
 ## Deploying the {{site.data.keyword.messagehub}} Events template
 {: #messagehub-events-template}
 
-The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever there is a new item added to the {{site.data.keyword.messagehub}} topic that is chosen during template creation.
+The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever a new item is added to the {{site.data.keyword.messagehub}} topic that is chosen during template creation.
 
 ### Deploying the {{site.data.keyword.messagehub}} Events template from the UI
 {: #messagehub-events-template-ui}
@@ -295,17 +301,20 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
     2. Choose the runtime for your actions: Node.js 8, Node.js 6, Python 3, Swift 4, or PHP 7.1.
     3. Click **Next**.
 
-5. Create the {{site.data.keyword.messagehub}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide a {{site.data.keyword.messagehub}} service instance and service credentials.
+5. Create the {{site.data.keyword.messagehub}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide an {{site.data.keyword.messagehub}} service instance and service credentials.
     1. In the **MessageHub Instance** list, select **Create your own instance**. The {{site.data.keyword.messagehub}} creation page opens.
     2. Create the {{site.data.keyword.messagehub}} service instance.
     3. Create a set of Service Credentials.
     4. Click **OK** to close the {{site.data.keyword.messagehub}} creation page and return to the {{site.data.keyword.messagehub}} console.
     5. In the **MessageHub Instance** list, you can now select **Input your own credentials** and provide the following information:
-      * Username: Your {{site.data.keyword.messagehub}} username
-      * Password: Your {{site.data.keyword.messagehub}} password
-      * kafka_admin_url: Your {{site.data.keyword.messagehub}} admin REST URL
-      * Database: The name of your {{site.data.keyword.messagehub}} database
-      * Topic: The topic to subscribe to
+
+        | Parameter | Description |
+        | --- | --- |
+        | `Username` | Your {{site.data.keyword.messagehub}} username. |
+        | `Password` | Your {{site.data.keyword.messagehub}} password. |
+        | `kafka_admin_url` | Your {{site.data.keyword.messagehub}} admin REST URL. |
+        | `Database` | The name of your {{site.data.keyword.messagehub}} database. |
+        | `Topic` | The topic to subscribe to. |
 
 5. Click **Deploy**.
 
@@ -326,7 +335,7 @@ After template deployment, you can make further edits to the code to customize i
     ```
     {: pre}
 
-3. Deploy the template, using the following environment variables.
+3. Deploy the template by using the following environment variables.
     ```
     KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
@@ -370,9 +379,9 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
     4. Click **Next**.
 
 5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources.
-    1. Specify the trigger's time interval by using a Pattern or <ph class="ignoreSpelling">Cron</ph> expression.
-        * Pattern: Select UTC times for weekdays, hours, and minutes.
-        * <ph class="ignoreSpelling">Cron</ph>: Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
+    1. Specify the trigger's time interval by using a Pattern or `Cron` expression.
+        * `Pattern` - Select UTC times for weekdays, hours, and minutes.
+        * `Cron` - Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer separated by spaces in the format `X X X X X`.
     2. Add the trigger JSON payload.
 
 6. Click **Deploy**.
@@ -409,7 +418,7 @@ After template deployment, you can make further edits to the code to customize i
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>The webhook URL, such as <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td>A cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields separated by spaces in the format <code>X X X X X</code>.</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td>A cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields in the format <code>X X X X X</code>.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
