@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: github, actions, trigger, event
 
@@ -33,7 +33,7 @@ This pre-installed package is not available in the Tokyo region.
 The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/).
 {: shortdesc}
 
-The package includes the following feed:
+The GitHub package includes the following entities.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -44,12 +44,14 @@ Creating a package binding with the `username`, `repository`, and `accessToken` 
 
 ## Firing a trigger event with GitHub activity
 
-The `/whisk.system/github/webhook` feed configures a service to fire a trigger when there is activity in a specified GitHub repository. The parameters are as follows:
+The `/whisk.system/github/webhook` feed configures a service to fire a trigger when there is activity in a specified GitHub repository. The parameters are as follows.
 
-- `username`: The user name of the GitHub repository.
-- `repository`: The GitHub repository.
-- `accessToken`: Your GitHub personal access token. When you [create your token](https://github.com/settings/tokens), be sure to select the **repo:status** and **public_repo** scopes. Also, make sure that you don't have any webhooks that are already defined for your repository.
-- `events`: The [GitHub event type](https://developer.github.com/v3/activity/events/types/) of interest.
+| Parameter | Description |
+| --- | --- |
+| `username` | The user name of the GitHub repository. |
+| `repository` | The GitHub repository. |
+| `accessToken` | Your GitHub personal access token. When you [create your token](https://github.com/settings/tokens), be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
+| `events` | The [GitHub event type](https://developer.github.com/v3/activity/events/types/) of interest. |
 
 In the following example, a trigger is created that fires each time a new commit to a GitHub repository.
 
