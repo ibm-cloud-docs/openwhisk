@@ -138,17 +138,17 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
    <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
    <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
-   <dt>--sequence <em>ACTION_NAME</em>, <em>ACTION_NAME</em></dt>
+   <dt>`--sequence` <em>`ACTION_NAME`</em>, <em>`ACTION_NAME`</em></dt>
    <dd>Create an action sequence and include the names of related actions separated by commas.</dd>
 
-   <dt>--timeout <em>LIMIT</em>, -t <em>LIMIT</em></dt>
-   <dd>The timeout <em>LIMIT</em> in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
+   <dt>`--timeout` <em>`LIMIT`</em>, `-t` <em>`LIMIT`</em></dt>
+   <dd>The timeout <em>`LIMIT`</em> in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
 
-   <dt>--web yes|true|raw|no|false</dt>
-   <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify <code>yes</code> or <code>true</code> for a web action, <code>raw</code> for a raw HTTP web action, or <code>no</code> or <code>false</code> for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
+   <dt>`--web yes|true|raw|no|false`</dt>
+   <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify `yes` or `true` for a web action, `raw` for a raw HTTP web action, or `no` or `false` for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
 
-   <dt>--web-secure <em>SECRET</em></dt>
-   <dd>Secure the web action. The <em>VALUE</em> for <em>SECRET</em> can be <em>true</em>, <em>false</em>, or any string. This option can be used only with the `--web` option.</dd>
+   <dt>`--web-secure` <em>`SECRET`</em></dt>
+   <dd>Secure the web action. The <em>`VALUE`</em> for <em>`SECRET`</em> can be <em>`true`</em>, <em>`false`</em>, or any string. This option can be used only with the `--web` option.</dd>
    </dl>
 
 <br />**Example**
@@ -206,19 +206,19 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--
 <br />**Command options**
 
    <dl>
-   <dt><em>ACTION_NAME</em></dt>
+   <dt><em>`ACTION_NAME`</em></dt>
    <dd>The name of an action. This value is required.</dd>
 
-   <dt>--save</dt>
-   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>FILENAME</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
+   <dt>`--save`</dt>
+   <dd>You can get and locally save code associated with an existing action, except for sequences and Docker actions. The <em>`FILENAME`</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
 
-  <dt>--save-as <em>FILENAME</em></dt>
-  <dd>Save the code for actions in a custom-named file by providing a file path, <em>FILENAME</em>, and extension. This flag is optional.</dd>
+  <dt>`--save-as` <em>`FILENAME`</em></dt>
+  <dd>Save the code for actions in a custom-named file by providing a file path, <em>`FILENAME`</em>, and extension. This flag is optional.</dd>
 
-  <dt>--summary</dt>
+  <dt>`--summary`</dt>
   <dd>Get a summary of the action details. Parameters with the prefix "*" are bound; parameters with the prefix "**" are bound and finalized. This flag is optional.</dd>
 
-  <dt>--url</dt>
+  <dt>`--url`</dt>
   <dd>Get the URL only for the action. This flag is optional.</dd>
    </dl>
 
@@ -274,19 +274,19 @@ ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-
 <br />**Command options**
 
    <dl>
-   <dt><em>ACTION_NAME</em></dt>
+   <dt><em>`ACTION_NAME`</em></dt>
    <dd>The name of the action. This value is required. </dd>
 
-   <dt>--blocking, -b</dt>
-   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time <em>LIMIT</em> <em>VALUE</em>](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
+   <dt>`--blocking, -b`</dt>
+   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time <em>`LIMIT`</em> <em>`VALUE`</em>](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
-   <dt>--result, -r</dt>
+   <dt>`--result, -r`</dt>
    <dd>The result of the app code is displayed as the output of the command. If this option is not specified, the activation ID is displayed. The invocation is blocking when this option is specified. This flag is optional.</dd>
 
    </dl>
@@ -313,7 +313,7 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 <br />**Command options**
 
    <dl>
-   <dt><em>ACTION_NAME</em></dt>
+   <dt><em>`ACTION_NAME`</em></dt>
    <dd>The name of a package of actions. This value is optional. If not specified, all actions are listed.</dd>
 
    <dt>--limit <em>NUMBER_OF_ACTIONS</em>, -l <em>NUMBER_OF_ACTIONS</em></dt>
