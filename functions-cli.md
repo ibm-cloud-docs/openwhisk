@@ -1311,7 +1311,7 @@ ibmcloud fn package delete PACKAGE_NAME
 Get metadata that describes a specific package.
 
 ```
-ibmcloud fn package get <em>PACKAGE_NAME</em> [--summary]
+ibmcloud fn package get PACKAGE_NAME [--summary]
 ```
 {: pre}
 
@@ -1648,10 +1648,10 @@ ibmcloud fn rule delete RULE_NAME [--disable]
 <br />**Command options**
 
    <dl>
-   <dt><em>RULE_NAME</em></dt>
+   <dt><em>`RULE_NAME`</em></dt>
    <dd>The name of an rule. This value is required.</dd>
 
-  <dt>--disable</dt>
+  <dt>`--disable`</dt>
   <dd>Disable the rule before deleting it.</dd>
   </dl>
 
@@ -1717,10 +1717,10 @@ ibmcloud fn rule get RULE_NAME [--summary]
 <br />**Command options**
 
    <dl>
-   <dt><em>RULE_NAME</em></dt>
+   <dt><em>`RULE_NAME`</em></dt>
    <dd>The name of an rule. This value is required.</dd>
 
-  <dt>--summary</dt>
+  <dt>`--summary`</dt>
   <dd>Get a summary of the rule details.</dd>
   </dl>
 
@@ -1747,16 +1747,16 @@ ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip 
 <br />**Command options**
 
    <dl>
-   <dt><em>RULE_NAME</em></dt>
+   <dt><em>`RULE_NAME`</em></dt>
    <dd>The name of a rule. This value is optional. If not specified, all rules are listed.</dd>
 
-   <dt>--limit NUMBER_OF_RULES, -l NUMBER_OF_RULES</dt>
+   <dt>`--limit NUMBER_OF_RULES`, `-l NUMBER_OF_RULES`</dt>
    <dd>List a specified number of rules. The default is 30 rules.</dd>
 
-   <dt>--name-sort, -n</dt>
+   <dt>`--name-sort`, `-n`</dt>
    <dd>Sort the list of returned rules by name, otherwise the list is sorted by creation date.</dd>
 
-   <dt>--skip NUMBER_OF_RULES, -s NUMBER_OF_RULES</dt>
+   <dt>`--skip NUMBER_OF_RULES`, `-s NUMBER_OF_RULES`</dt>
    <dd>Exclude a specified number of the most recently created rules from the result.</dd>
 
    </dl>
@@ -1829,11 +1829,11 @@ ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 <br />**Command options**
 
    <dl>
-   <dt><em>COMPONENT</em></dt>
+   <dt><em>`COMPONENT`</em></dt>
    <dd>The SDK component, such as `docker`, `iOS`, and `bashauto`. This value is required.</dd>
 
-   <dt>--stdout, --s</dt>
-   <dd>Prints the bash command results to STDOUT. This flag is optional.</dd>
+   <dt>`--stdout, --s`</dt>
+   <dd>Prints the bash command results to `STDOUT`. This flag is optional.</dd>
 
 
    </dl>
@@ -1867,17 +1867,17 @@ ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INST
 
    <dl>
 
-   <dt>SERVICE</dt>
+   <dt>`SERVICE`</dt>
    <dd>The name of the service.</dd>
 
-   <dt>PACKAGE_or_<em>ACTION_NAME</em></dt>
+   <dt>`PACKAGE_or_`<em>`ACTION_NAME`</em></dt>
    <dd>The name of the package or action to bind the credentials to.</dd>
 
-   <dt>--instance SERVICE_INSTANCE</dt>
+   <dt>`--instance SERVICE_INSTANCE`</dt>
    <dd>The service instance name.</dd>
 
-   <dt>--keyname SERVICE_<em>KEY</em></dt>
-   <dd>The name of the service <em>KEY</em> credentials to bind.</dd>
+   <dt>`--keyname SERVICE_`<em>`KEY`</em></dt>
+   <dd>The name of the service <em>`KEY`</em> credentials to bind.</dd>
 
    </dl>
 
@@ -1905,10 +1905,10 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
 
    <dl>
 
-   <dt>SERVICE</dt>
+   <dt>`SERVICE`</dt>
    <dd>The name of the service.</dd>
 
-   <dt>PACKAGE_or_<em>ACTION_NAME</em></dt>
+   <dt>`PACKAGE_or_`<em>`ACTION_NAME`</em></dt>
    <dd>The name of the package or action to unbind the credentials from.</dd>
 
    </dl>
@@ -1941,23 +1941,23 @@ ibmcloud fn trigger create TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
    <dl>
-   <dt><em>TRIGGER_NAME</em></dt>
+   <dt><em>`TRIGGER_NAME`</em></dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-   <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-   <dd>A JSON file that contains annotation in a <em>KEY</em> VALE format. This flag is optional.</dd>
+   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--feed <em>ACTION_NAME</em>, -f <em>ACTION_NAME</em></dt>
+   <dt>`--feed` <em>`ACTION_NAME`</em>, `-f` <em>`ACTION_NAME`</em></dt>
    <dd>Sets the type of trigger as a feed. This flag is optional.</dd>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
 
    </dl>
@@ -2005,14 +2005,14 @@ ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 
    <dl>
 
-   <dt><em>TRIGGER_NAME</em></dt>
+   <dt><em>`TRIGGER_NAME`</em></dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter <em>VALUES</em> in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
    </dl>
 
@@ -2039,10 +2039,10 @@ ibmcloud fn trigger get TRIGGER_NAME [--summary]
 <br />**Command options**
 
    <dl>
-   <dt><em>TRIGGER_NAME</em></dt>
+   <dt><em>`TRIGGER_NAME`</em></dt>
    <dd>The name of an trigger. This value is required.</dd>
 
-  <dt>--summary</dt>
+  <dt>`--summary`</dt>
   <dd>Get a summary of the trigger details.</dd>
   </dl>
 
@@ -2068,16 +2068,16 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 <br />**Command options**
 
    <dl>
-   <dt><em>RULE_NAME</em></dt>
+   <dt><em>`RULE_NAME`</em></dt>
    <dd>The name of a trigger. This value is optional. If not specified, all triggers are listed.</dd>
 
-   <dt>--limit <em>NUMBER_OF_TRIGGERS</em>, -l <em>NUMBER_OF_TRIGGERS</em></dt>
+   <dt>`--limit` <em>`NUMBER_OF_TRIGGERS`</em>, `-l` <em>`NUMBER_OF_TRIGGERS`</em></dt>
    <dd>List a specified number of triggers. The default is 30 triggers.</dd>
 
-   <dt>--name-sort, -n</dt>
+   <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned triggers by name, otherwise the list is sorted by creation date.</dd>
 
-   <dt>--skip <em>NUMBER_OF_TRIGGERS</em>, -s <em>NUMBER_OF_TRIGGERS</em></dt>
+   <dt>`--skip` <em>`NUMBER_OF_TRIGGERS`</em>, `-s` <em>`NUMBER_OF_TRIGGERS`</em></dt>
    <dd>Exclude a specified number of the most recently created triggers from the result.</dd>
 
    </dl>
@@ -2105,20 +2105,20 @@ ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
    <dl>
-   <dt><em>TRIGGER_NAME</em></dt>
+   <dt><em>`TRIGGER_NAME`</em></dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>--annotation <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em>, -a <em>ANNOTATION_KEY</em> <em>ANNOTATION_VALUE</em></dt>
-   <dd>Annotations are specified in a <em>KEY</em> <em>VALUE</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
+   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>--annotation-file <em>FILE</em>, -A <em>FILE</em></dt>
-   <dd>A JSON file that contains annotation in a <em>KEY</em> VALE format. This flag is optional.</dd>
+   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param <em>KEY</em> <em>VALUE</em>, -p <em>KEY</em> <em>VALUE</em></dt>
-   <dd>Parameter values in the <em>KEY</em> <em>VALUE</em> format. This flag is optional.</dd>
+   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
+   <dd>Parameter values in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
-   <dt>--param-file <em>FILE</em>, -P <em>FILE</em></dt>
-   <dd>A JSON file that contains parameter <em>KEYS</em> and <em>VALUES</em>. This flag is optional.</dd>
+   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
+   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
    </dl>
 
 <br />**Example**
