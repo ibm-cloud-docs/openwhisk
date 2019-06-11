@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: push notifications, functions, webhooks
 
@@ -375,7 +375,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Using the namespace switcher in the top-right corner, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
+2. Using the namespace drop-down menu in the top-right corner, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
 
 3. Click **Install Packages**.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-11"
 
 keywords: object storage, bucket, package
 
@@ -143,7 +143,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace switcher
+2. Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace drop-down menu
 
 3. Click **Install Packages**.
 

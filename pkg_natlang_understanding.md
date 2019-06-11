@@ -133,7 +133,7 @@ To install the {{site.data.keyword.nlushort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace that you want to install the package into by using the namespace switcher. Namespaces are formed from the combined org and space names.
+2. Select the namespace that you want to install the package into by using the namespace drop-down menu. Namespaces are formed from the combined org and space names.
 
 3. Click **Install Packages**.
 

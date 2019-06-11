@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: watson assistant, openwhisk, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users.
 {: shortdesc}
 
-The {{site.data.keyword.conversationshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.conversationshort}} API reference by clicking the entity name.
+The {{site.data.keyword.conversationshort}} package contains the following entities. For more information, see the {{site.data.keyword.conversationshort}} API reference by clicking the entity name.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -74,7 +74,7 @@ The {{site.data.keyword.conversationshort}} package contains the following entit
 | [`create-dialog-node`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#create-dialog-node) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `description`, `conditions`, `parent`, `previous_sibling`, `output`, `context`, `metadata`, `next_step`, `actions`, `title`, `node_type`, `event_name`, `variable`, `digress_in`, `digress_out`, `digress_out_slots`  | Create a dialog node. |
 | [`delete-dialog-node`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#delete-dialog-node) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, dialog_node  | Delete a dialog node. |
 | [`get-dialog-node`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#get-dialog-node) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `include_audit`  | Get a dialog node. |
-| [list-dialog-nodes](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-dialog-nodes) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `page_limit`, `include_count`, `sort`, `cursor`, `include_audit`  | List dialog nodes. |
+| [`list-dialog-nodes`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-dialog-nodes) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `page_limit`, `include_count`, `sort`, `cursor`, `include_audit`  | List dialog nodes. |
 | [`update-dialog-node`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#update-dialog-node) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `new_dialog_node`, `new_description`, `new_conditions`, `new_parent`, `new_previous_sibling`, `new_output`, `new_context`, `new_metadata`, `new_next_step`, `new_title`, `new_type`, `new_event_name`, `new_variable`, `new_actions`, `new_digress_in`, `new_digress_out`, `new_digress_out_slots`  | Update a dialog node. |
 | [`list-all-logs`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-all-logs) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `filter`, `sort`, `page_limit`, `cursor`  | List log events in all workspaces. |
 | [`list-logs`](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html?curl#list-logs) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `sort`, `filter`, `page_limit`, `cursor`  | List log events in a workspace. |
@@ -170,21 +170,25 @@ To install the {{site.data.keyword.conversationshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace that you want to install the package into by using the namespace switcher.
+2. Select the namespace that you want to install the package into by using the namespace drop-down menu.
 
 3. Click **Install Packages**.
 
-4. Click on the **Watson** Package group.
+4. Click on the **Watson** package group.
 
 5. Click on the **Watson Assistant** Package.
 
 5. Click **Install**.
 
-6. Once the Package has been installed you will be redirected to the Actions page and can search for your new Package, which is named **assistant-v1**.
+6. Once the package is installed you will be redirected to the Actions page and can search for your new package, which is named **assistant-v1**.
 
 7. To use the Actions in the **assistant-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
-  * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
+  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#conversation_cli).
+  * To bind service credentials to individual actions, complete the following steps in the UI. 
+  
+  You must complete the following steps for each action that you want to use.
+  {: note}
+
     1. Click on an action from the **assistant-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click on the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
@@ -192,14 +196,14 @@ To install the {{site.data.keyword.conversationshort}} package:
 ## Using the {{site.data.keyword.conversationshort}} package
 {: #usage_conversation}
 
-To use the actions in this package, run commands in the following format:
+To use the actions in this package, run commands in the following format.
 
 ```
 ibmcloud fn action invoke assistant-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
-All actions will require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning).
+All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. For more information, see the [API reference](https://www.ibm.com/watson/developercloud/assistant/api/v1/curl.html#versioning).
 
 This package's functions use the current version of Watson Assistant, 2018-07-10. Try out the `list-workspaces` action.
 ```
