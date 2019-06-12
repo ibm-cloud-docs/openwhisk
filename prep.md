@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -257,7 +257,7 @@ function main(params) {
 
 
 
-### Example: Calling an external API with JavaScript
+### Example calling an external API with JavaScript
 {: #prep_js_api}
 
 The following example invokes the external API for the NASA Astronomy Picture of the Day (APOD) service, which provides a unique image of our universe every day.
@@ -392,7 +392,7 @@ Before you begin, [review the packages that are included with the JavaScript run
         ```
         {: pre}
 
-    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependcies are not included with the file `bundle.js`.
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependencies are not included with the file `bundle.js`.
     {: tip}
 
 
@@ -403,7 +403,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 As an alternative to writing all your action code in a single JavaScript source file, you can package your code as a `npm` package in a .zip file.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 1. In the root directory, create a `package.json` file. 
 
@@ -796,7 +796,7 @@ def main(args):
 
 Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 To package your app, run the following command.
 
@@ -811,7 +811,7 @@ zip -r helloPython.zip __main__.py helper.py
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/).
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app by completing the following steps.
 
@@ -916,7 +916,7 @@ function main(array $args) : array
 
 You can package PHP files or dependent packages in a .zip file.
 
-Before you begin, [review the packages that are included with the PHP runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the PHP runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 To package your app, run the following command.
 
