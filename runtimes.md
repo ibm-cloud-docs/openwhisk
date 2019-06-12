@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: runtimes, support
 
@@ -87,7 +87,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | `ibm_db` | The `ibm_db` NPM package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in [this issue](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541). |
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x). |
 | `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
-| `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805). |
+| `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track [this issue](https://github.com/log4js-node/log4js-node/issues/805). |
 | `watson-developer-cloud` | The `watson-developer-cloud` NPM package is not available in nodejs:10. You can track progress on the new version in [this issue](https://github.com/watson-developer-cloud/node-sdk/issues/780). |
 
 
@@ -153,7 +153,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
-| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
 | [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xlsx`](https://www.npmjs.com/package/xlsx) | Parser and writer for various spreadsheet formats. |
@@ -171,7 +171,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
 | [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service.
 | [`async`](https://www.npmjs.com/package/async) | Provides functions for working with asynchronous functions. |
-| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async/await. |
+| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async-await. |
 | [`bodyparser`](https://www.npmjs.com/package/body-parser) | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
 | [`btoa`](https://www.npmjs.com/package/btoa) | A port of the browser's `btoa` function. |
 | [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) | DataStax Node.js Driver for Apache Cassandra. |
@@ -188,7 +188,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
 | [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js. |
-| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
+| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous-synchronous interface for Node.js to IBM DB2 and IBM Informix. |
 | [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) | The Node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
 | [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) | Pure JS character encoding conversion. |
 | [`jsdom`](https://www.npmjs.com/package/jsdom) | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
@@ -196,7 +196,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) | An implementation of JSON Web Tokens. |
 | [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library that is exported as Node.js modules. |
 | [`log4js`](https://www.npmjs.com/package/log4js) | A conversion of the log4js framework to work with Node. |
-| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler, written in JavaScript. Built for speed. |
+| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler that is written in JavaScript. Built for speed. |
 | [`merge`](https://www.npmjs.com/package/merge) | Merge multiple objects into one, optionally creating a new cloned object. |
 | [`moment`](https://www.npmjs.com/package/moment) | A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. |
 | [`mongodb`](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. |
@@ -204,7 +204,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`mustache`](https://www.npmjs.com/package/mustache) | mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
 | [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server-Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
 | [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
@@ -229,7 +229,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
 | [`watson-developer-cloud`](https://www.npmjs.com/package/watson-developer-cloud) | Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems. |
-| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
 | [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
@@ -477,7 +477,7 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 By default, all Swift actions are executed in a version 4.2 environment.
 {: note}
 
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies using a Package.swift.
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies by using a Package.swift.
 
 Swift 4.2 actions can use the following packages when you are using a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk

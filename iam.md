@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: access policies, iam, roles
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 ## Mapping IAM roles to {{site.data.keyword.openwhisk_short}}
 {: #user-roles}
 
-In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.cloud_notm}} resources that allow you to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
+In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.cloud_notm}} resources that you can use to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
 {: shortdesc}
 
 {{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, and use the service roles to manage interaction with the namespaces themselves.
@@ -73,7 +73,7 @@ Because the service does not need to be provisioned, the editor role is the only
 Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
 {: shortdesc}
 
-Note that permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles).
+Permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles).
 
 To see which roles are required to perform each operation, check out the following table:
 
@@ -165,19 +165,19 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
       <td>The service ID for the namespace. To see all service IDs, run <code>ibmcloud iam service-ids</code>.</td>
     </tr>
     <tr>
-      <td>--roles <code>&lt;IAM_role&gt;</code></td>
+      <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
       <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/iam?topic=iam-userroles#service-access-roles).</td>
     </tr>
     <tr>
-      <td>--service-name <code>&lt;other_service_type&gt;</code></td>
+      <td>`--service-name` <code>&lt;other_service_type&gt;</code></td>
       <td>The name of the other {{site.data.keyword.cloud_notm}} service type.</td>
     </tr>
     <tr>
-      <td>--service-instance <code>&lt;other_service_GUID&gt;</code></td>
+      <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
       <td>The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code>.</td>
     </tr>
   </tbody>
-</table>--->
+</table>
 
 </br>
 
