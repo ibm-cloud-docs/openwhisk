@@ -500,7 +500,7 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 List all of the activation IDs for all of the actions in a package.
 
 ```
-ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since DAY_OF_THE_WEEK, DAY, MONTH, YEAR] [--skip NUMBER_OF_ACTIVATIONS] [--upto DAY_OF_THE_WEEK, DAY, MONTH, YEAR]
+ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since UNIX_EPOCH_TIME] [--skip NUMBER_OF_ACTIVATIONS] [--upto UNIX_EPOCH_TIME]
 ```
 {: pre}
 
@@ -514,14 +514,14 @@ ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since DA
   <dt>`--limit` <em>`NUMBER_OF_ACTIVATIONS`</em>, `-l` <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
   <dd>List a specified number of activations. The default is 30 activations and the maximum is 200 activations.</dd>
 
-  <dt>`--since` <em>`DAY_OF_THE_WEEK`</em>, <em>`DAY`</em>, <em>`MONTH`</em>, <em>`YEAR`</em></dt>
-  <dd>List activations that were created since the date specified. Duration is measured in milliseconds. Example: Th, 01, Jan 1970</dd>
+  <dt>`--since` <em>`UNIX_EPOCH_TIME`</em></dt>
+  <dd>List activations that were created since the date specified. Duration is measured in milliseconds since 01 January 1970. Example: `1560371263` is 12 June 2019 08:27:43 UTC.</dd>
 
   <dt>`--skip` <em>`NUMBER_OF_ACTIVATIONS`</em>, -s <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
   <dd>Exclude a specified number of the most recent activations from the result.</dd>
 
-  <dt>`--upto` <em>`DAY_OF_THE_WEEK`</em>, <em>`DAY`</em>, <em>`MONTH`</em>, <em>`YEAR`</em></dt>
-  <dd>List activations that were created before the date specified. Duration is measured in milliseconds. Example: Th, 01, Jan 1970</dd>
+  <dt>`--upto` <em>`UNIX_EPOCH_TIME`</em></dt>
+  <dd>List activations that were created before the date specified. Duration is measured in milliseconds since 01 January 1970. Example: `1560371263` is 12 June 2019 08:27:43 UTC.</dd>
   </dl>
 
 <br />**Example**
