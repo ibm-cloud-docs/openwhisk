@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -112,7 +112,7 @@ If you are already logged in, you can run the `ibmcloud fn property set` or `ibm
   ```
   {: pre}
 
-To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is currently targeted.
+To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is targeted.
 
 You can create IAM-based spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_account#ibmcloud_account_space_create) to create more spaces under your organization such "staging" and "production":
 
@@ -150,7 +150,7 @@ For command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference
 With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <name>` or a Cloud Foundry-based namespace by running `ibmcloud target -o <org> -s <space>`. After logging in, all commands begin with `ibmcloud fn`.
 
 
-If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands:
+If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
 
 Get the current API key by running the following command.
 ```
@@ -199,13 +199,13 @@ With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to ex
 
 If you're using the {{site.data.keyword.openwhisk_short}} authentication API key in an external HTTP client such as cURL, you can retrieve it with the following commands.
 
-To get the current API key:
+Get the current API key.
 ```
 ibmcloud fn property get --auth
 ```
 {: pre}
 
-To get the current API host:
+Get the current API host.
 ```
 ibmcloud fn property get --apihost
 ```
@@ -220,44 +220,44 @@ The API key is specific per region, organization, and space targeted by the {{si
 
 A historical record of versions that show highlights and bug fixes.
 
-v1.0.30 (03 Apr 2019)
+v1.0.30 (03 April 2019)
 * Improved the `service bind` handling of IAM and org and space-based services.
 * Added a fix for handling API endpoint https://cloud.ibm.com.
 
-v1.0.29 (06 Feb 2019)
+v1.0.29 (06 February 2019)
 * Added commands `deploy` and `undeploy` to deploy or undeploy a collection of Functions entities via a manifest file. For more information, see the [Deployment](/docs/openwhisk?topic=cloud-functions-deploy#deploy) documentation.
 
-v1.0.28 (21 Jan 2019)
+v1.0.28 (21 January 2019)
 * Added an error message when `update|delete|get namespace name` exists multiple times.
 
-v1.0.27 (11 Dec 2018)
+v1.0.27 (11 December 2018)
 * Added `namespace get` fixes.
 * Added a fix for `--save-as` when an action is a black box action.
 
-v1.0.26 (30 Nov 2018)
+v1.0.26 (30 November 2018)
 * Enabled `fn property get --auth` to correctly return the auth key in a new environment.
 
-v1.0.25 (23 Nov 2018)
+v1.0.25 (23 November 2018)
 * Improved error message result display.
 * Added a `fn namespace get` fix to correctly display namespace properties.
 
-1.0.23 (15 Oct 2018)
+1.0.23 (15 October 2018)
 * Added support for ruby (`.rb`) action code recognition.
 
-1.0.22 (20 Aug 2018)
+1.0.22 (20 August 2018)
 * Added us-east region support.
 
-1.0.21 (01 Aug 2018)
+1.0.21 (01 August 2018)
 * Aliases `fn` and `functions` can now be used for {{site.data.keyword.openwhisk_short}} commands: `ibmcloud fn <command>` and `ibmcloud fn <command>`. You can also still use `ibmcloud wsk <command>`.
 
-1.0.19 (02 Jul 2018)
+1.0.19 (02 July 2018)
 * Minor bug fixes and improvements.
 
-1.0.18 (20 Jun 2018)
+1.0.18 (20 June 2018)
 * Added a fix for unbinding user-provided service instances.
 * Performance improvements.
 
-1.0.17 (12 Jun 2018)
+1.0.17 (12 June 2018)
 * Added support for binding (`ibmcloud wsk service bind`) and unbinding (`ibmcloud wsk service unbind`) user-provided service instances that are created by using the `ibmcloud cf create-user-provided-service` command.
 
 1.0.16 (24 May 2018)
@@ -272,27 +272,27 @@ v1.0.25 (23 Nov 2018)
 1.0.13 (07 May 2018)
 * Minor bug fixes and error handling improvements.
 
-1.0.12 (30 Apr 2018)
+1.0.12 (30 April 2018)
 * {{site.data.keyword.cloud_notm}} SDK updates to maintain `bx` CLI compatibility.
 
-1.0.11 (23 Apr 2018)
+1.0.11 (23 April 2018)
 * Minor bug fixes and improvements.
 
-1.0.10 (09 Apr 2018)
+1.0.10 (09 April 2018)
 * Added new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
 * Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
 
-1.0.9 (16 Mar 2018)
+1.0.9 (16 March 2018)
 * Enabled support for service bind at the package level.
 
-1.0.8 (22 Feb 2018)
+1.0.8 (22 February 2018)
 * Enabled support for IAM service bind.
 
-1.0.7 (02 Feb 2018)
+1.0.7 (02 February 2018)
 * Updated `ibmcloud wsk api` to accept path parameters such as `/api/{id}`. For more information, see [API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway).
 * Restored proxy support.
 * Removed `swift:3`.
 
-1.0.6 (30 Jan 2018)
+1.0.6 (30 January 2018)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
 

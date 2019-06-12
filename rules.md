@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-12"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -28,7 +28,7 @@ subcollection: cloud-functions
 # Associating triggers and actions through rules
 {: #rules}
 
-Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
+Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
 
@@ -84,12 +84,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 You can use different combinations of triggers and actions by creating a rule for each combination. You are not required to have a one to one ratio for actions and triggers.
 
 For example, consider the following actions.
-- `classifyImage` - An action that detects the objects in an image and classifies them.
-- `thumbnailImage` - An action that creates a thumbnail version of an image.
 
-Also suppose that two event sources are firing the following triggers.
-- `newTweet` - A trigger that is fired when a new tweet is posted.
-- `imageUpload` - A trigger that is fired when an image is uploaded to a website.
+| Action | Description |
+| --- | --- |
+| `classifyImage` | An action that detects the objects in an image and classifies them. |
+| `thumbnailImage` | An action that creates a thumbnail version of an image. |
+
+Also, suppose that two event sources are firing the following triggers.
+
+| Trigger | Description |
+| --- | --- |
+| `newTweet` | A trigger that is fired when a new tweet is posted. |
+| `imageUpload` | A trigger that is fired when an image is uploaded to a website. |
 
 You can set up rules so that a single trigger event invokes multiple actions, and have multiple triggers invoke the same action.
 - `newTweet -> classifyImage` rule
