@@ -27,13 +27,17 @@ subcollection: cloud-functions
 # Creating serverless REST APIs
 {: #apigateway}
 
-You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=cloud-functions-actions_web). The API Gateway acts as a proxy to web actions and provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
+You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=cloud-functions-actions_web). 
 {: shortdesc}
-
-For more information about API management, you can read the [API management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 Creating APIs with API Gateway is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
 {: important}
+
+## Why use REST APIs with {{site.data.keyword.openwhisk_short}}?
+
+You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
+
+For more information about API management, you can read the [API management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 ## Creating your first API
 {: #api_create}
