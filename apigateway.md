@@ -166,5 +166,6 @@ After you create your configuration, you can use the [APIs tab](https://cloud.ib
 * [Manage traffic](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by viewing API usage statistics and checking out response logs.
 * [Socialize and share](/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) your API with developers both within and outside {{site.data.keyword.cloud_notm}}.
 
+</br>
 Once you are done updating the configuration, you can download the definition file in JSON format, and then reimport it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and reimport the API definition file by using the UI.
 
