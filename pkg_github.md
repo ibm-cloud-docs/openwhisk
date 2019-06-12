@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: github, actions, trigger, event
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 This pre-installed package is not available in the Tokyo region.
 {: tip}
 
-The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/).
+The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/).
 {: shortdesc}
 
 The GitHub package includes the following entities.
@@ -50,12 +50,12 @@ The `/whisk.system/github/webhook` feed configures a service to fire a trigger w
 | --- | --- |
 | `username` | The user name of the GitHub repository. |
 | `repository` | The GitHub repository. |
-| `accessToken` | Your GitHub personal access token. When you [create your token](https://github.com/settings/tokens), be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
-| `events` | The [GitHub event type](https://developer.github.com/v3/activity/events/types/) of interest. |
+| `accessToken` | Your GitHub personal access token. When you [create your token ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/settings/tokens), be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
+| `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/v3/activity/events/types/) of interest. |
 
 In the following example, a trigger is created that fires each time a new commit to a GitHub repository.
 
-1. Generate a GitHub [personal access token](https://github.com/settings/tokens). The access token will be used in the next step.
+1. Generate a GitHub [personal access token ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/settings/tokens). The access token will be used in the next step.
 
 2. Create a package binding that is configured for your GitHub repository and with your access token.
   ```
@@ -72,5 +72,5 @@ In the following example, a trigger is created that fires each time a new commit
   ```
   {: pre}
 
-  A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload](https://developer.github.com/v3/activity/events/types/) API documentation.
+  A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/v3/activity/events/types/) API documentation.
 
