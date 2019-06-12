@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: serverless, rest api, gateway, web actions
 
@@ -135,6 +135,8 @@ To return different content types in the body, use full control over the HTTP re
   **Output**
   ```
   ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+  ```
+  {: screen}
 
 4. Call the updated API by using the following cURL command.
   ```

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-12"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -428,7 +428,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+  <dd>A JSON file that contains parameters <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
 
   <dt>`--sequence` <em>`ACTION_NAME`</em>, <em>`ACTION_NAME`</em></dt>
   <dd>Create an action sequence by specifying the name of related actions.</dd>
@@ -515,13 +515,13 @@ ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since DA
   <dd>List a specified number of activations. The default is 30 activations and the maximum is 200 activations.</dd>
 
   <dt>`--since` <em>`DAY_OF_THE_WEEK`</em>, <em>`DAY`</em>, <em>`MONTH`</em>, <em>`YEAR`</em></dt>
-  <dd>List activations that were created since the date specified. Measured in milliseconds. Example: Th, 01, Jan 1970</dd>
+  <dd>List activations that were created since the date specified. Duration is measured in milliseconds. Example: Th, 01, Jan 1970</dd>
 
   <dt>`--skip` <em>`NUMBER_OF_ACTIVATIONS`</em>, -s <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
   <dd>Exclude a specified number of the most recent activations from the result.</dd>
 
   <dt>`--upto` <em>`DAY_OF_THE_WEEK`</em>, <em>`DAY`</em>, <em>`MONTH`</em>, <em>`YEAR`</em></dt>
-  <dd>List activations that were created before the date specified. Measured in milliseconds. Example: Th, 01, Jan 1970</dd>
+  <dd>List activations that were created before the date specified. Duration is measured in milliseconds. Example: Th, 01, Jan 1970</dd>
   </dl>
 
 <br />**Example**
@@ -1257,7 +1257,7 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains parameter <em>`KEYS`</em> and C. This flag is optional.</dd>
+  <dd>A JSON file that contains parameter <em>`KEYS`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
 
   <dt>`--shared yes|no`</dt>
   <dd>When specified without a value or with a value of yes, the package is shared with other users.</dd>
