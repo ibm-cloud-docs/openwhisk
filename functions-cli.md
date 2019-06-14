@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-14"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -354,7 +354,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
   <dd>A JSON file that contains annotation in a <em>`KEY`</em> `VALUE` format. This flag is optional.</dd>
 
-  <dt><em>`ACTION_NAME</em></dt>
+  <dt><em>`ACTION_NAME`</em></dt>
   <dd>The name of the action. To include the action in a package, enter the name in the format <em>`PACKAGE_NAME`</em>/<em>`ACTION_NAME`</em>. This value is required. </dd>
 
   <dt><em>`APP_FILE`</em></dt>
