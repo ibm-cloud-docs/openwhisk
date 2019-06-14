@@ -1168,7 +1168,7 @@ ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCR
    <dt><em>`NAMESPACE`</em></dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
-   <dt>`NEW_<em>NAMESPACE</em>_NAME`</dt>
+   <dt>`NEW_`<em>`NAMESPACE`</em>`_NAME`</dt>
    <dd>The new name for a namespace. Do not include hyphens (-) in the name. This value is optional.</dd>
 
    <dt>`--description DESCRIPTION`, `-n DESCRIPTION`</dt>
