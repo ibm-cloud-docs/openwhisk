@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-14"
 
 keywords: alarms, serverless, triggers
 
@@ -196,7 +196,7 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tbody></table>
 
 The following command is an example of creating a trigger that fires once every 2 minutes. The trigger does not start firing until
-`Jan`uary 1, 2019, 00:00:00` UTC and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
+`January 1, 2019, 00:00:00` UTC and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
 ```
 ibmcloud fn trigger create periodic \
