@@ -106,7 +106,7 @@ To create a web action:
 
 4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
-  For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name>. 
+  For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run ```ibmcloud fn namespace get <namespace_name>```. 
   {: note}
 
   a. You can test the web action by either: 
