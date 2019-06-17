@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-17"
 
 keywords: object storage, bucket, package
 
@@ -409,8 +409,8 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
   --param bucket myBucket \
   --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
-    ```
-    {: pre}
+  ```
+  {: pre}
 
   **Example output**
 
