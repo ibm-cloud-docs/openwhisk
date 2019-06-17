@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-17"
 
 keywords: web actions, serverless
 
@@ -105,6 +105,9 @@ To create a web action:
   {: pre}
 
 4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+
+  For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name>. 
+  {: note}
 
   a. You can test the web action by either: 
     * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser.
