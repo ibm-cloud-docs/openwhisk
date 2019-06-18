@@ -93,16 +93,11 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
     ```
     {: screen}
 
-3. Bind the service to an action. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime. 
-
-    Understanding the `ibmcloud fn service bind` command parameters.
-
-    | Parameter | Description |
-    | --- | --- |
-    | `SERVICE` | The service name that you're binding. |
-    | `ACTION_NAME` | The name of the action or package that you want to bind the service to. |
-    | `--instance INSTANCE_NAME` | (Optional) Specify a service instance name. If you don't specify a service instance name, the first instance for the service is selected. |
-    | `--keyname CREDENTIALS_NAME` | (Optional) Specify the credentials name. If you don't specify the credentials name, the first credentials for the service instance are selected. |
+3. Bind the service to an action. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime. The following command parameters are available for the `ibmcloud fn service bind` command.
+    * `SERVICE` - The service name that you're binding.
+    * `ACTION_NAME` - The name of the action or package that you want to bind the service to.
+    * `--instance INSTANCE_NAME` - (Optional) Specify a service instance name. If you don't specify a service instance name, the first instance for the service is selected.
+    * `--keyname CREDENTIALS_NAME` - (Optional) Specify the credentials name. If you don't specify the credentials name, the first credentials for the service instance are selected.
 
     **Example syntax** 
     ```
