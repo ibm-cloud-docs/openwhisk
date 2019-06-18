@@ -95,17 +95,17 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
 
 3. Bind the service to an action. The {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime. 
 
-    ```
-    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
-    ```
-    {: pre}
-
     Understanding the `ibmcloud fn service bind` command components.
 
         * `SERVICE` - The service name that you're binding.
         * `ACTION_NAME` - The name of the action or package that you want to bind the service to.
         * `--instance INSTANCE_NAME` - (Optional) Specify a service instance name. If you don't specify a service instance name, the first instance for the service is selected.
         * `--keyname CREDENTIALS_NAME` - (Optional) Specify the credentials name. If you don't specify the credentials name, the first credentials for the service instance are selected.
+
+    ```
+    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+    ```
+    {: pre}
 
     For example, to bind an {{site.data.keyword.ibmwatson}} Composer service to an action named `hello`, run the following command.
 
