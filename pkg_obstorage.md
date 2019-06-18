@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-17"
+lastupdated: "2019-06-18"
 
 keywords: object storage, bucket, package
 
@@ -476,7 +476,8 @@ The content of the generated events has the following parameters:
 | `endpoint` | The {{site.data.keyword.cos_full_notm}} endpoint used to connect to the {{site.data.keyword.cos_full_notm}} instance. |
 | `key` | The identifier of the changed bucket object. This value is the same as `file.Key`, but available at the top of the trigger event JSON. |
 
-Example JSON representation of the bucket change trigger event:
+**Example JSON representation of the bucket change trigger event**
+
 ```json
 {
   "file": {
