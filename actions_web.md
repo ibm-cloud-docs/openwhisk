@@ -40,7 +40,7 @@ Though you are not required to use credentials with web actions, you can impleme
 
 ### 2. Use any type of HTTP request
 
-Default {{site.data.keyword.openwhisk_short}} only accept `POST` requests, but web actions can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
+By default, actions only accept `POST` requests, but web actions can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
 
 ### 3. Trigger a web action from anywhere
 
