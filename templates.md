@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-18"
 
 keywords: deploy, deployment templates, templates, example, quickstart
 
@@ -72,12 +72,12 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
     4. Click **OK** to close the {{site.data.keyword.cloudant_short_notm}} setup page and return to the {{site.data.keyword.openwhisk_short}} console.
     5. In the **Cloudant Instance** list, you can now select **Input your own credentials** and provide the following information.
         
-        | Parameter | Description |
-        | --- | --- |
-        | `Username` | Your {{site.data.keyword.cloudant_short_notm}} username. |
-        | `Password` | Your {{site.data.keyword.cloudant_short_notm}} password. |
-        | `Host` | `<username>.cloudant.com` |
-        | `Database` | The name of your {{site.data.keyword.cloudant_short_notm}} database. |
+    | Parameter | Description |
+    | --- | --- |
+    | `Username` | Your {{site.data.keyword.cloudant_short_notm}} username. |
+    | `Password` | Your {{site.data.keyword.cloudant_short_notm}} password. |
+    | `Host` | `<username>.cloudant.com` |
+    | `Database` | The name of your {{site.data.keyword.cloudant_short_notm}} database. |
 
 5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
