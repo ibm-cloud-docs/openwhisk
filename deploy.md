@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-18"
 
 keywords: deploying actions, manifest, manifest file
 
@@ -34,7 +34,7 @@ The manifest file describes the set of entities you would like to deploy and und
 ## Creating the Hello World API example
 {: #deploy_helloworld_example}
 
-This example takes some simple Node.js code (`helloworld.js`), creates a web action (`hello_world`) inside a package (`hello_world_package`) and defines a REST API for this action.
+This example takes some simple Node.js code `helloworld.js`, creates a web action `hello_world` inside a package `hello_world_package` and defines a REST API for this action.
 {: shortdesc}
 
 1. Create a `helloworld.js` file with the following code.
