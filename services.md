@@ -69,7 +69,6 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
     {: screen}
 
 2. Get the name of the credentials that are defined for a service instance.
-
     ```
     ibmcloud service keys SERVICE_NAME
     ```
