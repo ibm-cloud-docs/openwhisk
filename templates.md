@@ -72,14 +72,12 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
     4. Click **OK** to close the {{site.data.keyword.cloudant_short_notm}} setup page and return to the {{site.data.keyword.openwhisk_short}} console.
     5. In the **Cloudant Instance** list, you can now select **Input your own credentials** and provide the following information.
         
-    | Parameter | Description |
-    | --- | --- |
-    | `Username` | Your {{site.data.keyword.cloudant_short_notm}} username. |
-    | `Password` | Your {{site.data.keyword.cloudant_short_notm}} password. |
-    | `Host` | `<username>.cloudant.com` |
-    | `Database` | The name of your {{site.data.keyword.cloudant_short_notm}} database. |
+        * `Username` - Your {{site.data.keyword.cloudant_short_notm}} username.
+        * `Password` - Your {{site.data.keyword.cloudant_short_notm}} password.
+        * `Host` - `<username>.cloudant.com`. 
+        * `Database` - The name of your {{site.data.keyword.cloudant_short_notm}} database.
 
-5. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
+6. Click **Deploy**. After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the CLI
 {: #cloudant-template-cli}
@@ -307,16 +305,13 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
     3. Create a set of Service Credentials.
     4. Click **OK** to close the {{site.data.keyword.messagehub}} creation page and return to the {{site.data.keyword.messagehub}} console.
     5. In the **MessageHub Instance** list, you can now select **Input your own credentials** and provide the following information:
+        * `Username` - Your {{site.data.keyword.messagehub}} username.
+        * `Password` - Your {{site.data.keyword.messagehub}} password.
+        * `kafka_admin_url` - Your {{site.data.keyword.messagehub}} admin REST URL.
+        * `Database` - The name of your {{site.data.keyword.messagehub}} database.
+        * `Topic` - The topic to subscribe to.
 
-    | Parameter | Description |
-    | --- | --- |
-    | `Username` | Your {{site.data.keyword.messagehub}} username. |
-    | `Password` | Your {{site.data.keyword.messagehub}} password. |
-    | `kafka_admin_url` | Your {{site.data.keyword.messagehub}} admin REST URL. |
-    | `Database` | The name of your {{site.data.keyword.messagehub}} database. |
-    | `Topic` | The topic to subscribe to. |
-
-5. Click **Deploy**.
+6. Click **Deploy**.
 
 After template deployment, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
