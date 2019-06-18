@@ -1,117 +1,171 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting_started" path="openwhisk"}
+{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting-started" path="openwhisk"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
-    getting_started.md
+    getting-started.md
 
     {: .topicgroup}
-    Visão geral
-        openwhisk_use_cases.md
-        openwhisk_about.md
-        openwhisk_compare.md
+    Sobre
+        use_cases.md
+        about.md
+        faas.md
 
     {: .topicgroup}
     Tutoriais
-        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
-        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
-        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
-        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
+        [Tutorial: construa um Slackbot orientado por banco de dados](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
+        [Tutorial: combinando sem servidor e Cloud Foundry para recuperação e analítica de dados](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
+        [Tutorial: aplicativo móvel com back-end sem servidor](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
+        [Tutorial: aplicativo da web sem servidor e API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
-    bluemix_cli.md
+    cli_install.md
 
     {: .topicgroup}
-    Criando ações
-        actions_javascript.md
-        actions_go.md
-        actions_swift.md
-        actions_python.md
-        actions_ruby.md
-        actions_docker.md
-        actions_ballerina.md
-        actions_php.md
-        actions_java.md
-        actions_net.md
-        openwhisk_webactions.md
-        openwhisk_managing.md
-        parameters.md
-        binding_services.md
-        openwhisk_packages.md
-        cloud_object_storage_actions.md
+    Desenvolvendo apps sem servidor
+        plan.md
+        templates.md
+        prep.md
+        actions.md
+        actions_web.md
+        triggers.md
+        rules.md
+        apigateway.md
+
+    test.md
 
     {: .topicgroup}
-    Chamando ações com eventos
-        openwhisk_triggers_rules.md
-        openwhisk_alarms.md
-        openwhisk_cloudant.md
-        openwhisk_messagehub.md
-        openwhisk_pushnotifications.md
-        openwhisk_github.md
-        openwhisk_feeds.md
-        openwhisk_object_storage.md
-
-    openwhisk_apigateway.md
-    openwhisk_logs.md
-    deploy_templates.md
-
-    {: .topicgroup}
-    Pacotes pré-instalados
-        cloudant_actions.md
-        messagehub_actions.md
-        mobile_push_actions.md
-        openwhisk_watson_translator.md
-        openwhisk_watson_texttospeech.md
-        openwhisk_watson_speechtotext.md
-        ../services/IoT/gateways/iotgw.md
-        openwhisk_weather.md
-        openwhisk_slack.md
-        openwhisk_websocket.md
-
-    {: .topicgroup}
-    Pacotes instaláveis
-        installable_packages_overview.md
-        cloud_object_storage_actions.md
-        ow_watson_assistant.md
-        ow_watson_discovery.md
-        ow_watson_visual_recognition.md
-        ow_watson_natural_language_understanding.md
-        ow_watson_speech_to_text.md
-        ow_watson_text_to_speech.md
-        ow_watson_natural_language_classifer.md
-        ow_watson_personality_insights.md
-        ow_watson_tone_analyzer.md
-        ow_watson_language_translator.md
-
+    Integrando apps sem servidor
+        services.md
+        pkg_ov.md
+        pkg_alarms.md
+        pkg_cloudant.md
+        pkg_composer.md
+        pkg_discovery.md
+        pkg_event_streams.md
+        pkg_github.md
+        pkg_mobile_sdk.md
+        pkg_natlang_classifer.md
+        pkg_natlang_understanding.md
+        pkg_obstorage.md
+        pkg_person_insights.md
+        pkg_push_notifications.md
+        pkg_slack.md
+        pkg_speech_to_text.md
+        pkg_text_to_speech.md
+        pkg_tone_analyzer.md
+        pkg_translator.md
+        pkg_utils.md
+        pkg_visual_recognition.md
+        pkg_watson_assistant.md
+        pkg_weather.md
+        pkg_websocket.md
+        feeds_custom.md
 
     {: .topicgroup}
-    SDK e estruturas
-        openwhisk_goserverless.md
-        openwhisk_mobile_sdk.md
+    Protegendo apps sem servidor
+         namespaces.md
+         z_archive_iam.md
+
+    {: .topicgroup}
+    Configurando uma cadeia de ferramenta automatizada
+        deploy.md
+
+    {: .topicgroup}
+    Registrando eventos 
+        logs.md
+        activity_tracker.md
+
+    {: .topicgroup}
+    Monitorando o funcionamento
+        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
-    openwhisk_annotations.md
+    annotations.md
     runtimes.md
-    openwhisk_reference.md
-    openwhisk_regions.md
+    limits.md
+    /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
+    regions.md
 
     {: .topicgroup}
-    Documentação da API [Referência da API de REST](https://console.bluemix.net/apidocs/functions){: new_window}[Gerenciamento
-de API nativa no IBM Cloud](https://console.ng.bluemix.net/docs/apis/management/index.html){: new_window}
+    Documentação da API
+        [Referência de API de REST](https://cloud.ibm.com/apidocs/functions){: new_window}
+        [Gerenciamento de API nativa no IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
     {: .topicgroup}
     Links relacionados
         [Descobrir: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
-        [Precificação](https://console.ng.bluemix.net/openwhisk/learn/pricing){: new_window}
+        [Precificação](https://cloud.ibm.com/openwhisk/learn/pricing){: new_window}
         [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
-        [FAQ do Apache OpenWhisk](http://openwhisk.org/faq){: new_window}
         [Tutoriais e amostras](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
-
     {: .navgroup-end}
+
+    {: .navgroup id="help"}
+    faq.md
+    ts_index.md
+    {: .navgroup-end}
+
+
+    functions-cli.md
+    z_archive_getting_started.md
     
-    index.md
-    openwhisk_actions.md
+    z_archive_actions_javascript.md
+    z_archive_actions_go.md
+    z_archive_actions_swift.md
+    z_archive_actions_python.md
+    z_archive_actions_ruby.md
+    z_archive_actions_docker.md
+    z_archive_actions_php.md
+    z_archive_actions_java.md
+    z_archive_actions_net.md
+    z_archive_binding_services.md
+    z_archive_bluemix_cli.md
+    z_archive_cloud_object_storage_actions.md
+    z_archive_cloudant_actions.md
+    z_archive_creating_action_sequence.md
+    z_archive_eventstreams.md
+    z_archive_installable-packages-overview.md
+    z_archive_messagehub_actions.md
+    z_archive_mobile_push_actions.md
+    z_archive_openwhisk_about.md
+    z_archive_openwhisk_access.md
+    z_archive_openwhisk_alarms.md
+    z_archive_openwhisk_annotations.md
+    z_archive_openwhisk_catalog_github.md
+    z_archive_openwhisk_catalog_slack.md
+    z_archive_openwhisk_catalog_watson_translator.md
+    z_archive_openwhisk_catalog_weather.md
+    z_archive_openwhisk_cloudant.md
+    z_archive_openwhisk_common_use_cases.md
+    z_archive_openwhisk_composer.md
+    z_archive_openwhisk_faas_compared.md
+    z_archive_openwhisk_feeds.md
+    z_archive_openwhisk_logs.md
+    z_archive_openwhisk_managing.md
+    z_archive_openwhisk_mobile_sdk.md
+    z_archive_openwhisk_namespaces.md
+    z_archive_openwhisk_object_storage.md
+    z_archive_openwhisk_packages.md
+    z_archive_openwhisk_reference.md
+    z_archive_openwhisk_triggers_rules.md
+    z_archive_openwhisk_watson_texttospeech.md
+    z_archive_openwhisk_watson_speechtotext.md
+    z_archive_openwhisk_webactions.md
+    z_archive_openwhisk_websocket.md
+    z_archive_ow_push_notifications.md
+    z_archive_ow_watson_assistant.md
+    z_archive_ow_watson_discovery.md
+    z_archive_ow_watson_natural_language_classifer.md
+    z_archive_ow_watson_natural_language_understanding.md
+    z_archive_ow_watson_personality_insights.md
+    z_archive_ow_watson_tone_analyzer.md
+    z_archive_ow_watson_visual_recognition.md
+    z_archive_openwhisk_goserverless.md
+    z_archive_parameters.md
+    z_archive_serverless_framework.md
+    z_archive_serviceauth.md
+    z_archive_working-with-actions.md

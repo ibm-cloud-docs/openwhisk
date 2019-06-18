@@ -8,8 +8,7 @@ Bem-vindo ao repositório do Docs para o IBM Cloud Functions! Feedback e atualiz
 
 
 
-
-Para sugerir mudanças de doc:
+## Sugerindo mudanças
 
 1. Crie uma bifurcação desse repositório e faça as atualizações nela;
 2. Quando você estiver pronto para revisão, faça uma RC para a ramificação principal e identifique `Derek-Poindexter` para revisão.
