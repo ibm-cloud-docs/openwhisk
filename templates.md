@@ -308,13 +308,13 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
     4. Click **OK** to close the {{site.data.keyword.messagehub}} creation page and return to the {{site.data.keyword.messagehub}} console.
     5. In the **MessageHub Instance** list, you can now select **Input your own credentials** and provide the following information:
 
-        | Parameter | Description |
-        | --- | --- |
-        | `Username` | Your {{site.data.keyword.messagehub}} username. |
-        | `Password` | Your {{site.data.keyword.messagehub}} password. |
-        | `kafka_admin_url` | Your {{site.data.keyword.messagehub}} admin REST URL. |
-        | `Database` | The name of your {{site.data.keyword.messagehub}} database. |
-        | `Topic` | The topic to subscribe to. |
+    | Parameter | Description |
+    | --- | --- |
+    | `Username` | Your {{site.data.keyword.messagehub}} username. |
+    | `Password` | Your {{site.data.keyword.messagehub}} password. |
+    | `kafka_admin_url` | Your {{site.data.keyword.messagehub}} admin REST URL. |
+    | `Database` | The name of your {{site.data.keyword.messagehub}} database. |
+    | `Topic` | The topic to subscribe to. |
 
 5. Click **Deploy**.
 
