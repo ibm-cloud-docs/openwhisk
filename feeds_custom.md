@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-18"
 
 keywords: feeds, serverless
 
@@ -59,7 +59,8 @@ For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=
 ##  Implementing feed actions
 {: #feeds_actions}
 
-The feed action is an action, and accepts the following parameters:
+The feed action is an action, and accepts the following parameters.
+
 | Parameter | Description |
 | --- | --- |
 | `lifecycleEvent` | `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`. |
