@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-18"
 
 keywords: services, serverless
 
@@ -100,10 +100,10 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
     {: pre}
 
     Understanding the `ibmcloud fn service bind` command components.
-    * `SERVICE` - The service name that you're binding. |
-    * `ACTION_NAME` - The name of the action or package that you want to bind the service to. |
-    * `--instance INSTANCE_NAME` - (Optional) Specify a service instance name. If you don't specify a service instance name, the first instance for the service is selected. |
-    * `--keyname CREDENTIALS_NAME` - (Optional) Specify the credentials name. If you don't specify the credentials name, the first credentials for the service instance are selected. |
+        * `SERVICE` - The service name that you're binding.
+        * `ACTION_NAME` - The name of the action or package that you want to bind the service to.
+        * `--instance INSTANCE_NAME` - (Optional) Specify a service instance name. If you don't specify a service instance name, the first instance for the service is selected.
+        * `--keyname CREDENTIALS_NAME` - (Optional) Specify the credentials name. If you don't specify the credentials name, the first credentials for the service instance are selected.
 
     For example, to bind an {{site.data.keyword.ibmwatson}} Composer service to an action named `hello`.
     ```
