@@ -44,7 +44,7 @@ By default, actions only accept `POST` requests, but web actions can be invoked 
 
 ### 3. Trigger a web action from anywhere
 
-When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. {{site.data.keyword.openwhisk_short}} that are not web actions require authentication and must respond with a JSON object. 
+When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. 
 
 A web action API path can be used with cURL, `wget`, or even be entered directly in your browser. A web action can be invoked by using a URL that is structured as follows: `https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>`.
 
