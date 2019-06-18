@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-17"
+lastupdated: "2019-06-18"
 
 keywords: web actions, serverless
 
@@ -46,7 +46,7 @@ Default {{site.data.keyword.openwhisk_short}} only accept `POST` requests, but w
 
 When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. {{site.data.keyword.openwhisk_short}} that are not web actions require authentication and must respond with a JSON object. 
 
-A web action API path can be used with cURL, `wget`, or even be entered directly in your browser. A web action can be invoked by using a URL that is structured as follows: `https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>`
+A web action API path can be used with cURL, `wget`, or even be entered directly in your browser. A web action can be invoked by using a URL that is structured as follows: `https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>`.
 
 ### 4. Create fewer {{site.data.keyword.openwhisk_short}} entities
 
@@ -104,7 +104,7 @@ To create a web action:
   ```
   {: pre}
 
-4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. To get the `<apihost>`, run ```ibmcloud fn property get --apihost```. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
   For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run ```ibmcloud fn namespace get <namespace_name>```. 
   {: note}
