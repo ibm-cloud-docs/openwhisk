@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-12"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -89,7 +89,7 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
 
 If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.cloud_notm}} or if you want to set up your {{site.data.keyword.texttospeechshort}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.texttospeechshort}} service. You need the {{site.data.keyword.texttospeechshort}} service user name, and password.
 
-Create a package binding that is configured for your Watson Speech to Text service.
+Create a package binding that is configured for your {{site.data.keyword.texttospeechshort}} service.
 ```
 ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username <username> -p password <password>
 ```
@@ -171,7 +171,7 @@ After you have an {{site.data.keyword.texttospeechshort}} service instance, use 
 **Before you begin**
 [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-To install the {{site.data.keyword.texttospeechshort}} package:
+To install the {{site.data.keyword.texttospeechshort}} package, run the following commands.
 
 1. Clone the {{site.data.keyword.texttospeechshort}} package repo.
     ```
@@ -247,7 +247,7 @@ To install the {{site.data.keyword.texttospeechshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace that you want to install the package into by using the namespace switcher.
+2. Select the namespace that you want to install the package into by using the namespace drop-down menu.
 
 3. Click **Install Packages**.
 

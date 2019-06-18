@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-12"
 
 keywords: watson, translator, cognitive, translating text, language
 
@@ -57,7 +57,7 @@ Before you install the package, you must create a {{site.data.keyword.languagetr
 ## Installing the {{site.data.keyword.languagetranslatorshort}} package
 {: #install_translator}
 
-After you have an {{site.data.keyword.languagetranslatorshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.languagetranslatorshort}} package into your namespace.
+After you have a {{site.data.keyword.languagetranslatorshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.languagetranslatorshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -67,7 +67,7 @@ After you have an {{site.data.keyword.languagetranslatorshort}} service instance
 
 [Install the {{site.data.keyword.openwhisk_short}} plug-in](/docs/openwhisk?topic=cloud-functions-cli_install) for the {{site.data.keyword.cloud_notm}} CLI.
 
-To install the {{site.data.keyword.languagetranslatorshort}} package:
+Install the {{site.data.keyword.languagetranslatorshort}} package.
 
 1. Clone the {{site.data.keyword.languagetranslatorshort}} package repo.
 
@@ -148,7 +148,7 @@ To install the {{site.data.keyword.languagetranslatorshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace that you want to install the package into by using the namespace switcher. Namespaces are formed from the combined org and space names.
+2. Select the namespace that you want to install the package into by using the namespace drop-down menu. Namespaces are formed from the combined org and space names.
 
 3. Click **Install Packages**.
 
@@ -183,7 +183,7 @@ ibmcloud fn action invoke language-translator-v3/<action_name> -b -p <param name
 
 All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/language-translator/api/v3/curl.html?curl#versioning).
 
-This package's functions use the current version of Language Translator, 2018-05-01. Try out the `identify` action.
+This package's functions use the current version of Language Translator, `2018-05-01`. Try out the `identify` action.
 ```
 ibmcloud fn action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```

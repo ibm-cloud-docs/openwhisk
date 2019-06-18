@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-14"
 
 keywords: alarms, serverless, triggers
 
@@ -28,7 +28,7 @@ subcollection: cloud-functions
 # Alarms
 {: #pkg_alarms}
 
-The `/whisk.system/alarms` package can be used to fire a trigger at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system backup every hour.
+The `/whisk.system/alarms` package can be used to fire a trigger at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system back up every hour.
 {: shortdesc}
 
 The package includes the following feeds.
@@ -45,7 +45,8 @@ The package includes the following feeds.
 ## Firing a trigger event once
 {: #pkg_alarms_one}
 
-The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event once on a specified date. To create a fire-once alarm, run the following command:
+The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event once on a specified date. To create a fire-once alarm, run the following command.
+
 ```
 ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
 ```
@@ -68,15 +69,15 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code>--param date</code></td>
-<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. Note: The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 `January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>
-<td>Optional: Replace <code>&lt;key&gt;</code> and <code>&lt;value&gt;</code> with the parameters of the trigger when the trigger is fired.</td>
+<td>(Optional) Replace <code>&lt;key&gt;</code> and <code>&lt;value&gt;</code> with the parameters of the trigger when the trigger is fired.</td>
 </tr>
 <tr>
 <td><code>--param deleteAfterFire</code></td>
-<td>Optional: Whether the trigger and any associated rules are deleted after the trigger is fired. Replace <code>&lt;delete_option&gt;</code> with one of the following:<ul><li><code>false</code> (default) No action is taken after the trigger fires.</li><li><code>true</code>: The trigger is deleted after it fires.</li><li><code>rules</code>: The trigger and all of its associated rules are deleted after it fires.</li></ul></td>
+<td>(Optional) Whether the trigger and any associated rules are deleted after the trigger is fired. Replace <code>&lt;delete_option&gt;</code> with one of the following.<ul><li><code>false</code> - (default) No action is taken after the trigger fires.</li><li><code>true</code> - The trigger is deleted after it fires.</li><li><code>rules</code> - The trigger and all of its associated rules are deleted after it fires.</li></ul></td>
 </tr>
 </tbody></table>
 
@@ -95,7 +96,7 @@ ibmcloud fn trigger create fireOnce \
 ## Firing a trigger event periodically on an interval-based schedule
 {: #pkg_alarms_int}
 
-The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a trigger event on an interval-based schedule. To create an interval-based alarm, run the following command:
+The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a trigger event on an interval-based schedule. To create an interval-based alarm, run the following command.
 ```
 ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -126,15 +127,15 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the the first trigger to fire. Subsequent fires occur based on the interval length specified by the minutes parameter. Note: This parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. Note: This parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
-The following example creates a trigger that fires once every 2 minutes. The trigger fires as soon as possible, and will stop firing January 31, 2019, 23:59:00 UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
+The following example creates a trigger that fires once every 2 minutes. The trigger fires as soon as possible, and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
 ```
 ibmcloud fn trigger create interval \
@@ -150,7 +151,7 @@ ibmcloud fn trigger create interval \
 ## Firing a trigger on a time-based schedule by using cron
 {: #pkg_alarms_cron}
 
-The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command:
+The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command.
 ```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -173,12 +174,12 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param cron</code></td>
-<td>Replace <code>&lt;cron&gt;</code> with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum five fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency:<ul><li><code>\* \* \* \* \*</code>: The trigger fires at the start of every minute.</li><li><code>0 \* \* \* \*</code>: The trigger fires at the start of every hour.</li><li><code>0 \*/2 \* \* \*</code>: The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code>: The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
+<td>Replace <code>&lt;cron&gt;</code> with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the <a href="http://crontab.org">UNIX crontab syntax</a> and is a sequence of maximum five fields. Fields are separated by spaces in the format <code>X X X X X</code>. The following strings are examples that use varying durations of frequency.<ul><li><code>\* \* \* \* \*</code> - The trigger fires at the start of every minute.</li><li><code>0 \* \* \* \*</code> - The trigger fires at the start of every hour.</li><li><code>0 \*/2 \* \* \*</code> - The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...).</li><li><code>0 9 8 \* \*</code> - The trigger fires at 9:00:00AM (UTC) on the eighth day of every month.</li></ul></td>
 </tr>
 <tr>
 <tr>
 <td><code>--param timezone</code></td>
-<td>(Optional) Replace <code>&lt;timezone&gt;</code> with a string that specifies the timezone. The actual time to fire the trigger will then be modified relative to the specified timezone. If the timezone is invalid, an error is thrown. You can check all time zones available at the [Moment Timezone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names).</td>
+<td>(Optional) Replace <code>&lt;timezone&gt;</code> with a string that specifies the timezone. The actual time to fire the trigger is modified relative to the specified timezone. If the timezone is invalid, an error is thrown. You can check all of the available time zones at the [Moment Timezone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names).</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>
@@ -186,16 +187,16 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length specified by the minutes parameter . Note: This parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when the trigger will stop running. Triggers do not fire once this date is reached. Note: This parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 January 1970 00:00:00 UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
-The following command is an example of creating a trigger that fires once every 2 minutes. The trigger will not start firing until
-January 1, 2019, 00:00:00 UTC and will stop firing January 31, 2019, 23:59:00 UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
+The following command is an example of creating a trigger that fires once every 2 minutes. The trigger does not start firing until
+`January 1, 2019, 00:00:00` UTC and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
 ```
 ibmcloud fn trigger create periodic \

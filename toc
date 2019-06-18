@@ -29,18 +29,19 @@ IBM Cloud Functions
         plan.md
         templates.md
         prep.md
-        actions.md
         actions_web.md
+        actions.md
+        apigateway.md
         triggers.md
         rules.md
-        apigateway.md
+        
 
     test.md
     
     {: .topicgroup}
     Securing serverless apps
         namespaces.md
-        z_archive_iam.md
+        iam.md
 
     {: .topicgroup}
     Integrating serverless apps
@@ -108,17 +109,3 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
-
-  
-    z_archive_cloud_object_storage_actions.md
-    z_archive_eventstreams.md
-    z_archive_openwhisk_access.md
-    z_archive_openwhisk_catalog_weather.md
-    z_archive_openwhisk_cloudant.md
-    z_archive_openwhisk_reference.md
-    z_archive_openwhisk_webactions.md
-    z_archive_ow_push_notifications.md
-    z_archive_ow_watson_assistant.md
-    z_archive_ow_watson_discovery.md
-    z_archive_ow_watson_personality_insights.md
-    z_archive_working-with-actions.md

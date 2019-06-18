@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: triggers, serverless
 
@@ -48,7 +48,7 @@ The following are examples of triggers.
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -60,7 +60,7 @@ The following are examples of triggers.
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -102,7 +102,7 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     package /whisk.system/alarms
      feed   /whisk.system/alarms/alarm
@@ -115,7 +115,7 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -126,13 +126,13 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
   - `cron`: A crontab specification of when to fire the trigger.
   - `trigger_payload`: The payload parameter value to set in each trigger event.
 
-2. Create a trigger that fires every one minute.
+2. Create a trigger that fires every 1 minute.
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -158,7 +158,7 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   ok: created rule myRule
   ```

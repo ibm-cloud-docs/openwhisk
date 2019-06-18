@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-18"
 
 keywords: deploying actions, manifest, manifest file
 
@@ -27,14 +27,14 @@ subcollection: cloud-functions
 # Deploying entities with a manifest file
 {: #deploy}
 
-You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Actions](/docs/openwhisk?topic=cloud-functions-actions), [Triggers](/docs/openwhisk?topic=cloud-functions-triggers), and Rules](/docs/openwhisk?topic=cloud-functions-rules) with a single command.
+You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Actions](/docs/openwhisk?topic=cloud-functions-actions), [Triggers](/docs/openwhisk?topic=cloud-functions-triggers), and [Rules](/docs/openwhisk?topic=cloud-functions-rules) with a single command.
 
 The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities that are defined in your manifest file.
 
 ## Creating the Hello World API example
 {: #deploy_helloworld_example}
 
-This example takes some simple Node.js code (`helloworld.js`), creates a web action (`hello_world`) inside a package (`hello_world_package`) and defines a REST API for this action.
+This example takes some simple Node.js code `helloworld.js`, creates a web action `hello_world` inside a package `hello_world_package` and defines a REST API for this action.
 {: shortdesc}
 
 1. Create a `helloworld.js` file with the following code.

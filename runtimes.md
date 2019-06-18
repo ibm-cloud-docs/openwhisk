@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-14"
 
 keywords: runtimes, support
 
@@ -50,7 +50,7 @@ Example image fields.
 
 Runtimes are updated regularly. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action, to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
 <ul>
@@ -76,8 +76,8 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 
 | Runtime | Description | Changelog |
 | --- | --- | --- |
+| [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | By default, all Node.js actions are executed in a version 10 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 | [8.15.0](https://nodejs.org/en/blog/release/v8.15.0/) | The Node.js version 8.15.0 is used if the `--kind` flag is explicitly specified with a value of `nodejs:8` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md). |
-| [10.15.0](https://nodejs.org/en/blog/release/v10.15.0/) | The Node.js version 10 environment is used if the `--kind` flag is explicitly specified with a value of `nodejs:10` when creating or updating an action. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md). |
 
 
 ### Migrating from nodeJS 8 to nodeJS 10
@@ -86,9 +86,9 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | --- | --- |
 | `ibm_db` | The `ibm_db` NPM package is not available in `nodejs:10`. The `ibm_db` package doesn't support Node.js 10. You can track progress in [this issue](https://github.com/ibmdb/node-ibm_db/issues/482#issuecomment-436895541). |
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant) v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x). |
-| `cradle` | The `cradle`  NPM package is not available in nodejs:10. |
-| `log4js` | The `log4js`  NPM package is not available in nodejs:10. You can track the issue at [log4js-node/issues/805](https://github.com/log4js-node/log4js-node/issues/805). |
-| `watson-developer-cloud` | The `watson-developer-cloud` NPM package is not available in nodejs:10. You can track progress on the new version in [this issue](https://github.com/watson-developer-cloud/node-sdk/issues/780). |
+| `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
+| `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track [this issue](https://github.com/log4js-node/log4js-node/issues/805). |
+| `watson-developer-cloud` | The `watson-developer-cloud` NPM package is not available in `nodejs:10`. You can track progress on the new version in [this issue](https://github.com/watson-developer-cloud/node-sdk/issues/780). |
 
 
 ### Node.js packages
@@ -111,7 +111,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
 | [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
 | [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
-| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
 | [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js |
 | [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
@@ -129,7 +129,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`mustache`](https://www.npmjs.com/package/mustache) | Mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
 | [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
 | [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
@@ -148,21 +148,21 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
 | [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
-| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
 | [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
 | [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
-| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
 | [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xlsx`](https://www.npmjs.com/package/xlsx) | Parser and writer for various spreadsheet formats. |
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
-{: caption="Table 1. Node.js 10 packages." caption-side="top"}
+{: caption="Table 1. Node.js 10.15 packages." caption-side="top"}
 {: #javascript-1}
-{: tab-title="Node.js 10 packages"}
+{: tab-title="Node.js 10.15 packages"}
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
@@ -171,7 +171,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`amqplib`](https://www.npmjs.com/package/amqplib) | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
 | [`apn`](https://www.npmjs.com/package/apn) | A Node.js module for interfacing with the Apple Push Notification service.
 | [`async`](https://www.npmjs.com/package/async) | Provides functions for working with asynchronous functions. |
-| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async/await. |
+| [`bent`](https://www.npmjs.com/package/bent) | Functional HTTP client for Node.js with async-await. |
 | [`bodyparser`](https://www.npmjs.com/package/body-parser) | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
 | [`btoa`](https://www.npmjs.com/package/btoa) | A port of the browser's `btoa` function. |
 | [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver) | DataStax Node.js Driver for Apache Cassandra. |
@@ -185,18 +185,18 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware. |
 | [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
 | [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
-| [`glob`](https://www.npmjs.com/package/glob) | Match files using the patterns the shell uses, like stars and stuff. |
+| [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
 | [`gm`](https://www.npmjs.com/package/gm) | GraphicsMagick and ImageMagick for Node. |
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk) | {{site.data.keyword.cos_full}} SDK for Node.js. |
-| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
+| [`ibm_db`](https://www.npmjs.com/package/ibm_db) | An asynchronous-synchronous interface for Node.js to IBM DB2 and IBM Informix. |
 | [`ibmiotf`](https://www.npmjs.com/package/ibmiotf) | The Node.js client is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
 | [`iconv-lite`](https://www.npmjs.com/package/iconv-lite) | Pure JS character encoding conversion. |
 | [`jsdom`](https://www.npmjs.com/package/jsdom) | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
 | [`jsforce`](https://www.npmjs.com/package/jsforce) | Salesforce API Library for JavaScript applications. |
 | [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken) | An implementation of JSON Web Tokens. |
-| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library exported as Node.js modules. |
+| [`lodash`](https://www.npmjs.com/package/lodash) | The `lodash` library that is exported as Node.js modules. |
 | [`log4js`](https://www.npmjs.com/package/log4js) | A conversion of the log4js framework to work with Node. |
-| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler, written in JavaScript. Built for speed. |
+| [`marked`](https://www.npmjs.com/package/marked) | A full-featured markdown parser and compiler that is written in JavaScript. Built for speed. |
 | [`merge`](https://www.npmjs.com/package/merge) | Merge multiple objects into one, optionally creating a new cloned object. |
 | [`moment`](https://www.npmjs.com/package/moment) | A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. |
 | [`mongodb`](https://www.npmjs.com/package/mongodb) | The official MongoDB driver for Node.js. |
@@ -204,14 +204,14 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`mustache`](https://www.npmjs.com/package/mustache) | mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano) | Minimalistic CouchDB driver for Node.js. |
 | [`nodemailer`](https://www.npmjs.com/package/nodemailer) | Send e-mails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
+| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server) | Complete, compliant, and tested module for implementing an OAuth2 Server-Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk) | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp) | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths.
 | [`pg`](https://www.npmjs.com/package/pg) | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
 | [`process`](https://www.npmjs.com/package/process) | `require('process')`; just like any other module. |
 | [`pug`](https://www.npmjs.com/package/pug) | Implements the Pug templating language. |
 | [`redis`](https://www.npmjs.com/package/redis) | A complete and feature rich Redis client for Node.js. |
-| [`request`](https://www.npmjs.com/package/request) | Request is designed to be the simplest way possible to make HTTP calls. |
+| [`request`](https://www.npmjs.com/package/request) | Make HTTP calls. |
 | [`request-promise`](https://www.npmjs.com/package/request-promise) | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |
 | [`rimraf`](https://www.npmjs.com/package/rimraf) | The UNIX command rm -rf for node. |
 | [`semver`](https://www.npmjs.com/package/semver) | Semantic Versioning for nodeJS. |
@@ -223,21 +223,21 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`superagent`](https://www.npmjs.com/package/superagent) | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
 | [`twilio`](https://www.npmjs.com/package/twilio) | A wrapper for the Twilio API, related to voice, video, and messaging. |
-| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that provides support for the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
+| [`underscore`](https://www.npmjs.com/package/underscore) | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
 | [`url-pattern`](https://www.npmjs.com/package/url-pattern) | Parse URLs for path parameters more easily than from using a regex string matcher. |
 | [`uuid`](https://www.npmjs.com/package/uuid) | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
 | [`watson-developer-cloud`](https://www.npmjs.com/package/watson-developer-cloud) | Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems. |
-| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested Promises/A+ and when() implementation, including a complete ES6 Promise shim. |
+| [`when`](https://www.npmjs.com/package/when) | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
 | [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest) | `node-XMLHttpRequest` is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl) | Another extraction library for node. |
-{: caption="Table 2. Node.js 8 packages." caption-side="top"}
+{: caption="Table 2. Node.js 8.15 packages." caption-side="top"}
 {: #javascript-2}
-{: tab-title="Node.js 8 packages"}
+{: tab-title="Node.js 8.15 packages"}
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
@@ -250,14 +250,14 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 
 | Python version | Description | Changelog |
 | --- | --- | --- |
-| 2.7.15 | Python 2 actions are executed with Python 2.7.15 unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md). |
+| 2.7.15 | By default, all Python actions are executed in a version 2.7.15 environment unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md). |
 | [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile) | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md). |
 | [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile) | Python 3.7 actions (Debian Stretch based) actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md). |
 
 
 ### Python packages
 
-| Python 2 packages | 
+| Python 2.7.15 packages | 
 |:-----------------|
 | `asn1crypto` |
 | `attrs` |
@@ -305,9 +305,9 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 | `w3lib` |
 | `Werkzeug` |
 | `zope.interface` |
-{: caption="Table 1. Python 2 packages." caption-side="top"}
+{: caption="Table 1. Python 2.7.15 packages." caption-side="top"}
 {: #python-1}
-{: tab-title="Python 2 packages"}
+{: tab-title="Python 2.7.15 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
 
@@ -477,9 +477,9 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 By default, all Swift actions are executed in a version 4.2 environment.
 {: note}
 
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies using a Package.swift.
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies by using a Package.swift.
 
-Swift 4.2 actions can use the following packages when using single Swift source file:
+Swift 4.2 actions can use the following packages when you are using a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
 
@@ -518,7 +518,7 @@ The main executable program must be located in `/action/exec` inside the contain
 
 You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 
-## Additional runtime support
+## More runtime support
 
 | Runtime |
 | --- | --- | 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: actions, serverless, javascript, node, node.js
 
@@ -28,7 +28,7 @@ subcollection: cloud-functions
 # Testing serverless apps
 {: #test}
 
-Test each entity you create from the CLI to verify your serverless app is working or to troubleshoot where an issue might be occurring.
+Test each entity that you create from the CLI to verify that your serverless app is working or to troubleshoot where an issue might be occurring.
 {: shortdesc}
 
 
@@ -43,13 +43,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Hello world example:
+**Hello world example**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-Output:
+**Output**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -70,7 +70,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-Example output:
+**Example output**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -91,7 +91,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-Example output:
+**Example output**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -106,9 +106,9 @@ Example output:
 The invocation of the action can be blocking or non-blocking. Invocations are non-blocking by default. If you don't need the action result right away, use a non-blocking invocation.
 {: shortdesc}
 
-Blocking invocations use a request/response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits).
+Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits).
 
-Run the action in the cloud by running a blocking invocation:
+Run the action in the cloud by running a blocking invocation.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -116,7 +116,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-Example output:
+**Example output**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -130,13 +130,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ```
 {: screen}
 
-The command outputs the following information:
+The command outputs the following information.
 * The invocation result, if it is available within the expected wait period
-* Without the --result option, the activation ID is displayed in the result. The activation ID (`44794bd6aab74415b4e42a308d880e5b`) which can be used to retrieve the logs or the result of the invocation.
-
-
-
-
+* Without the `--result` option, the activation ID is displayed in the result. The activation ID (`44794bd6aab74415b4e42a308d880e5b`) which can be used to retrieve the logs or the result of the invocation.
 
 
 ## Testing triggers
@@ -152,9 +148,9 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
     ```
     {: pre}
 
-    A trigger that isn't associated with a rule has no visible effect when it is fired. Because there is no rule associated with this trigger, the passed parameters are not used as input by any action.
+    A trigger that isn't associated with a rule has no visible effect when it is fired. Because no rule associated with this trigger, the passed parameters are not used as input by any action.
 
-    Example output:
+    **Example output**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -167,7 +163,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -180,7 +176,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -218,7 +214,7 @@ Check how long an activation took to complete by getting the activation log. If 
     ```
     {: pre}
 
-    The `duration` shows the time in milliseconds. This activation took slightly over 2 seconds to complete:
+    The `duration` shows the time in milliseconds. The activation took slightly over 2 seconds to complete.
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -260,7 +256,7 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
     ```
     {: pre}
 
-2. Get the a list of the containers to get a container ID.
+2. Get a list of the containers to get a container ID.
 
     ```
     docker ps
@@ -274,7 +270,7 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
     ```
     {: pre}
 
-4. Review the memory usage value for the container. If the value does not fit within the system limits, make some adjustments to your script.
+4. Review the memory usage value for the container. If the value does not fit within the system limits, adjust your script.
 
 5. After you are done reviewing the information, you can stop the running container.
 

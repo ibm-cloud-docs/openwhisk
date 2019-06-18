@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-18"
 
 keywords: object storage, bucket, package
 
@@ -29,7 +29,8 @@ subcollection: cloud-functions
 
 You can extend the functionality of your {{site.data.keyword.openwhisk}} app by integrating with an {{site.data.keyword.cos_full}} instance.
 
-**Before you begin:** To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+**Before you begin** 
+To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/docs/services/cloud-object-storage?topic=cloud-object-storage-compatibility-api). For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
 ## Packages
 {: #obstorage_packages}
@@ -88,7 +89,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: pre}
 
-    Output:
+    **Output**
     ```
     packages
     /myOrg_mySpace/cloud-object-storage private
@@ -101,7 +102,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     Credentials 'Credentials-1' from 'cloud-object-storage' service instance 'Cloud Object Storage-r1' bound to 'cloud-object-storage'.
     ```
@@ -113,7 +114,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: pre}
 
-    Example output:
+    **Example output**
     ```
     ok: got package /myOrg_mySpace/cloud-object-storage, displaying field parameters
     [
@@ -142,7 +143,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
 
-2. Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace switcher
+2. Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace drop-down menu
 
 3. Click **Install Packages**.
 
@@ -195,14 +196,14 @@ The following parameters are expected to be bound to the package, and are automa
 #### Action parameters
 {: #pkg_obstorage_actparams}
 
-The following parameters are specified when invoking the individual actions.  Not all of these parameters are supported by every action; refer to the [package parameter table](#pkg_obstorage_actions) to see which parameters are supported by which action.
+The following parameters are specified when you invoke the individual actions.  Not all of these parameters are supported by every action; refer to the [package parameter table](#pkg_obstorage_actions) to see which parameters are supported by which action.
 
 | Action parameter | Description |
 | --- | --- |
 | `bucket` | The `bucket` parameter is the name of the {{site.data.keyword.cos_full_notm}} bucket. |
 | `endpoint` | The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint that is used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints). |
 | `expires` | The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes. |
-| `ibmAuthEndpoint` | The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint that is used by {site.data.keyword.cos_short}} to generate a token from the `apikey`. The default authorization endpoint should work for all IBM Cloud Regions. |
+| `ibmAuthEndpoint` | The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint that is used by {site.data.keyword.cos_short}} to generate a token from the `apikey`. The default authorization endpoint works for all IBM Cloud Regions. |
 | `key` | The `key` parameter is the bucket object key. |
 | `operation` | The `operation` parameter is the pre-signed URL's operation to call. |
 | `corsConfig` | The `corsConfig` parameter is a bucket's CORS configuration. |
@@ -226,7 +227,8 @@ ibmcloud fn action invoke /_/cloud-object-storage/object-write --blocking --resu
 ```
 {: pre}
 
-Example output:
+**Example output**
+
 ```
 {
   "body": {
@@ -296,7 +298,7 @@ ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --resul
 ```
 {: pre}
 
-Example output:
+**Example output**
 ```
 {
   "body": "my_test_data",
@@ -356,7 +358,7 @@ You can use {{site.data.keyword.openwhisk}} to listen for changes to an [{{site.
 
 <br>
 
-**Sample use case:** With the `/whisk.system/cos-experimental` package, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map, so that users can have access to the latest street data for their GPS application.
+**Sample use case:** With the `/whisk.system/cos-experimental` package, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map so that users can have access to the latest street data for their GPS application.
 
 ### (Experimental) Object Storage events source parameters
 {: #pkg_obstorage_ev_ch}
@@ -366,7 +368,7 @@ With the `/whisk.system/cos-experimental` package, you can configure events from
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/cos-experimental` | Package | `apikey`, `auth_endpoint`, `bucket`, `endpoint`, `interval` | Package containing the `changes` feed action. |
-| `/whisk.system/cos-experimental/changes` | Feed | `apikey`, `auth_endpoint`, `bucket`, `endpoint`, `interval` | Fire trigger events on changes to a {{site.data.keyword.cos_full_notm}} bucket. |
+| `/whisk.system/cos-experimental/changes` | Feed | `apikey`, `auth_endpoint`, `bucket`, `endpoint`, `interval` | Fire trigger events on changes to an {{site.data.keyword.cos_full_notm}} bucket. |
 {: shortdesc}
 
 You can use the `changes` feed to configure the {{site.data.keyword.cos_full_notm}} events source service to fire a trigger on every change to a bucket in your {{site.data.keyword.cos_full_notm}} instance.
@@ -376,7 +378,7 @@ Parameters that are used in this example:
 | Parameter | Description |
 | --- | --- |
 | `apikey` |  _(Required, unless bound to the package)_. The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance.  Normally, this value is bound to the package. However, if the `apikey` value is specified when using the `changes` feed action, the specified value is used for the credentials instead of the bound credentials' apikey. |
-| ` auth_endpoint` |  _(Optional)_. The `auth_endpoint` parameter is the authorization endpoint used by {{site.data.keyword.cos_full_notm}} to generate a token from the `apikey`.  The default endpoint is the {{site.data.keyword.cloud}} endpoint. |
+| ` auth_endpoint` |  _(Optional)_. The `auth_endpoint` parameter is the authorization endpoint that is used by {{site.data.keyword.cos_full_notm}} to generate a token from the `apikey`.  The default endpoint is the {{site.data.keyword.cloud}} endpoint. |
 | `bucket` | _(Required)_. The `bucket` parameter is the name of the {{site.data.keyword.cos_full_notm}} bucket. |
 | `endpoint` |  _(Required)_. The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints). |
 | `interval` | _(Optional)_. The `interval` parameter is the bucket polling interval, in whole minutes. The `interval` value must be at least 1 minute and is set to 1 minute by default. |
@@ -394,7 +396,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ```
   {: pre}
 
- 2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. Binding your {{site.data.keyword.cos_full_notm}} credentials to the package binds the `apikey` value to the package so you won't need to specify the `apikey` value when the `changes` feed action is invoked.
+ 2. Bind your {{site.data.keyword.cos_full_notm}} credentials to the package. Binding your {{site.data.keyword.cos_full_notm}} credentials to the package binds the `apikey` value to the package so you don't need to specify the `apikey` value when the `changes` feed action is invoked.
 
   ```
   ibmcloud fn service bind cloud-object-storage myCosPkg
@@ -407,8 +409,8 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
   --param bucket myBucket \
   --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
-    ```
-    {: pre}
+  ```
+  {: pre}
 
   **Example output**
 
@@ -443,7 +445,7 @@ Create a simple action to verify that the trigger, the change feed, and the rule
   ```
   {: pre}
 
-  4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command will list the activation records for each of these operations as they occur.
+  4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command lists the activation records for each of these operations as they occur.
 
   ```
   ibmcloud fn activation poll
@@ -474,7 +476,8 @@ The content of the generated events has the following parameters:
 | `endpoint` | The {{site.data.keyword.cos_full_notm}} endpoint used to connect to the {{site.data.keyword.cos_full_notm}} instance. |
 | `key` | The identifier of the changed bucket object. This value is the same as `file.Key`, but available at the top of the trigger event JSON. |
 
-Example JSON representation of the bucket change trigger event:
+**Example JSON representation of the bucket change trigger event**
+
 ```json
 {
   "file": {
@@ -504,7 +507,7 @@ You can create a single action that retrieves and processes the object. Or, you 
 ### Creating an action to retrieve and process the object
 {: #pkg_obstorage_ev_act_ret}
 
-This sample action code retrieves and processes the bucket change notification document. You can pass the `apikey` and `serviceInstanceId` parameters directly to the action during manual action invocation, but when this action invoked by a trigger these values must be obtained from your {{site.data.keyword.cos_full_notm}} which must be bound to the action with the `ibmcloud fn service bind` command.
+This sample action code retrieves and processes the bucket change notification document. You can pass the `apikey` and `serviceInstanceId` parameters directly to the action during manual action invocation, but when this action is invoked by a trigger these values must be obtained from your {{site.data.keyword.cos_full_notm}}, which must be bound to the action with the `ibmcloud fn service bind` command.
 
 1. Save the following code into a .zip file called `myCosAction.zip`.
 
@@ -586,7 +589,7 @@ To create an action that only processes the bucket object:
   ```
   {: pre}
 
-In addition to the `object-read` action, you can use other actions included in the installable `cloud-object-storage` package.
+In addition to the `object-read` action, you can use other actions that are included in the installable `cloud-object-storage` package.
 
 ### Binding credentials to your action
 {: #pkg_obstorage_ev_bind}

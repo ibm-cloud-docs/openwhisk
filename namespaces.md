@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-18"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -27,14 +27,14 @@ subcollection: cloud-functions
 # Managing namespaces
 {: #namespaces}
 
-With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then you can create IAM access policies for the namespace. For an overview of IAM, see the [{{site.data.keyword.openwhisk_short}} IAM-enablement announcement blog](https://www.ibm.com/cloud/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled).
+With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create IAM access policies for the namespace. For an overview of IAM, see the [{{site.data.keyword.openwhisk_short}} IAM-enablement announcement blog](https://www.ibm.com/cloud/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled).
 {: shortdesc}
 
 ## What is a namespace?
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
-The fully qualified name of an entity is `/namespaceName/[packageName]/entityName`.
+The fully qualified name of an entity is `/namespaceName/packageName/entityName`.
 
 ### What happens when I create a namespace?
 
@@ -56,16 +56,18 @@ ibmcloud iam service-ids
 
 View the API keys that are associated with a service ID. 
 ```
-ibmcloud fn iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
+ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
 {: pre}
+
+</br>
 
 Do not delete API keys.
 {: tip}
 
 ### Are there any limitations for namespaces?
 
-[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and using the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces. 
+[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 * The first character must be an alphanumeric character, or an underscore.
@@ -74,7 +76,7 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 
 ### What do I do if I have a Cloud Foundry-based namespace?
 
-Your Cloud Foundry-based namespaces will continue to work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
+Your Cloud Foundry-based namespaces still work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
 
 
 ## Creating an IAM-based namespace in the UI
@@ -82,7 +84,7 @@ Your Cloud Foundry-based namespaces will continue to work. However, in order to 
 
 1. In the [{{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk), click the namespace drop-down menu.
 
-2. At the bottom of the namespace list, click **Create namespace**.
+2. Click **Create namespace**.
 
 3. Enter a display name for the namespace and a short description, such as the kinds of actions or packages that you plan to create in this namespace.
 
@@ -94,10 +96,10 @@ Your Cloud Foundry-based namespaces will continue to work. However, in order to 
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
-## Creating a namespace with the CLI
+## Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
 
-You can create an IAM managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
+You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
@@ -107,7 +109,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
   ```
   {: pre}
 
-2. Create an IAM-enabled namespace. Optional: Include a description for your namespace by using the `-n` or `--description` flag. If your description is longer than one word it must be in quotations.
+2. Create an IAM-enabled namespace. Optional: Include a description for your namespace by using the `-n` or `--description` flag. If your description is longer than one word, it must be in quotations.
 
   ```
   ibmcloud fn namespace create <namespace_name> [--description <"description of your namespace">]
@@ -127,11 +129,11 @@ You can create an IAM managed namespace as part of a resource group and manage a
       </tr>
       <tr>
         <td><code>-n &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages it will contain. If your description is longer than one word it must be in quotations.</td>
+        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word it must be in quotations.</td>
       </tr>
       <tr>
         <td><code>--description &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages it will contain. If your description is longer than one word it must be in quotations.</td>
+        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word it must be in quotations.</td>
       </tr>
     </tbody>
   </table>
@@ -168,7 +170,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
   ```
   {: pre}
 
-4. Before creating entities in the namespace, set your CLI context to the namespace by targeting it.
+4. Before you can create entities in the namespace, you must set your CLI context to the namespace by targeting it.
 
   ```
   ibmcloud fn property set --namespace <namespace_name_or_id>
@@ -178,7 +180,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
 ## Creating a namespace with the API
 {: #namespaces_create_api}
 
-You can create an IAM managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
+You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
@@ -229,7 +231,7 @@ You can create an IAM managed namespace as part of a resource group and manage a
     </tbody>
   </table>
 
-  Example output:
+  **Example output**
 
   ```
   {
@@ -263,7 +265,8 @@ You can create an IAM managed namespace as part of a resource group and manage a
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   {
     "limit": 10,
@@ -290,19 +293,19 @@ For more information about working with HTTP REST, check out the [{{site.data.ke
 ### Accessing other resources from a namespace
 {: #namespace-access}
 
-Actions typically call other {{site.data.keyword.cloud_notm}} resources and services which require appropriate authentication. If these services are IAM enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
+Actions typically call other {{site.data.keyword.cloud_notm}} resources and services that require appropriate authentication. If these services are IAM-enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
 {: shortdesc}
 
-As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/iam?topic=iam-serviceids#serviceids).
+As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles by using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/iam?topic=iam-serviceids#serviceids).
 
-At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
+At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
-Not quite sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
+Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
 
 ## Next steps
 {: #namespaces_next}
 
-Now that you've created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
+Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
 
 For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).
 

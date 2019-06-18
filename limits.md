@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -41,18 +41,18 @@ The following sections provide technical details about the {{site.data.keyword.o
 The following table lists the default limits for actions.
 
 | Limit | Description | Default | Min | Max |
-| ----- | ----------- | :-------: | :---: | :---: |
-| [codeSize](#limits_codesize) | The maximum size of the action code in MB. | 48 | 1 | 48 |
-| [concurrent](#limits_concurrent) | No more than N activations can be submitted per namespace either executing or queued for execution. | 1000 | 1 | 1000* |
-| [logs](#limits_logs) | A container is not allowed to write more than N MB to STDOUT. | 10 | 0 | 10 |
-| [memory](#limits_memory) | A container is not allowed to allocate more than N MB of memory. | 256 | 128 | 2048 |
-| [<ph class="ignoreSpelling">minuteRate</ph>](#limits_minuterate) | No more than N activations can be submitted per namespace per minute. | 5000 | 1 | 5000* |
-| [<ph class="ignoreSpelling">openulimit</ph>](#limits_openulimit) | The maximum number of open files for an action. | 1024 | 0 | 1024 |
-| [parameters](#limits_parameters) | The maximum size of the parameters that can be attached in MB. | 5 | 0 | 5 |
-| [<ph class="ignoreSpelling">proculimit</ph>](#limits_proculimit) | The maximum number of processes available to an action. | 1024 | 0 | 1024 |
-| [result](#limits_result) | The maximum size of the action invocation result in MB. | 5 | 0 | 5 |
-| [<ph class="ignoreSpelling">sequenceMaxActions</ph>](#limits_sequencemax) | The maximum number of actions that comprise a given sequence. | 50 | 0 | 50* |
-| [timeout](#limits_timeout) | A container is not allowed to run longer than N milliseconds. | 60000 | 100 | 600000 |
+| --- | ---| --- | --- | --- |
+| `codeSize` | The maximum code size for the action is 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. | 48 | 1 | 48 | 
+| `concurrent`| The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for instructions on how to increase this limit. | 1000 | 1 | 1000* |
+| `logs`| The log limit N is in the range [0 MB..10 MB] and is set per action. A user can change the action log limit when an action is created or updated. Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit. | 10 | 0 | 10 |
+| `memory` | The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB. A user can change the memory limit when an action is created. A container cannot use more memory than is allocated by the limit. | 256 | 128 | 2048 |
+| `minuteRate` | No more than N activations can be submitted per namespace per minute. The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_increase) for instructions on how to increase this limit. | 5000 | 1 | 5000* | 
+| `openulimit` | The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `parameters` | The maximum size of the parameters that can be attached in MB. The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB. An entity with too large parameters is rejected on trying to create or update it. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
+| `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `result` | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
+| `sequenceMaxActions` | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed. | 50 | 0 | 50* | 
+| `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 | 
 
 ### Increasing fixed limits
 {: #limits_increase}
@@ -63,96 +63,23 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
-#### <ph class="ignoreSpelling">codeSize</ph> (MB) (Fixed: 48 MB)
-{: #limits_codesize}
-* The maximum code size for the action is 48 MB.
-* For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file.
-* This limit is fixed and cannot be changed.
-
-#### concurrent (Fixed: 1000*)
-{: #limits_concurrent}
-* The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
-
-#### logs (MB) (Default: 10 MB)
-{: #limits_logs}
-* The log limit N is in the range [0 MB..10 MB] and is set per action.
-* A user can change the action log limit when an action is created or updated.
-* Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit.
-
-#### memory (MB) (Default: 256 MB)
-{: #limits_memory}
-* The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB.
-* A user can change the memory limit when an action is created.
-* A container cannot use more memory than is allocated by the limit.
-
-#### <ph class="ignoreSpelling">minuteRate</ph> (Fixed: 5000*)
-{: #limits_minuterate}
-* The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows.
-* A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for detailed instructions on how to increase this limit.
-
-#### <ph class="ignoreSpelling">openulimit</ph> (Fixed: 1024:1024)
-{: #limits_openulimit}
-* The maximum number of open files for an action is 1024 (for both hard and soft limits).
-* This limit is fixed and cannot be changed.
-* When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value.
-* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation.
-
-#### parameters (Fixed: 5 MB)
-{: #limits_parameters}
-* The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB.
-* An entity with too large parameters is rejected on trying to create or update it.
-* This limit is fixed and cannot be changed.
-
-#### <ph class="ignoreSpelling">proculimit</ph> (Fixed: 1024:1024)
-{: #limits_proculimit}
-* The maximum number of processes available to the action container is 1024.
-* This limit is fixed and cannot be changed.
-* When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value.
-* For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation.
-
-#### result (Fixed: 5 MB)
-{: #limits_result}
-* The maximum output size of an action invocation result in MB.
-* This limit is fixed and cannot be changed.
-
-#### <ph class="ignoreSpelling">sequenceMaxActions</ph> (Fixed: 50*)
-{: #limits_sequencemax}
-* The maximum number of actions that comprise a given sequence.
-* This limit is fixed and cannot be changed.
-
-#### timeout (ms) (Default: 60s)
-{: #limits_timeout}
-* The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds.
-* A user can change the timeout limit when an action is created.
-* A container that runs longer than N milliseconds is terminated.
-
 ### Triggers
 {: #limits_triggers}
 
 Triggers are subject to a firing rate per minute as documented in the following table.
 
 | Limit | Description | Default | Min | Max |
-| ----- | ----------- | :-------: | :---: | :---: |
-| [<ph class="ignoreSpelling">minuteRate</ph>](#limits_triggersminuterate) | No more than N triggers can be fired per namespace per minute. | 5000* | 5000* | 5000* |
+| --- | --- | --- | --- | --- |
+| `minuteRate` | The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows. A user cannot change the trigger limit when a trigger is created. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit. | 5000* | 5000* | 5000* |
 
 ### Increasing fixed limits
 {: #limits_triggersfixed}
 
-Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
+Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
-
-#### <ph class="ignoreSpelling">minuteRate</ph> (Fixed: 5000*)
-{: #limits_triggersminuterate}
-
-* The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows.
-* A user cannot change the trigger limit when a trigger is created.
-* A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`.
-* This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_triggersfixed) for detailed instructions on how to increase this limit.
 
 
 ## {{site.data.keyword.openwhisk_short}} entities
@@ -221,11 +148,14 @@ The system returns an activation ID (with a nonblocking invocation) that confirm
 If a network failure or other failure that intervenes before you receive an HTTP response, it is possible that {{site.data.keyword.openwhisk_short}} received and processed the request.
 
 The system attempts to invoke the action once, resulting in one of the following four outcomes:
-- *success*: The action invocation completed successfully.
-- *application error*: The action invocation was successful, but the action returned an error value on purpose, for instance because a precondition on the arguments was not met.
-- *action developer error*: The action was invoked, but it completed abnormally, for instance the action did not detect an exception, or a syntax error existed.
-- *whisk internal error*: The system was unable to invoke the action.
-The outcome is recorded in the `status` field of the activation record, as document in a following section.
+
+| Result | Description |
+| --- | --- |
+| `success` | The action invocation completed successfully. |
+| `application error` | The action invocation was successful, but the action returned an error value on purpose, for instance because a precondition on the arguments was not met. |
+| `action developer error` | The action was invoked, but it completed abnormally, for instance the action did not detect an exception, or a syntax error existed. |
+| `whisk internal error` | The system was unable to invoke the action.
+The outcome is recorded in the `status` field of the activation record, as document in a following section. |
 
 For every invocation that is successfully received, and that the user might be billed for, has an activation record.
 
@@ -238,11 +168,11 @@ Each action invocation and trigger firing results in an activation record.
 
 An activation record contains the following fields:
 
-- *activationId*: The activation ID.
-- *start* and *end*: Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15).
-- *namespace* and `name`: The namespace and name of the entity.
-- *logs*: An array of strings with the logs that are produced by the action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`.
-- *response*: A dictionary that defines the keys `success`, `status`, and `result`:
-  - *status*: The activation result, which might be one of the following values: "success", "application error", "action developer error", "whisk internal error".
-  - *success*: Is `true` if and only if the status is `"success"`
-- *result*: A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure.
+| Field | Description
+| --- | --- |
+| `activationId` | The activation ID. |
+| `start` and `end` | Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15). |
+| `namespace` and `name` | The namespace and name of the entity. |
+| `logs` | An array of strings with the logs that are produced by the action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`. |
+| `response` | A dictionary that defines the keys `success`, `status`, and `result`. `status`: The activation result, which might be one of the following values: "success", "application error", "action developer error", "whisk internal error". `success`: Is `true` if and only if the status is `"success"`. |
+| `result` | A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure. |

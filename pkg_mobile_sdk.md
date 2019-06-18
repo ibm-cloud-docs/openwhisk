@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-11"
 
 keywords: mobile, sdk, cocoapods, carthage
 
@@ -27,9 +27,12 @@ subcollection: cloud-functions
 # Mobile SDK
 {: #pkg_mobile_sdk}
 
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK using Xcode 9.
+OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK by using Xcode 9.
 {: shortdesc}
 
+
+The mobile SDK is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
+{: important}
 
 
 ## Add the SDK to your app
@@ -38,7 +41,7 @@ You can install the mobile SDK by using CocoaPods, Carthage, or from the source 
 
 ### Install with CocoaPods
 
-The OpenWhisk SDK for mobile is available for public distribution through CocoaPods. Assuming CocoaPods is installed, put the following lines into a file called 'Podfile' inside the starter app project directory.
+The OpenWhisk SDK for mobile is available for public distribution through CocoaPods. Assuming CocoaPods is installed, put the following lines into a file called `Podfile` inside the starter app project directory.
 
 ```ruby
 install! 'cocoapods', :deterministic_uuids => false
@@ -58,7 +61,7 @@ From the command line, type `pod install`. This command installs the SDK for an 
 
 After installation, open your project workspace. You might get the following warning when building:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
-This is caused if Cocoapods does not update the Swift version in the Pods project.  To fix, select the Pods project and the OpenWhisk target.  Go to Build Settings and change the setting `Use Legacy Swift Language Version` to `no`. Alternatively, you can add the following post installation instructions at the end of you Podfile:
+This is caused if CocoaPods does not update the Swift version in the Pods project.  To fix, select the Pods project and the OpenWhisk target.  Go to Build Settings and change the setting `Use Legacy Swift Language Version` to `no`. Alternatively, you can add the following post installation instructions at the end of you Podfile:
 
 ```ruby
 post_install do |installer|
@@ -73,7 +76,7 @@ end
 
 ### Install with Carthage
 
-Create a file in your app's project directory and name it 'Cartfile'. Put the following line in the file:
+Create a file in your app's project directory and name it `Cartfile`. Put the following line in the file:
 ```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
@@ -100,7 +103,7 @@ ibmcloud fn sdk install iOS
 ```
 {: pre}
 
-This command downloads a compressed file that contains the starter app. Inside the project directory is a Podfile.
+This command downloads a compressed file that contains the starter app. The project directory contains a Podfile.
 
 To install the SDK, enter the following command:
 ```
@@ -125,19 +128,19 @@ ibmcloud fn property get --auth
 ```
 {: pre}
 
-Output:
+**Output**
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
 {: pre}
 
-The strings before the colon is your key, and the string after the colon is your token.
+The string before the colon is your key, and the string after the colon is your token.
 
 ## Invoke an OpenWhisk action
 
 To invoke a remote action, you can call `invokeAction` with the action name. Use a dictionary to pass parameters to the action as needed.
 
-For example:
+**For example**
 ```swift
 // In this example, we are invoking an action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()
@@ -218,7 +221,7 @@ whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-In this example, you use an installation that is running at http://localhost:8080. If you do not specify the `baseURL`, the mobile SDK uses the instance that is running at https://us-south.functions.cloud.ibm.com.
+In this example, you use an installation that is running at `http://localhost:8080`. If you do not specify the `baseURL`, the mobile SDK uses the instance that is running at https://us-south.functions.cloud.ibm.com.
 
 You can pass in a custom NSURLSession in case you require special network handling. For example, you might have your own OpenWhisk installation that uses self-signed certificates:
 

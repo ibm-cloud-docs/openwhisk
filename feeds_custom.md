@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-18"
 
 keywords: feeds, serverless
 
@@ -35,7 +35,7 @@ subcollection: cloud-functions
 ## Feed architecture
 {: #feeds_arch}
 
-There are three architectural patterns for creating a feed: **Hooks**, **Polling**, and **Connections**.
+You can create a feed by using one of the three architectural patterns: **Hooks**, **Polling**, and **Connections**.
 
 ### Hooks
 
@@ -59,10 +59,13 @@ For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=
 ##  Implementing feed actions
 {: #feeds_actions}
 
-The feed action is an action, and accepts the following parameters:
-* **lifecycleEvent**: `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`.
-* **triggerName**: The fully qualified name of the trigger, which contains events that are produced from this feed.
-* **authKey**: The basic authentication credentials of the {{site.data.keyword.openwhisk_short}} user who owns the trigger.
+The feed action is an action, and accepts the following parameters.
+
+| Parameter | Description |
+| --- | --- |
+| `lifecycleEvent` | `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`. |
+| `triggerName` | The fully qualified name of the trigger, which contains events that are produced from this feed. |
+| `authKey` | The basic authentication credentials of the {{site.data.keyword.openwhisk_short}} user who owns the trigger. |
 
 The feed action can also accept any other parameters that it needs to manage the feed. For example, the {{site.data.keyword.cloudant}} changes feed action expects to receive parameters that include `dbname` and `username`.
 
@@ -84,14 +87,14 @@ The feed action that is named *changes* takes these parameters, and is expected 
 
 For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to a *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
 
-A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update` and `ibmcloud fn trigger get`.
+A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update`, and `ibmcloud fn trigger get`.
 
 ## Implementing feeds with hooks
 {: #feeds_hooks}
 
-Set up a feed by using a hook when an event producer supports a webhook/callback facility.
+Set up a feed by using a hook when an event producer supports a webhook-callback facility.
 
-With this method, you are not required to stand up any persistent service outside of {{site.data.keyword.openwhisk_short}}. All feed management happens naturally though stateless {{site.data.keyword.openwhisk_short}} *feed actions*, which negotiate directly with a third party webhook API.
+With this method, you are not required to stand up any persistent service outside of {{site.data.keyword.openwhisk_short}}. All feed management happens naturally though stateless {{site.data.keyword.openwhisk_short}} **feed actions**, which negotiate directly with a third-party webhook API.
 
 When invoked with `CREATE`, the feed action simply installs a webhook for some other service, asking the remote service to POST notifications to the appropriate `fireTrigger` URL in {{site.data.keyword.openwhisk_short}}.
 
@@ -119,16 +122,16 @@ This procedure implements a polling-based trigger entirely by using {{site.data.
 ## Implementing feeds by using connections
 {: #feeds_connections}
 
-The previous two architectural choices are simple and easy to implement. However, if you want a high-performance feed, there is no substitute for persistent connections and long-polling or similar techniques.
+The previous two architectural choices are simple and easy to implement. However, if you want a high-performance feed, you can use persistent connections and long-polling or similar techniques.
 
-Since {{site.data.keyword.openwhisk_short}} actions must be short-running, an action cannot maintain a persistent connection to a third party. Instead, you can stand up a separate service, called *provider services*, outside of {{site.data.keyword.openwhisk_short}} that run all the time. A provider service can maintain connections to third-party event sources that support long polling or other connection-based notifications.
+Since {{site.data.keyword.openwhisk_short}} actions must be short-running, an action cannot maintain a persistent connection to a third party. Instead, you can stand up a separate service, called **provider services**, outside of {{site.data.keyword.openwhisk_short}} that run all the time. A provider service can maintain connections to third-party event sources that support long polling or other connection-based notifications.
 
-The provider service has a REST API that allows the {{site.data.keyword.openwhisk_short}} *feed action* to control the feed. The provider service acts as a proxy between the event provider and {{site.data.keyword.openwhisk_short}}. When it receives events from the third party, it sends them on to {{site.data.keyword.openwhisk_short}} by firing a trigger.
+The provider service has a REST API that allows the {{site.data.keyword.openwhisk_short}} **feed action** to control the feed. The provider service acts as a proxy between the event provider and {{site.data.keyword.openwhisk_short}}. When it receives events from the third party, it sends them on to {{site.data.keyword.openwhisk_short}} by firing a trigger.
 
-The {{site.data.keyword.cloudant_short_notm}} *changes* feed is the canonical example as it stands up a `cloudanttrigger` service, which mediates between {{site.data.keyword.cloudant_short_notm}} notifications over a persistent connection, and {{site.data.keyword.openwhisk_short}} triggers.
+The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical example as it stands up a `cloudanttrigger` service, which mediates between {{site.data.keyword.cloudant_short_notm}} notifications over a persistent connection, and {{site.data.keyword.openwhisk_short}} triggers.
 
 
-The *alarm* feed is implemented with a similar pattern.
+The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
 

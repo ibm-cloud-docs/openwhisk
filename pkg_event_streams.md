@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-07"
+lastupdated: "2019-06-10"
 
 keywords: event streams, package, messages, events
 
@@ -42,12 +42,12 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
 {: shortdesc}
 
 
-### Setting up a {{site.data.keyword.messagehub}} package using {{site.data.keyword.cloud}}
+### Setting up a {{site.data.keyword.messagehub}} package
 {: #eventstreams_setup}
 
 1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
 
-2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled **mytopic**.
+2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled `mytopic`.
 
 3. Refresh the packages in your namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
   ```
@@ -55,7 +55,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   created bindings:
   Message_Hub_Credentials-1
@@ -68,7 +68,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
   ```
   {: pre}
 
-  Example output:
+  **Example output**
   ```
   packages
   /myOrg_mySpace/Message_Hub_Credentials-1 private
@@ -77,7 +77,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
 
   Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
 
-### Setting up a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
+### Setting up an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
 
 If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
@@ -116,10 +116,10 @@ The `/messaging/messageHubProduce` action is deprecated and will be removed at a
 
 This package enables communication with [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud) instances for publishing and consuming messages by using the native high-performance Kafka API.
 
-### Creating a trigger that listens to a {{site.data.keyword.messagehub}} instance
+### Creating a trigger that listens to an {{site.data.keyword.messagehub}} instance
 {: #eventstreams_trigger}
 
-In order to create a trigger that reacts when messages are posted to a {{site.data.keyword.messagehub}} instance, you need to use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
+In order to create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub}} instance, you need to use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -136,7 +136,7 @@ While this list of parameters can seem daunting, they can be automatically set f
 
 1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
 
-2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, **mytopic**.
+2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, `mytopic`.
 
 3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
   ```
@@ -144,7 +144,8 @@ While this list of parameters can seem daunting, they can be automatically set f
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   created bindings:
   Message_Hub_Credentials-1
@@ -157,7 +158,8 @@ While this list of parameters can seem daunting, they can be automatically set f
   ```
   {: pre}
 
-  Example output:
+  **Example output**
+
   ```
   packages
   /myOrg_mySpace/Message_Hub_Credentials-1 private
@@ -172,12 +174,13 @@ While this list of parameters can seem daunting, they can be automatically set f
   ```
   {: pre}
 
-### Creating a trigger for a {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
+### Creating a trigger for an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
 
 If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
+
   ```
   ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
  [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
@@ -185,6 +188,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
   {: pre}
 
 2. Now you can create a trigger by using your new package that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
+
   ```
   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
@@ -196,11 +200,11 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 Once a trigger is created, the system monitors the specified topic in your messaging service. When new messages are posted, the trigger is fired.
 
 The payload of that trigger contains a `messages` field, which is an array of messages that are posted from the last time the trigger is fired. Each message object in the array contains the following fields:
-- topic
-- partition
-- offset
-- key
-- value
+- `topic`
+- `partition`
+- `offset`
+- `key`
+- `value`
 
 In Kafka terms, the fields are self-evident. However, `key` has a feature that is called `isBinaryKey` that allows the `key` to transmit binary data. Additionally, the `value` requires special consideration. Fields `isJSONData` and `isBinaryValue` are available to handle JSON and binary messages. These fields, `isJSONData`, and `isBinaryValue`, cannot be used together.
 
@@ -299,7 +303,7 @@ If the same message is posted without `isBinaryData` set to `true`, the trigger 
 
 Notice that the trigger payload contains an array of messages. If these messages are produced to your messaging system quickly, the feed attempts to batch up the posted messages into a single firing of your trigger. Batch processing allows the messages to be posted to your trigger more rapidly and efficiently.
 
-Keep in mind when coding actions that are fired by your trigger, that the number of messages in the payload is technically unbounded, but is always greater than 0. See the following example of a batched message (note the change in the *offset* value):
+Keep in mind when you are coding actions that are fired by your trigger, that the number of messages in the payload is technically unbounded, but is always greater than 0. See the following example of a batched message (note the change in the *offset* value):
 ```json
 {
   "messages": [

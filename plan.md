@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-06-11"
 
 keywords: planning
 
@@ -41,7 +41,7 @@ Before you start creating your function, learn about the decisions you must make
 ## Architect your code
 {: #plan_architect}
 
-You might need to make some tweaks to your existing code for it to run in {{site.data.keyword.openwhisk}}. If you have not written your code yet, keep these things in mind as you write it.
+You might need to make some tweaks to your existing code for it to run in {{site.data.keyword.openwhisk}}. If you don't have your code yet, keep these things in mind as you write it.
 {: shortdesc}
 
 1. Componentize your code.
@@ -61,7 +61,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
     Your code must fit within the system limits to run. For example, if your packaged code is larger than 48 MB, you might need to continue breaking it down into smaller pieces or packaging it as a Docker image.
 
-    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies, and then use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
+    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies. Then, use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
 
 4. Determine the parameters that must be injected into your code.
 
@@ -69,7 +69,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
 5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=cloud-functions-prep)
 
-    Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results, and it might need to be packaged into a single file that includes all of its dependencies.
+    Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results. It might also need to be packaged into a single file that includes all of its dependencies.
 
 
 
@@ -80,7 +80,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 ## Determine your event source
 {: #plan_source}
 
-Start thinking about your function in terms of the event you want to happen to trigger code to run. Maybe you want code to run on every commit to a GitHub repository. Or maybe you want your code to run every that an update is made in a Cloudant database.
+Think about your function in terms of the event you want to happen to trigger code to run. Maybe you want code to run on every commit to a GitHub repository. Or maybe you want your code to run every time that an update is made in a Cloudant database.
 {: shortdesc}
 
 After you choose an event to trigger your function, review the packages that are already available to use. You might be able to use one to simplify your function development. If not, you can create your own package for your event source.
@@ -94,7 +94,7 @@ You might need to go back to your code and make some revisions based on your eve
 Decide how you want to deploy your functions across environments, such as development, staging, and production environments.
 {: shortdesc}
 
-Because {{site.data.keyword.openwhisk_short}} is a Cloud Foundry-based service, you can manage the deployment of your functions in the Cloud Foundry organizations and spaces that are provided for you in {{site.data.keyword.cloud_notm}}. To organize your functions across these environments, you might choose to create one organization per function. Then, create a space for each environment you need. Instead, you could also have one organization for each environment and create a space per function. No matter how you arrange your organizations and spaces, choose a structure that allows you to effectively manage your function entities.
+Because {{site.data.keyword.openwhisk_short}} is a Cloud Foundry-based service, you can manage the deployment of your functions in the Cloud Foundry organizations and spaces that are provided for you in {{site.data.keyword.cloud_notm}}. To organize your functions across these environments, you might choose to create one organization per function. Then, create a space for each environment you need. Instead, you could also have one organization for each environment and create a space per function. No matter how you arrange your organizations and spaces, choose a structure that you can use to effectively manage your function entities.
 
 You can also use [namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.
 
