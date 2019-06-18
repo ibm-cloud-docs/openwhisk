@@ -62,8 +62,8 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
     **Example output**
     ```
     name              service        plan   bound apps   last operation
-    Composer-qp   composer   free                create succeeded
-    Composer-uc   composer   free                create succeeded
+    Composer-qp       composer       free                create succeeded
+    Composer-uc       composer       free                create succeeded
     Discovery-37      discovery      lite                create succeeded
     ```
     {: screen}
