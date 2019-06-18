@@ -29,11 +29,12 @@ IBM Cloud Functions
         plan.md
         templates.md
         prep.md
-        actions.md
         actions_web.md
+        actions.md
+        apigateway.md
         triggers.md
         rules.md
-        apigateway.md
+        
 
     test.md
     

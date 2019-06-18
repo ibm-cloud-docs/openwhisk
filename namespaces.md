@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-06-18"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces
 
@@ -96,7 +96,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
-## Creating a namespace with the CLI
+## Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
 
 You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
