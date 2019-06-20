@@ -1,0 +1,19 @@
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-05-17"
+
+keywords: docker, actions, serverless
+
+subcollection: cloud-functions
+
+---
+
+{:new_window: target="_blank"}
+# Le contenu que vous recherchez a été déplacé
+{: #getting_started}
+
+Le contenu que vous recherchez a été déplacé. [Consultez les informations les plus récentes depuis son nouvel emplacement](/docs/openwhisk?topic=cloud-functions-getting-started).
+{:shortdesc}
+
