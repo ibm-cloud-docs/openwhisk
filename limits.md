@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-24"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
 
@@ -95,6 +95,9 @@ Packages can contain actions and feeds. A package cannot contain another package
 You can create new IAM-based namespaces by running `ibmcloud fn namespace create`.  Cloud Foundry-based namespaces are made from a combination of an org and space name. For example, if you are targeted to the `user@email.com` org and the `dev` space, then you are targeting the {{site.data.keyword.openwhisk_short}} Cloud Foundry-based namespace called `user@email.com_dev`. 
 
 The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
+
+The [Serverless Framework](https://serverless.com/) is not supported for IAM-based namespaces
+{: note}
 
 
 ### Fully qualified names
