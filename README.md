@@ -24,3 +24,7 @@ Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are alway
 3. Derek will review your suggestions with the Cloud Functions development team and make any necessary adjustments.
 4. Derek will merge the content into the repo.
 
+
+
+
+
