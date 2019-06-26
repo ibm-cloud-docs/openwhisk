@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-26"
 
-keywords: github, actions, trigger, event
+keywords: github, actions, trigger, event, functions
 
 subcollection: cloud-functions
 
@@ -50,12 +50,12 @@ The `/whisk.system/github/webhook` feed configures a service to fire a trigger w
 | --- | --- |
 | `username` | The user name of the GitHub repository. |
 | `repository` | The GitHub repository. |
-| `accessToken` | Your GitHub personal access token. When you [create your token ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/settings/tokens), be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
+| `accessToken` | Your GitHub personal access token. When you [create your token, be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
 | `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/v3/activity/events/types/) of interest. |
 
 In the following example, a trigger is created that fires each time a new commit to a GitHub repository.
 
-1. Generate a GitHub [personal access token ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/settings/tokens). The access token will be used in the next step.
+1. Generate a GitHub personal access token. Navigate to **GitHub.com** > **Settings** > **Personal access tokens** to generate a token. The access token will be used in the next step.
 
 2. Create a package binding that is configured for your GitHub repository and with your access token.
   ```
