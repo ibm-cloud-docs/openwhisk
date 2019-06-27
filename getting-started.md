@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-06-27"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -50,9 +50,9 @@ Click an option to get started.
 
 To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quickstart template.
 
-1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
+1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ](https://cloud.ibm.com/openwhisk){: external}.
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 

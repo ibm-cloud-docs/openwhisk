@@ -162,7 +162,7 @@ To return different content types in the body, use full control over the HTTP re
 ## Modifying the configuration
 {: #api_modify_config}
 
-After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/openwhisk/apimanagement) in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
+After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/openwhisk/apimanagement){: external} in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
 
 * [Create a {{site.data.keyword.openwhisk_short}} API](/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
 * [Secure your API](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by applying API security and rate-limiting policies.

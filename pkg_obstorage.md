@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-18"
+lastupdated: "2019-06-27"
 
-keywords: object storage, bucket, package
+keywords: object storage, bucket, package, functions
 
 subcollection: cloud-functions
 
@@ -44,11 +44,11 @@ To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/
 
 Before you can use either package, you must request an instance of {{site.data.keyword.cos_full_notm}} and create at least one bucket.
 
-1. [Create an {{site.data.keyword.cos_full_notm}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+1. [Create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
-2. [Create a set of HMAC service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_full_notm}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
+2. [Create a set of HMAC service credentials ](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_full_notm}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
-3. [Create at least one bucket ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
+3. [Create at least one bucket ](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
 ## Reading and writing to a bucket by using the {{site.data.keyword.cos_full_notm}} package
 {: #pkg_obstorage_install}
@@ -141,7 +141,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #pkg_obstorage_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
 2. Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace drop-down menu
 
@@ -243,7 +243,7 @@ ibmcloud fn action invoke /_/cloud-object-storage/object-write --blocking --resu
 ### Write to a bucket from the UI
 {: #pkg_obstorage_write_ui}
 
-1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions).
+1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ](https://cloud.ibm.com/openwhisk/actions){: external}.
 
 2. Under the `cloud-object-storage` package, click the **object-write** action.
 
@@ -311,7 +311,7 @@ ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --resul
 #### Read from a bucket from the UI
 {: #pkg_obstorage_read_ui}
 
-1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions).
+1. Go to the [Actions page in the {{site.data.keyword.openwhisk_short}} console ](https://cloud.ibm.com/openwhisk/actions){: external}.
 
 2. Under the `cloud-object-storage` package, click the `object-read` action.
 

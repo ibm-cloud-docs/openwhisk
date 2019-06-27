@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-06-27"
 
-keywords: event streams, package, messages, events
+keywords: event streams, package, messages, events, functions
 
 subcollection: cloud-functions
 
@@ -38,7 +38,7 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud) instances for publishing and consuming messages by using the native high-performance Kafka API.
+A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
 
 
@@ -97,8 +97,8 @@ The `/messaging/messageHubProduce` action is deprecated and will be removed at a
 To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 References
-- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 
 
 
@@ -114,7 +114,7 @@ You can create a trigger that reacts when messages are posted to an {{site.data.
 The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: deprecated}
 
-This package enables communication with [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud) instances for publishing and consuming messages by using the native high-performance Kafka API.
+This package enables communication with [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} instances for publishing and consuming messages by using the native high-performance Kafka API.
 
 ### Creating a trigger that listens to an {{site.data.keyword.messagehub}} instance
 {: #eventstreams_trigger}
@@ -341,6 +341,6 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 
 ## References
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-27"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -186,7 +186,7 @@ The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk sta
 
 **What does the command syntax look like?**
 
-All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-cli). But, note the following differences.
+All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
 
 * The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
 * `wsk` commands are now run as `ibmcloud fn`.
@@ -280,7 +280,7 @@ v1.0.25 (23 November 2018)
 
 1.0.10 (09 April 2018)
 * Added new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
-* Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
+* Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237){: external}.
 
 1.0.9 (16 March 2018)
 * Enabled support for service bind at the package level.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-26"
+lastupdated: "2019-06-27"
 
 keywords: github, actions, trigger, event, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 This pre-installed package is not available in the Tokyo region.
 {: tip}
 
-The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/).
+The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs ](https://developer.github.com/){: external}.
 {: shortdesc}
 
 The GitHub package includes the following entities.
@@ -72,5 +72,5 @@ In the following example, a trigger is created that fires each time a new commit
   ```
   {: pre}
 
-  A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/v3/activity/events/types/) API documentation.
+  A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://developer.github.com/v3/activity/events/types/){: external} API documentation.
 

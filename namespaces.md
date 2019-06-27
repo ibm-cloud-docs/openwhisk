@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-18"
+lastupdated: "2019-06-27"
 
-keywords: namespaces, iam, cloud foundry, classic namespaces
+keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
 subcollection: cloud-functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Managing namespaces
 {: #namespaces}
 
-With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create IAM access policies for the namespace. For an overview of IAM, see the [{{site.data.keyword.openwhisk_short}} IAM-enablement announcement blog](https://www.ibm.com/cloud/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled).
+With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create IAM access policies for the namespace. For an overview of IAM, see the [{{site.data.keyword.openwhisk_short}} IAM-enablement announcement blog](https://www.ibm.com/cloud/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled){: external}.
 {: shortdesc}
 
 ## What is a namespace?
@@ -82,7 +82,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 ## Creating an IAM-based namespace in the UI
 {: #create_iam_ui}
 
-1. In the [{{site.data.keyword.openwhisk_short}} console ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk), click the namespace drop-down menu.
+1. In the [{{site.data.keyword.openwhisk_short}} console ](https://cloud.ibm.com/openwhisk){: external}, click the namespace drop-down menu.
 
 2. Click **Create namespace**.
 
@@ -92,7 +92,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 5. Click **Create**.
 
-6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/resources) and find your namespace name in the **Services** pane.
+6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in the **Services** pane.
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-18"
+lastupdated: "2019-06-27"
 
-keywords: deploy, deployment templates, templates, example, quickstart
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
 subcollection: cloud-functions
 
@@ -36,12 +36,12 @@ subcollection: cloud-functions
 
 | Name | Description | Supported Runtimes | Source repository |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger) |
-| [Upload Image](#image-template) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js | [Code](https://github.com/ibm-functions/template-cloud-object-storage)
-| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource)
-| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-hello-world)
-| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-messagehub-trigger)
-| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-reminder-slack)
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Upload Image](#image-template) | Use a web action to upload an image to an {{site.data.keyword.cos_full}} instance's bucket and then retrieve a thumbnail of that image. | Node.js | [Code](https://github.com/ibm-functions/template-cloud-object-storage){: external}
+| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event, and get data from the Yahoo Weather API. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 You can access the code for each template in its code repository, modify it as you like, and create your own function around it.
 {: tip}
@@ -55,7 +55,7 @@ The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of act
 ### Deploying the {{site.data.keyword.cloudant_short_notm}} Events template from the UI
 {: #cloudant-template-ui}
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -124,7 +124,7 @@ The Upload Image template creates a web action that you can use to upload an ima
 ### Deploying the Upload Image template from the UI
 {: #image-template-ui}
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -173,7 +173,7 @@ The Upload Image template creates a web action that you can use to upload an ima
     ```
     {: pre}
 
-4. In the [Actions page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/actions) of the {{site.data.keyword.openwhisk_short}} console, click the `process-change` action.
+4. In the [Actions page ](https://cloud.ibm.com/openwhisk/actions){: external} of the {{site.data.keyword.openwhisk_short}} console, click the `process-change` action.
 
 5. In the left-hand navigation, click **Endpoints**.
 
@@ -190,7 +190,7 @@ By default, the `get-http-resource` endpoint is publicly available to anyone who
 ### Deploying the Get HTTP Resource template from the UI
 {: #get-http-resource-template-ui}
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -245,7 +245,7 @@ You can deploy this basic Hello World action to get started with {{site.data.key
 ### Deploying the Hello World template from the UI
 {: #hello-world-template-ui}
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -288,7 +288,7 @@ The {{site.data.keyword.messagehub}} Events template creates an action and a tri
 ### Deploying the {{site.data.keyword.messagehub}} Events template from the UI
 {: #messagehub-events-template-ui}
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -361,7 +361,7 @@ The Periodic Slack Reminder template posts to Slack on an interval provided by t
 
 1. Go to https://api.slack.com/incoming-webhooks to set up the required incoming webhooks URL.
 
-1. Go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create) in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
