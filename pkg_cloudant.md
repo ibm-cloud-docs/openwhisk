@@ -109,7 +109,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
     ```
     {: screen}
 
-5. Bind the service to the package you created in step 1.
+5. Bind the service to the package you created in step one.
 
     ```
     ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1'
@@ -267,11 +267,14 @@ You can update a document in your database by replacing `<test>` with your datab
   {: pre}
 
   **Output**
+  ```
   {
     "id": "color",
     "ok": true,
     "rev": "2-8b904347bfe52e0f388ef6f39d6ba84f"
     }
+  ```
+  {: screen}
 
 2. To see the update, fetch the document again.
 
@@ -337,10 +340,10 @@ Parameters that are used in this example.
   ```
   {: codeblock}
 
-3. Create an action called `cloudantChange` that you can use to observe the changes feed. Replace `<filepath>` with the filepath to your `cloudantChange.js` file on your computer.
+3. Create an action called `cloudantChange` that you can use to observe the changes feed. Replace `<file_path>` with the file path to your `cloudantChange.js` file on your computer.
 
   ```
-  ibmcloud fn action create cloudantChange <filepath>/cloudantChange.js
+  ibmcloud fn action create cloudantChange <file_path>/cloudantChange.js
   ```
   {: pre}
 
@@ -430,17 +433,17 @@ To create a filter function, you can use an action.
   ```
   {: codeblock}
 
-2. Create a design document in the database with the following filter function. Replace `<database_name>` with the name of your database and `<filepath>` with the file path of your `design_doc.json`. Invoke the `write` action to test creating a design document.
+2. Create a design document in the database with the following filter function. Replace `<database_name>` with the name of your database and `<file_path>` with the file path of your `design_doc.json`. Invoke the `write` action to test creating a design document.
 
 **Command syntax**
 ```
-ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <filepath>/design_doc.json
+ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <file_path>/design_doc.json
 ```
 {: pre}
 
 **Example command to write a `design_doc.json` file to a `test` database**
 ```
-ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -P <filepath>/design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -P <file_path>/design_doc.json -r
 ```
 {: pre}
 
@@ -483,10 +486,10 @@ To create an action that handles changes to an individual document, run the foll
   ```
   {: codeblock}
 
-2. Create an action called `docChange` to process the document with the name `blue` that you created earlier. Replace `<filepath>` with the file path of your `docChange.js`
+2. Create an action called `docChange` to process the document with the name `blue` that you created earlier. Replace `<file_path>` with the file path of your `docChange.js`
 
   ```
-  ibmcloud fn action create docChange <filepath>/docChange.js
+  ibmcloud fn action create docChange <file_path>/docChange.js
   ```
   {: pre}
 
