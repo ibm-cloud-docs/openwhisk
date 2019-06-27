@@ -1004,7 +1004,7 @@ To create a Java action, complete the following steps.
   ```
   /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
   ```
-  {: pre}
+  {: screen}
 
 6. Navigate to the folder where your `Hello.java` file is stored. In this example, the `Hello.java` file is saved to the `Desktop/test` folder.
   ```
