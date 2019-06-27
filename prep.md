@@ -22,7 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
+{:external: target="_blank" .external}
 
 
 # Preparing apps for actions
@@ -70,8 +70,8 @@ Your code is compiled into an executable and embedded into a Docker image. The e
 {: shortdesc}
 
 **Before you begin**
-- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub ](https://hub.docker.com){: external}.
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
+- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
 To package your app, complete the following steps.
@@ -624,7 +624,6 @@ Swift actions run in a Linux environment. Swift on Linux is still in development
 {: important}
 
 
-
 ### Structuring Swift code
 {: #prep_swift_struc}
 
@@ -941,75 +940,101 @@ Before you create an action, get your Java code ready.
 
 A Java action is a Java program with a method called `main`. `main` must have the following signature.
 
-
+**Example**
 ```java
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 {: codeblock}
 
-
 * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
 * You can customize the method name of your Java action by specifying the fully qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
-* The type of action is determined by using the source file extension.
-
-**Example**
-```java
-import com.google.gson.JsonObject;
-public class Hello {
-    public static JsonObject main(JsonObject args) {
-        String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
-        return response;
-    }
-}
-```
-{: codeblock}
-
 
 ### Packaging Java code
 {: #prep_java_pkg}
 
-To compile, test, and archive Java files, you must have [JDK 8 ](http://openjdk.java.net/install/){: external} installed locally.
+
+**Before you begin**
+You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
+
+If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
+{: note}
+
+To create a Java action, complete the following steps.
 
 1. Save the following code in a file named `Hello.java`.
 
-    ```java
-    import com.google.gson.JsonObject;
-    public class Hello {
-        public static JsonObject main(JsonObject args) {
-            String name = "stranger";
-            if (args.has("name"))
-                name = args.getAsJsonPrimitive("name").getAsString();
-            JsonObject response = new JsonObject();
-            response.addProperty("greeting", "Hello " + name + "!");
-            return response;
-        }
-    }
-    ```
-    {: codeblock}
+  ```java
+  import com.google.gson.JsonObject;
+  public class Hello {
+      public static JsonObject main(JsonObject args) {
+          String name = "stranger";
+          if (args.has("name"))
+              name = args.getAsJsonPrimitive("name").getAsString();
+          JsonObject response = new JsonObject();
+          response.addProperty("greeting", "Hello, " + name + "!");
+          return response;
+      }
+  }
+  ```
+  {: codeblock}
 
-2. Compile the `Hello.java` file into a class file.
+2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/).
 
-    ```
-    javac Hello.java
-    ```
-    {: pre}
+3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar` which is saved in a `test` folder in the `Desktop` directory.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+  ```
+  {: pre}
 
-2. Compress the class file into a .jar file named `hello.jar`. **Note**: [google-gson ](https://github.com/google/gson){: external} must exist in your Java CLASSPATH.
-3.
-    ```
-    jar cvf hello.jar Hello.class
-    ```
-    {: pre}
+4. Add the `bin` folder of your JDK to your `CLASSPATH`. This example uses `openjdk-8`.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: pre}
 
+5. Verify the JDK `bin` folder and `gson-2.8.5.jar` are in your `CLASSPATH`.
+  ```
+  echo $CLASSPATH
+  ```
+  {: pre}
+
+  **Example output**
+  ```
+  /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: pre}
+
+6. Navigate to the folder where your `Hello.java` file is stored. In this example, the `Hello.java` file is saved to the `Desktop/test` folder.
+  ```
+  cd Desktop/test
+  ```
+  {: pre}
+
+7. Compile your `Hello.java` file into a class file.
+  ```
+  javac Hello.java
+  ```
+  {: pre}
+
+8. Compress the class file into a .jar file named `hello.jar`.
+
+  ```
+  jar cvf hello.jar Hello.class
+  ```
+  {: pre}
+
+**Next steps**
+You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
+ 
+When you update your Java code, you must repeat these steps to recompile your code into a new `.jar` file.
+{: important}
 
 ### Packaging Java code with Gradle
 {: #prep_java_gradle}
 
-You can use a build a tool such as [Gradle](https://gradle.org){: external} to fetch the libraries from a repository like Maven Central and build a final .jar archive that includes your code and all dependencies.
+Instead of compiling from the command line, you can use a build a tool such as [Gradle](https://gradle.org){: external} to fetch the libraries from a repository like Maven Central. You can use Gradle to fetch and build a final .jar archive that includes your code and all dependencies.
 
 Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
@@ -1050,9 +1075,6 @@ Here is an example using Gradle to build a Java action that leverages the librar
 2. Run the command `gradle jar`, which generates a .jar archive in the directory `build/libs/`.
 
   For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
-
-
-
 
 
 ## Preparing .NET Core apps
