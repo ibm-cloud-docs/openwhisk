@@ -42,7 +42,7 @@ For more information about API management, you can read the [API management docu
 ## Creating your first API
 {: #api_create}
 
-You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create REST APIs. Space permissions can be seen by running `ibmcloud account space-roles <org>`
+You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create REST APIs. Space permissions can be seen by running `ibmcloud account space-roles <org>`.
 {: note}
 
 Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cli_install).
