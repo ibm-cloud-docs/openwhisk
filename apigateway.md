@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-06-27"
 
-keywords: serverless, rest api, gateway, web actions
+keywords: serverless, rest api, gateway, web actions, functions
 
 subcollection: cloud-functions
 
@@ -41,6 +41,9 @@ For more information about API management, you can read the [API management docu
 
 ## Creating your first API
 {: #api_create}
+
+You must have Developer permissions in your Cloud Foundry space to create APIs.
+{: note}
 
 Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cli_install).
 
