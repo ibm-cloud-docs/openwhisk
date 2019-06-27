@@ -1029,7 +1029,7 @@ To create a Java action, complete the following steps.
 You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
  
 When you update your Java code, you must repeat these steps to recompile your code into a new `.jar` file.
-{: important}
+{: note}
 
 ### Packaging Java code with Gradle
 {: #prep_java_gradle}
