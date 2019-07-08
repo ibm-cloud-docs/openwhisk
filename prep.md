@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-08"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -427,7 +427,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: pre}
 
-    While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary dependencies, action invocations might not succeed.
+    While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
     {: note}
 
 3. Create a `.zip` archive that contains all files, including all dependencies.
