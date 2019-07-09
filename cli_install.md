@@ -96,7 +96,7 @@ After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with 
 
 ## Selecting regions, organizations, and spaces
 {: #cli_regions}
-By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespeaces.
+By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
 {: important}
 
 If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI plug-in to switch regions, organization, and spaces.
@@ -135,7 +135,7 @@ Create or target a namespace.
     ```
     {: pre}
 
-    Target Cloud Foundry and follow the prompts to select a space.
+    Target Cloud Foundry and follow the prompts to select a `org` and `space`.
     ```
     ibmcloud target --cf
     ```
@@ -146,23 +146,8 @@ Create or target a namespace.
     Targeted Cloud Foundry (https://api.ng.bluemix.net)
 
     Targeted org <org_name>
-    ```
-    {: screen}
-    
-    **Example** Prompts to select a space.
 
-    ```
-    Select a space (or press enter to skip):
-    1. <space_one>
-    2. <space_two>
-    Enter a number> 
-    ```
-    {: screen}
-
-
-    Enter the number of the space you want to target.
-    ``` 
-    Targeted <space_one>
+    Targeted space <space_name>
                           
     API endpoint:      https://cloud.ibm.com   
     Region:            us-south   
