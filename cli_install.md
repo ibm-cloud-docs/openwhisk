@@ -89,6 +89,10 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   {: screen}
 
 3. After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+  ```
+  ibmcloud fn
+  ```
+  {: pre}
 
  
 ## Selecting regions, organizations, and spaces
@@ -198,7 +202,7 @@ You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interac
 
 ### Command Syntax
 {: #cli_syntax}
-For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk/topic=cloud-functions-cli-plugin-functions-cli).
+For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 
 ### API Authentication and Host
