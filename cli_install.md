@@ -65,9 +65,6 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to perform the
 * Bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
 * Explore the catalog of packages and enhance your applications with external services. See [Adding {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-services).
 
-Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
-{:tip}
-
 Complete the following steps to install the {{site.data.keyword.openwhisk_short}} CLI plug-in
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
@@ -91,9 +88,9 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: screen}
 
-After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
-{: note}
+3. After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
 
+ 
 ## Selecting regions, organizations, and spaces
 {: #cli_regions}
 By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
