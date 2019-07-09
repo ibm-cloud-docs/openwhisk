@@ -109,6 +109,7 @@ Create or target a namespace.
     ```
     {: pre}
 
+
     **Response**
     ```
     ok: created namespace <namespace_name>
@@ -120,6 +121,7 @@ Create or target a namespace.
     ibmcloud fn property set --namespace <namespace_name>
     ``` 
     {: pre}
+
 
     **Response**
     ```
@@ -139,7 +141,8 @@ Create or target a namespace.
     ```
     ibmcloud target --cf
     ```
-    {: pre}  
+    {: pre}
+
 
     **Response**
     ```
@@ -179,6 +182,7 @@ ibmcloud fn namespace create production
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
 {: tip}
 
+
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
 {: #cli_proxy}
 
@@ -194,9 +198,11 @@ Changing the name of the org or space creates a new namespace based on the chang
 You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interact with {{site.data.keyword.openwhisk_short}} entities. Although you can continue to use the stand-alone OpenWhisk CLI, it does not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespaces and `service bind`.
 {: shortdesc}
 
+
 ### Command Syntax
 {: #cli_syntax}
 For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk/topic=cloud-functions-cli-plugin-functions-cli).
+
 
 ### API Authentication and Host
 {: #cli_api_auth}
@@ -221,10 +227,12 @@ ibmcloud fn property get --apihost
 The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
 {: tip}
 
+
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
 The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
+
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}
