@@ -96,12 +96,10 @@ After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with 
 
 ## Selecting regions, organizations, and spaces
 {: #cli_regions}
-
-If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI to switch regions, organization, and spaces.
-
 By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. Any namespaces that are created are IAM-enabled. You can no longer create Cloud Foundry-based namespeaces.
 {: important}
 
+If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI to switch regions, organization, and spaces.
 
 Create or target a namespace.
 
@@ -113,7 +111,7 @@ Create or target a namespace.
 
   * Target an IAM-enabled namespace. 
     ```
-    ibmcloud fn property set --namespace <name>
+    ibmcloud fn property set --namespace <namespace_name>
     ``` 
     {: pre}
   
@@ -207,6 +205,8 @@ All of the command options and arguments for commands in the Cloud Functions CLI
 * `wsk` commands are now run as `ibmcloud fn`.
 * The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
 * You can manage your APIs by using the `ibmcloud fn api`.
+
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 **Do I still need to configure an API key?**
 
