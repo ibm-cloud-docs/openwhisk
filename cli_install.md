@@ -129,7 +129,7 @@ Create or target a namespace.
   
   * Target a Cloud Foundry-based namespace. You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
 
-    Include the `org` and `space` in the target command.
+    Include the `org` and `space` names in the `target` command.
     ```
     ibmcloud target --cf  -o <org> -s <space>
     ```
@@ -160,7 +160,7 @@ Create or target a namespace.
     {: screen}
 
 
-    Enter the number of the space you want to target. 
+    Enter the number of the space you want to target.
     ``` 
     Targeted <space_one>
                           
