@@ -99,11 +99,12 @@ After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with 
 
 If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI to switch regions, organization, and spaces.
 
-{{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external} by default. Namespaces that are created are IAM-enabled. However, you can still target Cloud Foundry-based namespaces.
+By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. Any namespaces that are created are IAM-enabled. You can no longer create Cloud Foundry-based namespeaces.
 {: important}
 
 
-Create or target a namespace. New namespaces are IAM-enabled by default.
+Create or target a namespace.
+
   * Create an IAM-enabled namespace.
     ```
     ibmcloud fn namespace create <namespace> [--description <"description">]
@@ -124,8 +125,14 @@ Create or target a namespace. New namespaces are IAM-enabled by default.
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
 
+Create a staging namespace.
 ```
 ibmcloud fn namespace create staging
+```
+{: pre}
+
+Create a production namespace.
+```
 ibmcloud fn namespace create production
 ```
 {: pre}
