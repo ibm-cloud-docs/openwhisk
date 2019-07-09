@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-09"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions
 
@@ -299,4 +299,6 @@ _Figure 5. Sequence with inline action definition_
 ## Using other combinator definitions
 {: #combinator-def}
 See the documentation for Composer on Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} or [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}) for the full list of combinators definitions.
+
+
 
