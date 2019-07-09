@@ -35,7 +35,7 @@ subcollection: cloud-functions
 ## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
-You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
+Before you begin, you must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 {: note}
 
 Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
@@ -102,26 +102,25 @@ If you are already logged in, you can run the `ibmcloud fn property set` or `ibm
 {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external} by default. Namespaces that are created are IAM-enabled. However, you can still target Cloud Foundry-based namespaces.
 {: important}
 
-To create and manage {{site.data.keyword.openwhisk_short}} entities, you must target a namespace.
 
 Create or target a namespace. New namespaces are IAM-enabled by default.
   * Create an IAM-enabled namespace.
-  ```
-  ibmcloud fn namespace create <namespace> [--description <"description">]
-  ```
-  {: pre}
+    ```
+    ibmcloud fn namespace create <namespace> [--description <"description">]
+    ```
+    {: pre}
 
   * Target an IAM-enabled namespace. 
-  ```
-  ibmcloud fn property set --namespace <name>
-  ``` 
-  {: pre}
+    ```
+    ibmcloud fn property set --namespace <name>
+    ``` 
+    {: pre}
   
   * Target a Cloud Foundry-based namespace.
-  ```
-  ibmcloud target --cf -o <org> -s <space>
-  ```
-  {: pre}
+    ```
+    ibmcloud target --cf -o <org> -s <space>
+    ```
+    {: pre}
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
 
