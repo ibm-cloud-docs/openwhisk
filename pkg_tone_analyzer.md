@@ -4,7 +4,7 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-07-10"
 
-keywords: tone analyzer, functions, serverless, watson
+keywords: functions, serverless, watson
 
 subcollection: cloud-functions
 
