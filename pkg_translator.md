@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -188,6 +188,7 @@ This package's functions use the current version of Language Translator, `2018-0
 ibmcloud fn action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```
 {: pre}
+
 
 
 

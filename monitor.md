@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
@@ -262,5 +262,7 @@ Check out the following table to see the metrics that are available to you.
 
 Metrics for actions that exist as part of a default namespace are available in the default category.
 {: tip}
+
+
 
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: deploying actions, manifest, manifest file, functions
 
@@ -128,3 +128,7 @@ The Functions deployment is based on the OpenWhisk deployment project, which has
 {: manifest_specification}
 
 Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.
+
+
+
+

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -172,4 +172,6 @@ This package's functions use the current version of Natural Language Understandi
 ibmcloud fn action invoke natural-language-understanding-v1/list-models -b -p version 2018-03-16
 ```
 {: pre}
+
+
 

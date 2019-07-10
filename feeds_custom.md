@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: feeds, serverless, functions
 
@@ -134,5 +134,8 @@ The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical 
 The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
+
+
+
 
 

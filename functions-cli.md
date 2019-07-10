@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-14"
+lastupdated: "2019-07-10"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -2126,6 +2126,8 @@ ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 ibmcloud fn trigger update mytrigger --param name Jim
 ```
 {: pre}
+
+
 
 
 

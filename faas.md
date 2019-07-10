@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: functions compared, architecture, limitless, functions
 
@@ -103,4 +103,7 @@ In traditional architectures, code must be running in each region to be executed
 {: #faas_redundancy}
 
 In traditional architectures, apps must be redundant. With {{site.data.keyword.openwhisk_short}}, processes don't need to be highly available (HA) because serverless apps are stateless and request-event driven by design. By eliminating the need for explicitly creating redundancy, the stateless nature of serverless apps can significantly reduce infrastructure costs.
+
+
+
 

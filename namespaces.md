@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -308,6 +308,8 @@ Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/doc
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
 
 For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).
+
+
 
 
 

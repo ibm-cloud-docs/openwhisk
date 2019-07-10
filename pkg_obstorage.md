@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: object storage, bucket, package, functions
 
@@ -612,4 +612,6 @@ Create a rule that activates `MyCosAction` action on new {{site.data.keyword.cos
   ibmcloud fn rule create myRule myCosTrigger myCosAction
   ```
   {: pre}
+
+
 

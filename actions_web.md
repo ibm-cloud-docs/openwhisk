@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: web actions, serverless, functions
 
@@ -1083,4 +1083,6 @@ You can disable a web action by setting the `--web` flag to `false` or `no` in t
 ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
 ```
 {: pre}
+
+
 

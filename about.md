@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-09"
+lastupdated: "2019-07-10"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -207,5 +207,7 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Action semantics](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [REST API reference](/apidocs/functions)
+
+
 
 

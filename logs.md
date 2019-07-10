@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -256,4 +256,6 @@ You can find specific activation logs by using Kibana's query syntax. The follow
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

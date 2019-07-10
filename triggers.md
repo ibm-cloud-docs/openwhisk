@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-10"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -171,5 +171,6 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
   {: pre}
 
   You can see that the activations occur every minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+
 
 

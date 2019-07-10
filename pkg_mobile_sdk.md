@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-10"
 
-keywords: mobile, sdk, cocoapods, carthage
+keywords: mobile, sdk, cocoapods, carthage, functions
 
 subcollection: cloud-functions
 
@@ -284,4 +284,6 @@ do {
 }
 ```
 {: codeblock}
+
+
 

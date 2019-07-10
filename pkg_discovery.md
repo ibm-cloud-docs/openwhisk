@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: watson discovery, functions, watson, cognitive, functions
 
@@ -208,4 +208,6 @@ This package's functions use the current version of Discovery, `2018-03-05`. Try
 ibmcloud fn action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}
+
+
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: text to speech, watson, cognitive, functions, packages
 
@@ -285,4 +285,5 @@ Try out the `list-voices` action.
 ibmcloud fn action invoke text-to-speech-v1/list-voices -b
 ```
 {: pre}
+
 

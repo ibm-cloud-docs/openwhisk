@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -418,4 +418,5 @@ After template deployment, you can make further edits to the code to customize i
     <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
     </tbody></table>
+
 

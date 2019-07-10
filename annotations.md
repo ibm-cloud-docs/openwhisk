@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-10"
 
-keywords: annotations, annotate, package, parameters, actions
+keywords: annotations, annotate, package, parameters, actions, functions
 
 subcollection: cloud-functions
 
@@ -141,4 +141,7 @@ The following example shows these annotations as they might appear in an activat
 ]
 ```
 {: codeblock}
+
+
+
 

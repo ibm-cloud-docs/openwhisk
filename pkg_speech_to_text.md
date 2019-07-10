@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: speech to text, watson, package, cognitive, functions
 
@@ -332,4 +332,5 @@ ibmcloud fn action invoke myWatsonSpeechToText/speechToText --blocking --result 
 }
 ```
 {: screen}
+
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: event streams, package, messages, events, functions
 
@@ -343,4 +343,6 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 {: #message_references}
 - [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
+
+
 

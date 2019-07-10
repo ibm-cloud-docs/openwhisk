@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: github, actions, trigger, event, functions
 
@@ -73,4 +73,6 @@ In the following example, a trigger is created that fires each time a new commit
   {: pre}
 
   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If a rule matches the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://developer.github.com/v3/activity/events/types/){: external} API documentation.
+
+
 

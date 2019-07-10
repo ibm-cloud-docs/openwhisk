@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: watson assistant, openwhisk, functions
 
@@ -210,4 +210,5 @@ This package's functions use the current version of Watson Assistant, `2018-07-1
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```
 {: pre}
+
 

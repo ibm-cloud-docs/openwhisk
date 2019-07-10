@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: packages, installable packages, functions
 
@@ -251,4 +251,6 @@ After you create the service instance and bucket, you can install the package by
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

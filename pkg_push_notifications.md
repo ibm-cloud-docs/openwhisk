@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: push notifications, functions, webhooks
 
@@ -442,4 +442,6 @@ To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `o
 }
 ```
 {: screen}
+
+
 

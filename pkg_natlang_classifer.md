@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: nlc, machine learning, functions
 
@@ -178,4 +178,6 @@ Try out the `list-classifiers` action.
 ibmcloud fn action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}
+
+
 

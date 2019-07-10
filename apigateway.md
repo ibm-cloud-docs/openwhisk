@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -171,4 +171,6 @@ After you create your configuration, you can use the [APIs tab](https://cloud.ib
 
 </br>
 Once you are done updating the configuration, you can download the definition file in JSON format, and then reimport it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and reimport the API definition file by using the UI.
+
+
 

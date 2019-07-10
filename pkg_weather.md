@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -130,4 +130,5 @@ ibmcloud fn action invoke myWeather/forecast --result \
 }
 ```
 {: screen}
+
 

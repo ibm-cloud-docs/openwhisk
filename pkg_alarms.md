@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-27"
+lastupdated: "2019-07-10"
 
 keywords: alarms, serverless, triggers, functions
 
@@ -207,5 +207,7 @@ ibmcloud fn trigger create periodic \
   --param stopDate "2019-01-31T23:59:00.000Z"
 ```
 {: pre}
+
+
 
 

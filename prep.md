@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-08"
+lastupdated: "2019-07-10"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -1170,5 +1170,6 @@ To package your code, run the following commands.
       zip -r -0 ../helloDotNet.zip *
       ```
       {: pre}
+
 
 

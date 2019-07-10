@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-09"
+lastupdated: "2019-07-10"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -360,4 +360,6 @@ v1.0.25 (23 November 2018)
 
 1.0.6 (30 January 2018)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
+
+
 

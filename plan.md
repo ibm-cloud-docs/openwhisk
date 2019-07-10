@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-10"
 
-keywords: planning
+keywords: planning, functions, actions, serverless
 
 subcollection: cloud-functions
 
@@ -97,6 +97,7 @@ Decide how you want to deploy your functions across environments, such as develo
 Because {{site.data.keyword.openwhisk_short}} is a Cloud Foundry-based service, you can manage the deployment of your functions in the Cloud Foundry organizations and spaces that are provided for you in {{site.data.keyword.cloud_notm}}. To organize your functions across these environments, you might choose to create one organization per function. Then, create a space for each environment you need. Instead, you could also have one organization for each environment and create a space per function. No matter how you arrange your organizations and spaces, choose a structure that you can use to effectively manage your function entities.
 
 You can also use [namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.
+
 
 
 

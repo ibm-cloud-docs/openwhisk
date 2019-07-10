@@ -86,3 +86,4 @@ Still having issues with your function?
 -   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
 When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
 {: tip}
+
