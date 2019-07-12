@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-18"
+lastupdated: "2019-07-12"
 
-keywords: feeds, serverless
+keywords: feeds, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -39,7 +40,7 @@ You can create a feed by using one of the three architectural patterns: **Hooks*
 
 ### Hooks
 
-With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook) that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
+With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook){: external} that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
 For example, the [GitHub package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
 
@@ -134,5 +135,8 @@ The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical 
 The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
+
+
+
 
 

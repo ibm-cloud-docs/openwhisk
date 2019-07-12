@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: Platform architecture, openwhisk, couchdb, kafka
+keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -75,7 +76,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
 
 ### What's next?
 {: #quiz}
-Test your knowledge and [take a quiz ![External link icon](../icons/launch-glyph.svg "External link icon")](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php)!
+Test your knowledge and [take a quiz ](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}!
 
 
 ## How OpenWhisk internal processing works
@@ -110,7 +111,7 @@ The first entry point into the system is through **NGINX**, “an HTTP and rever
 {: #about_controller}
 
 
-NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [create, retrieve, update, and delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) requests for your entities in OpenWhisk, and invocation of actions.
+NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. It is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**), and thus serves as the interface for everything a user can do. Including [create, retrieve, update, and delete](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete){: external} requests for your entities in OpenWhisk, and invocation of actions.
 
 The Controller first disambiguates what the user is trying to do. It does so based on the HTTP method you use in your HTTP request. The user is issuing a POST request to an existing action, which the Controller translates to an **invocation of an action**.
 
@@ -207,4 +208,7 @@ You can find additional information about {{site.data.keyword.openwhisk_short}} 
 * [Action semantics](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [REST API reference](/apidocs/functions)
+
+
+
 

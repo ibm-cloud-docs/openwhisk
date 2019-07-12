@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-06-14"
+lastupdated: "2019-07-12"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -17,6 +17,7 @@ subcollection: cloud-functions-cli-plugin
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -339,6 +340,9 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 {: #cli_action_update}
 
 Update an action or the app within an action.
+
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+{: important}
 
 ```
 ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
@@ -1408,6 +1412,9 @@ ibmcloud fn package refresh /NAMESPACE
 
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+{: important}
+
 ```
 ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
@@ -2097,6 +2104,9 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 
 Update a trigger.
 
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+{: important}
+
 ```
 ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
@@ -2126,6 +2136,8 @@ ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 ibmcloud fn trigger update mytrigger --param name Jim
 ```
 {: pre}
+
+
 
 
 

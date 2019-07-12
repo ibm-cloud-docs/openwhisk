@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, functions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -437,3 +438,6 @@ After you updated and activated the code in an action, the result includes the f
 
 ```
 {: screen}
+
+
+

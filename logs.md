@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -211,7 +212,7 @@ You can view activation logs directly from the {{site.data.keyword.openwhisk_sho
 Logging is not available for the US East region.
 {: important}
 
-1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/dashboard).
+1. Open the [{{site.data.keyword.openwhisk_short}} Monitoring page ](https://cloud.ibm.com/openwhisk/dashboard){: external}.
 
 2. Optional: To view logs only for a specific action, limit the monitoring summary to that action. In the Filtering Options section, select the action name from the **Limit to** drop-down list.
 
@@ -256,4 +257,6 @@ You can find specific activation logs by using Kibana's query syntax. The follow
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

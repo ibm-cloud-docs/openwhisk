@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-07-12"
 
-keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
+keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -47,9 +48,9 @@ The following table lists the default limits for actions.
 | `logs`| The log limit N is in the range [0 MB..10 MB] and is set per action. A user can change the action log limit when an action is created or updated. Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit. | 10 | 0 | 10 |
 | `memory` | The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB. A user can change the memory limit when an action is created. A container cannot use more memory than is allocated by the limit. | 256 | 128 | 2048 |
 | `minuteRate` | No more than N activations can be submitted per namespace per minute. The rate limit N is set to 5000 and limits the number of action invocations in 1-minute windows. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_increase) for instructions on how to increase this limit. | 5000 | 1 | 5000* | 
-| `openulimit` | The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `openulimit` | The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the `openulimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command line reference documentation. | 1024 | 0 | 1024 | 
 | `parameters` | The maximum size of the parameters that can be attached in MB. The size limit for the total parameters on creating or updating of an Action/Package/Trigger is 5 MB. An entity with too large parameters is rejected on trying to create or update it. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
-| `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command line reference documentation. | 1024 | 0 | 1024 | 
+| `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command line reference documentation. | 1024 | 0 | 1024 | 
 | `result` | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
 | `sequenceMaxActions` | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed. | 50 | 0 | 50* | 
 | `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 | 
@@ -57,7 +58,7 @@ The following table lists the default limits for actions.
 ### Increasing fixed limits
 {: #limits_increase}
 
-Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
+Limit values ending with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk){: external}.
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.
   3. Select **Technical** for the ticket type.
@@ -75,7 +76,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 ### Increasing fixed limits
 {: #limits_triggersfixed}
 
-Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk).
+Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk){: external}.
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.
   3. Select **Technical** for the ticket type.
@@ -95,6 +96,9 @@ Packages can contain actions and feeds. A package cannot contain another package
 You can create new IAM-based namespaces by running `ibmcloud fn namespace create`.  Cloud Foundry-based namespaces are made from a combination of an org and space name. For example, if you are targeted to the `user@email.com` org and the `dev` space, then you are targeting the {{site.data.keyword.openwhisk_short}} Cloud Foundry-based namespace called `user@email.com_dev`. 
 
 The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
+
+The [Serverless Framework](https://serverless.com/) is not supported for IAM-based namespaces
+{: note}
 
 
 ### Fully qualified names
@@ -171,8 +175,11 @@ An activation record contains the following fields:
 | Field | Description
 | --- | --- |
 | `activationId` | The activation ID. |
-| `start` and `end` | Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15). |
+| `start` and `end` | Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15){: external}. |
 | `namespace` and `name` | The namespace and name of the entity. |
 | `logs` | An array of strings with the logs that are produced by the action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`. |
 | `response` | A dictionary that defines the keys `success`, `status`, and `result`. `status`: The activation result, which might be one of the following values: "success", "application error", "action developer error", "whisk internal error". `success`: Is `true` if and only if the status is `"success"`. |
 | `result` | A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure. |
+
+
+

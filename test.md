@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -285,6 +286,7 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
     docker rm CONTAINER_ID
     ```
     {: pre}
+
 
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: slack package, token-based, api
+keywords: slack package, token-based, api, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -27,7 +28,7 @@ subcollection: cloud-functions
 # Slack
 {: #pkg_slack}
 
-The pre-installed `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/).
+The pre-installed `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/){: external}.
 {: shortdesc}
 
 The package includes the following actions:
@@ -49,11 +50,11 @@ The `/whisk.system/slack/post` action posts a message to a specified Slack chann
 | `channel` | The Slack channel to post the message to. |
 | `username` | The name to post the message as. |
 | `text` | A message to post. |
-| `token` | (optional) A Slack [access token](https://api.slack.com/tokens). |
+| `token` | (optional) A Slack [access token](https://api.slack.com/tokens){: external}. |
 
 The following example shows how to configure Slack, create a package binding, and post a message to a channel.
 
-1. Configure a Slack [incoming webhook](https://api.slack.com/incoming-webhooks) for your team.
+1. Configure a Slack [incoming webhook](https://api.slack.com/incoming-webhooks){: external} for your team.
 
   After Slack is configured, you get a webhook URL that looks like `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. The webhook is needed in the next step.
 
@@ -75,5 +76,7 @@ The following example shows how to configure Slack, create a package binding, an
 
 ## Using the Slack token-based API
 
-If you prefer, you can choose to use Slack's token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens). Then, you can use any of the [Slack API methods](https://api.slack.com/methods) as your `url` parameter. For example, to post a message, you would use a `url` parameter value of [<ph class="ignoreSpelling">slack.postMessage</ph>](https://api.slack.com/methods/chat.postMessage).
+If you prefer, you can choose to use Slack's token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens){: external}. Then, you can use any of the [Slack API methods](https://api.slack.com/methods){: external} as your `url` parameter. For example, to post a message, you would use a `url` parameter value of [<ph class="ignoreSpelling">slack.postMessage</ph>](https://api.slack.com/methods/chat.postMessage){: external}.
+
+
 

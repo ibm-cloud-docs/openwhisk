@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-07-12"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -34,6 +35,9 @@ subcollection: cloud-functions
 ## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
+Before you begin, you must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
+{: note}
+
 Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 {: shortdesc}
 
@@ -46,20 +50,22 @@ Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
   ```
   {: pre}
 
-## Setting up the {{site.data.keyword.openwhisk_short}} plug-in
+3. Follow the prompts to select your {{site.data.keyword.cloud_notm}} account.
+
+## Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_plugin_setup}
 
 To work with {{site.data.keyword.openwhisk_short}}, download and install the CLI plug-in.
 {: shortdesc}
 
-You can use the plug-in to perform the following tasks.
+You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to perform the following tasks.
 
 * Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk?topic=cloud-functions-actions).
-* Use triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk?topic=cloud-functions-triggers).
-* Learn how packages bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Explore the catalog of packages and enhance your applications with external services, such as a [{{site.data.keyword.cloudant}} event source](/docs/openwhisk?topic=cloud-functions-pkg_cloudant).
+* Create triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk?topic=cloud-functions-triggers).
+* Bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
+* Explore the catalog of packages and enhance your applications with external services. See [Adding {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-services).
 
-{: tip}
+Complete the following steps to install the {{site.data.keyword.openwhisk_short}} CLI plug-in
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
 
@@ -78,52 +84,107 @@ You can use the plug-in to perform the following tasks.
   **Output**
   ```
   Plugin Name          Version
-  cloud-functions/wsk/functions/fn      1.0.30
+  cloud-functions/wsk/functions/fn      1.0.32
   ```
   {: screen}
 
-Already have the plug-in but need to update? Run `ibmcloud plugin update cloud-functions`.
-{:tip}
+3. After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+  ```
+  ibmcloud fn
+  ```
+  {: pre}
 
-After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
-{: note}
-
+ 
 ## Selecting regions, organizations, and spaces
 {: #cli_regions}
+By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
+{: important}
 
-If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI to switch regions, organization, and spaces.
+If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI plug-in to switch regions, organization, and spaces.
 
-1. Create or target a namespace.
-  * Create a namespace.
+### Create or target a namespace.
+
+#### Create an IAM-enabled namespace.
   ```
-  ibmcloud fn namespace create <namespace> [--description <"description">]
+  ibmcloud fn namespace create <namespace_name> [--description <"description">]
   ```
   {: pre}
 
-  * Target an IAM-enabled namespace. 
+**Response**
   ```
-  ibmcloud fn property set --namespace <name>
+  ok: created namespace <namespace_name>
+  ```
+  {: screen}
+
+
+#### Target an IAM-enabled namespace. 
+  ```
+  ibmcloud fn property set --namespace <namespace_name>
   ``` 
   {: pre}
-  
-  * Target a Cloud Foundry-based namespace.
+
+
+**Response**
   ```
-  ibmcloud target -o <org> -s <space>
+  ok: whisk namespace set to <namespace_name>
+  ```
+  {: screen}
+  
+#### Target a Cloud Foundry-based namespace. 
+  
+You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
+
+  * Include the `org` and `space` names in the `target` command.
+  ```
+  ibmcloud target --cf  -o <org> -s <space>
   ```
   {: pre}
 
-To create and manage entities, you must target a namespace. The default namespace, which can be denoted by an underscore (`_`) in some situations, corresponds to the Cloud Foundry-based namespace that is targeted.
+  * Target Cloud Foundry and follow the prompts to select a `org` and `space`.
+  ```
+  ibmcloud target --cf
+  ```
+  {: pre}
 
-You can create IAM-based spaces to handle your pre-production (staging) and production deployments by creating spaces for each. Creating spaces allows {{site.data.keyword.openwhisk_short}} to have two different namespaces that are defined for you. Run [`ibmcloud iam space-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_account#ibmcloud_account_space_create) to create more spaces under your organization such "staging" and "production":
 
+**Response**
+  ```
+  Targeted Cloud Foundry (https://api.ng.bluemix.net)
+
+  Targeted org <org_name>
+
+  Targeted space <space_name>
+                        
+  API endpoint:      https://cloud.ibm.com   
+  Region:            us-south   
+  User:              <email>   
+  Account:           (<account_id>) <-> <account>   
+  Resource group:    default   
+  CF API endpoint:   https://api.ng.bluemix.net (API version: 2.128.0)   
+  Org:               <org_name>   
+  Space:             <space_name>  
+  ```
+  {: screen} 
+
+**Example** Creating namespaces for staging and production deployments.
+
+You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
+
+Create a staging namespace.
 ```
-ibmcloud iam space-create "staging"
-ibmcloud iam space-create "production"
+ibmcloud fn namespace create staging
+```
+{: pre}
+
+Create a production namespace.
+```
+ibmcloud fn namespace create production
 ```
 {: pre}
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
 {: tip}
+
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
 {: #cli_proxy}
@@ -140,14 +201,16 @@ Changing the name of the org or space creates a new namespace based on the chang
 You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interact with {{site.data.keyword.openwhisk_short}} entities. Although you can continue to use the stand-alone OpenWhisk CLI, it does not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespaces and `service bind`.
 {: shortdesc}
 
+
 ### Command Syntax
 {: #cli_syntax}
-For command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+
 
 ### API Authentication and Host
 {: #cli_api_auth}
 
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <name>` or a Cloud Foundry-based namespace by running `ibmcloud target -o <org> -s <space>`. After logging in, all commands begin with `ibmcloud fn`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After logging in, all commands begin with `ibmcloud fn`.
 
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
@@ -167,10 +230,12 @@ ibmcloud fn property get --apihost
 The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
 {: tip}
 
+
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
 The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
+
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}
@@ -186,12 +251,14 @@ The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk sta
 
 **What does the command syntax look like?**
 
-All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/apache/incubator-openwhisk-cli). But, note the following differences.
+All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
 
 * The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
 * `wsk` commands are now run as `ibmcloud fn`.
 * The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
 * You can manage your APIs by using the `ibmcloud fn api`.
+
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 **Do I still need to configure an API key?**
 
@@ -280,7 +347,7 @@ v1.0.25 (23 November 2018)
 
 1.0.10 (09 April 2018)
 * Added new `--web-secure` option to the `ibmcloud wsk action create|update` commands to secure web action endpoints.
-* Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237).
+* Fixed back-to-back path parameter [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237){: external}.
 
 1.0.9 (16 March 2018)
 * Enabled support for service bind at the package level.
@@ -295,4 +362,6 @@ v1.0.25 (23 November 2018)
 
 1.0.6 (30 January 2018)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
+
+
 

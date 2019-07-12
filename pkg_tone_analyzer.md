@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
-keywords: tone analyzer, functions, serverless, watson
+keywords: functions, serverless, watson
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -39,9 +40,9 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html) | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
-| [`tone`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
-| [`tone-chat`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat) | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
+| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
+| [`tone`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
+| [`tone-chat`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
 
 
 ## Creating a {{site.data.keyword.toneanalyzershort}} service instance
@@ -50,7 +51,7 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.toneanalyzershort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/catalog/services/tone_analyzer).
+1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ](https://cloud.ibm.com/catalog/services/tone_analyzer){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
@@ -139,7 +140,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #toneanalyzer_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
 2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. 
 
@@ -174,10 +175,11 @@ ibmcloud fn action invoke tone-analyzer-v3/<action_name> -b -p <param name> <par
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#versioning).
+All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#versioning){: external}.
 
 This package's functions use the current version of Tone Analyzer, 2017-09-21. Try out the `tone` action.
 ```
 ibmcloud fn action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}
+

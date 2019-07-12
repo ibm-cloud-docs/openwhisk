@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-07-12"
 
-keywords: serverless, rest api, gateway, web actions
+keywords: serverless, rest api, gateway, web actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -41,6 +42,9 @@ For more information about API management, you can read the [API management docu
 
 ## Creating your first API
 {: #api_create}
+
+You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create REST APIs. Space permissions can be seen by running `ibmcloud account space-roles <org>`.
+{: note}
 
 Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cli_install).
 
@@ -159,7 +163,7 @@ To return different content types in the body, use full control over the HTTP re
 ## Modifying the configuration
 {: #api_modify_config}
 
-After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/openwhisk/apimanagement) in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
+After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/openwhisk/apimanagement){: external} in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
 
 * [Create a {{site.data.keyword.openwhisk_short}} API](/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
 * [Secure your API](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by applying API security and rate-limiting policies.
@@ -168,4 +172,6 @@ After you create your configuration, you can use the [APIs tab](https://cloud.ib
 
 </br>
 Once you are done updating the configuration, you can download the definition file in JSON format, and then reimport it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and reimport the API definition file by using the UI.
+
+
 

@@ -2,9 +2,9 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
-keywords: composer, openwhisk, compositions, sequence, branch
+keywords: composer, openwhisk, compositions, sequence, branch, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -27,9 +28,9 @@ subcollection: cloud-functions
 # Composer
 {: #pkg_composer}
 
-{{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with more combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), which you can use to create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer).
+{{site.data.keyword.openwhisk}} now supports Composer for Apache OpenWhisk as a technical preview. Composer extends Apache OpenWhisk sequences with more combinators ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external}, [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}), which you can use to create more complex flows that include conditional branching, error handling, and loops. Full documentation and technical specifications for Composer are available on the [Composer Git repository](https://github.com/apache/incubator-openwhisk-composer){: external}.
 
-You can also use the open source project [Kui](https://github.com/ibm/kui) to make it easier to create, deploy, and visualize your Composer source code. For more information, see [Kui on GitHub](https://github.com/ibm/kui).
+You can also use the open source project [Kui](https://github.com/ibm/kui){: external} to make it easier to create, deploy, and visualize your Composer source code. For more information, see [Kui on GitHub](https://github.com/ibm/kui){: external}.
 {: note}
 
 ## Installing the Composer library for JavaScript or Python 3
@@ -39,7 +40,7 @@ You can use Composer with actions that are written in any language, but you expr
 {: shortdesc}
 
 **For JavaScript**
-1. Install the Composer library [Node.js package](https://github.com/apache/incubator-openwhisk-composer) by using the Node Package Manager.
+1. Install the Composer library [Node.js package](https://github.com/apache/incubator-openwhisk-composer){: external} by using the Node Package Manager.
 
     ```
         npm install -g openwhisk-composer
@@ -65,7 +66,7 @@ You can use Composer with actions that are written in any language, but you expr
     {: screen}
 
 **For Python 3**
-Install the [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python) library by using `pip3`.
+Install the [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python){: external} library by using `pip3`.
 
 1.  Clone the Composer for Python 3 GitHub repo.
     ```
@@ -150,7 +151,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
     ```
     {: pre}
 
-{{site.data.keyword.openwhisk}} executes the code that you deployed as a special action. For more information, see the documentation on [conductor actions](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md).
+{{site.data.keyword.openwhisk}} executes the code that you deployed as a special action. For more information, see the documentation on [conductor actions](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md){: external}.
 
 ## Extending sequences with Composer
 {: #extending}
@@ -193,7 +194,7 @@ def main():
 <img src="images/composer-sequence.png" width="35%" title="Simple Sequence" alt="Sequence with two actions" style="width:250px; border-style: none"/></br>
 _Figure 1. Sequence with two actions_
 
-You aren't limited to chaining together functions in Composer. Composer includes a family of [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) or [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md) based combinators that enhance the expressiveness of sequences. You can see common examples in the following sections.
+You aren't limited to chaining together functions in Composer. Composer includes a family of [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} or [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external} based combinators that enhance the expressiveness of sequences. You can see common examples in the following sections.
 
 ### Error handling
 {: #error-handling}
@@ -298,5 +299,9 @@ _Figure 5. Sequence with inline action definition_
 
 ## Using other combinator definitions
 {: #combinator-def}
-See the documentation for Composer on Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) or [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)) for the full list of combinators definitions.
+See the documentation for Composer on Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} or [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}) for the full list of combinators definitions.
+
+
+
+
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
 keywords: push notifications, functions, webhooks
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -68,7 +69,7 @@ To create a Push Notifications package binding, you must specify the following p
 
 To create a package binding, see the following steps:
 
-1. Create an {{site.data.keyword.cloud_notm}} application in the [{{site.data.keyword.cloud_notm}} Dashboard](https://cloud.ibm.com).
+1. Create an {{site.data.keyword.cloud_notm}} application in the [{{site.data.keyword.cloud_notm}} Dashboard](https://cloud.ibm.com){: external}.
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 
@@ -249,7 +250,7 @@ To create a trigger that is fired each time a new device registers with the Push
   ```
   {: pre}
 
-5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard).
+5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard){: external}.
 
   **Output**
   
@@ -275,11 +276,11 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
 
-2. [Create a set of service credentials ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
+2. [Create a set of service credentials ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ![External link icon](../icons/launch-glyph.svg "External link icon")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
 
 ### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #pkg_push_mobile_install}
@@ -373,7 +374,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #pkg_push_mobile_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk/create).
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
 2. Using the namespace drop-down menu in the top-right corner, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
 
@@ -442,4 +443,6 @@ To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `o
 }
 ```
 {: screen}
+
+
 

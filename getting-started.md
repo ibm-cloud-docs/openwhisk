@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,7 +25,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# Getting started tutorial
+# Getting started with {{site.data.keyword.openwhisk}}
 {: #getting-started}
 
 With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
@@ -50,9 +51,9 @@ Click an option to get started.
 
 To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quickstart template.
 
-1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration) account or log in to an existing account.
+1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/openwhisk).
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ](https://cloud.ibm.com/openwhisk){: external}.
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
@@ -89,3 +90,6 @@ So you completed your first template deployment, where do you go from here?
 * Get started with [your own actions](/docs/openwhisk?topic=cloud-functions-actions).
 * Learn about organizing actions in [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
 * Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=cloud-functions-apigateway).
+
+
+

@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -83,3 +84,6 @@ Check out the following table for a list of events that are sent to {{site.data.
     </tr>
   </tbody>
 </table>
+
+
+

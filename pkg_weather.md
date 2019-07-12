@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-11"
+lastupdated: "2019-07-12"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -43,7 +44,7 @@ Creating a package binding with the `username` and `password` values is suggeste
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_notm}}, the package bindings are automatically created for your {{site.data.keyword.cloud_notm}} Weather service instances.
 
-1. Create a Weather Company Data service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com).
+1. Create a Weather Company Data service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com){: external}.
 
   Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
 
@@ -94,19 +95,28 @@ The `/whisk.system/weather/forecast` action returns a weather forecast for a loc
 | `password` | Password for The Weather Company Data for {{site.data.keyword.cloud_notm}} that is entitled to invoke the forecast API. |
 | `latitude` | The latitude coordinate of the location. |
 | `longitude` | The longitude coordinate of the location. |
-| `timePeriod` | Time period for the forecast. `10day` - (default) Returns a daily 10-day forecast. `48hour` - Returns an hourly 2-day forecast. `current` - Returns the current weather conditions. `timeseries` - Returns both the current observations and up to 24 hours of past observations, from the current date and time.|
+| `timePeriod` | Time period for the forecast. |
+</br>
 
+The following table contains the values that you can use with the `--timePeriod` parameter.
+| `--timePeriod` Values | Description |
+| --- | --- |
+| `10day` | (default) Returns a daily 10-day forecast. |
+| `48hour` | Returns an hourly 2-day forecast. |
+| `current` | Returns the current weather conditions. |
+| `timeseries` | Returns both the current observations and up to 24 hours of past observations, from the current date and time. |
+
+
+**Example**
 The following example shows how to create a package binding and then getting a 10-day forecast.
 
 Invoke the `forecast` action in your package binding to get the weather forecast.
 ```
-ibmcloud fn action invoke myWeather/forecast --result \
---param latitude 43.7 \
---param longitude -79.4
+ibmcloud fn action invoke myWeather/forecast --result --param latitude 43.7 --param longitude -79.4
 ```
 {: pre}
 
-**Example output**
+**Output**
 ```
 {
     "forecasts": [
@@ -130,4 +140,5 @@ ibmcloud fn action invoke myWeather/forecast --result \
 }
 ```
 {: screen}
+
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -106,3 +107,4 @@ The three rules establish the following behavior.
 - Images in both tweets are classified.
 - Uploaded images are classified
 - A thumbnail version is generated.
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-10"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -90,7 +91,7 @@ After an action is executed, new metrics are generated and are searchable in Gra
 ## Using the dashboards
 {: #monitor_dash_use}
 
-The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/openwhisk/dashboard) provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
+The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/openwhisk/dashboard){: external} provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
 {:shortdesc}
 
 You can filter logs by selecting which action logs you want to view, and select the time frame of the activity logged. These filters are applied to all views on the dashboard. Click **Reload** at any time to update the dashboard with the latest activation log data.
@@ -223,13 +224,13 @@ Check out the following table to see the metrics that are available to you.
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>The number of unsuccessful activations that are caused by application errors. For example, graceful errors from the actions. For more information about how the action-performance metrics are derived, check out [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+      <td>The number of unsuccessful activations that are caused by application errors. For example, graceful errors from the actions. For more information about how the action-performance metrics are derived, check out [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}.</td>
       <td>Sum</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>The number of unsuccessful activations that are caused by the developer. For example, the violation of the [action proxy interface](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) by unhandled exceptions in the action code.</td>
+      <td>The number of unsuccessful activations that are caused by the developer. For example, the violation of the [action proxy interface](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external} by unhandled exceptions in the action code.</td>
       <td>Sum</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -262,5 +263,7 @@ Check out the following table to see the metrics that are available to you.
 
 Metrics for actions that exist as part of a default namespace are available in the default category.
 {: tip}
+
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-18"
+lastupdated: "2019-07-12"
 
-keywords: web actions, serverless
+keywords: web actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -237,7 +238,7 @@ To create a web action that performs an HTTP redirect:
 
   **Example result** 
   
-  This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/).
+  This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/){: external}.
 
 ### Setting cookies by using a web action
 {: #multiple_cookie}
@@ -417,7 +418,7 @@ The `__ow_user` is only present when the web action is [annotated to require aut
 ### HTTPS Endpoint support
 {: #actions_web_endpoint}
 
-Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18){: external})
 
 ### Altering the response content of web action
 {: #extra_features}
@@ -830,7 +831,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ```
 {: screen}
 
-{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) framework to [determine which content types are binary files and which are plain text](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html).
+{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala){: external} framework to [determine which content types are binary files and which are plain text](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html){: external}.
 
 ### Enabling raw HTTP handling
 {: #actions_web_raw_enable}
@@ -1083,4 +1084,6 @@ You can disable a web action by setting the `--web` flag to `false` or `no` in t
 ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
 ```
 {: pre}
+
+
 

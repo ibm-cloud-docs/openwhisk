@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -106,6 +107,9 @@ After the metrics are collected, you can see your logs by using the [{{site.data
 {: #monitor_faq}
 
 You can get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk_short}} by using {{site.data.keyword.monitoringlong}}. You can also monitor the health and performance of your actions by using the dashboard to see a graphical summary of your activity.
+
+
+
 
 
 

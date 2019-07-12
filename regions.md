@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: regions, endpoints, api, cli, plug-in
+keywords: regions, endpoints, api, cli, plug-in, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -90,3 +91,4 @@ subcollection: cloud-functions
       <td><code>api.jp-tok.functions.cloud.ibm.com</code></td>
     </tr>
   </table>
+

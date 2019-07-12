@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-12"
+lastupdated: "2019-07-10"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -22,7 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
+{:external: target="_blank" .external}
 
 
 # Preparing apps for actions
@@ -70,8 +70,8 @@ Your code is compiled into an executable and embedded into a Docker image. The e
 {: shortdesc}
 
 **Before you begin**
-- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub ![External link icon](../icons/launch-glyph.svg "External link icon")](https://hub.docker.com).
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
+- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
 To package your app, complete the following steps.
@@ -105,7 +105,7 @@ To package your code as a Docker image, run the following command.
   * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
   * The program can log to `stdout` or `stderr`.
   * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object, which represents the result of the action.
-  For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/).
+  For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
 
 4. Build the Docker image and upload it using a supplied script.
     1. Log in to Docker.
@@ -306,7 +306,7 @@ Next, [create](/docs/openwhisk?topic=cloud-functions-actions), and [invoke the a
 ### Packaging JavaScript code with the `webpack` module
 {: #prep_js_pkg}
 
-You can package an app by using a JavaScript module bundler such as `[webpack ![External link icon](../icons/launch-glyph.svg "External link icon")](https://webpack.js.org/concepts/)`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
+You can package an app by using a JavaScript module bundler such as `[webpack ](https://webpack.js.org/concepts/){: external}`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
@@ -427,7 +427,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: pre}
 
-    While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary dependencies, action invocations might not succeed.
+    While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
     {: note}
 
 3. Create a `.zip` archive that contains all files, including all dependencies.
@@ -599,7 +599,7 @@ func Hello(name string) map[string]interface{} {
 </br>
 In this example, the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. 
 
-You can use multiple tools such as [<code>dep</code> ![External link icon](../icons/launch-glyph.svg "External link icon")](https://golang.github.io/dep/docs/installation.html) to populate and manage dependencies.
+You can use multiple tools such as [<code>dep</code> ](https://golang.github.io/dep/docs/installation.html){: external} to populate and manage dependencies.
 
 You can use `dep` by creating a file `src/main/Gopkg.toml` describing the version and location of the libraries.
 
@@ -624,13 +624,12 @@ Swift actions run in a Linux environment. Swift on Linux is still in development
 {: important}
 
 
-
 ### Structuring Swift code
 {: #prep_swift_struc}
 
 The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [<code>Codable</code> ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/swift/codable) type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [<code>Codable</code> ](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
 
 **Example**
 ```swift
@@ -654,7 +653,7 @@ This example takes an input parameter as `Codable Input` with field `name`, and 
 #### Handling errors in Swift
 {: #prep_swift_error}
 
-By using the `Codable` completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html) resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
+By using the `Codable` completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift ](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html){: external} resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
 {: shortdesc}
 
 The following snippet shows an example of handling an error.
@@ -683,7 +682,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 Compile a single source file that doesn't depend on external libraries. Use the flag `-compile` with the name of the main method.
 
 **Before you begin**
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app.
@@ -701,7 +700,7 @@ The Docker container reads the content of the file from `stdin`, and writes a .z
 {: #prep_swift42_multi}
 
 **Before you begin**
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition).
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app.
@@ -809,13 +808,13 @@ zip -r helloPython.zip __main__.py helper.py
 ### Packaging Python code with a virtual environment in .zip files
 {: #prep_python_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/).
+You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app by completing the following steps.
 
-1. Create a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) file that contains the `pip` modules and versions to install.
+1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install.
 
   To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
   {: tip}
@@ -941,75 +940,101 @@ Before you create an action, get your Java code ready.
 
 A Java action is a Java program with a method called `main`. `main` must have the following signature.
 
-
+**Example**
 ```java
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 {: codeblock}
 
-
 * You must specify the name of the main class by using `--main`. An eligible main class is one that implements a static `main` method. If the class is not in the default package, use the Java fully qualified class name, for example, `--main com.example.MyMain`.
 * You can customize the method name of your Java action by specifying the fully qualified method name of your action, for example, `--main com.example.MyMain#methodName`.
-* The type of action is determined by using the source file extension.
-
-**Example**
-```java
-import com.google.gson.JsonObject;
-public class Hello {
-    public static JsonObject main(JsonObject args) {
-        String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
-        return response;
-    }
-}
-```
-{: codeblock}
-
 
 ### Packaging Java code
 {: #prep_java_pkg}
 
-To compile, test, and archive Java files, you must have [JDK 8 ![External link icon](../icons/launch-glyph.svg "External link icon")](http://openjdk.java.net/install/) installed locally.
+
+**Before you begin**
+You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
+
+If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
+{: note}
+
+To create a Java action, complete the following steps.
 
 1. Save the following code in a file named `Hello.java`.
 
-    ```java
-    import com.google.gson.JsonObject;
-    public class Hello {
-        public static JsonObject main(JsonObject args) {
-            String name = "stranger";
-            if (args.has("name"))
-                name = args.getAsJsonPrimitive("name").getAsString();
-            JsonObject response = new JsonObject();
-            response.addProperty("greeting", "Hello " + name + "!");
-            return response;
-        }
-    }
-    ```
-    {: codeblock}
+  ```java
+  import com.google.gson.JsonObject;
+  public class Hello {
+      public static JsonObject main(JsonObject args) {
+          String name = "stranger";
+          if (args.has("name"))
+              name = args.getAsJsonPrimitive("name").getAsString();
+          JsonObject response = new JsonObject();
+          response.addProperty("greeting", "Hello, " + name + "!");
+          return response;
+      }
+  }
+  ```
+  {: codeblock}
 
-2. Compile the `Hello.java` file into a class file.
+2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/).
 
-    ```
-    javac Hello.java
-    ```
-    {: pre}
+3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar` which is saved in a `test` folder in the `Desktop` directory.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+  ```
+  {: pre}
 
-2. Compress the class file into a .jar file named `hello.jar`. **Note**: [google-gson ![External link icon](../icons/launch-glyph.svg "External link icon")](https://github.com/google/gson) must exist in your Java CLASSPATH.
-3.
-    ```
-    jar cvf hello.jar Hello.class
-    ```
-    {: pre}
+4. Add the `bin` folder of your JDK to your `CLASSPATH`. This example uses `openjdk-8`.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: pre}
 
+5. Verify the JDK `bin` folder and `gson-2.8.5.jar` are in your `CLASSPATH`.
+  ```
+  echo $CLASSPATH
+  ```
+  {: pre}
+
+  **Example output**
+  ```
+  /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: screen}
+
+6. Navigate to the folder where your `Hello.java` file is stored. In this example, the `Hello.java` file is saved to the `Desktop/test` folder.
+  ```
+  cd Desktop/test
+  ```
+  {: pre}
+
+7. Compile your `Hello.java` file into a class file.
+  ```
+  javac Hello.java
+  ```
+  {: pre}
+
+8. Compress the class file into a .jar file named `hello.jar`.
+
+  ```
+  jar cvf hello.jar Hello.class
+  ```
+  {: pre}
+
+**Next steps**
+You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
+ 
+When you update your Java code, you must repeat these steps to recompile your code into a new `.jar` file.
+{: note}
 
 ### Packaging Java code with Gradle
 {: #prep_java_gradle}
 
-You can use a build a tool such as [Gradle](https://gradle.org) to fetch the libraries from a repository like Maven Central and build a final .jar archive that includes your code and all dependencies.
+Instead of compiling from the command line, you can use a build a tool such as [Gradle](https://gradle.org){: external} to fetch the libraries from a repository like Maven Central. You can use Gradle to fetch and build a final .jar archive that includes your code and all dependencies.
 
 Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
@@ -1049,10 +1074,7 @@ Here is an example using Gradle to build a Java action that leverages the librar
 
 2. Run the command `gradle jar`, which generates a .jar archive in the directory `build/libs/`.
 
-  For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies).
-
-
-
+  For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
 
 
 ## Preparing .NET Core apps
@@ -1075,7 +1097,7 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 
 **Before you begin**
 To compile, test and archive .NET Core projects, you must:
-- Install the [.NET Core SDK](https://dotnet.microsoft.com/download) locally.
+- Install the [.NET Core SDK](https://dotnet.microsoft.com/download){: external} locally.
 - Set the `DOTNET_HOME` environment variable to the location where the `dotnet` executable can be found.
 
 
@@ -1096,7 +1118,7 @@ To package your code, run the following commands.
       ```
       {: pre}
 
-  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> package](https://www.nuget.org/packages/Newtonsoft.Json/).
+  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> package](https://www.nuget.org/packages/Newtonsoft.Json/){: external}.
 
       ```bash
       dotnet add package Newtonsoft.Json -v 12.0.1
@@ -1148,5 +1170,6 @@ To package your code, run the following commands.
       zip -r -0 ../helloDotNet.zip *
       ```
       {: pre}
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-06-05"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -76,6 +77,7 @@ Several utility actions are provided in the `/whisk.system/utils` package that y
     }
     ```
     {: screen}
+
 
 
 
