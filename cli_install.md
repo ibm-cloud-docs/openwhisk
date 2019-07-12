@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-07-12"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -111,7 +111,7 @@ Create or target a namespace.
     {: pre}
 
 
-    **Response**
+  **Response**
     ```
     ok: created namespace <namespace_name>
     ```
@@ -124,7 +124,7 @@ Create or target a namespace.
     {: pre}
 
 
-    **Response**
+  **Response**
     ```
     ok: whisk namespace set to <namespace_name>
     ```
@@ -145,7 +145,7 @@ Create or target a namespace.
     {: pre}
 
 
-    **Response**
+  **Response**
     ```
     Targeted Cloud Foundry (https://api.ng.bluemix.net)
 
