@@ -100,7 +100,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
 {: important}
 
-If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI plug-in to switch regions, organization, and spaces.
+If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.openwhisk_short}} CLI plug-in to switch regions, organization, and spaces.
 
 ### Create or target a namespace.
 
