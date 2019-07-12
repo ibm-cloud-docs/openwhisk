@@ -134,17 +134,19 @@ If you are already logged in, you can run the `ibmcloud fn property set` or `ibm
   
 You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
 
-  * Include the `org` and `space` names in the `target` command.
-  ```
-  ibmcloud target --cf  -o <org> -s <space>
-  ```
-  {: pre}
+* Include the `org` and `space` names in the `target` command.
 
-  * Target Cloud Foundry and follow the prompts to select a `org` and `space`.
-  ```
-  ibmcloud target --cf
-  ```
-  {: pre}
+```
+ibmcloud target --cf  -o <org> -s <space>
+```
+{: pre}
+
+* Target Cloud Foundry and follow the prompts to select a `org` and `space`.
+
+```
+ibmcloud target --cf
+```
+{: pre}
 
 
 **Response**
