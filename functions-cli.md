@@ -341,7 +341,7 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 
 Update an action or the app within an action.
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created paramters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
 {: important}
 
 ```
@@ -1412,7 +1412,7 @@ ibmcloud fn package refresh /NAMESPACE
 
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created paramters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
 {: important}
 
 ```
@@ -2104,7 +2104,7 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 
 Update a trigger.
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created paramters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
 {: important}
 
 ```
