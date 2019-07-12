@@ -102,67 +102,69 @@ By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](
 
 If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.cloud_notm}} CLI plug-in to switch regions, organization, and spaces.
 
-Create or target a namespace.
+### Create or target a namespace.
 
-  * Create an IAM-enabled namespace.
-    ```
-    ibmcloud fn namespace create <namespace_name> [--description <"description">]
-    ```
-    {: pre}
+#### Create an IAM-enabled namespace.
+  ```
+  ibmcloud fn namespace create <namespace_name> [--description <"description">]
+  ```
+  {: pre}
 
-
-  **Response**
-    ```
-    ok: created namespace <namespace_name>
-    ```
-    {: screen}
-
-  * Target an IAM-enabled namespace. 
-    ```
-    ibmcloud fn property set --namespace <namespace_name>
-    ``` 
-    {: pre}
+**Response**
+  ```
+  ok: created namespace <namespace_name>
+  ```
+  {: screen}
 
 
-  **Response**
-    ```
-    ok: whisk namespace set to <namespace_name>
-    ```
-    {: screen}
+#### Target an IAM-enabled namespace. 
+  ```
+  ibmcloud fn property set --namespace <namespace_name>
+  ``` 
+  {: pre}
+
+
+**Response**
+  ```
+  ok: whisk namespace set to <namespace_name>
+  ```
+  {: screen}
   
-  * Target a Cloud Foundry-based namespace. You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
+#### Target a Cloud Foundry-based namespace. 
+  
+You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
 
-    Include the `org` and `space` names in the `target` command.
-    ```
-    ibmcloud target --cf  -o <org> -s <space>
-    ```
-    {: pre}
+  * Include the `org` and `space` names in the `target` command.
+  ```
+  ibmcloud target --cf  -o <org> -s <space>
+  ```
+  {: pre}
 
-    Target Cloud Foundry and follow the prompts to select a `org` and `space`.
-    ```
-    ibmcloud target --cf
-    ```
-    {: pre}
+  * Target Cloud Foundry and follow the prompts to select a `org` and `space`.
+  ```
+  ibmcloud target --cf
+  ```
+  {: pre}
 
 
-  **Response**
-    ```
-    Targeted Cloud Foundry (https://api.ng.bluemix.net)
+**Response**
+  ```
+  Targeted Cloud Foundry (https://api.ng.bluemix.net)
 
-    Targeted org <org_name>
+  Targeted org <org_name>
 
-    Targeted space <space_name>
-                          
-    API endpoint:      https://cloud.ibm.com   
-    Region:            us-south   
-    User:              <email>   
-    Account:           (<account_id>) <-> <account>   
-    Resource group:    default   
-    CF API endpoint:   https://api.ng.bluemix.net (API version: 2.128.0)   
-    Org:               <org_name>   
-    Space:             <space_name>  
-    ```
-    {: screen} 
+  Targeted space <space_name>
+                        
+  API endpoint:      https://cloud.ibm.com   
+  Region:            us-south   
+  User:              <email>   
+  Account:           (<account_id>) <-> <account>   
+  Resource group:    default   
+  CF API endpoint:   https://api.ng.bluemix.net (API version: 2.128.0)   
+  Org:               <org_name>   
+  Space:             <space_name>  
+  ```
+  {: screen} 
 
 **Example** Creating namespaces for staging and production deployments.
 
