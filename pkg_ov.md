@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-07-12"
 
 keywords: packages, installable packages, functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
