@@ -170,20 +170,20 @@ ibmcloud target --cf
 
 | Targeting an IAM-enabled namespace |
 | --- | --- | 
-| By default, all Go actions are executed in a version 1.11 environment. | Testing a ```pre tag```{: pre} In a markdown table.
+| By default, all namespaces are created as IAM namespaces. | Testing a ```pre tag```{: pre} In a markdown table.
 {: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
-{: #runtimes-1}
+{: #namespaces-1}
 {: tab-title="IAM"}
-{: tab-group="runtimes"}
+{: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
 | Targeting a Cloud Foundry namespace  |
 | --- | --- | 
-| By default, all Java actions are executed in a version 8 environment. |
-{: caption="Table 2. Java." caption-side="top"}
-{: #runtimes-2}
-{: tab-title="Java"}
-{: tab-group="runtimes"}
+| You can longer create Clound Foundry namespaces, but you can still target them and work with entities. | Testing ```pre tag```{: pre} in a markdown table
+{: caption="Table 2. Targeting Clound Foundry namespaces." caption-side="top"}
+{: #namespaces-2}
+{: tab-title="Clound Foundry"}
+{: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
 
