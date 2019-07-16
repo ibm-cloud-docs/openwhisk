@@ -151,9 +151,8 @@ ok: created namespace <namespace_name>
 {: screen}
 
 ### Getting a list of your namespaces
-Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. To see a list of all of your namespaces, run the following command.
+To see a list of all of your namespaces, run the following command.
 
-Get a list of your {{site.data.keyword.openwhisk_short}} namespaces.
 ```
 ibmcloud fn namespace list
 ```
@@ -172,8 +171,9 @@ test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM nam
 Once you have a list of your namespaces, you must can a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
 ### Targeting a namespace
+Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. 
 
-You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry namespaces. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|
@@ -196,7 +196,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 After targeting your namespace, run `ibmcloud fn namespace get <namespace_name>` to see a list of all the {{site.data.keyword.openwhisk_short}} entities in your namespace.
 {: tip}
 
-**Example** Creating namespaces for staging and production deployments.
+#### Optional: Creating namespaces for staging and production deployments.
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
 
