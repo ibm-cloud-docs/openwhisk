@@ -170,7 +170,18 @@ ibmcloud target --cf
 
 | Targeting an IAM-enabled namespace |
 | --- | --- | 
-| Testing a ```pre tag```{: pre} In a markdown table. |
+| Target an IAM-enabled namespace by running the following command. 
+  ```
+  ibmcloud fn property set --namespace <namespace_name>
+  ``` 
+  {: pre}
+
+
+**Response**
+  ```
+  ok: whisk namespace set to <namespace_name>
+  ```
+  {: screen} |
 {: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
