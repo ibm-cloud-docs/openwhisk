@@ -170,7 +170,7 @@ ibmcloud target --cf
 
 | Targeting an IAM-enabled namespace |
 | --- | --- | 
-| By default, all namespaces are created as IAM namespaces. | Testing a ```pre tag```{: pre} In a markdown table.
+| Testing a ```pre tag```{: pre} In a markdown table. |
 {: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
@@ -179,7 +179,7 @@ ibmcloud target --cf
 
 | Targeting a Cloud Foundry namespace  |
 | --- | --- | 
-| You can longer create Clound Foundry namespaces, but you can still target them and work with entities. | Testing ```pre tag```{: pre} in a markdown table
+| Testing ```pre tag```{: pre} in a markdown table. |
 {: caption="Table 2. Targeting Clound Foundry namespaces." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Clound Foundry"}
