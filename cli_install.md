@@ -101,7 +101,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 
 
-## Creating or targeting namespaces
+## Creating or targeting {{site.data.keyword.openwhisk_short}} namespaces
 
 You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
 {: important}
@@ -141,7 +141,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud fn property set namespace <namespace_name>`</code> | Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace. |
+| <p><code>`ibmcloud fn property set namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
@@ -150,7 +150,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| **`ibmcloud target --cf -o <org> -s <space>`** | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace **`id`** is a combination of your **`<org>`** and **`<space>`**. </br>In the example **`test_dev`**, **`test`** is the **`<org>`** and **`dev`** is the **`<space>`**. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
