@@ -94,106 +94,48 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
- 
-## Selecting regions, organizations, and spaces
-{: #cli_regions}
-By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
-{: important}
-
-### Create or target a namespace.
-To get a list of your {{site.data.keyword.openwhisk_short}} namespaces, run `ibmcloud fn namespace list`.
-
-#### Create an IAM-enabled namespace.
-  ```
-  ibmcloud fn namespace create <namespace_name> [--description <"description">]
-  ```
-  {: pre}
-
-**Response**
-  ```
-  ok: created namespace <namespace_name>
-  ```
-  {: screen}
 
 
-#### Target an IAM-enabled namespace. 
-  ```
-  ibmcloud fn property set --namespace <namespace_name>
-  ``` 
-  {: pre}
+## Targeting {{site.data.keyword.openwhisk_short}} namespaces
 
-
-**Response**
-  ```
-  ok: whisk namespace set to <namespace_name>
-  ```
-  {: screen}
-  
-#### Target a Cloud Foundry-based namespace. 
-  
-You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
-
-* Target a Cloud Foundy namespace by include the `org` and `space` names in the `target` command.
-
+Get a list of your {{site.data.keyword.openwhisk_short}} namespaces.
 ```
-ibmcloud target --cf  -o <org> -s <space>
+ibmcloud fn namespace list
 ```
-{: pre}
 
-* Target Cloud Foundry and follow the prompts to select a `org` and `space`.
-
+**Example output** 
 ```
-ibmcloud target --cf
+name          type             id                                    description
+test_dev      CF-based        test_dev                           
+test_prod     CF-based        test_prod                          
+playground    IAM-based       e87f08a8-9f4e-498a-a461-3d30c773e704  IAM playground.
+test          IAM-based       c024e01d-5c02-4ab4-b453-291b38f90e9c  test IAM namespace.
 ```
-{: pre}
+{: screen}
 
+Once you have a list of your namespaces, you must create or target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
-**Response**
-  ```
-  Targeted Cloud Foundry (https://api.ng.bluemix.net)
+You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
+{: note}
 
-  Targeted org <org_name>
-
-  Targeted space <space_name>
-                        
-  API endpoint:      https://cloud.ibm.com   
-  Region:            us-south   
-  User:              <email>   
-  Account:           (<account_id>) <-> <account>   
-  Resource group:    default   
-  CF API endpoint:   https://api.ng.bluemix.net (API version: 2.128.0)   
-  Org:               <org_name>   
-  Space:             <space_name>  
-  ```
-  {: screen} 
-
-
-| Targeting an IAM-enabled namespace |
-| --- | --- | 
-| Target an IAM-enabled namespace by running the following command. |
-  ```
-  ibmcloud fn property set --namespace <namespace_name>
-  ``` 
-  {: pre}
-  **Response**
-  ```
-  ok: whisk namespace set to <namespace_name>
-  ``` |
-{: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
+| Command | Description |
+|:-----------------|:-----------------|
+| `ibmcloud fn namespace create <namespace_name>` |  Create an IAM-enabled namespace. |
+| `ibmcloud fn property set namespace <namespace_name>` | Target an IAM-enabled namespace by setting the `namespace` property.|
+{: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
-| Targeting a Cloud Foundry namespace  |
-| --- | --- | 
-| Testing ```pre tag```{: pre} in a markdown table. |
-{: caption="Table 2. Targeting Clound Foundry namespaces." caption-side="top"}
+| Command | Description |
+|:-----------------|:-----------------|
+| `ibmcloud fn target --cf -o <org> -s <space>` | Target a Cloud Foundry namespace. and the {[openshift_short]} console.<ul><li><code>ibm-cert-store</code></li><li><code>kube-public</code></li><li><code>kube-service-catalog</code></li><li><code>openshift</code></li><li><code>openshift-ansible-service-broker</code></li><li><code>openshift-console</code></li><li><code>openshift-infra</code></li><li><code>openshift-monitoring</code></li><li><code>openshift-node</code></li><li><code>openshift-template-service-broker</code></li><li><code>openshift-web-console</code></li></ul>|
+{: caption="Table 2. Target a Cloud Foundry-based namespace." caption-side="top"}
 {: #namespaces-2}
-{: tab-title="Clound Foundry"}
+{: tab-title="Worker nodes"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
-
 
 **Example** Creating namespaces for staging and production deployments.
 
