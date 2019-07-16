@@ -170,7 +170,7 @@ ibmcloud target --cf
 
 | Targeting an IAM-enabled namespace |
 | --- | --- | 
-| Target an IAM-enabled namespace by running the following command. 
+| Target an IAM-enabled namespace by running the following command. |
   ```
   ibmcloud fn property set --namespace <namespace_name>
   ``` 
