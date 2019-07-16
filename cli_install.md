@@ -174,6 +174,7 @@ Once you have a list of your namespaces, you must can a specific namespace to ma
 ### Targeting a namespace
 
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+
 | Command | Description |
 |:-----------------|:-----------------|
 | <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
