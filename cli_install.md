@@ -96,12 +96,16 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 
 
-## Targeting {{site.data.keyword.openwhisk_short}} namespaces
+
+## Creating or targeting {{site.data.keyword.openwhisk_short}} namespaces
+
+**Before you begin**
 
 Get a list of your {{site.data.keyword.openwhisk_short}} namespaces.
 ```
 ibmcloud fn namespace list
 ```
+{: pre}
 
 **Example output** 
 ```
@@ -118,10 +122,13 @@ Once you have a list of your namespaces, you must create or target a specific na
 You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
 {: note}
 
+### Creating or targeting namespaces
+You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+
 | Command | Description |
 |:-----------------|:-----------------|
 | `ibmcloud fn namespace create <namespace_name>` |  Create an IAM-enabled namespace. |
-| `ibmcloud fn property set namespace <namespace_name>` | Target an IAM-enabled namespace by setting the `namespace` property.|
+| `ibmcloud fn property set namespace <namespace_name>` | Target an IAM-enabled namespace by setting the `namespace` property. Replace `<namespace_name>` with the name of your namespace. |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
@@ -130,8 +137,8 @@ You can no longer create Cloud Foundry-based namespaces, but you can still creat
 
 | Command | Description |
 |:-----------------|:-----------------|
-| `ibmcloud fn target --cf -o <org> -s <space>` | Target a Cloud Foundry namespace. and the {[openshift_short]} console.<ul><li><code>ibm-cert-store</code></li><li><code>kube-public</code></li><li><code>kube-service-catalog</code></li><li><code>openshift</code></li><li><code>openshift-ansible-service-broker</code></li><li><code>openshift-console</code></li><li><code>openshift-infra</code></li><li><code>openshift-monitoring</code></li><li><code>openshift-node</code></li><li><code>openshift-template-service-broker</code></li><li><code>openshift-web-console</code></li></ul>|
-{: caption="Table 2. Target a Cloud Foundry-based namespace." caption-side="top"}
+| `ibmcloud fn target --cf -o <org> -s <space>` | Target a Cloud Foundry namespace. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><ul><li><code>-s</code>: You can use this flag to target a specific `<space>` within your `<org>`.</li> |
+{: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
 {: tab-group="namespaces"}
