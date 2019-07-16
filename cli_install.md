@@ -52,6 +52,10 @@ Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 
 3. Follow the prompts to select your {{site.data.keyword.cloud_notm}} account.
 
+## Targeting accounts, regions, organizations, and spaces
+
+You can use the `ibmcloud target` command to set `<region_name>`, `<resource_group>`, or target a Cloud Foundry organization and space. For more information, see the [`ibmcloud target` command syntax](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli#ibmcloud_target){: external}.
+
 ## Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_plugin_setup}
 
@@ -146,7 +150,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud fn target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>` and `<space>`. In the example `test_dev`, `test` is the `<org>` and `dev` is the `<space>`. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <code>`ibmcloud target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>` and `<space>`. In the example `test_dev`, `test` is the `<org>` and `dev` is the `<space>`. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
