@@ -175,7 +175,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| **`ibmcloud target --cf -o <org> -s <space>`** | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace **`id`** is a combination of your **`<org>`** and **`<space>`**. </br>In the example **`test_dev`**, **`test`** is the **`<org>`** and **`dev`** is the **`<space>`**. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code></p>. </br><p>In the example <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code></p>. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
