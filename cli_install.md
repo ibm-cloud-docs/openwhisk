@@ -135,9 +135,15 @@ You can no longer create Cloud Foundry-based namespaces, but you can still creat
 Create an IAM-enabled namespace. By default, any namespaces that are created are IAM-enabled. Optional: Add a description by using the `--description` flag.
 
 ```
-ibmcloud fn namespace create <namespace_name> [--description <description>]
+ibmcloud fn namespace create <namespace_name> [--description "<description>"]
 ```
 {: pre}
+
+**Example output**
+```
+ok: created namespace <namespace_name>
+```
+{: screen}
 
 ### Targeting a namespace
 
@@ -161,11 +167,12 @@ test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM nam
 
 Once you have a list of your namespaces, you must target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
+#### Target a namespace
+
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
 | <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
@@ -175,7 +182,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code></p>. </br><p>In the example <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code></p>. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code></p>. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
