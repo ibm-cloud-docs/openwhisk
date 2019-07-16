@@ -124,12 +124,11 @@ For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>
 You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
 {: important}
 
-### Creating or targeting namespaces
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud fn namespace create <namespace_name>`</code> |  Create an IAM-enabled namespace. |
+| <code>`ibmcloud fn namespace create <namespace_name>`</code> |  Create an IAM-enabled namespace. By default, any namespaces that are created are IAM-enabled. |
 | <code>`ibmcloud fn property set namespace <namespace_name>`</code> | Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace. |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
