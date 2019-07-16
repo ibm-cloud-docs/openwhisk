@@ -61,11 +61,14 @@ ibmcloud resource groups
 {: pre}
 
 **Example output**
+
+```
 Retrieving all resource groups under account <account_name> as email@ibm.com...
 OK
 Name      ID                                 Default Group   State   
 default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
 test      a8a12accd63b437bbd6d58fb8b462ca7   false           ACTIVE
+```
 {: screen}
 
 5. Optional: Target a resource group other than the default by running the following command.
@@ -74,7 +77,9 @@ ibmcloud target -g <resource_group>
 ```
 {: pre}
 
+
 **Example output**
+
 ```
 Targeted resource group <resource_group>
 ```
