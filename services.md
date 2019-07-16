@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-16"
 
 keywords: services, serverless, functions
 
@@ -25,10 +25,10 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# Adding IBM Cloud services
+# Binding {{site.data.keyword.cloud_notm}} services to {{site.data.keyword.openwhisk_short}} entities
 {: #services}
 
-You can use incorporate functionality from IBM Cloud services in your app.
+You can use incorporate functionality from IBM Cloud services in your {{site.data.keyword.openwhisk_short}} app.
 {: shortdesc}
 
 **How do I add IBM Cloud services to my app?**

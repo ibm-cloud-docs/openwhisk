@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-16"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -100,9 +100,8 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
 {: important}
 
-If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.openwhisk_short}} CLI plug-in to switch regions, organization, and spaces.
-
 ### Create or target a namespace.
+To get a list of your {{site.data.keyword.openwhisk_short}} namespaces, run `ibmcloud fn namespace list`.
 
 #### Create an IAM-enabled namespace.
   ```
@@ -134,7 +133,7 @@ If you are already logged in, you can run the `ibmcloud fn property set` or `ibm
   
 You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
 
-* Include the `org` and `space` names in the `target` command.
+* Target a Cloud Foundy namespace by include the `org` and `space` names in the `target` command.
 
 ```
 ibmcloud target --cf  -o <org> -s <space>
