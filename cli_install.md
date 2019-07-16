@@ -167,6 +167,26 @@ ibmcloud target --cf
   ```
   {: screen} 
 
+
+| Targeting an IAM-enabled namespace |
+| --- | --- | 
+| By default, all Go actions are executed in a version 1.11 environment. | Testing a ```pre tag```{: pre} In a markdown table.
+{: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
+{: #runtimes-1}
+{: tab-title="IAM"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
+
+| Targeting a Cloud Foundry namespace  |
+| --- | --- | 
+| By default, all Java actions are executed in a version 8 environment. |
+{: caption="Table 2. Java." caption-side="top"}
+{: #runtimes-2}
+{: tab-title="Java"}
+{: tab-group="runtimes"}
+{: class="simple-tab-table"}
+
+
 **Example** Creating namespaces for staging and production deployments.
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
