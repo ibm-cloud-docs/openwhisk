@@ -101,12 +101,12 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 
 
-## Creating or targeting {{site.data.keyword.openwhisk_short}} namespaces
+## Creating or targeting namespaces
 
 You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
 {: important}
 
-### Creating a {{site.data.keyword.openwhisk_short}} namespace.
+### Creating a namespace
 
 Create an IAM-enabled namespace. By default, any namespaces that are created are IAM-enabled. Optional: Add a description by using the `--description` flag.
 
@@ -115,7 +115,7 @@ ibmcloud fn namespace create <namespace_name> [--description <description>]
 ```
 {: pre}
 
-### Targeting a {{site.data.keyword.openwhisk_short}} namespace
+### Targeting a namespace
 
 **Before you begin**
 
@@ -150,7 +150,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>` and `<space>`. In the example `test_dev`, `test` is the `<org>` and `dev` is the `<space>`. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <code>`ibmcloud target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
