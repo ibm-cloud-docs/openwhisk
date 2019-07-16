@@ -35,8 +35,9 @@ subcollection: cloud-functions
 ## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
-Before you begin, you must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
-{: note}
+**Before you begin**
+
+You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 
 Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 {: shortdesc}
