@@ -175,8 +175,6 @@ ibmcloud target --cf
   ibmcloud fn property set --namespace <namespace_name>
   ``` 
   {: pre}
-
-
 **Response**
   ```
   ok: whisk namespace set to <namespace_name>
