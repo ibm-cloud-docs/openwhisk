@@ -150,9 +150,8 @@ ok: created namespace <namespace_name>
 ```
 {: screen}
 
-### Targeting a namespace
-
-**Before you begin**
+### Getting a list of your namespaces
+Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. To see a list of all of your namespaces, run the following command.
 
 Get a list of your {{site.data.keyword.openwhisk_short}} namespaces.
 ```
@@ -170,9 +169,9 @@ test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM nam
 ```
 {: screen}
 
-Once you have a list of your namespaces, you must target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
+Once you have a list of your namespaces, you must can a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
-#### Target a namespace
+### Targeting a namespace
 
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
