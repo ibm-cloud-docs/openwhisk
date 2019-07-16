@@ -99,6 +99,20 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 ## Creating or targeting {{site.data.keyword.openwhisk_short}} namespaces
 
+You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
+{: important}
+
+### Creating a {{site.data.keyword.openwhisk_short}} namespace.
+
+Create an IAM-enabled namespace. By default, any namespaces that are created are IAM-enabled. Optional: Add a description by using the `--description` flag.
+
+```
+ibmcloud fn namespace create <namespace_name> [--description <description>]
+```
+{: pre}
+
+### Targeting a {{site.data.keyword.openwhisk_short}} namespace
+
 **Before you begin**
 
 Get a list of your {{site.data.keyword.openwhisk_short}} namespaces.
@@ -119,16 +133,10 @@ test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM nam
 
 Once you have a list of your namespaces, you must create or target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
-For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>` and `<space>`. In the example `test_dev`, `test` is the `<org>` and `dev` is the `<space>`.
-
-You can no longer create Cloud Foundry-based namespaces, but you can still create and work with {{site.data.keyword.openwhisk_short}} entities in Cloud Foundry-based namespaces.
-{: important}
-
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud fn namespace create <namespace_name>`</code> |  Create an IAM-enabled namespace. By default, any namespaces that are created are IAM-enabled. |
 | <code>`ibmcloud fn property set namespace <namespace_name>`</code> | Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace. |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
@@ -138,12 +146,15 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <code>`ibmcloud fn target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <code>`ibmcloud fn target --cf -o <org> -s <space>`</code> | Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace `id` is a combination of your `<org>` and `<space>`. In the example `test_dev`, `test` is the `<org>` and `dev` is the `<space>`. <ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
+
+After targeting your namespace, run `ibmcloud fn namespace get <namespace_name>` to see a list of all the {{site.data.keyword.openwhisk_short}} entities in your namespace.
+{: tip}
 
 **Example** Creating namespaces for staging and production deployments.
 
@@ -170,7 +181,7 @@ ibmcloud fn namespace create production
 
 The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
 
-Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
+Changing the name of the `org` or `space` creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
 {: important}
 
 
@@ -181,10 +192,17 @@ You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interac
 {: shortdesc}
 
 
-### Command Syntax
+### Command syntax
 {: #cli_syntax}
-For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
+All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
+
+* The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
+* `wsk` commands are now run as `ibmcloud fn`.
+* The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
+* You can manage your APIs by using the `ibmcloud fn api`.
+
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}
@@ -220,46 +238,6 @@ The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to con
 {: #cli_migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
-
-
-## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
-{: #cli_migrate_wsk}
-
-The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk stand-alone CLI (`wsk`) for interacting with {{site.data.keyword.openwhisk_short}} entities in IBM Cloud. The `wsk` stand-alone CLI does not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespace support and `service bind` support.
-{: shortdesc}
-
-**What does the command syntax look like?**
-
-All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
-
-* The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
-* `wsk` commands are now run as `ibmcloud fn`.
-* The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
-* You can manage your APIs by using the `ibmcloud fn api`.
-
-For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
-
-**Do I still need to configure an API key?**
-
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure an API key and host like you previously needed to. Instead, you can log in and target your region with `ibmcloud login -a <region_api_endpoint>` and then target your namespace to start working with your entities.
-
-If you're using the {{site.data.keyword.openwhisk_short}} authentication API key in an external HTTP client such as cURL, you can retrieve it with the following commands.
-
-Get the current API key.
-```
-ibmcloud fn property get --auth
-```
-{: pre}
-
-Get the current API host.
-```
-ibmcloud fn property get --apihost
-```
-{: pre}
-
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
-{: tip}
-
 
 ## CLI version history
 {: #cli_versions}
