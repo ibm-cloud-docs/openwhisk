@@ -53,9 +53,32 @@ Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 
 3. Follow the prompts to select your {{site.data.keyword.cloud_notm}} account.
 
-## Targeting accounts, regions, organizations, and spaces
+4. Get a list of resource groups. 
 
-You can use the `ibmcloud target` command to set `<region_name>`, `<resource_group>`, or target a Cloud Foundry organization and space. For more information, see the [`ibmcloud target` command syntax](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_cli#ibmcloud_target){: external}.
+```
+ibmcloud resource groups
+```
+{: pre}
+
+**Example output**
+Retrieving all resource groups under account <account_name> as email@ibm.com...
+OK
+Name      ID                                 Default Group   State   
+default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
+test      a8a12accd63b437bbd6d58fb8b462ca7   false           ACTIVE
+{: screen}
+
+5. Optional: Target a resource group other than the default by running the following command.
+```
+ibmcloud target -g <resource_group>
+```
+{: pre}
+
+**Example output**
+```
+Targeted resource group <resource_group>
+```
+{: screen}
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_plugin_setup}
@@ -136,13 +159,13 @@ test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM nam
 ```
 {: screen}
 
-Once you have a list of your namespaces, you must create or target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
+Once you have a list of your namespaces, you must target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
 
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <p><code>`ibmcloud fn property set namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
+| <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
