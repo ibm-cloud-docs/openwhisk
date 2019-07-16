@@ -166,6 +166,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 | Command | Description |
 |:-----------------|:-----------------|
 | <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
+| <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
 {: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
