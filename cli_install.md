@@ -178,8 +178,7 @@ ibmcloud target --cf
 **Response**
   ```
   ok: whisk namespace set to <namespace_name>
-  ```
-  {: screen} |
+  ``` |
 {: caption="Table 1. Targeting IAM namespaces." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
