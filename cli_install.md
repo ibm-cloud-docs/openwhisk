@@ -133,7 +133,7 @@ You can no longer create Cloud Foundry-based namespaces, but you can still creat
 | `ibmcloud fn target --cf -o <org> -s <space>` | Target a Cloud Foundry namespace. and the {[openshift_short]} console.<ul><li><code>ibm-cert-store</code></li><li><code>kube-public</code></li><li><code>kube-service-catalog</code></li><li><code>openshift</code></li><li><code>openshift-ansible-service-broker</code></li><li><code>openshift-console</code></li><li><code>openshift-infra</code></li><li><code>openshift-monitoring</code></li><li><code>openshift-node</code></li><li><code>openshift-template-service-broker</code></li><li><code>openshift-web-console</code></li></ul>|
 {: caption="Table 2. Target a Cloud Foundry-based namespace." caption-side="top"}
 {: #namespaces-2}
-{: tab-title="Worker nodes"}
+{: tab-title="Cloud Foundry"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
