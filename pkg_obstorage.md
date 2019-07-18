@@ -193,9 +193,10 @@ You can also bind parameters to actions by using the **Parameters** tab in the U
 If you bind service your service credentials to individual actions, you must complete the following steps for each action that you want to use.
 {: note}
 
-    1. Click an action from the `cloud-object-storage` package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click **Parameters**.
-    3. Enter a new parameter. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
+1. Click an action from the `cloud-object-storage` package that you want to use. The details page for that action opens.
+2. In the left-hand navigation, click **Parameters**.
+3. Enter a new parameter. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
+
 
 For more information about binding parameters, see [Binding parameters to packages](/docs/openwhisk?topic=cloud-functions-actions#actions_pkgs_params).
 
