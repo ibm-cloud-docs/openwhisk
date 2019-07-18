@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-18"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -35,8 +35,9 @@ subcollection: cloud-functions
 ## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
-Before you begin, you must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
-{: note}
+**Before you begin**
+
+You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 
 Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
 {: shortdesc}
@@ -51,6 +52,38 @@ Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
   {: pre}
 
 3. Follow the prompts to select your {{site.data.keyword.cloud_notm}} account.
+
+4. Get a list of resource groups. 
+
+```
+ibmcloud resource groups
+```
+{: pre}
+
+**Example output**
+
+```
+Retrieving all resource groups under account <account_name> as email@ibm.com...
+OK
+Name      ID                                 Default Group   State   
+default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
+test      a8a12accd63b437bbd6d58fb8b462ca7   false           ACTIVE
+```
+{: screen}
+
+5. Optional: Target a resource group other than the default by running the following command.
+```
+ibmcloud target -g <resource_group>
+```
+{: pre}
+
+
+**Example output**
+
+```
+Targeted resource group <resource_group>
+```
+{: screen}
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_plugin_setup}
@@ -94,15 +127,16 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
- 
-## Selecting regions, organizations, and spaces
+
+
+
+## Targeting {{site.data.keyword.openwhisk_short}} namespaces
 {: #cli_regions}
 By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
 {: important}
 
-If you are already logged in, you can run the `ibmcloud fn property set` or `ibmcloud target` command in the {{site.data.keyword.openwhisk_short}} CLI plug-in to switch regions, organization, and spaces.
-
 ### Create or target a namespace.
+To get a list of your {{site.data.keyword.openwhisk_short}} namespaces, run `ibmcloud fn namespace list`.
 
 #### Create an IAM-enabled namespace.
   ```
@@ -134,7 +168,7 @@ If you are already logged in, you can run the `ibmcloud fn property set` or `ibm
   
 You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
 
-* Include the `org` and `space` names in the `target` command.
+* Target a Cloud Foundy namespace by include the `org` and `space` names in the `target` command.
 
 ```
 ibmcloud target --cf  -o <org> -s <space>
@@ -168,7 +202,11 @@ ibmcloud target --cf
   ```
   {: screen} 
 
-**Example** Creating namespaces for staging and production deployments.
+
+
+
+
+#### Optional: Creating namespaces for staging and production deployments.
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
 
@@ -193,7 +231,7 @@ ibmcloud fn namespace create production
 
 The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
 
-Changing the name of the org or space creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
+Changing the name of the `org` or `space` creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
 {: important}
 
 
@@ -204,10 +242,17 @@ You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interac
 {: shortdesc}
 
 
-### Command Syntax
+### Command syntax
 {: #cli_syntax}
-For {{site.data.keyword.openwhisk_short}} command syntax, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
+All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
+
+* The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
+* `wsk` commands are now run as `ibmcloud fn`.
+* The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
+* You can manage your APIs by using the `ibmcloud fn api`.
+
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}
@@ -243,46 +288,6 @@ The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to con
 {: #cli_migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
-
-
-## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
-{: #cli_migrate_wsk}
-
-The {{site.data.keyword.openwhisk_short}} CLI plug-in replaces the OpenWhisk stand-alone CLI (`wsk`) for interacting with {{site.data.keyword.openwhisk_short}} entities in IBM Cloud. The `wsk` stand-alone CLI does not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespace support and `service bind` support.
-{: shortdesc}
-
-**What does the command syntax look like?**
-
-All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
-
-* The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
-* `wsk` commands are now run as `ibmcloud fn`.
-* The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
-* You can manage your APIs by using the `ibmcloud fn api`.
-
-For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
-
-**Do I still need to configure an API key?**
-
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure an API key and host like you previously needed to. Instead, you can log in and target your region with `ibmcloud login -a <region_api_endpoint>` and then target your namespace to start working with your entities.
-
-If you're using the {{site.data.keyword.openwhisk_short}} authentication API key in an external HTTP client such as cURL, you can retrieve it with the following commands.
-
-Get the current API key.
-```
-ibmcloud fn property get --auth
-```
-{: pre}
-
-Get the current API host.
-```
-ibmcloud fn property get --apihost
-```
-{: pre}
-
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
-{: tip}
-
 
 ## CLI version history
 {: #cli_versions}

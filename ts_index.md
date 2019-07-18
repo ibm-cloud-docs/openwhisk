@@ -49,8 +49,6 @@ One explanation for a failing app is that a deprecated runtime is being used. An
 To see which runtime is used for the action, run `ibmcloud fn action get ACTION_NAME` and check for `deprecated=true` in the query response. If the runtime is deprecated, [update the runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update).
 
 
-<br />
-
 
 ## System limits were reached
 {: #ts_limit_reached}
@@ -69,8 +67,6 @@ Some limits can be increased if a business case can justify higher safety limit 
 3. Select **Technical** for the ticket type.
 4. Select **Functions** for Technical area of support.
 
-
-<br />
 
 
 ## Getting help and support
