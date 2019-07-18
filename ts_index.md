@@ -49,7 +49,19 @@ One explanation for a failing app is that a deprecated runtime is being used. An
 To see which runtime is used for the action, run `ibmcloud fn action get ACTION_NAME` and check for `deprecated=true` in the query response. If the runtime is deprecated, [update the runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update).
 
 
-<br />
+
+## Properties are not getting set
+{: #ts_property}
+
+{: tsSymptoms}
+Your properties are not being set correctly. For example, the incorrect namespace is targeted.
+
+{: tsCauses}
+When a property is set, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`.
+
+{: tsResolve}
+You may need to `--unset` the property and reset it. Or you may need to delete the `config.json` file. This file is recreated when you work with your  rebuild when you set a property or when you run `ibmcloud fn property get --all`.
+
 
 
 ## System limits were reached
@@ -69,8 +81,6 @@ Some limits can be increased if a business case can justify higher safety limit 
 3. Select **Technical** for the ticket type.
 4. Select **Functions** for Technical area of support.
 
-
-<br />
 
 
 ## Getting help and support

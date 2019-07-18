@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-18"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -177,6 +177,9 @@ You can create an IAM-managed namespace as part of a resource group and manage a
   ibmcloud fn property set --namespace <namespace_name_or_id>
   ```
   {: pre}
+
+After you set a property, like the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM, you must unset the namespace property and reset it. For more information see [`ibmcloud fn property set`]
+{: note}
 
 ## Creating a namespace with the API
 {: #namespaces_create_api}
