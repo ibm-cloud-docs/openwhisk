@@ -59,7 +59,7 @@ After you have an {{site.data.keyword.cos_full_notm}} service instance, you can 
 {: shortdesc}
 {: #pkg_obstorage_cli}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of actions that you can use to work with your {{site.data.keyword.cos_full_notm}} instance. These are executed in either Node.js or Python. After you install the package, you can select a runtime.
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of actions that you can use to work with your {{site.data.keyword.cos_full_notm}} instance. These are executed in either Node.js or Python. After you install the package, you can select a runtime. For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions)
 {: note}
 
 **Before you begin**
@@ -74,13 +74,25 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: pre}
 
-2. Navigate to either the `runtimes/nodejs` or `runtimes/python` directory.
+2. Navigate to either the `runtimes/nodejs` or `runtimes/python` directory to select a runtime for the actions in the package.
     ```
     cd package-cloud-object-storage/runtimes/nodejs
     ```
     {: pre}
 
-3. Verify that the `cloud-object-storage` package is added to your package list.
+4. Deploy the `cloud-object-storage` package.
+    ```
+    ibmcloud fn deploy
+    ```
+    {: pre}
+
+    **Response**
+    ```
+    Success: Deployment completed successfully.
+    ```
+    {: scree}
+
+5. Verify that the `cloud-object-storage` package is added to your package list.
     ```
     ibmcloud fn package list
     ```
@@ -93,7 +105,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: screen}
 
-4. Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_service).
+6. Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_service).
 
     ```
     ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname `<service_key>`
@@ -106,7 +118,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     ```
     {: screen}
 
-5. Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.
+7. Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.
     ```
     ibmcloud fn package get /<org_space>/cloud-object-storage parameters
     ```
@@ -138,7 +150,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 ## Binding parameters
 
-You can use the [`package bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind the endpoint of a bucket to a specific action or to the `cloud-object-storage` package. Replace `<bucket_endpoint>` with the endpoint of your bucket.
+You can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind the endpoint of a bucket to a specific action or to the `cloud-object-storage` package. Replace `<bucket_endpoint>` with the endpoint of your bucket.
 
 When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created paramters are removed. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
 {: important}
