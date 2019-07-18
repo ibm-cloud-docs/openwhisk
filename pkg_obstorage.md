@@ -59,7 +59,7 @@ After you have an {{site.data.keyword.cos_full_notm}} service instance, you can 
 {: shortdesc}
 {: #pkg_obstorage_cli}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of actions that you can use to work with your {{site.data.keyword.cos_full_notm}} instance. These are executed in either Node.js or Python. After you install the package, you can select a runtime. For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions)
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of actions that you can use to work with your {{site.data.keyword.cos_full_notm}} instance. These are executed in either Node.js or Python. After you install the package, you can select a runtime. For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions).
 {: note}
 
 **Before you begin**
