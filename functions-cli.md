@@ -1514,7 +1514,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 <br />**Example**
 
   ```
-  ibmcloud fn property get --cliversion
+  ibmcloud fn property get --auth
   ```
   {: pre}
 
@@ -1524,7 +1524,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 ### `ibmcloud fn property set`
 {: #cli_prop_set}
 
-Set a property. At least one flag is required. Once a property is set, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To change or update a property, see [`ibmcloud fn property unset`](#cli_prop_unset)
+Set a property. At least one flag is required. Once a property is set, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run [`ibmcloud fn property unset --<property>`](#cli_prop_set). 
 
 ```
 ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
@@ -1605,7 +1605,7 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 <br />**Example**
 
   ```
-  ibmcloud fn property unset --key myKEY
+  ibmcloud fn property unset --namespace
   ```
   {: pre}
 

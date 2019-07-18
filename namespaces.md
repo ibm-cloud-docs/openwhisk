@@ -93,7 +93,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 5. Click **Create**.
 
-6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in the **Services** pane.
+6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in the **Functions Namespaces** pane.
 
 If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 

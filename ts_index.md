@@ -50,20 +50,6 @@ To see which runtime is used for the action, run `ibmcloud fn action get ACTION_
 
 
 
-## Properties are not getting set
-{: #ts_property}
-
-{: tsSymptoms}
-Your properties are not being set correctly. For example, the incorrect namespace is targeted.
-
-{: tsCauses}
-When a property is set, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`.
-
-{: tsResolve}
-You may need to `--unset` the property and reset it. Or you may need to delete the `config.json` file. This file is recreated when you work with your  rebuild when you set a property or when you run `ibmcloud fn property get --all`.
-
-
-
 ## System limits were reached
 {: #ts_limit_reached}
 

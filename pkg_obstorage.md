@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-18"
 
 keywords: object storage, bucket, package, functions
 
@@ -38,7 +38,7 @@ To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/
 {: #obstorage_packages}
 | Package | Availability | Description |
 | --- | --- | --- |
-| [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage)| Installable | Read, write, and delete from an {{site.data.keyword.cos_full_notm}} instance. |
+| [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install)| Installable | Read, write, and delete from an {{site.data.keyword.cos_full_notm}} instance. |
 | [(Experimental) {{site.data.keyword.cos_full_notm}} events source](#pkg_obstorage_ev) | Pre-installed (US-South only) | Listen for changes to an {{site.data.keyword.cos_full_notm}} instance. |
 
 ## Creating an IBM Cloud Object Storage service instance
@@ -53,6 +53,8 @@ Before you can use either package, you must request an instance of {{site.data.k
 3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
 
 ## Installing the {{site.data.keyword.cos_full_notm}} package from the {{site.data.keyword.openwhisk_short}} CLI
+{: #pkg_obstorage_install}
+
 After you have an {{site.data.keyword.cos_full_notm}} service instance, you can use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.cos_full_notm}} package into your namespace.
 {: shortdesc}
 {: #pkg_obstorage_cli}
