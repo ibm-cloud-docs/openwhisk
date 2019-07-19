@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, [{CURRENT_<em>YEAR</em>}]
-lastupdated: "2019-07-18"
+  years: 2017, 2019
+lastupdated: "2019-07-19"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -55,27 +55,27 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 <br />**Command options**
 
    <dl>
-   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+   <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+   <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt><em>`ACTION_NAME`</em></dt>
-   <dd>The name of the action. To include the action in a package, enter the name in the format <em>`PACKAGE_NAME`</em>/<em>`ACTION_NAME`</em>. This value is required. </dd>
+   <dt>`ACTION_NAME`</dt>
+   <dd>The name of the action. To include the action in a package, enter the name in the format `PACKAGE_NAME`/`ACTION_NAME`. This value is required. </dd>
 
-   <dt><em>`APP_FILE`</em></dt>
+   <dt>`APP_FILE`</dt>
    <dd>The path to the app file or package to run as an action. This option is required.</dd>
    
    <dt>`--copy`</dt>
    <dd>Treat the action as the name of an existing action.</dd>
 
-   <dt>`--docker` <em>`DOCKER_HUB_USERNAME`</em>/<em>`IMAGE_NAME`</em></dt>
+   <dt>`--docker` `DOCKER_HUB_USERNAME`/`IMAGE_NAME`</dt>
    <dd>The Docker Hub user name and the name of the Docker image in Docker Hub to run the action. This flag is required for creating actions from Docker images.</dd>
 
-   <dt>`--kind` <em>`LANGUAGE`</em></dt>
-   <dd>The runtime for your app. This flag is optional. If no <em>`VALUE`</em> is specified, the default version for the detected runtime is used.
-     Possible <em>`VALUES`</em> for the `--kind` option.
+   <dt>`--kind` `LANGUAGE`</dt>
+   <dd>The runtime for your app. This flag is optional. If no `VALUE` is specified, the default version for the detected runtime is used.
+     Possible `VALUES` for the `--kind` option.
      <table>
   <tr>
     <th>Language</th>
@@ -120,10 +120,10 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 {: caption="Table 1. Supported runtimes" caption-side="top"}
        </dd>
 
-   <dt>`--logsize` <em>`LIMIT`</em>, `-l` <em>`LIMIT`</em></dt>
+   <dt>`--logsize` `LIMIT`, `-l` `LIMIT`</dt>
    <dd>The maximum log size in MB for the action. The default value is 10 MB.</dd>
 
-   <dt>`--main` <em>`ENTRY_METHOD_NAME`</em></dt>
+   <dt>`--main` `ENTRY_METHOD_NAME`</dt>
    <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully qualified method.</dd>
 
    <dt>`--native`</dt>
@@ -131,23 +131,23 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
        <ol><li>When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
        <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
-   <dt>`--sequence` <em>`ACTION_NAME`</em>, <em>`ACTION_NAME`</em></dt>
+   <dt>`--sequence` `ACTION_NAME`, `ACTION_NAME`</dt>
    <dd>Create an action sequence and include the names of the related actions. Separate the `ACTION_NAMEs` by commas.</dd>
 
-   <dt>`--timeout` <em>`LIMIT`</em>, `-t` <em>`LIMIT`</em></dt>
-   <dd>The timeout <em>`LIMIT`</em> in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
+   <dt>`--timeout` `LIMIT`, `-t` `LIMIT`</dt>
+   <dd>The timeout `LIMIT` in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
 
    <dt>`--web yes|true|raw|no|false`</dt>
    <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify `yes` or `true` for a web action, `raw` for a raw HTTP web action, or `no` or `false` for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
 
-   <dt>`--web-secure` <em>`SECRET`</em></dt>
-   <dd>Secure the web action. The <em>`VALUE`</em> for <em>`SECRET`</em> can be <em>`true`</em>, <em>`false`</em>, or any string. This option can be used only with the `--web` option.</dd>
+   <dt>`--web-secure` `SECRET`</dt>
+   <dd>Secure the web action. The `VALUE` for `SECRET` can be `true`, `false`, or any string. This option can be used only with the `--web` option.</dd>
    </dl>
 
 <br />**Example**
@@ -205,14 +205,14 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--
 <br />**Command options**
 
    <dl>
-   <dt><em>`ACTION_NAME`</em></dt>
+   <dt>`ACTION_NAME`</dt>
    <dd>The name of an action. This value is required.</dd>
 
    <dt>`--save`</dt>
-   <dd>You can get and locally save the code that is associated with an existing action, except for sequences and Docker actions. The <em>`FILENAME`</em> corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
+   <dd>You can get and locally save the code that is associated with an existing action, except for sequences and Docker actions. The `FILENAME` corresponds with an existing action name in the current working directory and the file extension  corresponds to the action kind. For example, for action code that is an archive file, an extension of .zip is used. This flag is optional.</dd>
 
-  <dt>`--save-as` <em>`FILENAME`</em></dt>
-  <dd>Save the code for actions in a custom-named file by providing a file path, <em>`FILENAME`</em>, and extension. This flag is optional.</dd>
+  <dt>`--save-as` `FILENAME`</dt>
+  <dd>Save the code for actions in a custom-named file by providing a file path, `FILENAME`, and extension. This flag is optional.</dd>
 
   <dt>`--summary`</dt>
   <dd>Get a summary of the action details. Parameters with the prefix "*" are bound; parameters with the prefix "**" are bound and finalized. This flag is optional.</dd>
@@ -273,17 +273,17 @@ ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-
 <br />**Command options**
 
    <dl>
-   <dt><em>`ACTION_NAME`</em></dt>
+   <dt>`ACTION_NAME`</dt>
    <dd>The name of the action. This value is required. </dd>
 
    <dt>`--blocking, -b`</dt>
-   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time <em>`LIMIT`</em> <em>`VALUE`</em>](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
+   <dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time `LIMIT` `VALUE`](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
    <dt>`--result, -r`</dt>
    <dd>The result of the app code is displayed as the output of the command. If this option is not specified, the activation ID is displayed. The invocation is blocking when this option is specified. This flag is optional.</dd>
@@ -312,16 +312,16 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 <br />**Command options**
 
    <dl>
-   <dt><em>`ACTION_NAME`</em></dt>
+   <dt>`ACTION_NAME`</dt>
    <dd>The name of a package of actions. This value is optional. If not specified, all actions are listed.</dd>
 
-   <dt>`--limit` <em>`NUMBER_OF_ACTIONS`</em>, -l <em>`NUMBER_OF_ACTIONS`</em></dt>
+   <dt>`--limit` `NUMBER_OF_ACTIONS`, -l `NUMBER_OF_ACTIONS`</dt>
    <dd>List a specified number of actions. The default is 30 actions.</dd>
 
    <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned actions by name, otherwise the list is sorted by creation date.</dd>
 
-   <dt>`--skip` <em>`NUMBER_OF_ACTIONS`</em>, -s <em>`NUMBER_OF_ACTIONS`</em></dt>
+   <dt>`--skip` `NUMBER_OF_ACTIONS`, -s `NUMBER_OF_ACTIONS`</dt>
    <dd>Exclude a specified number of the most recently created actions from the result.</dd>
 
    </dl>
@@ -352,16 +352,16 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 <br />**Command options**
 
   <dl>
-  <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-  <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+  <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+  <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-  <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains annotation in a <em>`KEY`</em> `VALUE` format. This flag is optional.</dd>
+  <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+  <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt><em>`ACTION_NAME`</em></dt>
-  <dd>The name of the action. To include the action in a package, enter the name in the format <em>`PACKAGE_NAME`</em>/<em>`ACTION_NAME`</em>. This value is required. </dd>
+  <dt>`ACTION_NAME`</dt>
+  <dd>The name of the action. To include the action in a package, enter the name in the format `PACKAGE_NAME`/`ACTION_NAME`. This value is required. </dd>
 
-  <dt><em>`APP_FILE`</em></dt>
+  <dt>`APP_FILE`</dt>
   <dd>The path to the app file or package to run as an action. This option is required when you want to update your app within the action.</dd>
 
   <dt>`--copy`</dt>
@@ -371,7 +371,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   <dd>The Docker Hub user name and the name of the Docker image in Docker Hub to run the action. This flag is required for creating actions from Docker images.</dd>
 
   <dt>`--kind LANGUAGE`</dt>
-  <dd>The runtime for your app. This flag is optional. If no <em>VALUE</em> is specified, the default version for the detected runtime is used.
+  <dd>The runtime for your app. This flag is optional. If no VALUE is specified, the default version for the detected runtime is used.
     Possible values for the `--kind` option.
     <table>
   <tr>
@@ -417,7 +417,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 {: caption="Table 1. Supported runtimes" caption-side="top"}
       </dd>
 
-  <dt>`--logsize` <em>`LIMIT`</em>, `-l` <em>`LIMIT`</em></dt>
+  <dt>`--logsize` `LIMIT`, `-l` `LIMIT`</dt>
   <dd>The maximum log size in MB for the action. The default value is 10 MB.</dd>
 
   <dt>`--main ENTRY_METHOD_NAME`</dt>
@@ -428,23 +428,23 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
       <ol><li>When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system and compress it into `exec.zip`.</li>
       <li>Create a Docker action that receives the executable as initialization data. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument.</li></ol>
 
-  <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-  <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+  <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+  <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains parameters <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+  <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+  <dd>A JSON file that contains parameters `KEYS` and `VALUES`. This flag is optional.</dd>
 
-  <dt>`--sequence` <em>`ACTION_NAME`</em>, <em>`ACTION_NAME`</em></dt>
+  <dt>`--sequence` `ACTION_NAME`, `ACTION_NAME`</dt>
   <dd>Create an action sequence by specifying the name of related actions.</dd>
 
-  <dt>`--timeout` <em>`LIMIT`</em>, `-t` <em>`LIMIT`</em></dt>
+  <dt>`--timeout` `LIMIT`, `-t` `LIMIT`</dt>
   <dd>The timeout limit in milliseconds. The default value is 60000 milliseconds. When the timeout is reached, the action is terminated.</dd>
 
   <dt>`--web yes|true|raw|no|false`</dt>
   <dd>Treat the action as a web action, a raw HTTP web action, or as a standard action. Specify `yes` or `true` for a web action, `raw` for a raw HTTP web action, or `no` or `false` for a standard action. To secure your web action, also include the `--web-secure` option.</dd>
 
-  <dt>`--web-secure` <em>`SECRET`</em></dt>
-  <dd>Secure the web action. The <em>`VALUE`</em> for <em>`SECRET`</em> can be <em>`true`</em>, <em>`false`</em>, or any string. This option can be used only with the `--web` option.</dd>
+  <dt>`--web-secure` `SECRET`</dt>
+  <dd>Secure the web action. The `VALUE` for `SECRET` can be `true`, `false`, or any string. This option can be used only with the `--web` option.</dd>
   </dl>
 
 <br />**Example**
@@ -475,10 +475,10 @@ ibmcloud fn activation get [ACTIVATION_ID] [FIELD_FILTER] [--last] [--summary]
 <br />**Command options**
 
   <dl>
-  <dt><em>`ACTIVATION_ID`</em></dt>
+  <dt>`ACTIVATION_ID`</dt>
   <dd>The ID for a specific activation. Use `ibmcloud fn activation list` to retrieve a list of available IDs. This value is required, unless the `--last` or `-l` option is specified..</dd>
 
-  <dt><em>`FIELD_FILTER`</em></dt>
+  <dt>`FIELD_FILTER`</dt>
   <dd>A field in the metadata to display information from. For example, to display the logs field, run `ibmcloud fn activation get ACTIVATION_ID logs`. This value is optional.</dd>
 
   <dt>`--last, -l`</dt>
@@ -515,16 +515,16 @@ ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since UN
   <dt>`--full, -f`</dt>
   <dd>Display the full activation description.</dd>
 
-  <dt>`--limit` <em>`NUMBER_OF_ACTIVATIONS`</em>, `-l` <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
+  <dt>`--limit` `NUMBER_OF_ACTIVATIONS`, `-l` `NUMBER_OF_ACTIVATIONS`</dt>
   <dd>List a specified number of activations. The default is 30 activations and the maximum is 200 activations.</dd>
 
-  <dt>`--since` <em>`UNIX_EPOCH_TIME`</em></dt>
+  <dt>`--since` `UNIX_EPOCH_TIME`</dt>
   <dd>List activations that were created since the date specified. Duration is measured in milliseconds since 01 January 1970. Example: `1560371263` is 12 June 2019 08:27:43 UTC.</dd>
 
-  <dt>`--skip` <em>`NUMBER_OF_ACTIVATIONS`</em>, -s <em>`NUMBER_OF_ACTIVATIONS`</em></dt>
+  <dt>`--skip` `NUMBER_OF_ACTIVATIONS`, -s `NUMBER_OF_ACTIVATIONS`</dt>
   <dd>Exclude a specified number of the most recent activations from the result.</dd>
 
-  <dt>`--upto` <em>`UNIX_EPOCH_TIME`</em></dt>
+  <dt>`--upto` `UNIX_EPOCH_TIME`</dt>
   <dd>List activations that were created before the date specified. Duration is measured in milliseconds since 01 January 1970. Example: `1560371263` is 12 June 2019 08:27:43 UTC.</dd>
   </dl>
 
@@ -558,7 +558,7 @@ ibmcloud fn activation logs [ACTIVATION_ID] [--last] [--strip]
 <br />**Command options**
 
   <dl>
-  <dt><em>`ACTIVATION_ID`</em></dt>
+  <dt>`ACTIVATION_ID`</dt>
   <dd>The ID for a specific activation. Use `ibmcloud fn activation list` to retrieve a list of available IDs. This value is required, unless the `--last` or `-l` option is specified.</dd>
 
   <dt>`--last, -l`</dt>
@@ -590,25 +590,25 @@ ibmcloud fn activation poll [NAMESPACE] [ACTION_NAME] [--exit SECONDS] [--since-
 <br />**Command options**
 
   <dl>
-  <dt>/<em>`NAMESPACE`</em></dt>
+  <dt>/`NAMESPACE`</dt>
   <dd>A namespace, beginning with /. Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
 
-  <dt><em>`ACTION_NAME`</em></dt>
+  <dt>`ACTION_NAME`</dt>
   <dd>Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
 
-  <dt>`--exit` <em>`SECONDS`</em>, `-e` <em>`SECONDS`</em></dt>
+  <dt>`--exit` `SECONDS`, `-e` `SECONDS`</dt>
   <dd>Poll activations for a specified number of seconds and then exit. This flag is optional.</dd>
 
-  <dt>`--since-days` <em>`DAYS`</em></dt>
+  <dt>`--since-days` `DAYS`</dt>
   <dd>Start polling for activations a specified number of days ago. This flag is optional.</dd>
 
-  <dt>`--since-hours` <em>`HOURS`</em></dt>
+  <dt>`--since-hours` `HOURS`</dt>
   <dd>Start polling for activations a specified number of hours ago. This flag is optional.</dd>
 
-  <dt>`--since-minutes` <em>`MINUTES`</em></dt>
+  <dt>`--since-minutes` `MINUTES`</dt>
   <dd>Start polling for activations a specified number of minutes ago. This flag is optional.</dd>
 
-  <dt>`--since-seconds` <em>`SECONDS`</em></dt>
+  <dt>`--since-seconds` `SECONDS`</dt>
   <dd>Start polling for activations a specified number of seconds ago. This flag is optional.</dd>
   </dl>
 
@@ -635,7 +635,7 @@ ibmcloud fn activation result [ACTIVATION_ID] [--last] [--strip]
 <br />**Command options**
 
   <dl>
-  <dt><em>`ACTIVATION_ID`</em></dt>
+  <dt>`ACTIVATION_ID`</dt>
   <dd>The ID for a specific activation. Use `ibmcloud fn activation list` to retrieve a list of available IDs. This value is required, unless the `--last` or `-l` option is specified.</dd>
 
   <dt>`--last, -l`</dt>
@@ -680,13 +680,13 @@ ibmcloud fn api create BASE_PATH API_PATH API_VERB ACTION_NAME] [--apiname API_N
    <dt>`API_VERB`</dt>
    <dd>The verb for the API, such as `get` or `post`.</dd>
 
-   <dt><em>`ACTION_NAME`</em></dt>
+   <dt>`ACTION_NAME`</dt>
    <dd>The name of the action.</dd>
 
-   <dt><em>`--apiname API_NAME`, `-n API_NAME`</em></dt>
+   <dt>`--apiname API_NAME`, `-n API_NAME`</dt>
    <dd>The name of the API. This flag is ignored when a configuration file is specified. The default name is the `BASE_PATH`. This flag is optional.</dd>
 
-   <dt>`--config-file` <em>`FILE`</em>, `-c` <em>`FILE`</em></dt>
+   <dt>`--config-file` `FILE`, `-c` `FILE`</dt>
    <dd>A JSON file that contains the Swagger API configuration. When this flag is used, the API name flag is ignored. This flag is required.</dd>
 
    <dt>`--response-type TYPE`</dt>
@@ -865,26 +865,26 @@ ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment F
    <dt>`--apihost HOST`</dt>
    <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u` `KEY`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
-   <dt>`--config` <em>`FILE`</em></dt>
+   <dt>`--config` `FILE`</dt>
    <dd>The configuration file. The default is `$HOME/.wskprops`.</dd>
 
-   <dt>`--deployment` <em>`FILE`</em></dt>
+   <dt>`--deployment` `FILE`</dt>
    <dd>The path to the deployment file.</dd>
 
-   <dt>`--manifest` <em>`FILE`</em>, `-m` <em>`FILE`</em></dt>
+   <dt>`--manifest` `FILE`, `-m` `FILE`</dt>
    <dd>The path to the manifest file. This flag is required if the manifest.yaml is not in the current directory.</dd>
 
-   <dt>`--namespace` <em>`NAMESPACE`</em>, `-n` <em>`NAMESPACE`</em></dt>
+   <dt>`--namespace` `NAMESPACE`, `-n` `NAMESPACE`</dt>
    <dd>The name or ID for a namespace.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
    <dt>`--preview` </dt>
    <dd>Display the deployment plan before you deploy.</dd>
@@ -926,26 +926,26 @@ ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment
    <dt>`--apihost HOST`</dt>
    <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u` `KEY`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
-   <dt>`--config` <em>`FILE`</em></dt>
+   <dt>`--config` `FILE`</dt>
    <dd>The configuration file. The default is `$HOME/.wskprops`.</dd>
 
-   <dt>`--deployment` <em>`FILE`</em></dt>
+   <dt>`--deployment` `FILE`</dt>
    <dd>The path to the deployment file.</dd>
 
-   <dt>`--manifest` <em>`FILE`</em>, -m <em>`FILE`</em></dt>
+   <dt>`--manifest` `FILE`, -m `FILE`</dt>
    <dd>The path to the manifest file. This flag is required if the manifest.yaml is not in the current directory.</dd>
 
-   <dt>`--namespace` <em>`NAMESPACE`</em>, `-n` <em>`NAMESPACE`</em></dt>
+   <dt>`--namespace` `NAMESPACE`, `-n` `NAMESPACE`</dt>
    <dd>The name or ID for a namespace.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
    <dt>`--preview` </dt>
    <dd>Display the result of the command without running the command.</dd>
@@ -1022,7 +1022,7 @@ ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION]
 
    <dl>
 
-   <dt><em>`NAMESPACE`</em></dt>
+   <dt>`NAMESPACE`</dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
    <dt>`--description DESCRIPTION`, `-n DESCRIPTION`</dt>
@@ -1076,11 +1076,11 @@ ibmcloud fn namespace list NAMESPACE [--auth KEY] [--name-sort] [--properties]
 
    <dl>
 
-   <dt><em>`NAMESPACE`</em></dt>
+   <dt>`NAMESPACE`</dt>
    <dd>The name or ID for a namespace. This value is required.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u` `KEY`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
    <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned namespaces by name, otherwise the list is sorted by creation date. This flag is optional. </dd>
@@ -1125,8 +1125,8 @@ ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESP
 
    <dl>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u` `KEY`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
    <dt>`--cf`</dt>
    <dd>Display the Cloud Foundry namespaces only. IAM namespaces are not displayed. This flag is optional.</dd>
@@ -1134,13 +1134,13 @@ ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESP
    <dt>`--iam`</dt>
    <dd>Display the IAM namespaces only. Cloud Foundry namespaces are not displayed. This flag is optional.</dd>
 
-   <dt>`--limit NUMBER_OF_`<em>`NAMESPACE`</em>`S`, `-l NUMBER_OF_`<em>`NAMESPACE`</em>`S`</dt>
+   <dt>`--limit NUMBER_OF_``NAMESPACE``S`, `-l NUMBER_OF_``NAMESPACE``S`</dt>
    <dd>List a specified number of namespaces. The default is 30 namespaces. This flag is optional. </dd>
 
    <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned namespaces by name, otherwise the list is sorted by creation date. This flag is optional. </dd>
 
-   <dt>`--skip NUMBER_OF_<em>NAMESPACE</em>S`, `-s NUMBER_OF_`<em>`NAMESPACE`</em>`S`</dt>
+   <dt>`--skip NUMBER_OF_NAMESPACES`, `-s NUMBER_OF_``NAMESPACE``S`</dt>
    <dd>Exclude a specified number of the most recently created namespaces from the result. This flag is optional. </dd>
 
    </dl>
@@ -1169,10 +1169,10 @@ ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCR
 
    <dl>
 
-   <dt><em>`NAMESPACE`</em></dt>
+   <dt>`NAMESPACE`</dt>
    <dd>The name for a namespace. Do not include hyphens (-) in the name. This value is required.</dd>
 
-   <dt>`NEW_`<em>`NAMESPACE`</em>`_NAME`</dt>
+   <dt>`NEW_``NAMESPACE``_NAME`</dt>
    <dd>The new name for a namespace. Do not include hyphens (-) in the name. This value is optional.</dd>
 
    <dt>`--description DESCRIPTION`, `-n DESCRIPTION`</dt>
@@ -1208,20 +1208,20 @@ ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VA
 <br />**Command options**
 
   <dl>
-  <dt><em>`PACKAGE_NAME`</em></dt>
+  <dt>`PACKAGE_NAME`</dt>
   <dd>The name of the package. This value is required. </dd>
 
-  <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-  <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+  <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+  <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-  <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains annotation in a <em>`KEY`</em> `VALUE` format. This flag is optional.</dd>
+  <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+  <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-  <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+  <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+  <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+  <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+  <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
   </dl>
 
 <br />**Example**
@@ -1248,20 +1248,20 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
   <dl>
-  <dt><em>`PACKAGE_NAME`</em></dt>
+  <dt>`PACKAGE_NAME`</dt>
   <dd>The name of the package. This value is required. </dd>
 
-  <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-  <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+  <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+  <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-  <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+  <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+  <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-  <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+  <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+  <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-  <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-  <dd>A JSON file that contains parameter <em>`KEYS`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+  <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+  <dd>A JSON file that contains parameter `KEYS` `VALUE` format. This flag is optional.</dd>
 
   <dt>`--shared yes|no`</dt>
   <dd>When specified without a value or with a value of yes, the package is shared with other users.</dd>
@@ -1322,7 +1322,7 @@ ibmcloud fn package get PACKAGE_NAME [--summary]
 <br />**Command options**
 
   <dl>
-   <dt><em>`PACKAGE_NAME`</em></dt>
+   <dt>`PACKAGE_NAME`</dt>
    <dd>The name of a package. This value is required.</dd>
 
    <dt>`--summary`</dt>
@@ -1352,7 +1352,7 @@ ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] 
 <br />**Command options**
 
    <dl>
-   <dt><em>`NAMESPACE`</em></dt>
+   <dt>`NAMESPACE`</dt>
    <dd>List the packages in a specific namespace. This value is optional. If not specified, all packages are listed.</dd>
 
    <dt>`--limit NUMBER_OF_PACKAGES`, `-l NUMBER_OF_PACKAGES`</dt>
@@ -1393,7 +1393,7 @@ ibmcloud fn package refresh /NAMESPACE
 
    <dl>
 
-   <dt>/<em>`NAMESPACE`</em></dt>
+   <dt>/`NAMESPACE`</dt>
    <dd>A namespace, beginning with /. This flag is required. Run `ibmcloud fn namespace list` to get a list of namespaces to choose from.</dd>
    </dl>
 
@@ -1424,20 +1424,20 @@ ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
    <dl>
 
-   <dt><em>`PACKAGE_NAME`</em></dt>
+   <dt>`PACKAGE_NAME`</dt>
    <dd>The name of the package. This value is required. </dd>
 
-   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+   <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+   <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
    <dt>`--shared yes|no`</dt>
    <dd>When specified without a value or with a value of `yes`, the package is shared with other users.</dd>
@@ -1488,25 +1488,25 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
    <dt>`--apibuildno`</dt>
    <dd>The `wsk` API build number. This flag is optional.</dd>
 
-   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dt>`--apihost` `HOST`</dt>
    <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dt>`--apiversion` `VERSION`</dt>
    <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u` <em>`KEY`</em></dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u` `KEY`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
-   <dt>`--cert` <em>`STRING`</em></dt>
+   <dt>`--cert` `STRING`</dt>
    <dd>The `wsk` client certificate. This flag is optional.</dd>
 
    <dt>`--cliversion`</dt>
    <dd>The `wsk` CLI version. This flag is optional.</dd>
 
-   <dt>`--key` <em>`STRING`</em></dt>
-   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--key` `STRING`</dt>
+   <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
-   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
+   <dt>`--namespace` `NAMESPACE`</dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1534,22 +1534,22 @@ ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 <br />**Command options**
 
    <dl>
-   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dt>`--apihost` `HOST`</dt>
    <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dt>`--apiversion` `VERSION`</dt>
    <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, -u</dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, -u</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
-   <dt>`--cert` <em>`STRING`</em></dt>
+   <dt>`--cert` `STRING`</dt>
    <dd>The `wsk`client certificate. This flag is optional.</dd>
 
-   <dt>`--key` <em>`STRING`</em></dt>
-   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--key` `STRING`</dt>
+   <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
-   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
+   <dt>`--namespace` `NAMESPACE`</dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1582,22 +1582,22 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 <br />**Command options**
 
    <dl>
-   <dt>`--apihost` <em>`HOST`</em></dt>
+   <dt>`--apihost` `HOST`</dt>
    <dd>The `wsk` API host. This flag is optional.</dd>
 
-   <dt>`--apiversion` <em>`VERSION`</em></dt>
+   <dt>`--apiversion` `VERSION`</dt>
    <dd>The `wsk` API version. This flag is optional.</dd>
 
-   <dt>`--auth` <em>`KEY`</em>, `-u`</dt>
-   <dd>The `wsk` authorization <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--auth` `KEY`, `-u`</dt>
+   <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>
 
-   <dt>`--cert` <em>`STRING`</em></dt>
+   <dt>`--cert` `STRING`</dt>
    <dd>The `wsk` client certificate. This flag is optional.</dd>
 
-   <dt>`--key` <em>`STRING`</em></dt>
-   <dd>The `wsk` client <em>`KEY`</em>. This flag is optional.</dd>
+   <dt>`--key` `STRING`</dt>
+   <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
-   <dt>`--namespace` <em>`NAMESPACE`</em></dt>
+   <dt>`--namespace` `NAMESPACE`</dt>
    <dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 
    </dl>
@@ -1655,7 +1655,7 @@ ibmcloud fn rule delete RULE_NAME [--disable]
 <br />**Command options**
 
    <dl>
-   <dt><em>`RULE_NAME`</em></dt>
+   <dt>`RULE_NAME`</dt>
    <dd>The name of a rule. This value is required.</dd>
 
   <dt>`--disable`</dt>
@@ -1724,7 +1724,7 @@ ibmcloud fn rule get RULE_NAME [--summary]
 <br />**Command options**
 
    <dl>
-   <dt><em>`RULE_NAME`</em></dt>
+   <dt>`RULE_NAME`</dt>
    <dd>The name of a rule. This value is required.</dd>
 
   <dt>`--summary`</dt>
@@ -1754,7 +1754,7 @@ ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip 
 <br />**Command options**
 
    <dl>
-   <dt><em>`RULE_NAME`</em></dt>
+   <dt>`RULE_NAME`</dt>
    <dd>The name of a rule. This value is optional. If not specified, all rules are listed.</dd>
 
    <dt>`--limit NUMBER_OF_RULES`, `-l NUMBER_OF_RULES`</dt>
@@ -1836,7 +1836,7 @@ ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 <br />**Command options**
 
    <dl>
-   <dt><em>`COMPONENT`</em></dt>
+   <dt>`COMPONENT`</dt>
    <dd>The SDK component, such as `docker`, `iOS`, and `bashauto`. This value is required.</dd>
 
    <dt>`--stdout, --s`</dt>
@@ -1877,14 +1877,14 @@ ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INST
    <dt>`SERVICE`</dt>
    <dd>The name of the service.</dd>
 
-   <dt>`PACKAGE_or_`<em>`ACTION_NAME`</em></dt>
+   <dt>`PACKAGE_or_``ACTION_NAME`</dt>
    <dd>The name of the package or action to bind the credentials to.</dd>
 
    <dt>`--instance SERVICE_INSTANCE`</dt>
    <dd>The service instance name.</dd>
 
-   <dt>`--keyname SERVICE_`<em>`KEY`</em></dt>
-   <dd>The name of the service <em>`KEY`</em> credentials to bind.</dd>
+   <dt>`--keyname SERVICE_``KEY`</dt>
+   <dd>The name of the service `KEY` credentials to bind.</dd>
 
    </dl>
 
@@ -1915,7 +1915,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
    <dt>`SERVICE`</dt>
    <dd>The name of the service.</dd>
 
-   <dt>`PACKAGE_or_`<em>`ACTION_NAME`</em></dt>
+   <dt>`PACKAGE_or_``ACTION_NAME`</dt>
    <dd>The name of the package or action to unbind the credentials from.</dd>
 
    </dl>
@@ -1948,23 +1948,23 @@ ibmcloud fn trigger create TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
    <dl>
-   <dt><em>`TRIGGER_NAME`</em></dt>
+   <dt>`TRIGGER_NAME`</dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+   <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+   <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--feed` <em>`ACTION_NAME`</em>, `-f` <em>`ACTION_NAME`</em></dt>
+   <dt>`--feed` `ACTION_NAME`, `-f` `ACTION_NAME`</dt>
    <dd>Sets the type of trigger as a feed. This flag is optional.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
 
    </dl>
@@ -2012,14 +2012,14 @@ ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 
    <dl>
 
-   <dt><em>`TRIGGER_NAME`</em></dt>
+   <dt>`TRIGGER_NAME`</dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter <em>`VALUES`</em> in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
 
    </dl>
 
@@ -2046,7 +2046,7 @@ ibmcloud fn trigger get TRIGGER_NAME [--summary]
 <br />**Command options**
 
    <dl>
-   <dt><em>`TRIGGER_NAME`</em></dt>
+   <dt>`TRIGGER_NAME`</dt>
    <dd>The name of a trigger. This value is required.</dd>
 
   <dt>`--summary`</dt>
@@ -2075,16 +2075,16 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 <br />**Command options**
 
    <dl>
-   <dt><em>`RULE_NAME`</em></dt>
+   <dt>`RULE_NAME`</dt>
    <dd>The name of a trigger. This value is optional. If not specified, all triggers are listed.</dd>
 
-   <dt>`--limit` <em>`NUMBER_OF_TRIGGERS`</em>, `-l` <em>`NUMBER_OF_TRIGGERS`</em></dt>
+   <dt>`--limit` `NUMBER_OF_TRIGGERS`, `-l` `NUMBER_OF_TRIGGERS`</dt>
    <dd>List a specified number of triggers. The default is 30 triggers.</dd>
 
    <dt>`--name-sort, -n`</dt>
    <dd>Sort the list of returned triggers by name, otherwise the list is sorted by creation date.</dd>
 
-   <dt>`--skip` <em>`NUMBER_OF_TRIGGERS`</em>, `-s` <em>`NUMBER_OF_TRIGGERS`</em></dt>
+   <dt>`--skip` `NUMBER_OF_TRIGGERS`, `-s` `NUMBER_OF_TRIGGERS`</dt>
    <dd>Exclude a specified number of the most recently created triggers from the result.</dd>
 
    </dl>
@@ -2115,20 +2115,20 @@ ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 <br />**Command options**
 
    <dl>
-   <dt><em>`TRIGGER_NAME`</em></dt>
+   <dt>`TRIGGER_NAME`</dt>
    <dd>The name of the trigger. This value is required. </dd>
 
-   <dt>`--annotation` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em>, `-a` <em>`ANNOTATION_KEY`</em> <em>`ANNOTATION_VALUE`</em></dt>
-   <dd>Annotations are specified in a <em>`KEY`</em> <em>`VALUE`</em> format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
+   <dt>`--annotation` `ANNOTATION_KEY` `ANNOTATION_VALUE`, `-a` `ANNOTATION_KEY` `ANNOTATION_VALUE`</dt>
+   <dd>Annotations are specified in a `KEY` `VALUE` format. To include more than one annotation, specify this option for each annotation. This flag is optional.</dd>
 
-   <dt>`--annotation-file` <em>`FILE`</em>, `-A` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains annotation in a <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--annotation-file` `FILE`, `-A` `FILE`</dt>
+   <dd>A JSON file that contains annotation in a `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param` <em>`KEY`</em> <em>`VALUE`</em>, `-p` <em>`KEY`</em> <em>`VALUE`</em></dt>
-   <dd>Parameter values in the <em>`KEY`</em> <em>`VALUE`</em> format. This flag is optional.</dd>
+   <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
+   <dd>Parameter values in the `KEY` `VALUE` format. This flag is optional.</dd>
 
-   <dt>`--param-file` <em>`FILE`</em>, `-P` <em>`FILE`</em></dt>
-   <dd>A JSON file that contains parameter <em>`KEYS`</em> and <em>`VALUES`</em>. This flag is optional.</dd>
+   <dt>`--param-file` `FILE`, `-P` `FILE`</dt>
+   <dd>A JSON file that contains parameter `KEYS` and `VALUES`. This flag is optional.</dd>
    </dl>
 
 <br />**Example**
