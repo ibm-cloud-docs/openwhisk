@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-19"
 
-keywords: watson assistant, openwhisk, functions
+keywords: openwhisk, functions
 
 subcollection: cloud-functions
 
