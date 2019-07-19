@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-19"
 
 keywords: web actions, serverless, functions
 
@@ -105,9 +105,9 @@ To create a web action:
   ```
   {: pre}
 
-4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. To get the `<apihost>`, run ```ibmcloud fn property get --apihost```. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. To get the `<apihost>`, run `ibmcloud fn property get --apihost`. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
-  For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run ```ibmcloud fn namespace get <namespace_name>```. 
+  For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name>`. 
   {: note}
 
   a. You can test the web action by either: 
@@ -124,7 +124,7 @@ To create a web action:
       ```
       {: pre}
 
-  b. Since the action code returns the dictionary ```{body: `<html><body><h3>${msg}</h3></body></html>`}```, you can also test the action by returning just the `body` property by using the following command:
+  b. Since the action code returns the dictionary `{body: `<html><body><h3>${msg}</h3></body></html>`}`, you can also test the action by returning just the `body` property by using the following command:
   {: #projecting_fields}
 
     ```
