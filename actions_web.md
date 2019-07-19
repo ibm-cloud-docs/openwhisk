@@ -124,7 +124,13 @@ To create a web action:
       ```
       {: pre}
 
-  b. Since the action code returns the dictionary `{body: `<html><body><h3>${msg}</h3></body></html>`}`, you can also test the action by returning just the `body` property by using the following command:
+  b. The action code returns the following dictionary.
+    ```
+    {body: `<html><body><h3>${msg}</h3></body></html>`}
+    ``` 
+    {: screen}
+    
+  You can also test the action by returning just the `body` property by using the following command:
   {: #projecting_fields}
 
     ```
@@ -849,7 +855,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
 
 1. Save the sample code in your preferred language to a file called `decode.<ext>`. Replace `<ext>` with the file extension of the sample code of your preferred language.
 
-  #### Node
+  **Node**
   {: #actions_web_decode_js}
 
   ```javascript
@@ -860,7 +866,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   ```
   {: codeblock}
 
-  #### Python
+  **Python**
   {: #actions_web_decode_python}
 
   ```python
@@ -873,7 +879,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   ```
   {: codeblock}
 
-  #### Swift
+  **Swift**
   {: #actions_web_decode_swift}
 
   ```swift
@@ -995,85 +1001,7 @@ A {{site.data.keyword.openwhisk_short}} action fails in two different possible f
 
 Developers must know how web actions might be used, and generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response like `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
 
-<hidden QR>
 
-## Example: Generating a QR code image from input
-{: #actions_web_qr}
-
-Here is an example of a Java web action that takes text as input and generates a QR code image.
-
-1. Create a file `Generate.java` in the directory `java_example/src/main/java/qr`.
-
-  ```java
-  package qr;
-
-  import java.io.*;
-  import java.util.Base64;
-
-  import com.google.gson.JsonObject;
-
-  import com.google.zxing.*;
-  import com.google.zxing.client.j2se.MatrixToImageWriter;
-  import com.google.zxing.common.BitMatrix;
-
-  public class Generate {
-    public static JsonObject main(JsonObject args) throws Exception {
-      String property = "text";
-      String text = "Hello. Try with a 'text' value next time.";
-      if (args.has(property)) {
-        text = args.get(property).toString();
-      }
-
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      OutputStream b64os = Base64.getEncoder().wrap(baos);
-
-      BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
-      MatrixToImageWriter.writeToStream(matrix, "png", b64os);
-      b64os.close();
-
-      String output = baos.toString("utf-8");
-
-      JsonObject response = new JsonObject();
-      JsonObject headers = new JsonObject();
-      headers.addProperty("content-type", "image/png; charset=UTF-8");
-      response.add("headers", headers);
-      response.addProperty("body", output);
-      return response;
-    }
-  }
-  ```
-  {: codeblock}
-
-3. Package your code as a .jar file by running the following command from the directory `java_example` where the file `build.gradle` is located.
-
-  ```bash
-  gradle jar
-  ```
-  {: pre}
-
-4. Deploy the web action by using the `build/libs/java_example-1.0.jar` file.
-
-  ```bash
-  ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
-  ```
-  {: pre}
-
-5. Retrieve the public URL of the web action endpoint and assign it to an environment variable.
-
-  ```bash
-  ibmcloud fn action get QRGenerate --url
-  URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
-  ```
-  {: pre}
-
-6. You can open a web browser by using this URL and appending the query parameter `text` to the message to be encoded into the QR image. You can also use an HTTP client like cURL to download a QR image.
-
-  ```bash
-  curl -o QRImage.png $URL\?text=https://cloud.ibm.com
-  ```
-  {: pre}
-
-</hidden QR>
 
 ## Disabling web actions
 {: #actions_web_disable}
