@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-19"
 
-keywords: text to speech, watson, cognitive, functions, packages
+keywords: cognitive, functions, packages
 
 subcollection: cloud-functions
 

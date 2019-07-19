@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-19"
 
-keywords: personality insights, cognitive, serverless, functions
+keywords: cognitive, serverless, functions
 
 subcollection: cloud-functions
 
