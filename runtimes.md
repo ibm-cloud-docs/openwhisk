@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-22"
 
 keywords: runtimes, support, functions
 
@@ -89,7 +89,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant){: external} v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x){: external}. |
 | `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
 | `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track [this issue](https://github.com/log4js-node/log4js-node/issues/805){: external}. |
-| `watson-developer-cloud` | The `watson-developer-cloud` NPM package is not available in `nodejs:10`. You can track progress on the new version in [this issue](https://github.com/watson-developer-cloud/node-sdk/issues/780){: external}. |
+| `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former will not receive updates anymore. This version package includes support for Promises. |
 
 
 ### Node.js packages
@@ -117,6 +117,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk){: external} | {{site.data.keyword.cos_full}} SDK for Node.js |
 | [`ibm_db`](https://www.npmjs.com/package/ibm_db){: external} | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
 | [`ibmiotf`](https://www.npmjs.com/package/ibmiotf){: external} | The Node.js client that is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
+| [`ibmwatson`](https://www.npmjs.com/package/ibm-watson){: external} | Node.js client library to use the Watson APIs. |
 | [`iconv-lite`](https://www.npmjs.com/package/iconv-lite){: external} | Pure JS character encoding conversion. |
 | [`jsdom`](https://www.npmjs.com/package/jsdom){: external} | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
 | [`jsforce`](https://www.npmjs.com/package/jsforce){: external} | Salesforce API Library for JavaScript applications. |
@@ -229,7 +230,6 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | [`uuid`](https://www.npmjs.com/package/uuid){: external} | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator){: external} | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services){: external} | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
-| [`watson-developer-cloud`](https://www.npmjs.com/package/watson-developer-cloud){: external} | Node.js client library to use the Watson Developer Cloud services, a collection of APIs that use cognitive computing to solve complex problems. |
 | [`when`](https://www.npmjs.com/package/when){: external} | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
 | [`winston`](https://www.npmjs.com/package/winston){: external} | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws){: external} | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
