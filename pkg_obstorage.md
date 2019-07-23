@@ -463,9 +463,9 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
   {: pre}
  
 
-Create an action to verify that the trigger, the change feed, and the rule are all configured and working correctly.
+  Create an action to verify that the trigger, the change feed, and the rule are all configured and working correctly.
  
-1. Save the following JavaScript code as `cosChange.js`. 
+  1. Save the following JavaScript code as `cosChange.js`. 
 
   ```javascript
   function main(data) {
@@ -474,32 +474,32 @@ Create an action to verify that the trigger, the change feed, and the rule are a
   ```
   {: codeblock}
 
-2. Create an action called `cosChange` by using the `cosChange.js` code.
+  2. Create an action called `cosChange` by using the `cosChange.js` code.
 
   ```
   ibmcloud fn action create cosChange <filepath>/cosChange.js
   ```
   {: pre}
 
-3. Create a rule to connect the `cosChange` action to the `cosTrigger` trigger.
+  3. Create a rule to connect the `cosChange` action to the `cosTrigger` trigger.
 
   ```
   ibmcloud fn rule create cosRule cosTrigger cosChange
   ```
   {: pre}
 
-4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command lists the activation records for each of these operations as they occur.
+  4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command lists the activation records for each of these operations as they occur.
 
   ```
   ibmcloud fn activation poll
   ```
   {: pre}
   
-5. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
+  5. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
   
-6. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action. You can view these activations by running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
+  6. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action. You can view these activations by running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
   
-7. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
+  7. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
   ```
   ibmcloud fn trigger get myCosTrigger
   ```
