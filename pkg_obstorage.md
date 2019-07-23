@@ -488,7 +488,7 @@ Create an action to verify that the trigger, the change feed, and the rule are a
   ```
   {: pre}
 
-4. In a separate window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command lists the activation records for each of these operations as they occur.
+4. In a separate terminal window, start polling for activations to give clear visibility of what is happening. When the trigger fires and the action is run, this command lists the activation records for each of these operations as they occur.
 
   ```
   ibmcloud fn activation poll
@@ -497,7 +497,7 @@ Create an action to verify that the trigger, the change feed, and the rule are a
   
 5. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).
   
-6. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action. You can view these activations by running the `ibmcloud fn activation poll` command within the configured bucket polling interval.
+6. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.
   
 7. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
   ```
