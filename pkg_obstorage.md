@@ -460,7 +460,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
     ```
     ok: created trigger feed cosTrigger
     ```
-  {: pre}
+    {: pre}
  
 
   Create an action to verify that the trigger, the change feed, and the rule are all configured and working correctly.
