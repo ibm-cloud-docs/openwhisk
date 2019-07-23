@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-22"
+lastupdated: "2019-07-23"
 
 keywords: runtimes, support, functions
 
@@ -89,7 +89,7 @@ JavaScript actions can be executed in Node.js version 8 or 10. Node.js version 8
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant){: external} v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x){: external}. |
 | `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
 | `log4js` | The `log4js`  NPM package is not available in `nodejs:10`. You can track [this issue](https://github.com/log4js-node/log4js-node/issues/805){: external}. |
-| `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former will not receive updates anymore. This version package includes support for Promises. |
+| `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former will not receive updates anymore. This package includes [support for Promises](https://github.com/watson-developer-cloud/node-sdk/blob/master/UPGRADE-4.0.md){: external}. |
 
 
 ### Node.js packages

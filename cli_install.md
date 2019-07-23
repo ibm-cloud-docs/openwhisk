@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-18"
+lastupdated: "2019-07-23"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -130,10 +130,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 
 
-## Targeting {{site.data.keyword.openwhisk_short}} namespaces
-{: #cli_regions}
-By default, {{site.data.keyword.openwhisk_short}} uses [IAM-enabled namespaces](/docs/iam?topic=iam-iamoverview){: external}. You can no longer create Cloud Foundry-based namespaces.
-{: important}
+
 
 ### Create or target a namespace.
 To get a list of your {{site.data.keyword.openwhisk_short}} namespaces, run `ibmcloud fn namespace list`.
