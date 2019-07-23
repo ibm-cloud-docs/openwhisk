@@ -463,7 +463,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
     {: pre}
  
 
-  Create an action to verify that the trigger, the change feed, and the rule are all configured and working correctly.
+Create an action to verify that the trigger, the change feed, and the rule are all configured and working correctly.
  
   1. Save the following JavaScript code as `cosChange.js`. 
 
