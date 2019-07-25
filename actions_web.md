@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-19"
+lastupdated: "2019-07-25"
 
 keywords: web actions, serverless, functions
 
@@ -918,7 +918,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   ```
   {: screen}
 
-3. Test the `decode` action by running either running the following cURL command. 
+3. Test the `decode` action by running the following cURL command. 
     ```bash
     curl -k -H "content-type: application" -X POST -d "Decoded body" https://<apihost>/api/v1/web/<namespace>/default/decode.json
     ```
