@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-07-29"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -790,17 +790,23 @@ def main(args):
 	return {"greeting": greeting}
 ```
 
-### Packaging Python code
+### Packaging Python code in .zip files
 {: #prep_python_pkg}
 
 Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app, run the following command.
+To package your app as .zip, run the following command. Replace `<action_name>` with the name of your action.
 
 ```bash
-zip -r helloPython.zip __main__.py helper.py
+zip -r <action_name>.zip __main__.py helper.py
+```
+{: pre}
+
+You can use then use the .zip file to create an action. Replace `<file_path>` with the file path to your .zip file.
+```
+ibmcloud fn action create helloPython <file_path>/<action_name>.zip
 ```
 {: pre}
 
@@ -814,7 +820,12 @@ Before you begin, [review the packages that are included with the Python runtime
 
 Package your app by completing the following steps.
 
-1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install.
+1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install. Save the following text in a `requirements.txt` file.
+  ```
+  numpy
+  ```
+  {: codeblock}
+
 
   To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
   {: tip}

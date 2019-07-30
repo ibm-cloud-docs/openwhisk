@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-19"
+lastupdated: "2019-07-25"
 
 keywords: web actions, serverless, functions
 
@@ -435,7 +435,7 @@ You can alter the response content of a web action to return different content t
 
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-To alter the response a web action:
+To alter the response of a web action:
 
 1. Save the following code as `hello.js`.
 
@@ -658,7 +658,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 By default, anyone can invoke a web action by using the invocation URL. You can use the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) to secure the web action by either:
   1. Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action will authenticate the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
 
-  2. Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When set the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
+  2. Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
 To test a secure web action:
 
@@ -918,7 +918,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   ```
   {: screen}
 
-3. Test the `decode` action by running either running the following cURL command. 
+3. Test the `decode` action by running the following cURL command. 
     ```bash
     curl -k -H "content-type: application" -X POST -d "Decoded body" https://<apihost>/api/v1/web/<namespace>/default/decode.json
     ```
