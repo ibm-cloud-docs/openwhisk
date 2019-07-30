@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-19"
 
-keywords: web actions, serverless
+keywords: web actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -27,379 +28,793 @@ subcollection: cloud-functions
 # Web アクションの作成
 {: #actions_web}
 
-Web アクションは、開発者が Web ベースのアプリケーションを迅速に構築できるようにするためにアノテーションが付けられた {{site.data.keyword.openwhisk}} アクションです。 アノテーションが付けられたこれらのアクションにより、{{site.data.keyword.openwhisk_short}} 認証キーを必要とせずに Web アプリケーションが匿名でアクセスできるバックエンド・ロジックを、開発者がプログラムできます。 アクション開発者は自身の判断で、必要とする独自の認証および許可 (OAuth フロー) を実装します。
+Web アクションの作成結果は、任意の Web アプリからのアクションのトリガーとして使用できる URL になります。
 {: shortdesc}
 
-Web アクションのアクティベーションは、アクションを作成したユーザーと関連付けられます。 このアクションでは、アクションのアクティベーションのコストが、呼び出し元からアクションの所有者に移ります。
+## 標準のアクションの代わりに Web アクションを使用する理由
 
-以下に、JavaScript アクション `hello.js` の例を示します。
-```javascript
-function main({name}) {
-  var msg = 'you did not tell me who you are.';
-  if (name) {
-    msg = `hello ${name}!`
-  }
-  return {body: `<html><body><h3>${msg}</h3></body></html>`}
-}
-```
-{: codeblock}
+### 1. Web アクションは匿名で実行される
 
-以下のように、CLI の `--web` フラグを値 `true` または `yes` で指定し、_Web アクション_ **hello** を、名前空間 `guest` のパッケージ `demo` 内に作成できます。
-```
-ibmcloud fn package create demo
-```
-{: pre}
+Web アクションのアクティベーションは、アクションの呼び出し元ではなく、アクションを作成したユーザーと関連付けられます。通常は、Github などのアプリに対する API 呼び出しの場合、特定のユーザーまたは機能 ID に対する API 呼び出しにユーザー名とトークンを組み込みます。Web アクションを使用する場合、この種の資格情報は必要ありません。資格情報を必要とせずに、REST インターフェース経由で Web アクションにアクセスできます。
 
-```
-ibmcloud fn action create /guest/demo/hello hello.js --web true
-```
-{: pre}
+Web アクションで資格情報を使用する必要はありませんが、独自の認証と許可や OAuth フローを実装できます。資格情報を伴う Web アクションを構成するには、『[Web アクションの保護](#actions_web_secure)』を参照してください。
 
-値 `true` または `yes` の `--web` フラグを使用すると、資格情報を必要とせずに、REST インターフェース経由でアクションにアクセスできます。 資格情報を伴う Web アクションを構成するには、『[Web アクションの保護](#actions_web_secure)』セクションを参照してください。 Web アクションは、以下のように構造化された URL を使用して呼び出すことができます。
-`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`
+### 2. 不特定型の HTTP 要求を使用する
 
-アクションが名前付きパッケージ内にない場合、パッケージ名は **default** になります。
+デフォルトでは、アクションは `POST` 要求のみ受け入れますが、Web アクションは HTTP メソッド (`GET`、`POST`、`PUT`、`PATCH`、`DELETE`、ならびに `HEAD` および `OPTIONS`) のどれを通しても起動できます。
 
-例えば、`guest/demo/hello` などです。 API キーなしで Web アクション API パスを `curl` または`wget` で使用できます。 ブラウザーに直接入力することも可能です。
+### 3. Web アクションはどこからでもトリガーできる
 
-`https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane` を、ご使用の Web ブラウザーで開いてみてください。 あるいは、次のように `curl` を使用してこのアクションを呼び出してみてください。
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
-```
-{: pre}
+{{site.data.keyword.openwhisk}} Web アクションを作成する際には、Web ベースのアプリからこのアクションを呼び出す URL を生成します。Web アクションでないアクションは、認証を必要とし、JSON オブジェクトで応答することも必要です。 
 
-次の例では、Web アクションが HTTP リダイレクトを実行します。
-```javascript
-function main() {
-  return {
-    headers: { location: 'http://openwhisk.org' },
-    statusCode: 302
-  }
-}
-```
-{: codeblock}
+Web アクションの API パスは cURL または `wget` で使用でき、ブラウザーに直接入力することもできます。Web アクションは、`https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>` と構造化された URL を使用して呼び出すことができます。
 
-次の例では、Web アクションが単一の Cookie を設定します。
-```javascript
-function main() {
-  return {
-    headers: {
-      'Set-Cookie': 'UserID=Jane; Max-Age=3600; Version=',
-      'Content-Type': 'text/html'
-    },
-    statusCode: 200,
-    body: '<html><body><h3>hello</h3></body></html>' }
-}
-```
-{: codeblock}
+### 4. 作成する {{site.data.keyword.openwhisk_short}} エンティティーの数が減る
 
-次の例では、Web アクションが複数の Cookie を設定します。
-```javascript
-function main() {
-  return {
-    headers: {
-      'Set-Cookie': [
-        'UserID=Jane; Max-Age=3600; Version=',
-        'SessionID=asdfgh123456; Path = /'
-      ],
-      'Content-Type': 'text/html'
-    },
-    statusCode: 200,
-    body: '<html><body><h3>hello</h3></body></html>' }
-}
-```
-{: codeblock}
+Web アクションはどこからでも呼び出すことができるため、トリガーやルールなどのその他の {{site.data.keyword.openwhisk_short}} エンティティーを作成する必要はありません。
 
-次の例は、`image/png` を返します。
-```javascript
-function main() {
-    let png = <base 64 encoded string>
-    return { headers: { 'Content-Type': 'image/png' },
-             statusCode: 200,
-             body: png };
-}
-```
-{: codeblock}
-
-次の例は、`application/json` を返します。
-```javascript
-function main(params) {
-    return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: params
-    };
-}
-```
-{: codeblock}
-
-HTTP 応答のデフォルトの `Content-Type` は `application/json` であり、本体は、許可される任意の JSON 値にすることができます。デフォルトの `Content-Type` はヘッダーから省略できます。
-
-事前定義されたシステム限度を超える応答は失敗するため、アクションの[応答サイズ制限](/docs/openwhisk?topic=cloud-functions-limits)を知っておくことが重要です。例えば、ラージ・オブジェクトは {{site.data.keyword.openwhisk_short}} を通じてインラインで送信するのではなく、オブジェクト・ストアに置きます。
-
-## アクションによる HTTP 要求の処理
-{: #actions_web_http}
-
-Web アクションでない {{site.data.keyword.openwhisk_short}} アクションは、認証を必要とし、JSON オブジェクトで応答することも必要です。
+## Web アクションはどのように機能しますか?
 
 Web アクションは認証なしで起動でき、さまざまなタイプの `headers`、`statusCode`、および `body` コンテンツで応答する HTTP ハンドラーを実装するために使用できます。
-Web アクションは JSON オブジェクトを返す必要があります。 ただし、コントローラーは、結果に以下の 1 つ以上が最上位 JSON プロパティーとして含まれる場合、Web アクションを別の方法で処理します。
 
-- `headers`: キーがヘッダー名であり、値がストリング値、数値、またはブール値である JSON オブジェクト。 1 つのヘッダーで複数の値を送信する場合、ヘッダーの値は、複数の値の JSON 配列になります。 デフォルトで設定されるヘッダーはありません。
-- `statusCode`: 有効な HTTP 状況コード。 本体コンテンツが存在する場合、デフォルトは `200 OK` です。 本体コンテンツが存在しない場合、デフォルトは `204 No Content` です。
-- `body`: プレーン・テキスト、JSON オブジェクトや配列、または Base64 エンコードのストリング (バイナリー・データの場合) のいずれかであるストリング。 body が `null`、空ストリング `""`、または未定義の場合、本体は空であると見なされます。 デフォルトは空の本体です。
+Web アクションは JSON オブジェクトを返す必要があります。 ただし、コントローラーは、結果に以下の 1 つ以上が最上位 [JSON プロパティー](#web_action_properties)として含まれる場合、Web アクションを別の方法で処理します。
+{: shortdesc}
 
-アクションで指定されたヘッダー、状況コード、または本体があれば、コントローラーはそれを、要求や応答を終了する HTTP クライアントに渡します。 アクション結果の `headers` で `Content-Type` ヘッダーが宣言されていない場合、本体は、非ストリング値であれば `application/json`、その他の場合は `text/html` として解釈されます。 `Content-Type` ヘッダーが定義されている場合、コントローラーは応答がバイナリー・データなのかプレーン・テキストなのかを判別し、必要に応じて base64 デコーダーを使用してストリングをデコードします。 本体が正しくデコードされていない場合は、クライアントにエラーが返されます。
+## Web アクションの使用可能なフィーチャー
+{: #actions_web_extra}
+
+Web アクションは、以下のフィーチャーをサポートしています。
+
+| フィーチャー | 説明 |
+| --- | --- |
+| [コンテンツ拡張子](#extra_features) | `.json`、`.html`、`.http`、`.svg`、`.text` などの、HTTP 要求のコンテンツ・タイプを指定できます。コンテンツ・タイプを指定しない場合は `.http` 拡張子が想定されます。コンテンツ・タイプの指定は、URI 内のアクション名に拡張子を追加することで行います。これによって、アクション `demo/hello` は `/demo/hello.svg` として参照されます。射影パスは、`.json` と `.http` の拡張子には必要ありませんが、`.html`、`.svg`、`.text` の拡張子には必要です。 デフォルトのパスは、拡張子名と一致すると想定されます。 Web アクションを起動して、`.html` 応答を受け取るには、アクションは、`html` という名前の最上位プロパティーを含む JSON オブジェクトを用いて応答する必要があります (または、応答は明示的パスに存在する必要があります)。 言い換えると、`/<namespace>/demo/hello.html` は、`/<namespace>/demo/hello.html/html` のように、`html` プロパティーを明示的に射影することと等価です。 アクションの完全修飾名には、そのパッケージ名が含まれている必要があります。このパッケージ名は、アクションが名前付きパッケージ内にない場合は `default` になります。 |
+| [結果からのフィールドの射影](#projecting_fields) | アクション名に続くパスを使用して、応答の 1 つ以上のレベルを射影します。 例えば、`/demo/hello.html/body` のようにします。このフィーチャーにより、`{body: "..." }` などのディクショナリーを返す Web アクションは `body` プロパティーを射影して、そのディクショナリー値の代わりにストリング値を直接戻すことができます。射影パスは、絶対パス・モデル (例: XPath) に従います。 |
+| [入力としての照会および本体のパラメーター](#query_test) | アクションは、照会パラメーターと要求本体のパラメーターを受け取ります。 パラメーターをマージするときの優先順位は、パッケージ・パラメーター、アクション・パラメーター、照会パラメーター、および本体パラメーターです。 これらの各パラメーターは、オーバーラップが発生すると、前の値をオーバーライドできます。 例えば、`/demo/hello.http?name=Jane` は、引数 `{name: "Jane"}` をアクションに渡します。 |
+| [フォーム・データ](#form_data) | 標準の `application/json` に加えて、Web アクションは、URL エンコードのフォーム・データ `application/x-www-form-urlencoded data` を入力として受け取ることができます。
+| [複数の HTTP 動詞を使用するアクティベーション](#actions_web_options) | Web アクションは、HTTP メソッド (`GET`、`POST`、`PUT`、`PATCH`、および `DELETE`、ならびに `HEAD` および `OPTIONS`) のどれを通しても起動できます。 |
+| [非 JSON 本体および未加工 HTTP エンティティーの処理](#actions_web_raw_enable) | Web アクションは、JSON オブジェクト以外の HTTP 要求本体を受け入れることができ、不透明値のような値 (バイナリー・ファイルではない場合はプレーン・テキスト、バイナリーの場合は base64 エンコード・ストリング)を常に受け取ることを選択できます。 |
+
+## Web アクションの作成
+{: #actions_web_example}
+
+Web アクションを作成するには以下のようにします。 
+
+1. 以下の JavaScript コードを `hello.js` として保存します。
+
+  ```javascript
+  function main({name}) {
+    var msg = 'You did not tell me who you are.';
+  if (name) {
+      msg = `Hello, ${name}!`
+    }
+    return {body: `<html><body><h3>${msg}</h3></body></html>`}
+  }
+  ```
+  {: codeblock}
+
+2. `demo` パッケージを作成します。パッケージ名は、明示的に指定しなければ `default` です。
+  ```
+  ibmcloud fn package create demo
+  ```
+  {: pre}
+
+3. `hello` アクションを作成します。 この例では、`packageName/actionName` は `demo/hello` です。`<filepath>` 変数を `hello.js` ファイルのファイル・パスに置き換え、`--web` フラグを `true`に設定します。 
+
+  ```
+  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+4. パラメーターを指定せずに Web アクション `hello` を呼び出すかテストします。`<apihost>` 変数と `<namespace>` 変数を置き換えます。`<apihost>` を取得するには、`ibmcloud fn property get--apihost` を実行します。`<apihost>` の例: `us-south.functions.cloud.ibm.com`。
+
+  IAM 対応の名前空間の場合、`<namespace>` 変数を名前空間 ID に置き換えます。この ID を取得するには、`ibmcloud fn namespace get <namespace_name>` を実行します。
+  {: note}
+
+  a. 以下のいずれかの方法で Web アクションをテストできます。 
+    * ブラウザーで、`https://<apihost>/api/v1/web/<namespace>/demo/hello` という構造を使用して URL を開きます。
+    * cURL コマンドを使用してアクションをテストします。
+      ```
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+      ```
+      {: pre}
+
+    * `wget` コマンドを使用してアクションをテストします。  
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+      ```
+      {: pre}
+
+  b. アクション・コードは、以下のディクショナリーを返します。
+    ```
+    {body: `<html><body><h3>${msg}</h3></body></html>`}
+    ``` 
+    {: screen}
+    
+  以下のコマンドを使用して `body` プロパティーのみを返すという方法で、アクションをテストすることもできます。
+  {: #projecting_fields}
+
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
+    ```
+    {: pre}
+
+    **出力例**
+
+    `<name>` パラメーターが指定されていないので、以下のメッセージが返されます。
+    ```
+    <html><body><h3>You did not tell me who you are.</h3></body></html>
+    ```
+    {: screen}
+
+5. 次に、`<name>` パラメーターの定義を試みます。以下のいずれかの方法で、`<name>` パラメーターを指定してアクションをテストします。
+  * ブラウザーで `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` を開きます。 
+  * cURL コマンドを使用してアクションをテストします。
+
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
+    ```
+    {: pre}
+  * `wget` コマンドを使用してアクションをテストします。  
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
+    ```
+    {: pre}
+
+  **出力例**
+  ```
+  <html><body><h3>Hello, Jane!</h3></body></html>
+  ```
+  {: screen}
 
 
-## HTTP コンテキスト
+**次のステップ**
+
+Web アクション `hello` の URL を Web アプリに追加してテストします。
+
+### Web アクションの JSON プロパティー
+{: #web_action_properties}
+
+HTTP 応答のデフォルトの `Content-Type` は `application/json` で、本体は任意の使用可能な JSON 値にすることができます。`Content-Type` が `application/json` でない場合は、アクション・コードの `headers` 内に `Content-Type` を指定する必要があります。
+
+アクションの[結果のサイズの限度](/docs/openwhisk?topic=cloud-functions-limits)に達すると、応答は失敗します。アクションの結果が 5 MB より大きいことが判明している場合は、[オブジェクト・ストア](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)をセットアップします。
+
+| JSON プロパティー | 説明 |
+| --- | --- |
+| `headers`| キーがヘッダー名であり、値がストリング値、数値、またはブール値である JSON オブジェクト。 1 つのヘッダーで複数の値を送信する場合、ヘッダーの値は、複数の値の JSON 配列になります。 デフォルトで設定されるヘッダーはありません。 |
+| `statusCode` | 有効な HTTP 状況コード。 本体コンテンツが存在する場合、デフォルトは `200 OK` です。 本体コンテンツが存在しない場合、デフォルトは `204 No Content` です。 |
+| `body` | プレーン・テキスト、JSON オブジェクトや配列、または Base64 エンコードのストリング (バイナリー・データの場合) のいずれかであるストリング。 body が `null`、空ストリング `""`、または未定義の場合、本体は空であると見なされます。 デフォルトは空の本体です。 |
+
+アクションで指定されたヘッダー、状況コード、または本体があれば、[コントローラー](/docs/openwhisk?topic=cloud-functions-about#about_controller)はそれを、要求や応答を終了する HTTP クライアントに渡します。 アクション結果の `headers` で `Content-Type` ヘッダーが宣言されていない場合、本体は、非ストリング値であれば `application/json`、その他の場合は `text/html` として解釈されます。 `Content-Type` ヘッダーが定義されている場合、コントローラーは応答がバイナリー・データなのかプレーン・テキストなのかを判別し、必要に応じて base64 デコーダーを使用してストリングをデコードします。 本体が正しくデコードされていない場合は、クライアントにエラーが返されます。
+
+Web アクションの所有者が、すべてのアクティベーション・レコードを所有し、アクションがどのように呼び出されたのかに関係なくシステムでのアクションの実行のコストを負担します。
+{: note}
+
+#### 保護されたパラメーター
+アクション・パラメーターは保護されており、変更する方法はアクションを更新すること以外にはありません。Web アクションを有効にするために、パラメーターは自動的にファイナライズされます。
+
+```
+ibmcloud fn action create /<namespace>/demo/hello hello.js --parameter name Jane --web true
+```
+{: pre}
+
+
+これらの変更の結果、`name` が `Jane` にバインドされ、final アノテーションがあるため照会パラメーターまたは本体パラメーターでオーバーライドすることはできません。 この設計は、意図的または偶発的にこの値を変更しようとする照会パラメーターまたは本体パラメーターからアクションを保護します。
+
+### Web アクションを使用した HTTP リダイレクトの実行
+{: #http_redirect}
+Web アプリケーションでこのフィーチャーを使用して、ユーザーを新しいバージョンのサイトにリダイレクトすることもできます。
+
+**始める前に** [Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
+
+HTTP リダイレクトを実行する Web アクションを作成するには、以下のようにします。
+
+1. コードを `hello.js` として保存します。
+
+  ```javascript
+  function main() {
+    return {
+      headers: { location: 'https://cloud.ibm.com/openwhisk/' },
+      statusCode: 302
+    }
+  }
+  ```
+  {: codeblock}
+
+2. 新しいバージョンの `hello.js` コードで Web アクション `hello` を更新します。`<filepath>` を `hello.js` ファイルのファイル・パスに置き換えます。
+
+  ```
+  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. Web アクション `hello` をテストします。`<apihost>` 変数と `<namespace>` 変数を置き換えます。以下のいずれかの方法で Web アクションをテストできます。
+
+  * ブラウザーで URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` を開きます。 
+  * 以下の cURL コマンドを実行します。
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * 以下の `wget` コマンドを実行します。
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+  **結果の例** 
+  
+  この Web アクションの例では、ブラウザーを [{{site.data.keyword.openwhisk_short}} のダッシュボード](https://cloud.ibm.com/openwhisk/){: external}にリダイレクトします。
+
+### Web アクションを使用した Cookie の設定
+{: #multiple_cookie}
+Web アプリケーションでこのフィーチャーを使用して、ログイン成功後に JSON Web トークンをセッション Cookie として保管することもできます。
+
+複数の Cookie を設定する Web アクションを作成するには、以下のようにします。
+
+**始める前に** [Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
+
+1. コードを `hello.js` として保存します。
+  ```javascript
+  function main() {
+    return {
+      headers: {
+        'Set-Cookie': [
+          'UserID=Jane; Max-Age=3600; Version=',
+        'SessionID=asdfgh123456; Path = /'
+        ],
+      'Content-Type': 'text/html'
+      },
+    statusCode: 200,
+    body: '<html><body><h3>hello</h3></body></html>' }
+  }
+  ```
+  {: codeblock}
+
+2. 新しいバージョンの `hello.js` コードで Web アクション `hello` を更新します。`<filepath>` を `hello.js` ファイルのファイル・パスに置き換えます。
+
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+    
+3. アクションをテストする前に、ブラウザーの Cookie を消去します。
+
+4. ブラウザーで URL を開いて、Web アクション `hello` をテストします。`<apihost>` 変数と `<namespace>` 変数を置き換え、`https://<apihost>/api/v1/web/<namespace>/demo/hello`を開きます。`<apihost>` の例: `us-south.functions.cloud.ibm.com`。
+
+**結果
+**
+
+ブラウザーの開発者用ツールで Cookie `UserID=Jane` と `SessionID=asdfgh123456` が設定されます。
+
+
+### Web アクションを使用してイメージを返す
+{: #return_image}
+Web アプリケーションでこのフィーチャーを使用して、ユーザー・ロケールに基づいて国旗のイメージを返すこともできます。
+
+**始める前に** 
+
+[Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
+
+`image/png` を返す Web アクションを作成するには、以下のようにします。 
+
+1. コードを `hello.js` として保存します。
+
+  ```javascript
+  function main() {
+      let png = '<base 64 encoded string';
+      return { headers: { 'Content-Type': 'image/png' },
+              statusCode: 200,
+              body: png };
+  }
+  ```
+  {: codeblock}
+
+2. 新しいバージョンの `hello.js` コードで Web アクション `hello` を更新します。`<filepath>` を `hello.js` ファイルのファイル・パスに置き換えます。
+
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. ブラウザーでアクションをテストするか、cURL コマンドを使用してアクションをテストします。`<apihost>` 変数と `<namespace>` 変数を置き換えます。以下のいずれかの方法で Web アクションをテストできます。
+
+  * ブラウザーで URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` を開きます。 
+  * 以下の cURL コマンドを実行します。
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * 以下の `wget` コマンドを実行します。
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+
+
+### Web アクションを使用して JSON を返す
+{: #return_json}
+Web アプリケーションでこのフィーチャーを使用して、ユーザー IP 情報の JSON オブジェクトを返すこともできます。
+
+**始める前に** 
+
+[Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
+
+`application/json` を返す Web アクションを作成するには、以下のようにします。
+
+1. コードを `hello.js` として保存します。
+  ```javascript
+  function main(params) {
+      return {
+          statusCode: 200,
+          headers: { 'Content-Type': 'application/json' },
+          body: params
+      };
+  }
+  ```
+  {: codeblock}
+
+2. 新しいバージョンの `hello.js` コードで Web アクション `hello` を更新します。`<filepath>` を `hello.js` ファイルのファイル・パスに置き換えます。
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. ブラウザーでアクションをテストするか、cURL コマンドを使用してアクションをテストします。`<apihost>` 変数と `<namespace>` 変数を置き換えます。以下のいずれかの方法で Web アクションをテストできます。
+  * ブラウザーで URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` を開きます。 
+  * 以下の cURL コマンドを実行します。
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * 以下の `wget` コマンドを実行します。
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+    **出力例**
+
+    ```
+    {
+      "__ow_headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip",
+        "cdn-loop": "cloudflare",
+        "cf-connecting-ip": "XX.XXX.XXX.XXX",
+        "cf-ipcountry": "US",
+        "cf-ray": "4d9f3e442a86cf28-IAD",
+        "cf-visitor": "{\"scheme\":\"https\"}",
+        "host": "<apihost>",
+        "user-agent": "curl/7.54.0",
+        "x-forwarded-for": "XX.XXX.XX.XXX, XX.XXX.XX.XXX",
+        "x-forwarded-host": "<apihost>",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-global-k8fdic-transaction-id": "11fd03071bd0841d3a00f52354ab880f",
+        "x-real-ip": "XXX.XX.XX.XX",
+        "x-request-id": "11fd03071bd0841d3a00f52354ab880f"
+      },
+      "__ow_method": "get",
+      "__ow_path": ""
+    }
+    ```
+    {: screen}
+
+
+### HTTP コンテキスト
 {: #actions_web_context}
 
-すべての Web アクションは、起動されると、アクション入力引数へのパラメーターとして、HTTP 要求の詳細を受け取ります。
+すべての Web アクションは、起動されると、アクション引数への入力パラメーターとして、HTTP 要求の詳細を受け取ります。
 
-以下の HTTP パラメーターを参照してください。
-
-- `__ow_method` (タイプ: ストリング): 要求の HTTP メソッド。
-- `__ow_headers` (タイプ: ストリング間マップ): 要求ヘッダー。
-- `__ow_path` (タイプ: ストリング): マッチングされていない要求パス (マッチングは、アクションの拡張子が取り込まれると停止します)。
-- `__ow_user` (タイプ: ストリング): {{site.data.keyword.openwhisk_short}} 認証済みサブジェクトを識別する名前空間
-- `__ow_body` (タイプ: ストリング): コンテンツがバイナリーの場合は base64 エンコード・ストリング、それ以外の場合はプレーン・ストリングの要求本体エンティティー。
-- `__ow_query` (タイプ: ストリング): 構文解析されていないストリングである、要求からの照会パラメーター。
+| HTTP パラメーター | タイプ | 説明 |
+| --- | --- | --- |
+| `__ow_method` | ストリング | 要求の HTTP メソッド。 |
+| `__ow_headers` | 文字列間のマップ | 要求ヘッダー。|
+| `__ow_path` | ストリング | マッチングされていない要求パス (マッチングは、アクションの拡張子が取り込まれると停止します)。 |
+| `__ow_user` | ストリング | {{site.data.keyword.openwhisk_short}} 認証済みサブジェクトを識別する名前空間。 |
+| `__ow_body` | ストリング | コンテンツがバイナリー・ファイルの場合は base64 エンコード・ストリング、それ以外の場合はプレーン・ストリングの要求本体エンティティー。 |
+| `__ow_query` | ストリング | 構文解析されていないストリングである、要求からの照会パラメーター。 |
 
 要求は、指定された `__ow_` パラメーターのいずれもオーバーライドできません。 これを行うと、要求は失敗し、状況は 400 の Bad Request になります。
 
-`__ow_user` は、Web アクションが[認証を必要とするものとしてアノテーションが付けられている](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)場合にのみ存在し、これにより、Web アクションは独自の許可ポリシーを実装することができます。 `__ow_query` は、Web アクションが[「未加工」 HTTP 要求 ](#actions_web_raw_enable)を処理することを選択した場合にのみ使用可能です。 これは、URI からの解析される照会パラメーターを含むストリングです (`&` で分離)。 `__ow_body` プロパティーは、「未加工」HTTP 要求の中、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。 それ以外の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会および本体のパラメーターを受け取ります。 本体パラメーターは照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
+`__ow_user` は、Web アクションが[認証を必要とするものとしてアノテーションが付けられている](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)場合にのみ存在し、これにより、Web アクションは独自の許可ポリシーを実装することができます。 `__ow_query` は、Web アクションが[「未加工」 HTTP 要求 ](#actions_web_raw_enable)を処理することを選択した場合にのみ使用可能です。 `__ow_query` は、URI から解析される照会パラメーターを含むストリングです (`&` で分離)。`__ow_body` プロパティーは、未加工 HTTP 要求の中、または HTTP 要求エンティティーが JSON オブジェクトでも形式データでもない場合に存在します。 それ以外の場合、Web アクションは、アクション引数内の第 1 クラス・プロパティーとして、照会および本体のパラメーターを受け取ります。 本体パラメーターは照会パラメーターより優先され、照会パラメーターはアクション・パラメーターおよびパッケージ・パラメーターより優先されます。
 
-## HTTPS エンドポイント・サポート
+### HTTPS エンドポイント・サポート
 {: #actions_web_endpoint}
 
-サポートされる SSL プロトコル: TLS 1.2、TLS 1.3 ([ドラフト・バージョン 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+サポートされる SSL プロトコル: TLS 1.2、TLS 1.3 ([ドラフト・バージョン 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18){: external})
 
-サポートされない SSL プロトコル: SSLv2、SSLv3、TLS 1.0、TLS 1.1
+### Web アクションの応答コンテンツの変更
+{: #extra_features}
+[コンテンツ拡張子](#actions_web_extra)を使用して、さまざまなコンテンツ・タイプを返すように Web アクションの応答コンテンツを変更できます。
+{: shortdesc}
 
-## 追加の機能
-{: #actions_web_extra}
+**始める前に**
 
-Web アクションは、以下を含む追加機能を提供します。
+[Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
 
-- `コンテンツ拡張子`: 要求は、その要求にとって望ましいコンテンツ・タイプを、`.json`、`.html`、`.http`、`.svg`、または `.text` として指定する必要があります。 タイプは、URI 内のアクション名に拡張子を追加することで指定されます。これによって、例えば、アクション `/guest/demo/hello` は `/guest/demo/hello.http` として示され、HTTP 応答を受け取ります。 便宜上、拡張子が検出されない場合は `.http` 拡張子が想定されます。
-- `結果からのフィールドの射影`: アクション名に続くパスを使用して、応答の 1 つ以上のレベルを射影します。
-`/guest/demo/hello.html/body`。 この機能により、ディクショナリー `{body: "..." }` を返すアクションは `body` プロパティーを射影して、代わりにそのストリング値を直接戻すことができます。 射影パスは、絶対パス・モデル (例: XPath) に従います。
-- `入力としての照会および本体のパラメーター`: アクションは、照会パラメーターと要求本体のパラメーターを受け取ります。 パラメーターをマージするときの優先順位は、パッケージ・パラメーター、アクション・パラメーター、照会パラメーター、および本体パラメーターです。 これらの各パラメーターは、オーバーラップが発生すると、前の値をオーバーライドできます。 例えば、`/guest/demo/hello.http?name=Jane` は、引数 `{name: "Jane"}` をアクションに渡します。
-- `形式データ`: 標準 `application/json` に加えて、Web アクションは、入力としてデータ `application/x-www-form-urlencoded data` から、エンコードされた URL を受け取ることができます。
-- `複数の HTTP 動詞を使用するアクティベーション`: Web アクションは、HTTP メソッド (`GET`、`POST`、`PUT`、`PATCH`、および `DELETE`、ならびに `HEAD` および `OPTIONS`) のどれを通しても起動できます。
-- `非 JSON 本体および未加工 HTTP エンティティーの処理`: Web アクションは、JSON オブジェクト以外の HTTP 要求本体を受け入れることができ、不透明値のような値 (バイナリーではない場合はプレーン・テキスト、バイナリーの場合は base64 エンコード・ストリング) を常に受け取ることを選択できます。
+Web アクションの応答を変更するには以下のようにします。
 
-以下の例では、Web アクションでこれらの機能を使用する方法を簡単に説明します。 以下の本体を持つアクション `/guest/demo/hello` を考えてみます。
-```javascript
-function main(params) {
-    return { response: params };
+1. 以下のコードを `hello.js` として保存します。
+
+  ```javascript
+  function main(params) {
+      return { response: params };
 }
-```
+  ```
+  {: codeblock}
 
-このアクションが Web アクションとして呼び出されるときに、結果と異なるパスを射影することによって、Web アクションの応答を変更できます。
+2. 新しいバージョンの `hello.js` コードを使用して、Web アクション `hello` を更新します。`<filepath>` を `hello.js` ファイルのファイル・パスに置き換えます。
 
-例えば、オブジェクト全体を返し、アクションが受け取る引数を確認するには、以下のようにします。
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
-```
-{: pre}
+  ```bash
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
 
-出力例:
-```
-{
-  "response": {
+3. ブラウザーでアクションをテストするか、cURL コマンドを使用してアクションをテストします。`<apihost>` 変数と `<namespace>` 変数を置き換えます。
+
+  a. 以下のいずれかの方法で JSON を返します。
+    * Web ブラウザーで `https://<apihost>/api/v1/web/<namespace>/demo/hello.json` を開きます。 
+    * 以下の cURL コマンドを実行します。
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json
+      ```
+      {: pre}
+    * 以下の `wget` コマンドを実行します。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json
+      ```
+      {: pre}
+
+      **出力例**
+
+      ```
+      {
+        "response": {
+          "__ow_method": "get",
+    "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
+
+  b. 照会パラメーターを使用して、アクションをテストします。以下のいずれかの方法でアクションをテストできます。
+  {: #query_test}
+
+    * 以下の cURL コマンドを実行します。
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+    * 以下の `wget` コマンドを実行します。
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+      **出力例**
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "get",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-照会パラメーターで実行するには、以下のコマンド例を参照してください。
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
- ```
-{: pre}
+  c. フォーム・データを使用して Web アクションをテストすることもできます。以下のいずれかの方法で Web アクションをテストできます。
+  {: #form_data}
+  
+    * 以下の cURL コマンドを実行します。
 
-出力例:
-```
-{
-  "response": {
-    "name": "Jane",
-    "__ow_method": "get",
-    "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
+      
+    * 以下の `wget` コマンドを実行します。
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
 
-次のように形式データを使用して実行することもできます。
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
- ```
-{: pre}
+      **出力例**
 
-出力例:
-```
-{
-  "response": {
-    "name": "Jane",
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "10",
-      "content-type": "application/x-www-form-urlencoded",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "10",
+            "content-type": "application/x-www-form-urlencoded",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-JSON オブジェクトの場合、以下のコマンドを実行します。
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
-```
-{: pre}
+  d. 以下のコマンドを実行して、JSON オブジェクトを指定できます。以下のいずれかの方法で Web アクションをテストできます。
+    * 以下の cURL コマンドを実行します。
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
+      
+    * 以下の `wget` コマンドを実行します。
+        ```
+        wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
 
-出力例:
-```
-{
-  "response": {
-    "name": "Jane",
+      **出力例**
+
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "15",
-      "content-type": "application/json",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "15",
+            "content-type": "application/json",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-名前を (テキストとして) 射影するには、以下のコマンドを実行します。
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
-```
-{: pre}
+  e. 以下のいずれかの方法で、`name` 値をテキストとして返すこともできます。
+  * 以下の cURL コマンドを実行します。
 
-出力例:
-```
-Jane
-```
-{: screen}
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.text/response/name?name=Jane
+      ```
+      {: pre}
+  * 以下の `wget` コマンドを実行します。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.text/response/name?name=Jane
+      ```
+      {: pre}
 
-便宜上、照会パラメーター、形式データ、および JSON オブジェクト本体エンティティーはすべてディクショナリーとして扱われ、それぞれの値は、アクション入力プロパティーとして直接アクセス可能です。 より直接的に HTTP 要求エンティティーを処理しようとする Web アクションの場合、あるいは Web アクションが JSON オブジェクトではないエンティティーを受け取る場合には、この動作は当てはまりません。
+    **出力例**
 
-前に示したように、「text」の content-type を使用した以下の例を参照してください。
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
-```
-{: pre}
+    ```
+    Jane
+    ```
+    {: screen}
 
-出力例:
-```
-{
-  "response": {
-    "__ow_method": "post",
+    標準のアクションでは、照会パラメーター、フォーム・データ、JSON オブジェクト本体エンティティーはすべてディクショナリーとして扱われ、それぞれの値は、アクション入力プロパティーとして直接アクセス可能です。HTTP 要求エンティティーを処理する Web アクションの場合、あるいは Web アクションが JSON オブジェクトではないエンティティーを受け取る場合には、この動作は当てはまりません。
+    {: note}
+
+  f. 以下のいずれかの方法で `Content-Type` を設定できます。
+  * 以下の cURL コマンドを実行します。  
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+      ```
+      {: pre}
+    
+  * 以下の `wget` コマンドを実行します。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+      ```
+      {: pre}
+
+    **出力例**
+
+    ```
+    {
+      "response": {
+        "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "4",
-      "content-type": "text/plain",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": "",
-    "__ow_body": "Jane"
-  }
-}
-```
-{: screen}
-
-## コンテンツ拡張子
-{: #actions_web_ext}
-
-Web アクションを呼び出すには通常、コンテンツ拡張子が必要です。 拡張子がない場合は、デフォルトとして `.http` が想定されます。 射影パスは、`.json` と `.http` の拡張子には必要ありませんが、`.html`、`.svg`、`.text` の拡張子には必要です。 便宜上、デフォルトのパスは、拡張子名と一致すると想定されます。 Web アクションを起動して、`.html` 応答を受け取るには、アクションは、`html` という名前の最上位プロパティーを含む JSON オブジェクトを用いて応答する必要があります (または、応答は明示的パスに存在する必要があります)。 言い換えると、`/guest/demo/hello.html` は、`/guest/demo/hello.html/html` のように、`html` プロパティーを明示的に射影することと等価です。 アクションの完全修飾名には、そのパッケージ名が含まれている必要があります。このパッケージ名は、アクションが名前付きパッケージ内にない場合は `default` になります。
-
-## 保護されたパラメーター
-{: #actions_web_protect}
-
-アクション・パラメーターは保護され、変更不可能として処理されます。 Web アクションを有効にするために、パラメーターは自動的にファイナライズされます。
-```
-ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
-```
-{: pre}
-
-これらの変更の結果、`name` が `Jane` にバインドされ、final アノテーションがあるため照会パラメーターまたは本体パラメーターでオーバーライドすることはできません。 この設計は、意図的または偶発的にこの値を変更しようとする照会パラメーターまたは本体パラメーターからアクションを保護します。
+          "accept": "*/*",
+          "connection": "close",
+          "content-length": "4",
+          "content-type": "text/plain",
+          "host": "172.17.0.1",
+          "user-agent": "curl/7.43.0"
+        },
+        "__ow_path": "",
+        "__ow_body": "Jane"
+      }
+    }
+    ```
+    {: screen}
 
 ## Web アクションの保護
 {: #actions_web_secure}
 
-デフォルトでは、Web アクションの呼び出し URL を持っていれば誰でも Web アクションを呼び出すことができます。 Web アクションを保護するには、[Web アクションのアノテーション](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) `require-whisk-auth` を使用します。`require-whisk-auth` アノテーションが `true` に設定されている場合、アクションは、呼び出し要求の基本許可資格情報をアクション所有者の whisk 認証キーに照らして認証します。 数字または大/小文字の区別があるストリングに設定されている場合、アクションの呼び出し要求には、それと同じ値が設定された `X-Require-Whisk-Auth` ヘッダーが含まれていなければなりません。 保護された Web アクションは、資格情報の検証が失敗した場合はメッセージ `Not Authorized` を返します。
+**始める前に** [Web アクションの作成](#actions_web_example)のステップをすべて実行して、`demo` パッケージと Web アクション `hello` を作成します。
 
-代替方法として、`--web-secure` フラグを使用して `require-whisk-auth` アノテーションを自動的に設定することもできます。  `true` に設定すると、`require-whisk-auth` アノテーション値として乱数が生成されます。 `false` に設定すると、`require-whisk-auth` アノテーションは削除されます。  その他の値に設定すると、その値が `require-whisk-auth` アノテーション値として使用されます。
+デフォルトでは、誰でも呼び出し URL を使用して Web アクションを呼び出すことができます。以下のいずれかの方法で、[Web アクションのアノテーション](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) `require-whisk-auth` を使用して Web アクションを保護できます。
+  1. `require-whisk-auth` アノテーションを `true` に設定します。`require-whisk-auth` アノテーションが `true` に設定されている場合、Web アクションは、呼び出し要求の基本許可資格情報を Web アクション所有者の whisk 認証キーに照らして認証します。 数字または大/小文字の区別があるストリングに設定されている場合、Web アクションの呼び出し要求には、この同じ数字または大/小文字の区別があるストリングに設定された `X-Require-Whisk-Auth` ヘッダーが含まれていなければなりません。保護された Web アクションは、資格情報の検証が失敗した場合はメッセージ `Not Authorized` を返します。
 
-**--web-secure** の使用例:
-```bash
-ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
-```
-{: pre}
+  2. `--web-secure` フラグを使用して、`require-whisk-auth` アノテーションを自動的に設定できるようにします。`--web-secure` フラグを `true` に設定すると、`require-whisk-auth` アノテーション値として乱数が生成されます。`false` に設定すると、`require-whisk-auth` アノテーションは削除されます。  その他の値に設定すると、その値が `require-whisk-auth` アノテーション値として使用されます。
 
-**require-whisk-auth** の使用例:
-```bash
-ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
-```
-{: pre}
+セキュア Web アクションをテストするには、以下のようにします。
 
-**X-Require-Whisk-Auth** の使用例:
-```bash
-curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: my-secret"
-```
-{: pre}
+1. 以下の JavaScript コードを `hello.js` として保存します。
+  ```javascript
+  function main({name}) {
+    var msg = 'You did not tell me who you are.';
+  if (name) {
+      msg = `Hello, ${name}!`
+    }
+    return {body: `<html><body><h3>${msg}</h3></body></html>`}
+  }
+  ```
+  {: codeblock}
 
-Web アクションの所有者がすべてのアクティベーション・レコードを所有し、アクションがどのように呼び出されたのかに関係なくシステムでのアクションの実行のコストを負担することに留意することは重要です。
+2. 新しいバージョンの `hello.js` コードを使用して Web アクション `hello` を更新し、`--web secure` フラグを `true` に設定します。
+  ```bash
+  ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true
+  ```
+  {: pre}
 
-## Web アクションの無効化
-{: #actions_web_disable}
+3. ランダムに生成された `require-whisk-auth` 値を表示する Web アクション `hello` を取得します。
 
-Web API (`https://openwhisk.bluemix.net/api/v1/web/`) を介した Web アクションの起動を無効にするには、`--web` フラグに値 `false` または `no` を渡して、CLI で アクションを更新します。
-```
-ibmcloud fn action update /guest/demo/hello hello.js --web false
-```
-{: pre}
+  ```bash
+  ibmcloud fn action get demo/hello
+  ```
+  {: pre}
+
+    **出力例**
+
+    `require-whisk-auth` 値は `7819991076995522` に設定されました。
+    ```
+    {
+      "namespace": "<namespace>/demo",
+      "name": "hello",
+      "version": "0.0.34",
+      "exec": {
+          "kind": "nodejs:10",
+          "binary": false
+      },
+      "annotations": [
+          {
+              "key": "web-export",
+              "value": true
+          },
+          {
+              "key": "raw-http",
+              "value": false
+          },
+          {
+              "key": "final",
+              "value": true
+          },
+          {
+              "key": "require-whisk-auth",
+              "value": 7819991076995522
+          },
+          {
+              "key": "exec",
+              "value": "nodejs:10"
+          }
+      ],
+    "limits": {
+          "timeout": 60000,
+          "memory": 256,
+          "logs": 10,
+          "concurrency": 1
+      },
+    "publish": false
+}
+    ```
+    {: screen}
+
+認証が作動していることをテストするには、次のようにします。
+
+1. `X-Require-Whisk-Auth` パラメーターを設定せずに Web アクション `hello` をテストして、認証が必須であることを検証します。このテストの結果は、エラーになります。以下のいずれかの方法で Web アクションをテストできます。
+
+  * cURL コマンドを使用して Web アクションをテストします。
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+      ```
+      {: pre}
+    
+  * `wget` コマンドを使用して Web アクションをテストします。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+      ```
+      {: pre}
+
+   **出力例**
+
+    ```
+      {
+      "code": "4c4423556547f6ac764ee192d4ed27a6",
+      "error": "Authentication is possible but has failed or not yet been provided."
+    }
+    ```
+    {: screen}
+
+    `X-Require-Whisk-Auth` 値を設定しなかったので、呼び出しは失敗します。
+    {: note}
+
+2. 今度は、ランダムに生成された `X-Require-Whisk-Auth` 値を設定して Web アクション `hello` をテストします。`<apihost>` 値と `<namespace>` 値を置き換えます。`<my-secret>` 値を、ステップ 3 で作成した、ランダムに生成された数値に置き換えます。以下のいずれかの方法で Web アクションをテストできます。
+  * cURL コマンドを使用して Web アクションをテストします。
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
+  * `wget` コマンドを使用して Web アクションをテストします。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
+  **出力例**
+    
+    ```
+    {
+    "body": "<html><body><h3>Hello, Jane!</h3></body></html>"
+    }
+    ```
+    {: screen}
+
+カスタムの `require-whisk-auth` 値を使用して Web アクションをテストするには、以下のようにします。
+
+1. 独自の `require-whisk-auth` 値を使用して Web アクション `hello` を更新します。続いて、呼び出し時に `X-Require-Whisk-Auth` 値を指定して Web アクションのテストを試みます。
+
+  a. `require-whisk-auth` 値を設定します。`<my-secret>` は、大/小文字を区別する認証トークンです。
+    ```bash
+    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true --require-whisk-auth <mysecret>
+    ```
+    {: pre}
+  
+  b. `<my-secret>` 値を含めて、Web アクションをテストします。以下のいずれかの方法で Web アクションをテストできます。
+  * cURL コマンドを使用して Web アクションをテストします。
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+  * `wget` コマンドを使用してアクションをテストします。
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
 
 ## 未加工 HTTP 処理
 {: #actions_web_raw}
 
-Web アクションは、アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。 この処理は、`raw-http` [アノテーション](/docs/openwhisk?topic=cloud-functions-annotations)を介して行います。 前述の同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと、HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+Web アクションは、Web アクション入力に使用できる第 1 クラス・プロパティーに JSON オブジェクトをプロモーションせずに、着信 HTTP 本体を直接解釈して処理することを選択できます (例: `args.name` 対 `args.__ow_query` の構文解析)。 この処理は、`raw-http` [アノテーション](/docs/openwhisk?topic=cloud-functions-annotations)を介して行います。 前述の同じ例を使用しますが、今度は「未加工」HTTP Web アクションとして使用し、以下のように、照会パラメーターと、HTTP 要求本体内の JSON 値の両方として `name` を受け取ります。
+```bash
+curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
-出力例:
+
+**出力例**
 ```
 {
   "response": {
@@ -420,110 +835,106 @@ curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?n
 ```
 {: screen}
 
-OpenWhisk は、[Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala) フレームワークを使用して、どのコンテンツ・タイプがバイナリーであり、どれがプレーン・テキストであるかを[判別](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html)します。
+{{site.data.keyword.openwhisk_short}} は、[Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala){: external} フレームワークを使用して、[どのコンテンツ・タイプがバイナリー・ファイルであり、どれがプレーン・テキストであるかを判別](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html){: external}します。
 
 ### 未加工 HTTP 処理の有効化
 {: #actions_web_raw_enable}
 
-未加工 HTTP Web アクションは、`--web` フラグで値 `raw` を使用して有効化します。
-```
-ibmcloud fn action create /guest/demo/hello hello.js --web raw
-```
-{: pre}
-
-### 未加工 HTTP 処理の無効化
-{: #actions_web_raw_disable}
-
-未加工 HTTP を無効にするには、`--web` フラグに値 `false` または `no` を渡します。
-```
-ibmcloud fn update create /guest/demo/hello hello.js --web false
+`--web` を `raw` に設定して、未加工 HTTP の Web アクションを作成できます。
+```bash
+ibmcloud fn action create demo/hello /<filepath>/hello.js --web raw
 ```
 {: pre}
 
 ### バイナリーの本体コンテンツを Base64 からデコード
 {: #actions_web_decode}
 
-未加工 HTTP コンテンツが処理されるとき、要求の `Content-Type` がバイナリーの場合、`__ow_body` コンテンツは、Base64 でエンコードされます。 以下の関数は、Node、Python、および Swift で本体コンテンツをデコードする方法を示しています。 単純に、メソッドをファイルに保存し、保存された成果物を使用する未加工 HTTP Web アクションを作成し、その後、Web アクションを起動します。
+未加工 HTTP コンテンツが処理されるとき、要求の `Content-Type` がバイナリー形式の場合、`__ow_body`コンテンツは、Base64 でエンコードされます。以下の関数は、Node、Python、および Swift で本体コンテンツをデコードする方法を示しています。
 
-#### Node
-{: #actions_web_decode_js}
+1. 優先言語のサンプル・コードを、`decode.<ext>` と呼ばれるファイルに保存します。`<ext>` を、優先言語のサンプル・コードのファイル拡張子に置き換えます。
 
-```javascript
-function main(args) {
-    decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
-    return {body: decoded}
-}
-```
-{: codeblock}
+  **Node**
+  {: #actions_web_decode_js}
 
-#### Python
-{: #actions_web_decode_python}
+  ```javascript
+  function main(args) {
+      decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
+      return {body: decoded}
+  }
+  ```
+  {: codeblock}
 
-```python
-def main(args):
+  **Python**
+  {: #actions_web_decode_python}
+
+  ```python
+  def main(args):
     try:
         decoded = args['__ow_body'].decode('base64').strip()
         return {"body": decoded}
     except:
         return {"body": "Could not decode body from Base64."}
-```
-{: codeblock}
+  ```
+  {: codeblock}
 
-#### Swift
-{: #actions_web_decode_swift}
+  **Swift**
+  {: #actions_web_decode_swift}
 
-```swift
-extension String {
-    func base64Decode() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
+  ```swift
+  extension String {
+      func base64Decode() -> String? {
+          guard let data = Data(base64Encoded: self) else {
+              return nil
+          }
 
-        return String(data: data, encoding: .utf8)
-    }
-}
+          return String(data: data, encoding: .utf8)
+      }
+  }
 
 func main(args: [String:Any]) -> [String:Any] {
-    if let body = args["__ow_body"] as? String {
-        if let decoded = body.base64Decode() {
-            return [ "body" : decoded ]
+      if let body = args["__ow_body"] as? String {
+          if let decoded = body.base64Decode() {
+              return [ "body" : decoded ]
         }
+      }
+
+      return ["body": "Could not decode body from Base64."]
+  }
+  ```
+  {: codeblock}
+
+2. 以下のコマンドを実行して、サンプル・コードを使用して未加工 HTTP の Web アクションを作成します。この例では、Node 関数は `decode.js` として保管されます。ファイル・パスを `decode` ファイルのファイル・パスに置き換え、使用したサンプル・コードの拡張子と一致するようにファイル拡張子を更新します。
+
+  ```bash
+  ibmcloud fn action create decode <filepath>/decode.js --web raw
+  ```
+  {: pre}
+
+  **出力例**
+  ```
+  ok: created action decode
+  ```
+  {: screen}
+
+3. 以下の cURL コマンドを実行して、`decode` アクションをテストします。
+    ```bash
+    curl -k -H "content-type: application" -X POST -d "Decoded body" https://<apihost>/api/v1/web/<namespace>/default/decode.json
+    ```
+    {: pre}
+
+  **出力例**
+    ```
+    {
+      "body": "Decoded body"
     }
-
-    return ["body": "Could not decode body from Base64."]
-}
-```
-{: codeblock}
-
-例として、この Node 関数を `decode.js` として保存し、以下のコマンドを実行します。
-```
-ibmcloud fn action create decode decode.js --web raw
-```
-{: pre}
-
-出力例:
-```
-ok: created action decode
-```
-{: screen}
-
-```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
-```
-{: pre}
-
-出力例:
-```
-{
-  "body": "Decoded body"
-}
-```
-{: screen}
+    ```
+    {: screen}
 
 ## OPTIONS 要求
 {: #actions_web_options}
 
-デフォルトで、Web アクションに対して OPTIONS 要求を行うと、自動的に CORS ヘッダーが応答ヘッダーに追加されます。 これらのヘッダーにより、すべてのオリジン、および options、get、delete、post、put、head、および patch の各 HTTP 動詞が可能になります。
+デフォルトで、Web アクションに対して `OPTIONS` 要求を行うと、自動的に CORS ヘッダーが応答ヘッダーに追加されます。 これらのヘッダーにより、すべてのオリジン、および `OPTIONS`、`GET`、`DELETE`、`POST`、`PUT`、`HEAD`、および `PATCH` の各 HTTP 動詞が可能になります。
+{: shortdesc}
 
 以下のヘッダーを参照してください。
 ```
@@ -532,128 +943,73 @@ Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
 Access-Control-Allow-Headers: Authorization, Content-Type
 ```
 
-あるいは、OPTIONS 要求は、Web アクションによって手動で処理することもできます。 このオプションを有効にするには、`web-custom-options` アノテーションを `true` の値に設定して Web アクションに追加します。 このフィーチャーが有効になると、CORS ヘッダーは自動的に要求応答に追加されません。 代わりに、開発者の責任で、希望するヘッダーをプログラマチックに追加することになります。
+あるいは、`OPTIONS` 要求は、Web アクションによって手動で処理することもできます。 このオプションを有効にするには、`web-custom-options` アノテーションを `true` の値に設定して Web アクションに追加します。 このフィーチャーが有効になると、CORS ヘッダーは自動的に要求応答に追加されません。 代わりに、ヘッダーをプログラマチックに付加する必要があります。
 
-OPTIONS 要求に対するカスタム応答を作成するには、次の例を参照してください。
-```js
-function main(params) {
-  if (params.__ow_method == "options") {
-    return {
-      headers: {
-        'Access-Control-Allow-Methods': 'OPTIONS, GET',
+`OPTIONS` 要求に対するカスタム応答を作成するには、以下のようにします。
+
+1. 以下のコードを `custom-options.js` ファイルに保存します。
+
+  ```js
+  function main(params) {
+    if (params.__ow_method == "options") {
+      return {
+        headers: {
+          'Access-Control-Allow-Methods': 'OPTIONS, GET',
         'Access-Control-Allow-Origin': 'example.com'
-      },
+        },
       statusCode: 200
     }
+    }
   }
-}
-```
-{: codeblock}
+  ```
+  {: codeblock}
 
-この関数を `custom-options.js` に保存し、以下のコマンドを実行します。
-```
-ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
-```
-{: pre}
+2. Web アクションを作成します。`--web-custom-options` を `true` に設定します。
 
-```
-$ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTIONS
-```
-{: pre}
+  ```bash
+  ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
+  ```
+  {: pre}
 
-出力例:
-```
-< HTTP/1.1 200 OK
+3. 以下の cURL コマンドを使用して、アクションをテストします。
+
+  ```bash
+  $ curl https://<apihost>/api/v1/web/<namespace>/default/custom-option.http -kvX OPTIONS
+  ```
+  {: pre}
+
+  **出力例**
+  ```
+  < HTTP/1.1 200 OK
 < Server: nginx/1.11.13
 < Content-Length: 0
 < Connection: keep-alive
 < Access-Control-Allow-Methods: OPTIONS, GET
 < Access-Control-Allow-Origin: example.com
-```
-{: screen}
+  ```
+  {: screen}
 
 ## エラー処理
 {: #actions_web_errors}
 
-{{site.data.keyword.openwhisk_short}} アクションは、2 つの異なる障害モードで失敗します。 1 つは_アプリケーション・エラー_ と呼ばれるものであり、キャッチされた例外に似ています。アクションが返す JSON オブジェクトには、最上位に `error` プロパティーが含まれます。 もう 1 つは _開発者エラー_ であり、これはアクションで壊滅的な障害が起こって、応答が生成されない場合に発生します (キャッチされていない例外に似ています)。 Web アクションの場合、コントローラーは次のようにアプリケーション・エラーを処理します。
+{{site.data.keyword.openwhisk_short}} アクションは、2 つの異なる障害モードで失敗します。 1 つは_アプリケーション・エラー_ と呼ばれるものであり、キャッチされた例外に似ています。アクションが返す JSON オブジェクトには、最上位に `error` プロパティーが含まれます。 もう 1 つは _開発者エラー_ であり、これはアクションで障害が起こって、応答が生成されない場合に発生します (キャッチされていない例外に似ています)。 Web アクションの場合、コントローラーは次のようにアプリケーション・エラーを処理します。
 
 - 指定されたパス射影はすべて無視され、コントローラーは代わりに `error` プロパティーを射影します。
 - コントローラーはアクションの拡張子で暗黙に示されるコンテンツ処理を `error` プロパティーの値に適用します。
 
 開発者は、Web アクションの使用方法を認識し、適切なエラー応答を生成する必要があります。 例えば、`.http` 拡張子と共に使用される Web アクションは、`{error: { statusCode: 400 }` のような HTTP 応答を返します。 適切にエラーが生成されないと、拡張子で暗黙に示される `Content-Type` と、エラー応答内のアクション `Content-Type` とが一致しません。 Web アクションがシーケンスになっている場合は、シーケンスを形成しているコンポーネントが必要に応じて適切なエラーを生成できるように、特別な考慮が必要です。
 
-## 例: 入力からの QR コード・イメージの生成
-{: #actions_web_qr}
 
-入力として `text` を取り込んで QR コード・イメージを生成する Java Web アクションの例を以下に示します。
 
-1. ディレクトリー `java_example/src/main/java/qr` にファイル `Generate.java` を作成します。
+## Web アクションの無効化
+{: #actions_web_disable}
 
-  ```java
-  package qr;
+CLI で `--web` フラグを `false` または `no` に設定して、Web アクションを無効にすることができます。`<packageName>/<actionName>` と `<filepath>/<filename>` を、コード・ファイルのパッケージ名、Web アクション名、ファイル・パス、ファイル名に置き換えます。
 
-  import java.io.*;
-  import java.util.Base64;
+```bash
+ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
+```
+{: pre}
 
-  import com.google.gson.JsonObject;
 
-  import com.google.zxing.*;
-  import com.google.zxing.client.j2se.MatrixToImageWriter;
-  import com.google.zxing.common.BitMatrix;
 
-  public class Generate {
-    public static JsonObject main(JsonObject args) throws Exception {
-      String property = "text";
-      String text = "Hello. Try with a 'text' value next time.";
-      if (args.has(property)) {
-        text = args.get(property).toString();
-      }
-
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      OutputStream b64os = Base64.getEncoder().wrap(baos);
-
-      BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
-      MatrixToImageWriter.writeToStream(matrix, "png", b64os);
-      b64os.close();
-
-      String output = baos.toString("utf-8");
-
-      JsonObject response = new JsonObject();
-      JsonObject headers = new JsonObject();
-      headers.addProperty("content-type", "image/png; charset=UTF-8");
-      response.add("headers", headers);
-      response.addProperty("body", output);
-      return response;
-    }
-  }
-  ```
-  {: codeblock}
-
-3. `java_example` (ファイル `build.gradle` が入っているディレクトリー) から以下のコマンドを実行して、Web アクション JAR をビルドします。
-
-  ```bash
-  gradle jar
-  ```
-  {: pre}
-
-4. JAR `build/libs/java_example-1.0.jar` を使用して Web アクションをデプロイします。
-
-  ```bash
-  ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
-  ```
-  {: pre}
-
-5. Web アクション・エンドポイントのパブリック URL を取得して環境変数に割り当てます。
-
-  ```bash
-  ibmcloud fn action get QRGenerate --url
-  URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
-  ```
-  {: pre}
-
-6. この `URL` を使用して Web ブラウザーを開くことができます。QR イメージにエンコードして組み込むメッセージを、その照会パラメーター `text` に追加します。 `curl` などの HTTP クライアントを使用して QR イメージをダウンロードすることもできます。
-
-  ```bash
-  curl -o QRImage.png $URL\?text=https://cloud.ibm.com
-  ```
-  {: pre}

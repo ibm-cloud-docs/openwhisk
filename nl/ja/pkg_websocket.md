@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: websocket, functions, actions, package
+keywords: WebSocket, functions, actions, package
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # WebSocket
 {: #pkg_websocket}
@@ -33,8 +35,8 @@ subcollection: cloud-functions
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| `/whisk.system/websocket` | パッケージ | uri | WebSocket との通信のためのユーティリティー |
-| `/whisk.system/websocket/send` | アクション | uri、payload | ペイロードを WebSocket URI に送信 |
+| `/whisk.system/websocket` | パッケージ | `uri` | WebSocket との通信のためのユーティリティー |
+| `/whisk.system/websocket/send` | アクション | `uri`、`payload` | ペイロードを WebSocket URI に送信 |
 
 多数のメッセージを同じ WebSocket URI に送信する予定の場合、`uri` 値を指定してパッケージ・バインディングを作成することをお勧めします。 バインディングを使用すると、`send` アクションを使用するたびに値を指定する必要がありません。
 
@@ -42,6 +44,10 @@ subcollection: cloud-functions
 
 `/whisk.system/websocket/send` アクションは、WebSocket URI にペイロードを送信します。 パラメーターは次のとおりです。
 
-- `uri`: WebSocket サーバーの URI (例: ws://mywebsockethost:80)。
-- `payload`: WebSocket に送信したいメッセージ。
+| パラメーター | 説明 |
+| --- | --- | 
+| `uri` | WebSocket サーバーの URI。例えば、`ws://mywebsockethost:80` です。 |
+| `payload` | WebSocket に送信するメッセージ。 |
+
+
 

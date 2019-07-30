@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: regions, endpoints, api, cli, plug-in
+keywords: regions, endpoints, api, cli, plug-in, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # 地域
 {: #cloudfunctions_regions}
 
-{{site.data.keyword.openwhisk_short}} は、米国南部、米国東部、ドイツ、英国、および東京の {{site.data.keyword.Bluemix_notm}} 地域で使用可能です。 {{site.data.keyword.Bluemix_notm}} CLI にログインすると、`-a` フラグを使用して特定地域の API エンドポイントを組み込むことにより、その地域を含めることができます。
+{{site.data.keyword.openwhisk_short}} は、米国南部、米国東部、ドイツ、英国、および東京の {{site.data.keyword.cloud_notm}} 地域で使用可能です。 {{site.data.keyword.cloud_notm}} CLI にログインすると、`-a` フラグを使用して特定地域の API エンドポイントを組み込むことにより、その地域を含めることができます。
 
   ```
   ibmcloud login -a <endpoint>
@@ -89,3 +91,4 @@ subcollection: cloud-functions
       <td><code>api.jp-tok.functions.cloud.ibm.com</code></td>
     </tr>
   </table>
+

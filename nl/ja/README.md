@@ -1,9 +1,18 @@
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-07-10"
+
+keywords: serverless, functions
+
+subcollection: cloud-functions
+
+---
+
 # クラウド機能
 
-[![ビルド状況](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs.svg?token=Rt7qrw9ADrkv4kFiywCq&branch=master)](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs)
-
 IBM Cloud Functions の資料リポジトリーへようこそ。 フィードバックと更新はいつでも歓迎です。
-
 
 
 
@@ -14,6 +23,27 @@ IBM Cloud Functions の資料リポジトリーへようこそ。 フィード�
 2. レビューの準備ができたら、マスター・ブランチへの PR を作成し、レビュー用に `Derek-Poindexter` というタグを付けます。
 3. Derek が Cloud Functions 開発チームとともに、投稿された提案をレビューし、必要な調整を行います。
 4. Derek がそのコンテンツをリポジトリーにマージします。
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

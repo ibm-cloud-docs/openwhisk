@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # ログの表示
 {: #logs}
 
-{{site.data.keyword.openwhisk}} では、問題をトラブルシューティングできるように、ロギングが自動的に有効になります。また、{{site.data.keyword.cloudaccesstraillong}} サービスを使用して、ユーザーおよびアプリケーションが {{site.data.keyword.openwhisk_short}} サービスとどのように対話するのかを追跡することもできます。
+{{site.data.keyword.openwhisk}} では、問題をトラブルシューティングできるように、ロギングが自動的に有効になります。 また、{{site.data.keyword.cloudaccesstraillong}} サービスを使用して、ユーザーおよびアプリケーションが {{site.data.keyword.openwhisk_short}} サービスとどのように対話するのかを追跡することもできます。
 
 
 ## アクション・ログのリアルタイム表示
@@ -50,7 +52,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -70,21 +72,21 @@ subcollection: cloud-functions
 ## アクティベーション詳細の表示
 {: #activation_details}
 
-{{site.data.keyword.openwhisk_short}} アクションは、他のユーザーによって、各種イベントに対する応答として、あるいはアクション・シーケンスの一部として呼び出すことができます。 アクションが呼び出されるたびに、その呼び出しのアクティベーション・レコードが作成されます。 アクション呼び出しの結果に関する情報を取得するには、アクティベーションに関する詳細を取得します。
+{{site.data.keyword.openwhisk_short}} アクションは、他のユーザーによって、各種イベントに対する応答として、あるいはアクション・シーケンスの一部として呼び出すことができます。 アクションが呼び出されると、その呼び出しのアクティベーション・レコードが作成されます。アクション呼び出しの結果に関する情報を取得するには、アクティベーションに関する詳細を取得します。
 
-名前空間内のすべてのアクティベーション・レコード ID を取得するには、次のようにします。
+以下のコマンドを実行して、名前空間内のすべてのアクティベーション・レコード ID を取得できます。
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-アクション呼び出しの結果作成された特定のアクティベーション・レコードに関する詳細を取得するには、次のようにします。
+以下のコマンドを実行して、アクション呼び出しの結果作成された特定のアクティベーション・レコードに関する詳細を取得できます。`<activation_ID>` をアクティベーションの ID で置き換えます。 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -177,8 +179,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>: アクティベーションの終了状況。</li>
-<li><code>statusCode</code>: 状況コード。 アクションでエラーが発生した場合は、HTTP エラー・コード。</li>
-<li><code>success</code>: アクションが正常に完了したかどうか。</li>
+<li><code>statusCode</code>: 状況コード。 アクションの結果がエラーの場合、この値は HTTP エラー・コードです。</li>
+<li><code>success</code>: アクションが正常に完了したかどうかの結果。</li>
 <li><code>result</code>: アクティベーションからの戻り値。</li>
 </ul></td>
 </tr>
@@ -192,7 +194,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>アクションが公式に公開されるかどうか。</td>
+<td>アクションが公開されるかどうかの結果。</td>
 </tr>
 </tbody></table>
 
@@ -201,18 +203,22 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## {{site.data.keyword.loganalysisfull_notm}} でのログの表示
 {: #logs_view}
 
+{{site.data.keyword.loganalysislong_notm}} ログは、IAM ベースの名前空間では使用できません。
+{: note}
+
 {{site.data.keyword.openwhisk_short}}の「モニタリング」ダッシュボードからアクティベーション・ログを直接表示できます。 また、ログは [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) に転送されます。ここでは、ログは索引付けられて、生成されたすべてのメッセージを対象にフルテキスト検索を行ったり、特定のフィールドに基づいて簡単に照会したりすることができます。
 {:shortdesc}
 
-**注**: ロギングは米国東部地域では利用できません。
+ロギングは米国東部地域では利用できません。
+{: important}
 
-1. [{{site.data.keyword.openwhisk_short}} の「モニタリング」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/dashboard) を開きます。
+1. [{{site.data.keyword.openwhisk_short}} の「モニタリング」ページ](https://cloud.ibm.com/openwhisk/dashboard){: external}を開きます。
 
 2. オプション : 特定のアクションについてのみログを表示するには、モニタリング・サマリーをそのアクションに制限します。 「フィルター・オプション」セクションで、**「制限」**ドロップダウン・リストからアクション名を選択します。
 
 3. 左側のナビゲーションで、**「ログ」**をクリックします。 {{site.data.keyword.loganalysisshort_notm}} Kibana ページが開きます。
 
-4. オプション: 古いログを表示するには、右上隅にある**「直近 15 分 (Last 15 minutes)」**をクリックして、異なる時間フレームを選択することで、デフォルトの時間フレーム値である 15 分を変更します。
+4. オプション: 古いログを表示するには、**「直近 15 分 (Last 15 minutes)」**をクリックして、異なる時間フレームを選択することで、デフォルトの時間フレーム値である 15 分を変更します。
 
 ### ログの照会
 {: #logs_query}
@@ -226,7 +232,7 @@ Kibana の照会構文を使用することで、[{{site.data.keyword.loganalysi
       ```
       {: codeblock}
 
-  * 「myAction」によって生成されるすべてのエラー・ログを検出します。
+  * `myAction` によって生成されるすべてのエラー・ログを検出します。
       ```
       type: user_logs AND stream_str: stderr AND action_str: "*myAction"
       ```
@@ -244,11 +250,13 @@ Kibana の照会構文を使用することで、特定のアクティベーシ�
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    この結果では、`0` は正常に終了したアクションを示し、これ以外の値はすべてエラーを示します。
+    この結果では、`0` は、アクションが正常に終了したことを示します。これ以外の値はすべてエラーを示します。
 
 * 特定のエラーで失敗したすべてのアクティベーションを検出します。
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

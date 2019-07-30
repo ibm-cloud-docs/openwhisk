@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # イベント用トリガーの作成
@@ -47,7 +49,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,7 +61,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -79,9 +81,9 @@ subcollection: cloud-functions
 
 - {{site.data.keyword.openwhisk_short}} はシステムに流入してくる**イベント**を処理します。
 
-- **トリガー**は、イベントのクラスの名前です。各イベントは 1 つのトリガーにのみ属します。トリガーは、トピック・ベースのパブリッシュ/サブスクライブ・システムにおけるトピックに似ています。 **ルール**は、トリガーからイベントが到着するたびに、トリガー・ペイロードを使用してアクションを呼び出します。
+- **トリガー**は、イベントのクラスの名前です。 各イベントは 1 つのトリガーにのみ属します。トリガーは、トピック・ベースのパブリッシュ/サブスクライブ・システムにおけるトピックに似ています。 **ルール**は、トリガーからイベントが到着するたびに、トリガー・ペイロードを使用してアクションを呼び出します。
 
-- **フィード** は、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 フィードは、特定のトリガーに属するイベントのみで構成されるイベント・ストリームです。事前インストールされたパッケージ、インストール可能パッケージ、および独自のカスタム・パッケージには、フィードが含まれていることがあります。フィードは**フィード・アクション**によって制御され、フィード・アクションが、フィードを構成するイベントのストリームの作成、削除、休止、および再開を処理します。通常、フィード・アクションは、通知を管理する REST API を使用して、イベントを生成する外部サービスと対話します。
+- **フィード** は、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 フィードは、特定のトリガーに属するイベントのみで構成されるイベント・ストリームです。 事前インストールされたパッケージ、インストール可能パッケージ、および独自のカスタム・パッケージには、フィードが含まれていることがあります。  フィードは**フィード・アクション**によって制御され、フィード・アクションが、フィードを構成するイベントのストリームの作成、削除、休止、および再開を処理します。 通常、フィード・アクションは、通知を管理する REST API を使用して、イベントを生成する外部サービスと対話します。
 
 フィードの例:
 - データベース内の文書が追加または変更されるたびにトリガー・イベントを起動する、{{site.data.keyword.cloudant}} データ変更フィード
@@ -101,7 +103,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -131,7 +133,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -157,7 +159,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   ok: created rule myRule
   ```
@@ -169,6 +171,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  トリガー、ルール、およびアクションに 1 分ごとにアクティベーションが実行されていることがわかります。アクションは、すべての呼び出しでパラメーター `{"name":"Mork", "place":"Ork"}` を受け取ります。
+  トリガー、ルール、およびアクションに 1 分ごとにアクティベーションが実行されていることがわかります。 アクションは、すべての呼び出しでパラメーター `{"name":"Mork", "place":"Ork"}` を受け取ります。
+
 
 

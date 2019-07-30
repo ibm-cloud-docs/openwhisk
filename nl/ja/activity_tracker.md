@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # {{site.data.keyword.cloudaccesstrailshort}} イベントの表示
@@ -37,9 +39,9 @@ subcollection: cloud-functions
 ## イベントを確認できる場所
 {: #view}
 
-イベントは、{{site.data.keyword.openwhisk_short}} 名前空間リソースが入っている {{site.data.keyword.Bluemix_notm}} 地域の {{site.data.keyword.cloudaccesstrailshort}} の**アカウント・ドメイン**で確認できます。 詳しくは、[アカウント・イベントの表示](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)を参照してください。
+イベントは、{{site.data.keyword.openwhisk_short}} 名前空間リソースが入っている {{site.data.keyword.cloud_notm}} 地域の {{site.data.keyword.cloudaccesstrailshort}} の**アカウント・ドメイン**で確認できます。 詳しくは、[アカウント・イベントの表示](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)を参照してください。
 
-1. {{site.data.keyword.Bluemix_notm}} アカウントにログインします。
+1. {{site.data.keyword.cloud_notm}} アカウントにログインします。
 2. カタログから、{{site.data.keyword.openwhisk}} のインスタンスと同じアカウントに、{{site.data.keyword.cloudaccesstrailshort}} サービスのインスタンスをプロビジョンします。
 3. {{site.data.keyword.cloudaccesstrailshort}} ダッシュボードの **「管理」** タブで、**「Kibana で表示」**をクリックします。
 4. ログを表示する時間フレームを設定します。 デフォルトは 15 分です。
@@ -82,3 +84,6 @@ subcollection: cloud-functions
     </tr>
   </tbody>
 </table>
+
+
+

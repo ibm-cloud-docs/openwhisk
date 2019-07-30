@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: platform architecture, openwhisk, couchdb, kafka
+keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.openwhisk_short}} の動作
 {: #about}
@@ -40,22 +42,22 @@ subcollection: cloud-functions
 
 **アクションを使用するとよい理由**
 
-アクションを使用することで、コードの実行時間が限定されるため、オーバーヘッド・コストが削減されます。
+アクションを使用することで、コードの実行時間が限定されるため、コストが削減されます。
 
 例えば、アクションを使用して、画像内の顔を検出したり、データベースの変更に応答したり、一連の API 呼び出しを集約したり、ツイートを投稿したりできます。
 
 **一度に複数のアクションを使用できますか?**
 
-はい。 複数のアクションを使用して複数の他のアクションを呼び出したり、複数のアクションをつなげて[シーケンスを作成](/docs/openwhisk?topic=cloud-functions-actions#actions_seq)したりできます。そのように機能させるには、あるアクションの出力が別のアクションの入力となり、次いでそのアクションの出力が別のアクションのトリガーとして使用される、などといった処理が必要になります。 作成する複数のアクションのグループを束ねて、1 つのパッケージを形成することさえ可能です。 パッケージにすると、よく使用する複数のアクションやシーケンスをパッケージを呼び出すことで再利用できるので、アクションやシーケンスを何度も構成する必要がなくなります。
+はい。 複数のアクションを使用して複数の他のアクションを呼び出したり、複数のアクションをつなげて[シーケンスを作成](/docs/openwhisk?topic=cloud-functions-actions#actions_seq)したりできます。 そのように機能させるには、あるアクションの出力が別のアクションの入力となり、次いでそのアクションの出力が別のアクションのトリガーとして使用される、などといった処理が必要になります。 作成する複数のアクションのグループを束ねて、1 つのパッケージを形成することさえ可能です。 パッケージにすると、よく使用する複数のアクションやシーケンスをパッケージを呼び出すことで再利用できるので、アクションやシーケンスを何度も構成する必要がなくなります。
 
 ## {{site.data.keyword.openwhisk_short}} の用語
 
 <dl>
   <dt>名前空間</dt>
-    <dd>[名前空間](/docs/openwhisk?topic=cloud-functions-namespaces)は、アクションやトリガーなどの {{site.data.keyword.openwhisk_short}} エンティティーを入れるものであり、リソース・グループに属しています。名前空間に対するアクセス権限をユーザーに付与すると、そのユーザーが {{site.data.keyword.openwhisk_short}} エンティティーにアクセスできるようになります。</dd>
+    <dd>[名前空間](/docs/openwhisk?topic=cloud-functions-namespaces)は、アクションやトリガーなどの {{site.data.keyword.openwhisk_short}} エンティティーを入れるものであり、リソース・グループに属しています。 名前空間に対するアクセス権限をユーザーに付与すると、そのユーザーが {{site.data.keyword.openwhisk_short}} エンティティーにアクセスできるようになります。</dd>
   <dt>アクション</dt>
     <dd>[アクション](/docs/openwhisk?topic=cloud-functions-actions)は、1 つの特定のタスクを実行する 1 片のコードです。 アクションは、任意の言語で書くことができます。例えば、JavaScript や Swift コードの小さなスニペットにしたり、Docker コンテナーに組み込まれたカスタム・バイナリー・コードにしたりできます。 ユーザーは、ソース・コードまたは Docker イメージとして Cloud Functions にアクションを提供します。
-    <br><br>アクションは、{{site.data.keyword.openwhisk_short}} API、CLI、または iOS SDK を使用して直接呼び出されたときに処理を実行します。 また、アクションは、{{site.data.keyword.Bluemix_notm}} サービスおよびサード・パーティー・サービスからのイベントに、トリガーを使用して自動的に応答することもできます。</dd>
+    <br><br>アクションは、{{site.data.keyword.openwhisk_short}} API、CLI、または iOS SDK を使用して直接呼び出されたときに処理を実行します。 また、アクションは、{{site.data.keyword.cloud_notm}} サービスおよびサード・パーティー・サービスからのイベントに、トリガーを使用して自動的に応答することもできます。</dd>
   <dt>シーケンス</dt>
     <dd>一連のアクションをチェーニングして、コードを記述することなく、[シーケンス](/docs/openwhisk?topic=cloud-functions-actions#actions_seq)にまとめることができます。 シーケンスは、順番に呼び出されるアクションのチェーンであり、1 つのアクションの出力が次のアクションへの入力として渡されます。 これにより、既存のアクションを組み合わせて、素早く簡単に再利用できます。 シーケンスは、アクションと同様に、REST API から呼び出したり、イベントに応答して自動的に呼び出したりできます。
   </dd>
@@ -64,7 +66,7 @@ subcollection: cloud-functions
   <dt>トリガー</dt>
     <dd>[トリガー](/docs/openwhisk?topic=cloud-functions-triggers)は、ある種のイベントに対して指定されたチャネルです。 トリガーとは、ユーザーから起動されるか、イベント・ソースによって起動されるかに関わらず、特定のタイプのイベントに対応するための宣言です。</dd>
   <dt>ルール</dt>
-    <dd>[ルール](/docs/openwhisk?topic=cloud-functions-rules)は、トリガーをアクションと関連付けます。 トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用し、関連付けられているアクションを呼び出します。適切なルール・セットを使用して、単一のトリガーのイベントで複数のアクションを呼び出すことも、複数のトリガーのイベントに対して 1 つのアクションを応答として呼び出すこともできます。</dd>
+    <dd>[ルール](/docs/openwhisk?topic=cloud-functions-rules)は、トリガーをアクションと関連付けます。 トリガーが起動するたびに、ルールはトリガー・イベントを入力として使用し、関連付けられているアクションを呼び出します。 適切なルール・セットを使用して、単一のトリガーのイベントで複数のアクションを呼び出すことも、複数のトリガーのイベントに対して 1 つのアクションを応答として呼び出すこともできます。</dd>
   <dt>フィード</dt>
     <dd>[フィード](/docs/openwhisk?topic=cloud-functions-triggers#triggers_feeds) は、{{site.data.keyword.openwhisk_short}} で消費可能なトリガー・イベントを起動するように、外部イベント・ソースを構成するための便利な方法です。 例えば、Git フィードでは、Git リポジトリーへのあらゆるコミットに対してトリガー・イベントを起動することがあります。</dd>
   <dt>パッケージ</dt>
@@ -74,7 +76,7 @@ subcollection: cloud-functions
 
 ### 次の作業
 {: #quiz}
-[クイズに答えて ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php) 知識を確認しましょう!
+[クイズに答えて](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}知識を試してみましょう!
 
 
 ## OpenWhisk の内部処理の仕組み
@@ -87,14 +89,14 @@ subcollection: cloud-functions
 ### OpenWhisk ではそれぞれの場面の背後で何が起こっているのでしょうか?
 {: #about_scenes}
 
-OpenWhisk は、Nginx、Kafka、Docker、CouchDB などのコンポーネントを結合して、サーバーレスのイベント・ベースのプログラミング・サービスを形成するオープン・ソース・プロジェクトです。
+OpenWhisk は、NGINX、Kafka、Docker、CouchDB などのコンポーネントを結合して、サーバーレスのイベント・ベースのプログラミング・サービスを形成するオープン・ソース・プロジェクトです。
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="OpenWhisk の背後で行われる処理の内部フロー" style="width:550px; border-style: none"/>
 
-### システムに入る: nginx
+#### 1. システムに入る: NGINX
 {: #about_ngnix}
 
-まず、ユーザーに面している OpenWhisk の API は、完全に HTTP ベースであり、RESTful 設計に従っています。 したがって、CLI を介して送信されるコマンドは、OpenWhisk システムに対する HTTP 要求です。 特定のコマンドは、おおよそ次のように変換されます。
+まず、ユーザーに面している OpenWhisk の API は、HTTP ベースであり、RESTful 設計に従っています。 したがって、CLI を介して送信されるコマンドは、OpenWhisk システムに対する HTTP 要求です。 特定のコマンドは、おおよそ次のように変換されます。
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -103,18 +105,19 @@ Host: $openwhiskEndpoint
 
 ここで *$userNamespace* 変数に注意してください。 1 人のユーザーは少なくとも 1 つの名前空間にアクセスできます。 単純化するため、*myAction* が入れられた名前空間をユーザーが所有していると想定します。
 
-システムへの最初のエントリー・ポイントは、HTTP およびリバース・プロキシー・サーバーである **nginx** を通るものです。 これは、SSL 終端処理のためと、適切な HTTP 呼び出しを次のコンポーネントに転送するために使用されます。
+システムへの最初のエントリー・ポイントは、HTTP およびリバース・プロキシー・サーバーである **NGINX** を通るものです。 これは、SSL 終端処理のためと、適切な HTTP 呼び出しを次のコンポーネントに転送するために使用されます。
 
-### システムに入る: Controller
+#### 2. システムに入る: Controller
 {: #about_controller}
 
-nginx は、HTTP 要求を **Controller** (OpenWhisk を介したパスの次のコンポーネント) に転送します。 これは、実際の REST API (**Akka** および **Spray** に基づく) の Scala ベースの実装であるため、ユーザーが実行できるすべての処理のインターフェースの役割を果たします。 これには、OpenWhisk のエンティティーに対する [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 要求やアクションの呼び出しがあります。
 
-Controller は、最初に、ユーザーが行おうとしていることのあいまいさを解消します。 これは HTTP 要求内で使用される HTTP メソッドに基づいて行われます。 上記の変換のとおりに、ユーザーが POST 要求を既存のアクションに発行して、Controller がこの要求を**アクションの呼び出し**に変換します。
+NGINX は、HTTP 要求を **Controller** (OpenWhisk を介したパスの次のコンポーネント) に転送します。 これは、実際の REST API (**Akka** および **Spray** に基づく) の Scala ベースの実装であるため、ユーザーが実行できるすべての処理のインターフェースの役割を果たします。 これには、OpenWhisk のエンティティーに対する[作成、取得、更新、削除](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete){: external}要求やアクションの呼び出しがあります。
+
+Controller は、最初に、ユーザーが行おうとしていることのあいまいさを解消します。 これは HTTP 要求内で使用される HTTP メソッドに基づいて行われます。 ユーザーが POST 要求を既存のアクションに発行して、Controller がこの要求を**アクションの呼び出し**に変換します。
 
 Controller の中心的役割 (この名前の由来) を考えると、Controller は以下のすべてのステップにある程度関与します。
 
-### 認証および許可: CouchDB
+#### 3. 認証および許可: CouchDB
 {: #about_auth}
 
 次に、Controller は、ユーザーが誰なのかを検証 (*認証*) し、そのエンティティーで実行しようとしていることを行う特権をユーザーが持っているかどうかを検証 (*許可*) します。 要求に組み込まれている資格情報が、**CouchDB** インスタンス内のいわゆる**サブジェクト**・データベースに照らして検証されます。
@@ -123,7 +126,7 @@ Controller の中心的役割 (この名前の由来) を考えると、Controll
 
 すべてが正常に進んでいるため、次の処理ステージへのゲートが開きます。
 
-### アクションを取得する: ここでも CouchDB
+#### 4. アクションを取得する: ここでも CouchDB
 {: #about_couchdb}
 
 Controller は、ユーザーがアクションを呼び出すための許可と特権を持っていることを確認できたので、このアクション (この例では *myAction*) を CouchDB 内の **whisks** データベースからロードします。
@@ -133,12 +136,12 @@ Controller は、ユーザーがアクションを呼び出すための許可と
 この特定の例では、アクションはパラメーターを取りません (関数のパラメーター定義は空リストです)。 したがって、アクションの特定のパラメーターも含め、デフォルト・パラメーターは設定されません。そのため、この観点から見て最も簡素な例になります。
 
 
-### アクションを呼び出す担当者: Load Balancer
+#### 5. アクションを呼び出す担当者: Load Balancer
 {: #about_lb}
 
 Load Balancer は、Controller の一部であり、実行プログラムの正常性状況を継続的にチェックすることにより、システム内で使用可能な実行プログラムの全体図を把握します。 それらの実行プログラムを **Invoker** と呼びます。 使用可能な Invoker を把握している Load Balancer は、その中から、要求されたアクションを起動するInvoker を選択します。
 
-### 整列させる: Kafka
+#### 6. 整列させる: Kafka
 {: #about_kafka}
 
 これ以降、送信した呼び出し要求に関して起こり得る望ましくない事態として、主に次の 2 つが考えられます。
@@ -150,21 +153,21 @@ Load Balancer は、Controller の一部であり、実行プログラムの正�
 
 次にアクションを呼び出すために、Controller はメッセージを Kafka にパブリッシュします。このメッセージには、呼び出すアクション、およびそのアクションに渡すパラメーター (この例ではゼロ個) が含まれます。 このメッセージの宛先は、Controller が Consul から取得したリストから選択した Invoker です。
 
-Kafka がメッセージを取得したことを確認すると、ユーザーへの HTTP 要求は **ActivationId** を伴って応答されます。 ユーザーは後でそれを使用して、この特定の呼び出しの結果にアクセスできます。 これは非同期呼び出しモデルであり、HTTP 要求はアクションを呼び出す要求をシステムが受け入れると終了します。 同期モデル (ブロッキング呼び出しと呼ばれます) も使用可能ですが、ここでは説明しません。
+Kafka がメッセージを取得したことを確認すると、ユーザーへの HTTP 要求は**アクティベーション ID** を伴って応答されます。ユーザーは後でそれを使用して、この特定の呼び出しの結果にアクセスできます。 これは非同期呼び出しモデルであり、HTTP 要求はアクションを呼び出す要求をシステムが受け入れると終了します。 同期モデル (ブロッキング呼び出しと呼ばれます) も使用可能ですが、ここでは説明しません。
 
-### コードを呼び出す: Invoker
+#### 7. コードを呼び出す: Invoker
 {: #about_invoker}
 
 **Invoker** は OpenWhisk の中心です。 Invoker の責務は、アクションを呼び出すことです。 これも Scala で実装されます。 しかし、これにはそれ以上のものがあります。 隔離して安全にアクションを実行するために、**Docker** を使用します。
 
-Docker の使用によって、隔離され制御された方法で素早くアクションが実行されるよう、呼び出すアクションごとに自己包含環境 (*コンテナー* と呼ばれます) が新しくセットアップされます。 アクションの呼び出しごとに、Docker コンテナーが spawn され、アクション・コードが注入されます。 その後、渡されたパラメーターを使用してコードが実行され、結果が取得され、コンテナーが破棄されます。 この段階でパフォーマンスの最適化を行って、オーバーヘッドを削減し、短い応答時間を可能にすることができます。
+Docker の使用によって、隔離され制御された方法で素早くアクションが実行されるよう、呼び出すアクションごとに自己包含環境 (*コンテナー* と呼ばれます) が新しくセットアップされます。 アクションの呼び出しごとに、Docker コンテナーが spawn され、アクション・コードが注入されます。 その後、渡されたパラメーターを使用してコードが実行され、結果が取得され、コンテナーが破棄されます。 この段階でパフォーマンスの最適化を行って、保守要件を削減し、短い応答時間を可能にすることができます。
 
-この例では、*Node.js* ベースのアクションが用意されており、Invoker が Node.js コンテナーを開始します。 次に、*myAction* からコードを注入し、パラメーターなしで実行して、結果を抽出し、ログを保存してから、Node.js コンテナーを再度破棄します。
+この例では、*Node.js* ベースのアクションが用意されており、Invoker が Node.js コンテナーを開始します。次に、*myAction* からコードを注入し、パラメーターなしで実行して、結果を抽出し、ログを保存してから、Node.js コンテナーを再度破棄します。
 
-### 結果を保管する: ここでも CouchDB
+#### 8. 結果を保管する: ここでも CouchDB
 {: #about_storing}
 
-結果が Invoker によって取得されると、結果は **whisks** データベースに、ActivationID の下でアクティベーションとして保管されます。 **whisks** データベースは **CouchDB** 内にあります。
+結果が Invoker によって取得されると、結果は **whisks** データベースに、アクティベーション ID の下でアクティベーションとして保管されます。**whisks** データベースは **CouchDB** 内にあります。
 
 ここで使用している特定の例では、Invoker は結果の JSON オブジェクトをアクションから返され、Docker によって書き込まれたログを取得し、それらをすべてアクティベーション・レコードに入れ、そのレコードをデータベースに保管します。 以下の例を参照してください。
 ```json
@@ -205,4 +208,7 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [アクションのセマンティクス](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [制限](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [REST API リファレンス](/apidocs/functions)
+
+
+
 

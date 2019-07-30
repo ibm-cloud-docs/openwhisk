@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,17 +24,18 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # マニフェスト・ファイルを使用したエンティティーのデプロイ
 {: #deploy}
 
-{{site.data.keyword.openwhisk_short}} を利用すると、YAML で作成されたマニフェスト・ファイルを使用して、名前空間のあらゆるエンティティーを記述してデプロイすることができます。 このファイルを使用することで、すべての関数の[パッケージ](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[アクション](/docs/openwhisk?topic=cloud-functions-actions)、[トリガー](/docs/openwhisk?topic=cloud-functions-triggers)、ルール](/docs/openwhisk?topic=cloud-functions-rules) を単一のコマンドでデプロイできます。
+{{site.data.keyword.openwhisk_short}} を利用すると、YAML で作成されたマニフェスト・ファイルを使用して、名前空間のあらゆるエンティティーを記述してデプロイすることができます。 このファイルを使用することで、すべての関数の[パッケージ](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[アクション](/docs/openwhisk?topic=cloud-functions-actions)、[トリガー](/docs/openwhisk?topic=cloud-functions-triggers)、[ルール](/docs/openwhisk?topic=cloud-functions-rules)を単一のコマンドでデプロイできます。
 
-マニフェスト・ファイルには、グループとしてデプロイおよびアンデプロイするエンティティーのセットを記述します。 マニフェスト・ファイルの内容は、[OpenWhisk デプロイメント YAML 仕様](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification)に準拠する必要があります。 マニフェスト・ファイルを定義したら、このファイルを使用して Functions エンティティーのグループを、同じ Functions 名前空間または異なる Functions 名前空間にデプロイしたり再デプロイしたりできます。 マニフェスト・ファイルに定義された Functions エンティティーをデプロイおよびアンデプロイするには、Functions プラグイン・コマンドの `ibmcloud fn deploy` と `ibmcloud fn undeploy` を使用することができます。
+マニフェスト・ファイルには、グループとしてデプロイおよびアンデプロイするエンティティーのセットを記述します。 マニフェスト・ファイルの内容は、[OpenWhisk デプロイメント YAML 仕様](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}に準拠する必要があります。 マニフェスト・ファイルを定義したら、このファイルを使用して Functions エンティティーのグループを、同じ Functions 名前空間または異なる Functions 名前空間にデプロイしたり再デプロイしたりできます。 マニフェスト・ファイルに定義された Functions エンティティーをデプロイおよびアンデプロイするには、Functions プラグイン・コマンドの `ibmcloud fn deploy` と `ibmcloud fn undeploy` を使用することができます。
 
 ## Hello World API サンプルの作成
 {: #deploy_helloworld_example}
 
-このサンプルでは、ある単純な Node.js コード (`helloworld.js`) を使用し、Web アクション (`hello_world`) をパッケージ (`hello_world_package`) 内に作成し、そのアクションのための REST API を定義します。
+このサンプルでは、ある単純な Node.js コード `helloworld.js` を使用し、Web アクション `hello_world` をパッケージ `hello_world_package` 内に作成し、そのアクションのための REST API を定義します。
 {: shortdesc}
 
 1. 次のコードを使用して `helloworld.js` ファイルを作成します。
@@ -118,12 +120,16 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## その他の OpenWhisk デプロイメント・サンプル
+## その他の OpenWhisk デプロイメントの例
 {: more_deploy_examples}
 
-Functions のデプロイメントは、OpenWhisk デプロイメント・プロジェクトに基づいています。ここには、Functions 内で使用できる[複数のデプロイメント・マニフェストのサンプル](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples)が用意されています。  `wskdeploy` の代わりに、`ibmcloud fn deploy` コマンドを使用することができます。
+Functions のデプロイメントは、OpenWhisk デプロイメント・プロジェクトに基づいています。ここには、Functions 内で使用できる[複数のデプロイメント・マニフェストのサンプル](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external}が用意されています。  `wskdeploy` の代わりに、`ibmcloud fn deploy` コマンドを使用することができます。
 
 ## デプロイメント・マニフェスト仕様
 {: manifest_specification}
 
-Functions のデプロイメント・マニフェストは、OpenWhisk デプロイメント・マニフェスト仕様に準拠する必要があります。 詳しくは、[OpenWhisk デプロイメント・マニフェスト仕様の資料](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification)を参照してください。
+Functions のデプロイメント・マニフェストは、OpenWhisk デプロイメント・マニフェスト仕様に準拠する必要があります。 詳しくは、[OpenWhisk デプロイメント・マニフェスト仕様の資料](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external}を参照してください。
+
+
+
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # アクティビティーのモニタリング
 {: #monitor}
 
-{{site.data.keyword.openwhisk}} でデプロイされたアクションのパフォーマンスを洞察します。 メトリックは、アクションの期間、アクション・アクティベーションの結果、アクション・アクティベーションの限度に達したタイミングに基づいて、ボトルネックを見つけたり実動上の問題の発生を予測したりするために役立ちます。
+{{site.data.keyword.openwhisk}} でデプロイされたアクションのパフォーマンスを洞察します。 メトリックは、アクションの期間、アクション・アクティベーションの結果、またはアクション・アクティベーションの限度に達したタイミングに基づいて、ボトルネックを見つけたり実動上の問題の可能性を予測したりするのに役立ちます。
 {: shortdesc}
 
 メトリックはすべてのエンティティーに関して自動的に収集されます。 アクションが IAM ベースの名前空間にあるのか、それとも Cloud Foundry ベースの名前空間にあるのかに応じて、メトリックは IBM Cloud のアカウントまたはスペースのいずれかに存在します。 それらのメトリックは {{site.data.keyword.monitoringlong}} に送信され、Grafana を介して使用可能になります。そこでは、ダッシュボードの構成、メトリック・イベント値に基づくアラートの作成、その他を行うことができます。 メトリックについて詳しくは、[{{site.data.keyword.monitoringlong_notm}} の資料](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started)を参照してください。
@@ -47,15 +49,15 @@ Grafana モニタリング・ダッシュボードを作成して作業を開始
     <tbody>
       <tr>
         <td>中欧</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>英国南部</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>米国南部</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>米国東部</td>
@@ -89,7 +91,7 @@ Grafana モニタリング・ダッシュボードを作成して作業を開始
 ## ダッシュボードの使用
 {: #monitor_dash_use}
 
-[{{site.data.keyword.openwhisk_short}} ダッシュボード](https://cloud.ibm.com/openwhisk/dashboard)は、アクティビティーのグラフィック・サマリーを提供します。 ダッシュボードを使用して、{{site.data.keyword.openwhisk_short}} アクションのパフォーマンスおよび正常性を判別できます。
+[{{site.data.keyword.openwhisk_short}} ダッシュボード](https://cloud.ibm.com/openwhisk/dashboard){: external}は、アクティビティーのグラフィック・サマリーを提供します。 ダッシュボードを使用して、{{site.data.keyword.openwhisk_short}} アクションのパフォーマンスおよび正常性を判別できます。
 {:shortdesc}
 
 どのアクション・ログを表示するのかを選択することでログをフィルターに掛けて、ログに記録されたアクティビティーの時間フレームを選択することができます。 これらのフィルターは、ダッシュボード上のすべてのビューに適用されます。 いつでも**「再ロード」**をクリックして、最新のアクティベーション・ログ・データでダッシュボードを更新できます。
@@ -222,13 +224,13 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>アプリケーション・エラーに由来する失敗したアクティベーションの数。 例えば、アクションからの安全なエラーに由来するものなどです。 アクション・パフォーマンスのメトリックを算出する方法について詳しくは、[Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record) を参照してください。</td>
+      <td>アプリケーション・エラーに由来する失敗したアクティベーションの数。 例えば、アクションからの安全なエラーに由来するものなどです。 アクション・パフォーマンスのメトリックを算出する方法について詳しくは、[Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external} を参照してください。</td>
       <td>合計</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>開発者に由来する失敗したアクティベーションの数。 例えば、アクション・コード内の未処理の例外による[アクション・プロキシー・インターフェース](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface)の違反に由来するものなどです。</td>
+      <td>開発者に由来する失敗したアクティベーションの数。 例えば、アクション・コード内の未処理の例外による[アクション・プロキシー・インターフェース](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external}の違反に由来するものなどです。</td>
       <td>合計</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -261,5 +263,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 
 デフォルトの名前空間の一部として存在するアクションのメトリックは、デフォルト・カテゴリー内にあります。
 {: tip}
+
+
 
 

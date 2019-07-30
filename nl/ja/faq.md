@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
+
 
 
 # FAQ
@@ -86,29 +88,31 @@ subcollection: cloud-functions
 
 最大タイムアウト値は 10 分です。 デフォルト値は 1 分に設定されていますが、CLI で `--timeout` フラグを使用して新しい値 (ミリ秒単位) を指定することで変更できます。 また、GUI のアクション詳細セクションで値を変更することもできます。
 
-
 ## 機能で使用可能な最大メモリーはどれほどですか?
 {: #max-memory}
 
-1 機能あたり最大 2048MB のメモリーを使用できます。 デフォルトは 256MB に設定されていますが、`--memory` フラグを使用して変更するか、GUI のアクション詳細セクションで変更することができます。
-
-
+1 機能あたり最大 2048 MB のメモリーを使用できます。 デフォルトは 256 MB に設定されていますが、`--memory` フラグを使用して変更するか、GUI のアクション詳細セクションで変更することができます。
 
 ## アクションと Web アクションの違いは何ですか?
 {: #difference}
 
-アクションと Web アクションの主な違いは、応答出力オブジェクトにあります。 [Web アクション](/docs/openwhisk?topic=cloud-functions-actions_web)の場合、結果は HTTP 応答となり、少なくとも JSON 出力に `body` フィールドが含まれている必要があります。 オプションで、statusCode とヘッダーも含まれる可能性があります。
+アクションと Web アクションの主な違いは、応答出力オブジェクトにあります。 [Web アクション](/docs/openwhisk?topic=cloud-functions-actions_web)の場合、結果は HTTP 応答となり、少なくとも JSON 出力に `body` フィールドが含まれています。オプションで、`statusCode` と`ヘッダー`も含まれる可能性があります。
 
 ## アクションのログをどのようにして参照できますか?
 {: #logs_faq}
 
 メトリックが収集された後、[{{site.data.keyword.loganalysislong_notm}} サービス](/docs/openwhisk?topic=cloud-functions-logs)を使用してログを参照できます。
 
-
 ## モニターはどのように機能しますか?
 {: #monitor_faq}
 
 {{site.data.keyword.monitoringlong}} を使用すると、{{site.data.keyword.openwhisk_short}} によってデプロイされたアクションのパフォーマンスに関する洞察を得ることができます。 また、ダッシュボードを使用してアクティビティーに関するグラフィカルなサマリーを表示することで、アクションの正常性とパフォーマンスをモニターすることもできます。
+
+
+
+
+
+
 
 
 

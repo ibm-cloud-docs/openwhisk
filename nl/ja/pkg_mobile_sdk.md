@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: mobile, sdk, cocoapods, carthage
+keywords: mobile, sdk, cocoapods, carthage, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,12 +24,16 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # モバイル SDK
 {: #pkg_mobile_sdk}
 
 OpenWhisk は、iOS デバイスおよび watchOS デバイス向けのモバイル SDK を提供しています。これを使用すると、モバイル・アプリは、リモート・トリガーの起動およびリモート・アクションの呼び出しを行うことができます。 Android 用のバージョンはありませんが、Android 開発者は、直接、OpenWhisk REST API を使用できます。 モバイル SDK は、Swift 4 で作成されており、iOS 11 以降のリリースをサポートしています。 Xcode 9 を使用してモバイル SDK をビルドできます。
 {: shortdesc}
 
+
+IAM ベースの名前空間では、モバイル SDK はサポートされていません。代わりに Cloud Foundry ベースの名前空間を使用してください。
+{: important}
 
 
 ## アプリへの SDK の追加
@@ -37,7 +42,7 @@ OpenWhisk は、iOS デバイスおよび watchOS デバイス向けのモバイ
 
 ### CocoaPods を使用したインストール
 
-モバイル用 OpenWhisk SDK は、CocoaPods を通して公開配布で入手できます。 CocoaPods がインストールされていることを前提として、スターター・アプリのプロジェクト・ディレクトリー内部の「Podfile」という名前のファイルに以下の行を入れます。
+モバイル用 OpenWhisk SDK は、CocoaPods を通して公開配布で入手できます。 CocoaPods がインストールされていることを前提として、スターター・アプリのプロジェクト・ディレクトリー内部の `Podfile` という名前のファイルに以下の行を入れます。
 
 ```ruby
 install! 'cocoapods', :deterministic_uuids => false
@@ -57,7 +62,7 @@ end
 
 インストール後に、プロジェクト・ワークスペースを開きます。 ビルド時に次のような警告を受け取ることがあります。
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
-これは、Cocoapods が Pods プロジェクトで Swift バージョンを更新しない場合に発生します。  修正するには、Pods プロジェクトおよび OpenWhisk ターゲットを選択します。  「Build Settings」に移動し、設定 `Use Legacy Swift Language Version`を `no` に変更します。あるいは、Podfile の末尾に以下のインストール後の指示を追加します。
+これは、CocoaPods が Pods プロジェクトで Swift バージョンを更新しない場合に発生します。  修正するには、Pods プロジェクトおよび OpenWhisk ターゲットを選択します。  「Build Settings」に移動し、設定 `Use Legacy Swift Language Version`を `no` に変更します。あるいは、Podfile の末尾に以下のインストール後の指示を追加します。
 
 ```ruby
 post_install do |installer|
@@ -72,7 +77,7 @@ end
 
 ### Carthage を使用したインストール
 
-アプリのプロジェクト・ディレクトリー内にファイルを作成して「Cartfile」という名前を付けます。 そのファイルに以下の行を入れます。
+アプリのプロジェクト・ディレクトリー内にファイルを作成して `Cartfile` という名前を付けます。 そのファイルに以下の行を入れます。
 ```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
@@ -84,7 +89,7 @@ github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 
 ### ソース・コードからのインストール
 
-ソース・コードは https://github.com/apache/incubator-openwhisk-client-swift.git で入手可能です。
+ソース・コードは https://github.com/apache/incubator-openwhisk-client-swift で入手可能です。
 Xcode で `OpenWhisk.xcodeproj` を使用することによって、プロジェクトを開きます。
 プロジェクトには、「OpenWhisk」 (iOS がターゲット) と「OpenWhiskWatch」 (watchOS 2 がターゲット) の 2 つのスキームが含まれます。
 必要なターゲット用にプロジェクトをビルドし、結果のフレームワークをご使用のアプリに追加します (通常は ~/Library/Developer/Xcode/DerivedData/ご使用のアプリ名)。
@@ -99,7 +104,7 @@ ibmcloud fn sdk install iOS
 ```
 {: pre}
 
-このコマンドにより、スターター・アプリが入った圧縮ファイルがダウンロードされます。 プロジェクト・ディレクトリー内に podfile があります。
+このコマンドにより、スターター・アプリが入った圧縮ファイルがダウンロードされます。 プロジェクト・ディレクトリーに Podfile があります。
 
 SDK をインストールするには、次のコマンドを入力します。
 ```
@@ -109,7 +114,7 @@ pod install
 
 ## SDK 入門
 
-迅速に稼働中にするためには、OpenWhisk API 資格情報を使用して WhiskCredentials オブジェクトを作成し、そのオブジェクトから OpenWhisk インスタンスを作成します。
+迅速に稼働中にするためには、OpenWhisk API 資格情報を使用して `WhiskCredentials` オブジェクトを作成し、そのオブジェクトから OpenWhisk インスタンスを作成します。
 
 例えば、次のサンプル・コードを使用して資格情報オブジェクトを作成します。
 ```
@@ -124,7 +129,7 @@ ibmcloud fn property get --auth
 ```
 {: pre}
 
-出力:
+**出力**
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -136,7 +141,7 @@ whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:ttttttttttttttttttttttttt
 
 リモート・アクションを呼び出すために、アクション名を指定して `invokeAction` を呼び出すことができます。 必要に応じて、ディクショナリーを使用してパラメーターをアクションに渡します。
 
-以下に例を示します。
+**次に例を示します。**
 ```swift
 // In this example, we are invoking an action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()
@@ -182,7 +187,7 @@ do {
 
 ## 結果を返すアクションの使用
 
-アクションが結果を返す場合、invokeAction 呼び出しで hasResult を true に設定します。 アクションの結果は、次の例に示すように、reply ディクショナリーに返されます。
+アクションが結果を返す場合、`invokeAction` 呼び出しで `hasResult` を true に設定します。 アクションの結果は、次の例に示すように、reply ディクショナリーに返されます。
 
 ```swift
 do {
@@ -210,14 +215,14 @@ whisk.verboseReplies = true
 
 ## SDK の構成
 
-baseURL パラメーターを使用することによって、異なる OpenWhisk インストール済み環境で作業するように SDK を構成できます。 以下に例を示します。
+`baseURL` パラメーターを使用することによって、異なる OpenWhisk インストール済み環境で作業するように SDK を構成できます。 以下に例を示します。
 
 ```swift
 whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-この例では、http://localhost:8080 で実行されているインストール済み環境が使用されます。 baseUrl を指定しない場合、モバイル SDK は https://us-south.functions.cloud.ibm.com で実行されているインスタンスを使用します。
+この例では、`http://localhost:8080` で実行されているインストール済み環境が使用されます。 `baseURL` を指定しない場合、モバイル SDK は https://us-south.functions.cloud.ibm.com で実行されているインスタンスを使用します。
 
 特殊なネットワーク処理が必要な場合、カスタム NSURLSession を渡すことができます。 例えば、自己署名証明書を使用する独自の OpenWhisk インストール済み環境がある場合などです。
 
@@ -239,12 +244,12 @@ whisk.urlSession = session
 
 すべてのアクションおよびトリガーには完全修飾名があり、完全修飾名は、名前空間、パッケージ、およびアクション名またはトリガー名からなります。 アクションが呼び出されるか、トリガーが起動されるときに、SDK はこれらの要素をパラメーターとして受け入れることができます。 SDK では、`/mynamespace/mypackage/nameOfActionOrTrigger` のような完全修飾名を受け入れる関数も提供されています。 修飾名のストリングは、すべての OpenWhisk ユーザーが持つ名前空間およびパッケージの未指定のデフォルト値をサポートします。したがって、以下の構文解析規則が適用されます。
 
-- qName = "foo" の場合は、名前空間 = デフォルト、パッケージ = デフォルト、アクション/トリガー = "foo" となります。
-- qName = "mypackage/foo" の場合は、名前空間 = デフォルト、パッケージ = mypackage、アクション/トリガー = "foo" となります。
-- qName = "/mynamespace/foo" の場合は、名前空間 = mynamespace、パッケージ = デフォルト、アクション/トリガー = "foo" となります。
-- qName = "/mynamespace/mypackage/foo" の場合は、名前空間 = mynamespace、パッケージ = mypackage、アクション/トリガー = "foo" となります。
+- `qName = "foo"` の場合は、`名前空間 = デフォルト`、`パッケージ = デフォルト`、`アクション/トリガー = "foo"` となります。
+- `qName = "mypackage/foo"` の場合は、`名前空間 = デフォルト`、`パッケージ = mypackage`、`アクション/トリガー = "foo"` となります。
+- `qName = "/mynamespace/foo"` の場合は、`名前空間 = mynamespace`、`パッケージ = デフォルト`、`アクション/トリガー = "foo"` となります。
+- `qName = "/mynamespace/mypackage/foo"` の場合は、`名前空間 = mynamespace`、`パッケージ = mypackage`、`アクション/トリガー = "foo"` となります。
 
-他のすべての組み合わせでは WhiskError.QualifiedName エラーが発行されます。 そのため、修飾名を使用する際は、`do/try/catch` 構造で呼び出しをラップする必要があります。
+他のすべての組み合わせでは `WhiskError.QualifiedName` エラーが発行されます。 そのため、修飾名を使用する際は、`do/try/catch` 構造で呼び出しをラップする必要があります。
 
 ### SDK ボタン
 
@@ -258,7 +263,7 @@ let myParams = ["name":"value"]
 whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
     if let error = error {
         print("Oh no, error: \(error)")
-    } else {
+       } else {
         print("Success: \(reply)")
     }
 })
@@ -280,4 +285,6 @@ do {
 }
 ```
 {: codeblock}
+
+
 

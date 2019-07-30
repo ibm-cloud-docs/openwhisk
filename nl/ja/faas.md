@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: functions compared, openwhisk, architecture, limitless
+keywords: functions compared, architecture, limitless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Function as a Service のアーキテクチャー
 {: #faas}
@@ -43,15 +45,15 @@ subcollection: cloud-functions
 
 以下の OpenWhisk アーキテクチャーの比較を示します。
 
-1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk)。 IBM は、管理された OpenWhisk を提供する唯一のベンダーです。 FaaS プラットフォームを使用したサーバーレス・プログラミング・モデルの入門としては、[Martin Fowler のブログ](https://martinfowler.com/articles/serverless.html)が適しており、サーバーレス設計で OpenWhisk を実行する[ユース・ケース](/docs/openwhisk?topic=cloud-functions-use_cases)を確認できます。
+1. **Function as a Service (FaaS)** on [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external}。 IBM は、管理された OpenWhisk を提供する唯一のベンダーです。 FaaS プラットフォームを使用したサーバーレス・プログラミング・モデルの入門としては、[Martin Fowler のブログ](https://martinfowler.com/articles/serverless.html){: external}が適しており、サーバーレス設計で OpenWhisk を実行する[ユース・ケース](/docs/openwhisk?topic=cloud-functions-use_cases)を確認できます。
 
-2. **Infrastructure as a Service (IaaS)** で OpenWhisk ユーザー作成プログラム (RYO) を使用。 OpenWhisk を Apache Incubation Project からダウンロードし、それを [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices) 上で実行できます。
+2. **Infrastructure as a Service (IaaS)** で OpenWhisk ユーザー作成プログラム (RYO) を使用。 OpenWhisk を Apache Incubation Project からダウンロードし、それを [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute){: external} 上で実行できます。
 
-3. **Platform as a Service (PaaS)** を管理対象アプリケーション・ランタイムとして。 {{site.data.keyword.Bluemix_notm}} Foundry 実装で管理された [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) ランタイムがその良い例です。
+3. **Platform as a Service (PaaS)** を管理対象アプリケーション・ランタイムとして。 {{site.data.keyword.cloud_notm}} Foundry 実装で管理された [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java){: external} ランタイムがその良い例です。
 
 4. **Container as a Service (CaaS)** を管理対象コンテナー環境として。 [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index) が良い例です。
 
-5. **Infrastructure as a Service (IaaS)** で Java EE ランタイムを使用。 [{{site.data.keyword.Bluemix_notm}} 上の WebSphere Application Server VM](https://cloud.ibm.com/catalog/services/websphere-application-server) が良い例です。
+5. **Infrastructure as a Service (IaaS)** で Java EE ランタイムを使用。 [{{site.data.keyword.cloud_notm}} 上の WebSphere Application Server VM](https://cloud.ibm.com/catalog/services/websphere-application-server){: external} が良い例です。
 
 以下の表は、アプリケーションを作成および運用する開発者の観点から、各アーキテクチャーの要素を比較したものです。
 
@@ -75,8 +77,8 @@ subcollection: cloud-functions
 |	リソース制限	|	[いくつかの制限があります](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)。	|	割り振られたリソースによって異なります。	|	なし	|	なし	|	なし	|
 |	使用頻度の低いサービスの待ち時間	|	頻度の低い要求では、最初は何秒かの応答時間がかかることがありますが、その後の要求ではミリ秒の範囲にとどまります。	|	場合によって異なる	|	小	|	小	|	小。システムに十分なリソースがあることが前提	|
 |	最適なアプリケーション・タイプ	|	イベント処理、IoT、モバイル・バックエンド、マイクロサービス。 モノリシック・アプリケーションには明らかに不適です。 [ユース・ケース](/docs/openwhisk?topic=cloud-functions-use_cases)を参照	|	列 (1) と同じですが、ユーザーが 非 IBM Cloud で、またはオンプレミスで実行する必要がある場合です。	|	24 時間 365 日の作業負荷がある Web アプリケーション、接続を長期間オープンにしておく必要があるステートフル・サービス。 マイクロサービスまたはモノリシック・アプリケーションの実行に使用できます。	|	マイクロサービス・アプリケーションに最適。	|	オンプレミスからクラウドにマイグレーションされた従来型のエンタープライズ・アプリケーション。 モノリシック・アプリケーションに最適。	|
-|	課金の細分度と請求処理	|	[100 ミリ秒のブロックごと](https://cloud.ibm.com/openwhisk/learn/pricing)	|	実装によって異なる。IaaS または CaaS が使用されている場合、同様の考慮事項が適用されます。列 (4) および (5) を参照。	|	通常は、一括にしたリソース (CPU + メモリー + 一定のディスク・スペース) に対して時間単位 (まれに、分単位) で課金されます。	|	列 (3) と同様	|	列 (3) と同様	|
-|	総所有コスト (TCO)	|	優位点として、アプリケーションのコストが他の選択肢よりも桁違いに低くなる可能性があります。 リソースが自動的にスケーリングされるため、オーバープロビジョニングは発生しません。	|	クラウド・デプロイメントでは、OpenWhisk FaaS よりコストが高くなる可能性が大きいですが、オンプレミス・デプロイメントでは、従来型のアーキテクチャーより安くなる可能性があります。	|	比較的低い。ユーザーはリソースをプロビジョンしたり管理したりする必要がなく、アプリケーション開発に集中できます。 サーバーレスに比べてある程度のオーバープロビジョニングがあります。	|	中程度。ユーザーはコンテナーおよびアプリケーションをプロビジョンして管理する必要があり、サーバーレスまたは PaaS と比べて一定レベルのオーバープロビジョニングが発生することがあります。	|	比較的高い。レガシー・アプリケーションをクラウド・ネイティブ・モデルへマイグレーションすることに非常にコストがかかる可能性があることを考えると、そうしたアプリ向けの実現可能で経済的な選択肢になり得ます。	|
+|	課金の細分度と請求処理	|	[100 ミリ秒のブロックごと](https://cloud.ibm.com/openwhisk/learn/pricing){: external}	|	実装によって異なる。IaaS または CaaS が使用されている場合、同様の考慮事項が適用されます。列 (4) および (5) を参照。	|	通常は、一括にしたリソース (CPU + メモリー + 一定のディスク・スペース) に対して時間単位 (まれに、分単位) で課金されます。	|	列 (3) と同様	|	列 (3) と同様	|
+|	総所有コスト	|	優位点として、アプリケーションのコストが他の選択肢よりも桁違いに低くなる可能性があります。 リソースが自動的にスケーリングされるため、オーバープロビジョニングは発生しません。	|	クラウド・デプロイメントでは、OpenWhisk FaaS よりコストが高くなる可能性が大きいですが、オンプレミス・デプロイメントでは、従来型のアーキテクチャーより安くなる可能性があります。	|	比較的低い。ユーザーはリソースをプロビジョンしたり管理したりする必要がなく、アプリケーション開発に集中できます。 サーバーレスに比べてある程度のオーバープロビジョニングがあります。	|	中程度。ユーザーはコンテナーおよびアプリケーションをプロビジョンして管理する必要があり、サーバーレスまたは PaaS と比べて一定レベルのオーバープロビジョニングが発生することがあります。	|	比較的高い。レガシー・アプリケーションをクラウド・ネイティブ・モデルへマイグレーションすることに非常にコストがかかる可能性があることを考えると、そうしたアプリ向けの実現可能で経済的な選択肢になり得ます。	|
 
 ## コストについての考慮事項
 {: #faas_cost}
@@ -84,7 +86,7 @@ subcollection: cloud-functions
 テスト、ステージング、負荷テスト、およびその他の環境のためのインフラストラクチャーには、コストがかかります。 セットアップに時間がかかるうえ、通常は 24 時間 365 日稼働することになるので、十分に活用されないことも多く、大量のキャパシティーを消費します。 サーバーレス・アーキテクチャーを使用すると、いくつ環境があろうと、環境のコストは、定義されている環境の数でなく、負荷に基づいて生成されます。
 {: shortdesc}
 
-サーバーレス・アプリケーションのコストを見積もるには、[料金カリキュレーター ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/learn/pricing) を使用できます。
+サーバーレス・アプリケーションのコストを見積もるには、[料金カリキュレーター](https://cloud.ibm.com/openwhisk/learn/pricing){: external}を使用できます。
 
 ### 無限のキャパシティー
 {: #faas_capacity}
@@ -102,4 +104,7 @@ subcollection: cloud-functions
 {: #faas_redundancy}
 
 従来のアーキテクチャーでは、アプリケーションに冗長性が必要です。 サーバーレス・アプリケーションは、仕様がステートレスかつ要求イベント・ドリブンであるため、{{site.data.keyword.openwhisk_short}} では、プロセスを高可用性 (HA) にする必要はありません。 冗長性を明示的に作成する必要をなくすことで、サーバーレス・アプリケーションのステートレスな性質により、インフラストラクチャーのコストが大幅に削減されます。
+
+
+
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-12"
 
 keywords: push notifications, functions, webhooks
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Push Notifications
 {: #pkg_push_notifications}
@@ -34,12 +36,12 @@ subcollection: cloud-functions
 | --- | --- | --- |
 | [`/whisk.system/pushnotifications`](#pkg_push_send) | 事前インストール済み (東京では提供されていません) | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
 | [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | 事前インストール済み (東京では提供されていません) | デバイス・イベントでモバイル・プッシュ通知を送信する。 |
-| [`/push-notifications`](#pkg_push_mobile_send) | インストール可能 | {{site.data.keyword.mobilepushfull}} サービス・インスタンスと対話する。メッセージを送信したり、Webhook を作成、更新、削除したりする。 |
+| [`/push-notifications`](#pkg_push_mobile_send) | インストール可能 | {{site.data.keyword.mobilepushfull}} サービス・インスタンスと対話する。 メッセージを送信したり、Webhook を作成、更新、削除したりする。 |
 
 ## プッシュ通知の送信
 {: #pkg_push_send}
 
-この事前インストール済みパッケージは、東京地域では提供されていません。IAM 認証を使用する `sendMessage` アクションについては、インストール可能な[プッシュ通知](#pkg_push_mobile_send)パッケージを参照してください。
+この事前インストール済みパッケージは、東京地域では提供されていません。 IAM 認証を使用する `sendMessage` アクションについては、インストール可能な[プッシュ通知](#pkg_push_mobile_send)パッケージを参照してください。
 {: tip}
 
 プッシュ通知パッケージ・バインディングを作成し、`/whisk.system/pushnotifications` パッケージを使用して単純なプッシュ通知を送信する方法を説明します。
@@ -49,8 +51,8 @@ subcollection: cloud-functions
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| `/whisk.system/pushnotifications` | パッケージ | appId、appSecret、admin_url | プッシュ・サービスを使用した処理を行う。 |
-| `/whisk.system/pushnotifications/sendMessage` | アクション | text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
+| `/whisk.system/pushnotifications` | パッケージ | `appId`、`appSecret`、`admin_url` | プッシュ・サービスを使用した処理を行う。 |
+| `/whisk.system/pushnotifications/sendMessage` | アクション | `text`、`url`、`deviceIds`、`platforms`、`userIds`、`tagNames`、`gcmCollapseKey`、`gcmCategory`、`gcmIcon`、`gcmDelayWhileIdle`、`gcmSync`、`gcmVisibility`、`gcmPayload`、`gcmPriority`、`gcmSound`、`gcmTimeToLive`、`gcmStyleType`、`gcmStyleTitle`、`gcmStyleUrl`、`gcmStyleText`、`gcmStyleLines`、`gcmLightsLedArgb`、`gcmLightsLedOnMs`、`gcmLightsLedOffMs`、`apnsBadge`、`apnsCategory`、`apnsIosActionKey`、`apnsPayload`、`apnsType`、`apnsSound`、`apnsTitleLocKey`、`apnsLocKey`、`apnsLaunchImage`、`apnsTitleLocArgs`、`apnsLocArgs`、`apnstitle`、`apnsSubtitle`、`apnsAttachmentUrl`、`fireFoxTitle`、`fireFoxIconUrl`、`fireFoxTimeToLive`、`fireFoxPayload`、`safariTitle`、`safariUrlArgs`、`safariAction`、`chromeTitle`、`chromeIconUrl`、`chromeTimeToLive`、 `chromePayload`、`chromeAppExtTitle`、`chromeAppExtCollapseKey`、`chromeAppExtDelayWhileIdle`、`chromeAppExtIconUrl`、`chromeAppExtTimeToLive`、`chromeAppExtPayload` | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
 
 
 デバイス・アクティビティーが発生したときにトリガー・イベントを起動する方法については、[デバイス・イベントでのモバイル・プッシュ](#pkg_push_mobile)を参照してください。
@@ -60,18 +62,20 @@ subcollection: cloud-functions
 
 プッシュ通知パッケージ・バインディングを作成するには、以下のパラメーターを指定する必要があります。
 
--  **appId**: {{site.data.keyword.Bluemix}} **アプリ GUID**。
--  **appSecret**: {{site.data.keyword.Bluemix_notm}} プッシュ通知サービスの**アプリ・シークレット**。
+| パラメーター | 説明 |
+| --- | --- |
+| `appId` | {{site.data.keyword.cloud}} **アプリ GUID**。 |
+| `appSecret` | {{site.data.keyword.cloud_notm}} プッシュ通知サービスの**アプリ・シークレット**。 |
 
 以下の手順を参照して、パッケージ・バインディングを作成します。
 
-1. [{{site.data.keyword.Bluemix_notm}} ダッシュボード](http://cloud.ibm.com)で {{site.data.keyword.Bluemix_notm}} アプリケーションを作成します。
+1. [{{site.data.keyword.cloud_notm}} ダッシュボード](https://cloud.ibm.com){: external}で {{site.data.keyword.cloud_notm}} アプリケーションを作成します。
 
-2. プッシュ通知サービスを初期化し、{{site.data.keyword.Bluemix_notm}} アプリケーションにバインドします。
+2. プッシュ通知サービスを初期化し、{{site.data.keyword.cloud_notm}} アプリケーションにバインドします。
 
-3. [プッシュ通知アプリケーション](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)を構成します。
+3. [プッシュ通知アプリケーション](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started)を構成します。
 
-  作成した {{site.data.keyword.Bluemix_notm}} アプリの **App GUID** と **App Secret** を必ず覚えておいてください。
+  作成した {{site.data.keyword.cloud_notm}} アプリの **App GUID** と **App Secret** を必ず覚えておいてください。
 
 4. `/whisk.system/pushnotifications` を使用してパッケージ・バインディングを作成します。
   ```
@@ -85,7 +89,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   packages
   /myNamespace/myPush private binding
@@ -96,62 +100,65 @@ subcollection: cloud-functions
 {: #pkg_push_params}
 
 `/whisk.system/pushnotifications/sendMessage` アクションは、登録されたデバイスにプッシュ通知を送信します。 パラメーターは次のとおりです。
-- `text`: ユーザーに表示する通知メッセージ。 例えば、`-p text "Hi, OpenWhisk send a notification"` です。
-- `url`: アラートと一緒に送信できる URL。 例えば、`-p url "https:\\www.w3.ibm.com"` です。
-- `apiHost`: API ホストを指定するオプションのストリング。 デフォルトは `mobile.ng.bluemix.net` です。  例: `-p apiHost "mobile.eu-gb.bluemix.net"`
-- `deviceIds`: 指定されるデバイスのリスト。 例えば、`-p deviceIds ["deviceID1"]` です。
-- `platforms`: 指定されるプラットフォームのデバイスに通知を送信します。 Apple (iOS) デバイスの場合は「A」、Google (Android) デバイスの場合は「G」です。 例えば、`-p platforms ["A"]` です。
-- `userIds`: 指定されるユーザーのデバイスに通知を送信します。 例えば、`-p userIds "[\"testUser\"]"` です。
-- `tagNames`: これらのタグのいずれかにサブスクライブしているデバイスに通知を送信します。 例えば、`-p tagNames "[\"tag1\"]"` です。
-- `gcmCollapseKey`: このパラメーターは、メッセージのグループを識別します。
-- `gcmCategory`: 対話式プッシュ通知に使用されるカテゴリー ID。
-- `gcmIcon`: 通知に対して表示されるアイコンの名前を指定します。 このアイコンが既にクライアント・アプリケーションと共にパッケージされていることを確認してください。
-- `gcmDelayWhileIdle`: このパラメーターが true に設定されている場合、メッセージはデバイスがアクティブになるまで送信されます。
-- `gcmSync`: デバイス・グループ・メッセージングは、グループ内のすべてのアプリ・インスタンスが最新メッセージング状態を反映することを可能にします。
-- `gcmVisibility`: private/public - この通知の可視性。これは、通知がいつ、どのように、ロックされた保護画面に表示されるのかに影響します。
-- `gcmPayload`: 通知メッセージの一部として送信されるカスタム JSON ペイロード。 例えば、`-p gcmPayload "{\"hi\":\"hello\"}"` です。
-- `gcmPriority`: メッセージの優先順位を設定します。
-- `gcmSound`: 通知がデバイスに到着したときに再生される (デバイス上の) 音声ファイル。
-- `gcmTimeToLive`: このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。
-- `gcmStyleType`: 展開可能な通知のタイプを指定します。 指定できる値は、`bigtext_notification`、`picture_notification`、`inbox_notification` です。
-- `gcmStyleTitle`: 通知のタイトルを指定します。 タイトルは通知が展開されると表示されます。 タイトルは、展開可能な 3 つの通知のすべてで指定される必要があります。
-- `gcmStyleUrl`: 通知のピクチャーの取得元である URL。 `picture_notification` にはこれを指定する必要があります。
-- `gcmStyleText`: `bigtext_notification` の展開時に表示される必要がある大きいテキスト。 `bigtext_notification` にはこれを指定する必要があります。
-- `gcmStyleLines`: `inbox_notification` の場合にボックス内スタイルで表示されるストリングの配列。 `inbox_notification` にはこれを指定する必要があります。
-- `gcmLightsLedArgb`: LED の色。 ハードウェアはできる限りの近似を行います。
-- `gcmLightsLedOnMs`: LED の点滅時に明かりがついている時間 (ミリ秒)。 ハードウェアはできる限りの近似を行います。
-- `gcmLightsLedOffMs`: LED の点滅時に明かりが消えている時間 (ミリ秒)。 ハードウェアはできる限りの近似を行います。
-- `apnsBadge`: アプリケーション・アイコンのバッジとして表示する番号。
-- `apnsCategory`: 対話式プッシュ通知に使用されるカテゴリー ID。
-- `apnsIosActionKey`: アクション・キーのタイトル。
-- `apnsPayload`: 通知メッセージの一部として送信されるカスタム JSON ペイロード。
-- `apnsType`: ['DEFAULT', 'MIXED', 'SILENT']。
-- `apnsSound`: アプリケーション・バンドル内の音声ファイルの名前。 このファイルの音声がアラートとして再生されます。
-- `apnsTitleLocKey`: 現行のローカリゼーション用の `Localizable.strings` ファイル内のタイトル・ストリングのキー。 キー・ストリングは、`titleLocArgs` 配列に指定された変数を取り込むために、%@ および %n$@ の指定子を使用してフォーマット設定できます。
-- `apnsLocKey`: (ユーザーの言語設定によって指定された) 現行のローカリゼーション用の `Localizable.strings` ファイル内のアラート・メッセージ・ストリングのキー。 キー・ストリングは、locArgs 配列に指定された変数を取り込むために、%@ および %n$@ の指定子を使用してフォーマット設定できます。
-- `apnsLaunchImage`: アプリケーション・バンドル内のイメージ・ファイルのファイル名 (ファイル名拡張子を含めても含めなくてもよい)。 このイメージは、ユーザーがアクション・ボタンをタップした時、またはアクション・スライダーを移動した時に起動イメージとして使用されます。
-- `pnsTitleLocArgs`: `title-loc-key` 内のフォーマット指定子を置換する変数ストリング値。
-- `apnsLocArgs`: `locKey` 内のフォーマット指定子を置換する変数ストリング値。
-- `apnstitle`: リッチ・プッシュ通知のタイトル (iOS 10 以上のみでサポートされます)。
-- `apnsSubtitle`: リッチ通知のサブタイトル (iOS 10 以上でのみサポートされます)。
-- `apnsAttachmentUrl`: iOS 通知メディアへのリンク (ビデオ、オーディオ、GIF、イメージ - iOS 10 以上のみでサポートされます)。
-- `fireFoxTitle`: Web プッシュ通知に対して設定されるタイトルを指定します。
-- `fireFoxIconUrl`: Web プッシュ通知に対して設定されるアイコンの URL。
-- `fireFoxTimeToLive`: このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。
-- `fireFoxPayload`: 通知メッセージの一部として送信されるカスタム JSON ペイロード。
-- `chromeTitle`: Web プッシュ通知に対して設定されるタイトルを指定します。
-- `chromeIconUrl`: Web プッシュ通知に対して設定されるアイコンの URL。
-- `chromeTimeToLive`: このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。
-- `chromePayload`: 通知メッセージの一部として送信されるカスタム JSON ペイロード。
-- `safariTitle`: Safari プッシュ通知に対して設定されるタイトルを指定します。
-- `safariUrlArgs`: この通知で使用する必要がある URL 引数。 これらの引数は JSON 配列の形式で指定されます。
-- `safariAction`: アクション・ボタンのラベル。
-- `chromeAppExtTitle`: Web プッシュ通知に対して設定されるタイトルを指定します。
-- `chromeAppExtCollapseKey`: このパラメーターは、メッセージのグループを識別します。
-- `chromeAppExtDelayWhileIdle`: このパラメーターが true に設定されている場合、デバイスがアクティブになるまでメッセージが送信されないことを示します。
-- `chromeAppExtIconUrl`: Web プッシュ通知に対して設定されるアイコンの URL。
-- `chromeAppExtTimeToLive`: このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。
-- `chromeAppExtPayload`: 通知メッセージの一部として送信されるカスタム JSON ペイロード。
+
+| パラメーター | 説明 |
+| --- | --- |
+| `text` | ユーザーに表示する通知メッセージ。 例えば、`-p text "Hi, OpenWhisk send a notification"` です。 |
+| `url` | アラートと一緒に送信できる URL。 例えば、`-p url "https:\\www.w3.ibm.com"` です。 |
+| `apiHost` | API ホストを指定するオプションのストリング。 デフォルトは `mobile.ng.bluemix.net` です。  例えば、`-p apiHost "mobile.eu-gb.bluemix.net"` と指定します。|
+| `deviceIds` | 指定デバイスのリスト。 例えば、`-p deviceIds ["deviceID1"]` です。 |
+| `platforms` | 通知を指定プラットフォームのデバイスに送信します。 Apple (iOS) デバイスの場合は「A」、Google (Android) デバイスの場合は「G」です。 例えば、`-p platforms ["A"]` です。 |
+| `userIds` | 指定されるユーザーのデバイスに通知を送信します。 例えば、`-p userIds "[\"testUser\"]"` です。|
+| `tagNames` | これらのタグのいずれかにサブスクライブしているデバイスに通知を送信します。 例えば、`-p tagNames "[\"tag1\"]"` です。 |
+| `gcmCollapseKey` | このパラメーターは、メッセージのグループを識別します。 |
+| `gcmCategory` | 対話式プッシュ通知に使用されるカテゴリー ID。 |
+| `gcmIcon` | 通知に対して表示されるアイコンの名前を指定します。 このアイコンが既にクライアント・アプリケーションと共にパッケージされていることを確認してください。 |
+| `gcmDelayWhileIdle` | このパラメーターが true に設定されている場合、メッセージはデバイスがアクティブになるまで送信されます。 |
+| `gcmSync` | デバイス・グループ・メッセージングは、グループ内のすべてのアプリ・インスタンスが最新メッセージング状態を反映することを可能にします。 |
+| `gcmVisibility` | private/public - この通知の可視性。これは、通知がいつ、どのように、ロックされた保護画面に表示されるのかに影響します。 |
+| `gcmPayload` | 通知メッセージの一部として送信されるカスタム JSON ペイロード。 例えば、`-p gcmPayload "{\"hi\":\"hello\"}"` です。|
+| `gcmPriority` | メッセージの優先順位を設定します。 |
+| `gcmSound` | 通知がデバイスに到着したときに再生される (デバイス上の) 音声ファイル。 |
+| `gcmTimeToLive` | このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。 |
+| `gcmStyleType` | 展開可能な通知のタイプを指定します。 指定できる値は、`bigtext_notification`、`picture_notification`、`inbox_notification` です。 |
+| `gcmStyleTitle` | 通知のタイトルを指定します。 タイトルは通知が展開されると表示されます。 タイトルは、展開可能な 3 つの通知のすべてで指定される必要があります。 |
+| `gcmStyleUrl` | 通知のピクチャーの取得元である URL。 `picture_notification` にはこれを指定する必要があります。 |
+| `gcmStyleText` | `bigtext_notification` の展開時に表示される必要がある大きいテキスト。 `bigtext_notification` にはこれを指定する必要があります。 |
+| `gcmStyleLines` | `inbox_notification` の場合にボックス内スタイルで表示されるストリングの配列。 `inbox_notification` にはこれを指定する必要があります。 |
+| `gcmLightsLedArgb` | LED の色。 ハードウェアはできる限りの近似を行います。 |
+| `gcmLightsLedOnMs` | LED の点滅時に明かりがついている時間 (ミリ秒)。 ハードウェアはできる限りの近似を行います。 |
+| `gcmLightsLedOffMs` | LED の点滅時に明かりが消えている時間 (ミリ秒)。 ハードウェアはできる限りの近似を行います。 |
+| `apnsBadge` | アプリケーション・アイコンのバッジとして表示する番号。 |
+| `apnsCategory` | 対話式プッシュ通知に使用されるカテゴリー ID。 |
+| `apnsIosActionKey` | アクション・キーのタイトル。 |
+| `apnsPayload` | 通知メッセージの一部として送信されるカスタム JSON ペイロード。 |
+| `apnsType` | ['DEFAULT', 'MIXED', 'SILENT']。 |
+| `apnsSound` | アプリケーション・バンドル内の音声ファイルの名前。 このファイルの音声がアラートとして再生されます。 |
+| `apnsTitleLocKey` | 現在のロケールに対応する `Localizable.strings` ファイルに含まれるタイトル・ストリングのキー。キー・ストリングは、`titleLocArgs` 配列に指定された変数を取り込むために、%@ および %n$@ の指定子を使用してフォーマット設定できます。 |
+| `apnsLocKey` | (ユーザーの言語設定によって指定された) 現在のロケールに対応する `Localizable.strings` ファイルに含まれるアラート・メッセージ・ストリングのキー。キー・ストリングは、`locArgs` 配列に指定された変数を取り込むために、%@ および %n$@ の指定子を使用してフォーマット設定できます。 |
+| `apnsLaunchImage` | アプリケーション・バンドル内のイメージ・ファイルのファイル名 (ファイル名拡張子を含めても含めなくてもよい)。 このイメージは、ユーザーがアクション・ボタンをタップした時、またはアクション・スライダーを移動した時に起動イメージとして使用されます。 |
+| `pnsTitleLocArgs` | `title-loc-key` 内のフォーマット指定子を置換する変数ストリング値。 |
+| `apnsLocArgs` | `locKey` 内のフォーマット指定子を置換する変数ストリング値。 |
+| `apnstitle` | リッチ・プッシュ通知のタイトル (iOS 10 以上のみでサポートされます)。 |
+| `apnsSubtitle` | リッチ通知のサブタイトル。 (iOS 10 以上のみでサポート)。
+| `apnsAttachmentUrl` | iOS 通知メディアへのリンク (ビデオ、オーディオ、GIF、イメージ - iOS 10 以上のみでサポートされます)。 |
+| `fireFoxTitle` | Web プッシュ通知に対して設定されるタイトルを指定します。 |
+| `fireFoxIconUrl` | Web プッシュ通知に対して設定されるアイコンの URL。 |
+| `fireFoxTimeToLive` | このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。 |
+| `fireFoxPayload` | 通知メッセージの一部として送信されるカスタム JSON ペイロード。 |
+| `chromeTitle` | Web プッシュ通知に対して設定されるタイトルを指定します。 |
+| `chromeIconUrl` | Web プッシュ通知に対して設定されるアイコンの URL。 |
+| `chromeTimeToLive` | このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。 |
+| `chromePayload` | 通知メッセージの一部として送信されるカスタム JSON ペイロード。 |
+| `safariTitle` | Safari プッシュ通知に対して設定されるタイトルを指定します。 |
+| `safariUrlArgs` | この通知で使用する必要がある URL 引数。 これらの引数は JSON 配列の形式で指定されます。 |
+| `safariAction` | アクション・ボタンのラベル。 |
+| `chromeAppExtTitle` | Web プッシュ通知に対して設定されるタイトルを指定します。 |
+| `chromeAppExtCollapseKey` | このパラメーターは、メッセージのグループを識別します。 |
+| `chromeAppExtDelayWhileIdle` | このパラメーターが true に設定されている場合、デバイスがアクティブになるまでメッセージが送信されないことを示します。 |
+| `chromeAppExtIconUrl` | Web プッシュ通知に対して設定されるアイコンの URL。 |
+| `chromeAppExtTimeToLive` | このパラメーターは、デバイスがオフラインの場合に GCM ストレージ内にメッセージが保持される時間 (秒) を指定します。 |
+| `chromeAppExtPayload` | 通知メッセージの一部として送信されるカスタム JSON ペイロード。 |
 
 ### プッシュ通知の例
 {: #pkg_push_ex}
@@ -164,7 +171,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 {
   "result": {
@@ -207,11 +214,12 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 {: #pkg_push_mobile_params}
 
 `/whisk.system/pushnotifications/webhook` パラメーターは以下のとおりです。
-- `appId`: {{site.data.keyword.Bluemix_notm}} アプリ GUID。
-- `appSecret`: {{site.data.keyword.Bluemix_notm}} プッシュ通知サービスの `appSecret`。
-- `events`: `onDeviceRegister`、`onDeviceUnregister`、`onDeviceUpdate`、`onSubscribe`、`onUnsubscribe`
 
-  ワイルドカード文字「`*`」を使用して、すべてのイベントに対して通知されるようにすることができます。
+| パラメーター | 説明 |
+|--- | --- |
+| `appId` | {{site.data.keyword.cloud_notm}} アプリ GUID。 |
+| `appSecret` | {{site.data.keyword.cloud_notm}} プッシュ通知サービスの `appSecret`。 |
+| `events` | `onDeviceRegister`、`onDeviceUnregister`、`onDeviceUpdate`、`onSubscribe`、`onUnsubscribe`。 ワイルドカード文字「`*`」を使用して、すべてのイベントに対して通知されるようにすることができます。 |
 
 ### プッシュ通知サービス・アクティビティーでのトリガー・イベントの起動
 {: #pkg_push_mobile_trigger}
@@ -242,8 +250,10 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
   ```
   {: pre}
 
-5. {{site.data.keyword.Bluemix_notm}} アプリケーションでデバイスを登録します。 {{site.data.keyword.openwhisk}} [ダッシュボード](https://cloud.ibm.com/openwhisk/dashboard)で、`rule`、`trigger`、および `action` が実行されるのを確認できます。
+5. {{site.data.keyword.cloud_notm}} アプリケーションでデバイスを登録します。 {{site.data.keyword.openwhisk}} [ダッシュボード](https://cloud.ibm.com/openwhisk/dashboard){: external}で、`rule`、`trigger`、および `action` が実行されるのを確認できます。
 
+  **出力**
+  
   アクションはプッシュ通知を送信します。
 
 
@@ -257,20 +267,20 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 
 | エンティティー | タイプ | パラメーター | 説明 |
 | --- | --- | --- | --- |
-| `/push-notifications` | パッケージ | apikey、appGuid | {{site.data.keyword.mobilepushshort}} インスタンスと連携します。 |
-| `/push-notifications/send-message` | アクション | text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
-| `/push-notifications/webhook` | アクション | events | プッシュ・サービスでデバイスのアクティビティー (デバイスの登録、登録解除、サブスクリプション、アンサブスクリプション) に基づいてトリガー・イベントを起動する。 |
+| `/push-notifications` | パッケージ | `apikey`、`appGuid` | {{site.data.keyword.mobilepushshort}} インスタンスと連携します。 |
+| `/push-notifications/send-message` | アクション | `text`、`url`、`deviceIds`、`platforms`、`userIds`、`tagNames`、`gcmCollapseKey`、`gcmCategory`、`gcmIcon`、`gcmDelayWhileIdle`、`gcmSync`、`gcmVisibility`、`gcmPayload`、`gcmPriority`、`gcmSound`、`gcmTimeToLive`、`gcmStyleType`、`gcmStyleTitle`、`gcmStyleUrl`、`gcmStyleText`、`gcmStyleLines`、`gcmLightsLedArgb`、`gcmLightsLedOnMs`、`gcmLightsLedOffMs`、`apnsBadge`、`apnsCategory`、`apnsIosActionKey`、`apnsPayload`、`apnsType`、`apnsSound`、`apnsTitleLocKey`、`apnsLocKey`、`apnsLaunchImage`、`apnsTitleLocArgs`、`apnsLocArgs`、`apnstitle`、`apnsSubtitle`、`apnsAttachmentUrl`、`fireFoxTitle`、`fireFoxIconUrl`、`fireFoxTimeToLive`、`fireFoxPayload`、`safariTitle`、`safariUrlArgs`、`safariAction`、`chromeTitle`、`chromeIconUrl`、`chromeTimeToLive`、 `chromePayload`、`chromeAppExtTitle`、`chromeAppExtCollapseKey`、`chromeAppExtDelayWhileIdle`、`chromeAppExtIconUrl`、`chromeAppExtTimeToLive`、`chromeAppExtPayload` | 指定された 1 つ以上のデバイスにプッシュ通知を送信する。 |
+| `/push-notifications/webhook` | アクション | `events` | プッシュ・サービスでデバイスのアクティビティー (デバイスの登録、登録解除、サブスクリプション、アンサブスクリプション) に基づいてトリガー・イベントを起動する。 |
 
 ### {{site.data.keyword.mobilepushshort}} サービス・インスタンスの作成
 {: #service_instance_push}
 
 パッケージをインストールする前に、{{site.data.keyword.mobilepushshort}} インスタンスを作成する必要があります。
 
-1. [{{site.data.keyword.mobilepushshort}} サービス・インスタンスを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン") します](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a)。
+1. [{{site.data.keyword.mobilepushshort}} サービス・インスタンスを作成](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a)します。
 
-2. プッシュ通知サービス・インスタンス用に[サービス資格情報のセットを作成 ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) します。
+2. プッシュ通知サービス・インスタンス用に[サービス資格情報のセットを作成](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) します。
 
-3. [{{site.data.keyword.mobilepushshort}} サービス・インスタンスを構成します ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2)。
+3. [{{site.data.keyword.mobilepushshort}} サービス・インスタンスを構成](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2)します。
 
 ### {{site.data.keyword.mobilepushshort}} パッケージのインストール
 {: #pkg_push_mobile_install}
@@ -281,7 +291,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 {: #pkg_push_mobile_cli}
 
 始める前に:
-  1. [{{site.data.keyword.Bluemix_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cli_install)。
+  1. [{{site.data.keyword.cloud_notm}} CLI 用の {{site.data.keyword.openwhisk_short}} プラグインをインストールします](/docs/openwhisk?topic=cloud-functions-cli_install)。
 
 {{site.data.keyword.mobilepushshort}} パッケージをインストールするには、以下のようにします。
 
@@ -309,7 +319,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
     ```
     {: pre}
 
-    出力:
+    **出力**
     ```
     packages
     /myOrg_mySpace/push-notifications private
@@ -322,7 +332,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
     ```
@@ -330,13 +340,13 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 
 6. パッケージが {{site.data.keyword.mobilepushshort}} サービス・インスタンスの資格情報を使用して構成されていることを確認します。
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/push-notifications parameters
+    ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/push-notifications, displaying field parameters
+    ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -347,10 +357,10 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
             "appGuid": "12341-12345-1234-a1234-1abcd12345",
             "clientSecret": "1b1234ab-1234-1234-123a-ab12345abcd",
             "credentials": "Service credentials-1",
-            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:ibmcloud:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
             "iam_apikey_name": "auto-generated-apikey-abcd1234abcd1234abcd1234",
-            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-            "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
+            "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:ibmcloud:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
             "instance": "Push Notifications-ab",
             "plan": "LITE",
             "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
@@ -364,15 +374,15 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ### {{site.data.keyword.openwhisk_short}} UI からのインストール
 {: #pkg_push_mobile_ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで、[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external} に移動します。
 
-2. 右上隅の名前空間スイッチャーを使用して、{{site.data.keyword.cos_full_notm}} パッケージのインストール先の名前空間を選択します。
+2. 右上隅にある名前空間ドロップダウン・メニューを使用して、{{site.data.keyword.cos_full_notm}} パッケージをインストールする名前空間を選択します。
 
 3. **「パッケージのインストール (Install Packages)」**をクリックします。
 
 4. **IBM {{site.data.keyword.mobilepushshort}}** パッケージ・グループをクリックしてから、**IBM {{site.data.keyword.mobilepushshort}}** パッケージをクリックします。
 
-5. 「使用可能なランタイム (Available Runtimes)」セクションで、ドロップダウン・リストから NodeJS を選択してから、**「インストール」**をクリックします。
+5. 「使用可能なランタイム (Available Runtimes)」セクションで、ドロップダウン・リストから nodeJS を選択してから、**「インストール」**をクリックします。
 
 6. パッケージがインストールされたら、アクション・ページにリダイレクトされ、この新しいパッケージを検索できます。このパッケージは **push-notifications** という名前になっています。
 
@@ -392,7 +402,7 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 {
   "response": {
@@ -413,14 +423,14 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 ### Web フックの作成
 {: #pkg_push_mobile_hook}
 
-onDeviceRegister イベント用の {{site.data.keyword.mobilepushshort}} サービスの Webhook を作成するには、以下のようにします。
+`onDeviceRegister` イベント用の {{site.data.keyword.mobilepushshort}} サービスの Webhook を作成するには、以下のようにします。
 
 ```
  ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 {
   "response": {
@@ -433,4 +443,6 @@ onDeviceRegister イベント用の {{site.data.keyword.mobilepushshort}} サー
 }
 ```
 {: screen}
+
+
 

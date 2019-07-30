@@ -1,10 +1,9 @@
 ---
-
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-29"
+lastupdated: "2019-07-12"
 
-keywords: iam, access managment, roles, service roles, policies, access
+keywords: access policies, iam, roles, functions
 
 subcollection: cloud-functions
 
@@ -15,30 +14,27 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
 {:download: .download}
+{:gif: data-image-type='gif'}
 
 
-# アクセス権限の管理
+
+# アクセス・ポリシーの設定
 {: #iam}
-
-{{site.data.keyword.openwhisk}} は、Identity and Access Management (IAM) をサポートしています。名前空間などのリソースに対して、IAM ポリシーを定義できるようになりました。
-{: shortdesc}
-
-IAM ポリシーは、東京地域において {{site.data.keyword.openwhisk_short}} でのみ使用できます。東京地域で運用する場合は、IAM ポリシーを使用してアクセスを制御する必要があります。
-{: tip}
-
-</br>
 
 ## {{site.data.keyword.openwhisk_short}} への IAM 役割のマッピング
 {: #user-roles}
 
-{{site.data.keyword.openwhisk_short}} では、名前空間が、IAM の役割とポリシーを利用してアクセス管理を実施できる IBM Cloud リソースと見なされます。名前空間に対して設定したポリシーはすべて、名前空間に含まれる {{site.data.keyword.openwhisk_short}} のエンティティー (アクションやトリガーなど) にも適用されます。
+{{site.data.keyword.openwhisk_short}} では、名前空間とは、IAM の役割とポリシーを利用したアクセス管理に使用できる {{site.data.keyword.cloud_notm}} リソースのことです。名前空間に対して設定したポリシーはすべて、名前空間に含まれる {{site.data.keyword.openwhisk_short}} のエンティティー (アクションやトリガーなど) にも適用されます。
 {: shortdesc}
 
-{{site.data.keyword.openwhisk_short}} では、プラットフォーム管理役割とサービス管理役割の両方を使用します。名前空間を作成できるユーザーに関するポリシーをプラットフォーム・レベルで設定するとともに、名前空間自体とのやりとりを管理するためにサービス役割を使用することができます。
+{{site.data.keyword.openwhisk_short}} では、プラットフォーム管理役割とサービス管理役割の両方を使用します。 名前空間を作成できるユーザーに関するポリシーをプラットフォーム・レベルで設定し、名前空間自体とのやりとりを管理するためにサービス役割を使用することができます。
 
 IAM の主要な概念について詳しくは、[IAM の資料](/docs/iam?topic=iam-iamconcepts#iamconcepts)を確認してください。
 {: tip}
@@ -47,8 +43,11 @@ IAM の主要な概念について詳しくは、[IAM の資料](/docs/iam?topic
 
 ### プラットフォーム管理の役割
 
-下記の表は、プラットフォーム管理役割にマップされたアクションの詳細を示しています。ユーザーは、プラットフォーム管理役割を使用して、プラットフォーム・レベルでサービス・リソースに対するタスクを実行できます。 例えば、サービスに対するユーザー・アクセス権限の割り当て、サービス ID の作成または削除、インスタンスの作成、アプリケーションへのインスタンスのバインドなどを実行できます。
+下記の表は、プラットフォーム管理役割にマップされたアクションの詳細を示しています。 ユーザーは、プラットフォーム管理役割を使用して、プラットフォーム・レベルでサービス・リソースに対するタスクを実行できます。 例えば、サービスに対するユーザー・アクセス権限の割り当て、サービス ID の作成または削除、インスタンスの作成、アプリケーションへのインスタンスのバインドなどを実行できます。
 {: shortdesc}
+
+リソース・アクセス・ポリシーの割り当て、編集、確認、または削除の方法について詳しくは、[IAM アクセス権限の管理](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)を参照してください。
+{: tip}
 
 <table>
   <thead>
@@ -60,22 +59,22 @@ IAM の主要な概念について詳しくは、[IAM の資料](/docs/iam?topic
   <tbody>
     <tr>
       <td>管理者</td>
-      <td>ユーザーは名前空間を作成できます。</td>
+      <td>ユーザーは名前空間を作成できます。 サービスの作成中に `service id` 操作と `apikey lock` 操作を実行するには、管理者の役割が必要です。</td>
     </tr>
   </tbody>
 </table>
 
-サービスを操作するには、プラットフォーム管理における管理者役割が必要です。役割について詳しくは、[プラットフォーム管理の役割](/docs/iam?topic=iam-userroles)を確認してください。
+サービスをプロビジョンする必要がないので、サービスを操作するために必要なプラットフォームの役割は、エディターの役割だけです。その他の役割について詳しくは、[プラットフォーム管理の役割](/docs/iam?topic=iam-userroles)を確認してください。
 
 </br>
 
 ### サービス固有の役割
+{: #service_specific_roles}
 
-サービス固有の役割により、特定のサービス内における、アクセス・ポリシーの適用範囲が決まります。{{site.data.keyword.openwhisk_short}} の場合、それらの役割の適用によって、ユーザーがサービスで利用できる操作 (UI へのアクセスや API 呼び出しの実行など) を制御できます。
+サービス固有の役割により、特定のサービス内における、アクセス・ポリシーの適用範囲が決まります。 {{site.data.keyword.openwhisk_short}} の場合、それらの役割の適用によって、ユーザーがサービス使用のために行える操作 (UI へのアクセスや API 呼び出しの実行など) を制御できます。
 {: shortdesc}
 
-
-許可は他の許可をベースに構築されていることに留意する必要があります。例えば、`ライター`役割で実行できる操作はすべて、`管理者`役割でも実行できます。ただし、`管理者`役割には、その他の権限が追加されています。各役割に付与される一般的な許可については、[サービス・アクセスの役割](/docs/iam?topic=iam-userroles)を確認してください。
+許可は他の許可をベースに構築されています。例えば、`ライター`役割で実行できる操作はすべて、`管理者`役割でも実行できます。 ただし、`管理者`役割には、その他の権限が追加されています。 各役割に付与される一般的な許可については、[サービス・アクセスの役割](/docs/iam?topic=iam-userroles)を確認してください。
 
 各操作の実行に必要な役割については、以下の表を確認してください。
 
@@ -145,34 +144,46 @@ IAM の主要な概念について詳しくは、[IAM の資料](/docs/iam?topic
   </tr>
 </table>
 
-UI でユーザー役割を割り当てる方法については、[IAM アクセス権限の管理](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)を参照してください。
+</br>
+
+### CLI によるポリシーの設定
+{: #cli-set}
+
+IAM ベースの名前空間内のリソース (アクションなど) に IAM ベースのサービスへのアクセス権限を付与するには、そのリソースが含まれている名前空間に関する IAM アクセス・ポリシーを作成できます。
+
+```
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+```
+{: pre}
+
+<table>
+  <thead>
+    <th colspan=2><img src="images/idea.png" alt="アイデア・アイコン"/> <code>ibmcloud iam service-policy-create</code> コマンドのコンポーネントの説明</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;namespace_service_ID&gt;</code></td>
+      <td>名前空間のサービス ID。すべてのサービス ID を参照するには、<code>ibmcloud iam service-ids</code> を実行します。</td>
+    </tr>
+    <tr>
+      <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
+      <td>アクションでターゲット・サービスを使用するために必要な IAM サービス・アクセス役割のタイプ。他のサービスのサポートされている役割を確認するには、<code>ibmcloud iam roles --service SERVICE_NAME</code> を実行します。詳しくは、[IAM アクセス権限](/docs/iam?topic=iam-userroles#service-access-roles)を参照してください。</td>
+    </tr>
+    <tr>
+      <td>`--service-name` <code>&lt;other_service_type&gt;</code></td>
+      <td>他の {{site.data.keyword.cloud_notm}} サービス・タイプの名前。</td>
+    </tr>
+    <tr>
+      <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
+      <td>アクションに付与しようとしているアクセス権限の対象である他のサービス・インスタンスの GUID。このサービス・インスタンスの GUID を取得するには、<code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code> を実行します。</td>
+    </tr>
+  </tbody>
+</table>
 
 </br>
 
-
-## IAM アクセス・ポリシーの設定
-{: #set-iam}
-
-サービスがアクションを呼び出すと、そのアクションの応答があります。応答は、名前空間またはアクションからサービスに送信されるため、アウトバウンドの情報と見なされます。対象の名前空間が他のサービスに与える影響の程度を制限する必要がある場合は、アクセス・ポリシーを作成することができます。
-{: shortdesc}
-
-リソース・アクセス・ポリシーの割り当て、編集、確認、または削除の方法については、[IAM アクセス権限の管理](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)を参照してください。
-{: tip}
+**次のステップ**
+サービス資格情報の管理について詳しくは、[Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} ブログを参照してください。
 
 
 
-
-</br>
-</br>
-
-## 名前空間から他のリソースへのアクセス
-{: #namespace-access}
-
-IAM トークンを使用して、IAM 管理の名前空間から他のリソースにアクセスできます。トークンは認証を表し、リソースの ID を検証するものです。IAM 管理のサービスまたはリソースにアクセスする際には、認証のために IAM トークンが必要です。
-{: shortdesc}
-
-ユーザー ID でユーザーを特定する場合と同様に、サービス ID で特定のリソースを表します。そのため、アクセス許可を管理するための IAM ポリシーを、それらのリソースに適用することができます。ユーザーの場合のように、リソースも ID の検証のために認証が必要です。Functions 内で、この仕組みを、他のサービスまたはリソースにアクセスする場合のアクションの実装に利用することができます。
-
-IAM 管理の新規名前空間を作成すると、その名前空間と API キーを識別するための対応するサービス ID が Functions によって自動的に作成されます。実行時に、Cloud Functions はその API キーを環境変数 `__OW_IAM_NAMESPACE_API_KEY` の値として、アクション・コードに渡します。アクション・コードでは、この API キーを使用して IAM トークンを生成します。サポートされる大多数の SDK (Cloudant、Watson、COS など) は、IAM キー自体で認証されます。REST API を使用する、その他の IAM 管理のサービスまたはリソースは、IAM キーから導出されたトークンで認証されます。
-
-API キーとトークンの組み合わせについて詳しくは、[IAM の資料](/docs/iam?topic=iam-iamapikeysforservices)を参照してください。

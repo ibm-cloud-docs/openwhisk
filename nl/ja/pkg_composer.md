@@ -2,9 +2,9 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: composer, openwhisk, compositions, sequence, branch
+keywords: composer, openwhisk, compositions, sequence, branch, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,12 +24,13 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Composer
 {: #pkg_composer}
 
-{{site.data.keyword.openwhisk}} で、テクニカル・プレビューとして Apache OpenWhisk 用の Composer がサポートされるようになりました。 Composer は Apache OpenWhisk シーケンスを、追加のコンビネーター ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md)、[Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)) で拡張します。これにより、条件付き分岐、エラー処理、およびループを含む、より複雑なフローを作成できます。 Composer に関する詳しい資料と技術仕様は、[Composer Git リポジトリー](https://github.com/apache/incubator-openwhisk-composer)から入手できます。
+{{site.data.keyword.openwhisk}} で、テクニカル・プレビューとして Apache OpenWhisk 用の Composer がサポートされるようになりました。 Composer は Apache OpenWhisk シーケンスを、追加のコンビネーター ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external}、[Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}) で拡張します。これにより、条件付き分岐、エラー処理、およびループを含む、より複雑なフローを作成できます。Composer に関する詳しい資料と技術仕様は、[Composer Git リポジトリー](https://github.com/apache/incubator-openwhisk-composer){: external}から入手できます。
 
-また、オープン・ソース・プロジェクト [Kui](https://github.com/ibm/kui) を使用して、Composer ソース・コードを簡単に作成、デプロイ、および視覚化することもできます。 Composer で Kui を使用する方法について詳しくは、[Github の Kui](https://github.com/ibm/kui) を参照してください。
+また、オープン・ソース・プロジェクト [Kui](https://github.com/ibm/kui){: external} を使用して、Composer ソース・コードを簡単に作成、デプロイ、および視覚化することもできます。 詳しくは、[GitHub 上の Kui](https://github.com/ibm/kui){: external} を参照してください。
 {: note}
 
 ## JavaScript または Python 3 用の Composer ライブラリーのインストール
@@ -37,8 +39,8 @@ subcollection: cloud-functions
 Composer で使用するアクションの作成はどの言語でも行えますが、コンポジションの表現は JavaScript または Python 3 のいずれかで行います。インストール後、Composer の `compose/pycompose` コマンドと `deploy/pydeploy` コマンドを使用して、[コンポジションを構成および実行します](#run)。
 {: shortdesc}
 
-**JavaScript の場合**:
-1. ノード・パッケージ・マネージャーを使用して、Composer ライブラリーの [Node.js パッケージ](https://github.com/apache/incubator-openwhisk-composer)をインストールします。
+**JavaScript の場合**
+1. ノード・パッケージ・マネージャーを使用して、Composer ライブラリーの [Node.js パッケージ](https://github.com/apache/incubator-openwhisk-composer){: external}をインストールします。
 
     ```
         npm install -g openwhisk-composer
@@ -53,7 +55,7 @@ Composer で使用するアクションの作成はどの言語でも行えま�
     ```
     {: codeblock}
 
-    出力例:
+    **出力例**
     ```
     使用法:
         compose composition.js [flags]
@@ -63,24 +65,27 @@ Composer で使用するアクションの作成はどの言語でも行えま�
     ```
     {: screen}
 
-**Python 3 の場合**:
-`pip3` を使用して [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python) ライブラリーをインストールします。
+**Python 3 の場合**
+`pip3` を使用して [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python){: external} ライブラリーをインストールします。
 
 1.  Composer for Python 3 GitHub リポジトリーを複製します。
     ```
     git clone https://github.com/apache/incubator-openwhisk-composer-python.git
     ```
     {: pre}
+
 2.  composer ディレクトリーに移動します。
     ```
     cd composer-python
     ```
     {: pre}
+
 3.  Composer ライブラリーをインストールします。 コマンドが現行ディレクトリー内を検索するよう、ピリオド (`.`) を含めます。
     ```
     pip3 install -e .
     ```
     {: pre}
+
 4.  Composer コマンドの help を実行して、ライブラリーをインストールしたことを確認します。
     ```
     $ pycompose -h
@@ -88,7 +93,7 @@ Composer で使用するアクションの作成はどの言語でも行えま�
     ```
     {: codeblock}
 
-    出力例:
+    **出力例**
     ```
     usage: pycompose composition.py command [flags]
     usage: pydeploy composition composition.json [flags]
@@ -101,7 +106,7 @@ Composer で使用するアクションの作成はどの言語でも行えま�
 JavaScript または Python 3 の Composer ライブラリーを使用して {{site.data.keyword.openwhisk}} でコンポジションを作成できます。 `compose` または `pycompose` を使用してコンポジションのソース・コードをコンパイルし、その後、`deploy` または `pydeploy` を使用してコンポジションを {{site.data.keyword.openwhisk}} にデプロイします。 コンポジションを構成した後、{{site.data.keyword.openwhisk}} で実行できます。
 {: shortdesc}
 
-**始める前に**:
+**始める前に**
 デフォルトで、`~/.wskprops` で設定される値をデプロイメントで使用します。 Composer の `deploy` コマンドまたは `pydeploy` コマンドの入力として 2 つのパラメーターを設定することにより、デフォルトをオーバーライドします。
 
 1.  API ホストを {{site.data.keyword.openwhisk}} エンドポイントに設定します。
@@ -115,27 +120,27 @@ JavaScript または Python 3 の Composer ライブラリーを使用して {{s
     ```
     {: codeblock}
 
-**コンポジションを実行するには、以下のようにします**。
+**コンポジションを実行するには、以下のようにします。**
 
-1.  NodeJS ライブラリーまたは Python 3 ライブラリーを使用して Composer のソース・コードを作成します。 例えば、`demo.js` ファイルを作成します。
+1.  nodeJS ライブラリーまたは Python 3 ライブラリーを使用して Composer のソース・コードを作成します。 例えば、`demo.js` ファイルを作成します。
 2.  Composer のソース・コードを JSON ファイルにコンパイルします。
-    *   JavaScript の場合:
+    *   **JavaScript**
         ```
         compose demo.js > demo.json
         ```
         {: pre}
-    *   Python 3 の場合:
+    *   **Python 3**
         ```
         pycompose demo.js > demo.json
         ```
         {: pre}
 3.  コードを {{site.data.keyword.openwhisk}} にデプロイします。
-    *   JavaScript の場合: `-w` フラグを使用して、`demo` という名前の既存のデプロイメントを上書きします。
+    *   JavaScript の場合、`-w` フラグを使用して、`demo` という名前の既存のデプロイメントを上書きします。
         ```
         deploy demo demo.json -w
         ```
         {: pre}
-    *   Python 3 の場合: `-w` フラグを使用して、`demo` という名前の既存のデプロイメントを上書きします。
+    *   Python 3 の場合、`-w` フラグを使用して、`demo` という名前の既存のデプロイメントを上書きします。
         ```
         pydeploy demo demo.json -w
         ```
@@ -146,18 +151,21 @@ JavaScript または Python 3 の Composer ライブラリーを使用して {{s
     ```
     {: pre}
 
-デプロイしたコードは、特別な種類のアクションとして {{site.data.keyword.openwhisk}} で実行されます。 詳しくは、[コンダクター・アクション](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md)に関する資料を参照してください。
+デプロイしたコードは、特別なアクションとして {{site.data.keyword.openwhisk}} で実行されます。詳しくは、[コンダクター・アクション](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md){: external}に関する資料を参照してください。
 
 ## Composer でのシーケンスの拡張
 {: #extending}
 
-Apache OpenWhisk を使用すると、`sequence` で複数の関数をチェーニングすることができます。この場合、あるアクションの出力が別のアクションの入力になります。
+Apache OpenWhisk を使用して、`sequence` で複数の関数をチェーニングすることができます。この場合、あるアクションの出力が別のアクションの入力になります。
 
 ### Composer を使用しないシーケンス
 {: #sequences-without-composer}
 {{site.data.keyword.openwhisk_short}} で `action1` および `action2` という 2 つの関数をチェーニングすることができます。
 
-`ibmcloud fn action create --sequence mysequence action1 action2`.
+```
+ibmcloud fn action create --sequence mysequence action1 action2
+```
+{: pre}
 
 このコマンドの結果として、`mysequence` という名前の関数が生成されます。これは、`action1` と `action2` の複合物です。  OpenWhisk の他の関数と同じ方法で `mysequence` を使用できます。
 
@@ -165,7 +173,7 @@ Apache OpenWhisk を使用すると、`sequence` で複数の関数をチェー�
 {: #sequences-with-composer}
 Composer では、コマンド・ラインではなくソース・コードを使用して、より豊富なシーケンスを指定できます。
 
-JavaScript の場合:
+**JavaScript の場合**
 ```
 const composer = require('openwhisk-composer')
 
@@ -173,7 +181,7 @@ module.exports = composer.seq('action1', 'action2')
 ```
 {: codeblock}
 
-Python 3 の場合:
+**Python 3 の場合**
 ```
 import openwhisk-composer
 
@@ -181,17 +189,18 @@ def main():
   return composer.sequence('action1', 'action2')
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-sequence.png" width="35%" title="単純なシーケンス" alt="2 つのアクションで構成されるシーケンス" style="width:250px; border-style: none"/></br>
 _図 1. 2 つのアクションで構成されるシーケンス_
 
-Composer の機能は、関数のチェーニングに限定されているわけではありません。 Composer には、シーケンスの表現力を向上させる [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) または [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md) ベースのコンビネーターのファミリーが含まれています。 以下のセクションで一般的な例を紹介します。
+Composer の機能は、関数のチェーニングに限定されているわけではありません。 Composer には、シーケンスの表現力を向上させる [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} または [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external} ベースのコンビネーターのファミリーが含まれています。 以下のセクションで一般的な例を紹介します。
 
 ### エラー処理
 {: #error-handling}
 `try-catch-finally` ブロックを使用して、シーケンスにエラー処理を追加できます。 この例では、シーケンスを try で囲んでいます。 いずれかのアクションでエラーが返されると、`handleError` コードが実行されます。
 
-JavaScript の場合:
+**JavaScript の場合**
 ```
 const composer = require('openwhisk-composer')
 
@@ -201,7 +210,7 @@ module.exports = composer.try(
 ```
 {: codeblock}
 
-Python 3 の場合:
+**Python 3 の場合**
 ```
 import openwhisk-composer
 
@@ -210,15 +219,16 @@ def main():
   'handleError')
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-error.png" width="400" title="Try シーケンス" alt=" エラー処理を含むシーケンス" style="width:400px; border-style: none"/></br>
 _図 2. エラー処理を含むシーケンス_
 
 ### 条件付き分岐
 {: #conditional-branch}
-`if-then-else` を使用して、分岐シーケンスを作成できます。 この例では、`if-then-else` について説明しています。 `action1` はブール値を返すはずです。 `true` の場合は `action2` が実行され、その他の場合は `action3` が実行されます。 `action3` はオプションであり、`if-then` では省略可能です。
+`if-then-else` を使用して、分岐シーケンスを作成できます。 この例では、`if-then-else` について説明しています。 `action1` はブール値を返します。 `true` の場合は `action2` が実行され、その他の場合は `action3` が実行されます。 `action3` はオプションであり、`if-then` では省略可能です。
 
-JavaScript の場合:
+**JavaScript の場合**
 ```
 const composer = require('openwhisk-composer')
 
@@ -226,7 +236,7 @@ module.exports = composer.if('action1', 'action2', 'action3')
 ```
 {: codeblock}
 
-Python 3 の場合:
+**Python 3 の場合**
 ```
 import openwhisk-composer
 
@@ -242,7 +252,7 @@ _図 3. 条件分岐を含むシーケンス_
 {: #loop}
 Composer では、ループ構造を作成できます。 この例では、`action1` によって `true` が返された場合のみ `action2` が実行されます。 Composer は、組み合わせられたシーケンスで実行できるステップの総数を制限します。 現在の上限は 20 個です。
 
-JavaScript の場合:
+**JavaScript の場合**
 ```
 const composer = require('openwhisk-composer')
 
@@ -250,7 +260,7 @@ module.exports = composer.while('action1', 'action2')
 ```
 {: codeblock}
 
-Python 3 の場合:
+**Python 3 の場合**
 ```
 import openwhisk-composer
 
@@ -266,7 +276,7 @@ _図 4. `while` ループを含むシーケンス_
 {: #inline-def}
 コンポジション・コード自体の中でアクションを定義できます。 この例では、`composer.action()` を使用して、`hello` という名前のコンポジションでインライン化したアクション定義を作成します。
 
-JavaScript の場合:
+**JavaScript の場合**
 ```
 const composer = require('openwhisk-composer')
 
@@ -274,7 +284,7 @@ module.exports = composer.seq('action1', composer.action('hello', { action: func
 ```
 {: codeblock}
 
-Python 3 の場合:
+**Python 3 の場合**
 ```
 import openwhisk-composer
 
@@ -282,11 +292,17 @@ def main():
   return composer.sequence('action1',composer.action('hello', { 'action': "message = 'hello'\ndef main(args):\n    return { 'message':message }" }))
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-inline.png" width="250" title="While シーケンス" alt="インライン・アクション定義を含むシーケンス" style="width:250px; border-style: none"/></br>
 _図 5. インライン・アクション定義を含むシーケンス_
 
 ## その他のコンビネーター定義の使用
 {: #combinator-def}
-コンビネーター定義の詳細なリストについては、Apache OpenWhisk 用の Composer ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) または [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)) の資料を参照してください。
+コンビネーター定義の詳細なリストについては、Apache OpenWhisk 用の Composer ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} または [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}) の資料を参照してください。
+
+
+
+
+
 

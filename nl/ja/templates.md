@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploy, deployment templates, templates, example, quickstart
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # クイック・スタート・テンプレートのデプロイ
 {: #templates}
 
-{{site.data.keyword.openwhisk}} は、次のプロジェクトを迅速に開始できるように、テンプレートのカタログを提供します。 テンプレートは、アクション、トリガー、シーケンスの組み合わせです。 一部のテンプレートは、{{site.data.keyword.Bluemix_notm}} からの他のサービス・インスタンスも取り込みます。 テンプレートを使用することで、プロジェクトを迅速かつ簡単に作成し、直ちにコーディングを開始できます。
+{{site.data.keyword.openwhisk}} は、次のプロジェクトを迅速に開始できるように、テンプレートのカタログを提供します。 テンプレートは、アクション、トリガー、シーケンスの組み合わせです。 一部のテンプレートは、{{site.data.keyword.cloud_notm}} からの他のサービス・インスタンスも取り込みます。 テンプレートを使用することで、プロジェクトを迅速かつ簡単に作成し、直ちにコーディングを開始できます。
 {: shortdesc}
 
 
@@ -35,12 +37,12 @@ subcollection: cloud-functions
 
 | 名前 | 説明 | サポートされるランタイム | ソース・リポジトリー |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | {{site.data.keyword.cloudantfull}} データベースで文書が編集または追加されると、コンソールに変更を出力します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-cloudant-trigger) |
-| [Upload Image](#image-template) | Web アクションを使用して、イメージを {{site.data.keyword.cos_full}} インスタンスのバケットにアップロードしてから、そのイメージのサムネールを取得します。 | Node.js | [コード](https://github.com/ibm-functions/template-cloud-object-storage)
-| [Get HTTP Resource](#get-http-resource-template) | HTTP イベントを使用して Web アクションを呼び出し、Yahoo Weather API からデータを取得します。 | Node.js、Python | [コード](https://github.com/ibm-functions/template-get-external-resource)
-| [Hello World](#hello-world-template) | JSON オブジェクトを 1 つのパラメーターとして受け入れる基本アクションを作成します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-hello-world)
-| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | {{site.data.keyword.messagehub_full}} トピックで新規データが追加されると、コンソールに変更を出力します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-messagehub-trigger)
-| [Periodic Slack Reminder](#slack-reminder-template) | 定期的なトリガーに基づいて Webhook を Slack に対して使用します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-reminder-slack)
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | {{site.data.keyword.cloudantfull}} データベースで文書が編集または追加されると、コンソールに変更を出力します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Upload Image](#image-template) | Web アクションを使用して、イメージを {{site.data.keyword.cos_full}} インスタンスのバケットにアップロードしてから、そのイメージのサムネールを取得します。 | Node.js | [コード](https://github.com/ibm-functions/template-cloud-object-storage){: external}
+| [Get HTTP Resource](#get-http-resource-template) | HTTP イベントを使用して Web アクションを呼び出し、Yahoo Weather API からデータを取得します。 | Node.js、Python | [コード](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | JSON オブジェクトを 1 つのパラメーターとして受け入れる基本アクションを作成します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | {{site.data.keyword.messagehub_full}} トピックで新規データが追加されると、コンソールに変更を出力します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | 定期的なトリガーに基づいて Webhook を Slack に対して使用します。 | Node.js、Swift、Python、PHP | [コード](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 各テンプレートのコードはコード・リポジトリーで入手できます。自由に変更し、テンプレートを基礎とする独自の機能を作成できます。
 {: tip}
@@ -54,7 +56,7 @@ subcollection: cloud-functions
 ### UI から {{site.data.keyword.cloudant_short_notm}} Events テンプレートをデプロイする
 {: #cloudant-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -70,12 +72,13 @@ subcollection: cloud-functions
     3. サービス資格情報のセットを作成します。
     4. **「OK」**をクリックして、{{site.data.keyword.cloudant_short_notm}} セットアップ・ページを閉じ、{{site.data.keyword.openwhisk_short}} コンソールに戻ります。
     5. **「Cloudant インスタンス (Cloudant Instance)」**リストで、**「自分の資格情報の入力」**を選択し、以下の情報を入力します。
-      * ユーザー名: {{site.data.keyword.cloudant_short_notm}} のユーザー名
-      * パスワード: {{site.data.keyword.cloudant_short_notm}} のパスワード
-      * ホスト: `<username>.cloudant.com`
-      * データベース: {{site.data.keyword.cloudant_short_notm}} データベースの名前
+        
+        * `ユーザー名` - {{site.data.keyword.cloudant_short_notm}} ユーザー名。
+        * `パスワード` - {{site.data.keyword.cloudant_short_notm}} パスワード。
+        * `ホスト` - `<username>.cloudant.com`。 
+        * `データベース` - {{site.data.keyword.cloudant_short_notm}} データベースの名前。
 
-5. **「デプロイ」**をクリックします。 テンプレートのデプロイ後、必要に応じてカスタマイズするためにさらにコードを編集するか、戻って使用可能なテンプレートのカタログを確認できます。
+6. **「デプロイ」**をクリックします。 テンプレートのデプロイ後、必要に応じてカスタマイズするためにさらにコードを編集するか、戻って使用可能なテンプレートのカタログを確認できます。
 
 ### CLI から {{site.data.keyword.cloudant_short_notm}} Events テンプレートをデプロイする
 {: #cloudant-template-cli}
@@ -116,13 +119,13 @@ subcollection: cloud-functions
 ## Upload Image テンプレートのデプロイ
 {: #image-template}
 
-Upload Image テンプレートは、小さなインターフェースを使用してイメージを {{site.data.keyword.cos_full_notm}} バケットにアップロードできるようにする Web アクションを作成します。 次に、このテンプレートはイメージをサムネールとして取得し、それを Web アクションのインターフェースに表示します。
+Upload Image テンプレートは、小さなインターフェースを使用してイメージを {{site.data.keyword.cos_full_notm}} バケットにアップロードするために使用できる Web アクションを作成します。次に、このテンプレートはイメージをサムネールとして取得し、それを Web アクションのインターフェースに表示します。
 
 
 ### UI から Upload Image テンプレートをデプロイする
 {: #image-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -131,12 +134,12 @@ Upload Image テンプレートは、小さなインターフェースを使用�
 4. パッケージの名前を入力するか、またはデフォルト名 `upload-image` を使用し、**「次へ」**をクリックします。
 
 6. テンプレートには、{{site.data.keyword.cos_full_notm}} サービス・インターフェースのサービス資格情報が必要です。 **{{site.data.keyword.cos_full_notm}}** リストで、以下のいずれかのオプションを選択します。
-  * **新規インスタンスの作成**: 既存のサービス・インスタンスがない場合、このオプションを選択して 1 つ作成します。
+  * **インスタンスの作成**。既存のサービス・インスタンスがない場合、このオプションを選択して 1 つ作成します。
       1. 開いた「{{site.data.keyword.cos_full_notm}} サービス・インスタンス作成」ページで、サービス・インスタンスを作成します。
       2. [HMAC サービス資格情報セットを作成します](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials)。
       3. [バケットを少なくとも 1 つ作成します](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets)。
-  * **独自の資格情報の入力**: {{site.data.keyword.cos_full_notm}} サービス・インスタンス用に独自の資格情報を手動で入力するには、このオプションを選択します。 資格情報には HMAC 鍵がなければならず、サービス・インスタンスには、バケットが少なくとも 1 つ必要です。
-  * **既存のインスタンス**: 既存の {{site.data.keyword.cos_full_notm}} インスタンスがあれば、そのいずれかのインスタンスをリストから選択します。 資格情報には HMAC 鍵がなければならず、サービス・インスタンスには、バケットが少なくとも 1 つ必要です。
+  * **自分の資格情報の入力**。{{site.data.keyword.cos_full_notm}} サービス・インスタンス用に独自の資格情報を手動で入力するには、このオプションを選択します。 資格情報には HMAC 鍵がなければならず、サービス・インスタンスには、バケットが少なくとも 1 つ必要です。
+  * **既存のインスタンス**。 既存の {{site.data.keyword.cos_full_notm}} インスタンスがあれば、そのいずれかのインスタンスをリストから選択します。 資格情報には HMAC 鍵がなければならず、サービス・インスタンスには、バケットが少なくとも 1 つ必要です。
 
 7. **「デプロイ」**をクリックします。
 
@@ -171,7 +174,7 @@ Upload Image テンプレートは、小さなインターフェースを使用�
     ```
     {: pre}
 
-4. {{site.data.keyword.openwhisk_short}} コンソールの[「アクション」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/actions) で、`process-change` アクションをクリックします。
+4. {{site.data.keyword.openwhisk_short}} コンソールの[「アクション」ページ](https://cloud.ibm.com/openwhisk/actions){: external}で、`process-change` アクションをクリックします。
 
 5. 左側のナビゲーションで、**「エンドポイント」**をクリックします。
 
@@ -180,12 +183,15 @@ Upload Image テンプレートは、小さなインターフェースを使用�
 ## Get HTTP Resource テンプレートのデプロイ
 {: #get-http-resource-template}
 
-Get HTTP Resource テンプレートは、外部リソースである Yahoo Weather API をフェッチするためのアクションを作成し、その後、データを返します。 アクションは Web アクションとして有効にされるので、CORS 対応の URL を使用して呼び出すことが可能で、認証鍵は必要ありません。これは、Web アプリケーションのバックエンドを構築するのに役立ちます。 **注**: デフォルトでは、`get-http-resource` エンドポイントは、これを呼び出すすべてのユーザーに対して公開されています。
+Get HTTP Resource テンプレートは、外部リソースである Yahoo Weather API をフェッチするためのアクションを作成し、その後、データを返します。 アクションは Web アクションとして有効にされるので、CORS 対応の URL を使用して呼び出すことが可能で、認証鍵は必要ありません。これは、Web アプリケーションのバックエンドを構築するのに役立ちます。
+
+デフォルトでは、`get-http-resource` エンドポイントは、これを呼び出すすべてのユーザーに対して公開されています。
+{: note}
 
 ### UI から Get HTTP Resource テンプレートをデプロイする
 {: #get-http-resource-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -240,7 +246,7 @@ Get HTTP Resource テンプレートは、外部リソースである Yahoo Weat
 ### UI から Hello World テンプレートをデプロイする
 {: #hello-world-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -283,7 +289,7 @@ Get HTTP Resource テンプレートは、外部リソースである Yahoo Weat
 ### UI から {{site.data.keyword.messagehub}} Events テンプレートをデプロイする
 {: #messagehub-events-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -300,13 +306,13 @@ Get HTTP Resource テンプレートは、外部リソースである Yahoo Weat
     3. サービス資格情報のセットを作成します。
     4. **「OK」**をクリックして、{{site.data.keyword.messagehub}} 作成ページを閉じ、{{site.data.keyword.messagehub}} コンソールに戻ります。
     5. **「MessageHub インスタンス (MessageHub Instance)」**リストで、**「自分の資格情報の入力」**を選択し、以下の情報を入力します。
-      * ユーザー名: {{site.data.keyword.messagehub}} のユーザー名
-      * パスワード: {{site.data.keyword.messagehub}} のパスワード
-      * kafka_admin_url: {{site.data.keyword.messagehub}} 管理 REST URL
-      * データベース: {{site.data.keyword.messagehub}} データベースの名前
-      * トピック: サブスクライブするトピック
+        * `ユーザー名` - {{site.data.keyword.messagehub}} ユーザー名。
+        * `パスワード` - {{site.data.keyword.messagehub}} パスワード。
+        * `kafka_admin_url` - {{site.data.keyword.messagehub}} 管理 REST URL。
+        * `データベース` - {{site.data.keyword.messagehub}} データベースの名前。
+        * `トピック` - サブスクライブするトピック。
 
-5. **「デプロイ」**をクリックします。
+6. **「デプロイ」**をクリックします。
 
 テンプレートのデプロイ後、必要に応じてカスタマイズするためにさらにコードを編集するか、戻って使用可能なテンプレートのカタログを確認できます。
 
@@ -356,7 +362,7 @@ Periodic Slack Reminder テンプレートは、トリガー作成時にユー�
 
 1. https://api.slack.com/incoming-webhooks にアクセスして、必要な着信 Webhook URL をセットアップします。
 
-1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ ![外部リンク・アイコン](../icons/launch-glyph.svg "外部リンク・アイコン")](https://cloud.ibm.com/openwhisk/create) に移動します。
+1. {{site.data.keyword.openwhisk_short}} コンソールで[「作成」ページ](https://cloud.ibm.com/openwhisk/create){: external}に移動します。
 
 2. **「クイック・スタート・テンプレート」**をクリックします。
 
@@ -369,9 +375,9 @@ Periodic Slack Reminder テンプレートは、トリガー作成時にユー�
     4. **「次へ」**をクリックします。
 
 5. Periodic Slack Reminder トリガーを作成します。 トリガーは、イベント・ソースからイベントを受信するとアクションを呼び出します。
-    1. パターンまたは Cron 式を使用して、トリガーの時間間隔を指定します。
-        * パターン: 平日、時間、および分に応じた UTC 時刻を選択します。
-        * Cron: <a href="http://crontab.org">UNIX crontab 構文</a>に基づいた Cron シーケンスを指定します。 `X X X X X` 形式の、スペースで区切った 5 個以下の項目を使用します。
+    1. パターンまたは `Cron` 式を使用して、トリガーの時間間隔を指定します。
+        * `パターン` - 平日、時間、および分に応じた UTC 時刻を選択します。
+        * `Cron` - <a href="http://crontab.org">UNIX crontab 構文</a>に基づいた cron シーケンスを指定します。 `X X X X X` 形式の、スペースで区切った 5 個以下の項目を使用します。
     2. トリガー JSON ペイロードを追加します。
 
 6. **「デプロイ」**をクリックします。
@@ -408,9 +414,10 @@ Periodic Slack Reminder テンプレートは、トリガー作成時にユー�
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>Webhook URL。例: <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td><a href="http://crontab.org">UNIX crontab 構文</a>に基づいた Cron シーケンス。 <code>X X X X X</code> 形式の、スペースで区切った 5 個以下のフィールドを使用します。</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td><a href="http://crontab.org">UNIX crontab 構文</a>に基づいた cron シーケンス。 <code>X X X X X</code> 形式の、5 個以下のフィールドを使用します。</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>パッケージのカスタム名</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>ルールのカスタム名</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>トリガーのカスタム名</td></tr>
     </tbody></table>
+
 

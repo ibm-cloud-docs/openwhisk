@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # サーバーレス・アプリのテスト
@@ -34,7 +36,7 @@ CLI で作成した各エンティティーをテストして、サーバーレ�
 ## アクションのテスト
 {: #test-js}
 
-アクションをテストするには、`invoke` コマンドを実行します。アクションのテストは、パラメーターを指定して行うことも指定せずに行うこともできます。
+アクションをテストするには、`invoke` コマンドを実行します。 アクションのテストは、パラメーターを指定して行うことも指定せずに行うこともできます。
 {: shortdesc}
 
 ```bash
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Hello world の例:
+**Hello world の例**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-出力:
+**出力**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-出力例:
+**出力例**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -102,10 +104,10 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ### ブロッキング・アクションのテスト
 {: #test-block}
 
-アクションの呼び出しはブロッキングにすることも非ブロッキングにすることもできます。デフォルトでは、呼び出しは非ブロッキングです。アクションの結果がすぐに必要でない場合は、非ブロッキング呼び出しを使用してください。
+アクションの呼び出しはブロッキングにすることも非ブロッキングにすることもできます。 デフォルトでは、呼び出しは非ブロッキングです。 アクションの結果がすぐに必要でない場合は、非ブロッキング呼び出しを使用してください。
 {: shortdesc}
 
-ブロッキング呼び出しは、要求/応答形式を使用するため、アクティベーション結果が使用可能になるまで待機します。 待機時間は、60 秒と、アクションの[制限時間値](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)のいずれか小さいほうです。
+ブロッキング呼び出しは、要求と応答のスタイルを使用して、アクティベーションの結果が使用可能になるまで待機します。待機時間は、60 秒と、アクションの[制限時間値](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)のいずれか小さいほうです。
 
 ブロッキング呼び出しを実行して、クラウド内でアクションを実行します。
 
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-出力例:
+**出力例**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -131,11 +133,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
 このコマンドにより、以下の情報が出力されます。
 * 予期される待機時間内に使用可能になった場合は呼び出し結果
-* --result オプションを指定しなかった場合は、アクティベーション ID が結果に表示されます。ログや呼び出し結果の取得に使用できるアクティベーション ID (`44794bd6aab74415b4e42a308d880e5b`)。
-
-
-
-
+* `--result` オプションを指定しなかった場合は、アクティベーション ID が結果に表示されます。 ログや呼び出し結果の取得に使用できるアクティベーション ID (`44794bd6aab74415b4e42a308d880e5b`)。
 
 
 ## トリガーのテスト
@@ -153,7 +151,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
     ルールに関連付けられていないトリガーは、起動されても視覚的な効果はありません。 このトリガーにはルールが関連付けられていないため、渡されたパラメーターは、どのアクションによっても入力として使用されません。
 
-    出力例:
+    **出力例**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -166,7 +164,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -179,7 +177,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    出力例:
+    **出力例**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -193,7 +191,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ## アクティベーションの経過時間のテスト
 {: #test_time}
 
-アクティベーション・ログを取得して、アクティベーションの実行に要した時間を確認できます。経過時間が長すぎる場合や、関数の実行時間を長くするためにデフォルトのタイムアウトを調整する必要がある場合は、アクションのタイムアウトを更新できます。
+アクティベーション・ログを取得して、アクティベーションの実行に要した時間を確認できます。 経過時間が長すぎる場合や、関数の実行時間を長くするためにデフォルトのタイムアウトを調整する必要がある場合は、アクションのタイムアウトを更新できます。
 {: shortdesc}
 
 1. アクティベーション ID を取得します。
@@ -217,7 +215,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    `duration` はミリ秒単位の時間を示しています。このアクティベーションの実行時間は 2 秒強でした。
+    `duration` はミリ秒単位の時間を示しています。 アクティベーションが完了するまで 2 秒強かかっています。
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -273,7 +271,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-4. コンテナーのメモリー使用量を確認します。値がシステム限度に収まっていない場合は、スクリプトを調整します。
+4. コンテナーのメモリー使用量を確認します。 値がシステム限度内に収まっていない場合は、スクリプトを調整します。
 
 5. 情報を確認したら、実行しているコンテナーを停止できます。
 
@@ -288,6 +286,8 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: event streams, package, messages, events
+keywords: event streams, package, messages, events, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
@@ -37,15 +39,16 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-ネイティブの高性能な Kafka API を使用してメッセージのパブリッシュとコンシュームと行うために [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にする事前インストール済みのパッケージ。
+ネイティブの高性能な Kafka API を使用してメッセージのパブリッシュとコンシュームと行うために [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} インスタンスとの通信を可能にする事前インストール済みのパッケージ。
 {: shortdesc}
 
-### {{site.data.keyword.Bluemix_notm}} を使用した {{site.data.keyword.messagehub}} パッケージのセットアップ
+
+### {{site.data.keyword.messagehub}} パッケージのセットアップ
 {: #eventstreams_setup}
 
 1. {{site.data.keyword.openwhisk}} 用に使用している現行の組織およびスペースの下に、{{site.data.keyword.messagehub}} サービスのインスタンスを作成します。
 
-2. listen するトピックが {{site.data.keyword.messagehub}} にあることを確認するか、新規トピックを (例えば、**mytopic** というタイトルで) 作成します。
+2. listen するトピックが {{site.data.keyword.messagehub}} にあることを確認するか、新規トピックを (例えば、`mytopic` というタイトルで) 作成します。
 
 3. 名前空間でパッケージを最新表示します。 最新表示により、作成した {{site.data.keyword.messagehub}} サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
@@ -53,10 +56,10 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -66,19 +69,19 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  出力例:
+  **出力例**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
   これで、パッケージ・バインディングには、{{site.data.keyword.messagehub}} インスタンスと関連付けられた資格情報が含まれるようになります。
 
-### {{site.data.keyword.Bluemix_notm}} 外部での {{site.data.keyword.messagehub}} パッケージのセットアップ
+### {{site.data.keyword.cloud_notm}} 外部での {{site.data.keyword.messagehub}} パッケージのセットアップ
 {: #eventstreams_outside}
 
-{{site.data.keyword.messagehub}} を {{site.data.keyword.Bluemix_notm}} の外部でセットアップしたい場合は、{{site.data.keyword.messagehub}} サービス用のパッケージ・バインディングを手動で作成する必要があります。 {{site.data.keyword.messagehub}} サービス資格情報と接続情報が必要です。
+{{site.data.keyword.messagehub}} を {{site.data.keyword.cloud_notm}} の外部でセットアップしたい場合は、{{site.data.keyword.messagehub}} サービス用のパッケージ・バインディングを手動で作成する必要があります。 {{site.data.keyword.messagehub}} サービス資格情報と接続情報が必要です。
 
 {{site.data.keyword.messagehub}} サービス用に構成されるパッケージ・バインディングを作成します。
 ```
@@ -95,15 +98,15 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 メッセージの生成について詳しくは、[Event Streams の資料](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages)を確認してください。
 
 参照
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 
 
 
 ## Event Streams イベント・ソース
 {: #eventstreams_events}
 
-{{site.data.keyword.messagehub_full}} インスタンスにメッセージがポストされたときに反応するトリガーを、フィードを使用して作成できます。 ここでは、{{site.data.keyword.Bluemix}} を使用して、または使用せずに、{{site.data.keyword.messagehub}} トリガーを作成する方法、メッセージを listen する方法、およびメッセージを一括処理する方法について説明します。
+{{site.data.keyword.messagehub_full}} インスタンスにメッセージがポストされたときに反応するトリガーを、フィードを使用して作成できます。 ここでは、{{site.data.keyword.cloud}} を使用して、または使用せずに、{{site.data.keyword.messagehub}} トリガーを作成する方法、メッセージを listen する方法、およびメッセージを一括処理する方法について説明します。
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} パッケージ
@@ -112,29 +115,29 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 `/messaging/messageHubProduce` アクションは非推奨であり、将来削除されます。 東京地域では既に削除されています。 最適なパフォーマンスを維持するために、`/messaging/messageHubProduce` アクションの使用をマイグレーションして、データが {{site.data.keyword.messagehub}}/Kafka に生成されるときには持続接続を使用するようにしてください。
 {: deprecated}
 
-このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) インスタンスとの通信を可能にします。
+このパッケージは、ネイティブのハイパフォーマンス Kafka API を使用してメッセージのパブリッシュとコンシュームを行うための [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} インスタンスとの通信を可能にします。
 
 ### {{site.data.keyword.messagehub}} インスタンスを listen するトリガーの作成
 {: #eventstreams_trigger}
 
 {{site.data.keyword.messagehub}} インスタンスにメッセージがポストされると反応するトリガーを作成するためには、`/messaging/messageHubFeed` という名前のフィードを使用する必要があります。 フィード・アクションは、以下のパラメーターをサポートします。
 
-|名前|タイプ|説明|
-|---|---|---|
-|kafka_brokers_sasl|JSON ストリング配列|このパラメーターは、{{site.data.keyword.messagehub}} インスタンス内のブローカーからなる `<host>:<port>` ストリングの配列です。|
-|user|ストリング|{{site.data.keyword.messagehub}} ユーザー名。|
-|password|ストリング|{{site.data.keyword.messagehub}} パスワード。|
-|topic|ストリング|トリガーが listen するようにしたいトピック。|
-|kafka_admin_url|URL ストリング|{{site.data.keyword.messagehub}} 管理 REST インターフェースの URL。|
-|isJSONData|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に JSON として構文解析しようとします。|
-|isBinaryKey|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、キー値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
-|isBinaryValue|ブール (オプション - デフォルトは false)|`true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。|
+| 名前 | タイプ | 説明 |
+| --- | --- | --- |
+| `kafka_brokers_sasl` | JSON ストリング配列 | このパラメーターは、{{site.data.keyword.messagehub}} インスタンス内のブローカーからなる `<host>:<port>` ストリングの配列です。 |
+| `user` | ストリング | {{site.data.keyword.messagehub}} ユーザー名。 |
+| `password` | ストリング | {{site.data.keyword.messagehub}} パスワード。 |
+| `topic` | ストリング | トリガーが listen するようにしたいトピック。 |
+| `kafka_admin_url` | URL ストリング | {{site.data.keyword.messagehub}} 管理 REST インターフェースの URL。 |
+| `isJSONData` | ブール (オプション - デフォルトは false) | `true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に JSON として構文解析しようとします。 |
+| `isBinaryKey` | ブール (オプション - デフォルトは false) | `true` に設定されている場合、プロバイダーは、キー値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。 |
+| `isBinaryValue` | ブール (オプション - デフォルトは false) | `true` に設定されている場合、プロバイダーは、メッセージ値をトリガー・ペイロードとして渡す前に Base64 としてエンコードします。 |
 
 このパラメーター・リストは難しそうに見えるかもしれませんが、`ibmcloud fn package refresh` CLI プラグイン・コマンドを使用して自動的に設定できます。
 
 1. {{site.data.keyword.openwhisk}} 用に使用している現行の組織およびスペースの下に、{{site.data.keyword.messagehub}} サービスのインスタンスを作成します。
 
-2. listen したいトピックが {{site.data.keyword.messagehub}} にあることを検証するか、新規トピック (例: **mytopic**) を作成します。
+2. listen したいトピックが {{site.data.keyword.messagehub}} にあることを検証するか、新規トピック (例: `mytopic`) を作成します。
 
 3. 名前空間でパッケージを最新表示します。 最新表示により、作成した {{site.data.keyword.messagehub}} サービス・インスタンスのパッケージ・バインディングが自動的に作成されます。
   ```
@@ -142,10 +145,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
   ```
   {: pre}
 
-  出力例:
+  **出力例**
+
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -155,10 +159,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
   ```
   {: pre}
 
-  出力例:
+  **出力例**
+
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -166,22 +171,25 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 
 5. 残っている作業は、新規メッセージが {{site.data.keyword.messagehub}} トピックにポストされたら起動されるトリガーを作成することだけです。
   ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
-### {{site.data.keyword.Bluemix_notm}} 外部の {{site.data.keyword.messagehub}} パッケージ用のトリガーの作成
+### {{site.data.keyword.cloud_notm}} 外部の {{site.data.keyword.messagehub}} パッケージ用のトリガーの作成
 {: #eventstreams_trigger_outside}
 
-{{site.data.keyword.messagehub}} を {{site.data.keyword.Bluemix_notm}} の外部でセットアップしたい場合は、{{site.data.keyword.messagehub}} サービス用のパッケージ・バインディングを手動で作成する必要があります。 {{site.data.keyword.messagehub}} サービス資格情報と接続情報が必要です。
+{{site.data.keyword.messagehub}} を {{site.data.keyword.cloud_notm}} の外部でセットアップしたい場合は、{{site.data.keyword.messagehub}} サービス用のパッケージ・バインディングを手動で作成する必要があります。 {{site.data.keyword.messagehub}} サービス資格情報と接続情報が必要です。
 
 1. {{site.data.keyword.messagehub}} サービス用に構成されるパッケージ・バインディングを作成します。
+
   ```
-  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+ [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
   ```
   {: pre}
 
 2. 次に、新規パッケージを使用して、新規メッセージが {{site.data.keyword.messagehub}} トピックにポストされたら起動されるトリガーを作成できます。
+
   ```
   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
@@ -193,11 +201,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 トリガーが作成されると、システムはメッセージング・サービス内の指定されたトピックをモニターします。 新規メッセージがポストされると、トリガーが起動されます。
 
 そのトリガーのペイロードには、`messages` フィールドが含まれています。これは、トリガーの前回の起動以降にポストされたメッセージの配列です。 配列内の各メッセージ・オブジェクトには以下のフィールドが含まれています。
-- topic
-- partition
-- offset
-- key
-- value
+- `topic`
+- `partition`
+- `offset`
+- `key`
+- `value`
 
 これらのフィールドは Kafka 用語では自明です。 ただし、`key` には、`key` がバイナリー・データを伝送するのを許可する `isBinaryKey` というフィーチャーがあります。 また、`value` には特別な考慮が必要です。 JSON メッセージおよびバイナリー・メッセージを処理するために `isJSONData` フィールドおよび `isBinaryValue` フィールドが使用可能です。 `isJSONData` フィールドと `isBinaryValue` フィールドを同時に使用することはできません。
 
@@ -332,14 +340,10 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ```
 
 
-
-## OpenWhisk と {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full_notm}}、および IBM Data Science Experience の統合
-{: #eventstreams_example}
-
-OpenWhisk と {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full}}、IBM Data Science Experience (Spark) サービスを統合する例は、[ここにあります](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)。
-
 ## 参照
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
+
+
 
