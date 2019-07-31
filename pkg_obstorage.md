@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-07-31"
 
 keywords: object storage, bucket, package, functions
 
@@ -449,7 +449,7 @@ When creating the trigger, you can avoid passing your {{site.data.keyword.cos_fu
  3. Create a trigger named `cosTrigger` with the `changes` feed in the package binding that you created. Use your bucket name and {{site.data.keyword.cos_full_notm}} endpoint parameter values.
 
   ```
-  ibmcloud fn trigger create myCosTrigger --feed myCosPkg/changes \
+  ibmcloud fn trigger create cosTrigger --feed myCosPkg/changes \
   --param bucket myBucket \
   --param endpoint s3.us-south.cloud-object-storage.appdomain.cloud
   ```
@@ -501,7 +501,7 @@ Create an action to verify that the trigger, the change feed, and the rule are a
   
 7. If you are unable to observe new activations, verify that the `apikey`, `endpoint`, and `bucket` parameter values are correct.
   ```
-  ibmcloud fn trigger get myCosTrigger
+  ibmcloud fn trigger get cosTrigger
   ```
   {: pre}
 
@@ -545,7 +545,7 @@ The content of the generated events has the following parameters:
 ## Creating an action to process a changed object
 {: #pkg_obstorage_ev_act}
 
-You can create a single action that retrieves and processes the object. Or, you can create a sequence that uses one action to retrieve the object and another action to process the object.
+You can create a single action that retrieves and processes an object. Or, you can create a sequence that uses one action to retrieve the object and another action to process the object.
 
 ### Creating an action to retrieve and process the object
 {: #pkg_obstorage_ev_act_ret}
@@ -648,7 +648,7 @@ ibmcloud fn package get cloud-object-storage
 
 You can avoid passing sensitive credentials during invocation by binding your {{site.data.keyword.cos_full_notm}} credentials to the action by using the following command:
   ```
-  ibmcloud fn service bind cloud-object-storage myCosAction
+  ibmcloud fn service bind cloud-object-storage <action_name>
   ```
   {: pre}
 
@@ -657,9 +657,9 @@ You can avoid passing sensitive credentials during invocation by binding your {{
 
 You can use an action or action sequence in a [rule](/docs/openwhisk?topic=cloud-functions-rules) to fetch and process the object that is associated with an {{site.data.keyword.cos_full_notm}} change event.
 
-Create a rule that activates `MyCosAction` action on new {{site.data.keyword.cos_full_notm}} trigger events.
+Create a rule that activates `myCosAction` action on new {{site.data.keyword.cos_full_notm}} trigger events.
   ```
-  ibmcloud fn rule create myRule myCosTrigger myCosAction
+  ibmcloud fn rule create myRule cosTrigger myCosAction
   ```
   {: pre}
 

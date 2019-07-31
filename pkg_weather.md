@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-07-31"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -28,7 +28,7 @@ subcollection: cloud-functions
 # Weather
 {: #pkg_weather}
 
-The pre-installed `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.cloud}} API.
+The preinstalled `/whisk.system/weather` package offers a convenient way to call the Weather Company Data for the {{site.data.keyword.cloud}} API.
 {: shortdesc}
 
 The package includes the following action.
@@ -99,7 +99,8 @@ The `/whisk.system/weather/forecast` action returns a weather forecast for a loc
 </br>
 
 The following table contains the values that you can use with the `--timePeriod` parameter.
-| `--timePeriod` Values | Description |
+
+| Value | Description |
 | --- | --- |
 | `10day` | (default) Returns a daily 10-day forecast. |
 | `48hour` | Returns an hourly 2-day forecast. |
