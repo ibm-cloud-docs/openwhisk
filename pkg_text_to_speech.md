@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-19"
+lastupdated: "2019-07-31"
 
 keywords: cognitive, functions, packages
 
@@ -32,13 +32,13 @@ subcollection: cloud-functions
 
 | Package | Availability | Description |
 | --- | --- | --- | --- |
-| [`/whisk.system/watson-textToSpeech`](#text_to_speech) | Pre-installed (Not available in Tokyo) | Package to convert text into speech |
-| [`text-to-speech-v1`](#text_to_speech_ins) | Installable | Work with the {{site.data.keyword.texttospeechshort}} service. |
+| [`/whisk.system/watson-textToSpeech`](#text_to_speech) | Preinstalled (Not available in Tokyo) | Package to convert text into speech |
+| [`text-to-speech-v1`](#text_to_speech_ins) | Installable | Work with the {{site.data.keyword.texttospeechshort}} Service. |
 
 ## Watson Text to Speech
 {: #text_to_speech}
 
-This pre-installed package is not available in the Tokyo region. See the installable [Text to Speech](#text_to_speech_ins) package using IAM authentication.
+This preinstalled package is not available in the Tokyo region. See the installable [Text to Speech](#text_to_speech_ins) package using IAM authentication.
 {: tip}
 
 The `/whisk.system/watson-textToSpeech` package offers a convenient way to call Watson APIs to convert the text into speech.
@@ -58,7 +58,7 @@ The package `/whisk.system/watson` is deprecated including the action `/whisk.sy
 
 If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_notm}}, the package bindings are automatically created for your {{site.data.keyword.cloud_notm}} Watson service instances.
 
-1. Create a {{site.data.keyword.texttospeechshort}} service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com){: external}. Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
+1. Create a {{site.data.keyword.texttospeechshort}} Service instance in your {{site.data.keyword.cloud_notm}} [dashboard](https://cloud.ibm.com){: external}. Be sure to remember the name of the service instance and the {{site.data.keyword.cloud_notm}} organization and space you're in.
 
 2. Refresh the packages in your namespace. The refresh automatically creates a package binding for the Watson service instance that you created.
   ```
@@ -88,9 +88,9 @@ If you're using {{site.data.keyword.openwhisk}} from {{site.data.keyword.cloud_n
 
 ### Setting up a {{site.data.keyword.texttospeechshort}} package outside {{site.data.keyword.cloud_notm}}
 
-If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.cloud_notm}} or if you want to set up your {{site.data.keyword.texttospeechshort}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.texttospeechshort}} service. You need the {{site.data.keyword.texttospeechshort}} service user name, and password.
+If you're not using {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.cloud_notm}} or if you want to set up your {{site.data.keyword.texttospeechshort}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.texttospeechshort}} Service. You need the {{site.data.keyword.texttospeechshort}} Service user name, and password.
 
-Create a package binding that is configured for your {{site.data.keyword.texttospeechshort}} service.
+Create a package binding that is configured for your {{site.data.keyword.texttospeechshort}} Service.
 ```
 ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username <username> -p password <password>
 ```
@@ -125,7 +125,7 @@ ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result 
 ## {{site.data.keyword.texttospeechshort}}
 {: #text_to_speech_ins}
 
-The installable {{site.data.keyword.texttospeechfull}} service provides an API with IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a various languages, dialects, and voices.
+The installable {{site.data.keyword.texttospeechfull}} Service provides an API with IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a various languages, dialects, and voices.
 {:shortdesc}
 
 The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see the [IBM Cloud documentation](/docs/services/text-to-speech?topic=text-to-speech-about).
@@ -134,7 +134,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.texttospeechshort}} service. |
+| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.texttospeechshort}} Service. |
 | [`get-voice`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `voice`, `customization_id` | Get a voice. |
 | [`list-voices`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List voices. |
 | [`synthesize`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text`, `accept`, `voice`, `customization_id` | Synthesize audio. |
@@ -151,19 +151,19 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 | [`list-words`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | List custom words. |
 | [`delete-user-data`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Delete labeled data. |
 
-### Creating a {{site.data.keyword.texttospeechshort}} service instance
+### Creating a {{site.data.keyword.texttospeechshort}} Service instance
 {: #service_instance_texttospeech}
 
-Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} service instance and service credentials.
+Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} Service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.texttospeechshort}} service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
+1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ### Installing the {{site.data.keyword.texttospeechshort}} package
 {: #install_texttospeech}
 
-After you have an {{site.data.keyword.texttospeechshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.texttospeechshort}} package into your namespace.
+After you have an {{site.data.keyword.texttospeechshort}} Service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.texttospeechshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
@@ -217,7 +217,7 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
     ```
     {: screen}
 
-5. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} service instance credentials.
+5. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} Service instance credentials.
     ```
     ibmcloud fn package get text-to-speech-v1 parameters
     ```
