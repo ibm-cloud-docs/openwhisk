@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-29"
+lastupdated: "2019-07-31"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -820,11 +820,7 @@ Before you begin, [review the packages that are included with the Python runtime
 
 Package your app by completing the following steps.
 
-1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install. Save the following text in a `requirements.txt` file.
-  ```
-  numpy
-  ```
-  {: codeblock}
+1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install.
 
 
   To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
