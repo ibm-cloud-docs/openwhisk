@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-08-02"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -43,7 +43,7 @@ The following table lists the default limits for actions.
 
 | Limit | Description | Default | Min | Max |
 | --- | ---| --- | --- | --- |
-| `codeSize` | The maximum code size for the action is 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. | 48 | 1 | 48 | 
+| `codeSize` | The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker) as a workaround for large dependencies, however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. | 48 | 1 | 48 | 
 | `concurrent`| The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for instructions on how to increase this limit. | 1000 | 1 | 1000* |
 | `logs`| The log limit N is in the range [0 MB..10 MB] and is set per action. A user can change the action log limit when an action is created or updated. Logs that exceed the set limit are truncated, so any new log entries are ignored, and a warning is added as the last output of the activation to indicate that the activation exceeded the set log limit. | 10 | 0 | 10 |
 | `memory` | The memory limit M is in the range from [128 MB..2048 MB] and is set per action in MB. A user can change the memory limit when an action is created. A container cannot use more memory than is allocated by the limit. | 256 | 128 | 2048 |
@@ -53,7 +53,18 @@ The following table lists the default limits for actions.
 | `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command line reference documentation. | 1024 | 0 | 1024 | 
 | `result` | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed. | 5 | 0 | 5 | 
 | `sequenceMaxActions` | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed. | 50 | 0 | 50* | 
-| `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 | 
+| `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 |
+
+### Web action limits
+{: web_action_limits}
+
+| Parameter | Limit |
+| --- | --- |
+| Request header | 8 KB |
+| Response header | 4 KB |
+
+If you are using API Gateway to manage your APIs, you should limit your request size to 3 KB.
+{: note}
 
 ### Increasing fixed limits
 {: #limits_increase}

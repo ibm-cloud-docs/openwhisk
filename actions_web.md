@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-25"
+lastupdated: "2019-08-02"
 
 keywords: web actions, serverless, functions
 
@@ -1013,5 +1013,6 @@ ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web
 ```
 {: pre}
 
-
+## Web action limits
+For information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).
 
