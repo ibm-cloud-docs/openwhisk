@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-01"
+lastupdated: "2019-08-02"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -136,6 +136,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   {: pre}
 
 ## Next steps
+{: #install_next}
 To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
