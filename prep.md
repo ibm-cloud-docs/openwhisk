@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-31"
+lastupdated: "2019-08-02"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -409,7 +409,6 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 **Example**
 
-    ```json
     {
       "name": "my-action",
       "main": "index.js",
@@ -417,13 +416,12 @@ Before you begin, [review the packages that are included with the JavaScript run
         "left-pad" : "1.1.3"
       }
     }
-    ```
     {: codeblock}
 
 2. Install all dependencies locally.
 
     ```
-    npm install DEPENDENCY
+    npm install <dependency>
     ```
     {: pre}
 
