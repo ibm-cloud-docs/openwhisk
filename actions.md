@@ -32,10 +32,10 @@ subcollection: cloud-functions
 Create an action, which is a top-level function that returns a JSON object. You can combine actions into a package to simplify the management of your actions.
 {: shortdesc}
 
-**Before you begin**
+**Before you begin**</br>
 To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single .zip file before you create the action. 
 
-See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for each runtime.
+See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for packaging code for each runtime.
 
 
 ## Creating actions from the CLI
