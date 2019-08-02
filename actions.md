@@ -88,7 +88,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
 
 ### Combining app files and Docker images to create actions
 
-You can combine your app files with Docker images to create actions.
+You can combine your app files with Docker images to create actions. For more information see, [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 
 Run the following command.
 ```
