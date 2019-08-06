@@ -56,7 +56,7 @@ The following table lists the default limits for actions.
 | `timeout` | The timeout limit N is in the range [100 ms..600000 ms], and is set per action in milliseconds. A user can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 |
 
 ### Web action limits
-{: web_action_limits}
+{: #web_action_limits}
 
 | Parameter | Limit |
 | --- | --- |
