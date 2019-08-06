@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Visualización de sucesos de {{site.data.keyword.cloudaccesstrailshort}}
@@ -37,9 +39,9 @@ Para obtener más información sobre cómo funciona el servicio, consulte la [do
 ## Dónde ver los sucesos
 {: #view}
 
-Los sucesos están disponibles en el **dominio de cuenta** de {{site.data.keyword.cloudaccesstrailshort}} que está disponible en la región de {{site.data.keyword.Bluemix_notm}} donde está disponible el recurso del espacio de nombres de {{site.data.keyword.openwhisk_short}}. Para obtener más información, consulte [Visualización de sucesos de cuenta](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
+Los sucesos están disponibles en el **dominio de cuenta** de {{site.data.keyword.cloudaccesstrailshort}} que está disponible en la región de {{site.data.keyword.cloud_notm}} donde está disponible el recurso del espacio de nombres de {{site.data.keyword.openwhisk_short}}. Para obtener más información, consulte [Visualización de sucesos de cuenta](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
 
-1. Inicie sesión en su cuenta de {{site.data.keyword.Bluemix_notm}}.
+1. Inicie sesión en su cuenta de {{site.data.keyword.cloud_notm}}.
 2. Desde el catálogo, suministre una instancia del servicio {{site.data.keyword.cloudaccesstrailshort}} en la misma cuenta que la instancia de {{site.data.keyword.openwhisk}}.
 3. En el separador **Gestión** del panel de control de {{site.data.keyword.cloudaccesstrailshort}}, pulse **Ver en Kibana**.
 4. Establezca el intervalo de tiempo para el que desea ver los registros. El valor predeterminado es 15 minutos.
@@ -82,3 +84,6 @@ Consulte la tabla siguiente para ver una lista de los sucesos que se envían a {
     </tr>
   </tbody>
 </table>
+
+
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-12"
 
-keywords: serverless, rest api, gateway, web actions
+keywords: serverless, rest api, gateway, web actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,36 +24,46 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Creación de API REST sin servidor
 {: #apigateway}
 
-Las API permiten gestionar directamente las acciones de {{site.data.keyword.openwhisk}}. API Gateway actúa como un proxy para las [acciones web](/docs/openwhisk?topic=cloud-functions-actions_web) y proporciona direccionamiento de métodos HTTP, secretos e ID de cliente, límites de tasas, CORS, visualización del uso de las API, visualización de registros de respuesta y políticas de compartición.
+Puede utilizar API para gestionar directamente las [acciones web](/docs/openwhisk?topic=cloud-functions-actions_web) de {{site.data.keyword.openwhisk}}. 
 {: shortdesc}
 
-Para obtener más información sobre la gestión de API consulte la [documentación de gestión de API](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis).
+No se da soporte a la creación de API con la Pasarela de API para los espacios de nombres basados en IAM. En su lugar, utilice un espacio de nombres basado en Cloud Foundry.
+{: important}
 
+## ¿Por qué utilizar las API REST con {{site.data.keyword.openwhisk_short}}?
 
+Puede utilizar la pasarela de API como un proxy para las acciones web. La pasarela de API proporciona direccionamiento de métodos HTTP, secretos e ID de cliente, límites de tasas, CORS, visualización del uso de las API, visualización de registros de respuesta y políticas de compartición.
+
+Para obtener más información sobre la gestión de API consulte la [documentación de gestión de API](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 ## Creación de su primera API
 {: #api_create}
+
+Debe tener permisos de `SpaceDeveloper` en el espacio de Cloud Foundry para crear API REST. Los permisos de espacio se pueden ver ejecutando `ibmcloud account space-roles <org>`.
+{: note}
 
 Antes de empezar, instale el [plugin de CLI de {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 1. Guarde el código siguiente en un archivo de JavaScript denominado `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
-      return {payload: `Hello world ${name}`};
+      return {payload: `Hello, ${name}!`};
   }
   ```
   {: codeblock}
 
-2. Cree una acción web denominada `hello` utilizando el archivo que ha creado. **Nota:** Asegúrese de añadir el distintivo `--web true`.
+2. Cree una acción web con el nombre `hello` utilizando el archivo que ha creado. Asegúrese de añadir el distintivo `--web true`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
+
   ```
-  ibmcloud fn action create hello hello.js --web true
+  ibmcloud fn action create hello <filepath>/hello.js --web true
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   ok: created action hello
   ```
@@ -64,43 +75,46 @@ Antes de empezar, instale el [plugin de CLI de {{site.data.keyword.openwhisk_sho
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
+  Se genera un nuevo URL que expone la acción `hello` utilizando un método HTTP `GET`.
+
   ```
   ok: created API /hello/world GET for action /_/hello
   https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: screen}
 
-  Se genera un nuevo URL que expone la acción `hello` mediante un método GET HTTP.
-
-4. Envíe una solicitud HTTP de prueba al URL utilizando el mandato cURL.
+  
+4. Envíe una solicitud HTTP de prueba al URL utilizando el siguiente mandato cURL.
   ```
-  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=OpenWhisk
+  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Salida de ejemplo**
+  Se invoca la acción web `hello` que devuelve un objeto JSON que incluye el parámetro `name` en el parámetro de consulta. Puede pasar parámetros a la acción con parámetros de consulta sencillos o utilizando el cuerpo de la solicitud. Las acciones web pueden invocar públicamente una acción sin utilizar autenticación.
+
   ```
   {
-  "payload": "Hello world OpenWhisk"
+  "payload": "Hello, Jane!"
   }
   ```
   {: screen}
 
-Se invoca la acción web `hello`, que devuelve un objeto JSON que incluye el parámetro **name** en el parámetro de consulta. Puede pasar parámetros a la acción con parámetros de consulta sencillos o utilizando el cuerpo de la solicitud. Las acciones web pueden invocar públicamente una acción sin utilizar autenticación.
+
 
 ## Utilización del control completo sobre respuestas HTTP
 {: #api_control}
 
-El distintivo `--response-type` controla el URL de destino de la acción web que la pasarela API debe intermediar. Por ejemplo, cuando se utiliza el distintivo `--response-type json`, el resultado completo de la acción se devuelve en formato JSON y la cabecera **Content-Type** se establece automáticamente en `application/json`.
+El distintivo `--response-type` controla el URL de destino de la acción web que la pasarela API debe intermediar. Por ejemplo, cuando se utiliza el distintivo `--response-type json`, el resultado completo de la acción se devuelve en formato JSON y la cabecera `Content-Type` se establece automáticamente en `application/json`.
 
-Para devolver tipos de contenido diferentes en el cuerpo, utilice el control completo sobre las propiedades de respuesta HTTP como, por ejemplo, **statusCode** y **headers**. Utilice el distintivo `--response-type http` para configurar el URL de destino de la acción web con la extensión `http`. Puede cambiar el código de la acción para satisfacer con la devolución de las acciones web con la extensión `http`, o incluir la acción en una secuencia pasando su resultado a una nueva acción. Entonces la nueva acción puede transformar el resultado para que corresponda al formato adecuado para una respuesta HTTP. Puede obtener más información sobre los tipos de respuesta y las extensiones de acciones web en la documentación de [acciones web](/docs/openwhisk?topic=cloud-functions-actions_web).
+Para devolver tipos de contenido diferentes en el cuerpo, utilice el control completo sobre las propiedades de respuesta HTTP como, por ejemplo, `statusCode` y `headers`. Utilice el distintivo `--response-type http` para configurar el URL de destino de la acción web con la extensión `http`. Puede cambiar el código de la acción para satisfacer con la devolución de las acciones web con la extensión `http`, o incluir la acción en una secuencia pasando su resultado a una nueva acción. Entonces la nueva acción puede transformar el resultado para que corresponda al formato adecuado para una respuesta HTTP. Puede obtener más información sobre los tipos de respuesta y las extensiones de acciones web en la documentación de [acciones web](/docs/openwhisk?topic=cloud-functions-actions_web).
 
-1. Cambie el código de la acción `hello.js` que devuelve las propiedades JSON `body`, `statusCode` y `headers`.
+1. Guarde el siguiente código como `hello.js`.
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
-        body: {payload:`Hello world ${name}`},
+        body: {payload:`Hello, ${name}!`},
         statusCode:200,
         headers:{ 'Content-Type': 'application/json'}
       };
@@ -108,11 +122,17 @@ Para devolver tipos de contenido diferentes en el cuerpo, utilice el control com
   ```
   {: codeblock}
 
-2. Actualice la acción con el resultado modificado.
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`.
   ```
-  ibmcloud fn action update hello hello.js --web true
+  ibmcloud fn action update hello <filepath>/hello.js --web true
   ```
   {: pre}
+
+  **Resultado**
+  ```
+  ok: updated action hello
+  ```
+  {: screen}
 
 3. Actualice el tipo de respuesta de la API mediante el distintivo `--response-type http`.
   ```
@@ -120,204 +140,38 @@ Para devolver tipos de contenido diferentes en el cuerpo, utilice el control com
   ```
   {: pre}
 
+  **Resultado**
+  ```
+  ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+  ```
+  {: screen}
+
 4. Llame a la API actualizada con el siguiente mandato cURL.
   ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   {
-  "payload": "Hello world Serverless API"
+  "payload": "Hello, Serverless API!"
   }
   ```
   {: screen}
-
-
-<staging books>
-
-## Exposición de varias acciones web
-{: #api_multiple_web}
-
-Puede exponer varias acciones web para implementar el sistema de fondo de su app. Por ejemplo, para exponer un conjunto de acciones correspondientes a un club de lectura, puede utilizar una serie de acciones para implementar el programa de fondo para el club de lectura:
-
-| Acción | Método HTTP | Descripción |
-| ----------- | ----------- | ------------ |
-| getBooks    | GET | Obtener detalles de libros  |
-| postBooks   | POST | Añadir un libro |
-| putBooks    | PUT | Actualizar detalles de libros |
-| deleteBooks | DELETE | Suprimir un libro |
-
-En este ejemplo, la API se ha definido con un parámetro path. Cuando se utilizan parámetros path, la API se debe definir con el tipo de respuesta `http`. El valor de path, empezando por la vía de acceso básica e incluidos los valores actuales del parámetro path, está disponible en el campo `__ow_path` del parámetro JSON de la acción. Para obtener más detalles sobre los campos de contexto HTTP, consulte la documentación de [web actions Contexto HTTP de acciones web](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_context).
-
-Para intentar este ejemplo de acciones web de Book Club:
-
-1. Cree una API para el club de libros, denominada `Book Club`, con `/club` como vía de acceso base del URL HTTP, `books` como recurso e `{isbn}` como parámetro path que se utiliza para identificar un libro específico utilizando su número de libro estándar internacional (ISBN).
-  ```
-  ibmcloud fn api create -n "Book Club" /club /books/{isbn} get getBooks --response-type http
-  ibmcloud fn api create /club /books get getBooks                       --response-type http
-  ibmcloud fn api create /club /books post postBooks                     --response-type http
-  ibmcloud fn api create /club /books/{isbn} put putBooks                --response-type http
-  ibmcloud fn api create /club /books/{isbn} delete deleteBooks          --response-type http
-  ```
-  {: pre}
-
-  La primera acción que se expone con la vía de acceso base `/club` está etiquetada con el nombre `Book Club`. Cualquier otra acción expuesta bajo `/club` ahora estará asociada con `Book Club`.
-
-2. Genere una lista de todas las acciones de `Book Club` que están expuestas.
-  ```
-  ibmcloud fn api list /club -f
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: APIs
-  Action: getBooks
-    API Name: Book Club
-    Base path: /club
-    Path: /books/{isbn}
-    Verb: get
-    URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  Action: getBooks
-    API Name: Book Club
-    Base path: /club
-    Path: /books
-    Verb: get
-    URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  Action: postBooks
-    API Name: Book Club
-    Base path: /club
-    Path: /books
-    Verb: post
-    URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  Action: putBooks
-    API Name: Book Club
-    Base path: /club
-    Path: /books/{isbn}
-    Verb: put
-    URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  Action: deleteBooks
-    API Name: Book Club
-    Base path: /club
-    Path: /books/{isbn}
-    Verb: delete
-    URL: https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  ```
-  {: screen}
-
-3. Añada un libro titulado `JavaScript: The Good Parts` utilizando una llamada POST HTTP.
-  ```
-  curl -X POST -d '{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}' -H "Content-Type: application/json" https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  {
-    "result": "success"
-  }
-  ```
-  {: screen}
-
-4. Obtenga una lista de los libros mediante una llamada GET HTTP para la acción `getBooks`.
-  ```
-  curl -X GET https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  {
-    "result": [{"name":"JavaScript: The Good Parts", "isbn":"978-0596517748"}]
-  }
-  ```
-  {: screen}
-
-5. Suprima un libro específico con una llamada DELETE HTTP para la acción `deleteBooks`. En este ejemplo, el valor del campo `__ow_path` de la acción `deleteBooks` es `/club/books/978-0596517748`, donde `978-0596517748` es el valor real de `{isbn}` de la variable path.
-  ```bash
-  curl -X DELETE https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/978-0596517748
-  ```
-  {: pre}
-
-## Exportación e importación de la configuración
-{: #api_export_import}
-
-Para exportar o importar una configuración, puede continuar utilizando el ejemplo de Book Club.
-
-1. Exporte la API de `Book Club` en un archivo denominado `club-swagger.json`. Este archivo se puede utilizar como una base para volver a crear las API utilizando un archivo como la entrada.
-  ```
-  ibmcloud fn api get "Book Club" > club-swagger.json
-  ```
-  {: pre}
-
-2. Pruebe el archivo swagger suprimiendo primero todos los URL expuestos bajo una vía de acceso base común.
-  ```
-  ibmcloud fn api delete /club
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: deleted API /club
-  ```
-  {: screen}
-
-  Puede suprimir todos los URL expuestos que utilizan la vía de acceso base `/club` o la etiqueta de nombre de API `"Book Club"`.
-  {: tip}
-
-3. Restaura la API de `Book Club` utilizando el archivo `club-swagger.json`.
-  ```
-  ibmcloud fn api create --config-file club-swagger.json
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: created api /club/books/{isbn} get for action deleteBooks
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ok: created api /club/books/{isbn} put for action deleteBooks
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ok: created api /club/books/{isbn} delete for action deleteBooks
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ok: created api /club/books get for action deleteBooks
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ok: created api /club/books post for action deleteBooks
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  ```
-  {: screen}
-
-4. Verifique que se ha recreado la API `Book Club`.
-  ```
-  ibmcloud fn api list /club
-  ```
-  {: pre}
-
-  Salida de ejemplo:
-  ```
-  ok: apis
-  Action                    Verb         API Name        URL
-  getBooks                   get         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  postBooks                 post         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books
-  getBooks                   get         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  putBooks                   put         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  deleteBooks             delete         Book Club       https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/club/books/{isbn}
-  ```
-  {: screen}
-
-
-</staging book>
 
 ## Modificación de la configuración
 {: #api_modify_config}
 
-Una vez haya creado la configuración, puede utilizar el [**separador de API**](https://cloud.ibm.com/openwhisk/apimanagement) en el panel de control de {{site.data.keyword.openwhisk_short}} para modificar la configuración de las siguientes maneras.
+Después de crear la configuración, puede utilizar el [separador de API](https://cloud.ibm.com/openwhisk/apimanagement){: external} en el panel de control de {{site.data.keyword.openwhisk_short}} para modificar la configuración de las siguientes maneras.
 
 * [Crear una API de {{site.data.keyword.openwhisk_short}}](/docs/services/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis) que abarque un conjunto de acciones de {{site.data.keyword.openwhisk_short}}.
 * [Proteger su API](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) aplicando seguridad de API y políticas de limitación de tasas de uso.
 * [Gestionar el tráfico](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) visualizando las estadísticas de uso de la API y verificando los registros de respuesta.
-* [Socializar y compartir](/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) sus API con desarrolladores dentro y fuera de {{site.data.keyword.Bluemix_notm}}.
+* [Socializar y compartir](/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) sus API con desarrolladores dentro y fuera de {{site.data.keyword.cloud_notm}}.
 
-Una vez que haya terminado de actualizar la configuración, puede descargar el archivo de definiciones en formato JSON y volver a importarlo mediante la CLI. La descarga y la importación de la configuración puede resultar útil, por ejemplo, para un despliegue desatendido en una integración continua y un conducto de despliegue (CICD). También tiene la opción de cargar y volver a importar el archivo de definiciones de la API mediante la interfaz de usuario.
+</br>
+Una vez que haya terminado de actualizar la configuración, puede descargar el archivo de definiciones en formato JSON y volver a importarlo mediante la CLI. La descarga y la importación de la configuración puede resultar útil, por ejemplo, para un despliegue desatendido en una integración continua y un conducto de despliegue (CICD). También puede cargar y volver a importar el archivo de definición de API utilizando la interfaz de usuario.
+
+
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: packages, installable packages
+keywords: packages, installable packages, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Incorporación de paquetes
 {: #pkg_ov}
@@ -34,7 +36,7 @@ Los paquetes son conjuntos empaquetados de canales de información y acciones re
 
 [Los paquetes preinstalados](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse) se registran de forma automática en {{site.data.keyword.openwhisk_short}} en el espacio de nombres `/whisk.system`. Puede utilizarlos sin necesidad de realizar ninguna instalación.
 
-Los paquetes instalables están a su disposición para instalarlos, editarlos y utilizarlos según sus necesidades. Los paquetes instalables no residen en el sistema {{site.data.keyword.openwhisk_short}}. En su lugar, los paquetes instalables se alojan externamente en repositorios Github individuales.
+Los paquetes instalables están a su disposición para instalarlos, editarlos y utilizarlos según sus necesidades. Los paquetes instalables no residen en el sistema {{site.data.keyword.openwhisk_short}}. En su lugar, los paquetes instalables se alojan externamente en repositorios GitHub individuales.
 
 Puede instalar estos paquetes usted mismo directamente en su espacio de nombres y poner a cada paquete un nombre personalizado. Puesto que el paquete se instala en su propio espacio de nombres, puede modificar las acciones y los canales de información en el paquete según sea necesario.
 
@@ -76,16 +78,16 @@ Hay varios paquetes que ya vienen registrados en {{site.data.keyword.openwhisk_s
   ```
   {: pre}
 
-  Ejemplo:
+  **Ejemplo**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -98,13 +100,13 @@ Hay varios paquetes que ya vienen registrados en {{site.data.keyword.openwhisk_s
 
 3. Obtener una descripción de una acción o un canal de información para ver los parámetros que necesita.
 
-  Ejemplo:
+  **Ejemplo**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -134,7 +136,7 @@ En el ejemplo siguiente, se enlaza al paquete `/whisk.system/samples`.
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   ok: created binding valhallaSamples
   ```
@@ -146,7 +148,7 @@ En el ejemplo siguiente, se enlaza al paquete `/whisk.system/samples`.
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -165,7 +167,7 @@ paquete `valhallaSamples`.
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -181,7 +183,7 @@ paquete `valhallaSamples`.
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -194,18 +196,15 @@ el valor predeterminado establecido en el enlace del paquete `valhallaSamples`.
 
 
 
-
-
-
 ## Añadir sus propios paquetes
 {: #pkg_add}
 
-Puede crear un paquete de código local o un clon de cualquier repositorio de Github.
+Puede crear un paquete de código local o un clon de cualquier repositorio de GitHub.
 {: shortdesc}
 
-Antes de empezar:
-- [Instale el plugin de {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
-- Cree un archivo `manifest.yaml` o `manifest.yml` para su app y guárdelo en el directorio raíz. El archivo `manifest.yaml` especifica la estructura general del paquete, incluyendo todos lo metadatos que se deben incluir con el mandato `ibmcloud fn deploy`. Para obtener más información sobre los archivos `manifest.yaml`, consulte la [documentación de wskdeploy ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
+**Antes de empezar**
+- [Instale el plugin de {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
+- Cree un archivo `manifest.yaml` o `manifest.yml` para su app y guárdelo en el directorio raíz. El archivo `manifest.yaml` especifica la estructura general del paquete, incluyendo todos lo metadatos que se deben incluir con el mandato `ibmcloud fn deploy`. Para obtener más información sobre los archivos `manifest.yaml`, consulte la [documentación de <ph class="ignoreSpelling">wskdeploy</ph>](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}.
 
 Para añadir un paquete:
 
@@ -234,12 +233,12 @@ Para añadir un paquete:
     ```
     {: pre}
 
-### Ejemplo de utilización del paquete {{site.data.keyword.cos_full_notm}}
+### Ejemplo de paquete de {{site.data.keyword.cos_full_notm}}
 {: #pkg_ex}
 
 Para ver un ejemplo de cómo instalar un paquete, consulte el [paquete {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} es un servicio que permite a los usuarios almacenar todo tipo de archivos como, por ejemplo, imágenes, vídeos, música y texto. Para interactuar con los archivos, se almacena un almacén de datos basado en la nube de pares clave/valor en un grupo. Por lo tanto, para utilizar el [paquete {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), primero debe crear una instancia de servicio de {{site.data.keyword.cos_full_notm}} y, a continuación, crear un grupo. El grupo se utiliza como una variable de entorno que es necesaria para instalar este paquete.
 
-Después de crear la instancia de servicio y el grupo, se necesitan ejecutar los siguientes mandatos para instalar el paquete:
+Después de crear la instancia de servicio y el grupo, puede instalar el paquete utilizando los mandatos siguientes:
 
 1. Clone el repositorio del paquete.
     ```
@@ -253,9 +252,11 @@ Después de crear la instancia de servicio y el grupo, se necesitan ejecutar los
     ```
     {: pre}
 
-3. Despliegue el paquete, utilizando su grupo como una variable de entorno. La dependencia de la variable de entorno `PACKAGE_NAME` permite dar a este paquete un nombre personalizado.
+3. Despliegue el paquete, utilizando su grupo como una variable de entorno.  Puede dar al paquete un nombre personalizado utilizando la variable de entorno `PACKAGE_NAME`.
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

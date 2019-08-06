@@ -42,7 +42,7 @@ La plantilla de {{site.data.keyword.cloudant_short_notm}} crea una secuencia de 
 
 ### Despliegue de la plantilla {{site.data.keyword.cloudant_short_notm}} Events desde la interfaz de usuario
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -50,8 +50,7 @@ La plantilla de {{site.data.keyword.cloudant_short_notm}} crea una secuencia de 
 
 4. Cree la acción de {{site.data.keyword.cloudant_short_notm}}.
     1. Proporcione un nombre para el paquete o utilice el nombre predeterminado proporcionado, `new-cloudant-item`.
-    2. En la lista **Acciones**, seleccione `Node.js 6` para el ejemplo de la base de datos de gatos y pulse
-**Siguiente**.
+    2. En la lista **Acciones**, seleccione `Node.js 6` para el ejemplo de la base de datos de gatos y pulse **Siguiente**.
 
 5. Cree el desencadenante de {{site.data.keyword.cloudant_short_notm}}. Los desencadenantes invocan acciones cuando reciben sucesos de orígenes de sucesos. Para crear el desencadenante, debe proporcionar una instancia de servicio de {{site.data.keyword.messagehub}} y credenciales de servicio.
     1. En la lista **Instancia de Cloudant**, seleccione **Crear su propia instancia**. Se abre la página de configuración de {{site.data.keyword.cloudant_short_notm}}.
@@ -74,8 +73,7 @@ La plantilla de {{site.data.keyword.cloudant_short_notm}} crea una secuencia de 
     ```
     {: pre}
 
-2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar:
-`nodejs-6`, `nodejs`, `php`, `python` o `swift`.
+2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar: `nodejs-6`, `nodejs`, `php`, `python` o `swift`.
     ```
     cd template-cloudant-trigger/runtimes/nodejs
     ```
@@ -109,7 +107,7 @@ La plantilla Upload Image crea una acción web que permite cargar una imagen en 
 
 ### Despliegue de la plantilla Upload Image desde la interfaz de usuario
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -157,8 +155,7 @@ La plantilla Upload Image crea una acción web que permite cargar una imagen en 
     ```
     {: pre}
 
-4. En la [página Acciones ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/actions) de la consola de {{site.data.keyword.openwhisk_short}}, pulse sobre la acción
-`process-change`.
+4. En la [página Acciones ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/actions) de la consola de {{site.data.keyword.openwhisk_short}}, pulse en la acción `process-change`.
 
 5. En la navegación de la izquierda, pulse **Puntos finales**.
 
@@ -167,12 +164,11 @@ La plantilla Upload Image crea una acción web que permite cargar una imagen en 
 ## Despliegue de la plantilla Get HTTP Resource
 {: #get-http-resource-template}
 
-La plantilla Get HTTP Resource crea una acción para captar un recurso externo, la API de Yahoo Weather y luego devuelve datos. La acción está habilitada como una acción web, lo que permite que se invoque con un URL que está habilitado para CORS y no necesita una clave de autenticación, lo que resulta útil para crear programas de fondo para aplicaciones web. **Nota**: de forma predeterminada, el punto final
-`get-http-resource` está disponible públicamente para cualquiera que lo llame.
+La plantilla Get HTTP Resource crea una acción para captar un recurso externo, la API de Yahoo Weather y luego devuelve datos. La acción está habilitada como una acción web, lo que permite que se invoque con un URL que está habilitado para CORS y no necesita una clave de autenticación, lo que resulta útil para crear programas de fondo para aplicaciones web. **Nota**: de forma predeterminada, el punto final `get-http-resource` está disponible públicamente para cualquiera que lo llame.
 
 ### Despliegue de la plantilla Get HTTP Resource desde la interfaz de usuario
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -200,8 +196,7 @@ Una vez desplegada la plantilla, puede realizar más cambios en el código para 
     ```
     {: pre}
 
-2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar:
-`nodejs-6`, `nodejs` o `python`.
+2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar: `nodejs-6`, `nodejs` o `python`.
     ```
     cd template-get-external-resource/runtimes/nodejs
     ```
@@ -226,7 +221,7 @@ Puede desplegar esta acción Hello World básica para iniciarse en {{site.data.k
 
 ### Despliegue de la plantilla Hello World desde la interfaz de usuario
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -248,8 +243,7 @@ Una vez desplegada la plantilla, puede realizar más cambios en el código para 
     ```
     {: pre}
 
-2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar:
-`nodejs-6`, `nodejs`, `php`, `python` o `swift`.
+2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar: `nodejs-6`, `nodejs`, `php`, `python` o `swift`.
     ```
     cd template-hello-world/runtimes/nodejs
     ```
@@ -268,7 +262,7 @@ La plantilla {{site.data.keyword.messagehub}} Events crea una acción y un desen
 
 ### Despliegue de la plantilla {{site.data.keyword.messagehub}} Events desde la interfaz de usuario
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -303,8 +297,7 @@ Una vez desplegada la plantilla, puede realizar más cambios en el código para 
     ```
     {: pre}
 
-2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar:
-`nodejs-6`, `nodejs`, `php`, `python` o `swift`.
+2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar: `nodejs-6`, `nodejs`, `php`, `python` o `swift`.
     ```
     cd template-messagehub-trigger/runtimes/nodejs
     ```
@@ -340,7 +333,7 @@ La plantilla Periodic Slack Reminder publica en Slack a un intervalo especificad
 
 1. Vaya a https://api.slack.com/incoming-webhooks para configurar el URL de webhooks de entrada.
 
-1. Vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
+1. Vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create) en la consola de {{site.data.keyword.openwhisk_short}}.
 
 2. Pulse **Plantillas de inicio rápido**.
 
@@ -349,12 +342,11 @@ La plantilla Periodic Slack Reminder publica en Slack a un intervalo especificad
 4. Cree la acción de Periodic Slack Reminder.
     1. Proporcione un nombre para el paquete o utilice el nombre predeterminado proporcionado, `periodic-slack-reminder`.
     2. Elija el entorno de ejecución para las acciones: Node.js 8, Node.js 6, Python 3, Swift 4 o PHP 7.1.
-    3. En la sección Parámetros, especifique el URL de webhook en el campo **Valor de parámetro**, como
-`https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX`.
+    3. En la sección Parámetros, especifique el URL de webhook en el campo **Valor de parámetro**, como `https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX`.
     4. Pulse **Siguiente**.
 
 5. Cree el desencadenante de Periodic Slack Reminder. Los desencadenantes invocan acciones cuando reciben sucesos de orígenes de sucesos.
-    1. Especifique el intervalo de tiempo de desencadenante utilizando una expresión de patrón o de Cron.
+    1. Especifique el intervalo de tiempo de desencadenante utilizando un patrón o una expresión Cron.
         * Patrón: seleccione horas UTC para los días de la semana, horas y minutos.
         * Cron: especifique una secuencia de Cron basada en la <a href="http://crontab.org">sintaxis de crontab de UNIX</a>. Utilice 5 o menos separados por espacios con el formato `X X X X X`.
     2. Añada la carga útil JSON del desencadenante.
@@ -373,8 +365,7 @@ Una vez desplegada la plantilla, puede realizar más cambios en el código para 
     ```
     {: pre}
 
-2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar:
-`nodejs-6`, `nodejs`, `php`, `python` o `swift`.
+2. Vaya al directorio del entorno de ejecución de acciones que desee utilizar: `nodejs-6`, `nodejs`, `php`, `python` o `swift`.
     ```
     cd template-reminder-slack/runtimes/nodejs
     ```

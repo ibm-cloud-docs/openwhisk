@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,11 +24,12 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Supervisión de la actividad
 {: #monitor}
 
 Obtenga información sobre el rendimiento de las acciones desplegadas con
-{{site.data.keyword.openwhisk}}. Las métricas pueden ayudarle a detectar cuellos de botella o predecir posibles problemas de producción basándose en la duración de la acción, los resultados de las activaciones de la acción o cuándo se alcanzan los límites de activación de la acción.
+{{site.data.keyword.openwhisk}}. Las métricas pueden ayudarle a detectar cuellos de botella o predecir posibles problemas de producción basándose en la duración de la acción, los resultados de las activaciones de la acción o cuando se alcanzan los límites de activación de la acción.
 {: shortdesc}
 
 Se recopilan métricas de manera automática para todas las entidades. En función de si las acciones están en un espacio de nombres basado en IAM o basado en Cloud Foundry, las métricas se encontrarán en la cuenta de IBM Cloud o en el espacio. Estas métricas se envían a
@@ -49,15 +51,15 @@ Comience creando un panel de control de supervisión de Grafana.
     <tbody>
       <tr>
         <td>UE central</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>Reino Unido sur</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>EE.UU. sur</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>EE.UU. este</td>
@@ -91,7 +93,7 @@ Después de que se ejecute una acción, se generan nuevas métricas y se pueden 
 ## Utilización de los paneles de control
 {: #monitor_dash_use}
 
-El [Panel de control de {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard) proporciona un resumen gráfico de la actividad. Utilice el panel de control para determinar el rendimiento y estado de sus acciones de {{site.data.keyword.openwhisk_short}}.
+El [Panel de control de {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard){: external} proporciona un resumen gráfico de la actividad. Utilice el panel de control para determinar el rendimiento y estado de sus acciones de {{site.data.keyword.openwhisk_short}}.
 {:shortdesc}
 
 Filtre los registros de acción que quiera ver, y seleccione el marco de tiempo de la actividad registrada. Estos filtros se aplican a todas las vistas del panel de control. Pulse **Recargar** en cualquier momento para actualizar el panel de control con los datos de registro de activación más recientes.
@@ -129,7 +131,7 @@ ibmcloud fn activation poll
 ## Formato de métrica
 {: #monitor_metric}
 
-Las métricas reflejan datos recopilados de las activaciones de acciones que se agregan cada minuto. Se pueden buscar métricas según el rendimiento de acción o el nivel de simultaneidad de acciones.
+Las métricas reflejan los datos recopilados a partir de las activaciones de acciones que se agregan cada minuto. Se pueden buscar métricas según el rendimiento de acción o el nivel de simultaneidad de acciones.
 
 
 ### Métricas de rendimiento de acción
@@ -164,8 +166,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.action-performan
 ```
 {: codeblock}
 
-Ejemplo: si tiene un espacio de nombres basado en IAM denominado `myNamespace` en la región
-`us-south`, una métrica de simultaneidad de acciones tendría un aspecto similar al siguiente:
+Ejemplo: si tiene un espacio de nombres basado en IAM que se denomina `myNamespace` en la región `us-south`, una métrica de simultaneidad de acciones parecería parecida a la siguiente:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -178,7 +179,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 Debido a que es posible que tenga miles o millones de activaciones de acción, los valores de métricas se representan como una agregación de sucesos generados por muchas activaciones. Los valores se agregan de las maneras siguientes:
-* Suma: todos los valores de métrica se añaden conjuntamente.
+* Suma: se suman todos los valores de métrica.
 * Promedio: se calcula una media aritmética.
 * Promedio con suma: se calcula una media aritmética basada en componentes y en la adición de componentes distintos.
 
@@ -227,14 +228,14 @@ Consulte la tabla siguiente para ver las métricas que tiene disponibles.
     <tr>
       <td><code>status.error.application</code></td>
       <td>El número de activaciones incorrectas provocadas por errores de aplicación. Por ejemplo, errores ordenados de las acciones. Para obtener más información sobre cómo se derivan las métricas action-performance (rendimiento de acción), consulte
-[Explicación del registro de activación](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+[Explicación del registro de activación](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}.</td>
       <td>Suma</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>El número de activaciones incorrectas provocadas por el desarrollador. Por ejemplo, la infracción de la
-[interfaz de proxy de acción](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) por excepciones no gestionadas en el código de acción.</td>
+      <td>El número de activaciones incorrectas provocadas por el desarrollador. Por ejemplo, el incumplimiento de la
+[interfaz de proxy de acción](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external} por excepciones no gestionadas en el código de acción.</td>
       <td>Suma</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -267,5 +268,7 @@ Consulte la tabla siguiente para ver las métricas que tiene disponibles.
 
 Las métricas de acciones que existen como parte de un espacio de nombres predeterminado están disponibles en la categoría predeterminada.
 {: tip}
+
+
 
 

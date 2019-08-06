@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,19 +24,19 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Despliegue de entidades con un archivo de manifiesto
 {: #deploy}
 
-Puede utilizar {{site.data.keyword.openwhisk_short}} para describir y desplegar todas las entidades del espacio de nombres utilizando un archivo de manifiesto escrito en YAML. Puede utilizar este archivo para desplegar todas las Funciones [Paquetes](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Acciones](/docs/openwhisk?topic=cloud-functions-actions), [Desencadenantes](/docs/openwhisk?topic=cloud-functions-triggers) y Reglas](/docs/openwhisk?topic=cloud-functions-rules) con un solo mandato.
+Puede utilizar {{site.data.keyword.openwhisk_short}} para describir y desplegar todas las entidades del espacio de nombres utilizando un archivo de manifiesto que esté escrito en YAML. Puede utilizar este archivo para desplegar todos los [Paquetes](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Acciones](/docs/openwhisk?topic=cloud-functions-actions), [Desencadenantes](/docs/openwhisk?topic=cloud-functions-triggers) y [Reglas](/docs/openwhisk?topic=cloud-functions-rules) de Functions con un solo mandato.
 
 El archivo de manifiesto describe el conjunto de entidades que desea desplegar o cuyo despliegue desea anular como un grupo. El contenido del archivo de manifiesto debe ajustarse a la
-[Especificación YAML de despliegue de OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Una vez definido, puede utilizar el archivo de manifiesto para desplegar o volver a desplegar un grupo de entidades de Functions dentro del mismo espacio de nombres de Functions o de otro distinto. Puede utilizar los mandatos `ibmcloud fn deploy` e `ibmcloud fn undeploy` del plugin de Functions para desplegar o anular el despliegue de entidades de Functions definidas en el archivo de manifiesto.
+[Especificación YAML de despliegue de OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Una vez definido, puede utilizar el archivo de manifiesto para desplegar o volver a desplegar un grupo de entidades de Functions dentro del mismo espacio de nombres de Functions o de otro distinto. Puede utilizar los mandatos `ibmcloud fn deploy` e `ibmcloud fn undeploy` del plugin de Functions para desplegar o anular el despliegue de entidades de Functions que están definidas en el archivo de manifiesto.
 
 ## Creación del ejemplo de API Hello World
 {: #deploy_helloworld_example}
 
-Este ejemplo utiliza un código Node.js simple (`helloworld.js`), crea una acción web
-(`hello_world`) dentro de un paquete (`hello_world_package`) y define una API REST para esta acción.
+Este ejemplo utiliza un código Node.js simple `helloworld.js`, crea una acción web `hello_world` dentro de un paquete `hello_world_package` y define una API REST para esta acción.
 {: shortdesc}
 
 1. Cree un archivo `helloworld.js` con el código siguiente.
@@ -120,14 +121,18 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## Ejemplos de despliegue de OpenWhisk adicionales
+## Más ejemplos de despliegue de OpenWhisk
 {: more_deploy_examples}
 
 El despliegue de Functions se basa en el proyecto de despliegue de OpenWhisk, que tiene
-[varios ejemplos de manifiesto de despliegue](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples) que se pueden utilizar dentro de Functions.  Puede utilizar el mandato `ibmcloud fn deploy` en lugar de
+[varios ejemplos de manifiesto de despliegue](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} que se pueden utilizar dentro de Functions.  Puede utilizar el mandato `ibmcloud fn deploy` en lugar de
 `wskdeploy`.
 
 ## Especificación del manifiesto de despliegue
 {: manifest_specification}
 
-Los manifiestos de despliegue de Functions deben ajustarse a la especificación de manifiestos de despliegue de OpenWhisk. Consulte la [Documentación de la especificación de manifiestos de despliegue de OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification) para obtener detalles.
+Los manifiestos de despliegue de Functions deben ajustarse a la especificación de manifiestos de despliegue de OpenWhisk. Consulte la [Documentación de la especificación de manifiestos de despliegue de OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} para obtener detalles.
+
+
+
+

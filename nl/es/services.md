@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-16"
 
-keywords: services, serverless
+keywords: services, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,10 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# Adición de servicios de IBM Cloud
+# Enlace de servicios de {{site.data.keyword.cloud_notm}} con entidades de {{site.data.keyword.openwhisk_short}}
 {: #services}
 
-Puede utilizar la funcionalidad de incorporación de servicios de IBM Cloud en su app.
+Puede utilizar la funcionalidad de incorporación de servicios de IBM Cloud en su app de {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 **¿Cómo puedo añadir servicios de IBM Cloud a mi app?**
@@ -46,9 +47,10 @@ Estos parámetros pueden incluir valores que permiten reutilizar la app con dato
 ## Enlace de un servicio a una acción o paquete
 {: #services_bind}
 
-Enlace cualquier servicio de {{site.data.keyword.Bluemix_notm}} a cualquier acción. Cuando se enlaza un servicio, se crea un nuevo parámetro en la acción existente que contiene las credenciales de la instancia de servicio.
+Enlace cualquier servicio de {{site.data.keyword.cloud_notm}} a cualquier acción. Cuando se enlaza un servicio, se crea un nuevo parámetro en la acción existente que contiene las credenciales de la instancia de servicio.
 
-**Nota**: no se pueden enlazar varias instancias del mismo servicio a una acción o paquete. Sólo se puede enlazar una instancia de un servicio. 
+No se pueden enlazar varias instancias del mismo servicio a una acción o paquete. Sólo se puede enlazar una instancia de un servicio.
+{: note}
 
 Antes de empezar, [cree una acción](/docs/openwhisk?topic=cloud-functions-actions) y [defina las credenciales](/docs/resources?topic=resources-externalapp#externalapp) del servicio que desea enlazar con la acción.
 
@@ -58,7 +60,7 @@ Antes de empezar, [cree una acción](/docs/openwhisk?topic=cloud-functions-actio
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     name              service        plan   bound apps   last operation
     Composer-qp   composer   free                create succeeded
@@ -68,19 +70,18 @@ Antes de empezar, [cree una acción](/docs/openwhisk?topic=cloud-functions-actio
     {: screen}
 
 2. Obtenga el nombre de las credenciales definidas para una instancia de servicio.
-
     ```
     ibmcloud service keys SERVICE_NAME
     ```
     {: pre}
 
-    Ejemplo:
+    **Ejemplo**
     ```
     ibmcloud service keys Composer-qp
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     Invoking 'cf service-keys Composer-qp'...
 
@@ -92,55 +93,61 @@ Credentials-2
     ```
     {: screen}
 
-3. Enlace el servicio a una acción. El mandato `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} pone sus credenciales de servicio de {{site.data.keyword.Bluemix_notm}} a disposición del código de {{site.data.keyword.openwhisk_short}} en tiempo de ejecución.
+3. Enlace el servicio a una acción. El mandato `ibmcloud fn service bind` hace que las credenciales de servicio de {{site.data.keyword.cloud_notm}} estén disponibles para el código de {{site.data.keyword.openwhisk_short}} en tiempo de ejecución. Hay disponibles los siguientes parámetros de mandato para el mandato `ibmcloud fn service bind`.
+
+    <table>
+    <thead>
+        <tr>
+        <th>Parámetro</th>
+        <th>Descripción</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><code>SERVICE</code></td>
+        <td>El nombre del servicio que está enlazando.</td>
+        </tr>
+        <tr>
+        <td><code>ACTION_NAME</code></td>
+        <td>El nombre de la acción o del paquete al que desea enlazar el servicio.</td>
+        </tr>
+        <tr>
+        <td><code>--instance INSTANCE_NAME</code></td>
+        <td>(Opcional) Especifique un nombre de instancia de servicio. Si no especifica un nombre de instancia de servicio, se selecciona la primera instancia correspondiente al servicio.</td>
+        </tr>
+        <tr>
+        <td><code>--keyname CREDENTIALS_NAME</code></td>
+        <td>(Opcional) Especifique el nombre de las credenciales. Si no especifica el nombre de las credenciales, se seleccionan las primeras credenciales de la instancia de servicio.</td>
+        </tr>
+    </tbody>
+    </table>
+
+    **Sintaxis de ejemplo** 
     ```
-    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME][--keyname CREDENTIALS_NAME]
     ```
     {: pre}
 
-    <table>
-    <caption>Visión general de los componentes del mandato <code>ibmcloud fn service bind</code></caption>
-    <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icono de idea"/> Visión general de los componentes del mandato <code>ibmcloud fn service bind</code></th>
-    </thead>
-    <tbody>
-    <tr>
-    <td><code>SERVICE</code></td>
-    <td>El nombre del servicio que está enlazando.</td>
-    </tr>
-    <tr>
-    <td><code>ACTION_NAME</code></td>
-    <td>El nombre de la acción o del paquete al que desea enlazar el servicio.</td>
-    </tr>
-    <tr>
-    <td>--instance <code>INSTANCE_NAME</code></td>
-    <td>Opcional: especifique un nombre de instancia de servicio. Si no especifica un nombre de instancia de servicio, se selecciona la primera instancia correspondiente al servicio.</td>
-    </tr>
-    <tr>
-    <td>--keyname <code>CREDENTIALS_NAME</code></td>
-    <td>Opcional: especifique un nombre de las credenciales. Si no especifica el nombre de las credenciales, se seleccionan las primeras credenciales de la instancia de servicio.</td>
-    </tr>
-    </tbody></table>
-
-    Por ejemplo, para enlazar un servicio de Composer de {{site.data.keyword.ibmwatson}} a una acción denominada `hello`:
+    Por ejemplo, para enlazar un servicio {{site.data.keyword.ibmwatson}} Composer con una acción denominada `hello` ejecute el mandato siguiente.
     ```
     ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
     ```
     {: pre}
 
-    Salida:
+    **Resultado**
     ```
     Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello'.
     ```
     {: screen}
 
 4. Verifique que las credenciales se han enlazado correctamente. La acción a la que el servicio está enlazada no admite distintivos personalizados, pero sí admite los distintivos de depuración y de salida detallada.
+
     ```
     ibmcloud fn action get hello parameters
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     ok: got action Hello World
 {
@@ -174,9 +181,6 @@ Credentials-2
 
 Para obtener más información sobre cómo pasar parámetros a una acción o a un paquete, consulte [Enlace de parámetros a acciones](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
 
-
-
-
 ## Desenlazar servicios de acciones
 {: #services_unbind}
 
@@ -186,3 +190,4 @@ Al desenlazar un servicio de una acción o paquete, se eliminan los enlaces de s
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
+

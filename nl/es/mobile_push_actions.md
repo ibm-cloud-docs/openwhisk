@@ -82,7 +82,7 @@ La acción `/whisk.system/pushnotifications/sendMessage` envía notificaciones P
 - `url`: un URL que se puede enviar junto con la alerta. Por ejemplo, `-p url "https:\\www.w3.ibm.com"`.
 - `apiHost`: una serie opcional que especifica el host de la API. El valor predeterminado es `mobile.ng.bluemix.net`.  Por ejemplo: `-p apiHost "mobile.eu-gb.bluemix.net"`
 - `deviceIds`: la lista de dispositivos especificados. Por ejemplo, `-p deviceIds ["deviceID1"]`.
-- `plataformas`: enviar una notificación a los dispositivos de las plataformas especificadas. 'A' para dispositivos Apple (iOS) y 'G' para dispositivos Google (Android). Por ejemplo, `-p platforms ["A"]`.
+- `platforms`: enviar una notificación a los dispositivos de las plataformas especificadas. 'A' para dispositivos Apple (iOS) y 'G' para dispositivos Google (Android). Por ejemplo, `-p platforms ["A"]`.
 - `userIds`: enviar notificaciones a dispositivos de los usuarios que especifique. Por ejemplo, `-p userIds "[\"testUser\"]"`
 - `tagNames`: enviar una notificación a los dispositivos que están suscritos a cualquiera de estas etiquetas. Por ejemplo, `-p tagNames "[\"tag1\"]"`.
 - `gcmCollapseKey`: este parámetro identifica un grupo de mensajes

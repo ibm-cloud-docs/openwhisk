@@ -30,11 +30,10 @@ El paquete incluye las acciones siguientes.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-speechToText` | paquete | usuario, contraseña | Paquete para convertir habla en texto |
+| `/whisk.system/watson-speechToText` | paquete | username, password | Paquete para convertir habla en texto |
 | `/whisk.system/watson-speechToText/speechToText` | acción | payload, content_type, encoding, username, password, continuous, inactivity_timeout, interim_results, keywords, keywords_threshold, max_alternatives, model, timestamps, watson-token, word_alternatives_threshold, word_confidence, X-Watson-Learning-Opt-Out | Convertir audio en texto |
 
-**Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/speechToText`. Consulte el
-[paquete {{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) en su lugar.
+**Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/speechToText`. Consulte el [paquete {{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=cloud-functions-speech-to-text-package) en su lugar.
 
 ## Configuración del paquete Watson Speech to Text en {{site.data.keyword.Bluemix_notm}}
 
@@ -42,8 +41,7 @@ Si utiliza {{site.data.keyword.openwhisk}} desde {{site.data.keyword.Bluemix_not
 
 1. Cree una instancia de servicio de Watson Speech to Text en el [panel de control](http://cloud.ibm.com) de {{site.data.keyword.Bluemix_notm}}.
 
-  Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de
-{{site.data.keyword.Bluemix_notm}} en el que se encuentra.
+  Asegúrese de recordar el nombre de la instancia de servicio y la organización y el espacio de {{site.data.keyword.Bluemix_notm}} en el que se encuentra.
 
 2. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia de servicio de Watson que ha creado.
   ```

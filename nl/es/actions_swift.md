@@ -427,7 +427,7 @@ Sintaxis de ejemplo de Swift 3.
 ## Manejo de errores en Swift 4
 {: #error-handling-swift4}
 
-Con la utilización del manejador de terminación Codable, se pueden pasar errores para indicar una anomalía en su acción. El [Manejo de errores en Swift ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) es parecido al manejo de excepciones en otros lenguajes, con la utilización de las palabras clave `try`, `catch` y `throw`.
+Con la utilización del manejador de terminación Codable, se pueden pasar errores para indicar una anomalía en su acción. El [manejo de errores en Swift ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) es parecido al manejo de excepciones en otros lenguajes, con la utilización de las palabras clave `try`, `catch` y `throw`.
 {: shortdesc}
 
 En el siguiente fragmento de código se muestra un ejemplo de manejo de un error.

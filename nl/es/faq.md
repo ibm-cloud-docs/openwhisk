@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
+
 
 
 # Preguntas más frecuentes
@@ -86,31 +88,33 @@ Hay soporte para los lenguajes siguientes:
 
 El tiempo de espera máximo es de 10 minutos. El valor predeterminado está establecido en 1 minuto, pero puede cambiarlo a través de la CLI especificando un valor nuevo en milisegundos utilizando el distintivo `--timeout`. También puede cambiar el valor a través de la GUI en la sección de detalles de acción.
 
-
 ## ¿Cuál es la memoria máxima que puede utilizar mi función?
 {: #max-memory}
 
 Puede utilizar hasta 2048 MB de memoria para cada función. El valor predeterminado está establecido en 256 MB, pero puede cambiarlo utilizando el distintivo `--memory` o a través de la GUI en la sección de detalles de acción.
 
-
-
 ## ¿Cuál es la diferencia entre una acción y una acción web?
 {: #difference}
 
 La diferencia principal entre una acción y una acción web es el objeto de salida de respuesta. En las
-[acciones web](/docs/openwhisk?topic=cloud-functions-actions_web), el resultado representa una respuesta HTTP, en la que la salida JSON debe tener un campo `body` como mínimo. De manera opcional, también puede contener un statusCode (código de estado) y cabeceras.
+[acciones web](/docs/openwhisk?topic=cloud-functions-actions_web), el resultado representa una respuesta HTTP, en la que la salida JSON contiene un campo `body` como mínimo. De forma opcional, también puede contener un `statusCode` y `headers`.
 
 ## ¿Cómo puedo ver mis registros de acciones?
 {: #logs_faq}
 
 Una vez que se han recopilado las métricas, puede ver los registros utilizando el [servicio {{site.data.keyword.loganalysislong_notm}}](/docs/openwhisk?topic=cloud-functions-logs).
 
-
 ## ¿Cómo funciona la supervisión?
 {: #monitor_faq}
 
 Puede obtener información sobre el rendimiento de las acciones desplegadas con
 {{site.data.keyword.openwhisk_short}} utilizando {{site.data.keyword.monitoringlong}}. También puede supervisar el estado y el rendimiento de las acciones utilizando el panel de control para ver un resumen gráfico de la actividad.
+
+
+
+
+
+
 
 
 

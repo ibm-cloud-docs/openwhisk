@@ -181,7 +181,7 @@ Las acciones web proporcionan características adicionales que incluyen:
 - `Parámetros de consulta y de cuerpo como entrada`: La acción recibe parámetros de consulta y parámetros en el cuerpo de la solicitud. El orden de prioridad para fusionar parámetros es el siguiente: parámetros de paquete, parámetros de acción, parámetros de consulta y parámetros de cuerpo. Cada uno de estos parámetros puede sustituir cualquier valor anterior en caso de solapamiento. Por ejemplo, `/guest/demo/hello.http?name=Jane` puede pasar el argumento `{name: "Jane"}` a la acción.
 - `Datos de formulario`: Además de `application/json` estándar, las acciones web pueden recibir como entrada un URL codificado procedente de los datos `application/x-www-form-urlencoded data`.
 - `Activación utilizando varios verbos HTTP`: Se puede invocar una acción web mediante uno de estos métodos HTTP: `GET`, `POST`, `PUT`, `PATCH` y `DELETE`, así como `HEAD` y `OPTIONS`.
-- `Gestión de entidades que no son de cuerpo JSON ni HTTP sin procesar (RAW HTTP)`: Una acción web puede aceptar un cuerpo de solicitud HTTP que no sea un objeto JSON y puede optar por recibir siempre estos valores como valores opacos (texto sin formato cuando no están en binario o serie codificada en base64 en caso contrario).
+- `Gestión de entidades con cuerpo que no es JSON y HTTP sin formato`: Una acción web puede aceptar un cuerpo de solicitud HTTP que no sea un objeto JSON y puede optar por recibir siempre estos valores como valores opacos (texto sin formato cuando no están en binario o serie codificada en base64 en caso contrario).
 
 El ejemplo siguiente muestra brevemente cómo puede utilizar estas características en una acción web. Supongamos que tenemos una acción `/guest/demo/hello` con el siguiente cuerpo:
 ```javascript
@@ -505,7 +505,7 @@ Salida de ejemplo:
 ```
 {: screen}
 
-## Solicitudes de Options
+## Solicitudes de opciones
 {: #options-requests}
 
 De forma predeterminada, una solicitud OPTIONS realizada a una acción web da como resultado que las cabeceras de CORS se añadan automáticamente a las cabeceras de respuesta. Estas cabeceras permiten todos los orígenes y los verbos HTTP options, get, delete, post, put, head y patch.

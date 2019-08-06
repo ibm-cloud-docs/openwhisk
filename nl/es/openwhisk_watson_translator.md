@@ -30,7 +30,7 @@ El paquete incluye las acciones siguientes.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-translator` | paquete | usuario, contraseña | Paquete para la traducción de texto e identificación de idioma  |
+| `/whisk.system/watson-translator` | paquete | username, password | Paquete para la traducción de texto e identificación de idioma  |
 | `/whisk.system/watson-translator/translator` | acción | payload, translateFrom, translateTo, translateParam, username, password | Traducir texto |
 | `/whisk.system/watson-translator/languageId` | acción | payload, username, password | Identificar idioma |
 

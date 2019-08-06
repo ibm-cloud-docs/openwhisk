@@ -133,7 +133,7 @@ Para instalar el paquete {{site.data.keyword.mobilepushshort}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #install_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
 
 2. Utilizando el conmutador de espacios de nombres de la esquina superior derecha, seleccione el espacio de nombres en el que desee instalar el paquete de {{site.data.keyword.cos_short}}.
 

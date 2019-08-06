@@ -80,7 +80,7 @@ Revise los pasos y ejemplos siguientes para crear su primera acción JavaScript.
   ```
   {: screen}
 
-4. Ejecute la acción en la nube ejecutando una invocación de bloqueo. Las invocaciones de bloqueo utilizan un estilo de solicitud/respuesta y esperan a que el resultado de la activación esté disponible. El período de espera es inferior a 60 segundos o el [valor de límite de tiempo](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits) de la acción.
+4. Ejecute la acción en la nube ejecutando una invocación de bloqueo. Las invocaciones de bloqueo utilizan un estilo de solicitud/respuesta y esperan a que el resultado de la activación esté disponible. El período de espera es el que sea menor entre 60 segundos o el [valor de límite de tiempo](/docs/openwhisk?topic=cloud-functions-openwhisk_reference#openwhisk_syslimits) de la acción.
 
     ```
     ibmcloud fn action invoke --blocking hello

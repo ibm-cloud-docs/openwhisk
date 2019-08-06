@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: platform architecture, openwhisk, couchdb, kafka
+keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Funcionamiento de {{site.data.keyword.openwhisk_short}}
 {: #about}
@@ -40,7 +42,7 @@ Una acción es un fragmento de código pequeño que se puede invocar o definir p
 
 **¿Cuáles son las ventajas de utilizar una acción?**
 
-Al utilizar acciones, puede limitar la cantidad de tiempo que se ejecuta el código, lo que reduce el coste de gastos generales.
+Al utilizar acciones, puede limitar la cantidad de tiempo que se ejecuta el código, lo que reduce los costes.
 
 Por ejemplo, puede utilizar acciones para detectar caras en una imagen, responder a cambios en una base de datos, agregar un conjunto de llamadas de API o incluso publicar un tweet.
 
@@ -55,7 +57,7 @@ Sí. Puede utilizar acciones para llamar a otras acciones, o puede serializar ac
     <dd>[Los espacios de nombres](/docs/openwhisk?topic=cloud-functions-namespaces) contienen entidades de {{site.data.keyword.openwhisk_short}} como acciones y desencadenantes, y pertenecen a un grupo de recursos. Puede permitir que los usuarios acceden a las entidades de {{site.data.keyword.openwhisk_short}} otorgándoles acceso al espacio de nombres.</dd>
   <dt>Acción</dt>
     <dd>Una [acción](/docs/openwhisk?topic=cloud-functions-actions) es una parte de código que realiza una tarea específica. Una acción se puede escribir en el lenguaje de su elección, como pequeños fragmentos de código JavaScript o código Swift, o bien código binario personalizado. Especifique la acción en Cloud Functions como código fuente o como una imagen de Docker.
-    <br><br>Una acción realiza un trabajo cuando se invoca directamente utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. Una acción también puede responder automáticamente a los sucesos desde servicios de {{site.data.keyword.Bluemix_notm}} y servicios de terceros utilizando un desencadenante.</dd>
+    <br><br>Una acción realiza un trabajo cuando se invoca directamente utilizando la API de {{site.data.keyword.openwhisk_short}}, CLI o el SDK de iOS. Una acción también puede responder automáticamente a los sucesos desde servicios de {{site.data.keyword.cloud_notm}} y servicios de terceros utilizando un desencadenante.</dd>
   <dt>Secuencia</dt>
     <dd>Se puede encadenar un conjunto de acciones en una [secuencia](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) sin tener que escribir código. Una secuencia es una cadena de acciones, invocadas en orden, donde el resultado de una se pasa como entrada a la siguiente acción. Esto le permite combinar acciones existentes juntas para una reutilización rápida y sencilla. A continuación, se puede invocar una secuencia como si fuera una acción, mediante una API REST o automáticamente en respuesta a sucesos.
   </dd>
@@ -76,7 +78,7 @@ una acción se invoque como respuesta a sucesos de distintos desencadenantes.</d
 
 ### ¿Qué hacer a continuación?
 {: #quiz}
-Ponga a prueba sus conocimientos y [responda a un cuestionario ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php).
+Ponga a prueba sus conocimientos y [responda a un cuestionario](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}.
 
 
 ## Cómo funciona el proceso interno de OpenWhisk
@@ -89,11 +91,11 @@ Para explicar detalladamente todos los componentes, hagamos un seguimiento de un
 ### ¿Qué pasa entre bastidores en OpenWhisk?
 {: #about_scenes}
 
-OpenWhisk es un proyecto de código abierto que combina componentes que incluyen Nginx, Kafka, Docker y CouchDB para formar un servicio de programación basado en sucesos sin servidor.
+OpenWhisk es un proyecto de código abierto que combina componentes como por ejemplo NGINX, Kafka, Docker y CouchDB para formar un servicio de programación basada en sucesos sin servidor.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="El flujo interno del proceso subyacente a OpenWhisk" style="width:550px; border-style: none"/>
 
-### Entrar en el sistema: nginx
+#### 1. Entrar en el sistema: NGINX
 {: #about_ngnix}
 
 En primer lugar, la API de usuario de OpenWhisk se basa en HTTP y sigue un diseño RESTful. Por lo tanto, el mandato que se envía mediante la CLI es una solicitud HTTP realizada al sistema OpenWhisk. El mandato específico se convierte a groso modo en:
@@ -105,18 +107,19 @@ Host: $openwhiskEndpoint
 
 Observe la variable *$userNamespace*. Un usuario tiene acceso al menos a un espacio de nombres. Para simplificar, suponga que el usuario es el propietario del espacio de nombres en el que se coloca *myAction*.
 
-El primer punto de entrada en el sistema se realiza a través de **nginx**, “un servidor proxy invertido y HTTP”. Se utiliza para la terminación SSL y para reenviar las llamadas HTTP adecuadas al siguiente componente.
+El primer punto de entrada en el sistema se realiza a través de **NGINX**, “un servidor proxy invertido y HTTP”. Se utiliza para la terminación SSL y para reenviar las llamadas HTTP adecuadas al siguiente componente.
 
-### Entrar en el sistema: Controlador
+#### 2. Entrar en el sistema: Controlador
 {: #about_controller}
 
-Nginx reenvía la solicitud HTTP al **controlador**, el siguiente componente en la vía de acceso mediante OpenWhisk. Es una implementación basada en Scala de la API REST real (basada en **Akka** y **Spray**) y por lo tanto sirve como interfaz para todo lo que el usuario puede hacer. Incluidas las solicitudes [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) destinadas a las entidades de OpenWhisk y la invocación de acciones.
 
-En primer lugar, el Controlador determina lo que el usuario intenta hacer. Lo hace basándose en el método HTTP utilizado en la solicitud HTTP. En el caso anterior, el usuario emite una solicitud POST a una acción existente, que el Controlador convierte en una **invocación de una acción**.
+NGINX reenvía la solicitud HTTP al **controlador**, el siguiente componente en la vía de acceso mediante OpenWhisk. Es una implementación basada en Scala de la API REST real (basada en **Akka** y **Spray**) y por lo tanto sirve como interfaz para todo lo que el usuario puede hacer. Incluyendo solicitudes de [crear, recuperar, actualizar y suprimir](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete){: external} para sus entidades en OpenWhisk e invocación de acciones.
+
+En primer lugar, el Controlador determina lo que el usuario intenta hacer. Lo hace basándose en el método HTTP utilizado en la solicitud HTTP. El usuario emite una solicitud POST a una acción existente, que el Controlador convierte en una **invocación de una acción**.
 
 Dado el papel central que juega el Controlador (de ahí su nombre), dicho componente participará de alguna manera en todos los pasos siguientes.
 
-### Autenticación y autorización: CouchDB
+#### 3. Autenticación y autorización: CouchDB
 {: #about_auth}
 
 Ahora el Controlador verifica quién es el usuario (*Autenticación*) y si tiene privilegio para hacer lo que quiere hacer con esta entidad (*Autorización*). Las credenciales incluidas en la solicitud se comparan con la base de datos llamada **subjects** de una instancia **CouchDB**.
@@ -125,7 +128,7 @@ En este caso, se comprueba que el usuario existe en la base de datos de OpenWhis
 
 Se abre la puerta al siguiente paso del proceso.
 
-### Obtención de la acción: CouchDB… de nuevo
+#### 4. Obtención de la acción: CouchDB… de nuevo
 {: #about_couchdb}
 
 Como ahora el Controlador está seguro de que el usuario tiene permiso y privilegios para invocar la acción, carga esta acción (en este caso *myAction*) desde la base de datos **whisks** en CouchDB.
@@ -135,12 +138,12 @@ El registro de la acción contiene principalmente el código que se va a ejecuta
 En este caso en concreto, la acción no toma ningún parámetro (la definición de parámetros de la función es una lista vacía). Por lo tanto, se presupone que no se ha definido ningún parámetro predeterminado, ni ningún parámetro específico para la acción, lo que constituye el caso más simple desde este punto de vista.
 
 
-### Quién hay para invocar la acción: Equilibrador de carga
+#### 5. Quién hay para invocar la acción: Equilibrador de carga
 {: #about_lb}
 
 El Equilibrador de carga, que forma parte del Controlador, tiene una visión global de los ejecutores disponibles en el sistema mediante la comprobación continua del estado del sistema. Estos ejecutores también se denominan **Invocadores**. Puesto que sabe qué Invocadores están disponibles, el Equilibrador de carga elige uno de ellos para invocar la acción solicitada.
 
-### Hagan cola: Kafka
+#### 6. Hagan cola: Kafka
 {: #about_kafka}
 
 A partir de ahora, la solicitud de invocación que se ha enviado está sujeta principalmente a dos problemas potenciales:
@@ -152,21 +155,21 @@ La solución en ambos casos es **Kafka**, “un sistema de mensajería de tipo p
 
 Para que se invoque la acción, el Controlador publica un mensaje en Kafka que contiene la acción que se debe invocar y los parámetros que hay que pasar a dicha acción (en este caso, ninguno). Este mensaje se dirige al Invocador que ha elegido el Controlador de la lista que ha obtenido de Consul.
 
-Cuando Kafka confirma que ha recibido el mensaje, se responde a la solicitud HTTP al usuario con **ActivationId**. El usuario puede utilizarlo más adelante para acceder a los resultados de la invocación específica. Se trata de un modelo de invocación asíncrona, donde la solicitud HTTP termina en cuanto el sistema acepta la solicitud de invocar la acción. Hay disponible un modelo síncrono (que recibe el nombre de invocación de bloqueo), pero no se describe aquí.
+Cuando Kafka confirma que ha recibido el mensaje, se responde a la solicitud HTTP al usuario con un **ID de activación**. El usuario puede utilizarlo más adelante para acceder a los resultados de la invocación específica. Se trata de un modelo de invocación asíncrona, donde la solicitud HTTP termina en cuanto el sistema acepta la solicitud de invocar la acción. Hay disponible un modelo síncrono (que recibe el nombre de invocación de bloqueo), pero no se describe aquí.
 
-### Invocación del código: Invocador
+#### 7. Invocación del código: Invocador
 {: #about_invoker}
 
 El **Invocador** es el centro de OpenWhisk. La función del Invocador es invocar una acción. También se implementa en Scala. Pero va mucho más allá. Para ejecutar acciones de forma aislada y segura utiliza **Docker**.
 
-Docker sirve para configurar un nuevo entorno de encapsulación automática (denominado *contenedor*) para cada acción que se invoca de forma rápida, aislada y controlada. Para cada invocación de una acción se genera un contenedor Docker y se inserta el código de la acción. A continuación, el código se ejecuta utilizando los parámetros que se le han pasado, se obtiene el resultado y el contenedor se destruye. Las optimizaciones de rendimiento pueden realizarse en esta etapa para reducir la sobrecarga y agilizar los tiempos de respuesta.
+Docker sirve para configurar un nuevo entorno de encapsulación automática (denominado *contenedor*) para cada acción que se invoca de forma rápida, aislada y controlada. Para cada invocación de una acción se genera un contenedor Docker y se inserta el código de la acción. A continuación, el código se ejecuta utilizando los parámetros que se le han pasado, se obtiene el resultado y el contenedor se destruye. Las optimizaciones de rendimiento pueden realizarse en esta etapa para reducir los requisitos de mantenimiento y posibilitar unos tiempos de respuesta bajos.
 
-En este caso, teniendo una acción basada en *Node.js*, el Invocador inicia un contenedor Node.js. A continuación, inserta el código procedente de *myAction*, lo ejecuta sin parámetros, extrae el resultado, guarda los registros y destruye el contenedor Node.js de nuevo.
+En este caso, con una acción basada en *Node.js* a mano, el Invocador inicia un contenedor Node.js. A continuación, inserta el código procedente de *myAction*, lo ejecuta sin parámetros, extrae el resultado, guarda los registros y destruye el contenedor Node.js de nuevo.
 
-### Almacenamiento de los resultados: CouchDB de nuevo
+#### 8. Almacenamiento de los resultados: CouchDB de nuevo
 {: #about_storing}
 
-Cuando el Invocador obtiene el resultado, se almacena en la base de datos **whisks** como una activación bajo el ActivationId. La base de datos **whisks** se encuentra en **CouchDB**.
+Cuando el Invocador obtiene el resultado, se almacena en la base de datos **whisks** como una activación bajo el ID de activación. La base de datos **whisks** se encuentra en **CouchDB**.
 
 En este caso específico, el Invocador obtiene el objeto JSON resultante de la acción, recupera el registro que ha escrito Docker, los coloca en el registro de activación y lo almacena en la base de datos. Consulte el ejemplo siguiente:
 ```json
@@ -207,4 +210,7 @@ Puede encontrar información adicional sobre {{site.data.keyword.openwhisk_short
 * [Semánticas de acción](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [Límites](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [Referencia de API REST](/apidocs/functions)
+
+
+
 

@@ -29,7 +29,7 @@ El paquete incluye las acciones siguientes.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-textToSpeech` | paquete | usuario, contraseña | Paquete para convertir texto en habla |
+| `/whisk.system/watson-textToSpeech` | paquete | username, password | Paquete para convertir texto en habla |
 | `/whisk.system/watson-textToSpeech/textToSpeech` | acción | payload, voice, accept, encoding, username, password | Convertir texto en audio |
 
 **Nota**: el paquete `/whisk.system/watson` está en desuso, incluida la acción `/whisk.system/watson/textToSpeech`. Consulte el [paquete {{site.data.keyword.texttospeechshort}} instalable](/docs/openwhisk?topic=cloud-functions-text-to-speech-package) en su lugar.

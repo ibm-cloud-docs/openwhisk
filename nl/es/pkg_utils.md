@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -31,12 +32,14 @@ Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` 
 {: shortdesc}
 
 1. Liste las acciones del paquete `/whisk.system/utils`.
+
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
+    
     ```
     package /whisk.system/utils: Building blocks that format and assemble data
    action /whisk.system/utils/head: Extract prefix of an array
@@ -49,12 +52,14 @@ Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` 
     {: screen}
 
 2. Utilizando las acciones `split` y `sort`, cree una secuencia de acciones de forma que el resultado de `split` se pase como argumento a `sort`. Esta secuencia de acciones convierte algunas líneas de texto en una matriz, y ordena las líneas.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Invoque la acción.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
@@ -72,6 +77,8 @@ Se proporcionan varias acciones de utilidad en el paquete `/whisk.system/utils` 
     }
     ```
     {: screen}
+
+
 
 
 

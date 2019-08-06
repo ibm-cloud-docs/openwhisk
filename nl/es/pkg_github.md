@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: github, actions, trigger, event
+keywords: github, actions, trigger, event, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,36 +24,39 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # GitHub
 {: #pkg_github}
 
 Este paquete preinstalado no está disponible en la región de Tokio.
 {: tip}
 
-El paquete `/whisk.system/github` ofrece una forma cómoda de utilizar las [API de GitHub](https://developer.github.com/).
+El paquete `/whisk.system/github` ofrece una forma cómoda de utilizar las [API de GitHub](https://developer.github.com/){: external}.
 {: shortdesc}
 
-El paquete incluye el canal de información siguiente:
+El paquete GitHub incluye las siguientes entidades.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/github` | paquete | username, repository, accessToken | Interactuar con la API de GitHub |
-| `/whisk.system/github/webhook` | canal de información | events, username, repository, accessToken | Activar sucesos desencadenantes en caso de actividad de GitHub |
+| `/whisk.system/github` | Paquete | `username`, `repository`, `accessToken` | Interactuar con la API de GitHub. |
+| `/whisk.system/github/webhook` | Canal de información | `events`, `username`, `repository`, `accessToken` | Activar sucesos desencadenantes en caso de actividad de GitHub. |
 
 Se recomienda la creación de un enlace de paquete con los valores de `username`, `repository` y `accessToken`.  Con enlace, no necesita especificar los valores cada vez que use el canal de información en el paquete.
 
 ## Activación de un suceso desencadenante con actividad GitHub
 
-El canal de información `/whisk.system/github/webhook` configura un servicio para activar un desencadenante cuando haya actividad en el repositorio de GitHub especificado. Los parámetros son según se indica a continuación:
+El canal de información `/whisk.system/github/webhook` configura un servicio para activar un desencadenante cuando haya actividad en el repositorio de GitHub especificado. Los parámetros son los siguientes.
 
-- `username`: el nombre de usuario del repositorio GitHub.
-- `repository`: el repositorio GitHub.
-- `accessToken`: su señal de acceso personal de GitHub. Cuando [cree su señal](https://github.com/settings/tokens), asegúrese de seleccionar los ámbitos **repo:status** y **public_repo**. Además, asegúrese de que no tiene webhooks que ya estén definidos en su repositorio.
-- `events`: el [tipo de suceso GitHub](https://developer.github.com/v3/activity/events/types/) de interés.
+| Parámetro | Descripción |
+| --- | --- |
+| `username` | El nombre de usuario del repositorio GitHub. |
+| `repository` | El repositorio GitHub. |
+| `accessToken` | Su señal de acceso personal de GitHub. Cuando [cree su señal, asegúrese de seleccionar los ámbitos `repo:status` y `public_repo`. Además, asegúrese de que no tiene webhooks que ya estén definidos en su repositorio. |
+| `events` | El [tipo de suceso de GitHub ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://developer.github.com/v3/activity/events/types/) de interés. |
 
 En el siguiente ejemplo, se crea un desencadenante que se activa cada vez que se realiza una nueva confirmación en un repositorio de GitHub.
 
-1. Generar una [señal de acceso personal](https://github.com/settings/tokens) de GitHub. La señal de acceso se usará en el paso siguiente.
+1. Generar una señal de acceso personal de GitHub. Vaya a **GitHub.com** > **Valores** > **Señales de acceso personal** para generar una señal. La señal de acceso se usará en el paso siguiente.
 
 2. Crear un enlace de paquete configurado para su repositorio de GitHub y con su señal de acceso.
   ```
@@ -70,5 +74,7 @@ En el siguiente ejemplo, se crea un desencadenante que se activa cada vez que se
   {: pre}
 
   Una confirmación en el repositorio GitHub utilizando `git push` provoca que el webhook active el desencadenante. Si una regla coincide con el desencadenante, se invoca la acción asociada. La acción recibe la carga útil de webhook de GitHub como parámetro de entrada. Cada suceso de webhook de GitHub tiene un esquema JSON similar, pero es un objeto de carga útil exclusivo determinado por su tipo de suceso. Para obtener más información sobre el contenido de la carga útil, consulte la documentación de la API de
-[Carga útil y sucesos GitHub](https://developer.github.com/v3/activity/events/types/).
+[Carga útil y sucesos GitHub](https://developer.github.com/v3/activity/events/types/){: external}.
+
+
 

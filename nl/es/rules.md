@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Asociar desencadenantes y acciones mediante reglas
 {: #rules}
 
-Cada vez que se activa el desencadenante, la regla utiliza el suceso desencadenante como entrada e invoca a la acción asociada. Con el conjunto adecuado de reglas, es posible que un único suceso desencadenante invoque varias acciones, o que
+Cada vez que se activa el desencadenante, la regla utiliza el suceso desencadenante como entrada e invoca a la acción asociada. Con el conjunto adecuado de reglas, es posible que un único desencadenante invoque varias acciones, o que
 una acción se invoque como respuesta a sucesos de distintos desencadenantes.
 {: shortdesc}
 
@@ -84,12 +86,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 Puede utilizar diferentes combinaciones de desencadenantes y acciones creando una regla para cada combinación. No es necesario que tenga una ratio de uno a uno para las acciones y los desencadenantes.
 
 Por ejemplo, considere las acciones siguientes.
-- `classifyImage` - Acción que detecta los objetos de una imagen y los clasifica.
-- `thumbnailImage`- Acción que crea una versión de miniatura de una imagen.
+
+| Acción | Descripción |
+| --- | --- |
+| `classifyImage` | Una acción que detecta los objetos de una imagen y los clasifica. |
+| `thumbnailImage` | Una acción que crea una versión de miniatura de una imagen. |
 
 Además, suponga que dos orígenes de sucesos activan los desencadenantes siguientes.
-- `newTweet` - Desencadenante que se activa cuando se publica un nuevo tweet.
-- `imageUpload` - Desencadenante que se activa cuando se sube una imagen a un sitio web.
+
+| Desencadenante | Descripción |
+| --- | --- |
+| `newTweet` | Un desencadenante que se activa cuando se publica un nuevo tweet. |
+| `imageUpload` | Un desencadenante que se activa cuando se sube una imagen a un sitio web. |
 
 Puede configurar reglas para que un único suceso desencadenante invoque varias acciones, y hacer que varios desencadenantes invoquen la misma acción.
 - Regla `newTweet -> classifyImage`
@@ -100,3 +108,4 @@ Las tres reglas establecen el comportamiento siguiente.
 - Se clasifican las imágenes de ambos tweets.
 - Se clasifican las imágenes cargadas.
 - Se genera una versión en miniatura.
+

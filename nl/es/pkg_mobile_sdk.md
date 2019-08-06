@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: mobile, sdk, cocoapods, carthage
+keywords: mobile, sdk, cocoapods, carthage, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,13 +24,16 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # SDK móvil
 {: #pkg_mobile_sdk}
 
-OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar
-desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk. El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
+OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk. El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
 {: shortdesc}
 
+
+El SDK móvil no está soportado para los espacios de nombres basados en IAM. En su lugar, utilice un espacio de nombres basado en Cloud Foundry.
+{: important}
 
 
 ## Añadir el SDK a su app
@@ -38,7 +42,7 @@ Puede instalar el SDK móvil usando CocoaPods, Carthage o desde el directorio de
 
 ### Instalación con CocoaPods
 
-El SDK de OpenWhisk para móvil está disponible para distribución pública por medio de CocoaPods. Suponiendo que CocoaPods esté instalado, ponga las líneas siguientes en un archivo llamado 'Podfile' dentro del directorio de proyecto de la app starter.
+El SDK de OpenWhisk para móvil está disponible para distribución pública por medio de CocoaPods. Suponiendo que CocoaPods esté instalado, ponga las líneas siguientes en un archivo llamado `Podfile` dentro del directorio de proyecto de la app starter.
 
 ```ruby
 install! 'cocoapods', :deterministic_uuids => false
@@ -58,7 +62,7 @@ En la línea de mandatos, escriba `pod install`. Este mandato instala el SDK par
 
 Después de la instalación, abra el espacio de trabajo del proyecto. Es posible que obtenga el siguiente aviso al construir:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) es necesario que esté configurado correctamente para destinos que utilizan Swift. Utilice el menú [Editar > Convertir > A Current Swift Syntax…] para elegir una versión de Swift o utilizar el editor de Crear configuración para configurar los valores de compilación directamente.`
-Esto se produce si Cocoapods no actualiza la versión de Swift en el proyecto de Pods.  Para solucionar, seleccione el proyecto de Pods y el destino de OpenWhisk.  Vaya a Crear configuración y cambie el valor `Use Legacy Swift Language Version` a `no`. Como alternativa, puede añadir las siguientes instrucciones posteriores a la instalación al final del Podfile:
+Esto se produce si CocoaPods no actualiza la versión de Swift en el proyecto de Pods.  Para solucionar, seleccione el proyecto de Pods y el destino de OpenWhisk.  Vaya a Crear configuración y cambie el valor `Use Legacy Swift Language Version` a `no`. Como alternativa, puede añadir las siguientes instrucciones posteriores a la instalación al final del Podfile:
 
 ```ruby
 post_install do |installer|
@@ -73,7 +77,7 @@ end
 
 ### Instalación con Carthage
 
-Cree un archivo en el directorio del proyecto de la app y llámelo 'Cartfile'. Añada la línea siguiente al archivo:
+Cree un archivo en el directorio del proyecto de la app y llámelo `Cartfile`. Añada la línea siguiente al archivo:
 ```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
@@ -85,17 +89,14 @@ Debe añadir después OpenWhisk.framework a las infraestructuras incluidas en el
 
 ### Instalación a partir de código fuente
 
-El código fuente está disponible en https://github.com/apache/incubator-openwhisk-client-swift.git.
+El código fuente está disponible en https://github.com/apache/incubator-openwhisk-client-swift.
 Abra el proyecto utilizando `OpenWhisk.xcodeproj` con Xcode.
 El proyecto contiene dos esquemas: "OpenWhisk" (destinado a iOS) y "OpenWhiskWatch" (destinado a watchOS 2).
-Compile el proyecto
-para los destinos que necesite y añada las infraestructuras resultantes a su app (normalmente en
-~/Library/Developer/Xcode/DerivedData/nombre_app).
+Compile el proyecto para los destinos que necesite y añada las infraestructuras resultantes a su app (normalmente en ~/Library/Developer/Xcode/DerivedData/nombre_app).
 
 ## Instalación del ejemplo de app starter
 
-A utilizar la CLI de OpenWhisk para descargar código de ejemplo que incluya la infraestructura de
-SDK de OpenWhisk.
+A utilizar la CLI de OpenWhisk para descargar código de ejemplo que incluya la infraestructura de SDK de OpenWhisk.
 
 Para instalar el ejemplo de app starter, especifique el mandato siguiente:
 ```
@@ -103,7 +104,7 @@ ibmcloud fn sdk install iOS
 ```
 {: pre}
 
-Este mandato descarga un archivo comprimido que contiene la app de iniciador. Dentro del directorio de proyecto hay un podfile.
+Este mandato descarga un archivo comprimido que contiene la app de iniciador. El directorio de proyecto contiene un Podfile.
 
 Para instalar el SDK, especifique el mandato siguiente:
 ```
@@ -113,8 +114,7 @@ pod install
 
 ## Iniciación al SDK
 
-Para empezar rápidamente, cree un objeto WhiskCredentials con sus credenciales de API de OpenWhisk
-y cree una instancia de OpenWhisk a partir del objeto.
+Para empezar rápidamente, cree un objeto `WhiskCredentials` con sus credenciales de API de OpenWhisk y cree una instancia de OpenWhisk a partir del objeto.
 
 Por ejemplo, utilice el siguiente código de ejemplo para crear un objeto de credenciales:
 ```
@@ -129,7 +129,7 @@ ibmcloud fn property get --auth
 ```
 {: pre}
 
-Salida:
+**Resultado**
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -141,7 +141,7 @@ La serie anterior a los dos puntos es la clave y la serie posterior a los dos pu
 
 Para invocar una acción remota, puede llamar `invokeAction` con el nombre de acción. Utilice un diccionario para pasar parámetros a la acción, según sea necesario.
 
-Por ejemplo:
+**Por ejemplo**
 ```swift
 // En este ejemplo, invocamos una acción para imprimir un mensaje en la consola de OpenWhisk
 var params = Dictionary<String, String>()
@@ -187,8 +187,7 @@ En el ejemplo anterior, se activa el desencadenante `locationChanged`.
 
 ## Uso de acciones que devuelven un resultado
 
-Si la acción devuelve un resultado, establezca hasResult en true en la llamada a invokeAction. El resultado de la acción
-se devuelve en el diccionario de respuesta, por ejemplo:
+Si la acción devuelve un resultado, establezca `hasResult` en true en la llamada a `invokeAction`. El resultado de la acción se devuelve en el diccionario de respuesta, por ejemplo:
 
 ```swift
 do {
@@ -207,9 +206,7 @@ do {
 ```
 {: codeblock}
 
-De forma predeterminada, el SDK solo devuelve el ID de activación y cualquier resultado producido por la acción invocada. Para obtener metadatos
-del objeto de respuesta completo, que incluye el código de estado de la respuesta HTTP,
-utilice el siguiente valor:
+De forma predeterminada, el SDK solo devuelve el ID de activación y cualquier resultado producido por la acción invocada. Para obtener metadatos del objeto de respuesta completo, que incluye el código de estado de la respuesta HTTP, utilice el siguiente valor:
 
 ```swift
 whisk.verboseReplies = true
@@ -218,19 +215,16 @@ whisk.verboseReplies = true
 
 ## Configuración del SDK
 
-Puede configurar el SDK para que funcione con distintas instalaciones de OpenWhisk usando el parámetro
-baseURL. Por ejemplo:
+Puede configurar el SDK para que funcione con distintas instalaciones de OpenWhisk usando el parámetro `baseURL`. Por ejemplo:
 
 ```swift
 whisk.baseURL = "http://localhost:8080"
 ```
 {: codeblock}
 
-En este ejemplo, se utiliza una instalación que se ejecuta en http://localhost:8080. Si no especifica baseUrl, el SDK móvil usa
-la instancia en ejecución en https://us-south.functions.cloud.ibm.com.
+En este ejemplo, se utiliza una instalación que se ejecuta en `http://localhost:8080`. Si no especifica `baseURL`, el SDK móvil usa la instancia en ejecución en https://us-south.functions.cloud.ibm.com.
 
-Puede pasar una sesión NSURLSession personalizada en caso de que necesite gestión especial de red. Por ejemplo, podría tener su propia
-instalación de OpenWhisk que utilice certificados autofirmados:
+Puede pasar una sesión NSURLSession personalizada en caso de que necesite gestión especial de red. Por ejemplo, podría tener su propia instalación de OpenWhisk que utilice certificados autofirmados:
 
 ```swift
 // crear un delegado de red que confíe en todo
@@ -248,18 +242,14 @@ whisk.urlSession = session
 
 ### Soporte para nombres calificados
 
-Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una
-acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La
-serie del nombre calificado tiene soporte para valores predeterminados sin nombre para espacios de nombres y paquetes que
-tienen todos los usuarios de OpenWhisk, por lo que se aplican las reglas de análisis siguientes:
+Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La serie del nombre calificado tiene soporte para valores predeterminados sin nombre para espacios de nombres y paquetes que tienen todos los usuarios de OpenWhisk, por lo que se aplican las reglas de análisis siguientes:
 
-- qName = "foo" results in namespace = default, package = default, action/trrigger = "foo"
-- qName = "mypackage/foo" results in namespace = default, package = mypackage, action/trigger = "foo"
-- qName = "/mynamespace/foo" results in namespace = mynamespace, package = default, action/trigger = "foo"
-- qName = "/mynamespace/mypackage/foo results in namespace = mynamespace, package = mypackage, action/trigger = "foo"
+- `qName = "foo"` da como resultado `namespace = default`, `package = default`, `action/trigger = "foo"`
+- `qName = "mypackage/foo"` da como resultado `namespace = default`, `package = mypackage`, `action/trigger = "foo"`
+- `qName = "/mynamespace/foo"` da como resultado `namespace = mynamespace`, `package = default`, `action/trigger = "foo"`
+- `qName = "/mynamespace/mypackage/foo"` da como resultado `namespace = mynamespace`, `package = mypackage`, `action/trigger = "foo"`
 
-El resto de combinaciones emiten un error WhiskError.QualifiedName. Por lo tanto, cuando utilice nombres calificados, debe envolver la
-llamada en un constructor "`do/try/catch`".
+El resto de combinaciones emiten un error `WhiskError.QualifiedName`. Por lo tanto, cuando utilice nombres calificados, debe envolver la llamada en un constructor "`do/try/catch`".
 
 ### Botón SDK
 
@@ -294,4 +284,6 @@ do {
 }
 ```
 {: codeblock}
+
+
 

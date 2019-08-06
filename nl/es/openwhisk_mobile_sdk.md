@@ -20,8 +20,7 @@ subcollection: cloud-functions
 # SDK móvil
 {: #openwhisk_mobile_sdk}
 
-OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar
-desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk. El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
+OpenWhisk proporciona un SDK móvil para dispositivos iOS y watchOS que permite a las apps activar desencadenantes remotos e invocar acciones remotas. No hay disponible una versión para Android, de forma que los desarrolladores de Android pueden utilizar directamente la API REST de OpenWhisk. El SDK móvil se escribe en Swift 4 y admite iOS 11 y releases posteriores. Puede crear el SDK móvil utilizando Xcode 9.
 {: shortdesc}
 
 
@@ -82,14 +81,11 @@ Debe añadir después OpenWhisk.framework a las infraestructuras incluidas en el
 El código fuente está disponible en https://github.com/apache/incubator-openwhisk-client-swift.git.
 Abra el proyecto utilizando `OpenWhisk.xcodeproj` con Xcode.
 El proyecto contiene dos esquemas: "OpenWhisk" (destinado a iOS) y "OpenWhiskWatch" (destinado a watchOS 2).
-Compile el proyecto
-para los destinos que necesite y añada las infraestructuras resultantes a su app (normalmente en
-~/Library/Developer/Xcode/DerivedData/nombre_app).
+Compile el proyecto para los destinos que necesite y añada las infraestructuras resultantes a su app (normalmente en ~/Library/Developer/Xcode/DerivedData/nombre_app).
 
 ## Instalación del ejemplo de app starter
 
-A utilizar la CLI de OpenWhisk para descargar código de ejemplo que incluya la infraestructura de
-SDK de OpenWhisk.  
+A utilizar la CLI de OpenWhisk para descargar código de ejemplo que incluya la infraestructura de SDK de OpenWhisk.  
 
 Para instalar el ejemplo de app starter, especifique el mandato siguiente:
 ```
@@ -107,8 +103,7 @@ pod install
 
 ## Iniciación al SDK
 
-Para empezar rápidamente, cree un objeto WhiskCredentials con sus credenciales de API de OpenWhisk
-y cree una instancia de OpenWhisk a partir del objeto.
+Para empezar rápidamente, cree un objeto WhiskCredentials con sus credenciales de API de OpenWhisk y cree una instancia de OpenWhisk a partir del objeto.
 
 Por ejemplo, utilice el siguiente código de ejemplo para crear un objeto de credenciales:
 ```
@@ -181,8 +176,7 @@ En el ejemplo anterior, se activa el desencadenante `locationChanged`.
 
 ## Uso de acciones que devuelven un resultado
 
-Si la acción devuelve un resultado, establezca hasResult en true en la llamada a invokeAction. El resultado de la acción
-se devuelve en el diccionario de respuesta, por ejemplo:
+Si la acción devuelve un resultado, establezca hasResult en true en la llamada a invokeAction. El resultado de la acción se devuelve en el diccionario de respuesta, por ejemplo:
 
 ```swift
 do {
@@ -201,9 +195,7 @@ do {
 ```
 {: codeblock}
 
-De forma predeterminada, el SDK solo devuelve el ID de activación y cualquier resultado producido por la acción invocada. Para obtener metadatos
-del objeto de respuesta completo, que incluye el código de estado de la respuesta HTTP,
-utilice el siguiente valor:
+De forma predeterminada, el SDK solo devuelve el ID de activación y cualquier resultado producido por la acción invocada. Para obtener metadatos del objeto de respuesta completo, que incluye el código de estado de la respuesta HTTP, utilice el siguiente valor:
 
 ```swift
 whisk.verboseReplies = true
@@ -212,8 +204,7 @@ whisk.verboseReplies = true
 
 ## Configuración del SDK
 
-Puede configurar el SDK para que funcione con distintas instalaciones de OpenWhisk usando el parámetro
-baseURL. Por ejemplo:
+Puede configurar el SDK para que funcione con distintas instalaciones de OpenWhisk usando el parámetro baseURL. Por ejemplo:
 
 ```swift
 whisk.baseURL = "http://localhost:8080"
@@ -242,18 +233,14 @@ whisk.urlSession = session
 
 ### Soporte para nombres calificados
 
-Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una
-acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La
-serie del nombre calificado tiene soporte para valores predeterminados sin nombre para espacios de nombres y paquetes que
-tienen todos los usuarios de OpenWhisk, por lo que se aplican las reglas de análisis siguientes:
+Todas las acciones y desencadenantes tienen un nombre completo que se compone se un espacio de nombres, un paquete y una acción o nombre de desencadenante. El SDK puede aceptar estos elementos como parámetros cuando invoca una acción o activa un desencadenante. El SDK también proporciona una función que acepta un nombre completo parecido a `/mynamespace/mypackage/nameOfActionOrTrigger`. La serie del nombre calificado tiene soporte para valores predeterminados sin nombre para espacios de nombres y paquetes que tienen todos los usuarios de OpenWhisk, por lo que se aplican las reglas de análisis siguientes:
 
-- qName = "foo" results in namespace = default, package = default, action/trrigger = "foo"
-- qName = "mypackage/foo" results in namespace = default, package = mypackage, action/trigger = "foo"
-- qName = "/mynamespace/foo" results in namespace = mynamespace, package = default, action/trigger = "foo"
-- qName = "/mynamespace/mypackage/foo results in namespace = mynamespace, package = mypackage, action/trigger = "foo"
+- qName = "foo" da como resultado namespace = default, package = default, action/trigger = "foo"
+- qName = "mypackage/foo" da como resultado namespace = default, package = mypackage, action/trigger = "foo"
+- qName = "/mynamespace/foo" da como resultado namespace = mynamespace, package = default, action/trigger = "foo"
+- qName = "/mynamespace/mypackage/foo da como resultado namespace = mynamespace, package = mypackage, action/trigger = "foo"
 
-El resto de combinaciones emiten un error WhiskError.QualifiedName. Por lo tanto, cuando utilice nombres calificados, debe envolver la
-llamada en un constructor "`do/try/catch`".
+El resto de combinaciones emiten un error WhiskError.QualifiedName. Por lo tanto, cuando utilice nombres calificados, debe envolver la llamada en un constructor "`do/try/catch`".
 
 ### Botón SDK
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: natural language, understanding, watson knowledge studio
+keywords: natural language, understanding, watson knowledge studio, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.nlushort}}
 {: #pkg_natlang_understanding}
@@ -31,14 +33,14 @@ El servicio instalable {{site.data.keyword.nlufull}} sirve para analizar varias 
 
 Proporcione un texto, HTML sin procesar o un URL y {{site.data.keyword.nlushort}} ofrecerá resultados de las características que solicite. De forma predeterminada el servicio borra el contenido HTML antes del análisis, de modo que los resultados podrán ignorar la mayoría de los anuncios y otros contenidos no deseados. Puede crear <a target="_blank" href="https://www.ibm.com/watson/developercloud/doc/natural-language-understanding/customizing.html">modelos personalizados </a> con Watson Knowledge Studio que se pueden utilizar para detectar entidades y relaciones personalizadas en Natural Language Understanding.
 
-El paquete {{site.data.keyword.nlushort}} contiene las siguientes entidades. Puede encontrar más información en la referencia de {{site.data.keyword.nlushort}} API pulsando en el nombre de entidad.
+El paquete {{site.data.keyword.nlushort}} contiene las siguientes entidades. Para obtener más información, consulte la referencia de API de {{site.data.keyword.nlushort}} pulsando en el nombre de la entidad.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html) | paquete | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,  |  Trabajar con el servicio {{site.data.keyword.nlushort}}. |
-| [analyze](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze) | acción |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `features`, `text`, `html`, `url`, `clean`, `xpath`, `fallback_to_raw`, `return_analyzed_text`, `language`, `limit_text_characters`,  | Analizar texto, HTML o una página web pública |
-| [delete-model](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model) | acción |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id`,  | Suprimir un modelo |
-| [list-models](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models) | acción |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, | Listar modelos |
+| [`natural-language-understanding-v1`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl.html){: external} | Paquete | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,  |  Trabajar con el servicio {{site.data.keyword.nlushort}}. |
+| [`analyze`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#analyze){: external} | Acción |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `features`, `text`, `html`, `url`, `clean`, `xpath`, `fallback_to_raw`, `return_analyzed_text`, `language`, `limit_text_characters`,  | Analizar texto, HTML o una página web pública. |
+| [`delete-model`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#delete-model){: external} | Acción |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id`,  | Suprimir modelo. |
+| [`list-models`](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/?curl#list-models){: external} | Acción |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, | Listar modelos. |
 
 ## Creación de una instancia de servicio de {{site.data.keyword.nlushort}}
 {: #service_instance_understanding}
@@ -46,7 +48,7 @@ El paquete {{site.data.keyword.nlushort}} contiene las siguientes entidades. Pue
 Antes de instalar el paquete, debe crear una instancia de servicio y las credenciales de servicio de {{site.data.keyword.nlushort}}.
 {: shortdesc}
 
-1. [Cree una instancia de servicio de {{site.data.keyword.nlushort}} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/catalog/services/natural-language-understanding).
+1. [Crear una instancia de servicio de {{site.data.keyword.nlushort}} ](https://cloud.ibm.com/catalog/services/natural-language-understanding){: external}.
 2. Cuando se crea una instancia de servicio, se generan las credenciales de forma automática.
 
 ## Instalación del paquete {{site.data.keyword.nlushort}}
@@ -58,8 +60,8 @@ Una vez tenga una instancia de servicio de {{site.data.keyword.nlushort}}, utili
 ### Instalación desde la CLI de {{site.data.keyword.openwhisk_short}}
 {: #nlus_cli}
 
-Antes de empezar:
-  1. [Instale el plugin de {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
+**Antes de empezar**
+[Instale el plugin de {{site.data.keyword.openwhisk_short}} para la CLI de {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 Para instalar el paquete {{site.data.keyword.nlushort}}:
 
@@ -81,7 +83,7 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
     ```
     {: pre}
 
-    Salida:
+    **Resultado**
     ```
     packages
     /myOrg_mySpace/natural-language-understanding-v1                        private
@@ -94,7 +96,7 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     Credentials 'Credentials-1' from 'natural-language-understanding' service instance 'Watson Natural Language Understanding' bound to 'natural-language-understanding-v1'.
     ```
@@ -106,7 +108,7 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     ok: got package natural-language-understanding-v1, displaying field parameters
     [
@@ -129,9 +131,9 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #nlus_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a la [página Crear](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. Con la ayuda de las listas **Cloud Foundry Org** y **Cloud Foundry Space**, seleccione el espacio de nombres en el que desee instalar el paquete. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
+2. Seleccione el espacio de nombres en el que desea instalar el paquete utilizando el menú desplegable de espacios de nombres. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
 
 3. Pulse **Instalar paquetes**.
 
@@ -141,12 +143,16 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
 
 5. Pulse **Instalar**.
 
-6. Una vez que se haya instalado el paquete, se le redirigirá a la página Acciones donde podrá buscar su nuevo paquete, que se denomina **natural-language-understanding-v1**.
+6. Una vez que se ha instalado el paquete, se le redirige a la página Acciones donde puede buscar su nuevo paquete, que se denomina **natural-language-understanding-v1**.
 
 7. Para utilizar las acciones del paquete **natural-language-understanding-v1**, debe enlazar las credenciales de servicio con las acciones.
-  * Para enlazar las credenciales de servicio con todas las acciones del paquete, siga los pasos 5 y 6 en las instrucciones de la CLI listadas más arriba.
-  * Para enlazar las credenciales de servicio con acciones individuales, realice los pasos siguientes en la interfaz de usuario. **Nota**: Debe completar los pasos siguientes con cada acción que desee utilizar.
-    1. Pulse sobre la acción del paquete **natural-language-understanding-v1** que desee utilizar. Se abrirá la página de detalles de dicha acción.
+  * Para enlazar las credenciales de servicio con todas las acciones del paquete, siga los pasos 4 y 5 de las [instrucciones de la CLI](#nlus_cli).
+  * Para enlazar las credenciales de servicio con acciones individuales, realice los pasos siguientes en la interfaz de usuario. 
+
+  Debe completar los pasos siguientes con cada acción que desee utilizar.
+  {: note}
+
+    1. Pulse en una Acción del paquete **natural-language-understanding-v1** que desee utilizar. Se abrirá la página de detalles de dicha acción.
     2. En la navegación del lado izquierdo, pulse en la sección **Parámetros**.
     3. Especifique un nuevo **parámetro**. Para la clave, especifique `__bx_creds`. Para el valor, pegue en el objeto JSON de credenciales de servicio de la instancia de servicio que ha creado anteriormente.
 
@@ -160,11 +166,13 @@ ibmcloud fn action invoke natural-language-understanding-v1/<action_name> -b -p 
 ```
 {: pre}
 
-Todas las acciones necesitarán un parámetro de versión en el formato AAAA-MM-DD. Cuando la API se cambie de forma que no se compatible con versiones anteriores, se ofrecerá una nueva fecha de versión. Para obtener más información, consulte la [Referencia de API](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#versioning).
+Todas las acciones requieren un parámetro de versión con el formato AAAA-MM-DD. Cuando la API se cambie de forma que no se compatible con versiones anteriores, se ofrecerá una nueva fecha de versión. Para obtener más información, consulte la [Referencia de API](https://www.ibm.com/watson/developercloud/natural-language-understanding/api/v1/#versioning){: external}.
 
 Las funciones de este paquete utilizan la versión actual de Natural Language Understanding, 2018-03-16. Pruebe la acción `list-models`.
 ```
 ibmcloud fn action invoke natural-language-understanding-v1/list-models -b -p version 2018-03-16
 ```
 {: pre}
+
+
 

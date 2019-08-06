@@ -24,7 +24,7 @@ El servicio {{site.data.keyword.toneanalyzerfull}} utiliza el análisis lingüí
 
 El servicio puede analizar el tono a nivel de documento y de frase. Puede utilizar el servicio para comprender cómo se perciben sus comunicaciones por escrito y mejorar el tono de sus comunicaciones. Las empresas pueden utilizar el servicio para obtener el tono de las comunicaciones de sus clientes y responder a cada cliente adecuadamente, o para comprender y mejorar las conversaciones con los clientes en general.
 
-**Nota:** La solicitud de creación de registros está inhabilitada para el servicio Tone Analyzer. El servicio ni registra ni conserva datos de las solicitudes y respuestas, independientemente de como se configura la cabecera de solicitud `X-Watson-Learning-Opt-Out`.
+**Nota:** La solicitud de creación de registros está inhabilitada para el servicio Tone Analyzer. El servicio ni registra ni retiene datos de las solicitudes y respuestas, independientemente de cómo esté configurada la cabecera de solicitud `X-Watson-Learning-Opt-Out`.
 
 El paquete {{site.data.keyword.toneanalyzershort}} contiene las siguientes entidades. Puede encontrar más información en la referencia de {{site.data.keyword.toneanalyzershort}} API pulsando en el nombre de entidad.
 
@@ -128,7 +128,7 @@ Para instalar el paquete {{site.data.keyword.toneanalyzershort}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #toneanalyzer_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
 
 2. Con la ayuda de las listas **Cloud Foundry Org** y **Cloud Foundry Space**, seleccione el espacio de nombres en el que desee instalar el paquete. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
 

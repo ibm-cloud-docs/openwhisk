@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: feeds, serverless
+keywords: feeds, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Creación de canales de información de proveedores de sucesos personalizados
@@ -34,13 +36,13 @@ subcollection: cloud-functions
 ## Arquitectura de canal de información
 {: #feeds_arch}
 
-Existen tres patrones de arquitectura para crear un canal de información: **Ganchos**, **Sondeo** y **Conexiones**.
+Puede crear un canal de información utilizando uno de los tres patrones arquitectónicos: **Ganchos**, **Sondeo**, y **Conexiones**.
 
 ### Ganchos
 
-Con el patrón Ganchos, se configura un canal de información utilizando un [webhook](https://en.wikipedia.org/wiki/Webhook) expuesto por otro servicio. En esta estrategia, se configura un webhook en un servicio externo para realizar una solicitud POST directamente en un URL y activar un desencadenante. Este método es, sin duda, la opción más fácil y atractiva para implementar canales de información de baja frecuencia.
+Con el patrón Ganchos, se configura un canal de información utilizando un [webhook](https://en.wikipedia.org/wiki/Webhook){: external} expuesto por otro servicio. En esta estrategia, se configura un webhook en un servicio externo para realizar una solicitud POST directamente en un URL y activar un desencadenante. Este método es, sin duda, la opción más fácil y atractiva para implementar canales de información de baja frecuencia.
 
-Por ejemplo, el [paquete de Github](/docs/openwhisk?topic=cloud-functions-pkg_github)  y el  [paquete de Notificación push](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) utilizan un webhook.
+Por ejemplo, el [paquete de GitHub](/docs/openwhisk?topic=cloud-functions-pkg_github) y el  [paquete de Notificación push](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) utilizan un webhook.
 
 
 ### Sondeo
@@ -58,10 +60,13 @@ Por ejemplo, el [paquete de {{site.data.keyword.cloudant}}](/docs/openwhisk?topi
 ##  Implementación de acciones de canal de información
 {: #feeds_actions}
 
-La acción de canal de información es una acción y acepta los parámetros siguientes:
-* **lifecycleEvent**: 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE', o 'UNPAUSE'.
-* **triggerName**: El nombre completo del desencadenante que contiene los sucesos producidos desde este canal de información.
-* **authKey**: Las credenciales de autenticación básicas del usuario de {{site.data.keyword.openwhisk_short}} propietario del desencadenante.
+La acción de canal de información es una acción y acepta los parámetros siguientes.
+
+| Parámetro | Descripción |
+| --- | --- |
+| `lifecycleEvent` | `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`. |
+| `triggerName` | El nombre completo del desencadenante que contiene los sucesos producidos desde este canal de información. |
+| `authKey` | Las credenciales de autenticación básicas del usuario de {{site.data.keyword.openwhisk_short}} propietario del desencadenante. |
 
 La acción de canal de información también puede aceptar otros parámetros necesarios para gestionar el canal de información. Por ejemplo, la acción de canal de información de los cambios de {{site.data.keyword.cloudant}} espera recibir parámetros que incluyan `dbname` y `username`.
 
@@ -90,7 +95,7 @@ Se produce un protocolo de acción de canal de información similar para `ibmclo
 
 Configure un canal de información utilizando un gancho cuando un productor de sucesos admita un recurso webhook/callback.
 
-Con este método no es necesario configurar ningún servicio persistente fuera de {{site.data.keyword.openwhisk_short}}. Toda la gestión de canales de información se genera de forma natural a través de las *acciones de canal de información* de {{site.data.keyword.openwhisk_short}}, que negocian directamente con una API webhook de terceros.
+Con este método no es necesario configurar ningún servicio persistente fuera de {{site.data.keyword.openwhisk_short}}. Toda la gestión de canales de información se genera de forma natural a través de las **acciones de canal de información** de {{site.data.keyword.openwhisk_short}}, que negocian directamente con una API webhook de terceros.
 
 Al invocarse con el mandato `CREATE`, la acción del canal de información simplemente instala un webhook para otro servicio, solicitando al servicio remoto que PUBLIQUE notificaciones en el URL de `fireTrigger` pertinente en {{site.data.keyword.openwhisk_short}}.
 
@@ -109,7 +114,7 @@ Para los canales de información que no disponen de webhook, pero no necesitan u
 
 Para configurar un canal de información basado en sondeos, la acción de canal de información sigue los siguientes pasos cuando se llama al mandato `CREATE`:
 
-1. La acción de canal de información configura un desencadenante periódico con la frecuencia deseada, utilizando el canal de información `whisk.system/alarms`.
+1. La acción de canal de información configura un desencadenante periódico con una frecuencia específica, utilizando el canal de información `whisk.system/alarms`.
 2. El desarrollador del canal de información crea una acción `pollMyService` que sondea el servicio remoto y devuelve los sucesos nuevos.
 3. La acción de canal de información configura una *regla* *T -> pollMyService*.
 
@@ -118,17 +123,21 @@ Este procedimiento implementa un desencadenante basado en sondeo utilizando úni
 ## Implementación de canales de información utilizando conexiones
 {: #feeds_connections}
 
-Las dos opciones de arquitectura anteriores son fáciles y rápidas de implementar. Sin embargo, si desea un canal de información de alto rendimiento, no existe ningún sustituto para conexiones persistentes, sondeo largo o técnicas similares.
+Las dos opciones de arquitectura anteriores son fáciles y rápidas de implementar. Sin embargo, si desea un canal de información de alto rendimiento, puede utilizar conexiones persistentes, sondeo largo o técnicas similares.
 
-Puesto que las acciones de {{site.data.keyword.openwhisk_short}} deben ser de ejecución corta, una acción no puede mantener una conexión persistente con un tercero. En lugar de eso, puede configurar un servicio independiente, denominado *servicios de proveedor*, fuera de {{site.data.keyword.openwhisk_short}} que se ejecute continuamente. Un servicio de proveedor puede mantener conexiones con orígenes de sucesos de terceros que soporten el sondeo largo u otras notificaciones basadas en conexiones.
+Puesto que las acciones de {{site.data.keyword.openwhisk_short}} deben ser de ejecución corta, una acción no puede mantener una conexión persistente con un tercero. En lugar de eso, puede configurar un servicio independiente, denominado **servicios de proveedor**, fuera de {{site.data.keyword.openwhisk_short}} que se ejecute continuamente. Un servicio de proveedor puede mantener conexiones con orígenes de sucesos de terceros que soporten el sondeo largo u otras notificaciones basadas en conexiones.
 
-El servicio del proveedor tiene una API REST que permite a la *acción de canal de información* de {{site.data.keyword.openwhisk_short}} controlar el canal de información. El servicio de proveedor actúa como un proxy entre el proveedor de suceso y {{site.data.keyword.openwhisk_short}}. Cuando recibe sucesos de un tercero, los envía a {{site.data.keyword.openwhisk_short}} activando un desencadenante.
+El servicio del proveedor tiene una API REST que permite a la **acción de canal de información** de {{site.data.keyword.openwhisk_short}} controlar el canal de información. El servicio de proveedor actúa como un proxy entre el proveedor de suceso y {{site.data.keyword.openwhisk_short}}. Cuando recibe sucesos de un tercero, los envía a {{site.data.keyword.openwhisk_short}} activando un desencadenante.
 
-El canal *changes* de {{site.data.keyword.cloudant_short_notm}} es el ejemplo canónico, ya que configura un servicio `cloudanttrigger` que media entre las notificaciones de {{site.data.keyword.cloudant_short_notm}} a través de una conexión persistente y desencadenantes de {{site.data.keyword.openwhisk_short}}.
+El canal **cambios** de {{site.data.keyword.cloudant_short_notm}} es el ejemplo canónico, ya que configura un servicio `cloudanttrigger` que media entre las notificaciones de {{site.data.keyword.cloudant_short_notm}} a través de una conexión persistente y desencadenantes de {{site.data.keyword.openwhisk_short}}.
 
 
-El canal de información *alarm* se implementa con un patrón parecido.
+El canal de información **alarm** se implementa con un patrón parecido.
 
-La arquitectura basada en conexión es la opción de rendimiento más alto, pero impone más sobrecarga en las operaciones en comparación con las arquitecturas de sondeo y gancho.
+La arquitectura basada en conexiones es la opción de rendimiento más alto, pero las operaciones son más laboriosas que las arquitecturas de sondeo y ganchos.
+
+
+
+
 
 

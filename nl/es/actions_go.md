@@ -231,7 +231,7 @@ func Hello(name string) map[string]interface{} {
 
 </br>
 En este ejemplo, el directorio `vendor` se encuentra en `src/hello/vendor`. Puede añadir bibliotecas de terceros utilizadas por el paquete `hello`. Puede utilizar varias herramientas como
-[dep ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://golang.github.io/dep/docs/installation.html) para rellenar y gestionar dependencias.
+[dep ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://golang.github.io/dep/docs/installation.html) para llenar y gestionar dependencias.
 
 Puede utilizar `dep` creando un archivo `src/main/Gopkg.toml` que describe la versión y la ubicación de las bibliotecas.
 

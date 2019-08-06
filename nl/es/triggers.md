@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Creación de desencadenantes para sucesos
@@ -47,7 +49,7 @@ A continuación se muestran ejemplos de desencadenantes.
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,7 +61,7 @@ A continuación se muestran ejemplos de desencadenantes.
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -101,7 +103,7 @@ En este ejemplo se muestra cómo utilizar un canal de información del paquete A
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ En este ejemplo se muestra cómo utilizar un canal de información del paquete A
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -125,13 +127,13 @@ En este ejemplo se muestra cómo utilizar un canal de información del paquete A
   - `cron`: una especificación crontab de cuándo activar el desencadenante.
   - `trigger_payload`: el valor de parámetro payload a establecer en cada suceso desencadenante.
 
-2. Crear un desencadenante que se active cada minuto.
+2. Crear un desencadenante que se active cada 1 minuto.
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -158,7 +160,7 @@ En este ejemplo se muestra cómo utilizar un canal de información del paquete A
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   ok: created rule myRule
   ```
@@ -171,5 +173,6 @@ En este ejemplo se muestra cómo utilizar un canal de información del paquete A
   {: pre}
 
   Puede ver que se producen activaciones cada minuto para el desencadenante, la regla y la acción. La acción recibe los parámetros `{"name":"Mork", "place":"Ork"}` en cada invocación.
+
 
 

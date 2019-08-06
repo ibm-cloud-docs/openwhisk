@@ -27,7 +27,7 @@ El paquete incluye la acción siguiente.
 
 | Entidad | Tipo | Parámetros | Descripción |
 | --- | --- | --- | --- |
-| `/whisk.system/weather` | paquete | usuario, contraseña | Servicios de la API de Weather Company Data para {{site.data.keyword.Bluemix_notm}}  |
+| `/whisk.system/weather` | paquete | username, password | Servicios de la API de Weather Company Data para {{site.data.keyword.Bluemix_notm}}  |
 | `/whisk.system/weather/forecast` | acción | latitude, longitude, timePeriod | Previsión para el periodo de tiempo indicado|
 
 Se recomienda la creación de un enlace de paquete con los valores de `username` y `password`. Así, no necesita especificar las credenciales cada vez que invoque las acciones del paquete.

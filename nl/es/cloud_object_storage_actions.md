@@ -56,7 +56,7 @@ Los parámetros siguientes se especifican al invocar las acciones individuales. 
 
 **endpoint**: el parámetro `endpoint` es el punto final de {{site.data.keyword.cos_short}} utilizado para conectarse a su instancia de {{site.data.keyword.cos_short}}. Puede localizar el punto final en la [documentación de {{site.data.keyword.cos_short}}](/docs/services/cloud-object-storage?topic=cloud-object-storage-select_endpoints#select_endpoints).
 
-**expires**: el parámetro `expires` es el número de segundos para que caduque la operación URL prefirmada.  El valor predeterminado de `expires` es de 15 minutos.
+**expires**: el parámetro `expires` es el número de segundos para que caduque la operación de URL prefirmado.  El valor predeterminado de `expires` es de 15 minutos.
 
 **ibmAuthEndpoint**: el parámetro `ibmAuthEndpoint ` es el punto final de autorización de IBM Cloud utilizado por {site.data.keyword.cos_short}} para generar una señal a partir de `apikey`. El punto final de autorización predeterminado debe funcionar para todas las regiones de IBM Cloud.
 
@@ -169,7 +169,7 @@ Para instalar el paquete {{site.data.keyword.cos_short}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #cloud_object_storage_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
 
 2. Mediante el uso de las listas **Organización de Cloud Foundry** y **Espacio de Cloud Foundry**, seleccione el espacio de nombres en el que desee instalar el paquete {{site.data.keyword.cos_short}}. Los espacios de nombres se forman combinando los nombres de `org` (organización) y de `space` (espacio).
 

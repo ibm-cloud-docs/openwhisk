@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Visualización de registros
 {: #logs}
@@ -50,7 +52,7 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
     ```
     {: pre}
 
-    Salida de ejemplo:
+    **Resultado de ejemplo**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -70,21 +72,21 @@ Puede utilizar la interfaz de línea de mandatos de {{site.data.keyword.openwhis
 ## Visualización de detalles de activación
 {: #activation_details}
 
-Las acciones de {{site.data.keyword.openwhisk_short}} las pueden invocar otros usuarios, en respuesta a varios sucesos, o como parte de una secuencia de acciones. Siempre que se invoca una acción, se crea un registro de activación para dicha invocación. Para obtener información sobre el resultado de la invocación de la acción, puede obtener detalles sobre las activaciones.
+Las acciones de {{site.data.keyword.openwhisk_short}} las pueden invocar otros usuarios, en respuesta a varios sucesos, o como parte de una secuencia de acciones. Cuando se invoca una acción, se crea un registro de activación para dicha invocación. Para obtener información sobre el resultado de la invocación de la acción, puede obtener detalles sobre las activaciones.
 
-Para obtener todos los ID de registros de activación en un espacio de nombres:
+Puede obtener todos los ID de registros de activación en un espacio de nombres ejecutando el siguiente mandato.
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-Para obtener detalles sobre un registro de activación específico que se ha producido como resultado de una invocación de acción:
+Puede obtener detalles sobre un registro de activación específico que se ha producido como resultado de una invocación de acción ejecutando el siguiente mandato. Sustituya `<activation_ID>` por el ID de la activación. 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-Salida de ejemplo:
+**Resultado de ejemplo**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -177,8 +179,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>: El estado de salida de la activación.</li>
-<li><code>statusCode</code>: El código de estado. Si se ha producido un error en la acción, el código de error HTTP.</li>
-<li><code>success</code>: Indica si la acción se completó de forma satisfactoria.</li>
+<li><code>statusCode</code>: El código de estado. Si la acción ha resultado en un error, este valor es el código de error HTTP.</li>
+<li><code>success</code>: El resultado de si la acción se ha completado satisfactoriamente.</li>
 <li><code>result</code>: El valor de retorno de la activación.</li>
 </ul></td>
 </tr>
@@ -192,7 +194,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>Indica si la acción se publica de forma pública.</td>
+<td>El resultado de si se ha publicado la acción.</td>
 </tr>
 </tbody></table>
 
@@ -201,32 +203,36 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## Visualización de registros en {{site.data.keyword.loganalysisfull_notm}}
 {: #logs_view}
 
+Los registros de {{site.data.keyword.loganalysislong_notm}} no están disponibles para los espacios de nombres basados en IAM.
+{: note}
+
 Puede ver los registros de activación directamente desde el panel de control de Supervisión de {{site.data.keyword.openwhisk_short}}. Los registros también se reenvían a [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) donde se indexan, lo que permite realizar búsquedas de texto completo a través de los mensajes generados y realizar consultas con base a campos específicos.
 {:shortdesc}
 
-**Nota**: el registro no está disponible para la región de EE.UU. este.
+El registro no está disponible para la región de EE.UU. este.
+{: important}
 
-1. Abra la [página de Supervisión de {{site.data.keyword.openwhisk_short}} ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/dashboard).
+1. Abra la [página de Supervisión de {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard){: external}.
 
 2. Opcional: Para ver registros sólo para una acción específica, limite el resumen de supervisión a dicha acción. En la sección de Opciones de filtrado, seleccione el nombre de la acción en la lista desplegable **Limitar a**.
 
 3. En la navegación de la izquierda, pulse **Registros**. Se abre la página de Kibana de {{site.data.keyword.loganalysisshort_notm}}.
 
-4. Opcional: Para ver los registros más antiguos, cambie el valor del periodo de tiempo predeterminado de 15 minutos pulsando **Últimos 15 minutos** en la esquina superior derecha y seleccionando un periodo de tiempo distinto.
+4. Opcional: Para ver los registros más antiguos, cambie el valor del periodo de tiempo predeterminado de 15 minutos pulsando **Últimos 15 minutos** y seleccionando un periodo de tiempo distinto.
 
 ### Consulta de los registros
 {: #logs_query}
 
 Podrá encontrar registros de activación específicos en [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) utilizando la sintaxis de consultas de Kibana.
 
-Las consultas de ejemplo siguientes pueden ayudarle a depurar errores:
-  * Buscar todos los registros de error:
+Las consultas de ejemplo siguientes pueden ayudarle a depurar errores.
+  * Buscar todos los registros de error.
       ```
       type: user_logs AND stream_str: stderr
       ```
       {: codeblock}
 
-  * Buscar todos los registros de error que "myAction" ha generado:
+  * Buscar todos los registros de error que `myAction` ha generado.
       ```
       type: user_logs AND stream_str: stderr AND action_str: "*myAction"
       ```
@@ -239,16 +245,18 @@ Además de registrar líneas, [{{site.data.keyword.loganalysislong_notm}}](/docs
 
 Podrá encontrar registros de activación específicos en utilizando la sintaxis de consultas de Kibana. Las consultas de ejemplo siguientes pueden ayudarle a depurar errores:
 
-* Buscar todas las activaciones con anomalías:
+* Buscar todas las activaciones fallidas.
     ```
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    En los resultados, un `0` indica una acción que se ha finalizado correctamente y todos los demás valores indican un error.
+    En los resultados, un `0` indica una acción que se ha finalizado correctamente. Todos los demás valores indican un error.
 
-* Buscar todas las activaciones con anomalías con un error específico:
+* Buscar todas las activaciones que han fallado con un error específico.
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

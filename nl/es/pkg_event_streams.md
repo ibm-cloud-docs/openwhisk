@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: event streams, package, messages, events
+keywords: event streams, package, messages, events, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
@@ -37,15 +39,16 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-Un paquete preinstalado que permite la comunicación con las instancias de [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.
+Un paquete preinstalado que permite la comunicación con las instancias de [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.
 {: shortdesc}
 
-### Configuración de un paquete de {{site.data.keyword.messagehub}} utilizando {{site.data.keyword.Bluemix_notm}}
+
+### Configuración de un paquete de {{site.data.keyword.messagehub}}
 {: #eventstreams_setup}
 
 1. Cree una instancia del servicio {{site.data.keyword.messagehub}} bajo su organización actual y el espacio que utiliza para {{site.data.keyword.openwhisk}}.
 
-2. Compruebe que el tema que desea escuchar está disponible en {{site.data.keyword.messagehub}} o cree un tema nuevo, como por ejemplo **mytopic**.
+2. Compruebe que el tema que desea escuchar está disponible en {{site.data.keyword.messagehub}} o cree un tema nuevo, como por ejemplo `mytopic`.
 
 3. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia del servicio {{site.data.keyword.messagehub}} que ha creado.
   ```
@@ -53,10 +56,10 @@ Un paquete preinstalado que permite la comunicación con las instancias de [{{si
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -66,19 +69,19 @@ Un paquete preinstalado que permite la comunicación con las instancias de [{{si
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
   Ahora su enlace de paquete contiene credenciales que están asociadas a la instancia de {{site.data.keyword.messagehub}}.
 
-### Configuración de un paquete de {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.Bluemix_notm}}
+### Configuración de un paquete de {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
 
-Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para el servicio {{site.data.keyword.messagehub}}. Necesita la información sobre conexión y credenciales del servicio {{site.data.keyword.messagehub}}.
+Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.cloud_notm}}, debe crear manualmente un enlace de paquete para el servicio {{site.data.keyword.messagehub}}. Necesita la información sobre conexión y credenciales del servicio {{site.data.keyword.messagehub}}.
 
 Cree un enlace de paquete configurado para el servicio {{site.data.keyword.messagehub}}.
 ```
@@ -96,15 +99,15 @@ Para obtener más información sobre cómo producir mensajes, consulte la
 [Documentación de Event Streams](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 Referencias
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 
 
 
 ## Origen de sucesos de Event Streams
 {: #eventstreams_events}
 
-Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una instancia de {{site.data.keyword.messagehub_full}} mediante canales de información. Aprenda a crear desencadenantes de {{site.data.keyword.messagehub}} con o sin {{site.data.keyword.Bluemix}}, a escuchar mensajes y a manejar mensajes por lotes.
+Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una instancia de {{site.data.keyword.messagehub_full}} mediante canales de información. Aprenda a crear desencadenantes de {{site.data.keyword.messagehub}} con o sin {{site.data.keyword.cloud}}, a escuchar mensajes y a manejar mensajes por lotes.
 {: shortdesc}
 
 ## Paquete {{site.data.keyword.messagehub}}
@@ -113,29 +116,29 @@ Puede crear un desencadenante que reacciona cuando se publiquen mensajes en una 
 La acción `/messaging/messageHubProduce` ha quedado en desuso y se eliminará en una fecha futura. Ya se ha eliminado en la región de Tokio. Para mantener un rendimiento óptimo, migre el uso de la acción `/messaging/messageHubProduce` para utilizar una conexión permanente cuando los datos se generen en {{site.data.keyword.messagehub}}/Kafka.
 {: deprecated}
 
-Este paquete permite la comunicación con las instancias de [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.
+Este paquete permite la comunicación con las instancias de [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} para publicar y consumir mensajes utilizando la API de Kafka nativa y de alto rendimiento.
 
-### Creación de un desencadenante que realice la escucha de una instancia de {{site.data.keyword.messagehub}}
+### Creación de un desencadenante que está a la escucha de una instancia de {{site.data.keyword.messagehub}}
 {: #eventstreams_trigger}
 
-Para crear un desencadenante que reaccione cuando se publican mensajes en una instancia de {{site.data.keyword.messagehub}}, debe utilizar el canal de información denominado `/messaging/messageHubFeed`. La acción del canal de información admite los siguientes parámetros:
+Para crear un desencadenante que reacciona cuando se publiquen mensajes en una instancia de {{site.data.keyword.messagehub}}, debe utilizar el canal de información denominado `/messaging/messageHubFeed`. La acción del canal de información admite los siguientes parámetros:
 
-|Nombre|Tipo|Descripción|
-|---|---|---|
-|kafka_brokers_sasl|Matriz JSON de series|Este parámetro es una matriz de series de caracteres `<host>:<port>` que comprenden los intermediarios de la instancia de {{site.data.keyword.messagehub}}|
-|user|Serie|Su nombre de usuario de {{site.data.keyword.messagehub}}.|
-|password|Serie|Su contraseña de {{site.data.keyword.messagehub}}.|
-|topic|Serie|El tema que desea que escuche el desencadenante.|
-|kafka_admin_url|Serie de URL|El URL de la interfaz REST de administración de {{site.data.keyword.messagehub}}.|
-|isJSONData|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor intenta analizar el valor del mensaje como JSON antes de pasarlo como carga útil del desencadenante.|
-|isBinaryKey|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor de la clave como Base64 antes de pasarlo como carga útil del desencadenante.|
-|isBinaryValue|Booleano (Opcional - default=false)|Si tiene el valor `true`, el proveedor codifica el valor del mensaje como Base64 antes de pasarlo como carga útil del desencadenante.|
+| Nombre | Tipo | Descripción |
+| --- | --- | --- |
+| `kafka_brokers_sasl` | Matriz JSON de series | Este parámetro es una matriz de series de caracteres `<host>:<port>` que comprenden los intermediarios de la instancia de {{site.data.keyword.messagehub}}. |
+| `user` | Serie | Su nombre de usuario de {{site.data.keyword.messagehub}}. |
+| `password` | Serie | Su contraseña de {{site.data.keyword.messagehub}}. |
+| `topic` | Serie | El tema que desea que escuche el desencadenante. |
+| `kafka_admin_url` | Serie de URL | El URL de la interfaz REST de administración de {{site.data.keyword.messagehub}}. |
+| `isJSONData` | Booleano (Opcional - default=false) | Si tiene el valor `true`, el proveedor intenta analizar el valor del mensaje como JSON antes de pasarlo como carga útil del desencadenante. |
+| `isBinaryKey` | Booleano (Opcional - default=false) | Si tiene el valor `true`, el proveedor codifica el valor de la clave como Base64 antes de pasarlo como carga útil del desencadenante. |
+| `isBinaryValue` | Booleano (Opcional - default=false) | Si tiene el valor `true`, el proveedor codifica el valor del mensaje como Base64 antes de pasarlo como carga útil del desencadenante. |
 
 Aunque esta lista de parámetros puede parecer larga, se pueden establecer automáticamente mediante el mandato de plug-in de CLI `ibmcloud fn package refresh`.
 
 1. Cree una instancia del servicio {{site.data.keyword.messagehub}} bajo su organización actual y el espacio que utiliza para {{site.data.keyword.openwhisk}}.
 
-2. Compruebe que el tema que desea escuchar está disponible en {{site.data.keyword.messagehub}} o cree un tema nuevo, como por ejemplo **mytopic**.
+2. Compruebe que el tema que desea escuchar está disponible en {{site.data.keyword.messagehub}} o cree un tema nuevo, como por ejemplo `mytopic`.
 
 3. Actualice los paquetes de su espacio de nombres. La renovación crea automáticamente un enlace de paquete para la instancia del servicio {{site.data.keyword.messagehub}} que ha creado.
   ```
@@ -143,10 +146,11 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
+
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -156,10 +160,11 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
   ```
   {: pre}
 
-  Salida de ejemplo:
+  **Resultado de ejemplo**
+
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -167,22 +172,25 @@ Aunque esta lista de parámetros puede parecer larga, se pueden establecer autom
 
 5. Ahora todo lo que tiene que hacer es crear un desencadenante que se active cuando se publiquen mensajes nuevos en el tema {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
-### Creación de un desencadenante para un paquete de {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.Bluemix_notm}}
+### Creación de un desencadenante para un paquete de {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
 
-Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.Bluemix_notm}}, debe crear manualmente un enlace de paquete para el servicio {{site.data.keyword.messagehub}}. Necesita la información sobre conexión y credenciales del servicio {{site.data.keyword.messagehub}}.
+Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keyword.cloud_notm}}, debe crear manualmente un enlace de paquete para el servicio {{site.data.keyword.messagehub}}. Necesita la información sobre conexión y credenciales del servicio {{site.data.keyword.messagehub}}.
 
 1. Cree un enlace de paquete configurado para el servicio {{site.data.keyword.messagehub}}.
+
   ```
-  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+ [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
   ```
   {: pre}
 
 2. Ahora puede crear un desencadenante utilizando el nuevo paquete que se activará cuando se publiquen mensajes nuevos en el tema {{site.data.keyword.messagehub}}.
+
   ```
   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
@@ -194,11 +202,11 @@ Si quiere configurar {{site.data.keyword.messagehub}} fuera de {{site.data.keywo
 Después de crear un desencadenante, el sistema supervisa el tema específico en el servicio de mensajería. Cuando se publiquen nuevos mensajes, se activa el desencadenante.
 
 La carga útil del desencadenante contiene un campo `messages`, que es una matriz de los mensajes que se han publicado desde la última vez que se activó el desencadenante. Cada objeto de mensaje de la matriz contiene los siguientes campos:
-- topic
-- partition
-- offset
-- key
-- value
+- `topic`
+- `partition`
+- `offset`
+- `key`
+- `value`
 
 En términos de Kafka, los campos deberían resultar evidentes. Sin embargo, `key` tiene una función denominada `isBinaryKey` que permite que `key` transmita datos binarios. Además, el campo `value` requiere una especial consideración. Dispone de los campos `isJSONData` e `isBinaryValue` para gestionar los mensajes binarios y JSON. Estos campos, `isJSONData` e `isBinaryValue`, no se pueden utilizar juntos.
 
@@ -297,7 +305,7 @@ Si se publica el mismo mensaje sin `isBinaryData` establecido en `true`, la carg
 
 Observe que la carga útil del desencadenante contiene una matriz de mensajes. Si estos mensajes se producen rápidamente en su sistema de mensajería, el canal de información intenta colocar por lotes los mensajes publicados en una sola activación del desencadenante. El proceso por lotes permite publicar los mensajes en el desencadenante de forma más rápida y eficiente.
 
-Tenga en cuenta que, si el desencadenante activa acciones de codificación, el número de mensajes de la carga útil no está técnicamente enlazado, aunque siempre es mayor que 0. Consulte el siguiente ejemplo de un mensaje por lotes (observe el campo en el valor *offset*):
+Al codificar acciones que activa el desencadenante, recuerde que el número de mensajes de la carga útil está técnicamente ilimitado, aunque siempre es mayor que 0. Consulte el siguiente ejemplo de un mensaje por lotes (observe el campo en el valor *offset*):
 ```json
 {
   "messages": [
@@ -333,14 +341,10 @@ Tenga en cuenta que, si el desencadenante activa acciones de codificación, el n
 ```
 
 
-
-## Integración de OpenWhisk con {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full_notm}} e IBM Data Science Experience
-{: #eventstreams_example}
-
-[Aquí puede encontrar](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0) un ejemplo que integra OpenWhisk con {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}} y el servicio de IBM Data Science Experience (Spark).
-
 ## Referencias
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
+
+
 

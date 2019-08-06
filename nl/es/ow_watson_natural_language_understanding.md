@@ -122,7 +122,7 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
 ### Instalación desde la interfaz de usuario de {{site.data.keyword.openwhisk_short}}
 {: #nlus_ui}
 
-1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a [Crear página ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
+1. En la consola de {{site.data.keyword.openwhisk_short}}, vaya a la [página Crear ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://cloud.ibm.com/openwhisk/create).
 
 2. Con la ayuda de las listas **Cloud Foundry Org** y **Cloud Foundry Space**, seleccione el espacio de nombres en el que desee instalar el paquete. Los espacios de nombres se forman combinando los nombres de espacios y organizaciones.
 
@@ -139,7 +139,7 @@ Para instalar el paquete {{site.data.keyword.nlushort}}:
 7. Para utilizar las acciones del paquete **natural-language-understanding-v1**, debe enlazar las credenciales de servicio con las acciones.
   * Para enlazar las credenciales de servicio con todas las acciones del paquete, siga los pasos 5 y 6 en las instrucciones de la CLI listadas más arriba.
   * Para enlazar las credenciales de servicio con acciones individuales, realice los pasos siguientes en la interfaz de usuario. **Nota**: Debe completar los pasos siguientes con cada acción que desee utilizar.
-    1. Pulse sobre la acción del paquete **natural-language-understanding-v1** que desee utilizar. Se abrirá la página de detalles de dicha acción.
+    1. Pulse en una acción del paquete **natural-language-understanding-v1** que desee utilizar. Se abrirá la página de detalles de dicha acción.
     2. En la navegación del lado izquierdo, pulse en la sección **Parámetros**.
     3. Especifique un nuevo **parámetro**. Para la clave, especifique `__bx_creds`. Para el valor, pegue en el objeto JSON de credenciales de servicio de la instancia de servicio que ha creado anteriormente.
 

@@ -124,4 +124,4 @@ El canal *changes* de {{site.data.keyword.cloudant_short_notm}} es el ejemplo ca
 
 El canal de información *alarm* se implementa con un patrón parecido.
 
-La arquitectura basada en conexión es la opción de rendimiento más alto, pero impone más sobrecarga en las operaciones en comparación con las arquitecturas de sondeo y gancho.
+La arquitectura basada en conexiones es la opción de rendimiento más alto, pero impone más sobrecarga en las operaciones en comparación con las arquitecturas de sondeo y ganchos.

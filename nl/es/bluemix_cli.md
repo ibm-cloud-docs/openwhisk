@@ -33,8 +33,7 @@ Ahora puede utilizar el alias `fn` en los mandatos del plugin {{site.data.keywor
 Descargue e instale la CLI de {{site.data.keyword.Bluemix_notm}} e inicie la sesión.
 {: shortdesc}
 
-1. Descargue e instale la
-[CLI de {{site.data.keyword.Bluemix_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
+1. Descargue e instale la [CLI de {{site.data.keyword.Bluemix_notm}}](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
 2. Inicie la sesión en la CLI de {{site.data.keyword.Bluemix_notm}}. Para especificar una región de IBM Cloud, [incluya el punto final de API](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
 
@@ -57,10 +56,8 @@ Para trabajar con {{site.data.keyword.openwhisk_short}}, descargue e instale el 
 
 Puede utilizar el plugin para:
 
-* Ejecutar sus fragmentos de código, o acciones, en {{site.data.keyword.openwhisk_short}}. Consulte
-[Creación e invocación de acciones](/docs/openwhisk?topic=cloud-functions-openwhisk_actions).
-* Usar desencadenantes y reglas para permitir a sus acciones responder ante sucesos. Consulte
-[Creación de desencadenantes y reglas](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers).
+* Ejecutar sus fragmentos de código, o acciones, en {{site.data.keyword.openwhisk_short}}. Consulte [Creación e invocación de acciones](/docs/openwhisk?topic=cloud-functions-openwhisk_actions).
+* Usar desencadenantes y reglas para permitir a sus acciones responder ante sucesos. Consulte [Creación de desencadenantes y reglas](/docs/openwhisk?topic=cloud-functions-openwhisk_triggers).
 * Aprender cómo los paquetes agrupan acciones y configurar orígenes de sucesos externos. Consulte [Creación y uso de paquetes](/docs/openwhisk?topic=cloud-functions-openwhisk_packages).
 * Explorar el catálogo de paquetes y mejorar sus aplicaciones con servicios externos, como un [origen de sucesos de {{site.data.keyword.cloudant}}](/docs/openwhisk?topic=cloud-functions-openwhisk_cloudant).
 
@@ -104,8 +101,7 @@ Para conocer los pasos detallados sobre cómo utilizar los servicios de acciones
 ## Configuración de la CLI de {{site.data.keyword.openwhisk_short}} para utilizar un proxy HTTPS
 {: #cli_https_proxy}
 
-La CLI de {{site.data.keyword.openwhisk_short}} se puede configurar para utilizar un proxy HTTPS. Para configurar un proxy HTTPS, se debe crear una variable de entorno llamada `HTTPS_PROXY`. La variable se debe establecer en la dirección del proxy HTTPS y el puerto correspondiente utilizando el siguiente formato:
-`{PROXY IP}:{PROXY PORT}`.
+La CLI de {{site.data.keyword.openwhisk_short}} se puede configurar para utilizar un proxy HTTPS. Para configurar un proxy HTTPS, se debe crear una variable de entorno llamada `HTTPS_PROXY`. La variable se debe establecer en la dirección del proxy HTTPS y el puerto correspondiente utilizando el siguiente formato: `{PROXY IP}:{PROXY PORT}`.
 
 
 
@@ -134,15 +130,13 @@ ibmcloud iam space-create "production"
 ## Migración de la CLI de OpenWhisk al plugin de CLI de {{site.data.keyword.openwhisk_short}}
 {: #cli_migration}
 
-Ahora puede utilizar el plugin de CLI de {{site.data.keyword.openwhisk_short}} para interactuar con las entidades de
-{{site.data.keyword.openwhisk_short}}. Aunque puede seguir usando la CLI de OpenWhisk autónoma, no tendrá las características más recientes admitidas por {{site.data.keyword.openwhisk_short}}, como espacios de nombres basados en IAM y `enlace de servicios`.
+Ahora puede utilizar el plugin de CLI de {{site.data.keyword.openwhisk_short}} para interactuar con las entidades de {{site.data.keyword.openwhisk_short}}. Aunque puede seguir usando la CLI de OpenWhisk autónoma, no tendrá las características más recientes admitidas por {{site.data.keyword.openwhisk_short}}, como espacios de nombres basados en IAM y `enlace de servicios`.
 {: shortdesc}
 
 ### Sintaxis de mandatos
 {: #command_syntax}
 
-Todos los mandatos `wsk`, excepto el mandato `wsk bluemix login`, que ya no es necesario, funcionan del mismo modo mediante el mandato `ibmcloud fn`. Todas las opciones y argumentos de mandato de los mandatos del plugin de CLI de Cloud Functions son las mismas que las de los mandatos de la CLI autónoma de OpenWhisk. Para obtener más información, consulte
-[Proyecto de CLI de Apache OpenWhisk ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://github.com/apache/incubator-openwhisk-cli).
+Todos los mandatos `wsk`, excepto el mandato `wsk bluemix login`, que ya no es necesario, funcionan igual utilizando el mandato `ibmcloud fn`. Todas las opciones y argumentos de mandato de los mandatos del plugin de CLI de Cloud Functions son las mismas que las de los mandatos de la CLI autónoma de OpenWhisk. Para obtener más información, consulte [Proyecto de CLI de Apache OpenWhisk ![Icono de enlace externo](../icons/launch-glyph.svg "Icono de enlace externo")](https://github.com/apache/incubator-openwhisk-cli).
 
 ### Host y autenticación de API
 {: #api_authentication}
@@ -191,8 +185,7 @@ v1.0.30 (03-04-2019)
 * Se ha añadido un arreglo para el manejo del punto final de API https://cloud.ibm.com.
 
 v1.0.29 (06-02-2019)
-* Se han añadido los mandatos `deploy` y `undeploy` para desplegar y anular el despliegue de una recopilación de entidades de Functions a través de un archivo de manifiesto. Para obtener más información, consulte la documentación de
-[Despliegue](/docs/openwhisk?topic=cloud-functions-deploy#deploy).
+* Se han añadido los mandatos `deploy` y `undeploy` para desplegar y anular el despliegue de una recopilación de entidades de Functions a través de un archivo de manifiesto. Para obtener más información, consulte la documentación de [Despliegue](/docs/openwhisk?topic=cloud-functions-deploy#deploy).
 
 v1.0.28 (21-01-2019)
 * Se ha añadido un mensaje de error cuando `update|delete|get namespace name` existe varias veces.
@@ -248,8 +241,7 @@ v1.0.25 (23-11-2018)
 
 1.0.10 (09-04-2018)
 * Se ha añadido una nueva opción `--web-secure` al mandato `ibmcloud wsk action create|update` para proteger los puntos finales de acciones web.
-* Se ha arreglado el parámetro
-[defect](https://github.com/apache/incubator-openwhisk-cli/issues/237) de vía de acceso back-to-back.
+* Se ha arreglado el parámetro [defect](https://github.com/apache/incubator-openwhisk-cli/issues/237) de vía de acceso back-to-back.
 
 1.0.9 (16-03-2018)
 * Se ha habilitado el soporte para el enlace de servicios en el nivel de paquete.

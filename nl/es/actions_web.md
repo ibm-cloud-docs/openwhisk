@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-19"
 
-keywords: web actions, serverless
+keywords: web actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -27,380 +28,799 @@ subcollection: cloud-functions
 # Creación de acciones web
 {: #actions_web}
 
-Las acciones web son acciones de {{site.data.keyword.openwhisk}} que se anotan para permitir rápidamente los desarrolladores creen aplicaciones basadas en la web. Estas acciones anotadas permiten a los desarrolladores programar la lógica subyacente a la que la aplicación web puede acceder de forma anónima, sin necesidad de disponer de una clave de autenticación de {{site.data.keyword.openwhisk_short}}. Depende del desarrollador de la acción si desea implementar su propio sistema de autenticación y autorización o utilizar un flujo de OAuth.
+Cuando se crea una acción web, el resultado es un URL que se puede utilizar para desencadenar la acción desde cualquier app web. 
 {: shortdesc}
 
-Las activaciones de acciones web están asociadas al usuario que ha creado la acción. Esta acción transfiere el coste de la activación de una acción del que efectúa la llamada al propietario de la acción.
+## ¿Por qué utilizar acciones web en lugar de acciones estándar?
 
-Consulte la siguiente acción JavaScript `hello.js`:
-```javascript
-function main({name}) {
-  var msg = 'you did not tell me who you are.';
-  if (name) {
-    msg = `hello ${name}!`
-  }
-  return {body: `<html><body><h3>${msg}</h3></body></html>`}
-}
-```
-{: codeblock}
+### 1. Ejecutar acciones web de forma anónima
 
-Puede crear una _acción web_ **hello** en el paquete `demo` para el espacio de nombres `guest` utilizando el distintivo `--web` de la CLI con el valor `true` o `yes`:
-```
-ibmcloud fn package create demo
-```
-{: pre}
+Las activaciones de acciones web están asociadas al usuario que ha creado la acción, más que al llamante de la acción. Por lo general, para las llamadas de API a aplicaciones como Github, incluiría un nombre de usuario y una señal con la llamada de API para un usuario específico o para un ID funcional. Cuando se utiliza una acción web, no se requieren estos tipos de credenciales. Una acción web es accesible a través de una interfaz REST sin necesidad de credenciales.
 
-```
-ibmcloud fn action create /guest/demo/hello hello.js --web true
-```
-{: pre}
+Aunque no es obligatorio utilizar credenciales con acciones web, puede implementar su propio flujo de autenticación y autorización, u OAuth. Para configurar una acción web con credenciales, consulte [Protección de acciones web](#actions_web_secure).
 
-Si especifica el distintivo `--web` con el valor `true` o `yes`, se puede acceder a una acción mediante una interfaz REST sin necesidad de credenciales. Para configurar una acción web con credenciales, consulte la sección sobre [Protección de acciones web](#actions_web_secure). Una acción web se puede invocar utilizando un URL estructurado del siguiente modo:
-`https://{APIHOST}/api/v1/web/{namespace}/{packageName}/{actionName}.{EXT}`.
+### 2. Utilizar cualquier tipo de solicitud HTTP
 
-El nombre de paquete es **default** si la acción no está en un paquete con nombre.
+By default, actions only De forma predeterminada, las acciones sólo aceptan solicitudes `POST`, pero las acciones web se pueden invocar a través de cualquiera de estos métodos HTTP: `GET`, `POST`, `PUT`, `PATCH` y `DELETE`, así como `HEAD` y `OPTIONS`.
 
-Un ejemplo es `guest/demo/hello`. La vía de acceso a la API de la acción web se puede utilizar con `curl` o `wget` sin una clave de API. Incluso se puede escribir directamente en el navegador.
+### 3. Desencadenar una acción web desde cualquier lugar
 
-Intente abrir `https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane` en su navegador web. O intente invocar la acción utilizando `curl`:
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello?name=Jane
-```
-{: pre}
+Cuando se crea una acción web de {{site.data.keyword.openwhisk}}, se genera un URL para invocar esa acción desde cualquier aplicación basada en web. Las acciones que no son acciones web requieren autenticación y deben responder con un objeto JSON. 
 
-En el siguiente ejemplo, una acción web realiza una redirección HTTP:
-```javascript
-function main() {
-  return {
-    headers: { location: 'http://openwhisk.org' },
-    statusCode: 302
-  }
-}
-```
-{: codeblock}
+Se puede utilizar una vía de acceso de API de acción web con cURL, `wget`, o incluso se puede especificar directamente en el navegador. Se puede invocar una acción web utilizando un URL estructurado como se indica a continuación: `https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>`.
 
-En el ejemplo siguiente, una acción web establece una cookie única:
-```javascript
-function main() {
-  return {
-    headers: {
-      'Set-Cookie': 'UserID=Jane; Max-Age=3600; Version=',
-      'Content-Type': 'text/html'
-    },
-    statusCode: 200,
-    body: '<html><body><h3>hello</h3></body></html>' }
-}
-```
-{: codeblock}
+### 4. Crear menos entidades de {{site.data.keyword.openwhisk_short}}
 
-En el siguiente ejemplo, una acción web establece varias cookies:
-```javascript
-function main() {
-  return {
-    headers: {
-      'Set-Cookie': [
-        'UserID=Jane; Max-Age=3600; Version=',
-        'SessionID=asdfgh123456; Path = /'
-      ],
-      'Content-Type': 'text/html'
-    },
-    statusCode: 200,
-    body: '<html><body><h3>hello</h3></body></html>' }
-}
-```
-{: codeblock}
+Debido a que puede invocar una acción web desde cualquier lugar, no es necesario que cree otras entidades {{site.data.keyword.openwhisk_short}} como desencadenantes o reglas.
 
-El ejemplo siguiente devuelve `image/png`:
-```javascript
-function main() {
-    let png = <base 64 encoded string>
-    return { headers: { 'Content-Type': 'image/png' },
-             statusCode: 200,
-             body: png };
-}
-```
-{: codeblock}
-
-The following example returns `application/json`:
-```javascript
-function main(params) {
-    return {
-        statusCode: 200,
-        headers: { 'Content-Type': 'application/json' },
-        body: params
-    };
-}
-```
-{: codeblock}
-
-The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. The default `Content-Type` can be omitted from the headers.
-
-It is important to be aware of the [límite de tamaño de respuesta](/docs/openwhisk?topic=cloud-functions-limits) de las acciones, ya que las respuestas que superen los límites predefinidos del sistema fallan. Los objetos grandes no envían en línea a través de {{site.data.keyword.openwhisk_short}}, sino que se defieren a un almacén de objetos, por ejemplo.
-
-## Manejo de solicitudes HTTP con acciones
-{: #actions_web_http}
-
-Una acción de {{site.data.keyword.openwhisk_short}} que no sea una acción web necesita autenticación y debe responder con un objeto JSON.
+## ¿Cómo funcionan las acciones web?
 
 Las acciones web se pueden invocar sin autenticación y se pueden utilizar para implementar manejadores HTTP que respondan con contenido de `headers`, `statusCode` y `body` de distintos tipos.
-Las acciones web deben devolver un objeto JSON. No obstante, el controlador trata una acción web de forma distinta si su resultado incluye una o más de las siguientes como propiedades JSON de nivel superior:
 
-- `headers`: un objeto JSON en el que las claves son nombres de cabecera y los valores son valores de serie, numéricos o booleanos. Para enviar varios valores para una sola cabecera, el valor de la cabecera es una matriz JSON de varios valores. No hay ninguna cabecera establecida de forma predeterminada.
-- `statusCode`: un código de estado HTTP válido. Si el contenido del cuerpo está presente, el valor predeterminado es
-`200 OK`. Si no hay contenido de cuerpo presente, el valor predeterminado es `204 No Content`.
-- `body`: una serie que puede ser texto sin formato, una matriz u objeto JSON, o una serie codificada en base64 para datos binarios. El cuerpo se considera vacío si es `null`, la serie vacía `""` o es indefinido. El valor predeterminado es un cuerpo vacío.
+Las acciones web deben devolver un objeto JSON. Sin embargo, el controlador trata una acción web de forma distinta si su resultado incluye una o más de las siguientes opciones como [propiedades JSON](#web_action_properties) de nivel superior.
+{: shortdesc}
 
-El controlador pasa las cabeceras especificadas por acciones, el código de estado o el cuerpo al cliente HTTP que finaliza la solicitud o respuesta. Si no se declara la cabecera `Content-Type` en la sección `headers` del resultado de la acción, el cuerpo se interpreta como `application/json` para valores que no sean de tipo serie y `text/html` en cualquier otro caso. Si se define la cabecera `Content-Type`, el controlador determina si la respuesta son datos binarios o texto sin formato y decodifica la serie utilizando el decodificador base64 según sea necesario. Si el cuerpo no se decodifica correctamente, se devuelve un error al cliente.
+## Características disponibles de las acciones web
+{: #actions_web_extra}
+
+Las acciones web dan soporte a las características siguientes:
+
+| Característica | Descripción |
+| --- | --- |
+| [Extensiones de contenido](#extra_features) | Puede especificar un tipo de contenido para las solicitudes HTTP como, por ejemplo, `.json`, `.html`, `.http`, `.svg` o `.text`. Si no se especifica ningún tipo de contenido, se presupone la extensión `.http`. Puede especificar un tipo de contenido añadiendo una extensión al nombre de acción en el URI de modo que para hacer referencia a una acción `demo/hello` se utilizaría `/demo/hello.svg`. Las extensiones `.json` y `.http` no necesitan una vía de acceso de proyección; en cambio, las extensiones `.html`, `.svg` y `.text`, sí. Se presupone que la vía de acceso predeterminada coincide con el nombre de la extensión. Para invocar una acción web y recibir una respuesta `.html`, la acción debe responder con un objeto JSON que conste de una propiedad de nivel superior denominada `html` (o la respuesta debe estar en la vía de acceso explícita). En otras palabras, `/<namespace>/demo/hello.html`  es equivalente a proyectar explícitamente la propiedad `html`, como en  `/<namespace>/demo/hello.html/html`. El nombre completo de la acción debe incluir el nombre de su paquete, que es `default` si la acción no está en un paquete con nombre. |
+| [Proyección de campos desde el resultado](#projecting_fields) | La vía de acceso que sigue al nombre de la acción se utiliza para proyectar uno o varios niveles de respuesta. Por ejemplo, `/demo/hello.html/body`. Esta característica admite cualquier acción web que devuelve un diccionario, como por ejemplo: `{body: "..." }`, para proyectar la propiedad `body` y devolver directamente su valor de serie en lugar de su valor de diccionario. La vía de acceso proyectada sigue un modelo de vía de acceso absoluta (como en XPath). |
+| [Parámetros de consulta y de cuerpo como entrada](#query_test) | La acción recibe parámetros de consulta y parámetros en el cuerpo de la solicitud. El orden de prioridad para fusionar parámetros es el siguiente: parámetros de paquete, parámetros de acción, parámetros de consulta y parámetros de cuerpo. Cada uno de estos parámetros puede sustituir cualquier valor anterior en caso de solapamiento. Por ejemplo, `/demo/hello.http?name=Jane` puede pasar el argumento `{name: "Jane"}` a la acción. |
+| [Datos de formulario](#form_data) | Además de `application/json` estándar, las acciones web pueden recibir como entrada datos de formulario codificados como URL `application/x-www-form-urlencoded data`.
+| [Activaciones utilizando varios verbos HTTP](#actions_web_options) | Se puede invocar una acción web mediante uno de estos métodos HTTP: `GET`, `POST`, `PUT`, `PATCH` y `DELETE`, así como `HEAD` y `OPTIONS`. |
+| [Gestión de entidades con cuerpo que no es JSON y HTTP sin formato](#actions_web_raw_enable) | Una acción web puede aceptar un cuerpo de solicitud HTTP que
+no sea un objeto JSON y puede optar por recibir siempre estos valores como valores opacos (texto sin formato cuando no están en un archivo binario, o serie codificada en base64 en caso contrario). |
+
+## Creación de una acción web
+{: #actions_web_example}
+
+Para crear una acción web: 
+
+1. Guarde el siguiente código JavaScript como `hello.js`.
+
+  ```javascript
+  function main({name}) {
+    var msg = 'You did not tell me who you are.';
+  if (name) {
+      msg = `Hello, ${name}!`
+    }
+    return {body: `<html><body><h3>${msg}</h3></body></html>`}
+  }
+  ```
+  {: codeblock}
+
+2. Cree el paquete `demo`. El nombre de paquete es `default` a menos que se especifique explícitamente otro nombre.
+  ```
+  ibmcloud fn package create demo
+  ```
+  {: pre}
+
+3. Cree la acción `hello`. En este ejemplo, los valores de `packageName/actionName` son `demo/hello`. Sustituya la variable `<filepath>` con la vía de acceso del archivo `hello.js` y establezca el distintivo `--web` en `true`. 
+
+  ```
+  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+4. Invoque o pruebe la acción `hello` sin ningún parámetro. Sustituya las variables `<apihost>` y `<namespace>`. Para obtener el valor de `<apihost>`, ejecute `ibmcloud fn property get --apihost`. Ejemplo de `<apihost>`: `us-south.functions.cloud.ibm.com`.
+
+  Para los espacios de nombres habilitados para IAM, sustituya la variable `<namespace>` por el ID de espacio de nombres. Para obtener el ID, ejecute `ibmcloud fn namespace get <namespace_name>`. 
+  {: note}
+
+  a. Puede probar la acción web de una de estas dos formas: 
+    * Abriendo un URL utilizando la estructura siguiente `https://<apihost>/api/v1/web/<namespace>/demo/hello` en el navegador.
+    * Probando la acción utilizando un mandato cURL.
+      ```
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+      ```
+      {: pre}
+
+    * Probando la acción utilizando un mandato `wget`.  
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+      ```
+      {: pre}
+
+  b. El código de acción devuelve el siguiente diccionario.
+    ```
+    {body: `<html><body><h3>${msg}</h3></body></html>`}
+    ``` 
+    {: screen}
+    
+  También puede probar la acción devolviendo sólo la propiedad `body` utilizando el mandato siguiente:
+  {: #projecting_fields}
+
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello.html/body
+    ```
+    {: pre}
+
+    **Resultado de ejemplo**
+
+    Dado que no se ha especificado el parámetro `<name>`, se devuelve el mensaje siguiente.
+    ```
+    <html><body><h3>You did not tell me who you are.</h3></body></html>
+    ```
+    {: screen}
+
+5. Ahora intente definir el parámetro `<name>`. Pruebe la acción con un parámetro `<name>` de una de estas dos formas:
+  * Abriendo `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` en el navegador. 
+  * Probando la acción utilizando un mandato cURL.
+
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
+    ```
+    {: pre}
+  * Probando la acción utilizando un mandato `wget`.  
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
+    ```
+    {: pre}
+
+  **Resultado de ejemplo**
+  ```
+  <html><body><h3>Hello, Jane!</h3></body></html>
+  ```
+  {: screen}
 
 
-## Contexto HTTP
+**Pasos siguientes**
+
+Añada el URL de la acción web `hello` a su app web y pruébela allí.
+
+### Propiedades JSON de acción web
+{: #web_action_properties}
+
+El valor predeterminado `Content-Type` para una respuesta HTTP es `application/json`, y el cuerpo puede ser cualquier valor JSON permitido. Si su `Content-Type` no es `application/json`, debe especificar un `Content-Type` en las cabeceras (`headers`) del código de acción.
+
+Si se alcanza el [límite de tamaño de resultados](/docs/openwhisk?topic=cloud-functions-limits) para las acciones, la respuesta falla. Si sabe que el resultado de la acción es superior a 5 MB, configure un [almacén de objetos](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
+
+| Propiedad JSON | Descripción |
+| --- | --- |
+| `headers`| Un objeto JSON en el que las claves son nombres de cabecera y los valores son valores de serie, numéricos o booleanos. Para enviar varios valores para una sola cabecera, el valor de la cabecera es una matriz JSON de varios valores. No hay ninguna cabecera establecida de forma predeterminada. |
+| `statusCode` | Un código de estado HTTP válido. Si el contenido del cuerpo está presente, el valor predeterminado es
+`200 OK`. Si no hay contenido de cuerpo presente, el valor predeterminado es `204 No Content`. |
+| `body` | Una serie que puede ser texto sin formato, una matriz u objeto JSON, o una serie codificada en base64 para datos binarios. El cuerpo se considera vacío si es `null`, la serie vacía `""` o es indefinido. El valor predeterminado es un cuerpo vacío. |
+
+El [controlador](/docs/openwhisk?topic=cloud-functions-about#about_controller) pasa las cabeceras especificadas por acciones, el código de estado o el cuerpo al cliente HTTP que finaliza la solicitud o respuesta. Si no se declara la cabecera `Content-Type` en la sección `headers` del resultado de la acción, el cuerpo se interpreta como `application/json` para valores que no sean de tipo serie y `text/html` en cualquier otro caso. Si se define la cabecera `Content-Type`, el controlador determina si la respuesta son datos binarios o texto sin formato y decodifica la serie utilizando el decodificador base64 según sea necesario. Si el cuerpo no se decodifica correctamente, se devuelve un error al cliente.
+
+El propietario de la acción web es el propietario de todos los registros de activación y es el responsable del coste de ejecutarlas en el sistema, independientemente de cómo se haya invocado la acción.
+{: note}
+
+#### Parámetros protegidos
+Los parámetros de acción están protegidos y solo se pueden cambiar actualizando la acción. Los parámetros finalizan automáticamente para habilitar las acciones web.
+
+```
+ibmcloud fn action create /<namespace>/demo/hello hello.js --parameter name Jane --web true
+```
+{: pre}
+
+
+El resultado de estos cambios es que `name` se vincula a `Jane` y no lo pueden modificar ni los parámetros de la consulta ni los del cuerpo debido a la anotación final. Este diseño protege la acción frente a parámetros de consulta o de cuerpo que intenten modificar este valor, ya sea intencionadamente o por accidente.
+
+### Realización de una redirección HTTP utilizando una acción web
+{: #http_redirect}
+Puede utilizar esta característica en una aplicación web para redirigir a un usuario a la nueva versión de su sitio.
+
+**Antes de empezar**
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
+
+Para crear una acción web que realice una redirección HTTP:
+
+1. Guarde el código como `hello.js`.
+
+  ```javascript
+  function main() {
+    return {
+      headers: { location: 'https://cloud.ibm.com/openwhisk/' },
+      statusCode: 302
+    }
+  }
+  ```
+  {: codeblock}
+
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
+
+  ```
+  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. Pruebe la acción web `hello`. Sustituya las variables `<apihost>` y `<namespace>`. Puede probar la acción web de una de estas dos formas:
+
+  * Abriendo el URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` en el navegador. 
+  * Ejecutando el siguiente mandato cURL:
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * Ejecutando el siguiente mandato `wget`:
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+  **Resultado de ejemplo** 
+  
+  Esta acción web de ejemplo redirige el navegador al [panel de control de {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/){: external}.
+
+### Configurar las cookies utilizando una acción web
+{: #multiple_cookie}
+Puede utilizar esta característica en una aplicación web para almacenar una señal web JSON como una cookie de sesión después de un inicio de sesión satisfactorio.
+
+Para crear una acción web que establezca varias cookies:
+
+**Antes de empezar**
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
+
+1. Guarde el código como `hello.js`.
+  ```javascript
+  function main() {
+    return {
+      headers: {
+        'Set-Cookie': [
+          'UserID=Jane; Max-Age=3600; Version=',
+        'SessionID=asdfgh123456; Path = /'
+        ],
+      'Content-Type': 'text/html'
+      },
+    statusCode: 200,
+    body: '<html><body><h3>hello</h3></body></html>' }
+  }
+  ```
+  {: codeblock}
+
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
+
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+    
+3. Borre las cookies de su navegador antes de probar la acción.
+
+4. Pruebe la acción web `hello` abriendo el URL en el navegador. Sustituya las variables `<apihost>` y `<namespace>` y abra `https://<apihost>/api/v1/web/<namespace>/demo/hello`. Ejemplo de `<apihost>`: `us-south.functions.cloud.ibm.com`.
+
+**Resultado**
+
+Se establecen las cookies `UserID=Jane` y `SessionID=asdfgh123456` en las herramientas de desarrollador del navegador.
+
+
+### Devolver una imagen utilizando una acción web
+{: #return_image}
+Puede utilizar esta característica en una aplicación web para devolver la imagen de la bandera de un país según la configuración regional del usuario.
+
+**Antes de empezar** 
+
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
+
+Para crear una acción web que devuelva `image/png`: 
+
+1. Guarde el código como `hello.js`.
+
+  ```javascript
+  function main() {
+      let png = '<base 64 encoded string';
+      return { headers: { 'Content-Type': 'image/png' },
+              statusCode: 200,
+              body: png };
+  }
+  ```
+  {: codeblock}
+
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
+
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. Pruebe la acción en el navegador o utilizando un mandato cURL. Sustituya las variables `<apihost>` y `<namespace>`. Puede probar la acción web de una de estas dos formas:
+
+  * Abriendo el URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` en el navegador. 
+  * Ejecutando el siguiente mandato cURL.
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * Ejecutando el siguiente mandato `wget`.
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+
+
+### Devolver JSON utilizando una acción web
+{: #return_json}
+Puede utilizar esta característica en una aplicación web para devolver un objeto JSON de información de IP de usuario.
+
+**Antes de empezar** 
+
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
+
+Para crear una acción web que devuelva `application/json`:
+
+1. Guarde el código como `hello.js`.
+  ```javascript
+  function main(params) {
+      return {
+          statusCode: 200,
+          headers: { 'Content-Type': 'application/json' },
+          body: params
+      };
+  }
+  ```
+  {: codeblock}
+
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
+  ```
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
+
+3. Pruebe la acción en el navegador o utilizando un mandato cURL. Sustituya las variables `<apihost>` y `<namespace>`. Puede probar la acción web de una de estas dos formas:
+  * Abriendo el URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` en el navegador. 
+  * Ejecutando el siguiente mandato cURL:
+    ```
+    curl https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+  * Ejecutando el siguiente mandato `wget`:
+    ```
+    wget https://<apihost>/api/v1/web/<namespace>/demo/hello
+    ```
+    {: pre}
+
+    **Resultado de ejemplo**
+
+    ```
+    {
+      "__ow_headers": {
+        "accept": "*/*",
+        "accept-encoding": "gzip",
+        "cdn-loop": "cloudflare",
+        "cf-connecting-ip": "XX.XXX.XXX.XXX",
+        "cf-ipcountry": "US",
+        "cf-ray": "4d9f3e442a86cf28-IAD",
+        "cf-visitor": "{\"scheme\":\"https\"}",
+        "host": "<apihost>",
+        "user-agent": "curl/7.54.0",
+        "x-forwarded-for": "XX.XXX.XX.XXX, XX.XXX.XX.XXX",
+        "x-forwarded-host": "<apihost>",
+        "x-forwarded-port": "443",
+        "x-forwarded-proto": "https",
+        "x-global-k8fdic-transaction-id": "11fd03071bd0841d3a00f52354ab880f",
+        "x-real-ip": "XXX.XX.XX.XX",
+        "x-request-id": "11fd03071bd0841d3a00f52354ab880f"
+      },
+      "__ow_method": "get",
+      "__ow_path": ""
+    }
+    ```
+    {: screen}
+
+
+### Contexto HTTP
 {: #actions_web_context}
 
-Todas las acciones web, cuando se invocan, reciben detalles de solicitud HTTP como parámetros del argumento de entrada de la acción.
+Todas las acciones web, cuando se invocan, reciben detalles de solicitud HTTP como parámetros de entrada al argumento de la acción.
 
-Consulte los parámetros HTTP siguientes:
-
-- `__ow_method` (tipo: serie): El método HTTP de la solicitud.
-- `__ow_headers` (tipo: correlación entre serie y serie): Cabeceras de la solicitud.
-- `__ow_path` (tipo: serie): Vía de acceso de la solicitud que no coincide (la comparación finaliza al consumirse la extensión de la acción).
-- `__ow_user` (tipo: serie): Espacio de nombres que identifica el asunto autenticado de {{site.data.keyword.openwhisk_short}}
-- `__ow_body` (tipo: serie): Entidad del cuerpo de la solicitud, como serie codificada en base64 cuando el contenido es binario o serie de texto sin formato en caso contrario
-- `__ow_query` (tipo: serie): Parámetros de la consulta procedentes de la solicitud como serie sin analizar
+| Parámetro HTTP | Tipo | Descripción |
+| --- | --- | --- |
+| `__ow_method` | Serie | El método HTTP de la solicitud. |
+| `__ow_headers` | Correlacionar serie con serie | Las cabeceras de solicitud. |
+| `__ow_path` | Serie | La vía de acceso de la solicitud que no coincide (la comparación finaliza al consumirse la extensión de la acción). |
+| `__ow_user` | Serie | Espacio de nombres que identifica el asunto autenticado de {{site.data.keyword.openwhisk_short}}. |
+| `__ow_body` | Serie | Entidad del cuerpo de la solicitud, como serie codificada en base64 cuando el contenido es un archivo binario o una serie de texto sin formato en caso contrario. |
+| `__ow_query` | Serie | Parámetros de la consulta procedentes de la solicitud como serie sin analizar. |
 
 Una solicitud no puede sustituir ninguno de los parámetros `__ow_` mencionados. Si lo hiciera, la solicitud fallaría con el estado 400 Solicitud errónea.
 
-El valor `__ow_user` solo aparece cuando la acción web tiene una [anotación que indica que requiere autenticación](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) y permite que una acción web implemente su propia política de autorización. `__ow_query` solo está disponible cuando una acción web elige manejar la [solicitud HTTP "sin procesar"](#actions_web_raw_enable). Es una serie que contiene los parámetros de la consulta analizados del URI (separados por `&`). La propiedad `__ow_body` aparece en solicitudes HTTP "sin procesar" o cuando la entidad de la solicitud HTTP no es un objeto JSON ni datos de formulario. De lo contrario, las acciones web reciben parámetros de consulta y de cuerpo como propiedades de primera clase en los argumentos de la acción. Los parámetros de cuerpo prevalecen sobre los parámetros de consulta, que a su vez prevalecen sobre los parámetros de acción y de paquete.
+El valor `__ow_user` solo aparece cuando la acción web tiene una [anotación que indica que requiere autenticación](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) y permite que una acción web implemente su propia política de autorización. `__ow_query` solo está disponible cuando una acción web elige manejar la [solicitud HTTP "sin procesar"](#actions_web_raw_enable). `__ow_query` es una serie que contiene los parámetros de la consulta analizados del URI (separados por `&`). La propiedad `__ow_body` aparece en solicitudes HTTP sin procesar o cuando la entidad de la solicitud HTTP no es un objeto JSON ni datos de formulario. De lo contrario, las acciones web reciben parámetros de consulta y de cuerpo como propiedades de primera clase en los argumentos de la acción. Los parámetros de cuerpo prevalecen sobre los parámetros de consulta, que a su vez prevalecen sobre los parámetros de acción y de paquete.
 
-## Soporte para puntos finales HTTPS
+### Soporte para puntos finales HTTPS
 {: #actions_web_endpoint}
 
-Protocolos SSL admitidos: TLS 1.2, TLS 1.3 ([versión de borrador 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18))
+Protocolos SSL admitidos: TLS 1.2, TLS 1.3 ([versión de borrador 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18){: external})
 
-Protocolos SSL sin soporte: SSLv2, SSLv3, TLS 1.0, TLS 1.1
+### Alteración del contenido de respuesta de la acción web
+{: #extra_features}
+Puede modificar el contenido de la respuesta de una acción web para que devuelva distintos tipos de contenido utilizando [Extensiones de contenido](#actions_web_extra). 
+{: shortdesc}
 
-## Características adicionales
-{: #actions_web_extra}
+**Antes de empezar**
 
-Las acciones web proporcionan características adicionales que incluyen:
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
 
-- `Extensiones de contenido`: La solicitud debe especificar el tipo de contenido deseado como `.json`, `.html`, `.http`, `.svg` o `.text`. El tipo se especifica añadiendo una extensión al nombre de la acción en el URI de modo que se haga referencia a la acción `/guest/demo/hello` como `/guest/demo/hello.http`, por ejemplo para recibir una respuesta HTTP. Para su comodidad, supondremos que se utiliza la extensión `.http` cuando no se detecta ninguna extensión.
-- `Proyección de campos desde el resultado`: La vía de acceso que sigue al nombre de la acción se utiliza para proyectar uno o varios niveles de respuesta.
-`/guest/demo/hello.html/body`. Esta característica permite que una acción que devuelve un diccionario `{body: "..." }` proyecte la propiedad `body` y devuelva directamente el valor de su serie. La vía de acceso proyectada sigue un modelo de vía de acceso absoluta (como en XPath).
-- `Parámetros de consulta y de cuerpo como entrada`: La acción recibe parámetros de consulta y parámetros en el cuerpo de la solicitud. El orden de prioridad para fusionar parámetros es el siguiente: parámetros de paquete, parámetros de acción, parámetros de consulta y parámetros de cuerpo. Cada uno de estos parámetros puede sustituir cualquier valor anterior en caso de solapamiento. Por ejemplo, `/guest/demo/hello.http?name=Jane` puede pasar el argumento `{name: "Jane"}` a la acción.
-- `Datos de formulario`: Además de `application/json` estándar, las acciones web pueden recibir como entrada un URL codificado procedente de los datos `application/x-www-form-urlencoded data`.
-- `Activación utilizando varios verbos HTTP`: Se puede invocar una acción web mediante uno de estos métodos HTTP: `GET`, `POST`, `PUT`, `PATCH` y `DELETE`, así como `HEAD` y `OPTIONS`.
-- `Gestión de entidades que no son de cuerpo JSON ni HTTP sin procesar (RAW HTTP)`: Una acción web puede aceptar un cuerpo de solicitud HTTP que no sea un objeto JSON y puede optar por recibir siempre estos valores como valores opacos (texto sin formato cuando no están en binario o serie codificada en base64 en caso contrario).
+Para alterar la respuesta de una acción web:
 
-El ejemplo siguiente muestra brevemente cómo puede utilizar estas características en una acción web. Supongamos que tenemos una acción `/guest/demo/hello` con el siguiente cuerpo:
-```javascript
-function main(params) {
-    return { response: params };
+1. Guarde el siguiente código como `hello.js`.
+
+  ```javascript
+  function main(params) {
+      return { response: params };
 }
-```
+  ```
+  {: codeblock}
 
-Cuando se invoca esta acción una acción web, puede alterar la respuesta de la acción web protegiendo diferentes vías de acceso desde el resultado.
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js`. Sustituya `<filepath>` por la vía de acceso del archivo `hello.js`.
 
-Por ejemplo, para devolver el objeto completo y ver los argumentos que recibe la acción:
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json
-```
-{: pre}
+  ```bash
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+  ```
+  {: pre}
 
-Salida de ejemplo:
-```
-{
-  "response": {
+3. Pruebe la acción en el navegador o utilizando un mandato cURL. Sustituya las variables `<apihost>` y `<namespace>`.
+
+  a. Devuelva JSON de una de estas dos formas:
+    * Abriendo `https://<apihost>/api/v1/web/<namespace>/demo/hello.json` en el navegador web. 
+    * Ejecutando el siguiente mandato cURL.
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json
+      ```
+      {: pre}
+    * Ejecutando el siguiente mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json
+      ```
+      {: pre}
+
+      **Resultado de ejemplo**
+
+      ```
+      {
+        "response": {
+          "__ow_method": "get",
+    "__ow_headers": {
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
+
+  b. Pruebe la acción utilizando un parámetro de consulta. Puede probar la acción de una de estas
+dos formas:
+  {: #query_test}
+
+    * Ejecutando el siguiente mandato cURL.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+    * Ejecutando el siguiente mandato `wget`.
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+        ```
+        {: pre}
+
+      **Resultado de ejemplo**
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "get",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-Para ejecutar con un parámetro de consulta, consulte el mandato de ejemplo siguiente:
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane
- ```
-{: pre}
+  c. También puede probar la acción web utilizando datos de formulario. Puede probar la acción web de una de estas dos formas:
+  {: #form_data}
+  
+    * Ejecutando el siguiente mandato cURL.
 
-Salida de ejemplo:
-```
-{
-  "response": {
-    "name": "Jane",
-    "__ow_method": "get",
-    "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
+      
+    * Ejecutando el siguiente mandato `wget`.
+        ```
+        wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -d "name":"Jane"
+        ```
+        {: pre}
 
-También puede ejecutar con datos de formulario:
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -d "name":"Jane"
- ```
-{: pre}
+      **Resultado de ejemplo**
 
-Salida de ejemplo:
-```
-{
-  "response": {
-    "name": "Jane",
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "10",
-      "content-type": "application/x-www-form-urlencoded",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "10",
+            "content-type": "application/x-www-form-urlencoded",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-Ejecute el mandato siguiente para un objeto JSON:
-```
- curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
-```
-{: pre}
+  d. Puede especificar un objeto JSON ejecutando el siguiente mandato. Puede probar la acción web de una de estas dos formas:
+    * Ejecutando el siguiente mandato cURL.
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
+      
+    * Ejecutando el siguiente mandato `wget`.
+        ```
+        wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
+        ```
+        {: pre}
 
-Salida de ejemplo:
-```
-{
-  "response": {
-    "name": "Jane",
+      **Resultado de ejemplo**
+
+      ```
+      {
+        "response": {
+          "name": "Jane",
     "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "15",
-      "content-type": "application/json",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": ""
-  }
-}
-```
-{: screen}
+            "accept": "*/*",
+            "connection": "close",
+            "content-length": "15",
+            "content-type": "application/json",
+            "host": "172.17.0.1",
+            "user-agent": "curl/7.43.0"
+          },
+          "__ow_path": ""
+        }
+      }
+      ```
+      {: screen}
 
-Ejecute el siguiente mandato para proyectar el nombre (como texto):
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.text/response/name?name=Jane
-```
-{: pre}
+  e. También puede devolver el valor de `name` como texto de una de estas dos formas:
+  * Ejecutando el siguiente mandato cURL.
 
-Salida de ejemplo:
-```
-Jane
-```
-{: screen}
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.text/response/name?name=Jane
+      ```
+      {: pre}
+  * Ejecutando el siguiente mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.text/response/name?name=Jane
+      ```
+      {: pre}
 
-Para su comodidad, los parámetros de consulta, datos de formulario y entidades de cuerpo de objeto JSON se tratan como diccionarios ya que se puede acceder directamente a sus valores como propiedades de entrada de la acción. Este comportamiento no se aplica a las acciones web que optan por gestionar las entidades de solicitud HTTP de forma más directa ni cuando la acción web recibe una entidad que no es un objeto JSON.
+    **Resultado de ejemplo**
 
-Consulte el ejemplo siguiente, que utiliza un tipo de contenido "text", como hemos visto anteriormente.
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
-```
-{: pre}
+    ```
+    Jane
+    ```
+    {: screen}
 
-Salida de ejemplo:
-```
-{
-  "response": {
-    "__ow_method": "post",
+    En las acciones estándar, los parámetros de consulta, datos de formulario y entidades de cuerpo de objeto JSON se tratan como diccionarios ya que se puede acceder directamente a sus valores como propiedades de entrada de la acción. Este comportamiento no se aplica a las acciones web, que manejan las entidades de solicitud HTTP, ni cuando la acción web recibe una entidad que no es un objeto JSON.
+    {: note}
+
+  f. Puede establecer el `Content-Type` de una de estas dos formas.
+  * Ejecutando el siguiente mandato cURL.  
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+      ```
+      {: pre}
+    
+  * Ejecutando el siguiente mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+      ```
+      {: pre}
+
+    **Resultado de ejemplo**
+
+    ```
+    {
+      "response": {
+        "__ow_method": "post",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "4",
-      "content-type": "text/plain",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
-    },
-    "__ow_path": "",
-    "__ow_body": "Jane"
-  }
-}
-```
-{: screen}
-
-## Extensiones de contenido
-{: #actions_web_ext}
-
-Generalmente se necesita una extensión de contenido cuando se invoca una acción web. Si no se especifica, se adopta `.http` como valor predeterminado. Las extensiones `.json` y `.http` no necesitan una vía de acceso de proyección; en cambio, las extensiones `.html`, `.svg` y `.text`, sí. Para su comodidad, se presupone que la vía de acceso predeterminada coincide con el nombre de la extensión. Para invocar una acción web y recibir una respuesta `.html`, la acción debe responder con un objeto JSON que conste de una propiedad de nivel superior denominada `html` (o la respuesta debe estar en la vía de acceso explícita). Es decir, `/guest/demo/hello.html` equivale a proyectar la propiedad `html` de forma explícita, como en el caso de `/guest/demo/hello.html/html`. El nombre completo de la acción debe incluir el nombre de su paquete, que es `default` si la acción no está en un paquete con nombre.
-
-## Parámetros protegidos
-{: #actions_web_protect}
-
-Los parámetros de la acción están protegidos y se tratan como inalterables. Los parámetros finalizan automáticamente para habilitar las acciones web.
-```
-ibmcloud fn action create /guest/demo/hello hello.js --parameter name Jane --web true
-```
-{: pre}
-
-El resultado de estos cambios es que `name` se vincula a `Jane` y no lo pueden modificar ni los parámetros de la consulta ni los del cuerpo debido a la anotación final. Este diseño protege la acción frente a parámetros de consulta o de cuerpo que intenten modificar este valor, ya sea intencionadamente o por accidente.
+          "accept": "*/*",
+          "connection": "close",
+          "content-length": "4",
+          "content-type": "text/plain",
+          "host": "172.17.0.1",
+          "user-agent": "curl/7.43.0"
+        },
+        "__ow_path": "",
+        "__ow_body": "Jane"
+      }
+    }
+    ```
+    {: screen}
 
 ## Protección de acciones web
 {: #actions_web_secure}
 
-De forma predeterminada, cualquier persona que tenga el URL de invocación de la acción web puede invocar una acción web. Utilice la [anotación de acción web](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) `require-whisk-auth` para proteger la acción web. Cuando la anotación `require-whisk-auth` está establecida en `true`, la acción autenticará las credenciales de autorización básicas de la solicitud de invocación comparándola con la clave de autenticación whisk del propietario de la acción. Cuando se establece en un número o una serie de caracteres sensible a mayúsculas y minúsculas, la solicitud de invocación de la acción debe incluir una cabecera `X-Require-Whisk-Auth` que tenga el mismo valor. Las acciones web seguras devolverán el mensaje `No autorizado` cuando la validación de credenciales falle.
+**Antes de empezar**
+Cree el paquete `demo` y la acción web `hello` completando los pasos del apartado [Creación de una acción web](#actions_web_example).
 
-Como alternativa, puede utilizar el distintivo `--web-secure` para establecer automáticamente la anotación `require-whisk-auth`.  Si tiene el valor `true`, se genera un número aleatorio como valor de la anotación `require-whisk-auth`. Si tiene el valor `false`, la anotación `require-whisk-auth` se elimina.  Si tiene cualquier otro valor, se utiliza dicho valor como el valor de la anotación `require-whisk-auth`.
+De forma predeterminada, cualquier persona puede invocar una acción web utilizando el URL de invocación. Puede utilizar la [anotación de acción web](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) `require-whisk-auth` para proteger la acción web de una de estas dos formas:
+  1. Estableciendo la anotación `require-whisk-auth` a `true`. Cuando la anotación `require-whisk-auth` está establecida en `true`, la acción web autenticará las credenciales de autorización básicas de la solicitud de invocación comparándola con la clave de autenticación whisk del propietario de la acción web. Cuando se establece en un número o una serie de caracteres sensible a mayúsculas y minúsculas, la solicitud de invocación de la acción web debe incluir la cabecera `X-Require-Whisk-Auth` establecida en este mismo número o serie sensible a mayúsculas y minúsculas. Las acciones web seguras devuelven el mensaje `No autorizado` cuando la validación de credenciales falla.
 
-Ejemplo utilizando **--web-secure**:
-```bash
-ibmcloud fn action update /guest/demo/hello hello.js --web true --web-secure my-secret
-```
-{: pre}
+  2. Permitiendo que la anotación `require-whisk-auth` se establezca automáticamente utilizando el distintivo
+`--web-secure`. Cuando el distintivo `--web-secure` tiene el valor `true`, se genera un número aleatorio como valor de la anotación `require-whisk-auth`. Si tiene el valor `false`, la anotación `require-whisk-auth` se elimina.  Si tiene cualquier otro valor, se utiliza dicho valor como el valor de la anotación `require-whisk-auth`.
 
-Ejemplo utilizando **require-whisk-auth**:
-```bash
-ibmcloud fn action update /guest/demo/hello hello.js --web true -a require-whisk-auth my-secret
-```
-{: pre}
+Para probar una acción web segura:
 
-Ejemplo utilizando **X-Require-Whisk-Auth**:
-```bash
-curl https://${APIHOST}/api/v1/web/guest/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: my-secret"
-```
-{: pre}
+1. Guarde el siguiente código JavaScript como `hello.js`.
+  ```javascript
+  function main({name}) {
+    var msg = 'You did not tell me who you are.';
+  if (name) {
+      msg = `Hello, ${name}!`
+    }
+    return {body: `<html><body><h3>${msg}</h3></body></html>`}
+  }
+  ```
+  {: codeblock}
 
-Es importante tener en cuenta que el propietario de la acción web es el propietario de todos los registros de activación y es el responsable del coste de ejecutarlas en el sistema, independientemente de cómo se haya invocado la acción.
+2. Actualice la acción web `hello` con la nueva versión del código `hello.js` y establezca el distintivo `--web secure` en `true`.
+  ```bash
+  ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true
+  ```
+  {: pre}
 
-## Inhabilitación de acciones web
-{: #actions_web_disable}
+3. Obtenga la acción web `hello` para ver el valor de `require-whisk-auth` generado aleatoriamente.
 
-Para inhabilitar la invocación de una acción web mediante la API web (`https://openwhisk.bluemix.net/api/v1/web/`), pase el valor `false` o `no` al distintivo `--web` para actualizar una acción con la CLI.
-```
-ibmcloud fn action update /guest/demo/hello hello.js --web false
-```
-{: pre}
+  ```bash
+  ibmcloud fn action get demo/hello
+  ```
+  {: pre}
+
+    **Resultado de ejemplo**
+
+    El valor `require-whisk-auth` se ha establecido en `7819991076995522`.
+    ```
+    {
+      "namespace": "<namespace>/demo",
+      "name": "hello",
+      "version": "0.0.34",
+      "exec": {
+          "kind": "nodejs:10",
+          "binary": false
+      },
+      "annotations": [
+          {
+              "key": "web-export",
+              "value": true
+          },
+          {
+              "key": "raw-http",
+              "value": false
+          },
+          {
+              "key": "final",
+              "value": true
+          },
+          {
+              "key": "require-whisk-auth",
+              "value": 7819991076995522
+          },
+          {
+              "key": "exec",
+              "value": "nodejs:10"
+          }
+      ],
+    "limits": {
+          "timeout": 60000,
+          "memory": 256,
+          "logs": 10,
+          "concurrency": 1
+      },
+    "publish": false
+}
+    ```
+    {: screen}
+
+Para probar que la autenticación está funcionando:
+
+1. Pruebe la acción web `hello` sin establecer el parámetro `X-Require-Whisk-Auth` para verificar que requiere autenticación. Esta prueba dará como resultado un error. Puede probar la acción web de una de estas dos formas:
+
+  * Probando la acción web utilizando un mandato cURL.
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+      ```
+      {: pre}
+    
+  * Probando la acción web utilizando un mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane
+      ```
+      {: pre}
+
+   **Resultado de ejemplo**
+
+    ```
+      {
+      "code": "4c4423556547f6ac764ee192d4ed27a6",
+      "error": "Authentication is possible but has failed or not yet been provided."
+    }
+    ```
+    {: screen}
+
+    La invocación falla porque no se ha proporcionado el valor `X-Require-Whisk-Auth`.
+    {: note}
+
+2. Ahora, pruebe la acción web `hello` y proporcione el valor `X-Require-Whisk-Auth` generado aleatoriamente. Sustituya los valores de `<apihost>` y `<namespace>`. Sustituya el valor de `<my-secret>` por el número generado aleatoriamente que ha creado en el paso 3. Puede probar la acción web de una de estas dos formas:
+  * Probando la acción web utilizando un mandato cURL.
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
+  * Probando la acción web utilizando un mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
+  **Resultado de ejemplo**
+    
+    ```
+    {
+    "body": "<html><body><h3>Hello, Jane!</h3></body></html>"
+    }
+    ```
+    {: screen}
+
+Para probar una acción web utilizando un valor de `require-whisk-auth` personalizado:
+
+1. Actualice la acción web `hello` con su propio valor de `require-whisk-auth`. A continuación, intente probar la acción web especificando el valor de `X-Require-Whisk-Auth` durante la invocación.
+
+  a. Establezca un valor de `require-whisk-auth` donde `<my-secret>` es la señal de autenticación sensible a las mayúsculas y minúsculas.
+    ```bash
+    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true --require-whisk-auth <mysecret>
+    ```
+    {: pre}
+  
+  b. Pruebe la acción web e incluya el valor de `<my-secret>`. Puede probar la acción web de una de estas dos formas:
+  * Probando la acción web utilizando un mandato cURL.
+      ```bash
+      curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+  * Probando la acción utilizando un mandato `wget`.
+      ```
+      wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+      ```
+      {: pre}
+
 
 ## Manejo de HTTP sin procesar
 {: #actions_web_raw}
 
-Una acción web puede optar por interpretar y procesar un cuerpo HTTP directamente, sin la promoción de un objeto JSON a las propiedades de primera clase disponibles para la entrada de la acción (es decir, `args.name` frente a analizar `args.__ow_query`). Este proceso se hace mediante `raw-http` [annotation](/docs/openwhisk?topic=cloud-functions-annotations). Utilizando el ejemplo anterior, pero ahora como una acción web HTTP "sin procesar" que recibe `name` como parámetro de consulta y como valor JSON en el cuerpo de la solicitud HTTP:
-```
-curl https://us-south.functions.cloud.ibm.com/api/v1/web/guest/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
+Una acción web puede optar por interpretar y procesar un cuerpo HTTP directamente, sin la promoción de un objeto JSON a las propiedades de primera clase disponibles para la entrada de la acción web (es decir, `args.name` frente a analizar `args.__ow_query`). Este proceso se hace mediante `raw-http` [annotation](/docs/openwhisk?topic=cloud-functions-annotations). Utilizando el ejemplo anterior, pero ahora como una acción web HTTP "sin procesar" que recibe `name` como parámetro de consulta y como valor JSON en el cuerpo de la solicitud HTTP:
+```bash
+curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
 {: pre}
 
-Salida de ejemplo:
+
+**Resultado de ejemplo**
 ```
 {
   "response": {
@@ -421,110 +841,106 @@ Salida de ejemplo:
 ```
 {: screen}
 
-OpenWhisk utiliza la infraestructura [Akka Http](https://doc.akka.io/docs/akka-http/current/?language=scala) para [determinar](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html) qué tipos de contenido son binarios y cuáles son texto sin formato.
+{{site.data.keyword.openwhisk_short}} utiliza la infraestructura [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala){: external} para [determinar qué tipos de contenido son archivos binarios y cuáles son texto sin formato](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html){: external}.
 
 ### Habilitación del manejo de HTTP sin procesar
 {: #actions_web_raw_enable}
 
-Las acciones web HTTP sin procesar se habilitan asignando al distintivo `--web` el valor `raw`.
-```
-ibmcloud fn action create /guest/demo/hello hello.js --web raw
-```
-{: pre}
-
-### Inhabilitación del manejo de HTTP sin procesar
-{: #actions_web_raw_disable}
-
-La inhabilitación de HTTP sin procesar se consigue pasando el valor `false` o `no` al distintivo `--web`.
-```
-ibmcloud fn update create /guest/demo/hello hello.js --web false
+Puede crear una serie de acciones web de HTTP sin procesar estableciendo `--web` en `raw`.
+```bash
+ibmcloud fn action create demo/hello /<filepath>/hello.js --web raw
 ```
 {: pre}
 
 ### Decodificación de contenido de cuerpo binario de Base64
 {: #actions_web_decode}
 
-Al procesar contenido HTTP sin procesar, el contenido `__ow_body` se codifica en Base64 si la solicitud `Content-Type` es binaria. Las siguientes funciones muestran cómo decodificar el contenido del cuerpo en Node, Python y Swift. Simplemente guarde el método en un archivo, cree una nueva acción web HTTP sin procesar que utilice el artefacto guardado y, a continuación, invoque la acción web.
+Al procesar contenido HTTP sin procesar, el contenido `__ow_body` se codifica en Base64 si la solicitud `Content-Type` es de tipo binario. Las siguientes funciones muestran cómo decodificar el contenido del cuerpo en Node, Python y Swift.
 
-#### Node
-{: #actions_web_decode_js}
+1. Guarde el código de ejemplo en el lenguaje preferido en un archivo llamado `decode.<ext>`. Sustituya `<ext>` por la extensión de archivo del código de ejemplo de su lenguaje preferido.
 
-```javascript
-function main(args) {
-    decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
-    return {body: decoded}
-}
-```
-{: codeblock}
+  **Nodo**
+  {: #actions_web_decode_js}
 
-#### Python
-{: #actions_web_decode_python}
+  ```javascript
+  function main(args) {
+      decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
+      return {body: decoded}
+  }
+  ```
+  {: codeblock}
 
-```python
-def main(args):
+  **Python**
+  {: #actions_web_decode_python}
+
+  ```python
+  def main(args):
     try:
         decoded = args['__ow_body'].decode('base64').strip()
         return {"body": decoded}
     except:
         return {"body": "Could not decode body from Base64."}
-```
-{: codeblock}
+  ```
+  {: codeblock}
 
-#### Swift
-{: #actions_web_decode_swift}
+  **Swift**
+  {: #actions_web_decode_swift}
 
-```swift
-extension String {
-    func base64Decode() -> String? {
-        guard let data = Data(base64Encoded: self) else {
-            return nil
-        }
+  ```swift
+  extension String {
+      func base64Decode() -> String? {
+          guard let data = Data(base64Encoded: self) else {
+              return nil
+          }
 
-        return String(data: data, encoding: .utf8)
-    }
-}
+          return String(data: data, encoding: .utf8)
+      }
+  }
 
 func main(args: [String:Any]) -> [String:Any] {
-    if let body = args["__ow_body"] as? String {
-        if let decoded = body.base64Decode() {
-            return [ "body" : decoded ]
+      if let body = args["__ow_body"] as? String {
+          if let decoded = body.base64Decode() {
+              return [ "body" : decoded ]
         }
+      }
+
+      return ["body": "Could not decode body from Base64."]
+  }
+  ```
+  {: codeblock}
+
+2. Cree una acción web HTTP sin procesar con el código de ejemplo ejecutando el mandato siguiente. En este ejemplo, la función Node se guarda como `decode.js`. Sustituya la vía de acceso de archivo por la vía de acceso del archivo `decode` y actualice la extensión de archivo para que coincida con la extensión del código de ejemplo que ha utilizado.
+
+  ```bash
+  ibmcloud fn action create decode <filepath>/decode.js --web raw
+  ```
+  {: pre}
+
+  **Resultado de ejemplo**
+  ```
+  ok: created action decode
+  ```
+  {: screen}
+
+3. Pruebe la acción `decode` ejecutando el siguiente mandato cURL. 
+    ```bash
+    curl -k -H "content-type: application" -X POST -d "Decoded body" https://<apihost>/api/v1/web/<namespace>/default/decode.json
+    ```
+    {: pre}
+
+  **Resultado de ejemplo**
+    ```
+    {
+      "body": "Decoded body"
     }
+    ```
+    {: screen}
 
-    return ["body": "Could not decode body from Base64."]
-}
-```
-{: codeblock}
-
-Como ejemplo, guarde la función Node como `decode.js` y ejecute los mandatos siguientes:
-```
-ibmcloud fn action create decode decode.js --web raw
-```
-{: pre}
-
-Salida de ejemplo:
-```
-ok: created action decode
-```
-{: screen}
-
-```
-curl -k -H "content-type: application" -X POST -d "Decoded body" https:// us-south.functions.cloud.ibm.com/api/v1/web/guest/default/decodeNode.json
-```
-{: pre}
-
-Salida de ejemplo:
-```
-{
-  "body": "Decoded body"
-}
-```
-{: screen}
-
-## Solicitudes de Options
+## Solicitudes de opciones
 {: #actions_web_options}
 
-De forma predeterminada, una solicitud OPTIONS realizada a una acción web da como resultado que las cabeceras de CORS se añadan automáticamente a las cabeceras de respuesta. Estas cabeceras permiten todos los orígenes y los verbos HTTP options, get, delete, post, put, head y patch.
+De forma predeterminada, una solicitud `OPTIONS` realizada a una acción web da como resultado que las cabeceras de CORS se añadan automáticamente a las cabeceras de respuesta. Estas cabeceras permiten todos los orígenes y los verbos HTTP `OPTIONS`, `GET`, `DELETE`, `POST`, `PUT`, `HEAD` y `PATCH`.
+{: shortdesc}
 
 Consulte las siguientes cabeceras:
 ```
@@ -533,130 +949,73 @@ Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
 Access-Control-Allow-Headers: Authorization, Content-Type
 ```
 
-Como alternativa, se pueden manejar solicitudes OPTIONS manualmente mediante una acción web. Para habilitar esta opción, añada una anotación de `web-custom-options` con un valor de `true` a una acción web. Cuando esta característica está habilitada, las cabeceras CORS no se añaden automáticamente a la respuesta de la solicitud. En su lugar, es responsabilidad del desarrollador añadir sus cabeceras deseadas mediante programación.
+Como alternativa, se pueden manejar solicitudes `OPTIONS` manualmente mediante una acción web. Para habilitar esta opción, añada una anotación de `web-custom-options` con un valor de `true` a una acción web. Cuando esta característica está habilitada, las cabeceras CORS no se añaden automáticamente a la respuesta de la solicitud. En su lugar, debe añadir las cabeceras de forma programática.
 
-Consulte el siguiente ejemplo para crear respuestas personalizadas en solicitudes OPTIONS:
-```js
-function main(params) {
-  if (params.__ow_method == "options") {
-    return {
-      headers: {
-        'Access-Control-Allow-Methods': 'OPTIONS, GET',
+Para crear respuestas personalizadas a las solicitudes `OPTIONS`:
+
+1. Guarde el código siguiente en un archivo denominado `custom-options.js`.
+
+  ```js
+  function main(params) {
+    if (params.__ow_method == "options") {
+      return {
+        headers: {
+          'Access-Control-Allow-Methods': 'OPTIONS, GET',
         'Access-Control-Allow-Origin': 'example.com'
-      },
+        },
       statusCode: 200
     }
+    }
   }
-}
-```
-{: codeblock}
+  ```
+  {: codeblock}
 
-Guarde la función en `custom-options.js` y ejecute los mandatos siguientes:
-```
-ibmcloud fn action create custom-option custom-options.js --web true -a web-custom-options true
-```
-{: pre}
+2. Cree la acción web. Establezca `--web-custom-options` a `true`.
 
-```
-$ curl https://${APIHOST}/api/v1/web/guest/default/custom-options.http -kvX OPTIONS
-```
-{: pre}
+  ```bash
+  ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
+  ```
+  {: pre}
 
-Salida de ejemplo:
-```
-< HTTP/1.1 200 OK
+3. Pruebe la acción utilizando el siguiente mandato cURL.
+
+  ```bash
+  $ curl https://<apihost>/api/v1/web/<namespace>/default/custom-option.http -kvX OPTIONS
+  ```
+  {: pre}
+
+  **Resultado de ejemplo**
+  ```
+  < HTTP/1.1 200 OK
 < Server: nginx/1.11.13
 < Content-Length: 0
 < Connection: keep-alive
 < Access-Control-Allow-Methods: OPTIONS, GET
 < Access-Control-Allow-Origin: example.com
-```
-{: screen}
+  ```
+  {: screen}
 
 ## Manejo de errores
 {: #actions_web_errors}
 
-Cuando una acción de {{site.data.keyword.openwhisk_short}} falla, hay dos modalidades de anomalía posibles. La primera se conoce como _error de aplicación_ y es similar a una excepción interceptada: la acción devuelve un objeto JSON que contiene una propiedad `error` de nivel superior. La segunda es un _error de desarrollador_, que se produce cuando la acción falla de forma catastrófica y no genera ninguna respuesta (similar a una excepción no capturada). En el caso de acciones web, el controlador trata los errores de aplicación del siguiente modo:
+Cuando una acción de {{site.data.keyword.openwhisk_short}} falla, hay dos modalidades de anomalía posibles. La primera se conoce como _error de aplicación_ y es similar a una excepción interceptada: la acción devuelve un objeto JSON que contiene una propiedad `error` de nivel superior. La segunda es un _error de desarrollador_, que se produce cuando la acción falla y no genera ninguna respuesta (similar a una excepción no capturada). En el caso de acciones web, el controlador trata los errores de aplicación del siguiente modo:
 
 - Cualquier proyección de vía de acceso especificada se pasa por alto y el controlador proyecta en su lugar la propiedad `error`.
 - El controlador aplica el manejo de contenido implícito según la extensión de la acción al valor de la propiedad `error`.
 
 Los desarrolladores deben saber cómo se pueden utilizar las acciones web y deben generar respuestas adecuadas a los errores. Por ejemplo, una acción web que se utilice con la extensión `.http` devuelve una respuesta HTTP, como por ejemplo `{error: { statusCode: 400 }`. Si no es así, se produce una discrepancia entre el `Content-Type` implícito a partir de la extensión y el `Content-Type` de la acción en la respuesta al error. Hay que tener especial cuidado con las acciones web que son secuencias, de forma que los componentes que forman una secuencia puedan generar errores adecuados cuando es necesario.
 
-## Ejemplo: Generación de una imagen de código QR a partir de la entrada
-{: #actions_web_qr}
 
-A continuación se muestra un ejemplo de una acción web Java que acepta `text` como entrada y genera una imagen de código QR.
 
-1. Cree un archivo `Generate.java` en el directorio `java_example/src/main/java/qr`.
+## Inhabilitación de acciones web
+{: #actions_web_disable}
 
-  ```java
-  package qr;
+Puede inhabilitar una acción web estableciendo el distintivo `--web` en `false` o `no` en la CLI. Sustituya `<packageName>/<actionName>` y `<filepath>/<filename>` por el nombre de paquete, el nombre de acción web, la vía de acceso de archivo y el nombre de archivo del archivo de código.
 
-  import java.io.*;
-  import java.util.Base64;
+```bash
+ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
+```
+{: pre}
 
-  import com.google.gson.JsonObject;
 
-  import com.google.zxing.*;
-  import com.google.zxing.client.j2se.MatrixToImageWriter;
-  import com.google.zxing.common.BitMatrix;
 
-  public class Generate {
-    public static JsonObject main(JsonObject args) throws Exception {
-      String property = "text";
-      String text = "Hello. Try with a 'text' value next time.";
-      if (args.has(property)) {
-        text = args.get(property).toString();
-      }
-
-      ByteArrayOutputStream baos = new ByteArrayOutputStream();
-      OutputStream b64os = Base64.getEncoder().wrap(baos);
-
-      BitMatrix matrix = new MultiFormatWriter().encode(text, BarcodeFormat.QR_CODE, 300, 300);
-      MatrixToImageWriter.writeToStream(matrix, "png", b64os);
-      b64os.close();
-
-      String output = baos.toString("utf-8");
-
-      JsonObject response = new JsonObject();
-      JsonObject headers = new JsonObject();
-      headers.addProperty("content-type", "image/png; charset=UTF-8");
-      response.add("headers", headers);
-      response.addProperty("body", output);
-      return response;
-    }
-  }
-  ```
-  {: codeblock}
-
-3. Compile el JAR de la acción web ejecutando el mandato siguiente desde el directorio `java_example` donde se encuentra el archivo `build.gradle`.
-
-  ```bash
-  gradle jar
-  ```
-  {: pre}
-
-4. Despliegue la acción web utilizando el JAR `build/libs/java_example-1.0.jar`.
-
-  ```bash
-  ibmcloud fn action update QRGenerate build/libs/java_example-1.0.jar --main qr.Generate -m 128 --web true
-  ```
-  {: pre}
-
-5. Recupere el URL público del punto final de acción web y asígnelo a una variable de entorno.
-
-  ```bash
-  ibmcloud fn action get QRGenerate --url
-  URL=$(ibmcloud fn action get QRGenerate --url | tail -1)
-  ```
-  {: pre}
-
-6. Puede abrir un navegador web utilizando este `URL` y añadir el parámetro de consulta
-`text` con el mensaje a codificar en la imagen QR. También puede utilizar un cliente HTTP como
-`curl` para descargar una imagen QR.
-
-  ```bash
-  curl -o QRImage.png $URL\?text=https://cloud.ibm.com
-  ```
-  {: pre}
