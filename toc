@@ -23,6 +23,7 @@ IBM Cloud Functions
 
     {: .navgroup id="howto"}
     cli_install.md
+    namespaces.md
 
     {: .topicgroup}
     Developing serverless apps
@@ -40,7 +41,6 @@ IBM Cloud Functions
     
     {: .topicgroup}
     Securing serverless apps
-        namespaces.md
         iam.md
 
     {: .topicgroup}

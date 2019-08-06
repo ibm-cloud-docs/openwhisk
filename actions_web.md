@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-25"
+lastupdated: "2019-08-02"
 
 keywords: web actions, serverless, functions
 
@@ -59,6 +59,13 @@ Web actions can be invoked without authentication and can be used to implement H
 
 Web actions must return a JSON object. However, the controller treats a web action differently if its result includes one or more of the following as top-level [JSON properties](#web_action_properties).
 {: shortdesc}
+
+## Packaging code for web actions
+{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create). 
+
+You can create a web action from multiple app files by packaging them as a .zip archive. You can also create a web action by using Docker images. 
+* To learn how to package your code for actions, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+* To see more examples of how you can create actions, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
 
 ## Available features of web actions
 {: #actions_web_extra}
@@ -1013,5 +1020,6 @@ ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web
 ```
 {: pre}
 
-
+## Web action limits
+For information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).
 

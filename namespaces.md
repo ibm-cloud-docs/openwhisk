@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-18"
+lastupdated: "2019-08-01"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -292,6 +292,71 @@ You can create an IAM-managed namespace as part of a resource group and manage a
   {: screen}
 
 For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API docs](/apidocs/functions).
+{: tip}
+
+#### Optional workflow: Creating namespaces for staging and production deployments.
+
+You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
+
+Create a staging namespace.
+```
+ibmcloud fn namespace create staging
+```
+{: pre}
+
+Create a production namespace.
+```
+ibmcloud fn namespace create production
+```
+{: pre}
+
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
+{: tip}
+
+### Targeting namespaces
+Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. 
+
+You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry namespaces. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+
+| Command | Description |
+|:-----------------|:-----------------|
+| <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
+{: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
+{: #namespaces-1}
+{: tab-title="IAM"}
+{: tab-group="namespaces"}
+{: class="simple-tab-table"}
+
+| Command | Description |
+|:-----------------|:-----------------|
+| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example namespace <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. </p><ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+{: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
+{: #namespaces-2}
+{: tab-title="Cloud Foundry"}
+{: tab-group="namespaces"}
+{: class="simple-tab-table"}
+
+### Getting a list of your namespaces
+To see a list of all of your namespaces, run the following command.
+
+```
+ibmcloud fn namespace list
+```
+{: pre}
+
+**Example output** 
+```
+name          type             id                                    description
+test_dev      CF-based        test_dev                           
+test_prod     CF-based        test_prod                          
+playground    IAM-based       e87f08a8-9f4e-498a-a491-3d30c773e704  IAM playground.
+test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM namespace.
+```
+{: screen}
+
+You must target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
+
+After targeting your namespace, run `ibmcloud fn namespace get <namespace_name>` to see a list of all the {{site.data.keyword.openwhisk_short}} entities in your namespace.
 {: tip}
 
 ### Accessing other resources from a namespace

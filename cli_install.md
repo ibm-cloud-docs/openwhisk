@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-08-02"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -36,29 +36,37 @@ subcollection: cloud-functions
 {: #cli_setup}
 
 **Before you begin**
-
 You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 
-Download and install the {{site.data.keyword.cloud_notm}} CLI, and log in.
-{: shortdesc}
+### Installing the {{site.data.keyword.cloud_notm}} CLI
 
 1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
-2. Log in to the {{site.data.keyword.cloud_notm}} CLI. To specify an {{site.data.keyword.cloud_notm}} region, [include the API endpoint](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).
+2. Log in to the {{site.data.keyword.cloud_notm}} CLI.
 
   ```
   ibmcloud login
   ```
   {: pre}
 
-3. Follow the prompts to select your {{site.data.keyword.cloud_notm}} account.
+3. If you have more than one account, you are prompted to select which account to use. Follow the prompts or use the `target` command to select your {{site.data.keyword.cloud_notm}} account.
+  ```
+  ibmcloud target -c <account_id>
+  ```
+  {: pre}
 
-4. Get a list of resource groups. 
+4. You must also specify a region. You can use the `target` command to target or change regions.
+  ```
+  ibmcloud target -r <region>
+  ```
+  {: pre}
 
-```
-ibmcloud resource groups
-```
-{: pre}
+5. You must specify a resource group. To get a list of your resource groups, run the following command.
+
+  ```
+  ibmcloud resource groups
+  ```
+  {: pre}
 
 **Example output**
 
@@ -67,11 +75,11 @@ Retrieving all resource groups under account <account_name> as email@ibm.com...
 OK
 Name      ID                                 Default Group   State   
 default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
-test      a8a12accd63b437bbd6d58fb8b462ca7   false           ACTIVE
+test      a8a12abbbd63b437cca6d58fb8b462ca7   false           ACTIVE
 ```
 {: screen}
 
-5. Optional: Target a resource group other than the default by running the following command.
+5. Target a resource group by running the following command.
 ```
 ibmcloud target -g <resource_group>
 ```
@@ -127,101 +135,9 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
-
-
-
-
-
-### Create or target a namespace.
-To get a list of your {{site.data.keyword.openwhisk_short}} namespaces, run `ibmcloud fn namespace list`.
-
-#### Create an IAM-enabled namespace.
-  ```
-  ibmcloud fn namespace create <namespace_name> [--description <"description">]
-  ```
-  {: pre}
-
-**Response**
-  ```
-  ok: created namespace <namespace_name>
-  ```
-  {: screen}
-
-
-#### Target an IAM-enabled namespace. 
-  ```
-  ibmcloud fn property set --namespace <namespace_name>
-  ``` 
-  {: pre}
-
-
-**Response**
-  ```
-  ok: whisk namespace set to <namespace_name>
-  ```
-  {: screen}
-  
-#### Target a Cloud Foundry-based namespace. 
-  
-You can use the `-o` and `-s` flags to target a specifc `org` and `space`, or you can follow the prompts.
-
-* Target a Cloud Foundy namespace by include the `org` and `space` names in the `target` command.
-
-```
-ibmcloud target --cf  -o <org> -s <space>
-```
-{: pre}
-
-* Target Cloud Foundry and follow the prompts to select a `org` and `space`.
-
-```
-ibmcloud target --cf
-```
-{: pre}
-
-
-**Response**
-  ```
-  Targeted Cloud Foundry (https://api.ng.bluemix.net)
-
-  Targeted org <org_name>
-
-  Targeted space <space_name>
-                        
-  API endpoint:      https://cloud.ibm.com   
-  Region:            us-south   
-  User:              <email>   
-  Account:           (<account_id>) <-> <account>   
-  Resource group:    default   
-  CF API endpoint:   https://api.ng.bluemix.net (API version: 2.128.0)   
-  Org:               <org_name>   
-  Space:             <space_name>  
-  ```
-  {: screen} 
-
-
-
-
-
-#### Optional: Creating namespaces for staging and production deployments.
-
-You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your organization such as "staging" and "production":
-
-Create a staging namespace.
-```
-ibmcloud fn namespace create staging
-```
-{: pre}
-
-Create a production namespace.
-```
-ibmcloud fn namespace create production
-```
-{: pre}
-
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
-{: tip}
-
+## Next steps
+{: #install_next}
+To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
 {: #cli_proxy}
@@ -259,7 +175,12 @@ With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to ex
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
 
-Get the current API key by running the following command.
+Get the current IAM tokens. You must pass the IAM token in the Authorization header.
+```
+ibmcloud iam oauth-tokens
+```
+
+Get the current Cloud Foundry API key by running the following command.
 ```
 ibmcloud fn property get --auth
 ```
