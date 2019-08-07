@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-08-07"
 
 keywords: web actions, serverless, functions
 
@@ -305,11 +305,11 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 To create a web action that returns an `image/png`: 
 
-1. Save the code as `hello.js`.
+1. Save the code as `hello.js`. Replace `<base64_encoded_string>` with a base64 encoded string from an image file.
 
   ```javascript
   function main() {
-      let png = '<base 64 encoded string';
+      let png = '<base64_encoded_string>';
       return { headers: { 'Content-Type': 'image/png' },
               statusCode: 200,
               body: png };
