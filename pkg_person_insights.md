@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-19"
+lastupdated: "2019-08-08"
 
 keywords: cognitive, serverless, functions
 
@@ -35,7 +35,7 @@ The service can automatically infer, from potentially noisy social media, portra
 * For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/services/personality-insights?topic=personality-insights-models).
 * For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/services/personality-insights?topic=personality-insights-preferences).
 
-Request logging is disabled for the {{site.data.keyword.personalityinsightsshort}} service. The service doesn't log retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
+Request logging is disabled for the {{site.data.keyword.personalityinsightsshort}} service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 {: note}
 
 The {{site.data.keyword.personalityinsightsshort}} package contains the following entities. You can find additional details in the {{site.data.keyword.personalityinsightsshort}} API reference by clicking the entity name.

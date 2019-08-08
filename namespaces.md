@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-01"
+lastupdated: "2019-08-07"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -198,7 +198,7 @@ You can create an IAM-managed namespace as part of a resource group and manage a
 
   ```
   curl --request POST \
-  --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces \
+  --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces' \
   --header 'accept: application/json' \
   --header 'authorization: <IAM_token>' \
   --data '{"description":"string","name":"string","resource_group_id":"string","resource_plan_id":"string"}'
