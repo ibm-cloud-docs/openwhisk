@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-07"
+lastupdated: "2019-08-09"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -294,7 +294,7 @@ You can create an IAM-managed namespace as part of a resource group and manage a
 For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API docs](/apidocs/functions).
 {: tip}
 
-#### Optional workflow: Creating namespaces for staging and production deployments.
+**Optional workflow: Creating namespaces for staging and production deployments**
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
 
