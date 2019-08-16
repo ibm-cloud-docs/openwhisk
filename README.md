@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-10"
+lastupdated: "2019-08-16"
 
 keywords: serverless, functions
 
@@ -12,7 +12,14 @@ subcollection: cloud-functions
 
 # Cloud Functions
 
+
 Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are always welcome.
+
+
+
+
+
+
 
 
 
@@ -23,20 +30,6 @@ Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are alway
 2. When you're ready for review, make a PR to the master branch and tag `Derek-Poindexter` for review.
 3. Derek will review your suggestions with the Cloud Functions development team and make any necessary adjustments.
 4. Derek will merge the content into the repo.
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 
 
