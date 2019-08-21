@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Monitorando a atividade
 {: #monitor}
 
-Obtenha insight sobre o desempenho de suas ações implementadas com o {{site.data.keyword.openwhisk}}. As métricas podem ajudar a localizar gargalos ou prever possíveis problemas de produção com base na duração da ação, resultados de ativações de ação ou quando você atingiu limites de ativação de ação.
+Obtenha insight sobre o desempenho de suas ações implementadas com o {{site.data.keyword.openwhisk}}. As métricas podem ajudá-lo a localizar gargalos ou prever possíveis problemas de produção com base na duração da ação, resultados de ativações de ação ou quando você atingirá os limites de ativação de ação.
 {: shortdesc}
 
 As métricas são coletadas automaticamente para todas as entidades. Dependendo se suas ações estão em um namespace baseado em IAM ou em Cloud Foundry, as métricas estão localizadas na conta ou no espaço do IBM Cloud. Essas métricas são enviadas para o {{site.data.keyword.monitoringlong}} e são disponibilizadas por meio do Grafana, onde é possível configurar seus painéis, criar alertas com base nos valores de evento de métricas e mais. Para obter mais informações sobre métricas, consulte a [documentação do {{site.data.keyword.monitoringlong_notm}}](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started).
@@ -47,15 +49,15 @@ Introdução ao criar um painel de monitoramento Grafana.
     <tbody>
       <tr>
         <td>União Europeia Central</td>
-        <td>Metrics.eu-de.bluemix.net</td>
+        <td>`Metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>Sul do Reino Unido</td>
-        <td>Metrics.eu-gb.bluemix.net</td>
+        <td>`Metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>Sul dos Estados Unidos</td>
-        <td>Metrics.ng.bluemix.net</td>
+        <td>`Metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>Leste dos EUA</td>
@@ -72,7 +74,7 @@ Introdução ao criar um painel de monitoramento Grafana.
     * Namespaces baseados em Cloud Foundry:
         1. Clique no nome do usuário.
         2. Na lista suspensa **Domínio**, selecione **espaço**.
-        3. Use as listas suspensas **Organização** e **Espaço** para selecionar seu namespace baseado em Cloud Foundry.
+        3. Use as listas suspensas **Organização** e **Espaço** para selecionar seu namespace baseado no Cloud Foundry.
 
 3. Crie um painel.
     * Para usar o painel pré-fabricado do {{site.data.keyword.openwhisk_short}}:
@@ -89,7 +91,7 @@ Após uma ação ser executada, novas métricas são geradas e são pesquisávei
 ## Usando os painéis
 {: #monitor_dash_use}
 
-O [{{site.data.keyword.openwhisk_short}}Painel](https://cloud.ibm.com/openwhisk/dashboard) fornece um resumo gráfico de sua atividade. Utilize o painel para determinar o desempenho e o funcionamento de suas ações do {{site.data.keyword.openwhisk_short}}.
+O [{{site.data.keyword.openwhisk_short}}Painel](https://cloud.ibm.com/openwhisk/dashboard){: external} fornece um resumo gráfico de sua atividade. Utilize o painel para determinar o desempenho e o funcionamento de suas ações do {{site.data.keyword.openwhisk_short}}.
 {:shortdesc}
 
 É possível filtrar logs selecionando quais logs de ações você deseja visualizar e selecionar o período de tempo da atividade registrada. Esses filtros são aplicados a todas as visualizações no painel. Clique em **Recarregar** a qualquer momento para atualizar o painel com os dados do log de ativação mais recentes.
@@ -126,7 +128,7 @@ ibmcloud fn activation poll
 ## Formato da métrica
 {: #monitor_metric}
 
-As métricas refletem os dados coletados de suas ativações de ação que são agregadas a cada minuto. As métricas são pesquisáveis no desempenho da ação ou no nível de simultaneidade de ação.
+As métricas refletem dados que são coletados de suas ativações de ação que são agregadas por minuto. As métricas são pesquisáveis no desempenho da ação ou no nível de simultaneidade de ação.
 
 
 ### Métricas de desempenho da ação
@@ -142,7 +144,7 @@ ibmcloud.public.functions. < region>.action.namespace. < namespace>. < package>.
 Os caracteres a seguir são convertidos em traços (`-`): ponto (.), um sinal de arroba (@), espaço em branco (), e comercial (&), sublinhado (_), dois-pontos (:)
 {: tip}
 
-Exemplo: se você tiver uma ação chamada `hello-world` no namespace baseado em Cloud Foundry `user@email.com_dev` na região `us-south`, uma métrica de desempenho de ação seria semelhante à seguinte:
+Exemplo: se você tivesse uma ação denominada `hello-world` no namespace baseado no Cloud Foundry `user@email.com_dev` na região `us-south`, uma métrica de desempenho da ação pareceria semelhante à seguinte:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.user-ibm-com-dev.action-performance.default.hello-world.duration
@@ -161,7 +163,7 @@ ibmcloud.public.functions. < region>.action.namespace. < namespace>.action-perfo
 ```
 {: codeblock}
 
-Exemplo: se você tiver um namespace baseado em IAM denominado `myNamespace` na região `us-south`, uma métrica de simultaneidade de ação seria semelhante à seguinte:
+Exemplo: se você tivesse um namespace baseado no IAM denominado `myNamespace` na região `us-south`, uma métrica de simultaneidade de ação seria semelhante à seguinte:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -174,7 +176,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 Como você pode ter milhares ou milhões de ativações de ação, os valores de métrica são representados como uma agregação de eventos produzidos por várias ativações. Os valores são agregados das maneiras a seguir:
-* Soma: todos os valores de métrica são incluídos juntos.
+* Soma: todos os valores de métrica são incluídos.
 * Média: uma média aritmética é calculada.
 * Média somada: uma média aritmética é calculada com base em componentes e incluindo componentes diferentes juntos.
 
@@ -185,7 +187,7 @@ Confira a tabela a seguir para ver as métricas que estão disponíveis para voc
     <tr>
       <th>Nome da métrica</th>
       <th>Descrição</th>
-      <th>Digite</th>
+      <th>Tipo</th>
       <th>Categoria</th>
     </tr>
   </thead>
@@ -198,13 +200,13 @@ Confira a tabela a seguir para ver as métricas que estão disponíveis para voc
     </tr>
     <tr>
       <td><code>init-time</code></td>
-      <td>O tempo gasto para inicializar o contêiner de ação.</td>
+      <td>O tempo que é gasto para inicializar o contêiner de ação.</td>
       <td>Média</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>wait-time</code></td>
-      <td>O tempo médio gasto em uma fila aguardando a ativação de uma ativação.</td>
+      <td>O tempo médio que é gasto em uma fila aguardando que uma ativação seja planejada.</td>
       <td>Média</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -222,13 +224,13 @@ Confira a tabela a seguir para ver as métricas que estão disponíveis para voc
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>O número de ativações malsucedidas causadas por erros de aplicativo. Por exemplo, erros graceful por meio das ações. Para obter mais informações sobre como as métricas de desempenho de ação são derivadas, confira [Entendendo o registro de ativação](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+      <td>O número de ativações malsucedidas que são causadas por erros de aplicativo. Por exemplo, erros normais das ações. Para obter mais informações sobre como as métricas de desempenho de ação são derivadas, confira [Entendendo o registro de ativação](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}.</td>
       <td>Soma</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>O número de ativações malsucedidas causadas pelo desenvolvedor. Por exemplo, a violação da [interface de proxy de ação](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) por exceções não manipuladas no código de ação.</td>
+      <td>O número de ativações malsucedidas que são causadas pelo desenvolvedor. Por exemplo, a violação da [interface de proxy de ação](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external} por exceções não manipuladas no código de ação.</td>
       <td>Soma</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -261,5 +263,7 @@ Confira a tabela a seguir para ver as métricas que estão disponíveis para voc
 
 As métricas para ações que existem como parte de um namespace padrão estão disponíveis na categoria padrão.
 {: tip}
+
+
 
 

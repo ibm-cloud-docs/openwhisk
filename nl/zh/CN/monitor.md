@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 监视活动
 {: #monitor}
@@ -47,15 +49,15 @@ subcollection: cloud-functions
     <tbody>
       <tr>
         <td>欧洲中部</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>英国南部</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>美国南部</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>美国东部</td>
@@ -89,7 +91,7 @@ subcollection: cloud-functions
 ## 使用仪表板
 {: #monitor_dash_use}
 
-[{{site.data.keyword.openwhisk_short}}“仪表板”](https://cloud.ibm.com/openwhisk/dashboard)提供了对您活动的图形化摘要。使用该仪表板可确定 {{site.data.keyword.openwhisk_short}} 操作的性能和运行状况。
+[{{site.data.keyword.openwhisk_short}}“仪表板”](https://cloud.ibm.com/openwhisk/dashboard){: external}提供了对您活动的图形化摘要。使用该仪表板可确定 {{site.data.keyword.openwhisk_short}} 操作的性能和运行状况。
 {:shortdesc}
 
 可以通过选择要查看的操作日志，然后选择记录的活动的时间范围来过滤日志。这些过滤器会应用于仪表板上的所有视图。
@@ -175,7 +177,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 由于您可能有数千个或数百万个操作激活，因此度量值会表示为由许多激活生成的事件的聚集。这些值通过以下方式进行聚集：
-* 和：将所有度量值加在一起。
+* 和：将所有度量值相加。
 * 平均值：计算算术平均值。
 * 平均值总和：根据组成部分计算算术平均值，并将不同的组成部分加在一起。
 
@@ -223,13 +225,13 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>因应用程序错误而导致的失败激活数。例如，来自操作的正常错误。有关如何派生 action-performance 度量值的更多信息，请查看[了解激活记录](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record)。</td>
+      <td>因应用程序错误而导致的失败激活数。例如，来自操作的正常错误。有关如何派生 action-performance 度量值的更多信息，请查看[了解激活记录](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}。</td>
       <td>和</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>因开发者而导致的失败激活数。例如，操作代码中未处理的异常导致的[操作代理接口](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface)违例。</td>
+      <td>因开发者而导致的失败激活数。例如，操作代码中未处理的异常导致的[操作代理接口](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external}违例。</td>
       <td>和</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -262,5 +264,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 
 作为缺省名称空间一部分的操作的度量值在缺省类别中提供。
 {: tip}
+
+
 
 

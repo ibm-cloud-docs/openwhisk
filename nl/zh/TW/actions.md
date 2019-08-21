@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, functions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 建立動作
@@ -38,19 +40,18 @@ subcollection: cloud-functions
 {: #actions_cli}
 
 1. 建立動作。
-    
   ```
   ibmcloud fn action create ACTION_NAME APP_FILE --kind RUNTIME
   ```
   {: pre}
 
-  範例：
+  **範例**
   ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
 
   ```
   ok: created action hello
@@ -61,14 +62,13 @@ subcollection: cloud-functions
   - 為了節省成本，您可以設定限制。
       - 若要為記憶體用量設定限制，請在 create 指令中包含 `--memory VALUE`，其中值以 MB 為單位。
       - 若要設定逾時，請在 create 指令中包含 `--timeout VALUE`，其中值以毫秒為單位。
-  - 如果已將程式碼包裝成 Docker 映像檔，請在 create 指令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含應用程式的本端路徑和 --kind 旗標。儘可能不要使用 `latest` 標籤，以便妥善管理您的映像檔。使用 `latest` 標籤時,會使用具有該標籤的映像檔，這可能不一定是最近建立的映像檔。  
+  - 如果已將程式碼包裝成 Docker 映像檔，請在 create 指令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含應用程式的本端路徑和 --kind 旗標。儘可能不要使用 `latest` 標籤，以便妥善管理您的映像檔。使用 `latest` 標籤時,會使用具有該標籤的映像檔，這可能不一定是最近建立的映像檔。
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
       {: pre}
   
-
-
 2. 驗證動作是否在動作清單中。
 
   ```
@@ -76,7 +76,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
 
   ```
   actions
@@ -88,35 +88,38 @@ subcollection: cloud-functions
 ## 在運作時更新應用程式或運行環境
 {: #actions_update}
 
-每當需要更新應用程式中的程式碼或移轉到更高版本的運行環境，都可以執行 update 指令。例如，由於 Node.js V8 處於維護模式，因此您可能希望將運行環境切換為 Node.js 10。
+每當需要更新應用程式中的程式碼或移轉到更高版本的運行環境，都可以執行 update 指令。例如，因為 Node.js 第 8 版處於維護模式，所以建議您將運行環境切換至 Node.js 10。
 
 移轉到新的運行環境版本時，可能需要變更應用程式中的程式碼以符合新的運行環境版本。在大部分情況下，運行環境版本會相容。
 {: tip}
 
 1. 本端更新應用程式。
 
-2. 如果已將應用程式包裝成 Docker 映像檔，請將最新映像檔上傳到 Docker Hub。這可讓系統在下次執行您動作的程式碼時取回新的 Docker 映像檔。如果有使用前版 Docker 映像檔的執行中容器，任何新呼叫都將繼續使用該映像檔。必須執行 update 指令，這樣新呼叫才能開始使用新映像檔。
+2. 如果已將應用程式包裝成 Docker 映像檔，請將最新映像檔上傳到 Docker Hub。這可讓系統在下次執行您動作的程式碼時取回新的 Docker 映像檔。如果有使用前版 Docker 映像檔的執行中容器，則任何新呼叫都將繼續使用該映像檔。必須執行 update 指令，這樣新呼叫才能開始在新映像檔上執行。
 
 3. 更新動作並包含應用程式或 Docker 映像檔的本端路徑。
+
     ```
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME
     ```
     {: pre}
 
-    範例：
+    **範例**
+
     ```
     ibmcloud fn action update hello hello.js --kind nodejs:10
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
 
     ```
     ok: updated action hello
     ```
     {: screen}
 
-    如果已將程式碼包裝成 Docker 映像檔，請在 create 指令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含本端應用程式的路徑和 --kind 旗標。儘可能不要使用 `latest` 標籤，以便妥善管理您的映像檔。使用 `latest` 標籤時,會使用具有該標籤的映像檔，這可能不一定是最近建立的映像檔。
+    如果已將程式碼包裝成 Docker 映像檔，請在 create 指令中包含 `--docker <docker_HUB_USERNAME>/<docker_HUB_IMAGE>:TAG`，而不是包含本端應用程式的路徑和 `--kind` 旗標。儘可能不要使用 `latest` 標籤，以便妥善管理您的映像檔。使用 `latest` 標籤時,會使用具有該標籤的映像檔，這可能不一定是最近建立的映像檔。 
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
@@ -142,13 +145,15 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    範例：
+    **範例**
+
     ```
     ibmcloud fn action update MyApp --param name World
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
+
     ```
     ok: updated action MyApp
     ```
@@ -158,12 +163,14 @@ subcollection: cloud-functions
     {: tip}
 
 3. 驗證參數是否已連結至動作。
+
     ```
     ibmcloud fn action get MyApp parameters
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
+
     ```
     ok: got action MyApp, displaying field parameters
 
@@ -177,6 +184,7 @@ subcollection: cloud-functions
     {: screen}
 
 選用：若要清除先前連結的參數，請在不包含任何參數的情況下更新動作。
+
 ```
 ibmcloud fn action update ACTION_NAME APP_FILE
 ```
@@ -201,8 +209,6 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 接下來，建立規則或呼叫動作時，請使用序列的名稱。
 
 
-
-
 ## 包裝動作
 {: #actions_pkgs}
 
@@ -214,20 +220,22 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 - 資訊來源是用來配置外部事件來源，以發動觸發程式事件。例如，「警示」套件包含可依指定的頻率發動觸發程式的資訊來源。
 
 
-
 1. 建立套件。
+
   ```
   ibmcloud fn package create PACKAGE_NAME
   ```
   {: pre}
 
 2. 取得套件的摘要。請注意，套件是空的。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
+
   ```
   package /myNamespace/custom
   ```
@@ -241,12 +249,14 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
   {: pre}
 
 5. 取得套件的摘要。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -275,13 +285,15 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
     ```
     {: pre}
 
-    範例：
+    **範例**
+
     ```
     ibmcloud fn package update MyApp --param name World
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
+
     ```
     ok: updated package MyApp
     ```
@@ -291,12 +303,14 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
   {: tip}
 
 3. 驗證參數是否已連結至套件。
+
     ```
     ibmcloud fn package get MyApp parameters
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
+
     ```
     ok: got package MyApp, displaying field parameters
 
@@ -310,12 +324,14 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
     {: screen}
 
 4. 驗證參數是否已由套件繼承。
+
     ```
     ibmcloud fn package get MyApp/MyAction parameters
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
+
     ```
     ok: got package MyApp/MyAction, displaying field parameters
 
@@ -333,22 +349,25 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 ## 共用動作套件
 {: #actions_pkgs_share}
 
-在除錯及測試包含套件的動作及資訊來源之後，即可與所有 {{site.data.keyword.openwhisk_short}} 使用者共用套件。透過共用套件，使用者可以連結套件，呼叫套件中的動作，以及編寫 {{site.data.keyword.openwhisk_short}} 規則和序列動作。共用套件內的動作及資訊來源為_公用_。如果套件為專用，則其所有內容也會是專用。
+在除錯及測試包含套件的動作及資訊來源之後，即可與所有 {{site.data.keyword.openwhisk_short}} 使用者共用套件。透過共用套件，使用者可以連結套件，呼叫套件中的動作，以及撰寫 {{site.data.keyword.openwhisk_short}} 規則和序列動作。共用套件內的動作及資訊來源為_公用_。如果套件為專用，則其所有內容也會是專用。
 {: shortdesc}
 
-1. 與所有使用者共用套件：
+1. 與所有使用者共用套件。
+
   ```
   ibmcloud fn package update PACKAGE_NAME --shared yes
   ```
   {: pre}
 
 2. 顯示套件的 `publish` 內容，以驗證它現在為 true。
+
   ```
   ibmcloud fn package get PACKAGE_NAME publish
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
+
   ```
   ok: got package PACKAGE_NAME, displaying field publish
 
@@ -357,12 +376,14 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
   {: screen}
 
 3. 取得套件的說明，以向他人提供套件的完整名稱，以便可以連結套件或呼叫套件中的動作。完整名稱包含名稱空間，在此範例中為 `myNamespace` 名稱空間。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -380,18 +401,21 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 | 內容 |說明|
 | -------- | ----------- |
 | `__OW_API_HOST` |執行此動作的部署的 API 主機。|
-| `__OW_API_KEY` | 呼叫動作之主題的 API 金鑰。此金鑰可能是受限 API 金鑰，除非明確要求，否則此金鑰不會存在。請參閱[註釋](/docs/openwhisk?topic=cloud-functions-annotations)。|
-| `__OW_NAMESPACE` | 啟動的名稱空間。此名稱空間可能與動作的名稱空間不同。|
+| `__OW_API_KEY` |呼叫此動作的主題的 API 金鑰。此變數僅針對以標準 CF 為基礎的名稱空間提供。|
+| `__OW_NAMESPACE` |名稱空間 ID (GUID)。對於以標準 CF 為基礎的名稱空間，此 ID 由組織和空間名稱構成。|
+|`__OW_NAMESPACE_CRN`|名稱空間的雲端資源名稱 [CRN](/docs/overview?topic=overview-crn)。CRN 僅可用於啟用 IAM 的名稱空間。
 | `__OW_ACTION_NAME` | 執行中動作的完整名稱。|
+|`__OW_IAM_NAMESPACE_API_KEY`|啟用 IAM 的名稱空間的 API 金鑰。請參閱[設定存取原則](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access)以獲取用法。|
+|`__OW_IAM_API_URL`|用於 IAM 作業（例如，從 API 金鑰取得記號）的服務端點。此變數僅可用於啟用 IAM 的名稱空間。|
 | `__OW_ACTIVATION_ID` | 此執行中動作實例的啟動 ID。|
-| `__OW_DEADLINE` | 此動作將耗用其整個有效天數配額的大致時間（以新紀元毫秒為單位）。|
+| `__OW_DEADLINE` |此動作將耗盡整個期間配額時的大約時間（毫秒，以紀元格式表示）。|
 
 ### 在應用程式中包含動作環境變數
 {: #actions_envvars_app}
 
 若要檢視某個動作的值，請在應用程式程式碼中包含這些值的顯示，並將其輸出到結果中。
 
-針對 Python 的範例：
+**針對 Python 的範例**
 ```python
 def main(dict):
   import os
@@ -413,3 +437,7 @@ def main(dict):
             }
 
 ```
+{: screen}
+
+
+

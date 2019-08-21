@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
 keywords: weather package, forecast, functions, serverless
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,30 +24,31 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Weather
 {: #pkg_weather}
 
-O pacote `/whisk.system/weather` pré-instalado oferece uma maneira conveniente de chamar o Weather Company Data para a API do {{site.data.keyword.Bluemix}}.
+O pacote `/whisk.system/weather` pré-instalado oferece uma maneira conveniente de chamar o Weather Company Data para a API do {{site.data.keyword.cloud}}.
 {: shortdesc}
 
 O pacote inclui a ação a seguir.
 
-| Entity | Digite | Parâmetros | Descrição |
+| Entity | Tipo | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/whisk.system/weather` | pacote | username, password | Os serviços do Weather Company Data para a API do {{site.data.keyword.Bluemix_notm}}  |
-| `/whisk.system/weather/forecast` | ação | latitude, longitude, timePeriod | previsão para o período especificado|
+| `/whisk.system/weather` | Pacote | `username`, `password` | Serviços do Weather Company Data para a API do {{site.data.keyword.cloud_notm}}. |
+| `/whisk.system/weather/forecast` | Ação | `latitude`, `longitude`, `timePeriod` | Previsão para o período de tempo especificado. |
 
 É sugerido criar uma ligação de pacote com os valores `username`
 e `password`. Dessa forma, não será necessário especificar as
 credenciais toda vez que chamar as ações no pacote.
 
-## Configurando o pacote Weather no {{site.data.keyword.Bluemix_notm}}
+## Configurando o pacote Weather no {{site.data.keyword.cloud_notm}}
 
-Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword.Bluemix_notm}}, as ligações de pacote serão criadas automaticamente para as instâncias de serviço {{site.data.keyword.Bluemix_notm}} Weather.
+Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword.cloud_notm}}, as ligações de pacote serão criadas automaticamente para as instâncias de serviço {{site.data.keyword.cloud_notm}} Weather.
 
-1. Crie uma instância de serviço Weather Company Data em seu painel do {{site.data.keyword.Bluemix_notm}}[](http://cloud.ibm.com).
+1. Crie uma instância de serviço do Weather Company Data em seu {{site.data.keyword.cloud_notm}}painel do [](https://cloud.ibm.com){: external}.
 
-  Certifique-se de lembrar do nome da instância de serviço e da organização e do espaço do {{site.data.keyword.Bluemix_notm}} no qual você se encontra.
+  Certifique-se de lembrar do nome da instância de serviço e da organização e do espaço do {{site.data.keyword.cloud_notm}} no qual você se encontra.
 
 2. Atualize os pacotes em seu namespace. A atualização cria automaticamente uma ligação de pacote para a instância de serviço Weather Company Data que você criou.
   ```
@@ -54,9 +56,10 @@ Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
   ```
-  Ligações criadas: Bluemix_Weather_Company_Data_Credentials-1
+  created bindings:
+  Weather_Company_Data_Credentials-1
   ```
   {: screen}
 
@@ -66,15 +69,16 @@ Se você estiver usando o {{site.data.keyword.openwhisk}} do {{site.data.keyword
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
   ```
-  Os pacotes /myBluemixOrg_myBluemixSpace / Clima Bluemix_Weather_Company_Data_Credentials-1 privado
+  packages
+  /myOrg_mySpace/Weather Weather_Company_Data_Credentials-1 private
   ```
   {: screen}
 
-## Configurando um pacote Weather fora do {{site.data.keyword.Bluemix_notm}}
+## Configurando um pacote Weather fora do {{site.data.keyword.cloud_notm}}
 
-Se você não estiver usando o {{site.data.keyword.openwhisk_short}} no {{site.data.keyword.Bluemix_notm}} ou se desejar configurar o serviço Weather Company Data fora do {{site.data.keyword.Bluemix_notm}}, deverá criar manualmente uma ligação de pacote para o serviço Weather Company Data. São necessários o nome do usuário e a senha do serviço Weather Company Data.
+Se você não estiver usando o {{site.data.keyword.openwhisk_short}} no {{site.data.keyword.cloud_notm}} ou se desejar configurar o serviço Weather Company Data fora do {{site.data.keyword.cloud_notm}}, deverá criar manualmente uma ligação de pacote para o serviço Weather Company Data. São necessários o nome do usuário e a senha do serviço Weather Company Data.
 
 Crie uma ligação de pacote que esteja configurada para seu serviço Weather.
 ```
@@ -85,30 +89,35 @@ ibmcloud fn package bind /whisk.system/weather myWeather -p username MYUSERNAME 
 ## Obtendo uma previsão de tempo para um local
 {: #pkg_weather_forecast}
 
-A ação `/whisk.system/weather/forecast` retorna uma previsão do tempo para um local, chamando uma API a partir da The Weather Company. Os parâmetros são os seguintes:
+A ação `/whisk.system/weather/forecast` retorna uma previsão do tempo para um local, chamando uma API a partir da The Weather Company. Os parâmetros são os seguintes.
 
-- `username`: o nome do usuário para The Weather Company Data for {{site.data.keyword.Bluemix_notm}} que está autorizado a chamar a API de previsão.
-- `password`: a senha para The Weather Company Data for {{site.data.keyword.Bluemix_notm}} que está autorizada a chamar a API de previsão.
-- `latitude`: a coordenada de latitude do local.
-- `longitude`: a coordenadas de longitude do local.
-- `timePeriod`: período para a previsão. Os valores
-válidos são:
-  - `10day` - (padrão) Retorna uma previsão diária de 10 dias
-  - `48hour` - Retorna uma previsão de hora em hora de 2 dias
-  - `current` - Retorna as condições metereológicas atuais
-  - `timeseries` - Retorna as observações atuais e até 24 horas de observações passadas, a partir da data e hora atuais.
+| Parâmetro | Descrição |
+| --- | --- |
+| `username` | Nome de usuário para The Weather Company Data for {{site.data.keyword.cloud_notm}}, que está autorizado a chamar a API de previsão. |
+| `password` | Senha para o Weather Company Data for {{site.data.keyword.cloud_notm}} que está autorizado a chamar a API de previsão. |
+| `latitude` | A coordenada de latitude da localização. |
+| `longitude` | A coordenada de longitude da localização. |
+| `timePeriod` | O período de tempo para a previsão. |
+</br>
 
-O exemplo a seguir mostra como criar uma ligação de pacote e, em seguida, obter uma previsão de 10 dias.
+A tabela a seguir contém os valores que podem ser usados com o parâmetro `--timePeriod`.
+| Valores `--timePeriod` | Descrição |
+| --- | --- |
+| `10day` | (padrão) Retorna uma previsão diária de 10 dias. |
+| `48hour` | Retorna uma previsão de 2 dias por hora. |
+| `current` | Retorna as condições climáticas atuais. |
+| `timeseries` | Retorna as observações atuais e até 24 horas de observações anteriores, a partir da data e hora atuais. |
 
-Chame a ação **forecast** em sua ligação do pacote para obter a previsão do tempo.
+
+**Exemplo** O exemplo a seguir mostra como criar uma ligação de pacote e, em seguida, obter uma previsão de 10 dias.
+
+Chame a ação `forecast` em sua ligação do pacote para obter a previsão do tempo.
 ```
-ibmcloud fn action invoke myWeather/forecast --result \
---param latitude 43.7 \
---param longitude -79.4
+ibmcloud fn action invoke myWeather/forecast --result --param latitude 43.7 --param longitude -79.4
 ```
 {: pre}
 
-Exemplo de Saída:
+**Saída**
 ```
 {
     "forecasts": [
@@ -132,4 +141,5 @@ Exemplo de Saída:
 }
 ```
 {: screen}
+
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 查看日志
 {: #logs}
@@ -52,7 +54,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例输出：
+    **示例输出**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -74,19 +76,19 @@ subcollection: cloud-functions
 
 {{site.data.keyword.openwhisk_short}} 操作可以由其他用户调用、响应各种事件或作为操作序列的组成部分。每当调用操作时，都会为该调用创建激活记录。要获取有关操作调用结果的信息，您可以获取有关激活的详细信息。
 
-要获取名称空间中的所有激活记录标识，请运行以下命令：
+通过运行以下命令，可以获取名称空间中的所有激活记录标识。
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-要获取有关操作调用生成的特定激活记录的详细信息，请运行以下命令：
+通过运行以下命令，可以获取有关操作调用生成的特定激活记录的详细信息。请将 `<activation_ID>` 替换为激活的标识。 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-示例输出：
+**示例输出**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -179,8 +181,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>：激活的出口状态。</li>
-<li><code>statusCode</code>：状态码。如果操作出错，将为 HTTP 错误代码。</li>
-<li><code>success</code>：操作是否成功完成。</li>
+<li><code>statusCode</code>：状态码。如果操作生成错误，那么此值为 HTTP 错误代码。</li>
+<li><code>success</code>：表示操作是否成功完成的结果。</li>
 <li><code>result</code>：从激活返回的值。</li>
 </ul></td>
 </tr>
@@ -194,7 +196,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>操作是否公开发布。</td>
+<td>表示操作是否发布的结果。</td>
 </tr>
 </tbody></table>
 
@@ -203,32 +205,36 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## 在 {{site.data.keyword.loganalysisfull_notm}} 中查看日志
 {: #logs_view}
 
+{{site.data.keyword.loganalysislong_notm}} 日志不可用于基于 IAM 的名称空间。
+{: note}
+
 可以直接在“{{site.data.keyword.openwhisk_short}} 监视”仪表板中查看激活日志。这些日志还会转发到 [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana)（在其中对这些日志建立索引），从而支持对生成的所有消息进行全文搜索，并根据特定字段方便地执行查询。
 {:shortdesc}
 
-**注**：对于美国东部区域，日志记录不可用。
+对于美国东部区域，日志记录不可用。
+{: important}
 
-1. 打开 [{{site.data.keyword.openwhisk_short}} 监视页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/dashboard)。
+1. 打开 [{{site.data.keyword.openwhisk_short}} 监视页面](https://cloud.ibm.com/openwhisk/dashboard){: external}。
 
 2. 可选：要仅查看特定操作的日志，请将监视摘要限制为该操作。在“过滤选项”部分中，从**限制为**下拉列表中选择操作名称。
 
 3. 在左侧导航中，单击**日志**。这将打开 {{site.data.keyword.loganalysisshort_notm}} Kibana 页面。
 
-4. 可选：要查看较旧的日志，请通过单击右上角的**最近 15 分钟**并选择其他时间范围来更改缺省时间范围值 15 分钟。
+4. 可选：要查看较旧的日志，请通过单击**最近 15 分钟**并选择其他时间范围来更改缺省时间范围值 15 分钟。
 
 ### 查询日志
 {: #logs_query}
 
 可以使用 Kibana 的查询语法在 [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) 中查找特定激活日志。
 
-以下示例查询可帮助您调试错误：
-  * 查找所有错误日志：
+以下示例查询可帮助您调试错误。
+  * 查找所有错误日志。
       ```
 type: user_logs AND stream_str: stderr
 ```
       {: codeblock}
 
-  * 查找由“myAction”生成的所有错误日志：
+  * 查找由 `myAction` 生成的所有错误日志。
       ```
 type: user_logs AND stream_str: stderr AND action_str: "*myAction"
 ```
@@ -241,16 +247,18 @@ type: user_logs AND stream_str: stderr AND action_str: "*myAction"
 
 可以使用 Kibana 的查询语法查找特定激活日志。以下示例查询可帮助您调试错误：
 
-* 查找所有失败的激活：
+* 查找所有失败的激活。
     ```
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    在结果中，`0` 指示已成功退出的操作，其他所有值均指示错误。
+    在结果中，`0` 指示操作已成功退出。其他所有值均指示错误。
 
-* 查找由于特定错误而失败的所有激活：
+* 查找由于特定错误而失败的所有激活。
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

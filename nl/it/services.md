@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-16"
 
-keywords: services, serverless
+keywords: services, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,10 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# Aggiunta di servizi IBM Cloud
+# Esecuzione del bind dei servizi {{site.data.keyword.cloud_notm}} alle entità {{site.data.keyword.openwhisk_short}}
 {: #services}
 
-Puoi utilizzare la funzionalità di incorporazione dei servizi IBM Cloud nella tua applicazione.
+Puoi utilizzare la funzionalità di incorporazione dei servizi IBM Cloud nella tua applicazione {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 **Come posso aggiungere i servizi IBM Cloud alla mia applicazione?**
@@ -38,7 +39,7 @@ Puoi utilizzare la funzionalità di incorporazione dei servizi IBM Cloud nella t
 
 **Come configuro i parametri a cui deve accedere la mia applicazione?**
 
-Questi parametri potrebbero includere i valori che rendono la tua applicazione riutilizzabile con dati differenti o i valori richiesti dal servizio, come ad esempio le credenziali. 
+Questi parametri potrebbero includere valori che rendono la tua applicazione riutilizzabile con dati diversi o potrebbero includere valori richiesti dal servizio, come le credenziali. 
 1. Puoi codificare i parametri nella tua applicazione. Questa opzione potrebbe non essere il modo più sicuro per archiviare informazioni riservate quali le credenziali.
 2. Puoi eseguire il bind dei parametri alla tua applicazione, collegandoli a un'azione o a un pacchetto.
 
@@ -46,9 +47,10 @@ Questi parametri potrebbero includere i valori che rendono la tua applicazione r
 ## Bind di un servizio a un'azione o un pacchetto
 {: #services_bind}
 
-Esegui il bind di qualsiasi servizio {{site.data.keyword.Bluemix_notm}} a qualsiasi azione. Quando si esegue il bind di un servizio, viene creato un nuovo parametro sulla tua azione esistente che contiene le credenziali dell'istanza del servizio.
+Esegui il bind di qualsiasi servizio {{site.data.keyword.cloud_notm}} a qualsiasi azione. Quando si esegue il bind di un servizio, viene creato un nuovo parametro sulla tua azione esistente che contiene le credenziali dell'istanza del servizio.
 
-**Nota**: non puoi eseguire il bind di più istanze dello stesso servizio a un'azione o a un pacchetto. Puoi solo eseguire il bind di una sola istanza di un servizio. 
+Non puoi eseguire il bind di più istanze dello stesso servizio a un'azione o a un pacchetto. Puoi eseguire il bind di una sola istanza di un servizio.
+{: note}
 
 Prima di iniziare, [crea un'azione](/docs/openwhisk?topic=cloud-functions-actions) e[definisci le credenziali](/docs/resources?topic=resources-externalapp#externalapp) per il servizio di cui vuoi eseguire il bind all'azione.
 
@@ -58,8 +60,8 @@ Prima di iniziare, [crea un'azione](/docs/openwhisk?topic=cloud-functions-action
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     name              service        plan   bound apps   last operation
     Composer-qp   composer   free                create succeeded
     Composer-uc   composer   free                create succeeded
@@ -68,20 +70,19 @@ Prima di iniziare, [crea un'azione](/docs/openwhisk?topic=cloud-functions-action
     {: screen}
 
 2. Ottieni il nome delle credenziali definite per un'istanza del servizio.
-
     ```
     ibmcloud service keys SERVICE_NAME
     ```
     {: pre}
 
-    Esempio:
+    **Esempio**
     ```
     ibmcloud service keys Composer-qp
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     Invoking 'cf service-keys Composer-qp'...
 
     Getting keys for service instance Composer-qp as <your ID>...
@@ -92,56 +93,62 @@ Credentials-2
     ```
     {: screen}
 
-3. Esegui il bind del servizio a un'azione. Il comando `ibmcloud fn service bind` di {{site.data.keyword.openwhisk_short}} rende disponibili le tue credenziali del servizio {{site.data.keyword.Bluemix_notm}} al tuo codice {{site.data.keyword.openwhisk_short}} durante il runtime.
+3. Esegui il bind del servizio a un'azione. Il comando `ibmcloud fn service bind` rende le tue credenziali del servizio {{site.data.keyword.cloud_notm}} disponibili per tuo codice {{site.data.keyword.openwhisk_short}} durante il runtime. Per il comando `ibmcloud fn service bind` sono disponibili i seguenti parametri.
+
+    <table>
+    <thead>
+        <tr>
+        <th>Parametro</th>
+        <th>Descrizione</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><code>SERVICE</code></td>
+        <td>Il nome del servizio di cui stai eseguendo il bind.</td>
+        </tr>
+        <tr>
+        <td><code>ACTION_NAME</code></td>
+        <td>Il nome dell'azione o del pacchetto di cui eseguire il bind al servizio.</td>
+        </tr>
+        <tr>
+        <td><code>--instance INSTANCE_NAME</code></td>
+        <td>(Facoltativo) Specifica un nome per l'istanza del servizio. Se non specifichi un nome, viene selezionata la prima istanza per il servizio.</td>
+        </tr>
+        <tr>
+        <td><code>--keyname CREDENTIALS_NAME</code></td>
+        <td>(Facoltativo) Specifica il nome delle credenziali. Se non specifichi il nome delle credenziali, vengono selezionate le prime credenziali per l'istanza del servizio.</td>
+        </tr>
+    </tbody>
+    </table>
+
+    **Sintassi di esempio**
     ```
-    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME][--keyname CREDENTIALS_NAME]
     ```
     {: pre}
 
-    <table>
-    <caption>Descrizione dei componenti del comando <code>ibmcloud fn service bind</code></caption>
-    <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icona Idea"/> Descrizione dei componenti del comando <code>ibmcloud fn service bind</code></th>
-    </thead>
-    <tbody>
-    <tr>
-    <td><code>SERVICE</code></td>
-    <td>Il nome del servizio di cui stai eseguendo il bind.</td>
-    </tr>
-    <tr>
-    <td><code>ACTION_NAME</code></td>
-    <td>Il nome dell'azione o del pacchetto di cui eseguire il bind al servizio.</td>
-    </tr>
-    <tr>
-    <td>--instance <code>INSTANCE_NAME</code></td>
-    <td>Facoltativo: specifica un nome per l'istanza del servizio. Se non specifichi un nome, viene selezionata la prima istanza per il servizio.</td>
-    </tr>
-    <tr>
-    <td>--keyname <code>CREDENTIALS_NAME</code></td>
-    <td>Facoltativo: specifica il nome delle credenziali. Se non specifichi il nome delle credenziali, vengono selezionate le prime credenziali per l'istanza del servizio.</td>
-    </tr>
-    </tbody></table>
-
-    Ad esempio, per eseguire il bind di un {{site.data.keyword.ibmwatson}} servizio Composer a un'azione denominata `hello`:
+    Ad esempio, per eseguire il bind di un servizio {{site.data.keyword.ibmwatson}} Composer a un'azione denominata `hello`, immetti il seguente comando.
     ```
     ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
     ```
     {: pre}
 
-    Output:
+    **Output**
     ```
     Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello'.
     ```
     {: screen}
 
 4. Verifica che le credenziali siano state associate correttamente. L'azione a cui è stato associato il servizio tramite bind non supporta alcun indicatore personalizzato, ma supporta il debug e gli indicatori dettagliati.
+
     ```
     ibmcloud fn action get hello parameters
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     ok: got action Hello World
 {
         "parameters": [
@@ -172,10 +179,7 @@ Credentials-2
 
     In questo esempio, le credenziali per il servizio Composer, insieme a qualsiasi altra credenziale per altri tipi di servizi, appartengono a un parametro denominato `__bx_creds`. L'azione cerca il parametro associato `__bx_creds` e rimuove il riferimento al tipo di servizio elencato. Se quel tipo di servizio è l'unico elencato, l'azione annulla il valore del parametro `__bx_creds`. Se più di un servizio è associato all'azione, il parametro `__bx_creds` rimane con qualsiasi servizio ancora associato.
 
-Per ulteriori informazioni sulla trasmissione di parametri a un'azione o a un pacchetto, vedi [Associazione di parametri ad azioni](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
-
-
-
+Per ulteriori informazioni sulla trasmissione di parametri a un'azione o a un pacchetto, vedi [Esecuzione del bind dei parametri alle azioni](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
 
 ## Annullamento del bind di servizi alle azioni
 {: #services_unbind}
@@ -186,3 +190,4 @@ L'annullamento del bind di un servizio a un'azione o un pacchetto rimuove i bind
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
+

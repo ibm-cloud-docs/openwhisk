@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 查看 {{site.data.keyword.cloudaccesstrailshort}} 事件
@@ -37,9 +39,9 @@ subcollection: cloud-functions
 ## 查看事件的位置
 {: #view}
 
-事件在 {{site.data.keyword.openwhisk_short}} 名称空间资源可用的 {{site.data.keyword.Bluemix_notm}} 区域中可用的 {{site.data.keyword.cloudaccesstrailshort}} **帐户域**中可用。有关更多信息，请参阅[查看帐户事件](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)。
+事件在 {{site.data.keyword.openwhisk_short}} 名称空间资源可用的 {{site.data.keyword.cloud_notm}} 区域中可用的 {{site.data.keyword.cloudaccesstrailshort}} **帐户域**中可用。有关更多信息，请参阅[查看帐户事件](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)。
 
-1. 登录到您的 {{site.data.keyword.Bluemix_notm}} 帐户。
+1. 登录到您的 {{site.data.keyword.cloud_notm}} 帐户。
 2. 在目录中，在 {{site.data.keyword.openwhisk}} 实例所在的帐户中供应 {{site.data.keyword.cloudaccesstrailshort}} 服务的实例。
 3. 在 {{site.data.keyword.cloudaccesstrailshort}} 仪表板的**管理**选项卡上，单击**在 Kibana 中查看**。
 4. 设置要查看其日志的时间范围。缺省值为 15 分钟。
@@ -82,3 +84,6 @@ subcollection: cloud-functions
     </tr>
   </tbody>
 </table>
+
+
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 测试无服务器应用程序
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Hello world 示例：
+**Hello world 示例**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-输出：
+**输出**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-示例输出：
+**示例输出**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-示例输出：
+**示例输出**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -107,7 +109,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 
 阻塞性调用使用请求/响应样式，并等待激活结果可用。等待时间段为 60 秒或操作的[时间限制值](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)（两者取较短的时间）。
 
-在云中，通过运行阻塞性调用来运行操作：
+在云中，通过运行阻塞性调用来运行操作。
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-示例输出：
+**示例输出**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -129,13 +131,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ```
 {: screen}
 
-此命令输出以下信息：
+此命令输出以下信息。
 * 调用结果（如果在预期的等待时间段内可用）
-* 如果未使用 --result 选项，那么会在结果中显示激活标识。激活标识 (`44794bd6aab74415b4e42a308d880e5b`)，可用于检索调用的日志或结果。
-
-
-
-
+* 如果未使用 `--result` 选项，那么会在结果中显示激活标识。激活标识 (`44794bd6aab74415b4e42a308d880e5b`)，可用于检索调用的日志或结果。
 
 
 ## 测试触发器
@@ -152,9 +150,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    未与规则关联的触发器在触发时没有任何可视效果。由于不存在与此触发器相关联的规则，因此传递的参数不会用作任何操作的输入。
+    未与规则关联的触发器在触发时没有任何可视效果。由于没有与此触发器相关联的规则，因此传递的参数不会用作任何操作的输入。
 
-    示例输出：
+    **示例输出**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -167,8 +165,8 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
     ```
@@ -180,8 +178,8 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     {
        "payload": "Hello, Human from Earth"
     }
@@ -218,7 +216,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
       ```
     {: pre}
 
-    `duration` 显示时间（以毫秒为单位）。完成此激活所用时间略长于 2 秒：
+    `duration` 显示时间（以毫秒为单位）。完成激活所用时间略长于 2 秒。
 
     ```
       ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -274,7 +272,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     ```
     {: pre}
 
-4. 复查容器的内存使用情况值。如果值不符合系统限制，请对脚本进行一些调整。
+4. 复查容器的内存使用情况值。如果值不符合系统限制，请调整脚本。
 
 5. 复查完信息后，可以停止正在运行的容器。
 
@@ -289,6 +287,8 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

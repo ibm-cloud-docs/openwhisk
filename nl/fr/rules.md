@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Association de déclencheurs et d'actions au moyen de règles
 {: #rules}
 
-A chaque fois que le déclencheur s'exécute, la règle utilise l'événement déclencheur comme entrée et appelle l'action associée. Avec le jeu de règles approprié, un événement déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.
+A chaque fois que le déclencheur s'exécute, la règle utilise l'événement déclencheur comme entrée et appelle l'action associée. Avec le jeu de règles approprié, un déclencheur unique peut appeler plusieurs actions, ou une action peut être appelée en réponse à des événements provenant de plusieurs déclencheurs.
 {: shortdesc}
 
 
@@ -83,12 +85,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 Vous pouvez utiliser différentes combinaisons de déclencheurs et d'actions en créant une règle pour chaque combinaison. Vous n'avez pas besoin d'avoir un rapport de un à un pour les actions et les déclencheurs.
 
 Par exemple, envisagez les actions suivantes.
-- `classifyImage` : action qui détecte les objets dans une image et les classe.
-- `thumbnailImage` : action qui crée une version miniature d'une image.
 
-De plus, supposez que deux sources d'événements exécutent les déclencheurs suivants.
-- `newTweet` : déclencheur qui est exécuté lorsqu'un nouveau tweet est publié.
-- `imageUpload` : déclencheur qui est exécuté lorsqu'une image est téléchargée sur un site Web.
+| Action | Description |
+| --- | --- |
+| `classifyImage` | Action qui détecte les objets dans une image et les classe. |
+| `thumbnailImage` | Action qui crée une version miniature d'une image. |
+
+Supposons également que deux sources d'événements exécutent les déclencheurs suivants.
+
+| Déclencheur | Description |
+| --- | --- |
+| `newTweet` | Déclencheur qui est exécuté lorsqu'un nouveau tweet est publié. |
+| `imageUpload` | Déclencheur qui est exécuté lorsqu'une image est téléchargée sur un site Web. |
 
 Vous pouvez configurer des règles pour qu'un événement déclencheur unique appelle plusieurs actions, et pour que plusieurs déclencheurs appellent la même action .
 - La règle `newTweet -> classifyImage`
@@ -99,3 +107,4 @@ Ces trois règles induisent le comportement suivant.
 - Les images contenues dans chaque tweet sont classifiées
 - Les images téléchargées sont classifiées
 - Une version miniature est générée
+

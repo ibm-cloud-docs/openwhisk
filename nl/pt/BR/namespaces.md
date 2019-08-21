@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-17"
+lastupdated: "2019-07-18"
 
-keywords: namespaces, iam, cloud foundry, classic namespaces
+keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,54 +25,83 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-
 # Gerenciando namespaces
 {: #namespaces}
 
-Com o {{site.data.keyword.openwhisk}}, é possível criar namespaces gerenciados do Identity and Access (IAM) para agrupar entidades, tais como ações ou acionadores, juntos. Em seguida, é possível criar políticas de acesso do IAM para o namespace.
+Com o {{site.data.keyword.openwhisk}}, é possível criar namespaces gerenciados do Identity and Access (IAM) para agrupar entidades, tais como ações ou acionadores, juntos. Em seguida, é possível criar políticas de acesso do IAM para o namespace. Para obter uma visão geral do IAM, consulte o [Blog de anúncio de ativação do IAM do {{site.data.keyword.openwhisk_short}}](https://www.ibm.com/cloud/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled){: external}.
 {: shortdesc}
 
-
-**O que é um namespace?**
+## O que é um namespace?
 
 Os namespaces contêm entidades do {{site.data.keyword.openwhisk_short}}, como ações e acionadores, e pertencem a um grupo de recursos. É possível permitir que os usuários acessem suas entidades concedendo a eles acesso ao namespace.
 
-O nome completo de uma entidade é `/namespaceName/[packageName]/entityName`.
+O nome completo de uma entidade é `/namespaceName/packageName/entityName`.
 
+### O que acontece quando eu crio um namespace?
 
-**O que acontece quando eu crio um namespace?**
+Os namespaces que são criados no {{site.data.keyword.openwhisk_short}} são identificados como uma instância de serviço do IAM.
+Durante a criação de um namespace, é possível especificar o [grupo de recursos](/docs/resources?topic=resources-rgs) no qual incluir a instância de serviço.
 
-Os namespaces que são criados no {{site.data.keyword.openwhisk_short}} são identificados como uma instância de serviço do IAM. Durante a criação de um namespace, é possível especificar o [grupo de recursos](/docs/resources?topic=resources-rgs) no qual incluir a instância de serviço.
+Quando você cria um namespace, os componentes a seguir são criados:
 
-Quando você cria seu namespace, os artefatos a seguir são criados ao mesmo tempo:
+| Componente | Descrição |
+| --- | --- | 
+| Um ID de serviço | É possível usar o ID de serviço como um ID funcional quando você faz chamadas de saída. Todas as ações que são criadas nesse namespace podem usar esse ID de serviço para acesso a outros recursos. O usuário funcional obtém a função de Leitor por padrão. O acesso de Leitor significa que ele pode ler entidades de namespace e chamar ações. A função de Leitor é usada por acionadores para chamar ações. Para controlar o tráfego de entrada, talvez você queira conceder acesso a outros usuários, como a designação de função de Leitor para chamar ações. |
+| Uma chave de API | Uma chave de API para o ID de serviço que pode ser usada para gerar tokens do IAM. É possível usar os tokens para autenticar o namespace com outros serviços do {{site.data.keyword.cloud_notm}}. A chave de API é fornecida para as ações como a variável de ambiente `__OW_IAM_NAMESPACE_API_KEY`. |
 
-* Um ID de serviço que pode ser usado como um ID funcional quando você faz chamadas de saída. Todas as ações que são criadas nesse namespace podem usar esse ID de serviço para acesso a outros recursos. Para ver todos os seus IDs de serviço, execute `ibmcloud iam service-ids`.
+Visualizar todos os seus IDs de serviço.
+```
+ibmcloud iam service-ids
+```
+{: pre}
 
-* Uma chave de API para o ID de serviço que pode ser usada para gerar tokens do IAM. Em seguida, é possível usar os tokens para autenticar o namespace com outros serviços do {{site.data.keyword.Bluemix_notm}}. A chave de API é fornecida para as ações como variável de ambiente.
-
-    Não exclua as chaves de API.
-    {: tip}
-
-**Há alguma limitação para namespaces?**
-
-A [criação de APIs com o API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) e o uso do [SDK móvel](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) não são suportados para namespaces gerenciados pelo IAM.
-
-O {{site.data.keyword.openwhisk_short}} tem restrições sobre nomes de namespace. Para obter mais informações, consulte a documentação [Detalhes e limites do sistema](/docs/openwhisk?topic=cloud-functions-limits#limits_entities_ov).
-{: tip}
-
-
-
-**O que eu faço se tenho um namespace baseado em Cloud Foundry?**
-
-Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, para aproveitar os novos recursos, deve-se [migrar seus namespaces para o IAM](/docs/resources?topic=resources-migrate).
+Visualize as chaves de API que estão associadas a um ID de serviço. 
+```
+ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
+```
+{: pre}
 
 </br>
 
+Não exclua as chaves de API.
+{: tip}
 
-## Criando um namespace com a CLI
+### Há alguma limitação para namespaces?
+
+A [criação de APIs com o gateway de API](/docs/openwhisk?topic=cloud-functions-apigateway) e o [SDK móvel](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) não são suportados para namespaces gerenciados pelo IAM. 
+
+Os nomes de todas as entidades, incluindo ações, acionadores, regras, pacotes e
+namespaces, são uma sequência de caracteres que seguem o formato a seguir:
+* O primeiro caractere deve ser um caractere alfanumérico ou um sublinhado.
+* Os caracteres subsequentes podem ser alfanuméricos, espaços ou qualquer um dos valores a seguir: `_`, `@`, `.`, `-`.
+* O último caractere não pode ser um espaço.
+
+### O que eu faço caso tenha um namespace baseado no Cloud Foundry?
+
+Seus namespaces baseados no Cloud Foundry ainda funcionam. No entanto, para aproveitar os novos recursos, deve-se criar um namespace ativado pelo IAM.
+
+
+## Criando um namespace baseado no IAM na IU
+{: #create_iam_ui}
+
+1. No [console do {{site.data.keyword.openwhisk_short}} ](https://cloud.ibm.com/openwhisk){: external}, clique no menu suspenso do namespace.
+
+2. Clique em **Criar namespace**.
+
+3. Insira um nome de exibição para o namespace e uma descrição simples, como os tipos de ações ou pacotes que você planeja criar nesse namespace.
+
+4. Escolha o grupo de recursos no qual você deseja criar o namespace e um local no qual implementar o recurso de namespace.
+
+5. Clique em **Criar**.
+
+6. Para visualizar a instância de serviço para o recurso de namespace, acesse seu [painel do {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/resources){: external} e localize seu nome de namespace na área de janela **Namespaces do Functions**.
+
+Se for necessário, será possível atualizar o nome ou a descrição do namespace na página **Configurações de namespace** no console do {{site.data.keyword.openwhisk_short}}.
+
+## Criando um namespace baseado no IAM com a CLI
 {: #namespaces_create}
 
-É possível criar um namespace gerenciado do IAM como parte de um grupo de recursos e gerenciar políticas de acesso para seus recursos, destinando o grupo de recursos quando um namespace é criado. Se você tiver outros usuários que requeiram acesso ao seu namespace ou se desejar acessar outros recursos por meio de suas ações do namespace, certifique-se de configurar políticas do IAM depois que seu namespace for criado.
+É possível criar um namespace gerenciado pelo IAM como parte de um grupo de recursos e gerenciar políticas de acesso para seus recursos, direcionando o grupo de recursos quando um namespace é criado. Se você tiver outros usuários que requeiram acesso ao seu namespace ou se desejar acessar outros recursos por meio de suas ações do namespace, certifique-se de configurar políticas do IAM depois que seu namespace for criado.
 {: shortdesc}
 
 1. Destine o grupo de recursos no qual você deseja criar o namespace. Se você não tiver criado um [grupo de recursos](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) ainda, poderá destinar o grupo `default`.
@@ -81,10 +111,10 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
   ```
   {: pre}
 
-2. Crie um namespace ativado pelo IAM.
+2. Crie um namespace ativado pelo IAM. Opcional: inclua uma descrição para seu namespace usando a sinalização `-n` ou `--description`. Se a sua descrição for maior que uma palavra, ela deverá estar entre aspas.
 
   ```
-  ibmcloud fn namespace create <namespace_name> [-n <description>]
+  ibmcloud fn namespace create <namespace_name> [--description <"description of your namespace">]
   ```
   {: pre}
 
@@ -101,12 +131,16 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
       </tr>
       <tr>
         <td><code>-n &lt;description&gt;</code></td>
-        <td>Opcional: inclua uma descrição no namespace, como quais tipos de ações ou pacotes ele conterá.</td>
+        <td>Opcional: inclua uma descrição no namespace, como quais tipos de ações ou pacotes você planeja criar. Se a sua descrição for maior que uma palavra, ela deverá estar entre aspas.</td>
+      </tr>
+      <tr>
+        <td><code>--description &lt;description&gt;</code></td>
+        <td>Opcional: inclua uma descrição no namespace, como quais tipos de ações ou pacotes você planeja criar. Se a sua descrição for maior que uma palavra, ela deverá estar entre aspas.</td>
       </tr>
     </tbody>
   </table>
 
-  Exemplo de Saída:
+  Saída de exemplo:
 
   ```
   ok: created namespace myNamespace
@@ -120,14 +154,14 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
   ```
   {: pre}
 
-  Exemplo de Saída:
+  Saída de exemplo:
 
   ```
-  Details of namespace: 'myNamespace'
-    Description: 'short description'
-    Resource Plan Id: 'functions-base-plan'
-    Location: 'jp-tok'
-    ID: '05bae599-ead6-4ccb-9ca3-94ce8c8b3e43'
+  Detalhes do namespace: myNamespace
+  Descrição: short description
+  ID de plano de recursos: functions-base-plan
+  Localização: jp-tok
+  ID: 05bae599-ead6-4ccb-9ca3-94ce8c8b3e43
   ```
   {: screen}
 
@@ -138,21 +172,21 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
   ```
   {: pre}
 
-4. Antes de criar entidades no namespace, configure seu contexto da CLI para o namespace fazendo com que ele seja o destino.
+4. Antes de poder criar entidades no namespace, deve-se configurar o contexto da CLI para o namespace, destinando-o.
 
   ```
   ibmcloud fn property set --namespace <namespace_name_or_id>
   ```
   {: pre}
 
-</br>
+Depois de configurar uma propriedade, como a propriedade `--namespace`, ela será retida até você desconfigurá-la manualmente. Se você desejar alternar entre namespaces do IAM ou entre o Cloud Foundry e o IAM, deverá desconfigurar a propriedade de namespace e reconfigurá-la. Para obter mais informações, consulte [`ibmcloud fn property set`]
+{: note}
 
 ## Criando um Espaço de Nomes com a API
 {: #namespaces_create_api}
 
-É possível criar um namespace gerenciado do IAM como parte de um grupo de recursos e gerenciar políticas de acesso para seus recursos, destinando o grupo de recursos quando um namespace é criado. Se você tiver outros usuários que requeiram acesso ao seu namespace ou se desejar acessar outros recursos por meio de suas ações do namespace, certifique-se de configurar políticas do IAM depois que seu namespace for criado.
+É possível criar um namespace gerenciado pelo IAM como parte de um grupo de recursos e gerenciar políticas de acesso para seus recursos, direcionando o grupo de recursos quando um namespace é criado. Se você tiver outros usuários que requeiram acesso ao seu namespace ou se desejar acessar outros recursos por meio de suas ações do namespace, certifique-se de configurar políticas do IAM depois que seu namespace for criado.
 {: shortdesc}
-
 
 1. Destine o grupo de recursos no qual você deseja criar o namespace. Se você não tiver criado um [grupo de recursos](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) ainda, poderá destinar o grupo `default`.
 
@@ -181,7 +215,7 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
     <tbody>
       <tr>
         <td><code>&lt;IAM_token&gt;</code></td>
-        <td>Seu token do {{site.data.keyword.Bluemix_notm}} Identity and Access Management (IAM). Para recuperar seu token do IAM, execute <code>ibmcloud iam oauth-tokens</code>.</td>
+        <td>Seu token do {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM). Para recuperar seu token do IAM, execute <code>ibmcloud iam oauth-tokens</code>.</td>
       </tr>
       <tr>
         <td><code>-n &lt;name&gt;</code></td>
@@ -202,7 +236,7 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
     </tbody>
   </table>
 
-  Exemplo de Saída:
+  **Saída de exemplo**
 
   ```
   {
@@ -236,7 +270,8 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
+
   ```
   {
     "limit": 10,
@@ -257,15 +292,32 @@ Os namespaces baseados no Cloud Foundry continuarão a funcionar. No entanto, pa
   ```
   {: screen}
 
-
 Para obter mais informações sobre como trabalhar com o HTTP REST, confira os [docs da API do {{site.data.keyword.openwhisk_short}}](/apidocs/functions).
 {: tip}
 
+### Acessando outros recursos por meio de um namespace
+{: #namespace-access}
 
+As ações geralmente chamam outros recursos e serviços do {{site.data.keyword.cloud_notm}} que requerem autenticação apropriada. Se esses serviços estiverem ativados pelo IAM e aceitarem tokens do IAM, será possível alavancar o ID funcional do namespace para comunicação de saída.
+{: shortdesc}
+
+Conforme descrito em [Gerenciando o acesso do IAM](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), para cada namespace, um ID de serviço é criado, representando o namespace. É possível conceder acesso a outros serviços e recursos para esse ID de serviço, designando as funções apropriadas, usando o gerenciamento de política do IAM. Para obter mais informações sobre como criar IDs de serviço para acessar outros serviços ativados pelo IAM, consulte [Criando e trabalhando com IDs de serviço](/docs/iam?topic=iam-serviceids#serviceids).
+
+No tempo de execução, o {{site.data.keyword.openwhisk_short}} transmite uma chave de API do ID do serviço de namespace para o código de ação como a variável de ambiente `__OW_IAM_NAMESPACE_KEY`. O código de ação pode usar essa chave de API para gerar um token do IAM. A maioria dos SDKs do {{site.data.keyword.openwhisk_short}} suportados, como Cloudant, {{site.data.keyword.watson}} e {{site.data.keyword.cos_full_notm}} é autenticada com a própria chave de API do IAM. Para outros serviços ou recursos gerenciados pelo IAM que usam uma API de REST, é possível autenticar com o token que é derivado da chave de API do IAM. Para obter mais informações, consulte [Criar um token de acesso do IAM para um usuário ou um ID de serviço](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
+
+Não tem certeza de como as chaves de API e os tokens se ajustam? Saiba mais em [os docs do IAM](/docs/iam?topic=iam-iamapikeysforservices).
 
 ## Próximas etapas
 {: #namespaces_next}
 
-Agora que você criou um namespace, é possível criar políticas de acesso do IAM para ajudar a protegê-lo. Para iniciar, confira [Gerenciando acesso](/docs/openwhisk?topic=cloud-functions-iam). Para obter mais informações sobre como é possível gerenciar namespaces baseados em IAM, consulte a [Referência da API de REST do {{site.data.keyword.openwhisk_short}}](/apidocs/functions).
+Agora que você criou um namespace, é possível criar políticas de acesso do IAM para ajudar a protegê-lo. Para iniciar, confira [Gerenciando acesso](/docs/openwhisk?topic=cloud-functions-iam). 
+
+Para obter mais informações sobre como gerenciar namespaces baseados no IAM, consulte a [referência de API de REST do {{site.data.keyword.openwhisk_short}}](/apidocs/functions).
+
+
+
+
+
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Verifica delle applicazioni senza server
 {: #test}
 
-Verifica ogni entità che hai creato dalla CLI per verificare che l'applicazione senza server stia funzionando o per risolvere gli eventuali problemi.
+Verifica ogni entità che crei dalla CLI per assicurarti che l'applicazione senza server funzioni o per risolvere eventuali problemi che potrebbero verificarsi.
 {: shortdesc}
 
 
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Esempio Hello world:
+**Esempio di Hello world**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-Output:
+**Output**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-Output di esempio:
+**Output di esempio**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-Output di esempio:
+**Output di esempio**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -105,9 +107,9 @@ Output di esempio:
 La chiamata dell'azione può essere bloccante o non bloccante. Le chiamate sono non bloccanti per impostazione predefinita. Se non ti serve subito il risultato dell'azione, usa una chiamata non bloccante.
 {: shortdesc}
 
-Le chiamate bloccanti utilizzano uno stile richiesta/risposta e attendono che il risultato dell'attivazione sia disponibile. Il periodo di attesa è inferiore a 60 secondi o al [valore del limite di tempo](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) dell'azione.
+Le chiamate bloccanti utilizzano uno stile di richiesta-risposta e attendono che il risultato dell'attivazione sia disponibile. Il periodo di attesa è inferiore a 60 secondi o al [valore del limite di tempo](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) dell'azione.
 
-Esegui l'azione nel cloud eseguendo una chiamata bloccante:
+Esegui l'azione nel cloud eseguendo una chiamata bloccante.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-Output di esempio:
+**Output di esempio**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -129,13 +131,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ```
 {: screen}
 
-Il comando genera in output le seguenti informazioni:
+Il comando emette le seguenti informazioni.
 * Il risultato della chiamata, se disponibile entro il periodo di attesa previsto
-* Senza l'opzione --result, l'ID attivazione viene visualizzato nel risultato. L'ID attivazione (`44794bd6aab74415b4e42a308d880e5b`) che può essere utilizzato per richiamare i log o il risultato della chiamata.
-
-
-
-
+* Senza l'opzione `--result`, l'ID attivazione viene visualizzato nel risultato. L'ID attivazione (`44794bd6aab74415b4e42a308d880e5b`) che può essere utilizzato per richiamare i log o il risultato della chiamata.
 
 
 ## Verifica dei trigger
@@ -151,9 +149,9 @@ I trigger possono essere attivati utilizzando un dizionario di coppie chiave-val
     ```
     {: pre}
 
-    Un trigger che non è associato a una regola non ha alcun effetto visibile quando viene attivato. Poiché non c'è alcuna regola associata a questo trigger, i parametri passati non vengono utilizzati come input da alcuna azione.
+    Un trigger che non è associato a una regola non ha alcun effetto visibile quando viene attivato. Poiché non c'è alcuna regola associata a questo trigger, i parametri passati non vengono utilizzati come input da nessuna azione.
 
-    Output di esempio:
+    **Output di esempio**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -166,8 +164,8 @@ I trigger possono essere attivati utilizzando un dizionario di coppie chiave-val
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
     ```
@@ -179,8 +177,8 @@ I trigger possono essere attivati utilizzando un dizionario di coppie chiave-val
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     {
        "payload": "Hello, Human from Earth"
     }
@@ -217,7 +215,7 @@ Controlla quanto tempo ha impiegato il completamento di un'attivazione, ottenend
     ```
     {: pre}
 
-    `duration` indica il tempo in millisecondi. Il completamento di questa attivazione ha richiesto poco più di 2 secondi:
+    `duration` indica il tempo in millisecondi. Il completamento dell'attivazione ha richiesto poco più di 2 secondi.
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -259,7 +257,7 @@ Se la tua applicazione è inserita in un pacchetto all'interno di un'immagine Do
     ```
     {: pre}
 
-2. Ottieni l'elenco dei contenitori per ottenere un ID contenitore.
+2. Richiama un elenco dei contenitori per ottenere un ID contenitore.
 
     ```
     docker ps
@@ -273,7 +271,7 @@ Se la tua applicazione è inserita in un pacchetto all'interno di un'immagine Do
     ```
     {: pre}
 
-4. Rivedi il valore di utilizzo della memoria per il contenitore. Se il valore non rientra nei limiti del sistema, apporta alcune modifiche al tuo script.
+4. Rivedi il valore di utilizzo della memoria per il contenitore. Se il valore non rientra nei limiti di sistema, modifica il tuo script.
 
 5. Dopo aver controllato le informazioni, puoi arrestare il contenitore in esecuzione.
 
@@ -288,6 +286,8 @@ Se la tua applicazione è inserita in un pacchetto all'interno di un'immagine Do
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

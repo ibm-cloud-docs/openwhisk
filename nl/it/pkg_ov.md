@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: packages, installable packages
+keywords: packages, installable packages, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Incorporazione di pacchetti
 {: #pkg_ov}
@@ -34,7 +36,7 @@ I pacchetti sono insiemi assemblati di azioni e feed correlati. Ogni pacchetto �
 
 I [pacchetti preinstallati](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse) vengono registrati automaticamente in {{site.data.keyword.openwhisk_short}} nello spazio dei nomi `/whisk.system`. Puoi utilizzarli senza completare alcuna procedura di installazione.
 
-I pacchetti installabili sono pacchetti disponibili, che puoi installare, modificare o usare in base alle tue esigenze. I pacchetti installabili non si trovano all'interno del sistema {{site.data.keyword.openwhisk_short}}. I pacchetti installabili sono invece ospitati esternamente in singoli repository Github.
+I pacchetti installabili sono pacchetti disponibili, che puoi installare, modificare o usare in base alle tue esigenze. I pacchetti installabili non si trovano all'interno del sistema {{site.data.keyword.openwhisk_short}}. I pacchetti installabili sono invece ospitati esternamente in singoli repository GitHub.
 
 Puoi installare questi pacchetti o un tuo pacchetto direttamente nel tuo spazio dei nomi e puoi dare un nome personalizzato a un pacchetto. Poiché il pacchetto è installato nel tuo spazio dei nomi, puoi modificare le azioni e i feed nel pacchetto come necessario.
 
@@ -76,16 +78,16 @@ In {{site.data.keyword.openwhisk_short}} sono registrati vari pacchetti per te. 
   ```
   {: pre}
 
-  Esempio:
+  **Esempio**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -98,13 +100,13 @@ In {{site.data.keyword.openwhisk_short}} sono registrati vari pacchetti per te. 
 
 3. Ottieni una descrizione di un'azione o di un feed per visualizzare i parametri richiesti.
 
-  Esempio:
+  **Esempio**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -115,7 +117,7 @@ In {{site.data.keyword.openwhisk_short}} sono registrati vari pacchetti per te. 
 
 
 
-## Associazione di parametri a pacchetti preinstallati
+## Esecuzione del bind dei parametri a pacchetti preinstallati
 {: #pkg_bind}
 
 Sebbene tu possa usare direttamente le entità di un pacchetto, potresti ritrovarti ogni volta a trasmettere all'azione gli stessi parametri. Puoi semplificare il processo eseguendo il bind a un pacchetto e specificando i parametri predefiniti, che vengono ereditati dalle azioni del pacchetto.
@@ -131,7 +133,7 @@ Nell'esempio di seguito riportato, puoi eseguire il bind del pacchetto `/whisk.s
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   ok: created binding valhallaSamples
   ```
@@ -143,7 +145,7 @@ Nell'esempio di seguito riportato, puoi eseguire il bind del pacchetto `/whisk.s
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -161,7 +163,7 @@ Nell'esempio di seguito riportato, puoi eseguire il bind del pacchetto `/whisk.s
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -177,7 +179,7 @@ Nell'esempio di seguito riportato, puoi eseguire il bind del pacchetto `/whisk.s
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -189,18 +191,15 @@ Nell'esempio di seguito riportato, puoi eseguire il bind del pacchetto `/whisk.s
 
 
 
-
-
-
 ## Aggiunta dei tuoi pacchetti
 {: #pkg_add}
 
-Puoi creare un pacchetto di codice locale o un clone di un repository Github.
+Puoi creare un pacchetto di codice locale o un clone di qualsiasi repository GitHub.
 {: shortdesc}
 
-Prima di iniziare:
-- [Installa il plug-in {{site.data.keyword.openwhisk_short}} per la CLI {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
-- Crea un file `manifest.yaml` o `manifest.yml` per la tua applicazione e memorizzalo nella directory root. Il file`manifest.yaml` specifica la struttura generale del pacchetto, compresi eventuali metadati che devono essere inclusi con il comando `ibmcloud fn deploy`. Per ulteriori informazioni sui file `manifest.yaml`, vedi la [documentazione di wskdeploy![Icona link esterno](../icons/launch-glyph.svg "EIcona link esterno")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example).
+**Prima di iniziare**
+- [Installa il plug-in {{site.data.keyword.openwhisk_short}} per la CLI {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
+- Crea un file `manifest.yaml` o `manifest.yml` per la tua applicazione e memorizzalo nella directory root. Il file`manifest.yaml` specifica la struttura generale del pacchetto, compresi eventuali metadati che devono essere inclusi con il comando `ibmcloud fn deploy`. Per ulteriori informazioni sui file `manifest.yaml`, vedi la [documentazione di <ph class="ignoreSpelling">wskdeploy</ph>](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}.
 
 Per aggiungere un pacchetto:
 
@@ -229,12 +228,12 @@ Per aggiungere un pacchetto:
     ```
     {: pre}
 
-### Esempio di utilizzo del pacchetto {{site.data.keyword.cos_full_notm}}
+### Esempio di pacchetto {{site.data.keyword.cos_full_notm}}
 {: #pkg_ex}
 
-Per vedere un esempio di modalità di installazione di un pacchetto, consulta il [pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} è un servizio che consente agli utenti di memorizzare tutti i tipi di file, quali immagini, video, musica e testo. Per interagire con i file, un archivio dati basato sul cloud di coppie chiave/valore viene memorizzato in un bucket. Quindi, per utilizzare il [pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), devi creare prima un'istanza del servizio {{site.data.keyword.cos_full_notm}}, poi un bucket. Il bucket viene utilizzato come una variabile di ambiente richiesta per installare questo pacchetto.
+Per vedere un esempio di modalità di installazione di un pacchetto, consulta il [pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} è un servizio che consente agli utenti di memorizzare tutti i tipi di file, quali immagini, video, musica e testo. Per interagire con i file, un archivio dati basato su cloud di coppie chiave-valore viene memorizzato in un bucket. Quindi, per utilizzare il [pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), devi creare prima un'istanza del servizio {{site.data.keyword.cos_full_notm}}, poi un bucket. Il bucket viene utilizzato come una variabile di ambiente richiesta per installare questo pacchetto.
 
-Dopo che hai creato l'istanza del servizio e il bucket, l'installazione del pacchetto richiede i seguenti comandi:
+Dopo aver creato l'istanza del servizio e il bucket, puoi installare il pacchetto utilizzando i seguenti comandi:
 
 1. Clona il repository del pacchetto.
     ```
@@ -248,9 +247,11 @@ Dopo che hai creato l'istanza del servizio e il bucket, l'installazione del pacc
     ```
     {: pre}
 
-3. Distribuisci il pacchetto, utilizzando il tuo bucket come una variabile di ambiente. La dipendenza sulla variabile di ambiente ` PACKAGE_NAME` ti consente di fornire a questo pacchetto un nome personalizzato.
+3. Distribuisci il pacchetto, utilizzando il tuo bucket come una variabile di ambiente.  Puoi fornire un nome personalizzato al pacchetto utilizzando la variabile di ambiente `PACKAGE_NAME`.
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

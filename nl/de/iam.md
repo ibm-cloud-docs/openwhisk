@@ -1,10 +1,9 @@
 ---
-
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-29"
+lastupdated: "2019-07-12"
 
-keywords: iam, access managment, roles, service roles, policies, access
+keywords: access policies, iam, roles, functions
 
 subcollection: cloud-functions
 
@@ -15,30 +14,27 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
 {:download: .download}
+{:gif: data-image-type='gif'}
 
 
-# Zugriff verwalten
+
+# Zugriffsrichtlinien festlegen
 {: #iam}
-
-{{site.data.keyword.openwhisk}} unterstützt Identity and Access Management (IAM). Sie können jetzt IAM-Richtlinien für Ihre Ressourcen, z. B. Namensbereiche, definieren.
-{: shortdesc}
-
-IAM-Richtlinien sind in der Region 'Tokio' (Tokyo) nur für {{site.data.keyword.openwhisk_short}} verfügbar. Wenn Sie in der Region 'Tokio' tätig sind, müssen Sie IAM-Richtlinien verwenden, um den Zugriff zu steuern.
-{: tip}
-
-</br>
 
 ## IAM-Rollen {{site.data.keyword.openwhisk_short}} zuordnen
 {: #user-roles}
 
-In {{site.data.keyword.openwhisk_short}} werden Namensbereiche als IBM Cloud-Ressource betrachtet, die es Ihnen ermöglicht, mit IAM-Rollen und -Richtlinien für das Zugriffsmanagement zu arbeiten. Alle Richtlinien, die Sie für einen Namensbereich festlegen, gelten auch für die {{site.data.keyword.openwhisk_short}}-Entitäten, z. B. Aktionen oder Auslöser, die der Namensbereich enthält.
+In {{site.data.keyword.openwhisk_short}} sind Namensbereiche {{site.data.keyword.cloud_notm}}-Ressourcen, die Sie für die Arbeit mit IAM-Rollen und Richtlinien für das Zugriffsmanagement verwenden können. Alle Richtlinien, die Sie für einen Namensbereich festlegen, gelten auch für die {{site.data.keyword.openwhisk_short}}-Entitäten, z. B. Aktionen oder Auslöser, die der Namensbereich enthält.
 {: shortdesc}
 
-{{site.data.keyword.openwhisk_short}} verwendet sowohl die Plattform- als auch die Servicemanagementrollen. Sie können Richtlinien dafür, wer Namensbereiche erstellen kann, auf Plattformebene festlegen, während Sie die Servicerollen verwenden, um Interaktionen mit den Namensbereichen selbst zu verwalten. 
+{{site.data.keyword.openwhisk_short}} verwendet sowohl die Plattform- als auch die Servicemanagementrollen. Sie können mit Richtlinien festlegen, wer Namensbereiche auf der Plattformebene erstellen kann. Außerdem können Sie die Servicerollen für die Verwaltung der Interaktion mit den Namensbereichen selbst verwenden. 
 
 Wünschen Sie weitere Informationen zu zentralen IAM-Konzepten? Lesen Sie die [IAM-Dokumente](/docs/iam?topic=iam-iamconcepts#iamconcepts).
 {: tip}
@@ -50,6 +46,9 @@ Wünschen Sie weitere Informationen zu zentralen IAM-Konzepten? Lesen Sie die [I
 Die folgende Tabelle enthält detaillierte Informationen zu den Aktionen, die Plattformmanagementrollen zugeordnet sind. Plattformmanagementrollen ermöglichen Benutzern, Tasks für Serviceressourcen auf Plattformebene auszuführen. Weisen Sie beispielsweise Benutzerzugriff für den Service zu, erstellen oder löschen Sie Service-IDs, erstellen Sie Instanzen und binden Sie Instanzen an Anwendungen.
 {: shortdesc}
 
+Weitere Informationen zum Zuordnen, Bearbeiten, Überprüfen oder Löschen von Ressourcenzugriffsrichtlinien finden Sie in [IAM-Zugriff verwalten](/docs/iam?topic=iam-iammanidaccser#iammanidaccser).
+{: tip}
+
 <table>
   <thead>
     <tr>
@@ -60,24 +59,24 @@ Die folgende Tabelle enthält detaillierte Informationen zu den Aktionen, die Pl
   <tbody>
     <tr>
       <td>Administrator</td>
-      <td>Benutzer können Namensbereiche erstellen. </td>
+      <td>Benutzer können Namensbereiche erstellen. Die Administratorrolle ist erforderlich, um die Operationen `service id` und `apikey lock` bei der Erstellung des Service ausführen zu können. </td>
     </tr>
   </tbody>
 </table>
 
-Sie müssen über die Administratorrolle für das Plattformmanagement verfügen, um mit dem Service zu arbeiten. Weitere Informationen zu den Rollen finden Sie unter [Plattformmanagementrollen](/docs/iam?topic=iam-userroles). 
+Da der Service nicht bereitgestellt werden muss, ist die Bearbeiterrolle die einzige Plattformrolle, die Sie für die Arbeit mit dem Service benötigen. Weitere Informationen zu den übrigen Rollen finden Sie in [Plattformmanagementrollen](/docs/iam?topic=iam-userroles). 
 
 </br>
 
 ### Servicespezifische Rollen
+{: #service_specific_roles}
 
-Servicespezifische Rollen bestimmen den Geltungsbereich einer Zugriffsrichtlinie mit einem spezifischen Service. Für {{site.data.keyword.openwhisk_short}} können die Rollen die Fähigkeit eines Benutzers steuern, den Service zu verwenden, z. B. auf die Benutzerschnittstelle zuzugreifen oder API-Aufrufe auszuführen.
+Servicespezifische Rollen bestimmen den Geltungsbereich einer Zugriffsrichtlinie innerhalb eines bestimmten Service. Für {{site.data.keyword.openwhisk_short}} können die Rollen die Fähigkeit eines Benutzers steuern, den Service zu verwenden, z. B. auf die Benutzerschnittstelle zuzugreifen oder API-Aufrufe auszuführen.
 {: shortdesc}
 
+Berechtigungen bauen aufeinander auf. Beispielsweise können alle Operationen, die die Rolle `writer` ausführen kann, auch von der Rolle `manager` ausgeführt werden. Dabei hätte jedoch die Rolle `manager` noch zusätzliche Berechtigungen. Die allgemeinen Berechtigungen für die einzelnen Rollen finden Sie unter [Servicezugriffsrollen](/docs/iam?topic=iam-userroles).
 
-Beachten Sie, dass die Berechtigungen aufeinander basieren. Beispielsweise können alle Operationen, die die Rolle `writer` ausführen kann, auch von der Rolle `manager` ausgeführt werden. Dabei hätte jedoch die Rolle `manager` noch zusätzliche Berechtigungen. Die allgemeinen Berechtigungen für die einzelnen Rollen finden Sie unter [Servicezugriffsrollen](/docs/iam?topic=iam-userroles). 
-
-In der folgenden Tabelle können Sie sehen, welche Rollen für die verschiedenen Operationen erforderlich sind: 
+In der folgenden Tabelle können Sie sehen, welche Rollen für die verschiedenen Operationen erforderlich sind:
 
 <table><caption>Welche Rollen können welche Operationen ausführen?</caption>
   <tr>
@@ -89,42 +88,42 @@ In der folgenden Tabelle können Sie sehen, welche Rollen für die verschiedenen
   </tr>
   <tr>
     <td><code>functions.namespaces.update</code></td>
-    <td>Aktualisieren eines Namensbereichs. </td>
+    <td>Aktualisieren eines Namensbereichs.</td>
     <td></td>
     <td></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
   <tr>
     <td><code>functions.namespaces.delete</code></td>
-    <td>Löschen eines Namensbereichs. </td>
+    <td>Löschen eines Namensbereichs.</td>
     <td></td>
     <td></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
   <tr>
     <td><code>functions.namespaces.read</code></td>
-    <td>Anzeigen des verfügbaren Namensbereichs. </td>
+    <td>Anzeigen des verfügbaren Namensbereichs.</td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
   <tr>
     <td><code>functions.entities.create</code></td>
-    <td>Erstellen einer Entität, z. B. einer Aktion, in einem Funktionsnamensbereich. </td>
+    <td>Erstellen einer Entität, z. B. einer Aktion, in einem Funktionsnamensbereich.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
   <tr>
     <td><code>functions.entities.update</code></td>
-    <td>Aktualisieren einer Entität, z. B. eines Pakets, in einem Funktionsnamensbereich. </td>
+    <td>Aktualisieren einer Entität, z. B. eines Pakets, in einem Funktionsnamensbereich.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
   <tr>
     <td><code>functions.entities.delete</code></td>
-    <td>Löschen einer Entität, z. B. eines Auslösers, aus einem Funktionsnamensbereich. </td>
+    <td>Löschen einer Entität, z. B. eines Auslösers, aus einem Funktionsnamensbereich.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
@@ -138,41 +137,53 @@ In der folgenden Tabelle können Sie sehen, welche Rollen für die verschiedenen
   </tr>
   <tr>
     <td><code>functions.entities.activate</code></td>
-    <td>Aktivieren einer Entität, z. B. einer Aktion, in einem Namensbereich. </td>
+    <td>Aktivieren einer Entität, z. B. einer Aktion, in einem Namensbereich.</td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature verfügbar" style="width:32px;" /></td>
   </tr>
 </table>
 
-Weitere Informationen zum Zuweisen von Benutzerrollen in der Benutzerschnittstelle finden Sie unter [IAM-Zugriff verwalten](/docs/iam?topic=iam-iammanidaccser#iammanidaccser). 
+</br>
+
+### Richtlinien über die Befehlszeilenschnittstelle festlegen
+{: #cli-set}
+
+Wenn Sie einer Ressource wie einer Aktion in einem IAM-basierten Namensbereich Zugriff auf einen IAM-basierten Service erteilen möchten, können Sie eine IAM-Zugriffsrichtlinie für den Namensbereich erstellen, in dem die Ressource enthalten ist. 
+
+```
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+```
+{: pre}
+
+<table>
+  <thead>
+    <th colspan=2><img src="images/idea.png" alt="Symbol 'Idee'"/> Informationen zu den Komponenten des Befehls <code>ibmcloud iam service-policy-create</code></th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;namespace_service_ID&gt;</code></td>
+      <td>Die Service-ID für den Namensbereich. Führen Sie den Befehl <code>ibmcloud iam service-ids</code> aus, um alle Service-IDs anzuzeigen. </td>
+    </tr>
+    <tr>
+      <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
+      <td>Der Typ der IAM-Servicezugriffsrolle, die die Aktion für die Verwendung des Zielservice haben muss. Führen Sie den Befehl <code>ibmcloud iam roles --service SERVICE_NAME</code> aus, um die unterstützten Rollen für den anderen Service anzuzeigen. Weitere Informationen finden Sie in [IAM-Zugriffsrollen](/docs/iam?topic=iam-userroles#service-access-roles). </td>
+    </tr>
+    <tr>
+      <td>`--service-name` <code>&lt;other_service_type&gt;</code></td>
+      <td>Der Name des anderen {{site.data.keyword.cloud_notm}}-Servicetyps. </td>
+    </tr>
+    <tr>
+      <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
+      <td>Die GUID der anderen Serviceinstanz, auf die die Aktion Zugriff haben soll. Führen Sie den Befehl <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code> aus, um die GUID der Serviceinstanz abzurufen. </td>
+    </tr>
+  </tbody>
+</table>
 
 </br>
 
-
-## IAM-Zugriffsrichtlinien festlegen
-{: #set-iam}
-
-Wenn ein Service eine Aktion aufruft, hat die Aktion eine Antwort. Da die Antwort von dem Namensbereich oder der Aktion an einen Service gesendet wird, wird sie als ausgehende Information betrachtet. Wenn Sie die Auswirkungen, die Ihr Namensbereich auf andere Services hat, begrenzen möchten, können Sie eine Zugriffsrichtlinie erstellen.
-{: shortdesc}
-
-Weitere Informationen zum Zuordnen, Bearbeiten, Überprüfen oder Löschen von Ressourcenzugriffsrichtlinien finden Sie unter [IAM-Zugriff verwalten](/docs/iam?topic=iam-iammanidaccser#iammanidaccser).
-{: tip}
+**Nächste Schritte**
+Weitere Informationen zum Verwalten von Serviceberechtigungsnachweisen finden Sie im Blogbeitrag zur [Verwaltung von Serviceberechtigungsnachweisen für serverunabhängige Anwendungen](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external}. 
 
 
 
-
-</br>
-</br>
-
-## Auf andere Ressourcen aus einem Namensbereich zugreifen
-{: #namespace-access}
-
-Sie können aus einem von IAM verwalteten Namensbereich mithilfe eines IAM-Tokens auf andere Ressourcen zugreifen. Ein Token stellt die Authentifizierung dar und überprüft die Identität der Ressource. Das IAM-Token ist für die Authentifizierung beim Zugriff auf von IAM verwaltete Services oder Ressourcen erforderlich.
-{: shortdesc}
-
-Ähnlich dazu, wie eine Benutzer-ID einen Benutzer identifiziert, stellt eine Service-ID eine bestimmte Ressource dar. Das heißt, dass IAM-Richtlinien auf solche Ressourcen angewendet werden können, die Zugriffsberechtigungen verwalten. Genau wie ein Benutzer muss sich eine Ressource authentifizieren, um ihre Identität zu bestätigen. Innerhalb von Functions kann dies von der Implementierung der Aktionen beim Zugriff auf andere Services oder Ressourcen genutzt werden. 
-
-Wenn Sie einen neuen von IAM-verwalteten Namensbereich erstellen, erstellt Functions automatisch eine entsprechende Service-ID, die den Namensbereich und einen API-Schlüssel angibt. Zur Laufzeit übergibt Cloud Functions den API-Schlüssel an den Aktionscode als Wert der Umgebungsvariablen `__OW_IAM_NAMESPACE_API_KEY`. Der Aktionscode kann diesen API-Schlüssel verwenden, um ein IAM-Token zu generieren. Die meisten unterstützten SDKs, z. B. Cloudant, Watson und COS, authentifizieren sich mit dem IAM-Schlüssel selbst. Andere von IAM verwaltete Services oder Ressourcen, die eine REST-API verwenden, authentifizieren sich mit dem Token, das aus dem IAM-Schlüssel abgeleitet wird. 
-
-Sie sind sich nicht ganz sicher, wie API-Schlüssel und -Token zusammenpassen? Weitere Informationen finden Sie in der [Dokumentation zu IAM](/docs/iam?topic=iam-iamapikeysforservices). 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: packages, installable packages
+keywords: packages, installable packages, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 包含包
 {: #pkg_ov}
@@ -34,7 +36,7 @@ subcollection: cloud-functions
 
 [预安装的包](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse)会在 `/whisk.system` 名称空间中的 {{site.data.keyword.openwhisk_short}} 内自动进行注册。您可以直接使用这些包，而无需完成任何安装步骤。
 
-可安装的包是可供您根据自己的需要来安装、编辑和使用的包。可安装的包不位于 {{site.data.keyword.openwhisk_short}} 系统内，而是位于外部单独的 Github 存储库中。
+可安装的包是可供您根据自己的需要来安装、编辑和使用的包。可安装的包不位于 {{site.data.keyword.openwhisk_short}} 系统内，而是位于外部单独的 GitHub 存储库中。
 
 您可以将这些包直接安装到自己的名称空间中，并且可以为包提供定制名称。由于包已安装到您自己的名称空间中，因此可以根据需要修改包中的操作和订阅源。
 
@@ -76,16 +78,16 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例：
+  **示例**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
-  package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -98,13 +100,13 @@ subcollection: cloud-functions
 
 3. 获取操作或订阅源的描述，以查看所需的参数。
 
-  示例：
+  **示例**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -131,7 +133,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
 ok: created binding valhallaSamples
   ```
@@ -143,7 +145,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting：返回友好的问候
@@ -161,7 +163,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -177,7 +179,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -189,19 +191,15 @@ ok: created binding valhallaSamples
 
 
 
-
-
-
 ## 添加您自己的包
 {: #pkg_add}
 
-可以创建本地代码的包或任何 Github 存储库的克隆。
+可以创建本地代码的包或任何 GitHub 存储库的克隆。
 {: shortdesc}
 
-开始之前：
-- [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cli_install)。
-- 为应用程序创建 `manifest.yaml` 或 `manifest.yml` 文件，并将其存储在根目录中。`manifest.yaml` 文件指定包的总体结构，包括 `ibmcloud fn deploy` 命令必须包含的任何元数据。要了解有关 `manifest.yaml` 文件的更多信息，请参阅 [wskdeploy 文档 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example)。
-    
+**开始之前**
+- [安装 {{site.data.keyword.cloud_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cli_install)。
+- 为应用程序创建 `manifest.yaml` 或 `manifest.yml` 文件，并将其存储在根目录中。`manifest.yaml` 文件指定包的总体结构，包括 `ibmcloud fn deploy` 命令必须包含的任何元数据。要了解有关 `manifest.yaml` 文件的更多信息，请参阅 [<ph class="ignoreSpelling">wskdeploy</ph> 文档](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}。
 
 要添加包，请执行以下操作：
 
@@ -231,12 +229,12 @@ ok: created binding valhallaSamples
     ```
     {: pre}
 
-### 使用 {{site.data.keyword.cos_full_notm}} 包的示例
+### {{site.data.keyword.cos_full_notm}} 包示例
 {: #pkg_ex}
 
 要了解有关如何安装包的示例，请查看 [{{site.data.keyword.cos_full_notm}} 包](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)。{{site.data.keyword.cos_full}} 是一种服务，允许用户存储所有类型的文件，例如图像、视频、音乐和文本。为了与这些文件进行交互，基于云的键/值对数据存储将存储在存储区中。所以，要使用 [{{site.data.keyword.cos_full_notm}} 包](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)，必须首先创建 {{site.data.keyword.cos_full_notm}} 服务实例，然后创建存储区。存储区用作安装此包所需的环境变量。
 
-创建服务实例和存储区之后，安装包需要以下命令：
+创建服务实例和存储区之后，可以使用以下命令来安装包：
 
 1. 克隆包存储库。
     ```
@@ -250,9 +248,11 @@ ok: created binding valhallaSamples
     ```
     {: pre}
 
-3. 使用存储区作为环境变量来部署包。利用对 `PACKAGE_NAME` 环境变量的依赖性，可以为此包指定定制名称。
+3. 使用存储区作为环境变量来部署包。可以使用 `PACKAGE_NAME` 环境变量来为包提供定制名称。
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

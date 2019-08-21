@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 로그 보기
 {: #logs}
@@ -50,7 +52,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
     ```
       ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -70,21 +72,21 @@ subcollection: cloud-functions
 ## 활성화 세부사항 보기
 {: #activation_details}
 
-{{site.data.keyword.openwhisk_short}} 액션은 기타 사용자에 의해, 다양한 이벤트에 대한 응답으로 또는 액션 시퀀스의 일부로서 호출될 수 있습니다. 액션이 호출될 때마다 해당 호출에 대해 활성화 레코드가 작성됩니다. 액션 호출의 결과에 대한 정보를 얻기 위해 활성화에 대한 세부사항을 가져올 수 있습니다.
+{{site.data.keyword.openwhisk_short}} 액션은 기타 사용자에 의해, 다양한 이벤트에 대한 응답으로 또는 액션 시퀀스의 일부로서 호출될 수 있습니다. 액션이 호출되면 해당 호출에 대해 활성화 레코드가 작성됩니다. 액션 호출의 결과에 대한 정보를 얻기 위해 활성화에 대한 세부사항을 가져올 수 있습니다.
 
-네임스페이스에서 모든 활성화 레코드 ID를 가져오려면 다음을 실행하십시오.
+다음 명령을 실행하여 네임스페이스에서 모든 활성화 레코드 ID를 가져올 수 있습니다.
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-액션 호출의 결과인 특정 활성화 레코드에 대한 세부사항을 가져오려면 다음을 실행하십시오.
+다음 명령을 실행하여 액션 호출의 결과인 특정 활성화 레코드에 대한 세부사항을 가져올 수 있습니다. `<activation_ID>`를 활성화의 ID로 대체하십시오. 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-출력 예:
+**출력 예**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -177,8 +179,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>: 활성화의 종료 상태입니다.</li>
-<li><code>statusCode</code>: 상태 코드입니다. 액션에서 오류가 발생한 경우에 HTTP 오류 코드입니다.</li>
-<li><code>success</code>: 액션이 성공적으로 완료되었는지 여부입니다.</li>
+<li><code>statusCode</code>: 상태 코드입니다. 조치에서 오류가 발생하는 경우 이 값은 HTTP 오류 코드입니다.</li>
+<li><code>success</code>: 액션이 성공적으로 완료되었는지 여부의 결과입니다.</li>
 <li><code>result</code>:활성화의 리턴값입니다.</li>
 </ul></td>
 </tr>
@@ -192,7 +194,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>액션이 공공연하게 공개되는지 여부입니다.</td>
+<td>액션이 공개되었는지 여부의 결과입니다.</td>
 </tr>
 </tbody></table>
 
@@ -201,18 +203,22 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## {{site.data.keyword.loganalysisfull_notm}}에서 로그 보기
 {: #logs_view}
 
+IAM 기반 네임스페이스에서는 {{site.data.keyword.loganalysislong_notm}} 로그를 사용할 수 없습니다.
+{: note}
+
 {{site.data.keyword.openwhisk_short}} 모니터링 대시보드에서 직접 활성화 로그를 볼 수 있습니다. 또한 로그가 자신이 인덱스화되는 [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana)에 전달되므로, 생성된 모든 메시지를 통한 전체 텍스트 검색 및 특정 필드 기반의 편리한 조회가 가능합니다.
 {:shortdesc}
 
-**참고**: 미국 동부 지역에서는 로깅을 사용할 수 없습니다.
+미국 동부 지역에서는 로깅을 사용할 수 없습니다.
+{: important}
 
-1. [{{site.data.keyword.openwhisk_short}} 모니터링 페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://cloud.ibm.com/openwhisk/dashboard)를 여십시오.
+1. [{{site.data.keyword.openwhisk_short}} 모니터링 페이지](https://cloud.ibm.com/openwhisk/dashboard){: external}를 여십시오.
 
 2. 선택사항: 특정 액션에 대해서만 보기를 보려면 모니터링 요약을 해당 액션으로 제한하십시오. 필터링 옵션 섹션의 **제한 대상** 드롭 다운 목록에서 액션 이름을 선택하십시오.
 
 3. 왼쪽 탐색 창에서 **로그**를 클릭하십시오. {{site.data.keyword.loganalysisshort_notm}} Kibana 페이지가 열립니다.
 
-4. 선택사항: 이전 로그를 보려면 오른쪽 상단 모서리에서 **마지막 15분**을 클릭하고 다른 시간 범위를 선택하여 기본 시간 범위 값인 15분을 변경하십시오.
+4. 선택사항: 이전 로그를 보려면 **마지막 15분**을 클릭하고 다른 시간 범위를 선택하여 기본 시간 범위 값인 15분을 변경하십시오.
 
 ### 로그 조회
 {: #logs_query}
@@ -220,13 +226,13 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 Kibana의 조회 구문을 사용하여 [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana)에서 특정 활성화 로그를 찾을 수 있습니다.
 
 다음의 조회 예는 오류를 디버그하는 데 도움이 될 수 있습니다.
-  * 모든 오류 로그 찾기:
+  * 모든 오류 로그를 찾으십시오.
       ```
 type: user_logs AND stream_str: stderr
       ```
       {: codeblock}
 
-  * "myAction"으로 생성된 모든 오류 로그 찾기:
+  * `myAction`으로 생성된 모든 오류 로그를 찾으십시오.
       ```
 type: user_logs AND stream_str: stderr AND action_str: "*myAction"
       ```
@@ -239,16 +245,18 @@ type: user_logs AND stream_str: stderr AND action_str: "*myAction"
 
 Kibana의 조회 구문을 사용하여 특정 활성화 로그를 찾을 수 있습니다. 다음의 조회 예는 오류를 디버그하는 데 도움이 될 수 있습니다.
 
-* 실패한 모든 활성화 찾기:
+* 실패한 모든 활성화를 찾으십시오.
     ```
 type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    결과에서 `0`은 성공적으로 종료된 액션을 표시하며 기타 모든 값은 오류를 표시합니다.
+    결과에서 `0`은 성공적으로 종료된 액션을 표시합니다. 기타 모든 값은 오류를 표시합니다.
 
-* 특정 오류로 실패한 모든 활성화 찾기:
+* 특정 오류로 실패한 모든 활성화를 찾으십시오.
     ```
 type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

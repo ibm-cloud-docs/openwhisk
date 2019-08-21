@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -31,12 +32,14 @@ Nel pacchetto `/whisk.system/utils` vengono fornite varie azioni di programmi di
 {: shortdesc}
 
 1. Elenca le azioni nel pacchetto `/whisk.system/utils`.
+
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
-    Output di esempio:
+    **Output di esempio**
+    
     ```
     package /whisk.system/utils: Mattoni che formattano e assemblano i dati
    action /whisk.system/utils/head: Estrae il prefisso di un array
@@ -48,13 +51,15 @@ Nel pacchetto `/whisk.system/utils` vengono fornite varie azioni di programmi di
     ```
     {: screen}
 
-2. Utilizzando le azioni `split` and `sort`, crea una sequenza di azioni in modo che il risultato di `split` sia passato come un argomento a `sort`. Questa sequenza di azioni converte alcune righe di testo in array e ordina le righe.
+2. Utilizzando le azioni `split` e `sort`, crea una sequenza di azioni in modo che il risultato di `split` sia passato come un argomento a `sort`. Questa sequenza di azioni converte alcune righe di testo in array e ordina le righe.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Richiama l'azione.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
@@ -72,6 +77,8 @@ Nel pacchetto `/whisk.system/utils` vengono fornite varie azioni di programmi di
     }
     ```
     {: screen}
+
+
 
 
 

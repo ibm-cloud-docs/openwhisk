@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: event streams, package, messages, events
+keywords: event streams, package, messages, events, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
@@ -37,15 +39,16 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-Un pacchetto preinstallato che consente la comunicazione con istanze [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) per la pubblicazione e l'utilizzo di messaggi attraverso l'API Kafka nativa ad elevate prestazioni.
+Un pacchetto preinstallato che consente la comunicazione con istanze [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} per la pubblicazione e l'utilizzo di messaggi attraverso l'API Kafka nativa ad elevate prestazioni.
 {: shortdesc}
 
-### Configurazione di un pacchetto {{site.data.keyword.messagehub}} mediante {{site.data.keyword.Bluemix_notm}}
+
+### Configurazione di un pacchetto {{site.data.keyword.messagehub}}
 {: #eventstreams_setup}
 
 1. Crea un'istanza del servizio {{site.data.keyword.messagehub}} nell'organizzazione e nello spazio correnti che stai utilizzando per {{site.data.keyword.openwhisk}}.
 
-2. Verifica che l'argomento che desideri ascoltare sia disponibile in {{site.data.keyword.messagehub}} o crea un nuovo argomento, intitolato ad esempio **mytopic**.
+2. Verifica che l'argomento che desideri ascoltare sia disponibile in {{site.data.keyword.messagehub}} o crea un nuovo argomento, intitolato ad esempio `mytopic`.
 
 3. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per l'istanza del servizio {{site.data.keyword.messagehub}} da te creata.
   ```
@@ -53,10 +56,10 @@ Un pacchetto preinstallato che consente la comunicazione con istanze [{{site.dat
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -66,19 +69,19 @@ Un pacchetto preinstallato che consente la comunicazione con istanze [{{site.dat
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
   Il bind di pacchetto contiene ora le credenziali associate alla tua istanza {{site.data.keyword.messagehub}}.
 
-### Configurazione di un pacchetto {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.Bluemix_notm}}
+### Configurazione di un pacchetto {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
 
-Se vuoi configurare {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.Bluemix_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio {{site.data.keyword.messagehub}}. Ti servono le credenziali del servizio {{site.data.keyword.messagehub}} e le informazioni di connessione.
+Se vuoi configurare {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.cloud_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio {{site.data.keyword.messagehub}}. Ti servono le credenziali del servizio {{site.data.keyword.messagehub}} e le informazioni di connessione.
 
 Crea un bind di pacchetto configurato per il tuo servizio {{site.data.keyword.messagehub}}.
 ```
@@ -95,15 +98,15 @@ L'azione `/messaging/messageHubProduce` è obsoleta e verrà rimossa in una data
 Per ulteriori informazioni sulla produzione dei messaggi, consulta la [documentazione di Event Streams](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 Riferimenti
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 
 
 
 ## Origine eventi Event Streams
 {: #eventstreams_events}
 
-Puoi creare un trigger che reagisca quando si pubblicano messaggi in un'istanza {{site.data.keyword.messagehub_full}} utilizzando i feed. Scopri come creare i trigger {{site.data.keyword.messagehub}} con o senza {{site.data.keyword.Bluemix}}, ascoltare i messaggi e gestire i messaggi in batch.
+Puoi creare un trigger che reagisca quando si pubblicano messaggi in un'istanza {{site.data.keyword.messagehub_full}} utilizzando i feed. Scopri come creare i trigger {{site.data.keyword.messagehub}} con o senza {{site.data.keyword.cloud}}, ascoltare i messaggi e gestire i messaggi in batch.
 {: shortdesc}
 
 ## Pacchetto {{site.data.keyword.messagehub}}
@@ -113,29 +116,29 @@ Puoi creare un trigger che reagisca quando si pubblicano messaggi in un'istanza 
 L'azione `/messaging/messageHubProduce` è obsoleta e verrà rimossa in una data futura. È già stata rimossa nella regione Tokyo. Per mantenere prestazioni ottimali, migra l'utilizzo dell'azione `/messaging/messageHubProduce` per utilizzare una connessione persistente quando i dati vengono prodotti in {{site.data.keyword.messagehub}}/Kafka.
 {: deprecated}
 
-Questo pacchetto consente la comunicazione con le istanze [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) per la pubblicazione e il consumo di messaggi utilizzando l'API Kafka nativa ad alte prestazioni.
+Questo pacchetto consente la comunicazione con le istanze [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} per la pubblicazione e il consumo di messaggi utilizzando l'API Kafka nativa ad alte prestazioni.
 
 ### Creazione di un trigger che ascolta un'istanza {{site.data.keyword.messagehub}}
 {: #eventstreams_trigger}
 
 Per creare un trigger che reagisca quando i messaggi vengono pubblicati in un'istanza {{site.data.keyword.messagehub}}, devi utilizzare il feed denominato `/messaging/messageHubFeed`. L'azione di feed supporta i seguenti parametri:
 
-|Nome|Tipo|Descrizione|
-|---|---|---|
-|kafka_brokers_sasl|Array di stringhe JSON|Questo parametro è un array di stringhe `<host>:<port>` che comprendono i broker nella tua istanza {{site.data.keyword.messagehub}}|
-|user|Stringa|Il tuo nome utente {{site.data.keyword.messagehub}}.|
-|password|Stringa|La tua password {{site.data.keyword.messagehub}}.|
-|topic|Stringa|L'argomento per cui vuoi che il trigger sia in ascolto.|
-|kafka_admin_url|Stringa URL|L'URL dell'interfaccia REST di gestione {{site.data.keyword.messagehub}}.|
-|isJSONData|Booleano (Facoltativo - predefinito=false)|Se impostato su `true`, il provider tenta di analizzare il valore del messaggio come JSON prima di passarlo come payload del trigger.|
-|isBinaryKey|Booleano (Facoltativo - predefinito=false)|Se impostato su `true`, il provider codifica il valore della chiave come Base64 prima di passarlo come payload del trigger.|
-|isBinaryValue|Booleano (Facoltativo - predefinito=false)|Se impostato su `true`, il provider codifica il valore del messaggio come Base64 prima di passarlo come payload del trigger.|
+| Nome | Tipo | Descrizione |
+| --- | --- | --- |
+| `kafka_brokers_sasl` | Array JSON di stringhe | Questo parametro è un array di stringhe `<host>:<port>` che comprendono i broker nella tua istanza {{site.data.keyword.messagehub}}. |
+| `user` | Stringa | Il tuo nome utente {{site.data.keyword.messagehub}}. |
+| `password` | Stringa | La tua password {{site.data.keyword.messagehub}}. |
+| `topic` | Stringa | L'argomento per cui vuoi che il trigger sia in ascolto. |
+| `kafka_admin_url` | Stringa URL | L'URL dell'interfaccia REST di gestione {{site.data.keyword.messagehub}}. |
+| `isJSONData` | Booleano (Facoltativo - predefinito=false) | Se impostato su `true`, il provider tenta di analizzare il valore del messaggio come JSON prima di passarlo come payload del trigger. |
+| `isBinaryKey` | Booleano (Facoltativo - predefinito=false) | Se impostato su `true`, il provider codifica il valore della chiave come Base64 prima di passarlo come payload del trigger. |
+| `isBinaryValue` | Booleano (Facoltativo - predefinito=false) | Se impostato su `true`, il provider codifica il valore del messaggio come Base64 prima di passarlo come payload del trigger. |
 
 Sebbene questo elenco di parametri possa sembrare scoraggiante, è possibile impostarli automaticamente utilizzando il comando del plug-in della CLI `ibmcloud fn package refresh`.
 
 1. Crea un'istanza del servizio {{site.data.keyword.messagehub}} nell'organizzazione e nello spazio correnti che stai utilizzando per {{site.data.keyword.openwhisk}}.
 
-2. Verifica che l'argomento che desideri ascoltare sia disponibile in {{site.data.keyword.messagehub}} o crea un nuovo argomento, ad esempio, **mytopic**.
+2. Verifica che l'argomento che desideri ascoltare sia disponibile in {{site.data.keyword.messagehub}} o crea un nuovo argomento, ad esempio, `mytopic`.
 
 3. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per l'istanza del servizio {{site.data.keyword.messagehub}} da te creata.
   ```
@@ -143,10 +146,11 @@ Sebbene questo elenco di parametri possa sembrare scoraggiante, è possibile imp
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
+
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -156,10 +160,11 @@ Sebbene questo elenco di parametri possa sembrare scoraggiante, è possibile imp
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
+
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -167,22 +172,25 @@ Sebbene questo elenco di parametri possa sembrare scoraggiante, è possibile imp
 
 5. Ora tutto ciò che devi fare è creare un trigger che viene attivato quando vengono pubblicati nuovi messaggi nel tuo argomento {{site.data.keyword.messagehub}}.
   ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
-### Creazione di un trigger per un pacchetto {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.Bluemix_notm}}
+### Creazione di un trigger per un pacchetto {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
 
-Se vuoi configurare {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.Bluemix_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio {{site.data.keyword.messagehub}}. Ti servono le credenziali del servizio {{site.data.keyword.messagehub}} e le informazioni di connessione.
+Se vuoi configurare {{site.data.keyword.messagehub}} all'esterno di {{site.data.keyword.cloud_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio {{site.data.keyword.messagehub}}. Ti servono le credenziali del servizio {{site.data.keyword.messagehub}} e le informazioni di connessione.
 
 1. Crea un bind di pacchetto configurato per il tuo servizio {{site.data.keyword.messagehub}}.
+
   ```
-  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+ [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
   ```
   {: pre}
 
 2. Adesso, con il tuo nuovo pacchetto, puoi creare un trigger che viene attivato quando vengono pubblicati nuovi messaggi nell'argomento {{site.data.keyword.messagehub}}.
+
   ```
   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
@@ -194,11 +202,11 @@ Se vuoi configurare {{site.data.keyword.messagehub}} all'esterno di {{site.data.
 Una volta creato un trigger, il sistema monitora l'argomento specificato nel tuo servizio di messaggistica. Quando vengono pubblicati nuovi messaggi, il trigger viene attivato.
 
 Il payload di questo trigger contiene un campo `messages`, che è un array di messaggi che sono stati pubblicati dall'ultima volta in cui il trigger è stato attivato. Ogni oggetto del messaggio nell'array contiene i seguenti campi:
-- topic
-- partition
-- offset
-- key
-- value
+- `topic`
+- `partition`
+- `offset`
+- `key`
+- `value`
 
 In termini Kafka, i campi sono evidenti. Tuttavia, `key` ha una funzione denominata `isBinaryKey` che consente alla `key` di trasmettere dati binari. Inoltre, il `value` richiede una considerazione speciale. I campi `isJSONData` e `isBinaryValue` sono disponibili per gestire i messaggi JSON e binari. I campi `isJSONData` e `isBinaryValue` non possono essere utilizzati insieme.
 
@@ -297,7 +305,7 @@ Se lo stesso messaggio viene pubblicato senza `isBinaryData` impostato su `true`
 
 Nota che il payload del trigger contiene un array di messaggi. Se questi messaggi vengono prodotti rapidamente nel tuo sistema di messaggistica, il feed tenta di raggruppare i messaggi inviati in una singola attivazione del tuo trigger. L'elaborazione in batch consente di pubblicare i messaggi nel trigger in modo più rapido ed efficiente.
 
-Tieni presente che quando si codificano le azioni attivate dal trigger, il numero di messaggi nel payload è tecnicamente illimitato, ma è sempre maggiore di 0. Vedi il seguente esempio di messaggio organizzato in batch (nota la modifica nel valore *offset*):
+Quando codifichi le azioni attivate dal tuo trigger, tieni presente che il numero di messaggi nel payload è tecnicamente illimitato, ma è sempre maggiore di 0. Vedi il seguente esempio di messaggio in batch (nota la modifica nel valore *offset*):
 ```json
 {
   "messages": [
@@ -333,14 +341,10 @@ Tieni presente che quando si codificano le azioni attivate dal trigger, il numer
 ```
 
 
-
-## Integrazione di OpenWhisk con {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full_notm}} e IBM Data Science Experience
-{: #eventstreams_example}
-
-L'esempio che integra OpenWhisk con i servizi {{site.data.keyword.messagehub}}, Node Red, IBM Watson IoT, {{site.data.keyword.cos_full}}, IBM Data Science Experience (Spark) è [disponibile qui](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0).
-
 ## Riferimenti
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
+
+
 

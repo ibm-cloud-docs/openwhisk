@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: platform architecture, openwhisk, couchdb, kafka
+keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.openwhisk_short}}의 작동 방식
 {: #about}
@@ -40,7 +42,7 @@ subcollection: cloud-functions
 
 **액션을 사용하는 이유**
 
-액션을 사용하면 코드가 실행되는 시간을 제한할 수 있으며, 이로써 오버헤드 비용을 줄일 수 있습니다.
+액션을 사용하면 코드가 실행되는 시간을 제한할 수 있으며, 이로써 비용을 줄일 수 있습니다.
 
 예를 들어 액션을 사용하여 이미지에서 얼굴을 감지하거나 데이터베이스의 변경사항에 응답하거나 API 호출 세트를 집계하거나 트윗 게시를 수행할 수 있습니다.
 
@@ -52,10 +54,10 @@ subcollection: cloud-functions
 
 <dl>
   <dt>네임스페이스</dt>
-    <dd>[네임스페이스](/docs/openwhisk?topic=cloud-functions-namespaces)는 액션 및 트리거 등의 {{site.data.keyword.openwhisk_short}} 엔티티를 포함하며, 리소스 그룹에 속합니다. 사용자에게 네임스페이스에 대한 액세스 권한을 부여하여 사용자가 {{site.data.keyword.openwhisk_short}} 엔티티에 액세스할 수 있도록 합니다. </dd>
+    <dd>[네임스페이스](/docs/openwhisk?topic=cloud-functions-namespaces)는 액션 및 트리거 등의 {{site.data.keyword.openwhisk_short}} 엔티티를 포함하며, 리소스 그룹에 속합니다. 사용자에게 네임스페이스에 대한 액세스 권한을 부여하여 사용자가 {{site.data.keyword.openwhisk_short}} 엔티티에 액세스할 수 있도록 합니다.</dd>
   <dt>액션</dt>
     <dd>[액션](/docs/openwhisk?topic=cloud-functions-actions)은 하나의 특정 태스크를 수행하는 코드 조각입니다. 액션은 JavaScript 또는 Swift 코드의 소형 스니펫이거나 Docker 컨테이너에 임베드된 사용자 정의 2진 코드와 같은 선택한 언어로 작성될 수 있습니다. 액션을 소스 코드 또는 Docker 이미지로 Cloud Functions에 제공합니다.
-    <br><br>액션은 {{site.data.keyword.openwhisk_short}} API, CLI 또는 iOS SDK를 사용하여 직접 호출되면 작업을 수행합니다. 또한 트리거를 사용하여 {{site.data.keyword.Bluemix_notm}} 서비스 및 서드파티 서비스에서 이벤트에 자동으로 응답할 수 있습니다.</dd>
+    <br><br>액션은 {{site.data.keyword.openwhisk_short}} API, CLI 또는 iOS SDK를 사용하여 직접 호출되면 작업을 수행합니다. 또한 트리거를 사용하여 {{site.data.keyword.cloud_notm}} 서비스 및 서드파티 서비스에서 이벤트에 자동으로 응답할 수 있습니다.</dd>
   <dt>시퀀스</dt>
     <dd>일련의 액션은 코드를 작성하지 않고도 [시퀀스](/docs/openwhisk?topic=cloud-functions-actions#actions_seq)에 연결될 수 있습니다. 시퀀스는 순서대로 호출되는 액션의 체인이며, 여기서 하나의 액션의 출력은 다음 액션에 입력으로 전달됩니다. 이를 통해 기존 액션을 결합하여 쉽고 빠르게 다시 사용할 수 있습니다. 그런 다음 시퀀스는 이벤트에 대한 응답으로 REST API를 통해 또는 자동으로 액션처럼 호출될 수 있습니다.
   </dd>
@@ -74,7 +76,7 @@ subcollection: cloud-functions
 
 ### 다음 단계
 {: #quiz}
-지식을 테스트해보고 [퀴즈 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")를 풀어보십시오](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php)!
+지식을 테스트해보고 [퀴즈를 풀어보십시오](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}!
 
 
 ## OpenWhisk 내부 처리 작동 방식
@@ -87,14 +89,14 @@ subcollection: cloud-functions
 ### OpenWhisk의 백그라운드에선 어떤 일이 발생합니까?
 {: #about_scenes}
 
-OpenWhisk는 Nginx, Kafka, Docker 및 CouchDB를 포함한 컴포넌트를 결합하여 서버리스 이벤트 기반 프로그래밍 서비스를 구성하는 오픈 소스 프로젝트입니다.
+컴포넌트(예: NGINX, Kafka, Docker 및 CouchDB)를 결합하여 서버리스 이벤트 기반 프로그래밍 서비스를 구성하는 오픈 소스 프로젝트입니다.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="OpenWhisk에 대한 내부 처리 플로우" style="width:550px; border-style: none"/>
 
-### 시스템 진입: nginx
+#### 1. 시스템 진입: NGINX
 {: #about_ngnix}
 
-우선 OpenWhisk의 사용자 대면 API는 완벽하게 HTTP 기반이며 RESTful 디자인을 따릅니다. 결과적으로, CLI를 통해 전송되는 명령은 OpenWhisk 시스템에 대한 HTTP 요청입니다. 특정 명령은 대략 다음으로 변환됩니다.
+우선 OpenWhisk의 사용자 대면 API는 HTTP 기반이며 RESTful 디자인을 따릅니다. 결과적으로, CLI를 통해 전송되는 명령은 OpenWhisk 시스템에 대한 HTTP 요청입니다. 특정 명령은 대략 다음으로 변환됩니다.
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -103,18 +105,19 @@ Host: $openwhiskEndpoint
 
 여기서 *$userNamespace* 변수에 유념하십시오. 사용자는 최소한 하나의 네임스페이스에 액세스할 수 있습니다. 단순함을 위해 사용자가 *myAction*이 놓여진 네임스페이스를 소유한다고 가정합니다.
 
-시스템으로의 첫 시작점은 **nginx**를 통한 “HTTP 및 리버스 프록시 서버”입니다. 이는 SSL 종료 및 다음 컴포넌트로 적절한 HTTP 호출을 전달하는 데 사용됩니다.
+시스템으로의 첫 시작점은 **NGINX**를 통한 “HTTP 및 리버스 프록시 서버”입니다. 이는 SSL 종료 및 다음 컴포넌트로 적절한 HTTP 호출을 전달하는 데 사용됩니다.
 
-### 시스템 진입: 제어기
+#### 2. 시스템 진입: 제어기
 {: #about_controller}
 
-Nginx는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 HTTP 요청을 전달합니다. (**Akka** 및 **Spray**를 기반으로 하는) 실제 REST API의 Scala 기반 구현이므로, 이는 사용자가 수행할 수 있는 모든 작업에 대한 인터페이스로서의 역할을 합니다. OpenWhisk의 엔티티에 대한 [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) 요청 및 액션의 호출이 포함됩니다.
 
-제어기는 우선 사용자가 시도하는 작업을 명료화합니다. 이는 HTTP 요청에서 사용되는 HTTP 메소드를 기반으로 이를 수행합니다. 위의 변환에 따라 사용자는 기존 액션에 대해 POST 요청을 발행하며, 제어기는 이를 **액션의 호출**로 변환합니다.
+NGINX는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 HTTP 요청을 전달합니다. (**Akka** 및 **Spray**를 기반으로 하는) 실제 REST API의 Scala 기반 구현이므로, 이는 사용자가 수행할 수 있는 모든 작업에 대한 인터페이스로서의 역할을 합니다. OpenWhisk의 엔티티에 대한 [작성, 검색, 업데이트 및 삭제](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete){: external} 요청 및 액션의 호출이 포함됩니다.
+
+제어기는 우선 사용자가 시도하는 작업을 명료화합니다. 이는 HTTP 요청에서 사용되는 HTTP 메소드를 기반으로 이를 수행합니다. 사용자는 기존 액션에 대해 POST 요청을 발행하며, 제어기는 이를 **액션의 호출**로 변환합니다.
 
 제어기의 중심 역할(이에 따라 이름)이 부여된 경우, 다음 단계에서 어느 정도는 이를 모두 포함합니다.
 
-### 인증 및 권한 부여: CouchDB
+#### 3. 인증 및 권한 부여: CouchDB
 {: #about_auth}
 
 이제 제어기는 사용자가 누구인지(*인증*)와 해당 엔티티에서 수행할 작업에 대한 권한이 있는지(*권한*) 여부를 확인합니다. 요청에 포함된 인증 정보에 대한 확인은 **CouchDB** 인스턴스의 이른바 **제목** 데이터베이스에 대해 이루어집니다.
@@ -123,7 +126,7 @@ Nginx는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 H
 
 모든 사항에 이상이 없으므로 다음 처리 단계가 시작됩니다.
 
-### 액션 가져오기: CouchDB… (다시)
+#### 4. 액션 가져오기: CouchDB… (다시)
 {: #about_couchdb}
 
 제어기가 사용자가 허용되고 액션 호출 권한을 갖고 있음을 확인했으므로 CouchDB의 **whisks** 데이터베이스에서 이 액션(이 경우에는 *myAction*)을 로드합니다.
@@ -133,12 +136,12 @@ Nginx는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 H
 이 특정한 경우에 액션은 매개변수를 사용하지 않습니다(함수의 매개변수 정의가 비어 있는 목록임). 따라서 액션에 대한 특정 매개변수를 포함하여 기본 매개변수가 설정되지 않았다고 가정되며, 이 관점에서 보면 가장 사소한 경우가 됩니다.
 
 
-### 액션을 호출하는 주체: Load Balancer
+#### 5. 액션을 호출하는 주체: Load Balancer
 {: #about_lb}
 
 제어기의 파트인 Load Balancer는 실행기의 상태를 지속적으로 확인하여 시스템에서 사용 가능한 실행기를 전체적으로 파악합니다. 이러한 실행기를 **호출기**라고 합니다. Load Balancer는 사용 가능한 호출기를 알 수 있으며, 이 중에서 하나를 선택하여 요청된 액션을 호출합니다.
 
-### 행 구성: Kafka
+#### 6. 행 구성: Kafka
 {: #about_kafka}
 
 이제부터, 주로 두 가지의 잘못된 일이 사용자가 전송한 호출 요청에 발생할 수 있습니다.
@@ -150,21 +153,21 @@ Nginx는 OpenWhisk를 통한 경로의 다음 컴포넌트인 **제어기**로 H
 
 호출된 액션을 가져오기 위해 제어기는 메시지를 Kafka에 공개하며, 여기에는 호출할 액션과 해당 액션에 전달할 매개변수(이 경우에는 없음)가 포함되어 있습니다. 이 메시지는 호출기에 전달되며, 이를 제어기는 Consul에서 가져온 목록에서 선택합니다.
 
-일단 Kafka가 메시지의 수신을 확인하는 경우, 사용자에 대한 HTTP 요청이 **ActivationId**와 함께 응답됩니다. 사용자는 나중에 이를 사용하여 이 특정 호출의 결과에 액세스할 수 있습니다. 이는 시스템이 액션을 호출하는 요청을 일단 허용하면 HTTP 요청이 종료되는 비동기 호출 모델입니다. 동기 모델(블로킹 호출이라고 함)을 사용할 수 있지만, 여기서 다루지는 않습니다.
+일단 Kafka가 메시지의 수신을 확인하는 경우, 사용자에 대한 HTTP 요청이 **활성화 ID**와 함께 응답됩니다. 사용자는 나중에 이를 사용하여 이 특정 호출의 결과에 액세스할 수 있습니다. 이는 시스템이 액션을 호출하는 요청을 일단 허용하면 HTTP 요청이 종료되는 비동기 호출 모델입니다. 동기 모델(블로킹 호출이라고 함)을 사용할 수 있지만, 여기서 다루지는 않습니다.
 
-### 코드 호출: 호출기
+#### 7. 코드 호출: 호출기
 {: #about_invoker}
 
 **호출기**는 OpenWhisk의 핵심 기능입니다. 호출기의 임무는 액션을 호출하는 것입니다. 이는 Scala 언어로도 구현되어 있습니다. 그러나 여기에는 그 이상이 있습니다. 격리되고 안전한 방식으로 액션을 실행하기 위해 **Docker**를 사용합니다.
 
-Docker를 사용하면 빠르고 격리되고 제어된 방식으로 호출되는 각 액션에 대해 자체 캡슐화된 새 환경(*컨테이너*라고 함)을 설정할 수 있습니다. 액션 호출마다 Docker 컨테이너가 생성되며 액션 코드가 삽입됩니다. 그리고 이 코드는 전달 받은 매개변수를 사용하여 실행되고 해당 결과의 가져오기가 실행된 후에 컨테이너는 영구적으로 삭제됩니다. 오버헤드를 줄이고 응답 시간을 낮출 수 있도록 성능 최적화가 이 단계에서 수행될 수 있습니다.
+Docker를 사용하면 빠르고 격리되고 제어된 방식으로 호출되는 각 액션에 대해 자체 캡슐화된 새 환경(*컨테이너*라고 함)을 설정할 수 있습니다. 액션 호출마다 Docker 컨테이너가 생성되며 액션 코드가 삽입됩니다. 그리고 이 코드는 전달 받은 매개변수를 사용하여 실행되고 해당 결과의 가져오기가 실행된 후에 컨테이너는 영구적으로 삭제됩니다. 유지보수 요구사항을 줄이고 응답 시간을 낮출 수 있도록 성능 최적화가 이 단계에서 수행될 수 있습니다.
 
 이 경우에는 *Node.js* 기반 액션을 바로 실행할 수 있으므로 호출기가 Node.js 컨테이너를 시작합니다. 그리고 *myAction*에서 코드를 삽입하고 매개변수 없이 이를 실행하며 해당 결과를 추출하고 로그를 저장한 후에 Node.js 컨테이너를 다시 영구 삭제합니다.
 
-### 결과 저장: CouchDB (다시)
+#### 8. 결과 저장: CouchDB (다시)
 {: #about_storing}
 
-호출기가 결과를 받으면 이는 ActivationId 아래에서 활성화로서 **whisks** 데이터베이스에 저장됩니다. **whisks** 데이터베이스는 **CouchDB**에 상주합니다.
+호출기가 결과를 받으면 이는 활성화 ID 아래에서 활성화로서 **whisks** 데이터베이스에 저장됩니다. **whisks** 데이터베이스는 **CouchDB**에 상주합니다.
 
 이 특정한 경우에, 호출기는 액션에서 다시 결과 JSON 오브젝트를 가져오고 Docker에 의해 작성된 로그를 가져오며 이 모두를 활성화 레코드에 두고 이를 데이터베이스에 저장합니다. 다음 예제를 참조하십시오.
 ```json
@@ -205,4 +208,7 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 * [액션 시맨틱](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [한계](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [REST API 참조](/apidocs/functions)
+
+
+
 

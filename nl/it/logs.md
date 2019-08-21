@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Visualizzazione dei log
 {: #logs}
@@ -50,8 +52,8 @@ Puoi utilizzare la CLI {{site.data.keyword.openwhisk_short}} per visualizzare l'
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
     {: screen}
@@ -70,21 +72,21 @@ Puoi utilizzare la CLI {{site.data.keyword.openwhisk_short}} per visualizzare l'
 ## Visualizzazione dei dettagli dell'attivazione
 {: #activation_details}
 
-Le azioni {{site.data.keyword.openwhisk_short}} possono essere richiamate da altri utenti, in risposta a vari eventi o nell'ambito di una sequenza di azioni. Ogni volta che un'azione viene richiamata, per tale chiamata viene creato un record di attivazione. Per ottenere informazioni sul risultato della chiamata dell'azione, puoi ottenere i dettagli sulle attivazioni.
+Le azioni {{site.data.keyword.openwhisk_short}} possono essere richiamate da altri utenti, in risposta a vari eventi o nell'ambito di una sequenza di azioni. Quando viene richiamata un'azione, viene creato un record di attivazione per quella chiamata. Per ottenere informazioni sul risultato della chiamata dell'azione, puoi ottenere i dettagli sulle attivazioni.
 
-Per ottenere tutti gli ID di record di attivazione in uno spazio dei nomi:
+Puoi ottenere tutti gli ID record di attivazione in uno spazio dei nomi immettendo il seguente comando.
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-Per ottenere i dettagli su uno specifico record di attivazione generato da una chiamata dell'azione:
+Puoi ottenere i dettagli su uno specifico record di attivazione generato da una chiamata dell'azione immettendo il seguente comando. Sostituisci `<activation_ID>` con l'ID dell'attivazione. 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-Output di esempio:
+**Output di esempio**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -178,8 +180,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>: lo stato uscita dell'attivazione.</li>
-<li><code>statusCode</code>: il codice di stato. Se per l'azione si è verificato un errore, il codice di errore HTTP.</li>
-<li><code>success</code>: indica se l'azione è stata completata correttamente.</li>
+<li><code>statusCode</code>: il codice di stato. Se l'azione ha provocato un errore, questo valore è il codice di errore HTTP.</li>
+<li><code>success</code>: il risultato che indica il completamento dell'azione.</li>
 <li><code>result</code>: il valore restituito dall'attivazione.</li>
 </ul></td>
 </tr>
@@ -193,7 +195,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>Indica se l'azione è pubblicata pubblicamente.</td>
+<td>Il risultato che indica la pubblicazione dell'azione.</td>
 </tr>
 </tbody></table>
 
@@ -202,32 +204,36 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## Visualizzazione dei log in {{site.data.keyword.loganalysisfull_notm}}
 {: #logs_view}
 
+I log {{site.data.keyword.loganalysislong_notm}} non sono disponibili per gli spazi dei nomi basati su IAM.
+{: note}
+
 Puoi visualizzare i log di attivazione direttamente dal dashboard di monitoraggio {{site.data.keyword.openwhisk_short}}. I log vengono anche inoltrati a [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) dove vengono indicizzati, abilitando la ricerca di testo completo in tutti i messaggi generati e pratiche query basate su campi specifici.
 {:shortdesc}
 
-**Nota**: la registrazione non è disponibile per la regione Stati Uniti Est.
+La registrazione non è disponibile per la regione Stati Uniti Est.
+{: important}
 
-1. Apri la [pagina Monitoraggio di {{site.data.keyword.openwhisk_short}} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/dashboard).
+1. Apri la [pagina Monitoraggio di {{site.data.keyword.openwhisk_short}} ](https://cloud.ibm.com/openwhisk/dashboard){: external}.
 
 2. Facoltativo: per visualizzare i log solo per una specifica azione, limita il riepilogo di monitoraggio a tale azione. Nella sezione Opzioni di filtro, seleziona il nome dell'azione dall'elenco a discesa **Limita a**.
 
 3. Nella navigazione sulla sinistra, fai clic su **Log**. Viene aperta la pagina {{site.data.keyword.loganalysisshort_notm}} Kibana.
 
-4. Facoltativo: per visualizzare i log meno recenti, modifica il valore di intervallo temporale predefinito di 15 minuti facendo clic su **Ultimi 15 minuti** nell'angolo superiore destro e selezionando un intervallo di tempo differente.
+4. Facoltativo: per visualizzare i log meno recenti, modifica il valore di intervallo temporale predefinito di 15 minuti facendo clic su **Ultimi 15 minuti** e selezionando un intervallo di tempo differente.
 
 ### Query dei log
 {: #logs_query}
 
 Puoi trovare dei log di attivazione specifici in [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) utilizzando la sintassi di query di Kibana.
 
-Le seguenti query di esempio possono aiutarti a eseguire il debug degli errori:
-  * Trova tutti i log degli errori:
+Le seguenti query di esempio possono aiutarti a eseguire il debug degli errori.
+  * Trova tutti i log degli errori.
       ```
       type: user_logs AND stream_str: stderr
       ```
       {: codeblock}
 
-  * Trova tutti i log degli errori generati da "myAction":
+  * Trova tutti i log degli errori generati da `myAction`.
       ```
       type: user_logs AND stream_str: stderr AND action_str: "*myAction"
       ```
@@ -240,16 +246,18 @@ Oltre ai file di log, [{{site.data.keyword.loganalysislong_notm}}](/docs/service
 
 Puoi trovare degli specifici log di attivazione utilizzando la sintassi di query di Kibana. Le seguenti query di esempio possono aiutarti a eseguire il debug degli errori:
 
-* Trova tutte le attivazioni non riuscite:
+* Trova tutte le attivazioni non riuscite.
     ```
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    Nei risultati, uno `0` indica un'azione che è stata chiusa correttamente e tutti gli altri valori indicano un errore.
+    Nei risultati, uno `0` indica che un'azione è stata chiusa correttamente. Tutti gli altri valori indicano un errore.
 
-* Trova tutte le attivazioni che non sono riuscite con uno specifico errore:
+* Trova tutte le attivazioni non riuscite con un errore specifico.
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

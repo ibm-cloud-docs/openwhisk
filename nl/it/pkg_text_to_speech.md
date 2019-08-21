@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-17"
+lastupdated: "2019-07-19"
 
-keywords: text to speech, watson, cognitive, functions, packages
+keywords: cognitive, functions, packages
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,7 +23,6 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
 
 
 # Text to Speech
@@ -48,18 +48,17 @@ Il pacchetto include le seguenti azioni.
 
 | Entità | Tipo | Parametri | Descrizione |
 | --- | --- | --- | --- |
-| `/whisk.system/watson-textToSpeech` | pacchetto | username, password | Pacchetto per convertire il testo in voce |
-| `/whisk.system/watson-textToSpeech/textToSpeech` | azione | payload, voice, accept, encoding, username, password | Convertire testo in audio |
+| `/whisk.system/watson-textToSpeech` | Pacchetto | `username`, `password` | Pacchetto per convertire il testo in voce. |
+| `/whisk.system/watson-textToSpeech/textToSpeech` | Azione | `payload`, `voice`, `accept`, `encoding`, `username`, `password` | Convertire il testo in audio. |
 
-**Nota**: il pacchetto `/whisk.system/watson` è obsoleto, inclusa l'azione `/whisk.system/watson/textToSpeech`. Visualizza invece il [pacchetto {{site.data.keyword.texttospeechshort}} installabile](#text_to_speech_ins).
+Il pacchetto `/whisk.system/watson` è obsoleto, inclusa l'azione `/whisk.system/watson/textToSpeech`. Visualizza invece il [pacchetto {{site.data.keyword.texttospeechshort}} installabile](#text_to_speech_ins).
+{: deprecated}
 
-### Configurazione del pacchetto Watson Text to Speech in {{site.data.keyword.Bluemix_notm}}
+### Configurazione del pacchetto {{site.data.keyword.texttospeechshort}} in {{site.data.keyword.cloud_notm}}
 
-Se utilizzi {{site.data.keyword.openwhisk}} da {{site.data.keyword.Bluemix_notm}}, vengono creati automaticamente i bind di pacchetto per le tue istanze del servizio {{site.data.keyword.Bluemix_notm}} Watson.
+Se utilizzi {{site.data.keyword.openwhisk}} da {{site.data.keyword.cloud_notm}}, vengono creati automaticamente i bind di pacchetto per le tue istanze del servizio {{site.data.keyword.cloud_notm}} Watson.
 
-1. Crea un'istanza del servizio Watson Text to Speech nel tuo [dashboard](http://cloud.ibm.com) {{site.data.keyword.Bluemix_notm}}.
-
-  Assicurati di ricordare il nome dell'istanza del servizio e dell'organizzazione e dello spazio {{site.data.keyword.Bluemix_notm}} in cui ti trovi.
+1. Crea un'istanza del servizio {{site.data.keyword.texttospeechshort}} nel tuo [dashboard](https://cloud.ibm.com){: external} {{site.data.keyword.cloud_notm}}. Assicurati di ricordare il nome dell'istanza del servizio e dell'organizzazione e dello spazio {{site.data.keyword.cloud_notm}} in cui ti trovi.
 
 2. Aggiorna i pacchetti nel tuo spazio dei nomi. L'aggiornamento crea automaticamente un bind di pacchetto per l'istanza del servizio Watson da te creata.
   ```
@@ -67,54 +66,54 @@ Se utilizzi {{site.data.keyword.openwhisk}} da {{site.data.keyword.Bluemix_notm}
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   created bindings:
-  Bluemix_Watson_TextToSpeech_Credentials-1
+  Watson_TextToSpeech_Credentials-1
   ```
   {: screen}
 
-  Elenca i pacchetti per verificare che il bind di pacchetto sia stato creato:
+  Elenca i pacchetti per verificare che il bind di pacchetto sia stato creato.
   ```
   ibmcloud fn package list
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Watson_TextToSpeec_Credentials-1 private
+  /myOrg_mySpace/Watson_TextToSpeec_Credentials-1 private
   ```
   {: screen}
 
-### Configurazione di un pacchetto Watson Text to Speech all'esterno di {{site.data.keyword.Bluemix_notm}}
+### Configurazione di un pacchetto {{site.data.keyword.texttospeechshort}} all'esterno di {{site.data.keyword.cloud_notm}}
 
-Se non utilizzi {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.Bluemix_notm}} o se vuoi configurare Watson Text to Speech all'esterno di {{site.data.keyword.Bluemix_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio Watson Text to Speech. Ti servono il nome utente e la password del servizio Watson Text to Speech.
+Se non utilizzi {{site.data.keyword.openwhisk_short}} in {{site.data.keyword.cloud_notm}} o se vuoi configurare {{site.data.keyword.texttospeechshort}} all'esterno di {{site.data.keyword.cloud_notm}}, devi creare manualmente un bind di pacchetto per il tuo servizio {{site.data.keyword.texttospeechshort}}. Ti servono il nome utente e la password del servizio {{site.data.keyword.texttospeechshort}}.
 
-Crea un bind di pacchetto configurato per il tuo servizio Watson Speech to Text.
+Crea un bind di pacchetto configurato per il tuo servizio {{site.data.keyword.texttospeechshort}}.
 ```
-ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username MYUSERNAME -p password MYPASSWORD
+ibmcloud fn package bind /whisk.system/watson-textToSpeech myWatsonTextToSpeech -p username <username> -p password <password>
 ```
 {: pre}
 
 ### Conversione da testo a voce
 
-L'azione `/whisk.system/watson-textToSpeech/textToSpeech` converte un testo in audio. I parametri sono i seguenti:
+L'azione `/whisk.system/watson-textToSpeech/textToSpeech` converte un testo in audio. Sono supportati i seguenti parametri.
 
-- `username`: il nome utente dell'API Watson.
-- `password`: la password dell'API Watson.
-- `payload`: il testo da convertire in voce.
-- `voice`: la voce dello speaker.
-- `accept`: il formato del file audio.
-- `encoding`: la codifica dei dati binari del file audio.
+| `username` | Il nome utente dell'API Watson. |
+| `password` | La password dell'API Watson. |
+| `payload` | Il testo da convertire in voce. |
+| `voice` | La voce del parlante. |
+| `accept` | Il formato del file del discorso. |
+| `encoding` | La codifica dei dati binari del discorso. |
 
-Richiama l'azione **textToSpeech** nel tuo bind di pacchetto per convertire il testo.
+Verifica l'azione `textToSpeech` nel tuo bind di pacchetto per convertire il testo.
 ```
 ibmcloud fn action invoke myWatsonTextToSpeech/textToSpeech --blocking --result --param payload 'Hey.' --param voice 'en-US_MichaelVoice' --param accept 'audio/wav' --param encoding 'base64'
 ```
 {: pre}
 
-Output di esempio:
+**Output di esempio**
 ```
 {
   "payload": "<base64 encoding of a .wav file>"
@@ -126,31 +125,31 @@ Output di esempio:
 ## {{site.data.keyword.texttospeechshort}}
 {: #text_to_speech_ins}
 
-Il servizio {{site.data.keyword.texttospeechfull}} installabile fornisce un'API che utilizza le funzionalità di sintesi vocale di IBM per sintetizzare il testo in un parlato naturale in una vasta gamma di lingue, dialetti e voci.
+Il servizio {{site.data.keyword.texttospeechfull}} installabile fornisce un'API con le funzionalità di sintesi vocale di IBM per sintetizzare il testo in un parlato naturale in una vasta gamma di lingue, dialetti e voci.
 {:shortdesc}
 
 Il servizio supporta almeno una voce maschile o femminile, a volte entrambe, per ciascuna lingua. L'audio viene inviato nuovamente al client con un ritardo minimo. Per ulteriori informazioni sul servizio, vedi la [documentazione di IBM Cloud](/docs/services/text-to-speech?topic=text-to-speech-about).
 
-Il pacchetto {{site.data.keyword.texttospeechshort}} contiene le seguenti entità. Puoi trovare ulteriori dettagli nella guida di riferimento API {{site.data.keyword.texttospeechshort}} facendo clic sul nome dell'entità.
+Il pacchetto {{site.data.keyword.texttospeechshort}} contiene le seguenti entità. Puoi trovare ulteriori informazioni nella guida di riferimento API {{site.data.keyword.texttospeechshort}} facendo clic sul nome dell'entità.
 
 | Entità | Tipo | Parametri | Descrizione |
 | --- | --- | --- | --- |
-| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html) | pacchetto | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Lavorare con il servizio {{site.data.keyword.texttospeechshort}}. |
-| [get-voice](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    voice,     customization_id,  | Ottenere una voce. |
-| [list-voices](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url, | Elencare le voci. |
-| [synthesize](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   text,     accept,     voice,     customization_id,  | Sintetizzare l'audio. |
-| [get-pronunciation](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-pronunciation) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    text,     voice,     format,     customization_id,  | Ottenere la pronuncia. |
-| [create-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#create-voice-model) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,   name, language, description,  | Creare un modello personalizzato. |
-| [delete-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-voice-model) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Eliminare un modello personalizzato. |
-| [get-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice-model) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Ottenere un modello personalizzato. |
-| [list-voice-models](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voice-models) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    language,  | Elencare i modelli personalizzati. |
-| [update-voice-model](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#update-voice-model) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    name, description, words,  | Aggiornare un modello personalizzato. |
-| [add-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-word) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,    translation, part_of_speech,  | Aggiungere una parola personalizzata. |
-| [add-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-words) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,    words,  | Aggiungere parole personalizzate. |
-| [delete-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-word) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Eliminare una parola personalizzata. |
-| [get-word](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-word) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,     word,  | Ottenere una parola personalizzata. |
-| [list-words](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customization_id,  | Elencare le parole personalizzate. |
-| [delete-user-data](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data) | azione |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    customer_id,  | Eliminare i dati etichettati. |
+| [`text-to-speech-v1`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html){: external} | Pacchetto | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Lavorare con il servizio {{site.data.keyword.texttospeechshort}}. |
+| [`get-voice`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `voice`, `customization_id` | Ottenere una voce. |
+| [`list-voices`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voices){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Elencare le voci. |
+| [`synthesize`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#synthesize){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text`, `accept`, `voice`, `customization_id` | Sintetizzare l'audio. |
+| [`get-pronunciation`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-pronunciation){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text`, `voice`, `format`, `customization_id` | Ottenere la pronuncia. |
+| [`create-voice-model`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#create-voice-model){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`, `language`, `description` | Creare un modello personalizzato. |
+| [`delete-voice-model`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-voice-model){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | Eliminare un modello personalizzato. |
+| [`get-voice-model`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-voice-model){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | Ottenere un modello personalizzato. |
+| [`list-voice-models`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-voice-models){: external} | Azione | `username`,`password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `language` | Elencare i modelli personalizzati. |
+| [`update-voice-model`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#update-voice-model){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `name`, `description`, `words` | Aggiornare un modello personalizzato. |
+| [`add-word`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-word){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `word`, `translation`, `part_of_speech` | Aggiungere una parola personalizzata. |
+| [`add-words`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#add-words){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `words`  | Aggiungere parole personalizzate. |
+| [`delete-word`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-word){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `word` | Eliminare una parola personalizzata. |
+| [`get-word`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#get-word){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `word` | Ottenere una parola personalizzata. |
+| [`list-words`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#list-words){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | Elencare le parole personalizzate. |
+| [`delete-user-data`](https://www.ibm.com/watson/developercloud/text-to-speech/api/v1/curl.html?curl#delete-user-data){: external} | Azione | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Eliminare i dati etichettati. |
 
 ### Creazione di un'istanza del servizio {{site.data.keyword.texttospeechshort}}
 {: #service_instance_texttospeech}
@@ -158,7 +157,7 @@ Il pacchetto {{site.data.keyword.texttospeechshort}} contiene le seguenti entit�
 Prima di installare il pacchetto, devi creare un'istanza del servizio {{site.data.keyword.texttospeechshort}} e le credenziali del servizio.
 {: shortdesc}
 
-1. [Crea un'istanza del servizio {{site.data.keyword.texttospeechshort}} ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/catalog/services/text_to_speech).
+1. [Crea un'istanza del servizio {{site.data.keyword.texttospeechshort}}](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
 2. Quando l'istanza del servizio viene creata, vengono anche create per tuo conto le credenziali del servizio generate automaticamente.
 
 ### Installazione del pacchetto {{site.data.keyword.texttospeechshort}}
@@ -170,10 +169,10 @@ Una volta che disponi di un'istanza del servizio {{site.data.keyword.texttospeec
 ### Installazione dalla CLI {{site.data.keyword.openwhisk_short}}
 {: #texttospeech_cli}
 
-Prima di iniziare:
-  1. [Installa il plug-in {{site.data.keyword.openwhisk_short}} per la CLI {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
+**Prima di iniziare**
+[Installa il plug-in {{site.data.keyword.openwhisk_short}} per la CLI {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
+Per installare il pacchetto {{site.data.keyword.texttospeechshort}}, immetti i seguenti comandi.
 
 1. Clona il repository del pacchetto {{site.data.keyword.texttospeechshort}}.
     ```
@@ -193,7 +192,7 @@ Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
     ```
     {: pre}
 
-    Output:
+    **Output**
     ```
     packages
     /myOrg_mySpace/text-to-speech-v1                        private
@@ -211,8 +210,9 @@ Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
     ibmcloud fn service bind text-to-speech text-to-speech-v1
     ```
     {: pre}
-    Output di esempio:
-    ```
+
+    **Output di esempio**
+      ```
     Credentials 'Credentials-1' from 'text_to_speech' service instance 'Watson Text to Speech' bound to 'text-to-speech-v1'.
     ```
     {: screen}
@@ -223,8 +223,8 @@ Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     ok: got package text-to-speech-v1, displaying field parameters
     [
       {
@@ -246,9 +246,9 @@ Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
 ### Installazione dall'IU {{site.data.keyword.openwhisk_short}}
 {: #texttospeech_ui}
 
-1. Nella console {{site.data.keyword.openwhisk_short}}, vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create).
+1. Nella console {{site.data.keyword.openwhisk_short}}, vai alla [pagina di creazione](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. Utilizzando gli elenchi **Organizzazione Cloud Foundry** e **Spazio Cloud Foundry**, seleziona lo spazio dei nomi in cui vuoi installare il pacchetto. 
+2. Seleziona lo spazio dei nomi in cui vuoi installare il pacchetto utilizzando il menu a discesa dello spazio dei nomi.
 
 3. Fai clic su **Installa pacchetti**.
 
@@ -258,14 +258,18 @@ Per installare il pacchetto {{site.data.keyword.texttospeechshort}}:
 
 5. Fai clic su **Installa**.
 
-6. Dopo che il pacchetto è stato installato, verrai reindirizzato alla pagina Azioni e puoi cercare il tuo nuovo pacchetto, che è denominato **text-to-speech-v1**.
+6. Dopo che il pacchetto è stato installato, verrai reindirizzato alla pagina Azioni e puoi cercare il tuo nuovo pacchetto, che è denominato `text-to-speech-v1`.
 
-7. Per utilizzare le azioni nel pacchetto **text-to-speech-v1**, devi eseguire il bind delle credenziali del servizio alle azioni.
-  * Per eseguire il bind delle credenziali del servizio a tutte le azioni nel pacchetto, attieniti ai passi 5 e 6 nelle istruzioni della CLI sopra elencate.
-  * Per eseguire il bind delle credenziali del servizio a singole azioni, completa la seguente procedura nell'IU. **Nota**: devi completare la seguente procedura per ogni azione che desideri utilizzare.
-    1. Fai clic su un'azione dal pacchetto **text-to-speech-v1** che vuoi utilizzare. Viene aperta la pagina dei dettagli per tale azione.
+7. Per utilizzare le azioni nel pacchetto `text-to-speech-v1`, devi eseguire il bind delle credenziali del servizio alle azioni.
+  * Per eseguire il bind delle credenziali del servizio a tutte le azioni nel pacchetto, segui i passi [4 e 6 nelle istruzioni della CLI](#texttospeech_cli).
+  * Per eseguire il bind delle credenziali del servizio a singole azioni, completa la seguente procedura nell'IU.
+
+  Devi completare la seguente procedura per ogni azione che vuoi utilizzare.
+  {: note}
+
+    1. Fai clic su un'azione dal pacchetto `text-to-speech-v1` che vuoi utilizzare. Viene aperta la pagina dei dettagli per tale azione.
     2. Nella navigazione sulla sinistra, fai clic sulla sezione **Parametri**.
-    3. Immetti un nuovo **parametro**. Per la chiave, immetti `__bx_creds`. Per il valore, incolla l'oggetto JSON delle credenziali del servizio dall'istanza del servizio che hai creato in precedenza.
+    3. Immetti un nuovo parametro. Per la chiave, immetti `__bx_creds`. Per il valore, incolla l'oggetto JSON delle credenziali del servizio dall'istanza del servizio che hai creato in precedenza.
 
 ## Utilizzo del pacchetto {{site.data.keyword.texttospeechshort}}
 {: #usage_texttospeech}
@@ -282,4 +286,5 @@ Prova l'azione `list-voices`.
 ibmcloud fn action invoke text-to-speech-v1/list-voices -b
 ```
 {: pre}
+
 

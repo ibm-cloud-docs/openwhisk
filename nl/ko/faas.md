@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: functions compared, openwhisk, architecture, limitless
+keywords: functions compared, architecture, limitless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # FaaS(Function as a Service) 아키텍처
 {: #faas}
@@ -43,15 +45,15 @@ subcollection: cloud-functions
 
 다음 OpenWhisk 아키텍처가 비교 대상입니다.
 
-1. [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk)의 **FaaS(Function as a Service)**. IBM은 관리 OpenWhisk를 제공하는 유일한 공급업체입니다. FaaS 플랫폼을 사용하는 서버리스 프로그래밍 모델에 대한 소개는 [Martin Fowler의 블로그](https://martinfowler.com/articles/serverless.html)에 있으며, 서버리스 디자인의 OpenWhisk를 실행하기 위한 [유스 케이스](/docs/openwhisk?topic=cloud-functions-use_cases)를 볼 수 있습니다.
+1. [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external}의 **FaaS(Function as a Service)**. IBM은 관리 OpenWhisk를 제공하는 유일한 공급업체입니다. FaaS 플랫폼을 사용하는 서버리스 프로그래밍 모델에 대한 소개는 [Martin Fowler의 블로그](https://martinfowler.com/articles/serverless.html){: external}에 있으며, 서버리스 디자인의 OpenWhisk를 실행하기 위한 [유스 케이스](/docs/openwhisk?topic=cloud-functions-use_cases)를 볼 수 있습니다.
 
-2. OpenWhisk RYO(Roll Your Own)가 포함된 **IaaS(Infrastructure as a Service)**. Apache Incubation Project에서 OpenWhisk를 다운로드하여 [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices)에서 실행할 수 있습니다.
+2. OpenWhisk RYO(Roll Your Own)가 포함된 **IaaS(Infrastructure as a Service)**. Apache Incubation Project에서 OpenWhisk를 다운로드하여 [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute){: external}에서 실행할 수 있습니다.
 
-3. 관리 애플리케이션 런타임인 **PaaS(Platform as a Service)**. {{site.data.keyword.Bluemix_notm}} Foundry 구현에 의해 관리되는 [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) 런타임이 좋은 예입니다.
+3. 관리 애플리케이션 런타임인 **PaaS(Platform as a Service)**. {{site.data.keyword.cloud_notm}} Foundry 구현에 의해 관리되는 [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java){: external} 런타임이 좋은 예입니다.
 
 4. 관리 컨테이너 환경인 **CaaS(Container as a Service)**. [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index)가 좋은 예입니다.
 
-5. Java EE 런타임이 포함된 **IaaS(Infrastructure as a Service)**. [{{site.data.keyword.Bluemix_notm}}의 WebSphere Application Server VM](https://cloud.ibm.com/catalog/services/websphere-application-server)이 좋은 예입니다.
+5. Java EE 런타임이 포함된 **IaaS(Infrastructure as a Service)**. [{{site.data.keyword.cloud_notm}}의 WebSphere Application Server VM](https://cloud.ibm.com/catalog/services/websphere-application-server){: external}이 좋은 예입니다.
 
 다음 표에서는 애플리케이션을 작성하고 운영하는 개발자의 관점에서 각 아키텍처 요소를 비교합니다.
 
@@ -60,7 +62,7 @@ subcollection: cloud-functions
 | --- | --- | --- | --- | --- | --- |
 |	애플리케이션 단위	|	단일 함수(일반적으로 JavaScript, Swift 또는 Docker 컨테이너의 소형 코드 블록) - 1Kb 미만일 수 있지만 더 클 수 있습니다. 일반적으로 수 Kb를 초과하지 않습니다.	|	열 (1)과 동일함	|	사용되는 런타임에 따라 다릅니다. 일반적으로 상대적으로 큰 EAR 또는 WAR 파일 또는 기타 언어 특정 애플리케이션 번들 - 번들에 많은 서비스가 포함된 Kb 또는 심지어는 Mb 단위의 크기지만, 단일 서비스처럼 작을 수도 있습니다.	|	Docker 컨테이너는 배치 단위입니다.	|	EAR 또는 WAR 파일 또는 기타 종속 항목이 포함된 앱 서버의 VM - 일반적인 크기는 Gb 단위입니다.	|
 |	리소스 풋프린트	|	일반 사용자가 메모리, CPU 또는 기타 리소스의 비용을 지불하지 않거나 이에 대해 신경쓰지 않습니다. 액션에 일부 풋프린트가 있지만 사용자는 이에 대해 염려할 필요가 없습니다.	|	높음. 일반 사용자가 우선 IaaS 환경을 프로비저닝해야 하며, 이 경우에만 그 위에 OpenWhisk를 설치하고 구성할 수 있습니다.	|	소형. 일반 사용자는 앱 실행을 위한 메모리와 CPU의 비용을 지불하지만, 실행 중이 아닌 앱에 대해서는 비용을 지불하지 않습니다.	|	소형에서 중형	|	높음. 일반 사용자는 앱이 실행될 때 디스크 스토리지, 메모리, CPU 및 기타 가능한 컴포넌트에 대해 비용을 지불해야 합니다. 중지된 경우에는 스토리지 비용만 발생합니다.	|
-|	설치 및 설정	|	필요하지 않음	|	어려움 - 모두 일반 사용자가 수행함	|	필요하지 않음	|	중간 - 하드웨어, 네트워킹, OS, 컨테이너 관리 도구는 CaaSs 공급업체가 제공하며 이미지, 연결성 및 인스턴스는 일반 사용자가 제공함	|	어려움 - 하드웨어, 네트워킹, OS 및 초기 Java EE 설치는 공급업체가 제공하며 추가 구성, 클러스터링 및 스케일링은 일반 사용자가 제공함	|
+|	설치 및 설정	|	필요하지 않음	|	어려움 - 모두 일반 사용자가 수행함	|	필요하지 않음	|	중간 - 하드웨어, 네트워킹, OS, 컨테이너 관리 도구는 CaaS 공급업체가 제공하며 이미지, 연결성 및 인스턴스는 일반 사용자가 제공함	|	어려움 - 하드웨어, 네트워킹, OS 및 초기 Java EE 설치는 공급업체가 제공하며 추가 구성, 클러스터링 및 스케일링은 일반 사용자가 제공함	|
 |	프로비저닝 시간	|	밀리초	|	열 (4) 및 (5) 참조	|	분	|	분	|	시간	|
 |	지속적 관리	|	없음	|	어려움	|	없음	|	중간	|	어려움	|
 |	탄력적 스케일링	|	각 액션은 항상 로드에 따라 즉시 기본적으로 스케일링됩니다. 사전에 VM 또는 기타 리소스를 프로비저닝할 필요가 없습니다.	|	제공되지 않음 - 일반 사용자가 IaaS의 컴퓨팅 용량을 제공하고 VM의 스케일링을 관리해야 합니다. 일단 VM이 스케일링되면 OpenWhisk가 액션을 자동으로 스케일링하지만, 리소스는 사전에 이미 프로비저닝되어 있어야 합니다.	|	자동적이지만 느린 스케일링입니다. 로드가 증가하는 동안 사용자는 수 분 정도 스케일링 액션이 완료될 때까지 대기해야 할 수 있습니다. 자동 스케일링에서는 신중한 튜닝이 필요합니다.	|	자동적이지만 느린 스케일링입니다. 로드가 증가하는 동안 사용자는 수 분 정도 스케일링 액션이 완료될 때까지 대기해야 할 수 있습니다. 자동 스케일링에서는 신중한 튜닝이 필요합니다.	|	제공되지 않음	|
@@ -75,8 +77,8 @@ subcollection: cloud-functions
 |	리소스 한계	|	[일부 한계가 존재함](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)	|	할당된 리소스에 따라 다름	|	없음	|	없음	|	없음	|
 |	드물게 사용되는 서비스에 대한 대기 시간	|	드문 요청은 초기에 수 초의 응답 시간을 나타내지만, 후속 요청인 경우에는 ms 범위를 유지함	|	종속	|	낮음	|	낮음	|	낮음 - 시스템의 리소스가 충분하다고 가정함	|
 |	애플리케이션의 스윗 스팟 유형	|	이벤트 처리, IoT, 모바일 백엔드, 마이크로서비스. 모놀리식 애플리케이션의 경우에는 명백히 아닙니다. [유스 케이스](/docs/openwhisk?topic=cloud-functions-use_cases)를 참조하십시오.	|	열 (1)과 동일하지만, 사용자가 비-IBM 클라우드 또는 온프레미스에서 실행하고자 하는 경우.	|	24x7 워크로드 로드가 있는 웹 애플리케이션 및 장시간 동안 열린 연결을 유지해야 하는 stateful 서비스. 마이크로서비스 또는 모놀리식 애플리케이션의 실행에 사용될 수 있습니다.	|	마이크로서비스 애플리케이션에 이상적입니다.	|	온프레미스에서 클라우드로 마이그레이션된 전통적인 엔터프라이즈 애플리케이션. 모놀리식 애플리케이션에 이상적입니다.	|
-|	입자성 및 비용 청구	|	[100밀리초의 블록당](https://cloud.ibm.com/openwhisk/learn/pricing)	|	구현에 종속됨 - IaaS 또는 CaaS가 사용되는 경우, 유사한 고려사항이 적용됨 - 열 (4) 및 (5) 참조	|	리소스 번들(CPU + 메모리 + 일부 디스크 공간)에 대해 일반적으로 시간당(드물게 분당) 비용 청구됨	|	열 (3)과 유사함	|	열 (3)과 유사함	|
-|	총소유비용(TCO)	|	스윗 스팟의 경우, 애플리케이션은 대체 애플리케이션 미만의 크기 배열로 비용이 청구될 수 있습니다. 리소스가 자동으로 스케일링되므로 초과 프로비저닝이 발생하지 않습니다.	|	클라우드 배치의 경우, 이는 OpenWhisk FaaS보다 비쌀 수 있지만 온프레미스 배치는 전통적인 아키텍처보다 비용이 저렴할 수 있습니다.	|	상대적으로 낮음 - 사용자가 리소스를 프로비저닝하거나 관리할 필요가 없으며 애플리케이션 개발에만 집중할 수 있습니다. 서버리스와 비교하여 일정 레벨의 초과 프로비저닝	|	적절 - 사용자가 컨테이너와 애플리케이션을 프로비저닝하고 관리해야 하며 서버리스 또는 PaaS와 비교하여 일정 레벨의 초과 프로비저닝이 나타날 수 있습니다.	|	상대적으로 높음 - 클라우드 고유 모델로 레거시 애플리케이션의 마이그레이션은 엄청나게 고가일 수 있음을 고려하십시오. 이는 해당 앱에 대한 실행 가능한 경제적 선택사항일 수 있습니다.	|
+|	입자성 및 비용 청구	|	[100밀리초의 블록당](https://cloud.ibm.com/openwhisk/learn/pricing){: external}	|	구현에 종속됨 - IaaS 또는 CaaS가 사용되는 경우, 유사한 고려사항이 적용됨 - 열 (4) 및 (5) 참조	|	리소스 번들(CPU + 메모리 + 일부 디스크 공간)에 대해 일반적으로 시간당(드물게 분당) 비용 청구됨	|	열 (3)과 유사함	|	열 (3)과 유사함	|
+|	총소유비용	|	스윗 스팟의 경우, 애플리케이션은 대체 애플리케이션 미만의 크기 배열로 비용이 청구될 수 있습니다. 리소스가 자동으로 스케일링되므로 초과 프로비저닝이 발생하지 않습니다.	|	클라우드 배치의 경우, 이는 OpenWhisk FaaS보다 비쌀 수 있지만 온프레미스 배치는 전통적인 아키텍처보다 비용이 저렴할 수 있습니다.	|	상대적으로 낮음 - 사용자가 리소스를 프로비저닝하거나 관리할 필요가 없으며 애플리케이션 개발에만 집중할 수 있습니다. 서버리스와 비교하여 일정 레벨의 초과 프로비저닝	|	적절 - 사용자가 컨테이너와 애플리케이션을 프로비저닝하고 관리해야 하며 서버리스 또는 PaaS와 비교하여 일정 레벨의 초과 프로비저닝이 나타날 수 있습니다.	|	상대적으로 높음 - 클라우드 고유 모델로 레거시 애플리케이션의 마이그레이션은 엄청나게 고가일 수 있음을 고려하십시오. 이는 해당 앱에 대한 실행 가능한 경제적 선택사항일 수 있습니다.	|
 
 ## 비용 고려사항
 {: #faas_cost}
@@ -84,7 +86,7 @@ subcollection: cloud-functions
 테스트, 스테이징, 로드 테스트 및 기타 환경의 인프라에 비용이 많이 들 수 있습니다. 인프라 설정에는 시간이 걸리며, 인프라는 대개 일주일 내내 종일 작동하므로 종종 충분히 활용되지 않고 많은 용량을 사용합니다. 서버리스 아키텍처를 사용하면 임의 수의 환경에 대한 비용이 정의된 환경 수 대신 로드를 기준으로 생성됩니다.
 {: shortdesc}
 
-서버리스 애플리케이션에 대한 비용을 예측하기 위해 [가격 계산기 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://cloud.ibm.com/openwhisk/learn/pricing)를 사용할 수 있습니다.
+서버리스 애플리케이션에 대한 비용을 예측하기 위해 [가격 계산기](https://cloud.ibm.com/openwhisk/learn/pricing){: external}를 사용할 수 있습니다.
 
 ### 무제한 용량
 {: #faas_capacity}
@@ -102,4 +104,7 @@ subcollection: cloud-functions
 {: #faas_redundancy}
 
 기존 아키텍처에서는 앱에 중복성이 있어야 합니다. {{site.data.keyword.openwhisk_short}}에서는 서버리스 앱이 Stateless하고 디자인에 의한 요청 이벤트이기 때문에 프로세스가 고가용성(HA)이 아니어도 됩니다. 명시적으로 중복성을 작성할 필요가 없으므로 서버리스 앱의 Stateless 네이처로 인해 인프라 비용을 크게 줄일 수 있습니다.
+
+
+
 

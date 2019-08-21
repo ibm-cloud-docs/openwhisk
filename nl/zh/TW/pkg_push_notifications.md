@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-12"
 
 keywords: push notifications, functions, webhooks
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Push Notifications
 {: #pkg_push_notifications}
@@ -49,8 +51,8 @@ subcollection: cloud-functions
 
 |實體|類型|參數|說明|
 | --- | --- | --- | --- |
-| `/whisk.system/pushnotifications` |套件| appId、appSecret、admin_url |使用 Push 服務。|
-|`/whisk.system/pushnotifications/sendMessage` |動作|text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload|將推送通知傳送至一個以上的指定裝置。|
+| `/whisk.system/pushnotifications` |套件|`appId`、`appSecret`、`admin_url`|使用 Push 服務。|
+|`/whisk.system/pushnotifications/sendMessage` |動作| `text`、`url`、`deviceIds`、`platforms`、`userIds`、`tagNames`、`gcmCollapseKey`、`gcmCategory`、`gcmIcon`、`gcmDelayWhileIdle`、`gcmSync`、`gcmVisibility`、`gcmPayload`、`gcmPriority`、`gcmSound`、`gcmTimeToLive`、`gcmStyleType`、`gcmStyleTitle`、`gcmStyleUrl`、`gcmStyleText`、`gcmStyleLines`、`gcmLightsLedArgb`、`gcmLightsLedOnMs`、`gcmLightsLedOffMs`、`apnsBadge`、`apnsCategory`、`apnsIosActionKey`、`apnsPayload`、`apnsType`、`apnsSound`、`apnsTitleLocKey`、`apnsLocKey`、`apnsLaunchImage`、`apnsTitleLocArgs`、`apnsLocArgs`、`apnstitle`、`apnsSubtitle`、`apnsAttachmentUrl`、`fireFoxTitle`、`fireFoxIconUrl`、`fireFoxTimeToLive`、`fireFoxPayload`、`safariTitle`、`safariUrlArgs`、`safariAction`、`chromeTitle`、`chromeIconUrl`、`chromeTimeToLive`, `chromePayload`、`chromeAppExtTitle`、`chromeAppExtCollapseKey`、`chromeAppExtDelayWhileIdle`、`chromeAppExtIconUrl`、`chromeAppExtTimeToLive`、`chromeAppExtPayload` |將推送通知傳送至一個以上的指定裝置。|
 
 
 如需在存在裝置活動時發動觸發程式事件的資訊，請參閱[有關裝置事件的行動推送](#pkg_push_mobile)。
@@ -58,20 +60,22 @@ subcollection: cloud-functions
 ### 建立 Push 套件連結
 {: #pkg_push_create}
 
-若要建立 Push Notification 套件連結，您必須指定下列參數：
+若要建立 Push Notification 套件連結，您必須指定下列參數。
 
--  **appId**：{{site.data.keyword.Bluemix}} **應用程式 GUID**。
--  **appSecret**：{{site.data.keyword.Bluemix_notm}} Push Notification 服務**應用程式密碼**。
+| 參數 |說明|
+| --- | --- |
+| `appId` |{{site.data.keyword.cloud}} **應用程式 GUID**。|
+| `appSecret` |{{site.data.keyword.cloud_notm}} Push Notification 服務**應用程式密碼**。|
 
 若要建立套件連結，請參閱下列步驟：
 
-1. 在 [{{site.data.keyword.Bluemix_notm}} 儀表板](http://cloud.ibm.com)中建立 {{site.data.keyword.Bluemix_notm}} 應用程式。
+1. 在 [{{site.data.keyword.cloud_notm}} 儀表板](https://cloud.ibm.com){: external}中建立 {{site.data.keyword.cloud_notm}} 應用程式。
 
-2. 起始設定「Push Notification 服務」，並將服務連結至 {{site.data.keyword.Bluemix_notm}} 應用程式。
+2. 起始設定「Push Notification 服務」，並將服務連結至 {{site.data.keyword.cloud_notm}} 應用程式。
 
-3. 配置 [Push Notification 應用程式](/docs/services/mobilepush?topic=mobile-pushnotification-gettingstartedtemplate)。
+3. 配置 [Push Notification 應用程式](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started)。
 
-  請務必記住您建立之 {{site.data.keyword.Bluemix_notm}} 應用程式的 **App GUID** 和 **App Secret**。
+  請務必記住您建立之 {{site.data.keyword.cloud_notm}} 應用程式的 **App GUID** 和 **App Secret**。
 
 4. 建立與 `/whisk.system/pushnotifications` 連結的套件。
   ```
@@ -85,7 +89,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   packages
   /myNamespace/myPush private binding
@@ -95,63 +99,65 @@ subcollection: cloud-functions
 ### Push Notification 參數
 {: #pkg_push_params}
 
-`/whisk.system/pushnotifications/sendMessage` 動作會將推送通知傳送到已登錄的裝置。參數如下所示：
-- `text`：要對使用者顯示的通知訊息。例如，`-p text "Hi, OpenWhisk send a notification"`。
-- `url`：可以隨警示一起傳送的 URL。例如，`-p url "https:\\www.w3.ibm.com"`。
-- `apiHost`：指定 API 主機的選用字串。預設值為 `mobile.ng.bluemix.net`。例如：`-p apiHost "mobile.eu-gb.bluemix.net"`
-- `deviceIds`：指定裝置的清單。例如，`-p deviceIds ["deviceID1"]`。
-- `platforms`：將通知傳送至指定平台的裝置。'A' 表示 Apple (iOS) 裝置及 'G' 表示 Google (Android) 裝置。例如，`-p platforms ["A"]`。
-- `userIds`：將通知傳送至指定使用者的裝置。例如，`-p userIds "[\"testUser\"]"`
-- `tagNames`：將通知傳送至已訂閱其中任何標籤的裝置。例如，`-p tagNames "[\"tag1\"]"`。
-- `gcmCollapseKey`：此參數可識別訊息的群組。
-- `gcmCategory`：要用於互動式推送通知的種類 ID。
-- `gcmIcon`：指定要針對通知顯示的圖示名稱。請確定圖示已與用戶端應用程式包裝在一起。
-- `gcmDelayWhileIdle`：當此參數設為 true 時，會傳送訊息，直到裝置變成作用中為止。
-- `gcmSync`：裝置群組傳訊可讓群組中的每個應用程式實例反映最新傳訊狀態。
-- `gcmVisibility`：private/public - 此通知的可見性，其影響在安全鎖定的畫面上顯示通知的時間和方式。
-- `gcmPayload`：放在通知訊息中一起傳送的自訂 JSON 有效負載。例如，`-p gcmPayload "{\"hi\":\"hello\"}"`
-- `gcmPriority`：設定訊息的優先順序。
-- `gcmSound`：當通知到達裝置時播放的音效檔（裝置上）。
-- `gcmTimeToLive`：此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。
-- `gcmStyleType`：指定可擴充通知的類型。可能值為 `bigtext_notification`、`picture_notification` 或 `inbox_notification`。
-- `gcmStyleTitle`：指定通知的標題。擴充通知時，會顯示標題。所有這三個可擴充的通知都必須指定標題。
-- `gcmStyleUrl`：必須從中取得通知圖片的 URL。必須針對 `picture_notification` 指定。
-- `gcmStyleText`：需要在擴充 `bigtext_notification` 時顯示的大型文字。必須針對 `bigtext_notification` 指定。
-- `gcmStyleLines`：要顯示在 `inbox_notification` 的收件匣樣式中的字串陣列。必須針對 `inbox_notification` 指定。
-- `gcmLightsLedArgb`：LED 的顏色。硬體會達成其最佳近似值。
-- `gcmLightsLedOnMs`：LED 在閃爍時要開啟的毫秒數。硬體會達成其最佳近似值。
-- `gcmLightsLedOffMs`：LED 在閃爍時要關閉的毫秒數。硬體會達成其最佳近似值。
-- `apnsBadge`：要顯示成應用程式圖示徽章的數字。
-- `apnsCategory`：要用於互動式推送通知的種類 ID。
-- `apnsIosActionKey`：動作鍵的標題。
-- `apnsPayload`：放在通知訊息中一起傳送的自訂 JSON 有效負載。
-- `apnsType`：['DEFAULT'、'MIXED'、'SILENT']。
-- `apnsSound`：應用程式組合中的音效檔名稱。將會播放此檔案的音效作為警示。
-- `apnsTitleLocKey`：現行本地化之 `Localizable.strings` 檔案中某個標題字串的索引鍵。索引鍵字串可以使用 %@ 和 %n$@ 指定元來格式化，以採用 `titleLocArgs` 陣列中指定的變數。
-- `apnsLocKey`：在 `Localizable.strings` 檔案中，針對現行本地化（由使用者的語言喜好設定來設定）的某個索引鍵指向 alert-message 字串。索引鍵字串可以使用 %@ 和 %n$@ 指定元來格式化，以採用 locArgs 陣列中指定的變數。
-- `apnsLaunchImage`：應用程式組合中影像檔的檔名，不論有沒有副檔名。使用者點選動作按鈕或者移動動作調節器時，使用此影像作為啟動影像。
-- `pnsTitleLocArgs`：用來取代 `title-loc-key` 中格式指定元的變數字串值。
-- `apnsLocArgs`：用來取代 `locKey` 中格式指定元的變數字串值。
-- `apnstitle`：「Rich Push 通知」的標題（只有 iOS 10 及更高版本才支援）。
-- `apnsSubtitle`：「Rich 通知」的子標題（只有 iOS 10 及更高版本才支援）。
-- `apnsAttachmentUrl`：iOS 通知媒體的鏈結（視訊、音訊、GIF、影像 - 只有 iOS 10 及更高版本才支援）。
-- `fireFoxTitle`：指定要針對「WebPush 通知」設定的標題。
-- `fireFoxIconUrl`：要針對「WebPush 通知」設定之圖示的 URL。
-- `fireFoxTimeToLive`：此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。
-- `fireFoxPayload`：放在通知訊息中一起傳送的自訂 JSON 有效負載。
-- `chromeTitle`：指定要針對「WebPush 通知」設定的標題。
-- `chromeIconUrl`：要針對「WebPush 通知」設定之圖示的 URL。
-- `chromeTimeToLive`：此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。
-- `chromePayload`：放在通知訊息中一起傳送的自訂 JSON 有效負載。
-- `safariTitle`：指定要針對「Safari Push 通知」設定的標題。
-- `safariUrlArgs`：與此通知搭配使用所需的 URL 引數。這些引數是以「JSON 陣列」的形式來提供。
-- `safariAction`：動作按鈕的標籤。
-- `chromeAppExtTitle`：指定要針對「WebPush 通知」設定的標題。
-- `chromeAppExtCollapseKey`：此參數可識別一組訊息。
-- `chromeAppExtDelayWhileIdle`：當此參數設為 true 時，表示要等到裝置變成作用中時才會傳送訊息。
-- `chromeAppExtIconUrl`：要針對「WebPush 通知」設定之圖示的 URL。
-- `chromeAppExtTimeToLive`：此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。
-- `chromeAppExtPayload`：放在通知訊息中一起傳送的自訂 JSON 有效負載。
+`/whisk.system/pushnotifications/sendMessage` 動作會將推送通知傳送到已登錄的裝置。參數如下。
+
+| 參數 |說明|
+| --- | --- |
+| `text` |要對使用者顯示的通知訊息。例如，`-p text "Hi, OpenWhisk send a notification"`。|
+| `url` |可以隨警示一起傳送的 URL。例如，`-p url "https:\\www.w3.ibm.com"`。|
+| `apiHost` |指定 API 主機的選用字串。預設值為 `mobile.ng.bluemix.net`。例如：`-p apiHost "mobile.eu-gb.bluemix.net"`。|
+| `deviceIds` |指定裝置的清單。例如，`-p deviceIds ["deviceID1"]`。|
+| `platforms` |將通知傳送至指定平台的裝置。'A' 表示 Apple (iOS) 裝置及 'G' 表示 Google (Android) 裝置。例如，`-p platforms ["A"]`。|
+| `userIds` |將通知傳送至指定使用者的裝置。例如，`-p userIds "[\"testUser\"]"`。|
+| `tagNames` |將通知傳送至已訂閱其中任何標籤的裝置。例如，`-p tagNames "[\"tag1\"]"`。|
+| `gcmCollapseKey` |此參數可識別一組訊息。|
+| `gcmCategory` |要用於互動式推送通知的種類 ID。|
+| `gcmIcon` |指定要針對通知顯示的圖示名稱。請確定圖示已與用戶端應用程式包裝在一起。|
+|`gcmDelayWhileIdle`|當此參數設定為 true 時，表示在裝置變為作用中之前，不會傳送訊息。|
+|`gcmSync`|裝置群組傳訊使得群組中每一個應用程式實例都可反映出最新的傳訊狀態。|
+|`gcmVisibility`|private/public - 此通知的可見性，這將影響在安全鎖定畫面上如何以及何時顯示通知。|
+| `gcmPayload` |放在通知訊息中一起傳送的自訂 JSON 有效負載。例如，`-p gcmPayload "{\"hi\":\"hello\"}"`。|
+|`gcmPriority`|設定訊息的優先順序。|
+|`gcmSound`|通知到達裝置時播放的音效檔（在裝置上）。|
+|`gcmTimeToLive`|此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。|
+| `gcmStyleType` |指定可擴充通知的類型。可能值為 `bigtext_notification`、`picture_notification` 或 `inbox_notification`。|
+| `gcmStyleTitle` |指定通知的標題。擴充通知時，會顯示標題。所有這三個可擴充的通知都必須指定標題。|
+| `gcmStyleUrl` |必須從中取得通知圖片的 URL。必須針對 `picture_notification` 指定。|
+| `gcmStyleText` |需要在擴充 `bigtext_notification` 時顯示的大型文字。必須針對 `bigtext_notification` 指定。|
+| `gcmStyleLines` |要顯示在 `inbox_notification` 的收件匣樣式中的字串陣列。必須針對 `inbox_notification` 指定。|
+| `gcmLightsLedArgb` |LED 的顏色。硬體會達成其最佳近似值。|
+| `gcmLightsLedOnMs` |LED 閃爍直到亮起的毫秒數。硬體會達成其最佳近似值。|
+| `gcmLightsLedOffMs` |LED 閃爍直到熄滅的毫秒數。硬體會達成其最佳近似值。|
+| `apnsBadge` |要顯示成應用程式圖示徽章的數字。|
+| `apnsCategory` |要用於互動式推送通知的種類 ID。|
+| `apnsIosActionKey` |動作鍵的標題。|
+| `apnsPayload` |放在通知訊息中一起傳送的自訂 JSON 有效負載。|
+| `apnsType` |['DEFAULT'、'MIXED'、'SILENT']。|
+| `apnsSound` |應用程式組合中的音效檔名稱。將會播放此檔案的音效作為警示。|
+| `apnsTitleLocKey` |現行語言環境之 `Localizable.strings` 檔案中某個標題字串的索引鍵。索引鍵字串可以使用 %@ 和 %n$@ 指定元來格式化，以採用 `titleLocArgs` 陣列中指定的變數。|
+| `apnsLocKey` |在 `Localizable.strings` 檔案中，針對現行語言環境（由使用者的語言喜好設定來設定）的某個索引鍵指向 alert-message 字串。索引鍵字串可以使用 %@ 和 %n$@ 指定元來格式化，以採用 `locArgs` 陣列中指定的變數。|
+| `apnsLaunchImage` |應用程式組合中影像檔的檔名，包含或不含副檔名。使用者點選動作按鈕或者移動動作調節器時，使用此影像作為啟動影像。|
+| `pnsTitleLocArgs` |要顯示以取代 `title-loc-key` 中格式指定元的變數字串值。|
+|`apnsLocArgs`|要顯示以取代 `locKey` 中格式指定元的變數字串值。|
+|`apnstitle`| Rich Push 通知的標題（僅 iOS 10 及更高版本才支援）。|
+|`apnsSubtitle`|「Rich 通知」的子標題。（只有 iOS 10 及更高版本才支援）。|`apnsAttachmentUrl`|iOS 通知媒體的鏈結（視訊、音訊、GIF、影像 - 僅 iOS 10 及更高版本上支援）。|
+|`fireFoxTitle`|指定要針對「Web Push 通知」設定的標題。|
+|`fireFoxIconUrl`|要針對「Web Push 通知」設定之圖示的 URL。|
+| `fireFoxTimeToLive` |此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。|
+| `fireFoxPayload` |放在通知訊息中一起傳送的自訂 JSON 有效負載。|
+| `chromeTitle` |指定要針對「Web Push 通知」設定的標題。|
+| `chromeIconUrl` |要針對「Web Push 通知」設定之圖示的 URL。|
+| `chromeTimeToLive` |此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。|
+| `chromePayload` |放在通知訊息中一起傳送的自訂 JSON 有效負載。|
+| `safariTitle` |指定要針對「Safari Push 通知」設定的標題。|
+| `safariUrlArgs` |需要與此通知一起使用的 URL 引數。這些引數是以「JSON 陣列」的形式來提供。|
+| `safariAction` |動作按鈕的標籤。|
+| `chromeAppExtTitle` |指定要針對「Web Push 通知」設定的標題。|
+| `chromeAppExtCollapseKey` |此參數可識別一組訊息。|
+| `chromeAppExtDelayWhileIdle` |當此參數設為 true 時，表示要等到裝置變成作用中時才會傳送訊息。|
+| `chromeAppExtIconUrl` |要針對「Web Push 通知」設定之圖示的 URL。|
+| `chromeAppExtTimeToLive` |此參數指定當裝置離線時，訊息保留在 GCM 儲存空間中的時間長度（以秒為單位）。|
+| `chromeAppExtPayload` |放在通知訊息中一起傳送的自訂 JSON 有效負載。|
 
 ### 範例推送通知
 {: #pkg_push_ex}
@@ -164,7 +170,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 {
   "result": {
@@ -207,11 +213,12 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 {: #pkg_push_mobile_params}
 
 `/whisk.system/pushnotifications/webhook` 參數如下所示：
-- `appId`：{{site.data.keyword.Bluemix_notm}} 應用程式 GUID。
-- `appSecret`：{{site.data.keyword.Bluemix_notm}} Push Notification 服務 `appSecret`。
-- `events`：`onDeviceRegister`、`onDeviceUnregister`、`onDeviceUpdate`、`onSubscribe`、`onUnsubscribe`
 
-  您可以使用萬用字元 "`*`" 來接收所有事件的通知。
+| 參數 |說明|
+|--- | --- |
+| `appId` |{{site.data.keyword.cloud_notm}} 應用程式 GUID。|
+| `appSecret` |{{site.data.keyword.cloud_notm}} Push Notification 服務 `appSecret`。|
+| `events` |`onDeviceRegister`、`onDeviceUnregister`、`onDeviceUpdate`、`onSubscribe`、`onUnsubscribe`。您可以使用萬用字元 "`*`" 來接收所有事件的通知。|
 
 ### 發動 Push Notification 服務活動的觸發程式事件
 {: #pkg_push_mobile_trigger}
@@ -242,8 +249,10 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
   ```
   {: pre}
 
-5. 在 {{site.data.keyword.Bluemix_notm}} 應用程式中登錄裝置。您可以看到 `rule`、`trigger` 和 `action` 在 {{site.data.keyword.openwhisk}} [儀表板](https://cloud.ibm.com/openwhisk/dashboard)中執行。
+5. 在 {{site.data.keyword.cloud_notm}} 應用程式中登錄裝置。您可以看到 `rule`、`trigger` 和 `action` 在 {{site.data.keyword.openwhisk}} [儀表板](https://cloud.ibm.com/openwhisk/dashboard){: external}中執行。
 
+  **輸出**
+  
   動作會傳送推送通知。
 
 
@@ -257,20 +266,20 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 
 |實體|類型|參數|說明|
 | --- | --- | --- | --- |
-| `/push-notifications` |套件| apikey、appGuid |使用 {{site.data.keyword.mobilepushshort}} 實例。|
-| `/push-notifications/send-message` |動作|text、url、deviceIds、platforms、userIds、tagNames、gcmCollapseKey、gcmCategory、gcmIcon、gcmDelayWhileIdle、gcmSync、gcmVisibility、gcmPayload、gcmPriority、gcmSound、gcmTimeToLive、gcmStyleType、gcmStyleTitle、gcmStyleUrl、gcmStyleText、gcmStyleLines、gcmLightsLedArgb、gcmLightsLedOnMs、gcmLightsLedOffMs、apnsBadge、apnsCategory、apnsIosActionKey、apnsPayload、apnsType、apnsSound、apnsTitleLocKey、apnsLocKey、apnsLaunchImage、apnsTitleLocArgs、apnsLocArgs、apnstitle、apnsSubtitle、apnsAttachmentUrl、fireFoxTitle、fireFoxIconUrl、fireFoxTimeToLive、fireFoxPayload、safariTitle、safariUrlArgs、safariAction、chromeTitle、chromeIconUrl、chromeTimeToLive、chromePayload、chromeAppExtTitle、chromeAppExtCollapseKey、chromeAppExtDelayWhileIdle、chromeAppExtIconUrl、chromeAppExtTimeToLive、chromeAppExtPayload|將推送通知傳送至一個以上的指定裝置。|
-| `/push-notifications/webhook` |動作|事件|在 Push 服務上產生裝置活動（裝置登錄、取消登錄、訂閱或取消訂閱）時發動觸發程式事件。|
+| `/push-notifications` |套件|`apikey`、`appGuid`|使用 {{site.data.keyword.mobilepushshort}} 實例。|
+| `/push-notifications/send-message` |動作| `text`、`url`、`deviceIds`、`platforms`、`userIds`、`tagNames`、`gcmCollapseKey`、`gcmCategory`、`gcmIcon`、`gcmDelayWhileIdle`、`gcmSync`、`gcmVisibility`、`gcmPayload`、`gcmPriority`、`gcmSound`、`gcmTimeToLive`、`gcmStyleType`、`gcmStyleTitle`、`gcmStyleUrl`、`gcmStyleText`、`gcmStyleLines`、`gcmLightsLedArgb`、`gcmLightsLedOnMs`、`gcmLightsLedOffMs`、`apnsBadge`、`apnsCategory`、`apnsIosActionKey`、`apnsPayload`、`apnsType`、`apnsSound`、`apnsTitleLocKey`、`apnsLocKey`、`apnsLaunchImage`、`apnsTitleLocArgs`、`apnsLocArgs`、`apnstitle`、`apnsSubtitle`、`apnsAttachmentUrl`、`fireFoxTitle`、`fireFoxIconUrl`、`fireFoxTimeToLive`、`fireFoxPayload`、`safariTitle`、`safariUrlArgs`、`safariAction`、`chromeTitle`、`chromeIconUrl`、`chromeTimeToLive`, `chromePayload`、`chromeAppExtTitle`、`chromeAppExtCollapseKey`、`chromeAppExtDelayWhileIdle`、`chromeAppExtIconUrl`、`chromeAppExtTimeToLive`、`chromeAppExtPayload` |將推送通知傳送至一個以上的指定裝置。|
+| `/push-notifications/webhook` |動作| `events` |在 Push 服務上產生裝置活動（裝置登錄、取消登錄、訂閱或取消訂閱）時發動觸發程式事件。|
 
 ### 建立 {{site.data.keyword.mobilepushshort}} 服務實例
 {: #service_instance_push}
 
 在安裝套件之前，您必須先建立 {{site.data.keyword.mobilepushshort}} 實例。
 
-1. [建立 {{site.data.keyword.mobilepushshort}} 服務實例 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a)。
+1. [建立 {{site.data.keyword.mobilepushshort}} 服務實例](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a)。
 
-2. 為 Push Notifications 服務實例[建立一組服務認證 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1)。
+2. 為 Push Notifications 服務實例[建立一組服務認證](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1)。
 
-3. [配置 {{site.data.keyword.mobilepushshort}} 服務實例 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2)。
+3. [配置 {{site.data.keyword.mobilepushshort}} 服務實例](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2)。
 
 ### 安裝 {{site.data.keyword.mobilepushshort}} 套件
 {: #pkg_push_mobile_install}
@@ -281,7 +290,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 {: #pkg_push_mobile_cli}
 
 開始之前：
-  1. [安裝 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](/docs/openwhisk?topic=cloud-functions-cli_install)。
+  1. [安裝 {{site.data.keyword.cloud_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](/docs/openwhisk?topic=cloud-functions-cli_install)。
 
 若要安裝 {{site.data.keyword.mobilepushshort}} 套件，請執行下列動作：
 
@@ -309,8 +318,8 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
     ```
     {: pre}
 
-    輸出：
-        ```
+    **輸出**
+    ```
     packages
     /myOrg_mySpace/push-notifications private
     ```
@@ -322,7 +331,7 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
     ```
@@ -330,13 +339,13 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 
 6. 驗證已使用 {{site.data.keyword.mobilepushshort}} 服務實例認證配置該套件。
     ```
-    ibmcloud fn package get /myBluemixOrg_myBluemixSpace/push-notifications parameters
+    ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
-    ok: got package /myBluemixOrg_myBluemixSpace/push-notifications, displaying field parameters
+    ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
     [
       {
         "key": "__bx_creds",
@@ -347,10 +356,10 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
             "appGuid": "12341-12345-1234-a1234-1abcd12345",
             "clientSecret": "1b1234ab-1234-1234-123a-ab12345abcd",
             "credentials": "Service credentials-1",
-            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:ibmcloud:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
             "iam_apikey_name": "auto-generated-apikey-abcd1234abcd1234abcd1234",
-            "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
-            "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
+            "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:ibmcloud:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
             "instance": "Push Notifications-ab",
             "plan": "LITE",
             "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
@@ -364,15 +373,15 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ### 透過 {{site.data.keyword.openwhisk_short}} 使用者介面安裝
 {: #pkg_push_mobile_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 主控台中，移至[建立頁面 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 主控台中，移至[建立頁面 ](https://cloud.ibm.com/openwhisk/create){: external}。
 
-2. 使用右上角的名稱空間切換器，選取您要在其中安裝 {{site.data.keyword.cos_full_notm}} 套件的名稱空間。
+2. 使用右上角的「名稱空間」下拉功能表，選取要將 {{site.data.keyword.cos_full_notm}} 套件安裝到其中的名稱空間。
 
 3. 按一下**安裝套件**。
 
 4. 按一下**IBM {{site.data.keyword.mobilepushshort}}** 套件群組，然後按一下 **IBM {{site.data.keyword.mobilepushshort}}** 套件。
 
-5. 在「可用的運行環境」區段中，從下拉清單中選取 NodeJS，然後按一下**安裝**。
+5. 在「可用的運行環境」區段中，從下拉清單中選取 nodeJS，然後按一下**安裝**。
 
 6. 安裝好套件之後，您會被重新導向至「動作」頁面，而且您可以搜尋新的套件，其名稱為 **push-notifications**。
 
@@ -392,7 +401,7 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 {
   "response": {
@@ -413,14 +422,14 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 ### 建立 Webhook
 {: #pkg_push_mobile_hook}
 
-若要為 onDeviceRegister 事件建立 {{site.data.keyword.mobilepushshort}} 服務的 Webhook，請執行下列指令：
+若要為 {{site.data.keyword.mobilepushshort}} 服務建立用於 `onDeviceRegister` 事件的 Webhook，請執行以下指令：
 
 ```
  ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 {
   "response": {
@@ -433,4 +442,6 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 }
 ```
 {: screen}
+
+
 

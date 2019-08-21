@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # 通过规则关联触发器和操作
 {: #rules}
 
-每次触发器触发时，规则都会将触发器事件作为输入，并调用关联的操作。使用相应的规则集时，可以通过单个触发器事件来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。
+每次触发器触发时，规则都会将触发器事件作为输入，并调用关联的操作。使用相应的规则集时，可以通过单个触发器来调用多个操作，也可以调用一个操作以响应来自多个触发器的事件。
 {: shortdesc}
 
 
@@ -83,12 +85,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 可以通过为操作和触发器的每种组合创建一个规则，从而使用不同的组合。操作和触发器无需按 1:1 的比率组合。
 
 例如，假设使用以下操作。
-- `classifyImage` - 此操作用于检测图像中的对象并对其进行分类。
-- `thumbnailImage` - 此操作用于创建图像的缩略图版本。
+
+|操作|描述|
+| --- | --- |
+|`classifyImage`|此操作用于检测图像中的对象并对其进行分类。|
+|`thumbnailImage`|此操作用于创建图像的缩略图版本。|
 
 此外，假设有两个事件源将触发以下触发器。
-- `newTweet` - 此触发器在发布新推文时触发。
-- `imageUpload` - 此触发器在将图像上传到 Web 站点时触发。
+
+|触发器|描述|
+| --- | --- |
+|`newTweet`|此触发器在发布新推文时触发。|
+|`imageUpload`|此触发器在将图像上传到 Web 站点时触发。|
 
 可以设置规则，以使单个触发器事件调用多个操作，以及使多个触发器调用同一操作。
 - `newTweet -> classifyImage` 规则
@@ -99,3 +107,4 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 - 对两个推文中的图像分类。
 - 对上传的图像分类。
 - 生成缩略图版本。
+

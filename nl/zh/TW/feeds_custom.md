@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: feeds, serverless
+keywords: feeds, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 建立自訂事件提供者資訊來源
@@ -34,13 +36,13 @@ subcollection: cloud-functions
 ## 資訊來源架構
 {: #feeds_arch}
 
-有 3 種架構型樣可用於建立資訊來源：**連結鉤**、**輪詢**和**連線**。
+您可以使用以下三種架構型樣中的一種型樣來建立資訊來源：**連結鉤**、**輪詢**和**連線**。
 
 ### 連結鉤
 
-在連結鉤型樣下，使用由其他服務公開的 [Webhook](https://en.wikipedia.org/wiki/Webhook) 來設定資訊來源。在此策略中，於外部服務上配置 Webhook，以直接 POST 至 URL 來發動觸發程式。到目前為止，對於實作低頻率資訊來源，這個方法是最簡單且最具吸引力的選項。
+在連結鉤型樣下，使用由其他服務公開的 [Webhook](https://en.wikipedia.org/wiki/Webhook){: external} 來設定資訊來源。在此策略中，於外部服務上配置 Webhook，以直接 POST 至 URL 來發動觸發程式。到目前為止，對於實作低頻率資訊來源，這個方法是最簡單且最具吸引力的選項。
 
-例如，[Github 套件](/docs/openwhisk?topic=cloud-functions-pkg_github)和 [Push Notification 套件](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications)使用 Webhook。
+例如，[GitHub 套件](/docs/openwhisk?topic=cloud-functions-pkg_github)和 [Push Notification 套件](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications)使用 Webhook。
 
 
 ### 輪詢
@@ -58,10 +60,13 @@ subcollection: cloud-functions
 ##  實作資訊來源動作
 {: #feeds_actions}
 
-資訊來源動作是接受下列參數的一種動作：
-* **lifecycleEvent**： "CREATE" 、 "READ" 、 "UPDATE" 、 "DELETE" 、 "PAUSE" 或 "UNPAUSE" 。
-* **triggerName**：觸發程式的完整名稱，其中包含從此資訊來源產生的事件。
-* **authKey**：擁有觸發程式的 {{site.data.keyword.openwhisk_short}} 使用者的基本鑑別認證。
+資訊來源動作是一種動作，接受下列參數。
+
+| 參數 |說明|
+| --- | --- |
+|`lifecycleEvent`|`CREATE`、`READ`、`UPDATE`、`DELETE`、`PAUSE` 或 `UNPAUSE`|
+|`triggerName`|包含從此資訊來源所產生事件的觸發程式的完整名稱。|
+|`authKey`|擁有觸發程式的 {{site.data.keyword.openwhisk_short}} 使用者的基本鑑別認證。|
 
 資訊來源動作也可以接受任何管理資訊來源所需的其他參數。例如，{{site.data.keyword.cloudant}} changes 資訊來源動作預期接收多個參數，包括 `dbname` 和 `username`。
 
@@ -79,18 +84,18 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 ```
 {: pre}
 
-名為 *changes* 的資訊來源動作會採用這些參數，且預期會執行任何必要動作，以從 {{site.data.keyword.cloudant_short_notm}} 設定一連串事件。資訊來源動作是使用適當的配置來執行的，此配置將導向至觸發程式。
+名稱為 *changes* 的資訊來源動作會採用這些參數，且預期會執行任何必要動作，以從 {{site.data.keyword.cloudant_short_notm}} 設定一連串事件。資訊來源動作是使用適當的配置來執行的，此配置將導向至觸發程式。
 
-對於 {{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源，該動作與透過以連線為基礎之架構實作的 *{{site.data.keyword.cloudant_short_notm}} 觸發程式*服務直接對話。
+對於 {{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源，該動作與透過以連線為基礎之架構實作的 *{{site.data.keyword.cloudant_short_notm}} 觸發程式* 服務直接對話。
 
-`ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 及 `ibmcloud fn trigger get` 會執行類似的資訊來源動作通訊協定。
+對於 `ibmcloud fn trigger delete`、`ibmcloud fn trigger update` 和 `ibmcloud fn trigger get`，會執行類似的資訊來源動作通訊協定。
 
 ## 透過連結鉤實作資訊來源
 {: #feeds_hooks}
 
 事件生產者支援 Webhook/回呼機能時，可透過連結鉤設定資訊來源。
 
-透過此方法，無需在 {{site.data.keyword.openwhisk_short}} 外部維持任何持續性服務。所有資訊來源管理都會透過無狀態 {{site.data.keyword.openwhisk_short}} *資訊來源動作* 自然進行，而這些資訊來源動作會直接與協力廠商的 Webhook API 進行協議。
+透過此方法，無需在 {{site.data.keyword.openwhisk_short}} 外部維持任何持續性服務。所有資訊來源管理工作均透過無狀態的 {{site.data.keyword.openwhisk_short}} **資訊來源動作**正常執行，這些動作直接與協力廠商 Webhook API 進行協商。
 
 使用 `CREATE` 呼叫時，資訊來源動作只會安裝某個其他服務的 Webhook，並要求遠端服務將通知 POST 至 {{site.data.keyword.openwhisk_short}} 中的適當 `fireTrigger` URL。
 
@@ -109,7 +114,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 為了設定輪詢型資訊來源，資訊來源動作會在呼叫 `CREATE` 時採取下列步驟：
 
-1. 資訊來源動作使用 `whisk.system/alarms` 資訊來源將定期觸發程式設定為所需頻率。
+1. 資訊來源動作使用 `whisk.system/alarms` 資訊來源將定期觸發程式設定為特定頻率。
 2. 資訊來源開發人員會建立 `pollMyService` 動作，此動作會輪詢遠端服務並傳回任何新事件。
 3. 資訊來源動作會設定*規則* *T -> pollMyService*。
 
@@ -118,17 +123,21 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 ## 使用連線實作資訊來源
 {: #feeds_connections}
 
-前兩個架構選項十分簡單且容易實作。不過，如果您想要有高效能資訊來源，則最好的選擇是持續性連線及長期輪詢或類似技術。
+前兩個架構選項十分簡單且容易實作。但是，如果需要高效能資訊來源，則可以使用持續連線和長時間輪詢或類似方法。
 
-因為 {{site.data.keyword.openwhisk_short}} 動作必須是短時間執行的，所以動作無法維護與協力廠商的持續性連線。您可以改為在一直執行的 {{site.data.keyword.openwhisk_short}} 外部，使用一個稱為*提供者服務* 的個別服務。提供者服務可以維護支援長時間輪詢或其他連線型通知的協力廠商事件來源連線。
+因為 {{site.data.keyword.openwhisk_short}} 動作必須是短時間執行的，所以動作無法維護與協力廠商的持續性連線。您可以改為在一直執行的 {{site.data.keyword.openwhisk_short}} 外部，使用一個稱為**提供者服務** 的個別服務。提供者服務可以維護支援長時間輪詢或其他連線型通知的協力廠商事件來源連線。
 
-提供者服務有一個 REST API，其容許 {{site.data.keyword.openwhisk_short}} *資訊來源動作* 控制資訊來源。提供者服務會作為事件提供者與 {{site.data.keyword.openwhisk_short}} 之間的 Proxy。當它收到來自協力廠商的事件時，會透過發動觸發程式將它們傳送至 {{site.data.keyword.openwhisk_short}}。
+提供者服務有一個 REST API，其容許 {{site.data.keyword.openwhisk_short}} **資訊來源動作** 控制資訊來源。提供者服務會作為事件提供者與 {{site.data.keyword.openwhisk_short}} 之間的 Proxy。當它收到來自協力廠商的事件時，會透過發動觸發程式將它們傳送至 {{site.data.keyword.openwhisk_short}}。
 
-{{site.data.keyword.cloudant_short_notm}} *changes* 資訊來源是標準範例，因為它是一個 `cloudanttrigger` 服務，在持續性連線的 {{site.data.keyword.cloudant_short_notm}} 通知與 {{site.data.keyword.openwhisk_short}} 觸發程式之間調解。
+{{site.data.keyword.cloudant_short_notm}} **changes** 資訊來源是標準範例，因為它是一個 `cloudanttrigger` 服務，在持續性連線的 {{site.data.keyword.cloudant_short_notm}} 通知與 {{site.data.keyword.openwhisk_short}} 觸發程式之間調解。
 
 
-*警示* 資訊來源是使用類似的型樣進行實作。
+**警示** 資訊來源是使用類似的型樣進行實作。
 
-連線型架構是最高效能選項，但與輪詢及連結鉤架構相較之下，會增加更多的作業額外負擔。
+連線型的架構是最高效能選項，但其作業的人力密集程度大於輪詢和連結鉤架構。
+
+
+
+
 
 

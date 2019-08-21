@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 활동 모니터링
 {: #monitor}
@@ -47,15 +49,15 @@ Grafana 모니터링 대시보드를 작성하여 시작하십시오.
     <tbody>
       <tr>
         <td>유럽 중부</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>영국 남부</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>미국 남부</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>미국 동부</td>
@@ -89,7 +91,7 @@ Grafana 모니터링 대시보드를 작성하여 시작하십시오.
 ## 대시보드 사용
 {: #monitor_dash_use}
 
-[{{site.data.keyword.openwhisk_short}} 대시보드](https://cloud.ibm.com/openwhisk/dashboard)는 사용자의 활동에 대한 그래픽 요약을 제공합니다. 대시보드를 사용하여 {{site.data.keyword.openwhisk_short}} 액션의 성능 및 상태를 판별하십시오.
+[{{site.data.keyword.openwhisk_short}} 대시보드](https://cloud.ibm.com/openwhisk/dashboard){: external}는 사용자의 활동에 대한 그래픽 요약을 제공합니다. 대시보드를 사용하여 {{site.data.keyword.openwhisk_short}} 액션의 성능 및 상태를 판별하십시오.
 {:shortdesc}
 
 보고자 하는 액션 로그를 선택하여 로그를 필터링하고 로깅된 활동의 시간 범위를 선택할 수 있습니다. 이러한 필터는 대시보드의 모든 보기에 적용됩니다. 언제든지 **다시 로드**를 클릭하여 최신 활성화 로그 데이터로 대시보드를 업데이트할 수 있습니다.
@@ -174,7 +176,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 수천 또는 수백만 개의 액션 활성화가 있을 수 있으므로, 많은 활성화에 의해 생성된 이벤트의 집계로 메트릭 값이 표시됩니다. 값은 다음과 같은 방식으로 집계됩니다.
-* 합계: 모든 메트릭 값이 함께 추가됩니다.
+* 합계: 모든 메트릭 값이 추가됩니다.
 * 평균: 산술 평균이 계산됩니다.
 * 합계된 평균: 산술 평균은 컴포넌트를 기반으로 계산되며 다른 컴포넌트를 함께 추가합니다.
 
@@ -222,13 +224,13 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>애플리케이션 오류로 인해 발생한 실패한 활성화 수입니다. 예를 들어, 액션에 오류가 있습니다. 액션 성능 메트릭이 파생되는 방법에 대한 자세한 정보는 [활성화 레코드 이해하기](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record)의 내용을 확인하십시오.</td>
+      <td>애플리케이션 오류로 인해 발생한 실패한 활성화 수입니다. 예를 들어, 액션에 오류가 있습니다. 액션 성능 메트릭이 파생되는 방법에 대한 자세한 정보는 [활성화 레코드 이해하기](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}의 내용을 확인하십시오.</td>
       <td>합계</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>개발자로 인해 발생한 실패한 활성화 수입니다. 예를 들어 액션 코드에서 처리되지 않은 예외에 의한 [액션 프록시 인터페이스](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface)의 위반이 있습니다.</td>
+      <td>개발자로 인해 발생한 실패한 활성화 수입니다. 예를 들어, 액션 코드에서 처리되지 않은 예외에 의한 [액션 프록시 인터페이스](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external}의 위반이 있습니다.</td>
       <td>합계</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -261,5 +263,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 
 기본 네임스페이스의 일부로 존재하는 액션의 메트릭은 기본 카테고리에서 사용 가능합니다.
 {: tip}
+
+
 
 

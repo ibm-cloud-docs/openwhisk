@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: github, actions, trigger, event
+keywords: github, actions, trigger, event, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,37 +24,40 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # GitHub
 {: #pkg_github}
 
 Esse pacote pré-instalado não está disponível na região de Tóquio.
 {: tip}
 
-O pacote `/whisk.system/github` oferece uma maneira conveniente de usar as [APIs do GitHub](https://developer.github.com/).
+O pacote `/whisk.system/github` oferece uma maneira conveniente de usar as [APIs do GitHub](https://developer.github.com/){: external}.
 {: shortdesc}
 
-O pacote inclui o feed a seguir:
+O pacote GitHub inclui as entidades a seguir.
 
-| Entity | Digite | Parâmetros | Descrição |
+| Entity | Tipo | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/whisk.system/github` | pacote | username, repository, accessToken | Interagir com a API do GitHub |
-| `/whisk.system/github/webhook` | alimentação | events, username, repository, accessToken | Disparar eventos acionadores na atividade do GitHub |
+| `/whisk.system/github` | Pacote | `username`, `repository`, `accessToken` | Interagir com a API do GitHub. |
+| `/whisk.system/github/webhook` | Feed | `events`, `username`, `repository`, `accessToken` | Disparar eventos acionadores na atividade do GitHub. |
 
 É sugerido criar uma ligação de pacote com os valores `username`,
 `repository` e `accessToken`.  Com a ligação, não será necessário especificar os valores toda vez que usar o feed no pacote.
 
 ## Disparando um evento acionador com atividade do GitHub
 
-O feed `/whisk.system/github/webhook` configura um serviço para disparar um acionador quando houver atividade em um repositório do GitHub especificado. Os parâmetros são os seguintes:
+O feed `/whisk.system/github/webhook` configura um serviço para disparar um acionador quando houver atividade em um repositório do GitHub especificado. Os parâmetros são os seguintes.
 
-- `username`: o nome do usuário do repositório GitHub.
-- `repository`: o repositório GitHub.
-- `accessToken`: seu token de acesso pessoal do GitHub. Ao [criar o seu token](https://github.com/settings/tokens), certifique-se de selecionar os escopos **repo:status** e **public_repo**. Além disso, certifique-se de que você não tenha nenhum webhook já definido para seu repositório.
-- `events`: o [tipo de evento do GitHub](https://developer.github.com/v3/activity/events/types/) de interesse.
+| Parâmetro | Descrição |
+| --- | --- |
+| `username` | O nome de usuário do repositório do GitHub. |
+| `repository` | O repositório do GitHub. |
+| `accessToken` | Seu token de acesso pessoal do GitHub. Quando você criar seu token, certifique-se de selecionar os escopos `repo:status` e `public_repo`. Além disso, certifique-se de que você não tenha nenhum webhook já definido para seu repositório. |
+| `events` | O [tipo de evento do GitHub ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://developer.github.com/v3/activity/events/types/) de interesse. |
 
 No exemplo a seguir, é criado um acionador que dispara a cada nova confirmação em um repositório GitHub.
 
-1. Gere um [token de acesso pessoal](https://github.com/settings/tokens) do GitHub. O token de acesso será usado na próxima etapa.
+1. Gere um token de acesso pessoal do GitHub. Navegue para **GitHub.com** > **Configurações** > **Tokens de acesso pessoal** para gerar um token. O token de acesso será usado na próxima etapa.
 
 2. Crie uma ligação de pacote configurada para seu repositório GitHub e com o token de acesso.
   ```
@@ -76,5 +80,7 @@ de webhook do GitHub tem um esquema JSON semelhante, mas é um objeto de carga �
 exclusivo que é determinado por seu tipo de evento. Para obter mais informações sobre o
 conteúdo da carga útil, consulte a documentação da API de
 [Eventos e carga útil
-do GitHub](https://developer.github.com/v3/activity/events/types/).
+do GitHub](https://developer.github.com/v3/activity/events/types/){: external}.
+
+
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: platform architecture, openwhisk, couchdb, kafka
+keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Come funziona {{site.data.keyword.openwhisk_short}}
 {: #about}
@@ -36,17 +38,17 @@ Scopri i concetti essenziali della tecnologia alla base di {{site.data.keyword.o
 
 **Cos'è un'azione?**
 
-Un'azione è un piccolo frammento di codice che può essere richiamata o configurata per venire eseguita in automatico in risposta a un evento. In entrambi i casi, ogni esecuzione produce un record identificato da un ID di attivazione univoco. L'input e il risultato di un'azione possono essere visti come coppie chiave-valore. La chiave è una stringa e il valore è un valore JSON valido. Un'azione può essere scritta nel linguaggio che preferisci e fornita al servizio come codice di origine o un'immagine Docker. Il codice dell'azione viene eseguito quando viene richiamato direttamente dalla CLI, dall'API Cloud Functions e dall'SDK iOS. Un'azione può rispondere automaticamente agli eventi da IBM Cloud o da servizi di terze parti.
+Un'azione è un piccolo frammento di codice che può essere richiamata o configurata per venire eseguita in automatico in risposta a un evento. In entrambi i casi, ogni esecuzione produce un record identificato da un ID di attivazione univoco. L'input e il risultato di un'azione possono essere visti come coppie chiave-valore. La chiave è una stringa e il valore è un valore JSON valido. Un'azione può essere scritta nel linguaggio che preferisci e fornita al servizio come codice sorgente o immagine Docker. Il codice dell'azione viene eseguito quando viene richiamato direttamente dalla CLI, dall'API Cloud Functions e dall'SDK iOS. Un'azione può rispondere automaticamente agli eventi da IBM Cloud o da servizi di terze parti.
 
 **Perché dovrei utilizzare un'azione?**
 
-Utilizzando le azioni, limiti la quantità di tempo in cui il tuo codice è in esecuzione, che diminuisce i tuoi costi generali.
+Utilizzando le azioni, limiti il tempo di esecuzione del codice, il che riduce i tuoi costi.
 
 Ad esempio, puoi utilizzare le azioni per rilevare dei volti in un'immagine, rispondere a delle modifiche in un database, aggregare una serie di chiamate API o anche pubblicare un tweet.
 
 **Posso utilizzare più di un'azione alla volta?**
 
-Sì! Puoi utilizzare le azioni per richiamare altre azioni oppure puoi unire delle azioni tra loro per [creare sequenze](/docs/openwhisk?topic=cloud-functions-actions#actions_seq). Per fare in modo che questo funzioni, l'output di un'azione dovrebbe essere l'input di un'altra azione che può fornire un output che può essere utilizzato per attivare un'altra azione e così via. Puoi anche raccogliere in bundle il gruppo di azioni che hai creato per formare un pacchetto. Con un pacchetto puoi riutilizzare le azioni comuni o le sequenze richiamando il pacchetto invece di configurare nuovamente l'azione o la sequenza.
+Sì! Puoi utilizzare le azioni per richiamare altre azioni oppure puoi unire delle azioni tra loro per [creare sequenze](/docs/openwhisk?topic=cloud-functions-actions#actions_seq). Perché ciò funzioni, l'output di un'azione dovrebbe essere l'input di un'altra azione che fornisce quindi un output che può essere utilizzato per attivare un'altra azione e così via. Puoi anche raccogliere in bundle il gruppo di azioni che hai creato per formare un pacchetto. Con un pacchetto, puoi riutilizzare azioni o sequenze comuni chiamando il pacchetto invece di configurare nuovamente l'azione o la sequenza.
 
 ## Terminologia {{site.data.keyword.openwhisk_short}}
 
@@ -55,9 +57,9 @@ Sì! Puoi utilizzare le azioni per richiamare altre azioni oppure puoi unire del
     <dd>Gli [spazi dei nomi](/docs/openwhisk?topic=cloud-functions-namespaces) contengono entità {{site.data.keyword.openwhisk_short}}, quali azioni e trigger, e appartengono a un gruppo di risorse. Puoi consentire agli utenti di accedere alle tue entità {{site.data.keyword.openwhisk_short}} concedendo loro l'accesso allo spazio dei nomi.</dd>
   <dt>Azione</dt>
     <dd>Un'[azione](/docs/openwhisk?topic=cloud-functions-actions) è una parte di codice che esegue una specifica attività. Un'azione può essere scritta nel linguaggio che preferisci, come piccoli frammenti di codice JavaScript o Swift oppure codice binario personalizzato incorporato in un contenitore Docker. Fornisci la tua azione a Cloud Functions come codice sorgente o immagine Docker.
-    <br><br>Un'azione esegue il lavoro quando viene richiamata direttamente utilizzando l'SDK iOS, CLI o API {{site.data.keyword.openwhisk_short}}. Un'azione può anche rispondere automaticamente agli eventi da servizi {{site.data.keyword.Bluemix_notm}} e di terze parti utilizzando un trigger.</dd>
+    <br><br>Un'azione esegue il lavoro quando viene richiamata direttamente utilizzando l'SDK iOS, CLI o API {{site.data.keyword.openwhisk_short}}. Un'azione può anche rispondere automaticamente agli eventi dei servizi {{site.data.keyword.cloud_notm}} e di terze parti utilizzando un trigger.</dd>
   <dt>Sequenza</dt>
-    <dd>È possibile concatenare una serie di azioni in una [sequenza](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) senza dover scrivere alcun codice. Una sequenza è una catena di azioni, richiamate in ordine, in cui l'output di un'azione viene passato come input all'azione successiva. Ciò ti consente di combinare insieme le azioni esistenti per un rapido e semplice riutilizzo. Una sequenza può quindi essere richiamata proprio come un'azione, tramite un'API REST o automaticamente in risposta agli eventi.
+    <dd>È possibile concatenare una serie di azioni in una [sequenza](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) senza dover scrivere alcun codice. Una sequenza è una catena di azioni, richiamate in ordine, in cui l'output di un'azione viene passato come input all'azione successiva. Ciò ti consente di combinare insieme le azioni esistenti per un riutilizzo rapido e semplice. Una sequenza può quindi essere richiamata proprio come un'azione, tramite un'API REST o automaticamente in risposta agli eventi.
   </dd>
   <dt>Evento</dt>
     <dd>Esempi di eventi includono le modifiche ai record di database, letture del sensore IoT che superano una determinata temperatura, nuovi commit di codice a un repository GitHub o semplici richieste HTTP provenienti da applicazioni web o mobili. Gli eventi provenienti da origini eventi interne ed esterne vengono incanalati attraverso un trigger e le regole consentono alle azioni di reagire a tali eventi.</dd>
@@ -75,7 +77,7 @@ per l'attivazione di eventi trigger che possono essere utilizzati da {{site.data
 
 ### Operazioni successive
 {: #quiz}
-Verifica le tue conoscenze e [fai un quiz ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php)!
+Verifica le tue conoscenze e [fai un quiz ](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}!
 
 
 ## Come funziona l'elaborazione interna di OpenWhisk
@@ -88,14 +90,14 @@ Per spiegare tutti i componenti in modo più dettagliato, tracciamo la chiamata 
 ### Cosa succede dietro le quinte di OpenWhisk?
 {: #about_scenes}
 
-OpenWhisk è un progetto open source che combina componenti come Nginx, Kafka, Docker e CouchDB per formare un servizio di programmazione basato su eventi senza server.
+OpenWhisk è un progetto open source che combina componenti come NGINX, Kafka, Docker e CouchDB per formare un servizio di programmazione basato su eventi senza server.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="Flusso interno di elaborazione in OpenWhisk" style="width:550px; border-style: none"/>
 
-### Accesso al sistema: nginx
+#### 1. Accesso al sistema: NGINX
 {: #about_ngnix}
 
-Innanzitutto, l'API rivolta agli utenti OpenWhisk è completamente basata su HTTP e segue una progettazione RESTful. Di conseguenza, il comando inviato tramite la CLI è una richiesta HTTP nel sistema OpenWhisk. Il comando specifico si traduce approssimativamente in:
+Innanzitutto, l'API rivolta agli utenti OpenWhisk è basata su HTTP e segue una progettazione RESTful. Di conseguenza, il comando inviato tramite la CLI è una richiesta HTTP nel sistema OpenWhisk. Il comando specifico si traduce approssimativamente in:
 ```
 POST /api/v1/namespaces/$userNamespace/actions/myAction
 Host: $openwhiskEndpoint
@@ -104,18 +106,19 @@ Host: $openwhiskEndpoint
 
 Nota qui la variabile *$userNamespace*. Un utente ha accesso ad almeno uno spazio dei nomi. Per semplicità, supponiamo che l'utente possieda lo spazio dei nomi in cui è inserito *myAction*.
 
-Il primo punto di ingresso nel sistema avviene attraverso **nginx**, “un server proxy inverso e HTTP”. Viene utilizzato per la terminazione SSL e l'inoltro di chiamate HTTP appropriate al componente successivo.
+Il primo punto di ingresso nel sistema avviene attraverso **NGINX**, “un server proxy HTTP e inverso”. Viene utilizzato per la terminazione SSL e l'inoltro di chiamate HTTP appropriate al componente successivo.
 
-### Accesso al sistema: Controller
+#### 2. Accesso al sistema: Controller
 {: #about_controller}
 
-Nginx inoltra la richiesta HTTP al **Controller**, il componente successivo nel percorso attraverso OpenWhisk. Si tratta di un'implementazione basata su Scala della reale API REST (basata su **Akka** e **Spray**) e funge quindi da interfaccia per tutte le operazioni che utente può eseguire. Queste includono le richieste [CRUD](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete) per le tue entità in OpenWhisk e la chiamata delle azioni.
 
-Per prima cosa il Controller distingue ciò che l'utente sta tentando di fare e lo fa in base al metodo HTTP che utilizzi nella tua richiesta HTTP. Come per la traduzione precedente, l'utente invia una richiesta POST a un'azione esistente, che il Controller traduce in una **chiamata di un'azione**.
+NGINX inoltra la richiesta HTTP al **Controller**, il componente successivo nel percorso attraverso OpenWhisk. Si tratta di un'implementazione basata su Scala della reale API REST (basata su **Akka** e **Spray**) e funge quindi da interfaccia per tutte le operazioni che utente può eseguire. Queste includono le richieste di [creazione, recupero, aggiornamento ed eliminazione](https://en.wikipedia.org/wiki/Create,_read,_update_and_delete){: external} (CRUD) per le tue entità in OpenWhisk e la chiamata delle azioni.
 
-Dato il ruolo centrale del Controller (da qui il nome), sarà coinvolto in una certa misura in tutte le seguenti operazioni.
+Per prima cosa il Controller distingue ciò che l'utente sta tentando di fare e lo fa in base al metodo HTTP che utilizzi nella tua richiesta HTTP. L'utente invia una richiesta POST a un'azione esistente, che il Controller traduce in una **chiamata di un'azione**.
 
-### Autenticazione e autorizzazione: CouchDB
+Dato il ruolo centrale del Controller (da qui il nome), viene coinvolto in una certa misura in tutte le seguenti operazioni.
+
+#### 3. Autenticazione e autorizzazione: CouchDB
 {: #about_auth}
 
 Adesso il Controller verifica chi sei (*Autenticazione*) e se disponi del privilegio di fare ciò che vuoi con quell'entità (*Autorizzazione*). Le credenziali incluse nella richiesta vengono verificate nel cosiddetto database **soggetti** in un'istanza di **CouchDB**.
@@ -124,7 +127,7 @@ In questo caso, viene verificato che l'utente esista nel database di OpenWhisk e
 
 A questo punto, tutto è pronto per la prossima fase di elaborazione.
 
-### Richiamo dell'azione: di nuovo CouchDB…
+#### 4. Richiamo dell'azione: di nuovo CouchDB…
 {: #about_couchdb}
 
 Poiché adesso il Controller è sicuro che l'utente è autorizzato e che dispone dei privilegi per richiamare l'azione, carica questa azione (in questo caso *myAction*) dal database **whisks** in CouchDB.
@@ -134,12 +137,12 @@ Il record dell'azione contiene principalmente il codice da eseguire e i parametr
 In questo caso particolare, l'azione non prende alcun parametro (la definizione dei parametri della funzione è un elenco vuoto). Pertanto, si presume che i parametri predefiniti non siano impostati, compresi i parametri specifici per l'azione, rendendo il caso più semplice da questo punto di vista.
 
 
-### Chi richiama l'azione: Load Balancer
+#### 5. Chi richiama l'azione: Load Balancer
 {: #about_lb}
 
 Il Load Balancer, che fa parte del Controller, ha una visione globale degli esecutori disponibili nel sistema controllando continuamente il loro stato di integrità. Questi esecutori sono chiamati **Invoker**. Il Load Balancer, che sa quali Invoker sono disponibili, ne sceglie uno per richiamare l'azione richiesta.
 
-### Forma una linea: Kafka
+#### 6. Forma una linea: Kafka
 {: #about_kafka}
 
 D'ora in poi, alla richiesta di chiamata che hai inviato possono accadere principalmente due cose negative:
@@ -151,21 +154,21 @@ La risposta a entrambi i problemi è **Kafka**, “un sistema di messaggistica d
 
 Per richiamare l'azione, il Controller pubblica dunque un messaggio su Kafka, che contiene l'azione da richiamare e i parametri da passare all'azione (in questo caso, nessuno). Questo messaggio viene indirizzato all'Invoker che il Controller ha scelto dall'elenco ricevuto da Consul.
 
-Una volta che Kafka conferma di aver ricevuto il messaggio, la richiesta HTTP per l'utente riceve come risposta un **ActivationId**. L'utente può utilizzarlo in seguito per ottenere l'accesso ai risultati di questa specifica chiamata. Questo è un modello di chiamata asincrono, in cui la richiesta HTTP termina dopo che il sistema accetta la richiesta di richiamare un'azione. È disponibile anche un modello sincrono (detto chiamata bloccante), che però non è trattato qui.
+Una volta che Kafka ha confermato di aver ricevuto il messaggio, la richiesta HTTP per l'utente riceve una risposta con un **ID di attivazione**. L'utente può utilizzarlo in seguito per ottenere l'accesso ai risultati di questa specifica chiamata. Questo è un modello di chiamata asincrono, in cui la richiesta HTTP termina dopo che il sistema accetta la richiesta di richiamare un'azione. È disponibile anche un modello sincrono (detto chiamata bloccante), che però non è trattato qui.
 
-### Richiamo del codice: Invoker
+#### 7. Richiamo del codice: Invoker
 {: #about_invoker}
 
 L'**Invoker** è il nucleo di OpenWhisk. Il compito dell'Invoker è quello di richiamare un'azione, è implementato anche in Scala, ma non è tutto. Per eseguire le azioni in modo isolato e sicuro, utilizza **Docker**.
 
-Docker è usato per configurare un nuovo ambiente autoincapsulato (chiamato *contenitore*) per ogni azione che richiamiamo in modo rapido, isolato e controllato. Per ogni chiamata di azione, viene generato un contenitore Docker e viene inserito il codice azione. Il codice viene quindi eseguito utilizzando i parametri che gli vengono passati, si ottiene il risultato e infine il contenitore viene distrutto. In questa fase è possibile effettuare ottimizzazioni delle prestazioni per ridurre il sovraccarico e limitare il più possibile i tempi di risposta.
+Docker viene utilizzato per configurare un nuovo ambiente autoincapsulato (chiamato *contenitore*) per ogni azione che richiamiamo in modo rapido, isolato e controllato. Per ogni chiamata di azione, viene generato un contenitore Docker e viene inserito il codice azione. Il codice viene quindi eseguito utilizzando i parametri che gli vengono passati, si ottiene il risultato e infine il contenitore viene distrutto. In questa fase è possibile eseguire ottimizzazioni delle prestazioni per ridurre i requisiti di manutenzione e consentire brevi tempi di risposta.
 
-In questo caso, avendo a portata di mano un'azione basata su *Node.js*, l'Invoker avvia un contenitore Node.js. Quindi, immette il codice da *myAction*, lo esegue senza parametri, estrae il risultato, salva i log e distrugge di nuovo il contenitore Node.js.
+In questo caso, con un'azione basata su *Node.js* a portata di mano, l'Invoker avvia un contenitore Node.js. Quindi, inserisce il codice da *myAction*, lo esegue senza parametri, estrae il risultato, salva i log e distrugge nuovamente il contenitore Node.js.
 
-### Memorizzazione dei risultati: di nuovo CouchDB
+#### 8. Memorizzazione dei risultati: di nuovo CouchDB
 {: #about_storing}
 
-Quando l'Invoker riceve il risultato, questo viene memorizzato nel database **whisks** sotto forma di attivazione nell'ActivationId. Il database **whisks** risiede in **CouchDB**.
+Quando l'Invoker riceve il risultato, questo viene memorizzato nel database **whisks** come attivazione sotto l'ID attivazione. Il database **whisks** risiede in **CouchDB**.
 
 In questo caso specifico, l'Invoker recupera l'oggetto JSON risultante dall'azione, prende il log scritto da Docker, li inserisce tutti nel record di attivazione e memorizza il record nel database. Fai riferimento al seguente esempio:
 ```json
@@ -206,4 +209,7 @@ Puoi trovare ulteriori informazioni su {{site.data.keyword.openwhisk_short}} nei
 * [Semantica delle azioni](/docs/openwhisk?topic=cloud-functions-limits#limits_semantics)
 * [Limiti](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
 * [Guida di riferimento API REST](/apidocs/functions)
+
+
+
 

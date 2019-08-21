@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting-started" path="openwhisk"}
+{: .toc subcollection="cloud-functions" category="compute" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting-started" path="openwhisk"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
@@ -29,13 +29,19 @@ IBM Cloud Functions
         plan.md
         templates.md
         prep.md
-        actions.md
         actions_web.md
+        actions.md
+        apigateway.md
         triggers.md
         rules.md
-        apigateway.md
+        
 
     test.md
+    
+    {: .topicgroup}
+    Protezione delle applicazioni senza server
+        namespaces.md
+        iam.md
 
     {: .topicgroup}
     Integrazione di applicazioni senza server
@@ -64,11 +70,6 @@ IBM Cloud Functions
         pkg_weather.md
         pkg_websocket.md
         feeds_custom.md
-
-    {: .topicgroup}
-    Protezione delle applicazioni senza server
-         namespaces.md
-         z_archive_iam.md
 
     {: .topicgroup}
     Configurazione di una catena di tool automatica
@@ -108,64 +109,3 @@ IBM Cloud Functions
     faq.md
     ts_index.md
     {: .navgroup-end}
-
-
-    functions-cli.md
-    z_archive_getting_started.md
-    
-    z_archive_actions_javascript.md
-    z_archive_actions_go.md
-    z_archive_actions_swift.md
-    z_archive_actions_python.md
-    z_archive_actions_ruby.md
-    z_archive_actions_docker.md
-    z_archive_actions_php.md
-    z_archive_actions_java.md
-    z_archive_actions_net.md
-    z_archive_binding_services.md
-    z_archive_bluemix_cli.md
-    z_archive_cloud_object_storage_actions.md
-    z_archive_cloudant_actions.md
-    z_archive_creating_action_sequence.md
-    z_archive_eventstreams.md
-    z_archive_installable-packages-overview.md
-    z_archive_messagehub_actions.md
-    z_archive_mobile_push_actions.md
-    z_archive_openwhisk_about.md
-    z_archive_openwhisk_access.md
-    z_archive_openwhisk_alarms.md
-    z_archive_openwhisk_annotations.md
-    z_archive_openwhisk_catalog_github.md
-    z_archive_openwhisk_catalog_slack.md
-    z_archive_openwhisk_catalog_watson_translator.md
-    z_archive_openwhisk_catalog_weather.md
-    z_archive_openwhisk_cloudant.md
-    z_archive_openwhisk_common_use_cases.md
-    z_archive_openwhisk_composer.md
-    z_archive_openwhisk_faas_compared.md
-    z_archive_openwhisk_feeds.md
-    z_archive_openwhisk_logs.md
-    z_archive_openwhisk_managing.md
-    z_archive_openwhisk_mobile_sdk.md
-    z_archive_openwhisk_namespaces.md
-    z_archive_openwhisk_object_storage.md
-    z_archive_openwhisk_packages.md
-    z_archive_openwhisk_reference.md
-    z_archive_openwhisk_triggers_rules.md
-    z_archive_openwhisk_watson_texttospeech.md
-    z_archive_openwhisk_watson_speechtotext.md
-    z_archive_openwhisk_webactions.md
-    z_archive_openwhisk_websocket.md
-    z_archive_ow_push_notifications.md
-    z_archive_ow_watson_assistant.md
-    z_archive_ow_watson_discovery.md
-    z_archive_ow_watson_natural_language_classifer.md
-    z_archive_ow_watson_natural_language_understanding.md
-    z_archive_ow_watson_personality_insights.md
-    z_archive_ow_watson_tone_analyzer.md
-    z_archive_ow_watson_visual_recognition.md
-    z_archive_openwhisk_goserverless.md
-    z_archive_parameters.md
-    z_archive_serverless_framework.md
-    z_archive_serviceauth.md
-    z_archive_working-with-actions.md

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Monitoraggio dell'attività
 {: #monitor}
 
-Ottieni delle informazioni approfondite sulle prestazioni delle tue azioni distribuite con {{site.data.keyword.openwhisk}}. Le metriche possono aiutarti a trovare i colli di bottiglia o a prevedere problemi di produzione possibili in base alla durata dell'azione, ai risultati delle attivazioni dell'azione o quando hai raggiunto i limiti di attivazione dell'azione.
+Ottieni delle informazioni approfondite sulle prestazioni delle tue azioni distribuite con {{site.data.keyword.openwhisk}}. Le metriche possono aiutarti a trovare colli di bottiglia o a prevedere possibili problemi di produzione in base alla durata dell'azione, ai risultati delle attivazioni dell'azione o se raggiungi i limiti di attivazione dell'azione.
 {: shortdesc}
 
 Le metriche vengono raccolte per tutte le entità. A seconda se le tue azioni sono in uno spazio dei nomi basato su IAM o Cloud Foundry, le metriche vengono ubicate nell'account o nello spazio IBM Cloud. Queste metriche vengono inviate a {{site.data.keyword.monitoringlong}} e vengono rese disponibili tramite Grafana, in cui puoi configurare i tuoi dashboard, creare degli avvisi basati sui valori di evento delle metriche e altro ancora. Per ulteriori informazioni sulle metriche, vedi la[documentazione {{site.data.keyword.monitoringlong_notm}} ](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started).
@@ -47,15 +49,15 @@ Inizia creando una dashboard di monitoraggio Grafana.
     <tbody>
       <tr>
         <td>Europa Centrale</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>Regno Unito Sud</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>Stati Uniti Sud</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>Stati Uniti Est</td>
@@ -89,7 +91,7 @@ Dopo aver eseguito un'azione, vengono generate delle nuove metriche e sono ricer
 ## Utilizzo dei dashboard
 {: #monitor_dash_use}
 
-Il [dashboard {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard) fornisce un riepilogo grafico della tua attività. Utilizza il dashboard per determinare le prestazioni e l'integrità delle tue azioni {{site.data.keyword.openwhisk_short}}.
+Il [dashboard {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard){: external} fornisce un riepilogo grafico della tua attività. Utilizza il dashboard per determinare le prestazioni e l'integrità delle tue azioni {{site.data.keyword.openwhisk_short}}.
 {:shortdesc}
 
 Puoi filtrare i log selezionando quali log di azione vuoi visualizzare e selezionare l'intervallo di tempo dell'attività registrata. Questi filtri vengono applicati a tutte le viste nel dashboard. Fai clic su **Ricarica** in qualsiasi momento per aggiornare il dashboard con i più recenti dati di log delle attivazioni.
@@ -161,7 +163,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.action-performan
 ```
 {: codeblock}
 
-Esempio: se hai uno spazio dei nomi basato su IAM denominato `myNamespace` nella regione `us-south`, una metrica delle simultaneità dell'azione è simile a quanto segue:
+Esempio: se hai uno spazio dei nomi basato su IAM denominato `myNamespace` nella regione `us-south`, una metrica della simultaneità dell'azione è simile a quanto segue:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -174,7 +176,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 Poiché potresti avere migliaia o milioni di attivazioni dell'azione, i valori della metrica vengono rappresentati come un'aggregazione di eventi prodotti da molte attivazioni. I valori vengono aggregati nei seguenti modi:
-* Somma: tutti i valori della metrica vengono aggiunti insieme.
+* Somma: vengono aggiunti tutti i valori della metrica.
 * Media: viene calcolata una media aritmetica.
 * Media totale: viene calcolata una media aritmetica basata sui componenti e aggiungendo diversi componenti tra loro.
 
@@ -204,7 +206,7 @@ Consulta la seguente tabella per vedere le metriche che sono disponibili.
     </tr>
     <tr>
       <td><code>wait-time</code></td>
-      <td>Il tempo di attesa trascorso in una coda in attesa che venga pianificata un'attivazione.</td>
+      <td>Il tempo medio trascorso in una coda in attesa della pianificazione di un'attivazione.</td>
       <td>Media</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -222,13 +224,13 @@ Consulta la seguente tabella per vedere le metriche che sono disponibili.
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>Il numero di attivazioni non riuscite dovute ad errori dell'applicazione. Ad esempio gli errori normali dalle azioni. Per ulteriori informazioni su come vengono calcolate le metriche action-performance, consulta [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+      <td>Il numero di attivazioni non riuscite causate da errori dell'applicazione. Ad esempio, errori normali delle azioni. Per ulteriori informazioni su come vengono calcolate le metriche action-performance, consulta [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}.</td>
       <td>Somma</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>Il numero di attivazioni non riuscite causate dallo sviluppatore. Ad esempio la violazione di [action proxy interface](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) da parte di eccezioni non gestite nel codice dell'azione.</td>
+      <td>Il numero di attivazioni non riuscite causate dallo sviluppatore. Ad esempio, la violazione dell'[interfaccia del proxy di azione](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external} da parte di eccezioni non gestite nel codice di azione.</td>
       <td>Somma</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -261,5 +263,7 @@ Consulta la seguente tabella per vedere le metriche che sono disponibili.
 
 Le metriche per le azioni che fanno parte dello spazio dei nomi predefinito sono disponibili nella categoria predefinita.
 {: tip}
+
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-19"
 
-keywords: personality insights, cognitive, serverless, functions
+keywords: cognitive, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # {{site.data.keyword.personalityinsightsshort}}
 {: #pkg_person_insights}
 
@@ -30,18 +32,19 @@ subcollection: cloud-functions
 {: shortdesc}
 
 此服务可以从潜在嘈杂的社交媒体中，自动推断出反映个性特征的个人情况。此服务可以基于其分析结果推断消费偏好，而对于带有时间戳记的 JSON 内容，可以报告与时间相关的行为。
-* 有关此服务用于描述个性特征的模型的含义的信息，请参阅[个性模型](/docs/services/personality-insights?topic=personality-insights-models)。
-* 有关消费偏好含义的信息，请参阅[消费偏好](/docs/services/personality-insights?topic=personality-insights-preferences)。
+* 有关此服务用于描述个性特征的模型的含义的更多信息，请参阅[个性模型](/docs/services/personality-insights?topic=personality-insights-models)。
+* 有关消费偏好含义的更多信息，请参阅[消费偏好](/docs/services/personality-insights?topic=personality-insights-preferences)。
 
-**注：**{{site.data.keyword.personalityinsightsshort}} 服务禁用了请求日志记录。无论是否设置 `X-Watson-Learning-Opt-Out` 请求头，此服务都不会记录和保留来自请求与响应的数据。
+{{site.data.keyword.personalityinsightsshort}} 服务禁用了请求日志记录。无论是否设置 `X-Watson-Learning-Opt-Out` 请求头，此服务都不会记录或保留来自请求与响应的数据。
+{: note}
 
 {{site.data.keyword.personalityinsightsshort}} 包中包含以下实体。您可以通过单击实体名称在 {{site.data.keyword.personalityinsightsshort}} API 参考中找到其他详细信息。
 
 |实体|类型|参数|描述|
 | --- | --- | --- | --- |
-|[`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html)|包|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url|使用 {{site.data.keyword.personalityinsightsshort}} V3 服务。|
-|[`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、content、content_type、content_language、accept_language、raw_scores、csv_headers、consumption_preferences|获取个人档案。|
-|[`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv)|操作|username、password、iam_access_token、iam_apikey、iam_url、headers、headers[X-Watson-Learning-Opt-Out]、url、content、content_type、content_language、accept_language、raw_scores、csv_headers、consumption_preferences|获取 CSV 文件格式的个人档案。|
+|[`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html){: external}|包|`username`、`password`、`iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`|使用 {{site.data.keyword.personalityinsightsshort}} V3 服务。|
+|[`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile){: external}|操作|`username`、`password`、`iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、`content`、`content_type`、`content_language`、`accept_language`、`raw_scores`、`csv_headers`、`consumption_preferences`|获取个人档案。|
+|[`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv){: external}|操作|`username`、`password`、`iam_access_token`、`iam_apikey`、`iam_url`、`headers`、`headers[X-Watson-Learning-Opt-Out]`、`url`、`content`、`content_type`、`content_language`、`accept_language`、`raw_scores`、`csv_headers`、`consumption_preferences`|获取 CSV 文件格式的个人档案。|
 
 ## 创建 {{site.data.keyword.personalityinsightsshort}} 服务实例
 {: #service_instance_insights}
@@ -49,7 +52,7 @@ subcollection: cloud-functions
 安装包之前，必须创建 {{site.data.keyword.personalityinsightsshort}} 服务实例和服务凭证。
 {: shortdesc}
 
-1. [创建 {{site.data.keyword.personalityinsightsshort}} 服务实例 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/catalog/services/personality_insights)。
+1. [创建 {{site.data.keyword.personalityinsightsshort}} 服务实例](https://cloud.ibm.com/catalog/services/personality_insights){: external}。
 2. 创建服务实例时，还会为您创建自动生成的服务凭证。
 
 ## 安装 {{site.data.keyword.personalityinsightsshort}} 包
@@ -61,8 +64,9 @@ subcollection: cloud-functions
 ### 通过 {{site.data.keyword.openwhisk_short}} CLI 进行安装
 {: #personalityinsights_cli}
 
-开始之前：
-  1. [安装 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cli_install)。
+**开始之前**
+
+[安装 {{site.data.keyword.cloud_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 插件](/docs/openwhisk?topic=cloud-functions-cli_install)。
 
 要安装 {{site.data.keyword.personalityinsightsshort}} 包，请执行以下操作：
 
@@ -97,14 +101,14 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    根据在其中创建服务实例的区域，可能会以不同方式命名服务实例，因为它是 IAM 服务。如果以上命令失败，请将以下服务名称用于 bind 命令：
+    根据在其中创建服务实例的区域，可能会以不同方式命名服务实例，因为它是 IAM 服务。如果命令失败，请将以下服务名称用于 bind 命令：
     ```
     ibmcloud fn service bind personality-insights personality-insights-v3
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
     ```
     {: screen}
@@ -115,8 +119,8 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     ok: got package personality-insights-v3, displaying field parameters
     [
       {
@@ -138,9 +142,9 @@ subcollection: cloud-functions
 ### 通过 {{site.data.keyword.openwhisk_short}} UI 进行安装
 {: #personalityinsights_ui}
 
-1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/create)。
+1. 在 {{site.data.keyword.openwhisk_short}} 控制台中，转至[“创建”页面](https://cloud.ibm.com/openwhisk/create){: external}。
 
-2. 使用 **Cloud Foundry 组织**和 **Cloud Foundry 空间**列表，选择要将包安装到其中的名称空间。 
+2. 使用“名称空间”下拉菜单，选择要将包安装到其中的名称空间。 
 
 3. 单击**安装包**。
 
@@ -148,16 +152,20 @@ subcollection: cloud-functions
 
 5. 单击 **Personality Insights** 包。
 
-5. 单击**安装**。
+6. 单击**安装**。
 
-6. 安装包后，会将您重定向到“操作”页面，您可以在其中搜索名为 **personality-insights-v3** 的新包。
+7. 安装包后，会将您重定向到“操作”页面，您可以在其中搜索名为 `personality-insights-v3` 的新包。
 
-7. 要使用 **personality-insights-v3** 包中的操作，必须将服务凭证绑定到这些操作。
-  * 要将服务凭证绑定到包中的所有操作，请遵循上面列出的 CLI 指示信息中的步骤 5 和 6。
-  * 要将服务凭证绑定到单个操作，请在 UI 中完成以下步骤。**注**：对于要使用的每个操作，必须完成以下步骤。
-    1. 单击 **personality-insights-v3** 包中要使用的操作。这将打开该操作的详细信息页面。
+8. 要使用 `personality-insights-v3` 包中的操作，必须将服务凭证绑定到这些操作。
+  * 要将服务凭证绑定到包中的所有操作，请遵循 CLI 指示信息中的步骤 5 和 6。
+  * 要将服务凭证绑定到单个操作，请在 UI 中完成以下步骤。
+
+  对于要使用的每个操作，必须完成以下步骤。
+  {: note}
+
+    1. 单击 `personality-insights-v3` 包中要使用的操作。这将打开该操作的详细信息页面。
     2. 在左侧导航中，单击**参数**部分。
-    3. 输入新的**参数**。对于键，输入 `__bx_creds`。对于值，请从先前创建的服务实例中粘贴服务凭证 JSON 对象。
+    3. 输入新参数。对于键，输入 `__bx_creds`。对于值，请从先前创建的服务实例中粘贴服务凭证 JSON 对象。
 
 ## 使用 {{site.data.keyword.personalityinsightsshort}} 包
 {: #usage_insights}
@@ -169,11 +177,13 @@ ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param nam
 ```
 {: pre}
 
-所有操作都需要格式为 YYYY-MM-DD 的版本参数。以向后不兼容方式更改 API 后，会发布一个新版本日期。请在 [API 参考](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning)中查看更多详细信息。
+所有操作都需要格式为 YYYY-MM-DD 的 version 参数。以向后不兼容方式更改 API 后，会发布一个新版本日期。请在 [API 参考](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning){: external}中查看更多详细信息。
 
-此包的函数使用当前版本的 Personality Insights (2017-10-13)。请试用 `profile` 操作。
+此包的函数使用当前版本的 {{site.data.keyword.personalityinsightsshort}} (2017-10-13)。请试用 `profile` 操作。
 ```
-ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior."
+ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}
+
+
 

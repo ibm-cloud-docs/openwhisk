@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-16"
 
-keywords: services, serverless
+keywords: services, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,10 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# 添加 IBM Cloud 服务
+# 将 {{site.data.keyword.cloud_notm}} 服务绑定到 {{site.data.keyword.openwhisk_short}} 实体
 {: #services}
 
-您可以在应用程序中包含 IBM Cloud 服务中的功能。
+您可以在 {{site.data.keyword.openwhisk_short}} 应用程序中包含 IBM Cloud 服务中的功能。
 {: shortdesc}
 
 **如何向应用程序添加 IBM Cloud 服务？**
@@ -46,9 +47,10 @@ subcollection: cloud-functions
 ## 将服务绑定到操作或包
 {: #services_bind}
 
-将任何 {{site.data.keyword.Bluemix_notm}} 服务绑定到任何操作。绑定服务时，会在现有操作上创建包含服务实例凭证的新参数。
+将任何 {{site.data.keyword.cloud_notm}} 服务绑定到任何操作。绑定服务时，会在现有操作上创建包含服务实例凭证的新参数。
 
-**注**：不能将同一服务的多个实例绑定到一个操作或包。只能绑定服务的一个实例。 
+不能将同一服务的多个实例绑定到一个操作或包。只能绑定服务的一个实例。
+{: note}
 
 开始之前，为要绑定到操作的服务[创建操作](/docs/openwhisk?topic=cloud-functions-actions)并[定义凭证](/docs/resources?topic=resources-externalapp#externalapp)。
 
@@ -58,8 +60,8 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     name              service        plan   bound apps   last operation
     Composer-qp   composer   free                create succeeded
     Composer-uc   composer   free                create succeeded
@@ -68,20 +70,19 @@ subcollection: cloud-functions
     {: screen}
 
 2. 获取为服务实例所定义的凭证的名称。
-
     ```
     ibmcloud service keys SERVICE_NAME
     ```
     {: pre}
 
-    示例：
+    **示例**
     ```
     ibmcloud service keys Composer-qp
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     Invoking 'cf service-keys Composer-qp'...
 
     Getting keys for service instance Composer-qp as <your ID>...
@@ -93,56 +94,64 @@ Credentials-2
     {: screen}
 
 3. 将服务绑定到操作。
-    {{site.data.keyword.openwhisk_short}} `ibmcloud fn service bind` 命令可使您的 {{site.data.keyword.Bluemix_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
+    `ibmcloud fn service bind` 命令可使您的 {{site.data.keyword.cloud_notm}} 服务凭证在运行时可用于 {{site.data.keyword.openwhisk_short}} 代码。
+    以下命令参数可用于 `ibmcloud fn service bind` 命令。
+
+    <table>
+    <thead>
+        <tr>
+        <th>参数</th>
+        <th>描述</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><code>SERVICE</code></td>
+        <td>要绑定的服务名称。</td>
+        </tr>
+        <tr>
+        <td><code>ACTION_NAME</code></td>
+        <td>要将服务绑定到的操作或包的名称。</td>
+        </tr>
+        <tr>
+        <td><code>--instance INSTANCE_NAME</code></td>
+        <td>（可选）指定服务实例名称。如果未指定服务实例名称，那么将选择服务的第一个实例。</td>
+        </tr>
+        <tr>
+        <td><code>--keyname CREDENTIALS_NAME</code></td>
+        <td>（可选）指定凭证名称。如果未指定凭证名称，那么将选择服务实例的第一个凭证。</td>
+        </tr>
+    </tbody>
+    </table>
+
+    **示例语法**
     ```
-    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME][--keyname CREDENTIALS_NAME]
     ```
     {: pre}
 
-    <table>
-    <caption>了解 <code>ibmcloud fn service bind</code> 命令的组成部分</caption>
-    <thead>
-    <th colspan=2><img src="images/idea.png" alt="“构想”图标"/> 了解 <code>ibmcloud fn service bind</code> 命令的组成部分</th>
-    </thead>
-    <tbody>
-    <tr>
-    <td><code>SERVICE</code></td>
-    <td>要绑定的服务名称。</td>
-    </tr>
-    <tr>
-    <td><code>ACTION_NAME</code></td>
-    <td>要将服务绑定到的操作或包的名称。</td>
-    </tr>
-    <tr>
-    <td>--instance <code>INSTANCE_NAME</code></td>
-    <td>可选：指定服务实例名称。如果未指定服务实例名称，那么将选择服务的第一个实例。</td>
-    </tr>
-    <tr>
-    <td>--keyname <code>CREDENTIALS_NAME</code></td>
-    <td>可选：指定凭证名称。如果未指定凭证名称，那么将选择服务实例的第一个凭证。</td>
-    </tr>
-    </tbody></table>
-
-    例如，要将 {{site.data.keyword.ibmwatson}} Composer 服务绑定到名为 `hello` 的操作，请运行以下命令：
+    例如，要将 {{site.data.keyword.ibmwatson}} Composer 服务绑定到名为 `hello` 的操作，请运行以下命令。
     ```
     ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
     ```
     {: pre}
 
-    输出：
+    **输出**
     ```
     Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello'.
     ```
     {: screen}
 
 4. 验证凭证是否已成功绑定。服务绑定到的操作不支持任何定制标志，但支持调试和详细信息标志。
+    
+
     ```
     ibmcloud fn action get hello parameters
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     ok: got action Hello World
 {
     "parameters": [
@@ -175,9 +184,6 @@ Credentials-2
 
 有关将参数传递到操作或包的更多信息，请参阅[将参数绑定到操作](/docs/openwhisk?topic=cloud-functions-actions#actions_params)。
 
-
-
-
 ## 取消服务与操作的绑定
 {: #services_unbind}
 
@@ -187,3 +193,4 @@ Credentials-2
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
+

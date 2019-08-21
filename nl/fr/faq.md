@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
+
 
 
 # Foire aux questions
@@ -87,31 +89,31 @@ Les langages suivants sont pris en charge :
 La durée maximale est 10 minutes. La valeur par défaut est définie sur 1 minute, mais peut être modifiée via l'interface de ligne de commande en spécifiant une nouvelle
 valeur en millisecondes à l'aide de l'indicateur `--timeout`. Vous pouvez également modifier la valeur via l'interface graphique dans la section relative aux détails de l'action.
 
-
 ## Quelle est la quantité maximale de mémoire que ma fonction peut utiliser ?
 {: #max-memory}
 
-Vous pouvez utiliser jusqu'à 2048 Mo de mémoire pour chaque fonction. La valeur par défaut est définie sur 256 Mo, mais vous pouvez la modifier à l'aide de
-l'indicateur `--memory` ou via l'interface graphique dans la section relative aux détails de l'action.
-
-
+Vous pouvez utiliser jusqu'à 2048 Mo de mémoire pour chaque fonction. La valeur par défaut est définie sur 256 Mo, mais vous pouvez la modifier à l'aide de l'indicateur `--memory` ou via l'interface graphique dans la section relative aux détails de l'action.
 
 ## Quelle est la différence entre une action et une action Web ?
 {: #difference}
 
-La principale différence entre une action et une action Web est l'objet de sortie de réponse. Pour les [actions Web](/docs/openwhisk?topic=cloud-functions-actions_web), le résultat représente une réponse HTTP,
-où la sortie JSON doit avoir au moins une zone `body`. Elle peut éventuellement contenir également un code d'état et des en-têtes.
+La principale différence entre une action et une action Web est l'objet de sortie de réponse. Pour des [actions Web](/docs/openwhisk?topic=cloud-functions-actions_web), le résultat représente une réponse HTTP où, au minimum, la sortie JSON contient une zone `body`. Elle peut éventuellement comporter un élément `statusCode` et des éléments `headers`.
 
 ## Comment puis-je afficher mes journaux d'actions ?
 {: #logs_faq}
 
 Après la collecte des métriques, vous pouvez afficher vos journaux à l'aide du [service {{site.data.keyword.loganalysislong_notm}}](/docs/openwhisk?topic=cloud-functions-logs).
 
-
 ## Comment fonctionne la surveillance ?
 {: #monitor_faq}
 
 Vous pouvez obtenir des informations sur les performances de vos actions déployées avec {{site.data.keyword.openwhisk_short}} à l'aide d'{{site.data.keyword.monitoringlong}}. Vous pouvez également surveiller l'intégrité et les performances de vos actions en utilisant le tableau de bord pour afficher un récapitulatif graphique de votre activité.
+
+
+
+
+
+
 
 
 

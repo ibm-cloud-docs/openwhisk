@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Création de déclencheurs d'événements
@@ -47,7 +49,7 @@ Voici des exemples de déclencheur.
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,7 +61,7 @@ Voici des exemples de déclencheur.
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -101,7 +103,7 @@ Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exé
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exé
   ```
   {: pre}
 
-  Exemple de sortie :
+  **Exemple de sortie**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -131,7 +133,7 @@ Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exé
   ```
   {: pre}
 
-  Exemple de sortie :
+  **Exemple de sortie**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -157,7 +159,7 @@ Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exé
   ```
   {: pre}
 
-  Exemple de sortie :
+  **Exemple de sortie**
   ```
   ok: created rule myRule
   ```
@@ -170,5 +172,6 @@ Cet exemple explique comment utiliser un flux dans le package Alarms afin d'exé
   {: pre}
 
   Vous pouvez voir que les activations ont lieu toutes les minutes pour le déclencheur, la règle et l'action. L'action reçoit les paramètres `{"name":"Mork", "place":"Ork"}` à chaque appel.
+
 
 

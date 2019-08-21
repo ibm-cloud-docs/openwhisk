@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -25,6 +26,7 @@ subcollection: cloud-functions
 {:tsSymptoms: .tsSymptoms}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
+
 
 # 故障诊断
 {: #troubleshooting}
@@ -47,8 +49,6 @@ subcollection: cloud-functions
 要查看哪个运行时用于操作，请运行 `ibmcloud fn action get ACTION_NAME`，并在查询响应中检查是否 `deprecated=true`。如果这是不推荐使用的运行时，请[更新运行时](/docs/openwhisk?topic=cloud-functions-actions#actions_update)。
 
 
-<br />
-
 
 ## 已达到系统限制
 {: #ts_limit_reached}
@@ -68,8 +68,6 @@ subcollection: cloud-functions
 4. 对于“技术支持领域”，选择**函数**。
 
 
-<br />
-
 
 ## 获取帮助与支持
 {: #gettinghelp}
@@ -77,10 +75,11 @@ subcollection: cloud-functions
 函数仍然有问题？
 {: shortdesc}
 
--   要查看 {{site.data.keyword.Bluemix_notm}} 是否可用，请[检查 {{site.data.keyword.Bluemix_notm}} 状态页面 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/status?selected=status)。
--   复查论坛，以查看是否有其他用户遇到相同的问题。使用论坛来提问时，请标记您的问题，以便 {{site.data.keyword.Bluemix_notm}} 开发团队能看到您的问题。
-    -   如果您有关于使用 {{site.data.keyword.openwhisk}} 开发函数的技术问题，请在 [Stack Overflow ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://stackoverflow.com/search?q=ibm-cloud-functions) 上发布问题，并使用 `ibm-cloud-functions` 标记您的问题。
-    -   有关服务的问题和入门指示信息，请使用 [IBM Developer Answers ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://developer.ibm.com/answers/topics/functions/?smartspace=bluemix) 论坛。请包含 `ibm-cloud` 和 `functions` 标记。
+-   要查看 {{site.data.keyword.cloud_notm}} 是否可用，请[检查 {{site.data.keyword.cloud_notm}} 状态页面](https://cloud.ibm.com/status?selected=status){: external}。
+-   复查论坛，以查看是否有其他用户遇到相同的问题。使用论坛来提问时，请标记您的问题，以便 {{site.data.keyword.cloud_notm}} 开发团队能看到您的问题。
+    -   如果您有关于使用 {{site.data.keyword.openwhisk}} 开发函数的技术问题，请在 [Stack Overflow](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} 上发布问题，并使用 `ibm-cloud-functions` 标记您的问题。
+    -   有关服务的问题和入门指示信息，请使用 [IBM Developer Answers](https://developer.ibm.com/answers/topics/functions){: external} 论坛。请包含 `ibm-cloud` 和 `functions` 标记。
     有关使用论坛的更多详细信息，请参阅[获取帮助](/docs/get-support?topic=get-support-getting-customer-support#using-avatar)。
 -   通过打开一个案例，与 IBM 支持人员联系。要了解有关开具 IBM 支持案例或有关支持级别和案例严重性的信息，请参阅[联系支持人员](/docs/get-support?topic=get-support-getting-customer-support)。报告问题时，请包含激活标识。要获取激活标识，请运行 `ibmcloud fn activation list`。
 {: tip}
+

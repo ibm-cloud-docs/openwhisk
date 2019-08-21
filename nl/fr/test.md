@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Test des applications sans serveur
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Exemple Hello world :
+**Exemple Hello World**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-Sortie :
+**Sortie**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-Exemple de sortie :
+**Exemple de sortie**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-Exemple de sortie :
+**Exemple de sortie**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -105,9 +107,9 @@ Exemple de sortie :
 L'appel de l'action peut être bloquant ou non bloquant. Par défaut, les appels sont non bloquants. Si vous n'avez pas besoin du résultat de l'action immédiatement, utilisez un appel non bloquant.
 {: shortdesc}
 
-Les appels bloquants utilisent un style demande/réponse et attendent que le résultat de l'activation soit disponible. Le délai d'attente est inférieur à 60 secondes ou à la [limite de temps](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) de l'action.
+Les appels bloquants utilisent un style de demande et réponse et attendent que le résultat de l'activation soit disponible. Le délai d'attente est inférieur à 60 secondes ou à la [limite de temps](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) de l'action.
 
-Exécutez l'action dans le cloud en exécutant un appel bloquant :
+Exécutez l'action dans le cloud en exécutant un appel bloquant.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-Exemple de sortie :
+**Exemple de sortie**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -129,13 +131,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ```
 {: screen}
 
-La commande génère les informations suivantes :
+La commande génère les informations suivantes. 
 * Résultat de l'appel, s'il est disponible avant la fin du délai d'attente
-* Sans l'option --result, l'ID d'activation est affiché dans le résultat. ID d'activation (`44794bd6aab74415b4e42a308d880e5b`) qui peut être utilisé pour extraire les journaux ou le résultat de l'appel.
-
-
-
-
+* Sans l'option `--result`, l'ID d'activation est affiché dans le résultat. ID d'activation (`44794bd6aab74415b4e42a308d880e5b`) qui peut être utilisé pour extraire les journaux ou le résultat de l'appel.
 
 
 ## Test des déclencheurs
@@ -152,9 +150,9 @@ appelé événement. Les déclencheurs peuvent être exécutés explicitement pa
     ```
     {: pre}
 
-    Un déclencheur qui n'est pas associé à une règle n'a aucun effet visible lorsqu'il est exécuté. Etant donné qu'aucune règle n'est associée à ce déclencheur, les paramètres transmis ne sont pas utilisés en entrée par une action.
+    Un déclencheur qui n'est pas associé à une règle n'a aucun effet visible lorsqu'il est exécuté. Parce qu'aucune règle n'est associée à ce déclencheur, les paramètres transmis ne sont pas utilisés en entrée par une action.
 
-    Exemple de sortie :
+    **Exemple de sortie**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -167,7 +165,7 @@ appelé événement. Les déclencheurs peuvent être exécutés explicitement pa
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -180,7 +178,7 @@ appelé événement. Les déclencheurs peuvent être exécutés explicitement pa
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -218,7 +216,7 @@ Vérifiez la durée de réalisation d'une activation en obtenant le journal des 
     ```
     {: pre}
 
-    La durée (`duration`) affiche la durée en millisecondes. Cette activation prend un peu plus de 2 secondes :
+    La durée (`duration`) affiche la durée en millisecondes. L'activation a pris un peu plus de 2 secondes.
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -260,7 +258,7 @@ Si votre application est intégrée dans une image Docker, vous pouvez utiliser 
     ```
     {: pre}
 
-2. Obtenez une liste des conteneurs pour extraire l'ID d'un conteneur.
+2. Obtenez une liste des conteneurs pour extraire un ID conteneur.
 
     ```
     docker ps
@@ -274,7 +272,7 @@ Si votre application est intégrée dans une image Docker, vous pouvez utiliser 
     ```
     {: pre}
 
-4. Examinez l'utilisation de la mémoire du conteneur. Si la valeur n'entre pas dans les limites du système, effectuez quelques ajustements dans votre script.
+4. Examinez l'utilisation de la mémoire du conteneur. Si la valeur n'entre pas dans les limites du système, ajustez votre script. 
 
 5. Après avoir examiné ces informations, vous pouvez arrêter le conteneur en cours d'exécution.
 
@@ -289,6 +287,8 @@ Si votre application est intégrée dans une image Docker, vous pouvez utiliser 
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: feeds, serverless
+keywords: feeds, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Criando feeds do provedor de eventos customizados
@@ -34,13 +36,13 @@ O {{site.data.keyword.openwhisk_short}} suporta uma API aberta, em que qualquer 
 ## Arquitetura de feed
 {: #feeds_arch}
 
-Há três padrões arquiteturais para criar um feed: **Ganchos**, **Pesquisa** e **Conexões**.
+É possível criar um feed usando um dos três padrões arquiteturais: **Ganchos**, **Pesquisa** e **Conexões**.
 
 ### Ganchos
 
-Com o padrão de ganchos, um feed é configurado usando um [webhook](https://en.wikipedia.org/wiki/Webhook) que é exposto por outro serviço. Nessa estratégia, um webhook é configurado em um serviço externo para POSTAR diretamente em uma URL para disparar um acionador. Esse método é de longe a opção mais fácil e mais atraente para implementar feeds de baixa frequência.
+Com o padrão de ganchos, um feed é configurado usando um [webhook](https://en.wikipedia.org/wiki/Webhook){: external} que é exposto por outro serviço. Nessa estratégia, um webhook é configurado em um serviço externo para POSTAR diretamente em uma URL para disparar um acionador. Esse método é de longe a opção mais fácil e mais atraente para implementar feeds de baixa frequência.
 
-Por exemplo, o [pacote do Github](/docs/openwhisk?topic=cloud-functions-pkg_github) e o [pacote do Push Notification](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) usam um webhook.
+Por exemplo, o [pacote GitHub](/docs/openwhisk?topic=cloud-functions-pkg_github) e o [pacote de Notificação push](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) usam um webhook.
 
 
 ### Chamada Seletiva
@@ -58,10 +60,13 @@ Por exemplo, o [pacote do {{site.data.keyword.cloudant}}](/docs/openwhisk?topic=
 ##  Implementando ações de feed
 {: #feeds_actions}
 
-A ação de feed é uma ação e aceita os parâmetros a seguir:
-* **lifecycleEvent**: 'CREATE', 'READ', 'UPDATE', 'DELETE', 'PAUSE' ou 'UNPAUSE'.
-* **triggerName**: o nome completo do acionador, que contém eventos que são produzidos por meio desse feed.
-* **authKey**: as credenciais de autenticação básica do usuário {{site.data.keyword.openwhisk_short}} que possui o acionador.
+A ação de feed é uma ação e aceita os parâmetros a seguir.
+
+| Parâmetro | Descrição |
+| --- | --- |
+| `lifecycleEvent` | `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE` ou `UNPAUSE`. |
+| `triggerName` | O nome completo do acionador, que contém eventos que são produzidos por meio desse feed. |
+| `authKey` | As credenciais de autenticação básica do usuário do {{site.data.keyword.openwhisk_short}} que possui o acionador. |
 
 A ação de feed também pode aceitar quaisquer outros parâmetros que ele precisa para gerenciar o feed. Por exemplo, a ação de feed de mudanças do {{site.data.keyword.cloudant}} espera receber parâmetros que incluam `dbname` e `username`.
 
@@ -88,9 +93,9 @@ Um protocolo de ação de feed semelhante ocorre para `ibmcloud fn trigger delet
 ## Implementando feeds com ganchos
 {: #feeds_hooks}
 
-Configure um feed usando um gancho quando um produtor de eventos suportar um recurso webhook/retorno de chamada.
+Configure um feed usando um gancho quando um produtor de eventos suportar um recurso de retorno de chamada de webhook.
 
-Com esse método, não é necessário manter nenhum serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio das *ações de feed* do {{site.data.keyword.openwhisk_short}} stateless, que negociam diretamente com uma API do webhook de terceiro.
+Com esse método, não é necessário manter nenhum serviço persistente fora do {{site.data.keyword.openwhisk_short}}. Todo o gerenciamento de feed acontece naturalmente por meio de **ações de feed** stateless do {{site.data.keyword.openwhisk_short}}, que negociam diretamente com uma API de webhook de terceiros.
 
 Quando chamada com `CREATE`, a ação de feed simplesmente instala um webhook para algum outro serviço, solicitando que o serviço remoto efetue POST de notificações para a URL apropriada do `fireTrigger` no {{site.data.keyword.openwhisk_short}}.
 
@@ -109,7 +114,7 @@ Para feeds em que um webhook não está disponível, mas não precisam de tempos
 
 Para configurar um feed baseado em pesquisa, a ação de feed usa as etapas a seguir quando chamada para `CREATE`:
 
-1. A ação de feed configura um acionador periódico com a frequência desejada, usando o feed `whisk.system/alarms`.
+1. A ação de feed configura um acionador periódico com uma frequência específica, usando o feed `whisk.system/alarms`.
 2. O desenvolvedor de feed cria uma ação `pollMyService` que pesquisa o serviço remoto e retorna quaisquer novos eventos.
 3. A ação de feed configura uma *regra* *T -> pollMyService*.
 
@@ -118,17 +123,21 @@ Esse procedimento implementa um acionador baseado em pesquisa inteiramente usand
 ## Implementando feeds usando conexões
 {: #feeds_connections}
 
-As duas opções anteriores de arquitetura são simples e fáceis de implementar. No entanto, se você deseja um feed de alto desempenho, não há substituto para conexões persistentes e técnicas de pesquisa longa ou similares.
+As duas opções anteriores de arquitetura são simples e fáceis de implementar. No entanto, se você desejar um feed de alto desempenho, será possível usar conexões persistentes e técnicas de pesquisa longa ou semelhantes.
 
-Como as ações do {{site.data.keyword.openwhisk_short}} devem ser de execução curta, uma ação não pode manter uma conexão persistente com um terceiro. Em vez disso, é possível levantar um serviço separado, chamado *serviços do provedor*, fora do {{site.data.keyword.openwhisk_short}} que é executado o tempo todo. Um serviço do provedor pode manter conexões com origens de eventos de terceiros que suportam notificações de pesquisa longa ou outras baseadas em conexão.
+Como as ações do {{site.data.keyword.openwhisk_short}} devem ser de execução curta, uma ação não pode manter uma conexão persistente com um terceiro. Em vez disso, é possível levantar um serviço separado, chamado **serviços do provedor**, fora do {{site.data.keyword.openwhisk_short}} que é executado o tempo todo. Um serviço do provedor pode manter conexões com origens de eventos de terceiros que suportam notificações de pesquisa longa ou outras baseadas em conexão.
 
-O serviço do provedor tem uma API de REST que permite que a *ação de feed* do {{site.data.keyword.openwhisk_short}} controle o feed. O serviço do provedor age como um proxy entre o provedor de evento e o {{site.data.keyword.openwhisk_short}}. Quando ele recebe eventos do terceiro, ele os envia para o {{site.data.keyword.openwhisk_short}} disparando um acionador.
+O serviço do provedor tem uma API de REST que permite que a **ação de feed** do {{site.data.keyword.openwhisk_short}} controle o feed. O serviço do provedor age como um proxy entre o provedor de evento e o {{site.data.keyword.openwhisk_short}}. Quando ele recebe eventos do terceiro, ele os envia para o {{site.data.keyword.openwhisk_short}} disparando um acionador.
 
-O feed *changes* do {{site.data.keyword.cloudant_short_notm}} é o exemplo canônico, já que ele aciona um serviço `cloudanttrigger`, que media entre as notificações do {{site.data.keyword.cloudant_short_notm}} sobre uma conexão persistente e os acionadores do {{site.data.keyword.openwhisk_short}}.
+O feed **changes** do {{site.data.keyword.cloudant_short_notm}} é o exemplo canônico, pois ele representa um serviço `cloudanttrigger`, que media entre as notificações do {{site.data.keyword.cloudant_short_notm}} sobre uma conexão persistente e os acionadores do {{site.data.keyword.openwhisk_short}}.
 
 
-O feed *alarme* é implementado com um padrão semelhante.
+O feed **alarme** é implementado com um padrão semelhante.
 
-A arquitetura baseada em conexão é a opção de desempenho mais alto, mas impõe mais sobrecarga em operações que são comparadas com as arquiteturas de pesquisa e gancho.
+A arquitetura baseada em conexão é a opção de desempenho mais alto, mas as operações são mais laboriosas do que as arquiteturas de pesquisa e de gancho.
+
+
+
+
 
 

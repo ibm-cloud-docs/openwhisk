@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-19"
 
-keywords: personality insights, cognitive, serverless, functions
+keywords: cognitive, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.personalityinsightsshort}}
 {: #pkg_person_insights}
@@ -33,15 +35,16 @@ Le service peut déduire automatiquement, à partir de médias sociaux potentiel
 * Pour plus d'informations sur la signification des modèles que le service utilise pour décrire les caractéristiques de personnalité, consultez la rubrique relative aux [modèles de personnalité](/docs/services/personality-insights?topic=personality-insights-models).
 * Pour plus d'informations sur la signification des préférences de consommation, consultez la rubrique relative aux [préférences de consommation](/docs/services/personality-insights?topic=personality-insights-preferences).
 
-**Remarque :** La consignation des demandes est désactivée pour le service {{site.data.keyword.personalityinsightsshort}}. Ce service ne consigne ni ne conserve les données des demandes et réponses, que l'en-tête de requête `X-Watson-Learning-Opt-Out` soit ou non défini.
+La consignation des demandes est désactivée pour le service {{site.data.keyword.personalityinsightsshort}}. Ce service ne consigne pas les données de conservation des demandes et réponses, que l'en-tête de requête `X-Watson-Learning-Opt-Out` soit ou non défini.
+{: note}
 
 Le package {{site.data.keyword.personalityinsightsshort}} contient les entités suivantes. Vous trouverez des détails supplémentaires dans la référence d'API {{site.data.keyword.personalityinsightsshort}} en cliquant sur le nom d'entité.
 
 | Entité | Type | Paramètres | Description |
 | --- | --- | --- | --- |
-| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html) | package | username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,  | Gestion du service {{site.data.keyword.personalityinsightsshort}} V3. |
-| [`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Obtention d'un profil. |
-| [`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv) | action |  username, password,  iam_access_token, iam_apikey, iam_url,  headers, headers[X-Watson-Learning-Opt-Out], url,    content,     content_type,     content_language,     accept_language,     raw_scores,     csv_headers,     consumption_preferences,  | Obtention d'un profil en tant que fichier CSV. |
+| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Gestion du service {{site.data.keyword.personalityinsightsshort}} V3. |
+| [`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `content`, `content_type`, `content_language`, `accept_language`, `raw_scores`, `csv_headers`, `consumption_preferences` | Obtention d'un profil. |
+| [`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `content`, `content_type`, `content_language`, `accept_language`, `raw_scores`, `csv_headers`, `consumption_preferences` | Obtention d'un profil en tant que fichier CSV. |
 
 ## Création d'une instance de service {{site.data.keyword.personalityinsightsshort}}
 {: #service_instance_insights}
@@ -49,7 +52,7 @@ Le package {{site.data.keyword.personalityinsightsshort}} contient les entités 
 Avant d'installer le package, vous devez créer une instance de service {{site.data.keyword.personalityinsightsshort}} et des données d'identification du service.
 {: shortdesc}
 
-1. [Créez une instance de service {{site.data.keyword.personalityinsightsshort}} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/catalog/services/personality_insights).
+1. [Créez une instance de service {{site.data.keyword.personalityinsightsshort}}](https://cloud.ibm.com/catalog/services/personality_insights){: external}.
 2. Une fois l'instance de service créée, des données d'identification du service à génération automatique sont également créées pour vous.
 
 ## Installation du package {{site.data.keyword.personalityinsightsshort}}
@@ -61,8 +64,9 @@ Dès que vous disposez d'une instance de service {{site.data.keyword.personality
 ### Installation depuis l'interface de ligne de commande {{site.data.keyword.openwhisk_short}}
 {: #personalityinsights_cli}
 
-Avant de commencer :
-  1. [Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface de ligne de commande {{site.data.keyword.Bluemix_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
+**Avant de commencer**
+
+[Installez le plug-in {{site.data.keyword.openwhisk_short}} pour l'interface CLI {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 Pour installer le package {{site.data.keyword.personalityinsightsshort}} :
 
@@ -97,13 +101,13 @@ Pour installer le package {{site.data.keyword.personalityinsightsshort}} :
     ```
     {: pre}
 
-    Selon la région où vous avez créé l'instance de service, celle-ci peut être nommée différemment car il s'agit d'un service IAM. Si la commande ci-dessus échoue, utilisez le nom de service suivant pour la commande bind :
+    Selon la région où vous avez créé l'instance de service, celle-ci peut être nommée différemment car il s'agit d'un service IAM. Si la commande échoue, utilisez le nom de service suivant pour la commande bind :
     ```
     ibmcloud fn service bind personality-insights personality-insights-v3
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
     ```
@@ -115,7 +119,7 @@ Pour installer le package {{site.data.keyword.personalityinsightsshort}} :
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     ok: got package personality-insights-v3, displaying field parameters
     [
@@ -138,9 +142,9 @@ Pour installer le package {{site.data.keyword.personalityinsightsshort}} :
 ### Installation depuis l'interface utilisateur {{site.data.keyword.openwhisk_short}}
 {: #personalityinsights_ui}
 
-1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create).
+1. Sur la console {{site.data.keyword.openwhisk_short}}, accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. A l'aide des listes **Organisation Cloud Foundry** et **Espace Cloud Foundry**, sélectionnez l'espace de nom où vous voulez installer le package. 
+2. En utilisant le menu déroulant d'espace de nom, sélectionnez l'espace de nom dans lequel vous souhaitez installer le package. 
 
 3. Cliquez sur **Installer les packages**.
 
@@ -148,16 +152,20 @@ Pour installer le package {{site.data.keyword.personalityinsightsshort}} :
 
 5. Cliquez sur le package **Personality Insights**.
 
-5. Cliquez sur **Installer**.
+6. Cliquez sur **Installer**.
 
-6. Une fois le package installé, vous êtes redirigé vers la page Actions et vous pouvez rechercher votre nouveau package, nommé **personality-insights-v3**.
+7. Une fois le package installé, vous êtes redirigé vers la page des actions et vous pouvez rechercher votre nouveau package, nommé `personality-insights-v3`.
 
-7. Pour utiliser les actions du package **personality-insights-v3**, vous devez lier les données d'identification du service aux actions.
-  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI ci-dessus.
-  * Pour lier les données d'identification du service à des actions individuelles, suivez les étapes ci-après dans l'interface utilisateur. **Remarque **: Vous devez suivre les étapes ci-après pour chaque action que vous voulez utiliser.
-    1. Cliquez sur une action du package **personality-insights-v3** que vous voulez utiliser. La page des informations détaillées de cette action s'affiche.
+8. Pour utiliser les actions du package `personality-insights-v3`, vous devez lier les données d'identification du service aux actions.
+  * Pour lier les données d'identification du service à toutes les actions du package, suivez les étapes 5 et 6 dans les instructions de l'interface CLI. 
+  * Pour lier les données d'identification du service à des actions individuelles, suivez les étapes ci-après dans l'interface utilisateur.
+
+  Vous devez suivre les étapes ci-après pour chaque action que vous voulez utiliser.
+  {: note}
+
+    1. Cliquez sur une action du package `personality-insights-v3` que vous voulez utiliser. La page des informations détaillées de cette action s'affiche.
     2. Dans le volet de navigation gauche, cliquez sur la section **Paramètres**.
-    3. Entrez un nouveau **paramètre**. Pour le paramètre key, entrez `__bx_creds`. Comme valeur, collez l'objet JSON des données d'identification du service de l'instance de service que vous avez créée plus haut.
+    3. Entrez un nouveau paramètre. Pour le paramètre key, entrez `__bx_creds`. Comme valeur, collez l'objet JSON des données d'identification du service de l'instance de service que vous avez créée plus haut.
 
 ## Utilisation du package {{site.data.keyword.personalityinsightsshort}}
 {: #usage_insights}
@@ -169,11 +177,13 @@ ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param nam
 ```
 {: pre}
 
-Toutes les actions exigent un paramètre de version au format AAAA-MM-JJ. Lorsque l'API est modifiée avec rétrocompatibilité impossible, une nouvelle date de version est publiée. Pour plus de détails, consultez la [référence d'API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning).
+Toutes les actions nécessitent un paramètre de version au format AAAA-MM-JJ. Lorsque l'API est modifiée avec rétrocompatibilité impossible, une nouvelle date de version est publiée. Pour plus de détails, consultez la [référence d'API](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning){: external}.
 
-Les fonctions de ce package utilisent la version actuelle de Personality Insights, 2017-10-13. Testez l'action `profile`.
+Les fonctions de ce package utilisent la version actuelle de {{site.data.keyword.personalityinsightsshort}}, 2017-10-13. Testez l'action `profile`.
 ```
-ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior."
+ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}
+
+
 

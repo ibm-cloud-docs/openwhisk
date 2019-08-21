@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Surveillance de l'activité
 {: #monitor}
 
-Vous pouvez obtenir des informations sur les performances de vos actions déployées avec {{site.data.keyword.openwhisk}}. Les métriques peuvent vous aider à détecter des goulots d'étranglement ou à prévoir les éventuels problèmes de production d'après la durée de l'action et les résultats des activations d'action, ou à déterminer lorsque vous avez atteint les limites d'activation d'action.
+Vous pouvez obtenir des informations sur les performances de vos actions déployées avec {{site.data.keyword.openwhisk}}. Les métriques peuvent vous aider à détecter des goulots d'étranglement ou à prévoir les éventuels problèmes de production d'après la durée de l'action et les résultats des activations d'action, ou à déterminer lorsque vous atteignez les limites d'activation d'action.
 {: shortdesc}
 
 Les métriques sont collectées automatiquement pour toutes les entités. Selon que vos actions se trouvent dans un espace de nom IAM ou Cloud Foundry, les métriques sont situées dans le compte ou l'espace IBM Cloud. Ces métriques sont envoyées à {{site.data.keyword.monitoringlong}} et mises à disposition via Grafana, où vous pouvez configurer vos tableaux de bord, créer des alertes basées sur les valeurs d'événement des métriques, etc. Pour plus d'informations sur les métriques, consultez la [documentation {{site.data.keyword.monitoringlong_notm}}](/docs/services/cloud-monitoring?topic=cloud-monitoring-getting-started#getting-started).
@@ -47,15 +49,15 @@ Commencez par créer un tableau de bord de surveillance Grafana.
     <tbody>
       <tr>
         <td>Europe centrale</td>
-        <td>metrics.eu-de.bluemix.net</td>
+        <td>`metrics.eu-de.bluemix.net`</td>
       </tr>
       <tr>
         <td>Sud du Royaume-Uni</td>
-        <td>metrics.eu-gb.bluemix.net</td>
+        <td>`metrics.eu-gb.bluemix.net`</td>
       </tr>
       <tr>
         <td>Sud des Etats-Unis</td>
-        <td>metrics.ng.bluemix.net</td>
+        <td>`metrics.ng.bluemix.net`</td>
       </tr>
       <tr>
         <td>Est des Etats-Unis</td>
@@ -89,7 +91,7 @@ Une fois qu'une action est exécutée, de nouvelles métriques sont générées 
 ## Utilisation des tableaux de bord
 {: #monitor_dash_use}
 
-Le [tableau de bord {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard) fournit un récapitulatif graphique de votre activité. Utilisez-le pour déterminer les performances et la santé de vos actions {{site.data.keyword.openwhisk_short}}.
+Le [tableau de bord {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk/dashboard){: external} fournit un récapitulatif graphique de votre activité. Utilisez-le pour déterminer les performances et la santé de vos actions {{site.data.keyword.openwhisk_short}}.
 {:shortdesc}
 
 Vous pouvez filtrer les journaux en sélectionnant les journaux d'actions que vous souhaitez afficher et la période d'activité consignée. Ces filtres sont appliqués à toutes les vues du tableau de bord. Cliquez sur **Rechargement** à tout moment pour mettre à jour le tableau de bord avec les données de journal d'activation les plus récentes.
@@ -143,7 +145,7 @@ ibmcloud.public.functions.<région>.action.namespace.<espace de nom>.<package>.<
 Les caractères suivants sont convertis en tirets (`-`) : point (.), arobase (@), blanc ( ), perluète (&), trait de soulignement (_), deux-points (:)
 {: tip}
 
-Exemple : si une action nommée `hello-world` se trouve dans l'espace de nom Cloud Foundry `user@email.com_dev` dans la région `us-south`, une métrique de performance d'action se présente comme suit :
+Exemple : si une action nommée `hello-world` se trouve dans l'espace de nom Cloud Foundry `user@email.com_dev` dans la région `us-south`, une métrique de performance d'action se présente comme suit : 
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.user-ibm-com-dev.action-performance.default.hello-world.duration
@@ -162,7 +164,7 @@ ibmcloud.public.functions.<région>.action.namespace.<espace de nom>.action-perf
 ```
 {: codeblock}
 
-Exemple : si un espace de nom IAM nommé `myNamespace` se trouve dans la région `us-south`, une métrique d'accès concurrent d'une action se présente comme suit :
+Exemple : si un espace de nom IAM nommé `myNamespace` se trouve dans la région `us-south`, une métrique d'accès concurrent d'une action se présente comme suit : 
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -175,7 +177,7 @@ ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
 {: #monitor_metric_av}
 
 Etant donné qu'il peut exister des milliers ou millions d'activations d'action, les valeurs de métrique sont représentées sous forme d'agrégation d'événements générés par de nombreuses activations. Les valeurs sont agrégées de la manière suivante :
-* Somme : toutes les valeurs de métrique sont additionnées.
+* Somme : toutes les valeurs de métrique sont additionnées. 
 * Moyenne : une moyenne arithmétique est calculée.
 * Somme moyenne : une moyenne arithmétique est calculée en fonction des composants et en ajoutant les différents composants.
 
@@ -205,7 +207,7 @@ Consultez le tableau suivant pour savoir quelles métriques sont à votre dispos
     </tr>
     <tr>
       <td><code>wait-time</code></td>
-      <td>Temps moyen passé dans une file d'attente à attendre la planification d'une activation.</td>
+      <td>Temps moyen passé dans une file d'attente à attendre la planification d'une activation. </td>
       <td>Moyenne</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -223,13 +225,13 @@ Consultez le tableau suivant pour savoir quelles métriques sont à votre dispos
     </tr>
     <tr>
       <td><code>status.error.application</code></td>
-      <td>Nombre d'échecs d'activations provoqués par des erreurs d'application. Par exemple, erreurs correctes provenant des actions. Pour plus d'informations sur la façon dont les métriques action-performance sont dérivées, consultez [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record).</td>
+      <td>Nombre d'échecs d'activations provoqués par des erreurs d'application. Par exemple, erreurs correctes provenant des actions. Pour plus d'informations sur la façon dont les métriques action-performance sont dérivées, consultez [Understanding the activation record](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions.md#understanding-the-activation-record){: external}. </td>
       <td>Somme</td>
       <td><code>action-performance</code></td>
     </tr>
     <tr>
       <td><code>status.error.developer</code></td>
-      <td>Nombre d'échecs d'activations provoqués par le développeur. Par exemple, la violation de l'[interface proxy de l'action](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface) par des exceptions non gérées dans le code d'action.</td>
+      <td>Nombre d'échecs d'activation provoqués par le développeur. Par exemple, la violation de l'[interface proxy de l'action](https://github.com/apache/incubator-openwhisk/blob/master/docs/actions-new.md#action-interface){: external} par des exceptions non gérées dans le code d'action. </td>
       <td>Somme</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -262,5 +264,7 @@ Consultez le tableau suivant pour savoir quelles métriques sont à votre dispos
 
 Les métriques pour les actions qui existent dans le cadre d'un espace de nom par défaut sont disponibles dans la catégorie par défaut.
 {: tip}
+
+
 
 

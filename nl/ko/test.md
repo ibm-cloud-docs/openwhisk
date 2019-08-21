@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 서버리스 앱 테스트
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Hello world 예:
+**Hello world 예**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-출력:
+**출력**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-출력 예:
+**출력 예**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-출력 예:
+**출력 예**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -105,9 +107,9 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 액션의 호출은 블로킹 또는 넌블로킹일 수 있습니다. 기본적으로 호출은 넌블로킹입니다. 지금 당장 액션 결과가 필요하지 않으면 넌블로킹 호출을 사용하십시오.
 {: shortdesc}
 
-블로킹 호출은 요청/응답 스타일을 사용하며 활성화 결과가 사용 가능할 때까지 기다립니다. 대기 시간은 60초 또는 액션의 [시간 제한 값](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) 중에서 더 작은 값입니다.
+블로킹 호출은 요청-응답 스타일을 사용하며 활성화 결과가 사용 가능할 때까지 기다립니다. 대기 시간은 60초 또는 액션의 [시간 제한 값](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) 중에서 더 작은 값입니다.
 
-블로킹 호출을 실행하여 클라우드에서 액션을 실행하십시오: 
+블로킹 호출을 실행하여 클라우드에서 액션을 실행하십시오.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-출력 예:
+**출력 예**
 ```
   ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -131,11 +133,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 
 명령에서 다음 정보를 출력합니다.
 * 호출 결과(예상 대기 시간 내에 사용 가능한 경우)
-* --result 옵션이 없으면 결과에 활성화 ID가 표시됩니다. 호출 결과 또는 로그를 검색하는 데 사용될 수 있는 활성화 ID는 `44794bd6aab74415b4e42a308d880e5b`입니다.
-
-
-
-
+* `--result` 옵션이 없으면 결과에 활성화 ID가 표시됩니다. 호출 결과 또는 로그를 검색하는 데 사용될 수 있는 활성화 ID는 `44794bd6aab74415b4e42a308d880e5b`입니다.
 
 
 ## 트리거 테스트
@@ -153,7 +151,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 
     룰과 연관되지 않은 트리거에는 실행 시에 가시적인 영향이 없습니다. 이 트리거와 연관된 룰이 없으므로 전달된 매개변수는 액션에 의해 입력으로 사용되지 않습니다.
 
-    출력 예:
+    **출력 예**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -166,7 +164,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
     ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -179,7 +177,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -217,7 +215,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
     ```
     {: pre}
 
-    `duration`는 시간(밀리초)를 표시합니다. 이 활성화는 다음을 완료하는 데 2초가 조금 넘게 걸렸습니다. 
+    `duration`는 시간(밀리초)를 표시합니다. 활성화는 다음을 완료하는 데 2초가 조금 넘게 걸렸습니다.
 
     ```
 ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -232,7 +230,7 @@ ok: got activation b066ca51e68c4d3382df2d8033265db0
     ```
     {: screen}
 
-3. 제한시간(초)으로 액션을 업데이트하십시오. 
+3. 제한시간(초)으로 액션을 업데이트하십시오.
 
     ```
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME --timeout VALUE
@@ -252,30 +250,30 @@ ok: got activation b066ca51e68c4d3382df2d8033265db0
 앱이 Docker 이미지에서 패키징된 경우 Docker 명령을 사용하여 앱의 메모리 사용량을 확인할 수 있습니다.
 {: shortdesc}
 
-1. Docker 이미지를 실행하는 컨테이너를 로컬로 작성하십시오. 
+1. Docker 이미지를 실행하는 컨테이너를 로컬로 작성하십시오.
 
     ```
     docker run IMAGE_NAME
     ```
     {: pre}
 
-2. 컨테이너 ID를 가져오려면 컨테이너의 목록을 가져오십시오. 
+2. 컨테이너 ID를 가져오려면 컨테이너의 목록을 가져오십시오.
 
     ```
     docker ps
     ```
     {: pre}
 
-3. 실행 중인 컨테이너의 통계를 확인하십시오. 
+3. 실행 중인 컨테이너의 통계를 확인하십시오.
 
     ```
     docker stats CONTAINER_ID
     ```
     {: pre}
 
-4. 컨테이너에 대한 메모리 사용량 값을 검토하십시오. 값이 시스템 한계 내에 없으면 스크립트를 일부 조정하십시오. 
+4. 컨테이너에 대한 메모리 사용량 값을 검토하십시오. 값이 시스템 한계 내에 없으면 스크립트를 조정하십시오.
 
-5. 정보를 검토한 후 실행 중인 컨테이너를 중지할 수 있습니다. 
+5. 정보를 검토한 후 실행 중인 컨테이너를 중지할 수 있습니다.
 
     ```
     docker stop CONTAINER_ID
@@ -288,6 +286,8 @@ ok: got activation b066ca51e68c4d3382df2d8033265db0
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

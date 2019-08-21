@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: regions, endpoints, api, cli, plug-in
+keywords: regions, endpoints, api, cli, plug-in, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # 地區
 {: #cloudfunctions_regions}
 
-在美國南部、美國東部、德國、英國及東京 {{site.data.keyword.Bluemix_notm}} 地區可以使用 {{site.data.keyword.openwhisk_short}}。當您登入 {{site.data.keyword.Bluemix_notm}} CLI 時，可以選擇包括特定地區，方法為使用 `-a` 旗標來包括該地區的 API 端點。
+在美國南部、美國東部、德國、英國及東京 {{site.data.keyword.cloud_notm}} 地區可以使用 {{site.data.keyword.openwhisk_short}}。當您登入 {{site.data.keyword.cloud_notm}} CLI 時，可以選擇包括特定地區，方法為使用 `-a` 旗標來包括該地區的 API 端點。
 
   ```
   ibmcloud login -a <endpoint>
@@ -89,3 +91,4 @@ subcollection: cloud-functions
       <td><code>api.jp-tok.functions.cloud.ibm.com</code></td>
     </tr>
   </table>
+

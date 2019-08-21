@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,17 +24,18 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Implementando entidades com um arquivo manifest
 {: #deploy}
 
-É possível usar o {{site.data.keyword.openwhisk_short}} para descrever e implementar todas as entidades de namespace usando um arquivo manifest gravado em YAML. É possível usar esse arquivo para implementar todos os [Pacotes](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Ações](/docs/openwhisk?topic=cloud-functions-actions), [Acionadores](/docs/openwhisk?topic=cloud-functions-triggers) e Regras] (/docs/openwhisk?topic=cloud-functions-rules) do Functions com um único comando.
+É possível usar o {{site.data.keyword.openwhisk_short}} para descrever e implementar todas as entidades de namespace usando um arquivo manifest que é gravado em YAML. É possível usar esse arquivo para implementar todos os seus [Pacotes](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Ações](/docs/openwhisk?topic=cloud-functions-actions), [Acionadores](/docs/openwhisk?topic=cloud-functions-triggers) e [Regras](/docs/openwhisk?topic=cloud-functions-rules) do Functions com um único comando.
 
-O arquivo manifest descreve o conjunto de entidades que você gostaria de implementar e remover a implementação como um grupo. O conteúdo do arquivo manifest deve aderir à [Especificação YAML de implementação do OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Depois de definido, é possível usar seu arquivo manifest para implementar ou reimplementar um grupo de entidades do Functions no mesmo namespace do Functions ou em um diferente. É possível usar os comandos de plug-in Functions `ibmcloud fn deploy` e `ibmcloud fn undeploy` para implementar e remover a implementação das entidades do Functions definidas em seu arquivo manifest.
+O arquivo manifest descreve o conjunto de entidades que você gostaria de implementar e remover a implementação como um grupo. O conteúdo do arquivo manifest deve aderir à [Especificação YAML de implementação do OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Depois de definido, é possível usar seu arquivo manifest para implementar ou reimplementar um grupo de entidades do Functions no mesmo namespace do Functions ou em um diferente. É possível usar os comandos de plug-in do Functions `ibmcloud fn deploy` e `ibmcloud fn undeploy` para implementar e remover a implementação das entidades do Functions que estão definidas em seu arquivo manifest.
 
 ## Criando o exemplo de API Hello World
 {: #deploy_helloworld_example}
 
-Este exemplo aceita um código Node.js simples (`helloworld.js`), cria uma ação da web (`hello_world`) dentro de um pacote (`hello_world_package`) e define uma API de REST para essa ação.
+Esse exemplo usa algum código Node.js simples `helloworld.js`, cria uma ação da web `hello_world` dentro de um pacote `hello_world_package` e define uma API de REST para essa ação.
 {: shortdesc}
 
 1. Crie um arquivo `helloworld.js` com o código a seguir.
@@ -81,7 +83,7 @@ Este exemplo aceita um código Node.js simples (`helloworld.js`), cria uma açã
     ```
     {: pre}
 
-4. É possível listar as ações, os pacotes e as APIs para confirmar que as três entidades esperadas foram criadas com sucesso.
+4. É possível listar as ações, os pacotes e as APIs para confirmar que as três entidades esperadas foram criadas com êxito.
 
     1. Liste as ações usando o comando a seguir.
 
@@ -118,12 +120,16 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## Exemplos adicionais de implementação do OpenWhisk
+## Mais exemplos de implementação do OpenWhisk
 {: more_deploy_examples}
 
-A implementação do Functions é baseada no projeto de implementação do OpenWhisk, que possui [vários exemplos de manifest de implementação](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples) que podem ser usados dentro do Functions.  É possível usar o comando `ibmcloud fn deploy` em vez de `wskdeploy`.
+A implementação do Functions é baseada no projeto de implementação do OpenWhisk, que possui [vários exemplos de manifest de implementação](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} que podem ser usados dentro do Functions.  É possível usar o comando `ibmcloud fn deploy` em vez de `wskdeploy`.
 
 ## Especificação do manifest de implementação
 {: manifest_specification}
 
-Os manifestos de implementação do Functions devem aderir à especificação do manifest de implementação do OpenWhisk. Consulte a [documentação de especificação do manifest de implementação do OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification) para obter detalhes.
+Os manifestos de implementação do Functions devem aderir à especificação do manifest de implementação do OpenWhisk. Consulte a [documentação de especificação do manifest de implementação do OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} para obter detalhes.
+
+
+
+

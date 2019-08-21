@@ -1,10 +1,9 @@
 ---
-
 copyright:
   years: 2017, 2019
-lastupdated: "2019-03-29"
+lastupdated: "2019-07-12"
 
-keywords: iam, access managment, roles, service roles, policies, access
+keywords: access policies, iam, roles, functions
 
 subcollection: cloud-functions
 
@@ -15,30 +14,27 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
+{:important: .important}
+{:deprecated: .deprecated}
 {:download: .download}
+{:gif: data-image-type='gif'}
 
 
-# 管理存取權
+
+# 設定存取原則
 {: #iam}
-
-{{site.data.keyword.openwhisk}} 支援 Identity and Access Management (IAM)。您現在可以定義資源的 IAM 原則（例如名稱空間）。
-{: shortdesc}
-
-只有東京地區的 {{site.data.keyword.openwhisk_short}} 才能使用 IAM 原則。如果您在東京地區操作，必須使用 IAM 原則來控制存取。
-{: tip}
-
-</br>
 
 ## 將 IAM 角色對映至 {{site.data.keyword.openwhisk_short}}
 {: #user-roles}
 
-在 {{site.data.keyword.openwhisk_short}} 中，會將名稱空間視為 IBM Cloud 資源，容許您使用 IAM 角色及原則進行存取管理。您為名稱空間設定的所有原則，也會套用至名稱空間所包含的 {{site.data.keyword.openwhisk_short}} 實體（例如動作或觸發程式）。
+在 {{site.data.keyword.openwhisk_short}} 中，名稱空間是 {{site.data.keyword.cloud_notm}} 資源，可用於使用 IAM 角色和原則進行存取權管理。您為名稱空間設定的所有原則，也會套用至名稱空間所包含的 {{site.data.keyword.openwhisk_short}} 實體（例如動作或觸發程式）。
 {: shortdesc}
 
-{{site.data.keyword.openwhisk_short}} 同時使用「平台」及「服務」管理角色。您可以設定有關誰可以在平台層次建立名稱空間的原則，同時使用服務角色來管理與名稱空間本身的互動。
+{{site.data.keyword.openwhisk_short}} 同時使用「平台」及「服務」管理角色。您可以設定有關誰能在平台層次建立名稱空間的原則，並使用服務角色來管理與名稱空間本身的互動。
 
 要進一步瞭解 IAM 主要概念嗎？請參閱 [IAM 文件](/docs/iam?topic=iam-iamconcepts#iamconcepts)。
 {: tip}
@@ -50,6 +46,9 @@ subcollection: cloud-functions
 下表詳細說明對映至平台管理角色的動作。平台管理角色可讓使用者在平台層次對服務資源執行作業。例如，指派使用者對服務的存取權、建立或刪除服務 ID、建立實例，以及將實例連結至應用程式。
 {: shortdesc}
 
+如需如何指派、編輯、檢閱或刪除資源存取原則的相關資訊，請參閱[管理 IAM 存取權](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)。
+{: tip}
+
 <table>
   <thead>
     <tr>
@@ -60,28 +59,28 @@ subcollection: cloud-functions
   <tbody>
     <tr>
       <td>管理者</td>
-      <td>使用者可以建立名稱空間。</td>
+      <td>使用者可以建立名稱空間。在建立服務期間，需要「管理者」角色來執行 `service id` 和 `apikey lock` 作業。</td>
     </tr>
   </tbody>
 </table>
 
-您需要具有平台管理的管理者角色，才能使用服務。如需角色的相關資訊，請參閱[平台管理角色](/docs/iam?topic=iam-userroles)。
+由於不需要佈建服務，因此「編輯者」角色是您使用服務所需的唯一平台角色。如需其他角色的相關資訊，請參閱[平台管理角色](/docs/iam?topic=iam-userroles)。
 
 </br>
 
-### 服務特定角色
+### 服務特定的角色
+{: #service_specific_roles}
 
-服務特定角色決定特定服務內的存取原則範圍。針對 {{site.data.keyword.openwhisk_short}}，角色可以套用至可使用服務的使用者，例如存取使用者介面，或執行 API 呼叫。
+服務特定的角色用於確定特定服務中存取原則的範圍。針對 {{site.data.keyword.openwhisk_short}}，角色可以套用至可使用服務的使用者，例如存取使用者介面，或執行 API 呼叫。
 {: shortdesc}
 
-
-請務必注意，許可權建置在彼此的基礎上。例如，`writer` 角色可以執行的任何作業，`manager` 角色也可以執行。不過，`manager` 角色會加上更多許可權。若要查看每個角色的一般許可權，請參閱[服務存取角色](/docs/iam?topic=iam-userroles)。
+許可權建置於彼此的基礎上。例如，`writer` 角色可以執行的任何作業，`manager` 角色也可以執行。不過，`manager` 角色會加上更多許可權。若要查看每個角色的一般許可權，請參閱[服務存取角色](/docs/iam?topic=iam-userroles)。
 
 若要查看執行每項作業所需的角色，請參閱下表：
 
 <table><caption>哪些角色可以執行哪些作業？</caption>
   <tr>
-    <th style="width:150px">動作 (Action)</th>
+    <th style="width:150px">動作</th>
     <th style="width:2500px">說明</th>
     <th style="width:50px">讀者</th>
     <th style="width:50px">撰寫者</th>
@@ -131,7 +130,7 @@ subcollection: cloud-functions
   </tr>
   <tr>
     <td><code>functions.entities.read</code></td>
-    <td>檢視名稱空間內的可用實體，例如規則。</td>
+    <td>檢視名稱空間中的可用實體（例如，規則）。</td>
     <td><img src="images/confirm.png" width="32" alt="可用的特性" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="可用的特性" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="可用的特性" style="width:32px;" /></td>
@@ -145,34 +144,46 @@ subcollection: cloud-functions
   </tr>
 </table>
 
-如需在使用者介面中指派使用者角色的相關資訊，請參閱[管理 IAM 存取](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)。
+</br>
+
+### 透過 CLI 設定原則
+{: #cli-set}
+
+若要授與以 IAM 為基礎的名稱空間中資源（例如動作），對以 IAM 為基礎之服務的存取權，您可以為該資源所在的名稱空間建立 IAM 存取原則。
+
+```
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+```
+{: pre}
+
+<table>
+  <thead>
+    <th colspan=2><img src="images/idea.png" alt="「構想」圖示"/> 瞭解 <code>ibmcloud iam service-policy-create</code> 指令的組成部分</th>
+  </thead>
+  <tbody>
+    <tr>
+      <td><code>&lt;namespace_service_ID&gt;</code></td>
+      <td>名稱空間的服務 ID。若要查看所有服務 ID，請執行 <code>ibmcloud iam service-ids</code>。</td>
+    </tr>
+    <tr>
+      <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
+      <td>動作要使用目標服務必須具有的 IAM 服務存取角色的類型。若要查看支援用於其他服務的角色，請執行 <code>ibmcloud iam roles --service SERVICE_NAME</code>。如需相關資訊，請參閱 [IAM 存取角色](/docs/iam?topic=iam-userroles#service-access-roles)。</td>
+    </tr>
+    <tr>
+      <td>`--service-name` <code>&lt;other_service_type&gt;</code></td>
+      <td>其他 {{site.data.keyword.cloud_notm}} 服務類型的名稱。</td>
+    </tr>
+    <tr>
+      <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
+      <td>您希望動作有權存取的其他服務實例的 GUID。若要取得服務實例 GUID，請執行 <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code>。</td>
+    </tr>
+  </tbody>
+</table>
 
 </br>
 
-
-## 設定 IAM 存取原則
-{: #set-iam}
-
-服務呼叫動作時，動作會有回應。因為回應是從名稱空間或動作傳送至服務，所以會被視為出埠資訊。如果要限制名稱空間對其他服務的影響程度，建議您建立存取原則。
-{: shortdesc}
-
-如需如何指派、編輯、檢閱或刪除資源存取原則的相關資訊，請參閱[管理 IAM 存取](/docs/iam?topic=iam-iammanidaccser#iammanidaccser)。
-{: tip}
+**後續步驟**
+如需管理服務認證的相關資訊，請參閱 [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} 部落格。
 
 
 
-
-</br>
-</br>
-
-## 存取名稱空間中的其他資源
-{: #namespace-access}
-
-您可以使用 IAM 記號，存取 IAM 受管理名稱空間中的其他資源。記號代表鑑別，並驗證資源的身分。存取 IAM 受管理服務或資源時，需要有 IAM 記號來進行鑑別。
-{: shortdesc}
-
-與使用者 ID 識別使用者的方式類似，服務 ID 代表特定資源。這表示 IAM 原則可以套用至管理存取權的資源。就像使用者一樣，資源必須鑑別才能驗證其身分。在 Functions 內，存取其他服務或資源時，動作的實作可以充分運用此功能。
-
-當您建立新的 IAM 受管理名稱空間時，Functions 會自動建立對應的服務 ID，以識別名稱空間及 API 金鑰。在運行環境，Cloud Functions 會將 API 金鑰傳遞至動作碼，作為環境變數 `__OW_IAM_NAMESPACE_API_KEY` 的值。動作碼可以使用此 API 金鑰來產生 IAM 記號。大部分受支援的 SDK（例如 Cloudant、Watson）及 COS 都會使用 IAM 金鑰本身進行鑑別。使用 REST API 的其他 IAM 受管理服務或資源，會使用從 IAM 金鑰衍生的記號進行鑑別。
-
-不確定 API 金鑰與記號是否符合？請在 [IAM 文件](/docs/iam?topic=iam-iamapikeysforservices)中進一步瞭解。

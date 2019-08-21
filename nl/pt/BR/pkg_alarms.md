@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: alarms, serverless
+keywords: alarms, serverless, triggers, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,21 +25,22 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Alarmes
 {: #pkg_alarms}
 
 O pacote `/whisk.system/alarms` pode ser usado para disparar um
-acionador em uma frequência especificada. Os alarmes são úteis para configurar tarefas ou trabalhos recorrentes, como chamar uma ação de backup do sistema a cada hora.
+acionador em uma frequência especificada. Os alarmes são úteis para a configuração de tarefas ou tarefas recorrentes, como chamar um backup de sistema a cada hora.
 {: shortdesc}
 
 O pacote inclui os feeds a seguir.
 
-| Entity | Digite | Parâmetros | Descrição |
+| Entity | Tipo | Parâmetros | Descrição |
 | --- | --- | --- | --- |
-| `/whisk.system/alarms` | pacote | - | Alarmes e utilitário periódico. |
-| `/whisk.system/alarms/once` | alimentação | date, trigger_payload, deleteAfterFire | Disparar evento acionador uma vez em uma data específica. |
-| `/whisk.system/alarms/interval` | alimentação | minutes, trigger_payload, startDate, stopDate | Disparar evento acionador em um planejamento baseado em intervalo. |
-| `/whisk.system/alarms/alarm` | alimentação | cron, timezone, trigger_payload, startDate, stopDate | Disparar evento acionador em um planejamento baseado em tempo usando cron. |
+| `/whisk.system/alarms` | Pacote | - | Alarmes e utilitário periódico. |
+| `/whisk.system/alarms/once` | Feed | `date`, `trigger_payload`, `deleteAfterFire` | Disparar evento acionador uma vez em uma data específica. |
+| `/whisk.system/alarms/interval` | Feed | `minutes`, `trigger_payload`, `startDate`, `stopDate` | Disparar evento acionador em um planejamento baseado em intervalo. |
+| `/whisk.system/alarms/alarm` | Feed | `cron`, `timezone`, `trigger_payload`, `startDate`, `stopDate` | Disparar evento acionador em um planejamento baseado em tempo usando cron. |
 
 
 
@@ -46,8 +48,8 @@ O pacote inclui os feeds a seguir.
 {: #pkg_alarms_one}
 
 O feed `/whisk.system/alarms/once` configura o serviço Alarme para disparar um
-evento acionador uma vez em uma data especificada. Para criar um alarme de disparo único, execute o comando a
-seguir:
+evento acionador uma vez em uma data especificada. Para criar um alarme de disparo único, execute o comando a seguir.
+
 ```
 ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
 ```
@@ -67,28 +69,23 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code> -- feed /whisk.system/alarms/once </code></td>
-<td>O caminho de arquivo de pacote de alarme para o feed fireOnce.</td>
+<td>O caminho de arquivo do pacote de alarme para o feed fireOnce.</td>
 </tr>
 <tr>
 <td><code> -- param date </code></td>
-<td>Substitua <code>&lt;date&gt;</code> pela data em que o acionador será disparado. O acionador é disparado
-apenas uma vez no horário especificado. Nota: o parâmetro `date` suporta um valor de
-número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 de janeiro de 1970 00h00min00s UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
+<td>Substitua <code>&lt;date&gt;</code> pela data em que você planeja disparar o acionador. O acionador é disparado uma vez no horário especificado. O parâmetro `date` suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 `January 1970 00:00:00` UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
 </tr>
 <tr>
 <td><code> -- param trigger_payload </code></td>
-<td>Opcional: Substitua <code>&lt;key&gt;</code> e <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
+<td>(Opcional) Substitua o <code>&lt;key&gt;</code> e o <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
 </tr>
 <tr>
 <td><code> -- param deleteAfterFire </code></td>
-<td>Opcional: se o acionador e quaisquer regras associadas serão excluídos após o acionador ser disparado. Substitua <code>&lt;delete_option&gt;</code> por um dos seguintes:<ul><li><code>false</code> (padrão):
-nenhuma ação é executada depois que o acionador é disparado.</li><li><code>true</code>: o acionador é
-excluído depois que ele é disparado.</li><li><code>rules</code>: o acionador e todas as suas regras associadas
-são excluídos depois que ele é disparado.</li></ul></td>
+<td>(Opcional) Se o acionador e quaisquer regras associadas forem excluídos após o acionador ser disparado. Substitua <code>&lt;delete_option&gt;</code> por um dos seguintes.<ul><li><code>false</code> - (padrão) Nenhuma ação é executada depois que o acionador é disparado.</li><li><code>true</code> - O acionador é excluído após ser disparado.</li><li><code>rules</code> - O acionador e todas as suas regras associadas são excluídos após ele ser disparado.</li></ul></td>
 </tr>
 </tbody></table>
 
-A seguir está um exemplo de criação de um acionador que será disparado uma vez em 25 de dezembro de 2019, 12h30 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`. Após o acionador ser disparado, o acionador e todas as regras associadas serão excluídos.
+O comando a seguir é um exemplo da criação de um acionador que é disparado uma vez em 25 de dezembro de 2019, 12:30:00 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`. Depois que o acionador é disparado, o acionador e todas as regras associadas são excluídos.
 
 ```
 ibmcloud fn trigger create fireOnce \
@@ -104,8 +101,7 @@ ibmcloud fn trigger create fireOnce \
 {: #pkg_alarms_int}
 
 O feed `/whisk.system/alarms/interval` configura o serviço Alarme para disparar um
-evento acionador em um planejamento baseado em intervalo. Para criar um alarme baseado em intervalo, execute o
-comando a seguir:
+evento acionador em um planejamento baseado em intervalo. Para criar um alarme baseado em intervalo, execute o comando a seguir.
 ```
 ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -129,24 +125,23 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 </tr>
 <tr>
 <td><code> -- param minutes </code></td>
-<td>Substitua <code>&lt;minutes&gt;</code> por um número inteiro que representa a duração do
-intervalo, em minutos, entre os disparos do acionador.</td>
+<td>Substitua <code>&lt;minutes&gt;</code> por um número inteiro que representa o comprimento do intervalo, em minutos, entre os disparos do acionador.</td>
 </tr>
 <tr>
 <td><code> -- param trigger_payload </code></td>
-<td>Opcional: Substitua <code>&lt;key&gt;</code> e <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
+<td>(Opcional) Substitua o <code>&lt;key&gt;</code> e o <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
 </tr>
 <tr>
 <td><code> -- param startDate </code></td>
-<td>Opcional: Substitua <code>&lt;startDate&gt;</code> pela data em que o primeiro acionador será disparado. Os disparos subsequentes ocorrem com base no comprimento do intervalo especificado pelo parâmetro de minutos. Nota: esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 de janeiro de 1970 00h00min00s UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
+<td>(Opcional) Substitua <code>&lt;startDate&gt;</code> pela data que você planeja que o primeiro acionador seja disparado. Os disparos subsequentes ocorrem com base no comprimento do intervalo que é especificado pelo parâmetro minutes. Esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde `1 January 1970 00:00:00` UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
 </tr>
 <tr>
 <td><code> -- param stopDate </code></td>
-<td>Opcional: Substitua <code>&lt;stopDate&gt;</code> pela data em que o acionador parará de executar. Os acionadores não serão disparados assim que essa data tiver sido atingida. Nota: esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 de janeiro de 1970 00h00min00s UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
+<td>(Opcional) Substitua <code>&lt;stopDate&gt;</code> pela data em que você planeja que o acionador seja interrompido. Os acionadores não são disparados quando essa data é atingida. Esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde `1 January 1970 00:00:00` UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
 </tr>
 </tbody></table>
 
-O exemplo a seguir cria um acionador que é disparado uma vez a cada 2 minutos. O acionador é disparado assim que possível e irá parar o disparo em 31 de janeiro de 2019, 23h59 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`.
+O exemplo a seguir cria um acionador que é disparado uma vez a cada 2 minutos. O acionador é disparado assim que possível e para o disparo `31 de janeiro, 2019, 23:59:00` UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`.
 
 ```
 ibmcloud fn trigger create interval \
@@ -162,7 +157,7 @@ ibmcloud fn trigger create interval \
 ## Disparando um acionador em um planejamento baseado em tempo usando cron
 {: #pkg_alarms_cron}
 
-O feed `/whisk.system/alarms/alarm` configura o serviço de Alarme para disparar um evento acionador a uma frequência especificada. Para criar um alarme baseado em tempo, execute o comando a seguir:
+O feed `/whisk.system/alarms/alarm` configura o serviço de Alarme para disparar um evento acionador a uma frequência especificada. Para criar um alarme baseado em tempo, execute o comando a seguir.
 ```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -186,34 +181,28 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code> -- param cron </code></td>
-<td>Substitua <code>&lt;cron&gt;</code> por uma sequência que indica quando disparar o acionador em Hora Universal Coordenada (UTC). A sequência é baseada na <a href="http://crontab.org">sintaxe de crontab
-do UNIX</a> e é uma sequência que tem no máximo 5 campos. Esses campos são separados por espaços no formato
-<code>X X X X X</code>. As sequências a seguir são exemplos que usam durações variadas de frequência:<ul><li><code>\* \* \* \* \*</code>: o acionador é disparado no início de cada minuto.</li><li><code>0 \* \* \* \*</code>: o
-acionador é disparado no início de cada hora.</li><li><code>0 \*/2 \* \* \*</code>: o acionador é
-disparado a cada 2 horas (ou seja, 02:00:00, 04:00:00,...).</li><li><code> 0 9 8 \* \*</code>: o acionador
-é disparado às 9h (UTC) no oitavo dia de cada mês.</li></ul></td>
+<td>Substitua <code>&lt;cron&gt;</code> por uma sequência que indica quando disparar o acionador em Hora Universal Coordenada (UTC). A sequência é baseada na <a href="http://crontab.org">sintaxe de crontab UNIX</a> e é uma sequência de cinco campos no máximo. Os campos são separados por espaços no formato <code>X X X X X</code>. As sequências a seguir são exemplos que usam durações variadas de frequência.<ul><li><code>\* \* \* \* \*</code> - O acionador dispara no início de cada minuto.</li><li><code>0 \* \* \* \*</code> - O acionador dispara no início de cada hora.</li><li><code>0 \*/2 \* \* \*</code> - O acionador dispara a cada 2 horas (isto é, 02:00:00, 04:00:00...).</li><li><code>0 9 8 \* \*</code> - O acionador dispara às 9h (UTC) no oitavo dia de cada mês.</li></ul></td>
 </tr>
 <tr>
 <tr>
 <td><code>--param timezone</code></td>
-<td>Opcional: substitua <code>&lt;timezone&gt;</code> por uma sequência que especifica o fuso horário. O tempo real para disparar o acionador será, então, modificado em relação ao fuso horário especificado. Se o fuso horário for inválido, um erro será lançado. É possível verificar todos os fusos horários disponíveis no [Moment Timezone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names).</td>
+<td>(Opcional) Substitua <code>&lt;timezone&gt;</code> por uma sequência que especifica o fuso horário. O horário real para disparar o acionador é modificado em relação ao fuso horário especificado. Se o fuso horário for inválido, um erro será lançado. É possível verificar todos os fusos horários disponíveis no [website Moment Timezone](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names){: external}.</td>
 </tr>
 <tr>
 <td><code> -- param trigger_payload </code></td>
-<td>Opcional: Substitua <code>&lt;key&gt;</code> e <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
+<td>(Opcional) Substitua o <code>&lt;key&gt;</code> e o <code>&lt;value&gt;</code> pelos parâmetros do acionador quando o acionador for disparado.</td>
 </tr>
 <tr>
 <td><code> -- param startDate </code></td>
-<td>Opcional: Substitua <code>&lt;startDate&gt;</code> pela data em que o primeiro acionador será disparado. Os disparos subsequentes ocorrem com base no comprimento do intervalo especificado pelo parâmetro de minutos. Nota: esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 de janeiro de 1970 00h00min00s UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
+<td>(Opcional) Substitua o <code>&lt;startDate&gt;</code> pela data em que você planeja disparar o primeiro acionador. Os disparos subsequentes ocorrem com base no comprimento do intervalo que é especificado pelo parâmetro minutes. Esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde `1 January 1970 00:00:00` UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
 </tr>
 <tr>
 <td><code> -- param stopDate </code></td>
-<td>Opcional: Substitua <code>&lt;stopDate&gt;</code> pela data em que o acionador parará de executar. Os acionadores não serão disparados assim que essa data tiver sido atingida. Nota: esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde 1 de janeiro de 1970 00h00min00s UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
+<td>(Opcional) Substitua <code>&lt;stopDate&gt;</code> pela data em que você deseja que o acionador pare a execução. Os acionadores não são disparados quando essa data é atingida. Esse parâmetro suporta um valor de número inteiro ou de sequência. O valor de número inteiro representa o número de milissegundos desde `1 January 1970 00:00:00` UTC e o valor de sequência deve estar no formato <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601</a>.</td>
 </tr>
 </tbody></table>
 
-A seguir está um exemplo da criação de um acionador que é disparado uma vez a cada 2 minutos. O acionador não iniciará o disparo até
-1º de janeiro de 2019, 0h UTC e irá parar o disparo em 31 de janeiro de 2019, 23h59 UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`.
+O comando a seguir é um exemplo da criação de um acionador que é disparado uma vez a cada 2 minutos. O acionador não inicia o disparo até `January 1, 2019, 00:00:00` UTC e para o disparo em `January 31, 2019, 23:59:00` UTC. Cada evento acionador tem os parâmetros `name=Odin` e `place=Asgard`.
 
 ```
 ibmcloud fn trigger create periodic \
@@ -224,5 +213,7 @@ ibmcloud fn trigger create periodic \
   --param stopDate "2019-01-31T23:59:00.000Z"
 ```
 {: pre}
+
+
 
 

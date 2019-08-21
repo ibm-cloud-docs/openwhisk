@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -31,12 +32,14 @@ Várias ações do utilitário são fornecidas no pacote `/whisk.system/utils` q
 {: shortdesc}
 
 1. Liste as ações no pacote `/whisk.system/utils`.
+
     ```
     ibmcloud fn package get -- summary /whisk.system/utils
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
+    
     ```
     package /whisk.system/utils: construindo blocos que formatam e montam dados
    action /whisk.system/utils/head: extrair prefixo de uma matriz
@@ -49,12 +52,14 @@ Várias ações do utilitário são fornecidas no pacote `/whisk.system/utils` q
     {: screen}
 
 2. Usando as ações `split` e `sort`, crie uma sequência de ações para que o resultado de `split` seja passado como um argumento para `sort`. Essa sequência de ações converte algumas linhas de texto a uma matriz e classifica as linhas.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Invoque a ação.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
@@ -72,6 +77,8 @@ Várias ações do utilitário são fornecidas no pacote `/whisk.system/utils` q
     }
     ```
     {: screen}
+
+
 
 
 

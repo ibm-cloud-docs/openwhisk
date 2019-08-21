@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,17 +24,18 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Déploiement d'entités avec un fichier manifeste
 {: #deploy}
 
-Vous pouvez utiliser {{site.data.keyword.openwhisk_short}} pour décrire et déployer toutes vos entités d'espace de nom à l'aide d'un fichier manifeste écrit en YAML. Vous pouvez utiliser ce fichier pour déployer tous vos [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [actions](/docs/openwhisk?topic=cloud-functions-actions), [déclencheurs](/docs/openwhisk?topic=cloud-functions-triggers) et [règles](/docs/openwhisk?topic=cloud-functions-rules) Functions avec une seule commande.
+Vous pouvez utiliser {{site.data.keyword.openwhisk_short}} pour décrire et déployer toutes vos entités d'espace de nom à l'aide d'un fichier manifeste écrit en YAML. Vous pouvez utiliser ce fichier pour déployer toutes vos fonctions [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Actions](/docs/openwhisk?topic=cloud-functions-actions), [Déclencheurs](/docs/openwhisk?topic=cloud-functions-triggers) et [Règles](/docs/openwhisk?topic=cloud-functions-rules) avec une seule commande. 
 
-Le fichier manifeste décrit l'ensemble d'entités que vous souhaitez déployer ou dont vous voulez annuler le déploiement en tant que groupe. Le contenu du fichier manifeste doit être conforme à la [spécification YAML de déploiement OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification). Une fois qu'il est défini, vous pouvez utiliser votre fichier manifeste pour déployer ou redéployer un groupe d'entités Functions dans le même espace de nom Functions ou dans un autre. Vous pouvez utiliser les commandes de plug-in Functions `ibmcloud fn deploy` et `ibmcloud fn undeploy` pour déployer les entités Functions définies dans votre fichier manifeste ou annuler leur déploiement.
+Le fichier manifeste décrit l'ensemble d'entités que vous souhaitez déployer ou dont vous voulez annuler le déploiement en tant que groupe. Le contenu du fichier manifeste doit être conforme à la [spécification YAML de déploiement OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Une fois qu'il est défini, vous pouvez utiliser votre fichier manifeste pour déployer ou redéployer un groupe d'entités Functions dans le même espace de nom Functions ou dans un autre. Vous pouvez utiliser les commandes de plug-in Functions `ibmcloud fn deploy` et `ibmcloud fn undeploy` pour déployer les entités Functions définies dans votre fichier manifeste ou annuler leur déploiement.
 
 ## Création de l'exemple d'API Hello World
 {: #deploy_helloworld_example}
 
-Cet exemple utilise un code Node.js simple (`helloworld.js`), crée une action Web (`hello_world`) à l'intérieur d'un package (`hello_world_package`) et définit une API REST pour cette action.
+Cet exemple prend un code Node.js simple, `helloworld.js`, crée une action Web `hello_world` dans un package `hello_world_package` et définit une API REST pour cette action.
 {: shortdesc}
 
 1. Créez un fichier `helloworld.js` avec le code suivant.
@@ -111,20 +113,24 @@ Cet exemple utilise un code Node.js simple (`helloworld.js`), crée une action W
     ```
     {: codeblock}
 
-Facultatif : vous pouvez annuler le déploiement des mêmes entités à l'aide de la commande `undeploy`. 
+Facultatif : vous pouvez annuler le déploiement des mêmes entités à l'aide de la commande `undeploy`.
 
 ```sh
 ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## Exemples supplémentaires de déploiement OpenWhisk
+## Autres exemples de déploiement OpenWhisk
 {: more_deploy_examples}
 
 Le déploiement de Functions se fonde sur le projet de déploiement OpenWhisk, qui contient
-[plusieurs exemples de manifeste de déploiement](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples) qui peuvent être utilisés dans Functions.  Vous pouvez utiliser la commande `ibmcloud fn deploy` au lieu de `wskdeploy`.
+[plusieurs exemples de manifeste de déploiement](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} qui peuvent être utilisés dans Functions.  Vous pouvez utiliser la commande `ibmcloud fn deploy` au lieu de `wskdeploy`.
 
 ## Spécification du manifeste de déploiement
 {: manifest_specification}
 
-Les manifestes de déploiement Functions doivent être conformes à la spécification du manifeste de déploiement OpenWhisk. Pour plus de détails, consultez la [documentation relative à la spécification du manifeste de déploiement OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification).
+Les manifestes de déploiement Functions doivent être conformes à la spécification du manifeste de déploiement OpenWhisk. Pour plus de détails, consultez la [documentation relative à la spécification du manifeste de déploiement OpenWhisk](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external}.
+
+
+
+

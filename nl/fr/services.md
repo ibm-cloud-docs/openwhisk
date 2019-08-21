@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-16"
 
-keywords: services, serverless
+keywords: services, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,10 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
-# Ajout de services IBM Cloud
+# Liaison de services {{site.data.keyword.cloud_notm}} à des entités {{site.data.keyword.openwhisk_short}} 
 {: #services}
 
-Vous pouvez utiliser des fonctionnalités de services IBM Cloud pour les incorporer dans votre application.
+Vous pouvez utiliser des fonctionnalités de services IBM Cloud pour les incorporer dans votre application {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 **Comment ajouter des services IBM Cloud à mon application ?**
@@ -46,9 +47,10 @@ Ces paramètres peuvent inclure des valeurs qui rendent votre application réuti
 ## Liaison d'un service à une action ou un package
 {: #services_bind}
 
-Liez le service {{site.data.keyword.Bluemix_notm}} de votre choix à une action. Une fois le service lié, un nouveau paramètre est créé dans votre action existante en incluant les données d'identification de l'instance de service.
+Liez le service {{site.data.keyword.cloud_notm}} de votre choix à une action. Une fois le service lié, un nouveau paramètre est créé dans votre action existante en incluant les données d'identification de l'instance de service.
 
-**Remarque** : vous ne pouvez pas lier plusieurs instances du même service à une action ou un package. Vous ne pouvez lier qu'une seule instance d'un service. 
+Vous ne pouvez pas lier plusieurs instances du même service à une action ou un package. Vous pouvez lier uniquement une instance d'un service.
+{: note}
 
 Avant de commencer, [créez une action](/docs/openwhisk?topic=cloud-functions-actions) et [définissez les données d'identification](/docs/resources?topic=resources-externalapp#externalapp) du service que vous souhaitez lier à l'action.
 
@@ -58,7 +60,7 @@ Avant de commencer, [créez une action](/docs/openwhisk?topic=cloud-functions-ac
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     name              service        plan   bound apps   last operation
     Composer-qp   composer   free                create succeeded
@@ -68,19 +70,18 @@ Avant de commencer, [créez une action](/docs/openwhisk?topic=cloud-functions-ac
     {: screen}
 
 2. Obtenez le nom des données d'identification définies pour une instance de service.
-
     ```
     ibmcloud service keys SERVICE_NAME
     ```
     {: pre}
 
-    Exemple :
+    **Exemple**
     ```
     ibmcloud service keys Composer-qp
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     Invoking 'cf service-keys Composer-qp'...
 
@@ -92,55 +93,61 @@ Credentials-2
     ```
     {: screen}
 
-3. Liez le service à une action. La commande `ibmcloud fn service bind` de {{site.data.keyword.openwhisk_short}} rend vos données d'identification de service {{site.data.keyword.Bluemix_notm}} disponible pour votre code {{site.data.keyword.openwhisk_short}} lors de l'exécution.
+3. Liez le service à une action. La commande `ibmcloud fn service bind` rend vos données d'identification de service {{site.data.keyword.cloud_notm}} disponibles pour votre {{site.data.keyword.openwhisk_short}} lors de l'exécution. Les paramètres de commande suivants sont disponibles pour la commande `ibmcloud fn service bind` .
+
+    <table>
+    <thead>
+        <tr>
+        <th>Paramètre</th>
+        <th>Description</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+        <td><code>SERVICE</code></td>
+        <td>Nom du service dont vous effectuez la liaison.</td>
+        </tr>
+        <tr>
+        <td><code>ACTION_NAME</code></td>
+        <td>Nom de l'action ou du package auquel vous souhaitez lier le service.</td>
+        </tr>
+        <tr>
+        <td><code>--instance INSTANCE_NAME</code></td>
+        <td>(Facultatif) Indiquez un nom d'instance de service. A défaut, la première instance du service est sélectionnée.</td>
+        </tr>
+        <tr>
+        <td><code>--keyname CREDENTIALS_NAME</code></td>
+        <td>(Facultatif) Indiquez le nom des données d'identification. Si vous n'indiquez pas ce nom, les premières données d'identification correspondant à l'instance de service sont sélectionnées.</td>
+        </tr>
+    </tbody>
+    </table>
+
+    **Exemple de syntaxe**
     ```
-    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+    ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME][--keyname CREDENTIALS_NAME]
     ```
     {: pre}
 
-    <table>
-    <caption>Description des composants de la commande <code>ibmcloud fn service bind</code></caption>
-    <thead>
-    <th colspan=2><img src="images/idea.png" alt="Icône Idée"/> Description des composants de la commande <code>ibmcloud fn service bind</code></th>
-    </thead>
-    <tbody>
-    <tr>
-    <td><code>SERVICE</code></td>
-    <td>Nom du service dont vous effectuez la liaison.</td>
-    </tr>
-    <tr>
-    <td><code>ACTION_NAME</code></td>
-    <td>Nom de l'action ou du package auquel vous souhaitez lier le service.</td>
-    </tr>
-    <tr>
-    <td>--instance <code>INSTANCE_NAME</code></td>
-    <td>Facultatif : indiquez un nom d'instance de service. A défaut, la première instance du service est sélectionnée.</td>
-    </tr>
-    <tr>
-    <td>--keyname <code>CREDENTIALS_NAME</code></td>
-    <td>Facultatif : indiquez le nom des données d'identification. Si vous n'indiquez pas ce nom, les premières données d'identification correspondant à l'instance de service sont sélectionnées.</td>
-    </tr>
-    </tbody></table>
-
-    Par exemple, pour lier un service {{site.data.keyword.ibmwatson}} Composer à une action nommée `hello` :
+    Par exemple, pour lier un service {{site.data.keyword.ibmwatson}} Composer à une action nommée `hello`, exécutez la commande suivante.
     ```
     ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
     ```
     {: pre}
 
-    Sortie :
+    **Sortie**
     ```
     Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello'.
     ```
     {: screen}
 
 4. Vérifiez que la liaison des données d'identification a abouti. L'action à laquelle est lié le service ne prend pas en charge les indicateurs personnalisés, mais prend en charge les indicateurs debug et verbose.
+
     ```
     ibmcloud fn action get hello parameters
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     ok: got action Hello World
 {
@@ -174,9 +181,6 @@ Credentials-2
 
 Pour plus d'informations sur la transmission de paramètres à une action ou un package, voir [Liaison de paramètres à des actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
 
-
-
-
 ## Suppression de la liaison de service d'une action
 {: #services_unbind}
 
@@ -186,3 +190,4 @@ La suppression de la liaison d'un service d'une action ou d'un package supprime 
 ibmcloud fn service unbind SERVICE_NAME ACTION_NAME
 ```
 {: pre}
+

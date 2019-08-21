@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: event streams, package, messages, events
+keywords: event streams, package, messages, events, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
@@ -37,15 +39,16 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-此预安装的包支持与 [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub) 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。
+此预安装的包支持与 [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。
 {: shortdesc}
 
-### 使用 {{site.data.keyword.Bluemix_notm}} 设置 {{site.data.keyword.messagehub}} 包
+
+### 设置 {{site.data.keyword.messagehub}} 包
 {: #eventstreams_setup}
 
 1. 在正用于 {{site.data.keyword.openwhisk}} 的当前组织和空间下创建 {{site.data.keyword.messagehub}} 服务实例。
 
-2. 验证要侦听的主题在 {{site.data.keyword.messagehub}} 中是否可用，或者创建新主题，例如名为 **mytopic** 的主题。
+2. 验证要侦听的主题在 {{site.data.keyword.messagehub}} 中是否可用，或者创建新主题，例如名为 `mytopic` 的主题。
 
 3. 刷新名称空间中的包。刷新操作将自动为已创建的 {{site.data.keyword.messagehub}} 服务实例创建包绑定。
   ```
@@ -53,10 +56,10 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -66,19 +69,19 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
   现在，包绑定包含与 {{site.data.keyword.messagehub}} 实例关联的凭证。
 
-### 在 {{site.data.keyword.Bluemix_notm}} 外部设置 {{site.data.keyword.messagehub}} 包
+### 在 {{site.data.keyword.cloud_notm}} 外部设置 {{site.data.keyword.messagehub}} 包
 {: #eventstreams_outside}
 
-如果要在 {{site.data.keyword.Bluemix_notm}} 外部设置 {{site.data.keyword.messagehub}}，那么必须为 {{site.data.keyword.messagehub}} 服务手动创建包绑定。您需要 {{site.data.keyword.messagehub}} 服务凭证和连接信息。
+如果要在 {{site.data.keyword.cloud_notm}} 外部设置 {{site.data.keyword.messagehub}}，那么必须为 {{site.data.keyword.messagehub}} 服务手动创建包绑定。您需要 {{site.data.keyword.messagehub}} 服务凭证和连接信息。
 
 创建为 {{site.data.keyword.messagehub}} 服务配置的包绑定。
 ```
@@ -95,15 +98,15 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 要了解有关生成消息的更多信息，请查看 [Event Streams 文档](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages)。
 
 参考
-- [{{site.data.keyword.messagehub_full}}](https://developer.ibm.com/messaging/message-hub)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
 
 
 
 ## Event Streams 事件源
 {: #eventstreams_events}
 
-您可以创建用于在消息使用订阅源发布到 {{site.data.keyword.messagehub_full}} 实例时做出反应的触发器。了解如何使用或不使用 {{site.data.keyword.Bluemix}} 创建 {{site.data.keyword.messagehub}}，侦听消息以及处理批量消息。
+您可以创建用于在消息使用订阅源发布到 {{site.data.keyword.messagehub_full}} 实例时做出反应的触发器。了解如何使用或不使用 {{site.data.keyword.cloud}} 创建 {{site.data.keyword.messagehub}}，侦听消息以及处理批量消息。
 {: shortdesc}
 
 ## {{site.data.keyword.messagehub}} 包
@@ -113,7 +116,7 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 不推荐使用 `/messaging/messageHubProduce` 操作，该操作未来会除去。东京区域中已除去该操作。为了保持最佳性能，在将数据生成到 {{site.data.keyword.messagehub}}/Kafka 时，请将使用 `/messaging/messageHubProbate` 操作迁移为使用持久连接。
 {: deprecated}
 
-此包支持与 [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub) 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。
+此包支持与 [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} 实例进行通信，以通过本机高性能 Kafka API 来发布和使用消息。
 
 ### 创建用于侦听 {{site.data.keyword.messagehub}} 实例的触发器
 {: #eventstreams_trigger}
@@ -121,21 +124,21 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 为了创建用于在消息发布到 {{site.data.keyword.messagehub}} 实例时做出反应的触发器，您需要使用名为 `/messaging/messageHubFeed` 的订阅源。此订阅源操作支持以下参数：
 
 |名称|类型|描述|
-|---|---|---|
-|kafka_brokers_sasl|字符串的 JSON 数组|此参数是一组 `<host>:<port>` 字符串，包含 {{site.data.keyword.messagehub}} 实例中的代理程序。|
-|user|字符串|您的 {{site.data.keyword.messagehub}} 用户名。|
-|password|字符串|您的 {{site.data.keyword.messagehub}} 密码。|
-|topic|字符串|希望触发器侦听的主题。|
-|kafka_admin_url|URL 字符串|{{site.data.keyword.messagehub}} Admin REST 接口的 URL。|
-|isJSONData|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将消息值作为触发器有效内容传递之前，会先尝试将其解析为 JSON。|
-|isBinaryKey|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将键值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
-|isBinaryValue|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将消息值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
+| --- | --- | --- |
+|`kafka_brokers_sasl`|字符串的 JSON 数组|此参数是一组 `<host>:<port>` 字符串，包含 {{site.data.keyword.messagehub}} 实例中的代理程序。|
+|`user`|字符串|您的 {{site.data.keyword.messagehub}} 用户名。|
+|`password`|字符串|您的 {{site.data.keyword.messagehub}} 密码。|
+|`topic`|字符串|希望触发器侦听的主题。|
+|`kafka_admin_url`|URL 字符串|{{site.data.keyword.messagehub}} Admin REST 接口的 URL。|
+|`isJSONData`|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将消息值作为触发器有效内容传递之前，会先尝试将其解析为 JSON。|
+|`isBinaryKey`|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将键值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
+|`isBinaryValue`|布尔值（可选 - 缺省值为 false）|设置为 `true` 时，提供程序在将消息值作为触发器有效内容传递之前，会先将其编码为基本 64 位。|
 
 此参数列表可能看起来让人望而生畏，但可以使用 `ibmcloud fn package refresh` CLI 插件命令自动设置这些参数：
 
 1. 在正用于 {{site.data.keyword.openwhisk}} 的当前组织和空间下创建 {{site.data.keyword.messagehub}} 服务实例。
 
-2. 验证要侦听的主题在 {{site.data.keyword.messagehub}} 中是否可用，或者创建新主题，例如 **mytopic**。
+2. 验证要侦听的主题在 {{site.data.keyword.messagehub}} 中是否可用，或者创建新主题，例如 `mytopic`。
 
 3. 刷新名称空间中的包。刷新操作将自动为已创建的 {{site.data.keyword.messagehub}} 服务实例创建包绑定。
   ```
@@ -143,10 +146,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
   created bindings:
-  Bluemix_Message_Hub_Credentials-1
+  Message_Hub_Credentials-1
   ```
   {: screen}
 
@@ -156,10 +160,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
   packages
-  /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1 private
+  /myOrg_mySpace/Message_Hub_Credentials-1 private
   ```
   {: screen}
 
@@ -167,22 +172,25 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 
 5. 现在，您只需创建将在新消息发布到 {{site.data.keyword.messagehub}} 主题时触发的触发器即可。
   ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myBluemixOrg_myBluemixSpace/Bluemix_Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
   ```
   {: pre}
 
-### 在 {{site.data.keyword.Bluemix_notm}} 外部创建 {{site.data.keyword.messagehub}} 包的触发器
+### 在 {{site.data.keyword.cloud_notm}} 外部创建 {{site.data.keyword.messagehub}} 包的触发器
 {: #eventstreams_trigger_outside}
 
-如果要在 {{site.data.keyword.Bluemix_notm}} 外部设置 {{site.data.keyword.messagehub}}，那么必须为 {{site.data.keyword.messagehub}} 服务手动创建包绑定。您需要 {{site.data.keyword.messagehub}} 服务凭证和连接信息。
+如果要在 {{site.data.keyword.cloud_notm}} 外部设置 {{site.data.keyword.messagehub}}，那么必须为 {{site.data.keyword.messagehub}} 服务手动创建包绑定。您需要 {{site.data.keyword.messagehub}} 服务凭证和连接信息。
 
 1. 创建为 {{site.data.keyword.messagehub}} 服务配置的包绑定。
+
   ```
-  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+ [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
   ```
   {: pre}
 
 2. 现在，您可以使用新包创建将在新消息发布到 {{site.data.keyword.messagehub}} 主题时触发的触发器。
+
   ```
   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
   ```
@@ -194,11 +202,11 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 一旦创建触发器后，系统将监视消息传递服务中指定的主题。发布新消息时，将触发触发器。
 
 该触发器的有效内容将包含 `messages` 字段，此字段是自上次触发触发器以来已发布的消息的数组。数组中的每个消息对象都包含以下字段：
-- topic
-- partition
-- offset
-- key
-- value
+- `topic`
+- `partition`
+- `offset`
+- `key`
+- `value`
 
 在 Kafka 术语中，这些字段可顾名思义。但是，`key` 具有名为 `isBinaryKey` 的功能，允许 `key` 传输二进制数据。此外，需要特别注意 `value`。`isJSONData` 和 `isBinaryValue` 字段可用于处理 JSON 和二进制消息。但 `isJSONData` 和 `isBinaryValue` 字段不能一起使用。
 
@@ -208,8 +216,8 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ```json
 {
     "messages": [
-      {
-        "partition": 0,
+    {
+      "partition": 0,
             "key": "U29tZSBrZXk=",
             "offset": 421760,
             "topic": "mytopic",
@@ -333,14 +341,10 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ```
 
 
-
-## 将 OpenWhisk 与 {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full_notm}} 和 IBM Data Science Experience 集成
-{: #eventstreams_example}
-
-有关用于将 OpenWhisk 与 {{site.data.keyword.messagehub}}、Node Red、IBM Watson IoT、{{site.data.keyword.cos_full}} 和 IBM Data Science Experience (Spark) 服务集成的示例[位于此处](https://medium.com/openwhisk/transit-flexible-pipeline-for-iot-data-with-bluemix-and-openwhisk-4824cf20f1e0)。
-
 ## 参考
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://developer.ibm.com/messaging/message-hub/)
-- [Apache Kafka](https://kafka.apache.org)
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [Apache Kafka](https://kafka.apache.org){: external}
+
+
 

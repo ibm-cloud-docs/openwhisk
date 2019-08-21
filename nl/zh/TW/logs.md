@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 視圖日誌
 {: #logs}
@@ -37,7 +39,6 @@ subcollection: cloud-functions
 您可以使用 {{site.data.keyword.openwhisk_short}} CLI 來監看所呼叫動作的輸出。
 
 1. 啟動輪詢迴圈，以連續檢查啟動日誌。
-    
 
     ```
     ibmcloud fn activation poll
@@ -45,14 +46,13 @@ subcollection: cloud-functions
     {: pre}
 
 2. 切換至另一個視窗並呼叫動作。
-    
 
     ```
     ibmcloud fn action invoke /whisk.system/samples/helloWorld --param payload Bob
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -72,21 +72,21 @@ subcollection: cloud-functions
 ## 檢視啟動詳細資料
 {: #activation_details}
 
-其他使用者可呼叫 {{site.data.keyword.openwhisk_short}} 動作來回應各種事件，或是作為動作序列的一部分。每次呼叫動作時，都會建立該呼叫的啟動記錄。若要取得動作呼叫結果的相關資訊，您可以取得啟動的相關詳細資料。
+其他使用者可呼叫 {{site.data.keyword.openwhisk_short}} 動作來回應各種事件，或是作為動作序列的一部分。每當呼叫動作時，都會為該呼叫建立啟動記錄。若要取得動作呼叫結果的相關資訊，您可以取得啟動的相關詳細資料。
 
-若要取得名稱空間中的所有啟動記錄 ID，請執行下列指令：
+透過執行下列指令，可以取得名稱空間中的所有啟動記錄 ID。
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-若要取得有關從動作呼叫所產生之特定啟動記錄的詳細資料，請執行下列指令：
+透過執行下列指令，可以取得有關動作呼叫產生的特定啟動記錄的詳細資料。請將 `<activation_ID>` 取代為啟動的 ID。 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -104,8 +104,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
         "success": true,
         "result": {
             "done": true
-  }
-  },
+        }
+    },
     "logs": [],
     "annotations": [
         {
@@ -118,16 +118,16 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
         },
         {
             "key": "kind",
-    "value": "nodejs:6"
-  },
+            "value": "nodejs:6"
+        },
         {
             "key": "limits",
-    "value": {
-      "logs": 10,
-      "memory": 256,
-      "timeout": 60000
-    }
-  },
+            "value": {
+                "logs": 10,
+                "memory": 256,
+                "timeout": 60000
+            }
+        },
         {
             "key": "initTime",
             "value": 53
@@ -180,8 +180,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code>：啟動的結束狀態。</li>
-<li><code>statusCode</code>：狀態碼。如果發生錯誤，則為 HTTP 錯誤碼。</li>
-<li><code>success</code>：動作是否順利完成。</li>
+<li><code>statusCode</code>：狀態碼。如果動作導致錯誤，則此值為 HTTP 錯誤碼。</li>
+<li><code>success</code>：表示動作是否順利完成的結果。</li>
 <li><code>result</code>：來自啟動的回覆值。</li>
 </ul></td>
 </tr>
@@ -195,7 +195,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>是否公開發佈動作。</td>
+<td>表示動作是否發佈的結果。</td>
 </tr>
 </tbody></table>
 
@@ -204,35 +204,39 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## 在 {{site.data.keyword.loganalysisfull_notm}} 中檢視日誌
 {: #logs_view}
 
+{{site.data.keyword.loganalysislong_notm}} 日誌無法使用於以 IAM 為基礎的名稱空間。
+{: note}
+
 您可以直接從「{{site.data.keyword.openwhisk_short}} 監視」儀表板來檢視啟動日誌。日誌也會轉遞至 [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) 來進行檢索，將對所有產生的訊息啟用全文搜尋，並根據特定欄位進行方便的查詢。
 {:shortdesc}
 
-**附註**：美國東部地區未提供記載功能。
+對於美國東部地區，記載無法使用。
+{: important}
 
-1. 開啟「[{{site.data.keyword.openwhisk_short}} 監視」頁面 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/openwhisk/dashboard)。
+1. 開啟 [{{site.data.keyword.openwhisk_short}} 監視頁面](https://cloud.ibm.com/openwhisk/dashboard){: external}。
 
 2. 選用項目：若要只檢視特定動作的日誌，請將監視摘若要限制為該動作。在「過濾選項」區段中，從**限制至**下拉清單中選取動作名稱。
 
 3. 在左側導覽中，按一下**日誌**。即會開啟 {{site.data.keyword.loganalysisshort_notm}} Kibana 頁面。
 
-4. 選用項目：若要查看較舊的日誌，請按一下右上角的**最後 15 分鐘**，並選取不同的時間範圍，來變更預設時間範圍值 15 分鐘。
+4. 選用：若要查看較舊的日誌，請按一下**最近 15 分鐘**並選取其他時間範圍來變更預設時間範圍值 15 分鐘。
 
 ### 查詢日誌
 {: #logs_query}
 
 您可以使用 Kibana 的查詢語法，在 [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) 中尋找特定啟動日誌。
 
-下列範例查詢可協助您對錯誤進行除錯：
-  * 尋找所有錯誤日誌：
+下列範例查詢可協助您對錯誤進行除錯。
+  * 尋找所有錯誤日誌。
       ```
-type: user_logs AND stream_str: stderr
-```
+      type: user_logs AND stream_str: stderr
+      ```
       {: codeblock}
 
-  * 尋找 "myAction" 產生的所有錯誤日誌：
+  * 尋找由 `myAction` 產生的所有錯誤日誌。
       ```
-type: user_logs AND stream_str: stderr AND action_str: "*myAction"
-```
+      type: user_logs AND stream_str: stderr AND action_str: "*myAction"
+      ```
       {: codeblock}
 
 ### 查詢結果
@@ -242,16 +246,18 @@ type: user_logs AND stream_str: stderr AND action_str: "*myAction"
 
 您可以使用 Kibana 的查詢語法來尋找特定的啟動日誌。下列範例查詢可協助您對錯誤進行除錯：
 
-* 尋找所有失敗活動：
+* 尋找所有失敗的啟動。
     ```
-type: activation_record AND NOT status_str: 0
-```
+    type: activation_record AND NOT status_str: 0
+    ```
     {: codeblock}
-    在結果中，`0` 表示順利結束動作，所有其他值則表示錯誤。
+    在結果中，`0` 指示動作已順利結束。其他所有值均指示錯誤。
 
-* 尋找失敗且發生特定錯誤的所有啟動：
+* 尋找由於特定錯誤而失敗的所有啟動。
     ```
-type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
-```
+    type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
+    ```
     {: codeblock}
+
+
 

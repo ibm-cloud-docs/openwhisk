@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: functions compared, openwhisk, architecture, limitless
+keywords: functions compared, architecture, limitless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 函数即服务体系结构
 {: #faas}
@@ -43,15 +45,15 @@ subcollection: cloud-functions
 
 比较的 OpenWhisk 体系结构如下：
 
-1. [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk) 上的**功能即服务 (FaaS)**。IBM 是唯一一家提供受管 OpenWhisk 的供应商。[Martin Fowler 的博客](https://martinfowler.com/articles/serverless.html)上详细介绍了使用 FaaS 平台的无服务器编程模型，您可以查看运行采用无服务器设计的 OpenWhisk 的[用例](/docs/openwhisk?topic=cloud-functions-use_cases)。
+1. [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external} 上的**功能即服务 (FaaS)**。IBM 是唯一一家提供受管 OpenWhisk 的供应商。[Martin Fowler 的博客](https://martinfowler.com/articles/serverless.html){: external}上详细介绍了使用 FaaS 平台的无服务器编程模型，您可以查看运行采用无服务器设计的 OpenWhisk 的[用例](/docs/openwhisk?topic=cloud-functions-use_cases)。
 
-2. 带有 OpenWhisk 自行构建 (RYO) 的 **基础架构即服务 (IaaS)**。您可以从 Apache Incubation 项目下载 OpenWhisk，然后在 [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices) 上运行。
+2. 带有 OpenWhisk 自行构建 (RYO) 的 **基础架构即服务 (IaaS)**。您可以从 Apache Incubation 项目下载 OpenWhisk，然后在 [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute){: external} 上运行。
 
-3. **平台即服务 (PaaS)** 作为受管应用程序运行时。由 {{site.data.keyword.Bluemix_notm}} Foundry 实现进行管理的 [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) 运行时就是一个很好的例子。
+3. **平台即服务 (PaaS)** 作为受管应用程序运行时。由 {{site.data.keyword.cloud_notm}} Foundry 实现进行管理的 [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java){: external} 运行时就是一个很好的例子。
 
 4. **容器即服务 (CaaS)** 作为受管容器环境。[{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index) 就是一个很好的例子。
 
-5. 带有 Java EE 运行时的 **基础架构即服务 (IaaS)**。[WebSphere Application Server VM on {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server) 就是一个很好的例子。
+5. 带有 Java EE 运行时的 **基础架构即服务 (IaaS)**。[WebSphere Application Server VM on {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server){: external} 就是一个很好的例子。
 
 下表从创建和操作应用程序的开发者角度比较了每个体系结构的元素：
 
@@ -75,8 +77,8 @@ subcollection: cloud-functions
 |	资源限制|	[存在某些限制](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)|	取决于分配的资源|	否|	否|	否|
 |	很少使用的服务的等待时间|	很少使用的请求的最初响应时间可能长达几秒，但后续请求的响应时间将保持在毫秒范围内|	视情况而定|	短|	短|	短 - 假定系统具有充足的资源|
 |	应用程序的最有效点类型|	事件处理、IoT、移动后端和微服务。决不适用于庞大的应用程序。请参阅[用例](/docs/openwhisk?topic=cloud-functions-use_cases)|	与列 (1) 相同，但适用于用户要在非 IBM 云上运行或内部部署中运行时。|	具有全天候工作负载和有状态服务的 Web 应用程序，需要使连接长时间保持打开。可用于运行微服务或庞大的应用程序|	非常适用于微服务应用程序。|	从内部部署迁移到云的传统企业应用程序。非常适用于庞大的应用程序|
-|	收费粒度和记帐|	[以 100 毫秒为单位](https://cloud.ibm.com/openwhisk/learn/pricing)|	取决于实现情况 - 如果使用的是 IaaS 或 CaaS，那么类似的注意事项适用 - 请参阅列 (4) 和 (5)|	对于资源捆绑软件（CPU + 内存 + 某些磁盘空间），通常按小时收费（在极少情况下，按分钟收费）|	类似于列 (3)|	类似于列 (3)|
-|	总体拥有成本 (TCO)|	对于其最有效点，应用程序很可能比替代方法少花费一个数量级。由于资源是自动缩放的，因此不会发生过量供应情况。|	对于云部署，很可能会比 OpenWhisk FaaS 昂贵，但内部部署可能比传统体系结构便宜|	相对低 - 用户无需供应或管理资源，而只需关注应用程序开发。相对于无服务器，会存在一定水平的过量供应|	适度 - 用户需要供应和管理容器与应用程序，相对于无服务器或 PaaS，都可以看到一定水平的过量供应|	相对高 - 考虑到将旧应用程序迁移到云本机模型的成本可能高昂得无法承受，对于这些应用程序来说，这可能是可行、经济的选择。|
+|	收费粒度和记帐|	[以 100 毫秒为单位](https://cloud.ibm.com/openwhisk/learn/pricing){: external}|	取决于实现情况 - 如果使用的是 IaaS 或 CaaS，那么类似的注意事项适用 - 请参阅列 (4) 和 (5)|	对于资源捆绑软件（CPU + 内存 + 某些磁盘空间），通常按小时收费（在极少情况下，按分钟收费）|	类似于列 (3)|	类似于列 (3)|
+|	总拥有成本|	对于其最有效点，应用程序很可能比替代方法少花费一个数量级。由于资源是自动缩放的，因此不会发生过量供应情况。|	对于云部署，很可能会比 OpenWhisk FaaS 昂贵，但内部部署可能比传统体系结构便宜|	相对低 - 用户无需供应或管理资源，而只需关注应用程序开发。相对于无服务器，会存在一定水平的过量供应|	适度 - 用户需要供应和管理容器与应用程序，相对于无服务器或 PaaS，都可以看到一定水平的过量供应|	相对高 - 考虑到将旧应用程序迁移到云本机模型的成本可能高昂得无法承受，对于这些应用程序来说，这可能是可行、经济的选择。|
 
 ## 成本注意事项
 {: #faas_cost}
@@ -84,7 +86,7 @@ subcollection: cloud-functions
 用于测试、编译打包、负载测试和其他环境的基础架构可能成本不菲。设置基础架构需要时间，并且因为基础架构通常以全天候方式运行，因此往往未得到充分利用，还会消耗大量容量。通过使用无服务器体系结构，对于任意数量的环境，将根据负载而不是定义的环境数来生成成本。
 {: shortdesc}
 
-要估算无服务器应用程序的成本，可以使用[定价计算器 ![外部链接图标](../icons/launch-glyph.svg "外部链接图标")](https://cloud.ibm.com/openwhisk/learn/pricing)。
+要估算无服务器应用程序的成本，可以使用[定价计算器](https://cloud.ibm.com/openwhisk/learn/pricing){: external}。
 
 ### 无限容量
 {: #faas_capacity}
@@ -103,4 +105,7 @@ subcollection: cloud-functions
 {: #faas_redundancy}
 
 在传统体系结构中，应用程序必须是冗余的。使用 {{site.data.keyword.openwhisk_short}} 后，过程不必具备高可用性 (HA)，因为无服务器应用程序根据设计就是无状态的并且是请求/事件驱动的。由于无服务器应用程序的无状态性质，无需显式创建冗余，因此可以显著降低基础架构成本。
+
+
+
 

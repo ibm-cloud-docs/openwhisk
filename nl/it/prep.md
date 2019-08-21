@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-10"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -22,25 +22,26 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+{:external: target="_blank" .external}
 
 
 # Preparazione di applicazioni per le azioni
 {: #prep}
 
-Che tu renda un'applicazione senza server o scriva uno script specificatamente per rispondere a un evento, il tuo codice deve soddisfare determinati requisiti affinché tu possa utilizzarlo per creare un'azione.
+Indipendentemente dal fatto che porti un'applicazione o scrivi uno script specificamente per rispondere a un evento, il tuo codice deve soddisfare determinati requisiti affinché tu possa utilizzarlo per creare un'azione.
 {: shortdesc}
 
 L'esecuzione di ciascun linguaggio di programmazione presenta dei requisiti specifici, ma la maggior parte dei linguaggi presenta i seguenti requisiti generali:
 - Per impostazione predefinita, il nome previsto del punto di ingresso nel codice è `main`. Se il punto di ingresso non è `main`, alla creazione dell'azione può essere specificato un nome personalizzato; in tal caso, prendi nota del nome.
-- I parametri di input nella tua applicazione e i risultati di output da essa prodotti devono essere formattati secondo una struttura specifica che può essere trasmessa tra le entità. La struttura dipende dal linguaggio del tuo codice. Ad esempio, con le applicazioni Python, i parametri devono essere immessi nella tua applicazione sotto forma di dizionario e il risultato dell'applicazione deve essere anch'esso strutturato come un dizionario. Poiché puoi trasmettere i parametri alla tua azione anche in un oggetto strutturato, quale ad esempio JSON, potresti strutturare il tuo codice in modo che preveda un parametro di input con valori JSON da determinati campi, quali `name` e `place`.
+- I parametri di input nella tua applicazione e i risultati di output da essa prodotti devono essere formattati secondo una struttura specifica che può essere trasmessa tra le entità. La struttura dipende dal linguaggio del tuo codice. Ad esempio, con le applicazioni Python, i parametri di input devono essere un dizionario e il risultato dell'applicazione deve essere strutturato come un dizionario. Puoi passare i parametri alla tua azione anche in un oggetto strutturato. Ad esempio, in JSON, potresti strutturare il tuo codice in modo che preveda un parametro di input con valori JSON da determinati campi, come `name` e `place`.
 
-    Esempio di input JSON:
+    **Esempio di input JSON**
     ```json
     {"name": "Dorothy", "place": "Kansas"}
     ```
     {: codeblock}
 
-    Esempio JavaScript:
+    **Esempio JavaScript**
     ```javascript
     function main(params) {
         return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
@@ -48,7 +49,7 @@ L'esecuzione di ciascun linguaggio di programmazione presenta dei requisiti spec
     ```
     {: codeblock}
 - Se la tua applicazione contiene più file, devono essere combinati in un unico file da utilizzare in un'azione. Puoi riscrivere il tuo codice in un unico file o inserire file e dipendenze in un pacchetto all'interno di un unico archivio di file. Se il tuo runtime non è supportato, puoi inserire la tua applicazione in un pacchetto sotto forma di immagine Docker.
-- Anche le dipendenze devono essere inserite nel pacchetto con l'applicazione. I runtime disponibili vengono forniti con pacchetti ed estensioni preinstallati. [Rivedi le informazioni di riferimento per il tuo runtime](/docs/openwhisk?topic=cloud-functions-runtimes) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza è inclusa, non è necessario che tu la inserisca nel pacchetto insieme alla tua applicazione.
+- Anche le dipendenze devono essere inserite nel pacchetto con l'applicazione. I runtime disponibili vengono forniti con pacchetti ed estensioni preinstallati. [Controlla le informazioni di riferimento per il tuo runtime](/docs/openwhisk?topic=cloud-functions-runtimes) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza è inclusa, non è necessario che tu la inserisca nel pacchetto insieme alla tua applicazione.
 
     La compilazione del codice non è obbligatoria; tuttavia, se possibile per il tuo runtime, la compilazione anticipata del codice può migliorare le prestazioni.
     {: tip}
@@ -65,30 +66,30 @@ Puoi utilizzare solo immagini di registri pubblici, come ad esempio un'immagine 
 ### Inserimento del codice in un pacchetto in immagini Docker
 {: #prep_docker_pkg}
 
-Il tuo codice viene compilato in un file binario eseguibile e incorporato in un'immagine Docker. Il programma binario interagisce con il sistema, prendendo l'input proveniente da `stdin` e rispondendo tramite `stdout`.
+Il tuo codice viene compilato in un eseguibile e incorporato in un'immagine Docker. L'eseguibile interagisce con il sistema prendendo l'input da `stdin` e rispondendo tramite `stdout`.
 {: shortdesc}
 
-Prima di iniziare:
-- Devi disporre di un account Docker Hub. Puoi configurare un ID e un account Docker gratuiti su [Docker Hub ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://hub.docker.com).
-- [Installa Docker](https://hub.docker.com/search?offering=community&type=edition).
+**Prima di iniziare**
+- Devi disporre di un account Docker Hub.   [Docker Hub](https://hub.docker.com){: external}.
+- [Installa Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Rivedi i requisiti per il runtime Docker](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
-Per inserire la tua applicazione in un pacchetto:
+Per inserire la tua applicazione in un pacchetto, completa la seguente procedura.
 
-Per inserire il tuo codice in un pacchetto come immagine Docker:
+Per inserire il tuo codice in un pacchetto come immagine Docker, immetti il seguente comando.
 1. Scarica e installa la struttura di base Docker. La struttura di base è un template del contenitore Docker in cui puoi inserire il tuo codice sotto forma di file binari personalizzati.
   ```
   ibmcloud fn sdk install docker
   ```
   {: pre}
 
-2. Configura il tuo file binario personalizzato nella struttura di base black box. La struttura di base include un programma C che puoi utilizzare. Parte del file `example.c` viene compilata nell'ambito del processo di creazione dell'immagine Docker, quindi non hai bisogno di avere C compilato sulla tua macchina.
+2. Configura il tuo codice nella struttura di base black box. La struttura di base include un programma C che puoi utilizzare. Parte del file `example.c` viene compilata nell'ambito del processo di creazione dell'immagine Docker, quindi non hai bisogno di avere C compilato sulla tua macchina.
   ```
   cat dockerSkeleton/example.c
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```c
   #include <stdio.h>
   int main(int argc, char *argv[]) {
@@ -99,12 +100,12 @@ Per inserire il tuo codice in un pacchetto come immagine Docker:
   ```
   {: codeblock}
 
-3. Facoltativo: aggiungi codice e dipendenze aggiuntivi all'immagine Docker modificando il `Dockerfile` per creare il tuo eseguibile. Considera i seguenti requisiti:
-  * Il binario deve trovarsi all'interno del contenitore in `/action/exec`.
+3. (Facoltativo) Aggiungi più codice e dipendenze all'immagine Docker modificando il `Dockerfile` per creare il tuo eseguibile. Considera i seguenti requisiti:
+  * Il tuo codice deve trovarsi all'interno del contenitore in `/action/exec`.
   * L'eseguibile riceve un singolo argomento dalla riga di comando. Questo argomento è una serializzazione di stringa dell'oggetto JSON che rappresenta gli argomenti per l'azione.
   * Il programma può accedere a `stdout` o `stderr`.
-  * Per convenzione, l'ultima riga dell'output deve essere un oggetto JSON in stringhe che rappresenta il risultato dell'azione.
-  Per ulteriori informazioni sulla creazione di Dockerfile, consultare la [Guida di riferimento per Dockerfile](https://docs.docker.com/engine/reference/builder/).
+  * Per convenzione, l'ultima riga dell'output deve essere un oggetto JSON <ph class="ignoreSpelling">in stringhe</ph>, che rappresenta il risultato dell'azione.
+  Per ulteriori informazioni sulla creazione di Dockerfile, consultare la [Guida di riferimento per Dockerfile](https://docs.docker.com/engine/reference/builder/){: external}.
 
 4. Crea l'immagine Docker e caricala attraverso uno script fornito.
     1. Esegui l'accesso a Docker.
@@ -131,7 +132,7 @@ Per inserire il tuo codice in un pacchetto come immagine Docker:
 ## Preparazione di applicazioni JavaScript
 {: #prep_js}
 
-Prima di creare un'azione, prepara il tuo codice JavaScript. Conferma che la struttura del codice è corretta, quindi decidi se il codice deve essere inserito in un pacchetto.
+Prima di creare un'azione, prepara il tuo codice JavaScript. Verifica che il tuo codice sia strutturato correttamente, quindi decidi se deve essere impacchettato.
 {: shortdesc}
 
 ### Strutturazione del codice JavaScript
@@ -143,14 +144,14 @@ Prima di creare un'azione, prepara il tuo codice JavaScript. Conferma che la str
 
 
 
-Esempio:
+**Esempio**
 ```javascript
   function main() {
       return {payload: 'Hello world'};
   }
   ```
 
-Esempio con più funzioni:
+**Esempio con più funzioni**
 
   ```javascript
   function main() {
@@ -170,7 +171,7 @@ Esempio con più funzioni:
 L'attivazione JavaScript è sincrona quando la funzione principale termina senza eseguire un'istruzione `return` o eseguendo un'istruzione `return` che restituisce qualsiasi valore eccetto una promessa.
 {: shortdesc}
 
-Esempio di codice sincrono:
+**Esempio di codice sincrono.**
 
 ```javascript
 // each path results in a synchronous activation
@@ -203,8 +204,8 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          resolve({ done: true });
-       }, 100);
-     })
+           }, 2000);
+        })
 }
 ```
 {: codeblock}
@@ -215,13 +216,13 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          reject({ done: true });
-       }, 100);
+       }, 2000);
      })
 }
 ```
 {: codeblock}
 
-Negli esempi precedenti, vengono eseguiti i seguenti dettagli.
+Negli esempi, vengono eseguiti i seguenti dettagli.
 * La funzione `main` restituisce una promessa. La promessa indica che l'attivazione non è stata ancora completata, ma il suo completamento è previsto in futuro.
 * La funzione JavaScript `setTimeout()` attende 2 secondi prima di chiamare la funzione di callback della promessa, che rappresenta il codice asincrono.
 * Il callback della promessa accetta gli argomenti `resolve` e `reject`, che sono entrambi funzioni.
@@ -242,7 +243,7 @@ function main(params) {
          return new Promise(function(resolve, reject) {
           setTimeout(function() {
             resolve({ done: true });
-          }, 100);
+           }, 2000);
         })
      }  else {
         // synchronous activation
@@ -256,7 +257,7 @@ function main(params) {
 
 
 
-### Esempio: chiamata di un'API esterna con JavaScript
+### Esempio di chiamata di un'API esterna con JavaScript
 {: #prep_js_api}
 
 Il seguente esempio richiama l'API esterna per il servizio della NASA APOD (Astronomy Picture of the Day), che fornisce ogni giorno un'immagine univoca del nostro universo.
@@ -302,13 +303,13 @@ Successivamente, [crea](/docs/openwhisk?topic=cloud-functions-actions) e [richia
 
 
 
-### Inserimento del codice JavaScript in un pacchetto con il modulo webpack
+### Inserimento del codice JavaScript in un pacchetto con il modulo `webpack`
 {: #prep_js_pkg}
 
-Puoi inserire un'applicazione in un pacchetto utilizzando un bundler di moduli JavaScript come [webpack ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://webpack.js.org/concepts/). Quando `webpack` elabora il tuo codice, crea in modo ricorsivo un grafico delle dipendenze che include ogni modulo di cui la tua azione ha bisogno.
+Puoi inserire un'applicazione in un pacchetto utilizzando un bundler di moduli JavaScript come `[webpack ](https://webpack.js.org/concepts/){: external}`. Quando `webpack` elabora il tuo codice, crea in modo ricorsivo un grafico delle dipendenze che include ogni modulo di cui la tua azione ha bisogno.
 {: shortdesc}
 
-Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+Prima di iniziare, [rivedi i pacchetti contenuti nel runtime JavaScript](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
 1. Crea un file `package.json`. Aggiungi `webpack` come dipendenza di sviluppo.
 
@@ -330,7 +331,7 @@ Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/ope
     ```
     {: codeblock}
 
-2. Salva il seguente codice di configurazione webpack in un file denominato `webpack.config.js`.
+2. Salva il seguente codice di configurazione `webpack` in un file denominato `webpack.config.js`.
 
     ```javascript
     var path = require('path');
@@ -345,9 +346,9 @@ module.exports = {
     ```
     {: codeblock}
 
-3. Prepara il tuo codice applicazione. In questo esempio, denominato `index.js`, la variabile `global.main` è impostata sulla funzione principale dell'applicazione.
+3. Prepara il tuo codice applicazione. In questo esempio, che puoi salvare come file denominato `index.js`, la variabile `global.main` è impostata come funzione principale dell'applicazione.
 
-    Esempio:
+    **Esempio**
     ```javascript
     function myAction(args) {
         const leftPad = require("left-pad")
@@ -366,7 +367,7 @@ module.exports = {
     ```
     {: pre}
 
-5. Crea il bundle webpack.
+5. Crea il bundle `webpack`.
 
     ```
     npm run build
@@ -377,21 +378,21 @@ module.exports = {
 
 6. Crea l'azione utilizzando lo script `npm` o la CLI.
 
-    * Utilizzo dello script `npm`:
+    * Esegui il seguente script `npm`.
 
         ```
         npm run deploy
         ```
         {: pre}
 
-    * Utilizzo della CLI:
+    * Immetti il seguente comando della CLI.
 
         ```
         ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10
         ```
         {: pre}
 
-    Il file bundle creato da `webpack` supporta solo le dipendenze JavaScript. Le chiamate di azioni potrebbero non riuscire se il bundle dipende dalle dipendenze del file binario perché questo non è incluso con il file `bundle.js`.
+    Il file bundle creato da `webpack` supporta solo le dipendenze JavaScript. Se il bundle ha altre dipendenze, le chiamate di azioni potrebbero non riuscire perché queste dipendenze non sono incluse nel file `bundle.js`.
     {: tip}
 
 
@@ -402,9 +403,11 @@ module.exports = {
 Come alternativa alla scrittura di tutto il tuo codice azione in un unico file di origine JavaScript, puoi inserire il tuo codice in un pacchetto `npm` all'interno di un file .zip.
 {: shortdesc}
 
-Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+Prima di iniziare, [rivedi i pacchetti contenuti nel runtime JavaScript](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-1. Nella directory root, crea un file `package.json`. Esempio:
+1. Nella directory root, crea un file `package.json`. 
+
+**Esempio**
 
     ```json
     {
@@ -424,7 +427,8 @@ Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/ope
     ```
     {: pre}
 
-    **Nota**: mentre la maggior parte dei pacchetti `npm` installa le origini JavaScript su `npm install`, altri installano e compilano anche delle risorse binarie. Il caricamento dei file di archivio supporta solo le dipendenze JavaScript. Se l'archivio include dipendenze binarie, le chiamate di azione potrebbero non riuscire.
+    Mentre la maggior parte dei pacchetti `npm` installa le origini JavaScript su `npm install`, altri installano e compilano anche risorse di file binari. Il caricamento dei file di archivio supporta solo le dipendenze JavaScript. Se l'archivio include dipendenze di file binari, le chiamate di azioni potrebbero non riuscire.
+    {: note}
 
 3. Crea un archivio `.zip` che contiene tutti i file, incluse tutte le dipendenze.
 
@@ -433,7 +437,7 @@ Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/ope
     ```
     {: pre}
 
-    Utenti Windows: l'utilizzo dell'azione di Esplora risorse per la creazione del file .zip comporta la creazione di una struttura file errata. Le azioni del file .zip {{site.data.keyword.openwhisk_short}} devono avere `package.json` al livello root dell'archivio, mentre Esplora risorse lo inserisce in una cartella nidificata. Utilizza invece il comando `zip`.
+    **Utenti Windows** L'utilizzo dell'azione Esplora risorse per la creazione del file .zip produce una struttura di file errata. Le azioni del file .zip {{site.data.keyword.openwhisk_short}} devono avere `package.json` al livello root dell'archivio, mentre Esplora risorse lo inserisce in una cartella nidificata. Utilizza invece il comando `zip`.
     {: tip}
 
 
@@ -446,7 +450,7 @@ Prima di iniziare, [rivedi i pacchetti inclusi nel runtime JavaScript](/docs/ope
 Utilizza un singolo file per scopi di sviluppo o test rapidi. Per le applicazioni di produzione, precompila le tue azioni Go in un eseguibile per ottenere prestazioni migliori o supporto da più file di origine, incluse le librerie dei fornitori.
 {: shortdesc}
 
-Anche se puoi creare un file binario su tutte le piattaforme Go con la compilazione incrociata di `GOOS=Linux` e `GOARCH=amd64`, utilizza la funzione di pre-compilazione integrata nell'immagine contenitore di runtime. Puoi assemblare [più file di origine](#prep_go_multi) o [librerie del fornitore](#prep_go_vendor).
+Anche se puoi creare un file compresso su qualsiasi piattaforma Go eseguendo la compilazione incrociata con `GOOS=Linux` e `GOARCH=amd64`, utilizza la funzione di pre-compilazione incorporata nell'immagine del contenitore di runtime. Puoi assemblare [più file di origine](#prep_go_multi) o [librerie del fornitore](#prep_go_vendor).
 {: tip}
 
 
@@ -456,7 +460,7 @@ Anche se puoi creare un file binario su tutte le piattaforme Go con la compilazi
 - Il nome previsto per il pacchetto del punto di ingresso è `main`. Se il pacchetto contenuto nel tuo codice non è `main`, prendi nota del nome per specificarlo alla creazione dell'azione.
 - Il pacchetto deve essere pubblico.
 
-Esempio:
+**Esempio**
 ```go
     package main
 
@@ -476,8 +480,8 @@ Esempio:
         // return the output JSON
         return msg
     }
-    ```
-    {: codeblock}
+  ```
+  {: codeblock}
 
 ### Inserimento di più file di origine Go in un pacchetto
 {: #prep_go_multi}
@@ -493,7 +497,7 @@ Esempio:
   ```
   {: screen}
 
-2. Importa sottopacchetti. Esempio di importazione del sottopacchetto hello da `main/main.go`:
+2. Importa sottopacchetti. Esempio di `main/main.go` che importa il sottopacchetto hello.
 
   ```go
   package main
@@ -516,7 +520,7 @@ func Main(args map[string]interface{}) map[string]interface{} {
   ```
   {: codeblock}
 
-  Esempio di `hello/hello.go`:
+  Esempio di `hello/hello.go`.
 
   ```go
   package hello
@@ -533,7 +537,7 @@ func Hello(name string) map[string]interface{} {
   ```
   {: codeblock}
 
-3. Compila il codice. Crea un archivio .zip della directory `src`. **Non** includere la directory del progetto di livello superiore `go-action-project/`.
+3. Compila il codice. Crea un archivio .zip della directory `src`. Non includere la directory del progetto di livello superiore `go-action-project/`.
 
   ```bash
   cd src
@@ -542,7 +546,7 @@ cd ..
   ```
   {: pre}
 
-  Puoi eseguire la compilazione in locale impostando il tuo `GOPATH` sull'elemento sovraordinato della directory `src`. Se utilizzi VSCode, devi modificare l'impostazione `go.inferGopath` su `true`.
+  Puoi eseguire la compilazione in locale impostando il tuo `GOPATH` sull'elemento sovraordinato della directory `src`. Se utilizzi il codice VS, devi modificare l'impostazione `go.inferGopath` su `true`.
   {: note}
 
 4. Compila e comprimi l'eseguibile Go come `exec` nella root dell'archivio .zip. Crea l'archivio `hello-bin.zip` immettendo il seguente comando. Devi aver installato la CLI Docker nella tua workstation e `docker` nel tuo `PATH`.
@@ -565,7 +569,7 @@ cd ..
 Puoi includere delle dipendenze popolando una directory `vendor` nell'archivio `zip` di origine durante la compilazione dei file Go. La directory `vendor` non funziona al livello superiore. Devi posizionare la directory `vendor` in `src/` e in una directory del pacchetto.
 {: shortdesc}
 
-Esempio di pacchetto log `logrus` all'interno di un'applicazione `hello.go`:
+Esempio di pacchetto di log `logrus` in un'applicazione `hello.go`.
 
 ```go
 package hello
@@ -593,7 +597,9 @@ func Hello(name string) map[string]interface{} {
 {: codeblock}
 
 </br>
-In questo esempio, la directory `vendor` è ubicata in `src/hello/vendor`. Puoi aggiungere delle librerie di terze parti che vengono utilizzate dal pacchetto `hello`. Puoi utilizzare più strumenti come [dep ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://golang.github.io/dep/docs/installation.html) per popolare e gestire le dipendenze.
+In questo esempio, la directory `vendor` è ubicata in `src/hello/vendor`. Puoi aggiungere delle librerie di terze parti che vengono utilizzate dal pacchetto `hello`. 
+
+Puoi utilizzare più strumenti come [<code>dep</code> ](https://golang.github.io/dep/docs/installation.html){: external} per popolare e gestire le dipendenze.
 
 Puoi utilizzare `dep` creando un file `src/main/Gopkg.toml` descrivendo la versione e l'ubicazione delle librerie.
 
@@ -609,17 +615,13 @@ Popola la directory `vendor` ed esegui `dep ensure`.
 
 
 
-
-
-
 ## Preparazione delle applicazioni Swift
 {: #prep_swift}
 
-I file Swift devono essere compilati in un file binario prima che venga eseguita un'azione. Questo ritardo è noto come ritardo di avvio a freddo. Per evitare il ritardo di avvio a freddo, puoi compilare il file Swift in un file binario e quindi caricarlo in {{site.data.keyword.openwhisk_short}} in un file .zip. Il runtime Docker include un compilatore per aiutare gli utenti a compilare ed impacchettare le azioni Swift 4.2. Le successive chiamate per l'azione sono molto più veloci finché il contenitore che include l'azione non viene eliminato.
+I file Swift devono essere compilati prima di eseguire un'azione. Questo ritardo è noto come ritardo di avvio a freddo. Per evitare il ritardo di avvio a freddo, puoi compilare il tuo file Swift e quindi caricarlo su {{site.data.keyword.openwhisk_short}} in un file .zip. Il runtime Docker include un compilatore per aiutare gli utenti a compilare ed impacchettare le azioni Swift 4.2. Le chiamate successive all'azione sono molto più veloci fino a quando il contenitore con l'azione non viene eliminato.
 
-Le azioni Swift vengono eseguite in un ambiente Linux. Swift su Linux è ancora in fase di sviluppo e {{site.data.keyword.openwhisk_short}} utilizza l'ultima release disponibile. Tali release potrebbero non essere stabili. La versione di Swift utilizzata con {{site.data.keyword.openwhisk_short}} potrebbe essere incongruente con le versioni di Swift dalle release stabili di Xcode su MacOS.
+Le azioni Swift vengono eseguite in un ambiente Linux. Swift su Linux è ancora in fase di sviluppo e {{site.data.keyword.openwhisk_short}} utilizza l'ultima release disponibile. Tali release potrebbero non essere stabili. La versione di Swift utilizzata con {{site.data.keyword.openwhisk_short}} potrebbe essere incongruente con le versioni di Swift dalle release stabili di Xcode su macOS.
 {: important}
-
 
 
 ### Strutturazione del codice Swift
@@ -627,9 +629,9 @@ Le azioni Swift vengono eseguite in un ambiente Linux. Swift su Linux è ancora 
 
 Il nome previsto per la funzione del punto di ingresso è `main`. Se la funzione contenuta nel tuo codice non è `main`, prendi nota del nome per specificarlo alla creazione dell'azione.
 
-Oltre alla firma della funzione principale, Swift 4 fornisce altre due firme che si avvalgono del tipo [Codable ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://developer.apple.com/documentation/swift/codable). Puoi saperne di più sui tipi di dati [codificabili e decodificabili per la compatibilità con rappresentazioni esterne quali JSON ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types).
+Oltre alla firma della funzione principale, Swift 4 fornisce altre due firme che si avvalgono del tipo [<code>Codable</code> ](https://developer.apple.com/documentation/swift/codable){: external}. Puoi ottenere ulteriori informazioni sui tipi di dati che sono [codificabili e decodificabili per la compatibilità con rappresentazioni esterne quali JSON](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
 
-Esempio:
+**Esempio**
 ```swift
 struct Input: Codable {
     let name: String?
@@ -651,7 +653,7 @@ Questo esempio utilizza un parametro di input come `Codable Input` con il campo 
 #### Gestione degli errori in Swift
 {: #prep_swift_error}
 
-Utilizzando il gestore di completamento Codable, puoi passare un errore per indicare un malfunzionamento nella tua azione. [Gestione degli errori in Swift ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html) è simile alla gestione delle eccezioni in altri linguaggi, con l'utilizzo delle parole chiave `try`, `catch` e `throw`.
+Utilizzando il gestore di completamento `Codable`, puoi passare un errore per indicare un malfunzionamento nella tua azione. La [gestione degli errori in Swift](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html){: external} è simile alla gestione delle eccezioni in altri linguaggi, con l'utilizzo delle parole chiave `try`, `catch` e `throw`.
 {: shortdesc}
 
 Il seguente frammento di codice mostra un esempio di gestione di un errore.
@@ -674,16 +676,16 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 {: codeblock}
 
 
-### Inserimento di un file Swift 4.2 in un pacchetto all'interno di un sistema binario
+### Inserimento di un file Swift 4.2 in un pacchetto
 {: #prep_swift42_single}
 
 Compila un singolo file di origine che non dipende da librerie esterne. Utilizza l'indicatore `-compile` con il nome del metodo principale.
 
-Prima di iniziare:
-- [Installa Docker](https://hub.docker.com/search?offering=community&type=edition).
-- [Rivedi i pacchetti inclusi nel runtime Swift](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+**Prima di iniziare**
+- [Installa Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
+- [Rivedi i pacchetti contenuti nel runtime Swift](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-Per inserire la tua applicazione in un pacchetto:
+Inserisci la tua applicazione in un pacchetto.
 
 ```bash
 docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
@@ -697,11 +699,11 @@ Il contenitore Docker legge il contenuto del file da `stdin` e scrive un archivi
 ### Inserimento di progetti e dipendenze con più file per Swift 4.2
 {: #prep_swift42_multi}
 
-Prima di iniziare:
-- [Installa Docker](https://hub.docker.com/search?offering=community&type=edition).
-- [Rivedi i pacchetti inclusi nel runtime Swift](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+**Prima di iniziare**
+- [Installa Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
+- [Rivedi i pacchetti contenuti nel runtime Swift](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-Per inserire la tua applicazione in un pacchetto:
+Inserisci la tua applicazione in un pacchetto.
 
 1. Per compilare più file e includere delle dipendenze esterne, crea la seguente struttura di directory.
 
@@ -743,7 +745,7 @@ import PackageDescription
   ```
   {: codeblock}
 
-2. Crea un archivio .zip con il contenuto della directory:
+2. Crea un archivio .zip con il contenuto della directory.
 
   ```bash
   zip ../action-src.zip -r *
@@ -779,7 +781,7 @@ import PackageDescription
 - Il nome previsto per il metodo del punto di ingresso è `main`. Se la funzione contenuta nel tuo codice non è `main`, prendi nota del nome per specificarlo alla creazione dell'azione.
 {: shortdesc}
 
-Esempio:
+**Esempio**
 ```python
 def main(args):
     name = args.get("name", "stranger")
@@ -793,9 +795,9 @@ def main(args):
 
 Inserisci in un pacchetto il codice Python e i moduli dipendenti, all'interno di un file .zip. In questo esempio, il file di origine che contiene il punto di ingresso è `__main__.py` e i moduli helper si trovano in un file denominato `helper.py`.
 
-Prima di iniziare, [rivedi i pacchetti inclusi nel runtime Python](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+Prima di iniziare, [rivedi i pacchetti contenuti nel runtime Python](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-Per inserire la tua applicazione in un pacchetto:
+Per inserire la tua applicazione in un pacchetto, immetti il seguente comando.
 
 ```bash
 zip -r helloPython.zip __main__.py helper.py
@@ -806,13 +808,13 @@ zip -r helloPython.zip __main__.py helper.py
 ### Inserimento del codice Python con un ambiente virtuale in un pacchetto, all'interno di file .zip
 {: #prep_python_virtenv}
 
-Puoi assemblare le dipendenze Python utilizzando un ambiente virtuale, `virtualenv`. L'ambiente virtuale ti consente di collegare pacchetti aggiuntivi che possono essere installati utilizzando [`pip` ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://packaging.python.org/installing/).
+Puoi assemblare le dipendenze Python utilizzando un ambiente virtuale, `virtualenv`. Utilizzando l'ambiente virtuale, puoi collegare più pacchetti che possono essere installati utilizzando [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
 
-Prima di iniziare, [rivedi i pacchetti inclusi nel runtime Python](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+Prima di iniziare, [rivedi i pacchetti contenuti nel runtime Python](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-Per inserire la tua applicazione in un pacchetto:
+Inserisci la tua applicazione in un pacchetto completando la seguente procedura.
 
-1. Crea un file [requirements.txt ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) che contiene i moduli `pip` e le versioni da installare.
+1. Crea un file [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} che contiene i moduli `pip` e le versioni da installare.
 
   Per mantenere il `virtualenv` su una dimensione minima, aggiungi al file `requirements.txt` solo i moduli che non appartengono all'ambiente di runtime selezionato. Per ulteriori informazioni sui pacchetti inclusi nei runtime Python, vedi la [guida di riferimento al runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) di Python.
   {: tip}
@@ -822,7 +824,7 @@ Per inserire la tua applicazione in un pacchetto:
     * Per `python:3.6`, utilizza l'immagine Docker `ibmfunctions/action-python-v3.6`.
     * Per `python:2`, utilizza l'immagine Docker `openwhisk/python2action`.
 
-   Esempio:
+   **Esempio**
    ```
    docker pull ibmfunctions/action-python-v3.7
    ```
@@ -843,9 +845,6 @@ Per inserire la tua applicazione in un pacchetto:
     {: pre}
 
 
-
-
-
 ## Preparazione delle applicazioni Ruby
 {: #prep_ruby}
 
@@ -858,7 +857,8 @@ Prima di creare un'azione, prepara il tuo codice Ruby.
 * Il nome previsto per la funzione del punto di ingresso è `main`. Se la funzione contenuta nel tuo codice non è `main`, prendi nota del nome per specificarlo alla creazione dell'azione.
 
 
-Esempio:
+**Esempio**
+
 ```ruby
     def main(args)
       name = args["name"] || "stranger"
@@ -866,8 +866,8 @@ Esempio:
       puts greeting
       { "greeting" => greeting }
     end
-    ```
-    {: codeblock}
+```
+{: codeblock}
 
 ### Inserimento di codice Ruby in un pacchetto
 {: #prep_ruby_pkg}
@@ -896,7 +896,7 @@ Prima di creare un'azione, prepara il tuo codice PHP.
 - Le azioni PHP utilizzano sempre un array associativo e ne restituiscono un altro.
 - Il nome previsto per la funzione del punto di ingresso è `main`. Se la funzione contenuta nel tuo codice non è `main`, prendi nota del nome per specificarlo alla creazione dell'azione.
 
-Esempio:
+**Esempio**
 ```php
 <?php
 function main(array $args) : array
@@ -915,26 +915,20 @@ function main(array $args) : array
 
 Puoi inserire file PHP o pacchetti dipendenti in un pacchetto, sotto forma di file .zip.
 
-Prima di iniziare, [rivedi i pacchetti inclusi nel runtime PHP](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) per vedere se il runtime comprende già una dipendenza della tua applicazione. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
+Prima di iniziare, [rivedi i pacchetti contenuti nel runtime PHP](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) per vedere se una dipendenza della tua applicazione è già inclusa nel runtime. Se la dipendenza non è inclusa, devi inserirla nel pacchetto insieme alla tua applicazione.
 
-Per inserire la tua applicazione in un pacchetto:
+Per inserire la tua applicazione in un pacchetto, immetti il seguente comando.
 
 ```bash
 zip -r ARCHIVE_NAME.zip FILE_1.php FILE_2.php
 ```
 {: pre}
 
-Esempio:
+**Esempio**
 ```bash
 zip -r helloPHP.zip index.php helper.php
 ```
 {: pre}
-
-
-
-
-
-
 
 ## Preparazione delle applicazioni Java
 {: #prep_java}
@@ -946,75 +940,101 @@ Prima di creare un'azione, prepara il tuo codice Java.
 
 Un'azione Java è un programma Java con un metodo denominato `main`. `main` deve avere la seguente firma.
 
-
+**Esempio**
 ```java
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 {: codeblock}
 
-
 * Devi specificare il nome della classe principale utilizzando `--main`. Una classe principale idonea è una classe che implementa un metodo `main` statico. Se la classe non si trova nel pacchetto predefinito, utilizza il nome classe Java completo, ad esempio, `--main com.example.MyMain`.
-* Puoi personalizzare il nome del metodo della tua azione Java. Per farlo, specifica il nome del metodo completo della tua azione, ad esempio, `--main com.example.MyMain#methodName`.
-* Il tipo di azione viene determinato utilizzando l'estensione del file di origine.
-
-Esempio:
-```java
-import com.google.gson.JsonObject;
-public class Hello {
-    public static JsonObject main(JsonObject args) {
-        String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
-        return response;
-    }
-}
-```
-{: codeblock}
-
+* Puoi personalizzare il nome del metodo della tua azione Java specificando il nome del metodo completo dell'azione, ad esempio `--main com.example.MyMain#methodName`.
 
 ### Inserimento di codice Java in un pacchetto
 {: #prep_java_pkg}
 
-Per compilare, testare ed archiviare i file Java, devi avere [JDK 8 ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](http://openjdk.java.net/install) installato localmente.
+
+**Prima di iniziare**
+Devi avere [JDK 8](http://openjdk.java.net/install/){: external} installato localmente. In questo esempio, viene utilizzato [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
+
+Se utilizzi una versione JDK diversa da JDK 8, quando compili il tuo codice devi specificare `--release 8` con il comando `javac`.
+{: note}
+
+Per creare un'azione Java, completa la seguente procedura.
 
 1. Salva il seguente codice in un file denominato `Hello.java`.
 
-    ```java
-    import com.google.gson.JsonObject;
+  ```java
+  import com.google.gson.JsonObject;
 public class Hello {
-        public static JsonObject main(JsonObject args) {
-            String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
+      public static JsonObject main(JsonObject args) {
+          String name = "stranger";
+          if (args.has("name"))
+              name = args.getAsJsonPrimitive("name").getAsString();
+          JsonObject response = new JsonObject();
+          response.addProperty("greeting", "Hello, " + name + "!");
         return response;
     }
-    }
-    ```
-    {: codeblock}
+  }
+  ```
+  {: codeblock}
 
-2. Compila il file `Hello.java` in un file di classi.
+2. Scarica [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/).
 
-    ```
-    javac Hello.java
-    ```
-    {: pre}
+3. Aggiungi `gson-2.8.5.jar` al tuo `ClASSPATH`. Questo esempio utilizza `gson-2.8.5.jar`, che viene salvato in una cartella `test` nella directory `Desktop`.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+  ```
+  {: pre}
 
-2. Comprimi il file di classi in un file JAR denominato `hello.jar`. **Nota**: [google-gson ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://github.com/google/gson) deve esistere nella tua CLASSPATH Java.
-3.
-    ```
-    jar cvf hello.jar Hello.class
-    ```
-    {: pre}
+4. Aggiungi la cartella `bin` del tuo JDK al `CLASSPATH`. Questo esempio utilizza `openjdk-8`.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: pre}
 
+5. Verifica che la cartella `bin` JDK e il `gson-2.8.5.jar` siano presenti nel tuo `CLASSPATH`.
+  ```
+  echo $CLASSPATH
+  ```
+  {: pre}
+
+  **Output di esempio**
+  ```
+  /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: screen}
+
+6. Passa alla cartella in cui è archiviato il tuo file `Hello.java`. In questo esempio, il file `Hello.java` è salvato nella cartella `Desktop/test`.
+  ```
+  cd Desktop/test
+  ```
+  {: pre}
+
+7. Compila il tuo file `Hello.java` in un file di classe.
+  ```
+  javac Hello.java
+  ```
+  {: pre}
+
+8. Comprimi il file di classe in un file .jar denominato `hello.jar`.
+
+  ```
+  jar cvf hello.jar Hello.class
+  ```
+  {: pre}
+
+**Passi successivi**
+Puoi creare un'azione con il tuo file `hello.jar`. Poiché il file di classe che hai creato non utilizza il nome predefinito `main`, devi impostare l'indicatore `--main` su `Hello` quando crei la tua azione. L'indicatore `--main` deve corrispondere alla tua `class` Java. Per ulteriori informazioni, vedi [Creazione di azioni](/docs/openwhisk?topic=cloud-functions-actions).
+ 
+Quando aggiorni il tuo codice Java, devi ripetere questi passi per ricompilare il codice in un nuovo file `.jar`.
+{: note}
 
 ### Inserimento di codice Java in un pacchetto con Gradle
 {: #prep_java_gradle}
 
-Puoi utilizzare uno strumento di compilazione come [Gradle](https://gradle.org) per recuperare le librerie da un repository come Maven Central e creare un archivio JAR finale che include il tuo codice e tutte le dipendenze.
+Invece di compilare dalla riga di comando, puoi utilizzare uno strumento di compilazione come [Gradle](https://gradle.org){: external} per recuperare le librerie da un repository come Maven Central. Puoi utilizzare Gradle per recuperare e creare un archivio .jar finale che include il tuo codice e tutte le dipendenze.
 
 Questo è un esempio di utilizzo di Gradle per compilare un'azione Java che utilizza la libreria `com.google.zxing` che fornisce la funzionalità per generare un'immagine codice QR.
 
@@ -1052,12 +1072,9 @@ Questo è un esempio di utilizzo di Gradle per compilare un'azione Java che util
   ```
   {: codeblock}
 
-2. Esegui il comando `gradle jar`, che genera un archivio JAR nella directory `build/libs/`.
+2. Esegui il comando `gradle jar`, che genera un archivio .jar nella directory `build/libs/`.
 
-  Per ulteriori informazioni, leggi la documentazione di Gradle [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies).
-
-
-
+  Per ulteriori informazioni, leggi la documentazione di Gradle [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
 
 
 ## Preparazione di applicazioni .NET Core
@@ -1070,7 +1087,7 @@ Prima di creare un'azione, prepara il tuo codice .NET Core.
 
 Un'azione .NET Core è una libreria di classi .NET Core con un metodo previsto denominato `Main`. Se il metodo contenuto nel tuo codice non è `Main`, prendi nota del nome per specificarlo alla creazione dell'azione in formato: `--main {Assembly}::{Class Full Name}::{Method}`
 
-Esempio:
+**Esempio**
 ```
 Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ```
@@ -1078,14 +1095,14 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ### Inserimento di codice .NET Core in un pacchetto
 {: #prep_dotnet_pkg}
 
-Prima di iniziare:
-Per compilare, testare e archiviare progetti .NET Core devi:
-- Installare l'[SDK .NET Core](https://dotnet.microsoft.com/download) in locale.
+**Prima di iniziare**
+Per compilare, testare e archiviare progetti .NET Core, devi:
+- Installare l'[SDK .NET Core](https://dotnet.microsoft.com/download){: external} in locale.
 - Impostare la variabile di ambiente `DOTNET_HOME` sull'ubicazione in cui si trova l'eseguibile `dotnet`.
 
 
 
-Per inserire il tuo codice in un pacchetto:
+Per inserire il tuo codice in un pacchetto, immetti i seguenti comandi.
 
   1. Crea un progetto C# denominato `Apache.OpenWhisk.Example.Dotnet`.
 
@@ -1101,7 +1118,7 @@ Per inserire il tuo codice in un pacchetto:
       ```
       {: pre}
 
-  3. Installa il pacchetto [Newtonsoft.Json](https://www.newtonsoft.com/json) NuGet nel seguente modo.
+  3. Installa il [pacchetto <ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph>](https://www.nuget.org/packages/Newtonsoft.Json/){: external}.
 
       ```bash
       dotnet add package Newtonsoft.Json -v 12.0.1
@@ -1140,7 +1157,7 @@ Per inserire il tuo codice in un pacchetto:
       ```
       {: pre}
 
-  6. Passa alla directory out.
+  6. Passa alla directory `out`.
 
       ```bash
       cd out
@@ -1153,5 +1170,6 @@ Per inserire il tuo codice in un pacchetto:
       zip -r -0 ../helloDotNet.zip *
       ```
       {: pre}
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: annotations, annotate, package, parameters, actions
+keywords: annotations, annotate, package, parameters, actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,25 +24,26 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Annotations
 {: #annotations}
 
 Les actions, déclencheurs, règles et packages {{site.data.keyword.openwhisk}} (désignés collectivement par le terme entités) peuvent inclure des annotations.
 {: shortdesc}
 
-Les annotations sont liées aux entités comme des paramètres. Les annotations se composent d'une `clé` qui définit un nom et une `valeur` qui définit la valeur. Les annotations sont le plus souvent utilisés pour documenter des actions et des packages. Nombre de packages du catalogue {{site.data.keyword.openwhisk_short}} comportent des annotations, par exemple une description de la fonctionnalité qui est proposée par ses actions, paramètres à utiliser aux paramètres d'heure de liaison de package, d'heure d'appel, ou si un paramètre est une valeur confidentielle. Les annotations sont inventées en fonction des besoins, par exemple, pour autoriser l'intégration d'interface utilisateur.
+Les annotations sont liées aux entités comme des paramètres. Les annotations se composent d'une `clé` qui définit un nom et une `valeur` qui définit la valeur. Les annotations sont le plus souvent utilisés pour documenter des actions et des packages. Les packages du catalogue {{site.data.keyword.openwhisk_short}} comportent des annotations. Ces annotations incluent des descriptions de la fonctionnalité offerte par ses actions, des paramètres à utiliser lors de la liaison de package, des paramètres d'heure d'appel et indiquent si un paramètre est un secret. Les annotations sont inventées en fonction des besoins, par exemple, pour autoriser l'intégration d'interface utilisateur.
 
 Vous pouvez documenter une entité à l'aide de l'interface de ligne de commande en utilisant l'indicateur `--annotation` ou `-a`.
 
 ## Annotations d'action
 {: #annotations_action}
 
-Les annotations décrivant les actions sont les suivantes :
-
-- `description` : description concise de l'action.
-- `parameters` : tableau décrivant les actions requises pour exécuter l'action.
-- `sampleInput` : exemple illustrant le schéma d'entrée avec des valeurs typiques.
-- `sampleOutput` : exemple illustrant le schéma de sortie, généralement pour l'exemple `sampleInput`.
+| Annotation | Description |
+| --- | --- |
+| `description` | Description de l'action. |
+| `parameters` | Tableau décrivant les actions requises pour exécuter l'action. |
+| `sampleInput` | Exemple illustrant le schéma d'entrée avec des valeurs typiques. |
+| `sampleOutput` | Exemple de schéma de sortie, généralement pour `sampleInput`. |
 
 
 
@@ -59,56 +61,55 @@ ibmcloud fn action create echo echo.js \
 ## Annotations d'action Web
 {: #annotations-specific-to-web-actions}
 
-La valeur `true` doit être affectée de manière explicite à ces annotations d'action Web pour permettre l'interactivité d'API.
+La valeur `true` doit être affectée de manière explicite à ces annotations d'action Web pour permettre l'interactivité d'API. 
 
-- `web-export` : lorsqu'elle est appliquée à une action, cette action devient une [action Web](/docs/openwhisk?topic=cloud-functions-actions_web). L'action devient accessible aux appels REST sans authentification de sorte que les utilisateurs peuvent accéder aux actions depuis un navigateur.
-    * **Remarque **: Le propriétaire de l'action Web supporte le coût de leur exécution sur le système. En d'autres termes, le propriétaire de l'action possède également l'enregistrement des activations.
-- `final` : lorsqu'elle est appliquée à une action, tout paramètre action défini préalablement devient immuable. Les paramètres ne peuvent pas être remplacés par des paramètres fournis lors de l'appel.
-- `raw-http` : lorsqu'elle est appliquée à une action comportant l'annotation `web-export`, les paramètres de demande et de corps de la demande HTTP sont transmis à l'action en tant que propriétés réservées.
-- `web-custom-options` : permet à une action Web de répondre à des demandes OPTIONS avec des en-têtes personnalisés. Dans le cas contraire, une [réponse CORS par défaut](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options) s'applique.
-- `require-whisk-auth` : l'action Web peut uniquement être appelée par des demandes qui fournissent des données d'authentification appropriées.
-    * Lorsqu'elle est définie sur une valeur booléenne, elle contrôle si la valeur d'authentification de base de la demande est authentifiée. La valeur `true` authentifie les données d'identification alors que `false` appelle l'action sans authentification.
-    * Lorsqu'elle est définie sur un entier ou une chaîne, cette valeur doit correspondre à la valeur d'en-tête `X-Require-Whisk-Auth` de la demande.
-    * **Remarque **: Le propriétaire de l'action Web supporte le coût de leur exécution sur le système. En d'autres termes, le propriétaire de l'action possède également l'enregistrement des activations.
+| Annotation | Description |
+| --- | --- | 
+| `web-export` | Lorsqu'elle est appliquée à une action, l'action devient une [action Web](/docs/openwhisk?topic=cloud-functions-actions_web). L'action devient accessible aux appels REST sans authentification de sorte que les utilisateurs peuvent accéder aux actions depuis un navigateur. Le propriétaire de l'action Web supporte le coût de leur exécution sur le système. En d'autres termes, le propriétaire de l'action possède également l'enregistrement des activations. |
+| `final` | Quand elle est appliquée à une action, tout paramètre action défini précédemment ne peut pas être remplacé par un paramètre fourni lors de l'appel. |
+| `raw-http` | Lorsqu'elle est appliquée à une action comportant l'annotation `web-export` , la requête HTTP et les paramètres de corps sont transmis à l'action en tant que propriétés réservées. |
+| `web-custom-options` | Permet à une action Web de répondre aux demandes OPTIONS avec des en-têtes personnalisés. Dans le cas contraire, une [réponse CORS par défaut](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options) s'applique. |
+| `require-whisk-auth` | L'action Web peut uniquement être appelée par des demandes qui fournissent les données d'authentification appropriées. Lorsqu'elle est définie sur une valeur booléenne, elle contrôle si la valeur d'authentification de base de la demande est authentifiée. La valeur `true` authentifie les données d'identification alors que `false` appelle l'action sans authentification. Lorsqu'elle est définie sur un entier ou une chaîne, cette valeur doit correspondre à la valeur d'en-tête `X-Require-Whisk-Auth` de la demande. |
 
 ## Annotations de package
 {: #annotations_package}
 
-Les annotations décrivant les packages sont les suivantes :
-
-- `description` : description concise du package.
-- `parameters` : tableau décrivant les paramètres définis dans la portée du package.
+| Annotation | Description |
+| --- | --- |
+| `description` | Description du package. |
+| `parameters` | Tableau qui décrit les paramètres qui sont étendus au package. |
 
 ## Annotations de paramètre
 {: #annotations_parameter}
 
-Les annotations décrivant les paramètres sont les suivantes :
-
-- `name` : nom du paramètre.
-- `description` : description concise du paramètre.
-- `doclink` : lien vers de la documentation supplémentaire relative au paramètre (utile pour les jetons OAuth).
-- `required` : valeur True pour les paramètres requis et valeur false pour les paramètres facultatifs.
-- `bindTime` : valeur True si le paramètre doit être spécifié lorsqu'un package est lié.
-- `type` : type du paramètre, `password` ou `array` (mais peut être utilisé plus largement).
+| Annotation | Description |
+| --- | --- |
+| `name` | Nom du paramètre. |
+| `description` | Description concise du paramètre. |
+| `doclink` | Lien vers une documentation supplémentaire pour le paramètre (utile pour les jetons OAuth). |
+| `required` | Valeur True pour les paramètres requis et valeur false pour les paramètres facultatifs.|
+| `bindTime` | True si le paramètre est spécifié lorsqu'un package est lié. |
+| `type` | Type du paramètre, `password` ou `array` (mais peut être utilisé plus largement).|
 
 ## Annotations d'activation
 {: #annotations_activation}
 
 Vous pouvez documenter des enregistrements d'activation avec les annotations suivantes :
 
-- `path` : chemin d'accès complet de l'action qui a généré l'activation. Notez que si cette activation était le résultat d'une action dans une liaison de package, le chemin fait référence au package parent.
-- `kind` : type d'action exécutée et un des types d'environnement d'exécution OpenWhisk de support.
-- `Limits` : limites de temps, de mémoire et de journal auxquelles cette activation est soumise.
+| Annotation | Description |
+| --- | --- |
+| `path` | Nom de chemin qualifié complet de l'action ayant généré l'activation. Si cette activation était le résultat d'une action dans une liaison de package, le chemin fait référence au package parent.|
+| `kind` | Type d'action exécutée et un des types d'environnement d'exécution {{site.data.keyword.openwhisk_short}} pris en charge. |
+| `limits` | Limites de temps, mémoire et journal auxquelles cette activation était soumise. |
 
 Pour les activations liées aux séquences, le système génère les annotations suivantes :
 
-- `topmost` : présente uniquement pour une action de séquence la plus vers l'extérieur.
-- `causedBy` : présente uniquement pour les actions qui sont contenues dans une séquence.
-
-Pour fournir une transparence de performance, les activations enregistrent également :
-
-- `waitTime` : temps passé à attendre dans le système OpenWhisk interne. C'est à peu près le temps écoulé entre la réception de la demande d'activation par le contrôleur et la mise à disposition d'un conteneur pour l'action par l'auteur de l'appel. Actuellement, cette valeur est présente uniquement pour les activations qui ne sont pas liées à des séquences. Pour les séquences, ces informations peuvent être dérivées de l'enregistrement d'activation de séquence `topmost`.
-- `initTime` : temps passé à initialiser la fonction. Si cette valeur est présente, l'action nécessitait une initialisation et elle représente un démarrage à froid. Une activation à chaud ignore l'initialisation, et dans ce cas, l'annotation n'est pas générée.
+| Annotation | Description |
+| --- | --- |
+| `topmost` | Cette annotation est présente uniquement pour une action de séquence la plus vers l'extérieur. |
+| `causedBy` | Cette annotation est présente uniquement pour les actions qui sont contenues dans une séquence. |
+| `waitTime` | Temps passé à attendre dans le système {{site.data.keyword.openwhisk_short}} interne. Il s'agit à peu près du temps écoulé entre la réception de la demande d'activation et la mise à disposition, par l'auteur de l'appel, d'un conteneur pour l'action. Cette valeur est uniquement présente pour les activations non liées à la séquence. Pour les séquences, ces informations peuvent être dérivées de l'enregistrement d'activation de séquence `topmost`. |
+| `initTime` | Temps passé à initialiser la fonction. Si cette valeur est présente, l'action nécessitait une initialisation et elle représente un démarrage à froid. Une activation à chaud ignore l'initialisation, et dans ce cas, l'annotation n'est pas générée. |
 
 L'exemple suivant présente ces annotations telles qu'elles apparaîtraient dans un enregistrement d'activation :
 
@@ -141,4 +142,7 @@ L'exemple suivant présente ces annotations telles qu'elles apparaîtraient dans
 ]
 ```
 {: codeblock}
+
+
+
 

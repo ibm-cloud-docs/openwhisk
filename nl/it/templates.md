@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploy, deployment templates, templates, example, quickstart
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Distribuzione dei template Quickstart
 {: #templates}
 
-{{site.data.keyword.openwhisk}} offre un catalogo di template per aiutarti a iniziare rapidamente il tuo prossimo progetto. I template sono una combinazione di azioni, trigger e sequenze. Alcuni template inoltre incorporano altre istanze del servizio da {{site.data.keyword.Bluemix_notm}}. Utilizzando i template, puoi creare rapidamente e facilmente un progetto e iniziare subito la codifica.
+{{site.data.keyword.openwhisk}} offre un catalogo di template per aiutarti a iniziare rapidamente il tuo prossimo progetto. I template sono una combinazione di azioni, trigger e sequenze. Alcuni template inoltre incorporano altre istanze del servizio da {{site.data.keyword.cloud_notm}}. Utilizzando i template, puoi creare rapidamente e facilmente un progetto e iniziare subito la codifica.
 {: shortdesc}
 
 
@@ -35,12 +37,12 @@ subcollection: cloud-functions
 
 | Nome | Descrizione | Runtime supportati | Repository origine |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | Quando un documento viene modificato o aggiunto in un database {{site.data.keyword.cloudantfull}}, registra la modifica nella console. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-cloudant-trigger) |
-| [Upload Image](#image-template) | Utilizza un'azione web per caricare un'immagine nel bucket di un'istanza {{site.data.keyword.cos_full}} e poi richiamare una miniatura di tale immagine. | Node.js | [Codice](https://github.com/ibm-functions/template-cloud-object-storage)
-| [Get HTTP Resource](#get-http-resource-template) | Richiama un'azione web utilizzando un evento HTTP e ottieni i dati dall'API Yahoo Weather. | Node.js, Python | [Codice](https://github.com/ibm-functions/template-get-external-resource)
-| [Hello World](#hello-world-template) | Crea un'azione di base che accetta un oggetto JSON come un singolo parametro. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-hello-world)
-| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | Quando vengono aggiunti dei nuovi dati in un argomento {{site.data.keyword.messagehub_full}}, registra la modifica nella console. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-messagehub-trigger)
-| [Periodic Slack Reminder](#slack-reminder-template) | Utilizza un webhook su Slack in base a un trigger periodico. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-reminder-slack)
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | Quando un documento viene modificato o aggiunto in un database {{site.data.keyword.cloudantfull}}, registra la modifica nella console. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Upload Image](#image-template) | Utilizza un'azione web per caricare un'immagine nel bucket di un'istanza {{site.data.keyword.cos_full}} e poi richiamare una miniatura di tale immagine. | Node.js | [Codice](https://github.com/ibm-functions/template-cloud-object-storage){: external}
+| [Get HTTP Resource](#get-http-resource-template) | Richiama un'azione web utilizzando un evento HTTP e ottieni i dati dall'API Yahoo Weather. | Node.js, Python | [Codice](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | Crea un'azione di base che accetta un oggetto JSON come un singolo parametro. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | Quando vengono aggiunti dei nuovi dati in un argomento {{site.data.keyword.messagehub_full}}, registra la modifica nella console. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Utilizza un webhook su Slack in base a un trigger periodico. | Node.js, Swift, Python, PHP | [Codice](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 Puoi accedere al codice di ciascun template nel rispettivo repository di codici, modificarlo a piacere e creare la tua funzione in base ad esso.
 {: tip}
@@ -54,7 +56,7 @@ Il template {{site.data.keyword.cloudant_short_notm}} crea una sequenza di azion
 ### Distribuzione del template {{site.data.keyword.cloudant_short_notm}} Events dall'IU
 {: #cloudant-template-ui}
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -69,13 +71,14 @@ Il template {{site.data.keyword.cloudant_short_notm}} crea una sequenza di azion
     2. Crea l'istanza del servizio {{site.data.keyword.cloudant_short_notm}}.
     3. Crea una serie di credenziali del servizio.
     4. Fai clic su **OK** per chiudere la pagina di configurazione {{site.data.keyword.cloudant_short_notm}} e ritornare alla console {{site.data.keyword.openwhisk_short}}.
-    5. Nell'elenco **Istanza Cloudant**, puoi ora selezionare **Immettere le tue credenziali** e fornisci le seguenti informazioni:
-      * Nome utente: il tuo nome utente {{site.data.keyword.cloudant_short_notm}}
-      * Password: la tua password {{site.data.keyword.cloudant_short_notm}}
-      * Host: `<username>.cloudant.com`
-      * Database: il nome del tuo database {{site.data.keyword.cloudant_short_notm}}
+    5. Nell'elenco **Istanza Cloudant**, puoi ora selezionare **Immetti le tue credenziali** e fornisci le seguenti informazioni.
+        
+        * `Username` - Il tuo nome utente {{site.data.keyword.cloudant_short_notm}}.
+        * `Password` - La tua password {{site.data.keyword.cloudant_short_notm}}.
+        * `Host` - `<username>.cloudant.com`. 
+        * `Database` - Il nome del tuo database {{site.data.keyword.cloudant_short_notm}}.
 
-5. Fai clic su **Distribuisci**. Dopo la distribuzione del template, puoi apportare ulteriori modifiche al codice per personalizzarlo secondo necessità oppure tornare indietro e consultare il catalogo dei template disponibili.
+6. Fai clic su **Distribuisci**. Dopo la distribuzione del template, puoi apportare ulteriori modifiche al codice per personalizzarlo secondo necessità oppure tornare indietro e consultare il catalogo dei template disponibili.
 
 ### Distribuzione del template {{site.data.keyword.cloudant_short_notm}} Events dalla CLI
 {: #cloudant-template-cli}
@@ -116,13 +119,13 @@ Il template {{site.data.keyword.cloudant_short_notm}} crea una sequenza di azion
 ## Distribuzione del template Upload Image
 {: #image-template}
 
-Il template Upload Image crea un'azione web che ti consente di caricare un'immagine in un bucket {{site.data.keyword.cos_full_notm}} tramite una piccola interfaccia. Il template richiama quindi l'immagine come una miniatura e la visualizza nell'interfaccia dell'azione web.
+Il template Upload Image crea un'azione web che puoi utilizzare per caricare un'immagine in un bucket {{site.data.keyword.cos_full_notm}} tramite una piccola interfaccia. Il template richiama quindi l'immagine come una miniatura e la visualizza nell'interfaccia dell'azione web.
 
 
 ### Distribuzione del template Upload Image dall'IU
 {: #image-template-ui}
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -131,12 +134,12 @@ Il template Upload Image crea un'azione web che ti consente di caricare un'immag
 4. Immetti un nome per il tuo pacchetto o utilizza il nome predefinito `upload-image` e fai clic su **Avanti**.
 
 6. Il template richiede le credenziali del servizio da un'istanza del servizio {{site.data.keyword.cos_full_notm}}. Nell'elenco **{{site.data.keyword.cos_full_notm}}**, seleziona una delle seguenti opzioni:
-  * **Crea una nuova istanza**: se non hai un'istanza del servizio esistente, seleziona questa opzione per crearne una.
+  * **Crea un'istanza**. Se non hai un'istanza del servizio esistente, seleziona questa opzione per crearne una.
       1. Nella pagina di creazione dell'istanza del servizio {{site.data.keyword.cos_full_notm}} che viene aperta, crea un'istanza del servizio.
       2. [Crea una serie di credenziali del servizio HMAC](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
       3. [Crea almeno un bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
-  * **Immetti le tue credenziali**: seleziona questa opzione per immettere manualmente le tue credenziali per un'istanza del servizio {{site.data.keyword.cos_full_notm}}. Le credenziali devono avere le chiavi HMAC e le istanze del servizio devono avere almeno un bucket.
-  * **Istanze esistenti**: se hai qualche istanza {{site.data.keyword.cos_full_notm}} esistente, seleziona una delle istanze dall'elenco. Le credenziali devono avere le chiavi HMAC e le istanze del servizio devono avere almeno un bucket.
+  * **Immetti le tue credenziali**. Seleziona questa opzione per immettere manualmente le tue credenziali per un'istanza del servizio {{site.data.keyword.cos_full_notm}}. Le credenziali devono avere le chiavi HMAC e le istanze del servizio devono avere almeno un bucket.
+  * **Istanze esistenti**. Se hai delle istanze esistenti di {{site.data.keyword.cos_full_notm}}, seleziona una delle istanze dall'elenco. Le credenziali devono avere le chiavi HMAC e le istanze del servizio devono avere almeno un bucket.
 
 7. Fai clic su **Distribuisci**.
 
@@ -151,7 +154,7 @@ Il template Upload Image crea un'azione web che ti consente di caricare un'immag
 ### Distribuzione del template Upload Image dalla CLI
 {: #image-template-cli}
 
-1. [Installa il pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage.
+1. [Installa il pacchetto {{site.data.keyword.cos_full_notm}}](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
 2. Clona il repository del template.
     ```
@@ -165,13 +168,13 @@ Il template Upload Image crea un'azione web che ti consente di caricare un'immag
     ```
     {: pre}
 
-3. Distribuisci il template, utilizzando un nome di pacchetto personalizzato e il nome del tuo bucket {{site.data.keyword.cos_full_notm}} come variabili di ambiente.
+3. Distribuisci il template utilizzando un nome di pacchetto personalizzato e il nome del tuo bucket {{site.data.keyword.cos_full_notm}} come variabili di ambiente.
     ```
     PACKAGE_NAME=<name> BUCKET_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
-4. Nella [pagina Azioni ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/actions) della console {{site.data.keyword.openwhisk_short}}, fai clic sull'azione `process-change`.
+4. Nella [pagina Azioni](https://cloud.ibm.com/openwhisk/actions){: external} della console {{site.data.keyword.openwhisk_short}}, fai clic sull'azione `process-change`.
 
 5. Nella navigazione sulla sinistra, fai clic su **Endpoint**.
 
@@ -180,12 +183,15 @@ Il template Upload Image crea un'azione web che ti consente di caricare un'immag
 ## Distribuzione del template Get HTTP Resource
 {: #get-http-resource-template}
 
-Il template Get HTTP Resource crea un'azione per recuperare una risorsa esterna, l'API Yahoo Weather, e quindi restituisce i dati. L'azione è abilitata come azione web, permettendone la chiamata con un URL abilitato a CORS e che non richiede una chiave di autenticazione, utile per creare backend per le applicazioni web. **Nota**: per impostazione predefinita, l'endpoint `get-http-resource` è pubblicamente disponibile per chiunque lo richiami.
+Il template Get HTTP Resource crea un'azione per recuperare una risorsa esterna, l'API Yahoo Weather, e quindi restituisce i dati. L'azione è abilitata come azione web, il che ne permette la chiamata con un URL, che è abilitata a CORS e non richiede una chiave di autenticazione, utile per creare backend per le applicazioni web. 
+
+Per impostazione predefinita, l'endpoint `get-http-resource` è pubblicamente disponibile per chiunque lo richiami.
+{: note}
 
 ### Distribuzione del template Get HTTP Resource dall'IU
 {: #get-http-resource-template-ui}
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -240,7 +246,7 @@ Puoi distribuire questa azione Hello World di base per iniziare ad utilizzare {{
 ### Distribuzione del template Hello World dall'IU
 {: #hello-world-template-ui}
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -283,7 +289,7 @@ Il template {{site.data.keyword.messagehub}} Events crea un'azione e un trigger 
 ### Distribuzione del template {{site.data.keyword.messagehub}} Events dall'IU
 {: #messagehub-events-template-ui}
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -294,19 +300,19 @@ Il template {{site.data.keyword.messagehub}} Events crea un'azione e un trigger 
     2. Scegli il runtime per le tue azioni: Node.js 8, Node.js 6, Python 3, Swift 4 o PHP 7.1.
     3. Fai clic su **Avanti**.
 
-5. Crea il trigger {{site.data.keyword.messagehub}}. I trigger richiamano le azioni quando ricevono eventi dalle origini evento. Per creare il trigger, devi fornire le credenziali del servizio e un'istanza del servizio {{site.data.keyword.messagehub}}.
+5. Crea il trigger {{site.data.keyword.messagehub}}. I trigger richiamano le azioni quando ricevono eventi dalle origini evento. Per creare il trigger, devi fornire un'istanza del servizio {{site.data.keyword.messagehub}} e le credenziali del servizio.
     1. Nell'elenco **Istanza MessageHub**, seleziona **Crea la tua istanza**. Viene aperta la pagina di creazione {{site.data.keyword.messagehub}}.
     2. Crea l'istanza del servizio {{site.data.keyword.messagehub}}.
     3. Crea una serie di credenziali del servizio.
     4. Fai clic su **OK** per chiudere la pagina di creazione {{site.data.keyword.messagehub}} e ritornare alla console {{site.data.keyword.messagehub}}.
-    5. Nell'elenco **Istanza MessageHub**, puoi ora selezionare **Immettere le tue credenziali** e fornisci le seguenti informazioni:
-      * Nome utente: il tuo nome utente {{site.data.keyword.messagehub}}
-      * Password: la tua password {{site.data.keyword.messagehub}}
-      * kafka_admin_url: il tuo URL REST di gestione {{site.data.keyword.messagehub}}
-      * Database: il nome del tuo database {{site.data.keyword.messagehub}}
-      * Argomento: l'argomento a cui sottoscriversi
+    5. Nell'elenco **Istanza MessageHub**, puoi ora selezionare **Immetti le tue credenziali** e fornisci le seguenti informazioni:
+        * `Username` - Il tuo nome utente {{site.data.keyword.messagehub}}.
+        * `Password` - La tua password {{site.data.keyword.messagehub}}.
+        * `kafka_admin_url` - Il tuo URL REST di gestione {{site.data.keyword.messagehub}}.
+        * `Database` - Il nome del tuo database {{site.data.keyword.messagehub}}.
+        * `Topic` - L'argomento a cui sottoscrivere.
 
-5. Fai clic su **Distribuisci**.
+6. Fai clic su **Distribuisci**.
 
 Dopo la distribuzione del template, puoi apportare ulteriori modifiche al codice per personalizzarlo secondo necessità oppure tornare indietro e consultare il catalogo dei template disponibili.
 
@@ -325,7 +331,7 @@ Dopo la distribuzione del template, puoi apportare ulteriori modifiche al codice
     ```
     {: pre}
 
-3. Distribuisci il template, utilizzando le seguenti variabili di ambiente.
+3. Distribuisci il template utilizzando le seguenti variabili di ambiente.
     ```
     KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
@@ -356,7 +362,7 @@ Il template Periodic Slack Reminder pubblica in Slack sulla base di un intervall
 
 1. Vai a https://api.slack.com/incoming-webhooks per configurare l'URL dei webhook in entrata richiesto.
 
-1. Vai alla [pagina Crea ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/create) nella console {{site.data.keyword.openwhisk_short}}.
+1. Vai alla [pagina di creazione ](https://cloud.ibm.com/openwhisk/create){: external} nella console {{site.data.keyword.openwhisk_short}}.
 
 2. Fai clic su **Template Quickstart**.
 
@@ -369,9 +375,9 @@ Il template Periodic Slack Reminder pubblica in Slack sulla base di un intervall
     4. Fai clic su **Avanti**.
 
 5. Crea il trigger Periodic Slack Reminder. I trigger richiamano le azioni quando ricevono eventi dalle origini evento.
-    1. Specifica l'intervallo di tempo del trigger utilizzando un'espressione pattern o cron.
-        * Pattern: seleziona l'ora UTC per i giorni della settimana, le ore e i minuti.
-        * Cron: specifica una sequenza cron basata sulla <a href="http://crontab.org">sintassi crontab UNIX</a>. Utilizza 5 o meno campi separati da spazi nel formato `X X X X X`.
+    1. Specifica l'intervallo di tempo del trigger utilizzando un'espressione Pattern o `Cron`.
+        * `Pattern` - Seleziona le ore UTC per i giorni feriali, le ore e i minuti.
+        * `Cron` - Specifica una sequenza cron basata sulla <a href="http://crontab.org">sintassi crontab UNIX</a>. Utilizza 5 o meno campi separati da spazi nel formato `X X X X X`.
     2. Aggiungi il payload JSON del trigger.
 
 6. Fai clic su **Distribuisci**.
@@ -408,9 +414,10 @@ Dopo la distribuzione del template, puoi apportare ulteriori modifiche al codice
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>L'URL del webhook, ad esempio <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td>Una sequenza cron basata sulla <a href="http://crontab.org">sintassi crontab UNIX</a>. Utilizza 5 o meno campi separati da spazi nel formato <code>X X X X X</code>.</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td>Una sequenza cron basata sulla <a href="http://crontab.org">sintassi crontab UNIX</a>. Utilizza 5 o meno campi nel formato <code>X X X X X</code>.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>Un nome personalizzato per il pacchetto</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>Un nome personalizzato per la regola</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>Un nome personalizzato per il trigger</td></tr>
     </tbody></table>
+
 

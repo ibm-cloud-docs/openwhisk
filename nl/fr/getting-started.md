@@ -1,12 +1,12 @@
 ---
 
-copyright :
-  années : 2017, 2019
-dernière mise à jour : "17 mai 2019"
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-07-18"
 
-mots clés : initiation, création d'actions, appel d'actions,
+keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
-Sous-collection : cloud-functions
+subcollection: cloud-functions
 
 ---
 
@@ -15,6 +15,7 @@ Sous-collection : cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ Sous-collection : cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Guide d'initiation
+
+# Initiation à IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-{{site.data.keyword.openwhisk}} vous permet d'utiliser votre langage de programmation favori pour écrire un code simple qui exécute la logique d'application de façon évolutive. Vous pouvez exécuter le code à la demande avec des demandes d'API basées sur HTTP provenant d'applications, ou exécuter le code en réponse à des services {{site.data.keyword.Bluemix_notm}} et des événements tiers. La plateforme de programmation Faas (Function-as-a-Service) repose sur le projet open source Apache OpenWhisk.
+{{site.data.keyword.openwhisk}} vous permet d'utiliser votre langage de programmation favori pour écrire un code simple qui exécute la logique d'application de façon évolutive. Vous pouvez exécuter le code à la demande avec des demandes d'API basées sur HTTP provenant d'applications, ou exécuter le code en réponse à des services {{site.data.keyword.cloud_notm}} et des événements tiers. La plateforme de programmation Faas (Function-as-a-Service) repose sur le projet open source Apache OpenWhisk.
 {: shortdesc}
 
 ## Gestion des actions
@@ -35,7 +37,7 @@ Sous-collection : cloud-functions
 {{site.data.keyword.openwhisk}} vous permet de créer des fragments de code sans état, qui sont définis pour l'exécution d'une tâche spécifique appelée action. Pour en savoir plus sur les actions et d'autres termes liés à Functions, voir [Terminologie](/docs/openwhisk?topic=cloud-functions-about).
 {:shortdesc}
 
-Cliquez sur une option pour commencer :
+Cliquez sur une option pour commencer. 
 
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Cliquez sur une icône pour vous initier rapidement à {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
@@ -47,11 +49,11 @@ Cliquez sur une option pour commencer :
 ## Création d'une action dans l'interface graphique
 {: #gs_hello_world}
 
-Pour vous initier à {{site.data.keyword.openwhisk_short}}, commencez par utiliser le modèle Quickstart HelloWorld.
+Pour vous initier à {{site.data.keyword.openwhisk_short}}, essayez de créer le modèle Quickstart Hello World. 
 
-1. Créez un compte [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) ou connectez-vous à un compte existant.
+1. Créez un compte [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} ou connectez-vous à un compte existant.
 
-2. Accédez au [tableau de bord {{site.data.keyword.openwhisk_short}} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk).
+2. Accédez au [tableau de bord {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external}.
 
 2. Cliquez sur **Commencer la création** > **Modèles Quickstart** et sélectionnez le modèle **Hello World**.
 
@@ -59,11 +61,11 @@ Pour vous initier à {{site.data.keyword.openwhisk_short}}, commencez par utilis
 
 4. Sélectionnez un environnement d'exécution dans le menu déroulant de la section **Action helloworld**. Vous pouvez prévisualiser le code de l'exemple d'action dans chaque environnement d'exécution disponible avant de déployer le modèle.
 
-5. Cliquez sur **Déployer**. Vous avez créé une action. Félicitations !
+5. Cliquez sur **Déployer**. Félicitations, vous avez créé une action. 
 
 6. Exécutez l'action en cliquant sur **Appeler**. L'appel manuel d'une action exécute la logique d'application définie par l'action. Dans le panneau **Activations**, vous pouvez voir l'annonce d'accueil "Hello stranger!" générée par l'action.
 
-7. Facultatif : Cliquez sur **Changer l'entrée** pour modifier l'action ou essayer la vôtre.
+7. Facultatif : Cliquez sur **Changer l'entrée** pour modifier l'action, ou essayez la vôtre.
 
   a. Collez le code suivant dans la case **Changer l'entrée** et modifiez la valeur de nom.
   ```
@@ -77,14 +79,17 @@ Bien joué ! Vous venez de créer votre première action. Pour supprimer cette a
 ## Création d'une action dans l'interface de ligne de commande
 {: #gs_hello_world_cli}
 
-Soyez rapidement opérationnel avec l'exemple de code [JavaScript HelloWorld](/docs/openwhisk?topic=cloud-functions-prep#prep-js). Cet exemple crée une action de base `hello`, que vous pouvez appeler manuellement pour en exécuter la logique d'application.
+Soyez rapidement opérationnel avec l'exemple de code [JavaScript Hello World](/docs/openwhisk?topic=cloud-functions-prep#prep-js). Cet exemple crée une action de base `hello`, que vous pouvez appeler manuellement pour en exécuter la logique d'application.
 
 ## Etape suivante
 {: #gs_next_steps}
 
-Maintenant que vous avez terminé le déploiement de votre premier modèle, que pouvez-vous faire ? Vous pouvez :
+A présent que vous avez terminé le déploiement de votre premier modèle, que pouvez-vous faire ? 
 
 * Vous familiariser avec la [terminologie](/docs/openwhisk?topic=cloud-functions-about#about_technology).
 * Apprendre à utiliser [vos propres actions](/docs/openwhisk?topic=cloud-functions-actions).
 * Découvrir comment organiser des actions en [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Option avancée : créer une [API REST sans serveur](/docs/openwhisk?topic=cloud-functions-apigateway).
+* Option avancée - Créer une [API REST sans serveur](/docs/openwhisk?topic=cloud-functions-apigateway).
+
+
+

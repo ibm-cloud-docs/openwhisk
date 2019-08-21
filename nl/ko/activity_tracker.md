@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # {{site.data.keyword.cloudaccesstrailshort}} 이벤트 보기
@@ -37,9 +39,9 @@ subcollection: cloud-functions
 ## 이벤트를 볼 수 있는 위치
 {: #view}
 
-이벤트는 {{site.data.keyword.Bluemix_notm}} 영역에서 사용 가능한 {{site.data.keyword.cloudaccesstrailshort}} **계정 도메인**에 사용할 수 있습니다. 여기서 {{site.data.keyword.openwhisk_short}} 네임스페이스 리소스가 사용 가능합니다. 자세한 정보는 [계정 이벤트 보기](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)의 내용을 참조하십시오.
+이벤트는 {{site.data.keyword.cloud_notm}} 영역에서 사용 가능한 {{site.data.keyword.cloudaccesstrailshort}} **계정 도메인**에 사용할 수 있습니다. 여기서 {{site.data.keyword.openwhisk_short}} 네임스페이스 리소스가 사용 가능합니다. 자세한 정보는 [계정 이벤트 보기](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)의 내용을 참조하십시오.
 
-1. {{site.data.keyword.Bluemix_notm}} 계정에 로그인하십시오.
+1. {{site.data.keyword.cloud_notm}} 계정에 로그인하십시오.
 2. 카탈로그에서 {{site.data.keyword.openwhisk}}의 인스턴스와 동일한 계정으로 {{site.data.keyword.cloudaccesstrailshort}} 서비스의 인스턴스를 프로비저닝하십시오.
 3. {{site.data.keyword.cloudaccesstrailshort}} 대시보드의 **관리** 탭에서 **Kibana에서 보기**를 클릭하십시오.
 4. 로그를 보려는 시간 프레임을 설정하십시오. 기본값은 15분입니다.
@@ -82,3 +84,6 @@ subcollection: cloud-functions
     </tr>
   </tbody>
 </table>
+
+
+
