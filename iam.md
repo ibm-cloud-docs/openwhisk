@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-08-21"
 
 keywords: access policies, iam, roles, functions
 
@@ -36,7 +36,7 @@ In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.clo
 
 {{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, and use the service roles to manage interaction with the namespaces themselves.
 
-Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamconcepts#iamconcepts).
+Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamoverview#iamconcepts).
 {: tip}
 
 </br>
