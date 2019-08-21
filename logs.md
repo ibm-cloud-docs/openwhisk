@@ -223,21 +223,21 @@ Currently there is one exception, that actions of namespaces in `us-east` sends 
 ### Querying logs
 {: #logs_query}
 
-To view and query your action logs go to the [{{site.data.keyword.openwhisk_short}} dashboard](link) and select a namespace. 
+To view and query your action logs, navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/){: external} and select a namespace. 
 
 1. In the left-hand navigation, click **Logs** to launch the {{site.data.keyword.loganalysislong_notm}} with LogDNA page.
 2. Click **View LogDNA** of the appropriate instance, see [Configure LogDNA]().
 3. Use the LogDNA search capabilities to filter for certain namespaces and/or actions. For details on how to search and filter logs see the [LogDNA Search Guide](link).
 
-Logs produced by the action code will have a field type:user_log.
+Logs produced by the action code will have a field type: `user_log`.
 {: note}
 
 ### Querying activation metadata
 
-In addition to log messages, {{site.data.keyword.openwhisk_short}} also forwards activation records to LogDNA for indexing and searching. The activation records contain metadata such as the activation duration or the activation result code. Querying result fields can help you understand how your Cloud Functions' actions are behaving. Activation records are marked in the logs with field type:activation_record.
+In addition to log messages, {{site.data.keyword.openwhisk_short}} also forwards activation records to LogDNA for indexing and searching. The activation records contain metadata such as the activation duration or the activation result code. Querying result fields can help you understand how your actions are behaving. Activation records are marked in the logs with the field type: `activation_record`.
 
 You can find specific activation records by using LogDNA query syntax. The following example query can help you to find all failed activations and debug errors.
-Enter type:activation_record response.success:false into LogDNA search field.
+Enter type: `activation_record response.success:false` into LogDNA search field.
 
 For more details on how to search and filter logs see the LogDNA Search Guide
 Action results in the logs.
