@@ -138,6 +138,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ```
 {: screen}
 
+</br>
+
 <table>
 <caption>Understanding the <code>activation get</code> command output</caption>
 <thead>
