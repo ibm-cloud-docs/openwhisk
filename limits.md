@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-06"
+lastupdated: "2019-08-22"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -63,7 +63,7 @@ The following table lists the default limits for actions.
 | Request header | 8 KB |
 | Response header | 4 KB |
 
-If you are using API Gateway to manage your APIs, you should limit your request size to 3 KB.
+If you are using API Gateway to manage your APIs, you should limit your request headers to a cumulative size of 8 KB and your response headers to a cumulative size of 8 KB.
 {: note}
 
 ### Increasing fixed limits
