@@ -93,7 +93,6 @@ ibmcloud fn namespace list
 
 With IAM, you can assign access at either the Platform or Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [IAM Access](/docs/iam?topic=iam-userroles){: external}.
 
-
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
 You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` with the name of your namespace.
@@ -110,7 +109,7 @@ ibmcloud fn namespace get <namespace_name>
 
 1. In the [{{site.data.keyword.openwhisk_short}} console ](https://cloud.ibm.com/openwhisk){: external}, click the namespace drop-down menu.
 
-2. Click **Create namespace**.
+2. Click **Create Namespace**.
 
 3. Enter a display name for the namespace and a short description, such as the kinds of actions or packages that you plan to create in this namespace.
 
@@ -120,7 +119,7 @@ ibmcloud fn namespace get <namespace_name>
 
 6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in the **Functions Namespaces** pane.
 
-If you need to, you can update the name or description of the namespace on the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
+If you need to, you can update the name or description of the namespace on the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
 ## Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
