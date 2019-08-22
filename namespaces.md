@@ -89,6 +89,11 @@ ibmcloud fn namespace list
 ```
 {: pre}
 
+### What privileges are needed to see {{site.data.keyword.openwhisk_short}} entities in a namespace?
+
+With IAM, you can assign access at either the Platform or Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [IAM Access](/docs/iam?topic=iam-userroles){: external}.
+
+
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
 You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` with the name of your namespace.
@@ -355,29 +360,6 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 {: tab-title="Cloud Foundry"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
-
-### Getting a list of your namespaces
-To see a list of all of your namespaces, run the following command.
-
-```
-ibmcloud fn namespace list
-```
-{: pre}
-
-**Example output** 
-```
-name          type             id                                    description
-test_dev      CF-based        test_dev                           
-test_prod     CF-based        test_prod                          
-playground    IAM-based       e87f08a8-9f4e-498a-a491-3d30c773e704  IAM playground.
-test          IAM-based       c024e01d-5c02-4ab4-b453-291b36f90e9c  test IAM namespace.
-```
-{: screen}
-
-You must target a specific namespace to manage your {{site.data.keyword.openwhisk_short}} entities in that namespace. 
-
-After targeting your namespace, run `ibmcloud fn namespace get <namespace_name>` to see a list of all the {{site.data.keyword.openwhisk_short}} entities in your namespace.
-{: tip}
 
 ### Accessing other resources from a namespace
 {: #namespace-access}
