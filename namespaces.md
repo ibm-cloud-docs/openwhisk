@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-21"
+lastupdated: "2019-08-22"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -78,6 +78,26 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 ### What do I do if I have a Cloud Foundry-based namespace?
 
 Your Cloud Foundry-based namespaces still work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
+
+### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
+
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list).
+
+**Example** 
+```
+ibmcloud fn namespace list
+```
+{: pre}
+
+### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
+
+You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` with the name of your namespace.
+
+**Example**
+```
+ibmcloud fn namespace get <namespace_name>
+```
+{: pre}
 
 
 ## Creating an IAM-based namespace in the UI

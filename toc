@@ -6,6 +6,9 @@ IBM Cloud Functions
 
     {: .navgroup id="learn"}
     getting-started.md
+    [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas)
+    [Why IBM Cloud Functions?](https://www.ibm.com/cloud/functions)
+    
 
     {: .topicgroup}
     About
