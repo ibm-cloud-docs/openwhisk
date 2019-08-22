@@ -6,8 +6,8 @@ IBM Cloud Functions
 
     {: .navgroup id="learn"}
     getting-started.md
-    [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas)
-    [Why IBM Cloud Functions?](https://www.ibm.com/cloud/functions)
+    [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas){: new_window}
+    [Why IBM Cloud Functions?](https://www.ibm.com/cloud/functions){: new_window}
     
 
     {: .topicgroup}
@@ -18,10 +18,10 @@ IBM Cloud Functions
 
     {: .topicgroup}
     Tutorials
-        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson)
-        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics)
-        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend)
-        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp)
+        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}
+        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
+        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
+        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}

@@ -203,14 +203,14 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## Viewing logs in IBM Log Analysis with LogDNA
 {: #logs_logdna}
 
-You can view activation records and action logs for individual action invocations directly from the {{site.data.keyword.openwhisk_short}} Monitor dashboard by clicking on an action's activation id.
+You can view activation records and action logs for individual action invocations directly from the [{{site.data.keyword.openwhisk_short}} Monitor dashboard](https://cloud.ibm.com/functions/dashboard){: external} by clicking on an action's activation ID.
 
-In addition, action logs are also forwarded to IBM Log Analysis service where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
+In addition, action logs are also forwarded to {{site.data.keyword.loganalysislong_notm}} service where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
 
 ### Configure IBM Log Analysis with LogDNA
 {: #logs_configure_logdna}
 
-In order to use the {{site.data.keyword.loganalysislong_notm}} with LogDNA service to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the Getting started tutorial for details on the various options.
+In order to use the [{{site.data.keyword.loganalysislong_notm}} with LogDNA service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the [Getting started tutorial](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started#getting-started){: external} for details on the various options.
 
 {{site.data.keyword.openwhisk_short}} logs work well with all available deployment plans, so chose the option which fits best for your needs.
 To enable an instance receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the Platform Service Logs in LogDNA service.
