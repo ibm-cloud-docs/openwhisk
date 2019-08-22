@@ -513,9 +513,9 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying the `Dockerfile`. When you create an action using a Docker image, your app runs in a public Docker image that you can specify when creating your action.
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying the `Dockerfile`. When you create an action using a Docker image, your app runs in a public Docker image that you can specify when creating your action by specifying the `--docker` flag in [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create).
 
-{{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base in your Dockerfile with the `FROM` instruction. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
+{{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base image when creating Dockerfile. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
 
 For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker).
 
