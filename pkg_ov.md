@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-08-22"
 
 keywords: packages, installable packages, functions
 
@@ -57,24 +57,28 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
   Package list output:
   ```
   packages
-  /whisk.system/cloudant               shared
-  /whisk.system/alarms                 shared
-  /whisk.system/watson                 shared
-  /whisk.system/websocket              shared
-  /whisk.system/weather                shared
-  /whisk.system/system                 shared
-  /whisk.system/utils                  shared
-  /whisk.system/slack                  shared
-  /whisk.system/samples                shared
-  /whisk.system/github                 shared
-  /whisk.system/pushnotifications      shared
+  /whisk.system/websocket                                                shared
+  /whisk.system/utils                                                    shared
+  /whisk.system/samples                                                  shared
+  /whisk.system/weather                                                  shared
+  /whisk.system/slack                                                    shared
+  /whisk.system/cloudant                                                 shared
+  /whisk.system/cos-experimental                                         shared
+  /whisk.system/alarms                                                   shared
+  /whisk.system/messaging                                                shared
+  /whisk.system/pushnotifications                                        shared
+  /whisk.system/watson-textToSpeech                                      shared
+  /whisk.system/github                                                   shared
+  /whisk.system/combinators                                              shared
+  /whisk.system/watson-speechToText                                      shared
+  /whisk.system/watson-translator                                        shared
   ```
   {: screen}
 
 2. Get a list of entities in a package.
 
   ```
-  ibmcloud fn package get --summary PACKAGE_NAME
+  ibmcloud fn package get --summary <package_name>
   ```
   {: pre}
 
@@ -86,11 +90,20 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
   **Example output**
   ```
-  package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
-   action /whisk.system/cloudant/read: Read document from database
-   action /whisk.system/cloudant/write: Write document to database
-   feed   /whisk.system/cloudant/changes: Database change feed
+  package /whisk.system/cloudant: Cloudant database service
+    (parameters: *apihost, *bluemixServiceName, dbname, host, iamApiKey, iamUrl, overwrite, password, username)
+  action /whisk.system/cloudant/delete-attachment: Delete document attachment from database
+    (parameters: attachmentname, dbname, docid, docrev, params)
+  action /whisk.system/cloudant/update-attachment: Update document attachment in database
+    (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
+  action /whisk.system/cloudant/read-attachment: Read document attachment from database
+    (parameters: attachmentname, dbname, docid, params)
+  action /whisk.system/cloudant/create-attachment: Create document attachment in database
+    (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
+  action /whisk.system/cloudant/read-changes-feed: Read Cloudant database changes feed (non-continuous)
+    (parameters: dbname, params)
+  ...
+  ...
   ```
   {: screen}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-08-22"
 
 keywords: runtimes, support, functions
 
@@ -30,6 +30,8 @@ subcollection: cloud-functions
 Your apps can be coded and executed in programming languages such as Javascript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
+## Available images and runtimes
+{: #runtimes_available}
 View the available runtimes for IBM Cloud Functions in each region. The following links return a JSON response. The `runtimes` section of the response contains the set of available runtimes. The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/){: external} and the tag that is used.
 
   - [`us-south`](https://us-south.functions.cloud.ibm.com/){: external}
@@ -511,13 +513,12 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. The executable runs in a Docker image based on [python:3.6-alpine](https://hub.docker.com/_/python){: external}, so the executable must be compatible with this distribution.
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying the `Dockerfile`. When you create an action using a Docker image, your app runs in a public Docker image that you can specify when creating your action.
 
-The Docker skeleton is a convenient way to build OpenWhisk compatible Docker images. You can install the skeleton with the `ibmcloud fn sdk install docker` CLI plug-in command.
+{{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base in your Dockerfile with the `FROM` instruction. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
 
-The main executable program must be located in `/action/exec` inside the container. The executable receives the input arguments from a single command-line argument string, which can be deserialized as a `JSON` object. It must return a result by using `stdout` as a single-line string of serialized `JSON`.
+For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker).
 
-You can include any compilation steps or dependencies by modifying the `Dockerfile` included in the `dockerSkeleton`.
 
 ## More runtime support
 
