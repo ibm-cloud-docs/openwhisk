@@ -91,7 +91,7 @@ ibmcloud fn namespace list
 
 ### What privileges are needed to see {{site.data.keyword.openwhisk_short}} entities in a namespace?
 
-With IAM, you can assign access at either the Platform or Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [IAM Access](/docs/iam?topic=iam-userroles){: external}.
+With IAM, you can assign access at either the Platform or Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [Setting access policies](/docs/openwhisk?topic=cloud-functions-iam).
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
