@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-21"
+lastupdated: "2019-08-22"
 
 keywords: access policies, iam, roles, functions
 
@@ -57,6 +57,10 @@ For more information about how to assign, edit, review, or delete resource acces
     </tr>
   </thead>
   <tbody>
+    <tr>
+      <td>Viewer</td>
+      <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. Also add the appropriate service access role for namespace as described below.</td>
+    </tr>
     <tr>
       <td>Administrator</td>
       <td>Users can create namespaces. The Administrator role is required to perform the `service id` and `apikey lock` operations during creation of the service.</td>
