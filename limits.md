@@ -60,8 +60,8 @@ The following table lists the default limits for actions.
 
 | Parameter | Limit |
 | --- | --- |
-| Request header | 8 KB |
-| Response header | 4 KB |
+| Request headers | 8 KB cumulative |
+| Response headers | 4 KB cumulative |
 
 If you are using API Gateway to manage your APIs, you should limit your request headers to a cumulative size of 8 KB and your response headers to a cumulative size of 8 KB.
 {: note}
