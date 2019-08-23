@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-22"
+lastupdated: "2019-08-23"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -34,7 +34,7 @@ The following sections provide technical details about the {{site.data.keyword.o
 ## System limits
 {: #limits_syslimits}
 
-### Actions
+### Action limits
 {: #limits_actions}
 
 {{site.data.keyword.openwhisk_short}} has a few system limits, including how much memory an action can use and how many action invocations are allowed per minute.
@@ -75,7 +75,7 @@ Limit values ending with a (*) are fixed, but can be increased if a business cas
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
-### Triggers
+### Trigger rate limits
 {: #limits_triggers}
 
 Triggers are subject to a firing rate per minute as documented in the following table.
