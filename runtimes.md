@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-22"
+lastupdated: "2019-08-23"
 
 keywords: runtimes, support, functions
 
@@ -513,9 +513,12 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying the `Dockerfile`. When you create an action using a Docker image, your app runs in a public Docker image that you can specify when creating your action by specifying the `--docker` flag in [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create).
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying the `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create). When you create an action using a Docker image, your app runs in the public Docker image that you specify during action creation.
 
-{{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base image when creating Dockerfile. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
+{{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base image when writing your Dockerfile. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
+
+{{site.data.keyword.openwhisk_short}} actions can be creating using public images on from Docker Hub.
+{: note}
 
 For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker).
 
