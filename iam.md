@@ -30,7 +30,7 @@ subcollection: cloud-functions
 
 When setting the permissions on an IAM namespace, all entities such as actions, triggers, and packages inherit the permissions.
 
-As the creator of a namespace, you do not need to set any IAM policies. Every works for you.
+As the creator of a namespace, you do not need to set any IAM policies to view or work with your {{site.data.keyword.openwhisk_short}} entities.
 
 ## Mapping IAM roles to {{site.data.keyword.openwhisk_short}}
 {: #user-roles}
@@ -41,15 +41,14 @@ In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.clo
 {{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, and use the service roles to manage interaction with the namespaces themselves.
 
 ### How do I set IAM policies so that others can work with my namespace?
-In order for others to work with entities in your namespace, you must to set the appropriate IAM policies in the UI or CLI. 
+{: #iam_namespace_policies}
+In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the UI](https://cloud.ibm.com/iam/overview) or the CLI. 
 
-The minimum Platform level access is `Viewer`. The minimum Service level access is `Reader`. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles)
+The minimum Platform level access is `Viewer`. The minimum Service level access is `Reader`. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles) sections below.
 
-### What privileges are needed to see {{site.data.keyword.openwhisk_short}} entities in a namespace?
+For more information, see [Setting policies through the CLI](#cli-set).
 
-With IAM, you can assign access at the Platform level and the Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [Setting access policies](/docs/openwhisk?topic=cloud-functions-iam).
-
-Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamoverview#iamconcepts).
+Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamoverview#iamconcepts){: external}.
 {: tip}
 
 </br>
@@ -60,7 +59,7 @@ Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?to
 The following table details the actions that are mapped to platform management roles. Platform management roles enable users to perform tasks on service resources at the platform level. For example, assign user access for the service, create or delete service IDs, create instances, and bind instances to applications.
 {: shortdesc}
 
-For more information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser).
+For more information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser){: external}.
 {: tip}
 
 <table>
@@ -73,7 +72,7 @@ For more information about how to assign, edit, review, or delete resource acces
   <tbody>
     <tr>
       <td>Viewer</td>
-      <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. Also add the appropriate service access role for namespace as described below.</td>
+      <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below.</td>
     </tr>
     <tr>
       <td>Administrator</td>
@@ -82,7 +81,7 @@ For more information about how to assign, edit, review, or delete resource acces
   </tbody>
 </table>
 
-Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam?topic=iam-userroles).
+Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam?topic=iam-userroles){: external}.
 
 </br>
 
@@ -92,7 +91,7 @@ Because the service does not need to be provisioned, the editor role is the only
 Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
 {: shortdesc}
 
-Permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles).
+Permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
 
 To see which roles are required to perform each operation, check out the following table:
 
