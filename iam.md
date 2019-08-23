@@ -91,7 +91,7 @@ Because the service does not need to be provisioned, the editor role is the only
 Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
 {: shortdesc}
 
-Permissions build on each other. For example, any operation that the `writer` role is able to perform, the `manager` role also can. However, the `manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
+Permissions build on each other. For example, any operation that the `Writer` role is able to perform, the `Manager` role also can. However, the `Manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
 
 To see which roles are required to perform each operation, check out the following table:
 
