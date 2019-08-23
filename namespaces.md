@@ -4,7 +4,6 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-08-23"
 
-
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
 subcollection: cloud-functions
@@ -84,14 +83,17 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type, whether it is a CF-based or IAM-based namespace.
 
-**Example** 
+**Example command** 
 ```
 ibmcloud fn namespace list
 ```
 {: pre}
 
+</br>
+
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} UI Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
+**Example command**
 ```
 ibmcloud resource service-instances --service-name functions
 ```
