@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-31"
+lastupdated: "2019-08-16"
 
 keywords: object storage, bucket, package, functions
 
@@ -51,6 +51,10 @@ Before you can use either package, you must request an instance of {{site.data.k
 2. [Create a set of HMAC service credentials ](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials) for the {{site.data.keyword.cos_full_notm}} service instance. In the **Add Inline Configuration Parameters (Optional)** field, add `{"HMAC":true}`.
 
 3. [Create at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
+
+
+
+
 
 ## Installing the {{site.data.keyword.cos_full_notm}} package from the {{site.data.keyword.openwhisk_short}} CLI
 {: #pkg_obstorage_install}
