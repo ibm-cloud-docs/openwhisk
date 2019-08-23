@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-22"
+lastupdated: "2019-08-23"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -81,7 +81,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list).
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type, whether it is a CF-based or IAM-based namespace.
 
 **Example** 
 ```
@@ -89,17 +89,20 @@ ibmcloud fn namespace list
 ```
 {: pre}
 
-### What privileges are needed to see {{site.data.keyword.openwhisk_short}} entities in a namespace?
+You can a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} UI Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
-With IAM, you can assign access at either the Platform or Service level. Viewer access at the Platform level allows the user to view service instances, but not modify them. Reader access at the Service level allows users to perform read-only actions within a service such as viewing service-specific resources. For more information, see [Setting access policies](/docs/openwhisk?topic=cloud-functions-iam).
+```
+ibmcloud resource service-instances --service-name functions
+```
+{: pre}
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` with the name of your namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
 
 **Example**
 ```
-ibmcloud fn namespace get <namespace_name>
+ibmcloud fn namespace get <namespace_name> or <namespace_id>
 ```
 {: pre}
 
