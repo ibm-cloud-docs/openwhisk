@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
+
 
 
 # FAQ
@@ -86,29 +88,31 @@ Sono supportati i seguenti linguaggi:
 
 Il timeout massimo è 10 minuti. Il valore predefinito è impostato su 1 minuto, ma può essere modificato tramite la CLI specificando un nuovo valore in millisecondi utilizzando l'indicatore `--timeout`. Puoi anche modificare il valore tramite la GUI nella sezione dei dettagli dell'azione.
 
-
 ## Qual è la memoria massima che la mia funzione può utilizzare?
 {: #max-memory}
 
-Puoi utilizzare fino a 2048MB di memoria per ogni funzione. Il valore predefinito è impostato su 256MB, ma puoi modificarlo utilizzando l'indicatore `--memory` o tramite la GUI nella sezione dei dettagli dell'azione.
-
-
+Puoi utilizzare fino a 2048 MB di memoria per ogni funzione. Il valore predefinito è impostato su 256 MB, ma puoi modificarlo utilizzando l'indicatore `--memory` o tramite la GUI nella sezione dei dettagli dell'azione.
 
 ## Qual è la differenza tra un'azione e un'azione web?
 {: #difference}
 
-La differenza principale tra un'azione e un'azione web è l'oggetto di output della risposta. Per le [azioni web](/docs/openwhisk?topic=cloud-functions-actions_web), il risultato rappresenta una risposta HTTP, in cui come minimo, l'output JSON dovrebbe avere un campo `body`. Facoltativamente, può contenere uno statusCode e delle intestazioni.
+La differenza principale tra un'azione e un'azione web è l'oggetto di output della risposta. Per le [azioni web](/docs/openwhisk?topic=cloud-functions-actions_web), il risultato rappresenta una risposta HTTP in cui l'output JSON contiene come minimo un campo `body`. Facoltativamente, può contenere anche i campi `statusCode` e `headers`.
 
 ## Come posso visualizzare i miei log di azione?
 {: #logs_faq}
 
 Dopo aver raccolto le metriche, puoi visualizzare i tuoi log utilizzando il [servizio {{site.data.keyword.loganalysislong_notm}}](/docs/openwhisk?topic=cloud-functions-logs).
 
-
 ## Come funziona il monitoraggio?
 {: #monitor_faq}
 
 Puoi ottenere delle informazioni approfondite sulle prestazioni delle tue azioni che vengono distribuite con {{site.data.keyword.openwhisk_short}} utilizzando {{site.data.keyword.monitoringlong}}. Puoi anche monitorare l'integrità e le prestazioni delle tue azioni utilizzando il dashboard per visualizzare un riepilogo grafico della tua attività.
+
+
+
+
+
+
 
 
 

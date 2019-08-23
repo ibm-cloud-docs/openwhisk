@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,17 +24,18 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # 使用資訊清單檔部署實體
 {: #deploy}
 
-您可以使用 {{site.data.keyword.openwhisk_short}}，以使用利用 YAML 撰寫的資訊清單檔來說明及部署所有名稱空間實體。可以使用此檔案透過一個指令部署所有 Functions [套件](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[動作](/docs/openwhisk?topic=cloud-functions-actions)、[觸發程式](/docs/openwhisk?topic=cloud-functions-triggers)和規則](/docs/openwhisk?topic=cloud-functions-rules)。
+您可以使用 {{site.data.keyword.openwhisk_short}} 透過用 YAML 撰寫的資訊清單檔來說明和部署所有名稱空間實體。可以使用此檔案透過一個指令部署所有 Functions [套件](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[動作](/docs/openwhisk?topic=cloud-functions-actions)、[觸發程式](/docs/openwhisk?topic=cloud-functions-triggers)和[規則](/docs/openwhisk?topic=cloud-functions-rules)。
 
-資訊清單檔說明您要部署及取消部署為群組的實體集。資訊清單檔內容必須遵循 [OpenWhisk 部署 YAML 規格](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification)。定義之後，您可以使用資訊清單檔，將一組 Functions 實體部署或重新部署至相同或不同的 Functions 名稱空間。您可以使用 Functions 外掛程式指令 `ibmcloud fn deploy` 及 `ibmcloud fn undeploy` 來部署及取消部署資訊清單檔中所定義的 Functions 實體。
+資訊清單檔說明您要部署及取消部署為群組的實體集。資訊清單檔內容必須遵循 [OpenWhisk 部署 YAML 規格](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}。定義之後，您可以使用資訊清單檔，將一組 Functions 實體部署或重新部署至相同或不同的 Functions 名稱空間。可以使用 Functions 外掛程式指令 `ibmcloud fn deploy` 和 `ibmcloud fn undeploy` 來部署和取消部署資訊清單檔中定義的 Functions 實體。
 
 ## 建立 Hello World API 範例
 {: #deploy_helloworld_example}
 
-此範例採用某個簡單 Node.js 程式碼 (`helloworld.js`)、在套件 (`hello_world_package`) 內建立一個 Web 動作 (`hello_world`)，並定義此動作的 REST API。
+此範例採用某個簡單的 Node.js 程式碼 (`helloworld.js`)，在套件 `hello_world_package` 內建立 Web 動作 `hello_world`，並為此動作定義 REST API。
 {: shortdesc}
 
 1. 使用下列程式碼，建立 `helloworld.js` 檔案。
@@ -81,8 +83,7 @@ packages:
     ```
     {: pre}
 
-4. 您可以列出動作、套件及 API，以確認已順利建立三個預期的實體。
-
+4. 可以列出動作、套件和 API，以確認這三種所需實體是否已順利建立。
 
     1. 使用下列指令來列出動作。
 
@@ -119,12 +120,16 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## 其他 OpenWhisk 部署範例
+## 更多 OpenWhisk 部署範例
 {: more_deploy_examples}
 
-Functions 部署是以 OpenWhisk 部署專案為基礎，其具有可在 Functions 內使用的[多個部署資訊清單範例](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples)。您可以使用 `ibmcloud fn deploy` 指令，而非 `wskdeploy`。
+Functions 部署是以 OpenWhisk 部署專案為基礎，其具有可在 Functions 內使用的[多個部署資訊清單範例](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external}。您可以使用 `ibmcloud fn deploy` 指令，而非 `wskdeploy`。
 
 ## 部署資訊清單規格
 {: manifest_specification}
 
-Functions 部署資訊清單必須遵循 OpenWhisk 部署資訊清單規格。如需詳細資料，請參閱 [OpenWhisk 部署資訊清單規格文件](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification)。
+Functions 部署資訊清單必須遵循 OpenWhisk 部署資訊清單規格。如需詳細資料，請參閱 [OpenWhisk 部署資訊清單規格文件](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external}。
+
+
+
+

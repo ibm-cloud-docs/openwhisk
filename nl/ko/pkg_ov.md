@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: packages, installable packages
+keywords: packages, installable packages, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 패키지 통합
 {: #pkg_ov}
@@ -32,9 +34,9 @@ subcollection: cloud-functions
 ## 개요
 {: #pkg_overview}
 
-[사전 설치된 패키지](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse)는 `/whisk.system` 네임스페이스의 {{site.data.keyword.openwhisk_short}} 내에서 자동으로 등록됩니다. 설치 단계를 완료하지 않고 사전 설치 패키지를 사용할 수 있습니다. 
+[사전 설치된 패키지](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse)는 `/whisk.system` 네임스페이스의 {{site.data.keyword.openwhisk_short}} 내에서 자동으로 등록됩니다. 설치 단계를 완료하지 않고 사전 설치 패키지를 사용할 수 있습니다.
 
-설치 가능 패키지는 사용자가 자체 요구사항에 따라 설치, 편집 및 사용을 위해 사용할 수 있는 패키지입니다. 설치 가능 패키지는 {{site.data.keyword.openwhisk_short}} 시스템 내에 상주하지 않습니다. 그 대신에 설치 가능 패키지는 개별 Github 저장소에서 외부적으로 수용됩니다.
+설치 가능 패키지는 사용자가 자체 요구사항에 따라 설치, 편집 및 사용을 위해 사용할 수 있는 패키지입니다. 설치 가능 패키지는 {{site.data.keyword.openwhisk_short}} 시스템 내에 상주하지 않습니다. 그 대신에 설치 가능 패키지는 개별 GitHub 저장소에서 외부적으로 수용됩니다.
 
 이 패키지 또는 자체 패키지를 네임스페이스에 직접 설치하고 패키지에 사용자 정의 이름을 부여할 수 있습니다. 패키지가 자신의 네임스페이스에 설치되므로 사용자는 필요에 따라 패키지에서 액션과 피드를 수정할 수 있습니다.
 
@@ -76,16 +78,16 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  예:
+  **예**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
-  package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -96,15 +98,15 @@ subcollection: cloud-functions
 
   또한 {{site.data.keyword.cloudant_short_notm}} 패키지는 `username`, `password`, `host` 및 `port` 매개변수도 정의합니다. 이러한 매개변수는 액션 및 피드가 유의미하도록 지정해야 합니다. 매개변수는 액션이 특정 {{site.data.keyword.cloudant_short_notm}} 계정에서 작동하도록 합니다. 예를 들어, 다음과 같습니다.
 
-3. 필요한 매개변수를 보려면 액션 또는 피드에 대한 설명을 가져오십시오. 
+3. 필요한 매개변수를 보려면 액션 또는 피드에 대한 설명을 가져오십시오.
 
-  예:
+  **예**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -131,7 +133,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   ok: created binding valhallaSamples
   ```
@@ -143,7 +145,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -161,7 +163,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -177,7 +179,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -189,20 +191,17 @@ subcollection: cloud-functions
 
 
 
-
-
-
 ## 자체 패키지 추가
 {: #pkg_add}
 
-로컬 코드의 패키지 또는 Github 저장소의 복제본을 작성할 수 있습니다.
+로컬 코드의 패키지 또는 GitHub 저장소의 복제본을 작성할 수 있습니다.
 {: shortdesc}
 
-시작하기 전에 다음을 수행하십시오.
-- [{{site.data.keyword.Bluemix_notm}} CLI용 {{site.data.keyword.openwhisk_short}} 플러그인을 설치하십시오](/docs/openwhisk?topic=cloud-functions-cli_install).
-- 앱에 적합한 `manifest.yaml` 또는 `manifest.yml` 파일을 작성하거나 루트 디렉토리에 저장하십시오. `ibmcloud fn deploy` 명령에 포함되어야 할 메타데이터를 포함하여 `manifest.yaml` 파일은 패키지의 전체 구조를 지정합니다. `manifest.yaml` 파일에 대해 자세히 알아보려면 [wskdeploy 문서 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example)를 참조하십시오.
+**시작하기 전에**
+- [{{site.data.keyword.cloud_notm}} CLI용 {{site.data.keyword.openwhisk_short}} 플러그인을 설치하십시오](/docs/openwhisk?topic=cloud-functions-cli_install).
+- 앱에 적합한 `manifest.yaml` 또는 `manifest.yml` 파일을 작성하거나 루트 디렉토리에 저장하십시오. `ibmcloud fn deploy` 명령에 포함되어야 할 메타데이터를 포함하여 `manifest.yaml` 파일은 패키지의 전체 구조를 지정합니다. `manifest.yaml` 파일에 대해 자세히 알아보려면 [<ph class="ignoreSpelling">wskdeploy</ph> 문서](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}를 참조하십시오.
 
-패키지를 추가하려면 다음을 수행하십시오. 
+패키지를 추가하려면 다음을 수행하십시오.
 
 1. 패키지 저장소를 복제하십시오.
     ```
@@ -222,19 +221,19 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    패키지의 올바른 작동을 보장하기 위해 일부 패키지에서는 특정 환경 변수가 필요합니다. 해당 경우, 환경 변수를 `deploy` 명령에 포함하십시오. 예를 들어, 패키지의 이름을 선택하고 PACKAGE_NAME 변수로 이름을 지정할 수 있습니다. 
+    패키지의 올바른 작동을 보장하기 위해 일부 패키지에서는 특정 환경 변수가 필요합니다. 해당 경우, 환경 변수를 `deploy` 명령에 포함하십시오. 예를 들어, 패키지의 이름을 선택하고 PACKAGE_NAME 변수로 이름을 지정할 수 있습니다.
 
     ```
     PACKAGE_NAME=CUSTOM_PACKAGE_NAME VARIABLE_NAME=VARIABLE_VALUE ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
-### {{site.data.keyword.cos_full_notm}} 패키지 사용 예제
+### {{site.data.keyword.cos_full_notm}} 패키지 예제
 {: #pkg_ex}
 
-패키지 설치 방법에 대한 예제를 보려면 [{{site.data.keyword.cos_full_notm}} 패키지](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)를 체크아웃하십시오. {{site.data.keyword.cos_full}}는 사용자가 이미지, 동영상, 음악 및 텍스트 등과 같은 모든 유형의 파일을 저장할 수 있도록 허용하는 서비스입니다. 파일과의 상호작용을 위해 키/값 쌍의 클라우드 기반 데이터 저장소는 버킷에 저장됩니다. 따라서 [{{site.data.keyword.cos_full_notm}} 패키지](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)를 사용하려면 우선 {{site.data.keyword.cos_full_notm}} 서비스 인스턴스를 작성한 후에 버킷을 작성해야 합니다. 버킷은 이 패키지를 설치하는 데 필요한 환경 변수로서 사용됩니다.
+패키지 설치 방법에 대한 예제를 보려면 [{{site.data.keyword.cos_full_notm}} 패키지](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)를 체크아웃하십시오. {{site.data.keyword.cos_full}}는 사용자가 이미지, 동영상, 음악 및 텍스트 등과 같은 모든 유형의 파일을 저장할 수 있도록 허용하는 서비스입니다. 파일과의 상호작용을 위해 키-값 쌍의 클라우드 기반 데이터 저장소는 버킷에 저장됩니다. 따라서 [{{site.data.keyword.cos_full_notm}} 패키지](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)를 사용하려면 우선 {{site.data.keyword.cos_full_notm}} 서비스 인스턴스를 작성한 후에 버킷을 작성해야 합니다. 버킷은 이 패키지를 설치하는 데 필요한 환경 변수로서 사용됩니다.
 
-서비스 인스턴스 및 버킷의 작성 이후에 패키지 설치를 위해서는 다음 명령이 필요합니다.
+서비스 인스턴스 및 버킷을 작성한 후 다음 명령을 사용하여 패키지를 설치할 수 있습니다.
 
 1. 패키지 저장소를 복제하십시오.
     ```
@@ -248,9 +247,11 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-3. 환경 변수로서 버킷을 사용하여 패키지를 배치하십시오. `PACKAGE_NAME` 환경 변수의 종속 항목은 사용자가 이 패키지에 사용자 정의 이름을 부여할 수 있도록 허용합니다.
+3. 환경 변수로서 버킷을 사용하여 패키지를 배치하십시오.  `PACKAGE_NAME` 환경 변수를 사용하여 패키지에 사용자 정의 이름을 지정할 수 있습니다.
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

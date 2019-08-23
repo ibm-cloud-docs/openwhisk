@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: feeds, serverless
+keywords: feeds, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 创建定制事件提供程序订阅源
@@ -34,13 +36,13 @@ subcollection: cloud-functions
 ## 订阅源体系结构
 {: #feeds_arch}
 
-有 3 种体系结构模式可用于创建订阅源：**Hook**、**轮询**和**连接**。
+您可以使用以下三种体系结构模式中的一种模式来创建订阅源：**Hook**、**轮询**和**连接**。
 
 ### Hook
 
-在 Hook 模式下，使用由其他服务公开的 [Webhook](https://en.wikipedia.org/wiki/Webhook) 来设置订阅源。在此策略中，Webhook 在外部服务上进行配置，用于直接向 URL 执行 POST 操作来触发触发器。此方法是目前为止实现低频率订阅源最简单、最有吸引力的选项。
+在 Hook 模式下，使用由其他服务公开的 [Webhook](https://en.wikipedia.org/wiki/Webhook){: external} 来设置订阅源。在此策略中，Webhook 在外部服务上进行配置，用于直接向 URL 执行 POST 操作来触发触发器。此方法是目前为止实现低频率订阅源最简单、最有吸引力的选项。
 
-例如，[Github 包](/docs/openwhisk?topic=cloud-functions-pkg_github)和 [Push Notification 包](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications)使用 Webhook。
+例如，[GitHub 包](/docs/openwhisk?topic=cloud-functions-pkg_github)和 [Push Notification 包](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications)使用 Webhook。
 
 
 ### 轮询
@@ -58,10 +60,13 @@ subcollection: cloud-functions
 ##  实现订阅源操作
 {: #feeds_actions}
 
-订阅源操作是接受以下参数的一种操作：
-* **lifecycleEvent**：“CREATE”、“READ”、“UPDATE”、“DELETE”、“PAUSE”或“UNPAUSE”。
-* **triggerName**：包含从此订阅源所生成事件的触发器的标准名称。
-* **authKey**：拥有触发器的 {{site.data.keyword.openwhisk_short}} 用户的基本认证凭证。
+订阅源操作是一种操作，接受以下参数。
+
+|参数|描述|
+| --- | --- |
+|`lifecycleEvent`|`CREATE`、`READ`、`UPDATE`、`DELETE`、`PAUSE` 或 `UNPAUSE`|
+|`triggerName`|包含从此订阅源所生成事件的触发器的标准名称。|
+|`authKey`|拥有触发器的 {{site.data.keyword.openwhisk_short}} 用户的基本认证凭证。|
 
 订阅源操作还可以接受管理订阅源所需的其他任何参数。例如，{{site.data.keyword.cloudant}} changes 订阅源操作期望接收多个参数，包括 `dbname` 和 `username`。
 
@@ -90,7 +95,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 事件发起者支持 Webhook/回调工具时，可通过 Hook 设置订阅源。
 
-通过此方法，无需在 {{site.data.keyword.openwhisk_short}} 外部维持任何持久服务。所有订阅源管理工作均通过无状态的 {{site.data.keyword.openwhisk_short}} *订阅源操作*正常执行，这些操作直接与第三方 Webhook API 进行协商。
+通过此方法，无需在 {{site.data.keyword.openwhisk_short}} 外部维持任何持久服务。所有订阅源管理工作均通过无状态的 {{site.data.keyword.openwhisk_short}} **订阅源操作**正常执行，这些操作直接与第三方 Webhook API 进行协商。
 
 使用 `CREATE` 进行调用时，订阅源操作只会为其他某个服务安装 Webhook，并请求远程服务执行 POST 操作将通知发布到 {{site.data.keyword.openwhisk_short}} 中的相应 `fireTrigger` URL。
 
@@ -109,7 +114,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 要设置基于轮询的订阅源，订阅源操作在针对 `CREATE` 进行调用时执行以下步骤：
 
-1. 订阅源操作使用 `whisk.system/alarms` 订阅源将定期触发器设置为所需频率。
+1. 订阅源操作使用 `whisk.system/alarms` 订阅源将定期触发器设置为特定频率。
 2. 订阅源开发者创建 `pollMyService` 操作，以轮询远程服务并返回任何新事件。
 3. 订阅源操作设置*规则* *T -> pollMyService*。
 
@@ -118,17 +123,21 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 ## 使用连接实现订阅源
 {: #feeds_connections}
 
-前两个体系结构选项实现起来既简单又轻松。但是，如果需要高性能订阅源，那么没有持续连接和长时间轮询的替代方法或类似方法。
+前两个体系结构选项实现起来既简单又轻松。但是，如果需要高性能订阅源，那么可以使用持续连接和长时间轮询或类似方法。
 
-由于 {{site.data.keyword.openwhisk_short}} 操作必须是短时间运行的，因此操作不能保持与第三方的持续连接。可以改为在 {{site.data.keyword.openwhisk_short}} 外部维持一直运行的名为*提供者服务*的单独服务。提供者服务可以保持与第三方事件源的连接，这些事件源支持长时间轮询或其他基于连接的通知。
+由于 {{site.data.keyword.openwhisk_short}} 操作必须是短时间运行的，因此操作不能保持与第三方的持续连接。可以改为在 {{site.data.keyword.openwhisk_short}} 外部维持一直运行的名为**提供者服务**的单独服务。提供者服务可以保持与第三方事件源的连接，这些事件源支持长时间轮询或其他基于连接的通知。
 
-提供者服务的 REST API 允许 {{site.data.keyword.openwhisk_short}} *订阅源操作*控制订阅源。提供者服务充当事件提供程序和 {{site.data.keyword.openwhisk_short}} 之间的代理。当提供者服务收到来自第三方的事件时，会通过触发触发器来将其发送给 {{site.data.keyword.openwhisk_short}}。
+提供者服务的 REST API 允许 {{site.data.keyword.openwhisk_short}} **订阅源操作**控制订阅源。提供者服务充当事件提供程序和 {{site.data.keyword.openwhisk_short}} 之间的代理。当提供者服务收到来自第三方的事件时，会通过触发触发器来将其发送给 {{site.data.keyword.openwhisk_short}}。
 
-{{site.data.keyword.cloudant_short_notm}} *changes* 订阅源是典型示例，因为它维持 `cloudanttrigger` 服务，该服务用于调解通过持续连接发送的 {{site.data.keyword.cloudant_short_notm}} 通知和 {{site.data.keyword.openwhisk_short}} 触发器。
+{{site.data.keyword.cloudant_short_notm}} **changes** 订阅源是典型示例，因为它维持 `cloudanttrigger` 服务，该服务用于调解通过持续连接发送的 {{site.data.keyword.cloudant_short_notm}} 通知和 {{site.data.keyword.openwhisk_short}} 触发器。
 
 
-*alarm* 订阅源通过类似模式实现。
+**alarm** 订阅源通过类似模式实现。
 
-基于连接的体系结构是性能最高的选项，但相对于轮询和 Hook 体系结构，它在操作方面的开销更大。
+基于连接的体系结构是性能最高的选项，但其操作的劳动密集程度大于轮询和 Hook 体系结构。
+
+
+
+
 
 

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: limits, details, entities, packages, runtimes, semantics, ordering actions
+keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 系統詳細資料及限制
 {: #limits}
@@ -40,92 +42,27 @@ subcollection: cloud-functions
 下表列出動作的預設限制。
 
 |限制 |說明|預設值 |最小值 |最大值|
-| ----- | ----------- | :-------: | :---: | :---: |
-|[codeSize](#limits_codesize) |動作碼的大小上限 (MB)。|48|1|48|
-|[concurrent](#limits_concurrent) |每個名稱空間可以提交的執行中或置入佇列等待執行的啟動次數不得超過 N 次。|1000|1|1000* |
-|[logs](#limits_logs) |不容許容器寫入 stdout 的內容超過 N MB。|10|0 |10|
-|[memory](#limits_memory)	|不容許容器配置超過 N MB 的記憶體。|256|128 | 2048 |
-|[minuteRate](#limits_minuterate) |每個名稱空間每分鐘可以提交的啟動次數不得超過 N 次。|5000|1|5000* |
-|[openulimit](#limits_openulimit) |動作的開啟檔案數上限。| 1024 |0 | 1024 |
-|[parameters](#limits_parameters) |可以附加的參數大小上限 (MB)。| 5 |0 | 5 |
-|[proculimit](#limits_proculimit) |動作可用的處理程序數目上限。| 1024 |0 | 1024 |
-|[result](#limits_result) |動作呼叫結果的大小上限 (MB)。| 5 |0 | 5 |
-| [sequenceMaxActions](#limits_sequencemax) |包含給定序列的動作數目上限。| 50 |0 | 50* |
-|[timeout](#limits_timeout)	|不容許容器執行超過 N 毫秒的時間。|60000|100 | 600000 |
+| --- | ---| --- | --- | --- |
+|`codeSize` |動作的程式碼大小上限為 48 MB。對於 JavaScript 動作，使用工具將所有原始碼（包括相依關係）連結至單一組合檔。此限制是固定的，無法變更。|48|1|48| 
+|`concurrent`|名稱空間的執行中或置入佇列等待執行的啟動次數不得超過 1000。此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請參閱[增加固定限制](/docs/openwhisk?topic=cloud-functions-limits#limits_increase)，以取得有關如何增加此限制的指示。|1000|1|1000* |
+|`logs`|日誌限制 N 在範圍 [0 MB..10 MB] 內，並根據每個動作來設定。建立或更新動作時，使用者可以變更動作日誌限制。超過設定限制的日誌會被截斷，因此會忽略任何新的日誌項目，且會新增一則警告作為最後一個啟動輸出，指出啟動已超出設定的日誌限制。|10|0 |10|
+|`memory`	|記憶體限制 M 在範圍 [128 MB..2048 MB] 內，並根據每個動作來設定 (MB)。建立動作時，使用者可以變更記憶體限制。容器使用的記憶體數量不能超過限制所配置的記憶體數量。|256|128 | 2048 |
+|`minuteRate` |每個名稱空間每分鐘可以提交的啟動次數不得超過 N 次。速率限制 N 設定為 5000，並限制一分鐘時間範圍內的動作呼叫次數。超過此限制的 CLI 或 API 呼叫會收到與 HTTP 狀態碼 `429: TOO MANY REQUESTS` 對應的錯誤碼。此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請參閱[增加固定限制](#limits_increase)，以取得有關如何增加此限制的指示。|5000|1|5000* | 
+|`openulimit` |動作的開啟檔案數上限為 1024（同時適用於硬性和軟性限制）。此限制是固定的，無法變更。呼叫動作時，docker run 指令會使用 `--ulimit nofile=1024:1024` 引數來設定 `openulimit` 值。如需相關資訊，請參閱 [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} 指令行參考文件。| 1024 |0 | 1024 | 
+|`parameters` |可以附加的參數大小上限 (MB)。在建立或更新「動作/套件/觸發程式」時，總參數的大小限制是 5 MB。嘗試建立或更新參數太大的實體時，會拒絕該實體。此限制是固定的，無法變更。| 5 |0 | 5 | 
+|`proculimit` |動作容器可用的處理程序數目上限為 1024。此限制是固定的，無法變更。呼叫動作時，docker run 指令會使用 `--pids-limit 1024` 引數來設定 `proculimit` 值。如需相關資訊，請參閱 [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} 指令行參考文件。| 1024 |0 | 1024 | 
+|`result` |動作呼叫結果的輸出大小上限 (MB)。此限制是固定的，無法變更。| 5 |0 | 5 | 
+| `sequenceMaxActions` |包含序列的動作數目上限。此限制是固定的，無法變更。| 50 |0 | 50* | 
+|`timeout`	|逾時限制 N 在範圍 [100 毫秒..600000 毫秒] 內，並根據每個動作來設定（毫秒）。建立動作時，使用者可以變更逾時限制。終止執行時間超過 N 毫秒的容器。|60000|100 | 600000 | 
 
 ### 增加固定限制
 {: #limits_increase}
 
-以 (*) 結尾的限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加值。如果您想要增加限制值，請直接從 IBM [{{site.data.keyword.openwhisk_short}} Web 主控台](https://cloud.ibm.com/openwhisk)來開啟問題單，以聯絡 IBM 支援中心。
+以 (*) 結尾的限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加值。如果您想要增加限制值，請直接從 IBM [{{site.data.keyword.openwhisk_short}} Web 主控台](https://cloud.ibm.com/openwhisk){: external}來開啟問題單，以聯絡 IBM 支援中心。
   1. 選取**支援**
   2. 從下拉功能表中選取**新增問題單**。
   3. 針對問題單類型，請選取**技術**。
   4. 針對支援的技術領域，請選取**函數**。
-
-#### codeSize (MB)（固定：48 MB）
-{: #limits_codesize}
-* 動作的程式碼大小上限為 48 MB。
-* 對於 JavaScript 動作，使用工具將所有原始碼（包括相依關係）連結至單一組合檔。
-* 此限制是固定的，無法變更。
-
-#### concurrent（固定：1000*）
-{: #limits_concurrent}
-* 名稱空間的執行中或置入佇列等待執行的啟動次數不得超過 1000。
-* 此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請查閱[增加固定限制](/docs/openwhisk?topic=cloud-functions-limits#limits_increase)一節，以取得如何增加此限制的詳細指示。
-
-#### 日誌 (MB)（預設值：10 MB）
-{: #limits_logs}
-* 日誌限制 N 在範圍 [0 MB..10 MB] 內，並根據每個動作來設定。
-* 建立或更新動作時，使用者可以變更動作日誌限制。
-* 超過設定限制的日誌會被截斷，因此會忽略任何新的日誌項目，且會新增一則警告作為最後一個啟動輸出，指出啟動已超出設定的日誌限制。
-
-#### 記憶體 (MB)（預設值：256 MB）
-{: #limits_memory}
-* 記憶體限制 M 在範圍 [128 MB..2048 MB] 內，並根據每個動作來設定 (MB)。
-* 建立動作時，使用者可以變更記憶體限制。
-* 容器使用的記憶體數量不能超過限制所配置的記憶體數量。
-
-#### minuteRate（固定：5000*）
-{: #limits_minuterate}
-* 速率限制 N 設定為 5000，並限制一分鐘時間範圍內的動作呼叫次數。
-* 超過此限制的 CLI 或 API 呼叫會收到與 HTTP 狀態碼 `429: TOO MANY REQUESTS` 對應的錯誤碼。
-* 此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請查閱[增加固定限制](/docs/openwhisk?topic=cloud-functions-limits#limits_increase)一節，以取得如何增加此限制的詳細指示。
-
-#### openulimit（固定：1024:1024）
-{: #limits_openulimit}
-* 動作的開啟檔案數上限為 1024（同時適用於硬性和軟性限制）。
-* 此限制是固定的，無法變更。
-* 呼叫動作時，docker run 指令會使用 `--ulimit nofile=1024:1024` 引數來設定 `openulimit` 值。
-* 如需相關資訊，請參閱 [docker run](https://docs.docker.com/engine/reference/commandline/run) 指令行參考文件。
-
-#### 參數（固定：5 MB）
-{: #limits_parameters}
-* 在建立或更新「動作/套件/觸發程式」時，總參數的大小限制是 5 MB。
-* 嘗試建立或更新參數太大的實體時，會拒絕該實體。
-* 此限制是固定的，無法變更。
-
-#### proculimit（固定：1024:1024）
-{: #limits_proculimit}
-* 動作容器可用的處理程序數目上限為 1024。
-* 此限制是固定的，無法變更。
-* 呼叫動作時，docker run 指令會使用 `--pids-limit 1024` 引數來設定 `proculimit` 值。
-* 如需相關資訊，請參閱 [docker run](https://docs.docker.com/engine/reference/commandline/run) 指令行參考文件。
-
-#### 結果（固定：5 MB）
-{: #limits_result}
-* 動作呼叫結果的輸出大小上限 (MB)。
-* 此限制是固定的，無法變更。
-
-#### sequenceMaxActions（固定：50*）
-{: #limits_sequencemax}
-* 包含給定序列的動作數目上限。
-* 此限制是固定的，無法變更。
-
-#### 逾時（毫秒）（預設值：60 秒）
-{: #limits_timeout}
-* 逾時限制 N 在範圍 [100 毫秒..600000 毫秒] 內，並根據每個動作來設定（毫秒）。
-* 建立動作時，使用者可以變更逾時限制。
-* 終止執行時間超過 N 毫秒的容器。
 
 ### 觸發程式
 {: #limits_triggers}
@@ -133,25 +70,17 @@ subcollection: cloud-functions
 觸發程式受限於每分鐘的發動率，如下表所記載。
 
 |限制 |說明|預設值 |最小值 |最大值|
-| ----- | ----------- | :-------: | :---: | :---: |
-|[minuteRate](#limits_triggersminuterate) |每個名稱空間每分鐘的觸發程式發動次數不得超過 N 次。|5000* |5000* |5000* |
+| --- | --- | --- | --- | --- |
+|`minuteRate` |速率限制 N 設定為 5000，並限制使用者在一分鐘時間範圍內可發動的觸發程式數目。建立觸發程式時，使用者無法變更觸發程式限制。超過此限制的 CLI 或 API 呼叫會收到與 HTTP 狀態碼 `429: TOO MANY REQUESTS` 對應的錯誤碼。此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請查閱[增加固定限制](#limits_triggersfixed)一節，以取得如何增加此限制的詳細指示。|5000* |5000* |5000* |
 
 ### 增加固定限制
 {: #limits_triggersfixed}
 
-以 (*) 結尾的限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加值。如果您想要增加限制值，請直接從 IBM [{{site.data.keyword.openwhisk_short}} Web 主控台](https://cloud.ibm.com/openwhisk)來開啟問題單，以聯絡 IBM 支援中心。
+以 (*) 結尾的限制值是固定值，但如果業務案例可以證明使用更高的安全限制值是合理的，則可以增加這些值。如果您想要增加限制值，請直接從 IBM [{{site.data.keyword.openwhisk_short}} Web 主控台](https://cloud.ibm.com/openwhisk){: external}來開啟問題單，以聯絡 IBM 支援中心。
   1. 選取**支援**
   2. 從下拉功能表中選取**新增問題單**。
   3. 針對問題單類型，請選取**技術**。
   4. 針對支援的技術領域，請選取**函數**。
-
-#### minuteRate（固定：5000*）
-{: #limits_triggersminuterate}
-
-* 速率限制 N 設定為 5000，並限制使用者在一分鐘時間範圍內可發動的觸發程式數目。
-* 建立觸發程式時，使用者無法變更觸發程式限制。
-* 超過此限制的 CLI 或 API 呼叫會收到與 HTTP 狀態碼 `429: TOO MANY REQUESTS` 對應的錯誤碼。
-* 此限制值是固定的，但如果業務案例可以調整較高的安全限制值，則可以增加此值。請查閱[增加固定限制](#limits_triggersfixed)一節，以取得如何增加此限制的詳細指示。
 
 
 ## {{site.data.keyword.openwhisk_short}} 實體
@@ -168,6 +97,9 @@ subcollection: cloud-functions
 
 `/whisk.system` 名稱空間是保留供隨 {{site.data.keyword.openwhisk_short}} 系統一起配送的實體使用。
 
+以 IAM 為基礎的名稱空間不支援[無伺服器架構](https://serverless.com/)
+{: note}
+
 
 ### 完整名稱
 {: #limits_fullnames}
@@ -183,15 +115,6 @@ subcollection: cloud-functions
 |`/myOrg/filter` |`filter` |`/myOrg` |  |`filter` |
 
 在其他位置中使用 {{site.data.keyword.openwhisk_short}} CLI 時，您可以使用此命名方法。
-
-### 實體名稱
-{: #limits_entities}
-
-所有實體（包括動作、觸發程式、規則、套件及名稱空間）的名稱都是遵循下列格式的一串字元：
-
-* 第一個字元必須是英數字元或底線。
-* 後續字元可以是英數字元、空格或下列任何一值：`_`、`@`、`.`、`-`。
-* 最後一個字元不能是空格。
 
 更精確地來說，名稱必須符合下列正規表示式（以 Java meta 字元語法表示）：`\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`。
 
@@ -217,7 +140,7 @@ subcollection: cloud-functions
 
 動作不是依序進行呼叫。如果使用者從指令行或 REST API 呼叫動作兩次，則可能會先執行第二次呼叫，再執行第一次呼叫。如果動作有負面影響，則可能會依任意順序觀察到它們。
 
-此外，不保證動作會自動執行。可以同時執行兩個動作，而其負面影響可能會交錯。OpenWhisk 無法確保任何特定並行一致性模型是否有負面影響。任何並行性負面影響都是根據實作。
+此外，不保證動作會自動執行。可以同時執行兩個動作，而其負面影響可能會交錯。OpenWhisk 無法確保任何特定並行一致性模型是否有負面影響。 
 
 ### 動作執行
 {: #limits_exec}
@@ -228,14 +151,17 @@ subcollection: cloud-functions
 如果在收到 HTTP 回應之前發生網路失敗或其他干擾失敗，則可能是 {{site.data.keyword.openwhisk_short}} 已接收並處理該要求。
 
 系統嘗試呼叫該動作一次，而導致下列四種結果的其中一種：
-- *成功*：順利完成動作呼叫。
-- *應用程式錯誤*：動作呼叫成功，但動作故意傳回錯誤值（例如，因為引數的前置條件不相符）。
-- *動作開發人員錯誤*：已呼叫動作，但異常完成（例如，動作偵測不到異常狀況，或有語法錯誤）。
-- *Whisk 內部錯誤*：系統無法呼叫動作。結果會記錄在啟動記錄的 `status` 欄位中（如下節所記載）。
+
+|結果|說明|
+| --- | --- |
+|`success`|動作呼叫順利完成。|
+|`application error`|動作呼叫成功，但動作有意傳回了錯誤值，例如由於不符合引數上的前置條件。|
+|`action developer error`|動作已呼叫，但以異常方式完成，例如動作未偵測到異常或存在語法錯誤。|
+|`whisk internal error`|系統無法呼叫該操作。結果會記錄在啟動記錄的 `status` 欄位中（如下節所記載）。|
 
 每個順利收到的呼叫以及每個可能向使用者收費的呼叫，都有一筆啟動記錄。
 
-當結果是*動作開發人員錯誤* 時，可能會局部執行動作，並產生外部可見的負面影響。使用者必須負責檢查是否發生這類負面影響，如有需要，請發出重試邏輯。某些 *Whisk 內部錯誤* 指出動作開始執行，但在動作完成登錄之前就失敗了。
+當結果是*動作開發人員錯誤* 時，可能會局部執行動作，並產生外部可見的負面影響。使用者應負責檢查是否實際發生了此類負面影響，然後發出重試邏輯。某些 *Whisk 內部錯誤* 指出動作開始執行，但在動作完成登錄之前就失敗了。
 
 ## 啟動記錄
 {: #limits_activation}
@@ -244,11 +170,15 @@ subcollection: cloud-functions
 
 啟動記錄包含下列欄位：
 
-- *activationId*：啟動 ID。
-- *start* 及 *end*：記錄啟動開始及結束的時間戳記。值為 [UNIX 時間格式](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15)。
-- *namespace* 及 `name`：實體的名稱空間及名稱。
-- *logs*：字串陣列，內含動作在其啟動期間所產生的日誌。每一個陣列元素都對應至動作之 `stdout` 或 `stderr` 的行輸出，並且包含日誌輸出的時間及串流。結構如下：`TIMESTAMP STREAM: LOG_OUTPUT`。
-- *response*：定義索引鍵 `success`、`status` 及 `result` 的字典：
-  - *status*：啟動結果，可能是下列其中一個值："success"、"application error"、"action developer error"、"whisk internal error"。
-  - *success*：假設並且只有在狀態為 `"success"` 時，才會為 `true`
-- *result*：包含啟動結果的字典。如果順利啟動，則結果會包含動作所傳回的值。如果啟動失敗，`result` 會包含 `error` 索引鍵，通常還會有失敗的說明。
+|欄位|說明
+| --- | --- |
+|`activationId`|啟動 ID。|
+|`start` 和 `end`|記錄啟動開始時間和結束時間的時間戳記。值為 [UNIX 時間格式](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15){: external}。|
+|`namespace` 和 `name`|實體的名稱空間和實體名稱。|
+|`logs` |字串陣列，其中包含在動作啟動期間由動作產生的日誌。每一個陣列元素都對應至動作之 `stdout` 或 `stderr` 的行輸出，並且包含日誌輸出的時間及串流。結構如下：`TIMESTAMP STREAM: LOG_OUTPUT`。|
+|`response`|用於定義 `success`、`status` 和 `result` 鍵的字典。`status`：啟動結果，可能是下列其中一個值："success"、"application error"、"action developer error"、"whisk internal error"。`success`：假設並且只有在狀態為 "`success`" 時，此項為 `true`。|
+|`result` |包含啟動結果的字典。如果順利啟動，則結果會包含動作所傳回的值。如果啟動失敗，`result` 會包含 `error` 索引鍵，通常還會有失敗的說明。|
+
+
+
+

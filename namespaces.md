@@ -4,6 +4,7 @@ copyright:
   years: 2017, 2019
 lastupdated: "2019-08-23"
 
+
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
 subcollection: cloud-functions

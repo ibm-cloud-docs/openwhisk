@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploying actions, manifest, manifest file
+keywords: deploying actions, manifest, manifest file, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,17 +24,18 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # 使用清单文件部署实体
 {: #deploy}
 
-您可以使用 {{site.data.keyword.openwhisk_short}} 通过用 YAML 编写的清单文件来描述和部署所有名称空间实体。可以使用此文件通过一个命令部署所有 Functions [包](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[操作](/docs/openwhisk?topic=cloud-functions-actions)、[触发器](/docs/openwhisk?topic=cloud-functions-triggers)和规则](/docs/openwhisk?topic=cloud-functions-rules)。
+您可以使用 {{site.data.keyword.openwhisk_short}} 通过用 YAML 编写的清单文件来描述和部署所有名称空间实体。可以使用此文件通过一个命令部署所有 Functions [包](/docs/openwhisk?topic=cloud-functions-pkg_ov)、[操作](/docs/openwhisk?topic=cloud-functions-actions)、[触发器](/docs/openwhisk?topic=cloud-functions-triggers)和[规则](/docs/openwhisk?topic=cloud-functions-rules)。
 
-清单文件描述了要作为组部署和取消部署的实体集。清单文件内容必须遵循 [OpenWhisk 部署 YAML 规范](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification)。清单文件定义后，可以用于将一组 Functions 实体部署或重新部署到相同或不同的 Functions 名称空间中。可以使用 Functions 插件命令 `ibmcloud fn deploy` 和 `ibmcloud fn undeploy` 来部署和取消部署清单文件中定义的 Functions 实体。
+清单文件描述了要作为组部署和取消部署的实体集。清单文件内容必须遵循 [OpenWhisk 部署 YAML 规范](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}。清单文件定义后，可以用于将一组 Functions 实体部署或重新部署到相同或不同的 Functions 名称空间中。可以使用 Functions 插件命令 `ibmcloud fn deploy` 和 `ibmcloud fn undeploy` 来部署和取消部署清单文件中定义的 Functions 实体。
 
 ## 创建 Hello World API 示例
 {: #deploy_helloworld_example}
 
-此示例采用一些简单的 Node.js 代码 (`helloworld.js`)，在包 (`hello_world_package`) 内创建 Web 操作 (`hello_world`)，并为此操作定义 REST API。
+此示例采用一些简单的 Node.js 代码 (`helloworld.js`)，在包 `hello_world_package` 内创建 Web 操作 `hello_world`，并为此操作定义 REST API。
 {: shortdesc}
 
 1. 创建包含以下代码的 `helloworld.js` 文件。
@@ -83,7 +85,6 @@ packages:
 
 4. 可以列出操作、包和 API，以确认这三种所需实体是否已成功创建。
 
-
     1. 使用以下命令来列出操作。
 
       ```sh
@@ -119,12 +120,16 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
 
-## 其他 OpenWhisk 部署示例
+## 更多 OpenWhisk 部署示例
 {: more_deploy_examples}
 
-Functions 部署基于 OpenWhisk 部署项目，该项目具有可在 Functions 中使用的[多个部署清单示例](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples)。您可以使用 `ibmcloud fn deploy` 命令，而不使用 `wskdeploy`。
+Functions 部署基于 OpenWhisk 部署项目，该项目具有可在 Functions 中使用的[多个部署清单示例](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external}。您可以使用 `ibmcloud fn deploy` 命令，而不使用 `wskdeploy`。
 
 ## 部署清单规范
 {: manifest_specification}
 
-Functions 部署清单必须遵循 OpenWhisk 部署清单规范。请参阅 [OpenWhisk 部署清单规范文档](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification)以获取详细信息。
+Functions 部署清单必须遵循 OpenWhisk 部署清单规范。请参阅 [OpenWhisk 部署清单规范文档](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external}以获取详细信息。
+
+
+
+

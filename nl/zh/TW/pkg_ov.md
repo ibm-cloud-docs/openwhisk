@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: packages, installable packages
+keywords: packages, installable packages, functions
 
 subcollection: cloud-functions
 
@@ -16,12 +16,14 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # 包含套件
 {: #pkg_ov}
@@ -76,16 +78,16 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  範例：
+  **範例**
   ```
   ibmcloud fn package get --summary /whisk.system/cloudant
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
-  package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
-     (params: {{site.data.keyword.Bluemix_notm}}ServiceName host username password dbname includeDoc overwrite)
+package /whisk.system/cloudant: {{site.data.keyword.cloudant_short_notm}} database service
+     (params: {{site.data.keyword.cloud_notm}}ServiceName host username password dbname includeDoc overwrite)
    action /whisk.system/cloudant/read: Read document from database
    action /whisk.system/cloudant/write: Write document to database
    feed   /whisk.system/cloudant/changes: Database change feed
@@ -98,13 +100,13 @@ subcollection: cloud-functions
 
 3. 取得動作或資訊來源的說明，以查看所需的參數。
 
-  範例：
+  **範例**
   ```
   ibmcloud fn action get --summary /whisk.system/cloudant/read
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   action /whisk.system/cloudant/read: Read document from database
      (params: dbname includeDoc id)
@@ -131,7 +133,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
 ok: created binding valhallaSamples
   ```
@@ -143,7 +145,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   package /myNamespace/valhallaSamples
    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
@@ -161,7 +163,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   {
       "payload": "Hello, Odin from Valhalla!"
@@ -177,7 +179,7 @@ ok: created binding valhallaSamples
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   {
       "payload": "Hello, Odin from Asgard!"
@@ -189,19 +191,15 @@ ok: created binding valhallaSamples
 
 
 
-
-
-
 ## 新增您自己的套件
 {: #pkg_add}
 
-可以建立本端程式碼的套件或任何 Github 儲存庫的複製。
+可以建立本端程式碼的套件或任何 GitHub 儲存庫的複製。
 {: shortdesc}
 
-開始之前：
-- [安裝 {{site.data.keyword.Bluemix_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](/docs/openwhisk?topic=cloud-functions-cli_install)。
-- 為應用程式建立 `manifest.yaml` 或 `manifest.yml` 檔案，並將其儲存在根目錄中。`manifest.yaml` 檔案指定套件的整體結構，包括 `ibmcloud fn deploy` 指令必須包含的任何 meta 資料。若要進一步瞭解 `manifest.yaml` 檔案，請參閱 [wskdeploy 文件 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example)。
-    
+**開始之前**
+- [安裝 {{site.data.keyword.cloud_notm}} CLI 的 {{site.data.keyword.openwhisk_short}} 外掛程式](/docs/openwhisk?topic=cloud-functions-cli_install)。
+- 為應用程式建立 `manifest.yaml` 或 `manifest.yml` 檔案，並將其儲存在根目錄中。`manifest.yaml` 檔案指定套件的整體結構，包括 `ibmcloud fn deploy` 指令必須包含的任何 meta 資料。若要瞭解有關 `manifest.yaml` 檔案的更多資訊，請參閱 [<ph class="ignoreSpelling">wskdeploy</ph> 文件](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}。
 
 若要新增套件，請執行下列動作：
 
@@ -231,12 +229,12 @@ ok: created binding valhallaSamples
     ```
     {: pre}
 
-### 使用 {{site.data.keyword.cos_full_notm}} 套件的範例
+### {{site.data.keyword.cos_full_notm}} 套件範例
 {: #pkg_ex}
 
-若要查看如何安裝套件的範例，請參閱 [{{site.data.keyword.cos_full_notm}} 套件](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)。{{site.data.keyword.cos_full}} 是一項服務，容許使用者儲存所有類型的檔案，例如影像、視訊、音樂和文字。為了與檔案互動，鍵值組的雲端型資料儲存庫會儲存在儲存區中。因此，若要使用 [{{site.data.keyword.cos_full_notm}} 套件](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)，您必須先建立一個 {{site.data.keyword.cos_full_notm}} 服務實例，然後再建立一個儲存區。此儲存區用來作為安裝此套件所需的環境變數。
+若要查看如何安裝套件的範例，請參閱 [{{site.data.keyword.cos_full_notm}} 套件](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)。{{site.data.keyword.cos_full}} 是一項服務，容許使用者儲存所有類型的檔案，例如影像、視訊、音樂和文字。若要與這些檔案互動，雲端型的鍵值組資料儲存庫將儲存在儲存區中。因此，若要使用 [{{site.data.keyword.cos_full_notm}} 套件](/docs/openwhisk?topic=cloud-functions-pkg_obstorage)，您必須先建立一個 {{site.data.keyword.cos_full_notm}} 服務實例，然後再建立一個儲存區。此儲存區用來作為安裝此套件所需的環境變數。
 
-建立服務實例及儲存區之後，安裝套件需要下列指令：
+建立服務實例和儲存區之後，可以使用下列指令來安裝套件：
 
 1. 複製套件儲存庫。
     ```
@@ -250,9 +248,11 @@ ok: created binding valhallaSamples
     ```
     {: pre}
 
-3. 使用您的儲存區作為環境變數，來部署套件。`PACKAGE_NAME` 環境變數的相依關係，容許您為此套件提供一個自訂名稱。
+3. 使用您的儲存區作為環境變數，來部署套件。可以使用 `PACKAGE_NAME` 環境變數來為套件提供自訂名稱。
     ```
     PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
     ```
     {: pre}
+
+
 

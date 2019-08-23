@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: slack package, token-based, api
+keywords: slack package, token-based, api, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,34 +24,37 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Slack
 {: #pkg_slack}
 
-Il pacchetto `/whisk.system/slack` preinstallato offre una soluzione pratica per utilizzare le [API Slack](https://api.slack.com/).
+Il pacchetto `/whisk.system/slack` preinstallato offre una soluzione pratica per utilizzare le [API Slack](https://api.slack.com/){: external}.
 {: shortdesc}
 
 Il pacchetto include le seguenti azioni:
 
 | Entità | Tipo | Parametri | Descrizione |
 | --- | --- | --- | --- |
-| `/whisk.system/slack` | pacchetto | url, channel, username | Interagire con la API Slack |
-| `/whisk.system/slack/post` | azione | text, url, channel, username | Pubblicare un messaggio in un canale Slack |
+| `/whisk.system/slack` | Pacchetto | `url`, `channel`, `username` | Interagire con l'API Slack. |
+| `/whisk.system/slack/post` | Azione | `text`, `url`, `channel`, `username` | Pubblicare un messaggio in un canale Slack. |
 
 Si consiglia di effettuare la creazione di un bind di pacchetto con i valori `username`, `url` e `channel`. Con il bind, non dovrai specificare i valori ogni volta che richiami l'azione nel pacchetto.
 
 ## Pubblicazione di un messaggio in un canale Slack
 
-L'azione `/whisk.system/slack/post` pubblica un messaggio in un canale Slack specificato. I parametri sono i seguenti:
+L'azione `/whisk.system/slack/post` pubblica un messaggio in un canale Slack specificato. Sono supportati i seguenti parametri.
 
-- `url`: l'URL del webhook Slack.
-- `channel`: il canale Slack nel quale pubblicare il messaggio.
-- `username`: il nome con il quale pubblicare il messaggio.
-- `text`: un messaggio da pubblicare.
-- `token`: (facoltativo) un [token di accesso ](https://api.slack.com/tokens) Slack.
+| Parametro | Descrizione |
+| --- | --- |
+| `url` | L'URL del webhook Slack. |
+| `channel` | Il canale Slack in cui pubblicare il messaggio. |
+| `username` | Il nome con cui pubblicare il messaggio. |
+| `text` | Un messaggio da pubblicare. |
+| `token` | (Facoltativo) Un [token di accesso](https://api.slack.com/tokens){: external} Slack. |
 
 Il seguente esempio mostra come configurare Slack, creare un bind di pacchetto e pubblicare un messaggio in un canale.
 
-1. Configura un [webhook in entrata](https://api.slack.com/incoming-webhooks) Slack per il tuo team.
+1. Configura un [webhook in entrata](https://api.slack.com/incoming-webhooks){: external} Slack per il tuo team.
 
   Dopo che Slack è stato configurato, ottieni un URL webhook simile a `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. Il webhook sarà necessario nel prossimo passo.
 
@@ -63,7 +67,7 @@ Il seguente esempio mostra come configurare Slack, creare un bind di pacchetto e
   ```
   {: pre}
 
-3. Richiama l'azione **post** nel tuo bind di pacchetto per pubblicare un messaggio nel canale Slack.
+3. Richiama l'azione `post` nel tuo bind di pacchetto per pubblicare un messaggio nel canale Slack.
   ```
   ibmcloud fn action invoke mySlack/post --blocking --result \
     --param text "Hello from OpenWhisk!"
@@ -72,5 +76,7 @@ Il seguente esempio mostra come configurare Slack, creare un bind di pacchetto e
 
 ## Utilizzo dell'API basata sul token Slack
 
-Se preferisci, puoi utilizzare l'API basata sul token Slack anziché l'API webhook. Se così fosse, devi passare un parametro `token` che contiene il tuo [token di accesso](https://api.slack.com/tokens) Slack. Puoi quindi utilizzare qualsiasi [metodo API Slack](https://api.slack.com/methods) come parametro `url`. Ad esempio, per pubblicare un messaggio, puoi utilizzare il valore di parametro `url` [slack.postMessage](https://api.slack.com/methods/chat.postMessage).
+Se preferisci, puoi utilizzare l'API basata sul token Slack anziché l'API webhook. Se così fosse, devi passare un parametro `token` che contiene il tuo [token di accesso](https://api.slack.com/tokens){: external} Slack. Puoi quindi utilizzare qualsiasi [metodo API Slack](https://api.slack.com/methods){: external} come parametro `url`. Ad esempio, per pubblicare un messaggio, puoi utilizzare un valore di parametro `url` come [<ph class="ignoreSpelling">slack.postMessage</ph>](https://api.slack.com/methods/chat.postMessage){: external}.
+
+
 

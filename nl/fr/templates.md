@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploy, deployment templates, templates, example, quickstart
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Déploiement de modèles Quickstart
 {: #templates}
 
-{{site.data.keyword.openwhisk}} offre un catalogue de modèles destinés à vous permettre de commencer rapidement à travailler sur votre nouveau projet. Les modèles représentent une combinaison d'actions, de déclencheurs et de séquences. Certains modèles incorporent également d'autres instances de service provenant d'{{site.data.keyword.Bluemix_notm}}. Les modèles vous permettent de créer rapidement et facilement un projet et de commencer immédiatement le codage.
+{{site.data.keyword.openwhisk}} offre un catalogue de modèles destinés à vous permettre de commencer rapidement à travailler sur votre nouveau projet. Les modèles représentent une combinaison d'actions, de déclencheurs et de séquences. Certains modèles incorporent également d'autres instances de service provenant d'{{site.data.keyword.cloud_notm}}. Les modèles vous permettent de créer rapidement et facilement un projet et de commencer immédiatement le codage.
 {: shortdesc}
 
 
@@ -35,12 +37,12 @@ subcollection: cloud-functions
 
 | Nom | Description | Environnements d'exécution pris en charge | Référentiel source |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | Lorsqu'un document est édité ou ajouté dans une base de données {{site.data.keyword.cloudantfull}}, consigner la modification dans la console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger) |
-| [Upload Image](#image-template) | Utiliser une action Web pour envoyer par téléchargement une image vers le compartiment d'une instance {{site.data.keyword.cos_full}}, puis extraire une miniature de cette image. | Node.js | [Code](https://github.com/ibm-functions/template-cloud-object-storage)
-| [Get HTTP Resource](#get-http-resource-template) | Appeler une action Web à l'aide d'un événement HTTP et accéder aux données de l'API Yahoo Weather. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource)
-| [Hello World](#hello-world-template) | Créer une action de base qui accepte un objet JSON en tant que paramètre unique. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-hello-world)
-| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | Lorsque de nouvelles données sont ajoutées dans une rubrique {{site.data.keyword.messagehub_full}}, consigner la modification dans la console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-messagehub-trigger)
-| [Periodic Slack Reminder](#slack-reminder-template) | Utiliser un webhook dans Slack en fonction d'un déclencheur périodique. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-reminder-slack)
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | Lorsqu'un document est édité ou ajouté dans une base de données {{site.data.keyword.cloudantfull}}, consigner la modification dans la console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Upload Image](#image-template) | Utiliser une action Web pour envoyer par téléchargement une image vers le compartiment d'une instance {{site.data.keyword.cos_full}}, puis extraire une miniature de cette image. | Node.js | [Code](https://github.com/ibm-functions/template-cloud-object-storage){: external}
+| [Get HTTP Resource](#get-http-resource-template) | Appeler une action Web à l'aide d'un événement HTTP et accéder aux données de l'API Yahoo Weather. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | Créer une action de base qui accepte un objet JSON en tant que paramètre unique. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub}} Events](#messagehub-events-template) | Lorsque de nouvelles données sont ajoutées dans une rubrique {{site.data.keyword.messagehub_full}}, consigner la modification dans la console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Utiliser un webhook dans Slack en fonction d'un déclencheur périodique. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 Vous pouvez accéder au code de chaque modèle dans son référentiel de code, le modifier comme bon vous semble et l'utiliser pour créer votre propre fonction.
 {: tip}
@@ -54,7 +56,7 @@ Le modèle {{site.data.keyword.cloudant_short_notm}} crée une séquence d'actio
 ### Déploiement du modèle {{site.data.keyword.cloudant_short_notm}} Events à partir de l'interface utilisateur
 {: #cloudant-template-ui}
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -69,13 +71,14 @@ Le modèle {{site.data.keyword.cloudant_short_notm}} crée une séquence d'actio
     2. Créez l'instance de service {{site.data.keyword.cloudant_short_notm}}.
     3. Créez un ensemble de données d'identification pour le service.
     4. Cliquez sur **OK** pour fermer la page de configuration {{site.data.keyword.cloudant_short_notm}} et revenir à la console {{site.data.keyword.openwhisk_short}}.
-    5. Dans la liste **Instance Cloudant**, vous pouvez maintenant choisir **Entrez vos propres données d'identification** et indiquer les informations suivantes :
-      * Utilisateur : Votre nom d'utilisateur {{site.data.keyword.cloudant_short_notm}}
-      * Mot de passe : Votre mot de passe {{site.data.keyword.cloudant_short_notm}}
-      * Hôte : `<username>.cloudant.com`
-      * Base de données : Nom de votre base de données {{site.data.keyword.cloudant_short_notm}}
+    5. Dans la liste **Instance Cloudant**, vous pouvez maintenant choisir **Entrez vos propres données d'identification** et indiquer les informations suivantes.
+        
+        * `Username` - Votre nom d'utilisateur {{site.data.keyword.cloudant_short_notm}}.
+        * `Password` - Votre mot de passe {{site.data.keyword.cloudant_short_notm}}.
+        * `Host` - `<username>.cloudant.com`. 
+        * `Database` - Nom de votre base de données {{site.data.keyword.cloudant_short_notm}}.
 
-5. Cliquez sur **Déployer**. Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modifications au code afin de le personnaliser en fonction de vos besoins, ou revenir en arrière et vérifier le catalogue de modèles disponibles.
+6. Cliquez sur **Déployer**. Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modifications au code afin de le personnaliser en fonction de vos besoins, ou revenir en arrière et vérifier le catalogue de modèles disponibles.
 
 ### Déploiement du modèle {{site.data.keyword.cloudant_short_notm}} Events à partir de l'interface de ligne de commande
 {: #cloudant-template-cli}
@@ -116,13 +119,13 @@ Le modèle {{site.data.keyword.cloudant_short_notm}} crée une séquence d'actio
 ## Déploiement du modèle Upload Image
 {: #image-template}
 
-Le modèle Upload Image crée une action Web qui vous permet d'envoyer par téléchargement une image à un compartiment {{site.data.keyword.cos_full_notm}} via une petite interface. Le modèle extrait ensuite l'image sous la forme d'une miniature et l'affiche dans l'interface de l'action Web.
+Le modèle Upload Image crée une action Web que vous pouvez utiliser pour télécharger une image dans un compartiment {{site.data.keyword.cos_full_notm}} via une petite interface. Le modèle extrait ensuite l'image sous la forme d'une miniature et l'affiche dans l'interface de l'action Web.
 
 
 ### Déploiement du modèle Upload Image à partir de l'interface utilisateur
 {: #image-template-ui}
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -132,12 +135,12 @@ Le modèle Upload Image crée une action Web qui vous permet d'envoyer par tél�
 
 6. Le modèle requiert les données d'identification du service d'une instance de service {{site.data.keyword.cos_full_notm}}. Dans la liste **{{site.data.keyword.cos_full_notm}}**,
 sélectionnez l'une des options suivantes :
-  * **Créez une nouvelle instance** : si vous n'avez pas d'instance de service, sélectionnez cette option pour en créer une.
+  * **Créez une instance**. Si vous n'avez pas d'instance de service existante, sélectionnez cette option pour en créer une. 
       1. Dans la page de création d'instance de service d'{{site.data.keyword.cos_full_notm}} qui s'affiche, créez une instance de service.
       2. [Créez un ensemble de données d'identification du service HMAC](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
       3. [Créez au moins un compartiment](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
-  * **Entrez vos propres données d'identification** : sélectionnez cette option pour saisir manuellement vos propres données d'identification pour une instance de service {{site.data.keyword.cos_full_notm}}. Les données d'identification doivent contenir des clés HMAC et l'instance de service doit avoir au moins un compartiment.
-  * **Instances existantes** : si vous avez des instances {{site.data.keyword.cos_full_notm}}, sélectionnez-en une dans la liste. Les données d'identification doivent contenir des clés HMAC et l'instance de service doit avoir au moins un compartiment.
+  * **Entrez vos propres données d'identification**. Sélectionnez cette option pour entrer manuellement vos propres données d'identification pour une instance de service {{site.data.keyword.cos_full_notm}}. Les données d'identification doivent contenir des clés HMAC et l'instance de service doit avoir au moins un compartiment.
+  * **Instances existantes**. Si vous disposez d'instances {{site.data.keyword.cos_full_notm}} existantes, sélectionnez l'une des instances de la liste. Les données d'identification doivent contenir des clés HMAC et l'instance de service doit avoir au moins un compartiment.
 
 7. Cliquez sur **Déployer**.
 
@@ -166,14 +169,13 @@ sélectionnez l'une des options suivantes :
     ```
     {: pre}
 
-3. Déployez le modèle, en utilisant un nom de package personnalisé et le nom de votre compartiment {{site.data.keyword.cos_full_notm}} comme variables d'environnement.
+3. Déployez le modèle en utilisant un nom de package personnalisé et le nom de votre compartiment {{site.data.keyword.cos_full_notm}} comme variables d'environnement.
     ```
     PACKAGE_NAME=<nom> BUCKET_NAME=<nom> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
-4. Dans la [page Actions ![Icône de lienexterne](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/actions) de la console {{site.data.keyword.openwhisk_short}}, cliquez sur l'action `process-change`.
-
+4. Sur la [page Actions](https://cloud.ibm.com/openwhisk/actions){: external} de la console {{site.data.keyword.openwhisk_short}}, cliquez sur l'action `process-change`.
 
 5. Dans le volet de navigation gauche, cliquez sur **Noeuds finaux**.
 
@@ -182,12 +184,15 @@ sélectionnez l'une des options suivantes :
 ## Déploiement du modèle Get HTTP Resource
 {: #get-http-resource-template}
 
-Le modèle Get HTTP Resource crée une action permettant d'extraire une ressource externe, l'API Yahoo Weather, puis renvoie des données. Cette action est activée en tant qu'action web, ce qui lui permet d'être appelée avec une adresse URL compatible avec CORS sans avoir besoin de clé d'authentification, ce qui est pratique pour générer des système de back end pour les applications Web. **Remarque** : par défaut, le noeud final `get-http-resource` est disponible publiquement pour toutes les personnes qui l'appellent.
+Le modèle Get HTTP Resource crée une action permettant d'extraire une ressource externe, l'API Yahoo Weather, puis renvoie des données. Cette action est activée en tant qu'action web, ce qui lui permet d'être appelée avec une adresse URL compatible avec CORS sans avoir besoin de clé d'authentification, ce qui est pratique pour générer des système de back end pour les applications Web. 
+
+Par défaut, le noeud final `get-http-resource` est disponible publiquement pour toutes les personnes qui l'appellent.
+{: note}
 
 ### Déploiement du modèle Get HTTP Resource à partir de l'interface utilisateur
 {: #get-http-resource-template-ui}
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -242,7 +247,7 @@ Vous pouvez déployer cette action de base Hello World pour vous initier à {{si
 ### Déploiement du modèle Hello World à partir de l'interface utilisateur
 {: #hello-world-template-ui}
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -280,12 +285,12 @@ Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modi
 ## Déploiement du modèle {{site.data.keyword.messagehub}} Events
 {: #messagehub-events-template}
 
-Le modèle {{site.data.keyword.messagehub}} Events crée une action et un déclencheur pour la lancer. Le déclencheur s'exécute chaque fois qu'un nouvel élément est ajouté dans la rubrique {{site.data.keyword.messagehub}} sélectionnée lors de la création du modèle.
+Le modèle {{site.data.keyword.messagehub}} Events crée une action et un déclencheur pour la lancer. Le déclencheur s'exécute chaque fois qu'un nouvel élément est ajouté à la rubrique {{site.data.keyword.messagehub}} sélectionnée lors de la création du modèle.
 
 ### Déploiement du modèle {{site.data.keyword.messagehub}} Events à partir de l'interface utilisateur
 {: #messagehub-events-template-ui}
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -302,13 +307,13 @@ Le modèle {{site.data.keyword.messagehub}} Events crée une action et un décle
     3. Créez un ensemble de données d'identification pour le service.
     4. Cliquez sur **OK** pour fermer la page de création {{site.data.keyword.messagehub}} et revenir à la console {{site.data.keyword.messagehub}}.
     5. Dans la liste **Instance MessageHub**, vous pouvez maintenant choisir **Entrez vos propres données d'identification** et indiquer les informations suivantes :
-      * Utilisateur : Votre nom d'utilisateur {{site.data.keyword.messagehub}}
-      * Mot de passe : Votre mot de passe {{site.data.keyword.messagehub}}
-      * url_admin_kafka : Votre adresse URL REST d'administration {{site.data.keyword.messagehub}}
-      * Base de données : Nom de votre base de données {{site.data.keyword.messagehub}}
-      * Rubrique : Rubrique à laquelle s'abonner
+        * `Username` - Votre nom d'utilisateur {{site.data.keyword.messagehub}}.
+        * `Password` - Votre mot de passe {{site.data.keyword.messagehub}}.
+        * `kafka_admin_url` - Votre URL REST d'administration {{site.data.keyword.messagehub}}.
+        * `Database` - Nom de votre base de données {{site.data.keyword.messagehub}}.
+        * `Topic` - Rubrique à laquelle s'abonner. 
 
-5. Cliquez sur **Déployer**.
+6. Cliquez sur **Déployer**.
 
 Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modifications au code afin de le personnaliser en fonction de vos besoins, ou revenir en arrière et vérifier le catalogue de modèles disponibles.
 
@@ -327,7 +332,7 @@ Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modi
     ```
     {: pre}
 
-3. Déployez le modèle, en utilisant les variables d'environnement suivantes :
+3. Déployez le modèle, en utilisant les variables d'environnement suivantes.
     ```
     KAFKA_BROKERS=<hôte> KAFKA_TOPIC=<rubrique> MESSAGEHUB_USER=<nom d'utilisateur> MESSAGEHUB_PASS=<mot de passe> PACKAGE_NAME=<nom> RULE_NAME=<nom> TRIGGER_NAME=<nom> ibmcloud fn deploy -m manifest.yaml
     ```
@@ -358,7 +363,7 @@ Le modèle Periodic Slack Reminder publie dans Slack en fonction d'un intervalle
 
 1. Accédez à https://api.slack.com/incoming-webhooks pour configurer l'adresse URL des webhooks entrants requis.
 
-1. Accédez à la [page Créer ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/create) dans la console {{site.data.keyword.openwhisk_short}}. 
+1. Accédez à la [page Créer](https://cloud.ibm.com/openwhisk/create){: external} sur la console {{site.data.keyword.openwhisk_short}}.
 
 2. Cliquez sur **Modèles Quickstart**.
 
@@ -371,9 +376,9 @@ Le modèle Periodic Slack Reminder publie dans Slack en fonction d'un intervalle
     4. Cliquez sur **Suivant**.
 
 5. Créez le déclencheur Periodic Slack Reminder. Les déclencheurs appellent des actions lorsqu'ils reçoivent des événements de la part de sources d'événements externes.
-    1. Spécifiez l'intervalle de temps du déclencheur à l'aide d'une expression Modèle ou Cron.
-        * Modèle : Sélectionnez des heures de temps universel coordonné pour les jours de la semaine, les heures et les minutes.
-        * Cron : Spécifiez une séquence Cron basée sur la <a href="http://crontab.org">syntaxe UNIX crontab</a>. Utilisez au maximum 5 zones séparées par des espaces au format `X X X X X`.
+    1. Spécifiez l'intervalle de temps du déclencheur à l'aide d'une expression Pattern ou `Cron`.
+        * `Pattern` - Sélectionnez des heures en temps universel coordonné pour les jours de la semaine, les heures et les minutes. 
+        * `Cron` - Spécifiez une séquence cron basée sur la <a href="http://crontab.org">syntaxe UNIX crontab</a>. Utilisez au maximum 5 zones séparées par des espaces au format `X X X X X`.
     2. Ajoutez le contenu JSON du déclencheur.
 
 6. Cliquez sur **Déployer**.
@@ -410,9 +415,10 @@ Une fois le déploiement du modèle terminé, vous pouvez apporter d'autres modi
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>URL de webhook, comme <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td>Séquence Cron basée sur la <a href="http://crontab.org">syntaxe UNIX crontab</a>. Utilisez au maximum 5 zones séparées par des espaces au format <code>X X X X X</code>.</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td>Séquence cron basée sur la <a href="http://crontab.org">syntaxe UNIX crontab</a>. Utilisez 5 zones ou moins au format <code>X X X X X</code>.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>Un nom personnalisé pour le package</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>Un nom personnalisé pour la règle</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>Un nom personnalisé pour le déclencheur</td></tr>
     </tbody></table>
+
 

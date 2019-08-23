@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # 測試無伺服器 APP
 {: #test}
 
-測試透過 CLI 建立的每個實體，以驗證無伺服器應用程式是否在正常運作，或者對目前可能發生問題的位置進行疑難排解。
+測試透過 CLI 建立的每個實體，以驗證無伺服器應用程式是否在正常運作，或者對當前可能發生問題的位置進行疑難排解。
 {: shortdesc}
 
 
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Hello world 範例：
+**Hello world 範例**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-輸出：
+**輸出**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -90,7 +92,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-輸出範例：
+**輸出範例**
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -105,9 +107,9 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 動作的呼叫可以是封鎖式或非封鎖式的。依預設，呼叫是非封鎖式的。如果不是立即需要動作結果，請使用非封鎖式呼叫。
 {: shortdesc}
 
-區塊處理呼叫會使用要求/回應樣式，並等待啟動結果可供使用。等待期間少於 60 秒，或是動作的[時間限制值](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)。
+區塊處理呼叫會使用要求/回應樣式，並等待啟動結果可用。等待期間少於 60 秒，或是動作的[時間限制值](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)。
 
-在雲端中，透過執行封鎖式呼叫來執行動作：
+執行區塊處理呼叫，在雲端執行動作。
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -115,7 +117,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-輸出範例：
+**輸出範例**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     "result": {
@@ -127,13 +129,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
   ```
 {: screen}
 
-指令會輸出下列資訊：
+此指令輸出下列資訊。
 * 呼叫結果（如果在預期的等待期間內可用）
-* 如果未使用 --result 選項，則會在結果中顯示啟動 ID。啟動 ID (`44794bd6aab74415b4e42a308d880e5b`)，可用於擷取呼叫的日誌或結果。
-
-
-
-
+* 如果未使用 `--result` 選項，則會在結果中顯示啟動 ID。啟動 ID (`44794bd6aab74415b4e42a308d880e5b`)，可用於擷取呼叫的日誌或結果。
 
 
 ## 測試觸發程式
@@ -149,9 +147,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     ```
     {: pre}
 
-    與規則沒有關聯的觸發程式在發動時看不見效果。因為沒有與此觸發程式相關聯的規則，所以傳遞的參數不會用來作為任何動作的輸入。
+    與規則沒有關聯的觸發程式在發動時看不見效果。由於沒有與此觸發程式相關聯的規則，因此傳遞的參數不會用作任何動作的輸入。
 
-    輸出範例：
+    **輸出範例**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -164,7 +162,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -177,7 +175,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -209,14 +207,13 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     {: screen}
 
 2. 取得啟動 ID 的日誌。
-      
 
     ```
-      ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
-      ```
+    ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
+    ```
     {: pre}
 
-    `duration` 顯示時間（以毫秒為單位）。完成此啟動所用時間略長於 2 秒：
+    `duration` 顯示時間（以毫秒為單位）。完成啟動所用時間略長於 2 秒。
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -272,7 +269,7 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     ```
     {: pre}
 
-4. 檢閱容器的記憶體用量值。如果值不符合系統限制，請對 Script 進行一些調整。
+4. 檢閱容器的記憶體用量值。如果值不符合系統限制，請調整 Script。
 
 5. 檢閱完資訊後，可以停止執行中的容器。
 
@@ -287,6 +284,8 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b{
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Visualizzazione degli eventi {{site.data.keyword.cloudaccesstrailshort}}
@@ -37,9 +39,9 @@ Per ulteriori informazioni su come funziona il servizio, consulta la [documentaz
 ## Dove visualizzare gli eventi
 {: #view}
 
-Gli eventi sono disponibili nel **dominio dell'account** {{site.data.keyword.cloudaccesstrailshort}} disponibile nella regione {{site.data.keyword.Bluemix_notm}} in cui è disponibile la risorsa dello spazio dei nomi {{site.data.keyword.openwhisk_short}}. Per ulteriori informazioni, vedi [Visualizzazione degli eventi dell'account](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
+Gli eventi sono disponibili nel **dominio dell'account** {{site.data.keyword.cloudaccesstrailshort}} collocato nella regione {{site.data.keyword.cloud_notm}} in cui si trova la risorsa dello spazio dei nomi {{site.data.keyword.openwhisk_short}}. Per ulteriori informazioni, vedi [Visualizzazione degli eventi dell'account](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
 
-1. Accedi al tuo account {{site.data.keyword.Bluemix_notm}}.
+1. Accedi al tuo account {{site.data.keyword.cloud_notm}}.
 2. Dal catalogo, esegui il provisioning di un'istanza del servizio {{site.data.keyword.cloudaccesstrailshort}} nello stesso account della tua istanza di {{site.data.keyword.openwhisk}}.
 3. Sulla scheda **Gestisci** del dashboard {{site.data.keyword.cloudaccesstrailshort}}, fai clic su **Visualizza in Kibana**.
 4. Imposta l'intervallo di tempo per il quale desideri visualizzare i log. Il valore predefinito è 15 minuti.
@@ -82,3 +84,6 @@ Consulta la seguente tabella per un elenco di eventi inviati a {{site.data.keywo
     </tr>
   </tbody>
 </table>
+
+
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Criando acionadores para eventos
@@ -48,7 +50,7 @@ ser criados dentro de pacotes.
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -60,7 +62,7 @@ ser criados dentro de pacotes.
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -82,7 +84,7 @@ Feeds e acionadores estão intimamente relacionados, mas tecnicamente têm conce
 
 - Um **acionador** é um nome para uma classe de eventos. Cada evento pertence a exatamente um acionador; por analogia, um acionador é semelhante a um tópico em sistemas pub-sub baseados em tópico. Uma **regra** significa que sempre que um evento do acionador chegar, chame a ação com a carga útil do acionador.
 
-- Um **feed** é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. Um feed é um fluxo de eventos que todos pertencem a algum acionador. Os pacotes pré-instalados, os pacotes instaláveis e os seus próprios pacotes customizados podem conter feeds. Um feed é controlado por uma **ação de feed**, que manipula a criação, a exclusão, a pausa e a retomada do fluxo de eventos que compõem um feed. A ação de feed geralmente interage com serviços externos que produzem os eventos usando uma API de REST que gerencia notificações.
+- Um **feed** é uma maneira conveniente de configurar uma origem de eventos externos para disparar eventos acionadores que podem ser consumidos pelo {{site.data.keyword.openwhisk_short}}. Um feed é um fluxo de eventos que todos pertencem a algum acionador. Os pacotes pré-instalados, os pacotes instaláveis e os seus próprios pacotes customizados podem conter feeds.  Um feed é controlado por uma **ação de feed**, que manipula a criação, a exclusão, a pausa e a retomada do fluxo de eventos que compõem um feed. A ação de feed geralmente interage com serviços externos que produzem os eventos usando uma API de REST que gerencia notificações.
 
 Exemplos de feeds:
 - Um feed de mudança de dados do {{site.data.keyword.cloudant}} que dispara um evento
@@ -103,7 +105,7 @@ Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acio
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     pacote /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -116,7 +118,7 @@ Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acio
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
   ```
   action /whisk.system/alarms/alarm: disparar acionador quando o alarme ocorrer
      (parâmetros: cron trigger_payload)
@@ -127,13 +129,13 @@ Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acio
   - `cron`: uma especificação de crontab de quando disparar o acionador.
   - `trigger_payload`: o valor de parâmetro de payload para configurar em cada evento acionador.
 
-2. Crie um acionador que dispare a cada minuto.
+2. Crie um acionador que dispara a cada 1 minuto.
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -159,7 +161,7 @@ Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acio
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
   ```
   ok: regra myRule criada
   ```
@@ -172,5 +174,6 @@ Esse exemplo mostra como usar um feed no pacote de Alarmes para disparar um acio
   {: pre}
 
   É possível ver que as ativações ocorrem a cada minuto para o acionador, a regra e a ação. A ação recebe os parâmetros `{"name":"Mork", "place":"Ork"}` em cada chamada.
+
 
 

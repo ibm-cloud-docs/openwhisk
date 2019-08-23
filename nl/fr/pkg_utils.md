@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -31,12 +32,14 @@ Plusieurs actions d'utilitaire sont fournies dans le package `/whisk.system/util
 {: shortdesc}
 
 1. Affichez les actions du package `/whisk.system/utils`.
+
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
+    
     ```
     package /whisk.system/utils: Building blocks that format and assemble data
    action /whisk.system/utils/head: Extract prefix of an array
@@ -49,12 +52,14 @@ Plusieurs actions d'utilitaire sont fournies dans le package `/whisk.system/util
     {: screen}
 
 2. A l'aide des actions `split` et `sort`, créez une séquence d'actions de sorte que le résultat de `split` soit transmis en tant qu'argument à `sort`. Cette séquence d'actions convertit des lignes de texte en tableau et trie les lignes.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. Appelez l'action.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
@@ -72,6 +77,8 @@ Plusieurs actions d'utilitaire sont fournies dans le package `/whisk.system/util
     }
     ```
     {: screen}
+
+
 
 
 

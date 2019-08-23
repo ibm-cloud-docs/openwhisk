@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-16"
+lastupdated: "2019-07-10"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -22,33 +22,34 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+{:external: target="_blank" .external}
 
 
 # 액션을 위한 앱 준비
 {: #prep}
 
-앱을 서버리스로 설정하거나 특별히 이벤트에 응답하도록 스크립트를 작성하는 경우 모두, 코드에서 액션을 작성하려면 코드에는 특정 요구사항이 충족되어야 합니다.
+앱을 설정하거나 특별히 이벤트에 응답하도록 스크립트를 작성하는 경우 모두, 코드에서 액션을 작성하려면 코드에는 특정 요구사항이 충족되어야 합니다.
 {: shortdesc}
 
-각 프로그래밍 언어에는 실행하는 데 필요한 위한 특정 요구사항이 있으나 대부분 다음과 같은 일반 요구사항이 있습니다. 
-- 기본적으로 코드에 대한 시작점의 예상 이름은 `main`입니다. 시작점이 `main`이 아닌 경우 액션 작성 시 사용자 정의 이름을 지정할 수 있으므로 해당 이름을 기록해 두십시오. 
-- 앱에 대한 입력 매개변수 및 앱의 출력 결과는 엔티티 간에 전달될 수 있도록 특정 구조로 형식화되어야 합니다. 구조는 코드 언어에 따라 달라집니다. 예를 들어, Python 앱을 사용하면 사전으로서 매개변수는 앱에 대한 입력이어야 하며 사전으로서 앱의 결과는 구조화되어야 합니다. 콘솔이 JSON과 같이 구조화된 오브젝트의 매개변수를 액션에도 전달할 수 있으므로, 특정 필드에서 JSON 값(예: `name` 및 `place`)이 사용된 입력 매개변수를 예상하도록 코드를 구조화할 수 있습니다.
+각 프로그래밍 언어에는 실행하는 데 필요한 위한 특정 요구사항이 있으나 대부분 다음과 같은 일반 요구사항이 있습니다.
+- 기본적으로 코드에 대한 시작점의 예상 이름은 `main`입니다. 시작점이 `main`이 아닌 경우 액션 작성 시 사용자 정의 이름을 지정할 수 있으므로 해당 이름을 기록해 두십시오.
+- 앱에 대한 입력 매개변수 및 앱의 출력 결과는 엔티티 간에 전달될 수 있도록 특정 구조로 형식화되어야 합니다. 구조는 코드 언어에 따라 달라집니다. 예를 들어, Python 앱을 사용하면 입력 매개변수는 사전이어야 하며 사전으로서 앱의 결과는 구조화되어야 합니다. 또한 구조화된 오브젝트의 매개변수를 액션에 전달할 수도 있기 때문입니다. 예를 들어, JSON에서는 특정 필드에서 JSON 값(예: `name` 및 `place`)이 사용된 입력 매개변수를 예상하도록 코드를 구조화할 수 있습니다.
 
-    JSON input example:
+    **JSON 입력 예제**
     ```json
     {"name": "Dorothy", "place": "Kansas"}
     ```
     {: codeblock}
 
-    JavaScript example:
+    **JavaScript example**
     ```javascript
     function main(params) {
         return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
   }
     ```
     {: codeblock}
-- 앱에 여러 파일이 포함되어 있으면 액션에 사용되도록 하나의 파일로 결합되어야 합니다. 코드를 하나의 파일로 다시 작성하거나 파일 및 종속 항목을 하나의 아카이브 파일로 패키지할 수 있습니다. 런타임이 지원되지 않으면 Docker 이미지에서 앱을 패키지할 수 있습니다. 
-- 종속 항목은 앱으로 패키지될 수 있습니다. 사용 가능한 런타임에는 몇 개의 사전 설치된 패키지 및 확장기능이 함께 제공됩니다. 앱의 종속성이 이미 런타임에 포함된 경우 [런타임에 대한 참조 정보를 검토](/docs/openwhisk?topic=cloud-functions-runtimes)하십시오. 종속성이 포함된 경우 앱으로 종속성을 패키지할 필요가 없습니다. 
+- 앱에 여러 파일이 포함되어 있으면 액션에 사용되도록 하나의 파일로 결합되어야 합니다. 코드를 하나의 파일로 다시 작성하거나 파일 및 종속 항목을 하나의 아카이브 파일로 패키지할 수 있습니다. 런타임이 지원되지 않으면 Docker 이미지에서 앱을 패키지할 수 있습니다.
+- 종속 항목은 앱으로 패키지될 수 있습니다. 사용 가능한 런타임에는 몇 개의 사전 설치된 패키지 및 확장기능이 함께 제공됩니다. 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [런타임에 대한 참조 정보를 검토](/docs/openwhisk?topic=cloud-functions-runtimes)하십시오. 종속성이 포함된 경우 앱으로 종속성을 패키지할 필요가 없습니다.
 
     코드 컴파일은 필수가 아니지만 런타임에 사용 가능한 경우 코드를 미리 컴파일하면 성능을 향상시킬 수 있습니다.
     {: tip}
@@ -65,30 +66,30 @@ Docker Hub에서 공개적으로 사용할 수 있는 이미지와 같이 공용
 ### Docker 이미지에서 코드 준비
 {: #prep_docker_pkg}
 
-사용자 코드는 실행 가능 2진으로 컴파일되며 Docker 이미지에 임베드됩니다. 2진 프로그램은 `stdin`에서 입력을 가져오고, `stdout`을 통해 응답하여 시스템과 상호작용합니다.
+사용자 코드는 실행 파일로 컴파일되며 Docker 이미지에 임베드됩니다. 실행 파일은 `stdin`에서 입력을 가져오고, `stdout`을 통해 응답하여 시스템과 상호작용합니다.
 {: shortdesc}
 
-시작하기 전에 다음을 수행하십시오.
-- Docker 허브 계정이 있어야 합니다. [Docker 허브 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://hub.docker.com)에서 무료 Docker ID 및 계정을 설정할 수 있습니다.
-- [Docker를 설치](https://hub.docker.com/search?offering=community&type=edition)하십시오.
+**시작하기 전에**
+- Docker 허브 계정이 있어야 합니다. [Docker 허브](https://hub.docker.com){: external}에서 무료 Docker ID 및 계정을 설정할 수 있습니다.
+- [Docker를 설치](https://hub.docker.com/search/?offering=community&type=edition){:external}하십시오.
 - [Docker 런타임에 대한 요구사항을 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker)하십시오.
 
-앱을 패키징하려면 다음을 수행하십시오.
+앱을 패키징하려면 다음 단계를 완료하십시오.
 
-코드를 Docker 이미지로 패키징하려면 다음을 수행하십시오. 
+코드를 Docker 이미지로 패키징하려면 다음 실행을 실행하십시오.
 1. Docker 스켈레톤을 다운로드하고 설치하십시오. 스켈레톤은 사용자 정의 2진 양식으로 코드가 삽입될 수 있는 Docker 컨테이너 템플리트입니다.
   ```
   ibmcloud fn sdk install docker
   ```
   {: pre}
 
-2. 블랙박스 스켈레톤에서 사용자 정의 2진을 설정하십시오. 스켈레톤에는 사용 가능한 C 프로그램이 포함되어 있습니다. `example.c` 파일의 일부가 Docker 이미지 빌드 프로세스의 일부로서 컴파일되므로, 시스템에서 컴파일된 C 프로그램은 필요하지 않습니다.
+2. 블랙박스 스켈레톤에서 코드를 설정하십시오. 스켈레톤에는 사용 가능한 C 프로그램이 포함되어 있습니다. `example.c` 파일의 일부가 Docker 이미지 빌드 프로세스의 일부로서 컴파일되므로, 시스템에서 컴파일된 C 프로그램은 필요하지 않습니다.
   ```
   cat dockerSkeleton/example.c
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```c
   #include <stdio.h>
   int main(int argc, char *argv[]) {
@@ -99,12 +100,12 @@ Docker Hub에서 공개적으로 사용할 수 있는 이미지와 같이 공용
   ```
   {: codeblock}
 
-3. 선택사항: 실행 파일 빌드를 위해 `Dockerfile`을 수정하여 Docker 이미지에 추가로 코드 및 종속 항목을 추가하십시오. 다음 요구사항에 유의하십시오. 
-  * 2진은 `/action/exec`의 컨테이너 내부에 위치해야 합니다.
+3. (선택사항) 실행 파일 빌드를 위해 `Dockerfile`을 수정하여 Docker 이미지에 추가로 코드 및 종속 항목을 추가하십시오. 다음 요구사항에 유의하십시오.
+  * 코드는 `/action/exec`의 컨테이너 내부에 위치해야 합니다.
   * 실행 파일은 명령행에서 단일 인수를 수신합니다. 이 인수는 액션에 대한 인수를 표시하는 JSON 오브젝트의 문자열 직렬화입니다.
   * 프로그램은 `stdout` 또는 `stderr`에 대해 로깅할 수 있습니다.
-  * 관례상 출력의 마지막 행은 액션의 결과를 나타내는 문자열로 변환된 JSON 오브젝트여야 합니다.
-  Dockerfiles 구성에 대한 자세한 정보는 [Dockerfile 참조](https://docs.docker.com/engine/reference/builder/)를 참조하십시오.
+  * 관례상 출력의 마지막 행은 액션의 결과를 나타내는 문자열로 <ph class="ignoreSpelling">문자열로 변환된</ph> JSON 오브젝트여야 합니다.
+  Dockerfiles 구성에 대한 자세한 정보는 [Dockerfile 참조](https://docs.docker.com/engine/reference/builder/){: external}를 참조하십시오.
 
 4. Docker 이미지를 빌드하고 제공된 스크립트를 사용하여 이를 업로드하십시오.
     1. Docker에 로그인하십시오.
@@ -143,14 +144,14 @@ Docker Hub에서 공개적으로 사용할 수 있는 이미지와 같이 공용
 
 
 
-예:
+**예**
 ```javascript
   function main() {
       return {payload: 'Hello world'};
   }
   ```
 
-여러 함수가 사용된 예:
+**여러 함수가 사용된 예**
 
   ```javascript
   function main() {
@@ -170,7 +171,7 @@ Docker Hub에서 공개적으로 사용할 수 있는 이미지와 같이 공용
 JavaScript 활성화는 기본 함수가 `return`문을 실행하지 않고 존재하거나 Promise 없이 값을 리턴하는 `return`문을 실행하여 존재하는 경우 동기입니다.
 {: shortdesc}
 
-동기 코드의 예:
+**동기 코드의 예**
 
 ```javascript
 // each path results in a synchronous activation
@@ -203,8 +204,8 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          resolve({ done: true });
-                }, 100);
-             })
+         }, 2000);
+      })
 }
 ```
 {: codeblock}
@@ -215,13 +216,13 @@ function main(args) {
      return new Promise(function(resolve, reject) {
        setTimeout(function() {
          reject({ done: true });
-       }, 100);
-    })
+       }, 2000);
+     })
 }
 ```
 {: codeblock}
 
-위의 예에서는 다음 세부사항이 실행됩니다. 
+예에서는 다음 세부사항이 실행됩니다.
 * `main` 함수가 Promise를 리턴합니다. Promise는 활성화가 아직 완료되지 않았지만 향후에 완료될 예정임을 표시합니다.
 * `setTimeout()` JavaScript 함수는 Promise의 콜백 함수를 호출하기 전에 2초 동안 대기하며, 이는 비동기 코드를 표시합니다.
 * Promise의 콜백은 둘 다 함수인 `resolve` 및 `reject` 인수를 허용합니다.
@@ -242,8 +243,8 @@ function main(args) {
          return new Promise(function(resolve, reject) {
           setTimeout(function() {
             resolve({ done: true });
-                }, 100);
-             })
+         }, 2000);
+      })
      }  else {
         // synchronous activation
          return {done: true};
@@ -256,7 +257,7 @@ function main(args) {
 
 
 
-### 예: JavaScript를 사용한 외부 API 호출
+### JavaScript를 사용한 외부 API 호출 예
 {: #prep_js_api}
 
 다음 예제에서는 매일 우주의 고유 이미지를 제공하는 NASA APOD(Astronomy Picture of the Day) 서비스의 외부 API를 호출합니다.
@@ -281,7 +282,7 @@ function main(params) {
 
 NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추출됩니다.
 
-그런 다음 [액션을 작성](/docs/openwhisk?topic=cloud-functions-actions)하고 [액션을 호출](/docs/openwhisk?topic=cloud-functions-test)하여 테스트합니다. 다음의 예제 오브젝트가 리턴됩니다.
+그런 다음, [액션을 작성](/docs/openwhisk?topic=cloud-functions-actions)하고 [액션을 호출](/docs/openwhisk?topic=cloud-functions-test)하여 테스트합니다. 다음의 예제 오브젝트가 리턴됩니다.
 
 ```
 {
@@ -302,15 +303,15 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
 
 
 
-### webpack 모듈로 JavaScript 코드 패키지
+### `webpack` 모듈로 JavaScript 코드 패키지
 {: #prep_js_pkg}
 
-[webpack ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://webpack.js.org/concepts/) 등의 Javascript 모듈 번들러를 사용하여 앱을 패키지할 수 있습니다. `webpack`에서 코드를 처리할 때 이는 액션에서 요구하는 모든 모듈이 포함된 종속 항목 그래프를 반복적으로 빌드합니다.
+`[webpack ](https://webpack.js.org/concepts/){: external}` 등의 Javascript 모듈 번들러를 사용하여 앱을 패키지할 수 있습니다. `webpack`에서 코드를 처리할 때 이는 액션에서 요구하는 모든 모듈이 포함된 종속 항목 그래프를 반복적으로 빌드합니다.
 {: shortdesc}
 
-시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [JavaScript 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [JavaScript 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-1. `package.json` 파일을 작성하십시오. 개발 종속 항목으로서 `webpack`을 추가하십시오. 
+1. `package.json` 파일을 작성하십시오. 개발 종속 항목으로서 `webpack`을 추가하십시오.
 
     ```json
     {
@@ -330,7 +331,7 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
     ```
     {: codeblock}
 
-2. 이름이 `webpack.config.js`인 파일에 다음의 webpack 구성 코드를 저장하십시오.
+2. 이름이 `webpack.config.js`인 파일에 다음 `webpack` 구성 코드를 저장하십시오.
 
     ```javascript
     var path = require('path');
@@ -345,9 +346,9 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
     ```
     {: codeblock}
 
-3. 앱 코드를 준비하십시오. 이 예제에서 `index.js`라고 하는 변수 `global.main`은 앱의 기본 함수로 설정됩니다.
+3. 앱 코드를 준비하십시오. `index.js`라고 하는 파일로 저장할 수 있는 이 예제에서 `global.main` 변수는 앱의 기본 함수로 설정됩니다.
 
-    예:
+    **예**
     ```javascript
     function myAction(args) {
         const leftPad = require("left-pad")
@@ -366,7 +367,7 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
     ```
     {: pre}
 
-5. webpack 번들을 빌드하십시오.
+5. `webpack` 번들을 빌드하십시오.
 
     ```
   npm run build
@@ -377,21 +378,21 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
 
 6. `npm` 스크립트 또는 CLI를 사용하여 액션을 작성하십시오.
 
-    * `npm` 스크립트 사용:
+    * 다음 `npm` 스크립트를 실행하십시오.
 
         ```
   npm run deploy
         ```
         {: pre}
 
-    *   CLI 사용:
+    * 다음 CLI 명령을 실행하십시오.
 
         ```
         ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10
         ```
         {: pre}
 
-    `webpack`에서 빌드한 번들 파일은 JavaScript 종속 항목만 지원합니다. 번들은 `bundle.js` 파일과 함께 포함되어 있지 않으므로 이 번들이 2진 파일 종속 항목에 의존할 경우 액션 호출에 실패할 수 있습니다.
+    `webpack`에서 빌드한 번들 파일은 JavaScript 종속 항목만 지원합니다. 이러한 종속성이 `bundle.js` 파일과 함께 포함되어 있지 않으므로 번들에 다른 종속성이 있는 경우 액션 호출에 실패할 수 있습니다.
     {: tip}
 
 
@@ -402,9 +403,11 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
 단일 JavaScript 소스 파일에 모든 액션 코드를 작성하는 대안으로 코드를 .zip 파일에서 `npm` 패키지로서 작성할 수 있습니다.
 {: shortdesc}
 
-시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [JavaScript 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [JavaScript 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-1. 루트 디렉토리에서 `package.json` 파일을 작성하십시오. 예를 들면, 다음과 같습니다.
+1. 루트 디렉토리에서 `package.json` 파일을 작성하십시오. 
+
+**예**
 
     ```json
     {
@@ -424,7 +427,8 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
     ```
     {: pre}
 
-    **참고**: 대부분의 `npm` 패키지가 `npm install`에 JavaScript 소스를 설치하지만 일부는 2진 아티팩트의 설치와 컴파일도 수행합니다. 아카이브 파일 업로드는 JavaScript 종속 항목만 지원합니다. 아카이브에 2진 종속 항목이 포함된 경우에는 액션 호출이 성공하지 못할 수 있습니다. 
+    대부분의 `npm` 패키지가 `npm install`에 JavaScript 소스를 설치하지만 일부는 2진 파일 아티팩트의 설치와 컴파일도 수행합니다. 아카이브 파일 업로드는 JavaScript 종속 항목만 지원합니다. 아카이브에 2진 파일 종속 항목이 포함된 경우에는 액션 호출이 성공하지 못할 수 있습니다.
+    {: note}
 
 3. 모든 종속 항목을 포함하여 모든 파일이 포함된 `.zip` 아카이브를 작성하십시오.
 
@@ -433,7 +437,7 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
     ```
     {: pre}
 
-    Windows 사용자: Windows Explorer 액션을 .zip 파일의 작성에 사용하면 결과적으로 잘못된 파일 구조가 생성됩니다. {{site.data.keyword.openwhisk_short}} .zip 액션에는 아카이브의 루트에 `package.json`이 있어야 하지만, Windows Explorer는 이를 중첩된 폴더 내에 둡니다. 대신 `zip` 명령을 사용하십시오.
+    **Windows 사용자** Windows Explorer 액션을 .zip 파일의 작성에 사용하면 결과적으로 잘못된 파일 구조가 생성됩니다. {{site.data.keyword.openwhisk_short}} .zip 액션에는 아카이브의 루트에 `package.json`이 있어야 하지만, Windows Explorer는 이를 중첩된 폴더 내에 둡니다. 대신 `zip` 명령을 사용하십시오.
     {: tip}
 
 
@@ -446,7 +450,7 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
 빠른 테스트 또는 개발 목적인 경우 단일 파일을 사용하십시오. 프로덕션 앱의 경우 벤더 라이브러리를 포함하여 보다 나은 성능 또는 다중 소스 파일 지원을 위해 Go 액션을 실행 파일에 미리 컴파일하십시오.
 {: shortdesc}
 
-`GOOS=Linux` 및 `GOARCH=amd64`로 교차 컴파일하여 Go 플랫폼에서 2진을 작성할 수 있더라도 런타임 컨테이너 이미지에 포함된 사전 컴파일 기능을 사용하십시오. [다중 소스 파일](#prep_go_multi) 또는 [벤더 라이브러리](#prep_go_vendor)를 패키징할 수 있습니다.
+`GOOS=Linux` 및 `GOARCH=amd64`로 교차 컴파일하여 Go 플랫폼에서 압축 파일을 작성할 수 있더라도 런타임 컨테이너 이미지에 포함된 사전 컴파일 기능을 사용하십시오. [다중 소스 파일](#prep_go_multi) 또는 [벤더 라이브러리](#prep_go_vendor)를 패키징할 수 있습니다.
 {: tip}
 
 
@@ -456,7 +460,7 @@ NASA APOD API에 대한 호출이 실행되며 JSON 결과에서 필드가 추�
 - 시작점 패키지의 예상 이름은 `main`입니다. 코드의 패키지가 `main`이 아닌 경우 액션 작성 시 지정할 이름을 기록해 두십시오.
 - 패키지는 공용이어야 합니다.
 
-예:
+**예**
 ```go
 package main
 
@@ -476,8 +480,8 @@ package main
         // return the output JSON
         return msg
     }
-    ```
-    {: codeblock}
+  ```
+  {: codeblock}
 
 ### 여러 Go 소스 파일 패키지
 {: #prep_go_multi}
@@ -516,7 +520,7 @@ package main
   ```
   {: codeblock}
 
-  `hello/hello.go`의 예:
+  `hello/hello.go`의 예
 
   ```go
   package hello
@@ -533,7 +537,7 @@ package main
   ```
   {: codeblock}
 
-3. 코드를 컴파일하십시오. `src` 디렉토리의 .zip 아카이브를 작성하십시오. 최상위 프로젝트 디렉토리 `go-action-project/`는 포함하지 **마십시오**.
+3. 코드를 컴파일하십시오. `src` 디렉토리의 .zip 아카이브를 작성하십시오. 최상위 프로젝트 디렉토리 `go-action-project/`는 포함하지 마십시오.
 
   ```bash
   cd src
@@ -542,10 +546,10 @@ package main
   ```
   {: pre}
 
-  `GOPATH`를 `src` 디렉토리의 상위로 설정하여 로컬로 컴파일할 수 있습니다. VSCode를 사용하는 경우, `go.inferGopath` 설정을 `true`로 변경해야 합니다.
+  `GOPATH`를 `src` 디렉토리의 상위로 설정하여 로컬로 컴파일할 수 있습니다. VS Code를 사용하는 경우, `go.inferGopath` 설정을 `true`로 변경해야 합니다.
   {: note}
 
-4. .zip 아카이브의 루트에서 `exec`로 Go 실행 파일을 컴파일 및 패키징하십시오. 다음 명령을 사용하여 `hello-bin.zip` 아카이브를 빌드하십시오. 사용자 워크스테이션에 Docker CLI가 설치되어 있고 `PATH`에 `docker`가 있어야 합니다. 
+4. .zip 아카이브의 루트에서 `exec`로 Go 실행 파일을 컴파일 및 패키징하십시오. 다음 명령을 사용하여 `hello-bin.zip` 아카이브를 빌드하십시오. 사용자 워크스테이션에 Docker CLI가 설치되어 있고 `PATH`에 `docker`가 있어야 합니다.
 
   ```bash
   docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
@@ -565,7 +569,7 @@ package main
 Go 파일을 컴파일할 때 `vendor` 디렉토리를 소스 `zip` 아카이브에 채움으로써 종속 항목을 포함시킬 수 있습니다. `vendor` 디렉토리는 최상위 레벨에 두지 못합니다. `vendor` 디렉토리는 `src/` 내에 패키지 디렉토리 내부에 배치해야 합니다.
 {: shortdesc}
 
-`hello.go` 앱에 있는 로그 패키지 `logrus`의 예:
+`hello.go` 앱에 있는 로그 패키지 `logrus`의 예
 
 ```go
 package hello
@@ -593,7 +597,9 @@ func Hello(name string) map[string]interface{} {
 {: codeblock}
 
 </br>
-이 예에서는 `vendor` 디렉토리가 `src/hello/vendor`에 위치합니다. `hello` 패키지에 사용되는 서드파티 라이브러리를 추가할 수 있습니다. [dep ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://golang.github.io/dep/docs/installation.html) 등의 다중 도구를 사용하여 종속 항목을 채우고 관리할 수 있습니다.
+이 예에서는 `vendor` 디렉토리가 `src/hello/vendor`에 위치합니다. `hello` 패키지에 사용되는 서드파티 라이브러리를 추가할 수 있습니다. 
+
+[<code>dep</code> ](https://golang.github.io/dep/docs/installation.html){: external} 등의 다중 도구를 사용하여 종속 항목을 채우고 관리할 수 있습니다.
 
 라이브러리의 버전 및 위치를 설명하는 `src/main/Gopkg.toml` 파일을 작성하여 `dep`를 사용할 수 있습니다.
 
@@ -609,17 +615,13 @@ func Hello(name string) map[string]interface{} {
 
 
 
-
-
-
 ## Swift 앱 준비
 {: #prep_swift}
 
-Swift 파일은 액션이 실행되기 전에 2진으로 컴파일되어야 합니다. 이 지연을 콜드 스타트 지연이라고 합니다. 콜드 스타트 지연을 피하기 위해 Swift 파일을 2진으로 컴파일한 후에 .zip 파일로 {{site.data.keyword.openwhisk_short}}에 2진을 업로드할 수 있습니다. Docker 런타임에는 사용자가 Swift 4.2 액션을 컴파일 및 패키징하는 데 도움이 되는 컴파일러가 포함되어 있습니다. 액션을 보유한 컨테이너가 제거될 때까지 액션에 대한 후속 호출이 훨씬 더 빠릅니다. 
+Swift 파일은 액션이 실행되기 전에 컴파일되어야 합니다. 이 지연을 콜드 스타트 지연이라고 합니다. 콜드 스타트 지연을 피하기 위해 Swift 파일을 컴파일한 후에 .zip 파일로 {{site.data.keyword.openwhisk_short}}에 업로드할 수 있습니다. Docker 런타임에는 사용자가 Swift 4.2 액션을 컴파일 및 패키징하는 데 도움이 되는 컴파일러가 포함되어 있습니다. 액션이 있는 컨테이너가 제거될 때까지 액션에 대한 후속 호출이 훨씬 더 빠릅니다.
 
-Swift 액션은 Linux 환경에서 실행됩니다. Swift on Linux는 아직 개발 중이며 {{site.data.keyword.openwhisk_short}}에서는 최신 사용 가능 릴리스를 사용합니다. 이 릴리스는 안정적이지 않을 수 있습니다. {{site.data.keyword.openwhisk_short}}에서 사용되는 Swift의 버전이 MacOS에서 안정적인 XCode 릴리스의 Swift 버전과 일치하지 않을 수 있습니다.
+Swift 액션은 Linux 환경에서 실행됩니다. Swift on Linux는 아직 개발 중이며 {{site.data.keyword.openwhisk_short}}에서는 최신 사용 가능 릴리스를 사용합니다. 이 릴리스는 안정적이지 않을 수 있습니다. {{site.data.keyword.openwhisk_short}}에서 사용되는 Swift의 버전이 macOS에서 안정적인 XCode 릴리스의 Swift 버전과 일치하지 않을 수 있습니다.
 {: important}
-
 
 
 ### Swift 코드 구조화
@@ -627,9 +629,9 @@ Swift 액션은 Linux 환경에서 실행됩니다. Swift on Linux는 아직 개
 
 시작점 함수의 예상 이름은 `main`입니다. 코드의 함수가 `main`이 아닌 경우 액션 작성 시 지정할 이름을 기록해 두십시오.
 
-기본 기능 시그니처에 추가하여, Swift 4에서는 [Codable ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://developer.apple.com/documentation/swift/codable) 유형을 활용하는 2개의 추가 시그니처를 제공합니다. [JSON ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 등의 외부 표현과의 호환성을 위해 인코딩 및 디코딩 가능한](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types) 데이터 유형에 대해 자세히 알아볼 수 있습니다.
+기본 기능 시그니처에 추가하여, Swift 4에서는 [<code>Codable</code> ](https://developer.apple.com/documentation/swift/codable){: external} 유형을 활용하는 2개의 추가 시그니처를 제공합니다. [JSON 등의 외부 표현과의 호환성을 위해 인코딩 및 디코딩 가능한](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external} 데이터 유형에 대해 자세히 알아볼 수 있습니다.
 
-예:
+**예**
 ```swift
 struct Input: Codable {
     let name: String?
@@ -651,7 +653,7 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 #### Swift에서의 오류 처리
 {: #prep_swift_error}
 
-Codable 완료 핸들러를 사용하면 액션의 실패를 표시하는 오류를 전달할 수 있습니다. [Swift의 오류 처리 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://developer.apple.com/library/content/documentation/Swift/Conceptual/Swift_Programming_Language/ErrorHandling.html)는 `try`, `catch` 및 `throw` 키워드의 사용으로 기타 언어의 예외 처리와 유사합니다.
+`Codable` 완료 핸들러를 사용하면 액션의 실패를 표시하는 오류를 전달할 수 있습니다. [Swift의 오류 처리](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html){: external}는 `try`, `catch` 및 `throw` 키워드의 사용으로 기타 언어의 예외 처리와 유사합니다.
 {: shortdesc}
 
 다음 스니펫은 오류 처리의 예를 표시합니다.
@@ -674,16 +676,16 @@ func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
 {: codeblock}
 
 
-### Swift 4.2 파일을 2진으로 패키징
+### Swift 4.2 파일 패키징
 {: #prep_swift42_single}
 
 외부 라이브러리에 의존하지 않는 단일 소스 파일을 컴파일하십시오. 기본 메소드의 이름으로 `-compile` 플래그를 사용하십시오.
 
-시작하기 전에 다음을 수행하십시오.
-- [Docker를 설치](https://hub.docker.com/search?offering=community&type=edition)하십시오.
-- 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [Swift 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+**시작하기 전에**
+- [Docker를 설치](https://hub.docker.com/search/?offering=community&type=edition){: external}하십시오.
+- 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [Swift 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-앱을 패키징하려면 다음을 수행하십시오.
+앱을 패키징하십시오.
 
 ```bash
 docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
@@ -697,13 +699,13 @@ Docker 컨테이너는 `stdin`에서 파일의 컨텐츠를 읽고, 컴파일된
 ### Swift 4.2 다중 파일 프로젝트 및 종속 항목 패키지
 {: #prep_swift42_multi}
 
-시작하기 전에 다음을 수행하십시오.
-- [Docker를 설치](https://hub.docker.com/search?offering=community&type=edition)하십시오.
-- 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [Swift 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+**시작하기 전에**
+- [Docker를 설치](https://hub.docker.com/search/?offering=community&type=edition){: external}하십시오.
+- 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [Swift 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-앱을 패키징하려면 다음을 수행하십시오.
+앱을 패키징하십시오.
 
-1. 다중 파일을 컴파일하고 외부 종속 항목을 포함시키려면 다음 디렉토리 구조를 작성하십시오. 
+1. 다중 파일을 컴파일하고 외부 종속 항목을 포함시키려면 다음 디렉토리 구조를 작성하십시오.
 
   ```
   .
@@ -743,7 +745,7 @@ Docker 컨테이너는 `stdin`에서 파일의 컨텐츠를 읽고, 컴파일된
   ```
   {: codeblock}
 
-2. 디렉토리의 컨텐츠를 사용하여 .zip 아카이브를 작성하십시오. 
+2. 디렉토리의 컨텐츠를 사용하여 .zip 아카이브를 작성하십시오.
 
   ```bash
   zip ../action-src.zip -r *
@@ -757,7 +759,7 @@ Docker 컨테이너는 `stdin`에서 파일의 컨텐츠를 읽고, 컴파일된
   ```
   {: codeblock}
 
-  Linux 기반 시스템에서는 `zip` 및 `docker run` 단계를 단일 명령으로 결합할 수 있습니다. 
+  Linux 기반 시스템에서는 `zip` 및 `docker run` 단계를 단일 명령으로 결합할 수 있습니다.
 
   ```
   zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
@@ -775,11 +777,11 @@ Docker 컨테이너는 `stdin`에서 파일의 컨텐츠를 읽고, 컴파일된
 ### Python 코드 구조화
 {: #prep_python_struct}
 
-- Python 앱에서는 사전을 이용하고 사전을 생성해야 합니다. 
+- Python 앱에서는 사전을 이용하고 사전을 생성해야 합니다.
 - 시작점 메소드의 예상 이름은 `main`입니다. 코드의 함수가 `main`이 아닌 경우 액션 작성 시 지정할 이름을 기록해 두십시오.
 {: shortdesc}
 
-예:
+**예**
 ```python
 def main(args):
 	name = args.get("name", "stranger")
@@ -791,11 +793,11 @@ def main(args):
 ### Python 코드 패키징
 {: #prep_python_pkg}
 
-.zip 파일에서 Python 코드 및 종속 모듈을 패키징하십시오. 이 예에서 시작점이 포함된 소스 파일은 `__main__.py`이고 헬퍼 모듈은 `helper.py` 파일에 있습니다. 
+.zip 파일에서 Python 코드 및 종속 모듈을 패키징하십시오. 이 예에서 시작점이 포함된 소스 파일은 `__main__.py`이고 헬퍼 모듈은 `helper.py` 파일에 있습니다.
 
-시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [Python 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [Python 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-앱을 패키징하려면 다음을 수행하십시오.
+앱을 패키징하려면 다음 명령을 실행하십시오.
 
 ```bash
 zip -r helloPython.zip __main__.py helper.py
@@ -806,13 +808,13 @@ zip -r helloPython.zip __main__.py helper.py
 ### zip 파일에 가상 환경의 Python 코드 패키징
 {: #prep_python_virtenv}
 
-가상 환경 `virtualenv`를 사용하여 Python 종속 항목을 패키징할 수 있습니다. 가상 환경은 [`pip` ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://packaging.python.org/installing/)를 사용하여 설치될 수 있는 추가 패키지를 링크할 수 있도록 허용합니다.
+가상 환경 `virtualenv`를 사용하여 Python 종속 항목을 패키징할 수 있습니다. 가상 환경을 사용하면 [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}를 사용하여 설치할 수 있는 추가 패키지를 링크할 수 있습니다.
 
-시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [Python 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [Python 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-앱을 패키징하려면 다음을 수행하십시오.
+다음 단계를 완료하여 앱을 패키징하십시오.
 
-1. 설치할 `pip` 모듈과 버전이 포함된 [requirements.txt ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) 파일을 작성하십시오.
+1. 설치할 `pip` 모듈과 버전이 포함된 [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} 파일을 작성하십시오.
 
   `virtualenv`를 최소 크기로 유지하려면 선택된 런타임 환경의 일부가 아닌 모듈만 `requirements.txt`에 추가하십시오. Python 런타임에 포함된 패키지에 대한 자세한 정보는 Python [런타임 참조](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments)를 참조하십시오.
   {: tip}
@@ -822,7 +824,7 @@ zip -r helloPython.zip __main__.py helper.py
     * `python:3.6`의 경우, Docker 이미지 `ibmfunctions/action-python-v3.6`을 사용하십시오.
     * `python:2`의 경우, Docker 이미지 `openwhisk/python2action`을 사용하십시오.
 
-   예:
+   **예**
    ```
    docker pull ibmfunctions/action-python-v3.7
    ```
@@ -843,13 +845,10 @@ zip -r helloPython.zip __main__.py helper.py
     {: pre}
 
 
-
-
-
 ## Ruby 앱 준비
 {: #prep_ruby}
 
-액션을 작성하기 전에 Ruby 코드를 준비하십시오. 
+액션을 작성하기 전에 Ruby 코드를 준비하십시오.
 
 ### Ruby 코드 구조화
 {: #prep_ruby_struct}
@@ -858,7 +857,8 @@ zip -r helloPython.zip __main__.py helper.py
 * 시작점 함수의 예상 이름은 `main`입니다. 코드의 함수가 `main`이 아닌 경우 액션 작성 시 지정할 이름을 기록해 두십시오.
 
 
-예:
+**예**
+
 ```ruby
     def main(args)
       name = args["name"] || "stranger"
@@ -866,8 +866,8 @@ zip -r helloPython.zip __main__.py helper.py
       puts greeting
       { "greeting" => greeting }
     end
-    ```
-    {: codeblock}
+```
+{: codeblock}
 
 ### Ruby 코드 패키징
 {: #prep_ruby_pkg}
@@ -888,7 +888,7 @@ Ruby 앱 및 종속 패키지를 .zip 파일에 패키징할 수 있습니다. �
 ## PHP 앱 준비
 {: #prep_php}
 
-액션을 작성하기 전에 PHP 코드를 준비하십시오. 
+액션을 작성하기 전에 PHP 코드를 준비하십시오.
 
 ### PHP 코드 구조화
 {: #prep_php_struct}
@@ -896,7 +896,7 @@ Ruby 앱 및 종속 패키지를 .zip 파일에 패키징할 수 있습니다. �
 - PHP 액션은 항상 연관 배열을 이용하고 연관 배열을 리턴합니다.
 - 시작점 함수의 예상 이름은 `main`입니다. 코드의 함수가 `main`이 아닌 경우 액션 작성 시 지정할 이름을 기록해 두십시오.
 
-예:
+**예**
 ```php
 <?php
 function main(array $args) : array
@@ -913,112 +913,132 @@ function main(array $args) : array
 ### PHP 코드 패키징
 {: #prep_php_pkg}
 
-PHP 파일 또는 종속 패키지를 .zip 파일에 패키징할 수 있습니다. 
+PHP 파일 또는 종속 패키지를 .zip 파일에 패키징할 수 있습니다.
 
-시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 확인하려면 [PHP 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
+시작하기 전에 앱의 종속성이 이미 런타임에 포함되어 있는지 여부를 확인하려면 [PHP 런타임에 포함된 패키지를 검토](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php)하십시오. 종속성이 포함되지 않은 경우 앱으로 종속성을 패키지해야 합니다.
 
-앱을 패키징하려면 다음을 수행하십시오.
+앱을 패키징하려면 다음 명령을 실행하십시오.
 
 ```bash
 zip -r ARCHIVE_NAME.zip FILE_1.php FILE_2.php
 ```
 {: pre}
 
-예:
+**예**
 ```bash
     zip -r helloPHP.zip index.php helper.php
 ```
 {: pre}
 
-
-
-
-
-
-
 ## Java 앱 준비
 {: #prep_java}
 
-액션을 작성하기 전에 Java 코드를 준비하십시오. 
+액션을 작성하기 전에 Java 코드를 준비하십시오.
 
 ### Java 코드 구조화
 {: #prep_java_struct}
 
 Java 액션은 `main`이라고 하는 메소드가 포함된 Java 프로그램입니다. `main`에는 다음 서명이 있어야 합니다.
 
-
+**예**
 ```java
 public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ```
 {: codeblock}
 
-
 * `--main`을 사용하여 main 클래스의 이름을 지정해야 합니다. 자격을 갖춘 main 클래스는 정적 `main` 메소드를 구현하는 클래스입니다. 클래스가 기본 패키지에 없는 경우에는 완전한 Java 클래스 이름(예: `--main com.example.MyMain`)을 사용하십시오.
-* Java 액션의 메소드 이름을 사용자 정의할 수 있습니다. 이는 액션의 완전한 메소드 이름(예: `--main com.example.MyMain#methodName`)을 지정하여 수행됩니다.
-* 소스 파일 확장자를 사용하여 액션의 유형이 판별됩니다.
-
-예:
-```java
-import com.google.gson.JsonObject;
-public class Hello {
-    public static JsonObject main(JsonObject args) {
-        String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
-        return response;
-    }
-}
-```
-{: codeblock}
-
+* 액션의 완전한 메소드 이름(예: `--main com.example.MyMain#methodName`)의 완전한 메소드 이름을 지정하여 Java 액션의 메소드 이름을 사용자 정의할 수 있습니다.
 
 ### Java 코드 패키징
 {: #prep_java_pkg}
 
-Java 파일을 컴파일, 테스트하고 아카이브하려면 [JDK 8 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](http://openjdk.java.net/install)이 로컬로 설치되어 있어야 합니다.
+
+**시작하기 전에**
+로컬로 설치된 [JDK 8](http://openjdk.java.net/install/){: external}이 있어야 합니다. 이 예에서는 [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}를 사용합니다.
+
+JDK 8 이외의 JDK 버전에서 작업하는 경우 `javac` 명령을 사용하여 코드를 컴파일할 때 `--release 8`을 지정해야 합니다.
+{: note}
+
+Java 액션을 작성하려면 다음 단계를 완료하십시오.
 
 1. 이름이 `Hello.java`인 파일에 다음 코드를 저장하십시오.
 
-    ```java
+  ```java
     import com.google.gson.JsonObject;
     public class Hello {
-        public static JsonObject main(JsonObject args) {
-            String name = "stranger";
-        if (args.has("name"))
-            name = args.getAsJsonPrimitive("name").getAsString();
-        JsonObject response = new JsonObject();
-        response.addProperty("greeting", "Hello " + name + "!");
+      public static JsonObject main(JsonObject args) {
+          String name = "stranger";
+          if (args.has("name"))
+              name = args.getAsJsonPrimitive("name").getAsString();
+          JsonObject response = new JsonObject();
+          response.addProperty("greeting", "Hello, " + name + "!");
         return response;
     }
-    }
-    ```
-    {: codeblock}
+  }
+  ```
+  {: codeblock}
 
-2. `Hello.java` 파일을 클래스 파일로 컴파일하십시오. 
+2. [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/)를 다운로드하십시오.
 
-    ```
+3. `ClASSPATH`에 `gson-2.8.5.jar`를 추가하십시오. 이 예제에서는 `Desktop` 디렉토리의 `test` 폴더에 저장되는 `gson-2.8.5.jar`을 사용합니다.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+  ```
+  {: pre}
+
+4. `CLASSPATH`에 JDK의 `bin` 폴더를 추가하십시오. 이 예에서는 `openjdk-8`을 사용합니다.
+  
+  ```
+  export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: pre}
+
+5. JDK `bin` 폴더 및 `gson-2.8.5.jar`가 `CLASSPATH`에 있는지 확인하십시오.
+  ```
+  echo $CLASSPATH
+  ```
+  {: pre}
+
+  **출력 예**
+  ```
+  /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+  ```
+  {: screen}
+
+6. `Hello.java` 파일이 저장된 폴더로 이동하십시오. 이 예에서 `Hello.java` 파일은 `Desktop/test` 폴더에 저장됩니다.
+  ```
+  cd Desktop/test
+  ```
+  {: pre}
+
+7. `Hello.java` 파일을 클래스 파일로 컴파일하십시오.
+  ```
 javac Hello.java
-    ```
-    {: pre}
+  ```
+  {: pre}
 
-2. 클래스 파일을 이름이 `hello.jar`인 JAR 파일로 압축하십시오. **참고**: [google-gson ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://github.com/google/gson)이 Java CLASSPATH에 존재해야 합니다.
-3.
-    ```
-    jar cvf hello.jar Hello.class
-    ```
-    {: pre}
+8. 클래스 파일을 이름이 `hello.jar`인 .jar 파일로 압축하십시오.
 
+  ```
+jar cvf hello.jar Hello.class
+  ```
+  {: pre}
+
+**다음 단계**
+`hello.jar`로 액션을 작성할 수 있습니다. 작성된 클래스 파일에서 기본 이름인 `main`을 사용하기 때문에 조치를 작성할 때 `--main` 플래그를 `Hello`로 설정해야 합니다. `--main` 플래그는 Java `class`와 일치해야 합니다. 자세한 정보는 [액션 작성](/docs/openwhisk?topic=cloud-functions-actions)을 참조하십시오.
+ 
+Java 코드를 업데이트하는 경우 이러한 단계를 반복하여 코드를 새 `.jar` 파일로 재컴파일해야 합니다.
+{: note}
 
 ### Gradle로 Java 코드 패키징
 {: #prep_java_gradle}
 
-[Gradle](https://gradle.org) 같은 빌드 도구를 사용하여 Maven Central 같은 저장소에서 라이브러리를 페치하고 코드 및 모든 종속 항목이 포함된 최종 JAR 아카이브를 빌드할 수 있습니다.
+명령행에서 컴파일하는 대신 빌드 도구(예: [Gradle](https://gradle.org){: external})를 사용하여 Maven Central 같은 저장소에서 라이브러리를 페치할 수 있습니다. Gradle을 사용하여 코드 및 모든 종속 항목이 포함된 최종 .jar 아카이브를 페치 및 빌드할 수 있습니다.
 
 다음은 Gradle을 사용하여 QR 코드 이미지 생성 기능을 제공하는 `com.google.zxing` 라이브러리를 활용하는 Java 액션을 빌드하는 예입니다.
 
-1. 이름이 `build.gradle`인 파일을 작성하고 종속 항목을 지정하십시오. 
+1. 이름이 `build.gradle`인 파일을 작성하고 종속 항목을 지정하십시오.
 
   ```gradle
   apply plugin: 'java'
@@ -1052,25 +1072,22 @@ javac Hello.java
   ```
   {: codeblock}
 
-2. `build/libs/` 디렉토리에 JAR 아카이브를 생성하는 `gradle jar` 명령을 실행하십시오.
+2. `build/libs/` 디렉토리에 .jar 아카이브를 생성하는 `gradle jar` 명령을 실행하십시오.
 
-  자세한 정보는 Gradle 문서 [종속 항목 선언](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies)을 읽어보십시오.
-
-
-
+  자세한 정보는 Gradle 문서 [종속 항목 선언](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}을 읽어보십시오.
 
 
 ## .NET Core 앱 준비
 {: #prep_dotnet}
 
-액션을 작성하기 전에 .NET Core 코드를 준비하십시오. 
+액션을 작성하기 전에 .NET Core 코드를 준비하십시오.
 
 ### .NET Core 코드 구조화
 {: #prep_dotnet_struct}
 
 .NET Core 액션은 이름이 `Main`으로 지정될 것으로 예상되는 메소드가 사용되는 .NET Core 클래스 라이브러리입니다. 코드의 메소드가 `Main`이 아닌 경우 액션이 `--main {Assembly}::{Class Full Name}::{Method}` 형식으로 작성될 때 지정할 이름을 기록해 두십시오.
 
-예:
+**예**
 ```
 Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ```
@@ -1078,14 +1095,14 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ### .NET Core 코드 패키징
 {: #prep_dotnet_pkg}
 
-시작하기 전에:
-.NET Core 프로젝트를 컴파일, 테스트 및 아카이브하려면 다음을 수행해야 합니다. 
-- [.NET Core SDK](https://dotnet.microsoft.com/download)를 로컬로 설치하십시오. 
-- `dotnet` 실행 파일을 찾을 수 있는 위치로 `DOTNET_HOME` 환경 변수를 설정하십시오. 
+**시작하기 전에**
+.NET Core 프로젝트를 컴파일, 테스트 및 아카이브하려면 다음을 수행해야 합니다.
+- [.NET Core SDK](https://dotnet.microsoft.com/download){: external}를 로컬로 설치하십시오.
+- `dotnet` 실행 파일을 찾을 수 있는 위치로 `DOTNET_HOME` 환경 변수를 설정하십시오.
 
 
 
-코드를 패키징하려면 다음을 수행하십시오.
+코드를 패키징하려면 다음 명령을 실행하십시오.
 
   1. `Apache.OpenWhisk.Example.Dotnet`이라는 C# 프로젝트를 작성하십시오.
 
@@ -1094,14 +1111,14 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
       ```
       {: pre}
 
-  2. `Apache.OpenWhisk.Example.Dotnet` 디렉토리로 이동하십시오. 
+  2. `Apache.OpenWhisk.Example.Dotnet` 디렉토리로 이동하십시오.
 
       ```bash
       cd Apache.OpenWhisk.Example.Dotnet
       ```
       {: pre}
 
-  3. [Newtonsoft.Json](https://www.newtonsoft.com/json) NuGet 패키지를 다음과 같이 설치하십시오.
+  3. [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> 패키지](https://www.nuget.org/packages/Newtonsoft.Json/){: external}를 설치하십시오.
 
       ```bash
     dotnet add package Newtonsoft.Json -v 12.0.1
@@ -1140,7 +1157,7 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
       ```
       {: pre}
 
-  6. out 디렉토리로 이동하십시오.
+  6. `out` 디렉토리로 이동하십시오.
 
       ```bash
       cd out
@@ -1153,5 +1170,6 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
       zip -r -0 ../helloDotNet.zip *
       ```
       {: pre}
+
 
 

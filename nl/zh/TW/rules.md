@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # 透過規則關聯觸發程式和動作
 {: #rules}
 
-每次發動觸發程式時，規則都會使用觸發事件作為輸入，並呼叫關聯的動作。運用一組適當的規則，單一觸發程式事件可能會呼叫多個動作，也可能會呼叫動作以作為多個觸發程式的事件的回應。
+每次發動觸發程式時，規則都會使用觸發事件作為輸入，並呼叫關聯的動作。使用適當的規則集時，可以透過單一觸發程式來呼叫多個動作，也可以呼叫一個動作以回應來自多個觸發程式的事件。
 {: shortdesc}
 
 
@@ -85,12 +87,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 可以透過為動作和觸發程式的每種組合建立一個規則，以便能使用不同的組合。動作和觸發程式無需按 1:1 的比例組合。
 
 例如，假設使用下列動作。
-- `classifyImage` - 可偵測影像中的物件並進行分類的動作。
-- `thumbnailImage` - 可建立影像縮圖版本的動作。
 
-另外，假設有兩個事件來源正在發動下列觸發程式。
-- `newTweet` - 在張貼新的推文時發動的觸發程式。
-- `imageUpload` - 在將影像上傳至網站時發動的觸發程式。
+|動作|說明|
+| --- | --- |
+|`classifyImage`|此動作用於偵測影像中的物件並對其進行分類。|
+|`thumbnailImage`|此動作用於建立影像的縮圖版本。|
+
+此外，假設有兩個事件來源將觸發下列觸發程式。
+
+|觸發程式 (Trigger)|說明|
+| --- | --- |
+|`newTweet`|此觸發程式在張貼新推文時發動。|
+|`imageUpload`|此觸發程式在將影像上傳到網站時發動。|
 
 您可以設定規則，讓單一觸發程式事件呼叫多個動作，以及讓多個觸發程式呼叫相同的動作。
 - `newTweet -> classifyImage` 規則
@@ -101,3 +109,4 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 - 分類兩個推文中的影像。
 - 分類已上傳的影像。
 - 產生縮圖版本。
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: regions, endpoints, api, cli, plug-in
+keywords: regions, endpoints, api, cli, plug-in, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Regiões
 {: #cloudfunctions_regions}
 
-O {{site.data.keyword.openwhisk_short}} está disponível nas regiões Sul dos EUA, Leste dos EUA, Alemanha, Reino Unido e Tóquio do {{site.data.keyword.Bluemix_notm}}. Ao efetuar login na CLI do {{site.data.keyword.Bluemix_notm}}, é possível optar por incluir uma região específica, incluindo o terminal de API para a região com o sinalizador `-a`.
+O {{site.data.keyword.openwhisk_short}} está disponível nas regiões Sul dos EUA, Leste dos EUA, Alemanha, Reino Unido e Tóquio do {{site.data.keyword.cloud_notm}}. Ao efetuar login na CLI do {{site.data.keyword.cloud_notm}}, é possível optar por incluir uma região específica, incluindo o terminal de API para a região com o sinalizador `-a`.
 
   ```
   ibmcloud login -a <endpoint>
@@ -91,3 +93,4 @@ extremidade</th>
       <td><code>api.jp-tok.functions.cloud.ibm.com</code></td>
     </tr>
   </table>
+

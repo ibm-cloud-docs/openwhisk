@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -25,6 +26,7 @@ subcollection: cloud-functions
 {:tsSymptoms: .tsSymptoms}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
+
 
 # 疑難排解
 {: #troubleshooting}
@@ -47,8 +49,6 @@ subcollection: cloud-functions
 若要查看哪個運行環境用於動作，請執行 `ibmcloud fn action get ACTION_NAME`，並在查詢回應中檢查是否 `deprecated=true`。如果這是已淘汰的運行環境，請[更新運行環境](/docs/openwhisk?topic=cloud-functions-actions#actions_update)。
 
 
-<br />
-
 
 ## 已達到系統限制
 {: #ts_limit_reached}
@@ -68,8 +68,6 @@ subcollection: cloud-functions
 4. 針對支援的技術領域，請選取**函數**。
 
 
-<br />
-
 
 ## 取得協助及支援
 {: #gettinghelp}
@@ -77,10 +75,11 @@ subcollection: cloud-functions
 函數仍然有問題？
 {: shortdesc}
 
--   若要查看 {{site.data.keyword.Bluemix_notm}} 是否可用，請[檢查 {{site.data.keyword.Bluemix_notm}} 狀態頁面 ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://cloud.ibm.com/status?selected=status)。
--   檢閱討論區，以查看其他使用者是否發生過相同的問題。使用討論區提問時，請標記您的問題，以便 {{site.data.keyword.Bluemix_notm}} 開發團隊能看到它。
-    -   如果您有使用 {{site.data.keyword.openwhisk}} 開發函數的相關技術問題，請將問題張貼在 [Stack Overflow ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://stackoverflow.com/search?q=ibm-cloud-functions)，並使用 `ibm-cloud-functions` 來標記您的問題。
-    -   若為服務及開始使用指示的相關問題，請使用 [IBM Developer Answers ![外部鏈結圖示](../icons/launch-glyph.svg "外部鏈結圖示")](https://developer.ibm.com/answers/topics/functions/?smartspace=bluemix) 討論區。請包含 `ibm-cloud` 和 `functions` 標籤。
+-   若要查看 {{site.data.keyword.cloud_notm}} 是否可用，請[檢查 {{site.data.keyword.cloud_notm}} 狀態頁面](https://cloud.ibm.com/status?selected=status){: external}。
+-   檢閱討論區，以查看其他使用者是否發生過相同的問題。使用討論區提問時，請標記您的問題，以便 {{site.data.keyword.cloud_notm}} 開發團隊能看到它。
+    -   如果您有關於使用 {{site.data.keyword.openwhisk}} 開發函數的技術問題，請在 [Stack Overflow](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} 上張貼問題，並使用 `ibm-cloud-functions` 標記您的問題。
+    -   若為服務及開始使用指示的相關問題，請使用 [IBM Developer Answers](https://developer.ibm.com/answers/topics/functions){: external} 討論區。請包含 `ibm-cloud` 和 `functions` 標籤。
     如需使用討論區的詳細資料，請參閱[取得協助](/docs/get-support?topic=get-support-getting-customer-support#using-avatar)。
 -   開立案例，以與「IBM 支援中心」聯絡。若要瞭解有關開立 IBM 支援案例或有關支援層次和案例嚴重性的資訊，請參閱[與支援中心聯絡](/docs/get-support?topic=get-support-getting-customer-support)。報告問題時，請包含啟動 ID。若要取得啟動 ID，請執行 `ibmcloud fn activation list`。
 {: tip}
+

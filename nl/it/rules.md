@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,14 +25,15 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Associazione di trigger e azioni tramite regole
 {: #rules}
 
-Ogni volta che un trigger viene attivato, la regola utilizza l'evento di trigger e richiama l'azione associata. Con l'insieme appropriato di regole, è possibile che un singolo evento trigger richiami più azioni o che un'azione venga richiamata in risposta a eventi appartenenti a più trigger.
+Ogni volta che un trigger viene attivato, la regola utilizza l'evento di trigger e richiama l'azione associata. Con l'insieme appropriato di regole, è possibile che un singolo trigger richiami più azioni o che un'azione venga richiamata in risposta a eventi appartenenti a più trigger.
 {: shortdesc}
 
 
-## Creazione di regole dalla UI
+## Creazione di regole dall'IU
 {: #rules_ui}
 
 Viene creata automaticamente una regola per l'associazione di un'azione a un trigger dall'interfaccia utente.
@@ -83,12 +85,18 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 Puoi utilizzare varie combinazioni di trigger e azioni creando una regola per ciascuna combinazione. Non è richiesto un rapporto 1:1 tra azioni e trigger.
 
 Ad esempio, considera le seguenti azioni.
-- `classifyImage` - Un'azione che rileva gli oggetti in un'immagine e li classifica.
-- `thumbnailImage` - Un'azione che crea una versione in miniatura di un'immagine.
+
+| Azione | Descrizione |
+| --- | --- |
+| `classifyImage` | Un'azione che rileva gli oggetti in un'immagine e li classifica. |
+| `thumbnailImage` | Un'azione che crea una versione in miniatura di un'immagine. |
 
 Supponi, inoltre, che due origini eventi stiano attivando i seguenti trigger.
-- `newTweet` - Un trigger che viene attivato alla pubblicazione di un nuovo tweet.
-- `imageUpload` - Un trigger che viene attivato al caricamento di un'immagine in un sito web.
+
+| Trigger | Descrizione |
+| --- | --- |
+| `newTweet` | Un trigger che viene attivato quando viene pubblicato un nuovo tweet. |
+| `imageUpload` | Un trigger che viene attivato quando un'immagine viene caricata su un sito web. |
 
 Puoi configurare le regole in modo che un unico evento trigger richiami più azioni e far sì che più trigger richiamino la stessa azione.
 - `newTweet -> classifyImage` rule
@@ -99,3 +107,4 @@ Le tre regole stabiliscono il seguente comportamento.
 - Vengono classificate le immagini di entrambi i tweet
 - Vengono classificate le immagini caricate
 - Viene generata una versione in miniatura.
+

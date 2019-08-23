@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: faq, runtimes, actions, memory, monitoring
+keywords: faq, runtimes, actions, memory, monitoring, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,6 +24,7 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:faq: data-hd-content-type='faq'}
+
 
 
 # 常见问题
@@ -86,29 +88,31 @@ subcollection: cloud-functions
 
 最大超时为 10 分钟。缺省值设置为 1 分钟，但可以通过 CLI 使用 `--timeout` 标志来指定新值（以毫秒为单位）以更改缺省值。此外，还可以通过 GUI 在操作详细信息部分中更改该值。
 
-
 ## 函数可以使用的最大内存是多少？
 {: #max-memory}
 
 对于每个函数，最多可以使用 2048 MB 内存。缺省值设置为 256 MB，但可以使用 `--memory` 标志或通过 GUI 中的操作详细信息部分来更改此缺省值。
 
-
-
 ## 操作与 Web 操作有何区别？
 {: #difference}
 
-操作和 Web 操作之间的主要区别在于响应输出对象。对于 [Web 操作](/docs/openwhisk?topic=cloud-functions-actions_web)，结果表示 HTTP 响应，其中 JSON 输出应该至少具有 `body` 字段。（可选）还可以包含 statusCode 和 headers。
+操作和 Web 操作之间的主要区别在于响应输出对象。对于 [Web 操作](/docs/openwhisk?topic=cloud-functions-actions_web)，结果表示 HTTP 响应，其中 JSON 输出至少包含 `body` 字段。（可选）还可以包含 `statusCode` 和 `headers`。
 
 ## 如何查看操作日志？
 {: #logs_faq}
 
 收集度量值后，可以使用 [{{site.data.keyword.loganalysislong_notm}} 服务](/docs/openwhisk?topic=cloud-functions-logs)来查看日志。
 
-
 ## 监视是如何运作的？
 {: #monitor_faq}
 
 您可以通过 {{site.data.keyword.monitoringlong}} 来了解使用 {{site.data.keyword.openwhisk_short}} 部署的操作的性能。此外，还可以使用仪表板来查看活动的图形摘要，从而监视操作的运行状况和性能。
+
+
+
+
+
+
 
 
 

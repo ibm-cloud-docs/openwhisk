@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 为事件创建触发器
@@ -47,7 +49,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例输出：
+    **示例输出**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,8 +61,8 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+    ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
     ```
@@ -101,7 +103,7 @@ subcollection: cloud-functions
   ```
     {: pre}
 
-    示例输出：
+    **示例输出**
     ```
     package /whisk.system/alarms
      feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -131,7 +133,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -157,7 +159,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
   ```
   ok: created rule myRule
   ```
@@ -170,5 +172,6 @@ subcollection: cloud-functions
   {: pre}
 
   您可以看到针对触发器、规则和操作，每一分钟激活一次。操作会在每次调用时收到参数 `{"name":"Mork", "place":"Ork"}`。
+
 
 

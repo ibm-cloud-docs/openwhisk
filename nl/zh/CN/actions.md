@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, functions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 创建操作
@@ -43,13 +45,13 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例：
+  **示例**
   ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
 
   ```
   ok: created action hello
@@ -60,14 +62,13 @@ subcollection: cloud-functions
   - 为了节省成本，您可以设置限制。
       - 要为内存使用量设置限制，请在 create 命令中包含 `--memory VALUE`，其中值以兆字节为单位。
       - 要设置超时，请在 create 命令中包含 `--timeout VALUE`，其中值以毫秒为单位。
-  - 如果已将代码打包成 Docker 映像，请在 create 命令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含应用程序的本地路径和 --kind 标志。要妥善管理映像，请尽可能不使用 `latest` 标记。使用 `latest` 标记时，将使用带有该标记的映像，但这不一定是最近创建的映像。          
+  - 如果已将代码打包成 Docker 映像，请在 create 命令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含应用程序的本地路径和 --kind 标志。要妥善管理映像，请尽可能不使用 `latest` 标记。使用 `latest` 标记时，将使用带有该标记的映像，但这不一定是最近创建的映像。        
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
       {: pre}
   
-
-
 2. 验证操作是否在操作列表中。
 
   ```
@@ -75,7 +76,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
 
   ```
   actions
@@ -95,28 +96,32 @@ subcollection: cloud-functions
 1. 本地更新应用程序。
 
 2. 如果已将应用程序打包成 Docker 映像，请将最新映像上传到 Docker Hub。这将允许系统在下次运行操作的代码时，拉取新的 Docker 映像。
-    如果有使用前版 Docker 映像的运行中容器，那么任何新调用都将继续使用该映像。必须运行 update 命令，这样新调用才能开始使用新映像。
+    如果有使用前版 Docker 映像的运行中容器，那么任何新调用都将继续使用该映像。必须运行 update 命令，这样新调用才能开始在新映像上运行。
 
 3. 更新操作并包含应用程序或 Docker 映像的本地路径。
+    
+
     ```
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME
     ```
     {: pre}
 
-    示例：
+    **示例**
+
     ```
     ibmcloud fn action update hello hello.js --kind nodejs:10
     ```
     {: pre}
 
-    示例输出：
+    **示例输出**
 
     ```
     ok: updated action hello
     ```
     {: screen}
 
-    如果已将代码打包成 Docker 映像，请在 create 命令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含本地应用程序的路径和 --kind 标志。要妥善管理映像，请尽可能不使用 `latest` 标记。使用 `latest` 标记时，将使用带有该标记的映像，但这不一定是最近创建的映像。
+    如果已将代码打包成 Docker 映像，请在 create 命令中包含 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`，而不是包含本地应用程序的路径和 `--kind` 标志。要妥善管理映像，请尽可能不使用 `latest` 标记。使用 `latest` 标记时，将使用带有该标记的映像，但这不一定是最近创建的映像。 
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
@@ -142,14 +147,16 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    示例：
+    **示例**
+
     ```
     ibmcloud fn action update MyApp --param name World
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+
+    ```
     ok: updated action MyApp
     ```
     {: screen}
@@ -158,13 +165,16 @@ subcollection: cloud-functions
     {: tip}
 
 3. 验证参数是否已绑定到操作。
+    
+
     ```
     ibmcloud fn action get MyApp parameters
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+
+    ```
     ok: got action MyApp, displaying field parameters
 
     [
@@ -177,6 +187,7 @@ subcollection: cloud-functions
     {: screen}
 
 可选：要清除先前绑定的参数，请在不包含任何参数的情况下更新操作。
+
 ```
 ibmcloud fn action update ACTION_NAME APP_FILE
 ```
@@ -201,8 +212,6 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 接下来，创建规则或调用操作时，请使用序列的名称。
 
 
-
-
 ## 打包操作
 {: #actions_pkgs}
 
@@ -214,22 +223,24 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 - 订阅源用于配置外部事件源以触发触发器事件。例如，“警报”包中包含可按指定频率触发触发器的订阅源。
 
 
-
 1. 创建包。
+
   ```
   ibmcloud fn package create PACKAGE_NAME
   ```
   {: pre}
 
 2. 获取包的摘要。请注意，该包为空。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
-package /myNamespace/custom
+  package /myNamespace/custom
   ```
   {: screen}
 
@@ -241,12 +252,14 @@ package /myNamespace/custom
   {: pre}
 
 5. 获取包的摘要。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -275,14 +288,16 @@ package /myNamespace/custom
     ```
     {: pre}
 
-    示例：
+    **示例**
+
     ```
-      ibmcloud fn package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
   ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+
+    ```
     ok: updated package MyApp
     ```
     {: screen}
@@ -291,13 +306,16 @@ package /myNamespace/custom
   {: tip}
 
 3. 验证参数是否已绑定到包。
+    
+
     ```
     ibmcloud fn package get MyApp parameters
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+
+    ```
     ok: got package MyApp, displaying field parameters
 
     [
@@ -310,13 +328,16 @@ package /myNamespace/custom
     {: screen}
 
 4. 验证参数是否已由包继承。
+    
+
     ```
     ibmcloud fn package get MyApp/MyAction parameters
     ```
     {: pre}
 
-    示例输出：
-      ```
+    **示例输出**
+
+    ```
     ok: got package MyApp/MyAction, displaying field parameters
 
     [
@@ -336,19 +357,22 @@ package /myNamespace/custom
 调试并测试组成一个包的操作和订阅源之后，该包可以与所有 {{site.data.keyword.openwhisk_short}} 用户共享。通过共享包，用户可以绑定包，调用包中的操作，以及编写 {{site.data.keyword.openwhisk_short}} 规则和序列操作。共享包中的操作和订阅源是_公共_的。如果包是私有的，那么其所有内容也是私有的。
 {: shortdesc}
 
-1. 与所有用户共享包：
+1. 与所有用户共享包。
+
   ```
   ibmcloud fn package update PACKAGE_NAME --shared yes
   ```
   {: pre}
 
 2. 显示包的 `publish` 属性以验证其现在是否为 true。
+
   ```
   ibmcloud fn package get PACKAGE_NAME publish
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
   ok: got package PACKAGE_NAME, displaying field publish
 
@@ -357,12 +381,14 @@ package /myNamespace/custom
   {: screen}
 
 3. 获取包的描述，以向他人提供包的标准名称，以便可以绑定包或调用包中的操作。标准名称包含名称空间，在此示例中为 `myNamespace` 名称空间。
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  示例输出：
+  **示例输出**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -380,9 +406,12 @@ package /myNamespace/custom
 |属性|描述|
 | -------- | ----------- |
 |`__OW_API_HOST`|运行此操作的部署的 API 主机。|
-|`__OW_API_KEY`|调用此操作的主体的 API 密钥。此密钥可能是受限 API 密钥，除非显式请求，否则此密钥不会存在。请参阅[注释](/docs/openwhisk?topic=cloud-functions-annotations)。|
-|`__OW_NAMESPACE`|激活的名称空间。此名称空间可能与操作的名称空间不同。|
+|`__OW_API_KEY`|调用此操作的主体的 API 密钥。此变量仅针对基于经典 CF 的名称空间提供。|
+|`__OW_NAMESPACE`|名称空间标识 (GUID)。对于基于经典 CF 的名称空间，此标识由组织和空间名称构成。|
+|`__OW_NAMESPACE_CRN`|名称空间的云资源名称 [CRN](/docs/overview?topic=overview-crn)。CRN 仅可用于启用 IAM 的名称空间。
 |`__OW_ACTION_NAME`|运行中操作的标准名称。|
+|`__OW_IAM_NAMESPACE_API_KEY`|启用 IAM 的名称空间的 API 密钥。请参阅[设置访问策略](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access)以获取用法。|
+|`__OW_IAM_API_URL`|用于 IAM 操作（例如，从 API 密钥获取令牌）的服务端点。此变量仅可用于启用 IAM 的名称空间。|
 |`__OW_ACTIVATION_ID`|此运行中操作实例的激活标识。|
 |`__OW_DEADLINE`|此操作将耗尽整个持续时间配额时的近似时间（毫秒，以纪元格式表示）。|
 
@@ -391,7 +420,7 @@ package /myNamespace/custom
 
 要查看某个操作的值，请在应用程序代码中包含这些值的显示，并将其输出到结果中。
 
-针对 Python 的示例：
+**针对 Python 的示例**
 ```python
 def main(dict):
   import os
@@ -413,3 +442,7 @@ def main(dict):
             }
 
 ```
+{: screen}
+
+
+

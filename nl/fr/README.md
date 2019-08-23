@@ -1,9 +1,18 @@
+---
+
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-07-10"
+
+keywords: serverless, functions
+
+subcollection: cloud-functions
+
+---
+
 # Cloud Functions
 
-[![Statut de la génération](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs.svg?token=Rt7qrw9ADrkv4kFiywCq&branch=master)](https://travis.ibm.com/BlueMix-Fabric/bluewhisk-docs)
-
 Bienvenue dans le référentiel de documents pour IBM Cloud Functions ! N'hésitez pas à nous faire part de vos commentaires et à nous envoyer vos mises à jour.
-
 
 
 
@@ -14,6 +23,27 @@ Bienvenue dans le référentiel de documents pour IBM Cloud Functions ! N'hésit
 2. Lorsque vous êtes prêt pour la révision, envoyez une demande d'extraction à la branche principale et balisez `Derek-Poindexter` pour la révision.
 3. Derek examinera vos suggestions avec l'équipe de développement Cloud Functions et procédera aux ajustements nécessaires.
 4. Derek fusionnera le contenu dans le référentiel.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 

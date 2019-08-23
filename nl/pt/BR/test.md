@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, serverless, javascript, node, node.js, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -24,10 +25,11 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # Testando apps sem servidor
 {: #test}
 
-Teste cada entidade criada por meio da CLI para verificar se seu app sem servidor está funcionando ou para solucionar um problema que possa estar ocorrendo.
+Teste cada entidade que você cria por meio da CLI para verificar se seu app sem servidor está trabalhando ou para solucionar problemas em um local onde um problema possa estar ocorrendo.
 {: shortdesc}
 
 
@@ -42,13 +44,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-Exemplo de Hello World:
+**Exemplo Hello world**
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-Saída:
+**Saída**
 ```json
   {
       "greeting": "Hello stranger!"
@@ -69,7 +71,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-Exemplo de Saída:
+**Saída de exemplo**
 ```
 {
     "payload": "Hello, Dorothy from Kansas" }
@@ -89,7 +91,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 ```
 {: pre}
 
-Exemplo de Saída:
+**Saída de exemplo**
 ```
 {
     "payload": "Hello, Dorothy from Kansas" }
@@ -105,7 +107,7 @@ A chamada da ação pode ser de bloqueio ou sem bloqueio. As chamadas são sem b
 
 As chamadas de bloqueio usam um estilo de solicitação-resposta e aguardam que o resultado de ativação esteja disponível. O período de espera é o menor de 60 segundos ou o [valor limite de tempo](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits) da ação.
 
-Execute a ação na nuvem ao executar uma chamada de bloqueio:
+Execute a ação na nuvem ao executar uma chamada de bloqueio.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -113,7 +115,7 @@ ibmcloud fn action invoke --blocking ACTION_NAME
 {: pre}
 
 
-Exemplo de Saída:
+**Saída de exemplo**
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -127,13 +129,9 @@ ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 ```
 {: screen}
 
-O comando expõe as informações a seguir:
+O comando expõe as informações a seguir.
 * O resultado da chamada, se ele estiver disponível dentro do período de espera previsto
-* Sem a opção --result, o ID de ativação é exibido no resultado. O ID de ativação (`44794bd6aab74415b4e42a308d880e5b`) que pode ser usado para recuperar os logs ou o resultado da chamada.
-
-
-
-
+* Sem a opção `--result`, o ID de ativação é exibido no resultado. O ID de ativação (`44794bd6aab74415b4e42a308d880e5b`) que pode ser usado para recuperar os logs ou o resultado da chamada.
 
 
 ## Testando acionadores
@@ -149,10 +147,9 @@ Os acionadores podem ser disparados ou ativados usando um dicionário de pares c
     ```
     {: pre}
 
-    Um acionador que não estiver associado com uma regra não terá efeito visível quando ele for disparado. Como não há nenhuma regra associada a esse acionador, os parâmetros passados não são usados como
-entrada por nenhuma ação.
+    Um acionador que não estiver associado com uma regra não terá efeito visível quando ele for disparado. Como nenhuma regra está associada a esse acionador, os parâmetros passados não são usados como entrada por nenhuma ação.
 
-    Exemplo de Saída:
+    **Saída de exemplo**
 
     ```
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
@@ -165,7 +162,7 @@ entrada por nenhuma ação.
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     ativações
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -178,7 +175,7 @@ entrada por nenhuma ação.
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     {
        "payload": "Hello, Human from Earth"
@@ -202,7 +199,7 @@ Verifique quanto tempo uma ativação levou para ser concluída obtendo o log de
     ```
     {: pre}
 
-    Exemplo de Saída:
+    Saída de exemplo:
     ```
     ativações
     b066ca51e68c4d3382df2d8033265db0             ACTION_NAME
@@ -216,7 +213,7 @@ Verifique quanto tempo uma ativação levou para ser concluída obtendo o log de
     ```
     {: pre}
 
-    A `duração` mostra o tempo em milissegundos. Essa ativação demorou um pouco mais de 2 segundos para ser concluída:
+    A `duração` mostra o tempo em milissegundos. A ativação demorou um pouco mais de 2 segundos para ser concluída.
 
     ```
     ok: got activation b066ca51e68c4d3382df2d8033265db0
@@ -258,7 +255,7 @@ Se o seu app for empacotado em uma imagem do Docker, será possível usar comand
     ```
     {: pre}
 
-2. Obtenha a lista de contêineres para obter um ID de contêiner.
+2. Obtenha uma lista dos contêineres para obter um ID do contêiner.
 
     ```
     docker ps
@@ -272,7 +269,7 @@ Se o seu app for empacotado em uma imagem do Docker, será possível usar comand
     ```
     {: pre}
 
-4. Revise o valor de uso de memória para o contêiner. Se o valor não se ajustar dentro dos limites do sistema, faça alguns ajustes em seu script.
+4. Revise o valor de uso de memória para o contêiner. Se o valor não se ajustar dentro dos limites do sistema, ajuste seu script.
 
 5. Depois de terminar de revisar as informações, será possível parar o contêiner em execução.
 
@@ -287,6 +284,8 @@ Se o seu app for empacotado em uma imagem do Docker, será possível usar comand
     docker rm CONTAINER_ID
     ```
     {: pre}
+
+
 
 
 

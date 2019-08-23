@@ -2,9 +2,9 @@
 
 copyright:
 years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: composer, openwhisk, compositions, sequence, branch
+keywords: composer, openwhisk, compositions, sequence, branch, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,12 +24,13 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # Composer
 {: #pkg_composer}
 
-{{site.data.keyword.openwhisk}} prend désormais en charge Composer pour Apache OpenWhisk en tant qu'aperçu technique. Composer étend des séquences Apache OpenWhisk avec des combinateurs supplémentaires ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md), [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)), qui vous permettent de créer des flux plus complexes incluant le branchement conditionnel, le traitement d'erreurs et des boucles. La documentation complète et les spécifications techniques de Composer sont disponibles dans le [référentiel Git de Composer](https://github.com/apache/incubator-openwhisk-composer).
+{{site.data.keyword.openwhisk}} prend désormais en charge Composer pour Apache OpenWhisk en tant qu'aperçu technique. Composer étend des séquences Apache OpenWhisk avec d'autres combinateurs ([JS](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external}, [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}), que vous pouvez utiliser pour créer des flux plus complexes incluant le branchement conditionnel, le traitement des erreurs et des boucles. La documentation complète et les spécifications techniques de Composer sont disponibles dans le [référentiel Git de Composer](https://github.com/apache/incubator-openwhisk-composer){: external}.
 
-Vous pouvez également utiliser le projet open source [Kui](https://github.com/ibm/kui) pour faciliter la création, le déploiement et la visualisation de votre code source Composer. Pour plus d'informations sur l'utilisation de Kui avec Composer, voir [Kui sur Github](https://github.com/ibm/kui).
+Vous pouvez également utiliser le projet open source [Kui](https://github.com/ibm/kui){: external} pour faciliter la création, le déploiement et la visualisation de votre code source Composer. Pour plus d'informations, voir [Kui on GitHub](https://github.com/ibm/kui){: external}.
 {: note}
 
 ## Installation de la bibliothèque Composer pour JavaScript ou Python 3
@@ -37,8 +39,8 @@ Vous pouvez également utiliser le projet open source [Kui](https://github.com/i
 Vous pouvez utiliser Composer avec des actions écrites dans n'importe quel langage, mais la composition doit être exprimée en JavaScript ou Python 3. Après l'installation, vous pouvez utiliser les commandes Composer `compose/pycompose` et `deploy/pydeploy` pour [configurer et exécuter une composition](#run).
 {: shortdesc}
 
-**Pour JavaScript** :
-1. Installez le [package Node.js](https://github.com/apache/incubator-openwhisk-composer) de la bibliothèque Composer à l'aide de Node Package Manager.
+**Pour JavaScript**
+1. Installez le [package Node.js](https://github.com/apache/incubator-openwhisk-composer){: external} de la bibliothèque Composer à l'aide de Node Package Manager.
 
     ```
         npm install -g openwhisk-composer
@@ -53,7 +55,7 @@ Vous pouvez utiliser Composer avec des actions écrites dans n'importe quel lang
     ```
     {: codeblock}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     Syntaxe :
         compose composition.js [indicateurs]
@@ -63,24 +65,27 @@ Vous pouvez utiliser Composer avec des actions écrites dans n'importe quel lang
     ```
     {: screen}
 
-**Pour Python 3** :
-Installez la bibliothèque [Composer pour Python 3](https://github.com/apache/incubator-openwhisk-composer-python) à l'aide de `pip3`.
+**Pour Python 3**
+Installez la bibliothèque [Composer for Python 3](https://github.com/apache/incubator-openwhisk-composer-python){: external} à l'aide de `pip3`.
 
 1.  Clonez le référentiel GitHub Composer pour Python 3.
     ```
     git clone https://github.com/apache/incubator-openwhisk-composer-python.git
     ```
     {: pre}
+
 2.  Accédez au référentiel Composer.
     ```
     cd composer-python
     ```
     {: pre}
+
 3.  Installez la bibliothèque Composer. Incluez le point (`.`) afin que la commande s'exécute dans le répertoire où vous vous trouvez.
     ```
     pip3 install -e .
     ```
     {: pre}
+
 4.  Confirmez que vous avez installé la bibliothèque en exécutant l'aide sur les commandes Composer.
     ```
     $ pycompose -h
@@ -88,7 +93,7 @@ Installez la bibliothèque [Composer pour Python 3](https://github.com/apache/in
     ```
     {: codeblock}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     Syntaxe : pycompose composition.py command [indicateurs]
     Syntaxe : pydeploy composition composition.json [indicateurs]
@@ -101,7 +106,7 @@ Installez la bibliothèque [Composer pour Python 3](https://github.com/apache/in
 Vous pouvez utiliser les bibliothèques Composer JavaScript ou Python 3 pour créer vos compositions dans {{site.data.keyword.openwhisk}}. Utilisez `compose` ou `pycompose` pour compiler le code source de votre composition, puis utilisez `deploy` ou `pydeploy` pour déployer la composition dans {{site.data.keyword.openwhisk}}. Après avoir configuré la composition, vous pouvez l'exécuter dans {{site.data.keyword.openwhisk}}.
 {: shortdesc}
 
-**Avant de commencer** :
+**Avant de commencer**
 Par défaut, les déploiements utilisent les valeurs définies dans `~/.wskprops`. Remplacez les valeurs par défaut en définissant deux paramètres en entrée pour la commande Composer `deploy` ou `pydeploy`.
 
 1.  Définissez l'hôte d'API sur le noeud final {{site.data.keyword.openwhisk}}.
@@ -115,27 +120,27 @@ Par défaut, les déploiements utilisent les valeurs définies dans `~/.wskprops
     ```
     {: codeblock}
 
-**Pour exécuter une composition** :
+**Pour exécuter une composition**
 
-1.  Créez un code source Composer avec les bibliothèque NodeJS ou Python 3. Par exemple, créez un fichier `demo.js`.
+1.  Créez un code source Composer avec les bibliothèque nodeJS ou Python 3. Par exemple, créez un fichier `demo.js`.
 2.  Compilez le code source Composer dans un fichier JSON.
-    *   Dans JavaScript :
+    *   **JavaScript**
         ```
         compose demo.js > demo.json
         ```
         {: pre}
-    *   Dans Python 3 :
+    *   **Python 3**
         ```
         pycompose demo.js > demo.json
         ```
         {: pre}
 3.  Déployez le code dans {{site.data.keyword.openwhisk}}.
-    *   Dans JavaScript : Incluez l'indicateur `-w` pour remplacer un déploiement existant nommé `demo`.
+    *   Dans JavaScript, incluez l'indicateur `-w` pour remplacer un déploiement existant nommé `demo`.
         ```
         deploy demo demo.json -w
         ```
         {: pre}
-    *   Dans Python 3 : Incluez l'indicateur `-w` pour remplacer un déploiement existant nommé `demo`.
+    *   Dans Python 3, incluez l'indicateur `-w` pour remplacer un déploiement existant nommé `demo`.
         ```
         pydeploy demo demo.json -w
         ```
@@ -146,18 +151,21 @@ Par défaut, les déploiements utilisent les valeurs définies dans `~/.wskprops
     ```
     {: pre}
 
-{{site.data.keyword.openwhisk}} exécute le code que vous avez déployé en tant que type d'action spécifique. Pour plus de détails, consultez la documentation sur les [actions du conducteur](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md).
+{{site.data.keyword.openwhisk}} exécute le code que vous avez déployé en tant qu'action spéciale. Pour plus d'informations, consultez la documentation sur les [actions du conducteur](https://github.com/apache/incubator-openwhisk/blob/master/docs/conductors.md){: external}.
 
 ## Extension de séquences avec Composer
 {: #extending}
 
-Apache OpenWhisk vous permet de chaîner des fonctions dans une `séquence`, où la sortie d'une action devient l'entrée d'une autre action.
+Avec Apache OpenWhisk, vous pouvez chaîner des fonctions dans une `séquence`, où la sortie d'une action devient l'entrée d'une autre action.
 
 ### Séquences sans Composer
 {: #sequences-without-composer}
 Vous pouvez chaîner deux fonctions appelées `action1` et `action2` dans {{site.data.keyword.openwhisk_short}} :
 
-`ibmcloud fn action create --sequence mysequence action1 action2`.
+```
+ibmcloud fn action create --sequence mysequence action1 action2
+```
+{: pre}
 
 Le résultat de cette commande est une fonction appelée `mysequence`, qui est composée de `action1` et `action2`.  Vous pouvez utiliser `mysequence` comme toute autre fonction dans OpenWhisk.
 
@@ -165,7 +173,7 @@ Le résultat de cette commande est une fonction appelée `mysequence`, qui est c
 {: #sequences-with-composer}
 Dans Composer, vous pouvez spécifier des séquences plus riches en utilisant le code source plutôt que la ligne de commande.
 
-Pour JavaScript :
+**Pour JavaScript**
 ```
 const composer = require('openwhisk-composer')
 
@@ -173,7 +181,7 @@ module.exports = composer.seq('action1', 'action2')
 ```
 {: codeblock}
 
-Pour Python 3 :
+**Pour Python 3**
 ```
 import openwhisk-composer
 
@@ -181,17 +189,18 @@ def main():
   return composer.sequence('action1', 'action2')
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-sequence.png" width="35%" title="Séquence simple" alt="Séquence avec deux actions" style="width:250px; border-style: none"/></br>
 _Figure 1. Séquence avec deux actions_
 
-Vous n'êtes pas limité au chaînage de fonctions dans Composer. Composer inclut une gamme de combinateurs [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) ou [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md) qui améliorent l'expressivité des séquences. Vous pouvez afficher des exemples courants dans les sections suivantes.
+Vous n'êtes pas limité au chaînage de fonctions dans Composer. Composer inclut une gamme de combinateurs [JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} ou [Python 3](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external} qui améliorent l'expressivité des séquences. Vous pouvez afficher des exemples courants dans les sections suivantes.
 
 ### Traitement d'erreurs
 {: #error-handling}
 Vous pouvez ajouter le traitement d'erreurs à une séquence en utilisant des blocs `try-catch-finally`. Dans cet exemple, la séquence est entourée du code try. Le code `handleError` s'exécute si l'une des actions renvoie une erreur.
 
-Pour JavaScript :
+**Pour JavaScript**
 ```
 const composer = require('openwhisk-composer')
 
@@ -201,7 +210,7 @@ module.exports = composer.try(
 ```
 {: codeblock}
 
-Pour Python 3 :
+**Pour Python 3**
 ```
 import openwhisk-composer
 
@@ -210,15 +219,16 @@ def main():
   'handleError')
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-error.png" width="400" title="Séquence try" alt="Séquence avec traitement d'erreurs" style="width:400px; border-style: none"/></br>
 _Figure 2. Séquence avec traitement d'erreurs_
 
 ### Branchement conditionnel
 {: #conditional-branch}
-Vous pouvez créer une séquence branchée à l'aide de `if-then-else`. Cet exemple illustre le code `if-then-else`. `action1` doit renvoyer une valeur booléenne. Si la valeur `true` est indiquée, `action2` est exécuté ; sinon, c'est `action3`. Notez que `action3` est facultatif et peut être omis pour `if-then`.
+Vous pouvez créer une séquence branchée à l'aide de `if-then-else`. Cet exemple illustre le code `if-then-else`. `action1` renvoie une valeur booléenne. Si la valeur `true` est indiquée, `action2` est exécuté ; sinon, c'est `action3`. Notez que `action3` est facultatif et peut être omis pour `if-then`.
 
-Pour JavaScript :
+**Pour JavaScript**
 ```
 const composer = require('openwhisk-composer')
 
@@ -226,7 +236,7 @@ module.exports = composer.if('action1', 'action2', 'action3')
 ```
 {: codeblock}
 
-Pour Python 3 :
+**Pour Python 3**
 ```
 import openwhisk-composer
 
@@ -242,7 +252,7 @@ _Figure 3. Séquence avec branchement conditionnel_
 {: #loop}
 Vous pouvez créer des constructions de bouclage dans Composer. Dans cet exemple, `action2` s'exécute tant que `action1` renvoie la valeur `true`. Composer limite le nombre total d'étapes que vous pouvez exécuter dans une séquence composée. La limite actuelle est 20.
 
-Pour JavaScript :
+**Pour JavaScript**
 ```
 const composer = require('openwhisk-composer')
 
@@ -250,7 +260,7 @@ module.exports = composer.while('action1', 'action2')
 ```
 {: codeblock}
 
-Pour Python 3 :
+**Pour Python 3**
 ```
 import openwhisk-composer
 
@@ -266,7 +276,7 @@ _Figure 4. Séquence avec boucle `while`_
 {: #inline-def}
 Vous pouvez définir des actions dans le code de la composition lui-même. Dans cet exemple, vous allez créer la définition d'action en ligne avec la composition nommée `hello` à l'aide de `composer.action()`.
 
-Pour JavaScript :
+**Pour JavaScript**
 ```
 const composer = require('openwhisk-composer')
 
@@ -274,7 +284,7 @@ module.exports = composer.seq('action1', composer.action('hello', { action: func
 ```
 {: codeblock}
 
-Pour Python 3 :
+**Pour Python 3**
 ```
 import openwhisk-composer
 
@@ -282,11 +292,17 @@ def main():
   return composer.sequence('action1',composer.action('hello', { 'action': "message = 'hello'\ndef main(args):\n    return { 'message':message }" }))
 ```
 {: codeblock}
+
 </br>
 <img src="images/composer-inline.png" width="250" title="Séquence while" alt="Séquence avec définition d'actions en ligne" style="width:250px; border-style: none"/></br>
 _Figure 5. Séquence avec définition d'actions en ligne_
 
 ## Utilisation d'autres définitions de combinateur
 {: #combinator-def}
-Consultez la documentation pour Composer sur Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md) ou [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md)) pour obtenir la liste complète des définitions de combinateurs.
+Consultez la documentation pour Composer sur Apache OpenWhisk ([JavaScript](https://github.com/apache/incubator-openwhisk-composer/blob/master/docs/COMBINATORS.md){: external} ou [Python 3](https://github.com/apache/incubator-openwhisk-composer-python/blob/master/docs/COMBINATORS.md){: external}) pour obtenir la liste complète des définitions de combinateurs.
+
+
+
+
+
 

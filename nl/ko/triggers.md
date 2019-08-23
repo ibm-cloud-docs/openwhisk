@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 이벤트에 대한 트리거 작성
@@ -47,7 +49,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,7 +61,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -68,7 +70,7 @@ subcollection: cloud-functions
 
 
 
-그런 다음, [트리거를 테스트](/docs/openwhisk?topic=cloud-functions-test#test_triggers)하거나 [룰을 작성](/docs/openwhisk?topic=cloud-functions-rules)하여 트리거를 액션과 연관시킬 수 있습니다. 
+그런 다음, [트리거를 테스트](/docs/openwhisk?topic=cloud-functions-test#test_triggers)하거나 [룰을 작성](/docs/openwhisk?topic=cloud-functions-rules)하여 트리거를 액션과 연관시킬 수 있습니다.
 
 
 
@@ -79,9 +81,9 @@ subcollection: cloud-functions
 
 - {{site.data.keyword.openwhisk_short}}는 시스템으로 유입되는 **이벤트**를 처리합니다.
 
-- **트리거**는 이벤트 클래스의 이름입니다. 각 이벤트는 정확히 하나의 트리거에 속합니다. 유추하자면 트리거는 주제 기반 pub-sub 시스템의 주제와 유사합니다. **룰**은 트리거의 이벤트가 도착할 때마다 트리거 페이로드로 액션을 호출하는 것을 의미합니다. 
+- **트리거**는 이벤트 클래스의 이름입니다. 각 이벤트는 정확히 하나의 트리거에 속합니다. 유추하자면 트리거는 주제 기반 pub-sub 시스템의 주제와 유사합니다. **룰**은 트리거의 이벤트가 도착할 때마다 트리거 페이로드로 액션을 호출하는 것을 의미합니다.
 
-- **피드**는 {{site.data.keyword.openwhisk_short}}에서 이용할 수 있는 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성하는 편리한 방법입니다 피드는 모두가 일부 트리거에 속하는 이벤트의 스트림입니다. 사전 설치된 패키지, 설치 가능한 패키지 및 고유 사용자 정의 패키지에 피드가 포함될 수 있습니다. 피드는 피드를 구성하는 이벤트 스트림의 작성, 삭제, 일시정지 및 재개를 처리하는 **피드 액션**으로 제어됩니다. 일반적으로 피드 액션은 알림을 관리하는 REST API를 사용하여 이벤트를 생성하는 외부 서비스와 상호작용합니다.
+- **피드**는 {{site.data.keyword.openwhisk_short}}에서 이용할 수 있는 트리거 이벤트를 실행하기 위한 외부 이벤트 소스를 구성하는 편리한 방법입니다 피드는 모두가 일부 트리거에 속하는 이벤트의 스트림입니다. 사전 설치된 패키지, 설치 가능한 패키지 및 고유 사용자 정의 패키지에 피드가 포함될 수 있습니다.  피드는 피드를 구성하는 이벤트 스트림의 작성, 삭제, 일시정지 및 재개를 처리하는 **피드 액션**으로 제어됩니다. 일반적으로 피드 액션은 알림을 관리하는 REST API를 사용하여 이벤트를 생성하는 외부 서비스와 상호작용합니다.
 
 피드 예:
 - 데이터베이스의 문서가 추가되거나 수정될 때마다 트리거 이벤트를 실행하는 {{site.data.keyword.cloudant}} 데이터 변경 피드
@@ -101,7 +103,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-출력 예:
+    **출력 예**
     ```
       package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -125,19 +127,19 @@ subcollection: cloud-functions
   - `cron`: 트리거를 실행할 시기의 crontab 스펙입니다.
   - `trigger_payload`: 각 트리거 이벤트에서 설정할 페이로드 매개변수값입니다.
 
-2. 매분마다 실행되는 트리거를 작성하십시오.
+2. 1분마다 실행되는 트리거를 작성하십시오.
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   ok: created trigger feed everyOneMinute
   ```
   {: screen}
 
-3. 앱을 작성하십시오. `hello.js` 예는 다음과 같습니다. 
+3. 앱을 작성하십시오. `hello.js` 예는 다음과 같습니다.
   ```javascript
   function main(params) {
       return {payload:  'Hello, ' + params.name + ' from ' + params.place};
@@ -157,7 +159,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
   ```
   ok: created rule myRule
   ```
@@ -170,5 +172,6 @@ subcollection: cloud-functions
   {: pre}
 
   트리거, 룰 및 액션에 대해 활성화가 매분마다 발생함을 볼 수 있습니다. 액션은 각 호출에 대해 `{"name":"Mork", "place":"Ork"}` 매개변수를 수신합니다.
+
 
 

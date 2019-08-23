@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Affichage d'événements {{site.data.keyword.cloudaccesstrailshort}}
@@ -37,9 +39,9 @@ Pour plus d'informations sur le fonctionnement du service, consultez la [documen
 ## Emplacement de visualisation des événements
 {: #view}
 
-Les événements sont disponibles dans le **domaine de compte** {{site.data.keyword.cloudaccesstrailshort}} qui est accessible dans la région {{site.data.keyword.Bluemix_notm}} où se trouve la ressource d'espace de nom {{site.data.keyword.openwhisk_short}}. Pour plus d'informations, voir [Affichage des événements de compte](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
+Les événements sont disponibles dans le **domaine de compte** {{site.data.keyword.cloudaccesstrailshort}} qui est accessible dans la région {{site.data.keyword.cloud_notm}} où se trouve la ressource d'espace de nom {{site.data.keyword.openwhisk_short}}. Pour plus d'informations, voir [Affichage des événements de compte](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
 
-1. Connectez-vous à votre compte {{site.data.keyword.Bluemix_notm}}.
+1. Connectez-vous à votre compte {{site.data.keyword.cloud_notm}}. 
 2. Depuis le catalogue, mettez à disposition une instance du service {{site.data.keyword.cloudaccesstrailshort}} sur le même compte que votre instance de {{site.data.keyword.openwhisk}}.
 3. Dans l'onglet  **Gérer** du tableau de bord {{site.data.keyword.cloudaccesstrailshort}}, cliquez sur **Afficher dans Kibana**.
 4. Définissez la période pour laquelle vous voulez consulter les journaux. La valeur par défaut est 15 minutes.
@@ -82,3 +84,6 @@ Consultez le tableau suivant pour obtenir une liste des événements envoyés à
     </tr>
   </tbody>
 </table>
+
+
+

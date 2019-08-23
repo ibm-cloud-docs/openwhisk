@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: deploy, deployment templates, templates, example, quickstart
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
+
 # 빠른 시작 템플리트 배치
 {: #templates}
 
-{{site.data.keyword.openwhisk}}는 다음 프로젝트에서 빠른 시작에 도움을 주는 템플리트의 카탈로그를 제공합니다. 템플리트는 액션, 트리거, 시퀀스의 조합입니다. 일부 템플리트는 또한 {{site.data.keyword.Bluemix_notm}}의 다른 서비스 인스턴스를 통합합니다. 템플리트를 사용하면 빠르고 손쉽게 프로젝트를 작성하고 즉시 코딩을 시작할 수 있습니다.
+{{site.data.keyword.openwhisk}}는 다음 프로젝트에서 빠른 시작에 도움을 주는 템플리트의 카탈로그를 제공합니다. 템플리트는 액션, 트리거, 시퀀스의 조합입니다. 일부 템플리트는 또한 {{site.data.keyword.cloud_notm}}의 다른 서비스 인스턴스를 통합합니다. 템플리트를 사용하면 빠르고 손쉽게 프로젝트를 작성하고 즉시 코딩을 시작할 수 있습니다.
 {: shortdesc}
 
 
@@ -35,12 +37,12 @@ subcollection: cloud-functions
 
 |이름 |설명 |지원되는 런타임 | 소스 저장소 |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} 이벤트](#cloudant-template) | 문서가 {{site.data.keyword.cloudantfull}} 데이터베이스에서 편집 또는 추가된 경우, 콘솔에 변경사항을 로그하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-cloudant-trigger) |
-| [이미지 업로드](#image-template) | 웹 액션을 사용하여 이미지를 {{site.data.keyword.cos_full}} 인스턴스의 버킷에 업로드한 후 해당 이미지의 썸네일을 검색하십시오. | Node.js | [코드](https://github.com/ibm-functions/template-cloud-object-storage)
-| [HTTP 리소스 가져오기](#get-http-resource-template) | HTTP 이벤트를 사용하여 웹 액션을 호출하고 Yahoo Weather API에서 데이터를 가져오십시오. |Node.js, Python | [코드](https://github.com/ibm-functions/template-get-external-resource)
-| [Hello World](#hello-world-template) | 단일 매개변수로 JSON 오브젝트를 허용하는 기본 액션을 작성하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-hello-world)
-| [{{site.data.keyword.messagehub}} 이벤트](#messagehub-events-template) |새 데이터가 {{site.data.keyword.messagehub_full}} 주제에 추가되면, 콘솔에 변경사항을 로그하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-messagehub-trigger)
-| [주기적 Slack 리마인더](#slack-reminder-template) | 주기적 트리거를 기반으로 웹 후크를 Slack에 사용하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-reminder-slack)
+| [{{site.data.keyword.cloudant_short_notm}} 이벤트](#cloudant-template) | 문서가 {{site.data.keyword.cloudantfull}} 데이터베이스에서 편집 또는 추가된 경우, 콘솔에 변경사항을 로그하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [이미지 업로드](#image-template) | 웹 액션을 사용하여 이미지를 {{site.data.keyword.cos_full}} 인스턴스의 버킷에 업로드한 후 해당 이미지의 썸네일을 검색하십시오. | Node.js | [코드](https://github.com/ibm-functions/template-cloud-object-storage){: external}
+| [HTTP 리소스 가져오기](#get-http-resource-template) | HTTP 이벤트를 사용하여 웹 액션을 호출하고 Yahoo Weather API에서 데이터를 가져오십시오. |Node.js, Python | [코드](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | 단일 매개변수로 JSON 오브젝트를 허용하는 기본 액션을 작성하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub}} 이벤트](#messagehub-events-template) |새 데이터가 {{site.data.keyword.messagehub_full}} 주제에 추가되면, 콘솔에 변경사항을 로그하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [주기적 Slack 리마인더](#slack-reminder-template) | 주기적 트리거를 기반으로 웹 후크를 Slack에 사용하십시오. |Node.js, Swift, Python, PHP | [코드](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 코드 저장소의 각 템플리트에 대한 코드에 액세스하고, 원하는 사항을 수정하고, 주변에서 자체 함수를 작성할 수 있습니다.
 {: tip}
@@ -54,7 +56,7 @@ subcollection: cloud-functions
 ### UI에서 {{site.data.keyword.cloudant_short_notm}} 이벤트 템플리트 배치
 {: #cloudant-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -70,12 +72,13 @@ subcollection: cloud-functions
     3. 서비스 인증 정보 세트를 작성하십시오.
     4. **확인**을 클릭하여 {{site.data.keyword.cloudant_short_notm}} 설정 페이지를 닫고 {{site.data.keyword.openwhisk_short}} 콘솔로 돌아가십시오.
     5. 이제 **Cloudant 인스턴스** 목록에서 **자체 인증 정보 입력**을 선택하고 다음 정보를 제공할 수 있습니다.
-      * 사용자 이름: 사용자의 {{site.data.keyword.cloudant_short_notm}} 사용자 이름
-      * 비밀번호: 사용자의 {{site.data.keyword.cloudant_short_notm}} 비밀번호
-      * 호스트: `<username>.cloudant.com`
-      * 데이터베이스: {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 이름
+        
+        * `Username` - {{site.data.keyword.cloudant_short_notm}} 사용자 이름입니다.
+        * `Password` - {{site.data.keyword.cloudant_short_notm}} 비밀번호입니다.
+        * `Host` - `<username>.cloudant.com`입니다. 
+        * `Database` - {{site.data.keyword.cloudant_short_notm}} 데이터베이스의 이름입니다.
 
-5. **배치**를 클릭하십시오. 템플리트 배치 후에는 코드를 추가로 편집하여 필요에 따라 이를 사용자 정의하거나, 되돌아가서 사용 가능한 템플리트의 카탈로그를 체크아웃할 수 있습니다.
+6. **배치**를 클릭하십시오. 템플리트 배치 후에는 코드를 추가로 편집하여 필요에 따라 이를 사용자 정의하거나, 되돌아가서 사용 가능한 템플리트의 카탈로그를 체크아웃할 수 있습니다.
 
 ### CLI에서 {{site.data.keyword.cloudant_short_notm}} 이벤트 템플리트 배치
 {: #cloudant-template-cli}
@@ -116,13 +119,13 @@ subcollection: cloud-functions
 ## 이미지 업로드 템플리트 배치
 {: #image-template}
 
-이미지 업로드 템플리트는 소형 인터페이스를 통해 이미지를 {{site.data.keyword.cos_full_notm}} 버킷으로 업로드할 수 있도록 허용하는 웹 액션을 작성합니다. 그리고 템플리트는 작은 그림으로서 이미지를 검색하며 웹 액션의 인터페이스에 이를 표시합니다.
+이미지 업로드 템플리트는 소형 인터페이스를 통해 이미지를 {{site.data.keyword.cos_full_notm}} 버킷으로 업로드하는 데 사용할 수 있는 웹 액션을 작성합니다. 그리고 템플리트는 작은 그림으로서 이미지를 검색하며 웹 액션의 인터페이스에 이를 표시합니다.
 
 
 ### UI에서 이미지 업로드 템플리트 배치
 {: #image-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -131,12 +134,12 @@ subcollection: cloud-functions
 4. 패키지의 이름을 입력하거나 기본 이름 `upload-image`를 사용하고 **다음**을 클릭하십시오.
 
 6. 템플리트에서는 {{site.data.keyword.cos_full_notm}} 서비스 인스턴스의 서비스 인증 정보가 필요합니다. **{{site.data.keyword.cos_full_notm}}** 목록에서 다음 옵션 중 하나를 선택하십시오.
-  * **새 인스턴스 작성**: 기존 서비스 인스턴스가 없는 경우에는 이 옵션을 선택하여 하나를 작성하십시오.
+  * **인스턴스 작성**. 기존 서비스 인스턴스가 없는 경우에는 이 옵션을 선택하여 하나를 작성하십시오.
       1. 열려 있는 {{site.data.keyword.cos_full_notm}} 서비스 인스턴스 작성 페이지에서 서비스 인스턴스를 작성하십시오.
       2. [HMAC 서비스 인증 정보 세트를 작성하십시오](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials).
       3. [최소한 하나의 버킷을 작성하십시오](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets).
-  * **자체 인증 정보 입력**: {{site.data.keyword.cos_full_notm}} 서비스 인스턴스에 대한 자체 인증 정보를 수동으로 입력하려면 이 옵션을 선택하십시오. 인증 정보에는 HMAC 키가 있어야 하며 서비스 인스턴스에는 최소한 하나의 버킷이 있어야 합니다.
-  * **기존 인스턴스**: 기존 {{site.data.keyword.cos_full_notm}} 인스턴스가 있으면 목록에서 인스턴스 중 하나를 선택하십시오. 인증 정보에는 HMAC 키가 있어야 하며 서비스 인스턴스에는 최소한 하나의 버킷이 있어야 합니다.
+  * **자체 인증 정보 입력**. {{site.data.keyword.cos_full_notm}} 서비스 인스턴스에 대한 자체 인증 정보를 수동으로 입력하려면 이 옵션을 선택하십시오. 인증 정보에는 HMAC 키가 있어야 하며 서비스 인스턴스에는 최소한 하나의 버킷이 있어야 합니다.
+  * **기존 인스턴스**. 기존 {{site.data.keyword.cos_full_notm}} 인스턴스가 있으면 목록에서 인스턴스 중 하나를 선택하십시오. 인증 정보에는 HMAC 키가 있어야 하며 서비스 인스턴스에는 최소한 하나의 버킷이 있어야 합니다.
 
 7. **배치**를 클릭하십시오.
 
@@ -171,7 +174,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-4. {{site.data.keyword.openwhisk_short}} 콘솔의 [액션 페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://cloud.ibm.com/openwhisk/actions)에서 `process-change` 액션을 클릭하십시오.
+4. {{site.data.keyword.openwhisk_short}} 콘솔의 [액션 페이지](https://cloud.ibm.com/openwhisk/actions){: external}에서 `process-change` 액션을 클릭하십시오.
 
 5. 왼쪽 탐색 창에서 **엔드포인트**를 클릭하십시오.
 
@@ -180,12 +183,15 @@ subcollection: cloud-functions
 ## HTTP 리소스 가져오기 템플리트 배치
 {: #get-http-resource-template}
 
-HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API를 페치하는 액션을 작성한 후에 데이터를 리턴합니다. 이 액션은 웹 애플리케이션에 대한 백엔드의 빌드에 유용한 인증 키가 필요 없고 CORS가 사용되는 URL로 호출될 수 있도록 허용하는 웹 액션으로서 사용됩니다. **참고**: 기본적으로 `get-http-resource` 엔드포인트는 이를 호출하는 모든 사용자가 공개적으로 사용할 수 있습니다.
+HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API를 페치하는 액션을 작성한 후에 데이터를 리턴합니다. 이 액션은 웹 애플리케이션에 대한 백엔드의 빌드에 유용한 인증 키가 필요 없고 CORS가 사용되는 URL로 호출될 수 있도록 허용하는 웹 액션으로서 사용됩니다.
+
+기본적으로 `get-http-resource` 엔드포인트는 이를 호출하는 모든 사용자가 공개적으로 사용할 수 있습니다.
+{: note}
 
 ### UI에서 HTTP 리소스 가져오기 템플리트 배치
 {: #get-http-resource-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -240,7 +246,7 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
 ### UI에서 Hello World 템플리트 배치
 {: #hello-world-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -283,7 +289,7 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
 ### UI에서 {{site.data.keyword.messagehub}} 이벤트 템플리트 배치
 {: #messagehub-events-template-ui}
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -300,13 +306,13 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
     3. 서비스 인증 정보 세트를 작성하십시오.
     4. **확인**을 클릭하여 {{site.data.keyword.messagehub}} 작성 페이지를 닫고 {{site.data.keyword.messagehub}} 콘솔로 돌아가십시오.
     5. 이제 **MessageHub 인스턴스** 목록에서 **자체 인증 정보 입력**을 선택하고 다음 정보를 제공할 수 있습니다.
-      * 사용자 이름: 사용자의 {{site.data.keyword.messagehub}} 사용자 이름
-      * 비밀번호: 사용자의 {{site.data.keyword.messagehub}} 비밀번호
-      * kafka_admin_url: {{site.data.keyword.messagehub}} 관리 REST URL
-      * 데이터베이스: {{site.data.keyword.messagehub}} 데이터베이스의 이름
-      * 주제: 구독할 주제
+        * `Username` - {{site.data.keyword.messagehub}} 사용자 이름입니다.
+        * `Password` - {{site.data.keyword.messagehub}} 비밀번호입니다.
+        * `kafka_admin_url` - {{site.data.keyword.messagehub}} 관리 REST URL입니다.
+        * `Database` - {{site.data.keyword.messagehub}} 데이터베이스의 이름입니다.
+        * `Topic` - 구독할 주제입니다.
 
-5. **배치**를 클릭하십시오.
+6. **배치**를 클릭하십시오.
 
 템플리트 배치 후에는 코드를 추가로 편집하여 필요에 따라 이를 사용자 정의하거나, 되돌아가서 사용 가능한 템플리트의 카탈로그를 체크아웃할 수 있습니다.
 
@@ -356,7 +362,7 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
 
 1. https://api.slack.com/incoming-webhooks로 이동하여 필요한 수신 웹훅 URL을 설정하십시오.
 
-1. {{site.data.keyword.openwhisk_short}} 콘솔에서 [페이지 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘") 작성](https://cloud.ibm.com/openwhisk/create)으로 이동하십시오.
+1. {{site.data.keyword.openwhisk_short}} 콘솔의 [작성 페이지](https://cloud.ibm.com/openwhisk/create){: external}로 이동하십시오.
 
 2. **빠른 시작 템플리트**를 클릭하십시오.
 
@@ -369,9 +375,9 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
     4. **다음**을 클릭하십시오.
 
 5. 주기적 Slack 리마인더 트리거를 작성하십시오. 트리거는 이벤트 소스에서 이벤트를 수신할 때 액션을 호출합니다.
-    1. 패턴 또는 복제 표현식을 사용하여 트리거의 시간 간격을 지정하십시오.
-        * 패턴: 요일, 시간 및 분에 대해 UTC 시간을 선택하십시오.
-        * 복제: <a href="http://crontab.org">UNIX crontab 구문</a>을 기반으로 복제 시퀀스를 지정하십시오. `X X X X X` 형식으로 공백으로 구분된 5개 이하를 사용하십시오.
+    1. 패턴 또는 `Cron` 표현식을 사용하여 트리거의 시간 간격을 지정하십시오.
+        * `Pattern` - 요일, 시간 및 분에 대해 UTC 시간을 선택하십시오.
+        * `Cron` - <a href="http://crontab.org">UNIX crontab 구문</a>을 기반으로 복제 시퀀스를 지정하십시오. `X X X X X` 형식으로 공백으로 구분된 5개 이하를 사용하십시오.
     2. 트리거 JSON 페이로드를 추가하십시오.
 
 6. **배치**를 클릭하십시오.
@@ -408,9 +414,10 @@ HTTP 리소스 가져오기 템플리트는 외부 리소스, Yahoo Weather API�
     </thead>
     <tbody>
     <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>웹훅 URL(예: <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code>)</td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td><a href="http://crontab.org">UNIX crontab 구문</a>을 기반으로 하는 복제 시퀀스. <code>X X X X X</code> 형식으로 공백으로 구분된 5개 이하의 필드를 사용하십시오.</td></tr>
+    <tr><td><code>ALARM_CRON</code></td><td><a href="http://crontab.org">UNIX crontab 구문</a>을 기반으로 하는 복제 시퀀스. <code>X X X X X</code> 형식의 5개 이하 필드를 사용하십시오.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>패키지의 사용자 정의 이름</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>규칙의 사용자 정의 이름</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>트리거의 사용자 정의 이름</td></tr>
     </tbody></table>
+
 

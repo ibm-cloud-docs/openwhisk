@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # 檢視 {{site.data.keyword.cloudaccesstrailshort}} 事件
@@ -37,9 +39,9 @@ subcollection: cloud-functions
 ## 檢視事件的位置
 {: #view}
 
-{{site.data.keyword.cloudaccesstrailshort}} **帳戶網域**中可以提供事件，而帳戶網域可在使用 {{site.data.keyword.openwhisk_short}} 名稱空間資源的 {{site.data.keyword.Bluemix_notm}} 地區中使用。如需相關資訊，請參閱[檢視帳戶事件](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)。
+事件在 {{site.data.keyword.openwhisk_short}} 名稱空間資源可用的 {{site.data.keyword.cloud_notm}} 地區中可用的 {{site.data.keyword.cloudaccesstrailshort}} **帳戶網域**中可用。如需相關資訊，請參閱[檢視帳戶事件](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events)。
 
-1. 登入 {{site.data.keyword.Bluemix_notm}} 帳戶。
+1. 登入 {{site.data.keyword.cloud_notm}} 帳戶。
 2. 從型錄中，在與 {{site.data.keyword.openwhisk}} 實例相同的帳戶中佈建 {{site.data.keyword.cloudaccesstrailshort}} 服務實例。
 3. 在 {{site.data.keyword.cloudaccesstrailshort}} 儀表板的**管理**標籤上，按一下**在 Kibana 中檢視**。
 4. 設定您要檢視其日誌的時間範圍。預設值為 15 分鐘。
@@ -59,22 +61,22 @@ subcollection: cloud-functions
 <table>
   <thead>
     <tr>
-      <th>動作 (Action)</th>
+      <th>動作</th>
       <th>說明</th>
     </tr>
   </thead>
   <tbody>
     <tr>
       <td>functions.namespace.create</td>
-      <td>建立 IAM 型名稱空間資源</td>
+      <td>建立以 IAM 為基礎的名稱空間資源</td>
     </tr>
     <tr>
       <td>functions.namespace.migrate</td>
-      <td>移轉 Cloud Foundry 型名稱空間以啟用 IAM 功能</td>
+      <td>移轉以 Cloud Foundry 為基礎的名稱空間以啟用 IAM 功能</td>
     </tr>
     <tr>
       <td>functions.namespace.update</td>
-      <td>更新 IAM 型名稱空間資源內容，例如顯示名稱或說明</td>
+      <td>更新以 IAM 為基礎的名稱空間資源內容，例如顯示名稱或說明</td>
     </tr>
     <tr>
       <td>functions.namespace.delete</td>
@@ -82,3 +84,6 @@ subcollection: cloud-functions
     </tr>
   </tbody>
 </table>
+
+
+

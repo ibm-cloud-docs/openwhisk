@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-17"
+lastupdated: "2019-07-18"
 
-palavras-chave: introdução, criação de ações, chamada de ações,
+keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Introdução
+
+# Introdução ao IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-Com o {{site.data.keyword.openwhisk}}, é possível usar sua linguagem de programação favorita para gravar o código leve que executa a lógica do aplicativo de uma maneira escalável. É possível executar o código on demand com solicitações de API baseadas em HTTP por meio de aplicativos ou executar código em resposta a serviços do {{site.data.keyword.Bluemix_notm}} e eventos de terceiros. A plataforma de programação Function-as-a-Service (Faas) é baseada no projeto de software livre Apache OpenWhisk.
+Com o {{site.data.keyword.openwhisk}}, é possível usar sua linguagem de programação favorita para gravar o código leve que executa a lógica do aplicativo de uma maneira escalável. É possível executar o código on demand com solicitações de API baseadas em HTTP por meio de aplicativos ou executar código em resposta a serviços do {{site.data.keyword.cloud_notm}} e eventos de terceiros. A plataforma de programação Function-as-a-Service (Faas) é baseada no projeto de software livre Apache OpenWhisk.
 {: shortdesc}
 
 ## Trabalhando com ações
@@ -35,7 +37,7 @@ Com o {{site.data.keyword.openwhisk}}, é possível usar sua linguagem de progra
 Com o {{site.data.keyword.openwhisk}}, é possível criar fragmentos de código stateless que são configurados para executar uma tarefa específica que é chamada de ação. Para saber mais sobre ações e outros termos do Functions, consulte [terminologia](/docs/openwhisk?topic=cloud-functions-about).
 {:shortdesc}
 
-Clique em uma opção para começar:
+Clique em uma opção para iniciar.
 
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Clique em um ícone para começar rapidamente com {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
@@ -47,17 +49,17 @@ Clique em uma opção para começar:
 ## Criando uma ação na GUI
 {: #gs_hello_world}
 
-Para começar a usar o {{site.data.keyword.openwhisk_short}}, tente usar o modelo de iniciação rápida HelloWorld.
+Para iniciar com o {{site.data.keyword.openwhisk_short}}, tente criar o modelo de iniciação rápida Hello World.
 
-1. Crie uma conta do [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) ou efetue login em uma conta existente.
+1. Crie uma conta do [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} ou efetue login em uma conta existente.
 
-2. Navegue para o painel [{{site.data.keyword.openwhisk_short}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/openwhisk).
+2. Navegue até o [painel do {{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external}.
 
 2. Clique em **Iniciar criação** > **Modelos de iniciação rápida** e selecione o modelo **Hello World**.
 
 3. Crie um pacote para suas ações, inserindo um nome exclusivo no campo **Nome do pacote**.
 
-4. Selecione um tempo de execução na lista suspensa na seção **Action helloworld**. É possível visualizar o código para a ação de amostra em cada tempo de execução disponível antes de implementar o modelo.
+4. Selecione um tempo de execução no menu suspenso na seção **Helloworld de ação**. É possível visualizar o código para a ação de amostra em cada tempo de execução disponível antes de implementar o modelo.
 
 5. Clique em **Implementar**. Você criou uma ação. Ótimo trabalho!
 
@@ -77,14 +79,17 @@ Bom Trabalho! Você criou sua primeira ação. Para limpar essa ação, clique n
 ## Criando uma ação na CLI
 {: #gs_hello_world_cli}
 
-Faça funcionar rapidamente com o código de exemplo [HelloWorld JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js). Este exemplo cria uma ação básica `hello`, que é possível chamar manualmente para executar sua lógica do aplicativo.
+Faça-o funcionar rapidamente com o código de exemplo [Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js). Este exemplo cria uma ação básica `hello`, que é possível chamar manualmente para executar sua lógica do aplicativo.
 
 ## O que Vem a Seguir?
 {: #gs_next_steps}
 
-Então, você concluiu seu primeiro modelo de implementação, para onde você vai daqui? Você pode:
+Então, você concluiu a sua primeira implementação de modelo. Para onde você vai daqui?
 
 * Familiarize-se com a [terminologia](/docs/openwhisk?topic=cloud-functions-about#about_technology).
 * Comece com [suas próprias ações](/docs/openwhisk?topic=cloud-functions-actions).
 * Aprenda sobre como organizar ações em [pacotes](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Opção avançada: crie uma [API de REST sem servidor](/docs/openwhisk?topic=cloud-functions-apigateway).
+* Opção avançada - Criar uma [API de REST sem servidor](/docs/openwhisk?topic=cloud-functions-apigateway).
+
+
+

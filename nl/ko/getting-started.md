@@ -1,12 +1,12 @@
 ---
 
-저작권:
-  연도: 2017, 2019
-마지막 업데이트 날짜: "2019-05-17"
+copyright:
+  years: 2017, 2019
+lastupdated: "2019-07-18"
 
-키워드: getting started, creating actions, invoking actions,
+keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
-하위 콜렉션: cloud-functions
+subcollection: cloud-functions
 
 ---
 
@@ -15,6 +15,7 @@
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -23,10 +24,11 @@
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# 시작하기
+
+# IBM {{site.data.keyword.openwhisk_short}} 시작하기
 {: #getting-started}
 
-{{site.data.keyword.openwhisk}}를 통해 원하는 프로그래밍 언어를 사용하여 확장 가능한 방법으로 앱 로직을 실행하는 경량 코드를 기록할 수 있습니다. 애플리케이션에서 HTTP 기반 API 요청으로 코드 On-Demand를 실행하거나 {{site.data.keyword.Bluemix_notm}} 서비스 및 서드파티 이벤트에 대한 응답으로 코드를 실행할 수 있습니다. Faas(Function-as-a-Service) 프로그래밍 플랫폼은 오픈 소스 프로젝트 Apache OpenWhisk를 기반으로 합니다.
+{{site.data.keyword.openwhisk}}를 통해 원하는 프로그래밍 언어를 사용하여 확장 가능한 방법으로 앱 로직을 실행하는 경량 코드를 기록할 수 있습니다. 애플리케이션에서 HTTP 기반 API 요청으로 코드 On-Demand를 실행하거나 {{site.data.keyword.cloud_notm}} 서비스 및 서드파티 이벤트에 대한 응답으로 코드를 실행할 수 있습니다. Faas(Function-as-a-Service) 프로그래밍 플랫폼은 오픈 소스 프로젝트 Apache OpenWhisk를 기반으로 합니다.
 {: shortdesc}
 
 ## 액션에 대한 작업
@@ -47,11 +49,11 @@
 ## GUI에서 액션 작성
 {: #gs_hello_world}
 
-{{site.data.keyword.openwhisk_short}}를 시작하려면 HelloWorld 빠른 시작 템플리트 사용을 시도하십시오.
+{{site.data.keyword.openwhisk_short}}를 시작하려면 Hello World 빠른 시작 템플리트 작성을 시도하십시오.
 
-1. [{{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/registration) 계정을 작성하거나 기존 계정에 로그인하십시오. 
+1. [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} 계정을 작성하거나 기존 계정에 로그인하십시오.
 
-2. [{{site.data.keyword.openwhisk_short}} 대시보드 ![외부 링크 아이콘](../icons/launch-glyph.svg "외부 링크 아이콘")](https://cloud.ibm.com/openwhisk)로 이동하십시오.
+2. [{{site.data.keyword.openwhisk_short}} 대시보드](https://cloud.ibm.com/openwhisk){: external}로 이동하십시오.
 
 2. **작성 시작** > **빠른 시작 템플리트**를 클릭하고 **Hello World** 템플리트를 선택하십시오.
 
@@ -65,7 +67,7 @@
 
 7. 선택사항: **입력 변경**을 클릭하여 액션을 변경하거나 직접 시도하십시오.
 
-  a. 다음 코드를 **입력 변경** 상자에 붙여넣은 후 이름 값을 변경하십시오. 
+  a. 다음 코드를 **입력 변경** 상자에 붙여넣은 후 이름 값을 변경하십시오.
   ```
   { "name": "xxxx" }
   ```
@@ -77,14 +79,17 @@
 ## CLI에서 액션 작성
 {: #gs_hello_world_cli}
 
-[HelloWorld JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) 예제 코드로 빠르게 시작하고 실행합니다. 이 예제에서는 해당 앱 로직을 실행하기 위해 수동으로 호출할 수 있는 기본 `hello` 액션을 작성합니다.
+[Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) 예제 코드로 빠르게 시작하고 실행합니다. 이 예제에서는 해당 앱 로직을 실행하기 위해 수동으로 호출할 수 있는 기본 `hello` 액션을 작성합니다.
 
 ## 다음 단계
 {: #gs_next_steps}
 
-첫 번째 템플리트 배치를 완료했습니다. 여기서 어디로 이동하시겠습니까? 다음 중에서 선택할 수 있습니다.
+첫 번째 템플리트 배치를 완료했습니다. 여기서 어디로 이동하시겠습니까?
 
 * [용어](/docs/openwhisk?topic=cloud-functions-about#about_technology)를 익힙니다.
 * [자체 액션](/docs/openwhisk?topic=cloud-functions-actions)을 시작합니다.
 * [패키지](/docs/openwhisk?topic=cloud-functions-pkg_ov)에서 액션 구성 방법을 알아봅니다.
-* 고급 옵션: [서버가 없는 REST API](/docs/openwhisk?topic=cloud-functions-apigateway)를 작성하십시오.
+* 고급 옵션 - [서버가 없는 REST API](/docs/openwhisk?topic=cloud-functions-apigateway)를 작성하십시오.
+
+
+

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: cloudant, event, action, trigger, sequence
+keywords: cloudant, event, action, trigger, sequence, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -27,53 +28,65 @@ subcollection: cloud-functions
 # Cloudant
 {: #pkg_cloudant}
 
-O pacote `/whisk.system/cloudant` pré-instalado permite que você trabalhe com um banco de dados [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started). Nenhuma ligação de serviço é necessária para usar esse pacote.
-
-
-## Ações e feed disponíveis
-{: #cloudant_available}
-
-| Entity | Digite | Parâmetros | Descrição |
-| --- | --- | --- | --- |
-| `/whisk.system/cloudant` | pacote | dbname, host, username, password | Trabalhe com um banco de dados Cloudant. |
-| `/whisk.system/cloudant/read` | ação | dbname, id | Leia um documento de um banco de dados. |
-| `/whisk.system/cloudant/write` | ação | dbname, overwrite, doc | Grave um documento em um banco de dados. |
-| `/whisk.system/cloudant/changes` | alimentação | dbname, iamApiKey, iamUrl, filter, query_params, maxTriggers | Acione eventos de disparo nas mudanças em um banco de dados. |
+Com o pacote `/whisk.system/cloudant` pré-instalado, é possível trabalhar com um banco de dados [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started). Nenhuma ligação de serviço é necessária para usar esse pacote.
 {: shortdesc}
 
-### Configurando um Banco de Dados {{site.data.keyword.cloudant_short_notm}}no {{site.data.keyword.Bluemix_notm}}
+
+## Entidades disponíveis
+{: #cloudant_available}
+A tabela a seguir mostra uma seleção das entidades disponíveis no pacote `whisk.system/cloudant`. É possível usar o pacote `whisk.system/cloudant` para ler, gravar, atualizar ou excluir documentos. Também é possível usar o feed `changes` para atender a mudanças em um banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+{: shortdesc}
+
+Para obter uma lista completa das entidades que estão disponíveis no pacote `/whisk.system/cloudant`, execute `ibmcloud fn package get /whisk.system/cloudant`.
+{: note}
+
+| Entity | Tipo | Parâmetros | Descrição |
+| --- | --- | --- | --- |
+| `/whisk.system/cloudant` | Pacote | `dbname`, `host`, `username`, `password` | Trabalhe com um banco de dados Cloudant. |
+| `/whisk.system/cloudant/read` | Ação | `dbname`, `id` | Leia um documento de um banco de dados. |
+| `/whisk.system/cloudant/write` | Ação | `dbname`, `overwrite`, `doc` | Grave um documento em um banco de dados. |
+| `/whisk.system/cloudant/update-document` | Ação | `dbname`, `doc` | Atualizar um documento em um banco de dados. |
+| `/whisk.system/cloudant/changes` | Feed | `dbname`, `iamApiKey`, `iamUrl`, `filter`, `query_params`, `maxTriggers` | Acione eventos de disparo nas mudanças em um banco de dados. |
+
+O parâmetro `includeDoc` não é mais suportado para uso com o feed `/whisk.system/cloudant/changes`. Se você criou acionadores que usam esse parâmetro, deverá recriá-los sem o parâmetro `includeDoc`.
+{: deprecated}
+
+## Ligar o pacote `/whisk.system/cloudant` ao seu banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+Se você estiver usando o {{site.data.keyword.openwhisk}} por meio do {{site.data.keyword.cloud_notm}}, será possível usar o plug-in da CLI do {{site.data.keyword.openwhisk}} para ligar um serviço a uma ação ou a um pacote.
 {: #cloudant_db}
 
-Se você estiver usando o {{site.data.keyword.openwhisk}} por meio do {{site.data.keyword.Bluemix_notm}}, será possível usar o plug-in da CLI do {{site.data.keyword.openwhisk}} para ligar um serviço a uma ação ou a um pacote.
+**Antes de iniciar**, deve-se ter uma instância do {{site.data.keyword.cloudant_short_notm}}. Para criar uma instância, consulte [Introdução ao {{site.data.keyword.cloudant_short_notm}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started).
 
-Deve-se primeiro criar manualmente uma ligação de pacote à sua conta do {{site.data.keyword.cloudant_short_notm}}.
+1. Crie uma ligação de pacote `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}. Neste exemplo, o nome do pacote é `myCloudant`.
 
-1. Crie uma ligação de pacote que esteja configurada para sua conta do {{site.data.keyword.cloudant_short_notm}}.
   ```
   ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
 2. Verifique se a ligação do pacote existe.
+
   ```
   ibmcloud fn package list
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
+
   ```
   packages
-  /myNamespace/myCloudant private
+  /<namespace>/myCloudant private
   ```
   {: screen}
 
 3. Obtenha o nome da instância de serviço que você deseja ligar a uma ação ou um pacote.
+
     ```
     ibmcloud resource service-instances
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
     ```
     Name          Location   State    Type
     Cloudant-gm   us-south   active   service_instance
@@ -81,12 +94,14 @@ Deve-se primeiro criar manualmente uma ligação de pacote à sua conta do {{sit
     {: screen}
 
 4. Obtenha o nome das credenciais que estão definidas para a instância de serviço que você obteve na etapa anterior.
+
     ```
     ibmcloud resource service-keys --instance-name Cloudant-gm
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
+
     ```
     Name                    State    Created At
     Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
@@ -94,7 +109,8 @@ Deve-se primeiro criar manualmente uma ligação de pacote à sua conta do {{sit
     ```
     {: screen}
 
-5. Ligue o serviço ao pacote que você criou na etapa 1.
+5. Ligar o serviço ao pacote que você criou na etapa um.
+
     ```
     ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1'
     ```
@@ -106,12 +122,13 @@ Deve-se primeiro criar manualmente uma ligação de pacote à sua conta do {{sit
     ```
     {: pre}
 
-    Exemplo de Saída:
+    **Saída de exemplo**
+
     ```
     ok: got package myCloudant, displaying field parameters
     {
         "parameters":[ {
-                "key": "bluemixServiceName",
+                "key": "serviceName",
                 "value": "cloudantNoSQLDB"
             },
             {
@@ -139,102 +156,178 @@ Deve-se primeiro criar manualmente uma ligação de pacote à sua conta do {{sit
     ```
     {: screen}
 
-    Neste exemplo, as credenciais para o serviço Cloudant pertencem a um parâmetro denominado `__bx_creds`.
+Neste exemplo, as credenciais para o serviço do {{site.data.keyword.cloudant_short_notm}} pertencem a um parâmetro denominado `__bx_creds`.
 
-
-### Lendo por meio de um banco de dados do {{site.data.keyword.cloudant_short_notm}}
+## Trabalhando com documentos em um banco de dados do {{site.data.keyword.cloudant_short_notm}}
 {: #cloudant_read}
 
-É possível usar uma ação para buscar um documento por meio de um banco de dados do {{site.data.keyword.cloudant_short_notm}} chamado **testdb**. Certifique-se de que esse banco de dados exista em sua conta do {{site.data.keyword.cloudant_short_notm}}.
+É possível usar uma ação para ler, gravar, atualizar, excluir um documento de um banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+{: shortdesc}
 
-- Busque um documento usando a ação **read** na ligação do pacote anteriormente criada. Certifique-se de substituir `/_/myCloudant` por seu nome de pacote.
+### Lendo um documento
+É possível usar a ação `/whisk.system/cloudant/read` para ler um documento por meio do banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+
+**Antes de iniciar** Se você não tiver um documento em seu banco de dados do {{site.data.keyword.cloudant_short_notm}}, será possível criar um usando o painel do {{site.data.keyword.cloudant_short_notm}}. A URL para o painel é `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
+
+Busque um documento usando a ação `read`. Substitua `/_/myCloudant` por seu nome de pacote, `<database_name>` por seu nome do banco de dados e `<document_id>` pelo ID do arquivo. Chame a ação para testar a busca de um documento.
+
+**Sintaxe do Comando**
+
   ```
-  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname testdb --param id heisenberg
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id <document_id>
   ```
   {: pre}
 
-  Exemplo de Saída:
+**Exemplo de ação de leitura de um banco de dados `test`** Chame a ação para testar a leitura de um arquivo. Esse exemplo lê um arquivo com o `id` de `9f86f4955e7a38ab0169462e6ac0f476`, que é um arquivo vazio.
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id 9f86f4955e7a38ab0169462e6ac0f476
+  ```
+  {:pre}
+
+**Saída de exemplo**
   ```
   {
-    "_id": "heisenberg",
-    "_rev": "1-9a94fb93abc88d8863781a248f63c8c3",
-    "name": "Walter White"
+      "_id": "9f86f4955e7a38ab0169462e6ac0f476",
+      "_rev": "1-967a00dff5e02add41819138abb3284d"
   }
   ```
   {: screen}
 
-### Gravando em um banco de dados do {{site.data.keyword.cloudant_short_notm}}
+### Gravando um documento em um banco de dados do {{site.data.keyword.cloudant_short_notm}}
 {: #cloudant_write}
 
-É possível usar uma ação para armazenar um documento em um banco de dados do {{site.data.keyword.cloudant_short_notm}} chamado **testdb**. Certifique-se de que esse banco de dados exista em sua conta do {{site.data.keyword.cloudant_short_notm}}.
+É possível usar uma ação para criar ou atualizar documentos em um banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+{: shortdesc}
 
-1. Armazene um documento usando a ação **write** na ligação do pacote anteriormente criada. Certifique-se de substituir `/_/myCloudant` por seu nome de pacote.
+**Antes de iniciar** Crie uma [ligação de pacote](#cloudant_db) `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}.
+
+1. Armazene um documento usando a ação `write` na ligação de pacote que você criou. Substitua `/_/myCloudant` por seu nome de pacote, substitua `<database_name>` pelo nome de seu banco de dados, `<document_id>` por seu ID do documento e `<test_name>` por um nome.
+
+  **Sintaxe do Comando**
   ```
-  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname testdb --param doc "{\"_id\":\"heisenberg\",\"name\":\"Walter White\"}"
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param <database_name> test --param doc "{\"_id\":\"<document_id>\",\"name\":\"<test_name>\"}"
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Exemplo de ação de gravação em um banco de dados `test`**
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\"}"
+  ```
+  {: pre}
+
+  **Saída de exemplo**
+
   ```
   ok: invoked /_/myCloudant/write with id 62bf696b38464fd1bcaff216a68b8287
 
   {
-    "id": "heisenberg",
+    "id": "color",
     "ok": true,
     "rev": "1-9a94fb93abc88d8863781a248f63c8c3"
   }
   ```
   {: screen}
 
-2. Verifique se o documento existe procurando-o em seu painel do {{site.data.keyword.cloudant_short_notm}}.
+2. Verifique se o documento existe no painel do {{site.data.keyword.cloudant_short_notm}}. A URL do painel para o banco de dados `test` está no formato a seguir: `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/test/_all_docs?limit=100`.
 
-  A URL do painel para o banco de dados **testdb** é semelhante à seguinte: `https://MYCLOUDANTACCOUNT.cloudant.com/dashboard.html#database/testdb/_all_docs?limit=100`.
+  **Exemplo de documento no painel do {{site.data.keyword.cloudant_short_notm}}**
+  ```
+  {
+  "_id": "color",
+  "_rev": "1-f413f4b74a724e391fa5dd2e9c8e9d3f",
+  "name": "blue"
+  }
+  ```
+  {: screen}
+
+### Atualizando um documento
+É possível usar a ação `/update-document` para atualizar um documento em seu banco de dados do {{site.data.keyword.cloudant_short_notm}}.
+{: short desc}
+
+**Antes de iniciar** Crie uma [ligação de pacote](#cloudant_db) `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}.
+
+O exemplo a seguir atualiza o documento que foi criado na seção [Gravando um documento em um banco de dados do {{site.data.keyword.cloudant_short_notm}}](#cloudant_write).
+{: note}
+
+É possível atualizar um documento em seu banco de dados substituindo `<test>` pelo nome do banco de dados e substituindo o sinalizador `--param doc` pelo `id` e conteúdo do documento em seu banco de dados que você deseja atualizar.
 
 
-### Criar um acionador usando a função de filtro
+1. É possível atualizar um documento no banco de dados `test` executando o comando a seguir. Esse exemplo inclui o valor `shade` no documento `color`. 
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/update-document --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\",\"shade\":\"indigo\"}"
+  ```
+  {: pre}
+
+  **Saída**
+  ```
+  {
+    "id": "color",
+    "ok": true,
+    "rev": "2-8b904347bfe52e0f388ef6f39d6ba84f"
+    }
+  ```
+  {: screen}
+
+2. Para ver a atualização, busque o documento novamente.
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id color
+  ```
+  {: pre}
+
+  **Exemplo de documento**
+  ```
+  {
+    "_id": "color",
+    "_rev": "2-8b904347bfe52e0f388ef6f39d6ba84f",
+    "name": "blue",
+    "shade": "indigo"
+  }
+  ```
+  {: screen}
+
+## Criar um acionador usando a função de filtro
 {: #cloudant_trigger}
 
 É possível usar o feed `changes` para configurar um serviço para disparar um acionador
 em cada mudança em seu banco de dados do {{site.data.keyword.cloudant_short_notm}}.
 
-Os parâmetros usados neste exemplo são como a seguir:
+**Antes de iniciar** Crie uma [ligação de pacote](#cloudant_db) `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}.
 
-**dbname**: o nome do banco de dados {{site.data.keyword.cloudant_short_notm}} _(necessário)_.
+Parâmetros que são usados neste exemplo.
 
-**iamApiKey**: a chave de API do IAM para o banco de dados Cloudant.  Se especificado, será usado como as credenciais em vez do nome do usuário e da senha _(opcional)_.
+| Parâmetro | Descrição |
+| --- | --- |
+| `dbname` | (Obrigatório) O nome do banco de dados do {{site.data.keyword.cloudant_short_notm}}. |
+| `iamApiKey` | (Opcional) A chave de API do IAM para o banco de dados Cloudant. Se especificado, esse valor será usado como as credenciais em vez do nome do usuário e da senha. |
+| `iamUrl` | (Opcional) A URL do serviço de token do IAM que é usada quando `iamApiKey` é especificado. O valor padrão é `https://iam.cloud.ibm.com/identity/token`. | 
+| `maxTriggers` | (Opcional) Parar de disparar acionadores quando esse limite for atingido. O padrão é definido como infinite. |
+| `filter` | (Opcional) A função de filtro que é definida em um documento de design. |
+| `query_params` | (Opcional) Quaisquer parâmetros de consulta adicionais que possam ser necessários para a função de filtro. |
+| `includeDoc` | (Descontinuado) O parâmetro `includeDoc` não é mais suportado para uso com o feed `/whisk.system/cloudant/changes`. |
 
-**iamUrl**: A URL do serviço de token do IAM que é usada quando `iamApiKey`é especificado.  Padronizado para `https://iam.bluemix.net/identity/token`_(opcional)_.
+</br>
 
-**maxTriggers**: parar de disparar acionadores quando esse limite for atingido _(opcional)_. O padrão é definido como infinite.
+1. Crie um acionador denominado `cloudantTrigger` com o feed `changes` na ligação de pacote que você criou anteriormente. Incluindo as funções `filter` e `query_params` para disparar o acionador quando um documento é incluído (ou modificado) quando o status for `new`.
 
-**filter**: a função de filtro que está definida em um documento de design _(opcional)_
-
-**query_params**: os parâmetros de consulta extras para a função de filtro _(opcional)_.
-
-1. Crie um acionador nomeado **myCloudantTrigger** com o feed `changes` feed na ligação de pacote que você criou anteriormente. Incluindo as funções `filter` e `query_params` para disparar o acionador quando um documento é incluído (ou modificado) quando o status for `new`.
-
-  Certifique-se de substituir `/_/myCloudant` por seu nome de pacote.
+  Substitua `/_/myCloudant` pelo nome de seu pacote. Este exemplo usa um banco de dados chamado `test`.
   ```
-  ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes \
-  --param dbname testdb \
-  --param filter "mailbox/by_status" \
-  --param query_params '{"status":"new"}'
+  ibmcloud fn trigger create cloudantTrigger --feed /_/myCloudant/changes \ --param dbname test
   ```
   {: pre}
 
-  Exemplo de Saída:
+  **Saída de exemplo**
+
   ```
-  ok: feed do acionador myCloudantTrigger criado
+  ok: created trigger feed cloudantTrigger
   ```
   {: screen}
 
-2. Inicie a pesquisa de ativações para dar visibilidade clara do que está acontecendo.
-  ```
-  ibmcloud fn activation poll
-  ```
-  {: pre}
+2. Salve o código JavaScript a seguir como `cloudantChange.js`.
 
-3. Crie uma ação que podemos usar para observar o efeito do feed de mudança. Por exemplo, uma ação chamada **showCloudantChange** contendo o código JavaScript a seguir:
   ```javascript
   function main(data) {
     console.log(data);
@@ -242,33 +335,64 @@ Os parâmetros usados neste exemplo são como a seguir:
   ```
   {: codeblock}
 
-4. Crie uma regra para conectar a ação **showCloudantChange** ao acionador criado anteriormente:
+3. Crie uma ação chamada `cloudantChange` que você pode usar para observar as mudanças de feed. Substitua `<file_path>` pelo caminho de arquivo para o arquivo `cloudantChange.js` em seu computador.
+
   ```
-  ibmcloud fn rule update aCloudantRule myCloudantTrigger showCloudantChange
+  ibmcloud fn action create cloudantChange <file_path>/cloudantChange.js
   ```
   {: pre}
 
-5. Crie ações e uma regra para associá-las ao acionador **myCloudantTrigger**.
+4. Crie uma regra denominada `cloudantRule` para conectar a ação `cloudantChange` ao `cloudantTrigger` que você criou anteriormente.
 
-6. No painel do {{site.data.keyword.cloudant_short_notm}}, modifique um documento existente ou crie um novo. O documento deve ter um campo _status_, que é configurado para **new**.
+  ```
+  ibmcloud fn rule create cloudantRule cloudantTrigger cloudantChange
+  ```
+  {: pre}
 
-7. Observe novas ativações para o acionador **myCloudantTrigger** para cada mudança de documento somente se o status do documento for **new** com base na função de filtro e no parâmetro de consulta.
+5. Em outra janela do terminal, inicie a pesquisa para que seja possível ver quando as ativações ocorrerem.
 
-Teste as etapas de leitura e gravação para ajudar a verificar se suas credenciais do {{site.data.keyword.cloudant_short_notm}} estão corretas.
+  ```
+  ibmcloud fn activation poll
+  ```
+  {: pre}
 
-### Estrutura de dados de um evento acionador
+6. Em seu painel do {{site.data.keyword.cloudant_short_notm}}, modifique um documento existente ou crie um.
+
+7. Observe as ativações para o acionador `cloudantTrigger` para cada mudança de documento.
+
+**Exemplo de ativação do `cloudantTrigger`**
+
+```
+Activation: 'cloudantTrigger' (ef6605cc05e04589a605cc05e04589d8)
+[
+    "{\"statusCode\":0,\"success\":true,\"activationId\":\"6067ed0d28774a68a7ed0d28771a684d\",\"rule\":\"<namespace>/cloudantRule\",\"action\":\"<namespace>/cloudantChange\"}"
+]
+
+Activation: 'cloudantChange' (6067ed0d28774a68a7ed0d28771a684d)
+[
+    "2019-06-24T16:46:10.428643Z    stdout: { changes: [ { rev: '19-f7f6d8607d6381d224321acfcfb8887e' } ],",
+    "2019-06-24T16:46:10.428693Z    stdout: dbname: 'test',",
+    "2019-06-24T16:46:10.428697Z    stdout: id: '6ca436c44074c4c2aa6a40c9a188b348',",
+    "2019-06-24T16:46:10.428700Z    stdout: seq: '103-g1AAAAeLeJy91M9NwzAUBnCrrVQqDvTKCa4gpcT5YycnugFsAH5' }"
+```
+{: screen}
+
+### Estrutura de dados de uma ativação do acionador
 {: #cloudant_struct}
 
-O conteúdo dos eventos gerados tem os parâmetros a seguir:
+O conteúdo do evento gerado tem os parâmetros a seguir.
 
-  - `id`: o ID do documento.
-  - `seq`: o identificador de sequência que é gerado pelo {{site.data.keyword.cloudant_short_notm}}.
-  - `changes`: uma matriz de objetos, cada um dos quais tendo um campo `rev` que contém o ID da revisão do documento.
+| Parâmetro | Descrição |
+| --- | --- |
+| `id` | O ID do documento. |
+| `seq` | O identificador de sequência que é gerado pelo {{site.data.keyword.cloudant_short_notm}}. |
+| `changes` | Uma matriz de objetos, cada um dos quais possui um campo `rev` que contém o ID de revisão do documento. |
 
-A representação JSON do evento acionador é a seguinte:
+**Representação JSON da ativação do acionador**
+
 ```json
 {
-    "dbname": "testdb",
+    "dbname": "test",
     "id": "6ca436c44074c4c2aa6a40c9a188b348",
     "seq": "2-g1AAAAL9aJyV-GJCaEuqx4-BktQkYp_dmIfC",
     "changes": [
@@ -280,33 +404,45 @@ A representação JSON do evento acionador é a seguinte:
 ```
 {: codeblock}
 
-### Eventos de mudança de dados do Filtro
+## Eventos de mudança de dados do Filtro
 {: #cloudant_filter}
 
-Você pode opcionalmente definir uma função de filtro para evitar ter eventos de mudança desnecessários que disparam o acionador.
+É possível definir uma função de filtro para evitar ter eventos de mudança desnecessários que disparem seu acionador.
 
-Para criar uma nova função de filtro, é possível usar uma ação.
+**Antes de iniciar** Crie uma [ligação de pacote](#cloudant_db) `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}.
 
-Crie um arquivo do documento json `design_doc.json` com a função de filtro a seguir:
-```json
-{
-  "doc": {
-    "_id": "_design/mailbox",
-    "filters": {
-      "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+Para criar uma função de filtro, é possível usar uma ação.
+
+1. Salve o JSON a seguir após o filtro em um arquivo chamado `design_doc.json`.
+
+  ```json
+  {
+    "doc": {
+      "_id": "_design/mailbox",
+      "filters": {
+        "by_status": "function(doc, req){if (doc.status != req.query.status){return false;} return true;}"
+      }
     }
   }
-}
-```
-{: codeblock}
+  ```
+  {: codeblock}
 
-Crie um documento de design no banco de dados com a função de filtro a seguir:
+2. Crie um documento de design no banco de dados com a função de filtro a seguir. Substitua `<database_name>` pelo nome de seu banco de dados e `<file_path>` pelo caminho de arquivo de seu `design_doc.json`. Chame a ação `write` para testar a criação de um documento de design.
+
+**Sintaxe do Comando**
 ```
-ibmcloud fn action invoke /_/myCloudant/write -p dbname testdb -p overwrite true -P design_doc.json -r
+ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <file_path>/design_doc.json
 ```
 {: pre}
 
-As informações para o novo documento de design são impressas na tela:
+**Comando de exemplo para gravar um arquivo `design_doc.json` em um banco de dados `test`**
+```
+ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -P <file_path>/design_doc.json -r
+```
+{: pre}
+
+**Saída de exemplo**
+
 ```
 {
     "id": "_design/mailbox",
@@ -316,50 +452,137 @@ As informações para o novo documento de design são impressas na tela:
 ```
 {: screen}
 
-### Usando uma sequência de ações e um acionador de mudanças para processar um documento por meio de um banco de dados do {{site.data.keyword.cloudant_short_notm}}
+
+Para obter mais informações sobre documentos de design do {{site.data.keyword.cloudant_short_notm}}, consulte [Documentos de design](/docs/services/Cloudant?topic=cloudant-design-documents)
+
+## Processando um documento individual usando uma sequência de ações
 {: #cloudant_seq}
 
 É possível usar uma sequência de ações em uma regra para buscar e processar o documento que está associado a um evento de mudança do {{site.data.keyword.cloudant_short_notm}}.
 
-Código de amostra de uma ação que manipula um documento:
-```javascript
-function main(doc){
-  return { "isWalter:" : doc.name === "Walter White"};
-}
-```
-{: codeblock}
+**Antes de iniciar** Crie uma [ligação de pacote](#cloudant_db) `/whisk.system/cloudant` que esteja configurada para a sua conta do {{site.data.keyword.cloudant_short_notm}}. 
 
-Crie a ação para processar o documento do {{site.data.keyword.cloudant_short_notm}}:
-```
-ibmcloud fn action create myAction myAction.js
-```
-{: pre}
+Este exemplo atualiza o documento que foi criado na seção [Gravando um documento em um banco de dados do {{site.data.keyword.cloudant_short_notm}}](#cloudant_write).
+{: note}
 
-Para ler um documento do banco de dados, é possível usar a ação `read` do pacote do {{site.data.keyword.cloudant_short_notm}}.
-A ação `read` pode ser composta por `myAction` para criar uma sequência de ações.
-```
-ibmcloud fn action create sequenceAction --sequence /_/myCloudant/read,myAction
-```
-{: pre}
+### Criando uma ação para processar um documento individual
 
-A ação `sequenceAction` pode ser usada em uma regra que ativa a ação em novos eventos acionadores do {{site.data.keyword.cloudant_short_notm}}.
-```
-ibmcloud fn rule create myRule myCloudantTrigger sequenceAction
-```
-{: pre}
+Para criar uma ação que manipule mudanças em um documento individual, execute os comandos a seguir.
+{: shortdesc}
 
-**Nota:** o acionador `changes` do {{site.data.keyword.cloudant_short_notm}} usado para suportar o parâmetro `includeDoc` que não é mais suportado.
+1. Salve o código a seguir como `docChange.js`
 
-É possível recriar acionadores criados anteriormente com `includeDoc`. Siga estas etapas para recriar o acionador:
-```
-ibmcloud fn trigger delete myCloudantTrigger
-```
-{: pre}
+  ```javascript
+  function main(doc){
+    return { "isBlue:" : doc.name === "blue"};
+  }
+  ```
+  {: codeblock}
 
-```
-ibmcloud fn trigger create myCloudantTrigger --feed /_/myCloudant/changes --param dbname testdb
-```
-{: pre}
+2. Crie uma ação chamada `docChange` para processar o documento com o nome `blue` que você criou anteriormente. Substitua `<file_path>` pelo caminho de arquivo de seu `docChange.js`
 
-O exemplo pode ser usado para criar uma sequência de ações para ler o documento mudado e chamar as ações existentes. Lembre-se de desativar quaisquer regras que não são mais válidas e criar novas usando o padrão de sequência de ações.
+  ```
+  ibmcloud fn action create docChange <file_path>/docChange.js
+  ```
+  {: pre}
+
+  **Saída**
+  ```
+  ok: created action docChange
+  ```
+  {: screen}
+
+### Crie uma sequência com a ação `read` 
+
+A ação `read` pode ser composta com sua ação `docChange` para criar uma sequência de ações.
+{: shortdesc}
+
+  ```
+  ibmcloud fn action create docSequence --sequence /_/myCloudant/read,docChange
+  ```
+  {: pre}
+
+  **Saída**
+  ```
+  ok: created action docSequence
+  ```
+  {: screen}
+
+### Crie um acionador com o feed `changes`
+
+  ```
+  ibmcloud fn trigger create docTrigger --feed /_/myCloudant/changes \
+  --param dbname test
+  ```
+  {: pre}
+
+### Crie uma regra para associar o acionador à sequência
+
+A ação `docSequence` pode ser usada em uma regra que ativa a ação em novos eventos acionadores do {{site.data.keyword.cloudant_short_notm}}.
+
+  ```
+  ibmcloud fn rule create docRule docTrigger docSequence
+  ```
+  {: pre}
+
+  **Saída**
+  ```
+  ok: created rule docRule
+  ```
+
+  **Exemplo de ativação**
+  ```
+  "{\"statusCode\":0,\"success\":true,\"activationId\":\"144a4f95198a49ec8a4f95198a79ecc8\",\"rule\":\"<namespace>/docRule\",\"action\":\"<namespace>/docSequence\"}"
+  ```
+  {: screen}
+
+### Teste a sequência
+
+1. Teste a `docSequence` fazendo uma mudança no arquivo `blue` que você criou anteriormente. Neste exemplo, o valor `shade` é mudado para `indigo`.
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\",\"shade\":\"indigo\"}" -p overwrite true
+  ```
+  {: pre}
+
+  **Exemplo de ativação**
+
+  ```
+  Activation: 'docChange' (aa3e8fc3030446b2be8fc3030406b2eb)
+  []
+
+  Activation: 'docSequence' (23e0a17bebd3486ca0a17bebd3186c8d)
+  [
+      "8d42679127f3400382679127f300039d",
+      "aa3e8fc3030446b2be8fc3030406b2eb"
+  ]
+
+  Activation: 'docTrigger' (db6de778bb084366ade778bb08036685)
+  [
+      "{\"statusCode\":0,\"success\":true,\"activationId\":\"23e0a17bebd3486ca0a17bebd3186c8d\",\"rule\":\"<namespace>/docRule\",\"action\":\"<namespace>/docSequence\"}"
+  ]
+  ```
+  {: screen}
+
+2. Verifique se o arquivo foi atualizado para incluir o valor `shade`, chamando a ação `read`. Substitua o nome `<database>` pelo nome de seu banco de dados.
+
+  ```
+  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id color
+  ```
+  {: pre}
+
+  **Saída**
+  ```
+  {
+    "_id": "color",
+    "_rev": "3-6845b04618338f717676f16edf32a78f",
+    "name": "blue",
+    "shade": "indigo"
+  }
+  ```
+  {: screen}
+
+### Próximas etapas
+Agora que você está atendendo as mudanças em um documento em seu banco de dados do {{site.data.keyword.cloudant_short_notm}}, é possível acionar notificações do Slack para as mudanças usando o pacote [`/whisk.system/slack`](/docs/openwhisk?topic=cloud-functions-pkg_slack).
+
 

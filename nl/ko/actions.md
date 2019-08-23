@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-20"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless, javascript, node, node.js
+keywords: actions, functions, serverless, javascript, node, node.js
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,6 +25,7 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # 액션 작성
 {: #actions}
 
@@ -31,7 +33,7 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
 {: shortdesc}
 
 시작하기 전에:
-액션을 작성하려면 소스 코드에는 특정 요구사항이 충족되어야 합니다. 예를 들어, 다중 파일에 포함된 코드에서 액션을 작성하려는 경우 액션을 작성하기 전에 단일 파일로 코드를 패키징하십시오. 각 런타임의 요구사항에 대한 자세한 정보는 [서버리스용 앱 코드 준비](/docs/openwhisk?topic=cloud-functions-prep)를 참조하십시오. 
+액션을 작성하려면 소스 코드에는 특정 요구사항이 충족되어야 합니다. 예를 들어, 다중 파일에 포함된 코드에서 액션을 작성하려는 경우 액션을 작성하기 전에 단일 파일로 코드를 패키징하십시오. 각 런타임의 요구사항에 대한 자세한 정보는 [서버리스용 앱 코드 준비](/docs/openwhisk?topic=cloud-functions-prep)를 참조하십시오.
 
 
 ## CLI에서 액션 작성
@@ -43,13 +45,13 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
   ```
   {: pre}
 
-  예:
+  **예**
   ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
 
   ```
   ok: created action hello
@@ -58,16 +60,15 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
 
   팁:
   - 비용을 절약하기 위해 한계를 설정할 수 있습니다.
-      - 메모리 사용량에 대한 한계를 설정하려면 작성 명령에 `--memory VALUE`를 포함하십시오. 여기서, 값의 단위는 MB입니다. 
-      - 제한시간을 설정하려면 작성 명령에 `--timeout VALUE`를 포함하십시오. 여기서, 값의 단위는 밀리초입니다. 
-  - Docker 이미지로 코드를 패키징한 경우 앱에 대한 로컬 경로 및 --kind 플래그 대신 작성 명령에 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`를 포함하십시오. 가능할 때마다 `latest` 태그를 사용하지 않고 이미지를 잘 관리하십시오. `latest` 태그가 사용되는 경우 해당 태그와 함께 이미지가 사용됩니다. 이 이미지는 항상 최근에 작성된 이미지가 아닐 수도 있습니다.   
+      - 메모리 사용량에 대한 한계를 설정하려면 작성 명령에 `--memory VALUE`를 포함하십시오. 여기서, 값의 단위는 MB입니다.
+      - 제한시간을 설정하려면 작성 명령에 `--timeout VALUE`를 포함하십시오. 여기서, 값의 단위는 밀리초입니다.
+  - Docker 이미지로 코드를 패키징한 경우 앱에 대한 로컬 경로 및 --kind 플래그 대신 작성 명령에 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`를 포함하십시오. 가능할 때마다 `latest` 태그를 사용하지 않고 이미지를 잘 관리하십시오. `latest` 태그가 사용되는 경우 해당 태그와 함께 이미지가 사용됩니다. 이 이미지는 항상 최근에 작성된 이미지가 아닐 수도 있습니다.
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
       {: pre}
   
-
-
 2. 액션이 액션 목록에 있는지 확인하십시오.
 
   ```
@@ -75,7 +76,7 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
 
   ```
   actions
@@ -87,35 +88,38 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
 ## 액션에서 앱 또는 런타임 업데이트
 {: #actions_update}
 
-앱에서 코드를 업데이트하거나 런타임의 최신 버전으로 마이그레이션해야 할 때마다 업데이트 명령을 실행할 수 있습니다. 예를 들어 Node.js 버전 8은 유지보수 모드이므로 런타임을 Node.js 10으로 전환할 수 있습니다. 
+앱에서 코드를 업데이트하거나 런타임의 최신 버전으로 마이그레이션해야 할 때마다 업데이트 명령을 실행할 수 있습니다. 예를 들어 Node.js 버전 8은 유지보수 모드이므로 런타임을 Node.js 10으로 전환할 수 있습니다.
 
 새 런타임 버전으로 마이그레이션하는 경우 새 런타임 버전을 따르도록 앱에서 코드를 변경해야 할 수 있습니다. 대부분의 경우 런타임 버전이 호환 가능합니다.
 {: tip}
 
-1. 앱을 로컬로 업데이트하십시오. 
+1. 앱을 로컬로 업데이트하십시오.
 
-2. Docker 이미지로 앱을 패키징한 경우 최신 이미지를 Docker 허브에 업로드하십시오. 그러면 다음 번에 액션에 대한 코드를 실행할 때 시스템이 새 Docker 이미지를 가져올 수 있습니다. 이전 버전의 Docker 이미지를 사용하는 실행 중인 컨테이너가 있는 경우, 새 호출은 해당 이미지를 계속 사용합니다. 새 호출이 새 이미지 사용을 시작하도록 업데이트 명령을 실행해야 합니다. 
+2. Docker 이미지로 앱을 패키징한 경우 최신 이미지를 Docker 허브에 업로드하십시오. 그러면 다음 번에 액션에 대한 코드를 실행할 때 시스템이 새 Docker 이미지를 가져올 수 있습니다. 이전 버전의 Docker 이미지를 사용하는 실행 중인 컨테이너가 있는 경우, 새 호출은 해당 이미지를 계속 사용합니다. 새 호출이 새 이미지에서 실행을 시작하도록 업데이트 명령을 실행해야 합니다.
 
 3. 액션을 업데이트하고 앱 또는 Docke 이미지에 대한 로컬 경로를 포함하십시오.
+
     ```
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME
     ```
     {: pre}
 
-    예:
+    **예**
+
     ```
-    ibmcloud fn action update hello hello.js --kind nodejs:10
+ibmcloud fn action update hello hello.js --kind nodejs:10
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
 
     ```
     ok: updated action hello
     ```
     {: screen}
 
-    Docker 이미지로 코드를 패키징한 경우 로컬 앱에 대한 경로 및 --kind 플래그 대신 작성 명령에 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`를 포함하십시오. 가능할 때마다 `latest` 태그를 사용하지 않고 이미지를 잘 관리하십시오. `latest` 태그가 사용되는 경우 해당 태그와 함께 이미지가 사용됩니다. 이 이미지는 항상 최근에 작성된 이미지가 아닐 수도 있습니다.
+    Docker 이미지로 코드를 패키징한 경우 로컬 앱에 대한 경로 및 `--kind` 플래그 대신 작성 명령에 `--docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG`를 포함하십시오. 가능할 때마다 `latest` 태그를 사용하지 않고 이미지를 잘 관리하십시오. `latest` 태그가 사용되는 경우 해당 태그와 함께 이미지가 사용됩니다. 이 이미지는 항상 최근에 작성된 이미지가 아닐 수도 있습니다. 
+
       ```
       ibmcloud fn action create hello --docker <DOCKER_HUB_USERNAME>/<DOCKER_HUB_IMAGE>:TAG
       ```
@@ -132,40 +136,43 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
 
 시작하기 전에 [액션을 작성](#actions_cli)하십시오.
 
-매개변수를 바인딩하려면 다음을 수행하십시오. 
+매개변수를 바인딩하려면 다음을 수행하십시오.
 
-1. 액션을 업데이트하고 기본 매개변수를 액션에 바인딩하십시오. 
+1. 액션을 업데이트하고 기본 매개변수를 액션에 바인딩하십시오.
 
     ```
     ibmcloud fn action update ACTION_NAME --param PARAMETER_NAME PARAMETER_VALUE
     ```
     {: pre}
 
-    예:
+    **예**
+
     ```
-    ibmcloud fn action update MyApp --param name World
+ibmcloud fn action update MyApp --param name World
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+
     ```
-    ok: updated action MyApp
+ok: updated action MyApp
     ```
     {: screen}
 
-    비서비스 인증 정보 매개변수를 수정하는 경우, 새 매개변수가 포함된 `action update` 명령을 실행하면 현재 존재하지만 `action update` 명령에 지정되지 않은 매개변수가 제거됩니다. 예를 들어, `action update -p key1 new-value -p key2 new-value`를 실행하지만 설정된 다른 매개변수를 생략하는 경우 액션이 업데이트되면 이 매개변수는 더 이상 존재하지 않습니다. 액션에 바인딩되었던 모든 서비스도 제거됩니다.
-    서비스를 바인딩한 경우 다시 [액션에 서비스를 바인딩](/docs/openwhisk?topic=cloud-functions-services)해야 합니다.
+    비서비스 인증 정보 매개변수를 수정하는 경우, 새 매개변수가 포함된 `action update` 명령을 실행하면 현재 존재하지만 `action update` 명령에 지정되지 않은 매개변수가 제거됩니다. 예를 들어, `action update -p key1 new-value -p key2 new-value`를 실행하지만 설정된 다른 매개변수를 생략하는 경우 액션이 업데이트되면 이 매개변수는 더 이상 존재하지 않습니다. 액션에 바인딩되었던 모든 서비스도 제거됩니다. 서비스를 바인딩한 경우 다시 [액션에 서비스를 바인딩](/docs/openwhisk?topic=cloud-functions-services)해야 합니다.
     {: tip}
 
 3. 매개변수가 액션에 바인딩되었는지 확인하십시오.
+
     ```
     ibmcloud fn action get MyApp parameters
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+
     ```
-    ok: got action MyApp, displaying field parameters
+ok: got action MyApp, displaying field parameters
 
     [
         {
@@ -177,6 +184,7 @@ JSON 오브젝트를 리턴하는 최상위 레벨 함수인 액션을 작성하
     {: screen}
 
 선택사항: 이전에 바인딩된 매개변수를 지우려면 매개변수를 포함하지 않고 액션을 업데이트하십시오.
+
 ```
 ibmcloud fn action update ACTION_NAME APP_FILE
 ```
@@ -198,9 +206,7 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 
 시퀀스에는 시퀀스 내의 각 액션의 제한시간과 별도인 전체 제한시간이 없습니다. 시퀀스가 오퍼레이션의 파이프라인이므로 한 액션의 장애는 파이프라인을 손상시킵니다. 하나의 액션의 제한시간이 초과되면 전체 시퀀스가 해당 장애로 종료됩니다.
 
-그런 다음, 룰을 작성하거나 액션을 호출할 때 시퀀스의 이름을 사용합니다. 
-
-
+그런 다음, 룰을 작성하거나 액션을 호출할 때 시퀀스의 이름을 사용합니다.
 
 
 ## 액션 패키징
@@ -214,20 +220,22 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 - 피드는 트리거 이벤트를 실행하도록 외부 이벤트 소스를 구성하는 데 사용됩니다. 예를 들어, 알람 패키지에는 지정된 빈도로 트리거를 실행할 수 있는 피드가 포함됩니다.
 
 
+1. 패키지를 작성하십시오.
 
-1. 패키지를 작성하십시오. 
   ```
   ibmcloud fn package create PACKAGE_NAME
   ```
   {: pre}
 
 2. 패키지의 요약을 가져오십시오. 패키지가 비어 있다는 점에 유념하십시오.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
+
   ```
   package /myNamespace/custom
   ```
@@ -241,12 +249,14 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
   {: pre}
 
 5. 패키지의 요약을 가져오십시오.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -266,24 +276,26 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 - 액션 자체에 기본 매개변수가 있는 경우
 - 액션에 호출 시 제공되는 매개변수가 있는 경우
 
-시작하기 전에 최소 하나의 액션을 포함하는 패키지를 작성하십시오. 
+시작하기 전에 최소 하나의 액션을 포함하는 패키지를 작성하십시오.
 
-1. 패키지를 업데이트하고 기본 매개변수를 패키지에 바인딩하십시오. 
+1. 패키지를 업데이트하고 기본 매개변수를 패키지에 바인딩하십시오.
 
     ```
     ibmcloud fn package update PACKAGE_NAME --param PARAMETER_NAME PARAMETER_VALUE
     ```
     {: pre}
 
-    예:
+    **예**
+
     ```
-      ibmcloud fn package update MyApp --param name World
+  ibmcloud fn package update MyApp --param name World
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+
     ```
-    ok: updated package MyApp
+ok: updated package MyApp
     ```
     {: screen}
 
@@ -291,14 +303,16 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
     {: tip}
 
 3. 매개변수가 패키지에 바인딩되었는지 확인하십시오.
+
     ```
     ibmcloud fn package get MyApp parameters
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+
     ```
-    ok: got package MyApp, displaying field parameters
+ok: got package MyApp, displaying field parameters
 
     [
         {
@@ -310,14 +324,16 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
     {: screen}
 
 4. 매개변수가 패키지로 상속되었는지 확인하십시오.
+
     ```
     ibmcloud fn package get MyApp/MyAction parameters
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+
     ```
-    ok: got package MyApp/MyAction, displaying field parameters
+ok: got package MyApp/MyAction, displaying field parameters
 
     [
         {
@@ -337,18 +353,21 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 {: shortdesc}
 
 1. 모든 사용자와 패키지를 공유하십시오.
+
   ```
   ibmcloud fn package update PACKAGE_NAME --shared yes
   ```
   {: pre}
 
 2. 패키지의 `publish` 특성을 표시하여 현재 true인지 확인하십시오.
+
   ```
   ibmcloud fn package get PACKAGE_NAME publish
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
+
   ```
   ok: got package PACKAGE_NAME, displaying field publish
 
@@ -356,13 +375,15 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
   ```
   {: screen}
 
-3. 다른 사용자가 패키지를 바인딩하거나 패키지의 액션을 호출할 수 있도록 다른 사용자에게 패키지의 완전한 이름을 제공하려면 패키지의 설명을 가져오십시오. 완전한 이름에는 네임스페이스가 포함되며, 이 예제에서는 `myNamespace` 네임스페이스입니다. 
+3. 다른 사용자가 패키지를 바인딩하거나 패키지의 액션을 호출할 수 있도록 다른 사용자에게 패키지의 완전한 이름을 제공하려면 패키지의 설명을 가져오십시오. 완전한 이름에는 네임스페이스가 포함되며, 이 예제에서는 `myNamespace` 네임스페이스입니다.
+
   ```
   ibmcloud fn package get --summary PACKAGE_NAME
   ```
   {: pre}
 
-  출력 예:
+  **출력 예**
+
   ```
   package /NAMESPACE/PACKAGE_NAME
    action /NAMESPACE/PACKAGE_NAME/ACTION_NAME
@@ -380,18 +401,21 @@ ibmcloud fn action create SEQUENCE_NAME --sequence ACTION_1,ACTION_2
 |특성 |설명 |
 | -------- | ----------- |
 | `__OW_API_HOST` |이 액션을 실행 중인 배치를 위한 API 호스트입니다. |
-| `__OW_API_KEY` | 액션을 호출하는 주제에 대한 API 키입니다. 이 키는 제한된 API 키일 수 있으며, 명시적으로 요청되지 않는 한 존재하지 않습니다. [어노테이션](/docs/openwhisk?topic=cloud-functions-annotations)의 내용을 참조하십시오. |
-| `__OW_NAMESPACE` |활성화에 대한 네임스페이스입니다. 이 네임스페이스는 액션데 대한 네임스페이스와 동일하지 않을 수 있습니다. |
+| `__OW_API_KEY` |액션을 호출 중인 주제에 대한 API 키입니다. 이 변수는 클래식 CF 기반 네임스페이스에 대해서만 제공됩니다. |
+| `__OW_NAMESPACE` |네임스페이스 ID(GUID)입니다. 클래식 CF 기반 네임스페이스의 경우, 이 ID는 조직 및 영역 이름으로 구성됩니다. |
+| `__OW_NAMESPACE_CRN` |네임스페이스 클라우드 리소스 이름 [CRN](/docs/overview?topic=overview-crn)입니다. CRN은 IAM 사용 네임스페이스에서만 사용할 수 있습니다.
 | `__OW_ACTION_NAME` |실행 중인 액션의 완전한 이름입니다. |
+| `__OW_IAM_NAMESPACE_API_KEY` |IAM 사용 네임스페이스에 대한 API 키입니다. 사용법에 대해서는 [액세스 정책 설정](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access)을 참조하십시오. |
+| `__OW_IAM_API_URL` | API 키에서 토큰을 가져오는 작업과 같은 IAM 조작에 사용되는 서비스 엔드포인트입니다. 이 변수는 IAM 사용 네임스페이스에서만 사용할 수 있습니다. |
 | `__OW_ACTIVATION_ID` |실행 중인 이 액션 인스턴스에 대한 활성화 ID입니다. |
 | `__OW_DEADLINE` |이 액션이 전체 기간 할당량을 소진할 개략적인 시간(에포크 밀리초)입니다. |
 
 ### 앱에서 액션 환경 변수 통합
 {: #actions_envvars_app}
 
-액션에 대한 값을 보려면 앱 코드에 값의 표시를 포함하고 결과에 값을 출력하십시오. 
+액션에 대한 값을 보려면 앱 코드에 값의 표시를 포함하고 결과에 값을 출력하십시오.
 
-Python의 예:
+**Python의 예**
 ```python
 def main(dict):
   import os
@@ -402,7 +426,7 @@ def main(dict):
 ```
 {: codeblock}
 
-액션에서 코드를 업데이트하고 활성화한 후 결과에는 액션에 대한 완전한 이름이 포함됩니다. 
+액션에서 코드를 업데이트하고 활성화한 후 결과에는 액션에 대한 완전한 이름이 포함됩니다.
 ```bash
 "response": {
         "status": "success",
@@ -413,3 +437,7 @@ def main(dict):
             }
 
 ```
+{: screen}
+
+
+

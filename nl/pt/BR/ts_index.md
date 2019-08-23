@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -25,6 +26,7 @@ subcollection: cloud-functions
 {:tsSymptoms: .tsSymptoms}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
+
 
 # Resolução de problemas
 {: #troubleshooting}
@@ -47,8 +49,6 @@ Uma explicação para um app com falha é que um tempo de execução descontinua
 Para ver qual tempo de execução é usado para a ação, execute `ibmcloud fn action get ACTION_NAME` e verifique `deprecated=true` na resposta da consulta. Se o tempo de execução foi descontinuado, [atualize o tempo de execução](/docs/openwhisk?topic=cloud-functions-actions#actions_update).
 
 
-<br />
-
 
 ## Limites do sistema foram atingidos
 {: #ts_limit_reached}
@@ -68,8 +68,6 @@ Alguns limites poderão ser aumentados se um business case puder justificar valo
 4. Selecione **Functions** para a Área de suporte técnico.
 
 
-<br />
-
 
 ## Obtendo ajuda e suporte
 {: #gettinghelp}
@@ -77,12 +75,14 @@ Alguns limites poderão ser aumentados se um business case puder justificar valo
 Ainda tendo problemas com a sua função?
 {: shortdesc}
 
--   Para ver se o {{site.data.keyword.Bluemix_notm}} está disponível, [verifique a página de status do {{site.data.keyword.Bluemix_notm}} ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://cloud.ibm.com/status?selected=status).
--   Revise os fóruns para ver se outros usuários tiveram o mesmo problema. Ao usar os fóruns para fazer uma pergunta, marque sua pergunta para que ela seja vista pelas equipes de desenvolvimento do {{site.data.keyword.Bluemix_notm}}.
-    -   Se você tiver perguntas técnicas sobre o desenvolvimento de funções com o {{site.data.keyword.openwhisk}}, poste sua pergunta no [Stack Overflow ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://stackoverflow.com/search?q=ibm-cloud-functions) e identifique-a com `ibm-cloud-functions`.
-    -   Para perguntas sobre o serviço e instruções de introdução, use o fórum do [IBM Developer Answers ![Ícone de link externo](../icons/launch-glyph.svg "Ícone de link externo")](https://developer.ibm.com/answers/topics/functions/?smartspace=bluemix). Inclua as tags `ibm-cloud` e `functions`. Consulte
+-   Para ver se o {{site.data.keyword.cloud_notm}} está disponível, [verifique a página de status do {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/status?selected=status){: external}.
+-   Revise os fóruns para ver se outros usuários tiveram o mesmo problema. Ao usar os fóruns para fazer uma pergunta, marque sua pergunta para que ela seja vista pelas equipes de desenvolvimento do {{site.data.keyword.cloud_notm}}.
+    -   Se você tiver perguntas técnicas sobre o desenvolvimento de funções com o {{site.data.keyword.openwhisk}}, poste sua pergunta no [Stack Overflow ](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} e identifique-a com `ibm-cloud-functions`.
+    -   Para perguntas sobre o serviço e as instruções de introdução, use o fórum do [IBM Developer Answers](https://developer.ibm.com/answers/topics/functions){: external}. Inclua as tags `ibm-cloud` e `functions`.
+    Consulte
 [Obtendo
 ajuda](/docs/get-support?topic=get-support-getting-customer-support#using-avatar) para obter mais detalhes sobre o uso dos fóruns.
 -   Entre em contato com o Suporte IBM abrindo um caso. Para saber mais sobre como abrir um caso de suporte IBM ou sobre os níveis de suporte e as severidades do caso, consulte [Entrando em contato com o suporte](/docs/get-support?topic=get-support-getting-customer-support).
 Quando você relatar um problema, inclua seu ID de ativação. Para obter um ID de ativação, execute `ibmcloud fn activation list`.
 {: tip}
+

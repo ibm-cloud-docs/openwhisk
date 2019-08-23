@@ -4,7 +4,7 @@ copyright:
   years: 2018
 lastupdated: "2018-10-01"
 
-keywords: events, serverless, push notifications
+keywords: events, serverless, push notifications, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Visualizando eventos do {{site.data.keyword.cloudaccesstrailshort}}
@@ -37,9 +39,9 @@ Para obter mais informações sobre como o serviço funciona, consulte os [docs 
 ## Onde visualizar os eventos
 {: #view}
 
-Os eventos estão disponíveis no **domínio da conta** do {{site.data.keyword.cloudaccesstrailshort}} que está disponível na região do {{site.data.keyword.Bluemix_notm}} na qual o recurso de namespace do {{site.data.keyword.openwhisk_short}} está disponível. Para obter mais informações, consulte [Visualizando eventos de conta](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
+Os eventos estão disponíveis no **domínio da conta** do {{site.data.keyword.cloudaccesstrailshort}} que está disponível na região do {{site.data.keyword.cloud_notm}} em que o recurso de namespace do {{site.data.keyword.openwhisk_short}} está disponível. Para obter mais informações, consulte [Visualizando eventos de conta](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
 
-1. Efetue login em sua conta do {{site.data.keyword.Bluemix_notm}}.
+1. Efetue login em sua conta do {{site.data.keyword.cloud_notm}}.
 2. Por meio do catálogo, provisione uma instância do serviço {{site.data.keyword.cloudaccesstrailshort}} na mesma conta da instância do {{site.data.keyword.openwhisk}}.
 3. Na guia **Gerenciar** do painel do {{site.data.keyword.cloudaccesstrailshort}}, clique em **Visualizar no Kibana**.
 4. Configure o prazo durante o qual deseja visualizar os logs. O padrão é 15 min.
@@ -70,7 +72,7 @@ Confira a tabela a seguir para obter uma lista de eventos que são enviados para
     </tr>
     <tr>
       <td>functions.namespace.migrate</td>
-      <td>Migrar um namespace baseado em Cloud Foundry para se tornar ativado para o IAM</td>
+      <td>Migrar um namespace baseado no Cloud Foundry para se tornar ativado para o IAM</td>
     </tr>
     <tr>
       <td>functions.namespace.update</td>
@@ -82,3 +84,6 @@ Confira a tabela a seguir para obter uma lista de eventos que são enviados para
     </tr>
   </tbody>
 </table>
+
+
+

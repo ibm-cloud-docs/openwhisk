@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 # Creazione di trigger per eventi
@@ -47,8 +49,8 @@ I seguenti sono esempi di trigger.
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     ok: created trigger TRIGGER_NAME
     ```
     {: screen}
@@ -59,8 +61,8 @@ I seguenti sono esempi di trigger.
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
     ```
@@ -102,8 +104,8 @@ Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare
     ```
     {: pre}
 
-    Output di esempio:
-    ```
+    **Output di esempio**
+      ```
     package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
     ```
@@ -115,7 +117,7 @@ Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -126,13 +128,13 @@ Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare
   - `cron`: una specifica crontab che indica quando attivare il trigger.
   - `trigger_payload`: il valore del parametro payload da impostare in ogni evento trigger.
 
-2. Crea un trigger che si attiva ogni minuto.
+2. Crea un trigger che si attiva ogni 1 minuto.
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -158,7 +160,7 @@ Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare
   ```
   {: pre}
 
-  Output di esempio:
+  **Output di esempio**
   ```
   ok: created rule myRule
   ```
@@ -171,5 +173,6 @@ Questo esempio mostra come utilizzare un feed nel pacchetto Allarmi per attivare
   {: pre}
 
   Puoi vedere che le attivazioni si verificano ogni minuto per il trigger, la regola e l'azione. L'azione riceve i parametri `{"name":"Mork", "place":"Ork"}` ad ogni chiamata.
+
 
 

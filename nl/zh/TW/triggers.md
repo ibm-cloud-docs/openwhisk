@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: triggers, serverless
+keywords: triggers, serverless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -24,13 +25,14 @@ subcollection: cloud-functions
 {:gif: data-image-type='gif'}
 
 
+
 # 為事件建立觸發程式
 {: #triggers}
 
 觸發程式是您要反應特定類型事件的宣告（不論是由使用者還是透過事件來源）。
 {: shortdesc}
 
-下列是觸發程式範例。
+以下是觸發程式範例。
 - 位置更新事件
 - 文件上傳到網站
 - 傳入電子郵件
@@ -47,7 +49,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -59,7 +61,7 @@ subcollection: cloud-functions
     ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     triggers
     /NAMESPACE/TRIGGER_NAME                            private
@@ -101,7 +103,7 @@ subcollection: cloud-functions
   ```
     {: pre}
 
-    輸出範例：
+    **輸出範例**
     ```
     package /whisk.system/alarms
    feed   /whisk.system/alarms/alarm
@@ -114,7 +116,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
      (params: cron trigger_payload)
@@ -125,13 +127,13 @@ subcollection: cloud-functions
   - `cron`：何時發動觸發程式的 crontab 規格。
   - `trigger_payload`：要在每一個觸發程式事件中設定的有效負載參數值。
 
-2. 建立每分鐘發動一次的觸發程式。
+2. 建立每一分鐘發動一次的觸發程式。
   ```
   ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   ok: created trigger feed everyOneMinute
   ```
@@ -146,7 +148,6 @@ subcollection: cloud-functions
   {: codeblock}
 
 4. 建立動作。
-    
   ```
   ibmcloud fn action create hello hello.js
   ```
@@ -158,7 +159,7 @@ subcollection: cloud-functions
   ```
   {: pre}
 
-  輸出範例：
+  **輸出範例**
   ```
   ok: created rule myRule
   ```
@@ -171,5 +172,6 @@ subcollection: cloud-functions
   {: pre}
 
   您可以看到針對觸發程式、規則和動作，每一分鐘啟動一次。在每次呼叫時，動作都會接收到參數 `{"name":"Mork", "place":"Ork"}`。
+
 
 

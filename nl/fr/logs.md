@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Affichage des journaux
 {: #logs}
@@ -50,7 +52,7 @@ Vous pouvez utiliser l'interface de ligne de commande {{site.data.keyword.openwh
     ```
     {: pre}
 
-    Exemple de sortie :
+    **Exemple de sortie**
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -70,21 +72,21 @@ Vous pouvez utiliser l'interface de ligne de commande {{site.data.keyword.openwh
 ## Affichage des détails d'activation
 {: #activation_details}
 
-Des actions {{site.data.keyword.openwhisk_short}} peuvent être appelées par d'autres utilisateurs en réponse à divers événements, ou dans le cadre d'une séquence d'actions. Chaque fois qu'une action est appelée, un enregistrement d'activation est créé pour cet appel. Pour obtenir des informations sur le résultat de l'action d'appel, vous pouvez obtenir des détails sur l'activation.
+Des actions {{site.data.keyword.openwhisk_short}} peuvent être appelées par d'autres utilisateurs en réponse à divers événements, ou dans le cadre d'une séquence d'actions. Quand une action est appelée, un enregistrement d'activation est créé pour cet appel. Pour obtenir des informations sur le résultat de l'action d'appel, vous pouvez obtenir des détails sur l'activation.
 
-Pour extraire tous les ID d'enregistrement d'activation dans un espace de nom :
+Vous pouvez extraire tous les ID d'enregistrement d'activation dans un espace de nom en exécutant la commande suivante. 
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
-Pour obtenir des détails sur un enregistrement d'activation spécifique à un appel d'action :
+Vous pouvez obtenir des détails sur un enregistrement d'activation spécifique à un appel d'action en exécutant la commande suivante. Remplacez `<activation_ID>` par l'ID de l'activation. 
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-Exemple de sortie :
+**Exemple de sortie**
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -177,8 +179,8 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tr>
 <td><code>response</code></td>
 <td><ul><li><code>status</code> : statut de sortie de l'activation.</li>
-<li><code>statusCode</code> : code de statut. Si l'action était en erreur, code d'erreur HTTP.</li>
-<li><code>success</code> : indique si l'action a abouti.</li>
+<li><code>statusCode</code> : code de statut. Si l'action a généré une erreur, cette valeur est le code d'erreur HTTP.</li>
+<li><code>success</code>: résultat de l'achèvement de l'action. </li>
 <li><code>result</code> : valeur de retour de l'activation.</li>
 </ul></td>
 </tr>
@@ -192,7 +194,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>publish</code></td>
-<td>Indique si l'action est publiée publiquement.</td>
+<td>Le résultat de la publication de l'action.</td>
 </tr>
 </tbody></table>
 
@@ -201,32 +203,36 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ## Affichage des journaux dans {{site.data.keyword.loganalysisfull_notm}}
 {: #logs_view}
 
+Les journaux {{site.data.keyword.loganalysislong_notm}} ne sont pas disponibles pour les espaces de nom basés IAM.
+{: note}
+
 Vous pouvez consulter les journaux d'activation directement depuis le tableau de bord de surveillance {{site.data.keyword.openwhisk_short}}. Les journaux sont également transférés à [{{site.data.keyword.loganalysisfull}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) où ils sont indexés, afin de permettre une recherche en texte intégral à l'aide de tous les messages générés et d'une interrogation efficace basée sur des zones spécifiques.
 {:shortdesc}
 
-**Remarque** : la journalisation n'est pas disponible pour la région Est des Etats-Unis.
+La journalisation n'est pas disponible pour la région Est des Etats-Unis.
+{: important}
 
-1. Ouvrez la page de surveillance [{{site.data.keyword.openwhisk_short}} ![Icône de lien externe](../icons/launch-glyph.svg "Icône de lien externe")](https://cloud.ibm.com/openwhisk/dashboard).
+1. Ouvrez la [{{site.data.keyword.openwhisk_short}}page Surveillance](https://cloud.ibm.com/openwhisk/dashboard){: external}.
 
 2. Facultatif : pour consulter uniquement les journaux relatifs à une action spécifique, limitez le récapitulatif de surveillance à cette action. Dans la section Options de filtrage, sélectionnez le nom de l'action dans la liste déroulante **Limiter à**.
 
 3. Dans le volet de navigation gauche, cliquez sr **Journaux**. La page {{site.data.keyword.loganalysisshort_notm}} Kibana s'affiche.
 
-4. Facultatif : pour afficher des journaux plus anciens, définissez la valeur de période par défaut sur 15 minutes en cliquant sur **15 dernières minutes** dans l'angle supérieur droit et en sélectionnant une période différente.
+4. Facultatif : Pour afficher des journaux plus anciens, définissez la valeur de période par défaut sur 15 minutes en cliquant sur **15 dernières minutes** et en sélectionnant une période différente.
 
 ### Interrogation des journaux
 {: #logs_query}
 
 Vous pouvez trouver des journaux d'activation spécifiques dans [{{site.data.keyword.loganalysislong_notm}}](/docs/services/CloudLogAnalysis/kibana?topic=cloudloganalysis-analyzing_logs_Kibana#analyzing_logs_Kibana) à l'aide de la syntaxe de requête de Kibana.
 
-Les exemples de requête suivants peuvent vous aider à déboguer des erreurs :
-  * Rechercher tous journaux des erreurs :
+Les exemples de requête suivants peuvent vous aider à déboguer des erreurs.
+  * Rechercher tous les journaux d'erreurs.
       ```
       type: user_logs AND stream_str: stderr
       ```
       {: codeblock}
 
-  * Rechercher tous mes journaux des erreurs qui sont générés par "myAction" :
+  * Rechercher tous les journaux d'erreurs générés par `myAction`.
       ```
       type: user_logs AND stream_str: stderr AND action_str: "*myAction"
       ```
@@ -239,16 +245,18 @@ Outre les lignes de journaux, [{{site.data.keyword.loganalysislong_notm}}](/docs
 
 Vous pouvez trouver des journaux d'activation spécifiques à l'aide de la syntaxe de requête de Kibana. Les exemples de requête suivants peuvent vous aider à déboguer des erreurs :
 
-* Rechercher toutes les activations ayant échoué :
+* Rechercher toutes les activations ayant échoué.
     ```
     type: activation_record AND NOT status_str: 0
     ```
     {: codeblock}
-    Dans les résultats, un `0` indique une action fermée avec succès et toutes les autres valeurs indiquent une erreur.
+    Dans les résultats, une valeur de `0` indique une action fermée avec succès. Toutes les autres valeurs indiquent une erreur. 
 
-* Rechercher toutes les activations ayant échoué avec une erreur spécifique :
+* Rechercher toutes les activations ayant échoué avec une erreur spécifique.
     ```
     type: activation_record AND NOT status_str:0 AND message: "*VerySpecificErrorMessage*"
     ```
     {: codeblock}
+
+
 

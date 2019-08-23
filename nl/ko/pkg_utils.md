@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: actions, serverless
+keywords: actions, serverless, functions
 
 subcollection: cloud-functions
 
@@ -16,6 +16,7 @@ subcollection: cloud-functions
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
 {:codeblock: .codeblock}
+{:external: target="_blank" .external}
 {:tip: .tip}
 {:note: .note}
 {:important: .important}
@@ -31,14 +32,16 @@ subcollection: cloud-functions
 {: shortdesc}
 
 1. `/whisk.system/utils` 패키지의 액션을 나열하십시오.
+
     ```
     ibmcloud fn package get --summary /whisk.system/utils
     ```
     {: pre}
 
-    출력 예:
+    **출력 예**
+    
     ```
-      package /whisk.system/utils: Building blocks that format and assemble data
+  package /whisk.system/utils: Building blocks that format and assemble data
    action /whisk.system/utils/head: Extract prefix of an array
    action /whisk.system/utils/split: Split a string into an array
    action /whisk.system/utils/sort: Sorts an array
@@ -49,12 +52,14 @@ subcollection: cloud-functions
     {: screen}
 
 2. `split` 및 `sort` 액션을 사용하여 `split`의 결과가 `sort`에 대한 인수로 전달되도록 액션 시퀀스를 작성하십시오. 이 액션 시퀀스는 텍스트의 일부 행을 배열로 변환하고 해당 행을 정렬합니다.
+
   ```
   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
   ```
   {: pre}
 
 3. 액션을 호출하십시오.
+
     ```
     ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
     ```
@@ -72,6 +77,8 @@ subcollection: cloud-functions
     }
     ```
     {: screen}
+
+
 
 
 

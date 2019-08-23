@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: functions compared, openwhisk, architecture, limitless
+keywords: functions compared, architecture, limitless, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Architettura FaaS (Function as a Service)
 {: #faas}
@@ -43,15 +45,15 @@ subcollection: cloud-functions
 
 Vengono confrontate le seguenti architetture OpenWhisk:
 
-1. **FaaS (Function as a Service)** su [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk). IBM è l'unico fornitore ad offrire OpenWhisk gestito. Una buona introduzione al modello di programmazione senza server utilizzando una piattaforma FaaS è disponibile nel [blog di Martin Fowler](https://martinfowler.com/articles/serverless.html) e puoi consultare i [casi di utilizzo](/docs/openwhisk?topic=cloud-functions-use_cases) per eseguire OpenWhisk con una progettazione senza server.
+1. **FaaS (Function as a Service)** su [{{site.data.keyword.openwhisk_short}}](https://cloud.ibm.com/openwhisk){: external}. IBM è l'unico fornitore ad offrire OpenWhisk gestito. Una buona introduzione al modello di programmazione senza server utilizzando una piattaforma FaaS è disponibile nel [blog di Martin Fowler](https://martinfowler.com/articles/serverless.html){: external} e puoi consultare i [casi di utilizzo](/docs/openwhisk?topic=cloud-functions-use_cases) per eseguire OpenWhisk con una progettazione senza server.
 
-2. **IaaS (Infrastructure as a Service)** con RYO (Roll Your Own) OpenWhisk. Puoi scaricare OpenWhisk da Apache Incubation Project ed eseguirlo su [{{site.data.keyword.Bluemix_notm}} IaaS](https://cloud.ibm.com/catalog/?category=devices).
+2. **IaaS (Infrastructure as a Service)** con RYO (Roll Your Own) OpenWhisk. Puoi scaricare OpenWhisk da Apache Incubation Project ed eseguirlo su [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute){: external}.
 
-3. **PaaS (Platform as a Service)** come runtime dell'applicazione gestito. Un buon esempio è il runtime [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java) che è gestito dall'implementazione di {{site.data.keyword.Bluemix_notm}} Foundry.
+3. **PaaS (Platform as a Service)** come runtime dell'applicazione gestito. Un buon esempio è il runtime [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java){: external} che è gestito dall'implementazione di {{site.data.keyword.cloud_notm}} Foundry.
 
 4. **CaaS (Container as a Service)** come ambiente del contenitore gestito. Un buon esempio è [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index).
 
-5. **IaaS (Infrastructure as a Service)** con il runtime Java EE. Un buon esempio è la [VM WebSphere Application Server su {{site.data.keyword.Bluemix_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server).
+5. **IaaS (Infrastructure as a Service)** con il runtime Java EE. Un buon esempio è la [VM WebSphere Application Server su {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server){: external}.
 
 La seguente tabella confronta gli elementi di ciascuna architettura dal punto di vista di uno sviluppatore che sta creando e gestendo le applicazioni:
 
@@ -60,7 +62,7 @@ La seguente tabella confronta gli elementi di ciascuna architettura dal punto di
 | --- | --- | --- | --- | --- | --- |
 |	Unità di applicazione	|	Funzione singola (normalmente un piccolo blocco di codice in JavaScript, in Swift o nel contenitore Docker) - può essere inferiore a 1 Kb ma anche più grande. Di solito non più di pochi Kb.	|	Come la colonna (1)	|	Dipende dal runtime utilizzato. Un file EAR o WAR, o altro bundle di applicazioni specifico per il linguaggio, di solito relativamente grande - Kb o anche Mb con molti servizi in un bundle, ma può essere piccolo come un singolo servizio.	|	Il contenitore Docker è l'unità di distribuzione.	|	VM con server delle applicazioni con il file EAR o WAR e altre dipendenze - solitamente con dimensioni in Gb.	|
 |	Footprint della risorsa	|	L'utente finale non paga o si preoccupa della memoria, della CPU o di altre risorse. Sebbene l'azione abbia qualche footprint, l'utente non se ne deve preoccupare	|	Alto. L'utente finale deve prima eseguire il provisioning dell'ambiente IaaS e solo successivamente installare e configurare OpenWhisk su di esso	|	Piccolo. L'utente finale paga per la memoria e la CPU delle applicazioni in esecuzione, ma non paga nulla per le applicazioni che non sono in esecuzione	|	Da piccolo a medio	|	Alto. L'utente finale deve pagare per l'archiviazione su disco, la memoria, le CPU e, eventualmente, altri componenti quando l'applicazione è in esecuzione. Quando viene arrestata, vengono addebitati solo i costi di archiviazione	|
-|	Installazione e configurazione	|	Nessuna richiesta	|	Difficile - tutto eseguito dall'utente finale	|	Nessuna richiesta	|	Moderata - Hardware, rete, SO, strumenti di gestione contenitore forniti dal fornitore di CaaSs immagini, connettività e istanze dall'utente finale	|	Difficile - Hardware, rete, SO, installazione iniziale di Java EE forniti dal fornitore, ulteriore configurazione, clustering e scalabilità dall'utente finale	|
+|	Installazione e configurazione	|	Nessuna richiesta	|	Difficile - tutto eseguito dall'utente finale	|	Nessuna richiesta	|	Moderata - Hardware, rete, SO, strumenti di gestione contenitore forniti dal fornitore di CaaS, immagini, connettività e istanze dall'utente finale	|	Difficile - Hardware, rete, SO, installazione iniziale di Java EE forniti dal fornitore, ulteriore configurazione, clustering e scalabilità dall'utente finale	|
 |	Tempo di provisioning	|	Millisecondi	|	Vedi le colonne (4) e (5)	|	Minuti	|	Minuti	|	Ore	|
 |	Amministrazione in corso	|	Nessuno	|	Difficile	|	Nessuno	|	Moderato	|	Difficile	|
 |	Ridimensionamento elastico	|	Ogni azione è sempre istantaneamente e intrinsecamente ridimensionata a seconda del carico. Non è necessario eseguire il provisioning di VM o di altre risorse in anticipo	|	Non fornito - l'utente finale deve fornire la capacità di calcolo su IaaS e gestire il ridimensionamento delle VM. Una volta ridimensionate le VM, OpenWhisk ridimensiona automaticamente le azioni, ma il provisioning delle risorse deve già essere stato eseguito	|	Ridimensionamento automatico ma lento. Durante l'aumento del carico, gli utenti potrebbero attendere il completamento dell'azione di ridimensionamento per diversi minuti. Il ridimensionamento automatico richiede un'attenta ottimizzazione	|	Ridimensionamento automatico ma lento. Durante l'aumento del carico, gli utenti potrebbero attendere il completamento dell'azione di ridimensionamento per diversi minuti. Il ridimensionamento automatico richiede un'attenta ottimizzazione	|	Non fornito	|
@@ -75,8 +77,8 @@ La seguente tabella confronta gli elementi di ciascuna architettura dal punto di
 |	Limiti delle risorse	|	[Esistono alcuni limiti](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)	|	Dipende dalle risorse assegnate	|	No	|	No	|	No	|
 |	Latenza per i servizi utilizzati raramente	|	Le richieste rare possono vedere inizialmente un tempo di risposta di diversi secondi, ma rimangono nell'intervallo ms per le richieste successive	|	Dipende	|	Bassa	|	Bassa	|	Bassa - supponendo che il sistema abbia risorse sufficienti	|
 |	Tipo di punto ottimale dell'applicazione	|	Elaborazione evento, IoT, backend mobile, microservizi. Sicuramente non per le applicazioni monolitiche. Vedi [Casi di utilizzo](/docs/openwhisk?topic=cloud-functions-use_cases)	|	Come la colonna (1), ma quando l'utente vuole eseguire su un cloud non IBM o in loco.	|	Applicazioni web con carico di lavoro 24x7, servizi con stato che devono mantenere la connessione aperta per lunghi periodi di tempo. Può essere utilizzato per eseguire microservizi o applicazioni monolitiche	|	Ideale per le applicazioni di microservizi.	|	Applicazioni aziendali tradizionali migrate dall'istallazione in loco al cloud. Ideale per le applicazioni monolitiche	|
-|	Addebito della granularità e fatturazione	|	[Per blocchi di 100 millisecondi](https://cloud.ibm.com/openwhisk/learn/pricing)	|	Dipende dall'implementazione - Se vengono utilizzati IaaS o CaaS, si applicano considerazioni simili - Vedi le colonne (4) e (5)	|	Solitamente addebito all'ora (raramente al minuto) per un bundle di risorse (CPU + memoria + spazio su disco)	|	Simile alla colonna (3)	|	Simile alla colonna (3)	|
-|	Total Cost of Ownership (TCO)	|	Per il suo punto ottimale, è probabile che le applicazioni costino un ordine di grandezza inferiore alle alternative. Poiché le risorse vengono ridimensionate automaticamente, non si verifica l'over-provisioning.	|	Per le distribuzioni cloud, è probabile che sia più costoso di FaaS OpenWhisk, ma la distribuzione in loco può essere più economica rispetto alle architetture tradizionali	|	Relativamente basso - l'utente non ha bisogno di eseguire il provisioning o di gestire risorse e può concentrarsi sullo sviluppo di applicazioni. Qualche livello di over-provisioning rispetto all'architettura senza server	|	Moderato - L'utente deve eseguire il provisioning e gestire i contenitori e l'applicazione e potrebbe vedere un certo livello di over-provisioning rispetto all'architettura senza server o PaaS	|	Relativamente alto - Considerando che la migrazione di applicazioni legacy nel modello nativo del cloud potrebbe essere proibitivamente costosa, questa può essere una scelta praticabile ed economica per tali applicazioni.	|
+|	Addebito della granularità e fatturazione	|	[Per blocchi di 100 millisecondi](https://cloud.ibm.com/openwhisk/learn/pricing){: external}	|	Dipende dall'implementazione - Se vengono utilizzati IaaS o CaaS, si applicano considerazioni simili - Vedi le colonne (4) e (5)	|	Solitamente addebito all'ora (raramente al minuto) per un bundle di risorse (CPU + memoria + spazio su disco)	|	Simile alla colonna (3)	|	Simile alla colonna (3)	|
+|	Costo totale di proprietà	|	Per il suo punto ottimale, è probabile che le applicazioni costino un ordine di grandezza inferiore alle alternative. Poiché le risorse vengono ridimensionate automaticamente, non si verifica l'over-provisioning.	|	Per le distribuzioni cloud, è probabile che sia più costoso di FaaS OpenWhisk, ma la distribuzione in loco può essere più economica rispetto alle architetture tradizionali	|	Relativamente basso - l'utente non ha bisogno di eseguire il provisioning o di gestire risorse e può concentrarsi sullo sviluppo di applicazioni. Qualche livello di over-provisioning rispetto all'architettura senza server	|	Moderato - L'utente deve eseguire il provisioning e gestire i contenitori e l'applicazione e potrebbe vedere un certo livello di over-provisioning rispetto all'architettura senza server o PaaS	|	Relativamente alto - Considerando che la migrazione di applicazioni legacy nel modello nativo del cloud potrebbe essere proibitivamente costosa, questa può essere una scelta praticabile ed economica per tali applicazioni.	|
 
 ## Considerazioni sui costi
 {: #faas_cost}
@@ -84,7 +86,7 @@ La seguente tabella confronta gli elementi di ciascuna architettura dal punto di
 L'infrastruttura per i tuoi ambienti di test, preparazione, test di carico e altro può essere costosa. Ci vuole tempo per configurarli e, dato che di solito funzionano 24 ore su 24, 7 giorni su 7, sono spesso sottoutilizzati e consumano grandi quantità di capacità. Utilizzando un'architettura senza server, i costi per un numero qualsiasi di ambienti vengono generati in base al carico anziché al numero di ambienti definiti.
 {: shortdesc}
 
-Per stimare i costi per un'applicazione senza server, puoi utilizzare il [calcolatore dei prezzi ![Icona link esterno](../icons/launch-glyph.svg "Icona link esterno")](https://cloud.ibm.com/openwhisk/learn/pricing).
+Per stimare i costi per un'applicazione senza server, puoi utilizzare il [calcolatore dei prezzi ](https://cloud.ibm.com/openwhisk/learn/pricing){: external}.
 
 ### Capacità illimitata
 {: #faas_capacity}
@@ -102,4 +104,7 @@ Nelle architetture tradizionali, il codice deve essere in esecuzione in una dete
 {: #faas_redundancy}
 
 Nelle architetture tradizionali, le applicazioni devono essere ridondanti. Con {{site.data.keyword.openwhisk_short}}, i processi non devono essere altamente disponibili (HA) perché le applicazioni senza server sono prive di stato e guidate dagli eventi di richiesta in base alla progettazione. Eliminando la necessità di creare esplicitamente la ridondanza, la natura senza stato delle applicazioni senza server può ridurre significativamente i costi di infrastruttura.
+
+
+
 

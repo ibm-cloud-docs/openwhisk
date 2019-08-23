@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-05-15"
+lastupdated: "2019-07-12"
 
-keywords: annotations, annotate, package, parameters, actions
+keywords: annotations, annotate, package, parameters, actions, functions
 
 subcollection: cloud-functions
 
@@ -15,6 +15,7 @@ subcollection: cloud-functions
 {:screen: .screen}
 {:pre: .pre}
 {:table: .aria-labeledby="caption"}
+{:external: target="_blank" .external}
 {:codeblock: .codeblock}
 {:tip: .tip}
 {:note: .note}
@@ -22,6 +23,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 # Anotações
 {: #annotations}
@@ -31,10 +33,7 @@ As ações do {{site.data.keyword.openwhisk}}, os acionadores, as regras e os pa
 
 As anotações são anexadas às entidades como parâmetros. As anotações consistem em uma `key`
 que define um nome e em um `value` que define o valor. As anotações são mais normalmente
-utilizadas para documentar ações e pacotes. Muitos dos pacotes no catálogo do
-{{site.data.keyword.openwhisk_short}} carregam anotações, como uma descrição da funcionalidade que é
-oferecida por suas ações, parâmetros a serem usados em tempo de ligação de pacote, parâmetros de tempo de
-chamada ou se um parâmetro é um segredo. As anotações são inventadas conforme necessário, por exemplo, para permitir a integração da UI.
+utilizadas para documentar ações e pacotes. Os pacotes no catálogo do {{site.data.keyword.openwhisk_short}} transportam anotações. Essas anotações incluem descrições da funcionalidade que é oferecida por suas ações, parâmetros a serem usados no tempo de ligação de pacote, parâmetros de tempo de chamada ou se um parâmetro é um segredo. As anotações são inventadas conforme necessário, por exemplo, para permitir a integração da UI.
 
 É possível documentar uma entidade na CLI usando a sinalização
 `--annotation` ou `-a`.
@@ -42,12 +41,12 @@ chamada ou se um parâmetro é um segredo. As anotações são inventadas confor
 ## Anotações de ação
 {: #annotations_action}
 
-Anotações que descrevem ações incluem:
-
-- `description`: uma descrição concisa da ação.
-- `parameters`: uma matriz que descreve ações que são necessárias para executar a ação.
-- `sampleInput`: um exemplo que mostra o esquema de entrada com valores típicos.
-- `sampleOutput`: um exemplo que mostra o esquema de saída, geralmente para o `sampleInput`.
+| Anotação | Descrição |
+| --- | --- |
+| `description` | Uma descrição da ação. |
+| `parâmetros` | Uma matriz que descreve ações que são necessárias para executar a ação. |
+| `sampleInput` | Um exemplo que mostra o esquema de entrada com valores típicos. |
+| `sampleOutput` | Um exemplo que mostra o esquema de saída, geralmente para a `sampleInput`. |
 
 
 
@@ -66,67 +65,58 @@ ibmcloud fn action create echo echo.js \
 ## Anotações de ação da web
 {: #annotations-specific-to-web-actions}
 
-As anotações de ação da web a seguir devem ser configuradas explicitamente como `true`
-para ativar a interatividade da API:
+As anotações de ação da web a seguir devem ser configuradas explicitamente como `true` para ativar a interatividade da API.
 
-- `web-export`: quando aplicada a uma ação, a ação se torna uma
-[ação da web](/docs/openwhisk?topic=cloud-functions-actions_web). A ação se torna acessível às chamadas REST sem
-autenticação para que os usuários possam acessar as ações por meio de um navegador.
-    * **Nota**: o proprietário da ação da web incorre no custo de executá-los no sistema. Em outras palavras, o proprietário da ação também tem o registro de ativações.
-- `final`: quando aplicado a uma ação, qualquer parâmetro de ação que tiver sido
-definido anteriormente se tornará imutável. Os parâmetros não podem ser substituídos por parâmetros fornecidos
-durante a chamada.
-- `raw-http`: quando aplicado a uma ação que tem a anotação `web-export`,
-a consulta de solicitação e os parâmetros de corpo HTTP são passados para a ação como
-propriedades reservadas.
-- `web-custom-options`: permite que uma ação da web responda às solicitações
-OPTIONS com cabeçalhos customizados. Caso contrário, uma  [ resposta CORS padrão ](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options)  se aplicará.
-- `require-whisk-auth`: a ação da web pode ser chamada somente por solicitações que
-fornecem credenciais de autenticação apropriadas.
-    * Quando configurado como um valor booleano, ele controla se o valor de Autenticação básica da
-solicitação é autenticado. Um valor de `true` autentica as credenciais e um valor de `false` chama a ação sem nenhuma autenticação.
-    * Quando configurado como um número inteiro ou uma sequência, esse valor deve corresponder ao valor
-do cabeçalho `X-Require-Whisk-Auth` da solicitação.
-    * **Nota**: o proprietário da ação da web incorre no custo de executá-los no sistema. Em outras palavras, o proprietário da ação também tem o registro de ativações.
+| Anotação | Descrição |
+| --- | --- | 
+| `web-export` | Quando aplicada a uma ação, a ação se torna uma [ação da web](/docs/openwhisk?topic=cloud-functions-actions_web). A ação se torna acessível às chamadas REST sem
+autenticação para que os usuários possam acessar as ações por meio de um navegador. O proprietário da ação da web incorre no custo de executá-las. Em outras palavras, o proprietário da ação também tem o registro de ativações. |
+| `final` | Quando aplicada a uma ação, quaisquer parâmetros de ação que foram definidos anteriormente não podem ser substituídos por parâmetros que são fornecidos durante a chamada. |
+| `raw-http` | Quando aplicada a uma ação que possui a anotação `web-export`, os parâmetros de corpo e de consulta de solicitação de HTTP são passados para a ação como propriedades reservadas. |
+| `web-custom-options` | Ativa uma ação da web para responder a solicitações OPTIONS com cabeçalhos customizados. Caso contrário, uma  [ resposta CORS padrão ](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options)  se aplicará. |
+| `require-whisk-auth` | A ação da web pode ser chamada apenas por solicitações que fornecem credenciais de autenticação apropriadas. Quando configurado como um valor booleano, ele controla se o valor de Autenticação básica da
+solicitação é autenticado. Um valor de `true` autentica as credenciais e um valor de `false` chama a ação sem nenhuma autenticação. Quando configurado como um número inteiro ou uma sequência, esse valor deve corresponder ao valor
+do cabeçalho `X-Require-Whisk-Auth` da solicitação. |
 
 ## Anotações do pacote
 {: #annotations_package}
 
-As anotações que descrevem pacotes incluem:
-
-- `description`: uma descrição concisa do pacote.
-- `parameters`: uma matriz que descreve os parâmetros que estão com escopo definido para o pacote.
+| Anotação | Descrição |
+| --- | --- |
+| `description` | Uma descrição do pacote. |
+| `parâmetros` | Uma matriz que descreve os parâmetros que têm escopo definido para o pacote. |
 
 ## Anotações de parâmetro
 {: #annotations_parameter}
 
-As anotações que descrevem parâmetros incluem:
-
-- `name`: o nome do parâmetro.
-- `description`: uma descrição concisa do parâmetro.
-- `doclink`: um link para a documentação adicional para o parâmetro (útil para tokens OAuth).
-- `required`: true para parâmetros necessários e false para os opcionais.
-- `bindTime`: true se o parâmetro for especificado quando um pacote estiver ligado.
-- `type`: o tipo do parâmetro, um de `password`, `array` (mas pode ser usado mais amplamente).
+| Anotação | Descrição |
+| --- | --- |
+| `name` | O nome do parâmetro. |
+| `description` | Uma forte descrição do parâmetro. |
+| `doclink` | Um link para documentação adicional para o parâmetro (útil para tokens OAuth). |
+| `required` | True para os parâmetros necessários e false para os opcionais. |
+| `bindTime` | True se o parâmetro for especificado quando um pacote estiver ligado. |
+| `type` | O tipo do parâmetro, um de `password` ou `array` (mas pode ser usado de maneira mais ampla). |
 
 ## Anotações de Ativação
 {: #annotations_activation}
 
 É possível documentar registros de ativação com as anotações a seguir:
 
-- `path`: o nome do caminho completo da ação que gerou a ativação. Observe que se essa ativação foi o resultado de uma ação em uma ligação de pacote, o caminho se referirá ao pacote pai.
-- `kind`: o tipo de ação executada e um dos tipos de tempo de execução do OpenWhisk de suporte.
-- `limits`: os limites de tempo, memória e log aos quais essa ativação estava sujeita.
+| Anotação | Descrição |
+| --- | --- |
+| `path` | O nome do caminho completo da ação que gerou a ativação. Se essa ativação foi o resultado de uma ação em uma ligação de pacote, o caminho se referirá ao pacote pai. |
+| `kind` | O tipo de ação executada e um dos tipos de tempo de execução do {{site.data.keyword.openwhisk_short}} suportados. |
+| `limits` | O tempo, a memória e os limites de log para os quais essa ativação estava sujeita. |
 
 Para ativações relacionadas à sequência, o sistema gera as anotações a seguir:
 
-- `topmost`: isso está presente somente para uma ação de sequência externa.
-- `causedBy`: isso está presente somente para ações que estão contidas em uma sequência.
-
-Para fornecer transparência de desempenho, as ativações também registram:
-
-- `waitTime`: o tempo gasto aguardando no sistema OpenWhisk interno. Isso é aproximadamente o tempo gasto entre o controlador receber a solicitação de ativação e quando o invocador provisionou um contêiner para a ação. Esse valor está presente atualmente para ativações sem sequência. Para sequências, essas informações podem ser derivadas do registro de ativação de sequência `topmost`.
-- `initTime`: o tempo gasto para inicializar a função. Se esse valor estiver presente, a ação requer inicialização e representa um cold start. Uma ativação warm ignora a inicialização e, neste caso, a anotação não é gerada.
+| Anotação | Descrição |
+| --- | --- |
+| `topmost` | Essa anotação está presente somente para uma ação de sequência mais externa. |
+| `causedBy` | Essa anotação está presente somente para ações que estão contidas em uma sequência. |
+| `waitTime` | O tempo que é gasto aguardando no sistema interno do {{site.data.keyword.openwhisk_short}}. Esse tempo é aproximadamente o tempo que é gasto entre o recebimento da solicitação de ativação e quando o invocador provisionou um contêiner para a ação. Esse valor está presente apenas para ativações não relacionadas à sequência. Para sequências, essas informações podem ser derivadas do registro de ativação de sequência `topmost`. |
+| `initTime` | O tempo que é gasto inicializando a função. Se esse valor estiver presente, a ação requer inicialização e representa um cold start. Uma ativação warm ignora a inicialização e, neste caso, a anotação não é gerada. |
 
 O exemplo a seguir mostra essas anotações à medida que elas aparecem em um registro de ativação:
 
@@ -159,4 +149,7 @@ O exemplo a seguir mostra essas anotações à medida que elas aparecem em um re
 ]
 ```
 {: codeblock}
+
+
+
 
