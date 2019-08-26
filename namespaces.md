@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-08-26"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -346,7 +346,7 @@ ibmcloud fn namespace create production
 ### Targeting namespaces
 Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. 
 
-You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Clound Foundry namespaces. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Cloud Foundry namespaces. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
 | Command | Description |
 |:-----------------|:-----------------|

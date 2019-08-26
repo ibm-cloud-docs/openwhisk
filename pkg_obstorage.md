@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-16"
+lastupdated: "2019-08-26"
 
 keywords: object storage, bucket, package, functions
 
@@ -156,7 +156,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
 
 You can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind the endpoint of a bucket to a specific action or to the `cloud-object-storage` package. Replace `<bucket_endpoint>` with the endpoint of your bucket.
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created paramters are removed. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
 {: important}
 
 **Bind parameters to all actions in a package**

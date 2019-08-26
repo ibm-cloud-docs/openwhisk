@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-08-26"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -34,7 +34,7 @@ With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{
 
 ## Available entities
 {: #cloudant_available}
-The following table shows a selection of the entities available in the `whisk.system/cloudant` package. You can use the `whisk.system/cloudant` package to read, write, update, or delete documents. You can also use the `changes` feed to listen for changes to a {{site.data.keyword.cloudant_short_notm}} database.
+The following table shows a selection of the entities available in the `whisk.system/cloudant` package. You can use the `whisk.system/cloudant` package to read, write, update, or delete documents. You can also use the `changes` feed to listen for changes to an {{site.data.keyword.cloudant_short_notm}} database.
 {: shortdesc}
 
 For a full list of the entities that are available in the `/whisk.system/cloudant` package, run `ibmcloud fn package get /whisk.system/cloudant`.
@@ -160,7 +160,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
 In this example, the credentials for the {{site.data.keyword.cloudant_short_notm}} service belong to a parameter named `__bx_creds`.
 
-## Working with documents in a {{site.data.keyword.cloudant_short_notm}} database
+## Working with documents in an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_read}
 
 You can use an action to read, write, update, delete a document from an {{site.data.keyword.cloudant_short_notm}} database.
@@ -170,7 +170,7 @@ You can use an action to read, write, update, delete a document from an {{site.d
 You can use the `/whisk.system/cloudant/read` action to read a document from your {{site.data.keyword.cloudant_short_notm}} database.
 
 **Before you begin**
-If you do not have a document in your {{site.data.keyword.cloudant_short_notm}} database, you can create one by using the [{{site.data.keyword.cloudant_short_notm}} dashboard. The URL for the dashoard is `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
+If you do not have a document in your {{site.data.keyword.cloudant_short_notm}} database, you can create one by using the [{{site.data.keyword.cloudant_short_notm}} dashboard. The URL for the dashboard is `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
 
 Fetch a document by using the `read` action. Replace `/_/myCloudant` with your package name, `<database_name>` with your database name, and `<document_id>` with the file ID. Invoke the action to test fetching a document.
 
