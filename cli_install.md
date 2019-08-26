@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-08-26"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -134,6 +134,8 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ibmcloud fn
   ```
   {: pre}
+
+For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ## Next steps
 {: #install_next}
