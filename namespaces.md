@@ -81,23 +81,39 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type, whether it is a CF-based or IAM-based namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type. For example, whether it is a Cloud Foundry-based namespace or anIAM-based namespace.
 
-**Example command** 
+**Example** 
 ```
 ibmcloud fn namespace list
 ```
 {: pre}
 
+**Example output**
+```
+name          type            id                                    description
+dev           CF-based        dev                           
+cfsdocs_prod  CF-based        prod                          
+playground    IAM-based       <id_string>                           IAM playground.
+```
+{: screen}
+
 </br>
 
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} UI Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
-**Example command**
+**Example**
 ```
 ibmcloud resource service-instances --service-name functions
 ```
 {: pre}
+
+**Example output**
+```
+Name         Location   State    Type   
+playground   us-south   active   service_instance
+```
+{: screen}
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
