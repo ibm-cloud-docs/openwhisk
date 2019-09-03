@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-09-03"
 
 keywords: access policies, iam, roles, functions
 
@@ -22,6 +22,7 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+
 
 
 
@@ -201,6 +202,12 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
 
 **Next steps**
 For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.
+
+
+
+
+
+
 
 
 

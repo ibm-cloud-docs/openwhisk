@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-18"
+lastupdated: "2019-08-28"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -34,7 +34,7 @@ With {{site.data.keyword.openwhisk}} you can use your favorite programming langu
 ## Working with actions
 {: #gs_actions}
 
-With {{site.data.keyword.openwhisk}}, you can create stateless code snippets that are set to perform one specific task that is called an action. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about).
+With {{site.data.keyword.openwhisk}}, you can create stateless code snippets, called actions, that are set to perform one specific task. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about).
 {:shortdesc}
 
 Click an option to get started.
@@ -79,7 +79,7 @@ Good work! You created your first action. To clean up this action, click the ove
 ## Creating an action in the CLI
 {: #gs_hello_world_cli}
 
-Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep-js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
+Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep_js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
 ## What's next?
 {: #gs_next_steps}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-07"
+lastupdated: "2019-08-28"
 
 keywords: web actions, serverless, functions
 
@@ -45,7 +45,13 @@ By default, actions only accept `POST` requests, but web actions can be invoked 
 
 ### 3. Trigger a web action from anywhere
 
-When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. 
+When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
+
+**Example**
+```
+ibmcloud fn action get <action_name> --url
+```
+{: pre}
 
 A web action API path can be used with cURL, `wget`, or even be entered directly in your browser. A web action can be invoked by using a URL that is structured as follows: `https://<apihost>/api/v1/web/<namespace>/<packageName>/<actionName>.<ext>`.
 
@@ -662,10 +668,12 @@ To alter the response of a web action:
 **Before you begin** 
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-By default, anyone can invoke a web action by using the invocation URL. You can use the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) to secure the web action by either:
-  1. Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action will authenticate the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
+By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)
 
-  2. Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
+You can set the `require-whisk-auth` annotation by either:
+  - Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action will authenticate the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
+
+  - Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
 To test a secure web action:
 
@@ -741,7 +749,7 @@ To test a secure web action:
 
 To test that the authentication is working:
 
-1. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test will result in an error. You can test the web action by either:
+1. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test will result in an error. You can get the URL of your web action by running `ibmcloud fn action get hello --url`. You can use the URL to test the web action by either:
 
   * Testing the web action by using a cURL command.
       ```bash

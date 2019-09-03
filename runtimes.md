@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-08-28"
 
 keywords: runtimes, support, functions
 
@@ -519,6 +519,8 @@ Docker actions run a user-supplied executable in a Docker container. You can inc
 
 {{site.data.keyword.openwhisk_short}} actions can be creating using public images on from Docker Hub.
 {: note}
+
+
 
 For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker).
 

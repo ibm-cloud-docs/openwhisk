@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-26"
+lastupdated: "2019-08-28"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -49,13 +49,13 @@ When you create a namespace, the following components are created:
 | A service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
 | An API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
 
-View all of your service IDs.
+You can view a list of your service IDs by running the following command.
 ```
 ibmcloud iam service-ids
 ```
 {: pre}
 
-View the API keys that are associated with a service ID. 
+You can view the API keys that are associated with a service ID by running the following command.
 ```
 ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
@@ -81,23 +81,40 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type, whether it is a CF-based or IAM-based namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type. For example, whether it is a Cloud Foundry-based namespace or an IAM-based namespace.
 
-**Example command** 
+**Example** 
 ```
 ibmcloud fn namespace list
 ```
 {: pre}
 
+**Example output**
+```
+name          type            id                                    description
+dev           CF-based        dev                           
+cfsdocs_prod  CF-based        prod                          
+playground    IAM-based       <id_string>                           IAM playground.
+```
+{: screen}
+
 </br>
 
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} UI Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
-**Example command**
+**Example**
 ```
 ibmcloud resource service-instances --service-name functions
 ```
 {: pre}
+
+**Example output**
+```
+Name         Location   State    Type   
+playground   us-south   active   service_instance
+```
+{: screen}
+
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
