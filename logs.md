@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-03"
+lastupdated: "2019-09-04"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -220,12 +220,11 @@ For more information, see the following sections.
 
 In order to use the [{{site.data.keyword.loganalysislong_notm}} with LogDNA service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the [Getting started tutorial](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started#getting-started){: external} for details on the various options.
 
-{{site.data.keyword.openwhisk_short}} logs work well with all available deployment plans, so chose the option which fits best for your needs.
 To enable an instance receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-config_svc_logs){: external} in LogDNA service.
 
-{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.loganalysislong_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that actions logs of a `us-south` namespace will be forwarded to a LogDNA instance in `us-south`.
+{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.loganalysislong_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
 
-Actions of namespaces in `us-east` sends logs to a LogDNA instance in `us-south`.
+Action logs of {{site.data.keyword.openwhisk_short}} namespaces in `us-east` are sent to a LogDNA instance in `us-south`.
 {: note}
 
 ### Querying logs

@@ -29,33 +29,19 @@ subcollection: cloud-functions
 # Viewing {{site.data.keyword.cloudaccesstrailshort}} events
 {: #activity_tracker}
 
-You can view, manage, and audit user-initiated activities made in your {{site.data.keyword.openwhisk}} service instance by using the {{site.data.keyword.cloudaccesstrailshort}} service.
+You can view, manage, and audit user-initiated activities made in your {{site.data.keyword.openwhisk}} service instance by using the {{site.data.keyword.at_full_notm}} service.
 {: shortdesc}
 
+{{site.data.keyword.at_full_notm}} records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. You can use this service to investigate abnormal activity and critical actions and to comply with regulatory audit requirements. In addition, you can be alerted about actions as they happen. The events that are collected comply with the Cloud Auditing Data Federation (CADF) standard. For more information, see the [Getting Started Tutorial for {{site.data.keyword.at_full_notm}}](/docs/services/Activity-Tracker-with-LogDNA?topic=logdnaat-getting-started#getting-started).
 
-For more information about how the service works, see the [{{site.data.keyword.cloudaccesstrailshort}} docs](/docs/services/cloud-activity-tracker?topic=cloud-activity-tracker-getting-started).
 
-
-## Where to view events
-{: #view}
-
-Events are available in the {{site.data.keyword.cloudaccesstrailshort}} **account domain** that is available in the {{site.data.keyword.cloud_notm}} region where the {{site.data.keyword.openwhisk_short}} namespace resource is available. For more information, see [Viewing account events](/docs/services/cloud-activity-tracker/how-to/manage-events-ui?topic=cloud-activity-tracker-view_acc_events).
-
-1. Log in to your {{site.data.keyword.cloud_notm}} account.
-2. From the catalog, provision an instance of the {{site.data.keyword.cloudaccesstrailshort}} service in the same account as your instance of {{site.data.keyword.openwhisk}}.
-3. On the **Manage** tab of the {{site.data.keyword.cloudaccesstrailshort}} dashboard, click the **View in Kibana**.
-4. Set the time frame that you want to view logs for. The default is 15 min.
-5. In the **Available Fields** list, click **type**. Click the magnifying glass icon for **Activity Tracker** to limit the logs to only those tracked by the service.
-6. You can use the other available fields to narrow your search.
-
-For users other than the account owner to view logs, you must use the premium plan. To let other users view events, see [Granting permissions to see account events](/docs/services/cloud-activity-tracker/how-to?topic=cloud-activity-tracker-grant_permissions#grant_permissions).
-{: tip}
+For more information about how the service works, see the [{{site.data.keyword.at_full_notm}} docs](/docs/services/cloud-activity-tracker?topic=cloud-activity-tracker-getting-started).
 
 
 ## List of events
 {: #events}
 
-Check out the following table for a list of events that are sent to {{site.data.keyword.cloudaccesstrailshort}}.
+The following list of {{site.data.keyword.openwhisk}} events are sent to {{site.data.keyword.at_full_notm}}.
 {: shortdesc}
 
 <table>
@@ -67,23 +53,31 @@ Check out the following table for a list of events that are sent to {{site.data.
   </thead>
   <tbody>
     <tr>
-      <td>functions.namespace.create</td>
-      <td>Create a IAM-based namespace resource</td>
+      <td><code>functions.namespace.create</code></td>
+      <td>Create a IAM-based namespace resource.</td>
     </tr>
     <tr>
-      <td>functions.namespace.migrate</td>
-      <td>Migrate a Cloud Foundry-based namespace to become IAM-enabled</td>
+      <td><code>functions.namespace.migrate</code></td>
+      <td>Migrate a Cloud Foundry-based namespace to become IAM-enabled.</td>
     </tr>
     <tr>
-      <td>functions.namespace.update</td>
-      <td>Update IAM-based namespace resource properties, such as the display name or description</td>
+      <td><code>functions.namespace.update</code></td>
+      <td>Update IAM-based namespace resource properties, such as the display name or description.</td>
     </tr>
     <tr>
-      <td>functions.namespace.delete</td>
-      <td>Delete a namespace resource</td>
+      <td><code>functions.namespace.delete</code></td>
+      <td>Delete a namespace resource.</td>
     </tr>
   </tbody>
 </table>
 
+
+## Where to view events
+{: #view}
+
+{{site.data.keyword.openwhisk_short}} sends audit logs to the {{site.data.keyword.at_full_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that audit logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
+
+Audit logs for {{site.data.keyword.openwhisk_short}} namespaces in `us-east` are sent to a LogDNA instance in `us-south`.
+{: note} 
 
 

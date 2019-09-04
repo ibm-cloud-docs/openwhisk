@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-03"
+lastupdated: "2019-09-04"
 
 keywords: object storage, bucket, package, functions
 
@@ -36,10 +36,17 @@ To learn about {{site.data.keyword.cos_full_notm}}, see [About Object Storage](/
 
 ## Packages
 {: #obstorage_packages}
+
+Review the following table for a list of {{site.data.keyword.openwhisk_short}} packages that you can use to work with your {{site.data.keyword.cos_full_notm}} entities.
+
+
+
+
 | Package | Availability | Description |
 | --- | --- | --- |
 | [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install)| Installable | Read, write, and delete from an {{site.data.keyword.cos_full_notm}} instance. |
 | [(Experimental) {{site.data.keyword.cos_full_notm}} events source](#pkg_obstorage_ev) | Pre-installed (US-South only) | Listen for changes to an {{site.data.keyword.cos_full_notm}} instance. |
+
 
 ## Creating an IBM Cloud Object Storage service instance
 {: #pkg_obstorage_service}
@@ -54,6 +61,8 @@ Before you can use either package, you must request an instance of {{site.data.k
 
 
 
+
+</br>
 ## Installing the {{site.data.keyword.cos_full_notm}} package from the {{site.data.keyword.openwhisk_short}} CLI
 {: #pkg_obstorage_install}
 
@@ -393,6 +402,8 @@ ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --resul
     {: screen}
 
 
+
+
 ## Listening for changes to a bucket by using the (Experimental) Object Storage events source
 {: #pkg_obstorage_ev}
 
@@ -664,6 +675,9 @@ Create a rule that activates `myCosAction` action on new {{site.data.keyword.cos
   ibmcloud fn rule create myRule cosTrigger myCosAction
   ```
   {: pre}
+
+
+
 
 
 
