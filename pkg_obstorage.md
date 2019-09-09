@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-04"
+lastupdated: "2019-09-06"
 
 keywords: object storage, bucket, package, functions
 
@@ -112,7 +112,7 @@ To install the {{site.data.keyword.cos_full_notm}} package:
     **Output**
     ```
     packages
-    /<org_space>/cloud-object-storage         private
+    /<namespace_name_or_ID>/cloud-object-storage         private
     ```
     {: screen}
 
@@ -348,7 +348,7 @@ In the following steps, the name `test-bucket` is used as an example. Buckets in
 
 Read from an object in your bucket by using the `object-read` action.
 ```
-ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --result --param bucket test-bucket --param key data.txt
+ibmcloud fn action invoke /_/cloud-object-storage/object-read --blocking --result --param bucket test-bucket --param key test.txt
 ```
 {: pre}
 

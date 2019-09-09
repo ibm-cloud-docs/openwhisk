@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-09-04"
 
 keywords: runtimes, support, functions
 
@@ -480,7 +480,7 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 By default, all Swift actions are executed in a version 4.2 environment.
 {: note}
 
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies by using a Package.swift.
+Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged Swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies by using a Package.swift.
 
 Swift 4.2 actions can use the following packages when you are using a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
@@ -513,7 +513,7 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create). When you create an action using a Docker image, your app runs in the public Docker image that you specify during action creation.
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command. When you create an action using a Docker image, your app runs in the public Docker image that you specify during action creation.
 
 {{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base image when writing your `Dockerfile`. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
 
