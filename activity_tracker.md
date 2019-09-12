@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2018
-lastupdated: "2018-10-01"
+  years: 2017, 2019
+lastupdated: "2019-09-11"
 
-keywords: events, serverless, push notifications, functions
+keywords: events, serverless, functions, activity tracker
 
 subcollection: cloud-functions
 

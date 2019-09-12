@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-09-12"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -368,7 +368,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 | Command | Description |
 |:-----------------|:-----------------|
 | <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
-{: caption="Table 1. Create or target an IAM-enabled namespace." caption-side="top"}
+{: caption="Table 1. Target an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
 {: tab-group="namespaces"}
@@ -376,7 +376,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Command | Description |
 |:-----------------|:-----------------|
-| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example namespace <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. </p><ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li> |
+| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example namespace <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. </p><ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li></ul> |
 {: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
@@ -393,10 +393,33 @@ As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammani
 
 At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
-Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
+### Setting access policies for a service ID in the UI
+You can set an access policy for a service ID by using the IAM UI.
+
+1. Navigate to https://cloud.ibm.com/iam/serviceids{: external}.
+2. In the **Service IDs** list, click you {{site.data.keyword.openwhisk_short}} namespace. 
+3. On the **Manage** page, click the **Access policies** tab, then click the **Assign access** button.
+4. Next, select an **Access Type**. You can choose from the following options. 
+  * **Assign access within a resource group**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
+  * **Assign access to resources**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
+  * **Assign access to account management services**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
+
+### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
+{: #cli-set}
+
+To give a resource, such as an action, in an IAM-based namespace access to an IAM-based service, you can create an IAM access policy for the namespace that resource is in.
+
+When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID, so that the apikey of that service Id can be used to generate an IAM token. You can then use it in action code to call other services such as {{site.data.keyword.cos_full_notm}}.
+
+```
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+```
+{: pre}
 
 ## Next steps
 {: #namespaces_next}
+
+Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
 
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
 

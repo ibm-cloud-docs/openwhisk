@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-28"
+lastupdated: "2019-09-11"
 
 keywords: web actions, serverless, functions
 
@@ -80,8 +80,7 @@ Web actions support the following features:
 
 | Feature | Description |
 | --- | --- |
-| [Content extensions](#extra_features) | You can specify a content type for HTTP requests such as `.json`, `.html`, `.http`, `.svg`, or `.text`. If no content type is specified, the `.http` extension is assumed. You can specify a content type by adding an extension to the action name in the URI so that an action `demo/hello` is referenced as `/demo/hello.svg`. The `.json` and `.http` extensions do not require a projection path, whereas the `.html`, `.svg`, and `.text` extensions do. The default path is assumed to match the extension name. To invoke a web action and receive an `.html` response, the action must respond with a JSON object that contains a top-level property called `html` (or the response must be in the explicit path). In other words, `/<namespace>/demo/hello.html` is equivalent to projecting the `html` property explicitly, as in `/<namespace>/demo/hello.html/html`. The fully qualified name of the action must include its package name, which is `default` if the action is not in a named package. |
-| [Projecting fields from the result](#projecting_fields) | The path that follows the action name is used to project out one or more levels of the response. For example, `/demo/hello.html/body`. This feature allows any web action that returns a dictionary, such as: `{body: "..." }`, to project the `body` property and directly return its string value instead of its dictionary value. The projected path follows an absolute path model (as in XPath). |
+| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the desired content type is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http` the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
 | [Query and body parameters as input](#query_test) | The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action. |
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
 | [Activations using multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
