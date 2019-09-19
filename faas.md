@@ -55,6 +55,8 @@ The following OpenWhisk architectures are compared:
 
 5. **Infrastructure as a Service (IaaS)** with Java EE runtime. A good example is the [WebSphere Application Server VM on {{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/catalog/services/websphere-application-server){: external}.
 
+Check out the following [video](https://www.youtube.com/watch?v=lH6EY761wgc) to learn more about all the compute options available on {{site.data.keyword.cloud_notm}}.
+
 The following table compares elements of each architecture from the perspective of a developer that is creating and operating applications:
 
 
