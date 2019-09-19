@@ -49,7 +49,7 @@ The following OpenWhisk architectures are compared:
 
 2. **Infrastructure as a Service (IaaS)** with OpenWhisk Roll Your Own (RYO). You can download OpenWhisk from Apache Incubation Project and run it on [{{site.data.keyword.cloud_notm}} IaaS](https://cloud.ibm.com/catalog?category=compute){: external}.
 
-3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/liberty-for-java){: external} runtime that is managed by the {{site.data.keyword.cloud_notm}} Foundry implementation.
+3. **Platform as a Service (PaaS)** as a managed application runtime. A good example is the [Liberty for Java](https://cloud.ibm.com/catalog/starters/cloud-foundry?runtime=liberty-for-java){: external} runtime to build and run an application on {{site.data.keyword.cloud_notm}} Foundry.
 
 4. **Container as a Service (CaaS)** as a managed container environment. A good example is the [{{site.data.keyword.containerlong_notm}}](/docs/containers?topic=containers-getting-started#container_index).
 
