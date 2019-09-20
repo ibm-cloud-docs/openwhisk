@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-03"
+lastupdated: "2019-09-20"
 
 keywords: access policies, iam, roles, functions
 
@@ -23,13 +23,10 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
-
-
 # Setting access policies
 {: #iam}
 
-When setting the permissions on an IAM namespace, all entities such as actions, triggers, and packages inherit the permissions.
+When setting the permissions on an IAM-based namespace, all entities such as actions, triggers, and packages inherit the permissions.
 
 As the creator of a namespace, you do not need to set any IAM policies to view or work with your {{site.data.keyword.openwhisk_short}} entities.
 
@@ -47,10 +44,24 @@ In order for others to work with entities in your namespace, you must to set the
 
 The minimum Platform level access is `Viewer`. The minimum Service level access is `Reader`. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles) sections below.
 
-For more information, see [Setting policies through the CLI](#cli-set).
+For more information, see [Setting policies through the CLI](#cli-pol-set).
 
-Want to learn more about IAM key concepts? Check out [the IAM docs](/docs/iam?topic=iam-iamoverview#iamconcepts){: external}.
+Want to learn more about IAM key concepts? Check out [the IAM concepts](/docs/iam?topic=iam-iamoverview#iamconcepts){: external} or the [Best practices for assigning access](/docs/iam?topic=iam-account_setup){: external}.
 {: tip}
+
+### How do I set IAM policies so that others can create namespaces in my account?
+
+In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating namespaces, you must set the following access policies for those users.
+
+  * The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
+  * The user's **Service role**  must be set to Manager. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
+
+### How do I know which access policies have set for me?
+You can see which access policies have been set for you in the [{{site.data.keyword.Bluemix}} catalog](https://cloud.ibm.com/catalog){: external} UI.
+
+1. From the UI, click **Manage** > **Access (IAM)** > **Users**. Or, navigate to `https://cloud.ibm.com/iam/users`.
+2. Click your name in the user table.
+3. Click the **Access policies** tab to see your access policies.
 
 </br>
 
@@ -81,8 +92,6 @@ For more information about how to assign, edit, review, or delete resource acces
     </tr>
   </tbody>
 </table>
-
-Because the service does not need to be provisioned, the editor role is the only platform role that you need to work with the service. For more information about the other roles, check out [Platform management roles](/docs/iam?topic=iam-userroles){: external}.
 
 </br>
 
@@ -164,15 +173,16 @@ To see which roles are required to perform each operation, check out the followi
 
 </br>
 
-### Setting policies through the CLI
-{: #cli-set}
-
-To give a resource, such as an action, in an IAM-based namespace access to an IAM-based service, you can create an IAM access policy for the namespace that resource is in.
+### Setting access policies for a user with the CLI
+You can set an access policies for a specific users by using the following command. In this example `name@example.com` is assigned the Viewer role for {{site.data.keyword.openwhisk_short}}. This means that users with the Viewer role can access all of your {{site.data.keyword.openwhisk_short}} namespaces.
+{: #cli-pol-set}
 
 ```
-ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+ibmcloud iam user-policy-create name@example.com --roles Viewer --service-name functions
 ```
 {: pre}
+
+</br>
 
 <table>
   <thead>
@@ -188,8 +198,8 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
       <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/iam?topic=iam-userroles#service-access-roles).</td>
     </tr>
     <tr>
-      <td>`--service-name` <code>&lt;other_service_type&gt;</code></td>
-      <td>The name of the other {{site.data.keyword.cloud_notm}} service type.</td>
+      <td>`--service-name` <code>&lt;other_service_name&gt;</code></td>
+      <td>The name of the other {{site.data.keyword.cloud_notm}} service name.</td>
     </tr>
     <tr>
       <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
@@ -198,16 +208,9 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
   </tbody>
 </table>
 
+For more information about IAM commands, see the [IAM CLI reference docs](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create){: external}.
+
 </br>
 
 **Next steps**
 For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.
-
-
-
-
-
-
-
-
-

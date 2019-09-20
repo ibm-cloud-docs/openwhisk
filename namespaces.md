@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-12"
+lastupdated: "2019-09-20"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -35,19 +35,19 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
-The fully qualified name of an entity is `/namespaceName/packageName/entityName`.
+The fully qualified name of an entity is `/<namespace_Id>/<package_name>/<entity_name>`.
 
 ### What happens when I create a namespace?
 
-Namespaces that are created within {{site.data.keyword.openwhisk_short}}, are identified as an IAM service instance.
-During the creation of a namespace, you can specify the [resource group](/docs/resources?topic=resources-rgs) in which to add the service instance.
+Namespaces that are created within {{site.data.keyword.openwhisk_short}} are identified as an IAM service instance.
+When you create a namespace, you can specify the [resource group](/docs/resources?topic=resources-rgs) in which to add the service instance.
 
 When you create a namespace, the following components are created:
 
 | Component | Description |
 | --- | --- | 
-| A service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
-| An API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
+| Service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
+| API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
 
 You can view a list of your service IDs by running the following command.
 ```
@@ -63,12 +63,12 @@ ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 
 </br>
 
-Do not delete API keys.
+Do not delete service IDs or API keys.
 {: tip}
 
 ### Are there any limitations for namespaces?
 
-[Creating APIs with API Gateway](/docs/openwhisk?topic=cloud-functions-apigateway) and the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) are not supported for IAM-managed namespaces. 
+Using the the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) is not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 * The first character must be an alphanumeric character, or an underscore.
@@ -81,9 +81,8 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list). Note that this command lists all of the namespaces in the currently selected region. It also lists the namespace type. For example, whether it is a Cloud Foundry-based namespace or an IAM-based namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace.
 
-**Example** 
 ```
 ibmcloud fn namespace list
 ```
@@ -102,7 +101,6 @@ playground    IAM-based       <id_string>                           IAM playgrou
 
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} UI Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
-**Example**
 ```
 ibmcloud resource service-instances --service-name functions
 ```
@@ -118,36 +116,43 @@ playground   us-south   active   service_instance
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get). Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
 
-**Example**
 ```
 ibmcloud fn namespace get <namespace_name> or <namespace_id>
 ```
 {: pre}
 
+## Creating an IAM-based namespace
+{: #create_iam_namespace}
 
-## Creating an IAM-based namespace in the UI
+You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
+{: shortdesc}
+
+### Creating an IAM-based namespace from the UI
 {: #create_iam_ui}
 
-1. In the [{{site.data.keyword.openwhisk_short}} console ](https://cloud.ibm.com/openwhisk){: external}, click the namespace drop-down menu.
+Create your IAM-based namespace by using the UI.
+{: shortdesc}
+
+1. In the [{{site.data.keyword.openwhisk_short}} UI](https://cloud.ibm.com/openwhisk){: external}, click the namespace drop-down menu.
 
 2. Click **Create Namespace**.
 
-3. Enter a display name for the namespace and a short description, such as the kinds of actions or packages that you plan to create in this namespace.
+3. Enter a display name for the namespace and a short description, such as the actions or packages that you plan to create in this namespace.
 
-4. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource into.
+4. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource.
 
 5. Click **Create**.
 
-6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in the **Functions Namespaces** pane.
+6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions Namespaces**.
 
-If you need to, you can update the name or description of the namespace on the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} console.
+You can update the name or description of the namespace from the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} UI.
 
 ## Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
 
-You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
+You can create an IAM-managed namespace with the CLI.
 {: shortdesc}
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
@@ -225,13 +230,14 @@ You can create an IAM-managed namespace as part of a resource group and manage a
   ```
   {: pre}
 
-After you set a property, like the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM, you must unset the namespace property and reset it. For more information see [`ibmcloud fn property set`](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set)
+After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set)
 {: note}
 
-## Creating a namespace with the API
+
+### Creating a namespace with the API
 {: #namespaces_create_api}
 
-You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
+Create your IAM-managed namespace with the API.
 {: shortdesc}
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
@@ -345,43 +351,48 @@ For more information about working with HTTP REST, check out the [{{site.data.ke
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
 
-Create a staging namespace.
-```
-ibmcloud fn namespace create staging
-```
-{: pre}
+* Create a staging namespace.
+  ```
+  ibmcloud fn namespace create staging
+  ```
+  {: pre}
 
-Create a production namespace.
-```
-ibmcloud fn namespace create production
-```
-{: pre}
+* Create a production namespace.
+  ```
+  ibmcloud fn namespace create production
+  ```
+  {: pre}
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
 {: tip}
 
-### Targeting namespaces
+## Targeting namespaces
+{: #targeting-namespaces}
+
 Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. 
 
 You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Cloud Foundry namespaces. You can use the following tabbed table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
 
-| Command | Description |
-|:-----------------|:-----------------|
-| <p><code>`ibmcloud fn property set --namespace <namespace_name>`</code></p> | <p>Target an IAM-enabled namespace by setting the <code>`namespace`</code> property. Replace <code>`<namespace_name>`</code> with the name of your namespace.</p> |
-{: caption="Table 1. Target an IAM-enabled namespace." caption-side="top"}
+| Targeting an IAM-enabled namespace. |
+|:-----------------|
+| <p>Copy the following command to target an IAM-enabled namespace. Replace `<namespace_name>` with the name of your namespace.<pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;<code></p> |
+{: caption="Targeting an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
-| Command | Description |
-|:-----------------|:-----------------|
-| <p><code>`ibmcloud target --cf -o <org> -s <space>`</code></p> | <p>Target a Cloud Foundry namespace. For Cloud Foundry namespaces, the namespace <code>`id`</code> is a combination of your <code>`<org>`</code> and <code>`<space>`</code>. </br>In the example namespace <code>`test_dev`</code>, <code>`test`</code> is the <code>`<org>`</code> and <code>`dev`</code> is the <code>`<space>`</code>. </p><ul><li><code>-o</code>: You can use this flag to specify your `<org>` name.</li><li><code>-s</code>: You can use this flag to target a specific <code>`<space>`</code> within your <code>`<org>`</code>.</li></ul> |
-{: caption="Table 2. Target a Cloud Foundry namespace." caption-side="top"}
+| Targeting a Clound Foundry namespace |
+|:-----------------|
+| <p>Copy the following command to target a Cloud Foundry namespace. Replace `<org>` and `<space>` with the names of your `org` and `space`.<pre class="pre"><code>ibmcloud target --cf -o &lt;org&gt; -s &lt;space&gt;</code></p> |
+{: caption="Targeting a Cloud Foundry namespace." caption-side="top"}
 {: #namespaces-2}
 {: tab-title="Cloud Foundry"}
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
+
+After a property is set with the [`property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set) command, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run the [property unset](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_unset) command. If properties are retained after running the unset command, you can delete the `config.json` to remove all properties.
+{: important}
 
 ### Accessing other resources from a namespace
 {: #namespace-access}
@@ -393,28 +404,65 @@ As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammani
 
 At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
-### Setting access policies for a service ID in the UI
-You can set an access policy for a service ID by using the IAM UI.
+## Setting access policies for a service ID
+{: #service-id-set-policy}
 
-1. Navigate to https://cloud.ibm.com/iam/serviceids{: external}.
-2. In the **Service IDs** list, click you {{site.data.keyword.openwhisk_short}} namespace. 
-3. On the **Manage** page, click the **Access policies** tab, then click the **Assign access** button.
+When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID, so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
+{: shortdesc}
+
+### Setting access policies for a service ID in the UI
+{: #service-id-set-ui}
+
+You can set an access policy for a service ID by using the IAM UI.
+{: shortdesc}
+
+1. Navigate to the [IAM Service ID page](https://cloud.ibm.com/iam/serviceids){: external}.
+2. In the **Service IDs** list, click your {{site.data.keyword.openwhisk_short}} namespace. 
+3. On the **Manage** page, click **Access policies** , then click **Assign access**.
 4. Next, select an **Access Type**. You can choose from the following options. 
-  * **Assign access within a resource group**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
-  * **Assign access to resources**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
-  * **Assign access to account management services**: You can use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
+  * **Assign access within a resource group**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
+  * **Assign access to resources**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
+  * **Assign access to account management services**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
 
 ### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
 {: #cli-set}
 
-To give a resource, such as an action, in an IAM-based namespace access to an IAM-based service, you can create an IAM access policy for the namespace that resource is in.
-
-When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID, so that the apikey of that service Id can be used to generate an IAM token. You can then use it in action code to call other services such as {{site.data.keyword.cos_full_notm}}.
+Set an access policy for a service ID by using the CLI.
+{: shortdesc}
 
 ```
 ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
 ```
 {: pre}
+
+</br>
+
+<table>
+    <thead>
+      <tr>
+        <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td><code>&lt;namespace_service_ID&gt;</code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>-n &lt;IAM_role1,IAM_role2&gt;</code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>-n &lt;other_service_type&gt;</code></td>
+        <td></td>
+      </tr>
+      <tr>
+        <td><code>-n &lt;other_service_GUID&gt;</code></td>
+        <td></td>
+      </tr>
+    </tbody>
+  </table>
+</br>
 
 ## Next steps
 {: #namespaces_next}
@@ -424,9 +472,3 @@ Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/doc
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
 
 For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).
-
-
-
-
-
-

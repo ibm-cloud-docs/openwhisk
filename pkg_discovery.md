@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-19"
+lastupdated: "2019-09-17"
 
 keywords: functions, cognitive,
 
@@ -166,6 +166,9 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #discovery_ui}
+
+You can install your package by using the UI.
+{: shortdesc}
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-04"
+lastupdated: "2019-09-19"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -29,12 +29,13 @@ subcollection: cloud-functions
 {: #logs}
 
 Logging is automatically enabled in {{site.data.keyword.openwhisk}} to help you troubleshoot issues. You can also use the {{site.data.keyword.cloudaccesstraillong}} service to track how users and applications interact with the {{site.data.keyword.openwhisk_short}} service.
-
+{: shortdesc}
 
 ## Viewing action logs as they occur
 {: #logs_poll}
 
 {{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. To get information about when actions were invoked and what the output was, it can be useful to monitor the action logs.
+{: shortdesc}
 
 You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of actions as they are invoked.
 

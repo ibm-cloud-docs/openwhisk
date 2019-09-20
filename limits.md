@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-23"
+lastupdated: "2019-09-18"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -115,7 +115,7 @@ The [Serverless Framework](https://serverless.com/) is not supported for IAM-bas
 {: #limits_fullnames}
 
 The fully qualified name of an entity is
-`/namespaceName/[packageName]/entityName`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, namespaces must be prefixed with a `/`.
+`/<namespace_id>/<package_name>/<entity_name>`. Notice that `/` is used to delimit namespaces, packages, and entities. Also, when working in the CLI, commands with namespaces must be prefixed with a `/`.
 
 For convenience, the namespace can be left off if it is the user's default namespace. For example, consider a user whose default namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
 

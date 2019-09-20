@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-26"
+lastupdated: "2019-09-19"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -24,11 +24,10 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Cloudant
 {: #pkg_cloudant}
 
-With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database. No service binding is required to use this package.
+With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database.
 {: shortdesc}
 
 
@@ -52,7 +51,7 @@ The `includeDoc` parameter is no longer supported for use with `/whisk.system/cl
 {: deprecated}
 
 ## Binding the `/whisk.system/cloudant` package to your {{site.data.keyword.cloudant_short_notm}} database.
-If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.cloud_notm}}, you can use the {{site.data.keyword.openwhisk}} CLI plug-in to bind a service to an action or package.
+If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.cloud_notm}}, you can use the {{site.data.keyword.openwhisk}} CLI plug-in to bind a service to an action or package. If you do not bind your service, you must pass your credentials each time you use the action or package.
 {: #cloudant_db}
 
 **Before you begin**

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-12"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -59,6 +59,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
   ok: created action hello
   ```
   {: screen}
+
 
   Tips:
   - To save on cost, you can set limits.
