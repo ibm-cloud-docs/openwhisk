@@ -288,5 +288,10 @@ v1.0.25 (23 November 2018)
 1.0.6 (30 January 2018)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
 
+1.0.33 (11 September 2019)
+* Fixed a bug that results in incorrect IBM Cloud Functions API host after region or IBM Cloud API host switch. 
+* Fixed a bug with the command `ibmcloud wsk namespace delete`. The bug sometimes reports success message when a namespace space delete command returns failure messages. 
+* Updated `ibmcloud wsk api` to support API create, delete, get, list in IAM-based namespaces. 
+* `bx wsk namespace get --properties` now displays CRNs and Service Ids. 
 
 
