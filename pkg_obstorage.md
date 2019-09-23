@@ -52,7 +52,7 @@ Review the following table for a list of {{site.data.keyword.openwhisk_short}} p
 The {{site.data.keyword.cos_full_notm}} trigger is a pre-installed {{site.data.keyword.openwhisk_short}} package that you can use to listen for changes to objects in a bucket. When a bucket change occurs, the trigger is fired. You can then create actions and rules to process object changes from the bucket. The trigger is available in the `us-east`, `us-south`, and `eu-gb` regions.
 
 **How does the trigger work?**</br>
-Once configured, the trigger listens for changes to a bucket and fires on successful change events. When you create the trigger, you can specify a parameter that filters trigger activations based on the bucket change event type, such as `write` events,`delete` events, or `all` events. You can also filter the trigger activations by object `prefix`, `suffix`, or both.
+Once configured, the trigger listens for changes to a bucket and fires on successful change events. When you create the trigger, you can specify a parameter that filters trigger activations based on the bucket change event type, such as `create` events,`delete` events, or `all` events. You can also filter the trigger activations by object `prefix`, `suffix`, or both.
 
 The trigger is fired for each successful bucket change event. Each object change in a batch request is handled individually. For example: A batch request to delete 200 hundred objects would result in 200 individual delete events and 200 trigger fires. For more information, see [Details and limits](#pkg_cos_limits).
 
@@ -115,7 +115,11 @@ You can assign the Notifications Manager role to all instances of {{site.data.ke
 ### 2. Determining your trigger parameters
 {: #pkg_obstorage_ev_trig_param}
 
-The {{site.data.keyword.cos_full_notm}} trigger includes multiple parameters that can be set to filter which bucket change events fire the trigger. For example, you can configure the trigger to fire on all bucket change events. Or, you can filter trigger fires based on the bucket change event type, such as `write`, `delete`, or `all`  events. You can also filter the trigger activations by object `prefix` or `suffix` or both. You can then create actions and rules to process object changes from the bucket.
+The {{site.data.keyword.cos_full_notm}} trigger includes multiple parameters that can be set to filter which bucket change events fire the trigger. For example, you can configure the trigger to fire on all bucket change events. Or, you can filter trigger fires based on the bucket change event type, such as `create`, `delete`, or `all`  events. You can also filter the trigger activations by object `prefix` or `suffix` or both. You can then create actions and rules to process object changes from the bucket. 
+
+When creating a trigger from the CLI, you can also specify an `endpoint` parameter  When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example:
+* (Default) Private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. 
+* Endpoint with the `https://` scheme: `https://s3.private.us-south.cloud-object-storage.appdomain.cloud`.
 
 For a complete list of available parameters, see [{{site.data.keyword.cos_full_notm}} trigger parameters](#pkg_obstorage_ev_ch_ref_trig) section.
 {: note}
@@ -138,7 +142,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the CLI. |
 |:-----------------|
-| <p><ol><li> Create a trigger named `cosTrigger`. You must specify the `--param bucket` flag. Replace the `bucket_name` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `event_types` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket. The following example command creates a trigger that fires on all object changes in the bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt; --param event_types &lt;event_type&gt; --param prefix &lt;prefix&gt; --param suffix &lt;suffix&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li> Create a trigger named `cosTrigger`. You must specify the `--param bucket` flag. Replace the `bucket_name` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `create` or `delete` events by specifying the `--param event_types` flag. If the `event_types` parameter is not specified, the trigger fires on all create, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket. The following example command creates a trigger that fires on all object changes in the bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt; --param event_types &lt;event_type&gt; --param prefix &lt;prefix&gt; --param suffix &lt;suffix&gt; --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
 {: caption="Creating a trigger with the CLI." caption-side="top"}
 {: #trigger-2}
 {: tab-title="CLI"}
@@ -239,10 +243,10 @@ The `/whisk.system/cos/changes` feed supports the following parameters.
 | Parameter | Description |
 | --- | --- |
 | `bucket` | (Required) The name of of your {{site.data.keyword.cos_full_notm}} bucket. This parameter is required to configure the `changes` feed. The bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace. The bucket must also be configured for regional resiliency. |
-| `endpoint` | (Optional). The `endpoint` parameter is the endpoint of your bucket. When not specified, this parameter is set to the private regional endpoint of your bucket. For more information, see the [Regional endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) table for {{site.data.keyword.cos_full_notm}}.  |
+| `endpoint` | (Optional). The `endpoint` parameter is the endpoint of your bucket. When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example regional `us-south` private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. Example regional `us-south` private endpoint with `https://` scheme: `https://s3.private.us-south.cloud-object-storage.appdomain.cloud`. For more information, see the [Regional endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) table for {{site.data.keyword.cos_full_notm}}.  |
 | `prefix` | (Optional). The `prefix` parameter is the prefix of the {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name prefix. |
 | `suffix` | (Optional). The `suffix` parameter is the suffix of your {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name suffix. |
-| `event_types` | (Optional). The `event_types` is the type of bucket change that fires the trigger. You can specify `write` or `delete` or `all`. The default value is `all`. |
+| `event_types` | (Optional). The `event_types` is the type of bucket change that fires the trigger. You can specify `create` or `delete` or `all`. The default value is `all`. |
 
 #### Data structure of an {{site.data.keyword.cos_full_notm}} trigger activation
 {: #pkg_obstorage_ev_data}
@@ -253,7 +257,7 @@ The content of the generated events has the following parameters:
 | --- | --- |
 | `bucket`| The name of the {{site.data.keyword.cos_full_notm}} bucket that was updated. |
 | `object_name` | The name of the object that was changed. |
-| `event_type` | The type of event that occured. Possible `event_type` values are: `"Object:Write"`, `"Object:Read"`, and `"Object:Delete"`. |
+| `event_type` | The type of event that occured. |
 | `endpoint` | The {{site.data.keyword.cos_full_notm}} endpoint used to connect to the {{site.data.keyword.cos_full_notm}} bucket. This is the endpoint value specified during trigger creation. |
 | `key` | The name of the changed object. |
 
