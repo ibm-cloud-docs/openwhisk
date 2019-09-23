@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-20"
+lastupdated: "2019-09-23"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -149,7 +149,7 @@ Create your IAM-based namespace by using the UI.
 
 You can update the name or description of the namespace from the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} UI.
 
-## Creating an IAM-based namespace with the CLI
+### Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
 
 You can create an IAM-managed namespace with the CLI.
@@ -427,42 +427,17 @@ You can set an access policy for a service ID by using the IAM UI.
 ### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
 {: #cli-set}
 
-Set an access policy for a service ID by using the CLI.
+Set an access policy for a service ID by using the CLI. 
 {: shortdesc}
 
+Copy the following command. Replace `<namespace_service_ID>` with the name of your {{site.data.keyword.openwhisk_short}} namespace. Replace `<IAM_role1,IAM_role2>` with he IAM roles you want to assign to your namespace. Replace `<other_service_name>` with the name of the {{site.data.keyword.IBM_notm}} service you want to {{site.data.keyword.openwhisk_short}} work with. Replace `<other_service_GUID>` with the GUID of the {{site.data.keyword.IBM_notm}} service instance.
+
 ```
-ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_type> --service-instance <other_service_GUID>
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_name> --service-instance <other_service_GUID>
 ```
 {: pre}
 
-</br>
-
-<table>
-    <thead>
-      <tr>
-        <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
-      </tr>
-    </thead>
-    <tbody>
-      <tr>
-        <td><code>&lt;namespace_service_ID&gt;</code></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><code>-n &lt;IAM_role1,IAM_role2&gt;</code></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><code>-n &lt;other_service_type&gt;</code></td>
-        <td></td>
-      </tr>
-      <tr>
-        <td><code>-n &lt;other_service_GUID&gt;</code></td>
-        <td></td>
-      </tr>
-    </tbody>
-  </table>
-</br>
+For more information, see the [`service-policy-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
 
 ## Next steps
 {: #namespaces_next}
