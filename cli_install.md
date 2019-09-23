@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-20"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -31,14 +31,14 @@ subcollection: cloud-functions
 {{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.cloud_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
 {:shortdesc}
 
-
 ## Setting up the {{site.data.keyword.cloud_notm}} CLI
 {: #cli_setup}
 
+Install the latest version of the IBM Cloud CLI.
+{:shortdesc}
+
 **Before you begin**
 You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
-
-### Installing the {{site.data.keyword.cloud_notm}} CLI
 
 1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
 
@@ -50,12 +50,14 @@ You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.
   {: pre}
 
 3. If you have more than one account, you are prompted to select which account to use. Follow the prompts or use the `target` command to select your {{site.data.keyword.cloud_notm}} account.
+
   ```
   ibmcloud target -c <account_id>
   ```
   {: pre}
 
 4. You must also specify a region. You can use the `target` command to target or change regions.
+  
   ```
   ibmcloud target -r <region>
   ```
@@ -68,30 +70,30 @@ You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.
   ```
   {: pre}
 
-**Example output**
+  **Example output**
 
-```
-Retrieving all resource groups under account <account_name> as email@ibm.com...
-OK
-Name      ID                                 Default Group   State   
-default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
-test      a8a12abbbd63b437cca6d58fb8b462ca7   false           ACTIVE
-```
-{: screen}
+  ```
+  Retrieving all resource groups under account <account_name> as email@ibm.com...
+  OK
+  Name      ID                                 Default Group   State   
+  default   a8a12accd63b437bbd6d58fb8b462ca7   true            ACTIVE
+  test      a8a12abbbd63b437cca6d58fb8b462ca7   false           ACTIVE
+  ```
+  {: screen}
 
-5. Target a resource group by running the following command.
-```
-ibmcloud target -g <resource_group>
-```
-{: pre}
+6. Target a resource group by running the following command.
 
+  ```
+  ibmcloud target -g <resource_group>
+  ```
+  {: pre}
 
-**Example output**
+  **Example output**
 
-```
-Targeted resource group <resource_group>
-```
-{: screen}
+  ```
+  Targeted resource group default
+  ```
+  {: screen}
 
 ## Setting up the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_plugin_setup}
@@ -123,6 +125,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   {: pre}
 
   **Output**
+
   ```
   Plugin Name          Version
   cloud-functions/wsk/functions/fn      1.0.32
@@ -130,10 +133,13 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   {: screen}
 
 3. After logging in, all {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+
   ```
   ibmcloud fn
   ```
   {: pre}
+
+For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ## Next steps
 {: #install_next}
@@ -143,10 +149,10 @@ To work with {{site.data.keyword.openwhisk_short}} entities, you must first crea
 {: #cli_proxy}
 
 The {{site.data.keyword.openwhisk_short}} CLI can be set  up to use an HTTPS proxy. To set up an HTTPS proxy, an environment variable that is called `HTTPS_PROXY` must be created. The variable must be set to the address of the HTTPS proxy, and its port by using the following format: `{PROXY IP}:{PROXY PORT}`.
+{:shortdesc}
 
 Changing the name of the `org` or `space` creates a new namespace based on the changed name. The entities in the old namespace are not visible in the new namespace and might be deleted.
 {: important}
-
 
 ## Migrating from OpenWhisk CLI to {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_migrate}
@@ -154,11 +160,11 @@ Changing the name of the `org` or `space` creates a new namespace based on the c
 You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interact with {{site.data.keyword.openwhisk_short}} entities. Although you can continue to use the stand-alone OpenWhisk CLI, it does not have the latest features that are supported by {{site.data.keyword.openwhisk_short}}, such as IAM-based namespaces and `service bind`.
 {: shortdesc}
 
-
 ### Command syntax
 {: #cli_syntax}
 
 All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI ](https://github.com/apache/incubator-openwhisk-cli){: external}. But, note the following differences.
+{:shortdesc}
 
 * The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
 * `wsk` commands are now run as `ibmcloud fn`.
@@ -171,46 +177,57 @@ For more information, see the [{{site.data.keyword.openwhisk_short}} CLI referen
 {: #cli_api_auth}
 
 With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After logging in, all commands begin with `ibmcloud fn`.
-
+{:shortdesc}
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
 
-Get the current IAM tokens. You must pass the IAM token in the Authorization header.
-```
-ibmcloud iam oauth-tokens
-```
+* Get the current IAM tokens. You must pass the IAM token in the Authorization header.
 
-Get the current Cloud Foundry API key by running the following command.
-```
-ibmcloud fn property get --auth
-```
-{: pre}
+  ```
+  ibmcloud iam oauth-tokens
+  ```
+  {: pre}
 
-Get the current API host by running the following command.
-```
-ibmcloud fn property get --apihost
-```
-{: pre}
+* Get the current Cloud Foundry API key by running the following command.
+  
+  ```
+  ibmcloud fn property get --auth
+  ```
+  {: pre}
+
+* Get the current API host by running the following command.
+
+  ```
+  ibmcloud fn property get --apihost
+  ```
+  {: pre}
 
 The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
 {: tip}
-
 
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
 The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
-
+{:shortdesc}
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}
 
 If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands using `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
+{:shortdesc}
 
 ## CLI version history
 {: #cli_versions}
 
 A historical record of versions that show highlights and bug fixes.
+{:shortdesc}
+
+v1.0.33 (11 September 2019)
+* Fixed a bug that results in the incorrect {{site.data.keyword.openwhisk_short}} API host being retained after switching API hosts or regions. 
+* Fixed a bug with the `ibmcloud fn namespace delete` command that reported a success message when deletion failed.
+* Updated the `ibmcloud fn api` command to support `create`, `delete`, `get`, and `list` for IAM-based namespaces.
+* Updated the `ibmcloud fn namespace get --properties` command to display CRNs and Service IDs.
 
 v1.0.30 (03 April 2019)
 * Improved the `service bind` handling of IAM and org and space-based services.
@@ -287,6 +304,3 @@ v1.0.25 (23 November 2018)
 
 1.0.6 (30 January 2018)
 * Fixed a bug with the command `ibmcloud wsk service bind` for actions inside a package.
-
-
-

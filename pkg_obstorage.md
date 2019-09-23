@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-20"
+lastupdated: "2019-09-23"
 
 keywords: object storage, bucket, package, functions
 
@@ -94,7 +94,7 @@ You can assign the Notifications Manager role to all instances of {{site.data.ke
 
 | Assigning the Notifications Manager role with the UI. |
 |:-----------------|
-| <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> In the **Source service** dropdown, select **{{site.data.keyword.openwhisk_short}}**. Then, in the **Source service instance** dropdown select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In the **Target service** dropdown, select **{{site.data.keyword.cos_full_notm}}**, then in the **Target service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
+| <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> In the **Source service** dropdown, select **Functions**. Then, in the **Source service instance** dropdown select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In the **Target service** dropdown, select **Cloud Object Storage**, then in the **Target service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
 {: caption="Assigning the Notifications Manager role with the UI." caption-side="top"}
 {: #nm-1}
 {: tab-title="UI"}
@@ -129,7 +129,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the UI. |
 |:-----------------|
-| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Connect Trigger** page](https://cloud.ibm.com/functions/create/trigger){: external}.</li><li> Click **{{site.data.keyword.cos_full_notm}}**.</li><li>  On the **New Trigger Configuration** page, give your trigger a name.</li><li> In the **COS Instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> In the **Bucket** dropdown, select your {{site.data.keyword.cos_full_notm}} bucket.</li><li> Select the **Object operations** that activates the trigger. Both **Write** and **Delete** are selected by default.</li><li> (Optional) Enter an **Object prefix** or **Object suffix** or both to activate the trigger only when specific objects are updated.</li><li> Click **Create** to create the trigger.</li></ol></p> |
+| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Connect Trigger** page](https://cloud.ibm.com/functions/create/trigger){: external}.</li><li> Click **Cloud Object Storage**.</li><li>  On the **New Trigger Configuration** page, give your trigger a name.</li><li> In the **COS Instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> In the **Bucket** dropdown, select your {{site.data.keyword.cos_full_notm}} bucket.</li><li> Select the **Object operations** that activates the trigger. Both **Write** and **Delete** are selected by default.</li><li> (Optional) Enter an **Object prefix** or **Object suffix** or both to activate the trigger only when specific objects are updated.</li><li> Click **Create** to create the trigger.</li></ol></p> |
 {: caption="Creating a trigger with the UI." caption-side="top"}
 {: #trigger-1}
 {: tab-title="UI"}
@@ -169,7 +169,7 @@ function main(data) {
 
 | Creating an action with the UI. |
 |:-----------------|
-| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Triggers** page](https://cloud.ibm.com/functions/triggers){: external}.</li><li> Click the trigger you created.</li><li> On the **Connected Actions** page, click the **Add** button.</li><li> On **Add Action** page, in the **Create New** pane, give your action a name.</li><li> In the **Runtime** dropdown, select `Node.js 10`.</li><li> Click **Create & Add**.</li><li> On the **Connected Actions** page, click the action that you created.</li><li> In the **Code** panel on the **Action** page, replace the `Hello World` example code with code from your `cosChange.js` file.</li><li> Click **Save**.</li></ol></p> |
+| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Triggers** page](https://cloud.ibm.com/functions/triggers){: external}.</li><li> Click the trigger you created.</li><li> On the **Connected Actions** page, click the **Add** button.</li><li> On **Add Action** page, in the **Create New** pane, give your action a name.</li><li> In the **Runtime** dropdown, select `Node.js 10`.</li><li> Click **Create & Add**.</li><li> On the **Connected Actions** page, click the action that you created.</li><li> In the **Code** panel on the **Action** page, replace the `Hello World` example code with the code from your `cosChange.js` file.</li><li> Click **Save**.</li></ol></p> |
 {: caption="Creating an action with the UI." caption-side="top"}
 {: #action-1}
 {: tab-title="UI"}
@@ -178,7 +178,7 @@ function main(data) {
 
 | Creating an action with the CLI. |
 |:-----------------|
-| <p><ol><li>Create an action called `cosChange` by using the `cosChange.js` code.<p><pre class="pre"><code>ibmcloud fn action create cosChange &lt;filepath&gt;/cosChange.js</code></pre></p></li><li> Create a rule called `cosRule` to connect the `cosChange` action to the `cosTrigger` trigger.<p><pre class="pre"><code>ibmcloud fn rule create cosRule cosTrigger cosChange</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li>Create an action called `cosChange` by using the `cosChange.js` code.<p><pre class="pre"><code>ibmcloud fn action create cosChange &lt;filepath&gt;/cosChange.js</code></pre></p></li><li> Create a rule called `cosRule` to connect the `cosChange` action to the `cosTrigger` trigger.<p><pre class="pre"><code>ibmcloud fn rule create cosRule cosTrigger cosChange</code></pre></p></li></ol></p> |
 {: caption="Creating an action with the CLI." caption-side="top"}
 {: #action-2}
 {: tab-title="CLI"}

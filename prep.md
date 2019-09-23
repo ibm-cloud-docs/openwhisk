@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-02"
+lastupdated: "2019-09-20"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -53,80 +53,6 @@ Each programming language has specific requirements to run, but most have the fo
 
     Code compilation is not required, but if possible for your runtime, compiling your code in advance can improve performance.
     {: tip}
-
-## Preparing apps in Docker images
-{: #prep_docker}
-
-With {{site.data.keyword.openwhisk_short}}, you can write your app in any language and package it as a Docker image.
-{: shortdesc}
-
-You can use images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
-{: important}
-
-### Packaging code in Docker images
-{: #prep_docker_pkg}
-
-Your code is compiled into an executable and embedded into a Docker image. The executable interacts with the system by taking input from `stdin` and replying through `stdout`.
-{: shortdesc}
-
-**Before you begin**
-- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
-- [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
-
-To package your app, complete the following steps.
-
-To package your code as a Docker image, run the following command.
-1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
-  ```
-  ibmcloud fn sdk install docker
-  ```
-  {: pre}
-
-2. Set up your code in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
-  ```
-  cat dockerSkeleton/example.c
-  ```
-  {: pre}
-
-  **Example output**
-  ```c
-  #include <stdio.h>
-  int main(int argc, char *argv[]) {
-      printf("This is an example log message from an arbitrary C program!\n");
-      printf("{ \"msg\": \"Hello from arbitrary C program!\", \"args\": %s }",
-             (argc == 1) ? "undefined" : argv[1]);
-  }
-  ```
-  {: codeblock}
-
-3. (Optional) Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
-  * Your code must be located inside the container at `/action/exec`.
-  * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
-  * The program can log to `stdout` or `stderr`.
-  * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object, which represents the result of the action.
-  For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
-
-4. Build the Docker image and upload it using a supplied script.
-    1. Log in to Docker.
-        ```
-        docker login -u <username> -p <password>
-        ```
-        {: pre}
-
-    2. Navigate to the `dockerSkeleton` directory.
-        ```
-        cd dockerSkeleton
-        ```
-        {: pre}
-
-    3. Run the script.
-        ```
-        ./buildAndPush.sh <username>/blackboxdemo
-        ```
-        {: pre}
-
-
 
 
 ## Preparing JavaScript apps
@@ -398,6 +324,123 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 
 ### Packaging JavaScript code as NPM files
+
+## Packaging Python apps
+{: #prep_python}
+
+
+### Structuring Python code
+{: #prep_python_struct}
+
+- Python apps must consume a dictionary and produce a dictionary.
+- The expected name for the entry point method is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
+{: shortdesc}
+
+**Example**
+```python
+def main(args):
+	name = args.get("name", "stranger")
+	greeting = "Hello " + name + "!"
+	print(greeting)
+	return {"greeting": greeting}
+```
+
+### Packaging Python code in .zip files
+{: #prep_python_pkg}
+
+Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
+
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+
+To package your app as .zip, run the following command. Replace `<action_name>` with the name of your action.
+
+```bash
+zip -r <action_name>.zip __main__.py helper.py
+```
+{: pre}
+
+You can use then use the .zip file to create an action. Replace `<file_path>` with the file path to your .zip file.
+```
+ibmcloud fn action create helloPython <file_path>/<action_name>.zip
+```
+{: pre}
+
+
+### Packaging Python code with a virtual environment in .zip files
+
+## Preparing apps in Docker images
+{: #prep_docker}
+
+With {{site.data.keyword.openwhisk_short}}, you can write your app in any language and package it as a Docker image.
+{: shortdesc}
+
+You can use images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
+{: important}
+
+### Packaging code in Docker images
+{: #prep_docker_pkg}
+
+Your code is compiled into an executable and embedded into a Docker image. The executable interacts with the system by taking input from `stdin` and replying through `stdout`.
+{: shortdesc}
+
+**Before you begin**
+- You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
+- [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
+
+To package your app, complete the following steps.
+
+To package your code as a Docker image, run the following command.
+1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
+  ```
+  ibmcloud fn sdk install docker
+  ```
+  {: pre}
+
+2. Set up your code in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
+  ```
+  cat dockerSkeleton/example.c
+  ```
+  {: pre}
+
+  **Example output**
+  ```c
+  #include <stdio.h>
+  int main(int argc, char *argv[]) {
+      printf("This is an example log message from an arbitrary C program!\n");
+      printf("{ \"msg\": \"Hello from arbitrary C program!\", \"args\": %s }",
+             (argc == 1) ? "undefined" : argv[1]);
+  }
+  ```
+  {: codeblock}
+
+3. (Optional) Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
+  * Your code must be located inside the container at `/action/exec`.
+  * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
+  * The program can log to `stdout` or `stderr`.
+  * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object, which represents the result of the action.
+  For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
+
+4. Build the Docker image and upload it using a supplied script.
+    1. Log in to Docker.
+        ```
+        docker login -u <username> -p <password>
+        ```
+        {: pre}
+
+    2. Navigate to the `dockerSkeleton` directory.
+        ```
+        cd dockerSkeleton
+        ```
+        {: pre}
+
+    3. Run the script.
+        ```
+        ./buildAndPush.sh <username>/blackboxdemo
+        ```
+        {: pre}
+
+
 {: #prep_js_npm}
 
 As an alternative to writing all your action code in a single JavaScript source file, you can package your code as a `npm` package in a .zip file.
@@ -768,48 +811,7 @@ Package your app.
 
 
 
-## Packaging Python apps
-{: #prep_python}
 
-
-### Structuring Python code
-{: #prep_python_struct}
-
-- Python apps must consume a dictionary and produce a dictionary.
-- The expected name for the entry point method is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
-{: shortdesc}
-
-**Example**
-```python
-def main(args):
-	name = args.get("name", "stranger")
-	greeting = "Hello " + name + "!"
-	print(greeting)
-	return {"greeting": greeting}
-```
-
-### Packaging Python code in .zip files
-{: #prep_python_pkg}
-
-Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
-
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
-
-To package your app as .zip, run the following command. Replace `<action_name>` with the name of your action.
-
-```bash
-zip -r <action_name>.zip __main__.py helper.py
-```
-{: pre}
-
-You can use then use the .zip file to create an action. Replace `<file_path>` with the file path to your .zip file.
-```
-ibmcloud fn action create helloPython <file_path>/<action_name>.zip
-```
-{: pre}
-
-
-### Packaging Python code with a virtual environment in .zip files
 {: #prep_python_virtenv}
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
