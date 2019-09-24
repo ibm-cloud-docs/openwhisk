@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-23"
+lastupdated: "2019-09-24"
 
 keywords: object storage, bucket, package, functions
 
@@ -133,7 +133,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the UI. |
 |:-----------------|
-| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Connect Trigger** page](https://cloud.ibm.com/functions/create/trigger){: external}.</li><li> Click **Cloud Object Storage**.</li><li>  On the **New Trigger Configuration** page, give your trigger a name.</li><li> In the **COS Instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> In the **Bucket** dropdown, select your {{site.data.keyword.cos_full_notm}} bucket.</li><li> Select the **Object operations** that activates the trigger. Both **Write** and **Delete** are selected by default.</li><li> (Optional) Enter an **Object prefix** or **Object suffix** or both to activate the trigger only when specific objects are updated.</li><li> Click **Create** to create the trigger.</li></ol></p> |
+| <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Triggers** page](https://cloud.ibm.com/functions/triggers){: external}.</li><li>With the namespace dropdown, select there IAM-enabled namespace that you want to use to create the trigger. Note: Your namespace must be in the same region as your bucket.</li><li>After you select a namespace, click the **Create** button.</li><li> On the **Connect Trigger** page, click **Cloud Object Storage**.</li><li> On the **New Trigger Configuration** page, give your trigger a name.</li><li> In the **COS Instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> In the **Bucket** dropdown, select your {{site.data.keyword.cos_full_notm}} bucket.</li><li> Select the **Object operations** that activates the trigger. Both **Write** and **Delete** are selected by default.</li><li> (Optional) Enter an **Object prefix** or **Object suffix** or both to activate the trigger only when specific objects are updated.</li><li> Click **Create** to create the trigger.</li></ol></p> |
 {: caption="Creating a trigger with the UI." caption-side="top"}
 {: #trigger-1}
 {: tab-title="UI"}
@@ -142,7 +142,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the CLI. |
 |:-----------------|
-| <p><ol><li> Create a trigger named `cosTrigger`. You must specify the `--param bucket` flag. Replace the `bucket_name` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `create` or `delete` events by specifying the `--param event_types` flag. If the `event_types` parameter is not specified, the trigger fires on all create, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket. The following example command creates a trigger that fires on all object changes in the bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt; --param event_types &lt;event_type&gt; --param prefix &lt;prefix&gt; --param suffix &lt;suffix&gt; --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li> Create a trigger named `cosTrigger`. You must specify the `--param bucket` flag. Replace the `bucket_name` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `create` or `delete` events by specifying the `--param event_types` flag. If the `event_types` parameter is not specified, the trigger fires on all create, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket. The following example command creates a trigger that fires on all object changes in the bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt; --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt; --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
 {: caption="Creating a trigger with the CLI." caption-side="top"}
 {: #trigger-2}
 {: tab-title="CLI"}

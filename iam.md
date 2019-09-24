@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-20"
+lastupdated: "2019-09-24"
 
 keywords: access policies, iam, roles, functions
 
@@ -42,7 +42,7 @@ In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.clo
 {: #iam_namespace_policies}
 In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the UI](https://cloud.ibm.com/iam/overview) or the CLI. 
 
-The minimum Platform level access is `Viewer`. The minimum Service level access is `Reader`. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles) sections below.
+The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles) sections below.
 
 For more information, see [Setting policies through the CLI](#cli-pol-set).
 
@@ -88,7 +88,7 @@ For more information about how to assign, edit, review, or delete resource acces
     </tr>
     <tr>
       <td>Administrator</td>
-      <td>Users can create namespaces. The Administrator role is required to perform the `service id` and `apikey lock` operations during creation of the service.</td>
+      <td>Users can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
     </tr>
   </tbody>
 </table>
@@ -101,7 +101,7 @@ For more information about how to assign, edit, review, or delete resource acces
 Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
 {: shortdesc}
 
-Permissions build on each other. For example, any operation that the `Writer` role is able to perform, the `Manager` role also can. However, the `Manager` role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
+Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
 
 To see which roles are required to perform each operation, check out the following table:
 

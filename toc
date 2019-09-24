@@ -41,10 +41,7 @@ IBM Cloud Functions
         
 
     test.md
-    
-    {: .topicgroup}
-    Securing serverless apps
-        iam.md
+    iam.md
 
     {: .topicgroup}
     Integrating serverless apps
