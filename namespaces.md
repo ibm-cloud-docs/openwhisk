@@ -35,7 +35,7 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
-The fully qualified name of an entity is `/<namespace_Id>/<package_name>/<entity_name>`.
+The fully qualified name of an entity is `/<namespace_ID>/<package_name>/<entity_name>`.
 
 ### What happens when I create a namespace?
 
@@ -438,6 +438,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
 {: pre}
 
 For more information, see the [`service-policy-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
+{: note}
 
 ## Next steps
 {: #namespaces_next}
