@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-23"
+lastupdated: "2019-09-24"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -375,7 +375,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 
 | Targeting an IAM-enabled namespace. |
 |:-----------------|
-| <p>Copy the following command to target an IAM-enabled namespace. Replace `<namespace_name>` with the name of your namespace.<pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;<code></p> |
+| <p>Copy the following command to target an IAM-enabled namespace. Replace `<namespace_name>` with the name of your namespace.<pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</code></p> |
 {: caption="Targeting an IAM-enabled namespace." caption-side="top"}
 {: #namespaces-1}
 {: tab-title="IAM"}
