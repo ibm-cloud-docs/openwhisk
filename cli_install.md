@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-20"
+lastupdated: "2019-09-26"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -222,6 +222,9 @@ If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all comm
 
 A historical record of versions that show highlights and bug fixes.
 {:shortdesc}
+
+v1.0.34 (24 September 2019)
+* Fixed a bug with the `fn property get` command that displayed incorrect authentication key and default namespace after switching API hosts or regions.
 
 v1.0.33 (11 September 2019)
 * Fixed a bug that results in the incorrect {{site.data.keyword.openwhisk_short}} API host being retained after switching API hosts or regions. 

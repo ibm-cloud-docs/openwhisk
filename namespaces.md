@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-24"
+lastupdated: "2019-09-27"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -129,6 +129,11 @@ ibmcloud fn namespace get <namespace_name> or <namespace_id>
 You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
 
+If you are creating a namespace in a resource group of an account that is not your own, you must have the Administrator Platform access role for Cloud Functions. Account owners have the Administrator role by default. For more information see, [Platform management roles](/docs/openwhisk?topic=cloud-functions-iam#iam_platform_roles).
+{: note}
+
+If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#how-do-i-set-iam-policies-so-that-others-can-create-namespaces-in-my-account-)
+
 ### Creating an IAM-based namespace from the UI
 {: #create_iam_ui}
 
@@ -136,15 +141,10 @@ Create your IAM-based namespace by using the UI.
 {: shortdesc}
 
 1. In the [{{site.data.keyword.openwhisk_short}} UI](https://cloud.ibm.com/openwhisk){: external}, click the namespace drop-down menu.
-
 2. Click **Create Namespace**.
-
 3. Enter a display name for the namespace and a short description, such as the actions or packages that you plan to create in this namespace.
-
 4. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource.
-
 5. Click **Create**.
-
 6. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions Namespaces**.
 
 You can update the name or description of the namespace from the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} UI.
@@ -382,7 +382,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
-| Targeting a Clound Foundry namespace |
+| Targeting a Cloud Foundry namespace |
 |:-----------------|
 | <p>Copy the following command to target a Cloud Foundry namespace. Replace `<org>` and `<space>` with the names of your `org` and `space`.<pre class="pre"><code>ibmcloud target --cf -o &lt;org&gt; -s &lt;space&gt;</code></p> |
 {: caption="Targeting a Cloud Foundry namespace." caption-side="top"}

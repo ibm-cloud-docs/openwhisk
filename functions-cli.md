@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-19"
+lastupdated: "2019-09-27"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -448,7 +448,7 @@ ibmcloud fn action update hello folder/hello_world.js
 ## Activation commands
 {: #cli_activation}
 
-Get metadata, list IDs, find logs, and list resutls for specific activations.
+Get metadata, list IDs, find logs, and list results for specific activations.
 {: shortdec} 
 
 To see CLI help for the `activation` command, run `ibmcloud fn activation`.
@@ -1039,7 +1039,7 @@ Get the entities for or the metadata information from a Cloud Foundry or IAM nam
 {: shortdec}
 
 ```
-ibmcloud fn namespace list NAMESPACE [--auth KEY] [--name-sort] [--properties] 
+ibmcloud fn namespace get NAMESPACE [--auth KEY] [--name-sort] [--properties] 
 ```
 {: pre}
 
@@ -1788,7 +1788,7 @@ To see CLI help for the `service` command, run `ibmcloud fn service`.
 {: tip}
 
 If you receive the error `Unable to refresh user access token: CloudFoundry API endpoint is not set` when running the `service` command, run `ibmcloud target --cf`.
-{}: note}
+{: note}
 
 ### `ibmcloud fn service bind`
 {: #cli_service_bind}

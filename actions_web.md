@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-11"
+lastupdated: "2019-09-27"
 
 keywords: web actions, serverless, functions
 
@@ -80,7 +80,7 @@ Web actions support the following features:
 
 | Feature | Description |
 | --- | --- |
-| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the desired content type is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http` the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
+| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the content type that you want is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http` the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
 | [Query and body parameters as input](#query_test) | The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action. |
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
 | [Activations using multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |

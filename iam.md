@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-24"
+lastupdated: "2019-09-26"
 
 keywords: access policies, iam, roles, functions
 
@@ -88,7 +88,7 @@ For more information about how to assign, edit, review, or delete resource acces
     </tr>
     <tr>
       <td>Administrator</td>
-      <td>Users can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
+      <td>Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
     </tr>
   </tbody>
 </table>

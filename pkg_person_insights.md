@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-08"
+lastupdated: "2019-09-26"
 
 keywords: cognitive, serverless, functions
 
@@ -24,7 +24,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # {{site.data.keyword.personalityinsightsshort}}
 {: #pkg_person_insights}
 
@@ -32,6 +31,7 @@ The installable {{site.data.keyword.personalityinsightsfull}} service enables ap
 {: shortdesc}
 
 The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
+
 * For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/services/personality-insights?topic=personality-insights-models).
 * For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/services/personality-insights?topic=personality-insights-preferences).
 
@@ -64,9 +64,12 @@ After you have a {{site.data.keyword.personalityinsightsshort}} service instance
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #personalityinsights_cli}
 
+Install the {{site.data.keyword.personalityinsightsshort}} package from the CLI.
+{: shortdesc}
+
 **Before you begin**
 
-[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+Install the [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 To install the {{site.data.keyword.personalityinsightsshort}} package:
 
@@ -96,18 +99,21 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
     {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.personalityinsightsshort}} instance you created to the package.
+
     ```
     ibmcloud fn service bind personality_insights personality-insights-v3
     ```
     {: pre}
 
     Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+
     ```
     ibmcloud fn service bind personality-insights personality-insights-v3
     ```
     {: pre}
 
     **Example output**
+
     ```
     Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
     ```
@@ -142,9 +148,12 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} UI
 {: #personalityinsights_ui}
 
+Install the {{site.data.keyword.personalityinsightsshort}} package from the CLI.
+{: shortdesc}
+
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. By using the namespace drop-down menu, select the namespace that you want to install the package into. 
+2. By using the namespace drop-down menu, select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 
@@ -154,9 +163,10 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 6. Click **Install**.
 
-7. Once the package is installed you are redirected to the actions page and can search for your new package, which is named `personality-insights-v3`.
+7. After the package is installed you are redirected to the actions page and can search for your new package, which is named `personality-insights-v3`.
 
 8. To use the actions in the `personality-insights-v3` package, you must bind service credentials to the actions.
+
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions.
   * To bind service credentials to individual actions, complete the following steps in the UI.
 
@@ -171,6 +181,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 {: #usage_insights}
 
 To use the actions in this package, run commands in the following format:
+{: shortdesc}
 
 ```
 ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param name> <param>
@@ -180,10 +191,8 @@ ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param nam
 All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning){: external}.
 
 This package's functions use the current version of {{site.data.keyword.personalityinsightsshort}}, 2017-10-13. Try out the `profile` action.
+
 ```
 ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}
-
-
-
