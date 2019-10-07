@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-07"
 
 keywords: github, actions, trigger, event, functions
 
@@ -28,11 +28,11 @@ subcollection: cloud-functions
 # GitHub
 {: #pkg_github}
 
-This pre-installed package is not available in the Tokyo region.
-{: tip}
-
-The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs ](https://developer.github.com/){: external}.
+The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/){: external}.
 {: shortdesc}
+
+This preinstalled package is not available in the Tokyo region.  This package does not work with Enterprise GitHub repositories.
+{: tip}
 
 The GitHub package includes the following entities.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-27"
+lastupdated: "2019-10-07"
 
 keywords: web actions, serverless, functions
 
@@ -24,24 +24,23 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Creating web actions
 {: #actions_web}
 
-When you create a web action, the result is a URL that can be used to trigger the action from any web app. 
+When you create a web action, the result is a URL that can be used to trigger the action from any web app.
 {: shortdesc}
 
 ## Why use web actions instead of standard actions?
 
 ### 1. Run web actions anonymously
 
-Web action activations are associated with the user that created the action, rather than the caller of the action. Usually, for API calls to apps like Github, you would include a username and token with the API call for either a specific user or a functional ID. When you use a web action, those kinds of credentials are not required. A web action is accessible through a REST interface without the need for credentials.
+Web action activations are associated with the user that created the action, rather than the caller of the action. Usually, for API calls to apps such as GitHub, you would include a username and token with the API call for either a specific user or a functional ID. When you use a web action, those kinds of credentials are not required. A web action is accessible through a REST interface without the need for credentials.
 
 Though you are not required to use credentials with web actions, you can implement your own authentication and authorization, or OAuth flow. To configure a web action with credentials, see [Securing web actions](#actions_web_secure).
 
 ### 2. Use any type of HTTP request
 
-By default, actions only accept `POST` requests, but web actions can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
+By default, actions accept only `POST` requests, but web actions can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
 
 ### 3. Trigger a web action from anywhere
 
@@ -63,13 +62,15 @@ Because you can invoke a web action from anywhere, you are not required to creat
 
 Web actions can be invoked without authentication and can be used to implement HTTP handlers that respond with `headers`, `statusCode`, and `body` content of different types.
 
-Web actions must return a JSON object. However, the controller treats a web action differently if its result includes one or more of the following as top-level [JSON properties](#web_action_properties).
+Web actions must return a JSON object. However, the controller treats a web action differently if its result includes one or more of the properties as top-level [JSON properties](#web_action_properties).
 {: shortdesc}
 
 ## Packaging code for web actions
-{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create). 
+{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create).
+{: shortdesc}
 
-You can create a web action from multiple app files by packaging them as a .zip archive. You can also create a web action by using Docker images. 
+You can create a web action from multiple app files by packaging them as a .zip archive. You can also create a web action by using Docker images.
+
 * To learn how to package your code for actions, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 * To see more examples of how you can create actions, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
 
@@ -77,19 +78,21 @@ You can create a web action from multiple app files by packaging them as a .zip 
 {: #actions_web_extra}
 
 Web actions support the following features:
+{: shortdesc}
 
 | Feature | Description |
 | --- | --- |
-| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the content type that you want is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http` the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
+| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the content type that you want is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http`, the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
 | [Query and body parameters as input](#query_test) | The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action. |
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
-| [Activations using multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
+| [Activations that use multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
 | [Non-JSON body and raw HTTP entity handling](#actions_web_raw_enable) | A web action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary file, or base64 encoded string otherwise). |
 
 ## Creating a web action
 {: #actions_web_example}
 
-To create a web action: 
+To create a web action:
+{: shortdesc}
 
 1. Save the following JavaScript code as `hello.js`.
 
@@ -105,6 +108,7 @@ To create a web action:
   {: codeblock}
 
 2. Create the `demo` package. The package name is `default` unless explicitly specified.
+  
   ```
   ibmcloud fn package create demo
   ```
@@ -139,9 +143,9 @@ To create a web action:
   b. The action code returns the following dictionary.
     ```
     {body: `<html><body><h3>${msg}</h3></body></html>`}
-    ``` 
+    ```
     {: screen}
-    
+  
   You can also test the action by returning just the `body` property by using the following command:
   {: #projecting_fields}
 
@@ -159,13 +163,16 @@ To create a web action:
     {: screen}
 
 5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
-  * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser. 
+  
+  * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane` in your browser.
+  
   * Testing the action by using a cURL command.
 
     ```
     curl https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
     ```
     {: pre}
+  
   * Testing the action by using a `wget` command.  
     ```
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello?name=Jane
@@ -178,7 +185,6 @@ To create a web action:
   ```
   {: screen}
 
-
 **Next steps**
 
 Add the URL for your `hello` web action to your web app and test it there.
@@ -186,9 +192,10 @@ Add the URL for your `hello` web action to your web app and test it there.
 ### Web action JSON properties
 {: #web_action_properties}
 
-The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. If your `Content-Type` is not `application/json`. you must specify a `Content-Type` in the `headers` of your action code.
+The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. If your `Content-Type` is not `application/json`, you must specify a `Content-Type` in the `headers` of your action code.
+{: shortdesc}
 
-If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for actions is reached, the response fails. If you know your action result is larger than 5 MB, then set up an [object store](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
+If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for actions is reached, the response fails. If you know that your action result is larger than five MB, then set up an [object store](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
 | JSON property | Description |
 | --- | --- |
@@ -196,30 +203,31 @@ If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for act
 | `statusCode` | A valid HTTP status code. If body content is present, the default is `200 OK`. If no body content is present, the default is `204 No Content`. |
 | `body` | A string that is either plain text, a JSON object or array, or a base64 encoded string for binary data. The body is considered empty if it is `null`, the empty string `""`, or undefined. The default is an empty body. |
 
-The [controller](/docs/openwhisk?topic=cloud-functions-about#about_controller) passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
+The [controller](/docs/openwhisk?topic=cloud-functions-about#about_controller) passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string by using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
 
 The owner of the web action owns all of the activations records, and incurs the cost of running the action in the system regardless of how the action was invoked.
 {: note}
 
 #### Protected parameters
-Action parameters are protected and can only be changed by updating your action. Parameters are automatically finalized to enable web actions.
+Action parameters are protected and can be changed only by updating your action. Parameters are automatically finalized to enable web actions.
+{: shortdesc}
 
 ```
 ibmcloud fn action create /<namespace>/demo/hello hello.js --parameter name Jane --web true
 ```
 {: pre}
 
-
 The result of these changes is that the `name` is bound to `Jane` and cannot be overridden by query or body parameters because of the final annotation. This design secures the action against query or body parameters that try to change this value whether by accident or intentionally.
 
 ### Performing an HTTP redirect by using a web action
 {: #http_redirect}
 You might use this feature in a web application to redirect a user to the new version of your site.
+{: shortdesc}
 
 **Before you begin** 
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-To create a web action that performs an HTTP redirect:
+This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/){: external}. To create a web action that performs an HTTP redirect:
 
 1. Save the code as `hello.js`.
 
@@ -236,13 +244,13 @@ To create a web action that performs an HTTP redirect:
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
   ```
-  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
   {: pre}
 
 3. Test the `hello` web action. Replace the `<apihost>` and `<namespace>` variables. You can test the web action by either:
 
-  * Opening the URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser. 
+  * Opening the URL `https://<apihost>/api/v1/web/<namespace>/demo/hello` in your browser.
   * Running the following cURL command:
     ```
     curl https://<apihost>/api/v1/web/<namespace>/demo/hello
@@ -254,13 +262,10 @@ To create a web action that performs an HTTP redirect:
     ```
     {: pre}
 
-  **Example result** 
-  
-  This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/){: external}.
-
 ### Setting cookies by using a web action
 {: #multiple_cookie}
-You might use this feature in a web application to store a JSON web token as a session cookie after a successful login.
+You might use this feature in a web application to store a JSON Web Token as a session cookie after a successful login.
+{: shortdesc}
 
 To create a web action that sets multiple cookies:
 
@@ -290,8 +295,8 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
   ibmcloud fn action update demo/hello <filepath>/hello.js --web true
   ```
   {: pre}
-    
-3. Clear your browser's cookies before testing the action.
+  
+3. Clear your browser's cookies before you test the action.
 
 4. Test the `hello` web action by opening the URL in your browser. Replace the `<apihost>` and `<namespace>` variables and open `https://<apihost>/api/v1/web/<namespace>/demo/hello`. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
 
@@ -299,16 +304,16 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 The cookies `UserID=Jane` and `SessionID=asdfgh123456` are set in your browser's developer tools.
 
-
 ### Returning an image by using a web action
 {: #return_image}
-You might use this feature in a web application to return the image of a country flag based on user locale.
+Images that are returned through web actions are required to be base64 encoded strings. You might use this feature in a web application to return the image of a country flag based on user locale.
+{: shortdesc}
 
 **Before you begin** 
 
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-To create a web action that returns an `image/png`: 
+To create a web action that returns an `image/png`:
 
 1. Save the code as `hello.js`. Replace `<base64_encoded_string>` with a base64 encoded string from an image file.
 
@@ -338,16 +343,16 @@ To create a web action that returns an `image/png`:
     ```
     {: pre}
   * Running the following `wget` command.
+  
     ```
     wget https://<apihost>/api/v1/web/<namespace>/demo/hello
     ```
     {: pre}
 
-
-
 ### Returning JSON by using a web action
 {: #return_json}
-You might use this feature in a web application to return an JSON object of user IP information.
+You might use this feature in a web application to return a JSON object of user IP information.
+{: shortdesc}
 
 **Before you begin** 
 
@@ -356,7 +361,8 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 To create a web action that returns `application/json`:
 
 1. Save the code as `hello.js`.
-  ```javascript
+  
+   ```javascript
   function main(params) {
       return {
           statusCode: 200,
@@ -414,11 +420,11 @@ To create a web action that returns `application/json`:
     ```
     {: screen}
 
-
 ### HTTP Context
 {: #actions_web_context}
 
 All web actions, when invoked, receive HTTP request details as input parameters to the action argument.
+{: shortdesc}
 
 | HTTP parameter | Type | Description |
 | --- | --- | --- |
@@ -468,7 +474,7 @@ To alter the response of a web action:
 3. Test the action in your browser or by using a cURL command. Replace the `<apihost>` and `<namespace>` variables.
 
   a. Return JSON by either:
-    * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello.json` in your web browser. 
+    * Opening `https://<apihost>/api/v1/web/<namespace>/demo/hello.json` in your web browser.
     * Running the following cURL command.
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json
@@ -576,7 +582,7 @@ To alter the response of a web action:
         curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
         ```
         {: pre}
-      
+
     * Running the following `wget` command.
         ```
         wget https://<apihost>/api/v1/web/{namespace/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
@@ -628,6 +634,7 @@ To alter the response of a web action:
     {: note}
 
   f. You can set the `Content-Type` by either.
+
   * Running the following cURL command.  
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
@@ -664,13 +671,15 @@ To alter the response of a web action:
 ## Securing web actions
 {: #actions_web_secure}
 
-**Before you begin** 
+By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)
+{: shortdesc}
+
+**Before you begin**
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)
-
 You can set the `require-whisk-auth` annotation by either:
-  - Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action will authenticate the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
+
+  - Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
 
   - Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
@@ -689,6 +698,7 @@ To test a secure web action:
   {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code and set the `--web secure` flag to `true`.
+  
   ```bash
   ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true
   ```
@@ -748,7 +758,7 @@ To test a secure web action:
 
 To test that the authentication is working:
 
-1. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test will result in an error. You can get the URL of your web action by running `ibmcloud fn action get hello --url`. You can use the URL to test the web action by either:
+1. Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter to verify that authentication is required. This test results in an error. You can get the URL of your web action by running `ibmcloud fn action get hello --url`. You can use the URL to test the web action by either:
 
   * Testing the web action by using a cURL command.
       ```bash
@@ -775,7 +785,7 @@ To test that the authentication is working:
     The invocation fails because the `X-Require-Whisk-Auth` value was not provided.
     {: note}
 
-2. Now, test the `hello` web action and provide the randomly generated `X-Require-Whisk-Auth` value. Replace the `<apihost>` and `<namespace>` values. Replace the `<my-secret>` value with the randomly generated number you created in step 3. You can test the web action by either:
+2. Now, test the `hello` web action and provide the randomly generated `X-Require-Whisk-Auth` value. Replace the `<apihost>` and `<namespace>` values. Replace the `<my-secret>` value with the randomly generated number that you created in step 3. You can test the web action by either:
   * Testing the web action by using a cURL command.
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
@@ -799,7 +809,7 @@ To test that the authentication is working:
 
 To test a web action by using a custom `require-whisk-auth` value:
 
-1. Update your `hello` web action with your own `require-whisk-auth` value. Then try testing your web action by specifying the `X-Require-Whisk-Auth` value during invocation.
+1. Update your `hello` web action with your own `require-whisk-auth` value. Then, try testing your web action by specifying the `X-Require-Whisk-Auth` value during invocation.
 
   a. Set a `require-whisk-auth` value where `<my-secret>` is your case-sensitive authentication token.
     ```bash
@@ -808,6 +818,7 @@ To test a web action by using a custom `require-whisk-auth` value:
     {: pre}
   
   b. Test the web action and include your `<my-secret>` value. You can test the web action by either:
+
   * Testing the web action by using a cURL command.
       ```bash
       curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
@@ -818,7 +829,6 @@ To test a web action by using a custom `require-whisk-auth` value:
       wget https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
-
 
 ## Raw HTTP handling
 {: #actions_web_raw}
@@ -856,7 +866,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ### Enabling raw HTTP handling
 {: #actions_web_raw_enable}
 
-You can create a raw HTTP web actions by setting the `--web` to `raw`.
+You can create a raw HTTP web action by setting the `--web` to `raw`.
 ```bash
 ibmcloud fn action create demo/hello /<filepath>/hello.js --web raw
 ```
@@ -866,6 +876,7 @@ ibmcloud fn action create demo/hello /<filepath>/hello.js --web raw
 {: #actions_web_decode}
 
 When raw HTTP content is processed, the `__ow_body` content is encoded in Base64 when the request `Content-Type` is the binary type. The following functions demonstrate how to decode the body content in Node, Python, and Swift.
+{: shortdesc}
 
 1. Save the sample code in your preferred language to a file called `decode.<ext>`. Replace `<ext>` with the file extension of the sample code of your preferred language.
 
@@ -949,7 +960,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
 ## Options requests
 {: #actions_web_options}
 
-By default, an `OPTIONS` request made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the `OPTIONS`, `GET`, `DELETE`, `POST`, `PUT`, `HEAD`, and `PATCH` HTTP verbs.
+By default, an `OPTIONS` request that is made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the `OPTIONS`, `GET`, `DELETE`, `POST`, `PUT`, `HEAD`, and `PATCH` HTTP verbs.
 {: shortdesc}
 
 See the following headers:
@@ -982,19 +993,20 @@ To create custom responses to `OPTIONS` requests:
 
 2. Create the web action. Set the `--web-custom-options` to `true`.
 
-  ```bash
-  ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
-  ```
+   ```bash
+   ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
+   ```
   {: pre}
 
 3. Test the action by using the following cURL command.
 
-  ```bash
-  $ curl https://<apihost>/api/v1/web/<namespace>/default/custom-option.http -kvX OPTIONS
-  ```
-  {: pre}
+   ```bash
+   curl https://<apihost>/api/v1/web/<namespace>/default/custom-option.http -kvX OPTIONS
+   ```
+   {: pre}
 
   **Example output**
+
   ```
   < HTTP/1.1 200 OK
   < Server: nginx/1.11.13
@@ -1008,19 +1020,22 @@ To create custom responses to `OPTIONS` requests:
 ## Error handling
 {: #actions_web_errors}
 
-A {{site.data.keyword.openwhisk_short}} action fails in two different possible failure modes. The first is known as an _application error_, and is analogous to a caught exception: the action returns a JSON object that contains a top level `error` property. The second is a _developer error_, which occurs when the action fails and does not produce a response (similar to an uncaught exception). For web actions, the controller handles application errors as follows:
+A {{site.data.keyword.openwhisk_short}} action fails in two different possible failure modes. The first is known as an _application error_, and is analogous to a caught exception: the action returns a JSON object that contains a top level `error` property. The second is a _developer error_, which occurs when the action fails and does not produce a response (similar to an uncaught exception). 
+{: shortdesc}
+
+For web actions, the controller handles application errors as follows:
 
 - Any specified path projection is ignored and the controller projects the `error` property instead.
 - The controller applies the content handling that is implied by the action extension to the value of the `error` property.
 
-Developers must know how web actions might be used, and generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response like `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
+Developers must know how web actions might be used and then generate appropriate error responses. For example, a web action that is used with the `.http` extension returns an HTTP response such as `{error: { statusCode: 400 }`. Failing to do so is a mismatch between the implied `Content-Type` from the extension and the action `Content-Type` in the error response. Special consideration must be given to web actions that are sequences so that components that make up a sequence can generate adequate errors when necessary.
 
 
 
 ## Disabling web actions
 {: #actions_web_disable}
 
-You can disable a web action by setting the `--web` flag to `false` or `no` in the CLI. Replace `<packageName>/<actionName>` and `<filepath>/<filename>` with the package name, web action name, file path, and filename of your code file.
+{: shortdesc}
 
 ```bash
 ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
@@ -1028,5 +1043,4 @@ ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web
 {: pre}
 
 ## Web action limits
-For information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).
-
+For more information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).

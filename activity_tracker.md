@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-11"
+lastupdated: "2019-10-02"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -72,7 +72,7 @@ The following list of {{site.data.keyword.openwhisk}} events are sent to {{site.
 ## Where to view events
 {: #view}
 
-{{site.data.keyword.openwhisk_short}} sends audit logs to the {{site.data.keyword.at_full_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that audit logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
+{{site.data.keyword.openwhisk_short}} sends audit logs to the {{site.data.keyword.at_full_notm}} service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that audit logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
 
 Audit logs for {{site.data.keyword.openwhisk_short}} namespaces in `us-east` are sent to a LogDNA instance in `us-south`.
 {: note} 

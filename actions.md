@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-12"
+lastupdated: "2019-10-07"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -23,7 +23,6 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
 
 
 # Creating actions
@@ -65,7 +64,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
   - To save on cost, you can set limits.
       - To set a limit for memory usage, include `--memory <value>` with your create command, where the value is in megabytes.
       - To set a timeout, include `--timeout <value>` with your create command, where the value is in milliseconds.
-  - If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the --kind flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
+  - If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
 
       ```
       ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
@@ -89,7 +88,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
 
 ### Combining app files and Docker images to create actions
 
-You can combine your app files with Docker images to create actions. For more information see, [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+You can combine your app files with Docker images to create actions. For more information, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 
 Run the following command.
 ```
@@ -109,7 +108,7 @@ When you migrate to a new runtime version, you might need to change the code in 
 
 1. Update your app locally.
 
-2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This allows the system to pull your new Docker image the next time it runs the code for your action. If you have a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin running on the new image.
+2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This upload allows the system to pull your new Docker image the next time it runs the code for your action. If you have a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin running on the new image.
 
 3. Update an action and include the local path to your app or the Docker image.
 
@@ -416,7 +415,7 @@ The action environment contains several environment variables that are specific 
 | -------- | ----------- |
 | `__OW_API_HOST` | The API host for the deployment that is running this action. |
 | `__OW_API_KEY` | The API key for the subject that is invoking the action. This variable is only provided for classic CF-based namespaces. |
-| `__OW_NAMESPACE` | The namespace id (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
+| `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
 | `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/overview?topic=overview-crn). The CRN is only available for IAM-enabled namespaces
 | `__OW_ACTION_NAME` | The fully qualified name of the running action. |
 | `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
@@ -452,6 +451,3 @@ After you updated and activated the code in an action, the result includes the f
 
 ```
 {: screen}
-
-
-

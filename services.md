@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-19"
+lastupdated: "2019-10-04"
 
 keywords: services, serverless, functions
 
@@ -27,19 +27,19 @@ subcollection: cloud-functions
 # Binding {{site.data.keyword.cloud_notm}} services to {{site.data.keyword.openwhisk_short}} entities
 {: #services}
 
-You can use incorporate functionality from IBM Cloud services in your {{site.data.keyword.openwhisk_short}} app.
+You can incorporate functionality from {{site.data.keyword.cloud_notm}} services in your {{site.data.keyword.openwhisk_short}} app.
 {: shortdesc}
 
-**How do I add IBM Cloud services to my app?**
+**How do I add {{site.data.keyword.cloud_notm}} services to my app?**
 
-1. You can hard code REST API calls into your app. This option might be the quickest way to communicate with an IBM Cloud service.
+1. You can hard code REST API calls into your app. This option might be the quickest way to communicate with an {{site.data.keyword.cloud_notm}} service.
 2. You can use a pre-installed or installable package to incorporate functionality. You can use the actions and feeds that are stored in the packages within your app code. This option might slim down your code a bit, which might be useful if your app is close to the system limits.
 
 **How do I set up parameters that must be accessed by my app?**
 
 These parameters might include values that make your app reusable with different data or they might include values that are required by the service, such as credentials.
 
-1. You can hard code parameters into your app. This option might not be the most secure way of storing confidential information like credentials.
+1. You can hard code parameters into your app. This option might not be the most secure way of storing confidential information such as credentials.
 2. You can bind the parameters to your app by binding them to an action or package.
 
 
@@ -55,12 +55,14 @@ You cannot bind multiple instances of the same service to an action or package. 
 Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
 
 1. Get the name of the service and the service instance that you want to bind to an action or package. In the example output, composer is the service and Composer-qp is the service instance name.
+
    ```
    ibmcloud service list
    ```
    {: pre}
 
    **Example output**
+
    ```
    name              service        plan   bound apps   last operation
    Composer-qp       composer       free                create succeeded
@@ -70,6 +72,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    {: screen}
 
 2. Get the name of the credentials that are defined for a service instance.
+
    ```
    ibmcloud service keys SERVICE_NAME
    ```

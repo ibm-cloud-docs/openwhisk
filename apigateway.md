@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-23"
+lastupdated: "2019-10-02"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -30,9 +30,6 @@ subcollection: cloud-functions
 
 You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=cloud-functions-actions_web). 
 {: shortdesc}
-
-Creating APIs with API Gateway is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
-{: important}
 
 
 

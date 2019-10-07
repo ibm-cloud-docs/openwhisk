@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-19"
+lastupdated: "2019-10-07"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
@@ -57,11 +57,11 @@ Get started by creating a Grafana monitoring dashboard.
       </tr>
       <tr>
         <td>Dallas (US South)</td>
-        <td>[`metrics.ng.bluemix.net`](	https://metrics.ng.bluemix.net)</td>
+        <td>[`metrics.ng.bluemix.net`](https://metrics.ng.bluemix.net)</td>
       </tr>
       <tr>
         <td>AP Sydney</td>
-        <td>[`metrics.au-syd.bluemix.net](https://metrics.au-syd.bluemix.net)</td>
+        <td>[`metrics.au-syd.bluemix.net`](https://metrics.au-syd.bluemix.net)</td>
       </tr>
     </tbody>
   </table>
@@ -89,7 +89,7 @@ After an action is executed, new metrics are generated and are searchable in Gra
 The [{{site.data.keyword.openwhisk_short}} Dashboard](https://cloud.ibm.com/openwhisk/dashboard){: external} provides a graphical summary of your activity. Use the dashboard to determine the performance and health of your {{site.data.keyword.openwhisk_short}} actions.
 {:shortdesc}
 
-You can filter logs by selecting which action logs you want to view, and select the time frame of the activity logged. These filters are applied to all views on the dashboard. Click **Reload** at any time to update the dashboard with the latest activation log data.
+You can filter logs by selecting which action logs you want to view, and select the timeframe of the activity logged. These filters are applied to all views on the dashboard. Click **Reload** at any time to update the dashboard with the latest activation log data.
 
 ### Activity Summary
 {: #monitor_dash_sum}
@@ -139,7 +139,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.<package>.<actio
 The following characters are converted to dashes (`-`): period (.), an at sign (@), whitespace ( ), ampersand (&), underscore (_), colon (:)
 {: tip}
 
-Example: If you have an action that is named `hello-world` in the Cloud Foundry-based namespace `user@email.com_dev` in the `us-south` region, an action performance metric would look similar to the following:
+For example, if you have an action that is named `hello-world` in the Cloud Foundry-based namespace `user@email.com_dev` in the `us-south` region, an action performance metric would look similar to the following example:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.user-ibm-com-dev.action-performance.default.hello-world.duration
@@ -158,7 +158,7 @@ ibmcloud.public.functions.<region>.action.namespace.<namespace>.action-performan
 ```
 {: codeblock}
 
-Example: If you have an IAM-based namespace that is named `myNamespace` in the `us-south` region, an action concurrency metric would look similar to the following:
+For example, if you have an IAM-based namespace that is named `myNamespace` in the `us-south` region, an action concurrency metric would look similar to the following example:
 
 ```
 ibmcloud.public.functions.us-south.action.namespace.all.concurrent-invocations
@@ -202,7 +202,7 @@ Check out the following table to see the metrics that are available to you.
     </tr>
     <tr>
       <td><code>wait-time</code></td>
-      <td>The average time that is spent in a queue waiting for an activation to be scheduled.</td>
+      <td>The average time that is spent in a queue, waiting for an activation to be scheduled.</td>
       <td>Average</td>
       <td><code>action-performance</code></td>
     </tr>
@@ -232,7 +232,7 @@ Check out the following table to see the metrics that are available to you.
     </tr>
     <tr>
       <td><code>status.error.internal</code></td>
-      <td>The number of unsuccessful activations caused by {{site.data.keyword.openwhisk_short}} internal errors.</td>
+      <td>The number of unsuccessful activations that are caused by {{site.data.keyword.openwhisk_short}} internal errors.</td>
       <td>Sum</td>
       <td><code>action-performance</code></td>
     </tr>

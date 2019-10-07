@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-25"
+lastupdated: "2019-10-07"
 
 keywords: object storage, bucket, package, functions
 
@@ -42,7 +42,7 @@ Review the following table for a list of {{site.data.keyword.openwhisk_short}} p
 
 | Package | Availability | Description |
 | --- | --- | --- |
-| [{{site.data.keyword.cos_full_notm}} trigger](#pkg_obstorage_ev) | Pre-installed (Available in us-east, us-south, and eu-gb regions.) | The {{site.data.keyword.cos_full_notm}} trigger [listens for changes](#pkg_obstorage_ev) to an {{site.data.keyword.cos_full_notm}} bucket. |
+| [{{site.data.keyword.cos_full_notm}} trigger](#pkg_obstorage_ev) | Pre-installed | The {{site.data.keyword.cos_full_notm}} trigger [listens for changes](#pkg_obstorage_ev) to an {{site.data.keyword.cos_full_notm}} bucket. |
 | [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install)| Installable | You can use the installable `cloud-object-storage` package to [read, write, and delete](#pkg_obstorage_install) from an {{site.data.keyword.cos_full_notm}} bucket. |
 
 ## Setting up the {{site.data.keyword.cos_full_notm}} trigger
