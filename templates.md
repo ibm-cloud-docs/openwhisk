@@ -349,7 +349,7 @@ The **Periodic Slack Reminder** template posts to Slack on an interval provided 
 Deploy the **Periodic Slack Reminder** template from the console.
 {: shortdesc}
 
-1. Go to (Incoming Webhooks)(https://api.slack.com/incoming-webhooks){: external} in the Slack API to set up the required incoming webhooks URL.
+1. Go to [Incoming Webhooks](https://api.slack.com/incoming-webhooks){: external} in the Slack API to set up the required incoming webhooks URL.
 
 2. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -379,7 +379,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the **Periodic Slack Reminder** template.
 {: shortdesc}
 
-1. Go to (Incoming Webhooks)(https://api.slack.com/incoming-webhooks){: external} in the Slack API to set up the required incoming webhooks URL.
+1. Go to [Incoming Webhooks](https://api.slack.com/incoming-webhooks){: external} in the Slack API to set up the required incoming webhooks URL.
 
 2. Clone the template repo.
 
