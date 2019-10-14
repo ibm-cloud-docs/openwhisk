@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-07"
+lastupdated: "2019-10-14"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -24,7 +24,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Creating actions
 {: #actions}
 
@@ -32,21 +31,22 @@ Create an action, which is a top-level function that returns a JSON object. You 
 {: shortdesc}
 
 **Before you begin**</br>
-To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single .zip file before you create the action. 
+To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single .zip file before you create the action.
 
 See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for packaging code for each runtime.
-
 
 ## Creating actions from the CLI
 {: #actions_cli}
 
-1. Create an action.
+1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+  
   ```
   ibmcloud fn action create <action_name> <file> --kind <runtime>
   ```
   {: pre}
 
   **Example**
+
   ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
@@ -58,7 +58,6 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
   ok: created action hello
   ```
   {: screen}
-
 
   Tips:
   - To save on cost, you can set limits.
@@ -88,23 +87,47 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
 
 ### Combining app files and Docker images to create actions
 
-You can combine your app files with Docker images to create actions. For more information, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+You can combine your app files with Docker images to create actions. For more information see, [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+{: shortdesc}
 
 Run the following command.
+
 ```
 ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag> <app_file>
 ```
 {: pre}
 
+## Creating actions from the console
+{: #actions_create_ui}
 
+You can create actions from the IBM Cloud Functions console. For details about the requirements for each runtime, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+{: shortdesc}
 
-## Updating apps or runtimes in actions
+1. From the [IBM Cloud Functions Create ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/create) page, click **Create Action**.
+  
+  1. Specify a name for your action. Action names must be unique within namespaces.
+  2. Specify a package for your action. [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
+  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=cloud-functions-prep#prep_docker). You can change the runtime for your action after you have created it.
+  4. Click **Create**.
+  
+2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
+
+From the Actions page, you can add parameters, change the runtime, create endpoints, and more.
+
+## Updating code or runtimes in actions
 {: #actions_update}
 
-You can run the update command whenever you need to update the code in your app or to migrate to a newer version of a runtime. For example, since Node.js version 8 is in maintenance mode, you might want to switch the runtime to Node.js 10.
+You can update the code in your app or to migrate to a newer version of a runtime. For example, because Node.js version 8 is in maintenance mode, you might want to switch the runtime to Node.js 10. You can update your actions from the CLI or from the console.
+{: shortdesc}
 
 When you migrate to a new runtime version, you might need to change the code in your app to comply with the new runtime version. In most cases, the runtime versions are compatible.
 {: tip}
+
+### Updating actions from the CLI
+{: #actions_update_cli}
+
+You can update your actions from the CLI using the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
+{: shortdesc}
 
 1. Update your app locally.
 
@@ -138,8 +161,22 @@ When you migrate to a new runtime version, you might need to change the code in 
       ```
       {: pre}
     {: tip}
-      
 
+### Updating actions from the console
+{: #actions_update_cli}
+
+You can update your actions directly from the **Actions** page.
+{: shortdesc}
+
+1. From the [IBM Cloud Functions Actions ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/actions) page, search for the action that you want to change.
+
+2. From the overflow menu for that action, select **Manage Action**.
+
+3. Edit your code by toggling between Edit and View modes. You can test your code by clicking **Invoke**.
+
+4. Change your runtime by selecting **Runtime** from the navigation menu and selecting your new runtime.
+  
+5. When you are finished making changes, save your action.
 
 ## Binding parameters to actions
 {: #actions_params}
@@ -175,7 +212,7 @@ To bind the parameters:
     If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed. If you bound a service, you must [bind the services to your action](/docs/openwhisk?topic=cloud-functions-services) again.
     {: tip}
 
-3. Verify that the parameters were bound to the action.
+2. Verify that the parameters were bound to the action.
 
     ```
     ibmcloud fn action get MyApp parameters
@@ -203,24 +240,28 @@ ibmcloud fn action update <action_name> <app_file>
 ```
 {: pre}
 
-
 ## Chaining actions together as action sequences
 {: #actions_seq}
 
 You can create an action that chains together a sequence of actions. The result of one action is passed as an argument to the next action.
 {: shortdesc}
 
-```
-ibmcloud fn action create <sequence_name> --sequence <action_1>,<action_2>
-```
-{: pre}
-
 Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
 
 A sequence does not have an overall timeout separate from the timeouts of each action within the sequence. Because a sequence is a pipeline of operations, a failure in one action breaks the pipeline. If one action times out, the entire sequence is exited with that failure.
 
-Next, when you create a rule or invoke the actions, use the name of the sequence.
+After you create a sequence, you can use the name of the sequence when you create a rule or invoke the actions.
 
+### Creating a sequence from the CLI
+{: #actions_seq_cli}
+
+Create a sequence from the CLI using the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+{: shortdesc}
+
+```
+ibmcloud fn action create <sequence_name> --sequence <action_1>,<action_2>
+```
+{: pre}
 
 ## Packaging actions
 {: #actions_pkgs}
@@ -231,7 +272,6 @@ In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a se
 A package can include *actions* and *feeds*.
 - An action is a piece of code that runs on {{site.data.keyword.openwhisk_short}}. For example, the {{site.data.keyword.cloudant}} package includes actions to read and write records to an {{site.data.keyword.cloudant_short_notm}} database.
 - A feed is used to configure an external event source to fire trigger events. For example, the Alarm package includes a feed that can fire a trigger at a specified frequency.
-
 
 1. Create a package.
 
@@ -276,13 +316,11 @@ A package can include *actions* and *feeds*.
   ```
   {: screen}
 
-
-
-
 ## Binding parameters to packages
 {: #actions_pkgs_params}
 
 You can set default parameters for all the entities in a package by setting package-level parameters that are inherited by all actions in the package.
+{: shortdesc}
 
 Bound parameters serve as the default parameters for actions in the package unless:
 
@@ -357,22 +395,20 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-
-
 ## Sharing packages of actions
 {: #actions_pkgs_share}
 
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 {: shortdesc}
 
-1. Share the package with all users.
+1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
 
   ```
   ibmcloud fn package update <package_name> --shared yes
   ```
   {: pre}
 
-2. Display the `publish` property of the package to verify that it is now true.
+2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
   ```
   ibmcloud fn package get <package_name> publish
@@ -382,8 +418,7 @@ After the actions and feeds that comprise a package are debugged and tested, the
   **Example output**
 
   ```
-  ok: got package <package_name>, displaying field publish
-
+  ok: got package demo, displaying field publish
   true
   ```
   {: screen}
@@ -402,8 +437,6 @@ After the actions and feeds that comprise a package are debugged and tested, the
    action /<namespace>/<package_name>/<action_name>
   ```
   {: screen}
-
-
 
 ## Environment variables for actions
 {: #actions_envvars}

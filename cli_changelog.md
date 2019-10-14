@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-10-04"
+lastupdated: "2019-10-14"
 
 keywords: cli, functions
 
@@ -32,6 +32,7 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.35 | 13 Oct 2019 | <ul><li>Fixed a bug with the `ibmcloud fn property get --apihost` command that caused changes to the IBM Cloud API endpoint.</li><li>Removed support from the `ibmcloud fn property set --namespace <NAMESPACE>` command for targeting Cloud-Foundry based namespaces. This command now targets only IAM-based namespaces.</li><li>Improved the writing to the configuration file for the `ibmcloud fn deploy` command.</li></ul> |
 | 1.0.34 | 24 Sept 2019 | Fixed a bug with the `fn property get` command that displayed incorrect authentication key and default namespace after switching API hosts or regions. |
 | 1.0.33 | 11 Sept 2019 | <ul><li>Fixed a bug that results in the incorrect {{site.data.keyword.openwhisk_short}} API host being retained after switching API hosts or regions.</li><li>Fixed a bug with the `ibmcloud fn namespace delete` command that reported a success message when deletion failed.</li><li>Updated the `ibmcloud fn api` command to support `create`, `delete`, `get`, and `list` for IAM-based namespaces.</li><li>Updated the `ibmcloud fn namespace get --properties` command to display CRNs and Service IDs.</li></ul> |
 | 1.0.30 | 03 April 2019 | <ul><li>Improved the `service bind` handling of IAM and org and space-based services.</li><li>Added a fix for handling API endpoint `https://cloud.ibm.com`.</li></ul> |
