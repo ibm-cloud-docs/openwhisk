@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-17"
 
 keywords: functions, serverless, watson
 
@@ -24,14 +24,13 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # {{site.data.keyword.toneanalyzershort}}
 {: #pkg_tone_analyzer}
 
 The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic analysis to detect emotional and language tones in written text.
 {:shortdesc}
 
-The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations.
+The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations. For more information about this service, see [Tone analyzer](/docs/services/tone-analyzer?topic=tone-analyzer-gettingStarted).
 
 Request logging is disabled for the Tone Analyzer service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 {: note}
@@ -40,10 +39,9 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`tone-analyzer-v3`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
-| [`tone`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
-| [`tone-chat`](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#tone-chat){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
-
+| [`tone-analyzer-v3`](https://cloud.ibm.com/apidocs/tone-analyzer){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
+| [`tone`](https://cloud.ibm.com/apidocs/tone-analyzer#analyze-general-tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
+| [`tone-chat`](https://cloud.ibm.com/apidocs/tone-analyzer#analyze-customer-engagement-tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
 
 ## Creating a {{site.data.keyword.toneanalyzershort}} service instance
 {: #service_instance_tone}
@@ -57,70 +55,79 @@ Before you install the package, you must create a {{site.data.keyword.toneanalyz
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
 {: #install_tone}
 
-After you have a {{site.data.keyword.toneanalyzershort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.toneanalyzershort}} package into your namespace.
+After you have a {{site.data.keyword.toneanalyzershort}} service instance, install the {{site.data.keyword.toneanalyzershort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #toneanalyzer_cli}
 
-**Before you begin**
-[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+Install the {{site.data.keyword.discoveryshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
+{: shortdesc}
 
 To install the {{site.data.keyword.toneanalyzershort}} package:
 
 1. Clone the {{site.data.keyword.toneanalyzershort}} package repo.
-    ```
-    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-    ```
-    {: pre}
+
+   ```
+   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+   ```
+   {: pre}
 
 2. Deploy the package.
-    ```
-    ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
-    ```
-    {: pre}
+
+   ```
+   ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
+   ```
+   {: pre}
 
 3. Verify that the package is added to your package list.
-    ```
-    ibmcloud fn package list
-    ```
-    {: pre}
 
-    **Output**
-    ```
-    packages
-    /myOrg_mySpace/tone-analyzer-v3                        private
-    ```
-    {: screen}
+   ```
+   ibmcloud fn package list
+   ```
+   {: pre}
+
+   **Output**
+
+   ```
+   packages
+   /myOrg_mySpace/tone-analyzer-v3                        private
+   ```
+   {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.toneanalyzershort}} instance you created to the package.
-    ```
-    ibmcloud fn service bind tone_analyzer tone-analyzer-v3
-    ```
-    {: pre}
 
-    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
-    ```
-    ibmcloud fn service bind tone-analyzer tone-analyzer-v3
-    ```
-    {: pre}
+   ```
+   ibmcloud fn service bind tone_analyzer tone-analyzer-v3
+   ```
+   {: pre}
 
-    **Example output**
-    ```
-    Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
-    ```
-    {: screen}
+   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+
+   ```
+   ibmcloud fn service bind tone-analyzer tone-analyzer-v3
+   ```
+   {: pre}
+
+   **Example output**
+
+   ```
+   Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
+   ```
+   {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.toneanalyzershort}} service instance credentials.
-    ```
-    ibmcloud fn package get tone-analyzer-v3 parameters
-    ```
-    {: pre}
 
-    **Example output**
-    ```
-    ok: got package tone-analyzer-v3, displaying field parameters
-    [
+   ```
+   ibmcloud fn package get tone-analyzer-v3 parameters
+   ```
+   {: pre}
+
+   **Example output**
+
+   ```
+   ok: got package tone-analyzer-v3, displaying field parameters
+   [
       {
         "key": "__bx_creds",
         "value": {
@@ -133,16 +140,19 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
           }
         }
       }
-    ]
-    ```
-    {: screen}
+   ]
+   ```
+   {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} UI
+### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #toneanalyzer_ui}
+
+Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
+{: shortdesc}
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. 
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 
@@ -150,13 +160,13 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 5. Click the **Tone Analyzer** Package.
 
-5. Click **Install**.
+6. Click **Install**.
 
-6. Once the package is installed you are redirected to the actions page and can search for your new package, which is named **`tone-analyzer-v3`**.
+7. After the package is installed you are redirected to the actions page and can search for your new package, which is named **`tone-analyzer-v3`**.
 
-7. To use the actions in the **tone-analyzer-v3** package, you must bind service credentials to the actions.
+8. To use the actions in the **tone-analyzer-v3** package, you must bind service credentials to the actions.
   * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#toneanalyzer_cli).
-  * To bind service credentials to individual actions, complete the following steps in the UI. 
+  * To bind service credentials to individual actions, complete the following steps in the console:
   
   You must complete the following steps for each action that you want to use.
   {: note}
@@ -175,11 +185,11 @@ ibmcloud fn action invoke tone-analyzer-v3/<action_name> -b -p <param name> <par
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/tone-analyzer/api/v3/curl.html?curl#versioning){: external}.
+All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/tone-analyzer#versioning){: external}.
 
 This package's functions use the current version of Tone Analyzer, 2017-09-21. Try out the `tone` action.
+
 ```
 ibmcloud fn action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}
-

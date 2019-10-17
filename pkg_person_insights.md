@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-26"
+lastupdated: "2019-10-17"
 
 keywords: cognitive, serverless, functions
 
@@ -42,9 +42,8 @@ The {{site.data.keyword.personalityinsightsshort}} package contains the followin
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`personality-insights-v3`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.personalityinsightsshort}} V3 service. |
-| [`profile`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `content`, `content_type`, `content_language`, `accept_language`, `raw_scores`, `csv_headers`, `consumption_preferences` | Get a profile. |
-| [`profile-as-csv`](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#profile-as-csv){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `content`, `content_type`, `content_language`, `accept_language`, `raw_scores`, `csv_headers`, `consumption_preferences` | Get a profile as CSV file. |
+| [`personality-insights-v3`](https://cloud.ibm.com/apidocs/personality-insights){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.personalityinsightsshort}} V3 service. |
+| [`profile`](https://cloud.ibm.com/apidocs/personality-insights){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `content`, `content_type`, `content_language`, `accept_language`, `raw_scores`, `csv_headers`, `consumption_preferences` | Get a profile. |
 
 ## Creating a {{site.data.keyword.personalityinsightsshort}} service instance
 {: #service_instance_insights}
@@ -64,71 +63,71 @@ After you have a {{site.data.keyword.personalityinsightsshort}} service instance
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #personalityinsights_cli}
 
-Install the {{site.data.keyword.personalityinsightsshort}} package from the CLI.
+Install the {{site.data.keyword.discoveryshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
 {: shortdesc}
-
-**Before you begin**
-
-Install the [{{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 
 To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 1. Clone the {{site.data.keyword.personalityinsightsshort}} package repo.
-    ```
-    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-    ```
-    {: pre}
+
+   ```
+   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+   ```
+   {: pre}
 
 2. Deploy the package.
-    ```
-    ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
-    ```
-    {: pre}
+
+   ```
+   ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
+   ```
+   {: pre}
 
 3. Verify that the package is added to your package list.
-    ```
-    ibmcloud fn package list
-    ```
-    {: pre}
 
-    Output:
-    ```
-    packages
-    /myOrg_mySpace/personality-insights-v3                        private
-    ```
-    {: screen}
+   ```
+   ibmcloud fn package list
+   ```
+   {: pre}
+
+   Output:
+   ```
+   packages
+   /myOrg_mySpace/personality-insights-v3                        private
+   ```
+   {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.personalityinsightsshort}} instance you created to the package.
 
-    ```
-    ibmcloud fn service bind personality_insights personality-insights-v3
-    ```
-    {: pre}
+   ```
+   ibmcloud fn service bind personality_insights personality-insights-v3
+   ```
+   {: pre}
 
-    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
 
-    ```
-    ibmcloud fn service bind personality-insights personality-insights-v3
-    ```
-    {: pre}
+   ```
+   ibmcloud fn service bind personality-insights personality-insights-v3
+   ```
+   {: pre}
 
-    **Example output**
+   **Example output**
 
-    ```
-    Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
-    ```
-    {: screen}
+   ```
+   Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
+   ```
+   {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.personalityinsightsshort}} service instance credentials.
-    ```
-    ibmcloud fn package get personality-insights-v3 parameters
-    ```
-    {: pre}
 
-    **Example output**
-    ```
-    ok: got package personality-insights-v3, displaying field parameters
-    [
+   ```
+   ibmcloud fn package get personality-insights-v3 parameters
+   ```
+   {: pre}
+
+   **Example output**
+   ```
+   ok: got package personality-insights-v3, displaying field parameters
+   [
       {
         "key": "__bx_creds",
         "value": {
@@ -141,19 +140,19 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
           }
         }
       }
-    ]
-    ```
-    {: screen}
+   ]
+   ```
+   {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} UI
+### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #personalityinsights_ui}
 
-Install the {{site.data.keyword.personalityinsightsshort}} package from the CLI.
+Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
 {: shortdesc}
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
 
-2. By using the namespace drop-down menu, select the namespace that you want to install the package into.
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 
@@ -168,7 +167,7 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the CLI.
 8. To use the actions in the `personality-insights-v3` package, you must bind service credentials to the actions.
 
   * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions.
-  * To bind service credentials to individual actions, complete the following steps in the UI.
+  * To bind service credentials to individual actions, complete the following steps in the console.
 
   You must complete the following steps for each action that you want to use.
   {: note}
@@ -188,7 +187,7 @@ ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param nam
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/personality-insights/api/v3/curl.html?curl#versioning){: external}.
+All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/personality-insights#versioning){: external}.
 
 This package's functions use the current version of {{site.data.keyword.personalityinsightsshort}}, 2017-10-13. Try out the `profile` action.
 
