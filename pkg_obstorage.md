@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-07"
+lastupdated: "2019-10-18"
 
 keywords: object storage, bucket, package, functions
 
@@ -76,11 +76,10 @@ In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following c
 * Only [IAM-enabled {{site.data.keyword.openwhisk_short}} namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) are supported.
 * Your {{site.data.keyword.cos_full_notm}} bucket must be a regional bucket and must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace. Cross-region and single-site buckets are not supported.
 * You must [assign the Notifications Manager](#pkg_obstorage_auth) role to your {{site.data.keyword.openwhisk_short}} namespace for your {{site.data.keyword.cos_full_notm}}.
-* Your {{site.data.keyword.cos_full_notm}} bucket can not have a firewall enabled. You can check this by reviewing the **Access Policies** > **Authorized IPs** tab in the {{site.data.keyword.cos_full_notm}} UI. If there are no authorized IPs in the list, you can use the {{site.data.keyword.cos_full_notm}} trigger.
 
 ### 1. Assigning the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace
 {: #pkg_obstorage_auth}
-Before you can create a trigger to listen for bucket change events, you must assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace. As a Notifications Manager, {{site.data.keyword.openwhisk_short}} can view, modify, and delete notifications for a Cloud Object Storage bucket. You can assign the Notifications Manager role from either the UI or the CLI. Once assigned, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
+Before you can create a trigger to listen for bucket change events, you must assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace. As a Notifications Manager, {{site.data.keyword.openwhisk_short}} can view, modify, and delete notifications for a Cloud Object Storage bucket. You can assign the Notifications Manager role from either the console or the CLI. Once assigned, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
 
 Only account administrators can assign the Notifications Manager role.
 {: note}
@@ -92,18 +91,18 @@ You can assign the Notifications Manager role to all instances of {{site.data.ke
 {: note}
 
 
-| Assigning the Notifications Manager role with the UI. |
+| Assigning the Notifications Manager role with the console. |
 |:-----------------|
 | <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> In the **Source service** dropdown, select **Functions**. Then, in the **Source service instance** dropdown select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In the **Target service** dropdown, select **Cloud Object Storage**, then in the **Target service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
-{: caption="Assigning the Notifications Manager role with the UI." caption-side="top"}
+{: caption="Assigning the Notifications Manager role with the console." caption-side="top"}
 {: #nm-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="notifications"}
 {: class="simple-tab-table"}
 
 | Assigning the Notifications Manager role with the CLI. |
 |:-----------------|
-| <p><ol><li>Copy the following command to assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace the `source_service_instance_name` variable with the name of your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace the `target_service_instance name` variable with the name of your {{site.data.keyword.cos_full_notm}} instance.<pre class="pre"><code>ibmcloud iam authorization-policy-create functions</br> cloud-object-storage "Notifications Manager"</br> --source-service-instance-name &lt;source_service_instance_name&gt;</br> --target-service-instance-name &lt;target_service_instance_name&gt;</code></pre></li><li>Verify the Notifications Manager role has been set.<pre class="pre"><code>ibmcloud iam authorization-policies</code></li></ol></p> |
+| <p><ol><li>Copy the following command to assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace the `source_service_instance_name` variable with the name of your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace the `target_service_instance name` variable with the name of your {{site.data.keyword.cos_full_notm}} instance.<pre class="pre"><code>ibmcloud iam authorization-policy-create functions</br> cloud-object-storage "Notifications Manager"</br> --source-service-instance-name &lt;source_service_instance_name&gt;</br> --target-service-instance-name &lt;target_service_instance_name&gt;</code></pre></li><li>Verify the Notifications Manager role has been set.<pre class="pre"><code>ibmcloud iam authorization-policies</code></pre></li></ol></p> |
 {: caption="Assigning the Notifications Manager role with the CLI." caption-side="top"}
 {: #nm-2}
 {: tab-title="CLI"}
@@ -128,21 +127,21 @@ For a complete list of available parameters, see [{{site.data.keyword.cos_full_n
 ### 3. Creating a trigger to listen for bucket changes
 {: #pkg_obstorage_ev_trig_ui}
 
-You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} events from the {{site.data.keyword.openwhisk_short}} UI or the CLI.
+You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} events from the {{site.data.keyword.openwhisk_short}} console or the CLI.
 {: shortdesc}
 
-| Creating a trigger with the UI. |
+| Creating a trigger with the console. |
 |:-----------------|
 | <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Triggers** page](https://cloud.ibm.com/functions/triggers){: external}.</li><li>With the namespace dropdown, select the IAM-enabled namespace that you want to use. Note: Your namespace must be in the same region as your bucket.</li><li>After you select a namespace, click the **Create** button.</li><li> On the **Connect Trigger** page, click **Cloud Object Storage**.</li><li> On the **New Trigger Configuration** page, give your trigger a name.</li><li> In the **COS Instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> In the **Bucket** dropdown, select your {{site.data.keyword.cos_full_notm}} bucket.</li><li> Select the **Object operations** that activates the trigger. Both **Write** and **Delete** are selected by default.</li><li> (Optional) Enter an **Object prefix** or **Object suffix** or both to activate the trigger only when specific objects are updated.</li><li> Click **Create** to create the trigger.</li></ol></p> |
-{: caption="Creating a trigger with the UI." caption-side="top"}
+{: caption="Creating a trigger with the console." caption-side="top"}
 {: #trigger-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="trigger"}
 {: class="simple-tab-table"}
 
 | Creating a trigger with the CLI. |
 |:-----------------|
-| <p><ol><li> Target your IAM-enabled namespace. Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</pre></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li> Target your IAM-enabled namespace. Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</pre></code></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
 {: caption="Creating a trigger with the CLI." caption-side="top"}
 {: #trigger-2}
 {: tab-title="CLI"}
@@ -159,7 +158,7 @@ After you create a trigger that listens for change events, you can connect it to
 
 ### 1. Creating an action to process the trigger results
 {: #cos_feed_action}
-You can use the UI or CLI to create an action that is invoked by the trigger.
+You can use the console or CLI to create an action that is invoked by the trigger.
 
 **Before you begin**</br>
 Copy the following code and save it into a file called `cosChange.js`. This code is used to create an action that is invoked when the trigger is fired. When you make an action using this code, the action returns the data from the bucket change event.
@@ -171,12 +170,12 @@ function main(data) {
 ```
 {: codeblock}
 
-| Creating an action with the UI. |
+| Creating an action with the console. |
 |:-----------------|
 | <p><ol><li> Navigate to the {{site.data.keyword.openwhisk_short}} [**Triggers** page](https://cloud.ibm.com/functions/triggers){: external}.</li><li> Click the trigger you created.</li><li> On the **Connected Actions** page, click the **Add** button.</li><li> On **Add Action** page, in the **Create New** pane, give your action a name.</li><li> In the **Runtime** dropdown, select `Node.js 10`.</li><li> Click **Create & Add**.</li><li> On the **Connected Actions** page, click the action that you created.</li><li> In the **Code** panel on the **Action** page, replace the `Hello World` example code with the code from your `cosChange.js` file.</li><li> Click **Save**.</li></ol></p> |
-{: caption="Creating an action with the UI." caption-side="top"}
+{: caption="Creating an action with the console." caption-side="top"}
 {: #action-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="action"}
 {: class="simple-tab-table"}
 
@@ -193,14 +192,14 @@ function main(data) {
 
 ### 2. Testing the trigger and action
 {: #pkg_obstorage_ev_test}
-After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig_ui) and [connect an action to the trigger](#cos_feed_action), you can test that the action is executed as a result of the trigger firing. You can perform this test in either the UI or CLI.
+After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig_ui) and [connect an action to the trigger](#cos_feed_action), you can test that the action is executed as a result of the trigger firing. You can perform this test in either the console or CLI.
 
-| Testing with the UI. |
+| Testing with the console. |
 |:-----------------|
 | <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. </li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click on the **Monitor** tab.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
-{: caption="Creating an action with the UI." caption-side="top"}
+{: caption="Creating an action with the console." caption-side="top"}
 {: #test-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="test"}
 {: class="simple-tab-table"}
 
@@ -346,14 +345,14 @@ If you plan to use the `client-get-signed-url` action, you must [bind your servi
 ### 1. Installing the {{site.data.keyword.cos_full_notm}} package
 {: #pkg_obstorage_install}
 
-You can install the `cloud-object-storage` package from the UI or the CLI.
+You can install the `cloud-object-storage` package from the console or the CLI.
 
-| Installing with the UI. |
+| Installing with the console. |
 |:-----------------|
 | <p><ol><li> In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/openwhisk/create){: external}.</li><li> Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package by using the namespace drop-down menu.</li><li> Click **Install Packages**.</li><li> Click the **{{site.data.keyword.cos_full_notm}}** Package group, then click the **{{site.data.keyword.cos_full_notm}}** Package.</li><li> In the **Available Runtimes** section, select either `Node.JS` or `Python` from the drop-down list. Then, click **Install**.</li><li> Once the package is installed you are redirected to the **Actions** page and can search for your new package, which is named `cloud-object-storage`.</li></ol></p> |
-{: caption="Installing with the UI." caption-side="top"}
+{: caption="Installing with the console." caption-side="top"}
 {: #install-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="install"}
 {: class="simple-tab-table"}
 
@@ -372,14 +371,14 @@ You can install the `cloud-object-storage` package from the UI or the CLI.
 
 Before you can read or write objects to a bucket, you must provide service-to-service authentication. You can do this by setting an IAM access policy. 
 
-You can create an access policy at either [the service level or the bucket level](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the UI or the CLI.
+You can create an access policy at either [the service level or the bucket level](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the console or the CLI.
 
-| Setting an IAM access policy with the UI. |
+| Setting an IAM access policy with the console. |
 |:-----------------|
-| <p><ol><li> Navigate to the **Service IDs** tab in the IAM UI. </li><li> Click the service ID that corresponds to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> On the **Manage** page, click the **Access policies** tab. </li><li> Click **Assign access**. </li><li> Click **Assign access to resources**. </li><li> In the **Services** dropdown, select **Cloud Object Storage**. </li><li> In the **Service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance. </li><li> To limit access to a specific bucket, enter **bucket** in the **Resource type** field and enter your **bucket-name** in the **Resource ID** field.</li><li> Review the [IAM roles](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id) and select the appropriate role to assign to your namespace.</li><li>Once you have selected a role, click **Save**.</li> </ol></p> |
-{: caption="Setting an IAM access policy with the UI." caption-side="top"}
+| <p><ol><li> Navigate to the **Service IDs** tab in the IAM console. </li><li> Click the service ID that corresponds to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> On the **Manage** page, click the **Access policies** tab. </li><li> Click **Assign access**. </li><li> Click **Assign access to resources**. </li><li> In the **Services** dropdown, select **Cloud Object Storage**. </li><li> In the **Service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance. </li><li> To limit access to a specific bucket, enter **bucket** in the **Resource type** field and enter your **bucket-name** in the **Resource ID** field.</li><li> Review the [IAM roles](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id) and select the appropriate role to assign to your namespace.</li><li>Once you have selected a role, click **Save**.</li> </ol></p> |
+{: caption="Setting an IAM access policy with the console." caption-side="top"}
 {: #iam-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="iam"}
 {: class="simple-tab-table"}
 
@@ -404,15 +403,15 @@ If you plan to use the `client-get-signed-url` action, you must create [service 
 
 To use the `client-get-signed-url` action in the `cloud-object-storage` package, you must bind your {{site.data.keyword.cos_full_notm}} service credentials to the action.
   * To bind service credentials to all actions in the package use the `service bind` command in the CLI. 
-  * To bind service credentials to individual actions, complete the following steps in the UI. 
+  * To bind service credentials to individual actions, complete the following steps in the console. 
   
 
-| Binding service credentials in the UI. |
+| Binding service credentials in the console. |
 |:-----------------|
 | <p><ol><li> From the [**Actions** page](https://cloud.ibm.com/functions/actions){: external}, click `cloud-object-storage` package.</li><li>Next, click the `client-get-signed-url` action, then click the **Parameters** tab.</li><li> Click **Add** to enter a new parameter. Note that parameters must be entered as `key` and `value` pairs. <li>In the **Parameter Name** field, enter the key `__bx_creds`.</li><li> In the **Default Value** field, paste in the service credentials JSON object from the {{site.data.keyword.cos_full_notm}} service instance that you created earlier.</li><li> Repeat the steps for each action that you want to use.</code></pre></p></li></ol></p> |
-{: caption="Binding service credentials in the UI." caption-side="top"}
+{: caption="Binding service credentials in the console." caption-side="top"}
 {: #service-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="service"}
 {: class="simple-tab-table"}
 
@@ -431,7 +430,7 @@ You still need to pass the `bucket` and `endpoint` values during action invocati
 ### Setting default parameters for a package or action
 {: #pkg_obstorage_param_bind}
 
-Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS UI. 
+Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
 
 For a list of endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
@@ -456,7 +455,7 @@ ibmcloud fn action update cloud-object-storage/object-write
 ```
 {: pre}
 
-You can also bind parameters to actions by using the **Parameters** tab in the UI. To add parameters in the UI, navigate to the [**Actions** page](https://cloud.ibm.com/openwhisk/actions){: external} and click one of your actions. Then, click **Parameters** > **Add Parameter**. You must add parameters in `<key>` and `<value>` pairs.
+You can also bind parameters to actions by using **Parameters** in the console. To add parameters in the console, navigate to the [**Actions** page](https://cloud.ibm.com/openwhisk/actions){: external} and click one of your actions. Then, click **Parameters** > **Add Parameter**. You must add parameters in `<key>` and `<value>` pairs.
 {: tip}
 
 After you have updated the package or action to include the `bucket` and `endpoint` parameters, you must [rebind the service](#pkg_obstorage_sc_bind) with `service bind` command.
@@ -468,19 +467,19 @@ After you have updated the package or action to include the `bucket` and `endpoi
 ## Writing an object to a bucket
 {: #pkg_obstorage_write}
 
-You can use the `object-write` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the UI or the CLI. 
+You can use the `object-write` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the console or the CLI. 
 {: shortdesc}
 
 In order to write an object, you must specify the `bucket-name`, `object-name`, `body`, and `endpoint`.
 
 If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind) to the `cloud-object-storage` package or to the `object-write` action, you do not need to specify them during invocation.
 
-| Writing an object to a bucket with the UI. |
+| Writing an object to a bucket with the console. |
 |:-----------------|
-| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-write** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object-name",</br>    "body": "body"</br>    "endpoint": "bucket-endpoint"</br>}</li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li></ol></p> |
-{: caption="Writing an object with the UI." caption-side="top"}
+| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-write** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object-name",</br>    "body": "body"</br>    "endpoint": "bucket-endpoint"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li></ol></p> |
+{: caption="Writing an object with the console." caption-side="top"}
 {: #write-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="write"}
 {: class="simple-tab-table"}
 
@@ -498,17 +497,17 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 ## Reading objects from a bucket
 {: #pkg_obstorage_read}
-You can use the `object-read` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the UI or the CLI.
+You can use the `object-read` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the console or the CLI.
 {: shortdesc}
 
 If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind) to the `cloud-object-storage` package or to the `object-write` action, you do not need to specify them during invocation.
 
-| Reading an object with the UI. |
+| Reading an object with the console. |
 |:-----------------|
-| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-read** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object_name"</br>}</li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li><li> Check your {{site.data.keyword.cos_full_notm}} bucket for the new object.</li></ol></p> |
-{: caption="Reading an object with the UI." caption-side="top"}
+| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-read** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object_name"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li><li> Check your {{site.data.keyword.cos_full_notm}} bucket for the new object.</li></ol></p> |
+{: caption="Reading an object with the console." caption-side="top"}
 {: #read-1}
-{: tab-title="UI"}
+{: tab-title="Console"}
 {: tab-group="read"}
 {: class="simple-tab-table"}
 

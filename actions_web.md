@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-07"
+lastupdated: "2019-10-18"
 
 keywords: web actions, serverless, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 When you create a web action, the result is a URL that can be used to trigger the action from any web app.
 {: shortdesc}
 
-## Why use web actions instead of standard actions?
+## Why use web actions instead of standard actions? 
 
 ### 1. Run web actions anonymously
 
