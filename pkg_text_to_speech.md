@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-10-18"
 
 keywords: cognitive, functions, packages
 
@@ -71,7 +71,7 @@ After you have an {{site.data.keyword.texttospeechshort}} Service instance, inst
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #texttospeech_cli}
 
-Install the {{site.data.keyword.discoveryshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
+Install the {{site.data.keyword.texttospeechshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
 {: shortdesc}
 
 To install the {{site.data.keyword.texttospeechshort}} package, run the following commands.

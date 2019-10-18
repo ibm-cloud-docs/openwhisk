@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-10-18"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -750,7 +750,7 @@ Compile a single source file that doesn't depend on external libraries. Use the 
 {: shortdesc}
 
 **Before you begin**
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition) {: external}.
+- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
 - [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app by running the following command.
@@ -952,7 +952,7 @@ Package your code by creating a .jar file.
 {: shortdesc}
 
 **Before you begin**
-You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/) {: external}.
+You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
 
 If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
 {: note}

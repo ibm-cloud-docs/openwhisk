@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-10-18"
 
 keywords: functions, cognitive,
 
@@ -34,7 +34,7 @@ The {{site.data.keyword.discoveryshort}} package contains the following entities
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`discovery-v1`](hhttps://cloud.ibm.com/apidocs/discovery/discovery){: external} | Package | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.discoveryshort}} service. |
+| [`discovery-v1`](https://cloud.ibm.com/apidocs/discovery/discovery){: external} | Package | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.discoveryshort}} service. |
 | [`create-environment`](https://cloud.ibm.com/apidocs/discovery/discovery#create-an-environment){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`, `description`, `size` | Create an environment. |
 | [`delete-environment`](https://cloud.ibm.com/apidocs/discovery/discovery#delete-environment){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id` | Delete an environment. |
 | [`get-environment`](https://cloud.ibm.com/apidocs/discovery/discovery#get-environment-info){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`  | Get information about an environment. |

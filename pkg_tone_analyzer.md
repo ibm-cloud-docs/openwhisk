@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-10-18"
 
 keywords: functions, serverless, watson
 
@@ -61,7 +61,7 @@ After you have a {{site.data.keyword.toneanalyzershort}} service instance, insta
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #toneanalyzer_cli}
 
-Install the {{site.data.keyword.discoveryshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
+Install the {{{site.data.keyword.toneanalyzershort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
 {: shortdesc}
 
 To install the {{site.data.keyword.toneanalyzershort}} package:
@@ -147,7 +147,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #toneanalyzer_ui}
 
-Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
+Install the {{site.data.keyword.toneanalyzershort}} package from the console.
 {: shortdesc}
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
