@@ -400,7 +400,7 @@ To use the `client-get-signed-url` action in the `cloud-object-storage` package,
 
 | Binding service credentials in the console. |
 |:-----------------|
-| <p><ol><li> From the [**Actions** page](https://cloud.ibm.com/functions/actions){: external}, click `cloud-object-storage` package.</li><li>Next, click the `client-get-signed-url` action, then click the **Parameters** tab.</li><li> Click **Add** to enter a new parameter. Note that parameters must be entered as `key` and `value` pairs. <li>In the **Parameter Name** field, enter the key `__bx_creds`.</li><li> In the **Default Value** field, paste in the service credentials JSON object from the {{site.data.keyword.cos_full_notm}} service instance that you created earlier.</li><li> Repeat the steps for each action that you want to use.</code></pre></p></li></ol></p> |
+| <p><ol><li> From the [**Actions** page](https://cloud.ibm.com/functions/actions){: external}, click `cloud-object-storage` package.</li><li>Next, click the `client-get-signed-url` action, then click the **Parameters** tab.</li><li> Click **Add** to enter a new parameter. Note that parameters must be entered as `key` and `value` pairs. <li>In the **Parameter Name** field, enter the key `__bx_creds`.</li><li> In the **Default Value** field, paste in the service credentials JSON object from the {{site.data.keyword.cos_full_notm}} service instance that you created earlier.</li><li> Repeat the steps for each action that you want to use.</li></ol></p> |
 {: caption="Binding service credentials in the console." caption-side="top"}
 {: #service-1}
 {: tab-title="Console"}
@@ -535,7 +535,6 @@ The following package parameters are expected to be bound to the package, and ar
 | --- | --- |
 | `apikey` | The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
 | `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
-
 #### Action parameters
 {: #pkg_obstorage_actparams}
 
