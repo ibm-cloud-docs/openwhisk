@@ -25,7 +25,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Object Storage
 {: #pkg_obstorage}
 
@@ -90,7 +89,6 @@ When you assign the Notifications Manager role to your {{site.data.keyword.openw
 You can assign the Notifications Manager role to all instances of {{site.data.keyword.openwhisk_short}} for all instances {{site.data.keyword.cos_full_notm}}, but you can only create triggers for regional buckets that are in the same supported regions as your {{site.data.keyword.openwhisk_short}} namespaces.
 {: note}
 
-
 | Assigning the Notifications Manager role with the console. |
 |:-----------------|
 | <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> In the **Source service** dropdown, select **Functions**. Then, in the **Source service instance** dropdown select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In the **Target service** dropdown, select **Cloud Object Storage**, then in the **Target service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
@@ -123,7 +121,6 @@ When creating a trigger from the CLI, you can also specify an `endpoint` paramet
 For a complete list of available parameters, see [{{site.data.keyword.cos_full_notm}} trigger parameters](#pkg_obstorage_ev_ch_ref_trig) section.
 {: note}
 
-
 ### 3. Creating a trigger to listen for bucket changes
 {: #pkg_obstorage_ev_trig_ui}
 
@@ -147,7 +144,6 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 {: tab-title="CLI"}
 {: tab-group="trigger"}
 {: class="simple-tab-table"}
-
 
 ## Connecting a {{site.data.keyword.openwhisk_short}} action to the trigger
 {: #cos_feed_action_connect}
@@ -218,7 +214,6 @@ Once you have created a trigger to respond to bucket events and connected it to 
   * You can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
   * You can create your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to be executed when the trigger is fired.
   * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
-
 
 ### Reference
 {: #pkg_obstorage_ev_ch_ref}
@@ -306,7 +301,6 @@ You can get details of an activation by running `ibmcloud fn activation get <act
 }
 ```
 {: codeblock}
-
 
 #### Details and limits
 {: #pkg_cos_limits}
@@ -397,14 +391,12 @@ You still need to pass the bucket name and endpoint during action invocation. Yo
 #### Creating service credentials for accessing your {{site.data.keyword.cos_full_notm}} instance
 If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
 
-
 #### Binding your {{site.data.keyword.cos_full_notm}} service credentials to the package or actions.
 {: #pkg_obstorage_sc_bind}
 
 To use the `client-get-signed-url` action in the `cloud-object-storage` package, you must bind your {{site.data.keyword.cos_full_notm}} service credentials to the action.
   * To bind service credentials to all actions in the package use the `service bind` command in the CLI. 
   * To bind service credentials to individual actions, complete the following steps in the console. 
-  
 
 | Binding service credentials in the console. |
 |:-----------------|
@@ -460,9 +452,7 @@ You can also bind parameters to actions by using **Parameters** in the console. 
 
 After you have updated the package or action to include the `bucket` and `endpoint` parameters, you must [rebind the service](#pkg_obstorage_sc_bind) with `service bind` command.
 
-
 </br>
-
 
 ## Writing an object to a bucket
 {: #pkg_obstorage_write}
@@ -492,9 +482,6 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 {: tab-group="write"}
 {: class="simple-tab-table"}
 
-
-
-
 ## Reading objects from a bucket
 {: #pkg_obstorage_read}
 You can use the `object-read` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the console or the CLI.
@@ -519,7 +506,6 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 {: tab-title="CLI"}
 {: tab-group="read"}
 {: class="simple-tab-table"}
-
 
 ### Reference
 {: #pkg_obstorage_actions}
@@ -549,7 +535,7 @@ The following package parameters are expected to be bound to the package, and ar
 | --- | --- |
 | `apikey` | The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
 | `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
- 
+
 #### Action parameters
 {: #pkg_obstorage_actparams}
 
