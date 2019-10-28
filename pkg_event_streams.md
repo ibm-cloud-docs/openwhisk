@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-25"
 
 keywords: event streams, package, messages, events, functions
 
@@ -24,7 +24,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
 
@@ -39,9 +38,8 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} instances for publishing and consuming messages by using the native high-performance Kafka API.
+A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](/docs/services/EventStreams?topic=eventstreams-getting_started) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
-
 
 ### Setting up a {{site.data.keyword.messagehub}} package
 {: #eventstreams_setup}
@@ -51,32 +49,34 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
 2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled `mytopic`.
 
 3. Refresh the packages in your namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
-  ```
-  ibmcloud fn package refresh
-  ```
-  {: pre}
 
-  **Example output**
-  ```
-  created bindings:
-  Message_Hub_Credentials-1
-  ```
-  {: screen}
+   ```
+   ibmcloud fn package refresh
+   ```
+   {: pre}
+
+   **Example output**
+   ```
+   created bindings:
+   Message_Hub_Credentials-1
+   ```
+   {: screen}
 
 4. List the packages in your namespace to show that your package binding is now available.
-  ```
-  ibmcloud fn package list
-  ```
-  {: pre}
+  
+   ```
+   ibmcloud fn package list
+   ```
+   {: pre}
 
-  **Example output**
-  ```
-  packages
-  /myOrg_mySpace/Message_Hub_Credentials-1 private
-  ```
-  {: screen}
+   **Example output**
+   ```
+   packages
+   /myOrg_mySpace/Message_Hub_Credentials-1 private
+   ```
+   {: screen}
 
-  Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
+Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
 
 ### Setting up an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
@@ -84,6 +84,7 @@ A pre-installed package that enables communication with [{{site.data.keyword.mes
 If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.data.keyword.cloud_notm}}, you must manually create a package binding for your {{site.data.keyword.messagehub}} service. You need the {{site.data.keyword.messagehub}} service credentials and connection information.
 
 Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
+
 ```
 ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
@@ -100,8 +101,6 @@ To learn more about producing messages, check out the [Event Streams documentati
 References
 - [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
-
-
 
 ## Event Streams events source
 {: #eventstreams_events}
@@ -140,40 +139,43 @@ While this list of parameters can seem daunting, they can be automatically set f
 2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, `mytopic`.
 
 3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
-  ```
-  ibmcloud fn package refresh
-  ```
-  {: pre}
 
-  **Example output**
+   ```
+   ibmcloud fn package refresh
+   ```
+   {: pre}
 
-  ```
-  created bindings:
-  Message_Hub_Credentials-1
-  ```
-  {: screen}
+   **Example output**
+
+   ```
+   created bindings:
+   Message_Hub_Credentials-1
+   ```
+   {: screen}
 
 4. List the packages in your Namespace to show that your package binding is now available.
-  ```
-  ibmcloud fn package list
-  ```
-  {: pre}
+  
+   ```
+   ibmcloud fn package list
+   ```
+   {: pre}
 
-  **Example output**
+   **Example output**
 
-  ```
-  packages
-  /myOrg_mySpace/Message_Hub_Credentials-1 private
-  ```
-  {: screen}
+   ```
+   packages
+   /myOrg_mySpace/Message_Hub_Credentials-1 private
+   ```
+   {: screen}
 
-  Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
+   Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
 
 5. Now all you need to do is create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
-  ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
-  ```
-  {: pre}
+
+   ```
+   ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+   ```
+   {: pre}
 
 ### Creating a trigger for an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
@@ -182,18 +184,18 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-  ```
-  ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
- [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
-  ```
-  {: pre}
+   ```
+   ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+   [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
+   ```
+   {: pre}
 
 2. Now you can create a trigger by using your new package that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
 
-  ```
-  ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
-  ```
-  {: pre}
+   ```
+   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+   ```
+   {: pre}
 
 ### Listening for messages
 {: #eventstreams_listen_messages}
@@ -339,11 +341,7 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 }
 ```
 
-
 ## References
 {: #message_references}
 - [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
-
-
-

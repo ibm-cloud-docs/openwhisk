@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-10-17"
+lastupdated: "2019-10-28"
 
 keywords: release notes, functions
 
@@ -35,14 +35,15 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 14 Oct 2019 | <ul><li>Fixes for version 1.0.35. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions)</li><li>Added console tasks to [Create actions](/docs/openwhisk?topic=cloud-functions-actions)</li></ul> |
+| 28 Oct 2019 | <ul><li>Updates for [binding services to entities](/docs/openwhisk?topic=cloud-functions-services).</li><li>Updates for [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=cloud-functions-test#memory_usage).</li></ul> |
+| 14 Oct 2019 | <ul><li>Fixes for version 1.0.35. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Added console tasks to [Create actions](/docs/openwhisk?topic=cloud-functions-actions).</li></ul> |
 
 ## September 2019
 {: #sept19}
 
 | Date | Description |
 | --------- | -------- |
-| 24 Sept 2019 | Fixes for version 1.0.34. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions) |
-| 20 Sept 2019 |  Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. See [IBM Cloud object storage](/docs/openwhisk?topic=cloud-functions-pkg_obstorage) |
-| 11 Sept 2019 | Fixes for version 1.0.33. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions) |
+| 24 Sept 2019 | Fixes for version 1.0.34. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions). |
+| 20 Sept 2019 |  Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. See [IBM Cloud object storage](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). |
+| 11 Sept 2019 | Fixes for version 1.0.33. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions). |
 {: caption="Changes for September 2019" caption-side="top"}

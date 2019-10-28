@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-25"
 
 keywords: alarms, serverless, triggers, functions
 
@@ -24,12 +24,10 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
-
 # Alarms
 {: #pkg_alarms}
 
-The `/whisk.system/alarms` package can be used to fire a trigger at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system back up every hour.
+The `/whisk.system/alarms` package can be used to fire a trigger or feed at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system back up every hour.
 {: shortdesc}
 
 The package includes the following feeds.
@@ -37,16 +35,14 @@ The package includes the following feeds.
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
 | `/whisk.system/alarms` | Package | - | Alarms and periodic utility. |
-| `/whisk.system/alarms/once` | Feed | `date`, `trigger_payload`, `deleteAfterFire` | Fire trigger event once on a specific date. |
+| `/whisk.system/alarms/once` | Feed | `date`, `trigger_payload`, `deleteAfterFire` | Fire trigger event one time on a specific date. |
 | `/whisk.system/alarms/interval` | Feed | `minutes`, `trigger_payload`, `startDate`, `stopDate` | Fire trigger event on an interval-based schedule. |
 | `/whisk.system/alarms/alarm` | Feed | `cron`, `timezone`, `trigger_payload`, `startDate`, `stopDate` | Fire trigger event on a time-based schedule by using cron. |
 
-
-
-## Firing a trigger event once
+## Firing a trigger event one time
 {: #pkg_alarms_one}
 
-The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event once on a specified date. To create a fire-once alarm, run the following command.
+The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event one time on a specified date. To create a fire-once alarm, run the following command.
 
 ```
 ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
@@ -93,11 +89,11 @@ ibmcloud fn trigger create fireOnce \
 ```
 {: pre}
 
-
 ## Firing a trigger event periodically on an interval-based schedule
 {: #pkg_alarms_int}
 
 The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a trigger event on an interval-based schedule. To create an interval-based alarm, run the following command.
+
 ```
 ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -147,12 +143,11 @@ ibmcloud fn trigger create interval \
 ```
 {: pre}
 
-
-
 ## Firing a trigger on a time-based schedule by using cron
 {: #pkg_alarms_cron}
 
 The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command.
+
 ```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
@@ -208,7 +203,3 @@ ibmcloud fn trigger create periodic \
   --param stopDate "2019-01-31T23:59:00.000Z"
 ```
 {: pre}
-
-
-
-

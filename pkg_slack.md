@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-25"
 
 keywords: slack package, token-based, api, functions
 
@@ -24,7 +24,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Slack
 {: #pkg_slack}
 
@@ -43,6 +42,7 @@ Creating a package binding with the `username`, `url`, and `channel` values is s
 ## Posting a message to a Slack channel
 
 The `/whisk.system/slack/post` action posts a message to a specified Slack channel. The following parameters are supported.
+{: shortdesc}
 
 | Parameter | Description |
 | --- | --- |
@@ -56,27 +56,26 @@ The following example shows how to configure Slack, create a package binding, an
 
 1. Configure a Slack [incoming webhook](https://api.slack.com/incoming-webhooks){: external} for your team.
 
-  After Slack is configured, you get a webhook URL that looks like `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. The webhook is needed in the next step.
+   After Slack is configured, you get a webhook URL that looks like `https://hooks.slack.com/services/aaaaaaaaa/bbbbbbbbb/cccccccccccccccccccccccc`. The webhook is needed in the next step.
 
 2. Create a package binding with your Slack credentials, the channel that you want to post to, and the user name to post as.
-  ```
-  ibmcloud fn package bind /whisk.system/slack mySlack \
-    --param url "https://hooks.slack.com/services/..." \
-    --param username "Bob" \
-    --param channel "#MySlackChannel"
-  ```
-  {: pre}
+
+   ```
+   ibmcloud fn package bind /whisk.system/slack mySlack \
+     --param url "https://hooks.slack.com/services/..." \
+     --param username "Bob" \
+     --param channel "#MySlackChannel"
+   ```
+   {: pre}
 
 3. Invoke the `post` action in your package binding to post a message to your Slack channel.
-  ```
-  ibmcloud fn action invoke mySlack/post --blocking --result \
-    --param text "Hello from OpenWhisk!"
-  ```
-  {: pre}
+
+   ```
+   ibmcloud fn action invoke mySlack/post --blocking --result \
+     --param text "Hello from OpenWhisk!"
+   ```
+   {: pre}
 
 ## Using the Slack token-based API
 
 If you prefer, you can choose to use Slack's token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens){: external}. Then, you can use any of the [Slack API methods](https://api.slack.com/methods){: external} as your `url` parameter. For example, to post a message, you would use a `url` parameter value of [<ph class="ignoreSpelling">slack.postMessage</ph>](https://api.slack.com/methods/chat.postMessage){: external}.
-
-
-

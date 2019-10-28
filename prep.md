@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-10-25"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -976,7 +976,7 @@ To create a Java action, complete the following steps.
    ```
    {: codeblock}
 
-2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/) {: external}.
+2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
 
 3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar` which is saved in a `test` folder in the `Desktop` directory.
   

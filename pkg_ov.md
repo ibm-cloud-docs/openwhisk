@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-08-22"
+lastupdated: "2019-10-25"
 
 keywords: packages, installable packages, functions
 
@@ -24,7 +24,6 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Incorporating packages
 {: #pkg_ov}
 
@@ -40,8 +39,6 @@ Installable packages are packages that are available for you to install, edit, a
 
 You can install these packages or your own directly into your namespace, and can give a package a custom name. Because the package is installed into your own namespace, you can modify the actions and feeds in the package as needed.
 
-
-
 ## Browsing pre-installed packages
 {: #pkg_browse}
 
@@ -49,86 +46,91 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 {: shortdesc}
 
 1. Get a list of packages in the `/whisk.system` namespace.
-  ```
-  ibmcloud fn package list /whisk.system
-  ```
-  {: pre}
 
-  Package list output:
-  ```
-  packages
-  /whisk.system/websocket                                                shared
-  /whisk.system/utils                                                    shared
-  /whisk.system/samples                                                  shared
-  /whisk.system/weather                                                  shared
-  /whisk.system/slack                                                    shared
-  /whisk.system/cloudant                                                 shared
-  /whisk.system/cos-experimental                                         shared
-  /whisk.system/alarms                                                   shared
-  /whisk.system/messaging                                                shared
-  /whisk.system/pushnotifications                                        shared
-  /whisk.system/watson-textToSpeech                                      shared
-  /whisk.system/github                                                   shared
-  /whisk.system/combinators                                              shared
-  /whisk.system/watson-speechToText                                      shared
-  /whisk.system/watson-translator                                        shared
-  ```
-  {: screen}
+   ```
+   ibmcloud fn package list /whisk.system
+   ```
+   {: pre}
+
+   Package list output:
+   ```
+   packages
+   /whisk.system/websocket                                                shared
+   /whisk.system/utils                                                    shared
+   /whisk.system/samples                                                  shared
+   /whisk.system/weather                                                  shared
+   /whisk.system/slack                                                    shared
+   /whisk.system/cloudant                                                 shared
+   /whisk.system/cos-experimental                                         shared
+   /whisk.system/alarms                                                   shared
+   /whisk.system/messaging                                                shared
+   /whisk.system/pushnotifications                                        shared
+   /whisk.system/watson-textToSpeech                                      shared
+   /whisk.system/github                                                   shared
+   /whisk.system/combinators                                              shared
+   /whisk.system/watson-speechToText                                      shared
+   /whisk.system/watson-translator                                        shared
+   ```
+   {: screen}
 
 2. Get a list of entities in a package.
 
-  ```
-  ibmcloud fn package get --summary <package_name>
-  ```
-  {: pre}
+   ```
+   ibmcloud fn package get --summary <package_name>
+   ```
+   {: pre}
 
-  **Example**
-  ```
-  ibmcloud fn package get --summary /whisk.system/cloudant
-  ```
-  {: pre}
+   **Example**
 
-  **Example output**
-  ```
-  package /whisk.system/cloudant: Cloudant database service
-    (parameters: *apihost, *bluemixServiceName, dbname, host, iamApiKey, iamUrl, overwrite, password, username)
-  action /whisk.system/cloudant/delete-attachment: Delete document attachment from database
-    (parameters: attachmentname, dbname, docid, docrev, params)
-  action /whisk.system/cloudant/update-attachment: Update document attachment in database
-    (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
-  action /whisk.system/cloudant/read-attachment: Read document attachment from database
-    (parameters: attachmentname, dbname, docid, params)
-  action /whisk.system/cloudant/create-attachment: Create document attachment in database
-    (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
-  action /whisk.system/cloudant/read-changes-feed: Read Cloudant database changes feed (non-continuous)
-    (parameters: dbname, params)
-  ...
-  ...
-  ```
-  {: screen}
+   ```
+   ibmcloud fn package get --summary /whisk.system/cloudant
+   ```
+   {: pre}
 
-  This output shows that the {{site.data.keyword.cloudant_short_notm}} package includes actions and a feed. For example, two actions, `read` and `write`, and one trigger feed called `changes`. The `changes` feed causes triggers to be fired when documents are added to the specified {{site.data.keyword.cloudant_short_notm}} database.
+   **Example output**
 
-  The {{site.data.keyword.cloudant_short_notm}} package also defines the parameters `username`, `password`, `host`, and `port`. These parameters must be specified for the actions and feeds to be meaningful. The parameters allow the actions to operate on a specific {{site.data.keyword.cloudant_short_notm}} account, for example.
+   ```
+   package /whisk.system/cloudant: Cloudant database service
+     (parameters: *apihost, *bluemixServiceName, dbname, host, iamApiKey, iamUrl, overwrite, password, username)
+   action /whisk.system/cloudant/delete-attachment: Delete document attachment from database
+     (parameters: attachmentname, dbname, docid, docrev, params)
+   action /whisk.system/cloudant/update-attachment: Update document attachment in database
+     (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
+   action /whisk.system/cloudant/read-attachment: Read document attachment from database
+     (parameters: attachmentname, dbname, docid, params)
+   action /whisk.system/cloudant/create-attachment: Create document attachment in database
+     (parameters: attachment, attachmentname, contenttype, dbname, docid, docrev, params)
+   action /whisk.system/cloudant/read-changes-feed: Read Cloudant database changes feed (non-continuous)
+     (parameters: dbname, params)
+   ...
+   ...
+   feed   /whisk.system/cloudant/changes: Database change feed
+     (parameters: dbname, filter, iamApiKey, iamUrl, query_params)
+   ```
+   {: screen}
+
+   This output shows that the {{site.data.keyword.cloudant_short_notm}} package includes several actions and a feed.
+
+   The {{site.data.keyword.cloudant_short_notm}} package also defines the parameters `username`, `password`, `host`, and `port`. These parameters must be specified for the actions and feeds to be meaningful. 
 
 3. Get a description of an action or feed to see the parameters that are required.
 
-  **Example**
-  ```
-  ibmcloud fn action get --summary /whisk.system/cloudant/read
-  ```
-  {: pre}
+   **Example**
 
-  **Example output**
-  ```
-  action /whisk.system/cloudant/read: Read document from database
-     (params: dbname includeDoc id)
-  ```
-  {: screen}
+   ```
+   ibmcloud fn action get --summary /whisk.system/cloudant/read
+   ```
+   {: pre}
 
-  This output shows that the {{site.data.keyword.cloudant_short_notm}} `read` action requires three parameters, including the database and document ID to retrieve.
+   **Example output**
 
+   ```
+   action /whisk.system/cloudant/read: Read document from database
+       (parameters: *apihost, *bluemixServiceName, dbname, *id, params)
+   ```
+   {: screen}
 
+   This output shows that the {{site.data.keyword.cloudant_short_notm}} `read` action requires three parameters, including the database and document ID to retrieve.
 
 ## Binding parameters to pre-installed packages
 {: #pkg_bind}
@@ -141,68 +143,72 @@ For example, in the `/whisk.system/cloudant` package, you can set default `usern
 In the following example, you bind to the `/whisk.system/samples` package.
 
 1. Bind to the `/whisk.system/samples` package and set a default `place` parameter value.
-  ```
-  ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
-  ```
-  {: pre}
 
-  **Example output**
-  ```
-  ok: created binding valhallaSamples
-  ```
-  {: screen}
+   ```
+   ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
+   ```
+   {: pre}
+
+   **Example output**
+   ```
+   ok: created binding valhallaSamples
+   ```
+   {: screen}
 
 2. Get a description of the package binding.
-  ```
-  ibmcloud fn package get --summary valhallaSamples
-  ```
-  {: pre}
 
-  **Example output**
-  ```
-  package /myNamespace/valhallaSamples
-   action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
-   action /myNamespace/valhallaSamples/wordCount: Count words in a string
-   action /myNamespace/valhallaSamples/helloWorld: Demonstrates logging facilities
-   action /myNamespace/valhallaSamples/curl: Curl a host url
-  ```
-  {: screen}
+   ```
+   ibmcloud fn package get --summary valhallaSamples
+   ```
+   {: pre}
 
-  Notice that all the actions in the `/whisk.system/samples` package are available in the `valhallaSamples` package binding.
+   **Example output**
+
+   ```
+   package /myNamespace/valhallaSamples
+    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
+    action /myNamespace/valhallaSamples/wordCount: Count words in a string
+    action /myNamespace/valhallaSamples/helloWorld: Demonstrates logging facilities
+    action /myNamespace/valhallaSamples/curl: Curl a host url
+   ```
+   {: screen}
+
+   Notice that all the actions in the `/whisk.system/samples` package are available in the `valhallaSamples` package binding.
 
 3. Invoke an action in the package binding.
-  ```
-  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
-  ```
-  {: pre}
+  
+   ```
+   ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
+   ```
+   {: pre}
 
-  **Example output**
-  ```
-  {
-      "payload": "Hello, Odin from Valhalla!"
-  }
-  ```
-  {: screen}
+   **Example output**
+   ```
+   {
+       "payload": "Hello, Odin from Valhalla!"
+   }
+   ```
+   {: screen}
 
-  Notice from the result that the action inherits the `place` parameter that you set when you created the `valhallaSamples` package binding.
+   Notice from the result that the action inherits the `place` parameter that you set when you created the `valhallaSamples` package binding.
 
 4. Invoke an action and overwrite the default parameter value.
-  ```
-  ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
-  ```
-  {: pre}
+  
+   ```
+   ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
+   ```
+   {: pre}
 
-  **Example output**
-  ```
-  {
-      "payload": "Hello, Odin from Asgard!"
-  }
-  ```
-  {: screen}
+   **Example output**
 
-  Notice that the `place` parameter value that is specified with the action invocation overwrites the default value set in the `valhallaSamples` package binding.
+   ```
+   {
+       "payload": "Hello, Odin from Asgard!"
+   }
+   ```
+   {: screen}
 
-
+   Notice that the `place` parameter value that is specified with the action invocation overwrites the default value set in the `valhallaSamples` package binding.
 
 ## Adding your own packages
 {: #pkg_add}
@@ -211,35 +217,39 @@ You can create a package of local code or a clone of any GitHub repository.
 {: shortdesc}
 
 **Before you begin**
+
 - [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
 - Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [<ph class="ignoreSpelling">wskdeploy</ph> documentation ](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}.
 
 To add a package:
 
 1. Clone the package repo.
-    ```
-    git clone https://github.com/ORG_NAME/REPOSITORY_NAME
-    ```
-    {: pre}
+
+   ```
+   git clone https://github.com/ORG_NAME/REPOSITORY_NAME
+   ```
+   {: pre}
 
 2. Navigate to the directory that contains the `manifest.yaml` file.
-    ```
-    cd <filepath>/<package_name>
-    ```
-    {: pre}
+
+   ```
+   cd <filepath>/<package_name>
+   ```
+   {: pre}
 
 3. Deploy the package.
-    ```
-    ibmcloud fn deploy -m manifest.yaml
-    ```
-    {: pre}
 
-    Some packages require certain environment variables to enable the package to function properly. If so, include the environment variables with the `deploy` command. For example, you can choose a name for the package and specify it with the PACKAGE_NAME variable.
+   ```
+   ibmcloud fn deploy -m manifest.yaml
+   ```
+   {: pre}
 
-    ```
-    PACKAGE_NAME=CUSTOM_PACKAGE_NAME VARIABLE_NAME=VARIABLE_VALUE ibmcloud fn deploy -m manifest.yaml
-    ```
-    {: pre}
+   Some packages require certain environment variables to enable the package to function properly. If so, include the environment variables with the `deploy` command. For example, you can choose a name for the package and specify it with the PACKAGE_NAME variable.
+
+   ```
+   PACKAGE_NAME=CUSTOM_PACKAGE_NAME VARIABLE_NAME=VARIABLE_VALUE ibmcloud fn deploy -m manifest.yaml
+   ```
+   {: pre}
 
 ### {{site.data.keyword.cos_full_notm}} package example
 {: #pkg_ex}
@@ -249,22 +259,22 @@ To see an example of how to install a package, check out the [{{site.data.keywor
 After you create the service instance and bucket, you can install the package by using the following commands:
 
 1. Clone the package repo.
-    ```
-    git clone https://github.com/ibm-functions/package-cloud-object-storage.git
-    ```
-    {: pre}
+
+   ```
+   git clone https://github.com/ibm-functions/package-cloud-object-storage.git
+   ```
+   {: pre}
 
 2. Navigate to the package directory that contains the `manifest.yaml`. In this example, the Node.js runtime version of the {{site.data.keyword.cos_full_notm}} package is used.
-    ```
-    cd package-cloud-object-storage/runtimes/nodejs
-    ```
-    {: pre}
+
+   ```
+   cd package-cloud-object-storage/runtimes/nodejs
+   ```
+   {: pre}
 
 3. Deploy the package, using your bucket as an environment variable.  You can give the package a custom name by using the `PACKAGE_NAME` environment variable.
-    ```
-    PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
-    ```
-    {: pre}
 
-
-
+   ```
+   PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
+   ```
+   {: pre}

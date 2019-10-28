@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-04"
+lastupdated: "2019-10-28"
 
 keywords: services, serverless, functions
 
@@ -42,43 +42,64 @@ These parameters might include values that make your app reusable with different
 1. You can hard code parameters into your app. This option might not be the most secure way of storing confidential information such as credentials.
 2. You can bind the parameters to your app by binding them to an action or package.
 
-
 ## Binding a service to an action or package
 {: #services_bind}
 
 Bind any {{site.data.keyword.cloud_notm}} service to any action. When a service is bound, a new parameter is created on your existing action that contains the service instance credentials.
 {: shortdesc}
 
-You cannot bind multiple instances of the same service to an action or package. You can bind only one instance of a service.
+You can bind only one instance of a service at a time and you cannot bind multiple instances of the same service to an action or package. You can bind a service to an individual action or you can bind a service to a package and then all actions contained in that package are bound to that service.
 {: note}
 
 Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
 
-1. Get the name of the service and the service instance that you want to bind to an action or package. In the example output, composer is the service and Composer-qp is the service instance name.
+1. Get the list of available service keys of services that you want to bind to an action or package.
 
    ```
-   ibmcloud service list
+   ibmcloud resource service-keys
    ```
    {: pre}
 
    **Example output**
 
    ```
-   name              service        plan   bound apps   last operation
-   Composer-qp       composer       free                create succeeded
-   Composer-uc       composer       free                create succeeded
-   Discovery-37      discovery      lite                create succeeded
+   Name                             State    Created At
+   Service credentials-1            active   Tue Sep 17 15:50:43 UTC 2019
+   cloudant-my1-creds               active   Tue Sep 17 14:30:08 UTC 2019
+   LogDNA-key-admin                 active   Wed Aug 28 14:27:30 UTC 2019
    ```
    {: screen}
 
-2. Get the name of the credentials that are defined for a service instance.
+   To find more details, use `--output json`.
+
+   If you know the service name or id, you can use the `--instance-name NAME` option to get only the subset of keys for a specific service instance. For example:
 
    ```
-   ibmcloud service keys SERVICE_NAME
+   ibmcloud resource service-keys --instance-name My-Cloudant
    ```
    {: pre}
 
-3. Bind the service to an action. The `ibmcloud fn service bind` command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime. The following parameters are available for the `ibmcloud fn service bind` command.
+2. Get details of a selected service key.
+
+   ```
+   ibmcloud resource service-key <service_key_name>
+   ```
+   {: pre}
+
+   **Example output**
+
+   ```
+   Name:          cloudant-my1-creds
+   ID:            crn:v1:bluemix:public:cloudantnosqldb:eu-de:a/123456789012345678901234567890ab:f6f38f72-95af-4699-842c-4cac2a1ea19e:resource-key:5dab35d4-fe20-433e-9cb9-7ae4d93887d5
+   Created At:    Wed Nov 28 16:30:08 UTC 2018
+   State:         active
+   Credentials:
+                 apikey:  ABC123ABC123abc123abc123ABC123ABC123abc123
+                 ...
+   ```
+   {: screen}
+
+3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
 
     <table>
     <thead>
@@ -114,21 +135,26 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: pre}
 
-   For example, to bind an IBM Watson Composer service to an action named `hello`, run the following command.
+   For example, to bind an {{site.data.keyword.cloudant}} service instance to an action called `hello`, run the following command.
 
    ```
-   ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
+   ibmcloud fn service bind cloudantnosqldb hello --instance My-Cloudant --keyname cloudant-my1-creds
    ```
    {: pre}
 
-   **Output**
+   If your action is not found, try adding the package name to the command: `demo\hello`. Note that if there's only one instance of service type `cloudantnosqldb` and only one service key, the `--instance` and `--keyname` options can be omitted.
+
+   If you receive the message `Unable to refresh user access token: CloudFoundry API endpoint is not set`, try running `ibmcloud target --cf` with no arguments and then running the command again.
+   {: tip}
+
+   **Example output**
 
    ```
-   Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello`.
+   Credentials 'cloudant-my1-creds' from 'cloudantnosqldb' service instance 'My-Cloudant' bound to 'hello'.
    ```
    {: screen}
 
-4. Verify that the credentials are successfully bound. The action that the service is bound to doesn't support any custom flags, but does support the debug and verbose flags.
+4. Verify that the credentials are successfully bound. The action that the service is bound to doesn't support any custom flags, but does support the `debug` and `verbose` flags.
 
    ```
    ibmcloud fn action get hello parameters
@@ -136,6 +162,96 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    {: pre}
 
    **Example output**
+
+   ```
+   "key": "__bx_creds",
+       "value": {
+           "cloudantnosqldb": {
+               "apikey": "ABC123ABC123abc123abc123ABC123ABC123abc123",
+               "credentials": "cloudant-my1-creds",
+               ...
+           }
+       }
+   ```
+   {: screen}
+
+   In this example, the credentials for the Cloudant service, along with any other credentials for other service types belong to a parameter named `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
+
+   For example in `nodejs`, you can use the following code to get the apikey for the Cloudant service in the previous sample.
+
+   ```
+   function main(params) {
+       const apikey = params.__bx_creds.cloudantnosqldb.apikey; 
+       // ...
+       return { message: 'Hello done.' };
+   }
+   ```
+   {: screen}
+
+For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
+
+## Binding Cloud Foundry based services
+{: #services_bind_cf}
+
+Cloud Foundry based services do not expose credentials through a service key resource, but instead use Cloud Foundry based service keys.
+{: shortdesc}
+
+1. Find the name of the service and the service instance that you want to bind to an action or package. In the example output, `composer` is the service and `Composer-qp` is the service instance name.
+
+   ```
+   ibmcloud service list
+   ```
+   {: pre}
+
+   **Example output**
+
+   ```
+   name              service        plan   bound apps   last operation
+   Composer-qp       composer       free                create succeeded
+   Composer-uc       composer       free                create succeeded
+   Discovery-37      discovery      lite                create succeeded
+   ```
+   {: screen}
+
+2. Get the name of the credentials that are defined for a service instance.
+
+   ```
+   ibmcloud service keys SERVICE_NAME
+   ```
+   {: pre}
+
+3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
+
+   **Example syntax**
+
+   ```
+   ibmcloud fn service bind SERVICE ACTION_NAME [--instance INSTANCE_NAME] [--keyname CREDENTIALS_NAME]
+   ```
+   {: pre}
+
+   For example, to bind an IBM Watson Composer service to an action named `hello`, run the following command.
+
+   ```
+   ibmcloud fn service bind composer hello --instance Composer-qp --keyname Credentials-1
+   ```
+   {: pre}
+
+   **Example output**
+
+   ```
+   Service credentials 'Credentials-1' from service 'Composer-qp' bound to action 'hello`.
+   ```
+   {: screen}
+
+4. Verify that the credentials are successfully bound. The action that the service is bound to doesn't support any custom flags, but does support the `debug` and `verbose` flags.
+
+   ```
+   ibmcloud fn action get hello parameters
+   ```
+   {: pre}
+
+   **Example output**
+
    ```
    ok: got action Hello World
    {
@@ -165,11 +281,9 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: screen}
 
-   In this example, the credentials for the Composer service, along with any other credentials for other service types belong to a parameter named `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
+   In this example, the credentials for the `composer` service, along with any other credentials for other service types belong to a parameter called `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
 
 For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
-
-
 
 ## Unbinding services from actions
 {: #services_unbind}

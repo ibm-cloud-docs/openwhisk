@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-14"
+lastupdated: "2019-10-28"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -86,6 +86,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
   {: screen}
 
 ### Combining app files and Docker images to create actions
+{: #actions_combine_app}
 
 You can combine your app files with Docker images to create actions. For more information see, [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 {: shortdesc}
@@ -163,7 +164,7 @@ You can update your actions from the CLI using the [`ibmcloud fn action update`]
     {: tip}
 
 ### Updating actions from the console
-{: #actions_update_cli}
+{: #actions_update_console}
 
 You can update your actions directly from the **Actions** page.
 {: shortdesc}
@@ -449,7 +450,7 @@ The action environment contains several environment variables that are specific 
 | `__OW_API_HOST` | The API host for the deployment that is running this action. |
 | `__OW_API_KEY` | The API key for the subject that is invoking the action. This variable is only provided for classic CF-based namespaces. |
 | `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
-| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/overview?topic=overview-crn). The CRN is only available for IAM-enabled namespaces
+| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/resources?topic=resources-crn). The CRN is only available for IAM-enabled namespaces
 | `__OW_ACTION_NAME` | The fully qualified name of the running action. |
 | `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
 | `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces |

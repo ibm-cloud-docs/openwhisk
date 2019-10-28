@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-10-28"
 
 keywords: object storage, bucket, package, functions
 
@@ -329,7 +329,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
 {: shortdesc}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](https://cloud.ibm.com/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to respond to the trigger.
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to respond to the trigger.
 
 For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions).
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-07-12"
+lastupdated: "2019-10-25"
 
 keywords: mobile, sdk, cocoapods, carthage, functions
 
@@ -24,17 +24,14 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
 # Mobile SDK
 {: #pkg_mobile_sdk}
 
 OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK by using Xcode 9.
 {: shortdesc}
 
-
 The mobile SDK is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
 {: important}
-
 
 ## Add the SDK to your app
 
@@ -78,6 +75,7 @@ end
 ### Install with Carthage
 
 Create a file in your app's project directory and name it `Cartfile`. Put the following line in the file:
+
 ```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
@@ -99,6 +97,7 @@ Build the project for the targets that you need and add the resulting frameworks
 You can use the OpenWhisk CLI to download example code that embeds the OpenWhisk SDK framework.
 
 To install the starter app example, enter the following command:
+
 ```
 ibmcloud fn sdk install iOS
 ```
@@ -107,6 +106,7 @@ ibmcloud fn sdk install iOS
 This command downloads a compressed file that contains the starter app. The project directory contains a Podfile.
 
 To install the SDK, enter the following command:
+
 ```
 pod install
 ```
@@ -117,6 +117,7 @@ pod install
 To get up and running quickly, create a `WhiskCredentials` object with your OpenWhisk API credentials and create an OpenWhisk instance from the object.
 
 For example, use the following example code to create a credentials object:
+
 ```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
@@ -124,12 +125,14 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 {: pre}
 
 In previous example, you pass in the `myKey` and `myToken` that you get from OpenWhisk. You can retrieve the key and token with the following CLI command:
+
 ```
 ibmcloud fn property get --auth
 ```
 {: pre}
 
 **Output**
+
 ```
 whisk auth        kkkkkkkk-kkkk-kkkk-kkkk-kkkkkkkkkkkk:tttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttttt
 ```
@@ -142,6 +145,7 @@ The string before the colon is your key, and the string after the colon is your 
 To invoke a remote action, you can call `invokeAction` with the action name. Use a dictionary to pass parameters to the action as needed.
 
 **For example**
+
 ```swift
 // In this example, we are invoking an action to print a message to the OpenWhisk Console
 var params = Dictionary<String, String>()
@@ -285,6 +289,3 @@ do {
 }
 ```
 {: codeblock}
-
-
-
