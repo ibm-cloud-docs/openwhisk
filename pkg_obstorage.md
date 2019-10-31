@@ -1,8 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-28"
+lastupdated: "2019-10-31"
 
 keywords: object storage, bucket, package, functions
 
@@ -29,6 +28,7 @@ subcollection: cloud-functions
 {: #pkg_obstorage}
 
 You can extend the functionality of your {{site.data.keyword.openwhisk}} app by integrating with an {{site.data.keyword.cos_full}} instance.
+{: shortdesc}
 
 **Before you begin** 
 * To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). 
@@ -38,6 +38,7 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 {: #obstorage_packages}
 
 Review the following table for a list of {{site.data.keyword.openwhisk_short}} packages that you can use to work with your {{site.data.keyword.cos_full_notm}} entities.
+{: shortdesc}
 
 | Package | Availability | Description |
 | --- | --- | --- |
@@ -47,27 +48,33 @@ Review the following table for a list of {{site.data.keyword.openwhisk_short}} p
 ## Setting up the {{site.data.keyword.cos_full_notm}} trigger
 {: #pkg_obstorage_ev}
 
-**What is the {{site.data.keyword.cos_full_notm}} trigger?**</br>
-The {{site.data.keyword.cos_full_notm}} trigger is a pre-installed {{site.data.keyword.openwhisk_short}} package that you can use to listen for changes to objects in a bucket. When a bucket change occurs, the trigger is fired. You can then create actions and rules to process object changes from the bucket. The trigger is available in the `us-east`, `us-south`, and `eu-gb` regions.
+**What is the {{site.data.keyword.cos_full_notm}} trigger?**
 
-**How does the trigger work?**</br>
+The {{site.data.keyword.cos_full_notm}} package is a pre-installed {{site.data.keyword.openwhisk_short}} package that you can use to create triggers to listen for changes to objects in a bucket. When a bucket change occurs, the trigger is fired. You can then create actions and rules to process object changes from the bucket. The trigger is available in the `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions.
+
+**How does the trigger work?**
+
 Once configured, the trigger listens for changes to a bucket and fires on successful change events. When you create the trigger, you can specify a parameter that filters trigger activations based on the bucket change event type, such as `write` events,`delete` events, or `all` events. You can also filter the trigger activations by object `prefix`, `suffix`, or both.
 
 The trigger is fired for each successful bucket change event. Each object change in a batch request is handled individually. For example: A batch request to delete 200 hundred objects would result in 200 individual delete events and 200 trigger fires. For more information, see [Details and limits](#pkg_cos_limits).
 
-**How do I use the trigger?**</br>
+**How do I use the trigger?**
+
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions to process the object changes. You can use one of the following methods to create actions that are executed when the trigger is fired:
 * You can create actions by using the sample code provided in the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
 * You can write your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 </br>
 
-**Sample use case:**</br> With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map so that users can have access to the latest street data for their GPS application.
+**Sample use case:**
+
+With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map so that users can have access to the latest street data for their GPS application.
 
 ### Prerequisites for working with the {{site.data.keyword.cos_full_notm}} trigger
 {: #cos_changes_pre}
 
-**Before you begin**</br>
+**Before you begin**
+
 You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
 In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
@@ -78,12 +85,15 @@ In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following c
 
 ### 1. Assigning the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace
 {: #pkg_obstorage_auth}
+
 Before you can create a trigger to listen for bucket change events, you must assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace. As a Notifications Manager, {{site.data.keyword.openwhisk_short}} can view, modify, and delete notifications for a Cloud Object Storage bucket. You can assign the Notifications Manager role from either the console or the CLI. Once assigned, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
+{: shortdesc}
 
 Only account administrators can assign the Notifications Manager role.
 {: note}
 
-**What happens when I assign the Notifications Manager role?**</br>
+**What happens when I assign the Notifications Manager role?**
+
 When you assign the Notifications Manager role to your {{site.data.keyword.openwhisk_short}} namespace, you can then create triggers for any regional buckets in your {{site.data.keyword.cos_full_notm}} instance that are in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
 You can assign the Notifications Manager role to all instances of {{site.data.keyword.openwhisk_short}} for all instances {{site.data.keyword.cos_full_notm}}, but you can only create triggers for regional buckets that are in the same supported regions as your {{site.data.keyword.openwhisk_short}} namespaces.
@@ -91,7 +101,7 @@ You can assign the Notifications Manager role to all instances of {{site.data.ke
 
 | Assigning the Notifications Manager role with the console. |
 |:-----------------|
-| <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> In the **Source service** dropdown, select **Functions**. Then, in the **Source service instance** dropdown select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In the **Target service** dropdown, select **Cloud Object Storage**, then in the **Target service instance** dropdown, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
+| <p><ol><li> Navigate to the **Grant a Service Authorization** page in the [IAM dashboard](https://cloud.ibm.com/iam/authorizations/grant){: external}.</li><li> From **Source service**, select **Functions**. Then, from **Source service instance**, select a {{site.data.keyword.openwhisk_short}} namespace. Note: Only IAM-enabled namespaces are supported.</li><li> In **Target service**, select **Cloud Object Storage**, then from **Target service instance**, select your {{site.data.keyword.cos_full_notm}} instance.</li><li> Assign the **Notifications Manager** role and click **Authorize**.</li></ol></p> |
 {: caption="Assigning the Notifications Manager role with the console." caption-side="top"}
 {: #nm-1}
 {: tab-title="Console"}
@@ -113,6 +123,7 @@ You can assign the Notifications Manager role to all instances of {{site.data.ke
 {: #pkg_obstorage_ev_trig_param}
 
 The {{site.data.keyword.cos_full_notm}} trigger includes multiple parameters that can be set to filter which bucket change events fire the trigger. For example, you can configure the trigger to fire on all bucket change events. Or, you can filter trigger fires based on the bucket change event type, such as `write`, `delete`, or `all`  events. You can also filter the trigger activations by object `prefix` or `suffix` or both. You can then create actions and rules to process object changes from the bucket. 
+{: shortdesc}
 
 When creating a trigger from the CLI, you can also specify an `endpoint` parameter  When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example:
 * (Default) Private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. 
@@ -210,6 +221,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 ### Next steps
 {: #pkg_obstorage_next}
+
 Once you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
   * You can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
   * You can create your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to be executed when the trigger is fired.
@@ -221,6 +233,8 @@ Once you have created a trigger to respond to bucket events and connected it to 
 Review the following reference material for information on the {{site.data.keyword.cos_full_notm}} trigger package.
 
 #### {{site.data.keyword.cos_full_notm}} trigger entities
+{: #pkg_obstorage_ref_trig_entities}
+
 The {{site.data.keyword.cos_full_notm}} trigger contains the `/whisk.system/cos` package and supports the following parameters:
 
 | Entity | Type | Description |
@@ -317,10 +331,6 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 
 
 
-
-
-
-</br>
 </br>
 
 ## Configuring the {{site.data.keyword.cos_full_notm}} package
@@ -389,13 +399,16 @@ You still need to pass the bucket name and endpoint during action invocation. Yo
 {: note}
 
 #### Creating service credentials for accessing your {{site.data.keyword.cos_full_notm}} instance
+{: #pkg_obstorage_sc_cos}
+
 If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
 
 #### Binding your {{site.data.keyword.cos_full_notm}} service credentials to the package or actions.
 {: #pkg_obstorage_sc_bind}
 
 To use the `client-get-signed-url` action in the `cloud-object-storage` package, you must bind your {{site.data.keyword.cos_full_notm}} service credentials to the action.
-  * To bind service credentials to all actions in the package use the `service bind` command in the CLI. 
+
+  * To bind service credentials to all actions in the package, use the `service bind` command in the CLI. 
   * To bind service credentials to individual actions, complete the following steps in the console. 
 
 | Binding service credentials in the console. |
@@ -409,7 +422,7 @@ To use the `client-get-signed-url` action in the `cloud-object-storage` package,
 
 | Binding service credentials in the CLI. |
 |:-----------------|
-| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code> ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
+| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code>ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
 {: caption="Binding service credentials in the CLI." caption-side="top"}
 {: #service-2}
 {: tab-title="CLI"}
@@ -484,6 +497,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 ## Reading objects from a bucket
 {: #pkg_obstorage_read}
+
 You can use the `object-read` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the console or the CLI.
 {: shortdesc}
 

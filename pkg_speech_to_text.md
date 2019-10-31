@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-10-31"
 
 keywords: package, cognitive, functions
 
@@ -75,7 +75,7 @@ The {{site.data.keyword.speechtotextshort}} package contains the following entit
 | [`list-audio`](https://cloud.ibm.com/apidocs/speech-to-text/speech-to-text#list-audio-resources){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | List audio resources. |
 | [`delete-user-data`](https://cloud.ibm.com/apidocs/speech-to-text/speech-to-text#delete-labeled-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Delete labeled data. |
 
-### Creating a {{site.data.keyword.speechtotextshort}} service instance
+## Creating a {{site.data.keyword.speechtotextshort}} service instance
 {: #service_instance_speechtotext}
 
 Before you install the package, you must create a {{site.data.keyword.speechtotextshort}} service instance and service credentials.
@@ -84,13 +84,13 @@ Before you install the package, you must create a {{site.data.keyword.speechtote
 1. [Create a {{site.data.keyword.speechtotextshort}} service instance ](https://cloud.ibm.com/catalog/services/speech_to_text){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
-### Installing the {{site.data.keyword.speechtotextshort}} package
+## Installing the {{site.data.keyword.speechtotextshort}} package
 {: #install_speechtotext}
 
 After you have an {{site.data.keyword.speechtotextshort}} service instance, install the {{site.data.keyword.speechtotextshort}} package into your namespace.
 {: shortdesc}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} CLI
+## Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #speechtotext_cli}
 
 Install the {{site.data.keyword.speechtotextshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
@@ -175,7 +175,7 @@ To install the {{site.data.keyword.speechtotextshort}} package:
    ```
    {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} console
+## Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #speechtotext_ui}
 
 Install the {{site.data.keyword.speechtotextshort}} package from the console.
@@ -206,7 +206,7 @@ Install the {{site.data.keyword.speechtotextshort}} package from the console.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
-### Using the {{site.data.keyword.speechtotextshort}} package
+## Using the {{site.data.keyword.speechtotextshort}} package
 {: #usage_speechtotext}
 
 To use the actions in this package, run commands in the following format:

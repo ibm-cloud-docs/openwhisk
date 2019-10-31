@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-10-31"
 
 keywords: cognitive, functions, packages
 
@@ -53,7 +53,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 | [`list-words`](https://cloud.ibm.com/apidocs/text-to-speech/text-to-speech#list-custom-words){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | List custom words. |
 | [`delete-user-data`](https://cloud.ibm.com/apidocs/text-to-speech/text-to-speech#delete-labeled-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Delete labeled data. |
 
-### Creating a {{site.data.keyword.texttospeechshort}} Service instance
+## Creating a {{site.data.keyword.texttospeechshort}} Service instance
 {: #service_instance_texttospeech}
 
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} Service instance and service credentials.
@@ -62,13 +62,13 @@ Before you install the package, you must create a {{site.data.keyword.texttospee
 1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
-### Installing the {{site.data.keyword.texttospeechshort}} package
+## Installing the {{site.data.keyword.texttospeechshort}} package
 {: #install_texttospeech}
 
 After you have an {{site.data.keyword.texttospeechshort}} Service instance, install the {{site.data.keyword.texttospeechshort}} package into your namespace.
 {: shortdesc}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} CLI
+## Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #texttospeech_cli}
 
 Install the {{site.data.keyword.texttospeechshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
@@ -154,7 +154,7 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
    ```
    {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} console
+## Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #texttospeech_ui}
 
 Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
@@ -189,6 +189,7 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
 {: #usage_texttospeech}
 
 To use the actions in this package, run commands in the following format:
+{: shortdesc}
 
 ```
 ibmcloud fn action invoke text-to-speech-v1/<action_name> -b -p <param name> <param>
