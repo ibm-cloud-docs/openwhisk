@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-28"
+lastupdated: "2019-11-18"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -249,7 +249,7 @@ You can create an action that chains together a sequence of actions. The result 
 
 Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
 
-A sequence does not have an overall timeout separate from the timeouts of each action within the sequence. Because a sequence is a pipeline of operations, a failure in one action breaks the pipeline. If one action times out, the entire sequence is exited with that failure.
+A sequence does not have limits that are separate from those of each action contained within the sequence, so although you can set limits for `timeout`, `memory`, and `logsize` when you create a sequence, those limits are ignored. Note that the limits configured for each action in the sequence are individually enforced. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
 
 After you create a sequence, you can use the name of the sequence when you create a rule or invoke the actions.
 

@@ -1,7 +1,7 @@
 ---
 
 copyright:
-lastupdated: "2019-10-31"
+lastupdated: "2019-11-01"
 
 keywords: object storage, bucket, package, functions
 
@@ -327,7 +327,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 * Once created, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
 * For batch requests, each object change is handled individually and the trigger is fired for each successful change event.
 * All characters are permitted in an object key except for ASCII control character NUL. 
-* Naming limitations for {{site.data.keyword.openwhisk_short}} triggers can be on the [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#limits_fullnames) page.
+* Naming limitations for {{site.data.keyword.openwhisk_short}} triggers can be found on the [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#limits_fullnames) page.
 
 
 

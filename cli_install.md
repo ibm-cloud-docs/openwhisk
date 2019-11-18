@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-07"
+lastupdated: "2019-11-14"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -125,7 +125,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
-  **Output**
+  **Example Output**
 
   ```
   Plugin Name          Version
@@ -145,6 +145,37 @@ For more information about {{site.data.keyword.openwhisk_short}} commands, see t
 ## Next steps
 {: #install_next}
 To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+
+## Updating the {{site.data.keyword.openwhisk_short}} CLI plugin
+{: #cli_update}
+
+You might want to update the CLI periodically to use new features.
+{:shortdesc}
+
+1. View your current plugin list by running `ibmcloud plugin list` command.
+
+   ```
+   ibmcloud plugin list
+   ```
+   {: pre}
+   
+   **Example Output**
+   
+   ```
+   Plugin Name                                 Version   Status        
+   cloud-functions/wsk/functions/fn            1.0.35    Update Available   
+   cloud-object-storage                        1.1.0        
+   container-registry                          0.1.437      
+   container-service/kubernetes-service        0.4.51       
+   ```
+   {: screen}
+
+2. If an update is available, run the `ibmcloud plugin update` command.
+
+   ```
+   ibmcloud plugin update cloud-functions
+   ```
+   {: pre}
 
 ## Configuring the {{site.data.keyword.openwhisk_short}} CLI to use an HTTPS proxy
 {: #cli_proxy}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-10-31"
+lastupdated: "2019-11-18"
 
 keywords: release notes, functions
 
@@ -29,6 +29,13 @@ subcollection: cloud-functions
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## November 2019
+{: #nov19}
+
+| Date | Description |
+| --------- | -------- |
+| 18 Nov 2019 | Fixes for version 1.0.36. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions). |
 
 ## October 2019
 {: #oct19}
