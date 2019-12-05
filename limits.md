@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-18"
+lastupdated: "2019-12-05"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -41,11 +41,13 @@ The following table lists the default limits for actions.
 
 <table>
 <caption>Default limits for actions</caption>
+<colgroup>
 <col width="20%">
 <col width="50%">
 <col width="10%">
 <col width="10%">
 <col width="10%">
+</colgroup>
  <thead>
  <th>Limit</th>
  <th>Description</th>

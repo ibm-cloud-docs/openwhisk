@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-11-18"
+lastupdated: "2019-12-05"
 
 keywords: release notes, functions
 
@@ -29,6 +29,13 @@ subcollection: cloud-functions
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## December 2019
+{: #dec19}
+
+| Date | Description |
+| --------- | -------- |
+| 5 Dec 2019 | <ul><li>Improved documentation for the quick start templates. See [Deploying quick start templates](/docs/openwhisk?topic=cloud-functions-templates).</li><li>Updated the API endpoints documentation. See [Regions](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).</li></ul> |
 
 ## November 2019
 {: #nov19}

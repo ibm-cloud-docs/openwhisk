@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-18"
+lastupdated: "2019-12-05"
 
 keywords: web actions, serverless, functions
 
@@ -47,6 +47,7 @@ By default, actions accept only `POST` requests, but web actions can be invoked 
 When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
 
 **Example**
+
 ```
 ibmcloud fn action get <action_name> --url
 ```
@@ -225,9 +226,10 @@ You might use this feature in a web application to redirect a user to the new ve
 {: shortdesc}
 
 **Before you begin** 
+
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
-This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/openwhisk/){: external}. To create a web action that performs an HTTP redirect:
+This example web action redirects your browser to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/){: external}. To create a web action that performs an HTTP redirect:
 
 1. Save the code as `hello.js`.
 
@@ -264,12 +266,14 @@ This example web action redirects your browser to the [{{site.data.keyword.openw
 
 ### Setting cookies by using a web action
 {: #multiple_cookie}
+
 You might use this feature in a web application to store a JSON Web Token as a session cookie after a successful login.
 {: shortdesc}
 
 To create a web action that sets multiple cookies:
 
 **Before you begin** 
+
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
 1. Save the code as `hello.js`.
@@ -446,6 +450,7 @@ Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf
 
 ### Altering the response content of web action
 {: #extra_features}
+
 You can alter the response content of a web action to return different content types by using [Content extensions](#actions_web_extra). 
 {: shortdesc}
 
@@ -675,6 +680,7 @@ By default, anyone can invoke a web action by using the invocation URL. You can 
 {: shortdesc}
 
 **Before you begin**
+
 Create the `demo` package and `hello` web action by completing the steps in [Creating a web action](#actions_web_example).
 
 You can set the `require-whisk-auth` annotation by either:
@@ -841,6 +847,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 
 
 **Example output**
+
 ```
 {
   "response": {
@@ -938,6 +945,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
   {: pre}
 
   **Example output**
+  
   ```
   ok: created action decode
   ```
@@ -950,6 +958,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
     {: pre}
 
   **Example output**
+  
     ```
     {
       "body": "Decoded body"
@@ -964,6 +973,7 @@ By default, an `OPTIONS` request that is made to a web action results in CORS he
 {: shortdesc}
 
 See the following headers:
+
 ```
 Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
@@ -1035,12 +1045,21 @@ Developers must know how web actions might be used and then generate appropriate
 ## Disabling web actions
 {: #actions_web_disable}
 
+You can disable web actions from both the CLI and the console.
 {: shortdesc}
 
+To disable a web action from the CLI:
 ```bash
 ibmcloud fn action update <packageName>/<actionName> <filepath>/<filename> --web false
 ```
 {: pre}
+
+To disable a web action from the console:
+
+1. Go to the [Action page](https://cloud.ibm.com/functions/actions){: external}.
+2. Click the web action that you want to disable.
+3. On the Endpoints tab, uncheck **Enable as Web Action**.
+4. Save your changes.
 
 ## Web action limits
 For more information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).

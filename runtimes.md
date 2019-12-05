@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-04"
+lastupdated: "2019-11-27"
 
 keywords: runtimes, support, functions
 
@@ -38,6 +38,7 @@ View the available runtimes for IBM Cloud Functions in each region. The followin
   - [`us-east`](https://us-east.functions.cloud.ibm.com/){: external}
   - [`eu-gb`](https://eu-gb.functions.cloud.ibm.com/){: external}
   - [`eu-de`](https://eu-de.functions.cloud.ibm.com/){: external}
+  - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
 
 
 The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action`.
@@ -56,15 +57,6 @@ Runtimes are updated regularly. These updates include security fixes and minor v
 Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
 
 These runtimes are deprecated:
-<ul>
-  <li><code>nodejs:6</code> (deprecated)</li>
-  <li><code>php:7.1</code> (deprecated)</li>
-  <li><code>php:7.2</code> (deprecated)</li>
-  <li><code>swift:3</code> (deprecated)</li>
-  <li><code>swift:3.1.1</code> (deprecated)</li>
-  <li><code>swift:4.1</code> (deprecated)</li>
-  <li><code>ballerina:0.990</code> (deprecated)</li>
-</ul>
 
 
 
