@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-18"
+lastupdated: "2019-12-18"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -88,7 +88,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
 ### Combining app files and Docker images to create actions
 {: #actions_combine_app}
 
-You can combine your app files with Docker images to create actions. For more information see, [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+You can combine your app files with Docker images to create actions. For more information, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 {: shortdesc}
 
 Run the following command.
@@ -101,14 +101,13 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
 ## Creating actions from the console
 {: #actions_create_ui}
 
-You can create actions from the IBM Cloud Functions console. For details about the requirements for each runtime, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
 {: shortdesc}
 
 1. From the [IBM Cloud Functions Create ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/create) page, click **Create Action**.
   
   1. Specify a name for your action. Action names must be unique within namespaces.
   2. Specify a package for your action. [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
-  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=cloud-functions-prep#prep_docker). You can change the runtime for your action after you have created it.
+  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=cloud-functions-prep#prep_docker). You can change the runtime for your action after you create it.
   4. Click **Create**.
   
 2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
@@ -127,7 +126,7 @@ When you migrate to a new runtime version, you might need to change the code in 
 ### Updating actions from the CLI
 {: #actions_update_cli}
 
-You can update your actions from the CLI using the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
+You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
 {: shortdesc}
 
 1. Update your app locally.
@@ -249,14 +248,14 @@ You can create an action that chains together a sequence of actions. The result 
 
 Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
 
-A sequence does not have limits that are separate from those of each action contained within the sequence, so although you can set limits for `timeout`, `memory`, and `logsize` when you create a sequence, those limits are ignored. Note that the limits configured for each action in the sequence are individually enforced. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
+A sequence does not have limits that are separate from those limits of each action that is contained within the sequence. While you can set limits for `timeout`, `memory`, and `logsize` when you create a sequence, those limits are ignored. Note that the limits configured for each action in the sequence are individually enforced. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
 
 After you create a sequence, you can use the name of the sequence when you create a rule or invoke the actions.
 
 ### Creating a sequence from the CLI
 {: #actions_seq_cli}
 
-Create a sequence from the CLI using the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
 {: shortdesc}
 
 ```
@@ -325,8 +324,8 @@ You can set default parameters for all the entities in a package by setting pack
 
 Bound parameters serve as the default parameters for actions in the package unless:
 
-- The action itself has a default parameter
-- The action has a parameter that is supplied at invocation time
+- The action itself has a default parameter.
+- The action has a parameter that is supplied at invocation time.
 
 Before you begin, create a package that includes at least one action.
 
@@ -447,15 +446,16 @@ The action environment contains several environment variables that are specific 
 
 | Property | Description |
 | -------- | ----------- |
+| `__OW_ACTION_NAME` | The fully qualified name of the running action. |
+| `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |
 | `__OW_API_HOST` | The API host for the deployment that is running this action. |
 | `__OW_API_KEY` | The API key for the subject that is invoking the action. This variable is only provided for classic CF-based namespaces. |
-| `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
-| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/resources?topic=resources-crn). The CRN is only available for IAM-enabled namespaces
-| `__OW_ACTION_NAME` | The fully qualified name of the running action. |
-| `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
-| `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces |
-| `__OW_ACTIVATION_ID` | The activation ID for this running action instance. |
 | `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action consumes its entire duration quota. |
+| `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces. |
+| `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
+| `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
+| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/resources?topic=resources-crn). The CRN is only available for IAM-enabled namespaces. |
+| `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the logs in [LogDNA](/docs/openwhisk?topic=cloud-functions-logs#logs_logdna) can be filtered for a specific transaction. |
 
 ### Incorporating action environment variables in your app
 {: #actions_envvars_app}

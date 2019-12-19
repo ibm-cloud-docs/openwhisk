@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-02"
+lastupdated: "2019-12-18"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -42,12 +42,23 @@ For more information about API management, you can read the [API management docu
 ## Creating your first API
 {: #api_create}
 
+You can create APIs using the CLI or from the console.
+{: shortdesc}
+
+**Before you begin**
+
 You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create REST APIs. Space permissions can be seen by running `ibmcloud account space-roles <org>`.
+
+By default, anyone can invoke a web action by using the invocation URL, even if you secure the calling API. You can secure your web action by using the `require-whisk-auth web action` annotation. For more information, see [Securing your API web action](#api_secure).
 {: note}
+
+### Creating your first API using the CLI
+{: #api_create_cli}
 
 Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cli_install).
 
-1. Save the following code into a JavaScript file named `hello.js`.
+1. Save the following code as a JavaScript file named `hello.js`.
+
   ```javascript
   function main({name:name='Serverless API'}) {
       return {payload: `Hello, ${name}!`};
@@ -55,26 +66,29 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   ```
   {: codeblock}
 
-2. Create a web action that is named `hello` by using the file that you created. Be sure to add the flag `--web true`. Replace `<filepath>` with the file path of your `hello.js` file.
+2. Create a web action that is named `hello` by using the file that you created. Be sure to add the flag `--web true` and the `--web-secure <secret>`. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action. For more information about using the `--web-secure` flag, see [Securing your API web action](#api_secure).
 
   ```
-  ibmcloud fn action create hello <filepath>/hello.js --web true
+  ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
   ```
   {: pre}
 
   **Example output**
+  
   ```
   ok: created action hello
   ```
   {: screen}
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
+
   ```
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
 
   **Example output**
+  
   A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
 
   ```
@@ -85,12 +99,14 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
   
 4. Send a test HTTP request to the URL by using the following cURL command.
+
   ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
   ```
   {: pre}
 
   **Example output**
+  
   The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
 
   ```
@@ -99,8 +115,25 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   }
   ```
   {: screen}
+  
+### Creating an API using the console
+{: #api_create_ui}
 
+1. Go to the [API](https://cloud.ibm.com/functions/apimanagement){: external}  page in the {{site.data.keyword.openwhisk_short}} console.
 
+2. Click **Create API**.
+
+3. Complete the fields in the API Info section.
+
+4. Click **Create operation**. Use the Create operations section to define parameters for your API.  To create an API that is similar to the API in the CLI example, use base path `/hello`, path `/world`, method `get`, and response type `json`.
+
+5. Click **Create operation**.
+
+6. Complete any remaining information for your API. You can also edit this information after your API is created.
+
+7. Click **Create**.
+
+You can find details about your API by selecting it from the {{site.data.keyword.openwhisk_short}} APIs page
 
 ## Using full control over the HTTP response
 {: #api_control}
@@ -110,6 +143,7 @@ The `--response-type` flag controls the target URL of the web action to be proxi
 To return different content types in the body, use full control over the HTTP response properties such as `statusCode` and `headers`. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) documentation.
 
 1. Save the following code as `hello.js`.
+
   ```javascript
   function main({name:name='Serverless API'}) {
       return {
@@ -122,39 +156,116 @@ To return different content types in the body, use full control over the HTTP re
   {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code.
+
   ```
-  ibmcloud fn action update hello <filepath>/hello.js --web true
+  ibmcloud fn action update hello <filepath>/hello.js --web true --web-secure <secret>
   ```
   {: pre}
 
-  **Output**
+  **Example output**
+  
   ```
   ok: updated action hello
   ```
   {: screen}
 
 3. Update the API response type by using the `--response-type http` flag.
+
   ```
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
 
-  **Output**
+  **Example output**
+  
   ```
   ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: screen}
 
 4. Call the updated API by using the following cURL command.
+
   ```
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
 
   **Example output**
+  
   ```
   {
   "payload": "Hello, Serverless API!"
+  }
+  ```
+  {: screen}
+  
+## Securing your API web action
+{: #api_secure}
+
+By default, anyone can invoke a web action by using the invocation URL, even if you secure the calling API. You can secure your web action by using the `require-whisk-auth web action` annotation.
+{: shortdesc}
+
+This example uses the same names and code as the example in [Creating your first API using the CLI](#api_create_cli). If you created those entities, delete the action and the API by running `ibmcloud fn action delete ACTION_NAME` and `ibmcloud fn api delete API_NAME`. You must create the web secure action before you can create the API. If you want to update an exisitng action that is called by an API, you must delete the API, update the action, and then recreate the API. 
+
+1. Save the following code into a JavaScript file named `hello.js`.
+
+  ```javascript
+  function main({name:name='Serverless API'}) {
+      return {payload: `Hello, ${name}!`};
+  }
+  ```
+  {: codeblock}
+
+2. Create a web action that is named `hello` by using the file that you created. Add the `--web true` and `--web-secure <secret>` flags. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action.
+
+  ```
+  ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
+  ```
+  {: pre}
+  
+  For example, `ibmcloud fn action create hello myjavascriptfiles/hello.js --web true --web-secure ajcqdres`.
+
+  **Example output**
+  
+  ```
+  ok: created action hello
+  ```
+  {: screen}
+  
+  If you want to verify that your action is secure, follow the steps in [Securing web actions](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_secure).
+
+3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
+
+  ```
+  ibmcloud fn api create /hello /world get hello --response-type json
+  ```
+  {: pre}
+
+  **Example output**
+  
+  A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
+
+  ```
+  ok: created API /hello/world GET for action /_/hello
+  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+  ```
+  {: screen}
+
+  
+4. Send a test HTTP request to the URL by using the following cURL command.
+
+  ```
+  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
+  ```
+  {: pre}
+
+  **Example output**
+  
+  The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter.
+
+  ```
+  {
+    "payload": "Hello, Jane!"
   }
   ```
   {: screen}
@@ -169,8 +280,4 @@ After you create your configuration, you can use the [APIs tab](https://cloud.ib
 * [Manage traffic](/docs/services/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by viewing API usage statistics and checking out response logs.
 * [Socialize and share](/docs/services/api-management?topic=api-management-manage_apis#share_api_manage_apis) your API with developers both within and outside {{site.data.keyword.cloud_notm}}.
 
-</br>
-Once you are done updating the configuration, you can download the definition file in JSON format, and then reimport it by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and reimport the API definition file by using the UI.
-
-
-
+After you are finished updating the configuration, you can download the definition file in JSON format, and then import it again by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and import the API definition file by using the console.

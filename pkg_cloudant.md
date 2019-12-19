@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-09-19"
+lastupdated: "2019-12-18"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -27,12 +27,13 @@ subcollection: cloud-functions
 # Cloudant
 {: #pkg_cloudant}
 
-With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started) database.
+With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started-with-cloudant) database.
 {: shortdesc}
 
 
 ## Available entities
 {: #cloudant_available}
+
 The following table shows a selection of the entities available in the `whisk.system/cloudant` package. You can use the `whisk.system/cloudant` package to read, write, update, or delete documents. You can also use the `changes` feed to listen for changes to an {{site.data.keyword.cloudant_short_notm}} database.
 {: shortdesc}
 
@@ -55,7 +56,8 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.clo
 {: #cloudant_db}
 
 **Before you begin**
-You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/services/Cloudant?topic=cloudant-getting-started#getting-started).
+
+You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/services/Cloudant?topic=cloudant-getting-started-with-cloudant).
 
 1. Create a `/whisk.system/cloudant` package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account. In this example, the package name is `myCloudant`.
 
@@ -87,6 +89,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
     {: pre}
 
     **Example output**
+    
     ```
     Name          Location   State    Type
     Cloudant-gm   us-south   active   service_instance
@@ -117,6 +120,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
     {: pre}
 
 6. Verify that the credentials are successfully bound.
+
     ```
     ibmcloud fn package get myCloudant parameters
     ```
@@ -169,33 +173,36 @@ You can use an action to read, write, update, delete a document from an {{site.d
 You can use the `/whisk.system/cloudant/read` action to read a document from your {{site.data.keyword.cloudant_short_notm}} database.
 
 **Before you begin**
+
 If you do not have a document in your {{site.data.keyword.cloudant_short_notm}} database, you can create one by using the [{{site.data.keyword.cloudant_short_notm}} dashboard. The URL for the dashboard is `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
 
 Fetch a document by using the `read` action. Replace `/_/myCloudant` with your package name, `<database_name>` with your database name, and `<document_id>` with the file ID. Invoke the action to test fetching a document.
 
 **Command syntax**
 
-  ```
-  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id <document_id>
-  ```
-  {: pre}
+```
+ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id <document_id>
+```
+{: pre}
 
 **Example read action from a `test` database**
-Invoke the action to test reading a file. This example reads a file with the `id` of `9f86f4955e7a38ab0169462e6ac0f476` which is an empty file.
 
-  ```
-  ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id 9f86f4955e7a38ab0169462e6ac0f476
-  ```
-  {:pre}
+Invoke the action to test reading a file. This example reads a file with the `id` of `9f86f4955e7a38ab0169462e6ac0f476`, which is an empty file.
+
+```
+ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id 9f86f4955e7a38ab0169462e6ac0f476
+```
+{:pre}
 
 **Example output**
-  ```
-  {
-      "_id": "9f86f4955e7a38ab0169462e6ac0f476",
-      "_rev": "1-967a00dff5e02add41819138abb3284d"
-  }
-  ```
-  {: screen}
+
+```
+{
+    "_id": "9f86f4955e7a38ab0169462e6ac0f476",
+    "_rev": "1-967a00dff5e02add41819138abb3284d"
+}
+```
+{: screen}
 
 ### Writing a document to an {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_write}
@@ -204,11 +211,13 @@ You can use an action to create or update documents in an {{site.data.keyword.cl
 {: shortdesc}
 
 **Before you begin**
-  Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
 
-1. Store a document by using the `write` action in the package binding you created. Replace `/_/myCloudant` with your package name, replace `<database_name>` with the name of your database, `<document_id>` with your document ID, and `<test_name>` with a name.
+Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
+
+1. Store a document by using the `write` action in the package binding you created. Replace `/_/myCloudant` with your package name, replace `<database_name>` with the name of your database, `<document_id>` with your document ID, and `<test_name>` with a custom name.
 
   **Command syntax**
+  
   ```
   ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param <database_name> test --param doc "{\"_id\":\"<document_id>\",\"name\":\"<test_name>\"}"
   ```
@@ -237,6 +246,7 @@ You can use an action to create or update documents in an {{site.data.keyword.cl
 2. Verify that the document exists in the {{site.data.keyword.cloudant_short_notm}} dashboard. The dashboard URL for the `test` database is in the following format: `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/test/_all_docs?limit=100`.
 
   **Example document in {{site.data.keyword.cloudant_short_notm}} dashboard**
+  
   ```
   {
   "_id": "color",
@@ -251,6 +261,7 @@ You can use the `/update-document` action to update a document in your {{site.da
 {: short desc}
 
 **Before you begin**
+
 Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
 
 The following example updates the document that was created in the [Writing a document to an {{site.data.keyword.cloudant_short_notm}} database](#cloudant_write) section.
@@ -267,6 +278,7 @@ You can update a document in your database by replacing `<test>` with your datab
   {: pre}
 
   **Output**
+  
   ```
   {
     "id": "color",
@@ -284,6 +296,7 @@ You can update a document in your database by replacing `<test>` with your datab
   {: pre}
 
   **Example document**
+  
   ```
   {
     "_id": "color",
@@ -300,7 +313,8 @@ You can update a document in your database by replacing `<test>` with your datab
 You can use the `changes` feed to configure a service to fire a trigger on every change to your {{site.data.keyword.cloudant_short_notm}} database.
 
 **Before you begin**
-  Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
+
+Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
 
 Parameters that are used in this example.
 
@@ -318,7 +332,8 @@ Parameters that are used in this example.
 
 1. Create a trigger named `cloudantTrigger` with the `changes` feed in the package binding that you created previously. Including the `filter` and `query_params` functions to fire the trigger when a document is added (or modified) when the status is `new`.
 
-  Replace `/_/myCloudant` with the name of your package. This example uses a database named `test`.
+  Replace `/_/myCloudant`  of your package. This example uses a database that is called `test`.
+  
   ```
   ibmcloud fn trigger create cloudantTrigger --feed /_/myCloudant/changes \ --param dbname test
   ```
@@ -361,26 +376,26 @@ Parameters that are used in this example.
   ```
   {: pre}
 
-6. In your {{site.data.keyword.cloudant_short_notm}} dashboard, either modify an existing document or create one.
+6. From the {{site.data.keyword.cloudant_short_notm}} dashboard, either modify an existing document or create one.
 
 7. Observe activations for the `cloudantTrigger` trigger for each document change.
 
-**Example activation of the `cloudantTrigger`**
+   **Example activation of the `cloudantTrigger`**
 
-```
-Activation: 'cloudantTrigger' (ef6605cc05e04589a605cc05e04589d8)
-[
-    "{\"statusCode\":0,\"success\":true,\"activationId\":\"6067ed0d28774a68a7ed0d28771a684d\",\"rule\":\"<namespace>/cloudantRule\",\"action\":\"<namespace>/cloudantChange\"}"
-]
+   ```
+   Activation: 'cloudantTrigger' (ef6605cc05e04589a605cc05e04589d8)
+   [
+       "{\"statusCode\":0,\"success\":true,\"activationId\":\"6067ed0d28774a68a7ed0d28771a684d\",\"rule\":\" .   <namespace>/cloudantRule\",\"action\":\"<namespace>/cloudantChange\"}"
+   ]
 
-Activation: 'cloudantChange' (6067ed0d28774a68a7ed0d28771a684d)
-[
-    "2019-06-24T16:46:10.428643Z    stdout: { changes: [ { rev: '19-f7f6d8607d6381d224321acfcfb8887e' } ],",
+   Activation: 'cloudantChange' (6067ed0d28774a68a7ed0d28771a684d)
+   [
+       "2019-06-24T16:46:10.428643Z    stdout: { changes: [ { rev: '19-f7f6d8607d6381d224321acfcfb8887e' } ],",
     "2019-06-24T16:46:10.428693Z    stdout: dbname: 'test',",
     "2019-06-24T16:46:10.428697Z    stdout: id: '6ca436c44074c4c2aa6a40c9a188b348',",
     "2019-06-24T16:46:10.428700Z    stdout: seq: '103-g1AAAAeLeJy91M9NwzAUBnCrrVQqDvTKCa4gpcT5YycnugFsAH5' }"
-```
-{: screen}
+   ```
+   {: screen}
 
 ### Data structure of a trigger activation
 {: #cloudant_struct}
@@ -415,11 +430,12 @@ The content of the generated event has the following parameters.
 You might define a filter function to avoid having unnecessary change events that fire your trigger.
 
 **Before you begin**
+
 Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account.
 
 To create a filter function, you can use an action.
 
-1. Save the following JSON following filter in a file called `design_doc.json`.
+1. Save the following JSON in a file called `design_doc.json`.
 
   ```json
   {
@@ -436,12 +452,14 @@ To create a filter function, you can use an action.
 2. Create a design document in the database with the following filter function. Replace `<database_name>` with the name of your database and `<file_path>` with the file path of your `design_doc.json`. Invoke the `write` action to test creating a design document.
 
 **Command syntax**
+
 ```
 ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <file_path>/design_doc.json
 ```
 {: pre}
 
 **Example command to write a `design_doc.json` file to a `test` database**
+
 ```
 ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -P <file_path>/design_doc.json -r
 ```
@@ -458,8 +476,7 @@ ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -
 ```
 {: screen}
 
-
-For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/services/Cloudant?topic=cloudant-design-documents)
+For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/services/Cloudant?topic=cloudant-design-documents).
 
 ## Processing an individual document by using an action sequence
 {: #cloudant_seq}
@@ -467,6 +484,7 @@ For more information about {{site.data.keyword.cloudant_short_notm}} design docu
 You can use an action sequence in a rule to fetch and process the document that is associated with an {{site.data.keyword.cloudant_short_notm}} change event.
 
 **Before you begin**
+
 Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is configured for your {{site.data.keyword.cloudant_short_notm}} account. 
 
 This example updates the document that was created in the [Writing a document to an {{site.data.keyword.cloudant_short_notm}} database](#cloudant_write) section.
@@ -477,7 +495,7 @@ This example updates the document that was created in the [Writing a document to
 To create an action that handles changes to an individual document, run the following commands.
 {: shortdesc}
 
-1. Save the following code as `docChange.js`
+1. Save the following code as `docChange.js`.
 
   ```javascript
   function main(doc){
@@ -486,7 +504,7 @@ To create an action that handles changes to an individual document, run the foll
   ```
   {: codeblock}
 
-2. Create an action called `docChange` to process the document with the name `blue` that you created earlier. Replace `<file_path>` with the file path of your `docChange.js`
+2. Create an action called `docChange` to process the document with the name `blue` that you created earlier. Replace `<file_path>` with the file path of your `docChange.js`.
 
   ```
   ibmcloud fn action create docChange <file_path>/docChange.js
@@ -510,6 +528,7 @@ The `read` action can be composed with your `docChange` action to create an acti
   {: pre}
 
   **Output**
+  
   ```
   ok: created action docSequence
   ```
@@ -533,11 +552,13 @@ The action `docSequence` can be used in a rule that activates the action on new 
   {: pre}
 
   **Output**
+  
   ```
   ok: created rule docRule
   ```
 
   **Example activation**
+  
   ```
   "{\"statusCode\":0,\"success\":true,\"activationId\":\"144a4f95198a49ec8a4f95198a79ecc8\",\"rule\":\"<namespace>/docRule\",\"action\":\"<namespace>/docSequence\"}"
   ```
@@ -545,7 +566,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
 
 ### Test the sequence
 
-1. Test the `docSequence` by making a change to the `blue` file that you created earlier. In this example, the `shade` value is changed to `indigo`.
+1. Test the `docSequence` by changing the `blue` file that you created earlier. In this example, the `shade` value is changed to `indigo`.
 
   ```
   ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\",\"shade\":\"indigo\"}" -p overwrite true
@@ -571,7 +592,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   ```
   {: screen}
 
-2. Verify the file was updated to include the `shade` value by invoking the `read` action. Replace `<database>` name with the name of you database.
+2. Verify that the file was updated to include the `shade` value by invoking the `read` action. Replace `<database>` name with the name of your database.
 
   ```
   ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id color
@@ -579,6 +600,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   {: pre}
 
   **Output**
+  
   ```
   {
     "_id": "color",
@@ -591,6 +613,5 @@ The action `docSequence` can be used in a rule that activates the action on new 
 
 ### Next steps
 {: #cloudant_next}
+
 Now that you are listening for changes to a document in your {{site.data.keyword.cloudant_short_notm}} database, you can trigger Slack notifications for the changes by using the [`/whisk.system/slack` package](/docs/openwhisk?topic=cloud-functions-pkg_slack).
-
-

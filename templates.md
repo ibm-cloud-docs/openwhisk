@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-12-05"
+lastupdated: "2019-12-19"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -47,13 +47,13 @@ The following quickstart templates are available for deployment. You can deploy 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
 
-The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions and a trigger that kicks off that sequence. The trigger is fired when a change is made in the connected {{site.data.keyword.cloudant_short_notm}} example database.
+The {{site.data.keyword.cloudant_short_notm}} template creates a sequence of actions and a trigger that invokes that sequence. The trigger is fired when a change is made in the connected {{site.data.keyword.cloudant_short_notm}} example database.
 {: shortdesc}
 
 When you deploy this template, you create the following entities:
 
 * An action called `process-change`.
-* A sequence that uses the `process change` action as well as a pre-imstalled action for {{site.data.keyword.cloudant_short_notm}} called `read` that reads entries from the {{site.data.keyword.cloudant_short_notm}} database.
+* A sequence that uses the `process change` action as well as a preinstalled action for {{site.data.keyword.cloudant_short_notm}} called `read` that reads entries from the {{site.data.keyword.cloudant_short_notm}} database.
 * A user-named trigger that is fired whenever an entry is added to the connected database. This trigger calls the sequence.
 
 **Before you begin**
@@ -128,7 +128,7 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     ```
     {: pre}
 
-3. Deploy the template, using the following environment variables.
+3. Deploy the template with the following environment variables.
 
     ```
     CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
@@ -209,7 +209,7 @@ After the template deploys, you can make further edits to the code to customize 
 ### Testing your {{site.data.keyword.cloudant_short_notm}} Events package
 {: #cloudant-template_test}
 
-Now that you have your {{site.data.keyword.cloudant_short_notm}}l database and your {{site.data.keyword.cloudant_short_notm}} events (action and trigger) set up, let's try it out!  The expected data item is a cat, with a name and a color defined. When a new cat is added to the database or a current cat is edited, the data is logged to the console module for Node.js.
+Now that you have your {{site.data.keyword.cloudant_short_notm}} database and your {{site.data.keyword.cloudant_short_notm}} events (action and trigger) set up, let's try it out!  The expected data item is a cat, with a name and a color defined. When a new cat is added to the database or a current cat is edited, the data is logged to the console module for Node.js.
 {: shortdesc}
 
 #### 1. Testing the action
@@ -222,7 +222,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 2. From the {{site.data.keyword.cloudant_short_notm}} events package (called `cloudant-events`, if you accepted the default name), select **Manage Action** from the `process change` action.
 
-3. Click **Change input** and enter a valid json entry for `name` and `color`, similar to the following example:
+3. Click **Change input** and enter a valid JSON entry for `name` and `color`, similar to the following example:
 
    ```
    {
@@ -234,7 +234,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 4. Click **Apply**.
 
-5. Click **Invoke**.  In the Activation pane, find output similar to the following example:
+5. Click **Invoke**.  In the Actfivation pane, find output similar to the following example:
 
    ```
    **Activation ID:**
@@ -251,8 +251,6 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
    ]
    ```
    {: screen}
-
-Congratulations! The action is functional. 
 
 #### 1. Testing the trigger
 {: #cloudant-template_test_trigger}
@@ -273,7 +271,7 @@ While you can test the action, you cannot test the trigger without making an ent
 
 4. Click **Create Document**.
 
-5. Enter valid Json and click **Create Document**.
+5. Enter valid JSON and click **Create Document**.
 
    ```
    {
@@ -283,7 +281,7 @@ While you can test the action, you cannot test the trigger without making an ent
    ```
    {: pre}
 
-6. Check the activation poll to see if the trigger fired.
+6. Check the activation poll to see whether the trigger fired.
 
    ```
    Activation: 'process-change' (874b327c6d2841ca8b327c6d28d1ca17)
@@ -376,7 +374,7 @@ Use the CLI to deploy the **Get HTTP Resource** template.
     ```
     {: pre}
 
-3. Deploy the template, using a custom package name as an environment variable.
+3. Deploy the template with a custom package name as an environment variable.
 
     ```
     PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
@@ -388,7 +386,7 @@ After the template deploys, you can make further edits to the code to customize 
 ### Invoking the **Get HTTP Resource** action
 {: #get-http-resource-template-invoke}
 
-Test out the **Get HTTP Resource** action using one of the following methods:
+Test out the **Get HTTP Resource** action by using one of the following methods:
 {: shortdesc}
 
    * From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
@@ -433,7 +431,7 @@ Test out the **Get HTTP Resource** action using one of the following methods:
      ```
      {: pre}
      
-   All of these invokations return the default location `Austin` or else the location parameter that you specified in JSON format.  
+   All of these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
    
    **Example output**
    
@@ -565,7 +563,7 @@ For example:
 ## Deploying the {{site.data.keyword.messagehub_full}} template
 {: #messagehub-events-template}
 
-The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that kicks off that action. The trigger is fired whenever a new item is added to the {{site.data.keyword.messagehub}} topic that is chosen when you create the template.
+The {{site.data.keyword.messagehub}} Events template creates an action and a trigger that invokes that action. The trigger is fired whenever a new item is added to the {{site.data.keyword.messagehub}} topic that is chosen when you create the template.
 {: shortdesc}
 
 When you deploy this template, you create the following entities:
@@ -671,8 +669,8 @@ The **Periodic Slack Reminder** template posts to Slack on an interval provided 
 When you deploy this template, you create the following entities:
 
 * An action called `send-message`.
-* A sequence that uses the `send-message` action as well as a pre-installed action for Slack called `post` that posts the message to a Slack channel.
-* A user-named trigger that is fired whenever the time interval has been achieved. This trigger calls the sequence.
+* A sequence that uses the `send-message` action as well as a preinstalled action for Slack that is called `post` that posts the message to a Slack channel.
+* A user-named trigger that is fired whenever the time interval is achieved. This trigger calls the sequence.
 
 **Before you begin**
 
@@ -736,7 +734,7 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
     ```
     {: pre}
 
-3. Deploy the template, using the following environment variables.
+3. Deploy the template with the following environment variables.
 
     ```
     SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
@@ -805,10 +803,10 @@ You can test the **Periodic Slack Reminder** template in the following ways.
 You can stop the **Periodic Slack Reminder** trigger in the following ways.
 {: shortdesc}
 
-   * From the console, go to the [Triggers ](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Uncheck **Enable**.
+   * From the console, go to the [Triggers ](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Clear the selection for **Enable**.
    
    * From the CLI:
    
-      *  Disable the rule by runnning the [`ibmcloud fn rule disable RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [`ibmcloud fn rule list RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
+      *  Disable the rule by running the [`ibmcloud fn rule disable RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [`ibmcloud fn rule list RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
    
      * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.

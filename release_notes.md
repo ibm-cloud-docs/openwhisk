@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-12-05"
+lastupdated: "2019-12-18"
 
 keywords: release notes, functions
 
@@ -35,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 18 Dec 2019 | <ul><li>New environmental variable: `__OW_TRANSACTION_ID`. For more information, see [Environment variables for actions] (/docs/openwhisk?topic=cloud-functions-actions#actions_envvars).</li><li>Updated information about securing your web action for an API. See [Securing your API web action](/docs/openwhisk?topic=cloud-functions-apigateway#api_secure).</li><li>Updated information for packaging your Python code. See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=cloud-functions-prep#how_to_package_python).</li></ul> |
 | 5 Dec 2019 | <ul><li>Improved documentation for the quick start templates. See [Deploying quick start templates](/docs/openwhisk?topic=cloud-functions-templates).</li><li>Updated the API endpoints documentation. See [Regions](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).</li></ul> |
 
 ## November 2019
@@ -49,7 +50,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 31 Oct 2019 | The IBM Cloud Object Storage trigger is now available in the followng regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. For more information about this trigger, see [IBM Cloud object storage](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). |
+| 31 Oct 2019 | The IBM Cloud Object Storage trigger is now available in the following regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. For more information about this trigger, see [IBM Cloud object storage](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). |
 | 28 Oct 2019 | <ul><li>Updates for [binding services to entities](/docs/openwhisk?topic=cloud-functions-services).</li><li>Updates for [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=cloud-functions-test#memory_usage).</li></ul> |
 | 14 Oct 2019 | <ul><li>Fixes for version 1.0.35. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Added console tasks to [Create actions](/docs/openwhisk?topic=cloud-functions-actions).</li></ul> |
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-12-05"
+lastupdated: "2019-12-18"
 
 keywords: web actions, serverless, functions
 
@@ -1058,7 +1058,7 @@ To disable a web action from the console:
 
 1. Go to the [Action page](https://cloud.ibm.com/functions/actions){: external}.
 2. Click the web action that you want to disable.
-3. On the Endpoints tab, uncheck **Enable as Web Action**.
+3. On the Endpoints tab, clear the selection for **Enable as Web Action**.
 4. Save your changes.
 
 ## Web action limits

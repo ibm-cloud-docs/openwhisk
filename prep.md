@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-10-25"
+lastupdated: "2019-12-19"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -29,6 +29,7 @@ subcollection: cloud-functions
 
 Whether you bring an app with you, or you write a script specifically to respond to an event, your code must meet certain requirements before you create an action from it.
 {: shortdesc}
+
 
 Each programming language has specific requirements to run, but most have the following general requirements:
 - The expected name for the entry point into the code is `main` by default. If your entry point is not `main`, a custom name can be specified when the action is created, so take note of that name.
@@ -175,7 +176,7 @@ function main(params) {
 ```
 {: codeblock}
 
-### Example calling an external API with JavaScript
+### Example: Calling an external API with JavaScript
 {: #prep_js_api}
 
 The following example invokes the external API for the NASA Astronomy Picture of the Day (APOD) service, which provides a unique image of our universe every day.
@@ -215,12 +216,10 @@ Next, [create](/docs/openwhisk?topic=cloud-functions-actions), and [invoke the a
 ```
 {: screen}
 
-
-
 ### Packaging JavaScript code with the `webpack` module
 {: #prep_js_pkg}
 
-You can package an app by using a JavaScript module bundler such as `[webpack ](https://webpack.js.org/concepts/){: external}`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
+You can package an app by using a JavaScript module bundler such as `[fbpack ](https://webpack.js.org/concepts/){: external}`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
@@ -351,12 +350,9 @@ Before you begin, [review the packages that are included with the JavaScript run
 
    **Windows users** Using the Windows Explorer action for creating the .zip file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} .zip actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the `zip` command instead.
    {: tip}
-
-## Packaging Python apps
-{: #prep_python}
-
-Before you create an action, get your Python code ready. Confirm that your code is structured properly, then decide whether it needs packaged.
-{: shortdesc}
+  
+## How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}
+{: #how_to_package_python}
 
 ### Structuring Python code
 {: #prep_python_struct}
@@ -375,67 +371,587 @@ def main(args):
 ```
 {: codeblock}
 
-### Packaging Python code in .zip files
+### Packaging multiple Python files into a .zip file
+When to use this method:
+
+Your app uses multiple Python files, but does not require any dependencies or packages outside of the packages included with the base Python runtime. You can create a .zip file that includes your Python files and deploy the .zip file when creating your action.
+
+**Example command**
+
+```
+ibmcloud fn action create <action_name> <compressed_python_files.zip>
+```
+{: pre}
+
+For more information, see [Packaging multiple Python files into a .zip file](#prep_python_pkg).
+
+### Packaging Python code with a local virtual environment in a .zip file
+When to use this method:
+
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` which you can then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file, when compressed, must be smaller than 48 MB.
+
+**Example command**
+
+```
+ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip>
+```
+{: pre}
+
+For more information, see [Packaging Python code with a local virtual environment in a .zip file](#prep_python_local_virtenv).
+
+### Packaging Python code with a Docker virtual environment in a .zip file
+When to use this method:
+
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` within a Docker image. You can then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file, when compressed, must be smaller than 48 MB.
+
+**Example command**
+
+You can use the .zip file to create an action. Replace `<file_path>` with the file path to your .zip file.
+
+```
+ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip>
+```
+{: pre}
+
+For more information, see [Packaging Python code with a Docker virtual environment in a .zip file](#prep_python_virtenv).
+
+### Packaging large Python dependencies in a custom Docker image
+When to use this method:
+
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments). You can specify a base {{site.data.keyword.openwhisk_short}} image in your Docker file and also specify the dependencies to install when you build your Docker image. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. Note that only public Docker images are supported.
+
+**Example command**
+
+```
+ibmcloud fn action create <action_name> <app_code.py> --docker <dockerhub_username>/<repo_name>:<tag_name>
+```
+{: pre}
+
+If your app code is larger than 48 MB, you can combine this method with [Packaging multiple Python files into a .zip file](#prep_python_pkg).
+{: tip}
+
+For more information, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
+
+
+## Packaging Python code
+{: #prep_python}
+
+The following sections provide tutorials for how to package your Python app for deployment with {{site.data.keyword.openwhisk_short}}.
+
+**Before you begin**
+
+Review [How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}?](#how_to_package_python).
+
+### Packaging multiple Python files into a .zip file
 {: #prep_python_pkg}
 
 Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
-{: shortdesc}
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
-To package your app as .zip, run the following command. Replace `<action_name>` with the name of your action.
+1. Create a `test` directory on your desktop.
 
-```bash
-zip -r <action_name>.zip __main__.py helper.py
-```
-{: pre}
+2. Save the following code as a file called `__main__.py` in your `test` directory.
 
-You can use then use the .zip file to create an action. Replace `<file_path>` with the file path to your .zip file.
+  ```python
+  from helper import helper
+  def main(args):
+    return helper(args)
+  ```
+  {: codeblock}
 
-```
-ibmcloud fn action create helloPython <file_path>/<action_name>.zip
-```
-{: pre}
+3. Save the following code as a file called `helper.py` in your `test` directory. This code accepts a `name` parameter and returns a greeting. If no `name` is  specified, the `name` that is returned is `stranger`.
 
-### Packaging Python code with a virtual environment in .zip files
+  ```python
+  def helper(dict):
+      if 'name' in dict:
+          name = dict['name']
+      else:
+          name = "stranger"
+      greeting = "Hello from helper.py, " + name + "!"
+      return {"greeting": greeting}
+  ```
+  {: codeblock}
+
+4. To package your app as .zip, `cd` to you `test` directory and run the following command. In this example, the .zip archive is called `stranger.zip`.
+
+  ```
+  zip -r stranger.zip __main__.py helper.py
+  ```
+  {: pre}
+
+5. You can use then use the .zip file to create an action called `hello`. Replace `<file_path>` with the file path to your .zip file.
+
+  ```
+  ibmcloud fn action create hello <file_path>/test/stranger.zip --kind python:3.7
+  ```
+  {: pre}
+
+6. Test the action.
+
+  ```
+  ibmcloud fn action invoke hello --result
+  ```
+  {: pre}
+
+  **Output**
+  
+  ```
+  {
+    "greeting": "Hello from helper.py, stranger!"
+  }
+  ```
+  {: screen}
+
+7. Test the action again and specify the `name` parameter. Replace the `<your_name>` parameter with your name.
+
+  ```
+  ibmcloud fn action invoke hello --result --param name <your_name>
+  ```
+  {: pre}
+
+  **Example output**
+  
+  ```
+  {
+    "greeting": "Hello from helper.py, <your_name>!"
+  }
+  ```
+  {: screen}
+  
+
+### Packaging Python code with a local virtual environment in a .zip file
+{: #prep_python_local_virtenv}
+
+You can package Python dependencies by using a virtual environment, `virtualenv`. The virtual environment allows you to link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/). 
+
+Packages must be available for the Python runtime being used in {{site.data.keyword.openwhisk_short}}.
+
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+
+To package your app:
+
+1. Create a directory that you can use to create your virtual environment. In this example, a `test` directory is created on the desktop. After you create the `test` directory, `cd` to it.
+
+    ```
+    cd desktop; mkdir test; cd test
+    ```
+    {: pre}
+
+3. Create a directory called `virtualenv`.
+
+    ```
+    jokes $ virtualenv virtualenv
+    ```
+    {: pre}
+
+    **Output**
+    
+    ```
+    Using base prefix '/Library/Frameworks/Python.framework/Versions/3.7'
+    New python executable in Desktop/jokes/virtualenv/bin/python3
+    Also creating executable in Desktop/jokes/virtualenv/bin/python
+    Installing setuptools, pip, wheel...
+    done.
+    ```
+    {: screen}
+
+4. Activate `virtualenv`.
+
+    ```
+    jokes $ source virtualenv/bin/activate
+    ```
+    {: pre}
+
+5. Install the `pyjokes` module.
+
+    ```
+    (virtualenv) $ pip install pyjokes
+    ```
+    {: codeblock}
+
+    **Output**
+    
+    ```
+    Collecting pyjokes
+    Using cached https://files.pythonhosted.org/packages/a0/70/65457d1b197b1a0195a95128632d9a0b59d7d8ced6035c80e8467731dc76/pyjokes-0.5.0-py2.py3-none-any.whl
+    Installing collected packages: pyjokes
+    Successfully installed pyjokes-0.5.0
+    ```
+    {: screen}
+
+6. Copy the following code and save it into a file called `__main__.py`.
+
+    ```python
+    import pyjokes
+
+    def joke(params):
+        return {"joke": pyjokes.get_joke()}
+    ```
+    {: codeblock}
+
+7. From your `jokes` directory, create a .zip archive of the `virtualenv` and your `__main__.py` file. These files must be in the top level of your .zip file.
+
+    ```
+    jokes $ zip -r jokes.zip virtualenv __main__.py
+    ```
+    {: pre}
+
+    **Output**
+    
+    ```
+    ...
+    adding: virtualenv/lib/python3.7/abc.py (deflated 72%)
+    adding: virtualenv/lib/python3.7/_bootlocale.py (deflated 63%)
+    adding: __main__.py (deflated 17%)
+    ...
+    ```
+    {: screen}
+
+8. Create an action called `jokes` using your `jokes.zip` file. You must also specify the entry point as `jokes`. You must also specify the `--kind` flag for the runtime.
+
+    ```
+    ibmcloud fn action create jokes /Users/IBM/Desktop/jokes/jokes.zip --kind python:3.7 --main joke
+    ```
+    {: pre}
+
+    **Output**
+    
+    ```
+    ok: created action jokes
+    ```
+    {: screen}
+
+9. Invoke the action to verify it is working. Includ the `--result` flag to return the result in the command line.
+
+    ```
+    ibmcloud fn action invoke jokes --result
+    ```
+    {: pre}
+
+    **Example output**
+    
+    ```
+    {
+    "joke": "A QA engineer walks into a bar. Runs into a bar. Crawls into a bar. Dances into a bar. Tiptoes into a bar. Rams a bar. Jumps into a bar."
+    }
+    ```
+    {: screen}
+
+You can use this method to extend the functionality of {{site.data.keyword.openwhisk_short}} actions by using other Python packages.
+{: tip}
+
+
+### Packaging Python code with a Docker virtual environment in a .zip archive
 {: #prep_python_virtenv}
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
-{: shortdesc}
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
+Only public Docker images are supported.
+{: note}
+
 Package your app by completing the following steps.
 
-1. Create a [requirements.txt ](https://pip.pypa.io/en/latest/user_guide/#requirements-files){: external} file that contains the `pip` modules and versions to install.
+1. Create a directory that you can use to create your virtual environment. In this example, a `test` directory is created on the desktop. After you create the `test` directory, `cd` to it.
 
-   To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
-   {: tip}
+    ```
+    cd desktop; mkdir test; cd test
+    ```
+    {: pre}
 
-2. Pull one of the following images for your runtime. To ensure compatibility with the runtime container, packaged installations inside a virtual environment must use the image that corresponds to the runtime that is specified.
-   * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
-   * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
-   * For `python:2`, use the Docker image `openwhisk/python2action`.
+2. Create a [requirements.txt ![External link icon](../icons/launch-glyph.svg "External link icon")](https://pip.pypa.io/en/latest/user_guide/#requirements-files) in your file in your `test` directory that contains the `pip` modules and versions to install.
+
+    ```
+    touch requirements.txt
+    ```
+    {: pre}
+
+3. Use vim to edit the `requirements.txt` file. Enter the names of the `pip` modules and versions you want to install. In this example, `sklearn` is the module that is used.
+
+    ```
+    vim requirements.txt
+    ```
+    {: pre}
+
+    **Example requirements.txt**
+    
+    ```
+    sklearn
+    ```
+    {: codeblock}
+
+4. Press `ESC`, then `:wq` to save and close your `requirements.txt` file.
+
+    To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
+    {: tip}
+
+5. Pull one of the following images for your runtime. Packages installed using `virtualenv` must be for the same major and minor versions of the Python runtime used by OpenWhisk. To ensure compatibility with the runtime container, you can use the {{site.data.keyword.openwhisk_short}} images provided on Docker Hub to build your `virtualenv`.
+
+    * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
+    * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
+    * For `python:2`, use the Docker image `openwhisk/python2action`.
 
    **Example**
+   
    ```
    docker pull ibmfunctions/action-python-v3.7
    ```
    {: pre}
 
-3. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`.
+   **Output**
+   
+   ```
+   Using default tag: latest
+   latest: Pulling from ibmfunctions/action-python-v3.7
+   ```
+   {: screen}
+
+6. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. This creates a virtualenv folder in the `test` directory.
 
    ```
    docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
    ```
    {: pre}
 
-4. Package the `virtualenv` directory and any additional Python files. The source file that contains the entry point must be named `__main__.py`.
+   **Output**
+   
+   ```
+   Using base prefix '/usr/local'
+   New python executable in /tmp/virtualenv/bin/python
+   Installing setuptools, pip, wheel...
+   done
+   Collecting sklearn (from -r requirements.txt (line 1))
+   Downloading https://files.pythonhosted.org/packages/1e/7a/dbb3be0ce9bd5c8b7e3d87328e79063f8b263b2b1bfa4774cb1147bfcd3f/sklearn-0.0.tar.gz
+   Collecting scikit-learn (from sklearn->-r requirements.txt (line 1))
+   Downloading https://files.pythonhosted.org/packages/9f/c5/e5267eb84994e9a92a2c6a6ee768514f255d036f3c8378acfa694e9f2c99/scikit_learn-0.21.3-cp37-cp37m-manylinux1_x86_64.whl (6.7MB)
+   ...
+   ...
+   ```
+   {: screen}
+
+7. Save the following code as `__main__.py` in your `test` directory. When creating actions with a .zip file, the source file that contains the entry point must be named `__main__.py`.
+
+    ```python
+    import sklearn
+
+    def main(params):
+        return {
+            "sklearn": sklearn.__version__
+        }
+    ```
+    {: codeblock}
+
+8. In order to deploy this code as an action, you must create a .zip file of the `virtualenv` and the `__main__.py` file. However, in this case, the resulting .zip file is larger than the 48 MB allowed by {{site.data.keyword.openwhisk_short}}. To get around this, you can select only the dependices you need, rather than using the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv`. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` in your .zip file.   
+
+   In this example, you must also include `joblib` package from the `site-packages` folder since it is a dependency of `sklearn`. However, you do not need to include `sklearn` dependencies that are included in {{site.data.keyword.openwhisk_short}} default images, such as `numpy`.
 
    ```
-   zip -r helloPython.zip virtualenv __main__.py
+   zip -r sklearn.zip virtualenv/bin/activate_this.py virtualenv/lib/python3.7/site-packages/joblib virtualenv/lib/python3.7/site-packages/sklearn __main__.py
    ```
    {: pre}
+   
+   If the archive file that you create with your `virtualenv` and `__main__.py` file is smaller than 48 MB, you can create the action without selecting dependencies from the `site-packages` directory.
+   {: tip}
+	
+9. Create an action called `sklearn` using the `sklearn.zip` file.
+
+    ```
+    ibmcloud fn action create sklearn <file_path>/sklearn.zip --kind python:3.7
+    ```
+    {: pre}
+
+10. Invoke the action to test that the `sklearn` module is working.
+
+    ```
+    ibmcloud fn action invoke sklearn2 --result
+    ```
+    {: pre}
+    
+    **Output**
+
+    ```
+    {
+        "sklearn": "0.21.3"
+    }
+    ```
+    {: screen}
+
+### Packaging large Python dependencies in a custom Docker image
+{: #prep_python_docker}
+
+{{site.data.keyword.openwhisk_short}} has a limit of 48 MB for app code. However, you can install large packages and dependencies into a custom Docker image and deploy it with your app code when you create an action. You can then import the packages at runtime. 
+
+In this example, install large Python packages such as `matplotlib` and `seaborn` to build an {{site.data.keyword.openwhisk_short}} web action that generates a .png file of a jointplot with `seaborn`.
+
+Before you begin, review the packages that are included with the [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+
+Only public Docker images are supported.
+{: note}
+
+Package the app in a custom Docker image by completing the following steps.
+
+1. Create a directory that you can use to create your Dockerfile. In this example, a `functions` directory is created on the desktop. After you create the `functions` directory, `cd` to it.
+
+    ```
+    cd desktop; mkdir functions; cd functions
+    ```
+    {: pre}
+
+2. Create a [Dockerfile ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.docker.com/engine/reference/builder/) in your `functions` directory.
+
+    ```
+    touch Dockerfile
+    ```
+    {: pre}
+
+3. Use vim to edit the `Dockerfile` file. Enter the names of the `pip` modules and versions you want to install. In this example, several additional Python modules are installed.
+
+    ```
+    vim Dockerfile
+    ```
+    {: pre}
+
+4. Paste or enter the following text in your `Dockerfile`.
+
+    ```
+    FROM ibmfunctions/action-python-v3.7
+
+    RUN pip install \
+      --upgrade pip \
+      matplotlib \
+      seaborn \
+      pandas \
+      statsmodels
+    ```
+    {: codeblock}
+
+5. Press `ESC`, then `:wq` and `Enter` to save and close your Dockerfile.
+
+6. From your `functions` directory, you can run `docker build` to build a Docker image using your `Dockerfile`.
+
+    ```
+    docker build -t <dockerhub_username>/<repo_name>:<tag_name> .
+    ```
+    {: pre}
+
+7. The image builds and installs the dependencies that you specified in your Dockerfile.
+
+   ```
+   Sending build context to Docker daemon  2.048kB
+   Step 1/2 : FROM ibmfunctions/action-python-v3.7
+   ---> b84f64e9df1b
+   Step 2/2 : RUN pip install       --upgrade pip       matplotlib       seaborn       pandas       statsmodels
+   ---> Running in 990eccb27ed0
+   Collecting pip
+     Downloading https://files.pythonhosted.org/packages/62/ca/94d32a6516ed197a491d17d46595ce58a83cbb2fca280414e57cd86b84dc/pip-19.2.1-py2.py3-none-any.whl (1.4MB)
+   Collecting matplotlib
+     Downloading https://files.pythonhosted.org/packages/19/7a/60bd79c5d79559150f8bba866dd7d434f0a170312e4d15e8aefa5faba294/matplotlib-3.1.1-cp37-cp37m-manylinux1_x86_64.whl (13.1MB)
+     ...
+     ...
+   ``` 
+   {: screen}
+
+8. Push your image to Docker Hub.
+
+   ```
+   docker push <dockerhub_username>/<repo_name>:<tag_name>
+   ```
+   {: pre}
+
+9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a jointplot in [`seaborn`](https://seaborn.pydata.org/) using random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to an {{site.data.keyword.openwhisk_short}} endpoint.
+
+   ```python
+       # import modules
+       import base64
+       import pandas as pd
+       import matplotlib.pyplot as plt
+       import seaborn as sns
+   
+       # optional: set seaborn style
+       sns.set(style="dark") 
+       def main(args):
+      
+          # generate a jointplot from random data.
+          x, y = np.random.randn(2, 300)
+          g = (sns.jointplot(x,y, kind="hex", color="#9b59b6")
+                  .set_axis_labels("x", "y"))
+          # save the plot as a .png so that it can be base64 encoded/decoded.    
+          plt.savefig('output.png')
+          # open, read, and encode the image.
+          image = base64.b64encode(open("output.png", "rb").read())
+          # decode the image into a string.
+          data = image.decode('utf-8')
+          # return the string as a JSON web request.
+          return {
+              'body': data,
+              'statusCode': 200,
+              'isBase64Encoded': 'true',
+              'headers': {'Content-Type': 'image/png'}
+          }
+       # main(args)
+       # color codes (any hex code)
+       # green - "#4CB391"
+       # red/orange - "#e74c3c"
+       # purple - "#9b59b6"
+       # blue - "#16099d"
+   ```
+   {: codeblock}   
+
+10. Create a web action called `seaborn` by using the custom Docker image you created that contains the required Python dependencies to execute the jointplot app.
+
+   ```
+   ibmcloud fn action create seaborn --docker <dockerhub_username>/<repo_name>:<tag_name> seaborn.py --web true
+   ```
+   {: pre}
+
+   **Output**
+  
+   ```
+   ok: created action seaborn
+   ```
+   {: screen}
+
+11. Invoke the action to test it. Invoking the action will return the base64 string for the generated jointplot.
+
+   ```
+   ibmcloud fn action invoke seaborn --result
+   ```
+   {: pre}
+
+   **Example output**
+  
+   ```
+   <base64_string>,
+       "headers": {
+           "Content-Type": "image/png"
+       },
+       "isBase64Encoded": "true",
+       "statusCode": 200
+   }
+   ```
+   {: screen}
+
+12. Because this action is a web action, you can use the `action get` command to return the URL.
+
+   ```
+   ibmcloud fn action get seaborn --url
+   ```
+   {: pre}
+
+   **Example output**
+  
+   ```
+   ok: got action seaborn
+   https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace>/default/seaborn
+   ```
+   {: screen}
+
+12. Copy and paste the URL into your browser to see the generated jointplot. Refresh the page to invoke the action and generate a new plot.
+
+You can use this method of building custom Docker images to install large dependencies rather than packaging them with your app.
+{: tip}
 
 ## Preparing apps in Docker images
 {: #prep_docker}
@@ -446,70 +962,80 @@ With {{site.data.keyword.openwhisk_short}}, you can write your app in any langua
 You can use images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
 {: important}
 
-### Packaging code in Docker images
-{: #prep_docker_pkg}
-
-Your code is compiled into an executable and embedded into a Docker image. The executable interacts with the system by taking input from `stdin` and replying through `stdout`.
-{: shortdesc}
-
 **Before you begin**
+
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
-To package your app, complete the following steps.
+### Creating a custom Docker image for your action
+In a Dockerfile, you can specify a {{site.data.keyword.openwhisk_short}} base runtime image by using the `FROM` instruction. You can use the `RUN` instruction to specify dependencies and packages to install in your Docker image. For more information about creating a Dockerile, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
 
-1. Download and install the Docker skeleton. The skeleton is a Docker container template where you can inject your code in the form of custom binaries.
-   ```
-   ibmcloud fn sdk install docker
-   ```
-   {: pre}
+You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://hub.docker.com/u/ibmfunctions){: external}.
 
-2. Set up your code in the black box skeleton. The skeleton includes a C program that you can use. Part of the `example.c` file is compiled as part of the Docker image build process, so you do not need C compiled on your machine.
-   ```
-   cat dockerSkeleton/example.c
-   ```
-   {: pre}
+{{site.data.keyword.openwhisk_short}} limits app code to 48 MB. 
 
-   **Example output**
-   ```c
-   #include <stdio.h>
-   int main(int argc, char *argv[]) {
-      printf("This is an example log message from an arbitrary C program!\n");
-      printf("{ \"msg\": \"Hello from arbitrary C program!\", \"args\": %s }",
-             (argc == 1) ? "undefined" : argv[1]);
-   }
-   ```
-   {: codeblock}
+1. Create a `test` directory on your Desktop and `cd` to it.
 
-3. (Optional) Add more code and dependencies to the Docker image by modifying the `Dockerfile` to build your executable. Note the following requirements:
-   * Your code must be located inside the container at `/action/exec`.
-   * The executable receives a single argument from the command line. This argument is a string serialization of the JSON object that represents the arguments to the action.
-   * The program can log to `stdout` or `stderr`.
-   * By convention, the last line of output must be a <ph class="ignoreSpelling">stringified</ph> JSON object, which represents the result of the action.
-   For more information about constructing Dockerfiles, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
+  ```
+  cd desktop; mkdir test; cd test
+  ```
+  {: pre}
+2. Create a Dockerfile in your `test` directory and open it in `vim`.
 
-4. Build the Docker image and upload it using a supplied script.
-   1. Log in to Docker.
+  ```
+  touch Dockerfile; vim Dockerfile
+  ```
+  {: pre}
+  
+3. Press the `i` key to edit your Dockerfile.
+4. Specify a {{site.data.keyword.openwhisk_short}} base image with the `FROM` argument in your Dockerfile.
+5. Install any packages and dependencies by specifying them `RUN` argument followed by the installation commands for your dependencies.
+6. Press `ESC`, then `:wq` and `Enter` to save and close your Dockerfile.
 
-      ```
-      docker login -u <username> -p <password>
-      ```
-      {: pre}
+  **Example Dockerfile for installing Python dependencies**
+  
+  The following example uses `ibmfunctions/action-python-v3.7` as a base image and installs the Python modules: `matplotlib`, `pandas`, and `statsmodels`.
 
-   2. Navigate to the `dockerSkeleton` directory.
+    ```
+    FROM ibmfunctions/action-python-v3.7
 
-      ```
-      cd dockerSkeleton
-      ```
-      {: pre}
+    RUN pip install \
+      --upgrade pip \
+      matplotlib \
+      pandas \
+      statsmodels
+    ```
+    {: codeblock}
 
-   3. Run the script.
-      
-      ```
-      ./buildAndPush.sh <username>/blackboxdemo
-      ```
-      {: pre}
+7. Build your custom Docker image.
+
+  ```
+  docker build -t <dockerhub_username>/<repo_name>:<tag_name>
+  ```
+  {: pre}
+
+8. Push your image to Docker Hub.
+
+  ```
+  docker push <dockerhub_username>/<repo_name>:<tag_name>
+  ```
+  {: pre}
+
+### Deploying an action with a custom Docker image
+When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action will be invoked using the Docker image.
+
+Run the `action create` command and include the `--docker` flag to specify a Docker image for your app to use.
+
+```
+ibmcloud fn action create <action_name> --docker <dockerhub_username>/<image_name> <app_file>
+```
+{: pre}
+
+You can also deploy a .zip file with a Docker image to create an action. You can use the command above and replace `<app_file>` with your .zip file. You can use this method to deploy large app files or incorporate large dependencies.
+{: tip}
+
+To see an example deployment of a custom Docker image with an {{site.data.keyword.openwhisk_short}} action, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
 
 ## Preparing Go apps
 {: #prep_go}
@@ -823,6 +1349,18 @@ Package your app.
 
 3. Pass the .zip archive to the Docker container over `stdin`. The `stdout` is a new .zip archive with the compiled executable. The Docker container reads the content of the .zip archive from `stdin` and writes a new .zip archive with the compiled Swift executable to `stdout`.
 
+  ```
+  docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
+  ```
+  {: codeblock}
+
+  In a Linux based system, you can combine the `zip` and `docker run` steps in a single command:
+
+  ```
+  zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
+  ```
+  {: codeblock}
+
    ```
    docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
    ```
@@ -912,7 +1450,7 @@ Before you begin, [review the packages that are included with the PHP runtime](/
 To package your app, run the following command.
 
 ```bash
-zip -r ARCHIVE_NAME.zip FILE_1.php FILE_2.php
+zip -r <archive_name>.zip <file_1>.php <file_2>.php
 ```
 {: pre}
 

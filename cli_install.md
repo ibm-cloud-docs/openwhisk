@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2019
-lastupdated: "2019-11-14"
+lastupdated: "2019-12-19"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -146,13 +146,13 @@ For more information about {{site.data.keyword.openwhisk_short}} commands, see t
 {: #install_next}
 To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
-## Updating the {{site.data.keyword.openwhisk_short}} CLI plugin
+## Updating the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_update}
 
 You might want to update the CLI periodically to use new features.
 {:shortdesc}
 
-1. View your current plugin list by running `ibmcloud plugin list` command.
+1. View your current plug-in list by running `ibmcloud plugin list` command.
 
    ```
    ibmcloud plugin list
