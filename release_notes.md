@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2019
-lastupdated: "2019-12-18"
+lastupdated: "2019-12-19"
 
 keywords: release notes, functions
 
@@ -35,7 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 18 Dec 2019 | <ul><li>New environmental variable: `__OW_TRANSACTION_ID`. For more information, see [Environment variables for actions] (/docs/openwhisk?topic=cloud-functions-actions#actions_envvars).</li><li>Updated information about securing your web action for an API. See [Securing your API web action](/docs/openwhisk?topic=cloud-functions-apigateway#api_secure).</li><li>Updated information for packaging your Python code. See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=cloud-functions-prep#how_to_package_python).</li></ul> |
+| 18 Dec 2019 | <ul><li>New environmental variable: `__OW_TRANSACTION_ID`. For more information, see [Environment variables for actions](/docs/openwhisk?topic=cloud-functions-actions#actions_envvars).</li><li>Updated information about securing your web action for an API. See [Securing your API web action](/docs/openwhisk?topic=cloud-functions-apigateway#api_secure).</li><li>Updated information for packaging your Python code. See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=cloud-functions-prep#how_to_package_python).</li></ul> |
 | 5 Dec 2019 | <ul><li>Improved documentation for the quick start templates. See [Deploying quick start templates](/docs/openwhisk?topic=cloud-functions-templates).</li><li>Updated the API endpoints documentation. See [Regions](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions).</li></ul> |
 
 ## November 2019
