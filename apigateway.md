@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-01-07"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -123,7 +123,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 2. Click **Create API**.
 
-3. Complete the fields in the API Info section.
+3. Complete the fields in the **API Info** section.
 
 4. Click **Create operation**. Use the Create operations section to define parameters for your API.  To create an API that is similar to the API in the CLI example, use base path `/hello`, path `/world`, method `get`, and response type `json`.
 
@@ -196,7 +196,6 @@ To return different content types in the body, use full control over the HTTP re
   {
   "payload": "Hello, Serverless API!"
   }
-  ```
   {: screen}
   
 ## Securing your API web action
@@ -205,7 +204,7 @@ To return different content types in the body, use full control over the HTTP re
 By default, anyone can invoke a web action by using the invocation URL, even if you secure the calling API. You can secure your web action by using the `require-whisk-auth web action` annotation.
 {: shortdesc}
 
-This example uses the same names and code as the example in [Creating your first API using the CLI](#api_create_cli). If you created those entities, delete the action and the API by running `ibmcloud fn action delete ACTION_NAME` and `ibmcloud fn api delete API_NAME`. You must create the web secure action before you can create the API. If you want to update an exisitng action that is called by an API, you must delete the API, update the action, and then recreate the API. 
+This example uses the same names and code as the example in [Creating your first API using the CLI](#api_create_cli). If you created those entities, delete the action and the API by running `ibmcloud fn action delete ACTION_NAME` and `ibmcloud fn api delete API_NAME`. You must create the web secure action before you can create the API. If you want to update an existing action that is called by an API, you must delete the API, update the action, and then re-create the API. 
 
 1. Save the following code into a JavaScript file named `hello.js`.
 

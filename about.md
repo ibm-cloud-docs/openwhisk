@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-01-07"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -100,7 +100,7 @@ Host: $openwhiskEndpoint
 
 Note the `<userNamespace>` variable. A user has access to at least one namespace. For simplicity with this example, assume that you own the namespace where `myAction` is put into.
 
-The first entry point into the system is through **NGINX**, an HTTP and reverse proxy server. NIGINX is used for SSL termination and forwarding appropriate HTTP calls to the next component.
+The first entry point into the system is through **NGINX**, an HTTP and reverse proxy server. NGINX is used for SSL termination and forwarding appropriate HTTP calls to the next component.
 
 ### 2. Entering the system: Controller
 {: #about_controller}
@@ -114,7 +114,7 @@ Given the central role of the Controller (hence the name), the following steps a
 ### 3. Authentication and Authorization: CouchDB
 {: #about_auth}
 
-Now the Controller verifies who you are (*Authentication*) and if you have the neccesary privilege to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
+Now the Controller verifies who you are (*Authentication*) and if you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
 
 In this case, the controller checks to see that you exist in the OpenWhisk database and determines if you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
 

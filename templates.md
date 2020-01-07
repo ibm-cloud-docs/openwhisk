@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-19"
+  years: 2017, 2020
+lastupdated: "2020-01-07"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -234,7 +234,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 4. Click **Apply**.
 
-5. Click **Invoke**.  In the Actfivation pane, find output similar to the following example:
+5. Click **Invoke**.  In the Activation pane, find output similar to the following example:
 
    ```
    **Activation ID:**

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-05"
+  years: 2017, 2020
+lastupdated: "2020-01-07"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -55,6 +55,7 @@ The following table lists the default limits for actions.
  <th>Min</th>
  <th>Max</th>
  </thead>
+  <tbody>
    <tr>
    <td>`codeSize`</td>
    <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker) as a workaround for large dependencies, however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
@@ -132,6 +133,7 @@ The following table lists the default limits for actions.
    <td>100</td>
    <td>600000</td>
   </tr>
+  </tbody>
 </table>
 
 ## Web action limits
@@ -169,6 +171,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
  <th>Min</th>
  <th>Max</th>
  </thead>
+  <tbody>
    <tr>
    <td>`minuteRate`</td>
    <td>The rate limit N is set to 5000 and limits the number of triggers that a user can fire in 1-minute windows. A user cannot change the trigger limit when a trigger is created. A CLI or API call that exceeds this limit receives an error code corresponding to HTTP status code `429: TOO MANY REQUESTS`. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. Check the section [Increasing fixed limits](#limits_fixed) for detailed instructions on how to increase this limit.</td>
@@ -176,6 +179,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
    <td>5000*</td>
    <td>5000*</td>
   </tr>
+  </tbody>
 </table>
 
 ## Increasing fixed limits

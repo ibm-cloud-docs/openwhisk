@@ -1,8 +1,7 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-19"
+lastupdated: "2020-01-07"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -323,7 +322,6 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {
      "name": "my-action",
-     "main": "index.js",
      "dependencies" : {
        "left-pad" : "1.1.3"
       }
@@ -388,7 +386,7 @@ For more information, see [Packaging multiple Python files into a .zip file](#pr
 ### Packaging Python code with a local virtual environment in a .zip file
 When to use this method:
 
-If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` which you can then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file, when compressed, must be smaller than 48 MB.
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder and then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
 
 **Example command**
 
@@ -402,7 +400,7 @@ For more information, see [Packaging Python code with a local virtual environmen
 ### Packaging Python code with a Docker virtual environment in a .zip file
 When to use this method:
 
-If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` within a Docker image. You can then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file, when compressed, must be smaller than 48 MB.
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder within a Docker image. You can then compress the folder into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
 
 **Example command**
 
@@ -590,7 +588,7 @@ To package your app:
     ```
     {: codeblock}
 
-7. From your `jokes` directory, create a .zip archive of the `virtualenv` and your `__main__.py` file. These files must be in the top level of your .zip file.
+7. From your `jokes` directory, create a .zip archive of the `virtualenv` folder and your `__main__.py` file. These files must be in the top level of your .zip file.
 
     ```
     jokes $ zip -r jokes.zip virtualenv __main__.py
@@ -622,7 +620,7 @@ To package your app:
     ```
     {: screen}
 
-9. Invoke the action to verify it is working. Includ the `--result` flag to return the result in the command line.
+9. Invoke the action to verify it is working. Include the `--result` flag to return the result in the command line.
 
     ```
     ibmcloud fn action invoke jokes --result
@@ -687,7 +685,7 @@ Package your app by completing the following steps.
     To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
     {: tip}
 
-5. Pull one of the following images for your runtime. Packages installed using `virtualenv` must be for the same major and minor versions of the Python runtime used by OpenWhisk. To ensure compatibility with the runtime container, you can use the {{site.data.keyword.openwhisk_short}} images provided on Docker Hub to build your `virtualenv`.
+5. Pull one of the following images for your runtime. Packages installed with `virtualenv` must be for the same major and minor versions of the Python runtime used by OpenWhisk. To ensure compatibility with the runtime container, you can use the {{site.data.keyword.openwhisk_short}} images provided on Docker Hub to build your `virtualenv`.
 
     * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
     * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
@@ -708,7 +706,7 @@ Package your app by completing the following steps.
    ```
    {: screen}
 
-6. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv`. This creates a virtualenv folder in the `test` directory.
+6. Install the dependencies and create a virtual environment. The virtual environment directory must be named `virtualenv` in order to create a `virtualenv` folder in the `test` directory.
 
    ```
    docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
@@ -743,7 +741,7 @@ Package your app by completing the following steps.
     ```
     {: codeblock}
 
-8. In order to deploy this code as an action, you must create a .zip file of the `virtualenv` and the `__main__.py` file. However, in this case, the resulting .zip file is larger than the 48 MB allowed by {{site.data.keyword.openwhisk_short}}. To get around this, you can select only the dependices you need, rather than using the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv`. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` in your .zip file.   
+8. In order to deploy this code as an action, you must create a .zip file of the `virtualenv` folder and the `__main__.py` file. However, in this case, the resulting .zip file is larger than the 48 MB allowed by {{site.data.keyword.openwhisk_short}}. To get around this, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your .zip file.   
 
    In this example, you must also include `joblib` package from the `site-packages` folder since it is a dependency of `sklearn`. However, you do not need to include `sklearn` dependencies that are included in {{site.data.keyword.openwhisk_short}} default images, such as `numpy`.
 
@@ -783,7 +781,7 @@ Package your app by completing the following steps.
 
 {{site.data.keyword.openwhisk_short}} has a limit of 48 MB for app code. However, you can install large packages and dependencies into a custom Docker image and deploy it with your app code when you create an action. You can then import the packages at runtime. 
 
-In this example, install large Python packages such as `matplotlib` and `seaborn` to build an {{site.data.keyword.openwhisk_short}} web action that generates a .png file of a jointplot with `seaborn`.
+In this example, install large Python packages such as `matplotlib` and `seaborn` to build an {{site.data.keyword.openwhisk_short}} web action that generates a PNG file of a joint plot with `seaborn`.
 
 Before you begin, review the packages that are included with the [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
@@ -860,7 +858,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: pre}
 
-9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a jointplot in [`seaborn`](https://seaborn.pydata.org/) using random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to an {{site.data.keyword.openwhisk_short}} endpoint.
+9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) using random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to an {{site.data.keyword.openwhisk_short}} endpoint.
 
    ```python
        # import modules
@@ -899,7 +897,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: codeblock}   
 
-10. Create a web action called `seaborn` by using the custom Docker image you created that contains the required Python dependencies to execute the jointplot app.
+10. Create a web action called `seaborn` by using the custom Docker image you created that contains the required Python dependencies to run the a joint plot.
 
    ```
    ibmcloud fn action create seaborn --docker <dockerhub_username>/<repo_name>:<tag_name> seaborn.py --web true
@@ -913,7 +911,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: screen}
 
-11. Invoke the action to test it. Invoking the action will return the base64 string for the generated jointplot.
+11. Invoke the action to test it. Invoking the action returns the base64 string for the generated joint plot.
 
    ```
    ibmcloud fn action invoke seaborn --result
@@ -948,7 +946,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: screen}
 
-12. Copy and paste the URL into your browser to see the generated jointplot. Refresh the page to invoke the action and generate a new plot.
+12. Copy and paste the URL into your browser to see the generated joint plot. Refresh the page to invoke the action and generate a new plot.
 
 You can use this method of building custom Docker images to install large dependencies rather than packaging them with your app.
 {: tip}
@@ -969,7 +967,7 @@ You can use images from public registries only, such as an image that is publicl
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
 
 ### Creating a custom Docker image for your action
-In a Dockerfile, you can specify a {{site.data.keyword.openwhisk_short}} base runtime image by using the `FROM` instruction. You can use the `RUN` instruction to specify dependencies and packages to install in your Docker image. For more information about creating a Dockerile, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
+In a Dockerfile, you can specify a {{site.data.keyword.openwhisk_short}} base runtime image by using the `FROM` instruction. You can use the `RUN` instruction to specify dependencies and packages to install in your Docker image. For more information about creating a Dockerfile, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
 
 You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://hub.docker.com/u/ibmfunctions){: external}.
 
@@ -1291,7 +1289,7 @@ The Docker container reads the content of the file from `stdin`, and writes a .z
 ### Packaging Swift 4.2 multi-file projects and dependencies
 {: #prep_swift42_multi}
 
-Package your Swift 4.2 multi-file projects and dependencies by creating a directory structure, zipping the contents, and then passing the zip file to Docker.
+Package your Swift 4.2 multi-file projects and dependencies by creating a directory structure, zipping the contents, and then passing the .zip file to Docker.
 {: shortdesc}
 
 **Before you begin**
