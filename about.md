@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-01-15"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -105,7 +105,7 @@ The first entry point into the system is through **NGINX**, an HTTP and reverse 
 ### 2. Entering the system: Controller
 {: #about_controller}
 
-NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. The Controller is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**). As such, the Controller serves as the interface for everything a you want to do, including create, retrieve, update, and delete requests for your entities in OpenWhisk and the invocation of actions.
+NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. The Controller is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**). As such, the Controller serves as the interface for everything that you want to do, including create, retrieve, update, and delete requests for your entities in OpenWhisk and the invocation of actions.
 
 When the HTTP request is forwarded, the Controller first determines what action that you are trying to take, based on the HTTP method that you used in your HTTP request. In this case, you are issuing a POST request to an existing action, which the Controller translates to an **invocation of an action**.
 
@@ -114,7 +114,7 @@ Given the central role of the Controller (hence the name), the following steps a
 ### 3. Authentication and Authorization: CouchDB
 {: #about_auth}
 
-Now the Controller verifies who you are (*Authentication*) and if you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
+Now the Controller verifies who you are (*Authentication*) and whether you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
 
 In this case, the controller checks to see that you exist in the OpenWhisk database and determines if you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
 
@@ -137,7 +137,7 @@ The Load Balancer, which is part of the Controller, has a global view of the exe
 ### 6. Please form a line: Kafka
 {: #about_kafka}
 
-The Controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *OutOfMemoryException*, from both the Controller and the Invoker, while also making sure that messages are not lost in the case of a system crash. 
+The Controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *OutOfMemoryException*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
 
 To get the action invoked, the Controller publishes a message to **Kafka**, a high-throughput, distributed, publish-subscribe messaging system. The message contains the action to invoke and the parameters to pass to that action (in this case none). This message is addressed to the Invoker.
 

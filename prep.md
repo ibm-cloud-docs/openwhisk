@@ -1,7 +1,7 @@
 ---
 
 copyright:
-lastupdated: "2020-01-07"
+lastupdated: "2020-01-17"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -49,7 +49,6 @@ Each programming language has specific requirements to run, but most have the fo
   {: codeblock}
 
 - If your app contains multiple files, they must be combined into one single file to be used in an action. You can either rewrite your code into one file or you can package the files and dependencies into a single archive file. If your runtime is not supported, you can package your app in a Docker image.
-- Dependencies must also be packaged with your app. The available runtimes come with some pre-installed packages and extensions. [Review the reference information for your runtime](/docs/openwhisk?topic=cloud-functions-runtimes) to see whether a dependency of your app is already included with the runtime. If your dependency is included, you are not required to package it with your app.
 
   Code compilation is not required, but if possible for your runtime, compiling your code in advance can improve performance.
   {: tip}
@@ -117,7 +116,7 @@ function main(params) {
 JavaScript functions can continue to run in a callback function even after a return. The JavaScript activation is asynchronous if the main function exits by returning a promise. In this case, the system assumes that the action is still running until the promise is fulfilled or rejected. JavaScript functions that run asynchronously can return the activation result after the `main` function returns by returning a promise in your action.
 {: shortdesc}
 
-Start by instantiating a new promise object and passing a callback function. The callback takes two arguments, resolve and reject, which are both functions. All your asynchronous code goes inside that callback. The action handler can have any name as long as it conforms to the conventional signature of accepting an object and returning an object (or a `Promise` of an object).
+Start by instantiating a new promise object and passing a callback function. The callback takes two arguments, resolve and reject, which are both functions. All your asynchronous code goes inside that callback. The action handler can have any name that conforms to the conventional signature of accepting an object and returning an object (or a `Promise` of an object).
 
 In the following example, you can see how to fulfill a promise by calling the resolve function.
 
@@ -288,7 +287,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 
    The file `dist/bundle.js` is created and deploys as the action source code.
 
-6. Create the action using the `npm` script or the CLI.
+6. Create the action by using the `npm` script or the CLI.
 
    * Run the following the `npm` script.
 
@@ -372,7 +371,7 @@ def main(args):
 ### Packaging multiple Python files into a .zip file
 When to use this method:
 
-Your app uses multiple Python files, but does not require any dependencies or packages outside of the packages included with the base Python runtime. You can create a .zip file that includes your Python files and deploy the .zip file when creating your action.
+Your app uses multiple Python files, but does not require any dependencies or packages outside of the packages that are included with the base Python runtime. You can create a .zip file that includes your Python files and deploy the .zip file when you create your action.
 
 **Example command**
 
@@ -471,7 +470,7 @@ Before you begin, [review the packages that are included with the Python runtime
   ```
   {: codeblock}
 
-4. To package your app as .zip, `cd` to you `test` directory and run the following command. In this example, the .zip archive is called `stranger.zip`.
+4. To package your app as .zip, `cd` to your `test` directory and run the following command. In this example, the .zip archive is called `stranger.zip`.
 
   ```
   zip -r stranger.zip __main__.py helper.py
@@ -521,25 +520,31 @@ Before you begin, [review the packages that are included with the Python runtime
 ### Packaging Python code with a local virtual environment in a .zip file
 {: #prep_python_local_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. The virtual environment allows you to link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/). 
+You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/). 
 
-Packages must be available for the Python runtime being used in {{site.data.keyword.openwhisk_short}}.
+Packages must be available for the Python runtime that is used in {{site.data.keyword.openwhisk_short}}.
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see if a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+
+Before you begin, install the `virtualenv` Python package.
+  ```
+  pip install virtualenv
+  ```
+  {: pre}
 
 To package your app:
 
-1. Create a directory that you can use to create your virtual environment. In this example, a `test` directory is created on the desktop. After you create the `test` directory, `cd` to it.
+1. Create a directory that you can use to create your virtual environment. In this example, a `jokes` directory is created on the desktop. After you create the `jokes` directory, `cd` to it.
 
     ```
-    cd desktop; mkdir test; cd test
+    cd desktop; mkdir jokes; cd jokes
     ```
     {: pre}
 
-3. Create a directory called `virtualenv`.
+2. From the `jokes` directory, create a virtual environment named `virtualenv`. Your virtual environment must be named `virtualenv`.
 
     ```
-    jokes $ virtualenv virtualenv
+    virtualenv virtualenv
     ```
     {: pre}
 
@@ -554,14 +559,14 @@ To package your app:
     ```
     {: screen}
 
-4. Activate `virtualenv`.
+3. From your `jokes` directory, activate your `virtualenv` virtual environment.
 
     ```
-    jokes $ source virtualenv/bin/activate
+    source virtualenv/bin/activate
     ```
     {: pre}
 
-5. Install the `pyjokes` module.
+4. Install the `pyjokes` module.
 
     ```
     (virtualenv) $ pip install pyjokes
@@ -577,8 +582,14 @@ To package your app:
     Successfully installed pyjokes-0.5.0
     ```
     {: screen}
+  
+5. Stop the virtualenv.
+    ```
+    (virtualenv) $ deactivate
+    ```
+    {: codeblock}
 
-6. Copy the following code and save it into a file called `__main__.py`.
+6. Copy the following code and save it into a file called `__main__.py` in your `jokes` directory.
 
     ```python
     import pyjokes
@@ -591,7 +602,7 @@ To package your app:
 7. From your `jokes` directory, create a .zip archive of the `virtualenv` folder and your `__main__.py` file. These files must be in the top level of your .zip file.
 
     ```
-    jokes $ zip -r jokes.zip virtualenv __main__.py
+    zip -r jokes.zip virtualenv __main__.py
     ```
     {: pre}
 
@@ -603,13 +614,14 @@ To package your app:
     adding: virtualenv/lib/python3.7/_bootlocale.py (deflated 63%)
     adding: __main__.py (deflated 17%)
     ...
+    ...
     ```
     {: screen}
 
 8. Create an action called `jokes` using your `jokes.zip` file. You must also specify the entry point as `jokes`. You must also specify the `--kind` flag for the runtime.
 
     ```
-    ibmcloud fn action create jokes /Users/IBM/Desktop/jokes/jokes.zip --kind python:3.7 --main joke
+    ibmcloud fn action create jokes </path/to/file/>jokes.zip --kind python:3.7 --main joke
     ```
     {: pre}
 
@@ -685,7 +697,6 @@ Package your app by completing the following steps.
     To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
     {: tip}
 
-5. Pull one of the following images for your runtime. Packages installed with `virtualenv` must be for the same major and minor versions of the Python runtime used by OpenWhisk. To ensure compatibility with the runtime container, you can use the {{site.data.keyword.openwhisk_short}} images provided on Docker Hub to build your `virtualenv`.
 
     * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
     * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
@@ -729,7 +740,7 @@ Package your app by completing the following steps.
    ```
    {: screen}
 
-7. Save the following code as `__main__.py` in your `test` directory. When creating actions with a .zip file, the source file that contains the entry point must be named `__main__.py`.
+7. Save the following code as `__main__.py` in your `test` directory. When you create actions with a .zip file, the source file that contains the entry point must be named `__main__.py`.
 
     ```python
     import sklearn
@@ -741,7 +752,7 @@ Package your app by completing the following steps.
     ```
     {: codeblock}
 
-8. In order to deploy this code as an action, you must create a .zip file of the `virtualenv` folder and the `__main__.py` file. However, in this case, the resulting .zip file is larger than the 48 MB allowed by {{site.data.keyword.openwhisk_short}}. To get around this, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your .zip file.   
+8. In order to deploy this code as an action, you must create a .zip file of the `virtualenv` folder and the `__main__.py` file. However, in this case, the resulting .zip file is larger than the 48 MB allowed by {{site.data.keyword.openwhisk_short}}. To reduce the size of the .zip file, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your .zip file.   
 
    In this example, you must also include `joblib` package from the `site-packages` folder since it is a dependency of `sklearn`. However, you do not need to include `sklearn` dependencies that are included in {{site.data.keyword.openwhisk_short}} default images, such as `numpy`.
 
@@ -753,7 +764,7 @@ Package your app by completing the following steps.
    If the archive file that you create with your `virtualenv` and `__main__.py` file is smaller than 48 MB, you can create the action without selecting dependencies from the `site-packages` directory.
    {: tip}
 	
-9. Create an action called `sklearn` using the `sklearn.zip` file.
+9. Create an action called `sklearn` by using the `sklearn.zip` file.
 
     ```
     ibmcloud fn action create sklearn <file_path>/sklearn.zip --kind python:3.7
@@ -779,9 +790,9 @@ Package your app by completing the following steps.
 ### Packaging large Python dependencies in a custom Docker image
 {: #prep_python_docker}
 
-{{site.data.keyword.openwhisk_short}} has a limit of 48 MB for app code. However, you can install large packages and dependencies into a custom Docker image and deploy it with your app code when you create an action. You can then import the packages at runtime. 
+{{site.data.keyword.openwhisk_short}} has a limit of 48 MB for app code. However, you can install large packages and dependencies into a custom Docker image and deploy it with your app code when you create an action. You can then import the packages at run time. 
 
-In this example, install large Python packages such as `matplotlib` and `seaborn` to build an {{site.data.keyword.openwhisk_short}} web action that generates a PNG file of a joint plot with `seaborn`.
+In this example, install large Python packages such as `matplotlib` and `seaborn` to build a {{site.data.keyword.openwhisk_short}} web action that generates a PNG file of a joint plot with `seaborn`.
 
 Before you begin, review the packages that are included with the [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
@@ -827,7 +838,7 @@ Package the app in a custom Docker image by completing the following steps.
 
 5. Press `ESC`, then `:wq` and `Enter` to save and close your Dockerfile.
 
-6. From your `functions` directory, you can run `docker build` to build a Docker image using your `Dockerfile`.
+6. From your `functions` directory, you can run `docker build` to build a Docker image by using your `Dockerfile`.
 
     ```
     docker build -t <dockerhub_username>/<repo_name>:<tag_name> .
@@ -858,7 +869,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: pre}
 
-9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) using random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to an {{site.data.keyword.openwhisk_short}} endpoint.
+9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) that uses random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to a {{site.data.keyword.openwhisk_short}} endpoint.
 
    ```python
        # import modules
@@ -897,7 +908,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: codeblock}   
 
-10. Create a web action called `seaborn` by using the custom Docker image you created that contains the required Python dependencies to run the a joint plot.
+10. Create a web action called `seaborn` by using the custom Docker image that you created that contains the required Python dependencies to run a joint plot.
 
    ```
    ibmcloud fn action create seaborn --docker <dockerhub_username>/<repo_name>:<tag_name> seaborn.py --web true
@@ -1021,7 +1032,7 @@ You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://
   {: pre}
 
 ### Deploying an action with a custom Docker image
-When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action will be invoked using the Docker image.
+When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action will be invoked with the Docker image.
 
 Run the `action create` command and include the `--docker` flag to specify a Docker image for your app to use.
 
@@ -1030,15 +1041,15 @@ ibmcloud fn action create <action_name> --docker <dockerhub_username>/<image_nam
 ```
 {: pre}
 
-You can also deploy a .zip file with a Docker image to create an action. You can use the command above and replace `<app_file>` with your .zip file. You can use this method to deploy large app files or incorporate large dependencies.
+You can also deploy a .zip file with a Docker image to create an action. You can use the previous command and replace `<app_file>` with your .zip file. You can use this method to deploy large app files or incorporate large dependencies.
 {: tip}
 
-To see an example deployment of a custom Docker image with an {{site.data.keyword.openwhisk_short}} action, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
+To see an example deployment of a custom Docker image with a {{site.data.keyword.openwhisk_short}} action, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
 
 ## Preparing Go apps
 {: #prep_go}
 
-Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable for better performance or multiple source file support, including vendor libraries.
+Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance or multiple source file support, including vendor libraries.
 {: shortdesc}
 
 Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#prep_go_multi) or [vendor libraries](#prep_go_vendor).
@@ -1047,7 +1058,7 @@ Although you can create a compressed file on any Go platform by cross-compiling 
 ### Structuring Go code
 {: #prep_go_struct}
 
-When structuring your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created. The package must also be public.
+When you structure your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created. The package must also be public.
 {: shortdesc}
 
 **Example**
@@ -1077,7 +1088,7 @@ When structuring your Go code, note that the expected name for the entry point p
 ### Packaging multiple Go source files
 {: #prep_go_multi}
 
-You can package multiple Go source files by creating a top level `src` directory, importing the subpackages, and then compiling.
+You can package multiple Go source files by creating a top-level `src` directory, importing the subpackages, and then compiling.
 {: shortdesc}
 
 1. Create a top level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
@@ -1144,7 +1155,7 @@ You can package multiple Go source files by creating a top level `src` directory
    You can compile locally by setting your `GOPATH` to the parent of the `src` directory. If you use VS Code, you must change the `go.inferGopath` setting to `true`.
    {: note}
 
-4. Compile and package the Go executable as `exec` in the root of the .zip archive. Build the `hello-bin.zip` archive by running the following command. You must have Docker CLI installed in your workstation and `docker` in your `PATH`.
+4. Compile and package the Go executable file as `exec` in the root of the .zip archive. Build the `hello-bin.zip` archive by running the following command. You must install the Docker CLI on your workstation and put `docker` in your `PATH`.
 
    ```bash
    docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
@@ -1153,7 +1164,7 @@ You can package multiple Go source files by creating a top level `src` directory
 
    In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`. The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
 
-   The container gets the contents of the source .zip in `stdin`, compiles the content, and creates a new .zip archive with the executable `exec` in the root. The .zip archive content streams out to `stdout` which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
+   The container gets the contents of the source .zip in `stdin`, compiles the content, and creates a new .zip archive with the executable `exec` file in the root. The .zip archive content streams out to `stdout`, which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
 
 ### Packaging Go code with vendor libraries
 {: #prep_go_vendor}
@@ -1209,7 +1220,7 @@ To populate the `vendor` directory, run `dep ensure`.
 ## Preparing Swift apps
 {: #prep_swift}
 
-Swift files must be compiled before an action is run. This delay is known as the cold-start delay. To avoid the cold-start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container with your action is purged.
+Swift files must be compiled before an action is run. This delay is known as the cold start delay. To avoid the cold start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a .zip file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container with your action is purged.
 {: shortdesc}
 
 Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on macOS.
@@ -1284,12 +1295,12 @@ docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
 ```
 {: pre}
 
-The Docker container reads the content of the file from `stdin`, and writes a .zip archive with the compiled swift executable to `stdout`.
+The Docker container reads the content of the file from `stdin`, and writes a .zip archive with the compiled swift executable file to `stdout`.
 
 ### Packaging Swift 4.2 multi-file projects and dependencies
 {: #prep_swift42_multi}
 
-Package your Swift 4.2 multi-file projects and dependencies by creating a directory structure, zipping the contents, and then passing the .zip file to Docker.
+Package your Swift 4.2 multi-file projects and dependencies by creating a directory structure, compressing the contents, and then passing the .zip file to Docker.
 {: shortdesc}
 
 **Before you begin**
@@ -1345,7 +1356,7 @@ Package your app.
    ```
    {: codeblock}
 
-3. Pass the .zip archive to the Docker container over `stdin`. The `stdout` is a new .zip archive with the compiled executable. The Docker container reads the content of the .zip archive from `stdin` and writes a new .zip archive with the compiled Swift executable to `stdout`.
+3. Pass the .zip archive to the Docker container over `stdin`. The `stdout` is a new .zip archive with the compiled executable file. The Docker container reads the content of the .zip archive from `stdin` and writes a new .zip archive with the compiled Swift executable file to `stdout`.
 
   ```
   docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
@@ -1380,7 +1391,7 @@ Before you create an action, get your Ruby code ready.
 ### Structuring Ruby code
 {: #prep_ruby_struct}
 
-When structuring your code, note that the expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created. Ruby actions always consume a Hash (dictionary-like collection) and return a Hash.
+When you structure your code, note that the expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created. Ruby actions always consume a Hash (dictionary-like collection) and return a Hash.
 {: shortdesc}
 
 **Example**
@@ -1408,7 +1419,7 @@ zip -r helloRuby.zip main.rb helper.rb
 ```
 {: pre}
 
-The gems `mechanize` and `jwt` are available in addition to the default and bundled gems. You can use arbitrary gems so long as you use zipped actions to package all the dependencies.
+The gems `mechanize` and `jwt` are available in addition to the default and bundled gems. You can use arbitrary gems if you also use compression actions to package all the dependencies.
 
 ## Preparing PHP apps
 {: #prep_php}
@@ -1419,7 +1430,7 @@ Before you create an action, get your PHP code ready.
 ### Structuring PHP code
 {: #prep_php_struct}
 
-When structuring your code, note that the expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created. PHP actions always consume an associative array and return an associative array.
+When you structure your code, note that the expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created. PHP actions always consume an associative array and return an associative array.
 {: shortdesc}
 
 **Example**
@@ -1488,6 +1499,7 @@ Package your code by creating a .jar file.
 {: shortdesc}
 
 **Before you begin**
+
 You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
 
 If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
@@ -1514,7 +1526,7 @@ To create a Java action, complete the following steps.
 
 2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
 
-3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar` which is saved in a `test` folder in the `Desktop` directory.
+3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar`, which is saved in a `test` folder in the `Desktop` directory.
   
    ```
    export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
@@ -1561,6 +1573,7 @@ To create a Java action, complete the following steps.
    {: pre}
 
 **Next steps**
+
 You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
 
 When you update your Java code, you must repeat these steps to recompile your code into a new `.jar` file.
@@ -1571,7 +1584,7 @@ When you update your Java code, you must repeat these steps to recompile your co
 
 Instead of compiling from the command line, you can use a build a tool such as [Gradle](https://gradle.org){: external} to fetch the libraries from a repository like Maven Central. You can use Gradle to fetch and build a final .jar archive that includes your code and all dependencies.
 
-Here is an example using Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
+The following example uses Gradle to build a Java action that leverages the library `com.google.zxing` that provides the functionality to generate a QR code image.
 
 1. Create a file that is named `build.gradle` and specify the dependencies.
 
@@ -1632,13 +1645,13 @@ Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ### Packaging .NET Core code
 {: #prep_dotnet_pkg}
 
-Package your code by first compiling it and then zipping the results.
+Package your code by first compiling it and then compressing the results.
 {: shortdesc}
 
 **Before you begin**
 To compile, test, and archive .NET Core projects, you must:
 - Install the [.NET Core SDK](https://dotnet.microsoft.com/download){: external} locally.
-- Set the `DOTNET_HOME` environment variable to the location where the `dotnet` executable can be found.
+- Set the `DOTNET_HOME` environment variable to the location where the `dotnet` executable file can be found.
 
 
 

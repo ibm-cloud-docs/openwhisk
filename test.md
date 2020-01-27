@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-28"
+  years: 2017, 2020
+lastupdated: "2020-01-15"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -113,7 +113,7 @@ The invocation of the action can be blocking or non-blocking. Invocations are no
 
 Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits).
 
-Run the action in the cloud by running a blocking invocation.
+Run the action by running a blocking invocation.
 
 ```
 ibmcloud fn action invoke --blocking ACTION_NAME
@@ -290,7 +290,7 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 ### Special considerations for memory usage with Node.js runtime actions
 {: #memory_usage}
 
-When using Node.js runtime actions, there are special considerations for memory usage.
+With Node.js runtime actions, there are special considerations for memory usage.
 {: shortdesc}
 
 In the case where an action consumes more memory than requested, the action is terminated and the following log information is displayed:
@@ -301,13 +301,13 @@ In the case where an action consumes more memory than requested, the action is t
 ```
 {: screen}
 
-When running successive invocations of the same action, to improve execution times, the optimizations performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected. 
+When {{site.data.keyword.openwhisk_short}} runs successive invocations of the same action, the optimizations that are performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected, in order to improve run times. 
 
-For example, when {{site.data.keyword.openwhisk_short}} runs actions, Linux containers are used for the processes. To speed things up, new containers are not created each time your action is run ("cold"), but instead, existing containers that ran your action before ("warm") are re-used. So when your action completes, the container "freezes" to pause all processes and then "wakes" when your action is re-run.
+For example, when {{site.data.keyword.openwhisk_short}} runs actions, Linux containers are used for the processes. To speed up the process, new containers are not created each time that your action runs ("cold"), but instead, existing containers that ran your action before ("warm") are reused. So when your action completes, the container "freezes" to pause all processes and then "wakes" when your action is rerun.
 
-This approach affects garbage collection. When you run a Node.js action, garbage is created on the heap. This garbage is accumulating over each warm re-use of the action process. However, because the Node.js process pauses between invocations, garbage collection does not run reliably.
+This approach affects garbage collection. When you run a Node.js action, garbage is created on the heap. This garbage is accumulating over each warm reuse of the action process. However, because the Node.js process pauses between invocations, garbage collection does not run reliably.
 
-For this reason, invoke Node.js garbage collection explicitly from within your action code. To support explicit garbage collection, the Node.js action process is run with option ´--expose-gc´.
+For this reason, invoke Node.js garbage collection explicitly from within your action code. To support explicit garbage collection, the Node.js action process is run with option `--expose-gc`.
 
 To trigger explicit garbage collection, use the following code in your action:
 

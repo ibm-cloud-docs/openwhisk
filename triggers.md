@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-13"
+  years: 2017, 2020
+lastupdated: "2020-01-15"
 
 keywords: triggers, serverless, functions
 
@@ -33,8 +33,8 @@ A trigger is a declaration that you want to react to a certain type of event, wh
 The following are examples of triggers.
 
 - Location update events
-- Document uploads to a website
-- Incoming emails
+- Document uploads to a website.
+- Incoming email
 
 ## Creating triggers from the CLI
 {: #triggers_create}
@@ -77,14 +77,14 @@ Feeds and triggers are closely related, but technically distinct concepts.
 
 - {{site.data.keyword.openwhisk_short}} processes **events** that flow into the system.
 
-- A **trigger** is a name for a class of events. Each event belongs to exactly one trigger; by analogy, a trigger resembles a topic in topic-based pub-sub systems. A **rule** means that whenever an event from trigger arrives, invoke action with the trigger payload.
+- A **trigger** is a name for a class of events. Each event belongs to exactly one trigger; by analogy, a trigger resembles a topic in topic-based pub-sub systems. A **rule** is used to indicate that whenever an event from trigger arrives, invoke action with the trigger payload.
 
-- A **feed** is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. A feed is a stream of events that all belong to some trigger. Pre-installed packages, installable packages, and you own custom packages might contain feeds.  A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
+- A **feed** is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. A feed is a stream of events that all belong to some trigger. Preinstalled packages, installable packages, and your own custom packages might contain feeds.  A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
 
 Examples of feeds:
 
-- An {{site.data.keyword.cloudant}} data change feed that fires a trigger event each time a document in a database is added or modified
-- A Git feed that fires a trigger event for every commit to a Git repository
+- An {{site.data.keyword.cloudant}} data change feed that fires a trigger event each time a document in a database is added or modified.
+- A Git feed that fires a trigger event for every commit to a Git repository.
 
 ## Creating a trigger for a feed
 {: #triggers_feeds}

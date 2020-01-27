@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-28"
+  years: 2017, 2020
+lastupdated: "2020-01-15"
 
 keywords: services, serverless, functions
 
@@ -32,14 +32,14 @@ You can incorporate functionality from {{site.data.keyword.cloud_notm}} services
 
 **How do I add {{site.data.keyword.cloud_notm}} services to my app?**
 
-1. You can hard code REST API calls into your app. This option might be the quickest way to communicate with an {{site.data.keyword.cloud_notm}} service.
-2. You can use a pre-installed or installable package to incorporate functionality. You can use the actions and feeds that are stored in the packages within your app code. This option might slim down your code a bit, which might be useful if your app is close to the system limits.
+1. You can hardcode REST API calls into your app. This option might be the quickest way to communicate with an {{site.data.keyword.cloud_notm}} service.
+2. You can use a preinstalled or installable package to incorporate functionality. You can use the actions and feeds that are stored in the packages within your app code. This option might slim down your code a bit, which might be useful if your app is close to the system limits.
 
 **How do I set up parameters that must be accessed by my app?**
 
 These parameters might include values that make your app reusable with different data or they might include values that are required by the service, such as credentials.
 
-1. You can hard code parameters into your app. This option might not be the most secure way of storing confidential information such as credentials.
+1. You can hardcode parameters into your app. This option might not be the most secure way of storing confidential information such as credentials.
 2. You can bind the parameters to your app by binding them to an action or package.
 
 ## Binding a service to an action or package
@@ -48,7 +48,7 @@ These parameters might include values that make your app reusable with different
 Bind any {{site.data.keyword.cloud_notm}} service to any action. When a service is bound, a new parameter is created on your existing action that contains the service instance credentials.
 {: shortdesc}
 
-You can bind only one instance of a service at a time and you cannot bind multiple instances of the same service to an action or package. You can bind a service to an individual action or you can bind a service to a package and then all actions contained in that package are bound to that service.
+You can bind only one instance of a service at a time and you cannot bind multiple instances of the same service to an action or package. You can bind a service to an individual action or you can bind a service to a package and then all actions that are contained in that package are bound to that service.
 {: note}
 
 Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
@@ -72,7 +72,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
 
    To find more details, use `--output json`.
 
-   If you know the service name or id, you can use the `--instance-name NAME` option to get only the subset of keys for a specific service instance. For example:
+   If you know the service name or ID, you can use the `--instance-name NAME` option to get only the subset of keys for a specific service instance. For example:
 
    ```
    ibmcloud resource service-keys --instance-name My-Cloudant
@@ -99,7 +99,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: screen}
 
-3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
+3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
     <table>
     <thead>
@@ -142,7 +142,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: pre}
 
-   If your action is not found, try adding the package name to the command: `demo\hello`. Note that if there's only one instance of service type `cloudantnosqldb` and only one service key, the `--instance` and `--keyname` options can be omitted.
+   If your action is not found, try adding the package name to the command: `demo\hello`. Note that if there's only one instance of service type `cloudantnosqldb` and one service key, the `--instance` and `--keyname` options can be omitted.
 
    If you receive the message `Unable to refresh user access token: CloudFoundry API endpoint is not set`, try running `ibmcloud target --cf` with no arguments and then running the command again.
    {: tip}
@@ -177,7 +177,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
 
    In this example, the credentials for the Cloudant service, along with any other credentials for other service types belong to a parameter named `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
 
-   For example in `nodejs`, you can use the following code to get the apikey for the Cloudant service in the previous sample.
+   For example, in `nodejs`, you can use the following code to get the apikey for the Cloudant service in the previous sample.
 
    ```
    function main(params) {
@@ -220,7 +220,7 @@ Cloud Foundry based services do not expose credentials through a service key res
    ```
    {: pre}
 
-3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at runtime.
+3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
    **Example syntax**
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-31"
+  years: 2017, 2020
+lastupdated: "2020-01-15"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -70,7 +70,7 @@ Do not delete service IDs or API keys.
 
 ### Are there any limitations for namespaces?
 
-Using the the [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) is not supported for IAM-managed namespaces. 
+The [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) and [github](/docs/openwhisk?topic=cloud-functions-pkg_github) are not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 
@@ -137,7 +137,7 @@ You can create an IAM-managed namespace as part of a resource group and manage a
 If you are creating a namespace in a resource group of an account that is not your own, you must have the Administrator Platform access role for Cloud Functions. Account owners have the Administrator role by default. For more information, see [Platform management roles](/docs/openwhisk?topic=cloud-functions-iam#iam_platform_roles).
 {: note}
 
-If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#how-do-i-set-iam-policies-so-that-others-can-create-namespaces-in-my-account-)
+If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#how-do-i-set-iam-policies-so-that-others-can-create-namespaces-in-my-account-).
 
 ### Creating an IAM-based namespace from the console
 {: #create_iam_ui}
@@ -186,11 +186,11 @@ You can create an IAM-managed namespace with the CLI.
       </tr>
       <tr>
         <td><code>-n &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word it must be in quotations.</td>
+        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
       </tr>
       <tr>
         <td><code>--description &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word it must be in quotations.</td>
+        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
       </tr>
     </tbody>
   </table>
@@ -415,7 +415,7 @@ At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the names
 ## Setting access policies for a service ID
 {: #service-id-set-policy}
 
-When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID, so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
+When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
 ### Setting access policies for a service ID in the console

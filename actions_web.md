@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-01-27"
 
 keywords: web actions, serverless, functions
 
@@ -83,12 +83,12 @@ Web actions support the following features:
 
 | Feature | Description |
 | --- | --- |
-| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg` or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response. If no content type is specified, the `.http` extension is assumed. If the content type that you want is `.json` the full return object is returned such as `{resOne: "some text"`, `resTwo: "more text"}`. For content type `.http`, the top-level property called `body` is returned. For `.html`, `.svg` or `.text` the property with that name is returned. |
+| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg`, or `.text`. For example, an action `<namespace>/demo/hello` is referenced as `<namespace>/demo/hello.json` to receive a `.json` response.<p>For content type `.json`, the full return object is returned, similar to `{resOne: "some text", resTwo: 42}`.</p><p>For `.html`, `.svg`, or `.text`, the content of the property that is called `body` is returned, similar to `.http`. If you want to use one response object for multiple content types, you can add the corresponding properties into the return object and remove the `body` property. The return object is then similar to `{html: "<p>The html response</p>", text: "text response"}`.</p><p>If no content type is specified, the `.http` extension is assumed, and the content of the property that is called `body` is returned, for example, `{body: "the return message"}`.</p> |
 | [Query and body parameters as input](#query_test) | The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action. |
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
 | [Activations that use multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
 | [Non-JSON body and raw HTTP entity handling](#actions_web_raw_enable) | A web action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary file, or base64 encoded string otherwise). |
-
+  
 ## Creating a web action
 {: #actions_web_example}
 
@@ -196,7 +196,7 @@ Add the URL for your `hello` web action to your web app and test it there.
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. If your `Content-Type` is not `application/json`, you must specify a `Content-Type` in the `headers` of your action code.
 {: shortdesc}
 
-If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for actions is reached, the response fails. If you know that your action result is larger than five MB, then set up an [object store](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
+If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for actions is reached, the response fails. If you know that your action result is larger than 5 MB, then set up an [object store](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
 
 | JSON property | Description |
 | --- | --- |
@@ -676,7 +676,7 @@ To alter the response of a web action:
 ## Securing web actions
 {: #actions_web_secure}
 
-By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions)
+By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions).
 {: shortdesc}
 
 **Before you begin**

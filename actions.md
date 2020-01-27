@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-01-15"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -30,7 +30,8 @@ subcollection: cloud-functions
 Create an action, which is a top-level function that returns a JSON object. You can combine actions into a package to simplify the management of your actions.
 {: shortdesc}
 
-**Before you begin**</br>
+**Before you begin**
+
 To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single .zip file before you create the action.
 
 See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for packaging code for each runtime.
@@ -350,7 +351,7 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an `package update` command with new parameters removes any parameters that currently exist but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=cloud-functions-services) again.
+    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=cloud-functions-services) again.
     {: tip}
 
 3. Verify that the parameters were bound to the package.
