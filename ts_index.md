@@ -28,13 +28,11 @@ subcollection: cloud-functions
 {:tsResolve: .tsResolve}
 
 
-# Troubleshooting
+# Troubleshooting common issues
 {: #troubleshooting}
 
-If you have problems while you're working with {{site.data.keyword.openwhisk}}, consider these techniques for troubleshooting and getting help.
+If you have problems while you're working with {{site.data.keyword.openwhisk}}, consider these techniques for troubleshooting and getting help. 
 {: shortdesc}
-
-
 
 ## Action is failing
 {: #ts_action_fails}

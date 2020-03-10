@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-03-09"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -290,9 +290,8 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 ### Special considerations for memory usage with Node.js runtime actions
 {: #memory_usage}
 
-With Node.js runtime actions, there are special considerations for memory usage.
-{: shortdesc}
 
+{: tsSymptoms}
 In the case where an action consumes more memory than requested, the action is terminated and the following log information is displayed:
 
 ```
@@ -301,15 +300,17 @@ In the case where an action consumes more memory than requested, the action is t
 ```
 {: screen}
 
-When {{site.data.keyword.openwhisk_short}} runs successive invocations of the same action, the optimizations that are performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected, in order to improve run times. 
+{: tsCauses}
+When {{site.data.keyword.openwhisk_short}} runs successive invocations of the same action, the optimizations that are performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected in order to improve run times. 
 
 For example, when {{site.data.keyword.openwhisk_short}} runs actions, Linux containers are used for the processes. To speed up the process, new containers are not created each time that your action runs ("cold"), but instead, existing containers that ran your action before ("warm") are reused. So when your action completes, the container "freezes" to pause all processes and then "wakes" when your action is rerun.
 
 This approach affects garbage collection. When you run a Node.js action, garbage is created on the heap. This garbage is accumulating over each warm reuse of the action process. However, because the Node.js process pauses between invocations, garbage collection does not run reliably.
 
-For this reason, invoke Node.js garbage collection explicitly from within your action code. To support explicit garbage collection, the Node.js action process is run with option `--expose-gc`.
+{: tsResolve}
+Invoke Node.js garbage collection explicitly from within your action code by adding the option `--expose-gc`.
 
-To trigger explicit garbage collection, use the following code in your action:
+For example, use code similar to the following example code in your action:
 
 ```
 try {
@@ -324,4 +325,5 @@ try {
   console.log("Garbage collection cannot be started: " + e);
 }
 ```
-{: screen}
+{: pre}
+

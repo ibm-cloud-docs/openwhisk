@@ -1,7 +1,7 @@
 ---
 
 copyright:
-lastupdated: "2020-01-07"
+lastupdated: "2020-02-26"
 
 keywords: object storage, bucket, package, functions
 
@@ -385,6 +385,7 @@ You can create an access policy at either [the service level or the bucket level
 {: #iam-1}
 {: tab-title="Console"}
 {: tab-group="iam"}
+{: class="simple-tab-table"}
 
 | Setting an IAM access policy with the CLI. |
 |:-----------------|

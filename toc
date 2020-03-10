@@ -8,7 +8,6 @@ IBM Cloud Functions
     getting-started.md
     [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas){: new_window}
     [Why IBM Cloud Functions?](https://www.ibm.com/cloud/functions){: new_window}
-    
 
     {: .topicgroup}
     About
@@ -39,7 +38,6 @@ IBM Cloud Functions
         triggers.md
         rules.md
         
-
     test.md
     iam.md
 
@@ -67,7 +65,6 @@ IBM Cloud Functions
         pkg_utils.md
         pkg_visual_recognition.md
         pkg_watson_assistant.md
-        pkg_weather.md
         pkg_websocket.md
         feeds_custom.md
 
@@ -112,6 +109,11 @@ IBM Cloud Functions
 
     {: .navgroup id="help"}
     faq.md
-    ts_index.md
+    
+    {: .topicgroup}
+    Troubleshooting
+        ts_index.md
+        ts-nodejs.md
+        
     release_notes.md
     {: .navgroup-end}

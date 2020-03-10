@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2019
-lastupdated: "2019-12-19"
+  years: 2019, 2020
+lastupdated: "2020-03-09"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: cloud-functions
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## March 2020
+{: #mar20}
+
+| Date | Description |
+| --------- | -------- |
+| 9 Mar 2020 | <ul><li> Fixes for Functios CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=cloud-functions-troubleshooting-nodejs).</li></ul> |
+
 
 ## December 2019
 {: #dec19}

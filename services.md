@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-03-05"
 
 keywords: services, serverless, functions
 
@@ -41,6 +41,9 @@ These parameters might include values that make your app reusable with different
 
 1. You can hardcode parameters into your app. This option might not be the most secure way of storing confidential information such as credentials.
 2. You can bind the parameters to your app by binding them to an action or package.
+
+Parameters for each package are available in the package descriptions, which you can find in the Integrating serverless apps section of the documentation.
+{: tip}
 
 ## Binding a service to an action or package
 {: #services_bind}

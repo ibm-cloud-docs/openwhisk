@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2020
+lastupdated: "2020-03-09"
 
 keywords: feeds, serverless, functions
 
@@ -29,7 +29,7 @@ subcollection: cloud-functions
 # Creating custom event provider feeds
 {: #feeds_custom}
 
-{{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a feed in a package.
+{{site.data.keyword.openwhisk_short}} supports an open API, where you can expose an event producer service as a feed in a package.
 {: shortdesc}
 
 
@@ -44,7 +44,6 @@ With the hooks pattern, a feed is set up by using a [webhook](https://en.wikiped
 
 For example, the [GitHub package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
 
-
 ### Polling
 
 With the polling pattern, a {{site.data.keyword.openwhisk_short}} action is arranged to poll an endpoint periodically to fetch new data. This pattern is relatively easy to build, but the frequencies of events are limited by the polling interval.
@@ -55,12 +54,10 @@ With the connections pattern, a separate service maintains a persistent connecti
 
 For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=cloud-functions-pkg_cloudant) uses the connections pattern.
 
-
-
 ##  Implementing feed actions
 {: #feeds_actions}
 
-The feed action is an action, and accepts the following parameters.
+The feed action accepts the following parameters.
 
 | Parameter | Description |
 | --- | --- |
@@ -70,21 +67,30 @@ The feed action is an action, and accepts the following parameters.
 
 The feed action can also accept any other parameters that it needs to manage the feed. For example, the {{site.data.keyword.cloudant}} changes feed action expects to receive parameters that include `dbname` and `username`.
 
-When the user creates a trigger from the CLI with the `--feed` parameter, the feed action is automatically invoked with the appropriate parameters.
+When you create a trigger from the CLI with the `--feed` parameter, the feed action is automatically invoked with the appropriate parameters.
 
-For example, a user creates a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+For example, create a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+
 ```
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
-Then, something equivalent to the following command runs:
+Or using the trigger feed parameters:
+
+```
+ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes --feed-param dbName myTable
+```
+{: pre}
+
+Then, invoke the trigger with something equivalent to the following command:
+
 ```
 ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
-The feed action that is named *changes* takes these parameters, and is expected to perform whatever action is necessary to set up a stream of events from {{site.data.keyword.cloudant_short_notm}}. The feed action occurs by using the appropriate configuration, which is directed to the trigger.
+The feed action that is named *changes* takes these parameters and is expected to perform whatever action is necessary to set up a stream of events from {{site.data.keyword.cloudant_short_notm}}. The feed action occurs by using the appropriate configuration, which is directed to the trigger.
 
 For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to a *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
 
@@ -135,8 +141,3 @@ The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical 
 The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
-
-
-
-
-
