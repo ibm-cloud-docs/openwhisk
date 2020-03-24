@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-03-09"
+lastupdated: "2020-03-24"
 
 keywords: release notes, functions
 
@@ -35,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 24 Mar 2020 | <ul><li> Node.js 8 is deprecated. See [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes).</li></ul> |
 | 9 Mar 2020 | <ul><li> Fixes for Functios CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=cloud-functions-troubleshooting-nodejs).</li></ul> |
 
 

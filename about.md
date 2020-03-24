@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-03-12"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -187,4 +187,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ### Summary
 {: #about_summary}
 
-You can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community.
+You can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 

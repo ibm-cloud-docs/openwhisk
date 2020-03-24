@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="cloud-functions" category="compute" audience="compute" arm="406" href="/docs/openwhisk?topic=cloud-functions-getting-started" path="openwhisk"}
+{: .toc subcollection="cloud-functions" category="compute" audience="compute" href="/docs/openwhisk?topic=cloud-functions-getting-started" console-page="/functions" product-page="https://www.ibm.com/cloud/functions" path="openwhisk"}
 IBM Cloud Functions
 
     {: .navgroup id="learn"}
