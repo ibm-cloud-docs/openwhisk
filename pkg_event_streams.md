@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-25"
+  years: 2017, 2020
+lastupdated: "2020-03-26"
 
 keywords: event streams, package, messages, events, functions
 
@@ -99,7 +99,7 @@ The `/messaging/messageHubProduce` action is deprecated and will be removed at a
 To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 References
-- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external}
+- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
 
 ## Event Streams events source

@@ -76,10 +76,6 @@ IBM Cloud Functions
     Logging events 
         logs.md
         activity_tracker.md
-
-    {: .topicgroup}
-    Monitoring health
-        monitor.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
