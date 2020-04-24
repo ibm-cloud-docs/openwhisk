@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: functions, serverless, watson
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic analysis to detect emotional and language tones in written text.
 {:shortdesc}
 
-The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations. For more information about this service, see [Tone analyzer](/docs/services/tone-analyzer?topic=tone-analyzer-gettingStarted).
+The service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations. For more information about this service, see [Tone analyzer](/docs/tone-analyzer?topic=tone-analyzer-gettingStarted).
 
 Request logging is disabled for the Tone Analyzer service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 {: note}
@@ -49,7 +49,7 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.toneanalyzershort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ](https://cloud.ibm.com/catalog/services/tone_analyzer){: external}.
+1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ](https://cloud.ibm.com/catalog/tone_analyzer){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
@@ -150,7 +150,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 Install the {{site.data.keyword.toneanalyzershort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

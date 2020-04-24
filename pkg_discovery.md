@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: functions, cognitive,
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.discoveryshort}}
 {: #pkg_discovery}
 
-The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/services/discovery?topic=discovery-getting-started).
+The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/discovery?topic=discovery-getting-started).
 {: shortdesc}
 
 The {{site.data.keyword.discoveryshort}} package contains the following entities. You can find more details in the {{site.data.keyword.discoveryshort}} API reference by clicking the entity name.
@@ -178,7 +178,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 You can install your package from the {{site.data.keyword.openwhisk_short}} console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

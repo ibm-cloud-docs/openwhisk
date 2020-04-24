@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-24"
+lastupdated: "2020-04-24"
 
 keywords: runtimes, support, functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Runtimes
 {: #runtimes}
 
-Your apps can be coded and executed in programming languages such as Javascript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
+Your apps can be coded and executed in programming languages such as JavaScript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 ## Available images and runtimes
@@ -42,7 +42,7 @@ View the available runtimes for IBM Cloud Functions in each region. The followin
   - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
 
 The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action`.
-The tags can be version numbers such as `1.9.0` or the short form of a git commit hash, like `b99d71e`.
+The tags can be version numbers such as `1.9.0` or the short form of a Git commit hash, like `b99d71e`.
 
 Example image fields.
 
@@ -53,9 +53,9 @@ Example image fields.
   image:   "openwhisk/nodejs8action:b99d71e"
   ```
 
-Runtimes are updated regularly. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce backward compatibility breaks. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
+Runtimes are updated regularly. These updates include security fixes and minor version updates to the packages inside the runtimes. Minor version updates might introduce breaks in compatibility with earlier versions. Runtime updates might impact your actions. You must migrate actions that are running a runtime to a newer version by updating it.
 
-Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update)
+Apps that run on deprecated runtimes cannot be completed successfully until the runtime is updated to a supported one. When troubleshooting a failing action to identify whether a runtime is deprecated, check for `deprecated=true` in the query response. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update).
 
 These runtimes are deprecated:
 <ul>
@@ -92,7 +92,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | --- | --- |
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant){: external} v3.0.0 when importing the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x){: external}. |
 | `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
-| `watson-developer-cloud` | The `watson-developer-cloud` NPM package available in nodejs:10 is version 4.x. This version includes support for Promises. A list of the changes made is documented. Note that this package is deprecated and is no longer supported. This package will not receive updates and will be removed in the future. Move your action to the `ibm-watson` package.
+| `watson-developer-cloud` | The `watson-developer-cloud` NPM package available in nodejs:10 is version 4.x. This version includes support for Promises. A list of the changes that are made is documented. Note that this package is deprecated and is no longer supported. This package will not receive updates and will be removed in the future. Move your action to the `ibm-watson` package.
 | `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former will not receive updates anymore. This package includes support for promises. |
 | `ibmiotf` | The package `ibmiotf` has been renamed by the maintainers to @wiotp/sdk. Make sure to update your action code to the new package. See [@wiotp/sdk](https://www.npmjs.com/package/@wiotp/sdk){: external} for all changes. The package `ibmiotf` will not receive further updates and will be removed from this runtime in the future. |
 
@@ -136,7 +136,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | [`mysql`](https://www.npmjs.com/package/mysql){: external} | A Node.js driver for MySQL. |
 | [`mustache`](https://www.npmjs.com/package/mustache){: external} | Mustache.js is an implementation of the mustache template system in JavaScript. |
 | [`nano`](https://www.npmjs.com/package/nano){: external} | Minimalistic CouchDB driver for Node.js. |
-| [`nodemailer`](https://www.npmjs.com/package/nodemailer){: external} | Send e-mails from Node.js – easy as cake! |
+| [`nodemailer`](https://www.npmjs.com/package/nodemailer){: external} | Send emails from Node.js – easy as cake! |
 | [`oauth2-server`](https://www.npmjs.com/package/oauth2-server){: external} | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
 | [`openwhisk`](https://www.npmjs.com/package/openwhisk){: external} | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp){: external} | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
@@ -157,7 +157,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools){: external} | Package that provides various tools for integrating and interacting with Swagger. |
 | [`twilio`](https://www.npmjs.com/package/twilio){: external} | A wrapper for the Twilio API, related to voice, video, and messaging. |
 | [`underscore`](https://www.npmjs.com/package/underscore){: external} | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter...) without extending any core JavaScript objects. |
-| [`url-pattern`](https://www.npmjs.com/package/url-pattern){: external} | Parse URLs for path parameters more easily than from using a regex string matcher. |
+| [`url-pattern`](https://www.npmjs.com/package/url-pattern){: external} | Parse URLs for path parameters more easily than from a regex string matcher. |
 | [`uuid`](https://www.npmjs.com/package/uuid){: external} | Simple, fast generation of RFC4122 UUIDS. |
 | [`validator`](https://www.npmjs.com/package/validator){: external} | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services){: external} | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
@@ -165,7 +165,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | [`winston`](https://www.npmjs.com/package/winston){: external} | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
 | [`ws`](https://www.npmjs.com/package/ws){: external} | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xlsx`](https://www.npmjs.com/package/xlsx){: external} | Parser and writer for various spreadsheet formats. |
-| [`xml2js`](https://www.npmjs.com/package/xml2js){: external} | Simple XML to JavaScript object converter. It supports bi-directional conversion. |
+| [`xml2js`](https://www.npmjs.com/package/xml2js){: external} | Simple XML to JavaScript object converter. It supports bidirectional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest){: external} | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl){: external} | Another extraction library for node. |
 {: caption="Table 2. Node.js 10.15 packages." caption-side="top"}
@@ -183,7 +183,7 @@ By default, all Python actions are executed in a version 2.7.15 environment.
 
 | Python version | Description | Changelog |
 | --- | --- | --- |
-| 2.7.15 | By default, all Python actions are executed in a version 2.7.15 environment unless you specify the `--kind` flag when you create or update an action. When creating python actions using `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/incubator-openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md){: external}. |
+| 2.7.15 | By default, all Python actions are executed in a version 2.7.15 environment unless you specify the `--kind` flag when you create or update an action. When creating python actions that use `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md){: external}. |
 | [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile){: external} | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md){: external}. |
 | [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | Python 3.7 actions (Debian Stretch based) actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
 
@@ -412,7 +412,7 @@ By default, all Swift actions are executed in a version 4.2 environment.
 
 Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged Swift actions](/docs/openwhisk?topic=cloud-functions-prep#prep_swift42_single) to include dependencies by using a Package.swift.
 
-Swift 4.2 actions can use the following packages when you are using a single Swift source file:
+Swift 4.2 actions can use the following packages when you use a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
 
@@ -443,11 +443,11 @@ The following PHP extensions are available in addition to the standard ones:
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command. When you create an action using a Docker image, your app runs in the public Docker image that you specify during action creation.
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command. When you create an action that uses a Docker image, your app runs in the public Docker image that you specify during action creation.
 
 {{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when creating actions, or you can use them as a base image when writing your `Dockerfile`. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
 
-{{site.data.keyword.openwhisk_short}} actions can be creating using public images on from Docker Hub.
+{{site.data.keyword.openwhisk_short}} actions can be created by using public images on from Docker Hub.
 {: note}
 
 

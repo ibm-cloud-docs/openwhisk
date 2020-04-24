@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 The installable {{site.data.keyword.nlufull}} service helps you analyze various features of text content at scale.
 {: shortdesc}
 
-Provide text, raw HTML, or a public URL, and {{site.data.keyword.nlushort}} gives you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content. You can create [custom models](/docs/services/natural-language-understanding?topic=natural-language-understanding-customizing) with Watson Knowledge Studio that can be used to detect custom entities and relations in Natural Language Understanding. For more information about this service, see [{{site.data.keyword.nlushort}}](/docs/services/natural-language-understanding?topic=natural-language-understanding-getting-started).
+Provide text, raw HTML, or a public URL, and {{site.data.keyword.nlushort}} gives you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content. You can create [custom models](/docs/natural-language-understanding?topic=natural-language-understanding-customizing) with Watson Knowledge Studio that can be used to detect custom entities and relations in Natural Language Understanding. For more information about this service, see [{{site.data.keyword.nlushort}}](/docs/natural-language-understanding?topic=natural-language-understanding-getting-started).
 
 The {{site.data.keyword.nlushort}} package contains the following entities. For more information, see the {{site.data.keyword.nlushort}} API reference by clicking the entity name.
 
@@ -140,7 +140,7 @@ To install the {{site.data.keyword.nlushort}} package:
 You can install your package from the {{site.data.keyword.openwhisk_short}} console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

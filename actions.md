@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-04-20"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -238,29 +238,6 @@ Optional: To clear the parameters that were previously bound, update the action 
 
 ```
 ibmcloud fn action update <action_name> <app_file>
-```
-{: pre}
-
-## Chaining actions together as action sequences
-{: #actions_seq}
-
-You can create an action that chains together a sequence of actions. The result of one action is passed as an argument to the next action.
-{: shortdesc}
-
-Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
-
-A sequence does not have limits that are separate from those limits of each action that is contained within the sequence. While you can set limits for `timeout`, `memory`, and `logsize` when you create a sequence, those limits are ignored. Note that the limits configured for each action in the sequence are individually enforced. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
-
-After you create a sequence, you can use the name of the sequence when you create a rule or invoke the actions.
-
-### Creating a sequence from the CLI
-{: #actions_seq_cli}
-
-Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
-{: shortdesc}
-
-```
-ibmcloud fn action create <sequence_name> --sequence <action_1>,<action_2>
 ```
 {: pre}
 

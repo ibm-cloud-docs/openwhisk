@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-04-22"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Cloudant
 {: #pkg_cloudant}
 
-With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/services/Cloudant?topic=cloudant-getting-started-with-cloudant) database.
+With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=cloudant-getting-started-with-cloudant) database.
 {: shortdesc}
 
 
@@ -57,7 +57,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.clo
 
 **Before you begin**
 
-You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/services/Cloudant?topic=cloudant-getting-started-with-cloudant).
+You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/Cloudant?topic=cloudant-getting-started-with-cloudant).
 
 1. Create a `/whisk.system/cloudant` package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account. In this example, the package name is `myCloudant`.
 
@@ -174,7 +174,7 @@ You can use the `/whisk.system/cloudant/read` action to read a document from you
 
 **Before you begin**
 
-If you do not have a document in your {{site.data.keyword.cloudant_short_notm}} database, you can create one by using the [{{site.data.keyword.cloudant_short_notm}} dashboard. The URL for the dashboard is `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
+If you do not have a document in your {{site.data.keyword.cloudant_short_notm}} database, you can create one by using the {{site.data.keyword.cloudant_short_notm}} dashboard. The URL for the dashboard is `https://<mycloudantaccount>.cloudant.com/dashboard.html#database/<database_name>/_all_docs?limit=100`.
 
 Fetch a document by using the `read` action. Replace `/_/myCloudant` with your package name, `<database_name>` with your database name, and `<document_id>` with the file ID. Invoke the action to test fetching a document.
 
@@ -476,7 +476,7 @@ ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -
 ```
 {: screen}
 
-For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/services/Cloudant?topic=cloudant-design-documents).
+For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/Cloudant?topic=cloudant-design-documents).
 
 ## Processing an individual document by using an action sequence
 {: #cloudant_seq}

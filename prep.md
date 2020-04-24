@@ -1,7 +1,8 @@
 ---
 
 copyright:
-lastupdated: "2020-01-17"
+  years: 2017, 2020
+lastupdated: "2020-04-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -28,7 +29,6 @@ subcollection: cloud-functions
 
 Whether you bring an app with you, or you write a script specifically to respond to an event, your code must meet certain requirements before you create an action from it.
 {: shortdesc}
-
 
 Each programming language has specific requirements to run, but most have the following general requirements:
 - The expected name for the entry point into the code is `main` by default. If your entry point is not `main`, a custom name can be specified when the action is created, so take note of that name.
@@ -844,6 +844,15 @@ Package the app in a custom Docker image by completing the following steps.
     docker build -t <dockerhub_username>/<repo_name>:<tag_name> .
     ```
     {: pre}
+    
+    You can also run `docker build` commands with this format:
+    
+    ```
+    docker build . -t <dockerhub_username>/<repo_name>:<tag_name>
+    ```
+    {: pre}
+    
+    
 
 7. The image builds and installs the dependencies that you specified in your Dockerfile.
 
@@ -968,7 +977,7 @@ You can use this method of building custom Docker images to install large depend
 With {{site.data.keyword.openwhisk_short}}, you can write your app in any language and package it as a Docker image.
 {: shortdesc}
 
-You can use images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported.
+You can use images from public registries only, such as an image that is publicly available on Docker Hub. Private registries are not supported. For more information about some possible workarounds, see [Large Applications on OpenWhisk](http://jamesthom.as/blog/2017/08/04/large-applications-on-openwhisk/){:external} and [Large (Java) Applications on Apache OpenWhisk](http://jamesthom.as/blog/2019/02/05/large-java-applications-on-openwhisk/){:external}.
 {: important}
 
 **Before you begin**
@@ -1500,7 +1509,7 @@ Package your code by creating a .jar file.
 
 **Before you begin**
 
-You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
+You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
 
 If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
 {: note}
@@ -1524,7 +1533,7 @@ To create a Java action, complete the following steps.
    ```
    {: codeblock}
 
-2. Download the [`gson-2.8.5.jar`](http://central.maven.org/maven2/com/google/code/gson/gson/2.8.5/){: external}.
+2. Download the [`gson-2.8.5.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
 
 3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar`, which is saved in a `test` folder in the `Desktop` directory.
   

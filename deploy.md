@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: deploying actions, manifest, manifest file, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 
 You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Actions](/docs/openwhisk?topic=cloud-functions-actions), [Triggers](/docs/openwhisk?topic=cloud-functions-triggers), and [Rules](/docs/openwhisk?topic=cloud-functions-rules) with a single command.
 
-The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities that are defined in your manifest file.
+The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities that are defined in your manifest file.
 
 ## Creating the Hello World API example
 {: #deploy_helloworld_example}
@@ -123,13 +123,9 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ## More OpenWhisk deployment examples
 {: more_deploy_examples}
 
-The Functions deployment is based on the OpenWhisk deployment project, which has [multiple deployment manifest examples](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} that can be used within Functions.  You can use the `ibmcloud fn deploy` command instead of `wskdeploy`.
+The Functions deployment is based on the OpenWhisk deployment project, which has [multiple deployment manifest examples](https://github.com/apache/openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} that can be used within Functions.  You can use the `ibmcloud fn deploy` command instead of `wskdeploy`.
 
 ## Deployment manifest specification
 {: manifest_specification}
 
-Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.
-
-
-
-
+Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-25"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: push notifications, functions, webhooks
 
@@ -71,7 +71,7 @@ To create a package binding, see the following steps:
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 
-3. Configure the [Push Notification application](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started).
+3. Configure the [Push Notification application](/docs/mobilepush?topic=mobile-pushnotification-getting-started).
 
   Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
 
@@ -260,7 +260,7 @@ To create a trigger that is fired each time a new device registers with the Push
    ```
    {: pre}
 
-5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard){: external}.
+5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/functions/dashboard){: external}.
 
    **Output**
   
@@ -286,11 +286,11 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobile-pushnotification-push_step_1a).
 
-2. [Create a set of service credentials ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
+2. [Create a set of service credentials ](/docs/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
 
 ### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #pkg_push_mobile_install}

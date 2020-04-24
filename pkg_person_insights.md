@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: cognitive, serverless, functions
 
@@ -32,8 +32,8 @@ The installable {{site.data.keyword.personalityinsightsfull}} service enables ap
 
 The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
 
-* For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/services/personality-insights?topic=personality-insights-models).
-* For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/services/personality-insights?topic=personality-insights-preferences).
+* For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/personality-insights?topic=personality-insights-models).
+* For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/personality-insights?topic=personality-insights-preferences).
 
 Request logging is disabled for the {{site.data.keyword.personalityinsightsshort}} service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 {: note}
@@ -150,7 +150,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-04-22"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -84,7 +84,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
 
 ```
 ibmcloud fn namespace list
@@ -137,7 +137,7 @@ You can create an IAM-managed namespace as part of a resource group and manage a
 If you are creating a namespace in a resource group of an account that is not your own, you must have the Administrator Platform access role for Cloud Functions. Account owners have the Administrator role by default. For more information, see [Platform management roles](/docs/openwhisk?topic=cloud-functions-iam#iam_platform_roles).
 {: note}
 
-If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#how-do-i-set-iam-policies-so-that-others-can-create-namespaces-in-my-account-).
+If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#iam_namespace_policies).
 
 ### Creating an IAM-based namespace from the console
 {: #create_iam_ui}
@@ -145,7 +145,7 @@ If you are an Administrator and want to allow other users to create namespaces, 
 Create your IAM-based namespace by using the console.
 {: shortdesc}
 
-1. From the [{{site.data.keyword.openwhisk_short}} console](https://cloud.ibm.com/openwhisk){: external} namespace menu, select **Create Namespace**.
+1. From the [{{site.data.keyword.openwhisk_short}} console](https://cloud.ibm.com/functions){: external} namespace menu, select **Create Namespace**.
 2. Enter a display name for the namespace and a short description, such as the actions or packages that you plan to create in this namespace.
 3. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource.
 4. Click **Create**.
@@ -370,7 +370,7 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
   ```
   {: pre}
 
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits#limits_entities) documentation.
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits) documentation.
 {: tip}
 
 ## Targeting namespaces

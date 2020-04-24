@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-31"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: package, cognitive, functions
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 The installable {{site.data.keyword.speechtotextfull}} service provides an [API](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html){: external} that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
-The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see [{{site.data.keyword.speechtotextshort}}](/docs/services/speech-to-text?topic=speech-to-text-about).
+The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see [{{site.data.keyword.speechtotextshort}}](/docs/speech-to-text?topic=speech-to-text-about).
 
 The {{site.data.keyword.speechtotextshort}} package contains the following entities. You can find more information in the {{site.data.keyword.speechtotextshort}} API reference by clicking the entity name.
 
@@ -181,7 +181,7 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 Install the {{site.data.keyword.speechtotextshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

@@ -1,7 +1,8 @@
 ---
 
 copyright:
-lastupdated: "2020-02-26"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: object storage, bucket, package, functions
 
@@ -31,8 +32,8 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 {: shortdesc}
 
 **Before you begin** 
-* To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started). 
-* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/services/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+* To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). 
+* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
 ## Packages
 {: #obstorage_packages}
@@ -61,7 +62,7 @@ The trigger is fired for each successful bucket change event. Each object change
 **How do I use the trigger?**
 
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions to process the object changes. You can use one of the following methods to create actions that are executed when the trigger is fired:
-* You can create actions by using the sample code provided in the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
+* You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
 * You can write your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 </br>
@@ -75,7 +76,7 @@ With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes
 
 **Before you begin**
 
-You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
+You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
 In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
 
@@ -160,7 +161,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 {: #cos_feed_action_connect}
 
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions. You can use one of the following methods to create actions:
-* You can create actions by using the sample code provided in the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
+* You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
 * You can write your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the following steps.
 
@@ -204,7 +205,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 | Testing with the console. |
 |:-----------------|
-| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Monitor**.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
+| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Monitor**.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
 {: caption="Creating an action with the console." caption-side="top"}
 {: #test-1}
 {: tab-title="Console"}
@@ -213,7 +214,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 | Testing with the CLI. |
 |:-----------------|
-| <p><ol><li>Start polling for activations by running the `activation poll` command.<p><pre class="pre"><code>ibmcloud fn activation poll</code></pre></p></li><li> In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.</li><li> Stop polling by pressing `ctrl + c`.</li><li> You can see the details of an activation by running the `activation get` command.<p><pre class="pre"><code>ibmcloud fn activation get &lt;activation_id&gt;</code></pre></p></li><li>If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p>**Note:** You can see an example activation in the [Data structure of an Object Storage trigger activation](#pkg_obstorage_ev_data) section.</ol></p> |
+| <p><ol><li>Start polling for activations by running the `activation poll` command.<p><pre class="pre"><code>ibmcloud fn activation poll</code></pre></p></li><li> In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.</li><li> Stop polling by pressing `ctrl + c`.</li><li> You can see the details of an activation by running the `activation get` command.<p><pre class="pre"><code>ibmcloud fn activation get &lt;activation_id&gt;</code></pre></p></li><li>If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p>**Note:** You can see an example activation in the [Data structure of an Object Storage trigger activation](#pkg_obstorage_ev_data) section.</ol></p> |
 {: caption="Creating an action with the CLI." caption-side="top"}
 {: #test-2}
 {: tab-title="CLI"}
@@ -224,7 +225,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 {: #pkg_obstorage_next}
 
 After you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
-  * You can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
+  * You can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
   * You can create your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to be executed when the trigger is fired.
   * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
 
@@ -252,7 +253,7 @@ The `/whisk.system/cos/changes` feed supports the following parameters.
 | Parameter | Description |
 | --- | --- |
 | `bucket` | (Required) The name of of your {{site.data.keyword.cos_full_notm}} bucket. This parameter is required to configure the `changes` feed. The bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace. The bucket must also be configured for regional resiliency. |
-| `endpoint` | (Optional). The `endpoint` parameter is the endpoint of your bucket. When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example regional `us-south` private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. Example regional `us-south` private endpoint with `https://` scheme: `https://s3.private.us-south.cloud-object-storage.appdomain.cloud`. For more information, see the [Regional endpoints](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) table for {{site.data.keyword.cos_full_notm}}.  |
+| `endpoint` | (Optional). The `endpoint` parameter is the endpoint of your bucket. When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example regional `us-south` private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. Example regional `us-south` private endpoint with `https://` scheme: `https://s3.private.us-south.cloud-object-storage.appdomain.cloud`. For more information, see the [Regional endpoints](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints-region) table for {{site.data.keyword.cos_full_notm}}.  |
 | `prefix` | (Optional). The `prefix` parameter is the prefix of the {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name prefix. |
 | `suffix` | (Optional). The `suffix` parameter is the suffix of your {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name suffix. |
 | `event_types` | (Optional). The `event_types` is the type of bucket change that fires the trigger. You can specify `write` or `delete` or `all`. The default value is `all`. |
@@ -337,10 +338,10 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 ## Configuring the {{site.data.keyword.cos_full_notm}} package
 {: #pkg_obstorage_configure}
 
-After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/services/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/services/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
+After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
 {: shortdesc}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/services/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to respond to the trigger.
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to respond to the trigger.
 
 For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions).
 
@@ -354,7 +355,7 @@ You can install the `cloud-object-storage` package from the console or the CLI.
 
 | Installing with the console. |
 |:-----------------|
-| <p><ol><li> In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/openwhisk/create){: external}.</li><li> Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package.</li><li> Click **Install Packages**.</li><li> Click the **{{site.data.keyword.cos_full_notm}}** Package group, then click the **{{site.data.keyword.cos_full_notm}}** Package.</li><li> In the **Available Runtimes** section, select either `Node.JS` or `Python`. Then, click **Install**.</li><li> After the package is installed, you are redirected to the **Actions** page and can search for your new package, which is named `cloud-object-storage`.</li></ol></p> |
+| <p><ol><li> In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.</li><li> Select the namespace in which you want to install the {{site.data.keyword.cos_full_notm}} package.</li><li> Click **Install Packages**.</li><li> Click the **{{site.data.keyword.cos_full_notm}}** Package group, then click the **{{site.data.keyword.cos_full_notm}}** Package.</li><li> In the **Available Runtimes** section, select either `Node.JS` or `Python`. Then, click **Install**.</li><li> After the package is installed, you are redirected to the **Actions** page and can search for your new package, which is named `cloud-object-storage`.</li></ol></p> |
 {: caption="Installing with the console." caption-side="top"}
 {: #install-1}
 {: tab-title="Console"}
@@ -376,11 +377,11 @@ You can install the `cloud-object-storage` package from the console or the CLI.
 
 Before you can read or write objects to a bucket, you must provide service-to-service authentication. You can do this by setting an IAM access policy. 
 
-You can create an access policy at either [the service level or the bucket level](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the console or the CLI.
+You can create an access policy at either [the service level or the bucket level](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the console or the CLI.
 
 | Setting an IAM access policy with the console. |
 |:-----------------|
-| <p><ol><li> Navigate to the **Service IDs** tab in the IAM console. </li><li> Click the service ID that corresponds to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> On the **Manage** page, click **Access policies**. </li><li> Click **Assign access**. </li><li> Click **Assign access to resources**. </li><li> From **Services**, select **Cloud Object Storage**. </li><li> From **Service instance**, select your {{site.data.keyword.cos_full_notm}} instance. </li><li> To limit access to a specific bucket, enter **bucket** for **Resource type** and enter your **bucket-name** for **Resource ID**.</li><li> Review the [IAM roles](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id) and select the appropriate role to assign to your namespace.</li><li>After you have selected a role, click **Save**.</li> </ol></p> |
+| <p><ol><li> Navigate to the **Service IDs** tab in the IAM console. </li><li> Click the service ID that corresponds to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> On the **Manage** page, click **Access policies**. </li><li> Click **Assign access**. </li><li> Click **Assign access to resources**. </li><li> From **Services**, select **Cloud Object Storage**. </li><li> From **Service instance**, select your {{site.data.keyword.cos_full_notm}} instance. </li><li> To limit access to a specific bucket, enter **bucket** for **Resource type** and enter your **bucket-name** for **Resource ID**.</li><li> Review the [IAM roles](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id) and select the appropriate role to assign to your namespace.</li><li>After you have selected a role, click **Save**.</li> </ol></p> |
 {: caption="Setting an IAM access policy with the console." caption-side="top"}
 {: #iam-1}
 {: tab-title="Console"}
@@ -402,7 +403,7 @@ You still need to pass the bucket name and endpoint during action invocation. Yo
 #### Creating service credentials for accessing your {{site.data.keyword.cos_full_notm}} instance
 {: #pkg_obstorage_sc_cos}
 
-If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/services/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
+If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
 
 #### Binding your {{site.data.keyword.cos_full_notm}} service credentials to the package or actions.
 {: #pkg_obstorage_sc_bind}
@@ -438,7 +439,7 @@ You still need to pass the `bucket` and `endpoint` values during action invocati
 
 Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
 
-For a list of endpoints, see [Endpoints and storage locations](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
+For a list of endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 To set a default `bucket-name` and bucket-endpoint value, copy one of the following commands. Replace `<bucket-name>` with the name of your bucket and replace `<bucket_endpoint>` with the endpoint of your bucket. 
 
@@ -461,7 +462,7 @@ ibmcloud fn action update cloud-object-storage/object-write
 ```
 {: pre}
 
-You can also bind parameters to actions by using **Parameters** in the console. To add parameters in the console, navigate to the [**Actions** page](https://cloud.ibm.com/openwhisk/actions){: external} and click one of your actions. Then, click **Parameters** > **Add Parameter**. You must add parameters in `<key>` and `<value>` pairs.
+You can also bind parameters to actions by using **Parameters** in the console. To add parameters in the console, navigate to the [**Actions** page](https://cloud.ibm.com/functions/actions){: external} and click one of your actions. Then, click **Parameters** > **Add Parameter**. You must add parameters in `<key>` and `<value>` pairs.
 {: tip}
 
 After you have updated the package or action to include the `bucket` and `endpoint` parameters, you must [rebind the service](#pkg_obstorage_sc_bind) with `service bind` command.
@@ -480,7 +481,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 | Writing an object to a bucket with the console. |
 |:-----------------|
-| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-write** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object-name",</br>    "body": "body"</br>    "endpoint": "bucket-endpoint"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li></ol></p> |
+| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/functions/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-write** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object-name",</br>    "body": "body"</br>    "endpoint": "bucket-endpoint"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li></ol></p> |
 {: caption="Writing an object with the console." caption-side="top"}
 {: #write-1}
 {: tab-title="Console"}
@@ -506,7 +507,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 | Reading an object with the console. |
 |:-----------------|
-| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/openwhisk/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-read** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object_name"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li><li> Check your {{site.data.keyword.cos_full_notm}} bucket for the new object.</li></ol></p> |
+| <p><ol><li> Go to the [Actions page](https://cloud.ibm.com/functions/actions){: external} in the {{site.data.keyword.openwhisk_short}} console.</li><li> Under the `cloud-object-storage` package, click the **object-read** action.</li><li> In the Code pane, click **Change Input**.</li><li> Copy the following JSON object and replace the variables.<p><pre class="codeblock"><code>{</br>    "bucket": "bucket-name",</br>    "key": "object_name"</br>}</pre></code></li><li> Click **Apply**.</li><li> Click **Invoke**.</li><li> Verify the response.</li><li> Check your {{site.data.keyword.cos_full_notm}} bucket for the new object.</li></ol></p> |
 {: caption="Reading an object with the console." caption-side="top"}
 {: #read-1}
 {: tab-title="Console"}
@@ -549,7 +550,7 @@ The following package parameters are expected to be bound to the package, and ar
 | Package parameter | Description |
 | --- | --- |
 | `apikey` | The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
-| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values.  These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/services/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
+| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
 
 #### Action parameters
 {: #pkg_obstorage_actparams}
@@ -559,7 +560,7 @@ The following action parameters are specified when you invoke the individual act
 | Action parameter | Description |
 | --- | --- |
 | `bucket` | The `bucket` parameter is the name of the {{site.data.keyword.cos_full_notm}} bucket. |
-| `endpoint` | The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint that is used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/services/cloud-object-storage?topic=cloud-object-storage-endpoints). |
+| `endpoint` | The `endpoint` parameter is the {{site.data.keyword.cos_full_notm}} endpoint that is used to connect to your {{site.data.keyword.cos_full_notm}} instance. You can locate your endpoint in the [{{site.data.keyword.cos_full_notm}} documentation](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints). |
 | `expires` | The `expires` parameter is the number of seconds to expire the pre-signed URL operation.  The default `expires` value is 15 minutes. |
 | `ibmAuthEndpoint` | The `ibmAuthEndpoint ` parameter is the IBM Cloud authorization endpoint that is used to generate a token from the `apikey`. The default authorization endpoint works for all IBM Cloud Regions. |
 | `key` | The `key` parameter is the object name. |

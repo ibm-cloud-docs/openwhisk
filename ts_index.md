@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2018
-lastupdated: "2018-10-08"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: troubleshooting actions, functions, help, support,
 
@@ -26,7 +26,6 @@ subcollection: cloud-functions
 {:tsSymptoms: .tsSymptoms}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
-
 
 # Troubleshooting common issues
 {: #troubleshooting}
@@ -55,17 +54,15 @@ To see which runtime is used for the action, run `ibmcloud fn action get ACTION_
 Your function is not running properly and might result in a message like `{"error":"signal: killed"}`.
 
 {: tsCauses}
-All functions have minimum and maximum [system limits](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits), such as memory usage maximum or a timeout.
+All functions have minimum and maximum [system limits](/docs/openwhisk?topic=cloud-functions-limits), such as memory usage maximum or a timeout.
 
 {: tsResolve}
 Some limits can be increased if a business case can justify higher safety limit values. To increase the limit value, contact IBM support by opening a ticket directly from the IBM Cloud Functions web console.
 
 1. Select **Support**.
-2. Select **Add Ticket** from the drop down menu.
+2. Select **Add Ticket** from the drop-down menu.
 3. Select **Technical** for the ticket type.
 4. Select **Functions** for Technical area of support.
-
-
 
 ## Getting help and support
 {: #gettinghelp}
@@ -73,11 +70,10 @@ Some limits can be increased if a business case can justify higher safety limit 
 Still having issues with your function?
 {: shortdesc}
 
--   To see whether {{site.data.keyword.cloud_notm}} is available, [check the {{site.data.keyword.cloud_notm}} status page ](https://cloud.ibm.com/status?selected=status){: external}.
+-   To see whether {{site.data.keyword.cloud_notm}} is available, [check the {{site.data.keyword.cloud_notm}} status page](https://cloud.ibm.com/status?selected=status){: external}.
 -   Review the forums to see whether other users ran into the same issue. When you use the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development teams.
-    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} and tag your question with with `ibm-cloud-functions`.
-    -   For questions about the service and getting started instructions, use the [IBM Developer Answers ](https://developer.ibm.com/answers/topics/functions){: external} forum. Include the `ibm-cloud` and `functions` tags.
-    See [Getting help](/docs/get-support?topic=get-support-getting-customer-support#using-avatar) for more details about using the forums.
+    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} and tag your question with `ibm-cloud-functions`.
+-   See [Getting help](/docs/get-support?topic=get-support-getting-customer-support#using-avatar) for more details about using the forums.
 -   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
 When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
 {: tip}

@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-09-26"
+  years: 2017, 2020
+lastupdated: "2020-04-23"
 
 keywords: access policies, iam, roles, functions
 
@@ -26,46 +26,38 @@ subcollection: cloud-functions
 # Setting access policies
 {: #iam}
 
-When setting the permissions on an IAM-based namespace, all entities such as actions, triggers, and packages inherit the permissions.
-
-As the creator of a namespace, you do not need to set any IAM policies to view or work with your {{site.data.keyword.openwhisk_short}} entities.
-
-## Mapping IAM roles to {{site.data.keyword.openwhisk_short}}
-{: #user-roles}
-
-In {{site.data.keyword.openwhisk_short}}, namespaces are {{site.data.keyword.cloud_notm}} resources that you can use to work with IAM roles and policies for access management. All of the policies that you set for a namespace also apply to the {{site.data.keyword.openwhisk_short}} entities, such as actions or triggers, that the namespace contains.
+Access to {{site.data.keyword.openwhisk_short}} service instances for users in your account is controlled by IBM Cloud Identity and Access Management (IAM). For {{site.data.keyword.openwhisk_short}}, your {{site.data.keyword.openwhisk_short}} namespace is considered to be your service instance. Every user that accesses {{site.data.keyword.openwhisk_short}} entities in your namespace must be assigned an access policy with an IAM role defined. The policy determines what actions a user can perform within the context of the namespace that you select. The actions are then mapped to IAM user roles. If you created the namespace, then you do not need to set any IAM policies to view or work with your {{site.data.keyword.openwhisk_short}} entities.
 {: shortdesc}
 
 {{site.data.keyword.openwhisk_short}} uses both the Platform and Service management roles. You can set policies about who can create namespaces at the platform level, and use the service roles to manage interaction with the namespaces themselves.
 
-### How do I set IAM policies so that others can work with my namespace?
+## How do I set IAM policies so that others can work with my namespace?
 {: #iam_namespace_policies}
-In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the UI](https://cloud.ibm.com/iam/overview) or the CLI. 
+In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the console](https://cloud.ibm.com/iam/overview) or [with the CLI](#cli-pol-set). 
 
-The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see the [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles) sections below.
+The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles).
 
-For more information, see [Setting policies through the CLI](#cli-pol-set).
-
-Want to learn more about IAM key concepts? Check out [the IAM concepts](/docs/iam?topic=iam-iamoverview#iamconcepts){: external} or the [Best practices for assigning access](/docs/iam?topic=iam-account_setup){: external}.
+Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/iam?topic=iam-iamoverview){: external} or the [Best practices for assigning access](/docs/iam?topic=iam-account_setup){: external}.
 {: tip}
 
-### How do I set IAM policies so that others can create namespaces in my account?
-
-In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating namespaces, you must set the following access policies for those users.
+## How do I set IAM policies so that others can create namespaces in my account?
+{: #iam_namespace_create}
+In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating new namespaces, you must set the following access policies for those users.
 
   * The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
   * The user's **Service role**  must be set to Manager. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
 
-### How do I know which access policies have set for me?
-You can see which access policies have been set for you in the [{{site.data.keyword.Bluemix}} catalog](https://cloud.ibm.com/catalog){: external} UI.
+## How do I know which access policies have set for me?
+{: #iam_set_policies_me}
+You can see which access policies have been set for you in the [{{site.data.keyword.Bluemix}} catalog](https://cloud.ibm.com/catalog){: external} console.
 
-1. From the UI, click **Manage** > **Access (IAM)** > **Users**. Or, navigate to `https://cloud.ibm.com/iam/users`.
+1. From the console, click **Manage** > **Access (IAM)** > **Users**. Or, navigate to `https://cloud.ibm.com/iam/users`.
 2. Click your name in the user table.
 3. Click the **Access policies** tab to see your access policies.
 
 </br>
 
-### Platform management roles
+## Platform management roles
 {: #iam_platform_roles}
 
 The following table details the actions that are mapped to platform management roles. Platform management roles enable users to perform tasks on service resources at the platform level. For example, assign user access for the service, create or delete service IDs, create instances, and bind instances to applications.
@@ -95,76 +87,67 @@ For more information about how to assign, edit, review, or delete resource acces
 
 </br>
 
-### Service-specific roles
+## Service-specific roles
 {: #service_specific_roles}
 
-Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the UI or performing API calls.
+Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the console or performing API calls.
 {: shortdesc}
 
-Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role would have more permissions added. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles){: external}.
+Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role has additional permissions. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles#service_access_roles){: external}.
 
 To see which roles are required to perform each operation, check out the following table:
 
-<table><caption>Which roles can perform which operations?</caption>
+  <table><caption>Which roles can perform which operations?</caption>
   <tr>
     <th style="width:150px">Action</th>
-    <th style="width:2500px">Description</th>
     <th style="width:50px">Reader</th>
     <th style="width:50px">Writer</th>
     <th style="width:50px">Manager</th>
   </tr>
   <tr>
-    <td><code>functions.namespaces.update</code></td>
-    <td>Update a namespace.</td>
+    <td><code>functions.namespaces.update</code><br>Update a namespace.</td>
     <td></td>
     <td></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.namespaces.delete</code></td>
-    <td>Delete a namespace.</td>
+    <td><code>functions.namespaces.delete</code><br>Delete a namespace.</td>
     <td></td>
     <td></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.namespaces.read</code></td>
-    <td>View the available namespaces.</td>
+    <td><code>functions.namespaces.read</code><br>View the available namespaces.</td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.entities.create</code></td>
-    <td>Create an entity, such as an action, within a Functions namespace.</td>
+    <td><code>functions.entities.create</code><br>Create an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.entities.update</code></td>
-    <td>Update an entity, such as a package, within a Functions namespace.</td>
+    <td><code>functions.entities.update</code><br>Update an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.entities.delete</code></td>
-    <td>Delete an entity, such as a trigger, from a Functions namespace.</td>
+    <td><code>functions.entities.delete</code><br>Delete an entity from a Functions namespace, such as a package, action, trigger, or rule.</td>
     <td> </td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.entities.read</code></td>
-    <td>View the available entities, such as rules, within a namespace.</td>
+    <td><code>functions.entities.read</code><br>View the available entities within a namespace, such as package, action, trigger, or rule.</td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
   </tr>
   <tr>
-    <td><code>functions.entities.activate</code></td>
-    <td>Activate an entity, such as an action, within a namespace.</td>
+    <td><code>functions.entities.activate</code><br>Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule.</td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
     <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
@@ -173,8 +156,8 @@ To see which roles are required to perform each operation, check out the followi
 
 </br>
 
-### Setting access policies for a user with the CLI
-You can set an access policies for a specific users by using the following command. In this example `name@example.com` is assigned the Viewer role for {{site.data.keyword.openwhisk_short}}. This means that users with the Viewer role can access all of your {{site.data.keyword.openwhisk_short}} namespaces.
+## Setting access policies for a user with the CLI
+You can set access policies for a specific users with the `iam user-policy-create` command. In this example `name@example.com` is assigned the Viewer role for {{site.data.keyword.openwhisk_short}}. After this role is applied, users with the Viewer role can access all of your {{site.data.keyword.openwhisk_short}} namespaces.
 {: #cli-pol-set}
 
 ```

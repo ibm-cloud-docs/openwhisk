@@ -26,15 +26,20 @@ IBM Cloud Functions
     {: .navgroup id="howto"}
     cli_install.md
     namespaces.md
-
+    templates.md
+    
     {: .topicgroup}
-    Developing serverless apps
+    Developing actions
+        action_over.md
         plan.md
-        templates.md
-        prep.md
-        actions_web.md
         actions.md
+        actions_web.md
+        sequences.md
+        prep.md
         apigateway.md
+   
+    {: .topicgroup}
+    Managing triggers and rules
         triggers.md
         rules.md
         

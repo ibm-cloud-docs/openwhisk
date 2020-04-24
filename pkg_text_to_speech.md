@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-31"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: cognitive, functions, packages
 
@@ -30,7 +30,7 @@ subcollection: cloud-functions
 The installable {{site.data.keyword.texttospeechfull}} Service provides an API with IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a various languages, dialects, and voices.
 {:shortdesc}
 
-The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see [{{site.data.keyword.texttospeechshort}}](/docs/services/text-to-speech?topic=text-to-speech-about).
+The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see [{{site.data.keyword.texttospeechshort}}](/docs/text-to-speech?topic=text-to-speech-about).
 
 The {{site.data.keyword.texttospeechshort}} package contains the following entities. You can find more information in the {{site.data.keyword.texttospeechshort}} API reference by clicking the entity name.
 
@@ -59,7 +59,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} Service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
+1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/text_to_speech){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.texttospeechshort}} package
@@ -160,7 +160,7 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

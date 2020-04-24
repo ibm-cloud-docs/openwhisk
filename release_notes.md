@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-03-24"
+lastupdated: "2020-04-24"
 
 keywords: release notes, functions
 
@@ -30,13 +30,20 @@ subcollection: cloud-functions
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
 
+## April 2020
+{: #april20}
+
+| Date | Description |
+| --------- | -------- |
+| 24 April 2020 | <ul><li> Fixes for Functions CLI version 1.0.39. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li> New actions overview topic. See [Action overview](/docs/openwhisk?topic=cloud-functions-actions_over)</li><li>Improved access policy information. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-iam).</li></ul> |
+
 ## March 2020
 {: #mar20}
 
 | Date | Description |
 | --------- | -------- |
 | 24 Mar 2020 | <ul><li> Node.js 8 is deprecated. See [Runtimes](/docs/openwhisk?topic=cloud-functions-runtimes).</li></ul> |
-| 9 Mar 2020 | <ul><li> Fixes for Functios CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=cloud-functions-troubleshooting-nodejs).</li></ul> |
+| 9 Mar 2020 | <ul><li> Fixes for Functions CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=cloud-functions-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=cloud-functions-troubleshooting-nodejs).</li></ul> |
 
 
 ## December 2019

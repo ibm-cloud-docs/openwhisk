@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-19"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -195,7 +195,7 @@ You can now use the {{site.data.keyword.openwhisk_short}} CLI plug-in to interac
 ### Command syntax
 {: #cli_syntax}
 
-All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI](https://github.com/apache/incubator-openwhisk-cli){: external} with the following differences.
+All of the command options and arguments for commands in the Cloud Functions CLI plug-in are the same as the options for the [OpenWhisk stand-alone CLI](https://github.com/apache/openwhisk-cli){: external} with the following differences.
 {:shortdesc}
 
 * The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.

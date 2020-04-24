@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: machine learning, functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.nlclassifiershort}}
 {: #pkg_natlang_classifier}
 
-The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see [{{site.data.keyword.nlclassifiershort}}](/docs/services/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier).
+The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see [{{site.data.keyword.nlclassifiershort}}](/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier).
 {: shortdesc}
 
 The {{site.data.keyword.nlclassifiershort}} package contains the following entities. You can find additional details in the {{site.data.keyword.nlclassifiershort}} API reference by clicking the entity name.
@@ -146,7 +146,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
 You can install your package from the {{site.data.keyword.openwhisk_short}} console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

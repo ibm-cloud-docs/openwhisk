@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2020
+lastupdated: "2020-04-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -24,25 +24,21 @@ subcollection: cloud-functions
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
-
 # Associating triggers and actions through rules
 {: #rules}
 
 Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
-
-## Rule creation from the UI
+## Rule creation from the console
 {: #rules_ui}
 
-From the user interface, a rule to associate an action and a trigger is created for you.
+From the console, a rule to associate an action and a trigger is created for you.
 {: shortdesc}
 
 When you create or access the details for an action or trigger, you have the option of connecting an existing or a new action or trigger. When you make the connection, a rule is created for you and is named in the format `ACTION_NAME-TRIGGER_NAME`.
 
 From the CLI, you can run `ibmcloud fn rule list` to verify that the rule was created for you.
-
 
 ## Creating rules from the CLI
 {: #rules_create}
@@ -51,8 +47,8 @@ Rules are used to associate a trigger with an action. Each time a trigger event 
 
 Before you begin, create [an action](/docs/openwhisk?topic=cloud-functions-actions) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
 
-
 Create a rule to associate a trigger with an action. Rules must be created directly within a namespace and can't be created inside packages.
+
 ```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
@@ -60,24 +56,23 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 
 
 To disable the rule, you can run the following command.
+
 ```
 ibmcloud fn rule disable RULE_NAME
 ```
 {: pre}
-
 
 ## Creating rules for action sequences
 {: #rules_seq}
 
 You can use rules to associate triggers with action sequences.
 
-Before you begin, create [an action sequence](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
+Before you begin, create [an action sequence](/docs/openwhisk?topic=cloud-functions-sequences) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
 
 ```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 ```
 {: pre}
-
 
 ## Associating multiple triggers and actions
 {: #rules_assoc}
@@ -107,4 +102,3 @@ The three rules establish the following behavior.
 - Images in both tweets are classified.
 - Uploaded images are classified
 - A thumbnail version is generated.
-

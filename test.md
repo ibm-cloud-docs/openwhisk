@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-09"
+lastupdated: "2020-04-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -35,7 +35,7 @@ Test each entity that you create to verify that your serverless app is working o
 
 Whenever you create or update an action or sequence in the console, test it by using the `Invoke` option.
 
-1. From the [Action ](https://cloud.ibm.com/openwhisk/create){: external} menu, select an action or a sequence.
+1. From the [Action ](https://cloud.ibm.com/functions/create){: external} menu, select an action or a sequence.
 
 2. Select Invoke. 
 
@@ -111,7 +111,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 The invocation of the action can be blocking or non-blocking. Invocations are non-blocking by default. If you don't need the action result right away, use a non-blocking invocation.
 {: shortdesc}
 
-Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits).
+Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits).
 
 Run the action by running a blocking invocation.
 

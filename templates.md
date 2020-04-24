@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-04-24"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -75,10 +75,10 @@ Deploy the {{site.data.keyword.cloudant_short_notm}} Events template from the co
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/openwhisk){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 
-1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -218,7 +218,7 @@ Now that you have your {{site.data.keyword.cloudant_short_notm}} database and yo
 Before you make entries in the {{site.data.keyword.cloudant_short_notm}} database, make sure that the `process change` action is working properly. Note that this entry does not update the {{site.data.keyword.cloudant_short_notm}} database, but instead is a method of testing the action itself.
 {: shortdesc}
 
-1. Open the [Actions page ](https://cloud.ibm.com/openwhisk/actions){: external} from the {{site.data.keyword.openwhisk_short}} console.
+1. Open the [Actions page ](https://cloud.ibm.com/functions/actions){: external} from the {{site.data.keyword.openwhisk_short}} console.
 
 2. From the {{site.data.keyword.cloudant_short_notm}} events package (called `cloudant-events`, if you accepted the default name), select **Manage Action** from the `process change` action.
 
@@ -330,10 +330,10 @@ Use the console to deploy the **Get HTTP Resource** template.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/openwhisk){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 
-1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -464,10 +464,10 @@ You can deploy the **Hello World** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/openwhisk){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 
-1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -579,10 +579,10 @@ Deploy the **{{site.data.keyword.messagehub}}** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/openwhisk){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 
-1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -684,10 +684,10 @@ Deploy the **Periodic Slack Reminder** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/openwhisk){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
 
 
-1. Go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-17"
+  years: 2017, 2020
+lastupdated: "2020-04-23"
 
 keywords: openwhisk, functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.conversationshort}}
 {: #pkg_watson_assistant}
 
-The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users. For more information about this service, see [{{site.data.keyword.conversationfull}}](/docs/services/assistant?topic=assistant-getting-started).
+The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users. For more information about this service, see [{{site.data.keyword.conversationfull}}](/docs/assistant?topic=assistant-getting-started).
 {: shortdesc}
 
 The {{site.data.keyword.conversationshort}} package contains the following entities. For more information, see the {{site.data.keyword.conversationshort}} API reference by clicking the entity name.
@@ -182,7 +182,7 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
 Install the {{site.data.keyword.conversationshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-09-19"
+  years: 2017, 2020
+lastupdated: "2020-04-23"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -23,7 +23,6 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
 
 # Viewing logs
 {: #logs}
@@ -54,21 +53,21 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
     {: pre}
 
     **Example output**
+    
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
     {: screen}
 
 3. In the polling window, you can see the activation log.
+
     ```
     Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
       2016-02-11T16:46:56.842065025Z stdout: hello bob!
     ```
     {: screen}
+    
     You might also see the logs for any actions that are run on your behalf in {{site.data.keyword.openwhisk_short}} in real time.
-
-
-
 
 ## Viewing activation details
 {: #activation_details}
@@ -76,18 +75,21 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 {{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. When an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
 
 You can get all activation record IDs in a namespace by running the following command.
+
 ```
 ibmcloud fn activation list
 ```
 {: pre}
 
 You can get details about a specific activation record that resulted from an action invocation by running the following command. Replace `<activation_ID>` with the ID of the activation. 
+
 ```
 ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
 **Example output**
+
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
@@ -201,8 +203,6 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 </tbody></table>
 
-
-
 ## Viewing logs in IBM Log Analysis with LogDNA
 {: #logs_logdna}
 
@@ -212,21 +212,17 @@ Action logs are forwarded to an {{site.data.keyword.loganalysislong_notm}} servi
 To get started, complete the following steps.
 
 1. Navigate to {{site.data.keyword.loganalysislong_notm}} with LogDNA service and create an instance in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
-2. Configure the {{site.data.keyword.loganalysislong_notm}} with LogDNA instance to receive platform service logs.
 
-For more information, see the following sections.
+2. Configure the {{site.data.keyword.loganalysislong_notm}} with LogDNA instance to receive platform service logs.
 
 ### Configure IBM Log Analysis with LogDNA
 {: #logs_configure_logdna}
 
-In order to use the [{{site.data.keyword.loganalysislong_notm}} with LogDNA service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the [Getting started tutorial](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started#getting-started){: external} for details on the various options.
+In order to use the [{{site.data.keyword.loganalysislong_notm}} with LogDNA service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the [Getting started tutorial](/docs/Log-Analysis-with-LogDNA?topic=LogDNA-getting-started#getting-started){: external} for details on the various options.
 
-To enable an instance receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/services/Log-Analysis-with-LogDNA?topic=LogDNA-config_svc_logs){: external} in LogDNA service.
+To enable an instance receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/Log-Analysis-with-LogDNA?topic=LogDNA-config_svc_logs){: external} in LogDNA service.
 
 {{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.loganalysislong_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
-
-Action logs of {{site.data.keyword.openwhisk_short}} namespaces in `us-east` are sent to a LogDNA instance in `us-south`.
-{: note}
 
 ### Querying logs
 {: #logs_query}
@@ -249,5 +245,4 @@ Activation records are marked in the logs with the field `type:activation_record
 
 You can find specific activation records by using LogDNA query syntax. The following example query can help you to find all failed activations and debug errors. Enter `type:activation_record response.success:false` into LogDNA search field.
 
-For more information on searching and filtering logs, see the [LogDNA Search Guide](https://docs.logdna.com/docs/search){: external}.
-
+For more information about searching and filtering logs, see the [LogDNA Search Guide](https://docs.logdna.com/docs/search){: external}.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-07"
+lastupdated: "2020-04-23"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -65,7 +65,7 @@ The following table lists the default limits for actions.
   </tr>
    <tr>
    <td>`concurrent`</td>
-   <td>The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](/docs/openwhisk?topic=cloud-functions-limits#limits_increase) for instructions on how to increase this limit.</td>
+   <td>The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_fixed) for instructions on how to increase this limit.</td>
    <td>1000</td>
    <td>1</td>
    <td>1000*</td>
@@ -185,7 +185,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 ## Increasing fixed limits
 {: #limits_fixed}
 
-Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/openwhisk){: external}.
+Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/functions){: external}.
 
   1. Select **Support**
   2. Select **Add Ticket** from the drop down menu.

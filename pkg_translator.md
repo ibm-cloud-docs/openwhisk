@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-17"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.languagetranslatorshort}}
 {: #pkg_translator}
 
-The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language. For more information about this service, see [{{site.data.keyword.languagetranslatorfull}}](/docs/services/language-translator?topic=language-translator-gettingstarted).
+The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language. For more information about this service, see [{{site.data.keyword.languagetranslatorfull}}](/docs/language-translator?topic=language-translator-gettingstarted).
 {: shortdesc}
 
 The {{site.data.keyword.languagetranslatorshort}} package contains the following entities. You can find more details in the {{site.data.keyword.languagetranslatorshort}} API reference by clicking the entity name.
@@ -49,7 +49,7 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 Before you install the package, you must create a {{site.data.keyword.languagetranslatorshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.languagetranslatorshort}} service instance ](https://cloud.ibm.com/catalog/services/language_translator){: external}.
+1. [Create a {{site.data.keyword.languagetranslatorshort}} service instance ](https://cloud.ibm.com/catalog/language_translator){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.languagetranslatorshort}} package
@@ -144,7 +144,7 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
 Install the {{site.data.keyword.languagetranslatorshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-27"
+lastupdated: "2020-04-20"
 
 keywords: web actions, serverless, functions
 
@@ -58,6 +58,10 @@ A web action API path can be used with cURL, `wget`, or even be entered directly
 ### 4. Create fewer {{site.data.keyword.openwhisk_short}} entities
 
 Because you can invoke a web action from anywhere, you are not required to create other {{site.data.keyword.openwhisk_short}} entities like triggers or rules.
+
+### 5. Allows non-2xx return codes
+
+{{site.data.keyword.openwhisk_short}} web actions can return non-2xx codes, allowing your code to be more flexible and allow for retries.
 
 ## How do web actions work?
 

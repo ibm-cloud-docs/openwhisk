@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-2-23"
+  years: 2017, 2020
+lastupdated: "2020-04-11"
 
 keywords: troubleshooting actions, functions, help, support,
 

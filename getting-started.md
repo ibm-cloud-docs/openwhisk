@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-08-28"
+  years: 2017, 2020
+lastupdated: "2020-04-22"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -53,7 +53,7 @@ To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hell
 
 1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ](https://cloud.ibm.com/openwhisk){: external}.
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ](https://cloud.ibm.com/functions){: external}.
 
 2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
@@ -86,7 +86,7 @@ Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?top
 
 So you completed your first template deployment, where do you go from here?
 
-* Become familiar with the [terminology](/docs/openwhisk?topic=cloud-functions-about#about_technology).
+* Become familiar with the [terminology](/docs/openwhisk?topic=cloud-functions-about).
 * Get started with [your own actions](/docs/openwhisk?topic=cloud-functions-actions).
 * Learn about organizing actions in [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
 * Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=cloud-functions-apigateway).

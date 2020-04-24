@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-10-18"
+  years: 2017, 2020
+lastupdated: "2020-04-24"
 
 keywords: functions, cognitive,
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # {{site.data.keyword.visualrecognitionshort}}
 {: #pkg_visual_recognition}
 
-The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/services/visual-recognition?topic=visual-recognition-getting-started-tutorial).
+The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition?topic=visual-recognition-getting-started-tutorial).
 {:shortdesc}
 
 The {{site.data.keyword.visualrecognitionshort}} package contains the following entities. For more information, see the {{site.data.keyword.visualrecognitionshort}} API reference by clicking the entity name.
@@ -148,7 +148,7 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 Install the {{site.data.keyword.conversationshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 

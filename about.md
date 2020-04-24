@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-12"
+lastupdated: "2020-04-22"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -31,27 +31,9 @@ subcollection: cloud-functions
 {{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
 {: shortdesc}
 
-
-## {{site.data.keyword.openwhisk_short}} technology
-{: #about_technology}
+## {{site.data.keyword.openwhisk_short}} terminology
 
 Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}:
-
-**What is an action?**
-
-An action is a small piece of code that can be invoked or set to automatically run in response to an event. In either case, each run results in a record that is identified by a unique activation ID. The input and the result of an action can be seen as key-value pairs. The key is a string and the value is a valid JSON value. An action can be written in the language of your choice and provided to the service as either source code or a Docker image. The action code runs when it is directly invoked by the Cloud Functions API, CLI, or iOS SDK. An action can automatically respond to events from IBM Cloud or third-party services.
-
-**Why would I use an action?**
-
-By using actions, you limit the amount of time that your code is running, which lowers your costs.
-
-For example, you can use actions to detect faces in an image, respond to changes in a database, aggregate a set of API calls, or even post a tweet.
-
-**Can I use more than one action at a time?**
-
-Yes! You can use actions to call other actions, or you can string actions together to [create sequences](/docs/openwhisk?topic=cloud-functions-actions#actions_seq). To make this work, the output of one action would be the input for another action, which would provide an output that can be used to trigger another action and so on. You can even bundle the group of actions that you create to form a package. With a package, you can reuse common actions or sequences by calling the package instead of configuring the action or sequence again.
-
-## {{site.data.keyword.openwhisk_short}} terminology
 
 <dl>
   <dt>Namespace</dt>
@@ -60,7 +42,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
     <dd>An [action](/docs/openwhisk?topic=cloud-functions-actions) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
     <br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.cloud_notm}} services and third-party services by using a trigger.</dd>
   <dt>Sequence</dt>
-    <dd>A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=cloud-functions-actions#actions_seq) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
+    <dd>A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=cloud-functions-sequences) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.
   </dd>
   <dt>Event</dt>
     <dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events.</dd>

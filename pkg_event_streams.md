@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-26"
+lastupdated: "2020-04-23"
 
 keywords: event streams, package, messages, events, functions
 
@@ -27,6 +27,9 @@ subcollection: cloud-functions
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
 
+{{site.data.keyword.openwhisk}} provides a pre-installed packagefor publishing and consuming messages with {{site.data.keyword.messagehub}}.
+{: shortdesc}
+
 ## Package options
 {: #pkg_event_streams_options}
 
@@ -38,7 +41,7 @@ subcollection: cloud-functions
 ## {{site.data.keyword.messagehub}}
 {: #eventstreams}
 
-A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](/docs/services/EventStreams?topic=eventstreams-getting_started) instances for publishing and consuming messages by using the native high-performance Kafka API.
+A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](/docs/EventStreams?topic=eventstreams-getting_started) instances for publishing and consuming messages by using the native high-performance Kafka API.
 {: shortdesc}
 
 ### Setting up a {{site.data.keyword.messagehub}} package
@@ -96,7 +99,7 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
 {: tip}
 
-To learn more about producing messages, check out the [Event Streams documentation](/docs/services/EventStreams?topic=eventstreams-producing_messages#producing_messages).
+To learn more about producing messages, check out the [Event Streams documentation](/docs/EventStreams?topic=eventstreams-producing_messages#producing_messages).
 
 References
 - [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams){: external}
@@ -343,5 +346,5 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 
 ## References
 {: #message_references}
-- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud/){: external}
+- [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
