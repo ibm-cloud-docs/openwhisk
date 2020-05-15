@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-04-30"
 
 keywords: runtimes, support, functions
 
@@ -168,241 +168,109 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | [`xml2js`](https://www.npmjs.com/package/xml2js){: external} | Simple XML to JavaScript object converter. It supports bidirectional conversion. |
 | [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest){: external} | node-XMLHttpRequest is a wrapper for the built-in http client to emulate the browser XMLHttpRequest object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl){: external} | Another extraction library for node. |
-{: caption="Table 2. Node.js 10.15 packages." caption-side="top"}
-{: #javascript-2}
-{: tab-title="Node.js 10.15 packages"}
-{: tab-group="node"}
-{: class="simple-tab-table"}
+
+
+
 
 
 ## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-By default, all Python actions are executed in a version 2.7.15 environment.
+By default, all Python actions are executed in a Python version 3.7 environment.
 {: note}
 
-| Python version | Description | Changelog |
-| --- | --- | --- |
-| 2.7.15 | By default, all Python actions are executed in a version 2.7.15 environment unless you specify the `--kind` flag when you create or update an action. When creating python actions that use `virtualenv`, use the docker image `openwhisk/python2action`. The following packages are available for use by Python 2 actions, in addition to the Python 2.7 standard library. | [CHANGELOG.md](https://github.com/apache/openwhisk-runtime-python/blob/master/core/python2Action/CHANGELOG.md){: external}. |
-| [3.6.8](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile){: external} | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md){: external}. |
-| [3.7.2](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | Python 3.7 actions (Debian Stretch based) actions are executed with Python 3.7.x. To use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
+| Kind | Python version | Description | Changelog |
+| --- | --- | --- | --- |
+| &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01.<br/>See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
+| python:3.6 | [3.6.x](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile){: external} | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md){: external}. |
+| python:3.7 | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.7.x environment (Debian Stretch based) unless you specify the --kind flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
 
 
 ### Python packages
 
-| Python 2.7.15 packages | 
-|:-----------------|
-| `asn1crypto` |
-| `attrs` |
-| `Automat` |
-| `beautifulsoup4` |
-| `certifi` |
-| `cffi` |
-| `chardet` |
-| `Click` |
-| `constantly` |
-| `cryptography` |
-| `cssselect` |
-| `enum34` |
-| `Flask` |
-| `functools32` |
-| `gevent` |
-| `greenlet` |
-| `httplib2` |
-| `hyperlink` |
-| `idna` |
-| `incremental` |
-| `ipaddress` |
-| `itsdangerous` |
-| `Jinja2` |
-| `kafka-python` |
-| `lxml` |
-| `MarkupSafe` |
-| `parsel` |
-| `pyasn1` |
-| `pyasn1-modules` |
-| `pycparser` |
-| `PyDispatcher` |
-| `PyHamcrest` |
-| `pyOpenSSL` |
-| `python-dateutil` |
-| `queuelib` |
-| `requests` |
-| `Scrapy` |
-| `service-identity` |
-| `simplejson` |
-| `six` |
-| `Twisted` |
-| `urllib3` |
-| `virtualenv=` |
-| `w3lib` |
-| `Werkzeug` |
-| `zope.interface` |
-{: caption="Table 1. Python 2.7.15 packages." caption-side="top"}
-{: #python-1}
-{: tab-title="Python 2.7.15 packages"}
-{: tab-group="python"}
-{: class="simple-tab-table"}
+Ensure that your action uses only the packages mentioned in the following table.<br/>
+While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the refering package.
+{: note}
 
-| Python 3.6.8 packages | 
+| Python 3.7 packages |
 |:-----------------|
-| `asn1crypto` |
-| `attrs` |
-| `autobahn` |
-| `Automat` |
 | `beautifulsoup4` |
 | `botocore` |
 | `cassandra-driver` |
-| `certifi` |
-| `cffi` |
-| `chardet` |
-| `Click` |
 | `cloudant` |
-| `constantly` |
-| `cryptography` |
-| `cssselect` |
-| `docutils` |
-| `elasticsearch` |
-| `Flask` |
-| `gevent` |
-| `greenlet` |
-| `httplib2` |
-| `hyperlink` |
-| `ibm-cos-sdk` |
-| `ibm-cos-sdk-core` |
-| `ibm-cos-sdk-s3transfer` |
-| `ibm-db` |
-| `ibmcloudsql` |
-| `idna` |
-| `incremental` |
-| `itsdangerous` |
-| `Jinja2` |
-| `jmespath` |
-| `kafka-python` |
-| `lxml` |
-| `MarkupSafe` |
-| `numpy` |
-| `pandas` |
-| `parsel` |
-| `pika` |
-| `Pillow` |
-| `psycopg2` |
-| `pyarrow` |
-| `pyasn1` |
-| `pyasn1-modules` |
-| `pycparser` |
-| `PyDispatcher` |
-| `PyHamcrest` |
-| `pymongo` |
-| `pyOpenSSL` |
-| `python-dateutil` |
-| `pytz` |
-| `queuelib` |
-| `redis` |
-| `requests` |
-| `scikit-learn` |
-| `scipy` |
-| `Scrapy` |
-| `service-identity` |
-| `simplejson` |
-| `six=` |
-| `soupsieve` |
-| `tornado` |
-| `Twisted` |
-| `txaio` |
-| `urllib3` |
-| `virtualenv` |
-| `w3lib` |
-| `watson-developer-cloud` |
-| `Werkzeug` |
-| `zope.interface` |
-{: caption="Table 2. Python 3.6.8 packages." caption-side="top"}
-{: #python-2}
-{: tab-title="Python 3.6.8 packages"}
-{: tab-group="python"}
-{: class="simple-tab-table"}
-
-| Python 3.7.2 packages | 
-|:-----------------|
-| `asn1crypto` |
-| `attrs` |
-| `Automat` |
-| `beautifulsoup4` |
-| `botocore` |
-| `cassandra-driver` |
-| `certifi` |
-| `cffi` |
-| `chardet` |
-| `Click` |
-| `cloudant` |
-| `constantly` |
-| `cryptography` |
-| `cssselect` |
-| `docutils` |
 | `elasticsearch` |
 | `etcd3` |
-| `Flask` |
+| `flask` |
 | `gevent` |
-| `greenlet` |
-| `grpcio` |
 | `httplib2` |
-| `hyperlink` |
 | `ibm-cos-sdk` |
-| `ibm-cos-sdk-core` |
-| `ibm-cos-sdk-s3transfer` |
-| `ibm-db` |
+| `ibm_db` |
 | `ibmcloudsql` |
-| `idna` |
-| `incremental` |
-| `itsdangerous` |
-| `Jinja2` |
-| `jmespath` |
-| `kafka-python` |
+| `kafka_python` |
 | `lxml` |
-| `MarkupSafe` |
 | `numpy` |
 | `pandas` |
-| `parsel` |
 | `pika` |
 | `Pillow` |
-| `protobuf` |
 | `psycopg2` |
-| `pyarrow` |
-| `pyasn1` |
-| `pyasn1-modules` |
-| `pycparser` |
-| `PyDispatcher` |
-| `PyHamcrest` |
+| `PyJWT` |
 | `pymongo` |
-| `pyOpenSSL` |
 | `python-dateutil` |
-| `pytz` |
-| `queuelib` |
 | `redis` |
 | `requests` |
 | `scikit-learn` |
 | `scipy` |
-| `Scrapy` |
-| `service-identity` |
+| `scrapy` |
 | `simplejson` |
-| `six` |
-| `soupsieve` |
-| `tenacity` |
 | `tornado` |
-| `Twisted` |
-| `urllib3` |
+| `twisted` |
 | `virtualenv` |
-| `w3lib` |
 | `watson-developer-cloud` |
-| `websocket-client` |
-| `Werkzeug` |
-| `zope.interface` |
-{: caption="Table 3. Python 3.7.2 packages." caption-side="top"}
-{: #python-3}
-{: tab-title="Python 3.7.2 packages"}
+{: caption="Table 1. Python 3.7 packages" caption-side="top"}
+{: #python-1}
+{: tab-title="Python 3.7 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
 
+| Python 3.6 packages |
+|:-----------------|
+| `cassandra-driver` |
+| `cloudant` |
+| `elasticsearch` |
+| `beautifulsoup4` |
+| `flask` |
+| `gevent` |
+| `httplib2` |
+| `ibm-cos-sdk` |
+| `ibm_db` |
+| `ibmcloudsql` |
+| `kafka_python` |
+| `lxml` |
+| `numpy` |
+| `pandas` |
+| `pika` |
+| `Pillow` |
+| `psycopg2` |
+| `pymongo` |
+| `python-dateutil` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `scrapy` |
+| `simplejson` |
+| `twisted` |
+| `virtualenv` |
+| `watson-developer-cloud` |
+{: caption="Table 2. Python 3.6 packages" caption-side="top"}
+{: #python-2}
+{: tab-title="Python 3.6 packages"}
+{: tab-group="python"}
+{: class="simple-tab-table"}
+
+For more information about Python 3.7 packages, see [(Details on Github)](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/requirements.txt){: external}.
+
+For more information about Python 3.6 packages, see [(Details on Github)](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/requirements.txt){: external}.
 
 ## Swift runtime
 {: #swift-actions}
@@ -457,39 +325,18 @@ For more information about creating actions with Docker images, see [Preparing a
 
 ## More runtime support
 
+**Go**
 
-| Runtime |
-| --- | --- | 
-| By default, all Go actions are executed in a version 1.11 environment. |
-{: caption="Table 1. Go." caption-side="top"}
-{: #runtimes-1}
-{: tab-title="Go"}
-{: tab-group="runtimes"}
-{: class="simple-tab-table"}
+By default, all Go actions are executed in a version 1.11 environment. 
 
-| Runtime |
-| --- | --- | 
-| By default, all Java actions are executed in a version 8 environment. |
-{: caption="Table 2. Java." caption-side="top"}
-{: #runtimes-2}
-{: tab-title="Java"}
-{: tab-group="runtimes"}
-{: class="simple-tab-table"}
+**Java**
 
-| Runtime |
-| --- |
-| By default, all Ruby actions are executed in a version 2.5 environment. |
-{: caption="Table 3. Ruby." caption-side="top"}
-{: #runtimes-3}
-{: tab-title="Ruby"}
-{: tab-group="runtimes"}
-{: class="simple-tab-table"}
+By default, all Java actions are executed in a version 8 environment.
 
-| Runtime |
-| --- |
-| By default, all .NET Core actions are executed in a version 2.2 environment. |
-{: caption="Table 4. .NET Core." caption-side="top"}
-{: #runtimes-4}
-{: tab-title=".NET"}
-{: tab-group="runtimes"}
-{: class="simple-tab-table"}
+**Ruby**
+
+By default, all Ruby actions are executed in a version 2.5 environment.
+
+**.NET Core**
+
+By default, all .NET Core actions are executed in a version 2.2 environment.

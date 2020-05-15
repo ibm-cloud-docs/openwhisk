@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-20"
+lastupdated: "2020-05-15"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -275,7 +275,7 @@ A package can include *actions* and *feeds*.
 4. Create an action and include it in the package. Creating an action in a package requires that you prefix the action name with a package name. Package nesting is not allowed. A package can contain only actions and can't contain another package.
 
   ```
-  ibmcloud fn package create <package_name>/<action_name> <app_file>
+  ibmcloud fn action create <package_name>/<action_name> <app_file>
   ```
   {: pre}
 

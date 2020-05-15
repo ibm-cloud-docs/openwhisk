@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-15"
 
 keywords: release notes, functions
 
@@ -29,6 +29,13 @@ subcollection: cloud-functions
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## May 2020
+{: #may20}
+
+| Date | Description |
+| --------- | -------- |
+| 15 May 2020 | <ul><li> New [High availability](/docs/openwhisk?topic=cloud-functions-ha_dr) topic.</li><li> Updates for [runtimes](/docs/openwhisk?topic=cloud-functions-runtimes).</li></ul> |
 
 ## April 2020
 {: #april20}
