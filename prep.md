@@ -198,7 +198,7 @@ function main(params) {
 
 A call is made to the NASA APOD API, and fields are extracted from the JSON result.
 
-Next, [create](/docs/openwhisk?topic=cloud-functions-actions), and [invoke the action](/docs/openwhisk?topic=cloud-functions-test) to test it. The following example object is returned:
+Next, [create](/docs/openwhisk?topic=openwhisk-actions), and [invoke the action](/docs/openwhisk?topic=openwhisk-test) to test it. The following example object is returned:
 
 ```
 {
@@ -220,7 +220,7 @@ Next, [create](/docs/openwhisk?topic=cloud-functions-actions), and [invoke the a
 You can package an app by using a JavaScript module bundler such as `[fbpack ](https://webpack.js.org/concepts/){: external}`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 1. Create a `package.json` file. Add `webpack` as a development dependency.
 
@@ -312,7 +312,7 @@ The bundle file that is built by `webpack` supports only JavaScript dependencies
 As an alternative to writing all your action code in a single JavaScript source file, you can package your code as a `npm` package in a .zip file.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 1. In the root directory, create a `package.json` file.
 
@@ -385,7 +385,7 @@ For more information, see [Packaging multiple Python files into a .zip file](#pr
 ### Packaging Python code with a local virtual environment in a .zip file
 When to use this method:
 
-If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder and then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder and then compress into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
 
 **Example command**
 
@@ -399,7 +399,7 @@ For more information, see [Packaging Python code with a local virtual environmen
 ### Packaging Python code with a Docker virtual environment in a .zip file
 When to use this method:
 
-If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder within a Docker image. You can then compress the folder into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
+If your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments), you can install those dependencies into a `virtualenv` folder within a Docker image. You can then compress the folder into a .zip to deploy in {{site.data.keyword.openwhisk_short}}. Your .zip file must be smaller than 48 MB when compressed.
 
 **Example command**
 
@@ -415,7 +415,7 @@ For more information, see [Packaging Python code with a Docker virtual environme
 ### Packaging large Python dependencies in a custom Docker image
 When to use this method:
 
-Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments). You can specify a base {{site.data.keyword.openwhisk_short}} image in your Docker file and also specify the dependencies to install when you build your Docker image. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. Note that only public Docker images are supported.
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments). You can specify a base {{site.data.keyword.openwhisk_short}} image in your Docker file and also specify the dependencies to install when you build your Docker image. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. Note that only public Docker images are supported.
 
 **Example command**
 
@@ -444,7 +444,7 @@ Review [How do I package my Python app for deployment in {{site.data.keyword.ope
 
 Package Python code and dependent modules in a .zip file. In this example, the source file that contains the entry point is `__main__.py` and the helper modules are in a file called `helper.py`.
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 1. Create a `test` directory on your desktop.
 
@@ -524,7 +524,7 @@ You can package Python dependencies by using a virtual environment, `virtualenv`
 
 Packages must be available for the Python runtime that is used in {{site.data.keyword.openwhisk_short}}.
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Before you begin, install the `virtualenv` Python package.
   ```
@@ -657,7 +657,7 @@ You can use this method to extend the functionality of {{site.data.keyword.openw
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
 
-Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Only public Docker images are supported.
 {: note}
@@ -694,7 +694,7 @@ Package your app by completing the following steps.
 
 4. Press `ESC`, then `:wq` to save and close your `requirements.txt` file.
 
-    To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments).
+    To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments).
     {: tip}
 
 
@@ -794,7 +794,7 @@ Package your app by completing the following steps.
 
 In this example, install large Python packages such as `matplotlib` and `seaborn` to build a {{site.data.keyword.openwhisk_short}} web action that generates a PNG file of a joint plot with `seaborn`.
 
-Before you begin, review the packages that are included with the [Python runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, review the packages that are included with the [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Only public Docker images are supported.
 {: note}
@@ -984,7 +984,7 @@ You can use images from public registries only, such as an image that is publicl
 
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
-- [Review the requirements for the Docker runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_docker).
+- [Review the requirements for the Docker runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_docker).
 
 ### Creating a custom Docker image for your action
 In a Dockerfile, you can specify a {{site.data.keyword.openwhisk_short}} base runtime image by using the `FROM` instruction. You can use the `RUN` instruction to specify dependencies and packages to install in your Docker image. For more information about creating a Dockerfile, see the [Dockerfile reference](https://docs.docker.com/engine/reference/builder/){: external}.
@@ -1295,7 +1295,7 @@ Compile a single source file that doesn't depend on external libraries. Use the 
 
 **Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app by running the following command.
 
@@ -1314,7 +1314,7 @@ Package your Swift 4.2 multi-file projects and dependencies by creating a direct
 
 **Before you begin**
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=cloud-functions-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 Package your app.
 
@@ -1463,7 +1463,7 @@ function main(array $args) : array
 You can package PHP files or dependent packages in a .zip file.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the PHP runtime](/docs/openwhisk?topic=cloud-functions-runtimes#openwhisk_ref_php) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the PHP runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_php) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
 To package your app, run the following command.
 
@@ -1583,7 +1583,7 @@ To create a Java action, complete the following steps.
 
 **Next steps**
 
-You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
+You can create an action with your `hello.jar`. Because the class file you created does not use the default name `main`, you must set the `--main` flag to `Hello` when you create your action. The `--main` flag must match your Java `class`. For more information, see [Creating actions](/docs/openwhisk?topic=openwhisk-actions).
 
 When you update your Java code, you must repeat these steps to recompile your code into a new `.jar` file.
 {: note}

@@ -145,7 +145,7 @@ By default, deployments use the values set in `~/.wskprops`. Override the defaul
         pydeploy demo demo.json -w
         ```
         {: pre}
-4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=cloud-functions-triggers) in {{site.data.keyword.openwhisk}}.
+4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk}}.
     ```
     ibmcloud fn action invoke demo
     ```

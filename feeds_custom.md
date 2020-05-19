@@ -42,7 +42,7 @@ You can create a feed by using one of the three architectural patterns: **Hooks*
 
 With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook){: external} that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
-For example, the [GitHub package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
+For example, the [GitHub package](/docs/openwhisk?topic=openwhisk-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=openwhisk-pkg_push_notifications) use a webhook.
 
 ### Polling
 
@@ -52,7 +52,7 @@ With the polling pattern, a {{site.data.keyword.openwhisk_short}} action is arra
 
 With the connections pattern, a separate service maintains a persistent connection to a feed source. The connection-based implementation might interact with a service endpoint by using long polling intervals, or to set up a push notification.
 
-For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=cloud-functions-pkg_cloudant) uses the connections pattern.
+For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=openwhisk-pkg_cloudant) uses the connections pattern.
 
 ##  Implementing feed actions
 {: #feeds_actions}

@@ -65,10 +65,10 @@ The following web action annotations must be explicitly set to `true` to enable 
 
 | Annotation | Description |
 | --- | --- | 
-| `web-export` | When applied to an action, the action becomes a [web action](/docs/openwhisk?topic=cloud-functions-actions_web). The action becomes accessible to REST calls without authentication so that users can access the actions from a browser. The owner of the web action incurs the cost of running them. In other words, the owner of the action also owns the activations record. |
+| `web-export` | When applied to an action, the action becomes a [web action](/docs/openwhisk?topic=openwhisk-actions_web). The action becomes accessible to REST calls without authentication so that users can access the actions from a browser. The owner of the web action incurs the cost of running them. In other words, the owner of the action also owns the activations record. |
 | `final` | When applied to an action, any action parameters that were previously defined can't be overridden by parameters that are provided during invocation. |
 | `raw-http` | When applied to an action that has the `web-export` annotation, the HTTP request query and body parameters are passed to the action as reserved properties. |
-| `web-custom-options` | Enables a web action to respond to OPTIONS requests with customized headers. Otherwise, a [default CORS response](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_options) applies. |
+| `web-custom-options` | Enables a web action to respond to OPTIONS requests with customized headers. Otherwise, a [default CORS response](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options) applies. |
 | `require-whisk-auth` | The web action can be invoked only by requests that provide appropriate authentication credentials. When set to a boolean value, it controls whether the request's Basic Authentication value is authenticated. A value of `true` authenticates the credentials, and a value of `false` invokes the action without any authentication. When set to an integer or a string, this value must match the request's `X-Require-Whisk-Auth` header value. |
 
 ## Package annotations

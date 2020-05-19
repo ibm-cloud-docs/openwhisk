@@ -58,7 +58,7 @@ The following table lists the default limits for actions.
   <tbody>
    <tr>
    <td>`codeSize`</td>
-   <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=cloud-functions-prep#prep_docker) as a workaround for large dependencies, however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
+   <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker) as a workaround for large dependencies, however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
    <td>48</td>
    <td>1</td>
    <td>48</td>

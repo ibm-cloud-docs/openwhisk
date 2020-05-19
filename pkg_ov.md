@@ -33,7 +33,7 @@ Packages are bundled sets of related actions and feeds. Each package is designed
 ## Overview
 {: #pkg_overview}
 
-[Pre-installed packages](/docs/openwhisk?topic=cloud-functions-pkg_ov#pkg_browse) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
+[Pre-installed packages](/docs/openwhisk?topic=openwhisk-pkg_ov#pkg_browse) are automatically registered within {{site.data.keyword.openwhisk_short}} in the `/whisk.system` namespace. You can use them without completing any installation steps.
 
 Installable packages are packages that are available for you to install, edit, and use based on your needs. Installable packages do not reside within the {{site.data.keyword.openwhisk_short}} system. Instead, installable packages are externally housed in individual GitHub repositories.
 
@@ -218,7 +218,7 @@ You can create a package of local code or a clone of any GitHub repository.
 
 **Before you begin**
 
-- [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+- [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 - Create a `manifest.yaml` or `manifest.yml` file for your app and store it in the root directory. The `manifest.yaml` file specifies the overall structure of the package, including any metadata that must be included with the `ibmcloud fn deploy` command. To learn more about `manifest.yaml` files, see the [<ph class="ignoreSpelling">wskdeploy</ph> documentation ](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#wskdeploy-utility-by-example){: external}.
 
 To add a package:
@@ -254,7 +254,7 @@ To add a package:
 ### {{site.data.keyword.cos_full_notm}} package example
 {: #pkg_ex}
 
-To see an example of how to install a package, check out the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key-value pairs is stored in a bucket. So, to use the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=cloud-functions-pkg_obstorage), you must first create an {{site.data.keyword.cos_full_notm}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
+To see an example of how to install a package, check out the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=openwhisk-pkg_obstorage). {{site.data.keyword.cos_full}} is a service that allows users to store all types of files, such as images, videos, music, and text. To interact with the files, a Cloud-based datastore of key-value pairs is stored in a bucket. So, to use the [{{site.data.keyword.cos_full_notm}} package](/docs/openwhisk?topic=openwhisk-pkg_obstorage), you must first create an {{site.data.keyword.cos_full_notm}} service instance, and then create a bucket. The bucket is used as an environment variable that is required to install this package.
 
 After you create the service instance and bucket, you can install the package by using the following commands:
 

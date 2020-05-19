@@ -61,7 +61,7 @@ After you have a {{site.data.keyword.languagetranslatorshort}} service instance,
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #languagetranslator_cli}
 
-Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
+Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install) first.
 {: shortdesc}
 
 1. Clone the {{site.data.keyword.languagetranslatorshort}} package repo.

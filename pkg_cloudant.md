@@ -614,4 +614,4 @@ The action `docSequence` can be used in a rule that activates the action on new 
 ### Next steps
 {: #cloudant_next}
 
-Now that you are listening for changes to a document in your {{site.data.keyword.cloudant_short_notm}} database, you can trigger Slack notifications for the changes by using the [`/whisk.system/slack` package](/docs/openwhisk?topic=cloud-functions-pkg_slack).
+Now that you are listening for changes to a document in your {{site.data.keyword.cloudant_short_notm}} database, you can trigger Slack notifications for the changes by using the [`/whisk.system/slack` package](/docs/openwhisk?topic=openwhisk-pkg_slack).

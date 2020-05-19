@@ -44,7 +44,7 @@ By default, actions accept only `POST` requests, but web actions can be invoked 
 
 ### 3. Trigger a web action from anywhere
 
-When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
+When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
 
 **Example**
 
@@ -71,13 +71,13 @@ Web actions must return a JSON object. However, the controller treats a web acti
 {: shortdesc}
 
 ## Packaging code for web actions
-{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create).
+{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create).
 {: shortdesc}
 
 You can create a web action from multiple app files by packaging them as a .zip archive. You can also create a web action by using Docker images.
 
-* To learn how to package your code for actions, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
-* To see more examples of how you can create actions, see [Creating actions](/docs/openwhisk?topic=cloud-functions-actions).
+* To learn how to package your code for actions, see [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).
+* To see more examples of how you can create actions, see [Creating actions](/docs/openwhisk?topic=openwhisk-actions).
 
 ## Available features of web actions
 {: #actions_web_extra}
@@ -200,7 +200,7 @@ Add the URL for your `hello` web action to your web app and test it there.
 The default `Content-Type` for an HTTP response is `application/json`, and the body can be any allowed JSON value. If your `Content-Type` is not `application/json`, you must specify a `Content-Type` in the `headers` of your action code.
 {: shortdesc}
 
-If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for actions is reached, the response fails. If you know that your action result is larger than 5 MB, then set up an [object store](/docs/openwhisk?topic=cloud-functions-pkg_obstorage).
+If the [result size limit](/docs/openwhisk?topic=openwhisk-limits) for actions is reached, the response fails. If you know that your action result is larger than 5 MB, then set up an [object store](/docs/openwhisk?topic=openwhisk-pkg_obstorage).
 
 | JSON property | Description |
 | --- | --- |
@@ -208,7 +208,7 @@ If the [result size limit](/docs/openwhisk?topic=cloud-functions-limits) for act
 | `statusCode` | A valid HTTP status code. If body content is present, the default is `200 OK`. If no body content is present, the default is `204 No Content`. |
 | `body` | A string that is either plain text, a JSON object or array, or a base64 encoded string for binary data. The body is considered empty if it is `null`, the empty string `""`, or undefined. The default is an empty body. |
 
-The [controller](/docs/openwhisk?topic=cloud-functions-about#about_controller) passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string by using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
+The [controller](/docs/openwhisk?topic=openwhisk-about#about_controller) passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string by using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
 
 The owner of the web action owns all of the activations records, and incurs the cost of running the action in the system regardless of how the action was invoked.
 {: note}
@@ -445,7 +445,7 @@ All web actions, when invoked, receive HTTP request details as input parameters 
 
 A request cannot override any of the named `__ow_` parameters. Doing so, results in a failed request with status equal to 400 Bad Request.
 
-The `__ow_user` is only present when the web action is [annotated to require authentication](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#actions_web_raw_enable). The `__ow_query` is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either raw HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web actions receive query and body parameters as first class properties in the action argument. Body parameters take precedence over query parameters, which in turn take precedence over action and package parameters.
+The `__ow_user` is only present when the web action is [annotated to require authentication](/docs/openwhisk?topic=openwhisk-annotations#annotations-specific-to-web-actions) and allows a web action to implement its own authorization policy. The `__ow_query` is available only when a web action elects to handle the ["raw" HTTP request](#actions_web_raw_enable). The `__ow_query` is a string that contains the query parameters that are parsed from the URI (separated by `&`). The `__ow_body` property is present in either raw HTTP requests, or when the HTTP request entity is not a JSON object or form data. Otherwise, web actions receive query and body parameters as first class properties in the action argument. Body parameters take precedence over query parameters, which in turn take precedence over action and package parameters.
 
 ### HTTPS Endpoint support
 {: #actions_web_endpoint}
@@ -680,7 +680,7 @@ To alter the response of a web action:
 ## Securing web actions
 {: #actions_web_secure}
 
-By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=cloud-functions-annotations#annotations-specific-to-web-actions).
+By default, anyone can invoke a web action by using the invocation URL. You can secure your web action by using the `require-whisk-auth` [web action annotation](/docs/openwhisk?topic=openwhisk-annotations#annotations-specific-to-web-actions).
 {: shortdesc}
 
 **Before you begin**
@@ -843,7 +843,7 @@ To test a web action by using a custom `require-whisk-auth` value:
 ## Raw HTTP handling
 {: #actions_web_raw}
 
-A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the web action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](/docs/openwhisk?topic=cloud-functions-annotations). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
+A web action can elect to interpret and process an incoming HTTP body directly, without the promotion of a JSON object to first class properties available to the web action input (for example, `args.name` versus parsing `args.__ow_query`). This process is done through a `raw-http` [annotation](/docs/openwhisk?topic=openwhisk-annotations). Using the same example that was shown earlier, but now as a "raw" HTTP web action that receives `name`, both as a query parameter, and as JSON value in the HTTP request body:
 ```bash
 curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST -H "Content-Type: application/json" -d '{"name":"Jane"}'
 ```
@@ -1066,4 +1066,4 @@ To disable a web action from the console:
 4. Save your changes.
 
 ## Web action limits
-For more information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#web_action_limits).
+For more information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=openwhisk-limits#web_action_limits).

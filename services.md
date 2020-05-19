@@ -54,7 +54,7 @@ Bind any {{site.data.keyword.cloud_notm}} service to any action. When a service 
 You can bind only one instance of a service at a time and you cannot bind multiple instances of the same service to an action or package. You can bind a service to an individual action or you can bind a service to a package and then all actions that are contained in that package are bound to that service.
 {: note}
 
-Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
+Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
 
 1. Get the list of available service keys of services that you want to bind to an action or package.
 
@@ -102,7 +102,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: screen}
 
-3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
     <table>
     <thead>
@@ -191,7 +191,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=cloud-functions-actio
    ```
    {: screen}
 
-For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
+For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=openwhisk-actions#actions_params).
 
 ## Binding Cloud Foundry based services
 {: #services_bind_cf}
@@ -223,7 +223,7 @@ Cloud Foundry based services do not expose credentials through a service key res
    ```
    {: pre}
 
-3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
    **Example syntax**
 
@@ -286,7 +286,7 @@ Cloud Foundry based services do not expose credentials through a service key res
 
    In this example, the credentials for the `composer` service, along with any other credentials for other service types belong to a parameter called `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
 
-For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=cloud-functions-actions#actions_params).
+For more information about passing parameters to an action or package, see [Binding parameters to actions](/docs/openwhisk?topic=openwhisk-actions#actions_params).
 
 ## Unbinding services from actions
 {: #services_unbind}

@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Creating serverless REST APIs
 {: #apigateway}
 
-You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=cloud-functions-actions_web). 
+You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=openwhisk-actions_web). 
 {: shortdesc}
 
 
@@ -54,7 +54,7 @@ By default, anyone can invoke a web action by using the invocation URL, even if 
 ### Creating your first API using the CLI
 {: #api_create_cli}
 
-Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=cloud-functions-cli_install).
+Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=openwhisk-cli_install).
 
 1. Save the following code as a JavaScript file named `hello.js`.
 
@@ -139,7 +139,7 @@ You can find details about your API by selecting it from the {{site.data.keyword
 
 The `--response-type` flag controls the target URL of the web action to be proxied by the API Gateway. For example, when you use the `--response-type json` flag, the full result of the action is returned in JSON format and the `Content-Type` header is automatically set to `application/json`.
 
-To return different content types in the body, use full control over the HTTP response properties such as `statusCode` and `headers`. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) documentation.
+To return different content types in the body, use full control over the HTTP response properties such as `statusCode` and `headers`. You can use the `--response-type http` flag to configure the target URL of the web action with the `http` extension. You can change the code of the action to comply with the return of web actions with the `http` extension, or include the action in a sequence to pass its result to a new action. The new action can then transform the result to be properly formatted for an HTTP response. You can read more about response types and web actions extensions in the [web actions](/docs/openwhisk?topic=openwhisk-actions_web) documentation.
 
 1. Save the following code as `hello.js`.
 
@@ -231,7 +231,7 @@ This example uses the same names and code as the example in [Creating your first
   ```
   {: screen}
   
-  If you want to verify that your action is secure, follow the steps in [Securing web actions](/docs/openwhisk?topic=cloud-functions-actions_web#actions_web_secure).
+  If you want to verify that your action is secure, follow the steps in [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
 

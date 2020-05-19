@@ -44,7 +44,7 @@ Create a sequence from the console using actions that are available in your name
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -60,7 +60,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from
 ## Creating a sequence from the CLI
 {: #actions_seq_cli}
 
-Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create) command.
 {: shortdesc}
 
 ```

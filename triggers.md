@@ -68,7 +68,7 @@ The following are examples of triggers.
     ```
     {: screen}
 
-Next, you can [test the trigger](/docs/openwhisk?topic=cloud-functions-test#test_triggers) or [create a rule](/docs/openwhisk?topic=cloud-functions-rules) to associate the trigger with an action.
+Next, you can [test the trigger](/docs/openwhisk?topic=openwhisk-test#test_triggers) or [create a rule](/docs/openwhisk?topic=openwhisk-rules) to associate the trigger with an action.
 
 ## Difference between feed and trigger
 {: #triggers_difference}

@@ -34,7 +34,7 @@ With {{site.data.keyword.openwhisk}} you can use your favorite programming langu
 ## Working with actions
 {: #gs_actions}
 
-With {{site.data.keyword.openwhisk}}, you can create stateless code snippets, called actions, that are set to perform one specific task. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=cloud-functions-about).
+With {{site.data.keyword.openwhisk}}, you can create stateless code snippets, called actions, that are set to perform one specific task. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=openwhisk-about).
 {:shortdesc}
 
 Click an option to get started.
@@ -42,8 +42,8 @@ Click an option to get started.
 <img usemap="#home_map" border="0" class="image" id="image_ztx_crb_f1b" src="images/imagemap.png" width="440" alt="Click an icon to get started quickly with {{site.data.keyword.openwhisk_short}}." style="width:440px;" />
 <map name="home_map" id="home_map">
 <area href="#gs_hello_world" alt="Create an action" title="Create an action" shape="rect" coords="-7, -8, 108, 211" />
-<area href="/docs/openwhisk?topic=cloud-functions-cli_install" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
-<area href="/docs/openwhisk?topic=cloud-functions-about" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
+<area href="/docs/openwhisk?topic=openwhisk-cli_install" alt="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" title="Set up the {{site.data.keyword.openwhisk_short}} CLI plug-in" shape="rect" coords="155, -1, 289, 210" />
+<area href="/docs/openwhisk?topic=openwhisk-about" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
 </map>
 
 ## Creating an action in the GUI
@@ -79,17 +79,17 @@ Good work! You created your first action. To clean up this action, click the ove
 ## Creating an action in the CLI
 {: #gs_hello_world_cli}
 
-Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=cloud-functions-prep#prep_js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
+Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=openwhisk-prep#prep_js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
 ## What's next?
 {: #gs_next_steps}
 
 So you completed your first template deployment, where do you go from here?
 
-* Become familiar with the [terminology](/docs/openwhisk?topic=cloud-functions-about).
-* Get started with [your own actions](/docs/openwhisk?topic=cloud-functions-actions).
-* Learn about organizing actions in [packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=cloud-functions-apigateway).
+* Become familiar with the [terminology](/docs/openwhisk?topic=openwhisk-about).
+* Get started with [your own actions](/docs/openwhisk?topic=openwhisk-actions).
+* Learn about organizing actions in [packages](/docs/openwhisk?topic=openwhisk-pkg_ov).
+* Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=openwhisk-apigateway).
 
 
 

@@ -104,10 +104,10 @@ To work with {{site.data.keyword.openwhisk_short}}, download and install the CLI
 
 You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to perform the following tasks.
 
-* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk?topic=cloud-functions-actions).
-* Create triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk?topic=cloud-functions-triggers).
-* Bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=cloud-functions-pkg_ov).
-* Explore the catalog of packages and enhance your applications with external services. See [Adding {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=cloud-functions-services).
+* Run your code snippets, or actions, on {{site.data.keyword.openwhisk_short}}. See [Creating and invoking actions](/docs/openwhisk?topic=openwhisk-actions).
+* Create triggers and rules to enable your actions to respond to events. See [Creating triggers and rules](/docs/openwhisk?topic=openwhisk-triggers).
+* Bundle actions and configure external events sources. See [Create and use packages](/docs/openwhisk?topic=openwhisk-pkg_ov).
+* Explore the catalog of packages and enhance your applications with external services. See [Adding {{site.data.keyword.cloud_notm}}](/docs/openwhisk?topic=openwhisk-services).
 
 Complete the following steps to install the {{site.data.keyword.openwhisk_short}} CLI plug-in
 
@@ -140,11 +140,11 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
-For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli).
 
 ## Next steps
 {: #install_next}
-To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=cloud-functions-namespaces).
+To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 ## Updating the {{site.data.keyword.openwhisk_short}} CLI plug-in
 {: #cli_update}
@@ -203,7 +203,7 @@ All of the command options and arguments for commands in the Cloud Functions CLI
 * The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
 * You can manage your APIs by using the `ibmcloud fn api`.
 
-For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}

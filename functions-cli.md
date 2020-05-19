@@ -271,7 +271,7 @@ ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-
 <dd>The name of the action. This value is required. </dd>
 
 <dt>`--blocking, -b`</dt>
-<dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time `LIMIT` `VALUE`](/docs/openwhisk?topic=cloud-functions-limits). This flag is optional.</dd>
+<dd>Blocking invocations use a request and response style to wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time `LIMIT` `VALUE`](/docs/openwhisk?topic=openwhisk-limits). This flag is optional.</dd>
 
 <dt>`--param` `KEY` `VALUE`, `-p` `KEY` `VALUE`</dt>
 <dd>Parameter `VALUES` in the `KEY` `VALUE` format. This flag is optional.</dd>
@@ -331,7 +331,7 @@ ibmcloud fn action list
 Update an action or the app within an action.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 ```
@@ -977,7 +977,7 @@ ibmcloud fn list
 Create, update, delete, and find information about your namespace.
 {: shortdec}
 
-To learn how to target your {{site.data.keyword.openwhisk_short}} namespace, see [Targeting namespaces](/docs/openwhisk?topic=cloud-functions-namespaces#targeting-namespaces).
+To learn how to target your {{site.data.keyword.openwhisk_short}} namespace, see [Targeting namespaces](/docs/openwhisk?topic=openwhisk-namespaces#targeting-namespaces).
 {: note}
 
 To see CLI help for the `namespace` command, run `ibmcloud fn namespace`.
@@ -1356,7 +1356,7 @@ ibmcloud fn package refresh /user@domain.com_dev
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 ```
@@ -2050,7 +2050,7 @@ ibmcloud fn trigger list
 Update a trigger.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 ```

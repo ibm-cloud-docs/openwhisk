@@ -43,7 +43,7 @@ Whenever you create or update an action or sequence in the console, test it by u
 ## Testing actions from the CLI
 {: #test-js}
 
-You can test actions by running the [`ibmcloud fn action invoke`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_invoke) command. You can test the action with or without parameters.
+You can test actions by running the [`ibmcloud fn action invoke`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_invoke) command. You can test the action with or without parameters.
 {: shortdesc}
 
 ```bash
@@ -111,7 +111,7 @@ ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_
 The invocation of the action can be blocking or non-blocking. Invocations are non-blocking by default. If you don't need the action result right away, use a non-blocking invocation.
 {: shortdesc}
 
-Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=cloud-functions-limits).
+Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's [time limit value](/docs/openwhisk?topic=openwhisk-limits).
 
 Run the action by running a blocking invocation.
 

@@ -63,7 +63,7 @@ The trigger is fired for each successful bucket change event. Each object change
 
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions to process the object changes. You can use one of the following methods to create actions that are executed when the trigger is fired:
 * You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
-* You can write your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) in the language of your choice.
+* You can write your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 </br>
 
@@ -80,7 +80,7 @@ You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs
 
 In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
 
-* Only [IAM-enabled {{site.data.keyword.openwhisk_short}} namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) are supported.
+* Only [IAM-enabled {{site.data.keyword.openwhisk_short}} namespaces](/docs/openwhisk?topic=openwhisk-namespaces) are supported.
 * Your {{site.data.keyword.cos_full_notm}} bucket must be a regional bucket and must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace. Cross-region and single-site buckets are not supported.
 * You must [assign the Notifications Manager](#pkg_obstorage_auth) role to your {{site.data.keyword.openwhisk_short}} namespace for your {{site.data.keyword.cos_full_notm}}.
 
@@ -150,7 +150,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the CLI |
 |:-----------------|
-| <p><ol><li> [Target your IAM-enabled namespace](/docs/openwhisk?topic=cloud-functions-namespaces#targeting-namespaces). Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</pre></code></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li> [Target your IAM-enabled namespace](/docs/openwhisk?topic=openwhisk-namespaces#targeting-namespaces). Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</pre></code></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
 {: caption="Creating a trigger with the CLI." caption-side="top"}
 {: #trigger-2}
 {: tab-title="CLI"}
@@ -162,7 +162,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions. You can use one of the following methods to create actions:
 * You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
-* You can write your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) in the language of your choice.
+* You can write your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the following steps.
 
 ### 1. Creating an action to process the trigger results
@@ -226,7 +226,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 After you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
   * You can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
-  * You can create your own [actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to be executed when the trigger is fired.
+  * You can create your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to be executed when the trigger is fired.
   * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
 
 ### Reference
@@ -329,7 +329,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 * Once created, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
 * For batch requests, each object change is handled individually and the trigger is fired for each successful change event.
 * All characters are permitted in an object key except for ASCII control character NUL. 
-* Naming limitations for {{site.data.keyword.openwhisk_short}} triggers can be found on the [System details and limits](/docs/openwhisk?topic=cloud-functions-limits#limits_fullnames) page.
+* Naming limitations for {{site.data.keyword.openwhisk_short}} triggers can be found on the [System details and limits](/docs/openwhisk?topic=openwhisk-limits#limits_fullnames) page.
 
 
 
@@ -341,7 +341,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
 {: shortdesc}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=cloud-functions-actions) or [web actions](/docs/openwhisk?topic=cloud-functions-actions_web) to respond to the trigger.
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to respond to the trigger.
 
 For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions).
 
@@ -424,7 +424,7 @@ To use the `client-get-signed-url` action in the `cloud-object-storage` package,
 
 | Binding service credentials in the CLI |
 |:-----------------|
-| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code>ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
+| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/cloud-functions-cli-plugin?topic=openwhisk-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code>ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
 {: caption="Binding service credentials in the CLI." caption-side="top"}
 {: #service-2}
 {: tab-title="CLI"}
@@ -437,13 +437,13 @@ You still need to pass the `bucket` and `endpoint` values during action invocati
 ### Setting default parameters for a package or action
 {: #pkg_obstorage_param_bind}
 
-Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
+Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
 
 For a list of endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
 To set a default `bucket-name` and bucket-endpoint value, copy one of the following commands. Replace `<bucket-name>` with the name of your bucket and replace `<bucket_endpoint>` with the endpoint of your bucket. 
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=cloud-functions-services) to your package again.
+When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 **Updating parameters for all actions in a package**

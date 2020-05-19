@@ -45,7 +45,7 @@ From the CLI, you can run `ibmcloud fn rule list` to verify that the rule was cr
 
 Rules are used to associate a trigger with an action. Each time a trigger event is fired, the action is invoked with the parameters from the trigger event.
 
-Before you begin, create [an action](/docs/openwhisk?topic=cloud-functions-actions) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
+Before you begin, create [an action](/docs/openwhisk?topic=openwhisk-actions) and [a trigger](/docs/openwhisk?topic=openwhisk-triggers).
 
 Create a rule to associate a trigger with an action. Rules must be created directly within a namespace and can't be created inside packages.
 
@@ -67,7 +67,7 @@ ibmcloud fn rule disable RULE_NAME
 
 You can use rules to associate triggers with action sequences.
 
-Before you begin, create [an action sequence](/docs/openwhisk?topic=cloud-functions-sequences) and [a trigger](/docs/openwhisk?topic=cloud-functions-triggers).
+Before you begin, create [an action sequence](/docs/openwhisk?topic=openwhisk-sequences) and [a trigger](/docs/openwhisk?topic=openwhisk-triggers).
 
 ```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME

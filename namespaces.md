@@ -70,7 +70,7 @@ Do not delete service IDs or API keys.
 
 ### Are there any limitations for namespaces?
 
-The [mobile SDK](/docs/openwhisk?topic=cloud-functions-pkg_mobile_sdk) and [github](/docs/openwhisk?topic=cloud-functions-pkg_github) are not supported for IAM-managed namespaces. 
+The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) and [github](/docs/openwhisk?topic=openwhisk-pkg_github) are not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 
@@ -84,7 +84,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
 
 ```
 ibmcloud fn namespace list
@@ -121,7 +121,7 @@ playground   us-south   active   service_instance
 
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
 
 ```
 ibmcloud fn namespace get <namespace_name> or <namespace_id>
@@ -134,10 +134,10 @@ ibmcloud fn namespace get <namespace_name> or <namespace_id>
 You can create an IAM-managed namespace as part of a resource group and manage access policies for your resources by targeting the resource group when a namespace is created. If you have other users that require access to your namespace, or if you want to access other resources from your namespace's actions, be sure that you set IAM policies after your namespace is created.
 {: shortdesc}
 
-If you are creating a namespace in a resource group of an account that is not your own, you must have the Administrator Platform access role for Cloud Functions. Account owners have the Administrator role by default. For more information, see [Platform management roles](/docs/openwhisk?topic=cloud-functions-iam#iam_platform_roles).
+If you are creating a namespace in a resource group of an account that is not your own, you must have the Administrator Platform access role for Cloud Functions. Account owners have the Administrator role by default. For more information, see [Platform management roles](/docs/openwhisk?topic=openwhisk-iam#iam_platform_roles).
 {: note}
 
-If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=cloud-functions-iam#iam_namespace_policies).
+If you are an Administrator and want to allow other users to create namespaces, see [How do I set IAM policies so that others can create namespaces in my account?](/docs/openwhisk?topic=openwhisk-iam#iam_namespace_policies).
 
 ### Creating an IAM-based namespace from the console
 {: #create_iam_ui}
@@ -234,7 +234,7 @@ You can create an IAM-managed namespace with the CLI.
   ```
   {: pre}
 
-After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/cloud-functions-cli-plugin?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set)
+After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/cloud-functions-cli-plugin?topic=openwhisk-cli-plugin-functions-cli#cli_prop_set)
 {: note}
 
 
@@ -354,7 +354,7 @@ For more information about working with HTTP REST, check out the [{{site.data.ke
 
 **Optional workflow: Creating namespaces for staging and production deployments**
 
-You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
+You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
 
 * Create a staging namespace.
 
@@ -370,7 +370,7 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
   ```
   {: pre}
 
-{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=cloud-functions-limits) documentation.
+{{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=openwhisk-limits) documentation.
 {: tip}
 
 ## Targeting namespaces
@@ -399,7 +399,7 @@ You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is
 {: tab-group="namespaces"}
 {: class="simple-tab-table"}
 
-After a property is set with the [`property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set) command, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run the [property unset](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_unset) command. If properties are retained after running the unset command, you can delete the `config.json` to remove all properties.
+After a property is set with the [`property set`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_prop_set) command, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run the [property unset](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_prop_unset) command. If properties are retained after running the unset command, you can delete the `config.json` to remove all properties.
 {: important}
 
 ### Accessing other resources from a namespace
@@ -453,6 +453,6 @@ For more information, see the [`service-policy-create`](/docs/cli/reference/ibmc
 
 Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
 
-Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=cloud-functions-iam). 
+Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=openwhisk-iam). 
 
 For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).

@@ -43,7 +43,7 @@ The action is failing.
 One explanation for a failing app is that a deprecated runtime is being used. An action cannot be completed successfully until the runtime is updated to a supported one.
 
 {: tsResolve}
-To see which runtime is used for the action, run `ibmcloud fn action get ACTION_NAME` and check for `deprecated=true` in the query response. If the runtime is deprecated, [update the runtime](/docs/openwhisk?topic=cloud-functions-actions#actions_update).
+To see which runtime is used for the action, run `ibmcloud fn action get ACTION_NAME` and check for `deprecated=true` in the query response. If the runtime is deprecated, [update the runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
 
 
@@ -54,7 +54,7 @@ To see which runtime is used for the action, run `ibmcloud fn action get ACTION_
 Your function is not running properly and might result in a message like `{"error":"signal: killed"}`.
 
 {: tsCauses}
-All functions have minimum and maximum [system limits](/docs/openwhisk?topic=cloud-functions-limits), such as memory usage maximum or a timeout.
+All functions have minimum and maximum [system limits](/docs/openwhisk?topic=openwhisk-limits), such as memory usage maximum or a timeout.
 
 {: tsResolve}
 Some limits can be increased if a business case can justify higher safety limit values. To increase the limit value, contact IBM support by opening a ticket directly from the IBM Cloud Functions web console.

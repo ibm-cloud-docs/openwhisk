@@ -34,7 +34,7 @@ Before you start creating your function, learn about the decisions you must make
 ## Review the runtime support
 {: #plan_runtime}
 
-{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes) to execute code. But, because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=cloud-functions-prep#prep_docker) to package your code.
+{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes) to execute code. But, because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_docker) to package your code.
 {: shortdesc}
 
 ## Architect your code
@@ -56,7 +56,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
     If the capability that you want to incorporate is not available as a service on {{site.data.keyword.cloud}}, you can always integrate that capability with feeds and APIs too, without the need for frameworks.
 
-3. [Verify that your code meets the system limits.](/docs/openwhisk?topic=cloud-functions-limits)
+3. [Verify that your code meets the system limits.](/docs/openwhisk?topic=openwhisk-limits)
 
     Your code must fit within the system limits to run. For example, if your packaged code is larger than 48 MB, you might need to continue breaking it down into smaller pieces or packaging it as a Docker image.
 
@@ -66,7 +66,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
     In serverless actions, data is supplied by adding parameters to the actions. Parameters are declared as an argument to the main serverless function. Most commonly, these parameters are credentials for a service, but they might be anything that makes your code reusable with different triggers.
 
-5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=cloud-functions-prep)
+5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=openwhisk-prep)
 
     Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results. It might also need to be packaged into a single file that includes all of its dependencies.
 
@@ -95,4 +95,4 @@ Decide how you want to deploy your functions across environments, such as develo
 
 Because {{site.data.keyword.openwhisk_short}} is a Cloud Foundry-based service, you can manage the deployment of your functions in the Cloud Foundry organizations and spaces that are provided for you in {{site.data.keyword.cloud_notm}}. To organize your functions across these environments, you might choose to create one organization per function. Then, create a space for each environment you need. Instead, you could also have one organization for each environment and create a space per function. No matter how you arrange your organizations and spaces, choose a structure that you can use to effectively manage your function entities.
 
-You can also use [namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.
+You can also use [namespaces](/docs/openwhisk?topic=openwhisk-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.

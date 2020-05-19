@@ -302,7 +302,7 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #pkg_push_mobile_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 

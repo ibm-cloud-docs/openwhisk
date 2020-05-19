@@ -93,7 +93,7 @@ After you have an {{site.data.keyword.speechtotextshort}} service instance, inst
 ## Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #speechtotext_cli}
 
-Install the {{site.data.keyword.speechtotextshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install) first.
+Install the {{site.data.keyword.speechtotextshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install) first.
 {: shortdesc}
 
 To install the {{site.data.keyword.speechtotextshort}} package:

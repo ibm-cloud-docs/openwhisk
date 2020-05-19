@@ -98,13 +98,13 @@ You can use up to 2048 MB of memory for each function. The default is set to 256
 {: #difference}
 {: faq}
 
-The main difference between an action and a web action is the response output object. For [web actions](/docs/openwhisk?topic=cloud-functions-actions_web), the result represents an HTTP response, where at a minimum, the JSON output contains a `body` field. Optionally, it might also contain a `statusCode` and `headers`.
+The main difference between an action and a web action is the response output object. For [web actions](/docs/openwhisk?topic=openwhisk-actions_web), the result represents an HTTP response, where at a minimum, the JSON output contains a `body` field. Optionally, it might also contain a `statusCode` and `headers`.
 
 ## How can I see my action logs?
 {: #logs_faq}
 {: faq}
 
-After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](/docs/openwhisk?topic=cloud-functions-logs).
+After the metrics are collected, you can see your logs by using the [{{site.data.keyword.loganalysislong_notm}} service](/docs/openwhisk?topic=openwhisk-logs).
 
 
 

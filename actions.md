@@ -34,12 +34,12 @@ Create an action, which is a top-level function that returns a JSON object. You 
 
 To create an action, your source code must meet certain requirements. For example, if you want to create an action from code that is contained in multiple files, package your code as a single .zip file before you create the action.
 
-See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for details about the requirements for packaging code for each runtime.
+See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for details about the requirements for packaging code for each runtime.
 
 ## Creating actions from the CLI
 {: #actions_cli}
 
-1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create) command.
   
   ```
   ibmcloud fn action create <action_name> <file> --kind <runtime>
@@ -89,7 +89,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep) for
 ### Combining app files and Docker images to create actions
 {: #actions_combine_app}
 
-You can combine your app files with Docker images to create actions. For more information, see [Preparing apps for actions](/docs/openwhisk?topic=cloud-functions-prep).
+You can combine your app files with Docker images to create actions. For more information, see [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).
 {: shortdesc}
 
 Run the following command.
@@ -107,8 +107,8 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
 1. From the [IBM Cloud Functions Create ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/create) page, click **Create Action**.
   
   1. Specify a name for your action. Action names must be unique within namespaces.
-  2. Specify a package for your action. [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
-  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=cloud-functions-prep#prep_docker). You can change the runtime for your action after you create it.
+  2. Specify a package for your action. [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
+  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=openwhisk-prep#prep_docker). You can change the runtime for your action after you create it.
   4. Click **Create**.
   
 2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
@@ -127,7 +127,7 @@ When you migrate to a new runtime version, you might need to change the code in 
 ### Updating actions from the CLI
 {: #actions_update_cli}
 
-You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
+You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_update) command.
 {: shortdesc}
 
 1. Update your app locally.
@@ -210,7 +210,7 @@ To bind the parameters:
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed. If you bound a service, you must [bind the services to your action](/docs/openwhisk?topic=cloud-functions-services) again.
+    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed. If you bound a service, you must [bind the services to your action](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 2. Verify that the parameters were bound to the action.
@@ -328,7 +328,7 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=cloud-functions-services) again.
+    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 3. Verify that the parameters were bound to the package.
@@ -379,14 +379,14 @@ Before you begin, create a package that includes at least one action.
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 {: shortdesc}
 
-1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
+1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
 
   ```
   ibmcloud fn package update <package_name> --shared yes
   ```
   {: pre}
 
-2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
+2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
   ```
   ibmcloud fn package get <package_name> publish
@@ -430,10 +430,10 @@ The action environment contains several environment variables that are specific 
 | `__OW_API_KEY` | The API key for the subject that is invoking the action. This variable is only provided for classic CF-based namespaces. |
 | `__OW_DEADLINE` | The approximate time, in epoch milliseconds, when this action consumes its entire duration quota. |
 | `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces. |
-| `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=cloud-functions-namespaces#namespace-access) for usage. |
+| `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=openwhisk-namespaces#namespace-access) for usage. |
 | `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
 | `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/resources?topic=resources-crn). The CRN is only available for IAM-enabled namespaces. |
-| `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the logs in [LogDNA](/docs/openwhisk?topic=cloud-functions-logs#logs_logdna) can be filtered for a specific transaction. |
+| `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the logs in [LogDNA](/docs/openwhisk?topic=openwhisk-logs#logs_logdna) can be filtered for a specific transaction. |
 
 ### Incorporating action environment variables in your app
 {: #actions_envvars_app}

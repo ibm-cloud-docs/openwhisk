@@ -40,7 +40,7 @@ While {{site.data.keyword.openwhisk_short}} is responsible to ensure that your n
 
 ## High availability
 
-{{site.data.keyword.openwhisk_short}} is highly available within multiple [{{site.data.keyword.cloud_notm}} regions](/docs/openwhisk?topic=cloud-functions-cloudfunctions_regions). {{site.data.keyword.openwhisk_short}} supports high availability to avoid a single point of failure. This service achieves high availability automatically and transparently through the multi-zone region (MZR) feature provided by {{site.data.keyword.cloud_notm}}.
+{{site.data.keyword.openwhisk_short}} is highly available within multiple [{{site.data.keyword.cloud_notm}} regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions). {{site.data.keyword.openwhisk_short}} supports high availability to avoid a single point of failure. This service achieves high availability automatically and transparently through the multi-zone region (MZR) feature provided by {{site.data.keyword.cloud_notm}}.
 
 ## Disaster recovery
 
