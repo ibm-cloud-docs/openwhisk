@@ -2,11 +2,11 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: cli, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -33,7 +33,7 @@ A historical record of versions that show highlights and bug fixes.
 | Version | Date | Description |
 | --------- | -------- | -------- |
 | 1.0.39 | 22 April 2020 | <ul><li>Fixed a bug related to `wsk deploy` actions in IAM namespaces.</li></ul> |
-| 1.0.38 | 2 March 2020 | <ul><li>Introduced two new flags for trigger commands, `--trigger-param` and `--feed-param`. These flags allow you to distinguish between trigger parameters and trigger feed parameters, making trigger create and update commands more flexible. For more information, see [Create trigger command](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_trigger_create).</li><li>Resolved a bug related to `wsk deploy` APIs where `wsk deploy` ignores `require-whisk-auth` annotation when deploying APIs based on actions with `require-whisk-auth` annotations.</li><li>Improved the messages for `service bind` command with the `--verbose` flag.</li><li>Improved error messages for `ibmcloud fn property set --namespace CFnamespace`.</li><li>Made changes for `wsk deploy` and Travis environment compatibility.</li><li>Fixed a bug where `wsk deploy` puts an invalid API Gateway access token when you use `wsk deploy` in Travis environment.</li></ul> |
+| 1.0.38 | 2 March 2020 | <ul><li>Introduced two new flags for trigger commands, `--trigger-param` and `--feed-param`. These flags allow you to distinguish between trigger parameters and trigger feed parameters, making trigger create and update commands more flexible. For more information, see [Create trigger command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_create).</li><li>Resolved a bug related to `wsk deploy` APIs where `wsk deploy` ignores `require-whisk-auth` annotation when deploying APIs based on actions with `require-whisk-auth` annotations.</li><li>Improved the messages for `service bind` command with the `--verbose` flag.</li><li>Improved error messages for `ibmcloud fn property set --namespace CFnamespace`.</li><li>Made changes for `wsk deploy` and Travis environment compatibility.</li><li>Fixed a bug where `wsk deploy` puts an invalid API Gateway access token when you use `wsk deploy` in Travis environment.</li></ul> |
 | 1.0.36 | 13 Nov 2019 | The `service bind` command was updated to issue correct warnings and search information. The command also reports error and success messages based on users' targets and `service bind` results. A user can have either a resource group or a Cloud Foundry namespace targeted, neither, or both. |
 | 1.0.35 | 13 Oct 2019 | <ul><li>Fixed a bug with the `ibmcloud fn property get --apihost` command that caused changes to the IBM Cloud API endpoint.</li><li>Removed support from the `ibmcloud fn property set --namespace <NAMESPACE>` command for targeting Cloud-Foundry based namespaces. This command now targets only IAM-based namespaces.</li><li>Improved the writing to the configuration file for the `ibmcloud fn deploy` command.</li></ul> |
 | 1.0.34 | 24 Sept 2019 | Fixed a bug with the `fn property get` command that displayed incorrect authentication key and default namespace after switching API hosts or regions. |

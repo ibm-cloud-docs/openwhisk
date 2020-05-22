@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-01-15"
+lastupdated: "2020-05-22"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, serverless, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

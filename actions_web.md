@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-20"
+lastupdated: "2020-05-22"
 
 keywords: web actions, serverless, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -44,7 +44,7 @@ By default, actions accept only `POST` requests, but web actions can be invoked 
 
 ### 3. Trigger a web action from anywhere
 
-When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
+When you create an {{site.data.keyword.openwhisk}} web action, you generate a URL to invoke that action from any web-based app. Actions that are not web actions require authentication and must respond with a JSON object. To get the URL of a web action, you can run the [`action get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and include the `--url` flag.
 
 **Example**
 
@@ -71,7 +71,7 @@ Web actions must return a JSON object. However, the controller treats a web acti
 {: shortdesc}
 
 ## Packaging code for web actions
-{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create).
+{{site.data.keyword.openwhisk_short}} actions can be web-enabled by including the `--web true` flag in the [`action create` command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create).
 {: shortdesc}
 
 You can create a web action from multiple app files by packaging them as a .zip archive. You can also create a web action by using Docker images.

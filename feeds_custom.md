@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-09"
+lastupdated: "2020-05-22"
 
 keywords: feeds, serverless, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

@@ -1,11 +1,11 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-23"
+lastupdated: "2020-05-22"
 
 keywords: access policies, iam, roles, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

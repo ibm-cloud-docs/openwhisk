@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-15"
+lastupdated: "2020-05-22"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -39,7 +39,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
 ## Creating actions from the CLI
 {: #actions_cli}
 
-1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create) command.
+1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
   
   ```
   ibmcloud fn action create <action_name> <file> --kind <runtime>
@@ -108,7 +108,7 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
   
   1. Specify a name for your action. Action names must be unique within namespaces.
   2. Specify a package for your action. [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
-  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](docs/openwhisk?topic=openwhisk-prep#prep_docker). You can change the runtime for your action after you create it.
+  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](/docs/openwhisk?topic=openwhisk-prep#prep_docker). You can change the runtime for your action after you create it.
   4. Click **Create**.
   
 2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
@@ -127,7 +127,7 @@ When you migrate to a new runtime version, you might need to change the code in 
 ### Updating actions from the CLI
 {: #actions_update_cli}
 
-You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_update) command.
+You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
 {: shortdesc}
 
 1. Update your app locally.
@@ -328,7 +328,7 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
+    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 3. Verify that the parameters were bound to the package.
@@ -379,14 +379,14 @@ Before you begin, create a package that includes at least one action.
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
 {: shortdesc}
 
-1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
+1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
 
   ```
   ibmcloud fn package update <package_name> --shared yes
   ```
   {: pre}
 
-2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
+2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
   ```
   ibmcloud fn package get <package_name> publish

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-21"
+lastupdated: "2020-05-22"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

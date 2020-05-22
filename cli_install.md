@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -140,7 +140,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: pre}
 
-For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli).
+For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ## Next steps
 {: #install_next}
@@ -203,7 +203,7 @@ All of the command options and arguments for commands in the Cloud Functions CLI
 * The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
 * You can manage your APIs by using the `ibmcloud fn api`.
 
-For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli).
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Deploying quickstart templates
 {: #templates}
 
-{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other services from {{site.data.keyword.cloud_notm}}. By using these templates, you can understand how {{site.data.keyword.openwhisk}} entities work together and even use these entities as a basis for your own project.
+{{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other services from {{site.data.keyword.cloud_notm}}. By using these templates, you can understand how {{site.data.keyword.openwhisk}} entities work together and even use these entities as a basis for your own project. 
 {: shortdesc}
 
 ## Available quickstart templates
@@ -75,7 +75,7 @@ Deploy the {{site.data.keyword.cloudant_short_notm}} Events template from the co
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -109,9 +109,9 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 
 **Before you begin**
 
-* Install the [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
+* Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
-* Specify a namespace to contain your {{site.data.keyword.openwhisk}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+* Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Clone the template repo.
@@ -258,7 +258,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 While you can test the action, you cannot test the trigger without making an entry to the {{site.data.keyword.cloudant_short_notm}} database. Try that next.
 {: shortdesc}
 
-1. From the command line, run the [`activation poll`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
+1. From the command line, run the [`activation poll`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
    ```
    ibmcloud fn activation poll
@@ -330,7 +330,7 @@ Use the console to deploy the **Get HTTP Resource** template.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -355,9 +355,9 @@ Use the CLI to deploy the **Get HTTP Resource** template.
 
 **Before you begin**
 
-* Install the [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
+* Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
-* Specify a namespace to contain your {{site.data.keyword.openwhisk}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+* Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Clone the template repo.
@@ -464,7 +464,7 @@ You can deploy the **Hello World** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -489,9 +489,9 @@ Use the CLI to deploy the **Hello World** template.
 
 **Before you begin**
 
-* Install the [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
+* Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
-* Specify a namespace to contain your {{site.data.keyword.openwhisk}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+* Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Clone the Hello World template repo.
@@ -579,7 +579,7 @@ Deploy the **{{site.data.keyword.messagehub}}** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -617,9 +617,9 @@ Use the CLI to deploy the **{{site.data.keyword.messagehub}} Events** template.
 
 **Before you begin**
 
-* Install the [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
+* Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
-* Specify a namespace to contain your {{site.data.keyword.openwhisk}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+* Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Clone the template repo.
@@ -684,7 +684,7 @@ Deploy the **Periodic Slack Reminder** template from the console.
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -715,9 +715,9 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
 
 **Before you begin**
 
-* Install the [{{site.data.keyword.openwhisk}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
+* Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
-* Specify a namespace to contain your {{site.data.keyword.openwhisk}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+* Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Clone the template repo.
@@ -807,6 +807,6 @@ You can stop the **Periodic Slack Reminder** trigger in the following ways.
    
    * From the CLI:
    
-      *  Disable the rule by running the [`ibmcloud fn rule disable RULE_NAME`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [`ibmcloud fn rule list RULE_NAME`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_rule_list) command.
+      *  Disable the rule by running the [`ibmcloud fn rule disable RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [`ibmcloud fn rule list RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
    
-     * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_trigger_update) command.
+     * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.

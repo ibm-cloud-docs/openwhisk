@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

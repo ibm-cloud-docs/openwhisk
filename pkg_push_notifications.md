@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: push notifications, functions, webhooks
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -71,7 +71,7 @@ To create a package binding, see the following steps:
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 
-3. Configure the [Push Notification application](/docs/mobilepush?topic=mobile-pushnotification-getting-started).
+3. Configure the [Push Notification application](/docs/mobilepush?topic=mobilepush-getting-started).
 
   Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
 
@@ -286,11 +286,11 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobile-pushnotification-push_step_1a).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobilepush-push_step_1a).
 
-2. [Create a set of service credentials ](/docs/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
+2. [Create a set of service credentials ](/docs/mobilepush?topic=mobilepush-push_step_1#push_step_1) for the Push Notifications service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobilepush-push_step_2#push_step_2).
 
 ### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #pkg_push_mobile_install}

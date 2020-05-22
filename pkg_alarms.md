@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-12-18"
+  years: 2017, 2020
+lastupdated: "2020-05-22"
 
 keywords: alarms, serverless, triggers, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

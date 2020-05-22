@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-22"
+lastupdated: "2020-05-22"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

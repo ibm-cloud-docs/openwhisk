@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2020
+lastupdated: "2020-05-22"
 
 keywords: annotations, annotate, package, parameters, actions, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -142,7 +142,3 @@ The following example shows these annotations as they might appear in an activat
 ]
 ```
 {: codeblock}
-
-
-
-

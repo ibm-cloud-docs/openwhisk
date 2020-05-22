@@ -1,12 +1,12 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-08-16"
+  years: 2017, 2020
+lastupdated: "2020-05-22"
 
 keywords: serverless, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -27,11 +27,9 @@ Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are alway
 ## Suggesting changes
 
 1. Create a fork of this repo and make the updates in your fork.
-2. When you're ready for review, make a PR to the master branch and tag `Derek-Poindexter` for review.
-3. Derek will review your suggestions with the Cloud Functions development team and make any necessary adjustments.
-4. Derek will merge the content into the repo.
-
-
+2. When you're ready for review, make a PR to the master branch and tag `Kersten Richter` for review.
+3. Kersten will review your suggestions with the Cloud Functions development team and make any necessary adjustments.
+4. Kersten will merge the content into the repo.
 
 
 

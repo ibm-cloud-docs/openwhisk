@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-05"
+lastupdated: "2020-05-22"
 
 keywords: services, serverless, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -102,7 +102,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) an
    ```
    {: screen}
 
-3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+3. Bind the service to an action or package. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
     <table>
     <thead>
@@ -223,7 +223,7 @@ Cloud Foundry based services do not expose credentials through a service key res
    ```
    {: pre}
 
-3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
+3. Bind the service to an action. The [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind) command makes your {{site.data.keyword.cloud_notm}} service credentials available to your {{site.data.keyword.openwhisk_short}} code at run time.
 
    **Example syntax**
 

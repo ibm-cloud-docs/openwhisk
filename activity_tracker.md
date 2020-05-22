@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-22"
+lastupdated: "2020-05-22"
 
 keywords: events, serverless, functions, activity tracker
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -23,8 +23,6 @@ subcollection: cloud-functions
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
-
-
 
 # Viewing {{site.data.keyword.cloudaccesstrailshort}} events
 {: #activity_tracker}
@@ -68,7 +66,6 @@ The following list of {{site.data.keyword.openwhisk}} events are sent to {{site.
   </tbody>
 </table>
 
-
 ## Where to view events
 {: #view}
 
@@ -76,5 +73,3 @@ The following list of {{site.data.keyword.openwhisk}} events are sent to {{site.
 
 Audit logs for {{site.data.keyword.openwhisk_short}} namespaces in `us-east` are sent to a LogDNA instance in `us-south`.
 {: note} 
-
-

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-03-26"
+lastupdated: "2020-05-22"
 
 keywords: faq, runtimes, actions, memory, monitoring, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-24"
+lastupdated: "2020-05-22"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -27,7 +27,7 @@ subcollection: cloud-functions
 # Creating sequences
 {: #sequences}
 
-You can create an action, called a sequence, that chains together several actions. The result of one action is passed as an argument to the next action. Sequences can use standard actions or web actions.
+You can create an action, called a sequence, that chains together several actions. The result of one action is passed as an argument to the next action. Sequences can use standard actions or web actions. 
 {: shortdesc}
 
 Parameters that are passed between actions in the sequence are explicit, except for default parameters. Therefore, parameters that are passed to the action sequence are only available to the first action in the sequence. The result of the first action in the sequence becomes the input JSON object to the second action in the sequence, and so on. This object does not include any of the parameters that are originally passed to the sequence unless the first action includes them in its result. Input parameters to an action are merged with the action's default parameters, with the former taking precedence and overriding any matching default parameters.
@@ -44,7 +44,7 @@ Create a sequence from the console using actions that are available in your name
 
 **Before you begin**
 
-Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
+Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
@@ -60,7 +60,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk}} entities from
 ## Creating a sequence from the CLI
 {: #actions_seq_cli}
 
-Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=openwhisk-cli-plugin-functions-cli#cli_action_create) command.
+Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
 {: shortdesc}
 
 ```

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-11"
+lastupdated: "2020-05-22"
 
 keywords: troubleshooting actions, functions, help, support,
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 

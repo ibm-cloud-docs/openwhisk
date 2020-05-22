@@ -2,11 +2,11 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-04-22"
+lastupdated: "2020-05-22"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
@@ -28,7 +28,7 @@ subcollection: cloud-functions
 # How {{site.data.keyword.openwhisk_short}} works
 {: #about}
 
-{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations.
+{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. 
 {: shortdesc}
 
 ## {{site.data.keyword.openwhisk_short}} terminology
@@ -54,7 +54,7 @@ Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_
     <dd>A [feed](/docs/openwhisk?topic=openwhisk-triggers#triggers_feeds) is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository.</dd>
   <dt>Package</dt>
     <dd>Integrations with services and event providers can be added with packages. A [package](/docs/openwhisk?topic=openwhisk-pkg_ov) is a bundle of feeds and actions. A feed is a piece of code that configures an external event source to fire trigger events. For example, a trigger that is created with an {{site.data.keyword.cloudant}} change feed configures a service to fire the trigger every time a document is modified or added to an {{site.data.keyword.cloudant_short_notm}} database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
-    <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, The Weather Company, Slack, and GitHub.</dd>
+    <br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, Slack, and GitHub.</dd>
 </dl>
 
 ### What's next?
@@ -98,7 +98,7 @@ Given the central role of the Controller (hence the name), the following steps a
 
 Now the Controller verifies who you are (*Authentication*) and whether you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
 
-In this case, the controller checks to see that you exist in the OpenWhisk database and determines if you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
+In this case, the controller checks to see that you exist in the Functions database and determines if you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
 
 As everything is sound, the gate opens for the next stage of processing.
 
@@ -107,7 +107,7 @@ As everything is sound, the gate opens for the next stage of processing.
 
 After determining that you are authenticated and authorized to invoke the action, the Controller loads the action (in this case `myAction`) from the **whisks** database in CouchDB.
 
-The record of the action contains mainly the code to execute and any default parameters that you want to pass to your action, merged with the parameters that you included in the actual invoke request. The record also contains the resource restrictions that are imposed on it in execution, such as the amount of memory that the action is allowed to consume.
+The record of the action contains mainly the code to run and any default parameters that you want to pass to your action, merged with the parameters that you included in the actual invoke request. The record also contains the resource restrictions that are imposed on it in execution, such as the amount of memory that the action is allowed to consume.
 
 In this particular case, the action doesn’t take any parameters (the function parameter definition is an empty list). Thus, it is assumed that default parameters are not set, including specific parameters for the action.
 
