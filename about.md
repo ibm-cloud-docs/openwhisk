@@ -170,3 +170,5 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 {: #about_summary}
 
 You can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 
+
+
