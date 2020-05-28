@@ -122,4 +122,4 @@ IBM Cloud Functions
     release_notes.md
     {: .navgroup-end}
 
-    release_notes.md
+    ts-nodejs.md
