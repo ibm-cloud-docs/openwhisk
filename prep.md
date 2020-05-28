@@ -24,6 +24,8 @@ subcollection: openwhisk
 {:gif: data-image-type='gif'}
 {:external: target="_blank" .external}
 
+
+
 # Preparing apps for actions
 {: #prep}
 

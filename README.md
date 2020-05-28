@@ -18,12 +18,6 @@ Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are alway
 
 
 
-
-
-
-
-
-
 ## Suggesting changes
 
 1. Create a fork of this repo and make the updates in your fork.
