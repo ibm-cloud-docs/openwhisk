@@ -12,7 +12,6 @@ subcollection: openwhisk
 
 # Cloud Functions
 
-
 Welcome to the docs repo for IBM Cloud Functions! Feedback and updates are always welcome.
 
 
