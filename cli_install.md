@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -41,7 +41,7 @@ Install the latest version of the IBM Cloud CLI.
 
 You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 
-1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli/reference/ibmcloud?topic=cloud-cli-install-ibmcloud-cli).
+1. Download and install the [{{site.data.keyword.cloud_notm}} CLI](/docs/cli?topic=cli-install-ibmcloud-cli).
 
 2. Log in to the {{site.data.keyword.cloud_notm}} CLI.
 

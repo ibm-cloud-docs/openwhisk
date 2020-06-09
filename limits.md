@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -211,9 +211,8 @@ You can create new IAM-based namespaces by running `ibmcloud fn namespace create
 
 The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
-The [Serverless Framework](https://serverless.com/) is not supported for IAM-based namespaces
+The [Serverless Framework](https://www.serverless.com/) is not supported for IAM-based namespaces
 {: note}
-
 
 ### Fully qualified names
 {: #limits_fullnames}

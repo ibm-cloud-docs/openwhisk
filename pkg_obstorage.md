@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: object storage, bucket, package, functions
 
@@ -32,7 +32,7 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 {: shortdesc}
 
 **Before you begin** 
-* To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started). 
+* To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). 
 * For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
 ## Packages
@@ -76,7 +76,7 @@ With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes
 
 **Before you begin**
 
-You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
+You must [create an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
 In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
 
@@ -205,7 +205,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 | Testing with the console |
 |:-----------------|
-| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Monitor**.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
+| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Monitor**.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
 {: caption="Creating an action with the console." caption-side="top"}
 {: #test-1}
 {: tab-title="Console"}
@@ -214,7 +214,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 | Testing with the CLI |
 |:-----------------|
-| <p><ol><li>Start polling for activations by running the `activation poll` command.<p><pre class="pre"><code>ibmcloud fn activation poll</code></pre></p></li><li> In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-add-objects).</li><li> For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.</li><li> Stop polling by pressing `ctrl + c`.</li><li> You can see the details of an activation by running the `activation get` command.<p><pre class="pre"><code>ibmcloud fn activation get &lt;activation_id&gt;</code></pre></p></li><li>If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p>**Note:** You can see an example activation in the [Data structure of an Object Storage trigger activation](#pkg_obstorage_ev_data) section.</ol></p> |
+| <p><ol><li>Start polling for activations by running the `activation poll` command.<p><pre class="pre"><code>ibmcloud fn activation poll</code></pre></p></li><li> In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects).</li><li> For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.</li><li> Stop polling by pressing `ctrl + c`.</li><li> You can see the details of an activation by running the `activation get` command.<p><pre class="pre"><code>ibmcloud fn activation get &lt;activation_id&gt;</code></pre></p></li><li>If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p>**Note:** You can see an example activation in the [Data structure of an Object Storage trigger activation](#pkg_obstorage_ev_data) section.</ol></p> |
 {: caption="Creating an action with the CLI." caption-side="top"}
 {: #test-2}
 {: tab-title="CLI"}
@@ -326,7 +326,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 * The trigger only fires on successful bucket events.
 * Automatic trigger disablement - permissions change, COS bucket authentication changes, namespace authentication.
 * Namespaces that contain the `/whisk.system/cos` package cannot be deleted until the package is deleted.
-* Once created, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
+* After the trigger is created, the Notifications Manager role cannot be removed from your {{site.data.keyword.openwhisk_short}} namespace. Removing the role disables the trigger.
 * For batch requests, each object change is handled individually and the trigger is fired for each successful change event.
 * All characters are permitted in an object key except for ASCII control character NUL. 
 * Naming limitations for {{site.data.keyword.openwhisk_short}} triggers can be found on the [System details and limits](/docs/openwhisk?topic=openwhisk-limits#limits_fullnames) page.
@@ -338,7 +338,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 ## Configuring the {{site.data.keyword.cos_full_notm}} package
 {: #pkg_obstorage_configure}
 
-After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
+After you have [created an {{site.data.keyword.cos_full_notm}} service instance ](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
 {: shortdesc}
 
 The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to respond to the trigger.

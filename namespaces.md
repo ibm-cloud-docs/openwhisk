@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-09"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -159,7 +159,7 @@ You can update the name or description of the namespace from the **Namespace Set
 You can create an IAM-managed namespace with the CLI.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
+1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
 
   ```
   ibmcloud target -g default
@@ -244,7 +244,7 @@ After you set a property, such as the `--namespace` property, it is retained unt
 Create your IAM-managed namespace with the API.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
+1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
 
   ```
   ibmcloud target -g default

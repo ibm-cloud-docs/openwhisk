@@ -18,10 +18,10 @@ IBM Cloud Functions
     {: .topicgroup}
     Tutorials
         tutorial_action.md
-        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}
-        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
-        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
-        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
+        [Tutorial: Build a database driven Slackbot](/docs/tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}
+        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](/docs/tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
+        [Tutorial: Mobile application with serverless backend](/docs/tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
+        [Tutorial: Serverless web application and API](/docs/tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
     
     hadr.md
     {: .navgroup-end}
@@ -103,14 +103,14 @@ IBM Cloud Functions
     {: .topicgroup}
     API documentation
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
-        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-manapikey#manapikey){: new_window}
+        [Native API management in IBM Cloud](/docs/iam?topic=iam-manapikey#manapikey){: new_window}
 
     {: .topicgroup}
     Related links
         [Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}
-        [Pricing](https://cloud.ibm.com/openwhisk/learn/pricing){: new_window}
-        [Apache OpenWhisk](http://openwhisk.incubator.apache.org/){: new_window}
-        [Tutorials and samples](https://github.com/openwhisk/openwhisk-external-resources#sample-applications){: new_window}
+        [Pricing](https://cloud.ibm.com/functions/learn/pricing){: new_window}
+        [Apache OpenWhisk](http://openwhisk.apache.org/){: new_window}
+        [Tutorials and samples](https://github.com/apache/openwhisk-external-resources){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="help"}

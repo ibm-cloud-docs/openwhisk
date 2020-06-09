@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Cloudant
 {: #pkg_cloudant}
 
-With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=cloudant-getting-started-with-cloudant) database.
+With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
 {: shortdesc}
 
 
@@ -57,7 +57,7 @@ If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.clo
 
 **Before you begin**
 
-You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/Cloudant?topic=cloudant-getting-started-with-cloudant).
+You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To create an instance, see [Getting started with {{site.data.keyword.cloudant_short_notm}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant).
 
 1. Create a `/whisk.system/cloudant` package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account. In this example, the package name is `myCloudant`.
 
@@ -476,7 +476,7 @@ ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -
 ```
 {: screen}
 
-For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/Cloudant?topic=cloudant-design-documents).
+For more information about {{site.data.keyword.cloudant_short_notm}} design documents, see [Design documents](/docs/Cloudant?topic=Cloudant-design-documents).
 
 ## Processing an individual document by using an action sequence
 {: #cloudant_seq}

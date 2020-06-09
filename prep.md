@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -23,8 +23,6 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 {:external: target="_blank" .external}
-
-
 
 # Preparing apps for actions
 {: #prep}
@@ -66,7 +64,7 @@ Before you create an action, get your JavaScript code ready. Confirm that your c
 
 - The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 - The input parameters are passed as a JSON object.
-- The result of a successful activation is also a JSON object but is returned differently depending on whether the action is [synchronous](#prep_js_sync) or [asynchronous](#prep_js_async).
+- The result of a successful activation is also a JSON object but is returned differently depending on whether the action is synchronous](#prep_js_sync) or [asynchronous](#prep_js_async).
 
 **Example**
 
@@ -219,7 +217,7 @@ Next, [create](/docs/openwhisk?topic=openwhisk-actions), and [invoke the action]
 ### Packaging JavaScript code with the `webpack` module
 {: #prep_js_pkg}
 
-You can package an app by using a JavaScript module bundler such as `[fbpack ](https://webpack.js.org/concepts/){: external}`. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
+You can package an app by using a JavaScript module bundler such as [`fbpack` ](https://webpack.js.org/concepts/){: external}. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
@@ -852,9 +850,7 @@ Package the app in a custom Docker image by completing the following steps.
     ```
     docker build . -t <dockerhub_username>/<repo_name>:<tag_name>
     ```
-    {: pre}
-    
-    
+    {: pre}   
 
 7. The image builds and installs the dependencies that you specified in your Dockerfile.
 
@@ -873,12 +869,19 @@ Package the app in a custom Docker image by completing the following steps.
    ``` 
    {: screen}
 
-8. Push your image to Docker Hub.
+8. Push your image to 
+
+
+
+.
 
    ```
    docker push <dockerhub_username>/<repo_name>:<tag_name>
    ```
    {: pre}
+   
+   Be sure to log into Docker Hub before attempting to push your image.
+   {: tip}
 
 9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) that uses random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to a {{site.data.keyword.openwhisk_short}} endpoint.
 
@@ -1041,6 +1044,9 @@ You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://
   docker push <dockerhub_username>/<repo_name>:<tag_name>
   ```
   {: pre}
+  
+  Be sure to log into Docker Hub before attempting to push your image.
+  {: tip}
 
 ### Deploying an action with a custom Docker image
 When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action will be invoked with the Docker image.
@@ -1213,7 +1219,7 @@ func Hello(name string) map[string]interface{} {
 </br>
 In this example, the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. 
 
-You can use multiple tools such as [<code>dep</code> ](https://golang.github.io/dep/docs/installation.html){: external} to populate and manage dependencies.
+You can use multiple tools such as [`dep` ](https://golang.github.io/dep/docs/installation.html){: external} to populate and manage dependencies.
 
 You can use `dep` by creating a file `src/main/Gopkg.toml` describing the version and location of the libraries.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: cognitive, functions, packages
 
@@ -59,7 +59,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} Service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/text_to_speech){: external}.
+1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.texttospeechshort}} package

@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-09"
 
 keywords: access policies, iam, roles, functions
 
@@ -33,7 +33,7 @@ Access to {{site.data.keyword.openwhisk_short}} service instances for users in y
 
 ## How do I set IAM policies so that others can work with my namespace?
 {: #iam_namespace_policies}
-In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the console](https://cloud.ibm.com/iam/overview) or [with the CLI](#cli-pol-set). 
+In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the console](https://cloud.ibm.com/iam/overview) or [with the CLI](#cli-set). 
 
 The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles).
 
@@ -202,7 +202,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
     </tr>
     <tr>
       <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
-      <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/iam?topic=iam-userroles#service-access-roles).</td>
+      <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/iam?topic=iam-userroles#service_access_roles).</td>
     </tr>
     <tr>
       <td>`--service-name` <code>&lt;other_service_name&gt;</code></td>
@@ -215,8 +215,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
   </tbody>
 </table>
 
-
-For more information, see the [`service-policy-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
+For more information, see the [`service-policy-create`](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
 {: note}
 
 **Next steps**

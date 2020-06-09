@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-09"
 
 keywords: functions, serverless, watson
 
@@ -49,7 +49,7 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.toneanalyzershort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ](https://cloud.ibm.com/catalog/tone_analyzer){: external}.
+1. [Create a {{site.data.keyword.toneanalyzershort}} service instance ](https://cloud.ibm.com/catalog/services/tone_analyzer){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.toneanalyzershort}} package
