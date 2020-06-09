@@ -869,11 +869,7 @@ Package the app in a custom Docker image by completing the following steps.
    ``` 
    {: screen}
 
-8. Push your image to 
-
-
-
-.
+8. Push your image to Docker Hub.
 
    ```
    docker push <dockerhub_username>/<repo_name>:<tag_name>
