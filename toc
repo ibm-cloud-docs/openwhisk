@@ -84,6 +84,8 @@ IBM Cloud Functions
     Logging events 
         logs.md
         activity_tracker.md
+        
+    monitor-sysdig.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

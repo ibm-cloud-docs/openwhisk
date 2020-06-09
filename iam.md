@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-08"
 
 keywords: access policies, iam, roles, functions
 
@@ -156,12 +156,36 @@ To see which roles are required to perform each operation, check out the followi
 
 </br>
 
-## Setting access policies for a user with the CLI
-You can set access policies for a specific users with the `iam user-policy-create` command. In this example `name@example.com` is assigned the Viewer role for {{site.data.keyword.openwhisk_short}}. After this role is applied, users with the Viewer role can access all of your {{site.data.keyword.openwhisk_short}} namespaces.
-{: #cli-pol-set}
+## Setting access policies for a service ID
+{: #service-id-set-policy}
+
+When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
+{: shortdesc}
+
+### Setting access policies for a service ID in the console
+{: #service-id-set-ui}
+
+You can set an access policy for a service ID by using the IAM console.
+{: shortdesc}
+
+1. Open the [IAM Service ID page](https://cloud.ibm.com/iam/serviceids){: external}.
+2. In the **Service IDs** list, select your {{site.data.keyword.openwhisk_short}} namespace. 
+3. On the **Manage** page, click **Access policies**, then click **Assign access**.
+4. Next, select an **Access Type**. You can choose from the following options. 
+  * **Assign access within a resource group**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
+  * **Assign access to resources**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
+  * **Assign access to account management services**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
+
+### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
+{: #cli-set}
+
+Set an access policy for a service ID by using the CLI. 
+{: shortdesc}
+
+Copy the following command. Replace `<namespace_service_ID>` with the name of your {{site.data.keyword.openwhisk_short}} namespace. Replace `<IAM_role1,IAM_role2>` with the IAM roles you want to assign to your namespace. Replace `<other_service_name>` with the name of the {{site.data.keyword.IBM_notm}} service you want {{site.data.keyword.openwhisk_short}} to work with. Replace `<other_service_GUID>` with the GUID of the {{site.data.keyword.IBM_notm}} service instance.
 
 ```
-ibmcloud iam user-policy-create name@example.com --roles Viewer --service-name functions
+ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_name> --service-instance <other_service_GUID>
 ```
 {: pre}
 
@@ -191,9 +215,9 @@ ibmcloud iam user-policy-create name@example.com --roles Viewer --service-name f
   </tbody>
 </table>
 
-For more information about IAM commands, see the [IAM CLI reference docs](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_user_policy_create){: external}.
 
-</br>
+For more information, see the [`service-policy-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
+{: note}
 
 **Next steps**
 For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.

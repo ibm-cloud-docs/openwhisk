@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-26"
+lastupdated: "2020-06-08"
 
 keywords: runtimes, support, functions
 
@@ -102,6 +102,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 
 | Node.js 10.15 packages | Description |
 |:-----------------|:-----------------|
+| [`@ibm-functions/iam-token-manager v1.0.4`](https://www.npmjs.com/package/@ibm-functions/iam-token-manager) | This package is an IAM access token manager library for Node.js. |
 | [`amqplib`](https://www.npmjs.com/package/amqplib){: external} | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.JS. |
 | [`apn`](https://www.npmjs.com/package/apn){: external} | A Node.js module for interfacing with the Apple Push Notification service. |
 | [`async`](https://www.npmjs.com/package/async){: external} | Provides functions for working with asynchronous functions. |

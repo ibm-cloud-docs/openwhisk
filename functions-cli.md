@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-08"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -1116,6 +1116,31 @@ ibmcloud fn namespace list
 ```
 {: pre}
 
+### `ibmcloud fn namespace target`
+{: #cli_namespace_target}
+
+Target an available IAM or Cloud Foundry namespace.
+{: shortdec}
+
+```
+ibmcloud fn namespace target NAMESPACE
+```
+{: pre}
+
+**Command options**
+<dl>
+<dt>`NAMESPACE`</dt>
+<dd>The name or ID for a namespace. This value is required.</dd>
+</dl>
+  
+**Example**
+
+```
+ibmcloud fn namespace target HBCTeamProd
+```
+{: pre}
+
+
 ### `ibmcloud fn namespace update`
 {: #cli_namespace_update}
 
@@ -1467,17 +1492,12 @@ Set a property. At least one flag is required. After a property is set, it is re
 {: shortdec}
 
 ```
-ibmcloud fn property set [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
+ibmcloud fn property set [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
 
 **Command options**
 <dl>
-<dt>`--apihost` `HOST`</dt>
-<dd>The `wsk` API host. This flag is optional.</dd>
-
-<dt>`--apiversion` `VERSION`</dt>
-<dd>The `wsk` API version. This flag is optional.</dd>
 
 <dt>`--auth` `KEY`, -u</dt>
 <dd>The `wsk` authorization `KEY`. This flag is optional.</dd>

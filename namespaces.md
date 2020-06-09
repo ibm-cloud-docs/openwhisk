@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-08"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -376,31 +376,18 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 ## Targeting namespaces
 {: #targeting-namespaces}
 
-Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace.
+Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. You can target IAM namespaces or Cloud Foundry namespaces.
 {: shortdesc}
 
-You can target IAM namespaces or Cloud Foundry namespaces. The command syntax is different between IAM and Cloud Foundry namespaces. You can use the following table to see command syntax for each type of {{site.data.keyword.openwhisk_short}} namespace.
+To target a namespace, use the [`ibmcloud fn namespace target`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_target) command.
 
-| Targeting an IAM-enabled namespace. |
-|:-----------------|
-| <p>Copy the following command to target an IAM-enabled namespace. Replace `<namespace_name>` with the name of your namespace.<pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</code></pre></p> |
-{: caption="Targeting an IAM-enabled namespace." caption-side="top"}
-{: #namespaces-1}
-{: tab-title="IAM"}
-{: tab-group="namespaces"}
-{: class="simple-tab-table"}
+For example, to target an IAM namespace called `playground`,
+  ```
+  ibmcloud fn namespace target playground
+  ```
+  {: pre}
 
-| Targeting a Cloud Foundry namespace |
-|:-----------------|
-| <p>Copy the following command to target a Cloud Foundry namespace. Replace `<org>` and `<space>` with the names of your `org` and `space`.<pre class="pre"><code>ibmcloud target --cf -o &lt;org&gt; -s &lt;space&gt;</code></pre></p> |
-{: caption="Targeting a Cloud Foundry namespace." caption-side="top"}
-{: #namespaces-2}
-{: tab-title="Cloud Foundry"}
-{: tab-group="namespaces"}
-{: class="simple-tab-table"}
 
-After a property is set with the [`property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set) command, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run the [property unset](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_unset) command. If properties are retained after running the unset command, you can delete the `config.json` to remove all properties.
-{: important}
 
 ### Accessing other resources from a namespace
 {: #namespace-access}
@@ -411,42 +398,6 @@ Actions typically call other {{site.data.keyword.cloud_notm}} resources and serv
 As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles by using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/iam?topic=iam-serviceids#serviceids).
 
 At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
-
-## Setting access policies for a service ID
-{: #service-id-set-policy}
-
-When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
-{: shortdesc}
-
-### Setting access policies for a service ID in the console
-{: #service-id-set-ui}
-
-You can set an access policy for a service ID by using the IAM console.
-{: shortdesc}
-
-1. Open the [IAM Service ID page](https://cloud.ibm.com/iam/serviceids){: external}.
-2. In the **Service IDs** list, select your {{site.data.keyword.openwhisk_short}} namespace. 
-3. On the **Manage** page, click **Access policies**, then click **Assign access**.
-4. Next, select an **Access Type**. You can choose from the following options. 
-  * **Assign access within a resource group**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
-  * **Assign access to resources**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
-  * **Assign access to account management services**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
-
-### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
-{: #cli-set}
-
-Set an access policy for a service ID by using the CLI. 
-{: shortdesc}
-
-Copy the following command. Replace `<namespace_service_ID>` with the name of your {{site.data.keyword.openwhisk_short}} namespace. Replace `<IAM_role1,IAM_role2>` with the IAM roles you want to assign to your namespace. Replace `<other_service_name>` with the name of the {{site.data.keyword.IBM_notm}} service you want {{site.data.keyword.openwhisk_short}} to work with. Replace `<other_service_GUID>` with the GUID of the {{site.data.keyword.IBM_notm}} service instance.
-
-```
-ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_name> --service-instance <other_service_GUID>
-```
-{: pre}
-
-For more information, see the [`service-policy-create`](/docs/cli/reference/ibmcloud?topic=cloud-cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
-{: note}
 
 ## Next steps
 {: #namespaces_next}
