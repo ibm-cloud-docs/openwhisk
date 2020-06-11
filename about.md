@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-05-23"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
