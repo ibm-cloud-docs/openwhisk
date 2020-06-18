@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-18"
 
 keywords: release notes, functions
 
@@ -35,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 18 June 2020 | Changes for web action endpoints. See [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web) |
 | 8 June 2020 | <ul><li> Changes for Functions CLI version 1.0.40. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. See [Monitoring with {{site.data.keyword.mon_full}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig).</li></ul> |
 {: caption="Changes for June 2020" caption-side="top"}
 
@@ -52,7 +53,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 24 April 2020 | <ul><li> Fixes for Functions CLI version 1.0.39. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li> New actions overview topic. See [Action overview](/docs/openwhisk?topic=openwhisk-actions_over)</li><li>Improved access policy information. See [Setting access policies](/docs/openwhisk?topic=openwhisk-iam).</li></ul> |
+| 24 April 2020 | <ul><li> Fixes for Functions CLI version 1.0.39. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li> New actions overview topic. See [Action overview](/docs/openwhisk?topic=openwhisk-actions_over).</li><li>Improved access policy information. See [Setting access policies](/docs/openwhisk?topic=openwhisk-iam).</li></ul> |
 {: caption="Changes for April 2020" caption-side="top"}
 
 ## March 2020
@@ -87,7 +88,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 31 Oct 2019 | <ul><li>The IBM Cloud Object Storage trigger is now available in the following regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. For more information about this trigger, see [IBM Cloud object storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
+| 31 Oct 2019 | <ul><li>The IBM Cloud Object Storage trigger is now available in the following regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. For more information about this trigger, see [IBM Cloud Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
 | 28 Oct 2019 | <ul><li>Updates for [binding services to entities](/docs/openwhisk?topic=openwhisk-services).</li><li>Updates for [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=openwhisk-test#memory_usage).</li></ul> |
 | 14 Oct 2019 | <ul><li>Fixes for version 1.0.35. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Added console tasks to [Create actions](/docs/openwhisk?topic=openwhisk-actions).</li></ul> |
 {: caption="Changes for October 2019" caption-side="top"}
@@ -98,6 +99,6 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | Date | Description |
 | --------- | -------- |
 | 24 Sept 2019 | <ul><li>Fixes for version 1.0.34. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
-| 20 Sept 2019 | <ul><li>Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. See [IBM Cloud object storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
+| 20 Sept 2019 | <ul><li>Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. See [IBM Cloud Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
 | 11 Sept 2019 | <ul><li>>Fixes for version 1.0.33. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 {: caption="Changes for September 2019" caption-side="top"}

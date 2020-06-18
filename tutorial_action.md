@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-11"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -30,11 +30,11 @@ subcollection: openwhisk
 In this tutorial, learn how to call an action from another action by creating a custom sequence.  This tutorial uses Node.js 10, but the general principles can be applied to other runtimes. 
 {: shortdesc}
 
-This tutorial uses {{site.data.keyword.openwhisk_short}} to build a custom sequence within another node.js action to model a typical scenario, such as getting data from {{site.data.keyword.cos_full_notm}}, retrieving related data from {{site.data.keyword.cloudant}} database, and then putting the results back into {{site.data.keyword.cos_full_notm}}. To accomplish this task, you will create an {{site.data.keyword.cos_full_notm}} action, then an {{site.data.keyword.cloudant}} database action, and finally a main action that calls both of them.
+This tutorial uses {{site.data.keyword.openwhisk_short}} to build a custom sequence within another Node.js action to model a typical scenario, such as getting data from {{site.data.keyword.cos_full_notm}}, retrieving related data from {{site.data.keyword.cloudant}} database, and then putting the results back into {{site.data.keyword.cos_full_notm}}. To accomplish this task, first create an {{site.data.keyword.cos_full_notm}} action, then an {{site.data.keyword.cloudant}} database action, and finally a main action that calls both of them.
 
-Note that this tutorial is a simulation; it does not actually connect to {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}}. This tutorial does, however, run successfully to show you how to call an action from another action. You can use this tutorial as a building block to create something new. Because access to both {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}} is asynchronous, in order to simulate asynchronous code, we've used a timeout to resolve complete these actions at a later point in time. This simulation is important to verify whether or not the custom sequence action code, which uses the openwhisk SDK, is actually using promises properly.
+Note that this tutorial is a simulation; it does not connect to {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}}. This tutorial does, however, run successfully to show you how to call an action from another action. You can use this tutorial as a building block to create something new. Because access to both {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}} is asynchronous, in order to simulate asynchronous code, the actions use a timeout to complete these actions at a later point in time. This simulation is important to verify whether or not the custom sequence action code, which uses the `openwhisk` SDK, is using promises properly.
 
-The code for the actions also includes some basic error handling code, including explanations. Note that, while running these actions, you might not ever see the error handling code in this example. However, you might find this code useful if you choose to adapt the code examples.
+The code for the actions also includes some basic error handling code, including explanations. Note that, when you run these actions, you might not ever see the error handling code in this example. However, you might find this code useful if you choose to adapt the code examples.
 
 **Before you begin**
 
@@ -81,7 +81,7 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
 	        });
       }
       ```
-      {: pre}
+      {: codeblock}
       
    6. Click **Save**. 
    
@@ -140,7 +140,7 @@ The `db-access` action is a Node.js program that simulates code to access {{site
       	});
       }
       ```
-      {: pre}
+      {: codeblock}
       
    6. Click **Save**. 
    
@@ -165,7 +165,7 @@ Your `db-access` action is ready!
 
 ## Create the `ow-sdk-action` action
 
-The `ow-sdk-action` action is a Node.js program that calls the other two actions: `cos-access` and `db-access`. When invoked, the `ow-sdk-action` action code acts as a custom sequence, first calling `cos-access`, then `db-access`, and finally `cos-access` again. The results of each action are stored in a variable called `chained_action_results`, which is then returned at the end. When the action is invoked, follow the code comments to see what is happening. 
+The `ow-sdk-action` action is a Node.js program that calls the other two actions: `cos-access` and `db-access`. When invoked, the `ow-sdk-action` action code acts as a custom sequence, first calling `cos-access`, then `db-access`, and finally `cos-access` again. The results of each action are stored in a variable that is called `chained_action_results`, which is then returned at the end. When the action is invoked, follow the code comments to see what is happening. 
       
 1. From the **Actions** page, create a third action called `ow-sdk-action`.
 
@@ -275,7 +275,7 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 	      });
       }
       ```
-      {: pre}
+      {: codeblock}
       
    6. Click **Save**. 
    
@@ -312,4 +312,4 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
       ```
       {: screen}
       
-Congratulations! You have created an action that calls two other actions. From these actions, you can now develop the code to call {{site.data.keyword.cos_full_notm}}, access your {{site.data.keyword.cloudant}} database, and then put the results back into {{site.data.keyword.cos_full_notm}}. You even have the basic building blocks for error handling.
+Congratulations! You created an action that calls two other actions. From these actions, you can now develop the code to call {{site.data.keyword.cos_full_notm}}, access your {{site.data.keyword.cloudant}} database, and then put the results back into {{site.data.keyword.cos_full_notm}}. You even have the basic building blocks for error handling.

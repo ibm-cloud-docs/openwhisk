@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-18"
 
 keywords: web actions, serverless, functions
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 When you create a web action, the result is a URL that can be used to trigger the action from any web app.
 {: shortdesc}
+
+{{site.data.keyword.openwhisk}} web actions API endpoint change. In order to align with other customer services we introduced a new `functions.appdomain.cloud` API endpoint for web actions. The API endpoint `functions.cloud.ibm.com` will remain active but will now return response data as content type text/plain instead of text/html. Other content types will have no change. Migrate your web actions to use the new API endpoint.
+{: important}
 
 ## Why use web actions instead of standard actions? 
 
@@ -126,7 +129,7 @@ To create a web action:
   ```
   {: pre}
 
-4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. To get the `<apihost>`, run `ibmcloud fn property get --apihost`. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace>` variables. Example `<apihost>`: `https://us-south.functions.appdomain.cloud`.
 
   For IAM-enabled namespaces, replace the `<namespace>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name>`. 
   {: note}
@@ -306,7 +309,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
   
 3. Clear your browser's cookies before you test the action.
 
-4. Test the `hello` web action by opening the URL in your browser. Replace the `<apihost>` and `<namespace>` variables and open `https://<apihost>/api/v1/web/<namespace>/demo/hello`. Example `<apihost>`: `us-south.functions.cloud.ibm.com`.
+4. Test the `hello` web action by opening the URL in your browser. Replace the `<apihost>` and `<namespace>` variables and open `https://<apihost>/api/v1/web/<namespace>/demo/hello`. Example `<apihost>`: `https://us-south.functions.appdomain.cloud`.
 
 **Result**
 
