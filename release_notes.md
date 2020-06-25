@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-18"
+lastupdated: "2020-06-25"
 
 keywords: release notes, functions
 
@@ -35,7 +35,9 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 18 June 2020 | Changes for web action endpoints. See [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web) |
+| 25 June 2020 | <ul><li>New events are tracked for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |
+| 18 June 2020 | <ul><li>Changes for web action endpoints. See [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web).</li></ul> |
+| 15 June 2020 | <ul><li>Changes for Functions CLI version 1.0.41. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 | 8 June 2020 | <ul><li> Changes for Functions CLI version 1.0.40. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. See [Monitoring with {{site.data.keyword.mon_full}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig).</li></ul> |
 {: caption="Changes for June 2020" caption-side="top"}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-25"
 
 keywords: cli, functions
 
@@ -32,6 +32,7 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.41 | 15 June 2020 | <ul><li>Updated the default version for Golang actions to Golang version 1.13.</li></ul> |
 | 1.0.40 | 30 May 2020 | <ul><li>Added new `ibmcloud fn namespace target` command to allow users to target any IAM or CF based namespaces.</li></ul><ul><li>Added print out information to notify users the region under which namespaces are listed when users issue `ibmcloud fn namespace list` command.</li></ul><ul><li>Disallow users to set apihost using `ibmcloud fn property set --apihost` command.</li></ul>|
 | 1.0.39 | 22 April 2020 | <ul><li>Fixed a bug related to `wsk deploy` actions in IAM namespaces.</li></ul> |
 | 1.0.38 | 2 March 2020 | <ul><li>Introduced two new flags for trigger commands, `--trigger-param` and `--feed-param`. These flags allow you to distinguish between trigger parameters and trigger feed parameters, making trigger create and update commands more flexible. For more information, see [Create trigger command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_create).</li><li>Resolved a bug related to `wsk deploy` APIs where `wsk deploy` ignores `require-whisk-auth` annotation when deploying APIs based on actions with `require-whisk-auth` annotations.</li><li>Improved the messages for `service bind` command with the `--verbose` flag.</li><li>Improved error messages for `ibmcloud fn property set --namespace CFnamespace`.</li><li>Made changes for `wsk deploy` and Travis environment compatibility.</li><li>Fixed a bug where `wsk deploy` puts an invalid API Gateway access token when you use `wsk deploy` in Travis environment.</li></ul> |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-23"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Getting started with IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-With {{site.data.keyword.openwhisk}} you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (Faas) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
 ## Working with actions
@@ -45,32 +45,35 @@ Click an option to get started.
 <area href="/docs/openwhisk?topic=openwhisk-about" alt="See the platform architecture" title="See the platform architecture" shape="rect" coords="326, -10, 448, 218" />
 </map>
 
-## Creating an action in the GUI
+## Creating an action in the console
 {: #gs_hello_world}
 
 To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quickstart template.
 
 1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} account or log in to an existing account.
 
-2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard ](https://cloud.ibm.com/functions){: external}.
+2. Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions){: external}.
 
-2. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
+3. Select a [namespace](/docs/openwhisk?topic=openwhisk-namespaces).
 
-3. Create a package for your actions by inputting a unique name in the **Package Name** field.
+4. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
-4. Select a runtime from the drop-down menu in the **Action helloworld** section. You can preview the code for the sample action in each available runtime before you deploy the template.
+5. Create a package for your actions by inputting a unique name in the **Package Name** field.
 
-5. Click **Deploy**. You created an action. Great job!
+6. Select a runtime from the drop-down menu in the **Action helloworld** section. You can preview the code for the sample action in each available runtime before you deploy the template.
 
-6. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
+7. Click **Deploy**. You created an action. Great job!
 
-7. Optional: Click **Change Input** to change the action or try your own.
+8. Run the action by clicking **Invoke**. Invoking an action manually runs the app logic that the action defines. In the **Activations** panel, you can see the "Hello stranger!" greeting produced by the action.
+
+9. Optional: Click **Change Input** to change the action or try your own.
 
   a. Paste the following code into the **Change Input** box and change the name value.
   ```
   { "name": "xxxx" }
   ```
   {: codeblock}
+  
   b. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
 
 Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.

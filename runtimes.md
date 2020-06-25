@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-06-25"
 
 keywords: runtimes, support, functions
 
@@ -328,7 +328,7 @@ For more information about creating actions with Docker images, see [Preparing a
 
 **Go**
 
-By default, all Go actions are executed in a version 1.11 environment. 
+By default, all Go actions are executed in a version 1.13 environment. 
 
 **Java**
 
