@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-06-25"
+lastupdated: "2020-06-30"
 
 keywords: release notes, functions
 
@@ -35,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 30 June 2020 | <ul><li>Updates to documentation for [pre-installed Event streams package](/docs/openwhisk?topic=openwhisk-pkg_event_streams).</li></ul> |
 | 25 June 2020 | <ul><li>New events are tracked for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |
 | 18 June 2020 | <ul><li>Changes for web action endpoints. See [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web).</li></ul> |
 | 15 June 2020 | <ul><li>Changes for Functions CLI version 1.0.41. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |

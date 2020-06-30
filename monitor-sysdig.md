@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-30"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -88,7 +88,7 @@ The overall number of activations that were triggered on the system.
 | `Metric Name` | `ibm_functions_activation`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 2: ibm_functions_activation metric metadata" caption-side="top"}
 
 ### ibm_functions_concurrent-invocations
@@ -101,7 +101,7 @@ The number of concurrent invocations on the system.
 | `Metric Name` | `ibm_functions_concurrent-invocations`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 3: ibm_functions_concurrent-invocations metric metadata" caption-side="top"}
 
 ### ibm_functions_concurrent-rate-limit
@@ -114,7 +114,7 @@ The sum of activations that were throttled due to exceeding the concurrency rate
 | `Metric Name` | `ibm_functions_concurrent-rate-limit`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 4: ibm_functions_concurrent-rate-limit metric metadata" caption-side="top"}
 
 ### ibm_functions_duration
@@ -127,7 +127,7 @@ The average action duration, billed action execution time in milliseconds.
 | `Metric Name` | `ibm_functions_duration`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 5: ibm_functions_duration metric metadata" caption-side="top"}
 
 ### ibm_functions_init-time
@@ -140,7 +140,7 @@ The time that is spent to initialize the action container in milliseconds.
 | `Metric Name` | `ibm_functions_init-time`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 6: ibm_functions_init-time metric metadata" caption-side="top"}
 
 ### ibm_functions_status-error-application
@@ -153,7 +153,7 @@ The number of unsuccessful activations that are caused by application errors.
 | `Metric Name` | `ibm_functions_status-error-application`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 7: ibm_functions_status-error-application metric metadata" caption-side="top"}
 
 ### ibm_functions_status-error-developer
@@ -166,7 +166,7 @@ The number of unsuccessful activations that are caused by the developer.
 | `Metric Name` | `ibm_functions_status-error-developer`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 8: ibm_functions_status-error-developer metric metadata" caption-side="top"}
 
 ### ibm_functions_status-error-internal
@@ -179,7 +179,7 @@ The number of unsuccessful activations that are caused by {{site.data.keyword.op
 | `Metric Name` | `ibm_functions_status-error-internal`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 9: ibm_functions_status-error-internal metric metadata" caption-side="top"}
 
 ### ibm_functions_status-success
@@ -192,7 +192,7 @@ The number of successful activations of action code.
 | `Metric Name` | `ibm_functions_status-success`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 10: ibm_functions_status-success metric metadata" caption-side="top"}
 
 ### ibm_functions_timed-rate-limit
@@ -205,7 +205,7 @@ The sum of activations that were throttled due to exceeding the per-minute limit
 | `Metric Name` | `ibm_functions_timed-rate-limit`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 11: ibm_functions_timed-rate-limit metric metadata" caption-side="top"}
 
 ### ibm_functions_wait-time
@@ -218,7 +218,7 @@ The average time that is spent in a queue, waiting for an activation to be sched
 | `Metric Name` | `ibm_functions_wait-time`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
-| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action, ibm_functions_action-kind` |
+| `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 12: ibm_functions_wait-time metric metadata" caption-side="top"}
 
 ## Attributes for Segmentation
@@ -231,13 +231,10 @@ The following attributes are available for segmenting all of the metrics previou
 
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
-| `Cloud Type` | `ibm_ctype` | The cloud type is a value of `public`, `dedicated` or `local`. |
+| `Cloud Type` | `ibm_ctype` | The cloud type, which is always set to `bluemix`. |
 | `Location` | `ibm_location` | The location of the monitored resource. Possible values are `region`, `data center`, or `global`. |
-| `Resource` | `ibm_resource` | The resource being measured by the service, typically an indentifying name or GUID. |
-| `Resource Type` | `ibm_resource_type` | The type of the resource being measured by the service. |
-| `Resource group` | `ibm_resource_group_name` | The resource group where the service instance was created. |
-| `Scope` | `ibm_scope` | The scope is the account, organization or space GUID associated with this metric. |
-| `Service name` | `ibm_service_name` | Name of the service generating this metric. |
+| `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
+{: caption="Table 13: Global attributes" caption-side="top"}
 
 ### Additional Attributes
 {: additional-attributes}
@@ -248,6 +245,6 @@ The following attributes are available for segmenting one or more attributes as 
 |-----------|----------------|-----------------------|
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the instance that the metric is associated with. |
 | `ibm_functions_action` | `ibm_functions_action` | The action name. |
-| `ibm_functions_action-kind` | `ibm_functions_action-kind` | The type of action. |
 | `ibm_functions_namespace` | `ibm_functions_namespace` | The namespace that contains the action. |
 | `ibm_functions_package` | `ibm_functions_package` | The package that contains the action. |
+{: caption="Table 14: Additional attributes" caption-side="top"}

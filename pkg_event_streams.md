@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-29"
 
 keywords: event streams, package, messages, events, functions
 
@@ -27,59 +27,158 @@ subcollection: openwhisk
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
 
-{{site.data.keyword.openwhisk}} provides a pre-installed packagefor publishing and consuming messages with {{site.data.keyword.messagehub}}.
+{{site.data.keyword.openwhisk}} provides a pre-installed package for publishing and consuming messages with {{site.data.keyword.messagehub}}.
 {: shortdesc}
 
-## Package options
+## Package entities
 {: #pkg_event_streams_options}
 
-| Package | Availability | Description |
+| Package |Type | Description |
 | --- | --- | --- |
-| `/whisk.system/messaging` | Pre-installed | Publishing and consume messages with the native Kafka API. |
-|  |  |  |
+| `/whisk.system/messaging` | Pre-installed package | Publishing and consume messages with the native Kafka API. |
+| `/messaging/messageHubProduce` | Action | Deprecated |
+| `/messaging/messageHubFeed` | Feed | Reacts when messages are posted to an {{site.data.keyword.messagehub}} instance |
 
-## {{site.data.keyword.messagehub}}
-{: #eventstreams}
+The `/messaging/messageHubProduce` action is deprecated. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka. The `/messaging/messageHubProduce` action is not available in Tokyo.
+{: tip}
 
-A pre-installed package that enables communication with [{{site.data.keyword.messagehub_full}}](/docs/EventStreams?topic=EventStreams-getting_started) instances for publishing and consuming messages by using the native high-performance Kafka API.
-{: shortdesc}
+To learn more about producing messages, check out the [Event Streams documentation](/docs/EventStreams?topic=EventStreams-producing_messages#producing_messages).
 
-### Setting up a {{site.data.keyword.messagehub}} package
-{: #eventstreams_setup}
+## Binding the `/whisk.system/messaging` package to your {{site.data.keyword.messagehub}} instance
+{: #event_streams_binding}
 
-1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
+If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.cloud_notm}}, you can use the {{site.data.keyword.openwhisk}} CLI plug-in to bind a service to an action or package. If you do not bind your service, you must pass your credentials each time you use the action or package.
+{: #shortdesc}
 
-2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, titled `mytopic`.
+**Before you begin**
 
-3. Refresh the packages in your namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
+You must have an instance of {{site.data.keyword.messagehub}}. To create an instance, see [Event Streams documentation](/docs/EventStreams?topic=EventStreams-getting_started).
 
-   ```
-   ibmcloud fn package refresh
-   ```
-   {: pre}
+1. Create a `/whisk.system/messaging` package binding that is configured for your {{site.data.keyword.messagehub}} account. In this example, the package name is `MyEventStreamBind`.
 
-   **Example output**
-   ```
-   created bindings:
-   Message_Hub_Credentials-1
-   ```
-   {: screen}
+  ```
+  ibmcloud fn package bind /whisk.system/messaging MyEventStreamBind
+  ```
+  {: pre}
 
-4. List the packages in your namespace to show that your package binding is now available.
-  
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+2. Verify that the package binding exists.
 
-   **Example output**
-   ```
-   packages
-   /myOrg_mySpace/Message_Hub_Credentials-1 private
-   ```
-   {: screen}
+  ```
+  ibmcloud fn package list
+  ```
+  {: pre}
 
-Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
+  **Example output**
+
+  ```
+  packages
+  /<namespace>/MyEventStreamBind
+  ```
+  {: screen}
+
+3. Get the name of the service instance that you want to bind to an action or package.
+
+    ```
+    ibmcloud resource service-instances
+    ```
+    {: pre}
+
+    **Example output**
+    
+    ```
+    Name               Location   State    Type
+    EventStreams-0s    us-south   active   service_instance
+    ```
+    {: screen}
+
+4. Get the name of the credentials that are defined for the service instance you got in the previous step.
+
+    ```
+    ibmcloud resource service-keys --instance-name EventStreams-0s
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    Name                    State    Created At
+    Service credentials-1   active   Sat Oct 27 03:26:52 UTC 2018
+    Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
+    ```
+    {: screen}
+    
+    You can create service keys by using the [`ibmcloud resource service-keys`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_keys).
+    {: tip}
+
+5. Bind the service to the package that you created in the first step. In the example, this package is called `MyEventStreamBind`.
+
+    ```
+    ibmcloud fn service bind messagehub MyEventStreamBind --instance EventStreams-0s --keyname 'Service credentials-1'
+    ```
+    {: pre}
+    
+    **Example output**
+    
+    ```
+    Credentials 'Service credentials-1' from 'messagehub' service instance 'EventStreams-0s' bound to 'MyEventStreamBind'.
+    ```
+    {: screen}
+
+6. Verify that the credentials are successfully bound.
+
+    ```
+    ibmcloud fn package get MyEventStreamBind parameters
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    ok: got package MyEventStreamBind
+    ...
+      "parameters": [
+        {
+            "key": "bluemixServiceName",
+            "value": "messagehub"
+        },
+        {
+            "key": "endpoint",
+            "value": "openwhisk.ng.bluemix.net"
+        },
+        {
+            "key": "__bx_creds",
+            "value": {
+                "messagehub": {
+                    "api_key": "2RxXWBVUdR5-8GDXrYhpm7zMCB5dNtJ1vB3YfaI3o7",
+                    "apikey": "2RxXWBVUdR5-8GDXrYhpm7zMCB5dNtJ1vB3YfaI3o7",
+                    "credentials": "Service credentials-1",
+                    "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:bluemix:public:messagehub:us-south:a/6ef045fb2b43266cfe8e6745dd2ec098:1244a768-a7e5-3c48-a6d2-1ab7c8b63d57::",
+                    "iam_apikey_name": "auto-generated-apikey-dc334c91-3503-480f-a812-49bff8bedc60",
+                    "iam_role_crn": "crn:v1:bluemix:public:iam::::serviceRole:Manager",
+                    "iam_serviceid_crn": "crn:v1:bluemix:public:iam-identity::a/6ef045fd2b43266cfe8e6388dd2ec098::serviceid:ServiceId-e2e58c4f-9bc2-4bbe-cbc9-0d679e7a0d85",
+                    "instance": "EventStreams-0s",
+                    "instance_id": "1244a768-a7e5-3c48-a6d2-1ab7c8b63d57",
+                    "kafka_admin_url": "https://5syh8qrs9rpj0zds.svc01.us-south.eventstreams.cloud.ibm.com",
+                    "kafka_brokers_sasl": [
+                        "broker-1-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093",
+                        "broker-4-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093",
+                        "broker-3-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093",
+                        "broker-2-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093",
+                        "broker-5-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093",
+                        "broker-0-5syh8qrs9rpj0zds.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093"
+                    ],
+                    "kafka_http_url": "https://5syh8qrs9rpj0zds.svc01.us-south.eventstreams.cloud.ibm.com",
+                    "password": "2RxXBVUdR5-9GDXrYhpmzMCB5dNtJ1vB3YfaI3o7",
+                    "user": "token"
+                }
+            }
+        }
+    ]
+    
+    ```
+    {: screen}
+
+In this example, the credentials for the {{site.data.keyword.messagehub}} service belong to a parameter named `__bx_creds`.
 
 ### Setting up an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_outside}
@@ -93,36 +192,10 @@ ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_s
 ```
 {: pre}
 
-### Producing messages to {{site.data.keyword.messagehub}}
-{: #eventstreams_messages}
-
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
-{: tip}
-
-To learn more about producing messages, check out the [Event Streams documentation](/docs/EventStreams?topic=EventStreams-producing_messages#producing_messages).
-
-References
-- [{{site.data.keyword.messagehub_full}}](https://www.ibm.com/cloud/event-streams){: external}
-- [Apache Kafka](https://kafka.apache.org){: external}
-
-## Event Streams events source
-{: #eventstreams_events}
-
-You can create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub_full}} instance by using feeds. Learn how to create {{site.data.keyword.messagehub}} triggers with or without {{site.data.keyword.cloud}}, listen for messages, and handle batched messages.
-{: shortdesc}
-
-## {{site.data.keyword.messagehub}} package
-{: #eventstreams_pkg}
-
-The `/messaging/messageHubProduce` action is deprecated and will be removed at a future date. It is already removed in the Tokyo region. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka.
-{: deprecated}
-
-This package enables communication with [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams-for-cloud){: external} instances for publishing and consuming messages by using the native high-performance Kafka API.
-
-### Creating a trigger that listens to an {{site.data.keyword.messagehub}} instance
+## Creating a trigger that listens to an {{site.data.keyword.messagehub}} instance
 {: #eventstreams_trigger}
 
-In order to create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub}} instance, you need to use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
+To create a trigger that reacts when messages are posted to an {{site.data.keyword.messagehub}} instance, use the feed that is named `/messaging/messageHubFeed`. The feed action supports the following parameters:
 
 | Name | Type | Description |
 | --- | --- | --- |
@@ -135,48 +208,14 @@ In order to create a trigger that reacts when messages are posted to an {{site.d
 | `isBinaryKey` | Boolean (Optional - default=false) | When set to `true`, the provider encodes the key value as Base64 before passing it along as the trigger payload. |
 | `isBinaryValue` | Boolean (Optional - default=false) | When set to `true`, the provider encodes the message value as Base64 before passing it along as the trigger payload. |
 
-While this list of parameters can seem daunting, they can be automatically set for you by using the `ibmcloud fn package refresh` CLI plug-in command.
+To create the trigger:
 
-1. Create an instance of {{site.data.keyword.messagehub}} service under your current organization and space that you are using for {{site.data.keyword.openwhisk}}.
+1. [Bind the `/whisk.system/messaging` package](#event_streams_binding) to your {{site.data.keyword.messagehub}} instance. 
 
-2. Verify that the topic you want to listen to is available in {{site.data.keyword.messagehub}} or create a new topic, for example, `mytopic`.
-
-3. Refresh the packages in your Namespace. The refresh automatically creates a package binding for the {{site.data.keyword.messagehub}} service instance that you created.
+2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
 
    ```
-   ibmcloud fn package refresh
-   ```
-   {: pre}
-
-   **Example output**
-
-   ```
-   created bindings:
-   Message_Hub_Credentials-1
-   ```
-   {: screen}
-
-4. List the packages in your Namespace to show that your package binding is now available.
-  
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
-
-   **Example output**
-
-   ```
-   packages
-   /myOrg_mySpace/Message_Hub_Credentials-1 private
-   ```
-   {: screen}
-
-   Your package binding now contains the credentials that are associated with your {{site.data.keyword.messagehub}} instance.
-
-5. Now all you need to do is create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
-
-   ```
-   ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Message_Hub_Credentials-1/messageHubFeed -p topic mytopic
+   ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Service credentials-1/messageHubFeed -p topic mytopic
    ```
    {: pre}
 
@@ -203,9 +242,10 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 ### Listening for messages
 {: #eventstreams_listen_messages}
 
-Once a trigger is created, the system monitors the specified topic in your messaging service. When new messages are posted, the trigger is fired.
+After a trigger is created, the system monitors the specified topic in your messaging service. When new messages are posted, the trigger is fired.
 
 The payload of that trigger contains a `messages` field, which is an array of messages that are posted from the last time the trigger is fired. Each message object in the array contains the following fields:
+
 - `topic`
 - `partition`
 - `offset`

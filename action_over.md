@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-06-30"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -50,7 +50,7 @@ A set of actions can be chained together into a sequence without having to write
 
 **What is a web action?**
 
-A web action is an action that can be invoked without authentication and can be used to implement HTTP handlers that respond with headers, statusCode, and body content of different types. For more information, see [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web).
+A web action is an action that can be invoked without authentication and can be used to implement HTTP handlers that respond with headers, status code, and body content of different types. For more information, see [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web).
 
 **Can I use APIs to manage my web actions?**
 

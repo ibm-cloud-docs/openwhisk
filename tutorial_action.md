@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-11"
+lastupdated: "2020-06-30"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -312,4 +312,4 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
       ```
       {: screen}
       
-Congratulations! You created an action that calls two other actions. From these actions, you can now develop the code to call {{site.data.keyword.cos_full_notm}}, access your {{site.data.keyword.cloudant}} database, and then put the results back into {{site.data.keyword.cos_full_notm}}. You even have the basic building blocks for error handling.
+Great work! You created an action that calls two other actions. From these actions, you can now develop the code to call {{site.data.keyword.cos_full_notm}}, access your {{site.data.keyword.cloudant}} database, and then put the results back into {{site.data.keyword.cos_full_notm}}. You even have the basic building blocks for error handling.

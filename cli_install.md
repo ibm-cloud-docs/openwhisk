@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-06-29"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -234,13 +234,13 @@ If you need to use the authentication API key for {{site.data.keyword.openwhisk_
   ```
   {: pre}
 
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in.
+The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in. The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type text/plain instead of text/html. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
 {: tip}
 
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
-The OpenWhisk CLI required you to run the `wsk ibmcloud login` to be able to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
+With the OpenWhisk CLI, you were required to run the `wsk ibmcloud login` to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
 {:shortdesc}
 
 ### Migrating deployment scripts
