@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-08"
+lastupdated: "2020-07-08"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -331,7 +331,7 @@ ibmcloud fn action list
 Update an action or the app within an action.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
+When you update parameters for a package or action, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 ```
@@ -1347,7 +1347,7 @@ ibmcloud fn package list
 ```
 {: pre}
 
-Run `ibmcloud fn package list /whisk.system` to view a list of pre-installed packages.
+Run `ibmcloud fn package list /whisk.system` to view a list of preinstalled packages.
 {: tip}
 
 ### `ibmcloud fn package refresh`
@@ -1381,7 +1381,7 @@ ibmcloud fn package refresh /user@domain.com_dev
 Update a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
+When you update parameters for a package or action, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
 ```
@@ -1619,7 +1619,7 @@ ibmcloud fn rule delete RULE_NAME [--disable]
 <dd>The name of a rule. This value is required.</dd>
 
 <dt>`--disable`</dt>
-<dd>Disable the rule before you deleting.</dd>
+<dd>Disable the rule before you delete it.</dd>
 </dl>
 
 **Example**
@@ -1928,7 +1928,7 @@ ibmcloud fn trigger create mytrigger --trigger-param name Bob
 ```
 {: pre}
 
-Starting in functions plugin CLI version 1.0.38, we’ve introduced two new flags for the trigger command: `—trigger-param` and `—feed-param`. These flags are an extension to creating and updating a trigger, making the `trigger create` and `update` commands more flexible. T
+Starting in functions plug-in CLI version 1.0.38, two new options are available for the trigger command: `—trigger-param` and `—feed-param`. These options are an extension to creating and updating a trigger, making the `trigger create` and `update` commands more flexible.
 
 Previously, you created and updated a trigger with a parameter on it with the following command: 
 
@@ -1937,21 +1937,21 @@ ibmcloud fn trigger create triggerHelloWorld —param msg “Hello World!”
 ```
 {: pre}
 
-This command creates a trigger called triggerHelloWorld with a parameter of KEY msg and VALUE of “Hello World!”. This is very simple and straightforward. However, it becomes a little complicated when you create a trigger that contains a feed, especially when you want to add parameters on both the trigger and the trigger feed. For example, if you want to create a trigger with alarm feed, then you must run a command similar to the following example:
+This command creates a trigger called `triggerHelloWorld` with a parameter of KEY `msg` and VALUE of `Hello World!`. This is very simple and straightforward. However, it becomes a little complicated when you create a trigger that contains a feed, especially when you want to add parameters on both the trigger and the trigger feed. For example, if you want to create a trigger with alarm feed, then you must run a command similar to the following example:
 
 ```
 ibmcloud fn trigger create triggerCron —feed /whisk.system/alarms/alarm —param cron “0,1,2,3,4,5”
 ```
 {: pre}
 
-In this case, the KEY and VALUE pair that follows `—param` are consumed by feed and are treated as feed parameters. By using the new flags, you can differentiate between trigger parameters and feed parameters. The following command creates a trigger called triggerCron with cron feed parameters of `0,1,2,3,4,5` and trigger parameter of KEY msg and VALUE of “Hello World!” 
+In this case, the KEY and VALUE pair that follows `—param` are consumed by feed and are treated as feed parameters. By using the new options, you can differentiate between trigger parameters and feed parameters. The following command creates a trigger called `triggerCron` with cron feed parameters of `0,1,2,3,4,5` and a trigger parameter of KEY `msg` and VALUE of `Hello World!`.
 
 ```
 ibmcloud fn  trigger create triggerCron —feed /whisk.system/alarms/alarm —feed-param cron “0,1,2,3,4,5” —trigger-param msg “Hello World!”
 ```
 {: pre}
 
-The original `—param` flag is not deprecated so you can continue to use it as you have previously. You simply now have the option to separate your trigger and feed parameters by using the new flags. However, please do not mix `—param` or `—param-file` flags with either `—trigger-param` or `—feed-param` flags. These flags are considered two different ways of setting trigger flags and must not be used together. 
+The original `—param` option is not deprecated so you can continue to use it as you have previously. You simply now have the ability to separate your trigger and feed parameters by using the new options. However, please do not mix `—param` or `—param-file` options with either `—trigger-param` or `—feed-param` options. These options are considered two different ways of setting trigger parameters and must not be used together. 
 {: note}
 
 ### `ibmcloud fn trigger delete`
@@ -2070,7 +2070,7 @@ ibmcloud fn trigger list
 Update a trigger.
 {: shortdec}
 
-When you update parameters for a package, action, or trigger you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
+When you update trigger parameters (Note: this is different than trigger feed parameters) that use the `--trigger-parameter` or `--param-file` option, you must specify all previously created parameters. Otherwise, the previously created parameters are removed.  For more information, see [Create trigger](#cli_trigger_create).
 {: important}
 
 ```

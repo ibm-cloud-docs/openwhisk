@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-30"
+lastupdated: "2020-07-02"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -232,7 +232,7 @@ The following attributes are available for segmenting all of the metrics previou
 | Attribute | Attribute Name | Attribute Description |
 |-----------|----------------|-----------------------|
 | `Cloud Type` | `ibm_ctype` | The cloud type, which is always set to `bluemix`. |
-| `Location` | `ibm_location` | The location of the monitored resource. Possible values are `region`, `data center`, or `global`. |
+| `Location` | `ibm_location` | The region of the monitored resource. Possible regions include `us-south`, `eu-de`, or `au-syd`. |
 | `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
 {: caption="Table 13: Global attributes" caption-side="top"}
 

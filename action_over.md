@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-30"
+lastupdated: "2020-07-08"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -46,7 +46,7 @@ Yes! You can use actions to call other actions, or you can string actions togeth
 
 **What is a sequence?**
 
-A set of actions can be chained together into a sequence without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events. For more information about sequences, see [Creating sequences]((/docs/openwhisk?topic=openwhisk-sequences).
+A set of actions can be chained together into a sequence without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events. For more information about sequences, see [Creating sequences](/docs/openwhisk?topic=openwhisk-sequences).
 
 **What is a web action?**
 
