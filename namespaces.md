@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-07-17"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -40,7 +40,7 @@ The fully qualified name of an entity is `/<namespace_ID>/<package_name>/<entity
 ### What happens when I create a namespace?
 
 Namespaces that are created within {{site.data.keyword.openwhisk_short}} are identified as an IAM service instance.
-When you create a namespace, you can specify the [resource group](/docs/resources?topic=resources-rgs) in which to add the service instance.
+When you create a namespace, you can specify the [resource group](/docs/account?topic=account-rgs) in which to add the service instance.
 
 When you create a namespace, the following components are created:
 
@@ -159,7 +159,7 @@ You can update the name or description of the namespace from the **Namespace Set
 You can create an IAM-managed namespace with the CLI.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
+1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/account?topic=account-rgs) yet, you can target the `default` group.
 
   ```
   ibmcloud target -g default
@@ -244,7 +244,7 @@ After you set a property, such as the `--namespace` property, it is retained unt
 Create your IAM-managed namespace with the API.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_group_create) yet, you can target the `default` group.
+1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/account?topic=account-rgs) yet, you can target the `default` group.
 
   ```
   ibmcloud target -g default
@@ -395,14 +395,14 @@ For example, to target an IAM namespace called `playground`,
 Actions typically call other {{site.data.keyword.cloud_notm}} resources and services that require appropriate authentication. If these services are IAM-enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
 {: shortdesc}
 
-As described in [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles by using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/iam?topic=iam-serviceids#serviceids).
+As described in [Managing IAM access](/docs/account?topic=account-userroles), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles by using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/account?topic=account-serviceids).
 
 At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
 ## Next steps
 {: #namespaces_next}
 
-Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/iam?topic=iam-iamapikeysforservices).
+Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/account?topic=account-manapikey).
 
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=openwhisk-iam). 
 

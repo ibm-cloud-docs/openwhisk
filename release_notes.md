@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-10"
+lastupdated: "2020-07-17"
 
 keywords: release notes, functions
 
@@ -35,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 16 July 2020 | <ul><li> Changes for Functions CLI version 1.0.44. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 | 10 July 2020 | <ul><li> Changes for Functions CLI version 1.0.43. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Additional events and information are available for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |
 {: caption="Changes for July 2020" caption-side="top"}
 

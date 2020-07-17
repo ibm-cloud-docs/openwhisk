@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-07-17"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -432,7 +432,7 @@ The action environment contains several environment variables that are specific 
 | `__OW_IAM_API_URL` | The service endpoint used for IAM operations, such as getting a token from API key. This variable is only available for IAM-enabled namespaces. |
 | `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=openwhisk-namespaces#namespace-access) for usage. |
 | `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
-| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/resources?topic=resources-crn). The CRN is only available for IAM-enabled namespaces. |
+| `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/account?topic=account-crn). The CRN is only available for IAM-enabled namespaces. |
 | `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the logs in [LogDNA](/docs/openwhisk?topic=openwhisk-logs#logs_logdna) can be filtered for a specific transaction. |
 
 ### Incorporating action environment variables in your app

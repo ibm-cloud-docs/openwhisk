@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-07-17"
 
 keywords: access policies, iam, roles, functions
 
@@ -37,7 +37,7 @@ In order for others to work with entities in your namespace, you must to set the
 
 The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles).
 
-Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/iam?topic=iam-iamoverview){: external} or the [Best practices for assigning access](/docs/iam?topic=iam-account_setup){: external}.
+Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/account?topic=account-iamoverview){: external} or the [Best practices for assigning access](/docs/account?topic=account-account_setup){: external}.
 {: tip}
 
 ## How do I set IAM policies so that others can create namespaces in my account?
@@ -63,7 +63,7 @@ You can see which access policies have been set for you in the [{{site.data.keyw
 The following table details the actions that are mapped to platform management roles. Platform management roles enable users to perform tasks on service resources at the platform level. For example, assign user access for the service, create or delete service IDs, create instances, and bind instances to applications.
 {: shortdesc}
 
-For more information about how to assign, edit, review, or delete resource access policies, see [Managing IAM access](/docs/iam?topic=iam-iammanidaccser#iammanidaccser){: external}.
+For more information about how to assign, edit, review, or delete resource access policies, see [IAM access](/docs/account?topic=account-userroles){: external}.
 {: tip}
 
 <table>
@@ -93,7 +93,7 @@ For more information about how to assign, edit, review, or delete resource acces
 Service-specific roles determine the scope of an access policy within a specific service. For {{site.data.keyword.openwhisk_short}}, the roles can apply to a users ability to use the service, such as accessing the console or performing API calls.
 {: shortdesc}
 
-Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role has additional permissions. To see the general permissions for each role, check out [Service access roles](/docs/iam?topic=iam-userroles#service_access_roles){: external}.
+Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role has additional permissions. To see the general permissions for each role, check out [Service access roles](/docs/account?topic=account-userroles#service_access_roles){: external}.
 
 To see which roles are required to perform each operation, check out the following table:
 
@@ -202,7 +202,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
     </tr>
     <tr>
       <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
-      <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/iam?topic=iam-userroles#service_access_roles).</td>
+      <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/account?topic=account-userroles#service_access_roles).</td>
     </tr>
     <tr>
       <td>`--service-name` <code>&lt;other_service_name&gt;</code></td>
@@ -215,7 +215,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
   </tbody>
 </table>
 
-For more information, see the [`service-policy-create`](/docs/cli?topic=cli-ibmcloud_commands_iam#ibmcloud_iam_service_policy_create) command reference.
+For more information, see the [`service-policy-create`](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
 {: note}
 
 **Next steps**

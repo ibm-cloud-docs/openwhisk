@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-07-17"
 
 keywords: services, serverless, functions
 
@@ -54,7 +54,7 @@ Bind any {{site.data.keyword.cloud_notm}} service to any action. When a service 
 You can bind only one instance of a service at a time and you cannot bind multiple instances of the same service to an action or package. You can bind a service to an individual action or you can bind a service to a package and then all actions that are contained in that package are bound to that service.
 {: note}
 
-Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) and [define credentials](/docs/resources?topic=resources-externalapp#externalapp) for the service that you want to bind to the action.
+Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) and [define credentials](/docs/account?topic=account-externalapp#externalapp) for the service that you want to bind to the action.
 
 1. Get the list of available service keys of services that you want to bind to an action or package.
 

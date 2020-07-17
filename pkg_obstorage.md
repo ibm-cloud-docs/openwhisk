@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-07-17"
 
 keywords: object storage, bucket, package, functions
 
@@ -390,7 +390,7 @@ You can create an access policy at either [the service level or the bucket level
 
 | Setting an IAM access policy with the CLI |
 |:-----------------|
-| <p><ol><li> Copy the following command and replace the variables.<p><pre class="pre"><code> ibmcloud iam service-policy-create &lt;service-id-name&gt;</br> --roles &lt;role&gt;</br> --service-name cloud-object-storage</br> --service-instance &lt;resource-instance-id&gt;</br> --region global</br> --resource-type bucket</br> --resource &lt;bucket-name&gt; </code></pre></p></li><li> Replace `service-id-name` with the name of your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace `role` with the [IAM role](/docs/iam?topic=iam-userroles) you want to assign to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> (Optional) Include the `--resource-type bucket` and `--resource <bucket-name>` flags to limit access to a specific bucket. If you do not include these flags, access is granted at the service level.</li><li>Replace `<bucket-name>.` with the name of your bucket.</li></ol></p> |
+| <p><ol><li> Copy the following command and replace the variables.<p><pre class="pre"><code> ibmcloud iam service-policy-create &lt;service-id-name&gt;</br> --roles &lt;role&gt;</br> --service-name cloud-object-storage</br> --service-instance &lt;resource-instance-id&gt;</br> --region global</br> --resource-type bucket</br> --resource &lt;bucket-name&gt; </code></pre></p></li><li> Replace `service-id-name` with the name of your {{site.data.keyword.openwhisk_short}} namespace.</li><li> Replace `role` with the [IAM role](/docs/account?topic=account-userroles) you want to assign to your {{site.data.keyword.openwhisk_short}} namespace.</li><li> (Optional) Include the `--resource-type bucket` and `--resource <bucket-name>` flags to limit access to a specific bucket. If you do not include these flags, access is granted at the service level.</li><li>Replace `<bucket-name>.` with the name of your bucket.</li></ol></p> |
 {: caption="Setting an IAM access policy with the CLI." caption-side="top"}
 {: #iam-2}
 {: tab-title="CLI"}

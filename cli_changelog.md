@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-08"
+lastupdated: "2020-07-17"
 
 keywords: cli, functions
 
@@ -32,6 +32,7 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.44 | 16 July 2020 | <ul><li>Fixed a bug associated with namespace target command and improved its error message.</li></ul>
 | 1.0.43 | 8 July 2020 | <ul><li>You can target an IAM namespace without first targetting an `org` and `space`.</li><li>Updated the default version for Golang actions to Golang version 1.13.</li></ul>
 | 1.0.40 | 30 May 2020 | <ul><li>Added new `ibmcloud fn namespace target` command to allow users to target any IAM or CF based namespaces.</li></ul><ul><li>Added print out information to notify users the region under which namespaces are listed when users issue `ibmcloud fn namespace list` command.</li></ul><ul><li>Disallow users to set apihost using `ibmcloud fn property set --apihost` command.</li></ul>|
 | 1.0.39 | 22 April 2020 | <ul><li>Fixed a bug related to `wsk deploy` actions in IAM namespaces.</li></ul> |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-09"
+lastupdated: "2020-07-15"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -172,7 +172,7 @@ To find the unique ID of a request, look at the `requestData.requestId` value th
 
 The `requestData` field contains the name of the namespace entity such as action, package, trigger, or rule for which the event is generated. This is named according to the entity, for example, the name `requestData.actionName` is used for actions. 
 
-Additionally, the `requestData` field contains information about the `userAgent`. If the action was initiated through the CLI, this field starts with `CloudFunctions-Plugin`, if it is initiated through the Cloud Console (UI), the value is `IBM Cloud Functions UI`.   
+Additionally, the `initiator.host.agent` field contains information about the user agent that sent the request. If the action was initiated through the CLI, this field starts with `CloudFunctions-Plugin`, if it is initiated through the Cloud Console (UI), the value is `IBM Cloud Functions UI`.   
 
 **Getting information for failures**
 
