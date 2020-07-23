@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-07-23"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -429,6 +429,20 @@ If your app code is larger than 48 MB, you can combine this method with [Packagi
 
 For more information, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
 
+### Packaging your app within a custom Docker image
+{: #packaging_docker_skeleton}
+When to use this method:
+
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) and your app code, even when compressed into a .zip is still larger than 48 MB. If this is the case, you can install those dependencies into a custom Docker image and include your app code in the `action/exec` folder of the Docker skeleton. You can then specify your custom Docker image when you deploy you app in {{site.data.keyword.openwhisk_short}}. During deployment, you do not need to specify for you app code. Note that only public Docker images are supported.
+
+**Example command**
+
+```
+ibmcloud fn action create <action_name> --docker <dockerhub_username>/<repo_name>:<tag_name>
+```
+{: pre}
+
+For more information, see [Packaging your app within a custom Docker image](#deploying-an-action-with-a-custom-docker-image).
 
 ## Packaging Python code
 {: #prep_python}

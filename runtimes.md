@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-25"
+lastupdated: "2020-07-23"
 
 keywords: runtimes, support, functions
 
@@ -319,10 +319,11 @@ Docker actions run a user-supplied executable in a Docker container. You can inc
 {{site.data.keyword.openwhisk_short}} actions can be created by using public images on from Docker Hub.
 {: note}
 
+### Docker skeleton 
 
+You can use the `openwhisk/dockerskeleton` image to deploy your action. You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
 
-For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker).
-
+For more information, see [Creating actions from binaries](/docs/openwhisk?topic=openwhisk-actions#actions_create_binaries).
 
 ## More runtime support
 

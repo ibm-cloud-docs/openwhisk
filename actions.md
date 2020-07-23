@@ -2,7 +2,8 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-17"
+
+lastupdated: "2020-07-23"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -59,17 +60,6 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
   ok: created action hello
   ```
   {: screen}
-
-  Tips:
-  - To save on cost, you can set limits.
-      - To set a limit for memory usage, include `--memory <value>` with your create command, where the value is in megabytes.
-      - To set a timeout, include `--timeout <value>` with your create command, where the value is in milliseconds.
-  - If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
-
-      ```
-      ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
-      ```
-      {: pre}
   
 2. Verify that the action is in your actions list.
 
@@ -85,6 +75,18 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
   hello       private
   ```
   {: screen}
+  
+Tips:
+
+- To save on cost, you can set limits.
+    - To set a limit for memory usage, include `--memory <value>` with your create command, where the value is in megabytes.
+    - To set a timeout, include `--timeout <value>` with your create command, where the value is in milliseconds.
+- If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
+
+  ```
+  ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
+  ```
+  {: pre}
 
 ### Combining app files and Docker images to create actions
 {: #actions_combine_app}
@@ -102,8 +104,6 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
 ## Creating actions from the console
 {: #actions_create_ui}
 
-{: shortdesc}
-
 1. From the [IBM Cloud Functions Create ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/create) page, click **Create Action**.
   
   1. Specify a name for your action. Action names must be unique within namespaces.
@@ -114,6 +114,35 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
 2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
 
 From the Actions page, you can add parameters, change the runtime, create endpoints, and more.
+
+## Creating actions from binaries
+{: #actions_create_binaries}
+
+You can create  and deploy an executable that runs inside the standard Docker action SDK as an action. By creating this  types of action, you can develop using Rust or even C and C++, allowing you to use the right language for the task at hand while building complex serverless applications. These types of actions can also be created as [web actions](/docs/openwhisk?topic=openwhisk-actions_web).
+{: shortdesc}
+
+The executable must conform to the following conventions:
+
+- The program can accept only a single command line argument as input. The argument is a JSON object that is encoded as a string. The object represents the input argument to the function.
+
+- The program must return a JSON object as a JSON formatted string, sent to `stdout` as the final log line before the program completes.
+
+- The program can also log to `stdout` and `stderr`.
+
+- The program must be called `exec` and should be self-contained or all dependencies must be packaged with it.
+
+To create your action from an executable, use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton` when running the `create action` command. 
+
+1. When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system.
+2. Create a Docker action that receives the executable as initialization data. Compress your app file and deploy it. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument in the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+
+**Example**
+```
+ibmcloud fn action create <action_name> exec.zip --native
+```
+{: pre}
+
+For more information about creating actions with Docker images, see [Preparing apps in Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker).
 
 ## Updating code or runtimes in actions
 {: #actions_update}
