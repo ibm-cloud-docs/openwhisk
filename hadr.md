@@ -32,7 +32,7 @@ This chapter helps you to understand the high availability features of the {{sit
 
 High availability is a core discipline in an IT infrastructure to keep your resources healthy and your app workloads up and running, even after a partial or a full site failure. The main purpose of high availability is to eliminate potential points of failure in an IT infrastructure.
 
-**Regions and Service Levels**
+**Regions and Service Level**
 
 All IBM Cloud® general availability (GA) services have a Service Level Agreement of 99.99% availability. IBM® Cloud Functions is a GA service that is offered in five regions: US South, US East, Germany, Tokyo, and the United Kingdom. Each location has three different data centers for redundancy. The data for each location is kept in the three data centers near that location. If all the data centers in a location fail, the Cloud Functions service for that location becomes unavailable.
 
