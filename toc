@@ -22,8 +22,6 @@ IBM Cloud Functions
         [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
         [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
         [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
-    
-    hadr.md
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -86,6 +84,7 @@ IBM Cloud Functions
         activity_tracker.md
         
     monitor-sysdig.md
+    hadr.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}

@@ -2,8 +2,7 @@
 
 copyright:
   years: 2019, 2020
-
-lastupdated: "2020-07-23"
+lastupdated: "2020-07-30"
 
 keywords: release notes, functions
 
@@ -36,6 +35,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
+| 30 July 2020 | <ul><li> Updated information for [High availability and disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr).</li></ul> |
 | 23 July 2020 | <ul><li> New information for actions that use binaries. See [Creating actions from binaries](/docs/openwhisk?topic=openwhisk-actions#actions_create_binaries).</li></ul> |
 | 16 July 2020 | <ul><li> Changes for Functions CLI version 1.0.44. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 | 10 July 2020 | <ul><li> Changes for Functions CLI version 1.0.43. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Additional events and information are available for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |

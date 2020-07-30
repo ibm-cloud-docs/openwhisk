@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-07-29"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -96,16 +96,16 @@ Given the central role of the Controller (hence the name), the following steps a
 ### 3. Authentication and Authorization: CouchDB
 {: #about_auth}
 
-Now the Controller verifies who you are (*Authentication*) and whether you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
+Now the controller verifies who you are (*Authentication*) and whether you have the required privileges to do what you want to do with that entity (*Authorization*). The credentials that are included in the request are verified against the so-called **subjects** database in a **CouchDB** instance.
 
-In this case, the controller checks to see that you exist in the Functions database and determines if you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
+In this case, the controller verifies that you exist in the Functions database and determines whether you have the necessary privilege to invoke the action `myAction`, which is assumed to be an action in a namespace that you own. Thus, you have the authorization to invoke the action.
 
 As everything is sound, the gate opens for the next stage of processing.
 
 ### 4. Getting the action: CouchDB… again
 {: #about_couchdb}
 
-After determining that you are authenticated and authorized to invoke the action, the Controller loads the action (in this case `myAction`) from the **whisks** database in CouchDB.
+After the controller determines that you are authenticated and authorized to invoke the action, it loads the action (in this case `myAction`) from the **whisks** database in CouchDB.
 
 The record of the action contains mainly the code to run and any default parameters that you want to pass to your action, merged with the parameters that you included in the actual invoke request. The record also contains the resource restrictions that are imposed on it in execution, such as the amount of memory that the action is allowed to consume.
 
@@ -119,16 +119,16 @@ The Load Balancer, which is part of the Controller, has a global view of the exe
 ### 6. Please form a line: Kafka
 {: #about_kafka}
 
-The Controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *OutOfMemoryException*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
+The controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *OutOfMemoryException*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
 
-To get the action invoked, the Controller publishes a message to **Kafka**, a high-throughput, distributed, publish-subscribe messaging system. The message contains the action to invoke and the parameters to pass to that action (in this case none). This message is addressed to the Invoker.
+To get the action invoked, the controller publishes a message to **Kafka**, a high-throughput, distributed, publish-subscribe messaging system. The message contains the action to invoke and the parameters to pass to that action (in this case none). This message is addressed to the Invoker.
 
-After confirming that the message is received, Kafka responds to the HTTP request with an **Activation ID**. You can use this ID to get access to the results of this specific invocation. This is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
+After Kafka confirms that the message is received, it responds to the HTTP request with an **Activation ID**. You can use this ID to get access to the results of this specific invocation. This is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
 
 ### 7. Invoking the code: Invoker
 {: #about_invoker}
 
-The **Invoker** is the heart of {{site.data.keyword.openwhisk}} because the Invoker actually implements the action. To run actions in an isolated and safe way, **Docker** is used to set up a self-encapsulated environment (called a *container*) for each action that is invoked. After the container is created, the code is injected and then run with the parameters that were passed to it. When the results are returned, the container is destroyed. Performance optimizations can be done at this stage to reduce maintenance requirements, and make low response times possible.
+The **Invoker** is the heart of {{site.data.keyword.openwhisk}} because the Invoker implements the action. To run actions in an isolated and safe way, **Docker** is used to set up a self-encapsulated environment (called a *container*) for each action that is invoked. After the container is created, the code is injected and then run with the parameters that were passed to it. When the results are returned, the container is destroyed. Performance optimizations can be done at this stage to reduce maintenance requirements, and make low response times possible.
 
 In this case, with a *Node.js* based action at hand, the Invoker starts a Node.js container. Then, it injects the code from `myAction`, runs it with no parameters, extracts the result, saves the logs, and destroys the Node.js container.
 
@@ -157,7 +157,7 @@ In this specific case, the Invoker gets the resulting JSON object back from the 
 ```
 {: codeblock}
 
-Note how the record contains both the returned result and the logs that were written. The record also contains the start and end time of the invocation of the action. Activation records contain more fields, but have been stripped down in this example for simplicity.
+Note how the record contains both the returned result and the logs that were written. The record also contains the start and end time of the invocation of the action. Activation records contain more fields, but this examples is stripped down for simplicity.
 
 Now you can use the REST API (start from step 1 again) to obtain your activation and thus the result of your action. To do so, run this command:
 
@@ -170,5 +170,3 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 {: #about_summary}
 
 You can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 
-
-

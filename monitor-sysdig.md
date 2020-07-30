@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-07-02"
+lastupdated: "2020-07-30"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -61,7 +61,7 @@ To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in
 ## Metrics available by Service Plan
 {: #metrics-by-plan}
 
-All metric names have the prefix 'ibm_functions_'.
+All metric names have the prefix `ibm_functions_`.
 
 | Metric Name |
 |-----------|

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-23"
+lastupdated: "2020-07-30"
 
 keywords: cli, functions, high availability
 
@@ -27,16 +27,26 @@ subcollection: openwhisk
 # High availability and disaster recovery
 {: #ha_dr}
 
-Understand the high availability features of the {{site.data.keyword.openwhisk}} and design your resources to meet the availability requirements that your business and customers need.
+Learn about the high availability features of the {{site.data.keyword.openwhisk}} and design your resources to meet the availability requirements that your business and customers need.
 {:shortdesc}
 
 High availability is a core discipline in an IT infrastructure to keep your resources healthy and your app workloads up and running, even after a partial or a full site failure. The main purpose of high availability is to eliminate potential points of failure in an IT infrastructure.
 
-Your global strategy is important, and you are responsible for understanding your configuration, customization, and usage of the service to best leverage the capabilities of {{site.data.keyword.cloud_notm}}. For more information, see [How does {{site.data.keyword.cloud_notm}} ensure zero downtime?](/docs/overview?topic=overview-zero-downtime#zero-downtime){: external}.
+**Regions and service level**
+
+All {{site.data.keyword.cloud_notm}} general availability (GA) services have a Service Level Agreement of 99.99% availability. {{site.data.keyword.openwhisk_short}} is a GA service that is offered in five regions: US South, US East, Germany, Tokyo, and the United Kingdom. Each location uses different availability zones for redundancy. If all the availability zones in a location fail, the {{site.data.keyword.openwhisk_short}} service for that location becomes unavailable.
+
+{{site.data.keyword.openwhisk_short}} is available only on the public cloud.
 
 **Who is responsible to set up high availability for my resources?**
 
+Your global strategy is important, and you are responsible for understanding your configuration, customization, and usage of the service to best leverage the capabilities of {{site.data.keyword.cloud_notm}}. For more information, see [How does {{site.data.keyword.cloud_notm}} ensure zero downtime?](/docs/overview?topic=overview-zero-downtime#zero-downtime){: external}.
+
 While {{site.data.keyword.openwhisk_short}} is responsible to ensure that your namespace information is available, backed up, and replicated across multiple regions so that information can be recovered after a failure, {{site.data.keyword.openwhisk_short}} does not set up high availability for any {{site.data.keyword.cloud_notm}} resources that are used by {{site.data.keyword.openwhisk_short}}. Instead, you must understand the high availability options that each resource offering provides to implement the right level of availability for your needs.
+
+See [ensure zero downtime](/docs/overview?topic=overview-zero-downtime#zero-downtime) to learn more about the high availability and disaster recovery standards in {{site.data.keyword.cloud_notm}}. You can also find information about [Service Level Agreements](/docs/overview?topic=overview-slas).
+
+The following sections contain information about high availability, disaster recovery for {{site.data.keyword.openwhisk_short}} as well as HIPAA related considerations. 
 
 ## High availability
 
@@ -45,3 +55,9 @@ While {{site.data.keyword.openwhisk_short}} is responsible to ensure that your n
 ## Disaster recovery
 
 Customer data, such as action code, is automatically synchronized between database instances in different zones. In addition, {{site.data.keyword.cloud_notm}} backs up your data by taking snapshots for use in data restoration in a disaster situation. In the case of a disaster, {{site.data.keyword.openwhisk_short}} switches over to use these snapshot backups automatically.
+
+{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such it offers compute services only. It does not backup the data that your workload (actions) processes. In order to store data, you can use separate cloud based datastores with separate disaster recovery options, which are dependent on the storage service's SLAs.
+
+## HIPAA
+
+{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such it offers only compute services. It does not offer storage options nor management of your data. Ensuring the HIPAA compliant processing of your data is subject to your storage service's operation and SLAs.
