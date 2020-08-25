@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-08"
+lastupdated: "2020-08-25"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -251,8 +251,6 @@ ok: got action hello
 }
 ```
 {: screen}
-
-
 
 ### `ibmcloud fn action invoke`
 {: #cli_action_invoke}

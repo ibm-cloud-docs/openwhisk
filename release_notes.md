@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-07-30"
+lastupdated: "2020-08-25"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: openwhisk
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## August 2020
+{: #august20}
+
+| Date | Description |
+| --------- | -------- |
+| 25 Aug 2020 | <ul><li> New troubleshooting information. See [Troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting).</li></ul> |
+{: caption="Changes for August 2020" caption-side="top"}
 
 ## July 2020
 {: #july20}

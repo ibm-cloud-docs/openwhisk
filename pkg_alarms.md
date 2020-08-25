@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-08-25"
 
 keywords: alarms, serverless, triggers, functions
 
@@ -24,7 +24,7 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Alarms
+# Alarms 
 {: #pkg_alarms}
 
 The `/whisk.system/alarms` package can be used to fire a trigger or feed at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system back up every hour.
@@ -53,6 +53,8 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 <table>
 <caption>Understanding the <code>trigger create fireOnce</code> command components</caption>
 <thead>
+<col width="40%">
+<col width="60%">
 <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>trigger create fireOnce</code> command components</th>
 </thead>
 <tbody>
@@ -103,6 +105,8 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 <table>
 <caption>Understanding the <code>trigger create interval</code> command components</caption>
 <thead>
+<col width="40%">
+<col width="60%">
 <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>trigger create interval</code> command components</th>
 </thead>
 <tbody>
@@ -157,6 +161,8 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <table>
 <caption>Understanding the <code>trigger create periodic</code> command components</caption>
 <thead>
+<col width="40%">
+<col width="60%">
 <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>trigger create periodic</code> command components</th>
 </thead>
 <tbody>

@@ -2,11 +2,11 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-07-30"
+lastupdated: "2020-08-25"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
