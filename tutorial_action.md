@@ -2,11 +2,14 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-06-30"
+lastupdated: "2020-08-28"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
 subcollection: openwhisk
+
+content-type: tutorial
+completion-time: 10m 
 
 ---
 
@@ -23,9 +26,12 @@ subcollection: openwhisk
 {:deprecated: .deprecated}
 {:download: .download}
 {:gif: data-image-type='gif'}
+{:step: data-tutorial-type='step'}
 
 # Tutorial: Calling an action from another action
 {: #tutorial_action}
+{: toc-content-type="tutorial"}
+{: toc-completion-time="10m"}
 
 In this tutorial, learn how to call an action from another action by creating a custom sequence.  This tutorial uses Node.js 10, but the general principles can be applied to other runtimes. 
 {: shortdesc}
