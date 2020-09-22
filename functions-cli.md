@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-09-21"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -48,7 +48,7 @@ Create an action.
 {: shortdec}
 
 ```
-ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
+ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--memory MEMORY_LIMIT] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
 
@@ -82,11 +82,11 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Node.js</td>
-    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+    <td><code>nodejs:10</code> (default)</td>
   </tr>
   <tr>
     <td>Python</td>
-    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
+    <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
   </tr>
   <tr>
     <td>Swift</td>
@@ -117,6 +117,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
+
        </dd>
 
 <dt>`--logsize` `LIMIT`, `-l` `LIMIT`</dt>
@@ -124,6 +125,9 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
 <dt>`--main` `ENTRY_METHOD_NAME`</dt>
 <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully qualified method.</dd>
+
+<dt>`--memory` `MEMORY_LIMIT`</dt>
+<dd>The maximum memory limit in MB for your action. The default is 256 MB.
 
 <dt>`--native`</dt>
 <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
@@ -333,7 +337,7 @@ When you update parameters for a package or action, you must specify all previou
 {: important}
 
 ```
-ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
+ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--memory MEMORY_LIMIT] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
 
@@ -367,11 +371,11 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Node.js</td>
-    <td> <code>nodejs:10</code> (default), <code>nodejs:8</code></td>
+    <td><code>nodejs:10</code> (default)</td>
   </tr>
   <tr>
     <td>Python</td>
-    <td><code>python:3.7</code>, <code>python:3.6</code>, <code>python:2</code> (default)</td>
+    <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
   </tr>
   <tr>
     <td>Swift</td>
@@ -402,6 +406,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
+
       </dd>
 
 <dt>`--logsize` `LIMIT`, `-l` `LIMIT`</dt>
@@ -409,6 +414,9 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
 <dt>`--main ENTRY_METHOD_NAME`</dt>
 <dd>If the action's entry method is not `main`, specify the custom name. This flag is required when the entry method is not `main`. For some runtimes, such as Java, the name must be the fully qualified method.</dd>
+
+<dt>`--memory MEMORY_LIMIT`</dt>
+<dd>The maximum memory limit in MB for your action. The default is 256 MB.
 
 <dt>`--native`</dt>
 <dd>You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using th argument, you can create and deploy an executable that runs inside the standard Docker action SDK.

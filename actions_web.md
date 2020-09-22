@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-29"
+lastupdated: "2020-09-18"
 
 keywords: web actions, serverless, functions
 
@@ -875,7 +875,7 @@ curl https://<apihost>/api/v1/web/<namespace>/demo/hello.json?name=Jane -X POST 
 ```
 {: screen}
 
-{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala){: external} framework to [determine which content types are binary files and which are plain text](https://doc.akka.io/api/akka-http/10.0.4/akka/http/scaladsl/model/MediaTypes$.html){: external}.
+{{site.data.keyword.openwhisk_short}} uses the [Akka HTTP](https://doc.akka.io/docs/akka-http/current/?language=scala){: external} framework to [determine which content types are binary files and which are plain text](https://doc.akka.io/api/akka-http/10.0/akka/http/scaladsl/model/MediaTypes$.html){: external}.
 
 ### Enabling raw HTTP handling
 {: #actions_web_raw_enable}

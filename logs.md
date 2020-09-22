@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-09-22"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -35,6 +35,8 @@ Logging is automatically enabled in {{site.data.keyword.openwhisk}} to help you 
 
 {{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. To get information about when actions were invoked and what the output was, it can be useful to monitor the action logs.
 {: shortdesc}
+
+Activation data is only accessible through the {{site.data.keyword.openwhisk_short}} API (CLI or REST) for 24 hours after the action finishes processing. In addition, the activation data is also sent to LogDNA and can be accessed there for longer period of time, depending on the service plan that has been chosen for the LogDNA instance. For more information, see [LogDNA details](#logs_logdna).
 
 You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of actions as they are invoked.
 
@@ -73,6 +75,9 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 {: #activation_details}
 
 {{site.data.keyword.openwhisk_short}} actions can be invoked by other users, in response to various events, or as part of an action sequence. When an action is invoked, an activation record is created for that invocation. To get information about the result of the action invocation, you can get details about activations.
+
+Activation data is only accessible through the {{site.data.keyword.openwhisk_short}} API (CLI or REST) for 24 hours after the action finishes processing. In addition, the activation data is also sent to LogDNA and can be accessed there for a longer period of time, depending on the service plan that you chose for the LogDNA instance. For more information, see [Viewing logs in {{site.data.keyword.la_full_notm}}](#logs_logdna).
+{: note}
 
 You can get all activation record IDs in a namespace by running the following command.
 
@@ -203,7 +208,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 </tbody></table>
 
-## Viewing logs in IBM Log Analysis with LogDNA
+## Viewing logs in {{site.data.keyword.la_full_notm}}
 {: #logs_logdna}
 
 Action logs are forwarded to an {{site.data.keyword.loganalysislong_notm}} service where they are indexed, enabling full-text search through all generated messages and convenient querying based on specific fields.
@@ -215,25 +220,25 @@ To get started, complete the following steps.
 
 2. Configure the {{site.data.keyword.loganalysislong_notm}} with LogDNA instance to receive platform service logs.
 
-### Configure IBM Log Analysis with LogDNA
+### Configure {{site.data.keyword.la_full_notm}}
 {: #logs_configure_logdna}
 
 In order to use the [{{site.data.keyword.loganalysislong_notm}} with LogDNA service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. See the [Getting started tutorial](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-getting-started){: external} for details on the various options.
 
-To enable an instance receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-config_svc_logs){: external} in LogDNA service.
+To enable an instance that is receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/Log-Analysis-with-LogDNA?topic=Log-Analysis-with-LogDNA-config_svc_logs){: external} in LogDNA service.
 
-{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.loganalysislong_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. This means that actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
+{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.loganalysislong_notm}} with LogDNA service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. Actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`.
 
 ### Querying logs
 {: #logs_query}
 
 To view and query your action logs, navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/){: external} and select a namespace. 
 
-1. In the left-hand navigation, click **Logs** to launch the [{{site.data.keyword.loganalysislong_notm}} with LogDNA](https://cloud.ibm.com/observe/logging){:external} page.
+1. In the navigation, click **Logs** to launch the [{{site.data.keyword.loganalysislong_notm}} with LogDNA](https://cloud.ibm.com/observe/logging){:external} page.
 2. Click **View LogDNA** of the appropriate instance, see [Configure LogDNA](#logs_configure_logdna).
-3. Use the LogDNA search capabilities to filter for certain namespaces and/or actions. For more information on searching and filtering logs, see the [LogDNA Search Guide](https://docs.logdna.com/docs/search){: external}.
+3. Use the LogDNA search capabilities to filter for certain namespaces and actions. For more information about searching and filtering logs, see the [LogDNA Search Guide](https://docs.logdna.com/docs/search){: external}.
 
-Logs produced by the action code will have the field `type:user_log`.
+Logs produced by the action code include the field `type:user_log`.
 {: note}
 
 ### Querying activation metadata

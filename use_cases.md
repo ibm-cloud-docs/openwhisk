@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-16"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, serverless, functions
 
@@ -87,4 +87,4 @@ A sample application, [Dark vision](https://github.com/IBM-cloud/openwhisk-darkv
 ## Event processing with Kafka or {{site.data.keyword.messagehub}}
 {: #use_cases_events}
 
-{{site.data.keyword.openwhisk_short}} is ideally to be used in combination with Kafka, {{site.data.keyword.messagehub_full}} (Kafka based), and other messaging systems. The event driven nature of those systems requires an event driven runtime to process messages. The runtime can apply business logic to those messages, which is exactly what {{site.data.keyword.openwhisk_short}} provides, with its feeds, triggers, and actions. Kafka and {{site.data.keyword.messagehub}} are often used for high and unpredictable workload volumes, and require that consumers of those messages need to be scalable on a moment's notice. This situation is, once again, iceal for {{site.data.keyword.openwhisk_short}}. {{site.data.keyword.openwhisk_short}} has built-in capability to consume messages as well as publish messages that are provided in the [Event Streams](/docs/openwhisk?topic=openwhisk-pkg_event_streams) package.
+{{site.data.keyword.openwhisk_short}} is ideally to be used in combination with Kafka, {{site.data.keyword.messagehub_full}} (Kafka based), and other messaging systems. The event driven nature of those systems requires an event driven runtime to process messages. The runtime can apply business logic to those messages, which is exactly what {{site.data.keyword.openwhisk_short}} provides, with its feeds, triggers, and actions. Kafka and {{site.data.keyword.messagehub}} are often used for high and unpredictable workload volumes, and require that consumers of those messages need to be scalable on a moment's notice. This situation is, once again, ideal for {{site.data.keyword.openwhisk_short}}. {{site.data.keyword.openwhisk_short}} has built-in capability to consume messages as well as publish messages that are provided in the [Event Streams](/docs/openwhisk?topic=openwhisk-pkg_event_streams) package.

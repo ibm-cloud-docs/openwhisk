@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-09-22"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Cloudant
 {: #pkg_cloudant}
 
-With the pre-installed `/whisk.system/cloudant` package, you can work with a [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
+With the preinstalled `/whisk.system/cloudant` package, you can work with an [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
 {: shortdesc}
 
 

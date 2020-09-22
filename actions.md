@@ -2,8 +2,7 @@
 
 copyright:
   years: 2017, 2020
-
-lastupdated: "2020-07-23"
+lastupdated: "2020-09-22"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -137,6 +136,7 @@ To create your action from an executable, use the `--native` argument as shortha
 2. Create a Docker action that receives the executable as initialization data. Compress your app file and deploy it. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument in the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
 
 **Example**
+
 ```
 ibmcloud fn action create <action_name> exec.zip --native
 ```
@@ -151,6 +151,12 @@ You can update the code in your app or to migrate to a newer version of a runtim
 {: shortdesc}
 
 When you migrate to a new runtime version, you might need to change the code in your app to comply with the new runtime version. In most cases, the runtime versions are compatible.
+{: tip}
+
+When an action is using a disabled runtime, the action can only be read or deleted; no update is possible.
+In this case, you can view the original action code from the console, copy it, and create a new action with the copied code.
+
+From the CLI, you can get the action code by using the [`ibmcloud fn action get <action name> --save`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and use the saved action file for `action create` by using the new runtime.
 {: tip}
 
 ### Updating actions from the CLI

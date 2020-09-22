@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-16"
 
 keywords: cognitive, serverless, functions
 
@@ -30,7 +30,7 @@ subcollection: openwhisk
 The installable {{site.data.keyword.personalityinsightsfull}} service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
 {: shortdesc}
 
-The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and, for JSON content that is timestamped, can report temporal behavior.
+The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that contains a timestamp, can report temporal behavior.
 
 * For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/personality-insights?topic=personality-insights-models).
 * For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/personality-insights?topic=personality-insights-preferences).
@@ -51,7 +51,7 @@ The {{site.data.keyword.personalityinsightsshort}} package contains the followin
 Before you install the package, you must create a {{site.data.keyword.personalityinsightsshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.personalityinsightsshort}} service instance ](https://cloud.ibm.com/catalog/services/personality_insights){: external}.
+1. [Create a {{site.data.keyword.personalityinsightsshort}} service instance](https://cloud.ibm.com/catalog/services/personality_insights){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.personalityinsightsshort}} package
@@ -150,7 +150,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 
@@ -173,7 +173,7 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
   {: note}
 
     1. Click an action from the `personality-insights-v3` package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click the **Parameters** section.
+    2. In the navigation, click the **Parameters** section.
     3. Enter a new parameter. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.personalityinsightsshort}} package

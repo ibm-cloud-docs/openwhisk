@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-09-16"
 
 keywords: troubleshooting actions, functions, help, support,
 
@@ -57,7 +57,6 @@ When a property is set, it is retained on your workstation at `<home_dir>/.bluem
 {: tsResolve}
 You might review your properties by using the `ibmcloud fn property get --all` command. You might need to run `ibmcloud fn property unset --<property>` to unset a specific property, then reset it. Or you might unset all properties by deleting the `config.json` file. This config file is re-created when you work with the service, for example, when you run `ibmcloud fn property get --all`.
 
-
 ## System limits were reached
 {: #ts_limit_reached}
 
@@ -75,6 +74,43 @@ Some limits can be increased if a business case can justify higher safety limit 
 3. Select **Technical** for the ticket type.
 4. Select **Functions** for Technical area of support.
 
+
+## Action terminates after one minute
+{: #ts_action_terminated}
+
+{: tsSymptoms}
+You are invoking an action that returns after one min with an `http code 202` and the result is only showing the activation ID.
+
+{: tsCauses}
+When invoking an action, there are two modes possible: blocking or non-blocking. The default for regular action invocations is `non-blocking` and for web actions, it is `blocking`. Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's timeout limit. At the end of the wait period (for example, after 60 sec), all invocations switch to non-blocking and instead of the result, these actions return the activation ID.
+
+**Example output**
+
+```
+{
+  "activationId": "27eca80056d54f93aca80056d5cf93b9"
+}
+```
+{: codeblock}
+
+If an invocation of a web action reaches the end of wait period, the response shows both the activation ID and the transaction ID as well as an indication that the request is returned, but the action continues to run.
+
+**Example output**
+
+```
+{
+  "activationId": "d13cfd3ce4b14f7cbcfd3ce4b11f7cce",
+  "code": "42c15dc7f450df1e9a01104de158d489",
+  "error": "Response not yet ready."
+}
+```
+{: codeblock}
+
+{: tsResolve}
+With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation) or [REST API](https://cloud.ibm.com/apidocs/functions#getactivations) documentation.
+
+For more information about blocking actions, see [Testing blocking actions](/docs/openwhisk?topic=openwhisk-test#test-block).
+
 ## Can't access private endpoint from action
 {: #ts_private_endpoint}
 
@@ -85,7 +121,7 @@ You cannot connect to a private endpoint from your action.
 The use of private endpoints from within your action code is currently not supported by {{site.data.keyword.openwhisk}}.
 
 {: tsResolve}
-With {{site.data.keyword.cloud_notm}} service endpoints, you can connect to {{site.data.keyword.cloud_notm}} services over the {{site.data.keyword.cloud_notm}} private network. However, the only integration that supports private endpoints with {{site.data.keyword.openwhisk}} is {{site.data.keyword.cos_full_notm}}. For more information, see [Object storage[(/docs/openwhisk?topic=openwhisk-pkg_obstorage). 
+With {{site.data.keyword.cloud_notm}} service endpoints, you can connect to {{site.data.keyword.cloud_notm}} services over the {{site.data.keyword.cloud_notm}} private network. However, the only integration that supports private endpoints with {{site.data.keyword.openwhisk}} is {{site.data.keyword.cos_full_notm}}. For more information, see [Object storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage). 
 
 For all other actions, you cannot set private endpoints from within your action code. To connect to services such as a database service, you must use public endpoints.
 
@@ -98,8 +134,7 @@ Still having issues with your function?
 -   To see whether {{site.data.keyword.cloud_notm}} is available, [check the {{site.data.keyword.cloud_notm}} status page](https://cloud.ibm.com/status?selected=status){: external}.
 -   Review the forums to see whether other users ran into the same issue. When you use the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development teams.
     -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} and tag your question with `ibm-cloud-functions`.
--   See [Getting help](/docs/get-support?topic=get-support-getting-customer-support#using-avatar) for more details about using the forums.
--   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support?topic=get-support-getting-customer-support).
+-   See [Getting help](/docs/get-support) for more details about using the forums.
+-   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support).
 When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
 {: tip}
-

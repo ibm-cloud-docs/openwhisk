@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-09-16"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -70,7 +70,7 @@ Do not delete service IDs or API keys.
 
 ### Are there any limitations for namespaces?
 
-The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) and [github](/docs/openwhisk?topic=openwhisk-pkg_github) are not supported for IAM-managed namespaces. 
+The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) and [GitHub](/docs/openwhisk?topic=openwhisk-pkg_github) are not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 
@@ -145,13 +145,13 @@ If you are an Administrator and want to allow other users to create namespaces, 
 Create your IAM-based namespace by using the console.
 {: shortdesc}
 
-1. From the [{{site.data.keyword.openwhisk_short}} console](https://cloud.ibm.com/functions){: external} namespace menu, select **Create Namespace**.
+1. From the [{{site.data.keyword.openwhisk_short}} console](https://cloud.ibm.com/functions){: external} namespace menu, select **Create namespace**.
 2. Enter a display name for the namespace and a short description, such as the actions or packages that you plan to create in this namespace.
 3. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource.
 4. Click **Create**.
-5. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions Namespaces**.
+5. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions namespaces**.
 
-You can update the name or description of the namespace from the **Namespace Settings** page in the {{site.data.keyword.openwhisk_short}} console.
+You can update the name or description of the namespace from the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
 ### Creating an IAM-based namespace with the CLI
 {: #namespaces_create}
@@ -234,7 +234,7 @@ You can create an IAM-managed namespace with the CLI.
   ```
   {: pre}
 
-After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set)
+After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set).
 {: note}
 
 
@@ -244,14 +244,7 @@ After you set a property, such as the `--namespace` property, it is retained unt
 Create your IAM-managed namespace with the API.
 {: shortdesc}
 
-1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/account?topic=account-rgs) yet, you can target the `default` group.
-
-  ```
-  ibmcloud target -g default
-  ```
-  {: pre}
-
-2. Create an IAM-enabled namespace.
+1. Create an IAM-enabled namespace.
 
   ```
   curl --request POST \
@@ -307,7 +300,7 @@ Create your IAM-managed namespace with the API.
   ```
   {: screen}
 
-3. Verify that your new namespace is created.
+2. Verify that your new namespace is created.
 
   ```
   curl --request GET \
@@ -349,7 +342,7 @@ Create your IAM-managed namespace with the API.
   ```
   {: screen}
 
-For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API docs](/apidocs/functions).
+For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API Docs](/apidocs/functions).
 {: tip}
 
 **Optional workflow: Creating namespaces for staging and production deployments**
@@ -402,7 +395,7 @@ At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the names
 ## Next steps
 {: #namespaces_next}
 
-Not sure how API keys and tokens fit together? Learn more in [the IAM docs](/docs/account?topic=account-manapikey).
+Not sure how API keys and tokens fit together? Learn more in [the IAM Docs](/docs/account?topic=account-manapikey).
 
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=openwhisk-iam). 
 

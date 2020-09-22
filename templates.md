@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-11"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -141,7 +141,7 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     <th colspan=2>Understanding the environment variables</th>
     </thead>
     <tbody>
-    <tr><td><code>CLOUDANT_HOSTNAME</code></td><td><code><username>.cloudantnosqldb.appdomain.cloud</code></td></tr>
+    <tr><td><code>CLOUDANT_HOSTNAME</code></td><td><code>&lt;username&gt;.cloudantnosqldb.appdomain.cloud</code></td></tr>
     <tr><td><code>CLOUDANT_USERNAME</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} username</td></tr>
     <tr><td><code>CLOUDANT_PASSWORD</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} password</td></tr>
     <tr><td><code>CLOUDANT_DATABASE</code></td><td>The name of your {{site.data.keyword.cloudant_short_notm}} database: `cats`.</td></tr>

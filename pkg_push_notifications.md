@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-22"
 
 keywords: push notifications, functions, webhooks
 
@@ -32,17 +32,17 @@ subcollection: openwhisk
 
 | Package | Availability | Description |
 | --- | --- | --- |
-| [`/whisk.system/pushnotifications`](#pkg_push_send) | Pre-installed (Not available in Tokyo) | Send push notification to one or more specified devices. |
-| [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
+| [`/whisk.system/pushnotifications`](#pkg_push_send) | Preinstalled (Not available in Tokyo) | Send push notification to one or more specified devices. |
+| [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | Preinstalled (Not available in Tokyo) | Send mobile push notifications on device events. |
 | [`/push-notifications`](#pkg_push_mobile_send) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 
 ## Sending push notifications
 {: #pkg_push_send}
 
-Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
+Learn how to create a Push Notification package binding, and send a simple push notification by using the `/whisk.system/pushnotifications` package.
 {: shortdesc}
 
-In the Tokyo region, use the installable [Push Notification](#pkg_push_mobile_send) package instead as the pre-installed package is not available.
+In the Tokyo region, use the installable [Push Notification](#pkg_push_mobile_send) package instead as the preinstalled package is not available.
 {: tip}
 
 The package includes the following actions and feeds:
@@ -52,7 +52,7 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications` | Package | `appId`, `appSecret`, `admin_url` | Work with the Push Service. |
 | `/whisk.system/pushnotifications/sendMessage` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
 
-For information about firing trigger events when there is device activity, see [Mobile push on device events](#pkg_push_mobile).
+For more information about firing trigger events when device activity occurs, see [Mobile push on device events](#pkg_push_mobile).
 
 ### Creating a Push package binding
 {: #pkg_push_create}
@@ -82,7 +82,7 @@ To create a package binding, see the following steps:
    ```
    {: pre}
 
-5. Verify that the package binding exists:
+5. Verify that the package binding exists.
 
    ```
    ibmcloud fn package list
@@ -140,9 +140,9 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `apnsLaunchImage` | The filename of an image file in the app bundle, with or without the filename extension. The image is used as the launch image when users tap the action button or move the action slider. |
 | `pnsTitleLocArgs` | Variable string values to appear in place of the format specifiers in `title-loc-key`. |
 | `apnsLocArgs` | Variable string values to appear in place of the format specifiers in `locKey`. |
-| `apnstitle` | The title of Rich Push notifications (Supported only on iOS 10 and above). |
-| `apnsSubtitle` | The subtitle of the Rich Notifications. (Supported only on iOS 10 and above).
-| `apnsAttachmentUrl` | The link to the iOS notifications media (video, audio, GIF, images - Supported only on iOS 10 and above). |
+| `apnstitle` | The title of Rich Push notifications (Supported only on iOS 10 and higher). |
+| `apnsSubtitle` | The subtitle of the Rich Notifications. (Supported only on iOS 10 and higher).
+| `apnsAttachmentUrl` | The link to the iOS notifications media (video, audio, GIF, images - Supported only on iOS 10 and higher). |
 | `fireFoxTitle` | Specifies the title to be set for the Web Push Notification. |
 | `fireFoxIconUrl` | The URL of the icon to be set for the Web Push Notification. |
 | `fireFoxTimeToLive` | This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline. |
@@ -151,7 +151,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `chromeIconUrl` | The URL of the icon to be set for the Web Push Notification. |
 | `chromeTimeToLive` | This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline. |
 | `chromePayload` | Custom JSON payload that is sent as part of the notification message. |
-| `safariTitle` | Specifies the title to be set for the Safari Push Notifications |
+| `safariTitle` | Specifies the title to be set for the Safari Push Notifications. |
 | `safariUrlArgs` | The URL arguments that need to be used with this notification. These arguments are to be provided in the form of a JSON Array. |
 | `safariAction` | The label of the action button. |
 | `chromeAppExtTitle` | Specifies the title to be set for the Web Push Notification. |
@@ -208,10 +208,10 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ## Sending push notifications on mobile device events
 {: #pkg_push_mobile}
 
-Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
+Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration or unregistration) or (subscription or unsubscription) in a specified application.
 {: shortdesc}
 
-This pre-installed package is not available in the Tokyo region.
+This preinstalled package is not available in the Tokyo region.
 {: tip}
 
 ### Parameters
@@ -269,7 +269,7 @@ To create a trigger that is fired each time a new device registers with the Push
 ## Sending push notifications or creating, updating, and deleting webhooks
 {: #pkg_push_mobile_send}
 
-The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
+The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. By using these actions, you can send a message or create, update, or delete a webhook.
 {: shortdesc}
 
 The {{site.data.keyword.mobilepushshort}} package includes the following actions:
@@ -286,11 +286,11 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobilepush-push_step_1a).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance](/docs/mobilepush?topic=mobilepush-push_step_1a).
 
-2. [Create a set of service credentials ](/docs/mobilepush?topic=mobilepush-push_step_1#push_step_1) for the Push Notifications service instance.
+2. [Create a set of service credentials](/docs/mobilepush?topic=mobilepush-push_step_1#push_step_1) for the Push Notifications service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/mobilepush?topic=mobilepush-push_step_2#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance](/docs/mobilepush?topic=mobilepush-push_step_2#push_step_2).
 
 ### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #pkg_push_mobile_install}
@@ -393,7 +393,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
-2. Using the namespace drop-down menu in the top-right corner, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
+2. Using the namespace drop-down menu, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
 
 3. Click **Install Packages**.
 
@@ -401,19 +401,19 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 5. In the Available Runtimes section, select nodeJS from the drop-down list and then click **Install**.
 
-6. After the package has been installed, search for the **push-notifications** package on the Actions page.
+6. After the package is installed, search for the **push-notifications** package on the Actions page.
 
 7. To use the actions in the **push-notifications** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
+  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions previously listed.
   * To bind service credentials to individual actions, complete the following steps in the console. **Note**: You must complete the following steps for each action that you want to use.
     1. Click an action from the **push-notifications** package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click the **Parameters** section.
+    2. In the left navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ### Send a push notification
 {: #pkg_push_mobile_sendmsg}
 
-To send a message through the push notification service using the `send-message` action, use the [ibmcloud fn action invoke] command.
+To send a message through the push notification service by using the `send-message` action, use the [ibmcloud fn action invoke] command.
 {: shortdesc}
 
 ```

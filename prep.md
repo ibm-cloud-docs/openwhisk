@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-23"
+lastupdated: "2020-09-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -146,7 +146,7 @@ function main(args) {
 
 In the examples, the following details are executed.
 * The `main` function returns a promise. The promise indicates that the activation isn't completed yet but is expected to in the future.
-* The `setTimeout()` JavaScript function waits for 2 seconds before calling the promise's callback function, which represents the asynchronous code.
+* The `setTimeout()` JavaScript function waits for 2 seconds before it calls the promise's callback function, which represents the asynchronous code.
 * The promise's callback accepts the arguments `resolve` and `reject`, which are both functions.
   * The call to `resolve()` fulfills the promise and indicates that the activation completes normally.
   * A call to `reject()` can be used to reject the promise and signal that the activation completes abnormally.
@@ -217,7 +217,6 @@ Next, [create](/docs/openwhisk?topic=openwhisk-actions), and [invoke the action]
 ### Packaging JavaScript code with the `webpack` module
 {: #prep_js_pkg}
 
-You can package an app by using a JavaScript module bundler such as [`fbpack` ](https://webpack.js.org/concepts/){: external}. When `webpack` processes your code, it recursively builds a dependency graph that includes every module that your action needs.
 {: shortdesc}
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
@@ -335,7 +334,7 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {: pre}
 
-   While most `npm` packages install JavaScript sources on `npm install`, some also install and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
+   While most `npm` packages install JavaScript sources on `npm install`, some also installation and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
    {: note}
 
 3. Create a `.zip` archive that contains all files, including all dependencies.
@@ -415,7 +414,7 @@ For more information, see [Packaging Python code with a Docker virtual environme
 ### Packaging large Python dependencies in a custom Docker image
 When to use this method:
 
-Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments). You can specify a base {{site.data.keyword.openwhisk_short}} image in your Docker file and also specify the dependencies to install when you build your Docker image. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. Note that only public Docker images are supported.
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments). You can specify a base {{site.data.keyword.openwhisk_short}} image in your Dockerfile and also specify the dependencies to install when you build your Docker image. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. Note that only public Docker images are supported.
 
 **Example command**
 
@@ -433,7 +432,7 @@ For more information, see [Packaging large Python dependencies in a custom Docke
 {: #packaging_docker_skeleton}
 When to use this method:
 
-Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) and your app code, even when compressed into a .zip is still larger than 48 MB. If this is the case, you can install those dependencies into a custom Docker image and include your app code in the `action/exec` folder of the Docker skeleton. You can then specify your custom Docker image when you deploy you app in {{site.data.keyword.openwhisk_short}}. During deployment, you do not need to specify for you app code. Note that only public Docker images are supported.
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) and your app code, even when compressed into a .zip is still larger than 48 MB. If so, you can install those dependencies into a custom Docker image and include your app code in the `action/exec` folder of the Docker skeleton. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. During deployment, you do not need to specify for your app code. Note that only public Docker images are supported.
 
 **Example command**
 
@@ -597,7 +596,8 @@ To package your app:
     ```
     {: screen}
   
-5. Stop the virtualenv.
+5. Stop the `virtualenv` virtual environment.
+
     ```
     (virtualenv) $ deactivate
     ```
@@ -632,7 +632,7 @@ To package your app:
     ```
     {: screen}
 
-8. Create an action called `jokes` using your `jokes.zip` file. You must also specify the entry point as `jokes`. You must also specify the `--kind` flag for the runtime.
+8. Create an action called `jokes` that uses your `jokes.zip` file. You must also specify the entry point as `jokes`. You must also specify the `--kind` flag for the runtime.
 
     ```
     ibmcloud fn action create jokes </path/to/file/>jokes.zip --kind python:3.7 --main joke
@@ -669,7 +669,7 @@ You can use this method to extend the functionality of {{site.data.keyword.openw
 ### Packaging Python code with a Docker virtual environment in a .zip archive
 {: #prep_python_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip` ](https://packaging.python.org/tutorials/installing-packages/){: external}.
+You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip`](https://packaging.python.org/tutorials/installing-packages/){: external}.
 
 Before you begin, [review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 
@@ -890,7 +890,7 @@ Package the app in a custom Docker image by completing the following steps.
    ```
    {: pre}
    
-   Be sure to log into Docker Hub before attempting to push your image.
+   Be sure to log in to Docker Hub before you attempt to push your image.
    {: tip}
 
 9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) that uses random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to a {{site.data.keyword.openwhisk_short}} endpoint.
@@ -1055,7 +1055,7 @@ You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://
   ```
   {: pre}
   
-  Be sure to log into Docker Hub before attempting to push your image.
+  Be sure to log in to Docker Hub before you attempt to push your image.
   {: tip}
 
 ### Deploying an action with a custom Docker image
@@ -1115,7 +1115,7 @@ When you structure your Go code, note that the expected name for the entry point
 ### Packaging multiple Go source files
 {: #prep_go_multi}
 
-You can package multiple Go source files by creating a top-level `src` directory, importing the subpackages, and then compiling.
+You can package multiple Go source files by creating a top level `src` directory, importing the subpackages, and then compiling.
 {: shortdesc}
 
 1. Create a top level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
@@ -1259,7 +1259,7 @@ Swift actions run in a Linux environment. Swift on Linux is still in development
 The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 {: shortdesc}
 
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [<code>Codable</code> ](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON ](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [<code>Codable</code> ](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
 
 **Example**
 

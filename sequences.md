@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-22"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
@@ -39,7 +39,7 @@ After you create a sequence, you can use the name of the sequence when you creat
 ## Creating a sequence from the console
 {: #actions_seq_console}
 
-Create a sequence from the console using actions that are available in your namespace or public actions.
+Create a sequence from the console that uses actions that are available in your namespace or public actions.
 {: shortdesc}
 
 **Before you begin**
@@ -51,7 +51,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 2. Click **Create Sequence**.
 
-3. Specify a name, package, and inital action for your sequence. You can choose existing actions, available in your namespace or else select a public action. Click **Create**.
+3. Specify a name, package, and initial action for your sequence. You can choose existing actions that are available in your namespace or else select a public action. Click **Create**.
 
 4. Add one or more actions to your sequence and **Save**. 
 

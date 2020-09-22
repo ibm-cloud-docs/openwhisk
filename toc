@@ -2,12 +2,11 @@
 {:topicgroup: .topicgroup}
 
 {: .toc subcollection="openwhisk" category="compute" audience="compute" href="/docs/openwhisk?topic=openwhisk-getting-started" console-page="/functions" product-page="https://www.ibm.com/cloud/functions" path="openwhisk"}
-IBM Cloud Functions
+Functions
 
     {: .navgroup id="learn"}
     getting-started.md
     [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas){: new_window}
-    [Why IBM Cloud Functions?](https://www.ibm.com/cloud/functions){: new_window}
 
     {: .topicgroup}
     About

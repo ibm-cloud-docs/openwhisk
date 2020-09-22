@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-09-18"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -36,10 +36,10 @@ The {{site.data.keyword.nlushort}} package contains the following entities. For 
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`natural-language-understanding-v1`](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding){: external} | Package | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,  |  Work with the {{site.data.keyword.nlushort}} service. |
-| [`analyze`](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding#analyze-text){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `features`, `text`, `html`, `url`, `clean`, `xpath`, `fallback_to_raw`, `return_analyzed_text`, `language`, `limit_text_characters`,  | Analyze text, HTML, or a public web page. |
-| [`delete-model`](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding#delete-model){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id`,  | Delete model. |
-| [`list-models`](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding#list-models){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, | List models. |
+| [`natural-language-understanding-v1`](https://cloud.ibm.com/apidocs/natural-language-understanding){: external} | Package | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,  |  Work with the {{site.data.keyword.nlushort}} service. |
+| [`analyze`](https://cloud.ibm.com/apidocs/natural-language-understanding#analyze-text){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `features`, `text`, `html`, `url`, `clean`, `xpath`, `fallback_to_raw`, `return_analyzed_text`, `language`, `limit_text_characters`,  | Analyze text, HTML, or a public web page. |
+| [`delete-model`](https://cloud.ibm.com/apidocs/natural-language-understanding#delete-model){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id`,  | Delete model. |
+| [`list-models`](https://cloud.ibm.com/apidocs/natural-language-understanding#list-models){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, | List models. |
 
 ## Creating a {{site.data.keyword.nlushort}} service instance
 {: #service_instance_understanding}
@@ -175,7 +175,7 @@ ibmcloud fn action invoke natural-language-understanding-v1/<action_name> -b -p 
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/natural-language-understanding/natural-language-understanding#versioning){: external}.
+All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/natural-language-understanding#versioning){: external}.
 
 This package's functions use the current version of Natural Language Understanding, 2018-03-16. Try out the `list-models` action.
 

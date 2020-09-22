@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-17"
+lastupdated: "2020-09-16"
 
 keywords: object storage, bucket, package, functions
 
@@ -321,7 +321,6 @@ You can get details of an activation by running `ibmcloud fn activation get <act
 #### Details and limits
 {: #pkg_cos_limits}
 Triggers created with `/whisk.system/cos` package have the following limitations.
-* The trigger is available in the `us-east`, `us-south`, and `eu-gb` regions.
 * Trigger ordering is not guaranteed. Trigger firing sequence may not match bucket update sequence.
 * The trigger only fires on successful bucket events.
 * Automatic trigger disablement - permissions change, COS bucket authentication changes, namespace authentication.

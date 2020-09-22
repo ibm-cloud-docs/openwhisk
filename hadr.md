@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-08-28"
+lastupdated: "2020-09-16"
 
 keywords: cli, functions, high availability
 
@@ -50,7 +50,7 @@ The following sections contain information about high availability, disaster rec
 
 ## High availability
 
-{{site.data.keyword.openwhisk_short}} is highly available within multiple [{{site.data.keyword.cloud_notm}} regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions). {{site.data.keyword.openwhisk_short}} supports high availability to avoid a single point of failure. This service achieves high availability automatically and transparently through the multi-zone region (MZR) feature provided by {{site.data.keyword.cloud_notm}}.
+{{site.data.keyword.openwhisk_short}} is highly available within multiple [{{site.data.keyword.cloud_notm}} regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions). {{site.data.keyword.openwhisk_short}} supports high availability to avoid a single point of failure. This service achieves high availability automatically and transparently through the multi-zone region (`MZR`) feature provided by {{site.data.keyword.cloud_notm}}.
 
 ## Disaster recovery
 
@@ -69,8 +69,8 @@ The likelihood of a region-wide disaster is low. However, if a disaster happens,
 
 Because there are no active compute resources in Amsterdam for {{site.data.keyword.openwhisk}}, the failover period in the EU Central region might be longer than in other regions.
 
-{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such it offers only compute services. It does not back up the data that your workload (actions) processes. In order to store data, you can use separate cloud-based datastores with separate disaster recovery options, which depends on the storage service's SLAs.
+{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it only offers compute services. It does not back up the data that your workload (actions) processes. In order to store data, you can use separate cloud-based data stores with separate disaster recovery options, which depend on the storage service's SLAs.
 
 ## HIPAA
 
-{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such it offers only compute services. It does not offer storage options nor management of your data. Ensuring the HIPAA-compliant processing of your data is subject to your storage service's operation and SLAs.
+{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it only offers only compute services. It does not offer storage options nor management of your data. Ensuring the HIPAA-compliant processing of your data is subject to your storage service's operation and SLAs.
