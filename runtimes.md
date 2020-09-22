@@ -24,7 +24,7 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Runtimes
+# Runtimes 
 {: #runtimes}
 
 Your apps can be coded and executed in programming languages such as JavaScript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
@@ -41,7 +41,7 @@ These runtimes (kinds) are available:
   </tr>
   <tr>
     <td>Node.js</td>
-    <td><code>nodejs:10</code> (default)</td>
+    <td><code>nodejs:10</code> (default), <code>nodejs:12</code></td>
   </tr>
   <tr>
     <td>Python</td>
