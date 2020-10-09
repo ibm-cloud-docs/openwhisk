@@ -24,7 +24,7 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# {{site.data.keyword.}}
+# {{site.data.keyword.toneanalyzershort}}
 {: #pkg_tone_analyzer}
 
 The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic analysis to detect emotional and language tones in written text.
