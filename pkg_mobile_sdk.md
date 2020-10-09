@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: mobile, sdk, cocoapods, carthage, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Mobile SDK
 {: #pkg_mobile_sdk}
 
-OpenWhisk provides a mobile SDK for iOS and watchOS devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK by using Xcode 9.
+OpenWhisk provides a mobile SDK for `iOS` and `watchOS` devices that enables mobile apps to fire remote triggers and invoke remote actions. A version for Android is not available, so Android developers can use the OpenWhisk REST API directly. The mobile SDK is written in Swift 4 and supports iOS 11 and later releases. You can build the mobile SDK by using Xcode 9.
 {: shortdesc}
 
 The mobile SDK is not supported for IAM-based namespaces. Use a Cloud Foundry-based namespace instead.
@@ -90,7 +90,7 @@ You must then add OpenWhisk.framework to the embedded frameworks in your Xcode p
 Source code is available at https://github.com/apache/openwhisk-client-swift.
 Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
 The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
-Build the project for the targets that you need and add the resulting frameworks to your app (usually in ~/Library/Developer/Xcode/DerivedData/your app name).
+Build the project for the targets that you need and add the resulting frameworks to your app (usually in `~/Library/Developer/Xcode/DerivedData/your-app-name`).
 
 ## Install the starter app example
 

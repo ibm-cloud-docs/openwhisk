@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-16"
+lastupdated: "2020-10-09"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, serverless, functions
 
@@ -52,7 +52,7 @@ Full web application can be built and run with {{site.data.keyword.openwhisk_sho
 
 Internet of Things scenarios are often inherently sensor-driven. For example, an action in {{site.data.keyword.openwhisk_short}} might be triggered if a need to react to a sensor that exceeds a specific temperature. IoT interactions are usually stateless with the potential of high load in major spontaneous events such as natural disasters, significant weather storms, or traffic jams. A need is created for an elastic system where normal workload might be small, but needs to scale quickly with predictable response time. So the ability to handle many simultaneous events with no prior warning to the system is desirable. It is difficult to build a system to meet these requirements that use traditional server architectures. As they tend to either be underpowered, and unable to handle peak load in traffic, or be over-provisioned and highly expensive.
 
-It is possible to implement IoT applications that use traditional server architectures. However, in many cases, the combination of different services and data bridges requires high performance and flexible pipelines. Spanning from IoT devices up to cloud storage, and an analytics platform. Often pre-configured bridges lack the programmability to implement and fine-tune a particular solution architecture. Given the variety of pipelines, and the lack of standardization around data fusion in general (IoT in particular), it is common to see environments where the pipeline requires custom data transformation. These custom data transformations apply to format conversion, filtering, or augmentation. {{site.data.keyword.openwhisk_short}} is an excellent tool to implement such a transformation, in a ‘serverless’ manner, where the custom logic is hosted on a fully managed and elastic cloud platform.
+It is possible to implement IoT applications that use traditional server architectures. However, in many cases, the combination of different services and data bridges requires high performance and flexible pipelines. Spanning from IoT devices up to cloud storage, and an analytics platform. Often pre-configured bridges lack the programmability to implement and fine-tune a particular solution architecture. Given the variety of pipelines, and the lack of standardization around data fusion in general (IoT in particular), it is common to see environments where the pipeline requires custom data transformation. These custom data transformations apply to format conversion, filtering, or augmentation. {{site.data.keyword.openwhisk_short}} is an excellent tool to implement such a transformation, in a serverless manner, where the custom logic is hosted on a fully managed and elastic cloud platform.
 
 Look at the following sample IoT application that uses {{site.data.keyword.openwhisk_short}}, Node-RED, Cognitive, and other services: [Serverless transformation of IoT data-in-motion with {{site.data.keyword.openwhisk_short}}](https://medium.com/openwhisk/serverless-transformation-of-iot-data-in-motion-with-openwhisk-272e36117d6c){: external}.
 

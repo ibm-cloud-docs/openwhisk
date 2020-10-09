@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-10-09"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -175,7 +175,7 @@ ibmcloud fn action invoke natural-language-understanding-v1/<action_name> -b -p 
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/natural-language-understanding#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/natural-language-understanding#versioning){: external}.
 
 This package's functions use the current version of Natural Language Understanding, 2018-03-16. Try out the `list-models` action.
 

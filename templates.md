@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-11"
+lastupdated: "2020-10-09"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -314,7 +314,7 @@ While you can test the action, you cannot test the trigger without making an ent
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}
 
-The **Get HTTP Resource** template creates an action, which takes as input a location parameter. The action is enabled as a web action, allowing it to be invoked with a URL, which is CORS enabled and does not need an authentication key, which is useful for building backends for web applications.
+The **Get HTTP Resource** template creates an action, which takes as input a location parameter. The action is enabled as a web action, allowing it to be invoked with a URL, which is CORS enabled and does not need an authentication key, which is useful for building backend services for web applications.
 {: shortdesc}
 
 When you deploy this template, you create a single, web-enabled action called `location`. This action accepts a single parameter in JSON format, `{ "location": "xxxx" }`.
@@ -590,21 +590,10 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 4. Create the {{site.data.keyword.messagehub}} action.
     1. Provide a name for your package or use the provided default name `message-hub-events`.
-    2. Choose the runtime for your actions.
+    2. Choose the runtime for your action.
     3. Click **Next**.
 
-5. Create the {{site.data.keyword.messagehub}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide an {{site.data.keyword.messagehub}} service instance and service credentials.
-    1. In the **MessageHub Instance** list, select **Create your own instance**. The {{site.data.keyword.messagehub}} creation page opens.
-    2. Create the {{site.data.keyword.messagehub}} service instance.
-    3. Create a set of Service Credentials.
-    4. Click **OK** to close the {{site.data.keyword.messagehub}} creation page and return to the {{site.data.keyword.messagehub}} console.
-    5. In the **MessageHub Instance** list, you can now select **Input your own credentials** and provide the following information:
-        * `Username` - Your {{site.data.keyword.messagehub}} username.
-        * `Password` - Your {{site.data.keyword.messagehub}} password.
-        * `kafka_admin_url` - Your {{site.data.keyword.messagehub}} admin REST URL.
-        * `Database` - The name of your {{site.data.keyword.messagehub}} database.
-        * `Topic` - The topic to subscribe to.
-
+5. Create the {{site.data.keyword.messagehub}} trigger. Triggers invoke actions when they receive events from event sources. To create the trigger, you must provide an {{site.data.keyword.messagehub}} service instance and topic. If you have an instance of {{site.data.keyword.messagehub}} in the same namespace that you are currently targeting, then select your {{site.data.keyword.messagehub}} instance and topic from the list.
 6. Click **Deploy**.
 
 After the template deploys, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.

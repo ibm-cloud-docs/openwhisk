@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -36,12 +36,12 @@ You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions
 
 You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
 
-For more information about API management, you can read the [API management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
+For more information about API Management, you can read the [API Management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 ## Creating your first API
 {: #api_create}
 
-You can create APIs using the CLI or from the console.
+You can create APIs by using the CLI or from the console.
 {: shortdesc}
 
 **Before you begin**
@@ -51,7 +51,7 @@ You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create
 By default, anyone can invoke a web action by using the invocation URL, even if you secure the calling API. You can secure your web action by using the `require-whisk-auth web action` annotation. For more information, see [Securing your API web action](#api_secure).
 {: note}
 
-### Creating your first API using the CLI
+### Creating your first API by using the CLI
 {: #api_create_cli}
 
 Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in](/docs/openwhisk?topic=openwhisk-cli_install).
@@ -115,14 +115,14 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   ```
   {: screen}
   
-### Creating an API using the console
+### Creating an API from the console
 {: #api_create_ui}
 
 1. Go to the [API](https://cloud.ibm.com/functions/apimanagement){: external}  page in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Create API**.
 
-3. Complete the fields in the **API Info** section.
+3. Complete the fields in the **API Information** section.
 
 4. Click **Create operation**. Use the Create operations section to define parameters for your API.  To create an API that is similar to the API in the CLI example, use base path `/hello`, path `/world`, method `get`, and response type `json`.
 
@@ -132,7 +132,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 7. Click **Create**.
 
-You can find details about your API by selecting it from the {{site.data.keyword.openwhisk_short}} APIs page
+You can find details about your API by selecting it from the {{site.data.keyword.openwhisk_short}} APIs page.
 
 ## Using full control over the HTTP response
 {: #api_control}
@@ -204,7 +204,7 @@ To return different content types in the body, use full control over the HTTP re
 By default, anyone can invoke a web action by using the invocation URL, even if you secure the calling API. You can secure your web action by using the `require-whisk-auth web action` annotation.
 {: shortdesc}
 
-This example uses the same names and code as the example in [Creating your first API using the CLI](#api_create_cli). If you created those entities, delete the action and the API by running `ibmcloud fn action delete ACTION_NAME` and `ibmcloud fn api delete API_NAME`. You must create the web secure action before you can create the API. If you want to update an existing action that is called by an API, you must delete the API, update the action, and then re-create the API. 
+This example uses the same names and code as the example in [Creating your first API by using the CLI](#api_create_cli). If you created those entities, delete the action and the API by running `ibmcloud fn action delete ACTION_NAME` and `ibmcloud fn api delete API_NAME`. You must create the web secure action before you can create the API. If you want to update an existing action that is called by an API, you must delete the API, update the action, and then re-create the API. 
 
 1. Save the following code into a JavaScript file named `hello.js`.
 
@@ -242,7 +242,7 @@ This example uses the same names and code as the example in [Creating your first
 
   **Example output**
   
-  A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
+  A new URL is generated, exposing the `hello` action by using a `GET` HTTP method.
 
   ```
   ok: created API /hello/world GET for action /_/hello

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-10-09"
 
 keywords: web actions, serverless, functions
 
@@ -30,7 +30,7 @@ subcollection: openwhisk
 When you create a web action, the result is a URL that can be used to trigger the action from any web app.
 {: shortdesc}
 
-The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type text/plain instead of text/html. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
+The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type `text/plain` instead of `text/html`. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
 {: important}
 
 ## Why use web actions instead of standard actions? 

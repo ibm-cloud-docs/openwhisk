@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-29"
+lastupdated: "2020-10-09"
 
 keywords: event streams, package, messages, events, functions
 
@@ -202,7 +202,7 @@ To create a trigger that reacts when messages are posted to an {{site.data.keywo
 | `kafka_brokers_sasl` | JSON array of strings | This parameter is an array of `<host>:<port>` strings that comprise the brokers in your {{site.data.keyword.messagehub}} instance. |
 | `user` | String | Your {{site.data.keyword.messagehub}} username. |
 | `password` | String | Your {{site.data.keyword.messagehub}} password. |
-| `topic` | String | The topic that you would like the trigger to listen to. |
+| `topic` | String | The topic that you want the trigger to listen to. |
 | `kafka_admin_url` | URL string | The URL of the {{site.data.keyword.messagehub}} admin REST interface. |
 | `isJSONData` | Boolean (Optional - default=false) | When set to `true`, the provider attempts to parse the message value as JSON before passing it along as the trigger payload. |
 | `isBinaryKey` | Boolean (Optional - default=false) | When set to `true`, the provider encodes the key value as Base64 before passing it along as the trigger payload. |
@@ -212,12 +212,15 @@ To create the trigger:
 
 1. [Bind the `/whisk.system/messaging` package](#event_streams_binding) to your {{site.data.keyword.messagehub}} instance. 
 
-2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
+2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespaceID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
 
    ```
-   ibmcloud fn trigger create MyMessageHubTrigger -f /myOrg_mySpace/Service credentials-1/messageHubFeed -p topic mytopic
+   ibmcloud fn trigger create MyMessageHubTrigger -f /<namespaceID>/<binding>/messageHubFeed -p topic <mytopic>
    ```
    {: pre}
+   
+   To find the path to the `messageHubFeed` trigger, run `ibmcloud fn package list | grep <binding>`, where `<binding>` is the name of your package binding.
+   {: tip}
 
 ### Creating a trigger for an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}

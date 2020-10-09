@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: triggers, serverless, functions
 
@@ -79,7 +79,7 @@ Feeds and triggers are closely related, but technically distinct concepts.
 
 - A **trigger** is a name for a class of events. Each event belongs to exactly one trigger; by analogy, a trigger resembles a topic in topic-based pub-sub systems. A **rule** is used to indicate that whenever an event from trigger arrives, invoke action with the trigger payload.
 
-- A **feed** is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. A feed is a stream of events that all belong to some trigger. Preinstalled packages, installable packages, and your own custom packages might contain feeds.  A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
+- A **feed** is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. A feed is a stream of events that all belong to some trigger. Pre-installed packages, installable packages, and your own custom packages might contain feeds.  A feed is controlled by a **feed action**, which handles creating, deleting, pausing, and resuming the stream of events that comprise a feed. The feed action typically interacts with external services that produce the events, by using a REST API that manages notifications.
 
 Examples of feeds:
 

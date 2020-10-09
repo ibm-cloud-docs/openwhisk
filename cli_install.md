@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-29"
+lastupdated: "2020-10-09"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -234,7 +234,7 @@ If you need to use the authentication API key for {{site.data.keyword.openwhisk_
   ```
   {: pre}
 
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in. The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type text/plain instead of text/html. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
+The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in. The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type `text/plain` instead of `text/html`. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
 {: tip}
 
 ### API Gateway authentication

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-09"
 
 keywords: push notifications, functions, webhooks
 
@@ -32,8 +32,8 @@ subcollection: openwhisk
 
 | Package | Availability | Description |
 | --- | --- | --- |
-| [`/whisk.system/pushnotifications`](#pkg_push_send) | Preinstalled (Not available in Tokyo) | Send push notification to one or more specified devices. |
-| [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | Preinstalled (Not available in Tokyo) | Send mobile push notifications on device events. |
+| [`/whisk.system/pushnotifications`](#pkg_push_send) | Pre-installed (Not available in Tokyo) | Send push notification to one or more specified devices. |
+| [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
 | [`/push-notifications`](#pkg_push_mobile_send) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
 
 ## Sending push notifications
@@ -167,7 +167,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 See the following example to send a push notification from the Push notification package.
 {: shortdesc}
 
-Send a push notification by using the **sendMessage** action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
+Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
 
 ```
 ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"

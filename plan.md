@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: planning, functions, actions, serverless
 
@@ -34,7 +34,7 @@ Before you start creating your function, learn about the decisions you must make
 ## Review the runtime support
 {: #plan_runtime}
 
-{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes) to execute code. But, because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_docker) to package your code.
+{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes) to execute code. But, because the {{site.data.keyword.openwhisk_short}} service is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_docker) to package your code.
 {: shortdesc}
 
 ## Architect your code
@@ -49,7 +49,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
 2. Use {{site.data.keyword.cloud_notm}} services instead of frameworks.
 
-    Instead of using frameworks to make capabilities available in your function at runtime, you can {{site.data.keyword.cloud}} services. Many common tasks that frameworks help you to complete are available as services on {{site.data.keyword.cloud}}.
+    Instead of using frameworks to make capabilities available in your function at run time, you can choose {{site.data.keyword.cloud}} services. Many common tasks that frameworks help you to complete are available as services on {{site.data.keyword.cloud}}.
     {: shortdesc}
 
     For example, instead of using a framework for authentication, try {{site.data.keyword.appid_full}}. If you need external file storage, try {{site.data.keyword.cos_full}}.
@@ -60,7 +60,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
     Your code must fit within the system limits to run. For example, if your packaged code is larger than 48 MB, you might need to continue breaking it down into smaller pieces or packaging it as a Docker image.
 
-    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies. Then, use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
+    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies. Then, use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at run time.
 
 4. Determine the parameters that must be injected into your code.
 

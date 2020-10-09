@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-10-09"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -180,7 +180,7 @@ ibmcloud fn action invoke language-translator-v3/<action_name> -b -p <param name
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/language-translator#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/language-translator#versioning){: external}.
 
 This package's functions use the current version of Language Translator, `2018-05-01`. Try out the `identify` action.
 

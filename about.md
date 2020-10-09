@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-29"
+lastupdated: "2020-10-09"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # How {{site.data.keyword.openwhisk_short}} works
 {: #about}
 
-{{site.data.keyword.openwhisk}} is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. 
+{{site.data.keyword.openwhisk}} service is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. 
 {: shortdesc}
 
 ## {{site.data.keyword.openwhisk_short}} terminology
@@ -119,7 +119,7 @@ The Load Balancer, which is part of the Controller, has a global view of the exe
 ### 6. Please form a line: Kafka
 {: #about_kafka}
 
-The controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *OutOfMemoryException*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
+The controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *`OutOfMemoryException`*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
 
 To get the action invoked, the controller publishes a message to **Kafka**, a high-throughput, distributed, publish-subscribe messaging system. The message contains the action to invoke and the parameters to pass to that action (in this case none). This message is addressed to the Invoker.
 
@@ -157,7 +157,7 @@ In this specific case, the Invoker gets the resulting JSON object back from the 
 ```
 {: codeblock}
 
-Note how the record contains both the returned result and the logs that were written. The record also contains the start and end time of the invocation of the action. Activation records contain more fields, but this examples is stripped down for simplicity.
+Note how the record contains both the returned result and the logs that were written. The record also contains the start and end time of the invocation of the action. Activation records contain more fields, but this example is stripped down for simplicity.
 
 Now you can use the REST API (start from step 1 again) to obtain your activation and thus the result of your action. To do so, run this command:
 

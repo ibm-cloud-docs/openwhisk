@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-23"
+lastupdated: "2020-10-09"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
 
@@ -58,9 +58,9 @@ To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hell
 
 4. Click **Start Creating** > **Quickstart Templates** and select the **Hello World** template.
 
-5. Create a package for your actions by inputting a unique name in the **Package Name** field.
+5. Create a package for your action by entering a unique name in the **Package Name** field.
 
-6. Select a runtime from the drop-down menu in the **Action helloworld** section. You can preview the code for the sample action in each available runtime before you deploy the template.
+6. Select a runtime for your action. You can preview the code for the sample action in each available runtime before you deploy the template.
 
 7. Click **Deploy**. You created an action. Great job!
 

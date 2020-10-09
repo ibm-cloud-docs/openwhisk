@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: feeds, serverless, functions
 
@@ -40,7 +40,7 @@ You can create a feed by using one of the three architectural patterns: **Hooks*
 
 ### Hooks
 
-With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook){: external} that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
+With the hooks pattern, a feed is set up by using a webhook that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
 For example, the [GitHub package](/docs/openwhisk?topic=openwhisk-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=openwhisk-pkg_push_notifications) use a webhook.
 
@@ -69,7 +69,7 @@ The feed action can also accept any other parameters that it needs to manage the
 
 When you create a trigger from the CLI with the `--feed` parameter, the feed action is automatically invoked with the appropriate parameters.
 
-For example, create a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+For example, create a `mycloudant` binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
 
 ```
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes -p dbName myTable
@@ -92,7 +92,7 @@ ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p trigger
 
 The feed action that is named *changes* takes these parameters and is expected to perform whatever action is necessary to set up a stream of events from {{site.data.keyword.cloudant_short_notm}}. The feed action occurs by using the appropriate configuration, which is directed to the trigger.
 
-For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to a *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
+For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to an *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
 
 A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update`, and `ibmcloud fn trigger get`.
 
@@ -122,7 +122,7 @@ To set up a polling-based feed, the feed action takes the following steps when c
 
 1. The feed action sets up a periodic trigger with a specific frequency, by using the `whisk.system/alarms` feed.
 2. The feed developer creates a `pollMyService` action that polls the remote service and returns any new events.
-3. The feed action sets up a *rule* *T -> pollMyService*.
+3. The feed action sets up a *rule* *T -> `pollMyService`*.
 
 This procedure implements a polling-based trigger entirely by using {{site.data.keyword.openwhisk_short}} actions, without any need for a separate service.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-07-15"
+lastupdated: "2020-10-09"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -59,7 +59,7 @@ The following list of {{site.data.keyword.openwhisk}} events is sent to {{site.d
     </tr>
 	  <tr>
       <td><code>functions.action.update</code></td>
-            <td>Update an action. Note that the event does not include the changes between the initial value and the new value. An update of an action might also replace the code that is associated with the request. Consider using a version control system to maintain your code changes and to find the delta between versions.</td>
+            <td>Update an action. Note that the event does not include the changes between the initial value and the new value. An update of an action might also replace the code that is associated with the request. Consider setting up a version control system to maintain your code changes and to find the delta between versions.</td>
     </tr>
         <tr>
       <td><code>functions.action.delete</code></td>
@@ -156,7 +156,7 @@ The following list of {{site.data.keyword.openwhisk}} events is sent to {{site.d
 After viewing events that are captured by {{site.data.keyword.at_full_notm}}, you can then analyze the events.
 {: shortdesc}
 
-**Identifying the {{site.data.keyword.openwhisk_short}} namespace that generates the event**
+**Identifying the {{site.data.keyword.openwhisk_short}} namespace that generates the event**.
 
 To identify the namespace for which the event was generated, look at the `target.id` field. You can use this field to filter events in LogDNA, for example, showing events for only a specific namespace. 
 
@@ -164,7 +164,7 @@ You can use the CLI to find details about your [namespaces](/docs/openwhisk?topi
 
 **Getting the unique ID of a request**
 
-Each action that you perform on an {{site.data.keyword.openwhisk_short}} namespace resource has a unique ID.
+Each action that you perform on a {{site.data.keyword.openwhisk_short}} namespace resource has a unique ID.
 
 To find the unique ID of a request, look at the `requestData.requestId` value that is set in the `requestData` field.
 

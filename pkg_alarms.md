@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-10-09"
 
 keywords: alarms, serverless, triggers, functions
 
@@ -64,7 +64,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code>--feed /whisk.system/alarms/once</code></td>
-<td>The alarm package file path for the fireOnce feed.</td>
+  <td>The alarm package file path for the <code>fireOnce</code> feed.</td>
 </tr>
 <tr>
 <td><code>--param date</code></td>

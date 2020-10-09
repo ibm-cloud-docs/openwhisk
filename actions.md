@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-09"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -117,12 +117,12 @@ From the Actions page, you can add parameters, change the runtime, create endpoi
 ## Creating actions from binaries
 {: #actions_create_binaries}
 
-You can create  and deploy an executable that runs inside the standard Docker action SDK as an action. By creating this  types of action, you can develop using Rust or even C and C++, allowing you to use the right language for the task at hand while building complex serverless applications. These types of actions can also be created as [web actions](/docs/openwhisk?topic=openwhisk-actions_web).
+You can create  and deploy an executable that runs inside the standard Docker action SDK as an action. By creating this  type of action, you can develop by using Rust or even C and C++, so that you can use the right language for the task at hand while you build complex serverless applications. These types of actions can also be created as [web actions](/docs/openwhisk?topic=openwhisk-actions_web).
 {: shortdesc}
 
 The executable must conform to the following conventions:
 
-- The program can accept only a single command line argument as input. The argument is a JSON object that is encoded as a string. The object represents the input argument to the function.
+- The program can accept only a single command-line argument as input. The argument is a JSON object that is encoded as a string. The object represents the input argument to the function.
 
 - The program must return a JSON object as a JSON formatted string, sent to `stdout` as the final log line before the program completes.
 
@@ -153,7 +153,7 @@ You can update the code in your app or to migrate to a newer version of a runtim
 When you migrate to a new runtime version, you might need to change the code in your app to comply with the new runtime version. In most cases, the runtime versions are compatible.
 {: tip}
 
-When an action is using a disabled runtime, the action can only be read or deleted; no update is possible.
+When an action is using a disabled runtime, the action can be only read or deleted; no update is possible.
 In this case, you can view the original action code from the console, copy it, and create a new action with the copied code.
 
 From the CLI, you can get the action code by using the [`ibmcloud fn action get <action name> --save`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and use the saved action file for `action create` by using the new runtime.
@@ -167,7 +167,7 @@ You can update your actions from the CLI with the [`ibmcloud fn action update`](
 
 1. Update your app locally.
 
-2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This upload allows the system to pull your new Docker image the next time it runs the code for your action. If you have a container running that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin running on the new image.
+2. If you packaged your app as a Docker image, upload the latest image to Docker Hub. This upload allows the system to pull your new Docker image the next time it runs the code for your action. If you have a running container that uses a previous version of your Docker image, any new invocations continue to use that image. You must run the update command so that new invocations begin running on the new image.
 
 3. Update an action and include the local path to your app or the Docker image.
 

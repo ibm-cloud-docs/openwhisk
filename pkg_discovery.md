@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-18"
+lastupdated: "2020-10-09"
 
 keywords: functions, cognitive,
 
@@ -213,7 +213,7 @@ ibmcloud fn action invoke discovery-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/discovery#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/discovery#versioning){: external}.
 
 This package's functions use the current version of Discovery, `2018-03-05`. Try out the `list-environments` action.
 

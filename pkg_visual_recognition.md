@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-05-22"
+lastupdated: "2020-10-09"
 
 keywords: functions, cognitive,
 
@@ -184,7 +184,7 @@ ibmcloud fn action invoke visual-recognition-v3/<action_name> -b -p <param name>
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#versioning){: external}.
 
 This package's functions use the current version of Visual Recognition, `2018-03-19`. Try out the `list-classifiers` action.
 
