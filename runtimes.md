@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-10-12"
 
 keywords: runtimes, support, functions
 
@@ -213,8 +213,8 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 | [`semver`](https://www.npmjs.com/package/semver) | Semantic Versioning for Node.js. |
 | [`serialize-error`](https://www.npmjs.com/package/serialize-error) | Serialize an error into a plain object. |
 | [`serve-favicon`](https://www.npmjs.com/package/serve-favicon) | Node.js middleware for serving a favicon. |
-| [`socket.io`](https://www.npmjs.com/package/socket.io) | `Socket.IO` enables real-time bidirectional event-based communication. |
-| [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) | Realtime application framework for socket.io. |
+| [`socket.io`](https://www.npmjs.com/package/socket.io) | `Socket.io` enables real-time bidirectional event-based communication. |
+| [`socket.io-client`](https://www.npmjs.com/package/socket.io-client) | Realtime application framework for `socket.io`. |
 | [`superagent`](https://www.npmjs.com/package/superagent) | `SuperAgent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
 | [`swagger-tools`](https://www.npmjs.com/package/swagger-tools) | Package that provides various tools for integrating and interacting with Swagger. |
 | [`tmp`](https://www.npmjs.com/package/tmp) | A simple temporary file and directory creator for Node.js. |
@@ -307,7 +307,7 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 | [`ws`](https://www.npmjs.com/package/ws){: external} | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xlsx`](https://www.npmjs.com/package/xlsx){: external} | Parser and writer for various spreadsheet formats. |
 | [`xml2js`](https://www.npmjs.com/package/xml2js){: external} | Simple XML to JavaScript object converter. It supports bidirectional conversion. |
-| [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest){: external} | node-XMLHttpRequest is a wrapper for the built-in HTTP client to emulate the browser `XMLHttpRequest` object. |
+| [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest){: external} | `node-XMLHttpRequest` is a wrapper for the built-in HTTP client to emulate the browser `XMLHttpRequest` object. |
 | [`yauzl`](https://www.npmjs.com/package/yauzl){: external} | Another extraction library for node. |
 {: caption="Table 2. Node.js 10 packages." caption-side="top"}
 {: #javascript-2}
