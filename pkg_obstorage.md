@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-16"
+lastupdated: "2020-10-29"
 
 keywords: object storage, bucket, package, functions
 
@@ -205,7 +205,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 
 | Testing with the console |
 |:-----------------|
-| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Monitor**.</li><li> Review the **Activity Log** pane for activations of your the trigger and action you created.</li></ol></p> |
+| <p><ol><li> Make a change to an object in your {{site.data.keyword.cos_full_notm}} bucket. For more information about adding an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects).</li><li> Navigate to the [{{site.data.keyword.openwhisk_short}} dashboard](https://cloud.ibm.com/functions/dashboard).</li><li> Click **Activations dashboard**.</li><li> Review the **Activations timeline** pane for activations of the trigger and action that you created.</li></ol></p> |
 {: caption="Creating an action with the console." caption-side="top"}
 {: #test-1}
 {: tab-title="Console"}

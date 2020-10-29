@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-29"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -219,6 +219,9 @@ To get started, complete the following steps.
 1. Navigate to {{site.data.keyword.loganalysislong_notm}} with LogDNA service and create an instance in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
 2. Configure the {{site.data.keyword.loganalysislong_notm}} with LogDNA instance to receive platform service logs.
+
+You can also launch logging from your {{site.data.keyword.openwhisk_short}} dashboard by selecting **Launch Logging**.
+{: tip}
 
 ### Configure {{site.data.keyword.la_full_notm}}
 {: #logs_configure_logdna}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-10-29"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: openwhisk
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## October 2020
+{: #oct20}
+
+| Date | Description |
+| --------- | -------- |
+| 29 October 2020 | <ul><li> GO 1.15 is now supported. See [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes_available).</li></ul> |
+{: caption="Changes for October 2020" caption-side="top"}
 
 ## September 2020
 {: #sept20}

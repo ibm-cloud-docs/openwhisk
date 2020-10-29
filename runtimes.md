@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-12"
+lastupdated: "2020-10-29"
 
 keywords: runtimes, support, functions
 
@@ -57,7 +57,7 @@ These runtimes (kinds) are available:
   </tr>
   <tr>
     <td>Go</td>
-    <td><code>go:1.11</code> (default)</td>
+    <td><code>go:1.11</code> (default), <br><code>go:1.15</code></td>
   </tr>
   <tr>
     <td>Ruby</td>
@@ -77,7 +77,6 @@ These runtimes (kinds) are available:
 </table>
 {: caption="Table 1. Supported runtimes" caption-side="top"}
 
-
 Runtimes are updated regularly. These updates include security fixes and minor version updates (bug fixes) to the runtime packages. Minor version updates might introduce breaks in compatibility with earlier versions. Runtime updates might impact your actions.
 
 A runtime might also be `deprecated`, which means that certain runtime components are no longer supported. A `deprecated` runtime is still available for a certain time after deprecation and your actions continue to be executed as normal. However, you cannot create or update an action with a deprecated runtime from the console. The console marks actions that use a deprecated runtime. Note that you can create and update actions with a deprecated runtime from the CLI, however, it is highly recommended not to use deprecated runtimes.
@@ -89,7 +88,7 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 These runtimes (kinds) are deprecated:
 <ul>
   <li><code>ballerina:0.990</code> (deprecated)</li>
-  
+  <li><code>go:1.11</code> (deprecated)</li>
   <li><code>nodejs:6</code> (deprecated)</li>
   <li><code>nodejs:8</code> (deprecated)</li>
   <li><code>php:7.1</code> (deprecated)</li>
@@ -97,7 +96,6 @@ These runtimes (kinds) are deprecated:
   <li><code>swift:3.1.1</code> (deprecated)</li>
   <li><code>swift:4.1</code> (deprecated)</li>
 </ul>
-
 
 These runtimes (kinds) are disabled:
 <ul>
@@ -107,7 +105,6 @@ These runtimes (kinds) are disabled:
   <li><code>swift</code> (disabled)</li>
   <li><code>swift:3</code> (disabled)</li>
 </ul>
-
 
 For more information about supported and disabled runtimes, see [Available images and runtimes per region](#runtimes_per_region). 
 

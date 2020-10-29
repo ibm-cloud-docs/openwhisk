@@ -2,7 +2,7 @@
 
 copyright:
   years: 2020
-lastupdated: "2020-08-25"
+lastupdated: "2020-10-29"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -46,6 +46,9 @@ To set up {{site.data.keyword.mon_short}}:
 3. Either use an existing {{site.data.keyword.mon_short}} service instance or create a new one.
 4. After the instance is ready, enable platform metrics by clicking **Configure platform metrics**.
 5. Select a region and then a {{site.data.keyword.mon_short}} instance from that region. Note that if you have deployments in more than one region, you must provision Sysdig and enable platform metrics for each region.
+
+You can also launch monitoring from your {{site.data.keyword.openwhisk_short}} dashboard by selecting **Launch Monitoring**.
+{: tip}
 
 ## Accessing your {{site.data.keyword.mon_short}} metrics
 {: #access-monitor}
