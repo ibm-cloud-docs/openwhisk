@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: event streams, package, messages, events, functions
 
@@ -72,7 +72,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
   ```
   packages
-  /<namespace>/MyEventStreamBind
+  /<namespace_ID>/MyEventStreamBind
   ```
   {: screen}
 
@@ -212,10 +212,10 @@ To create the trigger:
 
 1. [Bind the `/whisk.system/messaging` package](#event_streams_binding) to your {{site.data.keyword.messagehub}} instance. 
 
-2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespaceID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
+2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespace_ID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
 
    ```
-   ibmcloud fn trigger create MyMessageHubTrigger -f /<namespaceID>/<binding>/messageHubFeed -p topic <mytopic>
+   ibmcloud fn trigger create MyMessageHubTrigger -f /<namespace_ID>/<binding>/messageHubFeed -p topic <mytopic>
    ```
    {: pre}
    

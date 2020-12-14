@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-09"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -60,7 +60,6 @@ Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_
 ### What's next?
 {: #quiz}
 Test your knowledge and [take a quiz! ](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}
-
 
 ## What happens behind the scenes in {{site.data.keyword.openwhisk}}?
 {: #about_scenes}

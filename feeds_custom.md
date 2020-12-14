@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: feeds, serverless, functions
 
@@ -107,7 +107,7 @@ When invoked with `CREATE`, the feed action simply installs a webhook for some o
 
 The webhook is directed to send notifications to a URL such as:
 
-`POST /namespaces/{namespace}/triggers/{triggerName}`
+`POST /namespaces/{namespace_ID}/triggers/{triggerName}`
 
 The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire as a result of the event.
 

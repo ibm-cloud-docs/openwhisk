@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-12-11"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -77,7 +77,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
   ```
   packages
-  /<namespace>/myCloudant private
+  /<namespace_ID>/myCloudant private
   ```
   {: screen}
 
@@ -385,7 +385,7 @@ Parameters that are used in this example.
    ```
    Activation: 'cloudantTrigger' (ef6605cc05e04589a605cc05e04589d8)
    [
-       "{\"statusCode\":0,\"success\":true,\"activationId\":\"6067ed0d28774a68a7ed0d28771a684d\",\"rule\":\" .   <namespace>/cloudantRule\",\"action\":\"<namespace>/cloudantChange\"}"
+       "{\"statusCode\":0,\"success\":true,\"activationId\":\"6067ed0d28774a68a7ed0d28771a684d\",\"rule\":\" .   <namespace_ID>/cloudantRule\",\"action\":\"<namespace_ID>/cloudantChange\"}"
    ]
 
    Activation: 'cloudantChange' (6067ed0d28774a68a7ed0d28771a684d)
@@ -560,7 +560,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   **Example activation**
   
   ```
-  "{\"statusCode\":0,\"success\":true,\"activationId\":\"144a4f95198a49ec8a4f95198a79ecc8\",\"rule\":\"<namespace>/docRule\",\"action\":\"<namespace>/docSequence\"}"
+  "{\"statusCode\":0,\"success\":true,\"activationId\":\"144a4f95198a49ec8a4f95198a79ecc8\",\"rule\":\"<namespace_ID>/docRule\",\"action\":\"<namespace_ID>/docSequence\"}"
   ```
   {: screen}
 
@@ -587,7 +587,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
 
   Activation: 'docTrigger' (db6de778bb084366ade778bb08036685)
   [
-      "{\"statusCode\":0,\"success\":true,\"activationId\":\"23e0a17bebd3486ca0a17bebd3186c8d\",\"rule\":\"<namespace>/docRule\",\"action\":\"<namespace>/docSequence\"}"
+      "{\"statusCode\":0,\"success\":true,\"activationId\":\"23e0a17bebd3486ca0a17bebd3186c8d\",\"rule\":\"<namespace_ID>/docRule\",\"action\":\"<namespace_ID>/docSequence\"}"
   ]
   ```
   {: screen}

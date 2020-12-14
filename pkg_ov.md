@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-06-09"
+lastupdated: "2020-12-11"
 
 keywords: packages, installable packages, functions
 
@@ -165,11 +165,11 @@ In the following example, you bind to the `/whisk.system/samples` package.
    **Example output**
 
    ```
-   package /myNamespace/valhallaSamples
-    action /myNamespace/valhallaSamples/greeting: Returns a friendly greeting
-    action /myNamespace/valhallaSamples/wordCount: Count words in a string
-    action /myNamespace/valhallaSamples/helloWorld: Demonstrates logging facilities
-    action /myNamespace/valhallaSamples/curl: Curl a host url
+   package /<namespace_ID>/valhallaSamples
+    action /<namespace_ID>/valhallaSamples/greeting: Returns a friendly greeting
+    action /<namespace_ID>/valhallaSamples/wordCount: Count words in a string
+    action /<namespace_ID>/valhallaSamples/helloWorld: Demonstrates logging facilities
+    action /<namespace_ID>/valhallaSamples/curl: Curl a host url
    ```
    {: screen}
 

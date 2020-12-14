@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-29"
+lastupdated: "2020-12-11"
 
 keywords: object storage, bucket, package, functions
 
@@ -150,7 +150,7 @@ You can create a trigger that responds to {{site.data.keyword.cos_full_notm}} ev
 
 | Creating a trigger with the CLI |
 |:-----------------|
-| <p><ol><li> [Target your IAM-enabled namespace](/docs/openwhisk?topic=openwhisk-namespaces#targeting-namespaces). Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name&gt;</pre></code></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
+| <p><ol><li> [Target your IAM-enabled namespace](/docs/openwhisk?topic=openwhisk-namespaces#targeting-namespaces). Note: Your namespace must be in the same region as your bucket.<p><pre class="pre"><code>ibmcloud fn property set --namespace &lt;namespace_name_or_ID&gt;</pre></code></p></li><li> Create a trigger named `cosTrigger`. The `--param bucket` flag is required. Replace the `<bucket_name>` variable with the name of your bucket. (Optional) You can configure the trigger to fire only on `write` or `delete` events by specifying the `--param event_types` flag. If the `<event_type>` parameter is not specified, the trigger fires on all write, update, and delete changes to your {{site.data.keyword.cos_full_notm}} bucket.<p><pre class="pre"><code>ibmcloud fn trigger create cosTrigger --feed /whisk.system/cos/changes</br> --param bucket &lt;bucket_name&gt;</br> --param event_types &lt;event_type&gt;</br> --param prefix &lt;prefix&gt;</br> --param suffix &lt;suffix&gt;</br> --param endpoint &lt;endpoint&gt;</code></pre></p></li><li> Verify the trigger was created by running the `trigger get` command.<p><pre class="pre"><code>ibmcloud fn trigger get cosTrigger</code></pre></p></li></ol></p> |
 {: caption="Creating a trigger with the CLI." caption-side="top"}
 {: #trigger-2}
 {: tab-title="CLI"}
@@ -279,7 +279,7 @@ You can get details of an activation by running `ibmcloud fn activation get <act
 
 ```json
 {
-    "namespace": "e8b676ee-1726-4541-8f16-f87902bb3ab31",
+    "namespace": "<namespace_ID>",
     "name": "cosTrigger",
     "version": "0.0.1",
     "subject": "ServiceId-65348247-951f-4f22-b2ef-7782597c3ab1",
@@ -423,7 +423,7 @@ To use the `client-get-signed-url` action in the `cloud-object-storage` package,
 
 | Binding service credentials in the CLI |
 |:-----------------|
-| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code>ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
+| <p><ol><li> Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service).<p><pre class="pre"><code>ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname &lt;service_key&gt;</code></pre></p></li><li> Verify that the package is configured with your {{site.data.keyword.cos_full_notm}} service instance credentials.<p><pre class="pre"><code>ibmcloud fn package get &lt;namespace_ID&gt;cloud-object-storage parameters</code></pre></p></li></ol></p> |
 {: caption="Binding service credentials in the CLI." caption-side="top"}
 {: #service-2}
 {: tab-title="CLI"}
@@ -489,7 +489,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 | Writing an object to a bucket with the CLI |
 |:-----------------|
-| <p><ol><li> Copy the following `object-write` command and replace the variables with your bucket name, object name, object body, and bucket endpoint.<p><pre class="pre"><code> ibmcloud fn action invoke /&lt;namespace&gt;/cloud-object-storage/object-write </br>--blocking --result </br>--param bucket &lt;bucket-name&gt; </br>--param key &lt;object_name&gt; </br>--param body &lt;body&gt; </br>--param endpoint &lt;bucket_endpoint&gt; </code></pre></p></li><li> Verify the output.</li></ol></p> |
+| <p><ol><li> Copy the following `object-write` command and replace the variables with your bucket name, object name, object body, and bucket endpoint.<p><pre class="pre"><code> ibmcloud fn action invoke /&lt;namespace_ID&gt;/cloud-object-storage/object-write </br>--blocking --result </br>--param bucket &lt;bucket-name&gt; </br>--param key &lt;object_name&gt; </br>--param body &lt;body&gt; </br>--param endpoint &lt;bucket_endpoint&gt; </code></pre></p></li><li> Verify the output.</li></ol></p> |
 {: caption="Writing an object with the CLI." caption-side="top"}
 {: #write-2}
 {: tab-title="CLI"}
@@ -515,7 +515,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 
 | Reading an object with the CLI |
 |:-----------------|
-| <p><ol><li> Copy the following `object-read` command and replace the variables with your bucket name and object name.<p><pre class="pre"><code> ibmcloud fn action invoke /&lt;namespace&gt;/cloud-object-storage/object-read </br>--blocking --result </br>--param bucket &lt;bucket-name&gt; </br>--param key &lt;object_name&gt;</code></pre></p></li><li> Verify the output.</li></ol></p> |
+| <p><ol><li> Copy the following `object-read` command and replace the variables with your bucket name and object name.<p><pre class="pre"><code> ibmcloud fn action invoke /&lt;namespace_ID&gt;/cloud-object-storage/object-read </br>--blocking --result </br>--param bucket &lt;bucket-name&gt; </br>--param key &lt;object_name&gt;</code></pre></p></li><li> Verify the output.</li></ol></p> |
 {: caption="Reading an object with the CLI." caption-side="top"}
 {: #read-2}
 {: tab-title="CLI"}

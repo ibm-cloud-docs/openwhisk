@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2020
-lastupdated: "2020-10-29"
+lastupdated: "2020-12-14"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: openwhisk
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## December 2020
+{: #dec20}
+
+| Date | Description |
+| --------- | -------- |
+| 14 December 2020 | <ul><li> Added versions to Quickstart template docs. See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated securing web actions to include information about `X-Require-Whisk-Auth`. See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).</li><li>Added tips to monitoring topic. See [Monitoring with Sysdig](/docs/openwhisk?topic=openwhisk-monitor-sysdig)<li>Updated namespace instances to indicate if the namespace name or the namespace ID is required.</ul> |
+{: caption="Changes for December 2020" caption-side="top"}
 
 ## October 2020
 {: #oct20}

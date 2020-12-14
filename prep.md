@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-22"
+lastupdated: "2020-12-11"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -977,7 +977,7 @@ Package the app in a custom Docker image by completing the following steps.
   
    ```
    ok: got action seaborn
-   https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace>/default/seaborn
+   https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/default/seaborn
    ```
    {: screen}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-29"
+lastupdated: "2020-12-11"
 
 keywords: runtimes, support, functions
 
@@ -127,7 +127,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 
 | Package | Details |
 | --- | --- | 
-| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v5.x, the major version that was released a few years ago. When a new major version of this package is released (for example v6.x), the `nodejs:12` runtime automatically upgrades to this version.<br/>Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses this package and you do not want to risk your action failing, consider staying at  `nodejs:10` until the risks are accessed.<br/>For more information about migrating to `ibm-watson v5.x`, see [MIGRATION-V5.md](https://github.com/watson-developer-cloud/node-sdk/blob/HEAD/MIGRATION-V5.md){: external}. |
+| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v5.x, the major version that was released a few years ago. When a new major version of this package is released (for example v6.x), the `nodejs:12` runtime automatically upgrades to this version.<br/>Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses this package and you do not want to risk your action failing, consider staying at  `nodejs:10` until the risks are accessed.<br/>For more information about migrating to `ibm-watson v5.x`, see [MIGRATION-V5.md](https://github.com/watson-developer-cloud/node-sdk/wiki/v5-Migration-Guide){: external}. |
 | `ibmiotf` | The `ibmiotf` package is renamed to `@wiotp/sdk`.  For more information, see [IBM Watson IoT Platform JavaScript SDK](https://www.npmjs.com/package/@wiotp/sdk){: external}. |
 | `request` | The `request` package is deprecated and therefore not available in this runtime. You can consider `axios`, `bent`, `got`, or `needle` as an alternative. |
 

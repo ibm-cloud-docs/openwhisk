@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -142,7 +142,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
-2. Select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 

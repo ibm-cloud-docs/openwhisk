@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-29"
+lastupdated: "2020-12-11"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -98,7 +98,7 @@ ibmcloud fn activation get <activation_ID>
 ```
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
-    "namespace": "myNamespace",
+    "namespace": "<namespace_ID>",
     "name": "hello",
     "version": "0.0.1",
     "subject": "user@email.com",
@@ -118,7 +118,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
     "annotations": [
         {
             "key": "path",
-            "value": "myNamespace/hello"
+            "value": "<namespace_ID>/hello"
         },
         {
             "key": "waitTime",
@@ -156,7 +156,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <tbody>
 <tr>
 <td><code>namespace</code></td>
-<td>The namespace that this activation is in. This might be different than the namespace that the action is in.</td>
+<td>The namespace ID that this activation is in. This namespace might be different than the namespace that the action is in.</td>
 </tr>
 <tr>
 <td><code>name</code></td>

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-09-16"
+lastupdated: "2020-12-11"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -379,8 +379,6 @@ For example, to target an IAM namespace called `playground`,
   ibmcloud fn namespace target playground
   ```
   {: pre}
-
-
 
 ### Accessing other resources from a namespace
 {: #namespace-access}

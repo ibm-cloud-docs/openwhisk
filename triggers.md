@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: triggers, serverless, functions
 
@@ -64,7 +64,7 @@ The following are examples of triggers.
     
     ```
     triggers
-    /NAMESPACE/TRIGGER_NAME                            private
+    /<namespace_ID>/<TRIGGER_NAME>                            private
     ```
     {: screen}
 

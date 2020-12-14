@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -146,7 +146,7 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the conso
 
 1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
-2. Select the namespace that you want to install the package into. Namespaces are formed from the combined org and space names.
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 

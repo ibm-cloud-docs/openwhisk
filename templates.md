@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -38,11 +38,11 @@ The following quickstart templates are available for deployment. You can deploy 
 
 | Name | Description | Supported Runtimes | Source repository |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
-| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event. | Node.js, Python | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
-| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-hello-world){: external}
-| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
-| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | Node.js, Swift, Python, PHP | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Python 3</li></ul> | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
@@ -76,7 +76,6 @@ Deploy the {{site.data.keyword.cloudant_short_notm}} Events template from the co
 **Before you begin**
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -112,7 +111,6 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
 * Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Clone the template repo.
 
@@ -332,7 +330,6 @@ Use the console to deploy the **Get HTTP Resource** template.
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
@@ -358,7 +355,6 @@ Use the CLI to deploy the **Get HTTP Resource** template.
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
 * Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Clone the template repo.
 
@@ -409,7 +405,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
      ```
      {: pre}
 
-   * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace>/<package name>/location.html` in your browser.
+   * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
      You can get the URL for any action by running this command:
 
      ```
@@ -424,7 +420,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
      ```
      {: pre}
 
-   * Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace>/<package_name>/location?location=<city>`. For example:
+   * Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/<package_name>/location?location=<city>`. For example:
 
      ```
      curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
@@ -466,7 +462,6 @@ You can deploy the **Hello World** template from the console.
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
@@ -492,7 +487,6 @@ Use the CLI to deploy the **Hello World** template.
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
 * Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Clone the Hello World template repo.
 
@@ -581,7 +575,6 @@ Deploy the **{{site.data.keyword.messagehub}}** template from the console.
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
@@ -609,7 +602,6 @@ Use the CLI to deploy the **{{site.data.keyword.messagehub}} Events** template.
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
 * Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Clone the template repo.
 
@@ -675,7 +667,6 @@ Deploy the **Periodic Slack Reminder** template from the console.
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-
 1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
@@ -707,7 +698,6 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
 * Specify a namespace to contain your {{site.data.keyword.openwhisk_short}} entities. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 1. Clone the template repo.
 

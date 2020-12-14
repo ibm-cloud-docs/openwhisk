@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-29"
+lastupdated: "2020-12-11"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -232,7 +232,7 @@ ibmcloud fn action get hello
 ```
 ok: got action hello
 {
-    "namespace": "user@email.com",
+    "namespace": "<namespace_ID>",
     "name": "hello",
     "version": "0.0.1",
     "exec": {
@@ -578,10 +578,10 @@ ibmcloud fn activation poll [NAMESPACE] [ACTION_NAME] [--exit SECONDS] [--since-
 **Command options**
 <dl>
 <dt>/`NAMESPACE`</dt>
-<dd>A namespace, beginning with /. Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
+<dd>A namespace name or ID. Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
 
 <dt>`ACTION_NAME`</dt>
-<dd>Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
+<dd>An action name. Poll activations for a namespace, an action, or a space. This value is optional. If a namespace or action is not specified, the space is polled.</dd>
 
 <dt>`--exit` `SECONDS`, `-e` `SECONDS`</dt>
 <dd>Poll activations for a specified number of seconds and then exit. This flag is optional.</dd>
@@ -1331,8 +1331,8 @@ ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] 
 
 **Command options**
 <dl>
-<dt>`NAMESPACE`</dt>
-<dd>List the packages in a specific namespace. This value is optional. If not specified, all packages are listed.</dd>
+<dt>`/NAMESPACE`</dt>
+<dd>List the packages in a specific namespace ID. This value must begin with a `/`. This value is optional. If not specified, all packages are listed.</dd>
 
 <dt>`--limit NUMBER_OF_PACKAGES`, `-l NUMBER_OF_PACKAGES`</dt>
 <dd>List a specified number of packages. The default is 30 packages.</dd>
@@ -1368,8 +1368,8 @@ ibmcloud fn package refresh /NAMESPACE
 **Command options**
 <dl>
 
-<dt>/`NAMESPACE`</dt>
-<dd>A namespace, beginning with /. This flag is required. Run `ibmcloud fn namespace list` to get a list of namespaces to choose from.</dd>
+<dt>`/NAMESPACE`</dt>
+<dd>A namespace ID, beginning with /. This flag is required. Run `ibmcloud fn namespace list` to get a list of namespaces to choose from.</dd>
 </dl>
 
 **Example**
@@ -1479,7 +1479,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
 <dt>`--namespace` `NAMESPACE`</dt>
-<dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
+<dd>An IAM namespace name or ID. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 </dl>
 
 **Example**
@@ -1513,7 +1513,7 @@ ibmcloud fn property set [--auth KEY] [--cert STRING] [--key STRING] [--namespac
 <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
 <dt>`--namespace` `NAMESPACE`</dt>
-<dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
+<dd>An IAM namespace name or ID. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 </dl>
 
 **Example**
@@ -1562,7 +1562,7 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 <dd>The `wsk` client `KEY`. This flag is optional.</dd>
 
 <dt>`--namespace` `NAMESPACE`</dt>
-<dd>An IAM namespace. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
+<dd>An IAM namespace name or ID. This flag cannot be set for Cloud Foundry namespaces. This flag is optional.</dd>
 </dl>
 
 **Example**
@@ -1932,30 +1932,30 @@ ibmcloud fn trigger create mytrigger --trigger-param name Bob
 ```
 {: pre}
 
-Starting in functions plug-in CLI version 1.0.38, two new options are available for the trigger command: `—trigger-param` and `—feed-param`. These options are an extension to creating and updating a trigger, making the `trigger create` and `update` commands more flexible.
+Starting in functions plug-in CLI version 1.0.38, two new options are available for the trigger command: `--trigger-param` and `--feed-param`. These options are an extension to creating and updating a trigger, making the `trigger create` and `update` commands more flexible.
 
 Previously, you created and updated a trigger with a parameter on it with the following command: 
 
 ```
-ibmcloud fn trigger create triggerHelloWorld —param msg “Hello World!” 
+ibmcloud fn trigger create triggerHelloWorld --param msg “Hello World!” 
 ```
 {: pre}
 
 This command creates a trigger called `triggerHelloWorld` with a parameter of KEY `msg` and VALUE of `Hello World!`. This is very simple and straightforward. However, it becomes a little complicated when you create a trigger that contains a feed, especially when you want to add parameters on both the trigger and the trigger feed. For example, if you want to create a trigger with alarm feed, then you must run a command similar to the following example:
 
 ```
-ibmcloud fn trigger create triggerCron —feed /whisk.system/alarms/alarm —param cron “0,1,2,3,4,5”
+ibmcloud fn trigger create triggerCron --feed /whisk.system/alarms/alarm --param cron “0,1,2,3,4,5”
 ```
 {: pre}
 
-In this case, the KEY and VALUE pair that follows `—param` are consumed by feed and are treated as feed parameters. By using the new options, you can differentiate between trigger parameters and feed parameters. The following command creates a trigger called `triggerCron` with cron feed parameters of `0,1,2,3,4,5` and a trigger parameter of KEY `msg` and VALUE of `Hello World!`.
+In this case, the KEY and VALUE pair that follows `--param` are consumed by feed and are treated as feed parameters. By using the new options, you can differentiate between trigger parameters and feed parameters. The following command creates a trigger called `triggerCron` with cron feed parameters of `0,1,2,3,4,5` and a trigger parameter of KEY `msg` and VALUE of `Hello World!`.
 
 ```
-ibmcloud fn  trigger create triggerCron —feed /whisk.system/alarms/alarm —feed-param cron “0,1,2,3,4,5” —trigger-param msg “Hello World!”
+ibmcloud fn  trigger create triggerCron --feed /whisk.system/alarms/alarm --feed-param cron “0,1,2,3,4,5” --trigger-param msg “Hello World!”
 ```
 {: pre}
 
-The original `—param` option is not deprecated so you can continue to use it as you have previously. You simply now have the ability to separate your trigger and feed parameters by using the new options. However, please do not mix `—param` or `—param-file` options with either `—trigger-param` or `—feed-param` options. These options are considered two different ways of setting trigger parameters and must not be used together. 
+The original `--param` option is not deprecated so you can continue to use it as you have previously. You simply now have the ability to separate your trigger and feed parameters by using the new options. However, please do not mix `--param` or `--param-file` options with either `--trigger-param` or `--feed-param` options. These options are considered two different ways of setting trigger parameters and must not be used together. 
 {: note}
 
 ### `ibmcloud fn trigger delete`

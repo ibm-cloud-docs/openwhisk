@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: push notifications, functions, webhooks
 
@@ -92,7 +92,7 @@ To create a package binding, see the following steps:
    **Example output**
    ```
    packages
-   /myNamespace/myPush private binding
+   /<namespace_ID>/myPush private binding
    ```
    {: screen}
 
@@ -167,10 +167,10 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 See the following example to send a push notification from the Push notification package.
 {: shortdesc}
 
-Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
+Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/<namespace_ID>/myPush` with your package name.
 
 ```
-ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2020
-lastupdated: "2020-10-09"
+lastupdated: "2020-12-11"
 
 keywords: functions cli, serverless, cli, install, functions plug-in
 
@@ -208,7 +208,7 @@ For more information, see the [{{site.data.keyword.openwhisk_short}} CLI referen
 ### API Authentication and Host
 {: #cli_api_auth}
 
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
 {:shortdesc}
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
