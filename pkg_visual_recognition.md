@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-01-13"
 
 keywords: functions, cognitive,
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # {{site.data.keyword.visualrecognitionshort}}
 {: #pkg_visual_recognition}
 
-The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition?topic=visual-recognition-getting-started-tutorial).
+The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition).
 {:shortdesc}
 
 The {{site.data.keyword.visualrecognitionshort}} package contains the following entities. For more information, see the {{site.data.keyword.visualrecognitionshort}} API reference by clicking the entity name.

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-01-13"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
 
@@ -192,7 +192,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <li><code>statusCode</code>: The status code. If the action resulted in an error, this value is the HTTP error code.</li>
 <li><code>success</code>: The result of whether the action completed successfully.</li>
 <li><code>result</code>: The return value from the activation.</li>
-</ul></td>
+</ul>For more possible outcomes, see [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec).</td>
 </tr>
 <tr>
 <td><code>logs</code></td>

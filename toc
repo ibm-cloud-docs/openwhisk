@@ -27,7 +27,7 @@ Functions
     cli_install.md
     namespaces.md
     templates.md
-    
+
     {: .topicgroup}
     Developing actions
         action_over.md
@@ -37,12 +37,12 @@ Functions
         sequences.md
         prep.md
         apigateway.md
-   
+
     {: .topicgroup}
     Managing triggers and rules
         triggers.md
         rules.md
-        
+
     test.md
     iam.md
 
@@ -81,7 +81,7 @@ Functions
     Logging events 
         logs.md
         activity_tracker.md
-        
+
     monitor-sysdig.md
     hadr.md
     {: .navgroup-end}
@@ -95,7 +95,7 @@ Functions
     CLI reference
         /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
         cli_changelog.md
-    
+   
     regions.md
 
     {: .topicgroup}
@@ -113,11 +113,12 @@ Functions
 
     {: .navgroup id="help"}
     faq.md
-    
+   
     {: .topicgroup}
     Troubleshooting
         ts_index.md
         ts-nodejs.md
-        
+
     release_notes.md
+    sitemap.md
     {: .navgroup-end}

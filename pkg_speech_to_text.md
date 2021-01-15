@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-18"
+  years: 2017, 2021
+lastupdated: "2021-01-13"
 
 keywords: package, cognitive, functions
 
@@ -30,7 +30,7 @@ subcollection: openwhisk
 The installable {{site.data.keyword.speechtotextfull}} service provides an [API](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html){: external} that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
 {:shortdesc}
 
-The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the UTF-8 character set. For more information about the service, see [{{site.data.keyword.speechtotextshort}}](/docs/speech-to-text?topic=speech-to-text-about).
+The service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the `UTF-8` character set. For more information about the service, see [{{site.data.keyword.speechtotextshort}}](/docs/speech-to-text?topic=speech-to-text-about).
 
 The {{site.data.keyword.speechtotextshort}} package contains the following entities. You can find more information in the {{site.data.keyword.speechtotextshort}} API reference by clicking the entity name.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-01-15"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
 
@@ -307,8 +307,6 @@ While you can test the action, you cannot test the trigger without making an ent
     ```
     {: screen}
 
-
-
 ## Deploying the Get HTTP Resource template
 {: #get-http-resource-template}
 
@@ -512,7 +510,7 @@ Use the CLI to deploy the **Hello World** template.
 After the template deploys, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Testing the Hello World action
-{: #hello-world-template-test
+{: #hello-world-template-test}
 
 You can test the **Hello World** template in the following ways.
 {: shortdesc}
@@ -743,7 +741,7 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
 After the template deploys, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
 ### Testing the Periodic Slack Reminder template
-{: #periodic-slack-template-test
+{: #periodic-slack-template-test}
 
 You can test the **Periodic Slack Reminder** template in the following ways.
 {: shortdesc}

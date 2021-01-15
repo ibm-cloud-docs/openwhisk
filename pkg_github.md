@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-01-13"
 
 keywords: github, actions, trigger, event, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # GitHub
 {: #pkg_github}
 
-The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://developer.github.com/){: external}.
+The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://docs.github.com/){: external}.
 {: shortdesc}
 
 This preinstalled package is not available in the Tokyo region.  This package does not work with Enterprise GitHub repositories.
@@ -51,7 +51,7 @@ The `/whisk.system/github/webhook` feed configures a service to fire a trigger w
 | `username` | The user name of the GitHub repository. |
 | `repository` | The GitHub repository. |
 | `accessToken` | Your GitHub personal access token. When you create your token, be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
-| `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://developer.github.com/v3/activity/events/types/) of interest. |
+| `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.github.com/v3/activity/events/types) of interest. |
 
 In the following example, a trigger is created that fires each time a new commit to a GitHub repository.
 
@@ -74,4 +74,4 @@ In the following example, a trigger is created that fires each time a new commit
    ```
    {: pre}
 
-   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If you [create a rule](/docs/openwhisk?topic=openwhisk-rules) to associate an action with the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://developer.github.com/v3/activity/events/types/){: external} API documentation.
+   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If you [create a rule](/docs/openwhisk?topic=openwhisk-rules) to associate an action with the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://docs.github.com/v3/activity/events/types){: external} API documentation.

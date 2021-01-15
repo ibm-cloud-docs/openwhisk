@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-01-05"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -30,10 +30,10 @@ subcollection: openwhisk
 Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
-## Rule creation from the console
+## Creating a rule from the console
 {: #rules_ui}
 
-From the console, a rule to associate an action and a trigger is created for you.
+From the console, the rule to associate an action and a trigger is created for you.
 {: shortdesc}
 
 When you create or access the details for an action or trigger, you have the option of connecting an existing or a new action or trigger. When you make the connection, a rule is created for you and is named in the format `ACTION_NAME-TRIGGER_NAME`.
