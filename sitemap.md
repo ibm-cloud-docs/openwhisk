@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-15"
+lastupdated: "2021-01-29"
 
 keywords: web actions, serverless, functions
 
@@ -91,7 +91,11 @@ subcollection: openwhisk
 
 [Tutorial: Calling an action from another action](/docs/openwhisk?topic=openwhisk-tutorial_action)
 
+[Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}{: external}
+
 [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}{: external}
+
+[Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}{: external}
 
 [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}{: external}
 
@@ -533,15 +537,15 @@ subcollection: openwhisk
 * [Analyzing events](/docs/openwhisk?topic=openwhisk-activity_tracker#at_events_analyze)
 
 
-## {{site.data.keyword.mon_short}}
+## {{site.data.keyword.mon_full_notm}}
 {: #sitemap_}
 
 
-[{{site.data.keyword.mon_short}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig)
+[{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig)
 
-[Set up your {{site.data.keyword.mon_short}} service instance](/docs/openwhisk?topic=openwhisk-monitor-sysdig#setup-monitor)
+[Set up your {{site.data.keyword.mon_full_notm}} service instance](/docs/openwhisk?topic=openwhisk-monitor-sysdig#setup-monitor)
 
-[Accessing your {{site.data.keyword.mon_short}} metrics](/docs/openwhisk?topic=openwhisk-monitor-sysdig#access-monitor)
+[Accessing your {{site.data.keyword.mon_full_notm}} metrics](/docs/openwhisk?topic=openwhisk-monitor-sysdig#access-monitor)
 
 [Metrics available by Service Plan](/docs/openwhisk?topic=openwhisk-monitor-sysdig#metrics-by-plan)
 * [ibm_functions_activation](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_activation)
@@ -635,6 +639,71 @@ subcollection: openwhisk
 {: #sitemap_cli_reference}
 
 
+[{{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli)
+* [Action commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action)
+  * [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create)
+  * [`ibmcloud fn action delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_delete)
+  * [`ibmcloud fn action get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get)
+  * [`ibmcloud fn action invoke`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_invoke)
+  * [`ibmcloud fn action list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_list)
+  * [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update)
+* [Activation commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation)
+  * [`ibmcloud fn activation get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_get)
+  * [`ibmcloud fn activation list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_list)
+  * [`ibmcloud fn activation logs`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_logs)
+  * [`ibmcloud fn activation poll`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll)
+  * [`ibmcloud fn activation result`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_result)
+* [API commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api)
+  * [`ibmcloud fn api create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_create)
+  * [`ibmcloud fn api delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_delete)
+  * [`ibmcloud fn api get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_get)
+  * [`ibmcloud fn api list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_list)
+* [Deployment commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_deploy_cmds)
+  * [`ibmcloud fn deploy`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_deploy)
+  * [`ibmcloud fn undeploy`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_undeploy)
+* [List command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_list_cmd)
+  * [`ibmcloud fn list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_list)
+* [Namespace commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace)
+  * [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create)
+  * [`ibmcloud fn namespace delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_delete)
+  * [`ibmcloud fn namespace get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get)
+  * [`ibmcloud fn namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list)
+  * [`ibmcloud fn namespace target`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_target)
+  * [`ibmcloud fn namespace update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_update)
+* [Package commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg)
+  * [`ibmcloud fn package bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind)
+  * [`ibmcloud fn package create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_create)
+  * [`ibmcloud fn package delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_delete)
+  * [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get)
+  * [`ibmcloud fn package list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_list)
+  * [`ibmcloud fn package refresh`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_refresh)
+  * [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update)
+* [Property commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop)
+  * [`ibmcloud fn property get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_get)
+  * [`ibmcloud fn property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set)
+  * [`ibmcloud fn property unset`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_unset)
+* [Rule commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule)
+  * [`ibmcloud fn rule create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_create)
+  * [`ibmcloud fn rule delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_delete)
+  * [`ibmcloud fn rule disable`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable)
+  * [`ibmcloud fn rule enable`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_enable)
+  * [`ibmcloud fn rule get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_get)
+  * [`ibmcloud fn rule list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list)
+  * [`ibmcloud fn rule status`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_status)
+  * [`ibmcloud fn rule update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_update)
+* [SDK command](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_sdk)
+  * [`ibmcloud fn sdk install`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_sdk_install)
+* [Service commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service)
+  * [`ibmcloud fn service bind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_bind)
+  * [`ibmcloud fn service unbind`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service_unbind)
+* [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger)
+  * [`ibmcloud fn trigger create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_create)
+  * [`ibmcloud fn trigger delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_delete)
+  * [`ibmcloud fn trigger fire`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_fire)
+  * [`ibmcloud fn trigger get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_get)
+  * [`ibmcloud fn trigger list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_list)
+  * [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update)
+
 [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions)
 
 [Regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions)
@@ -644,6 +713,8 @@ subcollection: openwhisk
 {: #sitemap_api_documentation}
 
 
+[REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}{: external}
+
 [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-userapikey){: new_window}{: external}
 
 
@@ -651,7 +722,11 @@ subcollection: openwhisk
 {: #sitemap_related_links}
 
 
+[Discover: IBM Cloud Functions](https://www.ibm.com/cloud/functions){: new_window}{: external}
+
 [Pricing](https://cloud.ibm.com/functions/learn/pricing){: new_window}{: external}
+
+[Apache OpenWhisk](http://openwhisk.apache.org/){: new_window}{: external}
 
 [Tutorials and samples](https://github.com/apache/openwhisk-external-resources){: new_window}{: external}
 
@@ -685,6 +760,8 @@ subcollection: openwhisk
 
 
 [Release notes](/docs/openwhisk?topic=openwhisk-release-notes)
+
+[January 2021](/docs/openwhisk?topic=openwhisk-release-notes#jan21)
 
 [December 2020](/docs/openwhisk?topic=openwhisk-release-notes#dec20)
 

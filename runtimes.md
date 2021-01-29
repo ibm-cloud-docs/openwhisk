@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-01-26"
 
 keywords: runtimes, support, functions
 
@@ -41,7 +41,7 @@ These runtimes (kinds) are available:
   </tr>
   <tr>
     <td>Node.js</td>
-    <td><code>nodejs:10</code> (default), <code>nodejs:12</code></td>
+    <td><code>nodejs:12</code> (default), <code>nodejs:10</code></td>
   </tr>
   <tr>
     <td>Python</td>
@@ -57,7 +57,7 @@ These runtimes (kinds) are available:
   </tr>
   <tr>
     <td>Go</td>
-    <td><code>go:1.11</code> (default), <br><code>go:1.15</code></td>
+    <td><code>go:1.15</code> (default)</td>
   </tr>
   <tr>
     <td>Ruby</td>
@@ -111,7 +111,7 @@ For more information about supported and disabled runtimes, see [Available image
 ## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
-By default, all Node.js actions are executed in a version 10 environment.
+By default, all Node.js actions are executed in a version 12 environment.
 {: note}
 
 Node.js version 8 is deprecated and will soon be removed. To continue running your actions, you must update any Node.js version 8 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
@@ -119,8 +119,8 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 
 | Kind | Node.js version | Description | Changelog |
 | --- | --- | --- | --- |
-| `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | By default, all Node.js actions are executed in a version 10 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
-| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | By default, all Node.js actions are executed in a version 10 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
+| `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
+| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 
 ### Migrating from Node.js 10 to Node.js 12
@@ -474,9 +474,11 @@ For more information, see [Creating actions from binaries](/docs/openwhisk?topic
 
 **Go**
 
-By default, all Go actions are executed in a version 1.11.13 environment.
+By default, all Go actions are executed in a version 1.15 environment.
 
 For more information about the `go` runtimes, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-go/blob/master/README.md){: external}.
+
+For more information about writing `go` actions, see [Preparing Go apps](/docs/openwhisk?topic=openwhisk-prep#prep_go).
 
 **Java**
 

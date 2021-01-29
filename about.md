@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-15"
+lastupdated: "2021-01-29"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -82,11 +82,11 @@ The first entry point into the system is through **NGINX**, an HTTP and reverse 
 ### 2. Entering the system: Controller
 {: #about_controller}
 
-NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. The Controller is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**). As such, the Controller serves as the interface for everything that you want to do, including create, retrieve, update, and delete requests for your entities in OpenWhisk and the invocation of actions.
+NGINX forwards the HTTP request to the **Controller**, the next component on the path through OpenWhisk. The controller is a Scala-based implementation of the actual REST API (based on **Akka** and **Spray**). As such, the controller serves as the interface for everything that you want to do, including create, retrieve, update, and delete requests for your entities in OpenWhisk and the invocation of actions.
 
-When the HTTP request is forwarded, the Controller first determines what action that you are trying to take, based on the HTTP method that you used in your HTTP request. In this case, you are issuing a POST request to an existing action, which the Controller translates to an **invocation of an action**.
+When the HTTP request is forwarded, the controller first determines what action that you are trying to take, based on the HTTP method that you used in your HTTP request. In this case, you are issuing a POST request to an existing action, which the controller translates to an **invocation of an action**.
 
-Given the central role of the Controller (hence the name), the following steps all involve the Controller, to a certain extent.
+Given the central role of the controller (hence the name), the following steps all involve the controller, to a certain extent.
 
 ### 3. Authentication and Authorization: CouchDB
 {: #about_auth}
@@ -109,16 +109,16 @@ In this particular case, the action doesn’t take any parameters (the function 
 ### 5. Who’s there to invoke the action: Load Balancer
 {: #about_lb}
 
-The Load Balancer, which is part of the Controller, has a global view of the executors that are available in the system by checking their health status continuously. Those executors are called **Invokers**. The Load Balancer, knowing which Invokers are available, chooses one of them to invoke the action that you requested.
+The Load Balancer, which is part of the controller, has a global view of the executors that are available in the system by checking their health status continuously. Those executors are called **Invokers**. The Load Balancer, knowing which Invokers are available, chooses one of them to invoke the action that you requested.
 
 ### 6. Please form a line: Kafka
 {: #about_kafka}
 
-The controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *`OutOfMemoryException`*, from both the Controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
+The controller and the Invoker solely communicate through messages that are buffered and persisted by Kafka. Kafka lifts the burden of buffering in memory, which risks an *`OutOfMemoryException`*, from both the controller and the Invoker, while also making sure that messages are not lost if a system crashes. 
 
 To get the action invoked, the controller publishes a message to **Kafka**, a high-throughput, distributed, publish-subscribe messaging system. The message contains the action to invoke and the parameters to pass to that action (in this case none). This message is addressed to the Invoker.
 
-After Kafka confirms that the message is received, it responds to the HTTP request with an **Activation ID**. You can use this ID to get access to the results of this specific invocation. This is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
+After Kafka confirms that the message is received, it responds to the HTTP request with an **Activation ID**. You can use this ID to get access to the results of this specific invocation. This model is an asynchronous invocation model, where the HTTP request terminates once the system accepts the request to invoke an action. A synchronous model (called blocking invocation) is available, but not covered here.
 
 ### 7. Invoking the code: Invoker
 {: #about_invoker}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-01-29"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -1118,7 +1118,7 @@ When you structure your Go code, note that the expected name for the entry point
 You can package multiple Go source files by creating a top level `src` directory, importing the subpackages, and then compiling.
 {: shortdesc}
 
-1. Create a top level `src` directory. Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
+1. Create a top level `src` directory.</br>Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
   
    ```
    go-action-hello/
@@ -1130,7 +1130,7 @@ You can package multiple Go source files by creating a top level `src` directory
    ```
    {: screen}
 
-2. Import subpackages. The following example shows `main/main.go` importing the `hello` subpackage.
+2. Import subpackages.</br>The following example shows `main/main.go` importing the `hello` subpackage.
 
    ```go
    package main
@@ -1170,7 +1170,7 @@ You can package multiple Go source files by creating a top level `src` directory
    ```
    {: codeblock}
 
-3. Compile the code. Create a .zip archive of the `src` directory. Do not include the top level project directory `go-action-project/`.
+3. Compile the code.</br>Create a .zip archive of the `src` directory. Do not include the top level project directory `go-action-project/`.
 
    ```bash
    cd src
@@ -1182,16 +1182,41 @@ You can package multiple Go source files by creating a top level `src` directory
    You can compile locally by setting your `GOPATH` to the parent of the `src` directory. If you use VS Code, you must change the `go.inferGopath` setting to `true`.
    {: note}
 
-4. Compile and package the Go executable file as `exec` in the root of the .zip archive. Build the `hello-bin.zip` archive by running the following command. You must install the Docker CLI on your workstation and put `docker` in your `PATH`.
+4. Compile and package the Go executable file as `exec` in the root of the .zip archive.</br>Build the `hello-bin.zip` archive by running the following command. You must install the Docker CLI on your workstation and put `docker` in your `PATH`.
 
    ```bash
-   docker run -i openwhisk/actionloop-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
+   docker run -i openwhisk/action-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
    ```
    {: pre}
 
    In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`. The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
 
    The container gets the contents of the source .zip in `stdin`, compiles the content, and creates a new .zip archive with the executable `exec` file in the root. The .zip archive content streams out to `stdout`, which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
+
+5. Create or update the action.</br>Use the `hello-bin.zip` file to create an action or to update an existing action.
+
+   ```bash
+   ibmcloud fn action create hello hello-bin.zip --kind go:1.11
+   ```
+   {: pre}
+
+   In most cases, the Go compiler generates statically-linked binaries. These binaries can be run in most 64-bit Linux-based environment. Therefore, you can also run it in the `native` runtime environment.
+
+   ```bash
+   ibmcloud fn action create hello hello-bin.zip --native
+   ```
+   {: pre}
+
+   However, depending on the modules that are included in your source code, the Go compiler can decide to create a dynamically-linked binary instead. You can check the generated `exec` file that is found inside the `hello-bin.zip` file in your Linux system by using the `file` or `ldd` commands. For dynamically-linked executables, all depending libraries must be present when the binary is executed.</br>
+   The `dockerskeleton` image that is used for `native` actions is a minimalistic image and assumes that all code is contained in the binary. If you create a `native` action with this type of dynamically-linked executable, it can fail during invocation at initialization time (when the action code is loaded into memory) with the following messages in your action logs,
+
+   ```
+   "2021-01-29T10:17:34.1233Z stdout: [Errno 2] No such file or directory: '/action/exec': '/action/exec'",
+   "2021-01-29T10:17:34.124Z stderr: The action did not initialize or run as expected. Log data might be missing."
+   ```
+   {: pre}
+
+   The binary `exec` file cannot be loaded into memory because the dependent libraries are missing and cannot be resolved. To resolve this issue, use the `--kind go:1.11` option.
 
 ### Packaging Go code with vendor libraries
 {: #prep_go_vendor}

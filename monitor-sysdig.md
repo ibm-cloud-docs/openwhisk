@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-12-10"
+  years: 2021
+lastupdated: "2021-01-29"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -24,7 +24,7 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# {{site.data.keyword.mon_short}}
+# {{site.data.keyword.mon_full_notm}}
 {: #monitor-sysdig}
 
 Get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or hitting action activation limits.
@@ -32,13 +32,13 @@ Get insight into the performance of your actions that are deployed with {{site.d
 
 Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. {{site.data.keyword.openwhisk_short}} service forwards selected information about your actions to {{site.data.keyword.mon_short}} so that you can monitor specific metrics such as status, duration, rate limits, and concurrency.
 
-## Set up your {{site.data.keyword.mon_short}} service instance
+## Set up your {{site.data.keyword.mon_full_notm}} service instance
 {: #setup-monitor}
 
 To set up your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in {{site.data.keyword.mon_short}}, you must create a service instance and then enable Platform Metrics in the same region as the {{site.data.keyword.openwhisk_short}} actions that you want to monitor. If you have deployments in more than one region, you must provision {{site.data.keyword.mon_short}} and enable platform metrics for each region.
 {: shortdesc}
 
-To set up {{site.data.keyword.mon_short}}:
+To set up {{site.data.keyword.mon_short}},
 
 1. From the {{site.data.keyword.cloud_notm:}} navigation menu, select **Observability**.
 2. Select **Monitoring**.
@@ -52,7 +52,7 @@ Provisioning your monitor might take a few minutes and that you must run an acti
 You can also launch monitoring from your {{site.data.keyword.openwhisk_short}} dashboard by selecting **Launch Monitoring**.
 {: tip}
 
-## Accessing your {{site.data.keyword.mon_short}} metrics
+## Accessing your {{site.data.keyword.mon_full_notm}} metrics
 {: #access-monitor}
 
 To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in {{site.data.keyword.mon_short}}:

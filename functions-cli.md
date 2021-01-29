@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-01-26"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete
 
@@ -82,7 +82,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Node.js</td>
-    <td><code>nodejs:10</code> (default), <code>nodejs:12</code></td>
+    <td><code>nodejs:12</code> (default), <code>nodejs:10</code></td>
   </tr>
   <tr>
     <td>Python</td>
@@ -98,7 +98,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Go</td>
-    <td><code>go:1.11</code> (default), <br><code>go:1.15</code></td>
+    <td><code>go:1.15</code> (default)</td>
   </tr>
   <tr>
     <td>Ruby</td>
@@ -370,7 +370,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Node.js</td>
-    <td><code>nodejs:10</code> (default), <code>nodejs:12</code></td>
+    <td><code>nodejs:12</code> (default), <code>nodejs:10</code></td>
   </tr>
   <tr>
     <td>Python</td>
@@ -386,7 +386,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
   </tr>
   <tr>
     <td>Go</td>
-    <td><code>go:1.11</code> (default), <br><code>go:1.15</code></td>
+    <td><code>go:1.15</code> (default)</td>
   </tr>
   <tr>
     <td>Ruby</td>
