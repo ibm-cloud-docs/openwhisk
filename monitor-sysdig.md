@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-01-29"
+lastupdated: "2021-02-02"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
 
@@ -40,7 +40,7 @@ To set up your {{site.data.keyword.openwhisk_short}} customer metrics dashboards
 
 To set up {{site.data.keyword.mon_short}},
 
-1. From the {{site.data.keyword.cloud_notm:}} navigation menu, select **Observability**.
+1. From the {{site.data.keyword.cloud_notm}} navigation menu, select **Observability**.
 2. Select **Monitoring**.
 3. Either use an existing {{site.data.keyword.mon_short}} service instance or create a new one.
 4. After the instance is ready, enable platform metrics by clicking **Configure platform metrics**.
@@ -57,7 +57,7 @@ You can also launch monitoring from your {{site.data.keyword.openwhisk_short}} d
 
 To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in {{site.data.keyword.mon_short}}:
 
-1. From the IBM Cloud navigation menu, select **Observability**.
+1. From the {{site.data.keyword.cloud_notm}} navigation menu, select **Observability**.
 2. Select **Monitoring**.
 3. Select **View Sysdig** to view the dashboard.
 4. From the navigation menu, select **Dashboards->IBM->Cloud Functions - Customer Metrics Dashboard**.
@@ -226,27 +226,27 @@ The average time that is spent in a queue, waiting for an activation to be sched
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 12: ibm_functions_wait-time metric metadata" caption-side="top"}
 
-## Attributes for Segmentation
+## Attributes for segmentation
 {: attributes}
 
-### Global Attributes
+### Global attributes
 {: global-attributes}
 
 The following attributes are available for segmenting all of the metrics previously listed.
 
-| Attribute | Attribute Name | Attribute Description |
+| Attribute | Attribute name | Attribute description |
 |-----------|----------------|-----------------------|
 | `Cloud Type` | `ibm_ctype` | The cloud type, which is always set to `bluemix`. |
 | `Location` | `ibm_location` | The region of the monitored resource. Possible regions include `us-south`, `eu-de`, or `au-syd`. |
 | `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
 {: caption="Table 13: Global attributes" caption-side="top"}
 
-### Additional Attributes
+### Additional attributes
 {: additional-attributes}
 
 The following attributes are available for segmenting one or more attributes as described in the previous reference. See the [individual metrics](#metrics-by-plan) for segmentation options.
 
-| Attribute | Attribute Name | Attribute Description |
+| Attribute | Attribute name | Attribute description |
 |-----------|----------------|-----------------------|
 | `Service instance` | `ibm_service_instance` | The service instance segment identifies the instance that the metric is associated with. |
 | `ibm_functions_action` | `ibm_functions_action` | The action name. |

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-29"
+lastupdated: "2021-02-02"
 
 keywords: web actions, serverless, functions
 
