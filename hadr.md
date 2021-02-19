@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-10-29"
+  years: 2019, 2021
+lastupdated: "2021-02-19"
 
 keywords: cli, functions, high availability
 
@@ -24,7 +24,7 @@ subcollection: openwhisk
 {:gif: data-image-type='gif'}
 {:external: target="_blank" .external}
 
-# High availability and disaster recovery
+# Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}
 {: #ha_dr}
 
 Learn about the high availability features of the {{site.data.keyword.openwhisk}} and design your resources to meet the availability requirements that your business and customers need.

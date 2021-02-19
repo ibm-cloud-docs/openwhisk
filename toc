@@ -83,7 +83,6 @@ Functions
         activity_tracker.md
 
     monitor-sysdig.md
-    hadr.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
@@ -97,6 +96,7 @@ Functions
         cli_changelog.md
    
     regions.md
+    hadr.md
 
     {: .topicgroup}
     API documentation

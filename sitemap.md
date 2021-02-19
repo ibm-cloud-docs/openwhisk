@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-02-02"
+lastupdated: "2021-02-19"
 
 keywords: web actions, serverless, functions
 
@@ -26,6 +26,9 @@ subcollection: openwhisk
 
 # Sitemap for {{site.data.keyword.openwhisk_short}}
 {: #sitemap}
+
+Find what you are looking for in the compilation of {{site.data.keyword.openwhisk_short}} topics.
+{: shortdesc}
 
 
 
@@ -561,13 +564,6 @@ subcollection: openwhisk
 * [ibm_functions_wait-time](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_wait-time)
 
 
-## High availability and disaster recovery
-{: #sitemap_high_availability_and_disaster_recovery}
-
-
-[High availability and disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr)
-
-
 ## Annotations
 {: #sitemap_annotations}
 
@@ -707,6 +703,8 @@ subcollection: openwhisk
 [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions)
 
 [Regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions)
+
+[Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-ha_dr)
 
 
 ## API documentation

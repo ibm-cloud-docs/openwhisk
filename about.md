@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-29"
+lastupdated: "2021-02-19"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions
 
@@ -36,26 +36,17 @@ subcollection: openwhisk
 
 Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}. Then, test your knowledge and [take a quiz! ](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}
 
-<dl>
-<dt>Namespace</dt>
-<dd>[Namespaces](/docs/openwhisk?topic=openwhisk-namespaces) contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your {{site.data.keyword.openwhisk_short}} entities by granting them access to the namespace.</dd>
-<dt>Action</dt>
-<dd>An [action](/docs/openwhisk?topic=openwhisk-actions) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to Cloud Functions either as source code or a Docker image.
-<br><br>An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.cloud_notm}} services and third-party services by using a trigger.</dd>
-<dt>Sequence</dt>
-<dd>A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=openwhisk-sequences) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events.</dd>
-<dt>Event</dt>
-<dd>Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events.</dd>
-<dt>Trigger</dt>
-<dd>[Triggers](/docs/openwhisk?topic=openwhisk-triggers) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source.</dd>
-<dt>Rule</dt>
-<dd>A [rule](/docs/openwhisk?topic=openwhisk-rules) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for a single action to be invoked as a response to events from multiple triggers.</dd>
-<dt>Feed</dt>
-<dd>A [feed](/docs/openwhisk?topic=openwhisk-triggers#triggers_feeds) is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository.</dd>
-<dt>Package</dt>
-<dd>Integrations with services and event providers can be added with packages. A [package](/docs/openwhisk?topic=openwhisk-pkg_ov) is a bundle of feeds and actions. A feed is a piece of code that configures an external event source to fire trigger events. For example, a trigger that is created with an {{site.data.keyword.cloudant}} change feed configures a service to fire the trigger every time a document is modified or added to an {{site.data.keyword.cloudant_short_notm}} database. Actions in packages represent reusable logic that a service provider can make available so developers can use the service as an event source, and invoke APIs of that service.
-<br><br>An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, Slack, and GitHub.</dd>
-</dl>
+| Term | Description |
+| --------- | ------------------- |
+| Namespace | [Namespaces](/docs/openwhisk?topic=openwhisk-namespaces) contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your {{site.data.keyword.openwhisk_short}} entities by granting them access to the namespace. |
+| Action | An [action](/docs/openwhisk?topic=openwhisk-actions) is a piece of code that performs one specific task. An action can be written in the language of your choice, such as small snippets of JavaScript or Swift code or custom binary code embedded in a Docker container. You provide your action to {{site.data.keyword.openwhisk_short}} either as source code or a Docker image. An action performs work when it is directly invoked by using the {{site.data.keyword.openwhisk_short}} API, CLI, or iOS SDK. An action can also automatically respond to events from {{site.data.keyword.cloud_notm}} services and third-party services by using a trigger. | 
+| Sequence | A set of actions can be chained together into a [sequence](/docs/openwhisk?topic=openwhisk-sequences) without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events. | 
+| Event | Examples of events include changes to database records, IoT sensor readings that exceed a certain temperature, new code commits to a GitHub repository, or simple HTTP requests from web or mobile apps. Events from external and internal event sources are channeled through a trigger, and rules allow actions to react to these events. |
+| Trigger | [Triggers](/docs/openwhisk?topic=openwhisk-triggers) are a named channel for a class of events. A trigger is a declaration that you want to react to a certain type of event, whether from a user or by an event source. | 
+| Rule | A [rule](/docs/openwhisk?topic=openwhisk-rules) associates a trigger with an action. Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger event to invoke multiple actions, or for a single action to be invoked as a response to events from multiple triggers. | 
+| Feed | A [feed](/docs/openwhisk?topic=openwhisk-triggers#triggers_feeds) is a convenient way to configure an external event source to fire trigger events that can be consumed by {{site.data.keyword.openwhisk_short}}. For example, a Git feed might fire a trigger event for every commit to a Git repository. | 
+| Package | Integrations with services and event providers can be added with packages. A [package](/docs/openwhisk?topic=openwhisk-pkg_ov) is a bundle of feeds and actions. An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, Slack, and GitHub. | 
+{: caption="Table 1. {{site.data.keyword.openwhisk_short}} Terms" caption-side="bottom"}
 
 ## What happens behind the scenes in {{site.data.keyword.openwhisk}}?
 {: #about_scenes}
@@ -67,6 +58,8 @@ Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_
 ### 1. Entering the system: NGINX
 {: #about_ngnix}
 
+The first entry point into the system is through **NGINX**, an HTTP and reverse proxy server. NGINX is used for SSL termination and forwarding appropriate HTTP calls to the next component.
+
 The OpenWhisk user-facing API is HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to the following syntax:
 
 ```
@@ -75,9 +68,7 @@ Host: $openwhiskEndpoint
 ```
 {: screen}
 
-Note the `<userNamespace>` variable. A user has access to at least one namespace. For simplicity with this example, assume that you own the namespace where `myAction` is put into.
-
-The first entry point into the system is through **NGINX**, an HTTP and reverse proxy server. NGINX is used for SSL termination and forwarding appropriate HTTP calls to the next component.
+Note the `<userNamespace>` variable. A user has access to at least one namespace. For simplicity with this example, assume that you own the namespace where `myAction` is located.
 
 ### 2. Entering the system: Controller
 {: #about_controller}
@@ -161,6 +152,4 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 ```
 {: pre}
 
-**Summary**
-
-You can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 
+In summary, you can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 

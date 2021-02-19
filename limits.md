@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-02-19"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
 
@@ -58,7 +58,7 @@ The following table lists the default limits for actions.
   <tbody>
    <tr>
    <td>`codeSize`</td>
-   <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker) as a workaround for large dependencies, however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
+   <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker) as a workaround for large dependencies; however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded, which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
    <td>48</td>
    <td>1</td>
    <td>48</td>
@@ -107,7 +107,7 @@ The following table lists the default limits for actions.
   </tr>
    <tr>
    <td>`proculimit`</td>
-   <td>The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command line reference documentation.</td>
+   <td>The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command-line reference documentation.</td>
    <td>1024</td>
    <td>0</td>
    <td>1024</td>
@@ -149,7 +149,7 @@ The following table lists the default limits for actions.
 ## Sequence limits
 {: #limits_sequence}
 
-A sequence does not have limits that are separate from those of each action contained within the sequence. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
+A sequence does not have limits that are separate from those limits of each action that is contained within the sequence. Because a sequence is a pipeline of actions, a failure in one action breaks the pipeline. For example, if one action times out, the entire sequence is exited with that failure.
 {: shortdesc}
 
 ## Trigger rate limits
@@ -187,8 +187,8 @@ Triggers are subject to a firing rate per minute as documented in the following 
 
 Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/functions){: external}.
 
-  1. Select **Support**
-  2. Select **Add Ticket** from the drop down menu.
+  1. Select **Support**.
+  2. Select **Add Ticket** from the drop-down menu.
   3. Select **Technical** for the ticket type.
   4. Select **Functions** for Technical area of support.
 
@@ -211,16 +211,16 @@ You can create new IAM-based namespaces by running `ibmcloud fn namespace create
 
 The `/whisk.system` namespace is reserved for entities that are distributed with the {{site.data.keyword.openwhisk_short}} system.
 
-The [Serverless Framework](https://www.serverless.com/) is not supported for IAM-based namespaces
+The [Serverless Framework](https://www.serverless.com/) is not supported for IAM-based namespaces.
 {: note}
 
 ### Fully qualified names
 {: #limits_fullnames}
 
 The fully qualified name of an entity is
-`/<namespace_id>/<package_name>/<entity_name>`. Notice that `/` is used to delimit Cloud Foundry-based namespaces, packages, and entities. Also, when working in the CLI, some commands with namespaces must be prefixed with a `/`.
+`/<namespace_id>/<package_name>/<entity_name>`. Notice that `/` is used to delimit Cloud Foundry-based namespaces, packages, and entities. Also, when you work in the CLI, some commands with namespaces must be prefixed with a `/`.
 
-For convenience, the namespace can be left off if it is the user's default namespace. For example, consider a user whose default namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
+For convenience, the namespace can be omitted if it is the user's default namespace. For example, consider a user whose default namespace is `/myOrg`. Following are examples of the fully qualified names of a number of entities and their aliases.
 
 | Fully qualified name | Alias | Namespace | Package | Name |
 | --- | --- | --- | --- | --- |
@@ -253,7 +253,7 @@ The input to and output from an action is a dictionary of key-value pairs. The k
 ### Invocation ordering of actions
 {: #limits_ordering}
 
-Invocations of an action are not ordered. If the user invokes an action twice from the command line or the REST API, the second invocation might run before the first. If the actions have side effects, they might be observed in any order.
+Invocations of an action are not ordered. If the user invokes an action twice from the command-line or the REST API, the second invocation might run before the first. If the actions have side effects, they might be observed in any order.
 
 Additionally, it is not guaranteed that actions execute automatically. Two actions can run concurrently and their side effects can be interleaved. OpenWhisk does not ensure any particular concurrent consistency model for side effects. 
 
@@ -292,5 +292,5 @@ An activation record contains the following fields:
 | `start` and `end` | Timestamps recording the start and end of the activation. The values are in [UNIX time format](http://pubs.opengroup.org/onlinepubs/9699919799/basedefs/V1_chap04.html#tag_04_15){: external}. |
 | `namespace` and `name` | The namespace and name of the entity. |
 | `logs` | An array of strings with the logs that are produced by the action during its activation. Each array element corresponds to a line output to `stdout` or `stderr` by the action, and includes the time and stream of the log output. The structure is as follows: `TIMESTAMP STREAM: LOG_OUTPUT`. |
-| `response` | A dictionary that defines the keys `success`, `status`, and `result`. `status`: The activation result, which might be one of the following values: "success", "application error", "action developer error", "whisk internal error". `success`: Is `true` if and only if the status is `"success"`. |
+| `response` | A dictionary that defines the keys `success`, `status`, and `result`. <ul><li>`status`: The activation result, which might be one of the following values: `success`, `application error`, `action developer error`, or `whisk internal error`.</li><li> `success`: `true` if and only if the status is `success`.</li></ul> |
 | `result` | A dictionary that contains the activation result. If the activation was successful, the result contains the value that is returned by the action. If the activation was unsuccessful, `result` contains the `error` key, generally with an explanation of the failure. |
