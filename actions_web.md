@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-14"
+  years: 2017, 2021
+lastupdated: "2021-03-02"
 
 keywords: web actions, serverless, functions
 
@@ -811,7 +811,7 @@ To secure your web action with a custom value, update your `hello` web action wi
 1. Set a `require-whisk-auth` value where `<my-secret>` is your case-sensitive authentication token.
 
     ```bash
-    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true --require-whisk-auth <mysecret>
+    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --annotation require-whisk-auth <mysecret>
     ```
     {: pre}
   

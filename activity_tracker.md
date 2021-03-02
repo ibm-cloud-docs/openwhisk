@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-02-25"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -24,10 +24,10 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# Viewing {{site.data.keyword.cloudaccesstrailshort}} events
-{: #activity_tracker}
+# Auditing events for {{site.data.keyword.openwhisk_short}}
+{: #at_events}
 
-You can view, manage, and audit user-initiated activities made in your {{site.data.keyword.openwhisk}} service instance by using the {{site.data.keyword.at_full_notm}} service.
+You can view, manage, and audit user-initiated activities made in your {{site.data.keyword.openwhisk_short}} service instance by using the {{site.data.keyword.at_full_notm}} service.
 {: shortdesc}
 
 {{site.data.keyword.at_full_notm}} records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. You can use this service to investigate abnormal activity and critical actions and to follow regulatory audit requirements. You can also be alerted about actions as they happen. The events that are collected follow the Cloud Auditing Data Federation (CADF) standard. For more information, see the [Getting Started tutorial for {{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
@@ -36,114 +36,78 @@ You can view, manage, and audit user-initiated activities made in your {{site.da
 ## List of events
 {: #events}
 
-The following list of {{site.data.keyword.openwhisk}} events is sent to {{site.data.keyword.at_full_notm}}.
+The following list of {{site.data.keyword.openwhisk_short}} events is sent to {{site.data.keyword.at_full_notm}}.
 {: shortdesc}
 
-<table>
-  	<col style="width:40%">
-	<col style="width:60%">
-  <thead>
-    <tr>
-      <th>Action</th>
-      <th>Description</th>
-    </tr>
-  </thead>
-  <tbody>
-    <tr>
-      <td><code>functions.action.create</code></td>
-            <td>Create an action.</td>
-    </tr>
-        <tr>
-      <td><code>functions.action.read</code></td>
-            <td>Get action information.</td>
-    </tr>
-	  <tr>
-      <td><code>functions.action.update</code></td>
-            <td>Update an action. Note that the event does not include the changes between the initial value and the new value. An update of an action might also replace the code that is associated with the request. Consider setting up a version control system to maintain your code changes and to find the delta between versions.</td>
-    </tr>
-        <tr>
-      <td><code>functions.action.delete</code></td>
-            <td>Delete an action.</td>
-    </tr>
-    <tr>
-      <td><code>functions.namespace.create</code></td>
-      <td>Create an IAM-based namespace resource.</td>
-    </tr>
-<tr>
-      <td><code>functions.namespace.read</code></td>
-      <td>Get IAM-based namespace resource information.</td>
-    </tr>
-    <tr>
-      <td><code>functions.namespace.migrate</code></td>
-      <td>Migrate a Cloud Foundry-based namespace to become an IAM-enabled namespace.</td>
-    </tr>
-<tr>
-      <td><code>functions.namespace.update</code></td>
-      <td>Update IAM-based namespace resource properties, such as the display name or description.</td>
-    </tr>
-    <tr>
-      <td><code>functions.namespace.delete</code></td>
-      <td>Delete a namespace resource.</td>
-    </tr>
-        <tr>
-      <td><code>functions.package.create</code></td>
-            <td>Create a package.</td>
-    </tr>
-        <tr>
-      <td><code>functions.package.read</code></td>
-            <td>Get package information.</td>
-    </tr>
-<tr>
-      <td><code>functions.package.update</code></td>
-            <td>Update a package. Note that the event does not include the changes between the initial value and the new value.</td>
-    </tr>
-            <tr>
-      <td><code>functions.package.delete</code></td>
-            <td>Delete a package.</td>
-    </tr>
-            <tr>
-      <td><code>functions.trigger.create</code></td>
-            <td>Create a trigger.</td>
-    </tr>
-            <tr>
-      <td><code>functions.trigger.read</code></td>
-            <td>Get trigger information.</td>
-    </tr>            
-<tr>
-      <td><code>functions.trigger.update</code></td>
-            <td>Update a trigger. Note that the event does not include the changes between the initial value and the new value.</td>
-    </tr>
-                <tr>
-      <td><code>functions.trigger.delete</code></td>
-            <td>Delete a trigger.</td>
-    </tr>
-                <tr>
-      <td><code>functions.rule.create</code></td>
-            <td>Create a rule.</td>
-    </tr>
-<tr>
-      <td><code>functions.rule.enable</code></td>
-            <td>Enable a rule.</td>
-    </tr>
-<tr>
-      <td><code>functions.rule.disable</code></td>
-            <td>Disable a rule.</td>
-    </tr>
-     <tr>
-      <td><code>functions.rule.read</code></td>
-            <td>Get rule information.</td>
-    </tr>
-	   <tr>
-      <td><code>functions.rule.update</code></td>
-            <td>Update a rule. Note that the event does not include the changes between the initial value and the new value.</td>
-    </tr>
-<tr>
-      <td><code>functions.rule.delete</code></td>
-            <td>Delete a rule.</td>
-    </tr>
-  </tbody>
-</table>
+### Action events
+{: #action-events}
 
+The following activities generate action events.
+
+| Action          | Description      | 
+|-----------------|------------------|
+| `functions.action.create` | Create an action. | 
+| `functions.action.read` | Get action information. |
+| `functions.action.activate` | Invoke an action. Note that this event is logged only when errors occur. |
+| `functions.action.update` | Update an action. Note that the event does not include the changes between the initial value and the new value. An update of an action might also replace the code that is associated with the request. Consider setting up a version control system to maintain your code changes and to find the delta between versions. |
+| `functions.action.delete` | Delete an action. |
+{: caption="Table 1. Activities that generate action events" caption-side="top"}
+
+### Namespace events
+{: #namespace-events}
+
+The following activities generate namespace events.
+
+| Action          | Description      | 
+|-----------------|------------------|
+| `functions.namespace.create` | Create an IAM-based namespace resource. | 
+| `functions.namespace.read` | Get IAM-based namespace resource information. |
+| `functions.namespace.migrate` | Migrate a Cloud Foundry-based namespace to become an IAM-enabled namespace. |
+| `functions.namespace.update` | Update IAM-based namespace resource properties, such as the display name or description. |
+| `functions.namespace.delete` | Delete a namespace resource. |
+{: caption="Table 2. Activities that generate namespace events" caption-side="top"}
+
+### Package events
+{: #package-events}
+
+The following activities generate package events.
+
+| Action          | Description      | 
+|-----------------|------------------|
+| `functions.package.create` | Create a package. | 
+| `functions.package.read` | Get package information. |
+| `functions.package.update` | Update a package. Note that the event does not include the changes between the initial value and the new value. |
+| `functions.package.delete` | Delete a package. |
+{: caption="Table 3. Activities that generate package events" caption-side="top"}
+
+### Trigger events
+{: #trigger-events}
+
+The following activities generate trigger events.
+
+| Action          | Description      | 
+|-----------------|------------------|
+| `functions.trigger.create` | Create a trigger. | 
+| `functions.trigger.read` | Get trigger information. |
+| `functions.trigger.activate` | Fire a trigger. Note that this event is logged only when errors occur. |
+| `functions.trigger.update` | Update a trigger. Note that the event does not include the changes between the initial value and the new value. |
+| `functions.trigger.delete` | Delete a trigger. |
+{: caption="Table 4. Activities that generate trigger events" caption-side="top"}
+
+### Rule events
+{: #rule-events}
+
+The following activities generate rule events.
+
+| Action          | Description      | 
+|-----------------|------------------|
+| `functions.rule.create` | Create a rule. | 
+| `functions.rule.enable` | Enable a rule. |
+| `functions.rule.disable` | Disable a rule. |
+| `functions.rule.read` | Get rule information. |
+| `functions.rule.update` | Update a rule. Note that the event does not include the changes between the initial value and the new value. |
+| `functions.rule.delete` | Delete a rule. |
+{: caption="Table 5. Activities that generate rule events" caption-side="top"}
 
 ## Viewing events
 {: #view}

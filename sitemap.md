@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-02-19"
+lastupdated: "2021-03-02"
 
 keywords: web actions, serverless, functions
 
@@ -534,10 +534,15 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Configure {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_configure_logdna)
   * [Querying logs](/docs/openwhisk?topic=openwhisk-logs#logs_query)
 
-[Viewing {{site.data.keyword.cloudaccesstrailshort}} events](/docs/openwhisk?topic=openwhisk-activity_tracker)
-* [List of events](/docs/openwhisk?topic=openwhisk-activity_tracker#events)
-* [Viewing events](/docs/openwhisk?topic=openwhisk-activity_tracker#view)
-* [Analyzing events](/docs/openwhisk?topic=openwhisk-activity_tracker#at_events_analyze)
+[Auditing events for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-at_events)
+* [List of events](/docs/openwhisk?topic=openwhisk-at_events#events)
+  * [Action events](/docs/openwhisk?topic=openwhisk-at_events#action-events)
+  * [Namespace events](/docs/openwhisk?topic=openwhisk-at_events#namespace-events)
+  * [Package events](/docs/openwhisk?topic=openwhisk-at_events#package-events)
+  * [Trigger events](/docs/openwhisk?topic=openwhisk-at_events#trigger-events)
+  * [Rule events](/docs/openwhisk?topic=openwhisk-at_events#rule-events)
+* [Viewing events](/docs/openwhisk?topic=openwhisk-at_events#view)
+* [Analyzing events](/docs/openwhisk?topic=openwhisk-at_events#at_events_analyze)
 
 
 ## {{site.data.keyword.mon_full_notm}}
