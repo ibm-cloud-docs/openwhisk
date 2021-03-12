@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-02"
+lastupdated: "2021-03-12"
 
 keywords: web actions, serverless, functions
 
@@ -763,6 +763,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes](/docs/openwhisk?topic=openwhisk-release-notes)
+
+[March 2021](/docs/openwhisk?topic=openwhisk-release-notes#march21)
 
 [January 2021](/docs/openwhisk?topic=openwhisk-release-notes#jan21)
 

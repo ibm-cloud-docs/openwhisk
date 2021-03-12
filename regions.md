@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-17"
+  years: 2017, 2021
+lastupdated: "2021-03-10"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # Regions
 {: #cloudfunctions_regions}
 
-{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, and Tokyo {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
+{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, Tokyo, and Sydney {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
 {: shortdesc}
 
 ```
@@ -55,6 +55,7 @@ The following endpoints are available for {{site.data.keyword.openwhisk_short}} 
 | UK South | `https://eu-gb.functions.cloud.ibm.com` |
 | EU Central | `https://eu-de.functions.cloud.ibm.com` |
 | Tokyo | `https://jp-tok.functions.cloud.ibm.com` |
+| Sydney | `https://au-syd.functions.cloud.ibm.com` |
 {: caption="{{site.data.keyword.openwhisk_short}} endpoints" caption-side="top"}
 
 ## {{site.data.keyword.openwhisk_short}} web action endpoints
@@ -68,4 +69,5 @@ The following endpoints are available for {{site.data.keyword.openwhisk_short}} 
 | UK South | `https://eu-gb.functions.appdomain.cloud` |
 | EU Central | `https://eu-de.functions.appdomain.cloud` |
 | Tokyo | `https://jp-tok.functions.appdomain.cloud` |
+| Sydney | `https://au-syd.functions.appdomain.cloud` |
 {: caption="{{site.data.keyword.openwhisk_short}} endpoints" caption-side="top"}

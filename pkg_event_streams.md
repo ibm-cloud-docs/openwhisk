@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-03-10"
 
 keywords: event streams, package, messages, events, functions
 
@@ -39,7 +39,7 @@ subcollection: openwhisk
 | `/messaging/messageHubProduce` | Action | Deprecated |
 | `/messaging/messageHubFeed` | Feed | Reacts when messages are posted to an {{site.data.keyword.messagehub}} instance |
 
-The `/messaging/messageHubProduce` action is deprecated. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka. The `/messaging/messageHubProduce` action is not available in Tokyo.
+The `/messaging/messageHubProduce` action is deprecated. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka. The `/messaging/messageHubProduce` action is not available in Tokyo or Sydney regions.
 {: tip}
 
 To learn more about producing messages, check out the [Event Streams documentation](/docs/EventStreams?topic=EventStreams-producing_messages#producing_messages).

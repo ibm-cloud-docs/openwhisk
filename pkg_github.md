@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-03-10"
 
 keywords: github, actions, trigger, event, functions
 
@@ -30,7 +30,7 @@ subcollection: openwhisk
 The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://docs.github.com/){: external}.
 {: shortdesc}
 
-This preinstalled package is not available in the Tokyo region.  This package does not work with Enterprise GitHub repositories.
+This preinstalled package is not available in the Tokyo or Sydney regions.  This package does not work with Enterprise GitHub repositories.
 {: tip}
 
 The GitHub package includes the following entities.

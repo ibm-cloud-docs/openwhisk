@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-01-29"
+lastupdated: "2021-03-12"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: openwhisk
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## March 2021
+{: #march21}
+
+| Date | Description |
+| --------- | -------- |
+| 12 March | <ul><li>Added support for `au-syd` (Sydney) region.</li>.</ul> |
+{: caption="Changes for March 2021" caption-side="top"}
 
 ## January 2021
 {: #jan21}
@@ -78,7 +86,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | 30 July | <ul><li> Updated information for [High availability and disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr).</li></ul> |
 | 23 July | <ul><li> New information for actions that use binary files. See [Creating actions from binary files](/docs/openwhisk?topic=openwhisk-actions#actions_create_binaries).</li></ul> |
 | 16 July | <ul><li> Changes for Functions CLI version 1.0.44. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
-| 10 July | <ul><li> Changes for Functions CLI version 1.0.43. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Additional events and information are available for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |
+| 10 July | <ul><li> Changes for Functions CLI version 1.0.43. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Additional events and information are available for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-at_events).</li></ul> |
 {: caption="Changes for July 2020" caption-side="top"}
 
 ## June 2020
@@ -87,7 +95,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | Date | Description |
 | --------- | -------- |
 | 30 June | <ul><li>Updates to documentation for [preinstalled Event streams package](/docs/openwhisk?topic=openwhisk-pkg_event_streams).</li></ul> |
-| 25 June | <ul><li>New events are tracked for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-activity_tracker).</li></ul> |
+| 25 June | <ul><li>New events are tracked for Functions. See [Viewing Activity Tracker events](/docs/openwhisk?topic=openwhisk-at_events).</li></ul> |
 | 18 June | <ul><li>Changes for web action endpoints. See [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web).</li></ul> |
 | 15 June | <ul><li>Changes for Functions CLI version 1.0.41. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 | 8 June | <ul><li> Changes for Functions CLI version 1.0.40. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. See [Monitoring with {{site.data.keyword.mon_full}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig).</li></ul> |

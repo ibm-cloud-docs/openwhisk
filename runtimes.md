@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-26"
+lastupdated: "2021-03-10"
 
 keywords: runtimes, support, functions
 
@@ -509,6 +509,7 @@ To view the available runtimes for IBM Cloud Functions in each region. The follo
   - [`eu-gb`](https://eu-gb.functions.cloud.ibm.com/){: external}
   - [`eu-de`](https://eu-de.functions.cloud.ibm.com/){: external}
   - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
+  - [`au-syd`](https://au-syd.functions.cloud.ibm.com){: external}
 
 The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action` on [hub.docker.com](https://hub.docker.com/){: external}.
 The tags can be version numbers such as `1.9.0` or the short form of a Git commit hash, like `b99d71e`.

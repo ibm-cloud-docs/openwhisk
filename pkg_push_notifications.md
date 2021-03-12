@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-03-10"
 
 keywords: push notifications, functions, webhooks
 
@@ -42,7 +42,7 @@ subcollection: openwhisk
 Learn how to create a Push Notification package binding, and send a simple push notification by using the `/whisk.system/pushnotifications` package.
 {: shortdesc}
 
-In the Tokyo region, use the installable [Push Notification](#pkg_push_mobile_send) package instead as the preinstalled package is not available.
+In the Tokyo and Sydney regions, use the installable [Push Notification](#pkg_push_mobile_send) package instead as the preinstalled package is not available.
 {: tip}
 
 The package includes the following actions and feeds:
