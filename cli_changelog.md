@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2020
-lastupdated: "2020-09-16"
+  years: 2019, 2021
+lastupdated: "2021-03-12"
 
 keywords: cli, functions
 
@@ -32,6 +32,11 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.50 | 12 March 2021 | <ul><li>Enabled Sydney(au-syd) region.</li></ul>
+| 1.0.49 | 07 Jan 2021 | <ul><li>Fixed a bug that affects Tokyo(jp-tok) region.</li></ul>
+| 1.0.48 | 16 Dec 2020 | <ul><li>Added notification about duplicate namespace names when using `namespace target` command.</li></ul>
+| 1.0.47 | 25 Sept 2020 | <ul><li>Upgraded dependent ibmcloud cli sdk version.</li></ul>
+| 1.0.45 | 12 August 2020 | <ul><li>Added runtime deprecation warning messages after users target namespaces.</li></ul>
 | 1.0.44 | 16 July 2020 | <ul><li>Fixed a bug that is associated with `namespace target` command and improved the error messages.</li></ul>
 | 1.0.43 | 8 July 2020 | <ul><li>Fixed IAM namespace targeting so that you can target a namespace without first targeting an `org` and `space`.</li><li>Updated the default version for `Golang` actions to `Golang` version 1.13.</li></ul>
 | 1.0.40 | 30 May 2020 | <ul><li>Added new `ibmcloud fn namespace target` command to allow users to target any IAM or CF-based namespaces.</li></ul><ul><li>Added `print out` information to notify users the region under which namespaces are listed when users issue `ibmcloud fn namespace list` command.</li></ul><ul><li>Disallow users to set `apihost` by using the `ibmcloud fn property set --apihost` command.</li></ul>|
