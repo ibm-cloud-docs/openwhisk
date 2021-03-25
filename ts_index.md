@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-16"
+  years: 2017, 2021
+lastupdated: "2021-03-25"
 
 keywords: troubleshooting actions, functions, help, support,
 
@@ -133,7 +133,7 @@ Still having issues with your function?
 
 -   To see whether {{site.data.keyword.cloud_notm}} is available, [check the {{site.data.keyword.cloud_notm}} status page](https://cloud.ibm.com/status?selected=status){: external}.
 -   Review the forums to see whether other users ran into the same issue. When you use the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development teams.
-    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/search?q=ibm-cloud-functions){: external} and tag your question with `ibm-cloud-functions`.
+    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/questions/tagged/ibm-cloud-functions){: external} and tag your question with `ibm-cloud-functions`.
 -   See [Getting help](/docs/get-support) for more details about using the forums.
 -   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support).
 When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.

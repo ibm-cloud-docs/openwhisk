@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-12"
+lastupdated: "2021-03-25"
 
 keywords: release notes, functions
 
@@ -35,7 +35,8 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 12 March | <ul><li>Added support for `au-syd` (Sydney) region.</li>.</ul> |
+| 25 March | <ul><li>Updated list of supported versions. See [Runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li><li>Updated the Composer topic. See [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer).</li><li>Added information about adding an IBM {{site.data.keyword.openwhisk_short}} Channel to {{site.data.keyword.mon_full_notm}}. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).</li><li>Added information for versioning your actions. See [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version).</ul> |
+| 12 March | <ul><li>Added support for `au-syd` (Sydney) region.</li></ul> |
 {: caption="Changes for March 2021" caption-side="top"}
 
 ## January 2021
@@ -43,7 +44,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 29 January | <ul><li> Added a sitemap. See [Sitemap for Cloud Functions](/docs/openwhisk?topic=openwhisk-sitemap).</li><li>Updated information about packaging Go source files. See [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi).</li>.</ul> |
+| 29 January | <ul><li> Added a sitemap. See [Sitemap for Cloud Functions](/docs/openwhisk?topic=openwhisk-sitemap).</li><li>Updated information about packaging Go source files. See [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi).</li></ul> |
 {: caption="Changes for January 2021" caption-side="top"}
 
 ## December 2020

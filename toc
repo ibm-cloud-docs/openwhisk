@@ -17,10 +17,10 @@ Functions
     {: .topicgroup}
     Tutorials
         tutorial_action.md
-        [Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}
-        [Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
-        [Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
-        [Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
+        [Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}
+        [Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}
+        [Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}
+        [Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}
     {: .navgroup-end}
 
     {: .navgroup id="howto"}
@@ -72,6 +72,7 @@ Functions
         pkg_watson_assistant.md
         pkg_websocket.md
         feeds_custom.md
+        pkg-monitoralerts.md
 
     {: .topicgroup}
     Setting up an automated tool chain

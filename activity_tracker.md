@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-02-25"
+lastupdated: "2021-03-24"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -31,7 +31,6 @@ You can view, manage, and audit user-initiated activities made in your {{site.da
 {: shortdesc}
 
 {{site.data.keyword.at_full_notm}} records user-initiated activities that change the state of a service in {{site.data.keyword.cloud_notm}}. You can use this service to investigate abnormal activity and critical actions and to follow regulatory audit requirements. You can also be alerted about actions as they happen. The events that are collected follow the Cloud Auditing Data Federation (CADF) standard. For more information, see the [Getting Started tutorial for {{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started).
-
 
 ## List of events
 {: #events}
@@ -134,7 +133,7 @@ To find the unique ID of a request, look at the `requestData.requestId` value th
 
 **Getting request details**
 
-The `requestData` field contains the name of the namespace entity such as action, package, trigger, or rule for which the event is generated. This is named according to the entity, for example, the name `requestData.actionName` is used for actions. 
+The `requestData` field contains the name of the namespace entity such as action, package, trigger, or rule for which the event is generated. This field is named according to the entity; for example, the name `requestData.actionName` is used for actions. 
 
 Additionally, the `initiator.host.agent` field contains information about the user agent that sent the request. If the action was initiated through the CLI, this field starts with `CloudFunctions-Plugin`, if it is initiated through the Cloud Console (UI), the value is `IBM Cloud Functions UI`.   
 

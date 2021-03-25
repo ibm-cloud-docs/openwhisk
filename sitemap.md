@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-19"
+lastupdated: "2021-03-25"
 
 keywords: web actions, serverless, functions
 
@@ -92,15 +92,15 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 {: #sitemap_tutorials}
 
 
-[Tutorial: Calling an action from another action](/docs/openwhisk?topic=openwhisk-tutorial_action)
+[Calling an action from another action](/docs/openwhisk?topic=openwhisk-tutorial_action)
 
-[Tutorial: Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}{: external}
+[Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}{: external}
 
-[Tutorial: Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}{: external}
+[Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: new_window}{: external}
 
-[Tutorial: Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}{: external}
+[Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: new_window}{: external}
 
-[Tutorial: Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}{: external}
+[Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: new_window}{: external}
 
 
 ## Installing the CLI and plug-in
@@ -202,6 +202,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Sharing packages of actions](/docs/openwhisk?topic=openwhisk-actions#actions_pkgs_share)
 * [Environment variables for actions](/docs/openwhisk?topic=openwhisk-actions#actions_envvars)
   * [Incorporating action environment variables in your app](/docs/openwhisk?topic=openwhisk-actions#actions_envvars_app)
+* [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version)
 
 [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web)
 * [Available features of web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_extra)
@@ -369,7 +370,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Next steps](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_next)
 
 [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer)
-* [Installing the Composer library for JavaScript or Python 3](/docs/openwhisk?topic=openwhisk-pkg_composer#install_composer)
+* [Installing the Composer library for JavaScript or Python](/docs/openwhisk?topic=openwhisk-pkg_composer#install_composer)
 * [Configuring and running compositions in IBM Cloud Functions](/docs/openwhisk?topic=openwhisk-pkg_composer#run)
 * [Extending sequences with Composer](/docs/openwhisk?topic=openwhisk-pkg_composer#extending)
   * [Sequences without Composer](/docs/openwhisk?topic=openwhisk-pkg_composer#sequences-without-composer)
@@ -513,6 +514,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Implementing feeds with hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_hooks)
 * [Implementing feeds with polling](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_polling)
 * [Implementing feeds by using connections](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_connections)
+
+[{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify)
 
 
 ## Setting up an automated tool chain

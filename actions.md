@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-03-24"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -498,3 +498,29 @@ After you updated and activated the code in an action, the result includes the f
 
 ```
 {: screen}
+
+## Versioning your actions
+{: #actions-version}
+
+Versioning your actions allows you to track any code modifications that you might make to your actions and to switch between different versions of the code.
+{: shortdesc}
+
+### Version control systems
+
+If you need to fully track and manage changes of your code, typically on larger software projects, use a version control system such as GIT. Version control software tracks code modifications, and if needed, allows you to switch back to previous versions of the code.
+
+{{site.data.keyword.openwhisk_short}} can access only the most recently used version that was provided when you created or updated an action and stores only the latest version of action code.
+
+### Naming conventions
+
+If you do not have a version control system, you can create a naming scheme for your actions to track multiple versions of an action. For example, consider appending a three-part semantic versioning number to the action name, such as `myAction_1.0.1`.
+
+To use these different actions versions in triggers, assign the appropriate version of an action to the trigger by using the  [`ibmcloud fn rule create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_create) or the [`ibmcloud fn rule update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_update) CLI commands.
+
+**Example**
+
+```
+ibmcloud fn rule update myRule myTrigger myAction_1.0.1
+```
+{: pre}
+

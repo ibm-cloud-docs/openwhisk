@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020
-lastupdated: "2020-08-28"
+  years: 2021
+lastupdated: "2021-03-24"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -28,7 +28,7 @@ completion-time: 10m
 {:gif: data-image-type='gif'}
 {:step: data-tutorial-type='step'}
 
-# Tutorial: Calling an action from another action
+# Calling an action from another action
 {: #tutorial_action}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
@@ -45,7 +45,6 @@ The code for the actions also includes some basic error handling code, including
 **Before you begin**
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
-
 
 ## Create the `cos-access` action
 

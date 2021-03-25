@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-10"
+lastupdated: "2021-03-24"
 
 keywords: runtimes, support, functions
 
@@ -89,21 +89,21 @@ These runtimes (kinds) are deprecated:
 <ul>
   <li><code>ballerina:0.990</code> (deprecated)</li>
   <li><code>go:1.11</code> (deprecated)</li>
-  <li><code>nodejs:6</code> (deprecated)</li>
   <li><code>nodejs:8</code> (deprecated)</li>
-  <li><code>php:7.1</code> (deprecated)</li>
-  <li><code>php:7.2</code> (deprecated)</li>
-  <li><code>swift:3.1.1</code> (deprecated)</li>
-  <li><code>swift:4.1</code> (deprecated)</li>
 </ul>
 
 These runtimes (kinds) are disabled:
 <ul>
   <li><code>nodejs</code> (disabled)</li>
+  <li><code>nodejs:6</code> (disabled)</li>
+  <li><code>php:7.1</code> (disabled)</li>
+  <li><code>php:7.2</code> (disabled)</li>
   <li><code>python</code> (disabled)</li>
   <li><code>python:2</code> (disabled)</li>
   <li><code>swift</code> (disabled)</li>
   <li><code>swift:3</code> (disabled)</li>
+  <li><code>swift:3.1.1</code> (disabled)</li>
+  <li><code>swift:4.1</code> (disabled)</li>
 </ul>
 
 For more information about supported and disabled runtimes, see [Available images and runtimes per region](#runtimes_per_region). 

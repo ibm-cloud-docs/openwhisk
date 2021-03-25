@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-03-25"
 
 keywords: alarms, serverless, triggers, functions
 
@@ -68,7 +68,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 </tr>
 <tr>
 <td><code>--param date</code></td>
-<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 `January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>Replace <code>&lt;date&gt;</code> with the date when you plan to fire the trigger. The trigger fires once at the specified time. The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 `January 1970 00:00:00` UTC and the string value must be in the <a href="https://262.ecma-international.org/5.1/">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>
@@ -128,11 +128,11 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="https://262.ecma-international.org/5.1/">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="https://262.ecma-international.org/5.1/">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
@@ -189,11 +189,11 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 </tr>
 <tr>
 <td><code>--param startDate</code></td>
-<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;startDate&gt;</code> with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="https://262.ecma-international.org/5.1/">ISO 8601 format</a>.</td>
 </tr>
 <tr>
 <td><code>--param stopDate</code></td>
-<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="http://www.ecma-international.org/ecma-262/5.1/#sec-15.9.1.15">ISO 8601 format</a>.</td>
+<td>(Optional) Replace <code>&lt;stopDate&gt;</code> with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the <a href="https://262.ecma-international.org/5.1/">ISO 8601 format</a>.</td>
 </tr>
 </tbody></table>
 
