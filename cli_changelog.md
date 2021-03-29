@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-12"
+lastupdated: "2021-03-29"
 
 keywords: cli, functions
 
@@ -32,6 +32,7 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.53 | 26 March 2021 | <ul><li>Explicitly display namespace names with `ibmcloud fn list` command.</li></ul>
 | 1.0.50 | 12 March 2021 | <ul><li>Enabled Sydney(au-syd) region.</li></ul>
 | 1.0.49 | 07 Jan 2021 | <ul><li>Fixed a bug that affects Tokyo(jp-tok) region.</li></ul>
 | 1.0.48 | 16 Dec 2020 | <ul><li>Added notification about duplicate namespace names when using `namespace target` command.</li></ul>
