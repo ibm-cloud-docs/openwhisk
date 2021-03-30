@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-24"
+lastupdated: "2021-03-30"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -468,7 +468,7 @@ The action environment contains several environment variables that are specific 
 | `__OW_IAM_NAMESPACE_API_KEY` | The API key for IAM-enabled namespaces. See [Setting access policies](/docs/openwhisk?topic=openwhisk-namespaces#namespace-access) for usage. |
 | `__OW_NAMESPACE` | The namespace ID (GUID). For classic CF-based namespaces, this ID is constructed from org and space names. |
 | `__OW_NAMESPACE_CRN` | The namespace cloud resource name [CRN](/docs/account?topic=account-crn). The CRN is only available for IAM-enabled namespaces. |
-| `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the logs in [LogDNA](/docs/openwhisk?topic=openwhisk-logs#logs_logdna) can be filtered for a specific transaction. |
+| `__OW_TRANSACTION_ID` | The transaction ID for the running action instance. If the action is running as part of a sequence, then the transaction ID is the same for the sequence and all its actions. If this ID is used as part of a user log line, then the [logs](/docs/openwhisk?topic=openwhisk-logs#logs_logdna) can be filtered for a specific transaction. |
 
 ### Incorporating action environment variables in your app
 {: #actions_envvars_app}
@@ -476,6 +476,7 @@ The action environment contains several environment variables that are specific 
 To view the values for an action, include the display of them in your app code and output them in the results.
 
 **Example for Python**
+
 ```python
 def main(dict):
   import os
@@ -487,6 +488,7 @@ def main(dict):
 {: codeblock}
 
 After you updated and activated the code in an action, the result includes the fully qualified name for the action.
+
 ```bash
 "response": {
         "status": "success",

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-02-02"
+lastupdated: "2021-03-30"
 
-keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, sysdig
+keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
 subcollection: openwhisk
 

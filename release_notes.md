@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-29"
+lastupdated: "2021-03-30"
 
 keywords: release notes, functions
 
@@ -53,7 +53,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 14 December | <ul><li> Added versions to Quickstart template docs. See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated securing web actions to include information about `X-Require-Whisk-Auth`. See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).</li><li>Added tips to monitoring topic. See [Monitoring with Sysdig](/docs/openwhisk?topic=openwhisk-monitor-sysdig)</li><li>Updated namespace instances to indicate if the namespace name or the namespace ID is required.</li></ul> |
+| 14 December | <ul><li> Added versions to Quickstart template docs. See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated securing web actions to include information about `X-Require-Whisk-Auth`. See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).</li><li>Added tips to monitoring topic. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig)</li><li>Updated namespace instances to indicate if the namespace name or the namespace ID is required.</li></ul> |
 {: caption="Changes for December 2020" caption-side="top"}
 
 ## October 2020

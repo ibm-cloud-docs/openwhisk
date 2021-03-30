@@ -2,9 +2,9 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-03-29"
+lastupdated: "2021-03-30"
 
-keywords: alerts, notifications, openwhisk, sysdig, functions
+keywords: alerts, notifications, openwhisk, functions
 
 subcollection: openwhisk
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-24"
+lastupdated: "2021-03-30"
 
 keywords: events, serverless, functions, activity tracker
 
@@ -111,7 +111,7 @@ The following activities generate rule events.
 ## Viewing events
 {: #view}
 
-{{site.data.keyword.openwhisk_short}} sends audit logs to the [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. For example, audit logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a LogDNA instance in `us-south`. For more information about setting up {{site.data.keyword.at_full_notm}}, see [Provisioning an instance](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-provision).
+{{site.data.keyword.openwhisk_short}} sends audit logs to the [{{site.data.keyword.at_full_notm}}](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-getting-started) service of the same region as the {{site.data.keyword.openwhisk_short}} namespace. For example, audit logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a logging instance in `us-south`. For more information about setting up {{site.data.keyword.at_full_notm}}, see [Provisioning an instance](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-provision).
 
 ## Analyzing events
 {: #at_events_analyze}
@@ -121,7 +121,7 @@ After viewing events that are captured by {{site.data.keyword.at_full_notm}}, yo
 
 **Identifying the {{site.data.keyword.openwhisk_short}} namespace that generates the event**.
 
-To identify the namespace for which the event was generated, look at the `target.id` field. You can use this field to filter events in LogDNA, for example, showing events for only a specific namespace. 
+To identify the namespace for which the event was generated, look at the `target.id` field. You can use this field to filter events, for example, showing events for only a specific namespace. 
 
 You can use the CLI to find details about your [namespaces](/docs/openwhisk?topic=openwhisk-namespaces#how-do-i-see-a-list-of-my-cloud-functions-namespaces-).
 
@@ -143,4 +143,4 @@ All events that are issued for failed actions display `failure` in the `outcome`
 
 **Custom views**
 
-For more information about generating custom views by using event fields, see [Creating custom views in LogDNA](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-views).
+For more information about generating custom views by using event fields, see [Creating custom views](/docs/Activity-Tracker-with-LogDNA?topic=Activity-Tracker-with-LogDNA-views).

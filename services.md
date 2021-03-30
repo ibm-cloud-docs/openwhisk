@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-07-17"
+  years: 2017, 2021
+lastupdated: "2021-03-30"
 
 keywords: services, serverless, functions
 
@@ -69,7 +69,6 @@ Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) an
    Name                             State    Created At
    Service credentials-1            active   Tue Sep 17 15:50:43 UTC 2019
    cloudant-my1-creds               active   Tue Sep 17 14:30:08 UTC 2019
-   LogDNA-key-admin                 active   Wed Aug 28 14:27:30 UTC 2019
    ```
    {: screen}
 
