@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-30"
+lastupdated: "2021-03-31"
 
 keywords: web actions, serverless, functions
 
@@ -533,8 +533,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Viewing logs](/docs/openwhisk?topic=openwhisk-logs)
 * [Viewing action logs as they occur](/docs/openwhisk?topic=openwhisk-logs#logs_poll)
 * [Viewing activation details](/docs/openwhisk?topic=openwhisk-logs#activation_details)
-* [Viewing logs in {{site.data.keyword.loganalysislong_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_logdna)
-  * [Configure {{site.data.keyword.loganalysislong_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_configure_logdna)
+* [Viewing logs in {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_logdna)
+  * [Configure {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_configure_logdna)
 
 [Auditing events for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-at_events)
 * [List of events](/docs/openwhisk?topic=openwhisk-at_events#events)
