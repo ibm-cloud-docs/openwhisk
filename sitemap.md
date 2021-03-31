@@ -526,8 +526,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Creating the Hello World API example](/docs/openwhisk?topic=openwhisk-deploy#deploy_helloworld_example)
 
 
-## Logging events 
-{: #sitemap_logging_events }
+## Logging and monitoring events 
+{: #sitemap_logging_and_monitoring_events }
 
 
 [Viewing logs](/docs/openwhisk?topic=openwhisk-logs)
@@ -546,29 +546,21 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Viewing events](/docs/openwhisk?topic=openwhisk-at_events#view)
 * [Analyzing events](/docs/openwhisk?topic=openwhisk-at_events#at_events_analyze)
 
-
-## {{site.data.keyword.mon_full_notm}}
-{: #sitemap_}
-
-
-[{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-sysdig)
-
-[Set up your {{site.data.keyword.mon_full_notm}} service instance](/docs/openwhisk?topic=openwhisk-monitor-sysdig#setup-monitor)
-
-[Accessing your {{site.data.keyword.mon_full_notm}} metrics](/docs/openwhisk?topic=openwhisk-monitor-sysdig#access-monitor)
-
-[Metrics available by Service Plan](/docs/openwhisk?topic=openwhisk-monitor-sysdig#metrics-by-plan)
-* [ibm_functions_activation](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_activation)
-* [ibm_functions_concurrent-invocations](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_concurrent-invocations)
-* [ibm_functions_concurrent-rate-limit](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_concurrent-rate-limit)
-* [ibm_functions_duration](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_duration)
-* [ibm_functions_init-time](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_init-time)
-* [ibm_functions_status-error-application](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_status-error-application)
-* [ibm_functions_status-error-developer](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_status-error-developer)
-* [ibm_functions_status-error-internal](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_status-error-internal)
-* [ibm_functions_status-success](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_status-success)
-* [ibm_functions_timed-rate-limit](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_timed-rate-limit)
-* [ibm_functions_wait-time](/docs/openwhisk?topic=openwhisk-monitor-sysdig#ibm_functions_wait-time)
+[Monitoring with {{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-functions)
+* [Set up your {{site.data.keyword.mon_full_notm}} service instance](/docs/openwhisk?topic=openwhisk-monitor-functions#setup-monitor)
+* [Accessing your {{site.data.keyword.mon_full_notm}} metrics](/docs/openwhisk?topic=openwhisk-monitor-functions#access-monitor)
+* [Metrics available by Service Plan](/docs/openwhisk?topic=openwhisk-monitor-functions#metrics-by-plan)
+  * [ibm_functions_activation](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_activation)
+  * [ibm_functions_concurrent-invocations](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent-invocations)
+  * [ibm_functions_concurrent-rate-limit](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent-rate-limit)
+  * [ibm_functions_duration](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_duration)
+  * [ibm_functions_init-time](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_init-time)
+  * [ibm_functions_status-error-application](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-application)
+  * [ibm_functions_status-error-developer](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-developer)
+  * [ibm_functions_status-error-internal](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-internal)
+  * [ibm_functions_status-success](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-success)
+  * [ibm_functions_timed-rate-limit](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_timed-rate-limit)
+  * [ibm_functions_wait-time](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_wait-time)
 
 
 ## Annotations

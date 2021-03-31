@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-03-30"
+lastupdated: "2021-03-31"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
@@ -24,13 +24,13 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-# {{site.data.keyword.mon_full_notm}}
-{: #monitor-sysdig}
+# Monitoring with {{site.data.keyword.mon_full_notm}}
+{: #monitor-functions}
 
 Get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk}}. Metrics can help you find bottlenecks or predict possible production problems based on action duration, results of action activations, or hitting action activation limits.
 {: shortdesc}
 
-Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. {{site.data.keyword.openwhisk_short}} service forwards selected information about your actions to {{site.data.keyword.mon_short}} so that you can monitor specific metrics such as status, duration, rate limits, and concurrency.
+You can monitor your {{site.data.keyword.openwhisk_short}} actions through the {{site.data.keyword.mon_full}} service. The {{site.data.keyword.openwhisk_short}} service forwards selected information about your actions to {{site.data.keyword.mon_short}} so that you can monitor specific metrics such as status, duration, rate limits, and concurrency.
 
 ## Set up your {{site.data.keyword.mon_full_notm}} service instance
 {: #setup-monitor}

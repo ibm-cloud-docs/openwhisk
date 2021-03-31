@@ -79,11 +79,10 @@ Functions
         deploy.md
 
     {: .topicgroup}
-    Logging events 
+    Logging and monitoring events 
         logs.md
         activity_tracker.md
-
-    monitor-sysdig.md
+        monitor-functions.md
     {: .navgroup-end}
 
     {: .navgroup id="reference"}
