@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2021
-lastupdated: "2021-03-25"
+lastupdated: "2021-04-01"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Composer
 {: #pkg_composer}
 
-With Composer, {{site.data.keyword.openwhisk}} supports conductor actions, which extends sequences with more combinators ([JS](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external}) By using Composer, you can create more complex flows that include conditional branching, error handling, retries, and loops.
+With Composer, {{site.data.keyword.openwhisk_short}} supports conductor actions, which extends sequences with more combinators ([JS](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external}) By using Composer, you can create more complex flows that include conditional branching, error handling, retries, and loops.
 
 ## Installing the Composer library for JavaScript or Python
 {: #install_composer}
@@ -91,15 +91,15 @@ Install the [Composer for Python](https://github.com/ibm-functions/composer-pyth
     ```
     {: screen}
 
-## Configuring and running compositions in IBM Cloud Functions
+## Configuring and running compositions in {{site.data.keyword.openwhisk_short}}
 {: #run}
 
-You can use the JavaScript or Python Composer libraries to create your compositions in {{site.data.keyword.openwhisk}}. Use `compose` or `pycompose` to compile your composition source code, then use `deploy` or `pydeploy` to deploy the composition to {{site.data.keyword.openwhisk}}. After you configure the composition, you can run it in {{site.data.keyword.openwhisk}}.
+You can use the JavaScript or Python Composer libraries to create your compositions in {{site.data.keyword.openwhisk_short}}. Use `compose` or `pycompose` to compile your composition source code, then use `deploy` or `pydeploy` to deploy the composition to {{site.data.keyword.openwhisk_short}}. After you configure the composition, you can run it in {{site.data.keyword.openwhisk_short}}.
 {: shortdesc}
 
 **Before you begin**
 
-1. Log into {{site.data.keyword.cloud_notm}} and install the [IBM Cloud and the IBM Cloud Functions CLI](/docs/openwhisk?topic=openwhisk-cli_install).
+1. Log in to {{site.data.keyword.cloud_notm}} and install the [IBM Cloud and the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 2. [Set up and target a namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace).
 
 **To run a composition**
@@ -120,7 +120,7 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         pycompose demo.py > demo.json
         ```
         {: pre}
-3.  Deploy the code to {{site.data.keyword.openwhisk}}. Include the `-w` flag to overwrite any existing deployment that is named `demo`.
+3.  Deploy the code to {{site.data.keyword.openwhisk_short}}. Include the `-w` flag to overwrite any existing deployment that is named `demo`.
     
     *   **JavaScript**
 
@@ -136,14 +136,14 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         ```
         {: pre}
         
-4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk}}.
+4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk_short}}.
 
     ```
     ibmcloud fn action invoke demo
     ```
     {: pre}
 
-{{site.data.keyword.openwhisk}} executes the code that you deployed as a special action. For more information, see the documentation on [conductor actions](https://github.com/apache/openwhisk/blob/master/docs/conductors.md){: external}.
+{{site.data.keyword.openwhisk_short}} executes the code that you deployed as a special action. For more information, see the documentation on [conductor actions](https://github.com/apache/openwhisk/blob/master/docs/conductors.md){: external}.
 
 ## Extending sequences with Composer
 {: #extending}

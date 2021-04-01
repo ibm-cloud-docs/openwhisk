@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-31"
+lastupdated: "2021-04-01"
 
 keywords: web actions, serverless, functions
 
@@ -371,7 +371,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer)
 * [Installing the Composer library for JavaScript or Python](/docs/openwhisk?topic=openwhisk-pkg_composer#install_composer)
-* [Configuring and running compositions in IBM Cloud Functions](/docs/openwhisk?topic=openwhisk-pkg_composer#run)
+* [Configuring and running compositions in {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-pkg_composer#run)
 * [Extending sequences with Composer](/docs/openwhisk?topic=openwhisk-pkg_composer#extending)
   * [Sequences without Composer](/docs/openwhisk?topic=openwhisk-pkg_composer#sequences-without-composer)
   * [Sequences with Composer](/docs/openwhisk?topic=openwhisk-pkg_composer#sequences-with-composer)
@@ -712,7 +712,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}{: external}
 
-[Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-userapikey){: new_window}{: external}
+[Native API management in IBM Cloud](https://cloud.ibm.com/docs/account?topic=account-userapikey){: new_window}{: external}
 
 
 ## Related links

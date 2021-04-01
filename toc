@@ -101,7 +101,7 @@ Functions
     {: .topicgroup}
     API documentation
         [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
-        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/iam?topic=iam-userapikey){: new_window}
+        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/account?topic=account-userapikey){: new_window}
 
     {: .topicgroup}
     Related links
