@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-01"
+lastupdated: "2021-04-13"
 
 keywords: web actions, serverless, functions
 
@@ -93,6 +93,9 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Calling an action from another action](/docs/openwhisk?topic=openwhisk-tutorial_action)
+* [Create the `cos-access` action](/docs/openwhisk?topic=openwhisk-tutorial_action#tutorial_action_cos-action)
+* [Create the `db-access` action](/docs/openwhisk?topic=openwhisk-tutorial_action#tutorial_action_db-access)
+* [Create the `ow-sdk-action` action](/docs/openwhisk?topic=openwhisk-tutorial_action#tutorial_action_ow-sdk-action)
 
 [Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: new_window}{: external}
 
@@ -131,6 +134,13 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces)
+
+[What is a namespace?](/docs/openwhisk?topic=openwhisk-namespaces#what_is_namespace)
+* [What happens when I create a namespace?](/docs/openwhisk?topic=openwhisk-namespaces#what_happens_create_namespace)
+* [Are there any limitations for namespaces?](/docs/openwhisk?topic=openwhisk-namespaces#namespace_limitations)
+* [What do I do if I have a Cloud Foundry-based namespace?](/docs/openwhisk?topic=openwhisk-namespaces#cf_namespace)
+* [How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?](/docs/openwhisk?topic=openwhisk-namespaces#how_list_namespace)
+* [How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?](/docs/openwhisk?topic=openwhisk-namespaces#how_find_iam_namespace)
 
 [Creating an IAM-based namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace)
 * [Creating an IAM-based namespace from the console](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_ui)
@@ -203,8 +213,13 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Environment variables for actions](/docs/openwhisk?topic=openwhisk-actions#actions_envvars)
   * [Incorporating action environment variables in your app](/docs/openwhisk?topic=openwhisk-actions#actions_envvars_app)
 * [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version)
+  * [Version control systems](/docs/openwhisk?topic=openwhisk-actions#version-control-systems)
+  * [Naming conventions](/docs/openwhisk?topic=openwhisk-actions#naming-conventions)
 
 [Creating web actions](/docs/openwhisk?topic=openwhisk-actions_web)
+* [Why use web actions instead of standard actions?](/docs/openwhisk?topic=openwhisk-actions_web#why_actions_web)
+* [How do web actions work?](/docs/openwhisk?topic=openwhisk-actions_web#how_actions_web_work)
+* [Packaging code for web actions](/docs/openwhisk?topic=openwhisk-actions_web#packaging_actions_web)
 * [Available features of web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_extra)
 * [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_example)
   * [Web action JSON properties](/docs/openwhisk?topic=openwhisk-actions_web#web_action_properties)
@@ -226,6 +241,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Options requests](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options)
 * [Error handling](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_errors)
 * [Disabling web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_disable)
+* [Web action limits](/docs/openwhisk?topic=openwhisk-actions_web#web-action-limits)
 
 [Creating sequences](/docs/openwhisk?topic=openwhisk-sequences)
 * [Creating a sequence from the console](/docs/openwhisk?topic=openwhisk-sequences#actions_seq_console)
@@ -242,6 +258,10 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm)
 * [How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python)
   * [Structuring Python code](/docs/openwhisk?topic=openwhisk-prep#prep_python_struct)
+  * [Packaging multiple Python files into a .zip file](/docs/openwhisk?topic=openwhisk-prep#prep_python_multiple_zip)
+  * [Packaging Python code with a local virtual environment in a .zip file](/docs/openwhisk?topic=openwhisk-prep#prep_python_local_virt_zip)
+  * [Packaging Python code with a Docker virtual environment in a .zip file](/docs/openwhisk?topic=openwhisk-prep#prep_python_docker_virt_zip)
+  * [Packaging large Python dependencies in a custom Docker image](/docs/openwhisk?topic=openwhisk-prep#packaging_large_python_docker)
   * [Packaging your app within a custom Docker image](/docs/openwhisk?topic=openwhisk-prep#packaging_docker_skeleton)
 * [Packaging Python code](/docs/openwhisk?topic=openwhisk-prep#prep_python)
   * [Packaging multiple Python files into a .zip file](/docs/openwhisk?topic=openwhisk-prep#prep_python_pkg)
@@ -249,6 +269,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Packaging Python code with a Docker virtual environment in a .zip archive](/docs/openwhisk?topic=openwhisk-prep#prep_python_virtenv)
   * [Packaging large Python dependencies in a custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_python_docker)
 * [Preparing apps in Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker)
+  * [Creating a custom Docker image for your action](/docs/openwhisk?topic=openwhisk-prep#prep_create_custom_docker_action)
+  * [Deploying an action with a custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_deploy_action_custom_docker_image)
 * [Preparing Go apps](/docs/openwhisk?topic=openwhisk-prep#prep_go)
   * [Structuring Go code](/docs/openwhisk?topic=openwhisk-prep#prep_go_struct)
   * [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi)
@@ -361,12 +383,20 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [Cloudant](/docs/openwhisk?topic=openwhisk-pkg_cloudant)
 * [Available entities](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_available)
+* [Binding the `/whisk.system/cloudant` package to your {{site.data.keyword.cloudant_short_notm}} database.](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_bind)
 * [Working with documents in an {{site.data.keyword.cloudant_short_notm}} database](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_read)
+  * [Reading a document](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_read_doc)
   * [Writing a document to an {{site.data.keyword.cloudant_short_notm}} database](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_write)
+  * [Updating a document](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_update)
 * [Create a trigger by using the filter function](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_trigger)
   * [Data structure of a trigger activation](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_struct)
 * [Filter database change events](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_filter)
 * [Processing an individual document by using an action sequence](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_seq)
+  * [Creating an action to process an individual document](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_action_individual_doc)
+  * [Create a sequence with the `read` action](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_sequence_read)
+  * [Create a trigger with `changes` feed](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_trigger_change)
+  * [Create a rule to associate the trigger with the sequence](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_rule_trigger)
+  * [Test the sequence](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_test_sequence)
   * [Next steps](/docs/openwhisk?topic=openwhisk-pkg_cloudant#cloudant_next)
 
 [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer)
@@ -399,8 +429,21 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [References](/docs/openwhisk?topic=openwhisk-pkg_event_streams#message_references)
 
 [GitHub](/docs/openwhisk?topic=openwhisk-pkg_github)
+* [Firing a trigger event with GitHub activity](/docs/openwhisk?topic=openwhisk-pkg_github#firing-a-trigger-event-with-github-activity)
 
 [Mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk)
+* [Add the SDK to your app](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#add-the-sdk-to-your-app)
+  * [Install with CocoaPods](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#install-with-cocoapods)
+  * [Install with Carthage](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#install-with-carthage)
+  * [Install from source code](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#install-from-source-code)
+* [Install the starter app example](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#install-the-starter-app-example)
+* [Getting started with the SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#getting-started-with-the-sdk)
+* [Invoke an OpenWhisk action](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#invoke-an-openwhisk-action)
+* [Fire an OpenWhisk trigger](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#fire-an-openwhisk-trigger)
+* [Use actions that return a result](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#use-actions-that-return-a-result)
+* [Configuring the SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#configuring-the-sdk)
+  * [Support for qualified names](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#support-for-qualified-names)
+  * [SDK button](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#sdk-button)
 
 [{{site.data.keyword.nlclassifiershort}}](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier)
 * [Creating a {{site.data.keyword.nlclassifiershort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#service_instance_classifier)
@@ -461,6 +504,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Create a webhook](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_hook)
 
 [Slack](/docs/openwhisk?topic=openwhisk-pkg_slack)
+* [Posting a message to a Slack channel](/docs/openwhisk?topic=openwhisk-pkg_slack#posting-a-message-to-a-slack-channel)
+* [Using the Slack token-based API](/docs/openwhisk?topic=openwhisk-pkg_slack#using-the-slack-token-based-api)
 
 [{{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text)
 * [Creating a {{site.data.keyword.speechtotextshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#service_instance_speechtotext)
@@ -507,9 +552,13 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Using the {{site.data.keyword.conversationshort}} package](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#usage_conversation)
 
 [WebSocket](/docs/openwhisk?topic=openwhisk-pkg_websocket)
+* [Send a message to a WebSocket](/docs/openwhisk?topic=openwhisk-pkg_websocket#send-a-message-to-a-websocket)
 
 [Creating custom event provider feeds](/docs/openwhisk?topic=openwhisk-feeds_custom)
 * [Feed architecture](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_arch)
+  * [Hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#hooks)
+  * [Polling](/docs/openwhisk?topic=openwhisk-feeds_custom#polling)
+  * [Connections](/docs/openwhisk?topic=openwhisk-feeds_custom#connections)
 * [ Implementing feed actions](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_actions)
 * [Implementing feeds with hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_hooks)
 * [Implementing feeds with polling](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_polling)
@@ -524,6 +573,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [Deploying entities with a manifest file](/docs/openwhisk?topic=openwhisk-deploy)
 * [Creating the Hello World API example](/docs/openwhisk?topic=openwhisk-deploy#deploy_helloworld_example)
+* [More OpenWhisk deployment examples](/docs/openwhisk?topic=openwhisk-deploy#more-openwhisk-deployment-examples)
+* [Deployment manifest specification](/docs/openwhisk?topic=openwhisk-deploy#deployment-manifest-specification)
 
 
 ## Logging and monitoring events 
@@ -533,8 +584,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Viewing logs](/docs/openwhisk?topic=openwhisk-logs)
 * [Viewing action logs as they occur](/docs/openwhisk?topic=openwhisk-logs#logs_poll)
 * [Viewing activation details](/docs/openwhisk?topic=openwhisk-logs#activation_details)
-* [Viewing logs in {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_logdna)
-  * [Configure {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_configure_logdna)
+* [Viewing logs in {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_console)
+  * [Configure {{site.data.keyword.la_full_notm}}](/docs/openwhisk?topic=openwhisk-logs#logs_configure_log)
 
 [Auditing events for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-at_events)
 * [List of events](/docs/openwhisk?topic=openwhisk-at_events#events)
@@ -561,6 +612,9 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [ibm_functions_status-success](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-success)
   * [ibm_functions_timed-rate-limit](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_timed-rate-limit)
   * [ibm_functions_wait-time](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_wait-time)
+* [Attributes for segmentation](/docs/openwhisk?topic=openwhisk-monitor-functions#attributes-for-segmentation)
+  * [Global attributes](/docs/openwhisk?topic=openwhisk-monitor-functions#global-attributes)
+  * [Additional attributes](/docs/openwhisk?topic=openwhisk-monitor-functions#additional-attributes)
 
 
 ## Annotations
@@ -589,14 +643,21 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Available images and runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes_available)
 
 [JavaScript runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments)
+* [Migrating from Node.js 10 to Node.js 12](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_1012)
+* [Migrating from Node.js 8 to Node.js 10](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_810)
+* [Node.js packages](/docs/openwhisk?topic=openwhisk-runtimes#javascript_packages)
 
 [Python runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments)
+* [Python packages](/docs/openwhisk?topic=openwhisk-runtimes#python_packages)
 
 [Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions)
 
 [PHP runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_php)
 
 [Docker runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_docker)
+* [Docker skeleton](/docs/openwhisk?topic=openwhisk-runtimes#docker_skeleton)
+
+[More runtime support](/docs/openwhisk?topic=openwhisk-runtimes#more_runtime_support)
 
 [Available images and runtimes per region](/docs/openwhisk?topic=openwhisk-runtimes#runtimes_per_region)
 
@@ -702,17 +763,18 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions)
 
 [Regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions)
+* [{{site.data.keyword.openwhisk_short}} endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_endpoints)
+* [{{site.data.keyword.openwhisk_short}} web action endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_webaction_endpoints)
 
 [Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-ha_dr)
+* [High availability](/docs/openwhisk?topic=openwhisk-ha_dr#high-availability)
+* [Disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr#disaster-recovery)
+* [HIPAA](/docs/openwhisk?topic=openwhisk-ha_dr#hipaa)
 
 
-## API documentation
-{: #sitemap_api_documentation}
+## API reference
 
-
-[REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}{: external}
-
-[Native API management in IBM Cloud](https://cloud.ibm.com/docs/account?topic=account-userapikey){: new_window}{: external}
+[API reference](https://cloud.ibm.com/apidocs/functions){: new_window}{: external}
 
 
 ## Related links
@@ -744,6 +806,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Service configuration properties are incorrect](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_property)
 * [System limits were reached](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_limit_reached)
 * [Action terminates after one minute](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_action_terminated)
+* [{{site.data.keyword.apigw_short}} fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_api_gateway_504)
 * [Can't access private endpoint from action](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_private_endpoint)
 * [Getting help and support](/docs/openwhisk?topic=openwhisk-troubleshooting#gettinghelp)
 
@@ -757,6 +820,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes](/docs/openwhisk?topic=openwhisk-release-notes)
+
+[April 2021](/docs/openwhisk?topic=openwhisk-release-notes#april21)
 
 [March 2021](/docs/openwhisk?topic=openwhisk-release-notes#march21)
 

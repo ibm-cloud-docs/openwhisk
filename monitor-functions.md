@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-04-01"
+lastupdated: "2021-04-02"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions
 
@@ -61,6 +61,8 @@ To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in
 2. Select **Monitoring**.
 3. Select **View {{site.data.keyword.mon_full_notm}}** to open the dashboard.
 4. From the navigation menu, select **Dashboards->IBM->Cloud Functions - Customer Metrics Dashboard**.
+
+For more information, see [{{site.data.keyword.mon_full_notm}} Getting started tutorial](/docs/monitoring?topic=monitoring-getting-started).
 
 <br />
 ## Metrics available by Service Plan

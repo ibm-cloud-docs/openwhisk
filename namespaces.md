@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-04-09"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -32,12 +32,14 @@ With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) m
 {: shortdesc}
 
 ## What is a namespace?
+{: #what_is_namespace}
 
 Namespaces contain {{site.data.keyword.openwhisk_short}} entities, such as actions and triggers, and belong to a resource group. You can let users access your entities by granting them access to the namespace.
 
 The fully qualified name of an entity is `/<namespace_ID>/<package_name>/<entity_name>`.
 
 ### What happens when I create a namespace?
+{: #what_happens_create_namespace}
 
 Namespaces that are created within {{site.data.keyword.openwhisk_short}} are identified as an IAM service instance.
 When you create a namespace, you can specify the [resource group](/docs/account?topic=account-rgs) in which to add the service instance.
@@ -51,14 +53,14 @@ When you create a namespace, the following components are created:
 
 You can view a list of your service IDs by running the following command.
 
-```
+```bash
 ibmcloud iam service-ids
 ```
 {: pre}
 
 You can view the API keys that are associated with a service ID by running the following command.
 
-```
+```bash
 ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
 {: pre}
@@ -69,6 +71,7 @@ Do not delete service IDs or API keys.
 {: tip}
 
 ### Are there any limitations for namespaces?
+{: #namespace_limitations}
 
 The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) and [GitHub](/docs/openwhisk?topic=openwhisk-pkg_github) are not supported for IAM-managed namespaces. 
 
@@ -79,14 +82,16 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 * The last character can't be a space.
 
 ### What do I do if I have a Cloud Foundry-based namespace?
+{: #cf_namespace}
 
 Your Cloud Foundry-based namespaces still work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
+{: #how_list_namespace}
 
 You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
 
-```
+```bash
 ibmcloud fn namespace list
 ```
 {: pre}
@@ -105,7 +110,7 @@ playground    IAM-based       <id_string>                           IAM playgrou
 
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} Console Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
-```
+```bash
 ibmcloud resource service-instances --service-name functions
 ```
 {: pre}
@@ -118,12 +123,12 @@ playground   us-south   active   service_instance
 ```
 {: screen}
 
-
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
+{: #how_find_iam_namespace}
 
 You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
 
-```
+```bash
 ibmcloud fn namespace get <namespace_name> or <namespace_id>
 ```
 {: pre}
@@ -161,14 +166,14 @@ You can create an IAM-managed namespace with the CLI.
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/account?topic=account-rgs) yet, you can target the `default` group.
 
-  ```
+  ```bash
   ibmcloud target -g default
   ```
   {: pre}
 
 2. Create an IAM-enabled namespace. Optional: Include a description for your namespace by using the `-n` or `--description` flag. If your description is longer than one word, it must be in quotations.
 
-  ```
+  ```bash
   ibmcloud fn namespace create <namespace_name> [--description <"description of your namespace">]
   ```
   {: pre}
@@ -204,7 +209,7 @@ You can create an IAM-managed namespace with the CLI.
 
 3. Verify that your new namespace is created.
 
-  ```
+  ```bash
   ibmcloud fn namespace get <namespace_name_or_id> --properties
   ```
   {: pre}
@@ -222,21 +227,20 @@ You can create an IAM-managed namespace with the CLI.
 
   You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
 
-  ```
+  ```bash
   ibmcloud fn namespace list
   ```
   {: pre}
 
 4. Before you can create entities in the namespace, you must set your CLI context to the namespace by targeting it.
 
-  ```
+  ```bash
   ibmcloud fn property set --namespace <namespace_name_or_id>
   ```
   {: pre}
 
 After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set).
 {: note}
-
 
 ### Creating a namespace with the API
 {: #namespaces_create_api}
@@ -246,7 +250,7 @@ Create your IAM-managed namespace with the API.
 
 1. Create an IAM-enabled namespace.
 
-  ```
+  ```bash
   curl --request POST \
   --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces' \
   --header 'accept: application/json' \
@@ -302,7 +306,7 @@ Create your IAM-managed namespace with the API.
 
 2. Verify that your new namespace is created.
 
-  ```
+  ```bash
   curl --request GET \
     --url 'https://us-south.functions.cloud.ibm.com/api/servicebroker/api/v1/namespaces/{id} \
     --header 'accept: application/json' \
@@ -312,7 +316,7 @@ Create your IAM-managed namespace with the API.
 
   You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
   
-  ```
+  ```bash
   curl --request GET \
     --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces?limit=0&offset=0' \
     --header 'accept: application/json' \
@@ -351,14 +355,14 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 
 * Create a staging namespace.
 
-  ```
+  ```bash
   ibmcloud fn namespace create staging
   ```
   {: pre}
 
 * Create a production namespace.
 
-  ```
+  ```bash
   ibmcloud fn namespace create production
   ```
   {: pre}
@@ -375,10 +379,11 @@ Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a 
 To target a namespace, use the [`ibmcloud fn namespace target`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_target) command.
 
 For example, to target an IAM namespace called `playground`,
-  ```
-  ibmcloud fn namespace target playground
-  ```
-  {: pre}
+
+```bash
+ibmcloud fn namespace target playground
+```
+{: pre}
 
 ### Accessing other resources from a namespace
 {: #namespace-access}

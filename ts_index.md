@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-25"
+lastupdated: "2021-04-08"
 
 keywords: troubleshooting actions, functions, help, support,
 
@@ -110,6 +110,19 @@ If an invocation of a web action reaches the end of wait period, the response sh
 With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation) or [REST API](https://cloud.ibm.com/apidocs/functions#getactivations) documentation.
 
 For more information about blocking actions, see [Testing blocking actions](/docs/openwhisk?topic=openwhisk-test#test-block).
+
+## {{site.data.keyword.apigw_short}} fails with HTTP status code 504
+{: #ts_api_gateway_504}
+
+{: tsSymptoms}
+When invoking an action from the {{site.data.keyword.apigw_short}}, the action returns an HTTP 504 Gateway
+Timeout error.
+
+{: tsCauses}
+The {{site.data.keyword.apigw_short}} calls actions by using the `blocking=true` option. This option requires that the action completes within 60 seconds, even if the timeout of the action is longer. If you want to use {{site.data.keyword.apigw_short}} to call your actions, then your actions must complete within the 60 second time frame. If your action does not complete within 60 seconds, then {{site.data.keyword.apigw_short}} returns an HTTP 504 Gateway Timeout error.
+
+{: tsResolve}
+Make sure that your action completes within 60 seconds.
 
 ## Can't access private endpoint from action
 {: #ts_private_endpoint}

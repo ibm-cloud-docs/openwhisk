@@ -98,10 +98,7 @@ Functions
     regions.md
     hadr.md
 
-    {: .topicgroup}
-    API documentation
-        [REST API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
-        [Native API management in IBM Cloud](https://cloud.ibm.com/docs/account?topic=account-userapikey){: new_window}
+    [API reference](https://cloud.ibm.com/apidocs/functions){: new_window}
 
     {: .topicgroup}
     Related links

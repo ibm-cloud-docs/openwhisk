@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-24"
+lastupdated: "2021-04-09"
 
 keywords: runtimes, support, functions
 
@@ -124,6 +124,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 
 ### Migrating from Node.js 10 to Node.js 12
+{: #migrate_javascript_environments_1012}
 
 | Package | Details |
 | --- | --- | 
@@ -135,6 +136,7 @@ For more information about migrating to `Node.js:12`, see [(Details on GitHub)](
 
 
 ### Migrating from Node.js 8 to Node.js 10
+{: #migrate_javascript_environments_810}
 
 | Package | Details |
 | --- | --- |
@@ -148,6 +150,7 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 
 
 ### Node.js packages
+{: #javascript_packages}
 
 | Node.js 12 packages | Description |
 |:-----------------|:-----------------|
@@ -333,6 +336,7 @@ By default, all Python actions are executed in a Python version 3.7 environment.
 
 
 ### Python packages
+{: #python_packages}
 
 Ensure that your action uses only the packages that are mentioned in the following table.<br/>
 While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
@@ -430,7 +434,8 @@ Swift 4.2 actions can use the following packages when you use a single Swift sou
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
 
-### <ph class="ignoreSpelling">SwiftyJSON</ph> with a single source action file
+**<ph class="ignoreSpelling">SwiftyJSON</ph> with a single source action file**
+
 If you have an action that is not compiled, and uses the `SwiftyJSON` package, you need to pre-compile your action, and specify the version of `SwiftyJSON` you want to use for `swift:4.2` kind action.
 
 
@@ -464,13 +469,15 @@ Docker actions run a user-supplied executable in a Docker container. You can inc
 {{site.data.keyword.openwhisk_short}} actions can be created by using public images on from Docker Hub.
 {: note}
 
-### Docker skeleton 
+### Docker skeleton
+{: #docker_skeleton}
 
 You can use the `openwhisk/dockerskeleton` image to deploy your action. You can use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton`. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
 
 For more information, see [Creating actions from binaries](/docs/openwhisk?topic=openwhisk-actions#actions_create_binaries).
 
 ## More runtime support
+{: #more_runtime_support}
 
 **Go**
 

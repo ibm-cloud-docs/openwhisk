@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-29"
+lastupdated: "2021-04-12"
 
 keywords: cli, functions
 
@@ -32,11 +32,12 @@ A historical record of versions that show highlights and bug fixes.
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
+| 1.0.54 | 09 April 2021 | <ul><li>Fixed the token expiration issue by increasing the frequency of refreshing IAM token. </li></ul>
 | 1.0.53 | 26 March 2021 | <ul><li>Explicitly display namespace names with `ibmcloud fn list` command.</li></ul>
 | 1.0.50 | 12 March 2021 | <ul><li>Enabled Sydney(au-syd) region.</li></ul>
 | 1.0.49 | 07 Jan 2021 | <ul><li>Fixed a bug that affects Tokyo(jp-tok) region.</li></ul>
 | 1.0.48 | 16 Dec 2020 | <ul><li>Added notification about duplicate namespace names when using `namespace target` command.</li></ul>
-| 1.0.47 | 25 Sept 2020 | <ul><li>Upgraded dependent ibmcloud cli sdk version.</li></ul>
+| 1.0.47 | 25 Sept 2020 | <ul><li>Upgraded dependent `ibmcloud cli sdk` version.</li></ul>
 | 1.0.45 | 12 August 2020 | <ul><li>Added runtime deprecation warning messages after users target namespaces.</li></ul>
 | 1.0.44 | 16 July 2020 | <ul><li>Fixed a bug that is associated with `namespace target` command and improved the error messages.</li></ul>
 | 1.0.43 | 8 July 2020 | <ul><li>Fixed IAM namespace targeting so that you can target a namespace without first targeting an `org` and `space`.</li><li>Updated the default version for `Golang` actions to `Golang` version 1.13.</li></ul>

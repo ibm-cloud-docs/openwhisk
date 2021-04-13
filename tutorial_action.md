@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-03-24"
+lastupdated: "2021-04-09"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -47,6 +47,8 @@ The code for the actions also includes some basic error handling code, including
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 ## Create the `cos-access` action
+{: #tutorial_action_cos-action}
+{: step}
 
 The `cos-access` action is a Node.js program that simulates code to access {{site.data.keyword.cos_full_notm}} by setting a timeout that resolves after 10 seconds.
 
@@ -110,6 +112,8 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
 Your `cos-access` action is ready!
 
 ## Create the `db-access` action
+{: #tutorial_action_db-access}
+{: step}
 
 The `db-access` action is a Node.js program that simulates code to access {{site.data.keyword.cloudant}} database by setting a timeout that resolves after 5 seconds.
       
@@ -169,6 +173,8 @@ The `db-access` action is a Node.js program that simulates code to access {{site
 Your `db-access` action is ready!
 
 ## Create the `ow-sdk-action` action
+{: #tutorial_action_ow-sdk-action}
+{: step}
 
 The `ow-sdk-action` action is a Node.js program that calls the other two actions: `cos-access` and `db-access`. When invoked, the `ow-sdk-action` action code acts as a custom sequence, first calling `cos-access`, then `db-access`, and finally `cos-access` again. The results of each action are stored in a variable that is called `chained_action_results`, which is then returned at the end. When the action is invoked, follow the code comments to see what is happening. 
       

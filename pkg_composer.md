@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2021
-lastupdated: "2021-04-01"
+lastupdated: "2021-04-12"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions
 
@@ -104,7 +104,7 @@ You can use the JavaScript or Python Composer libraries to create your compositi
 
 **To run a composition**
 
-1.  Create Composer source code with the Node.js or Python libraries. You can find some example code in the samples folder of each repository ([JS](https://github.com/ibm-functions/composer/blob/master/samples){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/samples){: external}).
+1.  Create Composer source code with the Node.js or Python libraries. You can find some example code in the samples folder of each repository ([JS](https://github.com/ibm-functions/composer/tree/master/samples){: external}, [Python](https://github.com/ibm-functions/composer-python/tree/master/samples){: external}).
 2.  Compile the Composer source code into a JSON file.
 
     *   **JavaScript**

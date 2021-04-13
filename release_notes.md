@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-31"
+lastupdated: "2021-04-12"
 
 keywords: release notes, functions
 
@@ -29,6 +29,14 @@ subcollection: openwhisk
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
 {: shortdesc}
+
+## April 2021
+{: #april21}
+
+| Date | Description |
+| --------- | -------- |
+| 12 April | <ul><li>Added troubleshooting tip for when your action returns an HTTP 504 Gateway Timeout error. See [API Gateway fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_api_gateway_504).</li><li>Updates to [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).</li><li> Changes for Functions CLI version 1.0.54. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul>  |
+{: caption="Changes for April 2021" caption-side="top"}
 
 ## March 2021
 {: #march21}

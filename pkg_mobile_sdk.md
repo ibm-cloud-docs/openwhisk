@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-13"
 
 keywords: mobile, sdk, cocoapods, carthage, functions
 
@@ -55,7 +55,7 @@ end
 ```
 {: codeblock}
 
-From the command line, type `pod install`. This command installs the SDK for an iOS app with a watchOS extension. Use the workspace file CocoaPods creates for your app to open the project in Xcode.
+From the command line, type `pod install`. This command installs the SDK for an iOS app with a `watchOS` extension. Use the workspace file `CocoaPods` creates for your app to open the project in `Xcode`.
 
 After installation, open your project workspace. You might get the following warning when building:
 `Use Legacy Swift Language Version” (SWIFT_VERSION) is required to be configured correctly for targets which use Swift. Use the [Edit > Convert > To Current Swift Syntax…] menu to choose a Swift version or use the Build Settings editor to configure the build setting directly.`
@@ -89,7 +89,7 @@ You must then add OpenWhisk.framework to the embedded frameworks in your Xcode p
 
 Source code is available at https://github.com/apache/openwhisk-client-swift.
 Open the project by using the `OpenWhisk.xcodeproj` with Xcode.
-The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for watchOS 2).
+The project contains two schemes: "OpenWhisk" (targeted for iOS) and "OpenWhiskWatch" (targeted for `watchOS` 2).
 Build the project for the targets that you need and add the resulting frameworks to your app (usually in `~/Library/Developer/Xcode/DerivedData/your-app-name`).
 
 ## Install the starter app example

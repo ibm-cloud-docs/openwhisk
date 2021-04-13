@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-16"
+  years: 2017, 2021
+lastupdated: "2021-04-09"
 
 keywords: functions compared, architecture, limitless, functions
 
@@ -31,7 +31,7 @@ subcollection: openwhisk
 {{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}}'s serverless architecture and cost-effective computing with other architecture models.
 {: shortdesc}
 
-## Why go serverless?
+**Why go serverless?**
 
 - No infrastructure management required
 - Minimal maintenance

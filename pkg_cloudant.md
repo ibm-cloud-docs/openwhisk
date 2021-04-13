@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-04-09"
 
 keywords: cloudant, event, action, trigger, sequence, functions
 
@@ -52,6 +52,8 @@ The `includeDoc` parameter is no longer supported for use with `/whisk.system/cl
 {: deprecated}
 
 ## Binding the `/whisk.system/cloudant` package to your {{site.data.keyword.cloudant_short_notm}} database.
+{: #cloudant_bind}
+
 If you're using {{site.data.keyword.openwhisk}} from the {{site.data.keyword.cloud_notm}}, you can use the {{site.data.keyword.openwhisk}} CLI plug-in to bind a service to an action or package. If you do not bind your service, you must pass your credentials each time you use the action or package.
 {: #cloudant_db}
 
@@ -61,14 +63,14 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
 1. Create a `/whisk.system/cloudant` package binding that is configured for your {{site.data.keyword.cloudant_short_notm}} account. In this example, the package name is `myCloudant`.
 
-  ```
+  ```bash
   ibmcloud fn package bind /whisk.system/cloudant myCloudant
   ```
   {: pre}
 
 2. Verify that the package binding exists.
 
-  ```
+  ```bash
   ibmcloud fn package list
   ```
   {: pre}
@@ -83,7 +85,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
 3. Get the name of the service instance that you want to bind to an action or package.
 
-    ```
+    ```bash
     ibmcloud resource service-instances
     ```
     {: pre}
@@ -98,7 +100,7 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
 4. Get the name of the credentials that are defined for the service instance you got in the previous step.
 
-    ```
+    ```bash
     ibmcloud resource service-keys --instance-name Cloudant-gm
     ```
     {: pre}
@@ -114,14 +116,14 @@ You must have an instance of {{site.data.keyword.cloudant_short_notm}}. To creat
 
 5. Bind the service to the package you created in step one.
 
-    ```
+    ```bash
     ibmcloud fn service bind cloudantnosqldb myCloudant --instance Cloudant-gm --keyname 'Service credentials-1'
     ```
     {: pre}
 
 6. Verify that the credentials are successfully bound.
 
-    ```
+    ```bash
     ibmcloud fn package get myCloudant parameters
     ```
     {: pre}
@@ -170,6 +172,8 @@ You can use an action to read, write, update, delete a document from an {{site.d
 {: shortdesc}
 
 ### Reading a document
+{: #cloudant_read_doc}
+
 You can use the `/whisk.system/cloudant/read` action to read a document from your {{site.data.keyword.cloudant_short_notm}} database.
 
 **Before you begin**
@@ -180,7 +184,7 @@ Fetch a document by using the `read` action. Replace `/_/myCloudant` with your p
 
 **Command syntax**
 
-```
+```bash
 ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id <document_id>
 ```
 {: pre}
@@ -189,7 +193,7 @@ ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname 
 
 Invoke the action to test reading a file. This example reads a file with the `id` of `9f86f4955e7a38ab0169462e6ac0f476`, which is an empty file.
 
-```
+```bash
 ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id 9f86f4955e7a38ab0169462e6ac0f476
 ```
 {:pre}
@@ -218,14 +222,14 @@ Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is config
 
   **Command syntax**
   
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param <database_name> test --param doc "{\"_id\":\"<document_id>\",\"name\":\"<test_name>\"}"
   ```
   {: pre}
 
   **Example write action to a `test` database**
 
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\"}"
   ```
   {: pre}
@@ -257,6 +261,8 @@ Create a `/whisk.system/cloudant` [package binding](#cloudant_db) that is config
   {: screen}
 
 ### Updating a document
+{: #cloudant_update}
+
 You can use the `/update-document` action to update a document in your {{site.data.keyword.cloudant_short_notm}} database.
 {: short desc}
 
@@ -269,10 +275,9 @@ The following example updates the document that was created in the [Writing a do
 
 You can update a document in your database by replacing `<test>` with your database name and replacing the `--param doc` flag with the `id` and contents of the document in your database that you want to update.
 
-
 1. You can update a document in the `test` database by running the following command. This example adds the `shade` value to the `color` document. 
 
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/update-document --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\",\"shade\":\"indigo\"}"
   ```
   {: pre}
@@ -290,7 +295,7 @@ You can update a document in your database by replacing `<test>` with your datab
 
 2. To see the update, fetch the document again.
 
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname test --param id color
   ```
   {: pre}
@@ -334,7 +339,7 @@ Parameters that are used in this example.
 
   Replace `/_/myCloudant`  of your package. This example uses a database that is called `test`.
   
-  ```
+  ```bash
   ibmcloud fn trigger create cloudantTrigger --feed /_/myCloudant/changes \ --param dbname test
   ```
   {: pre}
@@ -357,21 +362,21 @@ Parameters that are used in this example.
 
 3. Create an action called `cloudantChange` that you can use to observe the changes feed. Replace `<file_path>` with the file path to your `cloudantChange.js` file on your computer.
 
-  ```
+  ```bash
   ibmcloud fn action create cloudantChange <file_path>/cloudantChange.js
   ```
   {: pre}
 
 4. Create a rule named `cloudantRule` to connect the `cloudantChange` action to the `cloudantTrigger` that you created earlier.
 
-  ```
+  ```bash
   ibmcloud fn rule create cloudantRule cloudantTrigger cloudantChange
   ```
   {: pre}
 
 5. In another terminal window, start polling so that you can see when activations occur.
 
-  ```
+  ```bash
   ibmcloud fn activation poll
   ```
   {: pre}
@@ -453,14 +458,14 @@ To create a filter function, you can use an action.
 
 **Command syntax**
 
-```
+```bash
 ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <file_path>/design_doc.json
 ```
 {: pre}
 
 **Example command to write a `design_doc.json` file to a `test` database**
 
-```
+```bash
 ibmcloud fn action invoke /_/myCloudant/write -p dbname test -p overwrite true -P <file_path>/design_doc.json -r
 ```
 {: pre}
@@ -491,6 +496,7 @@ This example updates the document that was created in the [Writing a document to
 {: note}
 
 ### Creating an action to process an individual document
+{: #cloudant_action_individual_doc}
 
 To create an action that handles changes to an individual document, run the following commands.
 {: shortdesc}
@@ -506,23 +512,25 @@ To create an action that handles changes to an individual document, run the foll
 
 2. Create an action called `docChange` to process the document with the name `blue` that you created earlier. Replace `<file_path>` with the file path of your `docChange.js`.
 
-  ```
+  ```bash
   ibmcloud fn action create docChange <file_path>/docChange.js
   ```
   {: pre}
 
   **Output**
+  
   ```
   ok: created action docChange
   ```
   {: screen}
 
-### Create a sequence with the `read` action 
+### Create a sequence with the `read` action
+{: #cloudant_sequence_read}
 
 The `read` action can be composed with your `docChange` action to create an action sequence.
 {: shortdesc}
 
-  ```
+  ```bash
   ibmcloud fn action create docSequence --sequence /_/myCloudant/read,docChange
   ```
   {: pre}
@@ -535,18 +543,20 @@ The `read` action can be composed with your `docChange` action to create an acti
   {: screen}
 
 ### Create a trigger with `changes` feed
+{: #cloudant_trigger_change}
 
-  ```
+  ```bash
   ibmcloud fn trigger create docTrigger --feed /_/myCloudant/changes \
   --param dbname test
   ```
   {: pre}
 
 ### Create a rule to associate the trigger with the sequence
+{: #cloudant_rule_trigger}
 
 The action `docSequence` can be used in a rule that activates the action on new {{site.data.keyword.cloudant_short_notm}} trigger events.
 
-  ```
+  ```bash
   ibmcloud fn rule create docRule docTrigger docSequence
   ```
   {: pre}
@@ -565,10 +575,11 @@ The action `docSequence` can be used in a rule that activates the action on new 
   {: screen}
 
 ### Test the sequence
+{: #cloudant_test_sequence}
 
 1. Test the `docSequence` by changing the `blue` file that you created earlier. In this example, the `shade` value is changed to `indigo`.
 
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/write --blocking --result --param dbname test --param doc "{\"_id\":\"color\",\"name\":\"blue\",\"shade\":\"indigo\"}" -p overwrite true
   ```
   {: pre}
@@ -594,7 +605,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
 
 2. Verify that the file was updated to include the `shade` value by invoking the `read` action. Replace `<database>` name with the name of your database.
 
-  ```
+  ```bash
   ibmcloud fn action invoke /_/myCloudant/read --blocking --result --param dbname <database_name> --param id color
   ```
   {: pre}

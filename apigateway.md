@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-09"
 
 keywords: serverless, rest api, gateway, web actions, functions
 
@@ -32,7 +32,7 @@ You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions
 
 
 
-## Why use REST APIs with {{site.data.keyword.openwhisk_short}}?
+**Why use REST APIs with {{site.data.keyword.openwhisk_short}}?**
 
 You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
 
@@ -67,7 +67,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 2. Create a web action that is named `hello` by using the file that you created. Be sure to add the flag `--web true` and the `--web-secure <secret>`. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action. For more information about using the `--web-secure` flag, see [Securing your API web action](#api_secure).
 
-  ```
+  ```bash
   ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
   ```
   {: pre}
@@ -81,7 +81,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
 
-  ```
+  ```bash
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
@@ -99,7 +99,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
   
 4. Send a test HTTP request to the URL by using the following cURL command.
 
-  ```
+  ```bash
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
   ```
   {: pre}
@@ -156,7 +156,7 @@ To return different content types in the body, use full control over the HTTP re
 
 2. Update your `hello` web action with the new version of your `hello.js` code.
 
-  ```
+  ```bash
   ibmcloud fn action update hello <filepath>/hello.js --web true --web-secure <secret>
   ```
   {: pre}
@@ -170,7 +170,7 @@ To return different content types in the body, use full control over the HTTP re
 
 3. Update the API response type by using the `--response-type http` flag.
 
-  ```
+  ```bash
   ibmcloud fn api create /hello /world get hello --response-type http
   ```
   {: pre}
@@ -184,7 +184,7 @@ To return different content types in the body, use full control over the HTTP re
 
 4. Call the updated API by using the following cURL command.
 
-  ```
+  ```bash
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
   ```
   {: pre}
@@ -217,7 +217,7 @@ This example uses the same names and code as the example in [Creating your first
 
 2. Create a web action that is named `hello` by using the file that you created. Add the `--web true` and `--web-secure <secret>` flags. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action.
 
-  ```
+  ```bash
   ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
   ```
   {: pre}
@@ -235,7 +235,7 @@ This example uses the same names and code as the example in [Creating your first
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
 
-  ```
+  ```bash
   ibmcloud fn api create /hello /world get hello --response-type json
   ```
   {: pre}
@@ -253,7 +253,7 @@ This example uses the same names and code as the example in [Creating your first
   
 4. Send a test HTTP request to the URL by using the following cURL command.
 
-  ```
+  ```bash
   curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
   ```
   {: pre}

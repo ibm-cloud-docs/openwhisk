@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-10"
+lastupdated: "2021-04-09"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -31,20 +31,21 @@ subcollection: openwhisk
 {{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, Tokyo, and Sydney {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
 {: shortdesc}
 
-```
+```bash
 ibmcloud target -r <region>
 ```
 {: pre}
 
 For example, to target the EU Central region:
 
-```
+```bash
 ibmcloud target -r eu-de
 ```
 {: pre}
 
 
 ## {{site.data.keyword.openwhisk_short}} endpoints
+{: #cloudfunctions_endpoints}
 
 The following endpoints are available for {{site.data.keyword.openwhisk_short}} can be used with [{{site.data.keyword.openwhisk_short}} APIs](https://cloud.ibm.com/apidocs/functions).
 
@@ -59,6 +60,7 @@ The following endpoints are available for {{site.data.keyword.openwhisk_short}} 
 {: caption="{{site.data.keyword.openwhisk_short}} endpoints" caption-side="top"}
 
 ## {{site.data.keyword.openwhisk_short}} web action endpoints
+{: #cloudfunctions_webaction_endpoints}
 
 The following endpoints are available for {{site.data.keyword.openwhisk_short}} can be used with [{{site.data.keyword.openwhisk_short}} web actions](/docs/openwhisk?topic=openwhisk-actions_web).
 
