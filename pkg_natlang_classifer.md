@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: machine learning, functions
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see [{{site.data.keyword.nlclassifiershort}}](/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier).
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.nlclassifiershort}} package contains the following entities. You can find additional details in the {{site.data.keyword.nlclassifiershort}} API reference by clicking the entity name.
 

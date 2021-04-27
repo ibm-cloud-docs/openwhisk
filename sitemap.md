@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-13"
+lastupdated: "2021-04-27"
 
 keywords: web actions, serverless, functions
 
@@ -271,10 +271,11 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Preparing apps in Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker)
   * [Creating a custom Docker image for your action](/docs/openwhisk?topic=openwhisk-prep#prep_create_custom_docker_action)
   * [Deploying an action with a custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_deploy_action_custom_docker_image)
-* [Preparing Go apps](/docs/openwhisk?topic=openwhisk-prep#prep_go)
-  * [Structuring Go code](/docs/openwhisk?topic=openwhisk-prep#prep_go_struct)
-  * [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi)
-  * [Packaging Go code with vendor libraries](/docs/openwhisk?topic=openwhisk-prep#prep_go_vendor)
+* [Preparing Go Apps](/docs/openwhisk?topic=openwhisk-prep#prep_go)
+  * [Structuring Go Apps](/docs/openwhisk?topic=openwhisk-prep#prep_go_struct)
+  * [Creating a simple Golang Action](/docs/openwhisk?topic=openwhisk-prep#prep_go_simple)
+  * [Create a Golang action made up of multiple packages](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi_packages)
+  * [Create an action by using external libraries with Go modules](/docs/openwhisk?topic=openwhisk-prep#prep_go_external_libraries)
 * [Preparing Swift apps](/docs/openwhisk?topic=openwhisk-prep#prep_swift)
   * [Structuring Swift code](/docs/openwhisk?topic=openwhisk-prep#prep_swift_struc)
   * [Packaging a Swift 4.2 file](/docs/openwhisk?topic=openwhisk-prep#prep_swift42_single)
@@ -411,13 +412,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Inline definition of Actions](/docs/openwhisk?topic=openwhisk-pkg_composer#inline-def)
 * [Using other combinator definitions](/docs/openwhisk?topic=openwhisk-pkg_composer#combinator-def)
 
-[{{site.data.keyword.discoveryshort}}](/docs/openwhisk?topic=openwhisk-pkg_discovery)
-* [Creating a {{site.data.keyword.discoveryshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_discovery#service_instance_discovery)
-* [Installing the {{site.data.keyword.discoveryshort}} package](/docs/openwhisk?topic=openwhisk-pkg_discovery#install_discovery)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_discovery#discovery_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_discovery#discovery_ui)
-* [Using the {{site.data.keyword.discoveryshort}} package](/docs/openwhisk?topic=openwhisk-pkg_discovery#usage_discovery)
-
 [{{site.data.keyword.messagehub}}](/docs/openwhisk?topic=openwhisk-pkg_event_streams)
 * [Package entities](/docs/openwhisk?topic=openwhisk-pkg_event_streams#pkg_event_streams_options)
 * [Binding the `/whisk.system/messaging` package to your {{site.data.keyword.messagehub}} instance](/docs/openwhisk?topic=openwhisk-pkg_event_streams#event_streams_binding)
@@ -445,20 +439,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Support for qualified names](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#support-for-qualified-names)
   * [SDK button](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#sdk-button)
 
-[{{site.data.keyword.nlclassifiershort}}](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier)
-* [Creating a {{site.data.keyword.nlclassifiershort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#service_instance_classifier)
-* [Installing the {{site.data.keyword.nlclassifiershort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#install_classifier)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#nlclassifier_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#nlclassifier_ui)
-* [Using the {{site.data.keyword.nlclassifiershort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#usage_classifier)
-
-[{{site.data.keyword.nlushort}}](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding)
-* [Creating a {{site.data.keyword.nlushort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#service_instance_understanding)
-* [Installing the {{site.data.keyword.nlushort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#install_understanding)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#nlus_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#nlus_ui)
-* [Using the {{site.data.keyword.nlushort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#usage_understanding)
-
 [Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage)
 * [Packages](/docs/openwhisk?topic=openwhisk-pkg_obstorage#obstorage_packages)
 * [Setting up the {{site.data.keyword.cos_full_notm}} trigger](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_ev)
@@ -478,13 +458,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Writing an object to a bucket](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_write)
 * [Reading objects from a bucket](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_read)
   * [Reference](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_actions)
-
-[{{site.data.keyword.personalityinsightsshort}}](/docs/openwhisk?topic=openwhisk-pkg_person_insights)
-* [Creating a {{site.data.keyword.personalityinsightsshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_person_insights#service_instance_insights)
-* [Installing the {{site.data.keyword.personalityinsightsshort}} package](/docs/openwhisk?topic=openwhisk-pkg_person_insights#install_insights)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_person_insights#personalityinsights_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_person_insights#personalityinsights_ui)
-* [Using the {{site.data.keyword.personalityinsightsshort}} package](/docs/openwhisk?topic=openwhisk-pkg_person_insights#usage_insights)
 
 [Push Notifications](/docs/openwhisk?topic=openwhisk-pkg_push_notifications)
 * [Packages](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_packages)
@@ -507,49 +480,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Posting a message to a Slack channel](/docs/openwhisk?topic=openwhisk-pkg_slack#posting-a-message-to-a-slack-channel)
 * [Using the Slack token-based API](/docs/openwhisk?topic=openwhisk-pkg_slack#using-the-slack-token-based-api)
 
-[{{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text)
-* [Creating a {{site.data.keyword.speechtotextshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#service_instance_speechtotext)
-* [Installing the {{site.data.keyword.speechtotextshort}} package](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#install_speechtotext)
-* [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#speechtotext_cli)
-* [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#speechtotext_ui)
-* [Using the {{site.data.keyword.speechtotextshort}} package](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#usage_speechtotext)
-
-[{{site.data.keyword.texttospeechshort}}](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech)
-* [Creating a {{site.data.keyword.texttospeechshort}} Service instance](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#service_instance_texttospeech)
-* [Installing the {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#install_texttospeech)
-* [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#texttospeech_cli)
-* [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#texttospeech_ui)
-* [Using the {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#usage_texttospeech)
-
-[{{site.data.keyword.toneanalyzershort}}](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer)
-* [Creating a {{site.data.keyword.toneanalyzershort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#service_instance_tone)
-* [Installing the {{site.data.keyword.toneanalyzershort}} package](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#install_tone)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#toneanalyzer_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#toneanalyzer_ui)
-* [Using the {{site.data.keyword.toneanalyzershort}} package](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#usage_tone)
-
-[{{site.data.keyword.languagetranslatorshort}}](/docs/openwhisk?topic=openwhisk-pkg_translator)
-* [Creating a {{site.data.keyword.languagetranslatorshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_translator#service_instance_translator)
-* [Installing the {{site.data.keyword.languagetranslatorshort}} package](/docs/openwhisk?topic=openwhisk-pkg_translator#install_translator)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_translator#languagetranslator_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_translator#languagetranslator_ui)
-* [Using the {{site.data.keyword.languagetranslatorshort}} package](/docs/openwhisk?topic=openwhisk-pkg_translator#usage_translator)
-
 [Utilities](/docs/openwhisk?topic=openwhisk-pkg_utils)
-
-[{{site.data.keyword.visualrecognitionshort}}](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition)
-* [Creating a {{site.data.keyword.visualrecognitionshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#service_instance_recognition)
-* [Installing the {{site.data.keyword.visualrecognitionshort}} package](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#install_recognition)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#visualrecognition_cli)
-  * [Installing from the {{site.data.keyword.visualrecognitionshort}} console](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#visualrecognition_ui)
-* [Using the {{site.data.keyword.visualrecognitionshort}} package](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#usage_recognition)
-
-[{{site.data.keyword.conversationshort}}](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant)
-* [Creating a {{site.data.keyword.conversationshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#service_instance_conversation)
-* [Installing the {{site.data.keyword.conversationshort}} package](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#install_conversation)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#conversation_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#conversation_ui)
-* [Using the {{site.data.keyword.conversationshort}} package](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#usage_conversation)
 
 [WebSocket](/docs/openwhisk?topic=openwhisk-pkg_websocket)
 * [Send a message to a WebSocket](/docs/openwhisk?topic=openwhisk-pkg_websocket#send-a-message-to-a-websocket)
@@ -565,6 +496,76 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Implementing feeds by using connections](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_connections)
 
 [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify)
+
+[{{site.data.keyword.visualrecognitionshort}}](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition)
+* [Creating a {{site.data.keyword.visualrecognitionshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#service_instance_recognition)
+* [Installing the {{site.data.keyword.visualrecognitionshort}} package](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#install_recognition)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#visualrecognition_cli)
+  * [Installing from the {{site.data.keyword.visualrecognitionshort}} console](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#visualrecognition_ui)
+* [Using the {{site.data.keyword.visualrecognitionshort}} package](/docs/openwhisk?topic=openwhisk-pkg_visual_recognition#usage_recognition)
+
+[{{site.data.keyword.conversationshort}}](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant)
+* [Creating a {{site.data.keyword.conversationshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#service_instance_conversation)
+* [Installing the {{site.data.keyword.conversationshort}} package](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#install_conversation)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#conversation_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#conversation_ui)
+* [Using the {{site.data.keyword.conversationshort}} package](/docs/openwhisk?topic=openwhisk-pkg_watson_assistant#usage_conversation)
+
+[{{site.data.keyword.nlclassifiershort}}](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier)
+* [Creating a {{site.data.keyword.nlclassifiershort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#service_instance_classifier)
+* [Installing the {{site.data.keyword.nlclassifiershort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#install_classifier)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#nlclassifier_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#nlclassifier_ui)
+* [Using the {{site.data.keyword.nlclassifiershort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_classifier#usage_classifier)
+
+[{{site.data.keyword.nlushort}}](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding)
+* [Creating a {{site.data.keyword.nlushort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#service_instance_understanding)
+* [Installing the {{site.data.keyword.nlushort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#install_understanding)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#nlus_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#nlus_ui)
+* [Using the {{site.data.keyword.nlushort}} package](/docs/openwhisk?topic=openwhisk-pkg_natlang_understanding#usage_understanding)
+
+[{{site.data.keyword.toneanalyzershort}}](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer)
+* [Creating a {{site.data.keyword.toneanalyzershort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#service_instance_tone)
+* [Installing the {{site.data.keyword.toneanalyzershort}} package](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#install_tone)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#toneanalyzer_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#toneanalyzer_ui)
+* [Using the {{site.data.keyword.toneanalyzershort}} package](/docs/openwhisk?topic=openwhisk-pkg_tone_analyzer#usage_tone)
+
+[{{site.data.keyword.languagetranslatorshort}}](/docs/openwhisk?topic=openwhisk-pkg_translator)
+* [Creating a {{site.data.keyword.languagetranslatorshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_translator#service_instance_translator)
+* [Installing the {{site.data.keyword.languagetranslatorshort}} package](/docs/openwhisk?topic=openwhisk-pkg_translator#install_translator)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_translator#languagetranslator_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_translator#languagetranslator_ui)
+* [Using the {{site.data.keyword.languagetranslatorshort}} package](/docs/openwhisk?topic=openwhisk-pkg_translator#usage_translator)
+
+[{{site.data.keyword.discoveryshort}}](/docs/openwhisk?topic=openwhisk-pkg_discovery)
+* [Creating a {{site.data.keyword.discoveryshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_discovery#service_instance_discovery)
+* [Installing the {{site.data.keyword.discoveryshort}} package](/docs/openwhisk?topic=openwhisk-pkg_discovery#install_discovery)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_discovery#discovery_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_discovery#discovery_ui)
+* [Using the {{site.data.keyword.discoveryshort}} package](/docs/openwhisk?topic=openwhisk-pkg_discovery#usage_discovery)
+
+[{{site.data.keyword.personalityinsightsshort}}](/docs/openwhisk?topic=openwhisk-pkg_person_insights)
+* [Creating a {{site.data.keyword.personalityinsightsshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_person_insights#service_instance_insights)
+* [Installing the {{site.data.keyword.personalityinsightsshort}} package](/docs/openwhisk?topic=openwhisk-pkg_person_insights#install_insights)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_person_insights#personalityinsights_cli)
+  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_person_insights#personalityinsights_ui)
+* [Using the {{site.data.keyword.personalityinsightsshort}} package](/docs/openwhisk?topic=openwhisk-pkg_person_insights#usage_insights)
+
+[{{site.data.keyword.speechtotextshort}}](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text)
+* [Creating a {{site.data.keyword.speechtotextshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#service_instance_speechtotext)
+* [Installing the {{site.data.keyword.speechtotextshort}} package](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#install_speechtotext)
+* [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#speechtotext_cli)
+* [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#speechtotext_ui)
+* [Using the {{site.data.keyword.speechtotextshort}} package](/docs/openwhisk?topic=openwhisk-pkg_speech_to_text#usage_speechtotext)
+
+[{{site.data.keyword.texttospeechshort}}](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech)
+* [Creating a {{site.data.keyword.texttospeechshort}} Service instance](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#service_instance_texttospeech)
+* [Installing the {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#install_texttospeech)
+* [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#texttospeech_cli)
+* [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#texttospeech_ui)
+* [Using the {{site.data.keyword.texttospeechshort}} package](/docs/openwhisk?topic=openwhisk-pkg_text_to_speech#usage_texttospeech)
 
 
 ## Setting up an automated tool chain
@@ -762,14 +763,29 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions)
 
+
+## Regions
+{: #sitemap_regions}
+
+
 [Regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions)
-* [{{site.data.keyword.openwhisk_short}} endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_endpoints)
-* [{{site.data.keyword.openwhisk_short}} web action endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_webaction_endpoints)
+
+[{{site.data.keyword.openwhisk_short}} endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_endpoints)
+
+[{{site.data.keyword.openwhisk_short}} web action endpoints](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions#cloudfunctions_webaction_endpoints)
+
+
+## Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}
+{: #sitemap_understanding_high_availability_and_disaster_recovery_for_}
+
 
 [Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-ha_dr)
-* [High availability](/docs/openwhisk?topic=openwhisk-ha_dr#high-availability)
-* [Disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr#disaster-recovery)
-* [HIPAA](/docs/openwhisk?topic=openwhisk-ha_dr#hipaa)
+
+[High availability](/docs/openwhisk?topic=openwhisk-ha_dr#high-availability)
+
+[Disaster recovery](/docs/openwhisk?topic=openwhisk-ha_dr#disaster-recovery)
+
+[HIPAA](/docs/openwhisk?topic=openwhisk-ha_dr#hipaa)
 
 
 ## API reference
@@ -790,16 +806,26 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Tutorials and samples](https://github.com/apache/openwhisk-external-resources){: new_window}{: external}
 
 
-##    
-{: #sitemap____}
+## FAQ
+{: #sitemap_faq}
 
 
 [FAQ](/docs/openwhisk?topic=openwhisk-faq)
-* [What language runtimes are supported in {{site.data.keyword.openwhisk_short}}?](/docs/openwhisk?topic=openwhisk-faq#supported-runtimes)
-* [What's the maximum time or maximum memory that my function can run?](/docs/openwhisk?topic=openwhisk-faq#max-runtime)
-* [What's the difference between an action and a web action?](/docs/openwhisk?topic=openwhisk-faq#difference)
-* [How can I see my action logs?](/docs/openwhisk?topic=openwhisk-faq#logs_faq)
-* [How does monitoring work?](/docs/openwhisk?topic=openwhisk-faq#monitor_faq)
+
+[What language runtimes are supported in {{site.data.keyword.openwhisk_short}}?](/docs/openwhisk?topic=openwhisk-faq#supported-runtimes)
+
+[What's the maximum time or maximum memory that my function can run?](/docs/openwhisk?topic=openwhisk-faq#max-runtime)
+
+[What's the difference between an action and a web action?](/docs/openwhisk?topic=openwhisk-faq#difference)
+
+[How can I see my action logs?](/docs/openwhisk?topic=openwhisk-faq#logs_faq)
+
+[How does monitoring work?](/docs/openwhisk?topic=openwhisk-faq#monitor_faq)
+
+
+## Troubleshooting
+{: #sitemap_troubleshooting}
+
 
 [Troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting)
 * [Action is failing](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_action_fails)

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-09-18"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: cognitive, functions, packages
 
@@ -30,7 +30,10 @@ subcollection: openwhisk
 The installable {{site.data.keyword.texttospeechfull}} Service provides an API with IBM's speech-synthesis capabilities to synthesize text into natural-sounding speech in a various languages, dialects, and voices.
 {:shortdesc}
 
-The service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see [{{site.data.keyword.texttospeechshort}}](/docs/text-to-speech?topic=text-to-speech-about).
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
+
+This service supports at least one male or female voice, sometimes both, for each language. The audio is streamed back to the client with minimal delay. For more information about the service, see [{{site.data.keyword.texttospeechshort}}](/docs/text-to-speech?topic=text-to-speech-about).
 
 The {{site.data.keyword.texttospeechshort}} package contains the following entities. You can find more information in the {{site.data.keyword.texttospeechshort}} API reference by clicking the entity name.
 

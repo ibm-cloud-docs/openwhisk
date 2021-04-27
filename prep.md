@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-13"
+lastupdated: "2021-04-27"
 
 keywords: actions, serverless, javascript, node, node.js, functions
 
@@ -337,7 +337,7 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {: pre}
 
-   While most `npm` packages install JavaScript sources on `npm install`, some also installation and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
+   While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
    {: note}
 
 3. Create a `.zip` archive that contains all files, including all dependencies.
@@ -639,7 +639,7 @@ To package your app:
     ```
     {: codeblock}
 
-8. From your `jokes` directory, create a .zip archive of the `virtualenv` folder and your `__main__.py` file. These files must be in the top level of your .zip file.
+8. From your `jokes` directory, create a .zip archive of the `virtualenv` folder and your `__main__.py` file. These files must be in the top level of your `.zip` file.
 
     ```bash
     zip -r jokes.zip virtualenv __main__.py
@@ -1098,7 +1098,7 @@ You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://
 ### Deploying an action with a custom Docker image
 {: #prep_deploy_action_custom_docker_image}
 
-When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action will be invoked with the Docker image.
+When you create your {{site.data.keyword.openwhisk_short}} action, you can combine your app file with a public Docker image to create a custom runtime environment. The action is invoked with the Docker image.
 
 Run the `action create` command and include the `--docker` flag to specify a Docker image for your app to use.
 
@@ -1112,22 +1112,28 @@ You can also deploy a .zip file with a Docker image to create an action. You can
 
 To see an example deployment of a custom Docker image with a {{site.data.keyword.openwhisk_short}} action, see [Packaging large Python dependencies in a custom Docker image](#prep_python_docker).
 
-## Preparing Go apps
+## Preparing Go Apps
 {: #prep_go}
 
-Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance or multiple source file support, including vendor libraries.
+You can create Actions by using Golang.
+ 
+Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third party libraries, package them as zip file and deploy the zip file. When deploying a zip file specify the runtime using the kind parameter (`--kind=go:1.15`)
 {: shortdesc}
 
-Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image. You can package [multiple source files](#prep_go_multi) or [vendor libraries](#prep_go_vendor).
+Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image(`docker run -i openwhisk/action-golang-v1.15:nightly ...`). You can package [multiple source files](#prep_go_multi_packages) or [vendor libraries](#prep_go_external_libraries).
 {: tip}
 
-### Structuring Go code
+The following steps assume a Linux-based distribution on a processor with AMD64-based architecture and the `ibmcloud cli` installed to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external} 
+
+### Structuring Go Apps
 {: #prep_go_struct}
 
-When you structure your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created. The package must also be public.
+When you structure your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created (`--name <your name>`). The package must also be public (start with an upper case letter).
 {: shortdesc}
 
 **Example**
+
+This example create a simple `Hello World` action in Go.
 
 ```go
     package main
@@ -1151,26 +1157,109 @@ When you structure your Go code, note that the expected name for the entry point
 ```
 {: codeblock}
 
-### Packaging multiple Go source files
-{: #prep_go_multi}
+Actions that are written in Go can be deployed as source code or as pre-compiled executables in a compressed file.
+If your actions require only one source file, you can edit its contents directly in the Functions action window at the [IBM Cloud console](https://test.cloud.ibm.com/functions) as long as you create the action without pre-compiling it.   
+{: tip}
 
-You can package multiple Go source files by creating a top level `src` directory, importing the subpackages, and then compiling.
+These are the basic steps needed to create actions that uses Go.
+
+1. Create the function that you want to deploy
+2. (`optional`) If you have more than one file, package the files as a zip file, otherwise skip this step (see the following examples)
+3. (`optional`) Compile the `go/zip` file by using the Docker image (`docker run -i openwhisk/action-golang-v1.15:nightly -compile ...`).  This step returns a zip file that contains the executable.
+4. Create the action by using the `ibmcloud cli`.
+
+These steps are used in each of the following examples.
+
+### Creating a simple Golang Action
+{: #prep_go_simple}
+
+You can create a simple action in Go by creating a file that contains a Go function.
 {: shortdesc}
 
-1. Create a top level `src` directory.</br>Either place the source files that belong to the main package in the root of `src` or inside a `main` directory and create subdirectories for other packages. For example, the `hello` package becomes the `src/hello` directory.
-  
-   ```
-   go-action-hello/
-   └── src
-       ├── hello
-       │   └── hello.go
-       └── main
-           └── main.go
-   ```
-   {: screen}
+1. Create the Go file that contains the function. The default entry name is `Main`. You can change this name to any different public function name (`Uppercase first character`) as long as it is specified by using the `--main` parameter with the `ibmcloud fn action create <action_name> <action_file> --main <function_name>` command; for example, `--main hello` if the function is named `Hello`.
 
-2. Import subpackages.</br>The following example shows `main/main.go` importing the `hello` subpackage.
+   **`main.go`**
+   
+   ```go
+       package main
 
+       import "fmt"
+
+       // Main is the function implementing the action
+       func Main(params map[string]interface{}) map[string]interface{} {
+          // parse the input JSON
+           name, ok := params["name"].(string)
+           if !ok {
+               name = "World"
+          }
+           msg := make(map[string]interface{})
+           msg["body"] = "Hello " + name + "!"
+           // can optionally log to stdout (or stderr)
+           fmt.Println("hello Go action")
+           // return the output JSON
+           return msg
+       }
+   ```
+   {: codeblock}
+
+2. (`optional`) If you want to pre-compile the function to a executable stored in a zip file first,
+
+   ```bash
+   docker run -i openwhisk/action-golang-v1.15:nightly -compile main <main.go >main-bin.zip
+   ```
+   {: pre}
+
+   `<` and  `>` are bash input output redirects and are part of the command.
+   {: note}
+
+   Specify the generated zip file (`main-bin.zip`) containing the executable as the file for the action create command.
+
+3. Create a action using the IBM Cloud Functions managed `go:1.15` Runtime if your action is not called `main` specify the function name with `--name <your action name>` 
+
+   With the source code (`main.go`),
+   
+   ```bash
+   ibmcloud fn action create simple-action main.go
+   ```
+   {: pre}
+
+   With the pre-compiled zip file (`main-bin.zip`),
+
+   ```bash
+   ibmcloud fn action create simple-action main-bin.zip
+   ```
+   {: pre}
+
+   Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+   
+   ```bash
+   ibmcloud fn action create simple-action main.go --docker openwhisk/action-golang-v1.15:1ee88f9
+   ```
+   {: pre}
+
+If you pin the action to a fixed runtime it won't be changed and doesn't receive security fixes.
+{: note}
+
+### Create a Golang action made up of multiple packages
+{: #prep_go_multi_packages}
+
+You can create a action, which is comprised of multiple Go packages. Each package must have a `go.mod` file.
+{: shortdesc}
+
+```
+.
+├── go.mod
+├── hello
+│   ├── go.mod
+│   └── hello.go
+└── main.go
+```
+{: screen}
+
+1. Create the following example files as shown in the following examples.
+
+   **`main.go`**
+   
    ```go
    package main
 
@@ -1179,134 +1268,215 @@ You can package multiple Go source files by creating a top level `src` directory
    	"hello"
    )
 
-   // Main forwading to Hello
    func Main(args map[string]interface{}) map[string]interface{} {
-    	fmt.Println("This is main.Main")
-    	greetings := "World"
-    	name, ok := args["name"].(string)
-    	if ok {
-  	  	greetings = name
-  	 }
-  	 return hello.Hello(greetings)
+	fmt.Println("Main")
+	return hello.Hello(args)
    }
+   ```
+    {: codeblock}
+
+   **`go.mod`**
+   
+   ```
+   module action
+
+   go 1.15
+
+   replace hello => ./hello
+
+   require hello v0.0.0
+
    ```
    {: codeblock}
 
-   **Example of `hello/hello.go`**
-
+   **`hello/hello.go`**
+   
    ```go
    package hello
 
-   import "fmt"
+   import (
+    	"fmt"
+   )
 
-   // Hello return a greeting message
-   func Hello(name string) map[string]interface{} {
-    	fmt.Println("This is hello.Hello")
-  	  res := make(map[string]interface{})
-  	  res["body"] = "Hello " + name
-  	  return res
+   func Hello(args map[string]interface{}) map[string]interface{} {
+   	msg := make(map[string]interface{})
+   	greetings := "world"
+	name, ok := args["name"].(string)
+	if ok {
+		greetings = name
+	}
+	msg["msg"] = "Hello, " + greetings
+	fmt.Printf("Hello, %s\n", greetings)
+	return msg
    }
    ```
    {: codeblock}
 
-3. Compile the code.</br>Create a .zip archive of the `src` directory. Do not include the top level project directory `go-action-project/`.
-
-   ```bash
-   cd src
-   zip -r ../hello-src.zip *
-   cd ..
-   ```
-   {: pre}
-
-   You can compile locally by setting your `GOPATH` to the parent of the `src` directory. If you use VS Code, you must change the `go.inferGopath` setting to `true`.
-   {: note}
-
-4. Compile and package the Go executable file as `exec` in the root of the .zip archive.</br>Build the `hello-bin.zip` archive by running the following command. You must install the Docker CLI on your workstation and put `docker` in your `PATH`.
-
-   ```bash
-   docker run -i openwhisk/action-golang-v1.11 -compile main <hello-src.zip >hello-bin.zip
-   ```
-   {: pre}
-
-   In this example, the main function is `-compile main`. To use a different function as main, change the value for `-compile`. The main function is selected at compilation time. When you pre-compile, `ibmcloud fn action [update | create]` ignores the `--main`.
-
-   The container gets the contents of the source .zip in `stdin`, compiles the content, and creates a new .zip archive with the executable `exec` file in the root. The .zip archive content streams out to `stdout`, which gets redirected to the `hello-bin.zip` archive to be deployed as the Go Action.
-
-5. Create or update the action.</br>Use the `hello-bin.zip` file to create an action or to update an existing action.
-
-   ```bash
-   ibmcloud fn action create hello hello-bin.zip --kind go:1.11
-   ```
-   {: pre}
-
-   In most cases, the Go compiler generates statically-linked binaries. These binaries can be run in most 64-bit Linux-based environment. Therefore, you can also run it in the `native` runtime environment.
-
-   ```bash
-   ibmcloud fn action create hello hello-bin.zip --native
-   ```
-   {: pre}
-
-   However, depending on the modules that are included in your source code, the Go compiler can decide to create a dynamically-linked binary instead. You can check the generated `exec` file that is found inside the `hello-bin.zip` file in your Linux system by using the `file` or `ldd` commands. For dynamically-linked executables, all depending libraries must be present when the binary is executed.</br>
-   The `dockerskeleton` image that is used for `native` actions is a minimalistic image and assumes that all code is contained in the binary. If you create a `native` action with this type of dynamically-linked executable, it can fail during invocation at initialization time (when the action code is loaded into memory) with the following messages in your action logs,
+   **`hello/go.mod`**
 
    ```
-   "2021-01-29T10:17:34.1233Z stdout: [Errno 2] No such file or directory: '/action/exec': '/action/exec'",
-   "2021-01-29T10:17:34.124Z stderr: The action did not initialize or run as expected. Log data might be missing."
+   module hello
+
+   go 1.15
    ```
    {: codeblock}
 
-   The binary `exec` file cannot be loaded into memory because the dependent libraries are missing and cannot be resolved. To resolve this issue, use the `--kind go:1.11` option.
+2. Compress the source code files into a zip file that is called `src.zip`.
 
-### Packaging Go code with vendor libraries
-{: #prep_go_vendor}
+   ```bash
+   zip -r src.zip main.go go.mod hello/hello.go hello/go.mod
+   ```
+   {: pre}
 
-You can include dependencies by populating a `vendor` directory inside the source `zip` archive when you compile the Go files. The `vendor` directory does not work at the top level. You must place the `vendor` directory within `src/` and inside a package directory.
-{: shortdesc}
+  This command compresses the files `main.go go.mod hello/hello.go hello/go.mod` into `src.zip`. For more information about the `zip` command, use `man zip`.
 
-**Example: log package `logrus` in a `hello.go` app**
+3. (`Optional`) If you want to pre-compile the code, you can compile your compressed source code with the Docker runtime image using `-compile`
 
-```go
-package hello
+   1. Compile the function to a executable stored in a zip file
 
-import (
-	"os"
+   ```bash
+   docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
+   ```
+   {: pre} 
 
-	"github.com/Sirupsen/logrus"
-)
+   `<` and `>` are bash input output redirects and are part of the command.
+   {: note}
 
-var log = logrus.New()
+   2. Specify the generated zip file (`main-bin.zip`) that contains the executable as the file for the `action create` command. The runtime `kind` must be specified when you use a zip file; for example, `--kind=go:1.15`.
 
-func init() {
-	log.Out = os.Stdout
-}
+4. Create the action. Note that the runtime must be specified as `--kind=go:1.15`.
 
-// Hello return a greeting message
-func Hello(name string) map[string]interface{} {
-	log.WithFields(logrus.Fields{"greetings": name}).Info("Hello")
-	res := make(map[string]interface{})
-	res["body"] = "Hello, " + name
-	return res
-}
+   **With `src.zip`**
+   
+   ```bash
+   ibmcloud fn action create multiple-packag-action src.zip --kind=go:1.15
+   ```
+    {: pre}
+    
+   **With pre-compiled code (`main-bin.zip`)**
+   
+   ```bash
+   ibmcloud fn action create multiple-packag-action main-bin.zip --kind=go:1.15
+   ```
+   {: pre}
+   
+   Alternatively, if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+    
+   ```bash
+   ibmcloud fn action create multiple-packag-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
+   ```
+   {: pre}
+
+If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+{: note}
+
+
+### Create an action by using external libraries with Go modules
+{: #prep_go_external_libraries}
+
+You can create an action by using third party libraries with Go moduless. For more information about Go modules, see [Go module doc](https://golang.org/ref/mod).
+{: #shortdesc}
+
+If the action has not been pre-compiled, then the libraries are downloaded at the action execution time.
+If you pre-compile the action, then the libraries are already packaged into the binary and don't need to be downloded during the action execution time.
+{: tip}
+
 ```
-{: codeblock}
-
-</br>
-In this example, the `vendor` directory is located in `src/hello/vendor`. You can add third-party libraries that are used by the `hello` package. 
-
-You can use multiple tools such as [`dep` ](https://golang.github.io/dep/docs/installation.html){: external} to populate and manage dependencies.
-
-You can use `dep` by creating a file `src/main/Gopkg.toml` describing the version and location of the libraries.
-
-```toml
-[[override]]
-  name = "github.com/sirupsen/logrus"
-  version = "1.1.1"
+.
+├── go.mod
+└── main.go
 ```
-{: codeblock}
+{: screen}
 
-To populate the `vendor` directory, run `dep ensure`.
+1. Create the function.
 
+   **`main.go~**
+   
+   ```go 
+   package main
 
+   import (
+  	"github.com/rs/zerolog"
+	"github.com/rs/zerolog/log"
+   )
+
+   func init() {
+  	zerolog.TimeFieldFormat = ""
+   }
+
+   // Main function for the action
+   func Main(obj map[string]interface{}) map[string]interface{} {
+   	name, ok := obj["name"].(string)
+   	if !ok {
+		name = "world"
+	}
+	log.Debug().Str("name", name).Msg("Hello")
+	msg := make(map[string]interface{})
+	msg["module-main"] = "Hello, " + name + "!"
+	return msg
+   }
+   ```
+   {: codeblock}
+   
+   **`go.mod`**
+
+   ```
+   module action
+
+   go 1.15
+
+   require github.com/rs/zerolog v1.19.0
+   ```
+   {: codeblock}
+
+2. Compress the source code to a zip file that is called `src.zip`.
+
+   ```bash
+   zip -r src.zip main.go go.mod 
+   ```
+   {: pre}
+
+   This example compresses `main.go` and `go.mod` files to `src.zip`
+
+3. If you want to pre-compile the code, use the compressed source code (`src.zip`) and compile it with the docker runtime image with the `-compile` command.
+
+   1. Compile the function to a executable stored in a zip file (`main-bin.zip`).
+   
+   ```bash
+   docker run -i openwhisk/action-golang-v1.15:1ee88f9 -compile main <src.zip >main-bin.zip
+   ```
+   {: pre} 
+
+   `<` and `>` are bash input output redirects and are part of the command.
+   {: note}
+
+   2. Specify the generated zip file(`main-bin.zip`) that contains the executable as the file for the `action create` command. The runtime `kind` must be specified when you use a zip file; for example,  `--kind=go:1.15`.
+
+4. Create action the runtime must be specified with `--kind=go:1.15`.
+
+   **With `src.zip`**
+   
+   ```bash
+   ibmcloud fn action create module-action src.zip --kind=go:1.15
+   ```
+   {: pre}
+   
+   **With pre-compiled code (`main-bin.zip`)**
+   
+   ```bash
+   ibmcloud fn action create module-action main-bin.zip --kind=go:1.15
+   ```
+   {: pre}
+
+   Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+   
+   ```bash
+   ibmcloud fn action create module-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
+   ```
+    {: pre}
+
+If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+{: note}
 
 ## Preparing Swift apps
 {: #prep_swift}

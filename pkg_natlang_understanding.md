@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The installable {{site.data.keyword.nlufull}} service helps you analyze various features of text content at scale.
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 Provide text, raw HTML, or a public URL, and {{site.data.keyword.nlushort}} gives you results for the features you request. The service cleans HTML content before analysis by default, so the results can ignore most advertisements and other unwanted content. You can create [custom models](/docs/natural-language-understanding?topic=natural-language-understanding-customizing) with Watson Knowledge Studio that can be used to detect custom entities and relations in Natural Language Understanding. For more information about this service, see [{{site.data.keyword.nlushort}}](/docs/natural-language-understanding?topic=natural-language-understanding-getting-started).
 

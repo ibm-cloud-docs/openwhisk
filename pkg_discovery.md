@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: functions, cognitive,
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/discovery?topic=discovery-getting-started).
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.discoveryshort}} package contains the following entities. You can find more details in the {{site.data.keyword.discoveryshort}} API reference by clicking the entity name.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language. For more information about this service, see [{{site.data.keyword.languagetranslatorfull}}](/docs/language-translator?topic=language-translator-gettingstarted).
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.languagetranslatorshort}} package contains the following entities. You can find more details in the {{site.data.keyword.languagetranslatorshort}} API reference by clicking the entity name.
 

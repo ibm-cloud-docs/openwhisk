@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-13"
+lastupdated: "2021-04-27"
 
 keywords: functions, cognitive,
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition).
 {:shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.visualrecognitionshort}} package contains the following entities. For more information, see the {{site.data.keyword.visualrecognitionshort}} API reference by clicking the entity name.
 

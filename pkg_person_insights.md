@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: cognitive, serverless, functions
 
@@ -30,7 +30,10 @@ subcollection: openwhisk
 The installable {{site.data.keyword.personalityinsightsfull}} service enables applications to derive insights from social media, enterprise data, or other digital communications. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts.
 {: shortdesc}
 
-The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that contains a timestamp, can report temporal behavior.
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
+
+This service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that contains a timestamp, can report temporal behavior.
 
 * For more information about the meaning of the models that the service uses to describe personality characteristics, see [Personality models](/docs/personality-insights?topic=personality-insights-models).
 * For more information about the meaning of the consumption preferences, see [Consumption preferences](/docs/personality-insights?topic=personality-insights-preferences).

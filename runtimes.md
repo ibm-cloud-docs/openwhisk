@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-27"
 
 keywords: runtimes, support, functions
 
@@ -128,7 +128,7 @@ Node.js version 8 is deprecated and will soon be removed. To continue running yo
 
 | Package | Details |
 | --- | --- | 
-| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v5.x, the major version that was released a few years ago. When a new major version of this package is released (for example v6.x), the `nodejs:12` runtime automatically upgrades to this version.<br/>Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses this package and you do not want to risk your action failing, consider staying at  `nodejs:10` until the risks are accessed.<br/>For more information about migrating to `ibm-watson v5.x`, see [MIGRATION-V5.md](https://github.com/watson-developer-cloud/node-sdk/wiki/v5-Migration-Guide){: external}. |
+| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v6.x. <br/>Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to `ibm-watson v6.x`, see [MIGRATION-V6.md](https://github.com/watson-developer-cloud/node-sdk/blob/HEAD/MIGRATION-V6.md){: external}. <br/> If migrating is not possible, consider packaging the older version of `ibm-watson` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
 | `ibmiotf` | The `ibmiotf` package is renamed to `@wiotp/sdk`.  For more information, see [IBM Watson IoT Platform JavaScript SDK](https://www.npmjs.com/package/@wiotp/sdk){: external}. |
 | `request` | The `request` package is deprecated and therefore not available in this runtime. You can consider `axios`, `bent`, `got`, or `needle` as an alternative. |
 
@@ -481,7 +481,11 @@ For more information, see [Creating actions from binaries](/docs/openwhisk?topic
 
 **Go**
 
-By default, all Go actions are executed in a version 1.15 environment.
+By default, all Go actions are executed in a version 1.15 environment. Go Version 1.11 is deprecated.
+
+When migrating from Go:1.11 to Go:1.15:
+- Go:1.15 uses [Go Modules](https://golang.org/ref/mod){: external}.
+- File containing the entry function (e.g `main.go` `Main`) needs be placed in root, no `"main"` directory is supported.
 
 For more information about the `go` runtimes, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-go/blob/master/README.md){: external}.
 

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-27"
 
 keywords: openwhisk, functions
 
@@ -29,6 +29,9 @@ subcollection: openwhisk
 
 The installable {{site.data.keyword.conversationfull}} service combines machine learning, natural language understanding, and integrated dialog tools to create conversation flows between your apps and your users. For more information about this service, see [{{site.data.keyword.conversationfull}}](/docs/assistant?topic=assistant-getting-started).
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.conversationshort}} package contains the following entities. For more information, see the {{site.data.keyword.conversationshort}} API reference by clicking the entity name.
 
