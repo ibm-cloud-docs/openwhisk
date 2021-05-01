@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
-keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions
+keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions, activations, configuring
 
 subcollection: openwhisk
 

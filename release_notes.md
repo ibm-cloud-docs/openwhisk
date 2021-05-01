@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-04-27"
+lastupdated: "2021-05-01"
 
-keywords: release notes, functions
+keywords: release notes, functions, what's new, 2019, 2020, 2021
 
 subcollection: openwhisk
 
@@ -27,8 +27,16 @@ subcollection: openwhisk
 # Release notes
 {: #release-notes}
 
-Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk_short}} that are grouped by month.
+Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk}}.
 {: shortdesc}
+
+## May 2021
+{: #may21}
+
+| Date | Description |
+| --------- | -------- |
+| 1 May | <ul><li>Added information about error handing. See [Error handing for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-error-handing-functions).</li><li>Added information about getting support. See [Getting help and support](/docs/openwhisk?topic=openwhisk-gettinghelp).</ul>  |
+{: caption="Changes for May 2021" caption-side="top"}
 
 ## April 2021
 {: #april21}
@@ -54,7 +62,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 29 January | <ul><li> Added a sitemap. See [Sitemap for Cloud Functions](/docs/openwhisk?topic=openwhisk-sitemap).</li><li>Updated information about packaging Go source files. See [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi).</li></ul> |
+| 29 January | <ul><li> Added a sitemap. See [Sitemap for Cloud Functions](/docs/openwhisk?topic=openwhisk-sitemap).</li><li>Updated information about packaging Go source files. See [Packaging multiple Go source files](/docs/openwhisk?topic=openwhisk-prep#prep_go_multi_packages).</li></ul> |
 {: caption="Changes for January 2021" caption-side="top"}
 
 ## December 2020

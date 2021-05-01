@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: annotations, annotate, package, parameters, actions, functions
+keywords: annotations, package, parameters, actions, functions, activations
 
 subcollection: openwhisk
 
@@ -49,7 +49,7 @@ You can document an entity from the CLI by using the `--annotation` or `-a` flag
 
 The following code is an example set of annotations for an `echo` action, which returns its input arguments unmodified. This action is useful for logging input parameters, for example, as part of a sequence or rule.
 
-```
+```sh
 ibmcloud fn action create echo echo.js \
     -a description 'An action which returns its input. Useful for logging input to enable debug/replay.' \
     -a parameters  '[{ "required":false, "description": "Any JSON entity" }]' \

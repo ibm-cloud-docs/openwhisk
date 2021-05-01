@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-12-11"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: object storage, bucket, package, functions
+keywords: object storage, bucket, package, functions, object, trigger
 
 subcollection: openwhisk
 
@@ -35,7 +35,7 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 * To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). 
 * For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
 
-## Packages
+## Packages for {{site.data.keyword.cos_short}}
 {: #obstorage_packages}
 
 Review the following table for a list of {{site.data.keyword.openwhisk_short}} packages that you can use to work with your {{site.data.keyword.cos_full_notm}} entities.
@@ -201,6 +201,7 @@ function main(data) {
 
 ### 2. Testing the trigger and action
 {: #pkg_obstorage_ev_test}
+
 After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig_ui) and [connect an action to the trigger](#cos_feed_action), you can test that the action is executed as a result of the trigger firing. You can perform this test in either the console or CLI.
 
 | Testing with the console |
@@ -221,7 +222,7 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 {: tab-group="test"}
 {: class="simple-tab-table"}
 
-### Next steps
+### Next steps for {{site.data.keyword.cos_short}} and {{site.data.keyword.openwhisk_short}}
 {: #pkg_obstorage_next}
 
 After you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
@@ -229,7 +230,7 @@ After you have created a trigger to respond to bucket events and connected it to
   * You can create your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to be executed when the trigger is fired.
   * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
 
-### Reference
+### Reference for {{site.data.keyword.cos_short}} and {{site.data.keyword.openwhisk_short}}
 {: #pkg_obstorage_ev_ch_ref}
 
 Review the following reference material for information on the {{site.data.keyword.cos_full_notm}} trigger package.
@@ -318,9 +319,11 @@ You can get details of an activation by running `ibmcloud fn activation get <act
 ```
 {: codeblock}
 
-#### Details and limits
+#### Details and limits for {{site.data.keyword.cos_short}} triggers
 {: #pkg_cos_limits}
+
 Triggers created with `/whisk.system/cos` package have the following limitations.
+
 * Trigger ordering is not guaranteed. Trigger firing sequence may not match bucket update sequence.
 * The trigger only fires on successful bucket events.
 * Automatic trigger disablement - permissions change, COS bucket authentication changes, namespace authentication.
@@ -446,7 +449,8 @@ When you update parameters for a package, action, or trigger you must specify al
 {: important}
 
 **Updating parameters for all actions in a package**
-```
+
+```sh
 ibmcloud fn package update cloud-object-storage 
 --param bucket <bucket-name> 
 --param endpoint <bucket-endpoint>
@@ -454,7 +458,8 @@ ibmcloud fn package update cloud-object-storage
 {: pre}
 
 **Updating parameters to a specific action**
-```
+
+```sh
 ibmcloud fn action update cloud-object-storage/object-write 
 --param bucket <bucket-name> 
 --param endpoint <bucket_endpoint>
@@ -522,7 +527,7 @@ If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind
 {: tab-group="read"}
 {: class="simple-tab-table"}
 
-### Reference
+### Reference for {{site.data.keyword.cos_short}} and {{site.data.keyword.openwhisk_short}}
 {: #pkg_obstorage_actions}
 
 The {{site.data.keyword.cos_full_notm}} package includes the following entities:
@@ -541,7 +546,7 @@ The {{site.data.keyword.cos_full_notm}} package includes the following entities:
 To get a full list of the available entities, run `ibmcloud fn package get cloud-object-storage`.
 {: note}
 
-#### Package parameters
+#### Package parameters for {{site.data.keyword.cos_short}}
 {: #pkg_obstorage_pkgparams}
 
 The following package parameters are expected to be bound to the package, and are automatically available for all actions. It is also possible to specify these parameters when you invoke one of the actions.
@@ -551,7 +556,7 @@ The following package parameters are expected to be bound to the package, and ar
 | `apikey` | The `apikey ` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
 | `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
 
-#### Action parameters
+#### Action parameters for {{site.data.keyword.cos_short}}
 {: #pkg_obstorage_actparams}
 
 The following action parameters are specified when you invoke the individual actions.  Not all of these parameters are supported by every action. Refer to the [Available entities](#pkg_obstorage_actions) table to see which parameters are supported by which action.

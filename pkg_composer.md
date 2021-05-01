@@ -2,9 +2,9 @@
 
 copyright:
 years: 2017, 2021
-lastupdated: "2021-04-12"
+lastupdated: "2021-04-30"
 
-keywords: composer, openwhisk, compositions, sequence, branch, functions
+keywords: composer, openwhisk, compositions, sequence, branch, functions, combinator, loops, actions
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Composer
 {: #pkg_composer}
 
-With Composer, {{site.data.keyword.openwhisk_short}} supports conductor actions, which extends sequences with more combinators ([JS](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external}) By using Composer, you can create more complex flows that include conditional branching, error handling, retries, and loops.
+With Composer, {{site.data.keyword.openwhisk}} supports conductor actions, which extends sequences with more combinators ([JS](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external}) By using Composer, you can create more complex flows that include conditional branching, error handling, retries, and loops.
 
 ## Installing the Composer library for JavaScript or Python
 {: #install_composer}
@@ -138,7 +138,7 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         
 4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk_short}}.
 
-    ```
+    ```sh
     ibmcloud fn action invoke demo
     ```
     {: pre}
@@ -154,7 +154,7 @@ With Apache OpenWhisk, you can chain functions together in a `sequence`, where t
 {: #sequences-without-composer}
 You can chain together two functions that are named `action1` and `action2` in  {{site.data.keyword.openwhisk_short}}:
 
-```
+```sh
 ibmcloud fn action create --sequence mysequence action1 action2
 ```
 {: pre}
@@ -190,8 +190,9 @@ _Figure 1. Sequence with two actions_
 
 You aren't limited to chaining together functions in Composer. Composer includes a family of [JavaScript](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external} or [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external} based combinators that enhance the expressiveness of sequences. You can see common examples in the following sections.
 
-### Error handling
+### Error handling for a sequence
 {: #error-handling}
+
 You can add error handling to a sequence by using `try-catch-finally` blocks. In this example, you surround the sequence with a try. The `handleError` code executes if either action returns an error.
 
 **For JavaScript**
@@ -220,8 +221,9 @@ def main():
 <img src="images/composer-error.png" width="400" title="Try Sequence" alt="Sequence with error handling" style="width:400px; border-style: none"/></br>
 _Figure 2. Sequence with error handling_
 
-### Conditional branching
+### Conditional branching for a sequence
 {: #conditional-branch}
+
 You can create a branched sequence by using `if-then-else`. This example demonstrates an `if-then-else`. `action1` returns a boolean. If `true`, then `action2` is executed, otherwise `action3` is executed. Note `action3` is optional and can be omitted for `if-then`.
 
 **For JavaScript**
@@ -246,7 +248,7 @@ def main():
 <img src="images/composer-conditional.png" width="250" title="If Sequence" alt="Sequence with conditional branching" style="width:250px; border-style: none"/></br>
 _Figure 3. Sequence with conditional branching_
 
-### Loops
+### Loops in Composer
 {: #loop}
 
 You can create looping constructs in Composer. In this example, `action2` executes as long as `action1` returns `true`. Composer limits the total number of steps you can execute in a composed sequence. The current limit is 20.
@@ -273,8 +275,9 @@ def main():
 <img src="images/composer-loop.png" width="250" title="While Sequence" alt="Sequence with while loop" style="width:250px; border-style: none"/></br>
 _Figure 4. Sequence with `while` loop_
 
-### Inline definition of Actions
+### Inline definition of Actions within a composition
 {: #inline-def}
+
 You can define actions within the composition code itself. In this example, you create the action definition inline with the composition that is named `hello` by using the `composer.action()`.
 
 **For JavaScript**

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: troubleshooting actions, functions, help, support,
+keywords: troubleshooting actions, functions, help, support, node.js, node, javascript
 
 subcollection: openwhisk
 
@@ -49,7 +49,7 @@ The {{site.data.keyword.openwhisk}} Node.js runtime container supports promises 
 
 **Examples:**
 
-```
+```javascript
 function main() {
 	return new Promise((resolve, reject) => {
 		...doGet(callback => {
@@ -77,7 +77,7 @@ Note that a function declared as `async` automatically returns a promise, so you
 
 The following example does not necessarily work as expected, but might work intermittently, depending on the runtime of asynchronous code.  Do not use this type of pattern.
 
-```
+```javascript
 function main() {
 	...some synchronous code...
 	doGet(callback => {
@@ -92,7 +92,7 @@ Instead, either use promises as part of the function or use `async/await`.
 
 The following example performs the same type of function as in the previous example, but instead uses `async/await`. This type of function code runs reliably.
 
-```
+```javascript
 async function main() {
 	...some synchronous code...
 	await doGet(callback => {
@@ -128,7 +128,7 @@ Invoke Node.js garbage collection explicitly from within your action code by add
 
 For example, use code similar to the following example code in your action:
 
-```
+```javascript
 try {
   if (global.gc) {
     console.log("About to run garbage collection.");
@@ -142,4 +142,3 @@ try {
 }
 ```
 {: pre}
-

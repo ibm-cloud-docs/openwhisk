@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: use cases, microservices, web apps, iot, serverless, cognitive, serverless, functions
+keywords: use cases, microservices, web apps, iot, serverless, cognitive, functions, api, data processing, event processing
 
 subcollection: openwhisk
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # Common use cases
 {: #use_cases}
 
-The execution model that is offered by {{site.data.keyword.openwhisk_short}} supports various use cases. The following sections include typical examples. For a more detailed discussion of Serverless architecture, example use cases, pros and cons discussion, and implementation best practices, read the excellent [Mike Roberts article on Martin Fowler's blog](https://martinfowler.com/articles/serverless.html){: external}.
+The execution model that is offered by {{site.data.keyword.openwhisk}} supports various use cases. The following sections include typical examples. For a more detailed discussion of Serverless architecture, example use cases, pros and cons discussion, and implementation best practices, read the excellent [Mike Roberts article on Martin Fowler's blog](https://martinfowler.com/articles/serverless.html){: external}.
 {: shortdesc}
 
 ## Microservices

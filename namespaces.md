@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -200,7 +200,7 @@ You can create an IAM-managed namespace with the CLI.
     </tbody>
   </table>
 
-  Example output:
+  **Example output**:
 
   ```
   ok: created namespace myNamespace
@@ -214,7 +214,7 @@ You can create an IAM-managed namespace with the CLI.
   ```
   {: pre}
 
-  Example output:
+  **Example output**:
 
   ```
   Details of namespace: myNamespace
@@ -395,7 +395,7 @@ As described in [Managing IAM access](/docs/account?topic=account-userroles), fo
 
 At runtime, {{site.data.keyword.openwhisk_short}} passes an API key of the namespace service ID to the action code as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. The action code can use this API key to generate an IAM token. Most of the supported {{site.data.keyword.openwhisk_short}} SDKs such as Cloudant, {{site.data.keyword.watson}}, and {{site.data.keyword.cos_full_notm}} authenticate with the IAM API key itself. For other IAM-managed services or resources that use a REST API, you can authenticate with the token that is derived from the IAM API key. For more information, see [Create an IAM access token for a user or service ID](/apidocs/iam-identity-token-api#create-an-iam-access-token-for-a-user-or-service-i).
 
-## Next steps
+## Next steps for namespaces
 {: #namespaces_next}
 
 Not sure how API keys and tokens fit together? Learn more in [the IAM Docs](/docs/account?topic=account-manapikey).

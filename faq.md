@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-31"
+lastupdated: "2021-04-30"
 
 keywords: faq, runtimes, actions, memory, monitoring, functions
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # FAQ
 {: #faq}
 
-This FAQ provides answers to common questions about the {{site.data.keyword.openwhisk_short}} service.
+This FAQ provides answers to common questions about the {{site.data.keyword.openwhisk}} service.
 {: shortdesc}
 
 ## What language runtimes are supported in {{site.data.keyword.openwhisk_short}}?

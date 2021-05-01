@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-30"
+lastupdated: "2021-04-30"
 
-keywords: services, serverless, functions
+keywords: services, serverless, functions, binding, actions, packages
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Binding {{site.data.keyword.cloud_notm}} services to {{site.data.keyword.openwhisk_short}} entities
 {: #services}
 
-You can incorporate functionality from {{site.data.keyword.cloud_notm}} services in your {{site.data.keyword.openwhisk_short}} app.
+You can incorporate functionality from {{site.data.keyword.cloud_notm}} services in your {{site.data.keyword.openwhisk}} app.
 {: shortdesc}
 
 **How do I add {{site.data.keyword.cloud_notm}} services to my app?**

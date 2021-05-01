@@ -2,7 +2,7 @@
 {:topicgroup: .topicgroup}
 
 {: .toc subcollection="openwhisk" category="compute" audience="service" href="/docs/openwhisk?topic=openwhisk-getting-started" console-page="/functions" product-page="https://www.ibm.com/cloud/functions" path="openwhisk"}
-Functions
+Functions 
 
     {: .navgroup id="learn"}
     getting-started.md
@@ -92,6 +92,7 @@ Functions
     annotations.md
     runtimes.md
     limits.md
+    error-handling.md
 
     {: .topicgroup}
     CLI reference
@@ -120,5 +121,6 @@ Functions
         ts-nodejs.md
 
     release_notes.md
+    get-support.md
     sitemap.md
     {: .navgroup-end}

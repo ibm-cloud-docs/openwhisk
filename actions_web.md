@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-12"
+lastupdated: "2021-04-30"
 
-keywords: web actions, serverless, functions
+keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Creating web actions
 {: #actions_web}
 
-When you create a web action, the result is a URL that can be used to trigger the action from any web app.
+When you create an {{site.data.keyword.openwhisk}} web action, the result is a URL that can be used to trigger the action from any web app.
 {: shortdesc}
 
 The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type `text/plain` instead of `text/html`. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
@@ -197,6 +197,7 @@ To create a web action:
     {: pre}
 
   **Example output**
+  
   ```
   <html><body><h3>Hello, Jane!</h3></body></html>
   ```
@@ -519,12 +520,12 @@ To alter the response of a web action:
       
     * Running the following `wget` command.
     
-      ```
+      ```sh
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
       ```
       {: pre}
 
-      **Example output**
+    **Example output**
 
       ```
       {
@@ -560,6 +561,7 @@ To alter the response of a web action:
         {: pre}
 
       **Example output**
+      
       ```
       {
         "response": {
@@ -588,6 +590,7 @@ To alter the response of a web action:
         {: pre}
       
     * Running the following `wget` command.
+    
         ```
         wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -d "name":"Jane"
         ```
@@ -824,7 +827,7 @@ You can test the web action by using one of the following methods.
 
   * Testing the web action by using a `wget` command.
   
-      ```
+      ```sh
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
@@ -862,7 +865,7 @@ To secure your web action with a custom value, update your `hello` web action wi
       
    * Testing the action by using a `wget` command.
    
-      ```
+      ```sh
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
@@ -884,7 +887,7 @@ You can get the URL of your web action by running `ibmcloud fn action get hello 
     
   * Testing the web action by using a `wget` command.
   
-      ```
+      ```sh
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
       ```
       {: pre}
@@ -1044,6 +1047,7 @@ Access-Control-Allow-Origin: *
 Access-Control-Allow-Methods: OPTIONS, GET, DELETE, POST, PUT, HEAD, PATCH
 Access-Control-Allow-Headers: Authorization, Content-Type
 ```
+{: screen}
 
 Alternatively, `OPTIONS` requests can be handled manually by a web action. To enable this option, add a `web-custom-options` annotation with a value of `true` to a web action. When this feature is enabled, CORS headers are not automatically added to the request response. Instead, you must append your headers programmatically.
 

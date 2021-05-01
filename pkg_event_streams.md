@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-10"
+lastupdated: "2021-04-30"
 
-keywords: event streams, package, messages, events, functions
+keywords: event streams, package, messages, events, functions, trigger
 
 subcollection: openwhisk
 
@@ -56,14 +56,14 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 1. Create a `/whisk.system/messaging` package binding that is configured for your {{site.data.keyword.messagehub}} account. In this example, the package name is `MyEventStreamBind`.
 
-  ```
+  ```sh
   ibmcloud fn package bind /whisk.system/messaging MyEventStreamBind
   ```
   {: pre}
 
 2. Verify that the package binding exists.
 
-  ```
+  ```sh
   ibmcloud fn package list
   ```
   {: pre}
@@ -78,7 +78,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 3. Get the name of the service instance that you want to bind to an action or package.
 
-    ```
+    ```sh
     ibmcloud resource service-instances
     ```
     {: pre}
@@ -93,7 +93,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 4. Get the name of the credentials that are defined for the service instance you got in the previous step.
 
-    ```
+    ```sh
     ibmcloud resource service-keys --instance-name EventStreams-0s
     ```
     {: pre}
@@ -112,7 +112,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 5. Bind the service to the package that you created in the first step. In the example, this package is called `MyEventStreamBind`.
 
-    ```
+    ```sh
     ibmcloud fn service bind messagehub MyEventStreamBind --instance EventStreams-0s --keyname 'Service credentials-1'
     ```
     {: pre}
@@ -126,7 +126,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 6. Verify that the credentials are successfully bound.
 
-    ```
+    ```sh
     ibmcloud fn package get MyEventStreamBind parameters
     ```
     {: pre}
@@ -187,7 +187,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-```
+```sh
 ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
@@ -214,7 +214,7 @@ To create the trigger:
 
 2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespace_ID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
 
-   ```
+   ```sh
    ibmcloud fn trigger create MyMessageHubTrigger -f /<namespace_ID>/<binding>/messageHubFeed -p topic <mytopic>
    ```
    {: pre}
@@ -229,7 +229,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-   ```
+   ```sh
    ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
    [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
    ```
@@ -237,7 +237,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 2. Now you can create a trigger by using your new package that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
 
-   ```
+   ```sh
    ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
    ```
    {: pre}
@@ -259,7 +259,8 @@ In Kafka terms, the fields are self-evident. However, `key` has a feature that i
 
 As an example, if `isBinaryKey` was set to `true` when the trigger was created, the `key` is encoded as a Base64 string when returned from they payload of a fired trigger.
 
-If a `key` of `Some key` is posted with `isBinaryKey` set to `true`, the trigger payload resembles the following example:
+If a `key` of `Some key` is posted with `isBinaryKey` set to `true`, the trigger payload resembles the following example.
+
 ```json
 {
     "messages": [
@@ -277,7 +278,8 @@ If a `key` of `Some key` is posted with `isBinaryKey` set to `true`, the trigger
 
 If the `isJSONData` parameter was set to `false` (or not set at all) when the trigger was created, the `value` field is the raw value of the posted message. However, if `isJSONData` was set to `true` when the trigger was created, the system attempts to parse this value as a JSON object, on a best-effort basis. If parsing is successful, then the `value` in the trigger payload is the resulting JSON object.
 
-If a message of `{"title": "Some string", "amount": 5, "isAwesome": true}` is posted with `isJSONData` set to `true`, the trigger payload might look something like the following example:
+If a message of `{"title": "Some string", "amount": 5, "isAwesome": true}` is posted with `isJSONData` set to `true`, the trigger payload might look something like the following example.
+
 ```json
 {
   "messages": [
@@ -297,7 +299,8 @@ If a message of `{"title": "Some string", "amount": 5, "isAwesome": true}` is po
 ```
 {: codeblock}
 
-However, if the same message content is posted with `isJSONData` set to `false`, the trigger payload would look like the following example:
+However, if the same message content is posted with `isJSONData` set to `false`, the trigger payload would look like the following example.
+
 ```json
 {
   "messages": [
@@ -315,7 +318,8 @@ However, if the same message content is posted with `isJSONData` set to `false`,
 
 Similar to `isJSONData`, if `isBinaryValue` was set to `true` during trigger creation, the resultant `value` in the trigger payload is encoded as a Base64 string.
 
-If a `value` of `Some data` is posted with `isBinaryValue` set to `true`, the trigger payload might look something like the following example:
+If a `value` of `Some data` is posted with `isBinaryValue` set to `true`, the trigger payload might look something like the following example.
+
 ```json
 {
   "messages": [
@@ -331,7 +335,8 @@ If a `value` of `Some data` is posted with `isBinaryValue` set to `true`, the tr
 ```
 {: codeblock}
 
-If the same message is posted without `isBinaryData` set to `true`, the trigger payload would resemble the following example:
+If the same message is posted without `isBinaryData` set to `true`, the trigger payload would resemble the following example.
+
 ```json
 {
   "messages": [
@@ -352,7 +357,8 @@ If the same message is posted without `isBinaryData` set to `true`, the trigger 
 
 Notice that the trigger payload contains an array of messages. If these messages are produced to your messaging system quickly, the feed attempts to batch up the posted messages into a single firing of your trigger. Batch processing allows the messages to be posted to your trigger more rapidly and efficiently.
 
-Keep in mind when you are coding actions that are fired by your trigger, that the number of messages in the payload is technically unbounded, but is always greater than 0. See the following example of a batched message (note the change in the *offset* value):
+Keep in mind when you are coding actions that are fired by your trigger, that the number of messages in the payload is technically unbounded, but is always greater than 0. See the following example of a batched message (note the change in the *offset* value).
+
 ```json
 {
   "messages": [
@@ -387,7 +393,8 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 }
 ```
 
-## References
+## References for {{site.data.keyword.messagehub}}
 {: #message_references}
+
 - [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}

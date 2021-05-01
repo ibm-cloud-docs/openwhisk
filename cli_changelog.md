@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-04-12"
+lastupdated: "2021-04-30"
 
-keywords: cli, functions
+keywords: cli, functions, changelog, updates, fixes
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # CLI version history
 {: #cli_versions}
 
-A historical record of versions that show highlights and bug fixes.
+A historical record of versions that show highlights and bug fixes for {{site.data.keyword.openwhisk}} ClI commands.
 {:shortdesc}
 
 | Version | Date | Description |

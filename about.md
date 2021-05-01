@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-02-19"
+lastupdated: "2021-04-30"
 
-keywords: platform architecture, openwhisk, couchdb, kafka, functions
+keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
 subcollection: openwhisk
 

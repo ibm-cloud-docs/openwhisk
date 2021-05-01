@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
-keywords: serverless, rest api, gateway, web actions, functions
+keywords: serverless, rest api, gateway, web actions, functions, API, HTTP
 
 subcollection: openwhisk
 
@@ -269,7 +269,7 @@ This example uses the same names and code as the example in [Creating your first
   ```
   {: screen}
 
-## Modifying the configuration
+## Modifying the API configuration
 {: #api_modify_config}
 
 After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/functions/apimanagement){: external} in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.

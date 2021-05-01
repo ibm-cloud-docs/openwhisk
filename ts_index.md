@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-08"
+lastupdated: "2021-04-30"
 
-keywords: troubleshooting actions, functions, help, support,
+keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration, api gateway
 
 subcollection: openwhisk
 

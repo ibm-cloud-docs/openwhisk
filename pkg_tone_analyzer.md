@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-27"
+lastupdated: "2021-04-30"
 
-keywords: functions, serverless, watson
+keywords: functions, serverless, watson, cognitive, tone analyzer
 
 subcollection: openwhisk
 
@@ -71,26 +71,26 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 1. Clone the {{site.data.keyword.toneanalyzershort}} package repo.
 
-   ```
+   ```sh
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
 
-   ```
+   ```sh
    ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
+   ```sh
    ibmcloud fn package list
    ```
    {: pre}
 
-   **Output**
+   **Example output**
 
    ```
    packages
@@ -100,14 +100,14 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 4. Bind the credentials from the {{site.data.keyword.toneanalyzershort}} instance you created to the package.
 
-   ```
+   ```sh
    ibmcloud fn service bind tone_analyzer tone-analyzer-v3
    ```
    {: pre}
 
    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
 
-   ```
+   ```sh
    ibmcloud fn service bind tone-analyzer tone-analyzer-v3
    ```
    {: pre}
@@ -121,7 +121,7 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 5. Verify that the package is configured with your {{site.data.keyword.toneanalyzershort}} service instance credentials.
 
-   ```
+   ```sh
    ibmcloud fn package get tone-analyzer-v3 parameters
    ```
    {: pre}
@@ -183,7 +183,7 @@ Install the {{site.data.keyword.toneanalyzershort}} package from the console.
 
 To use the actions in this package, run commands in the following format:
 
-```
+```sh
 ibmcloud fn action invoke tone-analyzer-v3/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -192,7 +192,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Tone Analyzer, 2017-09-21. Try out the `tone` action.
 
-```
+```sh
 ibmcloud fn action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}

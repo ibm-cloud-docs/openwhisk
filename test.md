@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: actions, serverless, javascript, node, node.js, functions
+keywords: actions, serverless, javascript, node, node.js, functions, testing, memory
 
 subcollection: openwhisk
 
@@ -52,12 +52,14 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 {: pre}
 
 **Hello world example**
+
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-**Output**
+**Example output**
+
 ```json
   {
       "greeting": "Hello stranger!"
@@ -71,12 +73,13 @@ ibmcloud fn action invoke --result myAction --param name stranger
 You can pass a file of JSON-formatted parameters.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
 **Example output**
+
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -91,12 +94,13 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 You can pass JSON-formatted parameters with your invocation.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_VALUE", "PARAM_NAME": "PARAM_VALUE"}'
 ```
 {: pre}
 
 **Example output**
+
 ```
 {
     "payload": "Hello, Dorothy from Kansas"
@@ -115,12 +119,13 @@ Blocking invocations use a request-response style and wait for the activation re
 
 Run the action by running a blocking invocation.
 
-```
+```sh
 ibmcloud fn action invoke --blocking ACTION_NAME
 ```
 {: pre}
 
 **Example output**
+
 ```
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
@@ -146,7 +151,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 1. Fire the trigger.
 
-   ```
+   ```sh
    ibmcloud fn trigger fire TRIGGER_NAME --param PARAM_NAME PARAM_VALUE --param PARAM_NAME PARAM_VALUE
    ```
    {: pre}
@@ -162,12 +167,13 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 2. Verify that the action was invoked by checking the most recent activation record.
 
-   ```
+   ```sh
    ibmcloud fn activation list --limit 1 ACTION_NAME
    ```
    {: pre}
 
    **Example output**
+   
    ```
    activations
    fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
@@ -176,12 +182,13 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 3. Get more information about the activation ID from the previous command output.
 
-   ```
+   ```sh
    ibmcloud fn activation result ACTIVATION_ID
    ```
    {: pre}
 
    **Example output**
+   
    ```
    {
       "payload": "Hello, Human from Earth"
@@ -197,12 +204,13 @@ Check how long an activation took to complete by getting the activation log. If 
 
 1. Get the activation ID.
 
-   ```
+   ```sh
    ibmcloud fn activation list --limit 1 ACTION_NAME
    ```
    {: pre}
 
    **Example output**
+   
    ```
    activations
    b066ca51e68c4d3382df2d8033265db0             ACTION_NAME
@@ -211,7 +219,7 @@ Check how long an activation took to complete by getting the activation log. If 
 
 2. Get the log for the activation ID.
 
-   ```
+   ```sh
    ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
    ```
    {: pre}
@@ -233,13 +241,14 @@ Check how long an activation took to complete by getting the activation log. If 
 
 3. Update the action with a timeout in milliseconds.
 
-   ```
+   ```sh
    ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME --timeout VALUE
    ```
    {: pre}
 
    **Example**
-   ```
+   
+   ```sh
    ibmcloud fn action update hello hello.js --kind nodejs:10 --timeout 1000
    ```
    {: pre}
@@ -252,21 +261,21 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 1. Create a container locally that runs your Docker image.
 
-   ```
+   ```sh
    docker run IMAGE_NAME
    ```
    {: pre}
 
 2. Get a list of the containers to get a container ID.
 
-   ```
+   ```sh
    docker ps
    ```
    {: pre}
 
 3. Check the statistics of the running container.
 
-   ```
+   ```sh
    docker stats CONTAINER_ID
    ```
    {: pre}
@@ -275,14 +284,14 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 5. After you are done reviewing the information, you can stop the running container.
 
-   ```
+   ```sh
    docker stop CONTAINER_ID
    ```
    {: pre}
 
 6. Remove the container.
 
-   ```
+   ```sh
    docker rm CONTAINER_ID
    ```
    {: pre}
@@ -312,7 +321,7 @@ Invoke Node.js garbage collection explicitly from within your action code by add
 
 For example, use code similar to the following example code in your action:
 
-```
+```javascript
 try {
   if (global.gc) {
     console.log("About to run garbage collection.");
@@ -326,7 +335,3 @@ try {
 }
 ```
 {: pre}
-
-
-
-

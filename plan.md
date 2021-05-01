@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: planning, functions, actions, serverless
+keywords: planning, functions, actions, serverless, code, event, deployments, runtimes
 
 subcollection: openwhisk
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # Planning serverless apps
 {: #plan}
 
-Before you start creating your function, learn about the decisions you must make along the way.
+Before you start creating your {{site.data.keyword.openwhisk}} actions, learn about the decisions you must make along the way.
 {: shortdesc}
 
 ## Review the runtime support

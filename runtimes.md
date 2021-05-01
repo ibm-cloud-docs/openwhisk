@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-27"
+lastupdated: "2021-04-30"
 
-keywords: runtimes, support, functions
+keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Runtimes 
 {: #runtimes}
 
-Your apps can be coded and executed in programming languages such as JavaScript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk_short}}.
+Your apps can be coded and executed in programming languages such as JavaScript or Python. Many runtimes are available by default with {{site.data.keyword.openwhisk}}.
 {: shortdesc}
 
 ## Available images and runtimes
@@ -320,7 +320,6 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 For more information about Node.js 12 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/package.json){: external}.
 
 For more information about Node.js 10 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/package.json){: external}.
-
 
 ## Python runtimes
 {: #openwhisk_ref_python_environments}

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-02-19"
+lastupdated: "2021-04-30"
 
-keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions
+keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions, statelessness, activation, action
 
 subcollection: openwhisk
 
@@ -214,7 +214,7 @@ The `/whisk.system` namespace is reserved for entities that are distributed with
 The [Serverless Framework](https://www.serverless.com/) is not supported for IAM-based namespaces.
 {: note}
 
-### Fully qualified names
+### Fully qualified names in {{site.data.keyword.openwhisk_short}}
 {: #limits_fullnames}
 
 The fully qualified name of an entity is

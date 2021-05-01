@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
-keywords: cloudant, event, action, trigger, sequence, functions
+keywords: cloudant, event, action, trigger, sequence, functions, database, document, rule
 
 subcollection: openwhisk
 
@@ -27,11 +27,11 @@ subcollection: openwhisk
 # Cloudant
 {: #pkg_cloudant}
 
-With the preinstalled `/whisk.system/cloudant` package, you can work with an [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
+With the preinstalled `/whisk.system/cloudant` package from {{site.data.keyword.openwhisk}}, you can work with an [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
 {: shortdesc}
 
 
-## Available entities
+## Available entities for Cloudant
 {: #cloudant_available}
 
 The following table shows a selection of the entities available in the `whisk.system/cloudant` package. You can use the `whisk.system/cloudant` package to read, write, update, or delete documents. You can also use the `changes` feed to listen for changes to an {{site.data.keyword.cloudant_short_notm}} database.
@@ -282,7 +282,7 @@ You can update a document in your database by replacing `<test>` with your datab
   ```
   {: pre}
 
-  **Output**
+  **Example output**
   
   ```
   {
@@ -517,7 +517,7 @@ To create an action that handles changes to an individual document, run the foll
   ```
   {: pre}
 
-  **Output**
+  **Example output**
   
   ```
   ok: created action docChange
@@ -535,7 +535,7 @@ The `read` action can be composed with your `docChange` action to create an acti
   ```
   {: pre}
 
-  **Output**
+  **Example output**
   
   ```
   ok: created action docSequence
@@ -561,7 +561,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   ```
   {: pre}
 
-  **Output**
+  **Example output**
   
   ```
   ok: created rule docRule
@@ -610,7 +610,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   ```
   {: pre}
 
-  **Output**
+  **Example output**
   
   ```
   {
@@ -622,7 +622,7 @@ The action `docSequence` can be used in a rule that activates the action on new 
   ```
   {: screen}
 
-### Next steps
+### Next steps with {{site.data.keyword.cloudant_short_notm}} database
 {: #cloudant_next}
 
 Now that you are listening for changes to a document in your {{site.data.keyword.cloudant_short_notm}} database, you can trigger Slack notifications for the changes by using the [`/whisk.system/slack` package](/docs/openwhisk?topic=openwhisk-pkg_slack).

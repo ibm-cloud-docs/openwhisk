@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-25"
+lastupdated: "2021-04-30"
 
 keywords: github, actions, trigger, event, functions
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # GitHub
 {: #pkg_github}
 
-The `/whisk.system/github` package offers a convenient way to use the [GitHub APIs](https://docs.github.com/){: external}.
+The `/whisk.system/github` package that is available with {{site.data.keyword.openwhisk}}, offers a convenient way to use the [GitHub APIs](https://docs.github.com/){: external}.
 {: shortdesc}
 
 This preinstalled package is not available in the Tokyo or Sydney regions.  This package does not work with Enterprise GitHub repositories.
@@ -59,7 +59,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 2. Create a package binding that is configured for your GitHub repository and with your access token.
 
-   ```
+   ```sh
    ibmcloud fn package bind /whisk.system/github <myGit> \
      --param username <myGitUser> \
      --param repository <myGitRepo> \
@@ -69,7 +69,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 3. Create a trigger for the GitHub `push` event type by using your `myGit/webhook` feed.
 
-   ```
+   ```sh
    ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
    ```
    {: pre}

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-10-09"
+  years: 2017, 2021
+lastupdated: "2021-05-01"
 
-keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions
+keywords: {{site.data.keyword.openwhisk}}, functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
 subcollection: openwhisk
 
@@ -69,7 +69,7 @@ To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hell
 9. Optional: Click **Change Input** to change the action or try your own.
 
   a. Paste the following code into the **Change Input** box and change the name value.
-  ```
+  ```json
   { "name": "xxxx" }
   ```
   {: codeblock}
@@ -83,7 +83,7 @@ Good work! You created your first action. To clean up this action, click the ove
 
 Get up and running quickly with the [Hello World JavaScript](/docs/openwhisk?topic=openwhisk-prep#prep_js) example code. This example creates a basic `hello` action, which you can manually invoke to run its app logic.
 
-## What's next?
+## What's next in {{site.data.keyword.openwhisk_short}}?
 {: #gs_next_steps}
 
 So you completed your first template deployment, where do you go from here?

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 # Regions
 {: #cloudfunctions_regions}
 
-{{site.data.keyword.openwhisk_short}} is available in the US South, US East, Germany, United Kingdom, Tokyo, and Sydney {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
+{{site.data.keyword.openwhisk}} is available in the US South, US East, Germany, United Kingdom, Tokyo, and Sydney {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
 {: shortdesc}
 
 ```bash

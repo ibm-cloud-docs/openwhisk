@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2017, 2020
-lastupdated: "2020-05-22"
+  years: 2017, 2021
+lastupdated: "2021-04-30"
 
-keywords: slack package, token-based, api, functions
+keywords: slack package, token-based, api, functions, slack, action, package
 
 subcollection: openwhisk
 
@@ -27,10 +27,10 @@ subcollection: openwhisk
 # Slack
 {: #pkg_slack}
 
-The pre-installed `/whisk.system/slack` package offers a convenient way to use the [Slack APIs](https://api.slack.com/){: external}.
+The pre-installed `/whisk.system/slack` package that is available for {{site.data.keyword.openwhisk}}, offers a convenient way to use the [Slack APIs](https://api.slack.com/){: external}.
 {: shortdesc}
 
-The package includes the following actions:
+The package includes the following actions,
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
@@ -60,7 +60,7 @@ The following example shows how to configure Slack, create a package binding, an
 
 2. Create a package binding with your Slack credentials, the channel that you want to post to, and the user name to post as.
 
-   ```
+   ```sh
    ibmcloud fn package bind /whisk.system/slack mySlack \
      --param url "https://hooks.slack.com/services/..." \
      --param username "Bob" \
@@ -70,7 +70,7 @@ The following example shows how to configure Slack, create a package binding, an
 
 3. Invoke the `post` action in your package binding to post a message to your Slack channel.
 
-   ```
+   ```sh
    ibmcloud fn action invoke mySlack/post --blocking --result \
      --param text "Hello from OpenWhisk!"
    ```

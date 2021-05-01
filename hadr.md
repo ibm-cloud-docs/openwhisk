@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-03-10"
+lastupdated: "2021-04-30"
 
-keywords: cli, functions, high availability
+keywords: cli, functions, high availability, disaster recovery, HIPPA
 
 subcollection: openwhisk
 
@@ -49,10 +49,12 @@ See [ensure zero downtime](/docs/overview?topic=overview-zero-downtime#zero-down
 The following sections contain information about high availability, disaster recovery for {{site.data.keyword.openwhisk_short}} as well as HIPAA-related considerations. 
 
 ## High availability
+{: #high-availability}
 
 {{site.data.keyword.openwhisk_short}} is highly available within multiple [{{site.data.keyword.cloud_notm}} regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions). {{site.data.keyword.openwhisk_short}} supports high availability to avoid a single point of failure. This service achieves high availability automatically and transparently through the multi-zone region (`MZR`) feature provided by {{site.data.keyword.cloud_notm}}.
 
 ## Disaster recovery
+{: #disaster-recovery}
 
 Customer data, such as action code, is automatically synchronized between database instances in different zones. In addition, {{site.data.keyword.cloud_notm}} backs up your data by taking snapshots for use in data restoration in a disaster situation. If a disaster occurs, {{site.data.keyword.openwhisk_short}} switches over to use these snapshot backups automatically.
 
@@ -73,5 +75,6 @@ Because Amsterdam does not have any active compute resources for {{site.data.key
 {{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it offers only compute services. It does not back up the data that your workload (actions) processes. In order to store data, you can use separate cloud-based data stores with separate disaster recovery options, which depend on the storage service's SLAs.
 
 ## HIPAA
+{: #hippa}
 
 {{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it offers only compute services. It does not offer storage options nor management of your data. Ensuring the HIPAA-compliant processing of your data is subject to your storage service's operation and SLAs.

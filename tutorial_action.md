@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -33,7 +33,7 @@ completion-time: 10m
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
 
-In this tutorial, learn how to call an action from another action by creating a custom sequence.  This tutorial uses Node.js 10, but the general principles can be applied to other runtimes. 
+In this tutorial, learn how to call an action from another action by creating a custom sequence in {{site.data.keyword.openwhisk}}. This tutorial uses Node.js 10, but the general principles can be applied to other runtimes. 
 {: shortdesc}
 
 This tutorial uses {{site.data.keyword.openwhisk_short}} to build a custom sequence within another Node.js action to model a typical scenario, such as getting data from {{site.data.keyword.cos_full_notm}}, retrieving related data from {{site.data.keyword.cloudant}} database, and then putting the results back into {{site.data.keyword.cos_full_notm}}. To accomplish this task, first create an {{site.data.keyword.cos_full_notm}} action, then an {{site.data.keyword.cloudant}} database action, and finally a main action that calls both of them.
@@ -68,7 +68,7 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
    
    5. Paste in the following code example:
       
-      ```
+      ```javascript
       /**
         *
         * main() will be run when you invoke this action
@@ -129,7 +129,7 @@ The `db-access` action is a Node.js program that simulates code to access {{site
    
    5. Paste in the following code example:
       
-      ```
+      ```javascript
       /**
         *
         * main() will be run when you invoke this action
@@ -190,7 +190,7 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
    
    5. Paste in the following code example:
       
-      ```
+      ```javascript
       /**
         *
         * main() will be run when you invoke this action

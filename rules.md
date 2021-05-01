@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-05"
+lastupdated: "2021-04-30"
 
-keywords: actions, serverless, javascript, node, node.js, functions
+keywords: actions, serverless, javascript, node, node.js, functions, triggers, rule
 
 subcollection: openwhisk
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Associating triggers and actions through rules
 {: #rules}
 
-Every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
+In {{site.data.keyword.openwhisk}}, every time the trigger fires, the rule uses the trigger event as input and invokes the associated action. With the appropriate set of rules, it's possible for a single trigger to invoke multiple actions, or for an action to be invoked as a response to events from multiple triggers.
 {: shortdesc}
 
 ## Creating a rule from the console
@@ -49,7 +49,7 @@ Before you begin, create [an action](/docs/openwhisk?topic=openwhisk-actions) an
 
 Create a rule to associate a trigger with an action. Rules must be created directly within a namespace and can't be created inside packages.
 
-```
+```sh
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
@@ -57,7 +57,7 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 
 To disable the rule, you can run the following command.
 
-```
+```sh
 ibmcloud fn rule disable RULE_NAME
 ```
 {: pre}
@@ -69,7 +69,7 @@ You can use rules to associate triggers with action sequences.
 
 Before you begin, create [an action sequence](/docs/openwhisk?topic=openwhisk-sequences) and [a trigger](/docs/openwhisk?topic=openwhisk-triggers).
 
-```
+```sh
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 ```
 {: pre}

@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-27"
+lastupdated: "2021-04-30"
 
-keywords: functions, cognitive,
+keywords: functions, cognitive, visual recognition, Watson, serverless
 
 subcollection: openwhisk
 
@@ -73,26 +73,26 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 
 1. Clone the {{site.data.keyword.visualrecognitionshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
-    **Output**
+    **Example output**
 
     ```
     packages
@@ -102,7 +102,7 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 
 4. Bind the credentials from the {{site.data.keyword.visualrecognitionshort}} instance you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind watson-vision-combined visual-recognition-v3
     ```
     {: pre}
@@ -116,7 +116,7 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 
 5. Verify that the package is configured with your {{site.data.keyword.visualrecognitionshort}} service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get visual-recognition-v3 parameters
     ```
     {: pre}
@@ -182,7 +182,7 @@ Install the {{site.data.keyword.conversationshort}} package from the console.
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke visual-recognition-v3/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -191,7 +191,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Visual Recognition, `2018-03-19`. Try out the `list-classifiers` action.
 
-```
+```sh
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
 {: pre}

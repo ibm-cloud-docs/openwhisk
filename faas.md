@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-09"
+lastupdated: "2021-04-30"
 
-keywords: functions compared, architecture, limitless, functions
+keywords: functions compared, architecture, limitless, functions, openwhisk, actions, redundancy
 
 subcollection: openwhisk
 
@@ -80,7 +80,7 @@ The following table compares elements of each architecture from the perspective 
 |	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://cloud.ibm.com/functions/learn/pricing){: external}	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5).	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space).	|	Similar to column (3).	|	Similar to column (3).	|
 |	Total cost of ownership	|	Low. For optimal usage, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	Depends. For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on premises deployment can be cheaper than traditional architectures.	|	Relatively low. The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate. The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS.	|	Relatively high. Consider that the migration of legacy applications into the cloud native model could be prohibitively expensive, this option can be a viable and economical choice for those apps.	|
 
-## Cost considerations
+## Cost considerations for {{site.data.keyword.openwhisk_short}}
 {: #faas_cost}
 
 The infrastructure for your testing, staging, load testing, and other environments can be costly. It takes time to set them up, and because they usually operate 24x7, they are often underutilized and consume large amounts of capacity. By using a serverless architecture, costs for any number of environments are generated based on load instead of the number of environments defined.

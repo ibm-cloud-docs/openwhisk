@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-27"
+lastupdated: "2021-04-30"
 
-keywords: functions, cognitive,
+keywords: functions, cognitive, discovery, CLI, watson
 
 subcollection: openwhisk
 
@@ -106,26 +106,26 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 
 1. Clone the {{site.data.keyword.discoveryshort}} package repo.
   
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
   
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
   
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
-    **Output**
+    **Example output**
   
     ```
     packages
@@ -135,21 +135,21 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 
 4. Bind the credentials from the {{site.data.keyword.discoveryshort}} instance you created to the package.
   
-    ```
+    ```sh
     ibmcloud fn service bind discovery discovery-v1
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'discovery' service instance 'Watson Discovery' bound to 'discovery-v1'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.discoveryshort}} service instance credentials.
   
-    ```
+    ```sh
     ibmcloud fn package get discovery-v1 parameters
     ```
     {: pre}
@@ -211,7 +211,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 
 To use the actions in this package, run commands in the following format:
 
-```
+```sh
 ibmcloud fn action invoke discovery-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -220,7 +220,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Discovery, `2018-03-05`. Try out the `list-environments` action.
 
-```
+```sh
 ibmcloud fn action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}

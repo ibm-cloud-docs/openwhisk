@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-01-15"
+lastupdated: "2021-04-30"
 
-keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless
+keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless, actions
 
 subcollection: openwhisk
 
@@ -114,21 +114,21 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-cloudant-trigger.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use.  For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-cloudant-trigger/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with the following environment variables.
 
-    ```
+    ```sh
     CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -152,12 +152,12 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     
     1. Find the credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
        
-       ```
+       ```sh
        ibmcloud resource service-keys --instance-name <Cloudant-name>
        ```
        {: pre}
       
-       Example output:
+       **Example output**
       
        ```
        Name            State    Created At   
@@ -167,12 +167,12 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     
     2. Retrieve the details of the service key. Replace `Cloudant-cred` with the credentials that you retrieved in the previous step.
     
-       ```
+       ```sh
        ibmcloud resource service-key Cloudant-cred
        ```
        {: pre}
       
-       Example output:
+       **Example output**
       
        ```
        Name:          Cloudant-cred  
@@ -194,9 +194,9 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
        ```
        {: screen}
        
-       Using the service credential information found in the example output, run the following command:
+       Run the manifest.yaml file with the service credential information, found in the example output.
        
-       ```
+       ```sh
        CLOUDANT_HOSTNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud CLOUDANT_USERNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix CLOUDANT_PASSWORD=e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a CLOUDANT_DATABASE=cats PACKAGE_NAME=my-package RULE_NAME=my-rule TRIGGER_NAME=my-trigger ibmcloud fn deploy -m manifest.yaml
        ```
        {: pre}
@@ -220,9 +220,9 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 2. From the {{site.data.keyword.cloudant_short_notm}} events package (called `cloudant-events`, if you accepted the default name), select **Manage Action** from the `process change` action.
 
-3. Click **Change input** and enter a valid JSON entry for `name` and `color`, similar to the following example:
+3. Click **Change input** and enter a valid JSON entry for `name` and `color`, similar to the following example.
 
-   ```
+   ```json
    {
        "name": "Tarball",
        "color": "Black"
@@ -232,7 +232,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 4. Click **Apply**.
 
-5. Click **Invoke**.  In the Activation pane, find output similar to the following example:
+5. Click **Invoke**.  In the Activation pane, find output similar to the following example.
 
    ```
    **Activation ID:**
@@ -258,7 +258,7 @@ While you can test the action, you cannot test the trigger without making an ent
 
 1. From the command line, run the [`activation poll`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
-   ```
+   ```sh
    ibmcloud fn activation poll
    ```
    {: pre}
@@ -271,7 +271,7 @@ While you can test the action, you cannot test the trigger without making an ent
 
 5. Enter valid JSON and click **Create Document**.
 
-   ```
+   ```json
    {
        "name": "Tarball",
        "color": "Black"
@@ -356,21 +356,21 @@ Use the CLI to deploy the **Get HTTP Resource** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-get-external-resource.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-get-external-resource/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with a custom package name as an environment variable.
 
-    ```
+    ```sh
     PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -387,16 +387,16 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
    
      You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
 
-     ```
+     ```json
      {
         "location": "<new location>"
      }
      ```
      {: pre}
 
-     For example:
+     For example,
 
-     ```
+     ```json
      {
         "location": "Paris"
      }
@@ -404,23 +404,23 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
      {: pre}
 
    * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
-     You can get the URL for any action by running this command:
+     You can get the URL for any action by running the `action get` command.
 
-     ```
+     ```sh
      ibmcloud fn action get <action_name> --url
      ```
      {: pre}
      
-     Add a parameter for location by appending `?location=<city>` to the end of the URL. For example:
+     Add a parameter for location by appending `?location=<city>` to the end of the URL.
      
-     ```
+     ```sh
      https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
      ```
      {: pre}
 
    * Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/<package_name>/location?location=<city>`. For example:
 
-     ```
+     ```sh
      curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
      ```
      {: pre}
@@ -488,21 +488,21 @@ Use the CLI to deploy the **Hello World** template.
 
 1. Clone the Hello World template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-hello-world.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-hello-world/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template.  You must include a package name to contain your action. Replace `<name>` with a custom name for your package.
 
-    ```
+    ```sh
     PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -517,10 +517,9 @@ You can test the **Hello World** template in the following ways.
 
 From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
 
-Invoking the action without any parameters returns the following output:
+Invoking the action without any parameters returns the following output.
 
-```
-**Results**:
+```json
 {
   "greeting": "Hello stranger!"
 }
@@ -529,14 +528,14 @@ Invoking the action without any parameters returns the following output:
 
 You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
 
-```
+```json
 { "name": "xxxx" }
 ```
 {: pre}
 
 For example:
 
-```
+```json
 { "name": "Carl" }
 ```
 {: pre}
@@ -603,21 +602,21 @@ Use the CLI to deploy the **{{site.data.keyword.messagehub}} Events** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-messagehub-trigger.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-messagehub-trigger/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template by using the following environment variables.
 
-    ```
+    ```sh
     KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -699,21 +698,21 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-reminder-slack.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-reminder-slack/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with the following environment variables.
 
-    ```
+    ```sh
     SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -733,7 +732,7 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
     
     Depending on your operating system, you might need to add quotation marks around your options. For example, on a mac, the following example deploys correctly:
     
-    ```
+    ```sh
     SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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" ALARM_CRON="* * * * *" PACKAGE_NAME="slackpackage" RULE_NAME="slackrule" TRIGGER_NAME="slacktrigger" ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -762,14 +761,14 @@ You can test the **Periodic Slack Reminder** template in the following ways.
    * From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
      You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
 
-     ```
+     ```json
      { "message": "xxxx" }
      ```
      {: pre}
 
-     For example:
+     For example,
 
-     ```
+     ```json
      { "message": "Time for a walk" }
      ```
      {: pre}

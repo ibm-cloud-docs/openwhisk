@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-03-10"
+lastupdated: "2021-04-30"
 
-keywords: push notifications, functions, webhooks
+keywords: push notifications, functions, webhooks, installable package, pre-installed package, package
 
 subcollection: openwhisk
 
@@ -27,7 +27,9 @@ subcollection: openwhisk
 # Push Notifications
 {: #pkg_push_notifications}
 
-## Packages
+{{site.data.keyword.openwhisk}} included pre-installed and installable packages for push notifications.
+
+## Packages for push notification
 {: #pkg_push_packages}
 
 | Package | Availability | Description |
@@ -77,19 +79,20 @@ To create a package binding, see the following steps:
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
 
-   ```
+   ```sh
    ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
    ```
    {: pre}
 
 5. Verify that the package binding exists.
 
-   ```
+   ```sh
    ibmcloud fn package list
    ```
    {: pre}
 
    **Example output**
+   
    ```
    packages
    /<namespace_ID>/myPush private binding
@@ -169,7 +172,7 @@ See the following example to send a push notification from the Push notification
 
 Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/<namespace_ID>/myPush` with your package name.
 
-```
+```sh
 ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
@@ -214,7 +217,7 @@ Learn how to configure the Push Notification service to fire a trigger when ther
 This preinstalled package is not available in the Tokyo region.
 {: tip}
 
-### Parameters
+### Parameters for Push Notification on mobile devices
 {: #pkg_push_mobile_params}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
@@ -234,28 +237,28 @@ To create a trigger that is fired each time a new device registers with the Push
 
 1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
 
-   ```
+   ```sh
    ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
    ```
    {: pre}
 
 2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
 
-   ```
+   ```sh
    ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
    ```
    {: pre}
 
 3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
 
-   ```
+   ```sh
    ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
    ```
    {: pre}
 
 4. Check the results by using the `ibmcloud fn activation poll` command.
 
-   ```
+   ```sh
    ibmcloud fn activation poll
    ```
    {: pre}
@@ -308,33 +311,34 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 1. Clone the {{site.data.keyword.mobilepushshort}} package repo.
 
-   ```
+   ```sh
    git clone https://github.com/ibm-functions/package-push-notifications.git
    ```
    {: pre}
 
 2. Navigate to the `runtimes/nodejs` directory.
 
-   ```
+   ```sh
    cd package-push-notifications/runtimes/nodejs
    ```
    {: pre}
 
 3. Deploy the package.
 
-   ```
+   ```sh
    ibmcloud fn deploy -m manifest.yaml
    ```
    {: pre}
 
 4. Verify that the `push-notifications` package is added to your package list.
 
-   ```
+   ```sh
    ibmcloud fn package list
    ```
    {: pre}
 
-   **Output**
+   **Example output**
+   
    ```
    packages
    /myOrg_mySpace/push-notifications private
@@ -343,12 +347,13 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 5. Bind the credentials from the {{site.data.keyword.mobilepushshort}} service instance that you created to the package.
 
-   ```
+   ```sh
    ibmcloud fn service bind imfpush push-notifications
    ```
    {: pre}
 
    **Example output**
+   
    ```
    Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
    ```
@@ -356,12 +361,13 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 6. Verify that the package is configured with your {{site.data.keyword.mobilepushshort}} service instance credentials.
 
-   ```
+   ```sh
    ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
    ```
    {: pre}
 
    **Example output**
+   
    ```
    ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
    [
@@ -416,7 +422,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 To send a message through the push notification service by using the `send-message` action, use the [ibmcloud fn action invoke] command.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke push-notifications/send-message --blocking --result --param messageText "Let's code something" --param messageUrl "http://developer.ibm.com"
 ```
 {: pre}
@@ -445,7 +451,7 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 
 To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `onDeviceRegister` events:
 
-```
+```sh
 ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
 ```
 {: pre}
