@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-03"
 
-keywords: {{site.data.keyword.openwhisk}}, functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
+keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
 subcollection: openwhisk
 
