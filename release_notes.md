@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-07"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -35,7 +35,8 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 1 May | <ul><li>Added information about error handing. See [Error handing for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-error-handing-functions).</li><li>Added information about getting support. See [Getting help and support](/docs/openwhisk?topic=openwhisk-gettinghelp).</ul>  |
+| 7 May | <ul><li>Deprecated some packages and runtimes. See [runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li></ul>  |
+| 1 May | <ul><li>Added information about error handing. See [Error handing for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-error-handing-functions).</li><li>Added information about getting support. See [Getting help and support](/docs/openwhisk?topic=openwhisk-gettinghelp).</li></ul>  |
 {: caption="Changes for May 2021" caption-side="top"}
 
 ## April 2021
@@ -53,7 +54,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | Date | Description |
 | --------- | -------- |
 | 29 March | <ul><li> Changes for Functions CLI version 1.0.53. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul>  |
-| 25 March | <ul><li>Updated list of supported versions. See [Runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li><li>Updated the Composer topic. See [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer).</li><li>Added information about adding an IBM {{site.data.keyword.openwhisk_short}} Channel to {{site.data.keyword.mon_full_notm}}. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).</li><li>Added information for versioning your actions. See [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version).</ul> |
+| 25 March | <ul><li>Updated list of supported versions. See [Runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li><li>Updated the Composer topic. See [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer).</li><li>Added information about adding an IBM {{site.data.keyword.openwhisk_short}} Channel to {{site.data.keyword.mon_full_notm}}. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).</li><li>Added information for versioning your actions. See [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version).</li></ul> |
 | 12 March | <ul><li>Added support for `au-syd` (Sydney) region.</li></ul> |
 {: caption="Changes for March 2021" caption-side="top"}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-07"
 
 keywords: packages, installable packages, functions, binding, pre-installed
 
@@ -56,21 +56,13 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
    
    ```
    packages
-   /whisk.system/websocket                                                shared
-   /whisk.system/utils                                                    shared
-   /whisk.system/samples                                                  shared
-   /whisk.system/weather                                                  shared
-   /whisk.system/slack                                                    shared
-   /whisk.system/cloudant                                                 shared
-   /whisk.system/cos-experimental                                         shared
-   /whisk.system/alarms                                                   shared
-   /whisk.system/messaging                                                shared
-   /whisk.system/pushnotifications                                        shared
-   /whisk.system/watson-textToSpeech                                      shared
-   /whisk.system/github                                                   shared
-   /whisk.system/combinators                                              shared
-   /whisk.system/watson-speechToText                                      shared
-   /whisk.system/watson-translator                                        shared
+   /whisk.system/cloudant         shared
+   /whisk.system/websocket        shared
+   /whisk.system/utils            shared
+   /whisk.system/samples          shared
+   /whisk.system/cos              shared
+   /whisk.system/messaging        shared
+   /whisk.system/alarms           shared
    ```
    {: screen}
 

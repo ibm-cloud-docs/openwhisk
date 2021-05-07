@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-05"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -41,7 +41,7 @@ These runtimes (kinds) are available:
   </tr>
   <tr>
     <td>Node.js</td>
-    <td><code>nodejs:12</code> (default), <code>nodejs:10</code></td>
+    <td><code>nodejs:12</code> (default)</td>
   </tr>
   <tr>
     <td>Python</td>
@@ -87,13 +87,14 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 
 These runtimes (kinds) are deprecated:
 <ul>
-  <li><code>ballerina:0.990</code> (deprecated)</li>
   <li><code>go:1.11</code> (deprecated)</li>
+  <li><code>nodejs:10</code> (deprecated)</li>
   <li><code>nodejs:8</code> (deprecated)</li>
 </ul>
 
 These runtimes (kinds) are disabled:
 <ul>
+  <li><code>ballerina:0.990</code> (disabled)</li>
   <li><code>nodejs</code> (disabled)</li>
   <li><code>nodejs:6</code> (disabled)</li>
   <li><code>php:7.1</code> (disabled)</li>
@@ -114,13 +115,16 @@ For more information about supported and disabled runtimes, see [Available image
 By default, all Node.js actions are executed in a version 12 environment.
 {: note}
 
+Node.js version 10 is deprecated and will soon be removed. To continue running your actions, you must update any Node.js version 10 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
+{: deprecated}
+
 Node.js version 8 is deprecated and will soon be removed. To continue running your actions, you must update any Node.js version 8 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
 {: deprecated}
 
 | Kind | Node.js version | Description | Changelog |
 | --- | --- | --- | --- |
 | `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
-| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
+| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 
 ### Migrating from Node.js 10 to Node.js 12
@@ -521,16 +525,16 @@ To view the available runtimes for IBM Cloud Functions in each region. The follo
   - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
   - [`au-syd`](https://au-syd.functions.cloud.ibm.com){: external}
 
-The following examples point to the images `ibmfunctions/action-nodejs-v10` and `openwhisk/nodejs8action` on [hub.docker.com](https://hub.docker.com/){: external}.
-The tags can be version numbers such as `1.9.0` or the short form of a Git commit hash, like `b99d71e`.
+The following examples point to the images `ibmfunctions/action-nodejs-v12` and `openwhisk/java8action` on [hub.docker.com](https://hub.docker.com/){: external}.
+The tags can be version numbers such as `1.1.1` or the short form of a Git commit hash, like `a231007`.
 
 Example image fields.
 
   ```
-  image:   "ibmfunctions/action-nodejs-v10:1.9.0"
+  image:   "ibmfunctions/action-nodejs-v12:1.1.1"
   ```
   ```
-  image:   "openwhisk/java8action:b99d71e"
+  image:   "openwhisk/java8action:a231007"
   ```
 
 This JSON response shows the supported and the disabled runtimes.

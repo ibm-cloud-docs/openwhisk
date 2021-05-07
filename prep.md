@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-05"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -231,7 +231,7 @@ Before you begin, [review the packages that are included with the JavaScript run
      "main": "dist/bundle.js",
      "scripts": {
        "build": "webpack --config webpack.config.js",
-       "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10"
+       "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12"
       },
      "dependencies": {
        "left-pad": "1.1.3"
@@ -289,19 +289,19 @@ Before you begin, [review the packages that are included with the JavaScript run
 
    The file `dist/bundle.js` is created and deploys as the action source code.
 
-6. Create the action by using the `npm` script or the CLI.
+6. Create the action by using the `npm` script or the `ibmcloud fn action update` CLI.
 
-   * Run the following the `npm` script.
+   * Run the following `npm` script.
 
      ```bash
      npm run deploy
      ```
      {: pre}
 
-   * Run the following CLI command.
+   * Or run the following CLI command.
 
      ```bash
-     ibmcloud fn action update my-action dist/bundle.js --kind nodejs:10
+     ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
      ```
      {: pre}
 
@@ -1237,8 +1237,8 @@ You can create a simple action in Go by creating a file that contains a Go funct
    ```
    {: pre}
 
-If you pin the action to a fixed runtime it won't be changed and doesn't receive security fixes.
-{: note}
+   If you pin the action to a fixed runtime it won't be changed and doesn't receive security fixes.
+   {: note}
 
 ### Create a Golang action made up of multiple packages
 {: #prep_go_multi_packages}
@@ -1246,15 +1246,15 @@ If you pin the action to a fixed runtime it won't be changed and doesn't receive
 You can create a action, which is comprised of multiple Go packages. Each package must have a `go.mod` file.
 {: shortdesc}
 
-```
-.
-├── go.mod
-├── hello
-│   ├── go.mod
-│   └── hello.go
-└── main.go
-```
-{: screen}
+  ```
+  .
+  ├── go.mod
+  ├── hello
+  │   ├── go.mod
+  │   └── hello.go
+  └── main.go
+  ```
+  {: screen}
 
 1. Create the following example files as shown in the following examples.
 
@@ -1264,16 +1264,16 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    package main
 
    import (
-   	"fmt"
-   	"hello"
+       "fmt"
+       "hello"
    )
 
    func Main(args map[string]interface{}) map[string]interface{} {
-	fmt.Println("Main")
-	return hello.Hello(args)
+       fmt.Println("Main")
+       return hello.Hello(args)
    }
    ```
-    {: codeblock}
+   {: codeblock}
 
    **`go.mod`**
    
@@ -1295,19 +1295,19 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    package hello
 
    import (
-    	"fmt"
+       "fmt"
    )
 
    func Hello(args map[string]interface{}) map[string]interface{} {
-   	msg := make(map[string]interface{})
-   	greetings := "world"
-	name, ok := args["name"].(string)
-	if ok {
-		greetings = name
-	}
-	msg["msg"] = "Hello, " + greetings
-	fmt.Printf("Hello, %s\n", greetings)
-	return msg
+       msg := make(map[string]interface{})
+       greetings := "world"
+       name, ok := args["name"].(string)
+       if ok {
+           greetings = name
+       }
+       msg["msg"] = "Hello, " + greetings
+       fmt.Printf("Hello, %s\n", greetings)
+       return msg
    }
    ```
    {: codeblock}
@@ -1328,11 +1328,11 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    ```
    {: pre}
 
-  This command compresses the files `main.go go.mod hello/hello.go hello/go.mod` into `src.zip`. For more information about the `zip` command, use `man zip`.
+   This command compresses the files `main.go go.mod hello/hello.go hello/go.mod` into `src.zip`. For more information about the `zip` command, use `man zip`.
 
 3. (`Optional`) If you want to pre-compile the code, you can compile your compressed source code with the Docker runtime image using `-compile`
 
-   1. Compile the function to a executable stored in a compressed file
+   Compile the function to a executable stored in a compressed file using the go runtime itself.
 
    ```bash
    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
@@ -1342,7 +1342,6 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    `<` and `>` are bash input output redirects and are part of the command.
    {: note}
 
-   2. Specify the generated compressed file (`main-bin.zip`) that contains the executable as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example, `--kind=go:1.15`.
 
 4. Create the action. Note that the runtime must be specified as `--kind=go:1.15`.
 
@@ -1367,8 +1366,8 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    ```
    {: pre}
 
-If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
-{: note}
+   If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+   {: note}
 
 
 ### Create an action by using external libraries with Go modules
@@ -1381,39 +1380,39 @@ If the action has not been pre-compiled, then the libraries are downloaded at th
 If you pre-compile the action, then the libraries are already packaged into the binary and don't need to be downloaded during the action execution time.
 {: tip}
 
-```
-.
-├── go.mod
-└── main.go
-```
-{: screen}
+  ```
+  .
+  ├── go.mod
+  └── main.go
+  ```
+  {: screen}
 
 1. Create the function.
 
-   **`main.go~**
+   **`main.go`**
    
    ```go 
    package main
 
    import (
-  	"github.com/rs/zerolog"
-	"github.com/rs/zerolog/log"
+       "github.com/rs/zerolog"
+       "github.com/rs/zerolog/log"
    )
 
    func init() {
-  	zerolog.TimeFieldFormat = ""
+       zerolog.TimeFieldFormat = ""
    }
 
    // Main function for the action
    func Main(obj map[string]interface{}) map[string]interface{} {
-   	name, ok := obj["name"].(string)
-   	if !ok {
-		name = "world"
-	}
-	log.Debug().Str("name", name).Msg("Hello")
-	msg := make(map[string]interface{})
-	msg["module-main"] = "Hello, " + name + "!"
-	return msg
+       name, ok := obj["name"].(string)
+       if !ok {
+           name = "world"
+       }
+       log.Debug().Str("name", name).Msg("Hello")
+       msg := make(map[string]interface{})
+       msg["module-main"] = "Hello, " + name + "!"
+       return msg
    }
    ```
    {: codeblock}
@@ -1475,8 +1474,8 @@ If you pre-compile the action, then the libraries are already packaged into the 
    ```
     {: pre}
 
-If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
-{: note}
+   If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+   {: note}
 
 ## Preparing Swift apps
 {: #prep_swift}

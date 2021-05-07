@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-03"
+lastupdated: "2021-05-07"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -422,9 +422,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Messages are batched](/docs/openwhisk?topic=openwhisk-pkg_event_streams#eventstreams_batched)
 * [References for {{site.data.keyword.messagehub}}](/docs/openwhisk?topic=openwhisk-pkg_event_streams#message_references)
 
-[GitHub](/docs/openwhisk?topic=openwhisk-pkg_github)
-* [Firing a trigger event with GitHub activity](/docs/openwhisk?topic=openwhisk-pkg_github#firing-a-trigger-event-with-github-activity)
-
 [Mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk)
 * [Add the SDK to your app](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#add-mobile-sdk-app)
   * [Install mobile SDK with CocoaPods](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk#install-mobile-sdk-cocoapods)
@@ -458,23 +455,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Writing an object to a bucket](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_write)
 * [Reading objects from a bucket](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_read)
   * [Reference for {{site.data.keyword.cos_short}} and {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_actions)
-
-[Push Notifications](/docs/openwhisk?topic=openwhisk-pkg_push_notifications)
-* [Packages for push notification](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_packages)
-* [Sending push notifications](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_send)
-  * [Creating a Push package binding](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_create)
-  * [Push notification parameters](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_params)
-  * [Example push notification](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_ex)
-* [Sending push notifications on mobile device events](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile)
-  * [Parameters for Push Notification on mobile devices](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_params)
-  * [Firing a trigger event on Push Notifications service activity](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_trigger)
-* [Sending push notifications or creating, updating, and deleting webhooks](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_send)
-  * [Creating a {{site.data.keyword.mobilepushshort}} service instance](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#service_instance_push)
-  * [Installing the {{site.data.keyword.mobilepushshort}} package](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_install)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} CLI](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_cli)
-  * [Installing from the {{site.data.keyword.openwhisk_short}} console](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_ui)
-  * [Send a push notification](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_sendmsg)
-  * [Create a webhook](/docs/openwhisk?topic=openwhisk-pkg_push_notifications#pkg_push_mobile_hook)
 
 [Slack](/docs/openwhisk?topic=openwhisk-pkg_slack)
 * [Posting a message to a Slack channel](/docs/openwhisk?topic=openwhisk-pkg_slack#posting-a-message-to-a-slack-channel)

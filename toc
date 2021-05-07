@@ -54,10 +54,8 @@ Functions
         pkg_cloudant.md
         pkg_composer.md
         pkg_event_streams.md
-        pkg_github.md
         pkg_mobile_sdk.md
         pkg_obstorage.md
-        pkg_push_notifications.md
         pkg_slack.md
         pkg_utils.md
         pkg_websocket.md
