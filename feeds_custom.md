@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-13"
 
-keywords: feeds, serverless, functions, hooks, polling, connections
+keywords: feeds, functions, webhooks, polling, connections, hook
 
 subcollection: openwhisk
 
@@ -24,14 +24,11 @@ subcollection: openwhisk
 {:download: .download}
 {:gif: data-image-type='gif'}
 
-
-
 # Creating custom event provider feeds
 {: #feeds_custom}
 
 {{site.data.keyword.openwhisk}} supports an open API, where you can expose an event producer service as a feed in a package.
 {: shortdesc}
-
 
 ## Feed architecture
 {: #feeds_arch}
@@ -39,16 +36,17 @@ subcollection: openwhisk
 You can create a feed by using one of the three architectural patterns: **Hooks**, **Polling**, and **Connections**.
 
 ### Hooks
+{: #fds_hooks}
 
 With the hooks pattern, a feed is set up by using a webhook that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
-For example, the [GitHub package](/docs/openwhisk?topic=openwhisk-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=openwhisk-pkg_push_notifications) use a webhook.
-
 ### Polling
+{: #fds_polling}
 
 With the polling pattern, a {{site.data.keyword.openwhisk_short}} action is arranged to poll an endpoint periodically to fetch new data. This pattern is relatively easy to build, but the frequencies of events are limited by the polling interval.
 
 ### Connections
+{: #fds_connections}
 
 With the connections pattern, a separate service maintains a persistent connection to a feed source. The connection-based implementation might interact with a service endpoint by using long polling intervals, or to set up a push notification.
 

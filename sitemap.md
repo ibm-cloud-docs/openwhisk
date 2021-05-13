@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-07"
+lastupdated: "2021-05-13"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -467,9 +467,9 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [Creating custom event provider feeds](/docs/openwhisk?topic=openwhisk-feeds_custom)
 * [Feed architecture](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_arch)
-  * [Hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#hooks)
-  * [Polling](/docs/openwhisk?topic=openwhisk-feeds_custom#polling)
-  * [Connections](/docs/openwhisk?topic=openwhisk-feeds_custom#connections)
+  * [Hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#fds_hooks)
+  * [Polling](/docs/openwhisk?topic=openwhisk-feeds_custom#fds_polling)
+  * [Connections](/docs/openwhisk?topic=openwhisk-feeds_custom#fds_connections)
 * [ Implementing feed actions](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_actions)
 * [Implementing feeds with hooks](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_hooks)
 * [Implementing feeds with polling](/docs/openwhisk?topic=openwhisk-feeds_custom#feeds_polling)

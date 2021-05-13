@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-13"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -73,7 +73,7 @@ Do not delete service IDs or API keys.
 ### Are there any limitations for namespaces?
 {: #namespace_limitations}
 
-The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) and [GitHub](/docs/openwhisk?topic=openwhisk-pkg_github) are not supported for IAM-managed namespaces. 
+The [mobile SDK](/docs/openwhisk?topic=openwhisk-pkg_mobile_sdk) is not supported for IAM-managed namespaces. 
 
 The names of all entities, including actions, triggers, rules, packages, and namespaces, are a sequence of characters that follow the following format:
 
