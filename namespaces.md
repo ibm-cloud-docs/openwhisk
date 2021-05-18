@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-13"
+lastupdated: "2021-05-14"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -89,7 +89,7 @@ Your Cloud Foundry-based namespaces still work. However, in order to take advant
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 {: #how_list_namespace}
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [`namespace list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [**`namespace list`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
 
 ```bash
 ibmcloud fn namespace list
@@ -108,7 +108,7 @@ playground    IAM-based       <id_string>                           IAM playgrou
 
 </br>
 
-You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} Console Resource list](https://cloud.ibm.com/resources){: external} or by using the `resource service-instances` CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
+You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} Console Resource list](https://cloud.ibm.com/resources){: external} or by using the **`resource service-instances`** CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
 ```bash
 ibmcloud resource service-instances --service-name functions
@@ -126,7 +126,7 @@ playground   us-south   active   service_instance
 ### How do I see the {{site.data.keyword.openwhisk_short}} entities in my namespace?
 {: #how_find_iam_namespace}
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [`namespace get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
+You can see a list of your {{site.data.keyword.openwhisk_short}} entities by running the [**`namespace get`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_get) command. Replace `<namespace_name>` or `<namespace_id>` with the name or ID of your namespace.
 
 ```bash
 ibmcloud fn namespace get <namespace_name> or <namespace_id>
@@ -239,7 +239,7 @@ You can create an IAM-managed namespace with the CLI.
   ```
   {: pre}
 
-After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [`ibmcloud fn property set`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set).
+After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [**`ibmcloud fn property set`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set).
 {: note}
 
 ### Creating a namespace with the API
@@ -376,7 +376,7 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. You can target IAM namespaces or Cloud Foundry namespaces.
 {: shortdesc}
 
-To target a namespace, use the [`ibmcloud fn namespace target`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_target) command.
+To target a namespace, use the [**`ibmcloud fn namespace target`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_target) command.
 
 For example, to target an IAM namespace called `playground`,
 

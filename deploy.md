@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-14"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -76,7 +76,7 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
     ```
     {: codeblock}
 
-3. Use the `deploy` command to deploy the package, action, and API.
+3. Use the **`deploy`** command to deploy the package, action, and API.
 
     ```sh
     ibmcloud fn deploy --manifest hello_world_manifest.yml

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-05"
+lastupdated: "2021-05-14"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -38,7 +38,7 @@ Run these commands to manage the entities that make up your functions.
 Create, invoke, list, and delete actions.
 {: shortdec}
 
-To see CLI help for the `action` command, run `ibmcloud fn action`.
+To see CLI help for the **`action`** command, run `ibmcloud fn action`.
 {: tip}
 
 ### `ibmcloud fn action create`
@@ -453,7 +453,7 @@ ibmcloud fn action update hello folder/hello_world.js
 Get metadata, list IDs, find logs, and list results for specific activations.
 {: shortdec} 
 
-To see CLI help for the `activation` command, run `ibmcloud fn activation`.
+To see CLI help for the **`activation`** command, run `ibmcloud fn activation`.
 {: tip}
 
 ### `ibmcloud fn activation get`
@@ -639,7 +639,7 @@ ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 Create, delete, list, and describe APIs.
 {: shortdec}
 
-To see CLI help for the `api` command, run `ibmcloud fn api`.
+To see CLI help for the **`api`** command, run `ibmcloud fn api`.
 {: tip}
 
 ### `ibmcloud fn api create`
@@ -828,7 +828,7 @@ Use deployment commands to deploy and undeploy packages, actions, triggers, and 
 Use a manifest file to deploy a collection of packages, actions, triggers, and rules.
 {: shortdec}
 
-To see CLI help for the `deploy` command, run `ibmcloud fn deploy`.
+To see CLI help for the **`deploy`** command, run `ibmcloud fn deploy`.
 {: tip}
 
 ```sh
@@ -948,7 +948,7 @@ ibmcloud fn undeploy --manifest folder/manifest.yaml
 ## List command
 {: #cli_list_cmd}
 
-Use the list command to view packages, actions, triggers, and rules in the namespace.
+Use the **`list`** command to view packages, actions, triggers, and rules in the namespace.
 {: shortdec}
 
 ### `ibmcloud fn list`
@@ -984,7 +984,7 @@ Create, update, delete, and find information about your namespace.
 To learn how to target your {{site.data.keyword.openwhisk_short}} namespace, see [Targeting namespaces](/docs/openwhisk?topic=openwhisk-namespaces#targeting-namespaces).
 {: note}
 
-To see CLI help for the `namespace` command, run `ibmcloud fn namespace`.
+To see CLI help for the **`namespace`** command, run `ibmcloud fn namespace`.
 {: tip}
 
 ### `ibmcloud fn namespace create`
@@ -1182,7 +1182,7 @@ ibmcloud fn namespace update HBCTeamProd HBCTeamStaging
 Create, update, delete, bind, and find information about packages.
 {: shortdec}
 
-To see CLI help for the `package` command, run `ibmcloud fn package`.
+To see CLI help for the **`package`** command, run `ibmcloud fn package`.
 {: tip}
 
 ### `ibmcloud fn package bind`
@@ -1436,7 +1436,7 @@ ok: created hellopkg
 Set global properties for your CLI environment or view properties about the `wsk` CLI, which runs as part of the `ibmcloud fn` CLI.
 {: shortdec}
 
-To see CLI help for the `property` command, run `ibmcloud fn property`.
+To see CLI help for the **`property`** command, run `ibmcloud fn property`.
 {: tip}
 
 ### `ibmcloud fn property get`
@@ -1579,7 +1579,7 @@ ibmcloud fn property unset --namespace
 Create, delete, enable, disable, update, and find information about rules.
 {: shortdec}
 
-To see CLI help for the `rule` command, run `ibmcloud fn rule`.
+To see CLI help for the **`rule`** command, run `ibmcloud fn rule`.
 {: tip}
 
 ### `ibmcloud fn rule create`
@@ -1772,7 +1772,7 @@ ibmcloud fn rule update myrule mytrigger myaction
 Install SDK components, such as `docker`, `iOS`, and `bashauto`.
 {: shortdec}
 
-To see CLI help for the `sdk` command, run `ibmcloud fn sdk`.
+To see CLI help for the **`sdk`** command, run `ibmcloud fn sdk`.
 
 ### `ibmcloud fn sdk install`
 {: #cli_sdk_install}
@@ -1807,7 +1807,7 @@ ibmcloud fn sdk install docker
 Service commands bind and unbind service credentials to an action or package.
 {: shortdec}
 
-To see CLI help for the `service` command, run `ibmcloud fn service`.
+To see CLI help for the **`service`** command, run `ibmcloud fn service`.
 {: tip}
 
 If you receive the error `Unable to refresh user access token: CloudFoundry API endpoint is not set` when running the `service` command, run `ibmcloud target --cf`.
@@ -1881,7 +1881,7 @@ ibmcloud fn service unbind cloudant hello
 Create, update, delete, fire, and find information about triggers.
 {: shortdec}
 
-To see CLI help for the `trigger` command, run `ibmcloud fn trigger`.
+To see CLI help for the **`trigger`** command, run `ibmcloud fn trigger`.
 
 ### `ibmcloud fn trigger create`
 {: #cli_trigger_create}

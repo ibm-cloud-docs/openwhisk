@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-14"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -49,7 +49,7 @@ In order to allow other users to manage {{site.data.keyword.openwhisk_short}} na
 
 ## How do I know which access policies have set for me?
 {: #iam_set_policies_me}
-You can see which access policies have been set for you in the [{{site.data.keyword.Bluemix}} catalog](https://cloud.ibm.com/catalog){: external} console.
+You can see which access policies have been set for you in the [{{site.data.keyword.cloud_notm}} catalog](https://cloud.ibm.com/catalog){: external} console.
 
 1. From the console, click **Manage** > **Access (IAM)** > **Users**. Or, navigate to `https://cloud.ibm.com/iam/users`.
 2. Click your name in the user table.
@@ -215,7 +215,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
   </tbody>
 </table>
 
-For more information, see the [`service-policy-create`](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
+For more information, see the [**`service-policy-create`**](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
 {: note}
 
 **Next steps**

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-05"
+lastupdated: "2021-05-18"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -444,7 +444,7 @@ For more information, see [Packaging large Python dependencies in a custom Docke
 
 **When to use this method**
 
-Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) and your app code, even when compressed into a compressed file is still larger than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions). If so, you can install those dependencies into a custom Docker image and include your app code in the `action/exec` folder of the Docker skeleton. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. During deployment, you do not need to specify for your app code. Note that only public Docker images are supported.
+Your app requires dependencies that are not included with the base {{site.data.keyword.openwhisk_short}} [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) and your app code, even when it is compressed into a .zip file, is still larger than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions). If so, you can install those dependencies into a custom Docker image and include your app code in the `action/exec` folder of the Docker skeleton. You can then specify your custom Docker image when you deploy your app in {{site.data.keyword.openwhisk_short}}. During deployment, you do not need to specify for your app code. Note that only public Docker images are supported.
 
 **Example command**
 
@@ -545,15 +545,15 @@ Before you begin, [review the packages that are included with the Python runtime
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/). 
 
-The setup of the local Python environment has a major impact on the compressed action file that is created. Some configurations (for example, non-default install paths or mixed Python installations) can make the compressed action file fail during execution.
+The setup of the local Python environment has a major impact on the compressed action file that is created. Some configurations (for example, non-default installation paths or mixed Python installations) can make the compressed action file fail during execution.
 
-To minimize these dependencies on your local environment the recommendation is, to use the [Packaging Python code with a Docker virtual environment in a compressed file](#prep_python_virtenv) approach. This approach also creates the compressed action file, but utilizes the Python environment inside the {{site.data.keyword.openwhisk_short}} Python runtime image, itself. Therefore making sure, both, the generated action compressed file and the later execution environment fully match.
+To minimize these dependencies on your local environment, use the [Packaging Python code with a Docker virtual environment in a compressed file](#prep_python_virtenv) approach. This approach creates the compressed action file, but also leverages the Python environment inside the {{site.data.keyword.openwhisk_short}} Python runtime image itself so that both the generated action compressed file and the later execution environment fully match.
 {: note}
 
-Before you begin:
+**Before you begin**
 - The following steps assume a Linux based distribution on a processor with AMD64-based architecture to run the commands.
 - [Review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
-- Make sure that the locally installed Python version to create the compressed action file (for example, Python 3.7.x) matches the {{site.data.keyword.openwhisk_short}} kind chosen to later create the action (`--kind python:3.7`).
+- Make sure that the locally installed Python version to create the compressed action file (for example, Python 3.7.x) matches the {{site.data.keyword.openwhisk_short}} kind that is chosen to later create the action (`--kind python:3.7`).
 - Install the `virtualenv` Python package.
 
     ```bash
@@ -598,7 +598,7 @@ To package your app:
     ```
     {: pre}
 
-4. Ensure the Python version inside the virtual environment matches the version as specified with the `--kind` option when creating the action later on (e.g. `python:3.7`). To check the actual version,
+4. Ensure the Python version inside the virtual environment matches the version as specified with the `--kind` option when you create the action later on (for example, `python:3.7`). To check the actual version,
 
     ```bash
     python --version
@@ -696,7 +696,7 @@ You can use this method to extend the functionality of {{site.data.keyword.openw
 
 You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip`](https://packaging.python.org/tutorials/installing-packages/){: external}.
 
-This is the recommended approach to add additional required python packages. It ensures that the generated compressed action file is compatible with the Python runtime used for later execution of the action.
+This approach is recommended when you want to add additional required python packages. It ensures that the generated compressed action file is compatible with the Python runtime used for later execution of the action.
 {: note}
 
 **Before you begin**
@@ -767,7 +767,7 @@ Package your app by completing the following steps.
    ```
    {: pre}
 
-   This command instantiates a container (`docker run`) based on the runtime image selected and mounts the current working directory (`$PWD`) as /tmp into the container (`-v "$PWD:/tmp"`). Inside the container it then changes to the /tmp directory `cd /tmp`, creates and activates the `virtualenv` (`virtualenv virtualenv && source virtualenv/bin/activate`) and runs the `pip install` to add the selected packages. The container is deleted when the command completes (`--rm`). The directory structure of the created `virtualenv` and the installed packages can finally be found in the folder `virtualenv` in your current directory.
+   This command instantiates a container (`docker run`) based on the runtime image selected and mounts the current working directory (`$PWD`) as `/tmp` into the container (`-v "$PWD:/tmp"`). Inside the container, it then changes to the `/tmp` directory `cd /tmp`, creates and activates the `virtualenv` (`virtualenv virtualenv && source virtualenv/bin/activate`), and runs the `pip install` to add the selected packages. The container is deleted when the command completes (`--rm`). The directory structure of the created `virtualenv` and finally, the installed packages can be found in the folder `virtualenv` in your current directory.
 
    **Example output**
    
@@ -809,7 +809,7 @@ Package your app by completing the following steps.
    If the archive file that you create with your `virtualenv` and `__main__.py` file is smaller than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions), you can create the action directly without first deleting unnecessary or duplicate packages from the `site-packages` of your `virtualenv` directory.
    {: tip}
 	
-9. Create an action called `sklearn` by using the `sklearn.zip` file. Make sure to use the `--kind` corresponding to the runtime image used to create the compressed action file. Otherwise the action will fail to execute during invoke.
+9. Create an action called `sklearn` by using the `sklearn.zip` file. Make sure to use the `--kind` corresponding to the runtime image used to create the compressed action file. Otherwise, the action fails to execute during invoke.
 
     ```bash
     ibmcloud fn action create sklearn <file_path>/sklearn.zip --kind python:3.7
@@ -1117,23 +1117,23 @@ To see an example deployment of a custom Docker image with a {{site.data.keyword
 
 You can create Actions by using Golang.
  
-Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third party libraries, package them as compressed file and deploy the file. When deploying a compressed file, specify the runtime by using the `kind` parameter (`--kind=go:1.15`)
+Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third-party libraries, package them as compressed file and deploy the file. When deploying a compressed file, specify the runtime by using the `kind` parameter (`--kind=go:1.15`)
 {: shortdesc}
 
 Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image(`docker run -i openwhisk/action-golang-v1.15:nightly ...`). You can package [multiple source files](#prep_go_multi_packages) or [vendor libraries](#prep_go_external_libraries).
 {: tip}
 
-The following steps assume a Linux-based distribution on a processor with AMD64-based architecture and the `ibmcloud cli` installed to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external} 
+The following steps assume a Linux-based distribution on a processor with AMD64-based architecture and the `ibmcloud cli` installed to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external}.
 
 ### Structuring Go Apps
 {: #prep_go_struct}
 
-When you structure your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created (`--name <your name>`). The package must also be public (start with an upper case letter).
+When you structure your Go code, note that the expected name for the entry point package is `main`. If the package in your code is not `main`, take note of the name to specify it when the action is created (`--name <your name>`). The package must also be public (start with an upper-case letter).
 {: shortdesc}
 
 **Example**
 
-This example create a simple `Hello World` action in Go.
+This example creates a simple `Hello World` action in Go.
 
 ```go
     package main
@@ -1157,15 +1157,15 @@ This example create a simple `Hello World` action in Go.
 ```
 {: codeblock}
 
-Actions that are written in Go can be deployed as source code or as pre-compiled executables in a compressed file.
-If your actions require only one source file, you can edit its contents directly in the Functions action window in the [IBM Cloud console](https://cloud.ibm.com/functions){: external} as long as you create the action without pre-compiling it.   
+Actions that are written in Go can be deployed as source code or as pre-compiled executable files in a compressed format.
+If your actions require only one source file, you can edit its contents directly in the Functions action window in the [IBM Cloud console](https://cloud.ibm.com/functions){: external} if you create the action without pre-compiling it.   
 {: tip}
 
-These are the basic steps needed to create actions that uses Go.
+Use the following steps to create actions that use Go.
 
-1. Create the function that you want to deploy
+1. Create the function that you want to deploy.
 2. (`optional`) If you have more than one file, package the files as a compressed file, otherwise skip this step (see the following examples)
-3. (`optional`) Compile the `go/zip` file by using the Docker image (`docker run -i openwhisk/action-golang-v1.15:nightly -compile ...`).  This step returns a compressed file that contains the executable.
+3. (`optional`) Compile the `go/zip` file by using the Docker image (`docker run -i openwhisk/action-golang-v1.15:nightly -compile ...`).  This step returns a compressed file that contains the executable file.
 4. Create the action by using the `ibmcloud cli`.
 
 These steps are used in each of the following examples.
@@ -1176,7 +1176,7 @@ These steps are used in each of the following examples.
 You can create a simple action in Go by creating a file that contains a Go function.
 {: shortdesc}
 
-1. Create the Go file that contains the function. The default entry name is `Main`. You can change this name to any different public function name (`Uppercase first character`) as long as it is specified by using the `--main` parameter with the `ibmcloud fn action create <action_name> <action_file> --main <function_name>` command; for example, `--main hello` if the function is named `Hello`.
+1. Create the Go file that contains the function. The default entry name is `Main`. You can change this name to any different public function name (`Uppercase first character`) if it is specified by using the `--main` parameter with the `ibmcloud fn action create <action_name> <action_file> --main <function_name>` command; for example, `--main hello` if the function is named `Hello`.
 
    **`main.go`**
    
@@ -1202,7 +1202,7 @@ You can create a simple action in Go by creating a file that contains a Go funct
    ```
    {: codeblock}
 
-2. (`optional`) If you want to pre-compile the function to a executable stored in a compressed file first,
+2. (`optional`) If you want to pre-compile the function to an executable file that is stored in a compressed format first,
 
    ```bash
    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <main.go >main-bin.zip
@@ -1212,9 +1212,9 @@ You can create a simple action in Go by creating a file that contains a Go funct
    `<` and  `>` are bash input output redirects and are part of the command.
    {: note}
 
-   Specify the generated compressed file (`main-bin.zip`) containing the executable as the file for the action create command.
+   Specify the generated compressed file (`main-bin.zip`) as the file for the `action create` command.
 
-3. Create a action using the IBM Cloud Functions managed `go:1.15` Runtime if your action is not called `main` specify the function name with `--name <your action name>` 
+3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.15` Runtime if your action is not called `main` specify the function name with `--name <your action name>`.
 
    With the source code (`main.go`),
    
@@ -1237,13 +1237,13 @@ You can create a simple action in Go by creating a file that contains a Go funct
    ```
    {: pre}
 
-   If you pin the action to a fixed runtime it won't be changed and doesn't receive security fixes.
+   If you pin the action to a fixed runtime, it cannot change or receive security fixes.
    {: note}
 
 ### Create a Golang action made up of multiple packages
 {: #prep_go_multi_packages}
 
-You can create a action, which is comprised of multiple Go packages. Each package must have a `go.mod` file.
+You can create an action that includes multiple Go packages. Each package must include a `go.mod` file.
 {: shortdesc}
 
   ```
@@ -1332,7 +1332,7 @@ You can create a action, which is comprised of multiple Go packages. Each packag
 
 3. (`Optional`) If you want to pre-compile the code, you can compile your compressed source code with the Docker runtime image using `-compile`
 
-   Compile the function to a executable stored in a compressed file using the go runtime itself.
+   Compile the function to an executable file that is stored in a compressed format that uses the go runtime itself.
 
    ```bash
    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
@@ -1366,14 +1366,14 @@ You can create a action, which is comprised of multiple Go packages. Each packag
    ```
    {: pre}
 
-   If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+   If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
    {: note}
 
 
 ### Create an action by using external libraries with Go modules
 {: #prep_go_external_libraries}
 
-You can create an action by using third party libraries with Go modules. For more information about Go modules, see [Go module doc](https://golang.org/ref/mod).
+You can create an action by using third-party libraries with Go modules. For more information about Go modules, see [Go module doc](https://golang.org/ref/mod).
 {: #shortdesc}
 
 If the action has not been pre-compiled, then the libraries are downloaded at the action execution time.
@@ -1435,11 +1435,11 @@ If you pre-compile the action, then the libraries are already packaged into the 
    ```
    {: pre}
 
-   This example compresses `main.go` and `go.mod` files to `src.zip`
+   This example compresses `main.go` and `go.mod` files to `src.zip`.
 
 3. If you want to pre-compile the code, use the compressed source code (`src.zip`) and compile it with the docker runtime image with the `-compile` command.
 
-   1. Compile the function to a executable stored in a compressed file (`main-bin.zip`).
+   1. Compile the function to an executable file that is stored in a compressed format (`main-bin.zip`).
    
    ```bash
    docker run -i openwhisk/action-golang-v1.15:1ee88f9 -compile main <src.zip >main-bin.zip
@@ -1449,7 +1449,7 @@ If you pre-compile the action, then the libraries are already packaged into the 
    `<` and `>` are bash input output redirects and are part of the command.
    {: note}
 
-   2. Specify the generated compressed file(`main-bin.zip`) that contains the executable as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.15`.
+   2. Specify the compressed file (`main-bin.zip`) as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.15`.
 
 4. Create action the runtime must be specified with `--kind=go:1.15`.
 
@@ -1474,7 +1474,7 @@ If you pre-compile the action, then the libraries are already packaged into the 
    ```
     {: pre}
 
-   If you pin the action to a fixed runtime, the runtime won't change or receive security fixes.
+   If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
    {: note}
 
 ## Preparing Swift apps
@@ -1556,7 +1556,7 @@ docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
 ```
 {: pre}
 
-The Docker container reads the content of the file from `stdin`, and writes a compressed archive with the compiled swift executable file to `stdout`.
+The Docker container reads the content of the file from `stdin`, and writes a compressed archive with the compiled Swift executable file to `stdout`.
 
 ### Packaging Swift 4.2 multi-file projects and dependencies
 {: #prep_swift42_multi}

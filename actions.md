@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-14"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -39,7 +39,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
 ## Creating actions from the CLI
 {: #actions_cli}
 
-1. Create an action by running the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+1. Create an action by running the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
   
   ```sh
   ibmcloud fn action create <action_name> <file> --kind <runtime>
@@ -162,7 +162,7 @@ From the CLI, you can get the action code by using the [`ibmcloud fn action get 
 ### Updating actions from the CLI
 {: #actions_update_cli}
 
-You can update your actions from the CLI with the [`ibmcloud fn action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
+You can update your actions from the CLI with the [**`ibmcloud fn action update`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
 {: shortdesc}
 
 1. Update your app locally.
@@ -245,7 +245,7 @@ To bind the parameters:
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an `action update` command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed. If you bound a service, you must [bind the services to your action](/docs/openwhisk?topic=openwhisk-services) again.
+    If you modify your non-service credential parameters, running an **`action update`** command with new parameters removes any parameters that currently exist but are not specified in the `action update` command. For example, if you run `action update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the action is updated. Any services that were bound to the action are also removed. If you bound a service, you must [bind the services to your action](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 2. Verify that the parameters were bound to the action.
@@ -363,7 +363,7 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
+    If you modify your non-service credential parameters, running an [**`package update`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 3. Verify that the parameters were bound to the package.

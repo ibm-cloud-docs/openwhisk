@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-14"
 
 keywords: functions cli, serverless, cli, install, functions plug-in, API, migrating, syntax
 
@@ -133,7 +133,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
   ```
   {: screen}
 
-3. All {{site.data.keyword.openwhisk_short}} commands begin with `ibmcloud fn`. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run `ibmcloud fn` with no arguments.
+3. All {{site.data.keyword.openwhisk_short}} commands begin with **`ibmcloud fn`**. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run **`ibmcloud fn`** with no arguments.
 
   ```sh
   ibmcloud fn
@@ -170,7 +170,7 @@ You might want to update the CLI periodically to use new features.
    ```
    {: screen}
 
-2. If an update is available, run the `ibmcloud plugin update` command.
+2. If an update is available, run the **`ibmcloud plugin update`** command.
 
    ```sh
    ibmcloud plugin update cloud-functions
@@ -200,15 +200,15 @@ All of the command options and arguments for commands in the Cloud Functions CLI
 
 * The {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information.
 * `wsk` commands are now run as `ibmcloud fn`.
-* The `wsk ibmcloud login` command is no longer needed. You can sign in by using `ibmcloud login`.
-* You can manage your APIs by using the `ibmcloud fn api`.
+* The **`wsk ibmcloud login`** command is no longer needed. You can sign in by using **`ibmcloud login`** command.
+* You can manage your APIs by using the **`ibmcloud fn api`** commands.
 
 For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}
 
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with `ibmcloud login`. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
+With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with the **`ibmcloud login`** command. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
 {:shortdesc}
 
 If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
@@ -240,11 +240,11 @@ The API key is specific per region, organization, and space targeted by the {{si
 ### API Gateway authentication
 {: #cli_apigw_authentication}
 
-With the OpenWhisk CLI, you were required to run the `wsk ibmcloud login` to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run `wsk ibmcloud login`. Instead, when you use the `ibmcloud login` command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the `ibmcloud fn api` command.
+With the OpenWhisk CLI, you were required to run the **`wsk ibmcloud login`** to configure the API Gateway authorization for management of your APIs by using the `wsk api` command. With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to run **`wsk ibmcloud login`**. Instead, when you use the **`ibmcloud login`** command to log in to {{site.data.keyword.cloud_notm}}, the {{site.data.keyword.openwhisk}} plug-in automatically utilizes your current login and target information. Now you can manage your APIs by using the **`ibmcloud fn api`** command.
 {:shortdesc}
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}
 
-If you have scripts that use the OpenWhisk CLI with the `wsk` commands, all commands work the same way by using the command `ibmcloud fn`. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands that use `wsk` are translated to `ibmcloud fn`. The `ibmcloud login` and `ibmcloud target` commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run `ibmcloud fn` commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
+If you have scripts that use the OpenWhisk CLI with the **`wsk`** commands, all commands work the same way by using the command **`ibmcloud fn`**. You can modify your scripts to use the {{site.data.keyword.cloud_notm}} CLI plug-in, or create an alias or wrapper so that current commands that use `wsk` are translated to **`ibmcloud fn`**. The **`ibmcloud login`** and **`ibmcloud target`** commands in the {{site.data.keyword.cloud_notm}} CLI work in unattended mode. With unattended mode, you can configure your environment before you run **`ibmcloud fn`** commands to deploy and manage your {{site.data.keyword.openwhisk_short}} entities.
 {:shortdesc}

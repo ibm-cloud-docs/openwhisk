@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-18"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -47,7 +47,7 @@ ibmcloud target -r eu-de
 ## {{site.data.keyword.openwhisk_short}} endpoints
 {: #cloudfunctions_endpoints}
 
-The following endpoints are available for {{site.data.keyword.openwhisk_short}} can be used with [{{site.data.keyword.openwhisk_short}} APIs](https://cloud.ibm.com/apidocs/functions).
+The following endpoints are available for {{site.data.keyword.openwhisk_short}} and can be used with [{{site.data.keyword.openwhisk_short}} APIs](https://cloud.ibm.com/apidocs/functions).
 
 | Region | Endpoint |
 | --------- | -------- |
@@ -62,7 +62,7 @@ The following endpoints are available for {{site.data.keyword.openwhisk_short}} 
 ## {{site.data.keyword.openwhisk_short}} web action endpoints
 {: #cloudfunctions_webaction_endpoints}
 
-The following endpoints are available for {{site.data.keyword.openwhisk_short}} can be used with [{{site.data.keyword.openwhisk_short}} web actions](/docs/openwhisk?topic=openwhisk-actions_web).
+The following endpoints are available for {{site.data.keyword.openwhisk_short}} and can be used with [{{site.data.keyword.openwhisk_short}} web actions](/docs/openwhisk?topic=openwhisk-actions_web).
 
 | Region | Endpoint |
 | --------- | -------- |
