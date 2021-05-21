@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-05-21"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -477,7 +477,7 @@ The `__ow_user` is only present when the web action is [annotated to require aut
 ### HTTPS Endpoint support
 {: #actions_web_endpoint}
 
-Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://tools.ietf.org/html/draft-ietf-tls-tls13-18){: external})
+Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://datatracker.ietf.org/doc/html/draft-ietf-tls-tls13-18){: external})
 
 ### Altering the response content of web action
 {: #extra_features}

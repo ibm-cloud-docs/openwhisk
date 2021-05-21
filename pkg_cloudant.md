@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-21"
 
 keywords: cloudant, event, action, trigger, sequence, functions, database, document, rule
 
@@ -374,7 +374,7 @@ Parameters that are used in this example.
   ```
   {: pre}
 
-5. In another terminal window, start polling so that you can see when activations occur.
+5. In another window, start polling so that you can see when activations occur.
 
   ```bash
   ibmcloud fn activation poll

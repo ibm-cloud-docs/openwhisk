@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-21"
 
 keywords: github, actions, trigger, event, functions
 
@@ -51,7 +51,7 @@ The `/whisk.system/github/webhook` feed configures a service to fire a trigger w
 | `username` | The user name of the GitHub repository. |
 | `repository` | The GitHub repository. |
 | `accessToken` | Your GitHub personal access token. When you create your token, be sure to select the `repo:status` and `public_repo` scopes. Also, make sure that you don't have any webhooks that are already defined for your repository. |
-| `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads) of interest. |
+| `events` | The [GitHub event type ![External link icon](../icons/launch-glyph.svg "External link icon")](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads) of interest. |
 
 In the following example, a trigger is created that fires each time a new commit to a GitHub repository.
 
@@ -74,4 +74,4 @@ In the following example, a trigger is created that fires each time a new commit
    ```
    {: pre}
 
-   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If you [create a rule](/docs/openwhisk?topic=openwhisk-rules) to associate an action with the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://docs.github.com/en/developers/webhooks-and-events/webhook-events-and-payloads){: external} API documentation.
+   A commit to the GitHub repository by using a `git push` causes the trigger to be fired by the webhook. If you [create a rule](/docs/openwhisk?topic=openwhisk-rules) to associate an action with the trigger, then the associated action is invoked. The action receives the GitHub webhook payload as an input parameter. Each GitHub webhook event has a similar JSON schema, but is a unique payload object that is determined by its event type. For more information about the payload content, see the [GitHub events and payload ](https://docs.github.com/en/developers/webhooks-and-events/webhooks/webhook-events-and-payloads){: external} API documentation.
