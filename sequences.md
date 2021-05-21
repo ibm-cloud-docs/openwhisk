@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-21"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
@@ -59,7 +59,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 ## Creating a sequence from the CLI
 {: #actions_seq_cli}
 
-Create a sequence from the CLI with the [`ibmcloud fn action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+Create a sequence from the CLI with the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
 {: shortdesc}
 
 ```sh

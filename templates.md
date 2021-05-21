@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-21"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless, actions
 
@@ -148,7 +148,7 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
     </tbody></table>
     
-    Find this information in the console by navigating to your {{site.data.keyword.cloudant_short_notm}} instance and then selecting Service Credentials. You can also find service credentials by running the `ibmcloud resource` command.
+    Find this information in the console by navigating to your {{site.data.keyword.cloudant_short_notm}} instance and then selecting Service Credentials. You can also find service credentials by running the **`ibmcloud resource`** command.
     
     1. Find the credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
        
@@ -256,7 +256,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 While you can test the action, you cannot test the trigger without making an entry to the {{site.data.keyword.cloudant_short_notm}} database. Try that next.
 {: shortdesc}
 
-1. From the command line, run the [`activation poll`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
+1. From the command line, run the [**`activation poll`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
    ```sh
    ibmcloud fn activation poll
@@ -404,7 +404,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
      {: pre}
 
    * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
-     You can get the URL for any action by running the `action get` command.
+     You can get the URL for any action by running the **`action get`** command.
 
      ```sh
      ibmcloud fn action get <action_name> --url
@@ -783,6 +783,6 @@ You can stop the **Periodic Slack Reminder** trigger in the following ways.
    
    * From the CLI:
    
-      *  Disable the rule by running the [`ibmcloud fn rule disable RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [`ibmcloud fn rule list RULE_NAME`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
+      *  Disable the rule by running the [**`ibmcloud fn rule disable RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [**`ibmcloud fn rule list RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
    
      * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.

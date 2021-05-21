@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-18"
+lastupdated: "2021-05-21"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -821,7 +821,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Action terminates after one minute](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_action_terminated)
 * [{{site.data.keyword.apigw_short}} fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_api_gateway_504)
 * [Can't access private endpoint from action](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_private_endpoint)
-* [Getting help and support](/docs/openwhisk?topic=openwhisk-troubleshooting#gettinghelp)
 
 [Troubleshooting Node.js issues](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs)
 * [Node.js action is failing](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs#ts_action_nodejs_fails)

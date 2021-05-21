@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-18"
+lastupdated: "2021-05-21"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -347,7 +347,7 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {: pre}
 
-   **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the `zip` command instead.
+   **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the **`zip`** command instead.
    {: tip}
   
 ## How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}
@@ -1885,7 +1885,7 @@ The following example uses Gradle to build a Java action that leverages the libr
    ```
    {: codeblock}
 
-2. Run the command `gradle jar`, which generates a .jar archive in the directory `build/libs/`.
+2. Run the command **`gradle jar`**, which generates a .jar archive in the directory `build/libs/`.
 
    For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
 

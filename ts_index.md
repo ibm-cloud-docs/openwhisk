@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-05-21"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration, api gateway
 
@@ -137,17 +137,3 @@ The use of private endpoints from within your action code is currently not suppo
 With {{site.data.keyword.cloud_notm}} service endpoints, you can connect to {{site.data.keyword.cloud_notm}} services over the {{site.data.keyword.cloud_notm}} private network. However, the only integration that supports private endpoints with {{site.data.keyword.openwhisk}} is {{site.data.keyword.cos_full_notm}}. For more information, see [Object storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage). 
 
 For all other actions, you cannot set private endpoints from within your action code. To connect to services such as a database service, you must use public endpoints.
-
-## Getting help and support
-{: #gettinghelp}
-
-Still having issues with your function?
-{: shortdesc}
-
--   To see whether {{site.data.keyword.cloud_notm}} is available, [check the {{site.data.keyword.cloud_notm}} status page](https://cloud.ibm.com/status?selected=status){: external}.
--   Review the forums to see whether other users ran into the same issue. When you use the forums to ask a question, tag your question so that it is seen by the {{site.data.keyword.cloud_notm}} development teams.
-    -   If you have technical questions about developing functions with {{site.data.keyword.openwhisk}}, post your question on [Stack Overflow ](https://stackoverflow.com/questions/tagged/ibm-cloud-functions){: external} and tag your question with `ibm-cloud-functions`.
--   See [Getting help](/docs/get-support) for more details about using the forums.
--   Contact IBM Support by opening a case. To learn about opening an IBM support case, or about support levels and case severities, see [Contacting support](/docs/get-support).
-When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
-{: tip}
