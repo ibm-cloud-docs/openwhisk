@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-05-27"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -551,7 +551,7 @@ To minimize these dependencies on your local environment, use the [Packaging Pyt
 {: note}
 
 **Before you begin**
-- The following steps assume a Linux based distribution on a processor with AMD64-based architecture to run the commands.
+- The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 - [Review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
 - Make sure that the locally installed Python version to create the compressed action file (for example, Python 3.7.x) matches the {{site.data.keyword.openwhisk_short}} kind that is chosen to later create the action (`--kind python:3.7`).
 - Install the `virtualenv` Python package.
@@ -702,7 +702,7 @@ This approach is recommended when you want to add additional required python pac
 **Before you begin**
 
 - [Review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
-- The following steps assume a Linux based distribution on a processor with AMD64-based architecture to run the commands.
+- The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
 Package your app by completing the following steps.
 
@@ -842,7 +842,7 @@ In this example, install large Python packages such as `matplotlib` and `seaborn
 **Before you begin**
 
 - Review the packages that are included with the [Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
-- The following steps assume a Linux based distribution on a processor with AMD64-based architecture to run the commands.
+- The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
 Only public Docker images are supported.
 {: note}
@@ -1034,7 +1034,7 @@ You can use images from public registries only, such as an image that is publicl
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_docker).
-- The following steps assume a Linux based distribution on a processor with AMD64-based architecture to run the commands.
+- The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
 ### Creating a custom Docker image for your action
 {: #prep_create_custom_docker_action}
@@ -1123,7 +1123,7 @@ Use a single file for quick testing or development purposes. For production apps
 Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image(`docker run -i openwhisk/action-golang-v1.15:nightly ...`). You can package [multiple source files](#prep_go_multi_packages) or [vendor libraries](#prep_go_external_libraries).
 {: tip}
 
-The following steps assume a Linux-based distribution on a processor with AMD64-based architecture and the `ibmcloud cli` installed to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external}.
+The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture. You must install the `ibmcloud cli` to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external}.
 
 ### Structuring Go Apps
 {: #prep_go_struct}
@@ -1214,7 +1214,7 @@ You can create a simple action in Go by creating a file that contains a Go funct
 
    Specify the generated compressed file (`main-bin.zip`) as the file for the `action create` command.
 
-3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.15` Runtime if your action is not called `main` specify the function name with `--name <your action name>`.
+3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.15` runtime. If your action is not called `main`, specify the function name with `--name <your action name>`.
 
    With the source code (`main.go`),
    
@@ -1332,7 +1332,7 @@ You can create an action that includes multiple Go packages. Each package must i
 
 3. (`Optional`) If you want to pre-compile the code, you can compile your compressed source code with the Docker runtime image using `-compile`
 
-   Compile the function to an executable file that is stored in a compressed format that uses the go runtime itself.
+   Compile the function to an executable file that is stored in a compressed format and uses the go runtime itself.
 
    ```bash
    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
@@ -1451,7 +1451,7 @@ If you pre-compile the action, then the libraries are already packaged into the 
 
    2. Specify the compressed file (`main-bin.zip`) as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.15`.
 
-4. Create action the runtime must be specified with `--kind=go:1.15`.
+4. Create the action. The runtime must be specified with `--kind=go:1.15`.
 
    **With `src.zip`**
    

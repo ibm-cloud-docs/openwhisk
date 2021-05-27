@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-05-26"
 
 keywords: error, error handling, functions, serverless, monitoring, composer
 
@@ -27,7 +27,7 @@ subcollection: openwhisk
 # Error handing for {{site.data.keyword.openwhisk_short}}
 {: #error-handing-functions}
 
-{{site.data.keyword.openwhisk}} provides error handling through the execution status of each function invocation. Error handling is provided for invocations that are exposed through the {{site.data.keyword.openwhisk_short}} API, SDK, CLI, or the console. For more information about the various error types, see  [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec).
+{{site.data.keyword.openwhisk}} provides error handling through the execution status of each function invocation. Error handling is provided by {{site.data.keyword.openwhisk_short}} for invocations that are exposed through the {{site.data.keyword.openwhisk_short}} API, SDK, CLI, or the console. For more information about the various error types, see  [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec).
 {: shortdesc}
 
 In addition, the {{site.data.keyword.openwhisk_short}} service automatically reports errors to the Monitoring service. You can set up the built-in integration for the Monitoring service with the {{site.data.keyword.openwhisk}} service to automatically react to error messages. For more information about setting up an alert through a subsequent action invocation, see [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).
