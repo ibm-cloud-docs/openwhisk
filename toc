@@ -115,8 +115,21 @@ Functions
 
     {: .topicgroup}
     Troubleshooting
-        ts_index.md
-        ts-nodejs.md
+        ts_overview.md
+    
+        {: .topicgroup}
+        General troubleshooting
+            ts_action_fails.md
+            ts_property.md
+            ts_limit_reached.md
+            ts_action_terminated.md
+            ts_api_gateway_504.md
+            ts_private_endpoint.md
+            
+        {: .topicgroup}
+        Node.js troubleshooting   
+            ts_action_nodejs_fails.md
+            memory_usage_ts.md
 
     release_notes.md
     get-support.md

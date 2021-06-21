@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: package, cognitive, functions, watson, speech to text
 
@@ -103,21 +103,21 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 
 1. Clone the {{site.data.keyword.speechtotextshort}} package repo.
 
-   ```sh
+   ```
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
 
-   ```sh
+   ```
    ibmcloud fn deploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```sh
+   ```
    ibmcloud fn package list
    ```
    {: pre}
@@ -132,14 +132,14 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 
 4. Bind the credentials from the {{site.data.keyword.speechtotextshort}} instance you created to the package.
 
-   ```sh
+   ```
    ibmcloud fn service bind speech_to_text speech-to-text-v1
    ```
    {: pre}
 
    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
    
-   ```sh
+   ```
    ibmcloud fn service bind speech-to-text speech-to-text-v1
    ```
    {: pre}
@@ -153,7 +153,7 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 
 5. Verify that the package is configured with your {{site.data.keyword.speechtotextshort}} service instance credentials.
 
-   ```sh
+   ```
    ibmcloud fn package get speech-to-text-v1 parameters
    ```
    {: pre}
@@ -216,14 +216,14 @@ Install the {{site.data.keyword.speechtotextshort}} package from the console.
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```sh
+```
 ibmcloud fn action invoke speech-to-text-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
 Try out the `list-models` action.
 
-```sh
+```
 ibmcloud fn action invoke speech-to-text-v1/list-models -b
 ```
 {: pre}

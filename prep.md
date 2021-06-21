@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-27"
+lastupdated: "2021-06-17"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -221,7 +221,7 @@ Next, [create](/docs/openwhisk?topic=openwhisk-actions), and [invoke the action]
 
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app. The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
 1. Create a `package.json` file. Add `webpack` as a development dependency.
 
@@ -280,6 +280,9 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {: pre}
 
+      While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
+   {: note}
+
 5. Build the `webpack` bundle.
 
    ```bash
@@ -314,7 +317,7 @@ The bundle file that is built by `webpack` supports only JavaScript dependencies
 As an alternative to writing all your action code in a single JavaScript source file, you can package your code as a `npm` package in a compressed file.
 {: shortdesc}
 
-Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app. The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
 1. In the root directory, create a `package.json` file.
 
@@ -323,12 +326,15 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```json
    {
      "name": "my-action",
+     "main": "my-action.js",
      "dependencies" : {
        "left-pad" : "1.1.3"
       }
    }
    ```
    {: codeblock}
+
+   This sample assumes the action code in the file `my-action.js`.
 
 2. Install all dependencies locally.
 
@@ -337,7 +343,7 @@ Before you begin, [review the packages that are included with the JavaScript run
    ```
    {: pre}
 
-   While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile binary file artifacts. The archive file upload supports only JavaScript dependencies. If the archive includes binary file dependencies, action invocations might not succeed.
+   While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
    {: note}
 
 3. Create an archive that contains all files, including all dependencies.
@@ -349,7 +355,35 @@ Before you begin, [review the packages that are included with the JavaScript run
 
    **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the **`zip`** command instead.
    {: tip}
-  
+
+### NPM libraries with native dependencies
+
+Node.js libraries can depend on native modules that are compiled during installation for the local runtime by using the `npm install` command. {{site.data.keyword.cloud_notm}} runtimes are based on a Linux AMD64 platform, which requires that the native modules are compiled for that platform. If you are not using a Linux AMD64-based operating system, you can use the `nodejs runtime` Docker container to install the dependencies.
+
+Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. If your zipped action exceeds this limit, you must create a custom docker image for your action.
+{: note}
+
+1. Run the following command to fetch the Node.js modules and compile the native dependencies.
+
+   ```bash
+   docker run --it -v $PWD:/nodejsAction openwhisk/action-nodejs-v12 "npm install"
+   ```
+   {: pre}
+
+2. Create the zipped action code, including the `node_modules` directory.
+
+   ```bash
+   zip -r action.zip *
+   ```
+   {: pre}
+
+3. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
+
+   ```bash
+   ibmcloud fn action create my-action action.zip --kind nodejs:12
+   ```
+   {: pre}
+
 ## How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}
 {: #how_to_package_python}
 

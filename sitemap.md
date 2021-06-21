@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-27"
+lastupdated: "2021-06-21"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -70,7 +70,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [How {{site.data.keyword.openwhisk_short}} works](/docs/openwhisk?topic=openwhisk-about)
 * [{{site.data.keyword.openwhisk_short}} terminology](/docs/openwhisk?topic=openwhisk-about#functions-terminology)
-* [What happens behind the scenes in {{site.data.keyword.openwhisk}}?](/docs/openwhisk?topic=openwhisk-about#about_scenes)
+* [What happens behind the scenes in {{site.data.keyword.openwhisk_short}}?](/docs/openwhisk?topic=openwhisk-about#about_scenes)
   * [1. Entering the system: NGINX](/docs/openwhisk?topic=openwhisk-about#about_ngnix)
   * [2. Entering the system: Controller](/docs/openwhisk?topic=openwhisk-about#about_controller)
   * [3. Authentication and Authorization: CouchDB](/docs/openwhisk?topic=openwhisk-about#about_auth)
@@ -256,6 +256,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
   * [Example: Calling an external API with JavaScript](/docs/openwhisk?topic=openwhisk-prep#prep_js_api)
   * [Packaging JavaScript code with the `webpack` module](/docs/openwhisk?topic=openwhisk-prep#prep_js_pkg)
   * [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm)
+  * [NPM libraries with native dependencies](/docs/openwhisk?topic=openwhisk-prep#npm-libraries-with-native-dependencies)
 * [How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python)
   * [Structuring Python code](/docs/openwhisk?topic=openwhisk-prep#prep_python_struct)
   * [Packaging multiple Python files into an archive](/docs/openwhisk?topic=openwhisk-prep#prep_python_multiple_zip)
@@ -814,17 +815,31 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 {: #sitemap_troubleshooting}
 
 
-[Troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting)
-* [Action is failing](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_action_fails)
-* [Service configuration properties are incorrect](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_property)
-* [System limits were reached](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_limit_reached)
-* [Action terminates after one minute](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_action_terminated)
-* [{{site.data.keyword.apigw_short}} fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_api_gateway_504)
-* [Can't access private endpoint from action](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_private_endpoint)
+[Troubleshooting overview](/docs/openwhisk?topic=openwhisk-troubleshooting)
+* [General ways to resolve issues](/docs/openwhisk?topic=openwhisk-troubleshooting#help-general)
+* [Reviewing cloud issues and status](/docs/openwhisk?topic=openwhisk-troubleshooting#help-cloud-status)
+* [Getting help](/docs/openwhisk?topic=openwhisk-troubleshooting#help-functions)
 
-[Troubleshooting Node.js issues](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs)
-* [Node.js action is failing](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs#ts_action_nodejs_fails)
-* [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs#memory_usage_ts)
+
+## General troubleshooting
+{: #sitemap_general_troubleshooting}
+
+
+[Action is failing](/docs/openwhisk?topic=openwhisk-ts_action_fails)
+
+[Service configuration properties are incorrect](/docs/openwhisk?topic=openwhisk-ts_property)
+
+[System limits were reached](/docs/openwhisk?topic=openwhisk-ts_limit_reached)
+
+[Action terminates after one minute](/docs/openwhisk?topic=openwhisk-ts_action_terminated)
+
+[{{site.data.keyword.apigw_short}} fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-ts_api_gateway_504)
+
+[Can't access private endpoint from action](/docs/openwhisk?topic=openwhisk-ts_private_endpoint)
+
+[Node.js action is failing](/docs/openwhisk?topic=openwhisk-ts_action_nodejs_fails)
+
+[Memory usage with Node.js runtime actions](/docs/openwhisk?topic=openwhisk-memory_usage_ts)
 
 
 ## Release notes
@@ -832,6 +847,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes](/docs/openwhisk?topic=openwhisk-release-notes)
+
+* [June 2021](/docs/openwhisk?topic=openwhisk-release-notes#june21)
 
 * [May 2021](/docs/openwhisk?topic=openwhisk-release-notes#may21)
 

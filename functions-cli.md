@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-06-21"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -47,7 +47,7 @@ To see CLI help for the **`action`** command, run `ibmcloud fn action`.
 Create an action.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--memory MEMORY_LIMIT] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
@@ -154,7 +154,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
 **Example**
 
-```sh
+```
 ibmcloud fn action create hello folder/hello_world.js
 ```
 {: pre}
@@ -172,14 +172,14 @@ ok: created hello
 You can clean up your namespace by deleting actions that you do not want to use any longer.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn action delete ACTION_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn action delete helloworld
 ```
 {: pre}
@@ -197,7 +197,7 @@ ok: deleted hello
 Get metadata that describes a specific action.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--url]
 ```
 {: pre}
@@ -222,7 +222,7 @@ ibmcloud fn action get ACTION_NAME [--save] [--save-as FILENAME] [--summary] [--
 
 **Example**
 
-```sh
+```
 ibmcloud fn action get hello
 ```
 {: pre}
@@ -261,7 +261,7 @@ ok: got action hello
 Run an action to test it.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-file FILE] [--result]
 ```
 {: pre}
@@ -287,7 +287,7 @@ ibmcloud fn action invoke ACTION_NAME [--blocking] [--param KEY VALUE] [--param-
 
 **Example**
 
-```sh
+```
 ibmcloud fn action invoke hello --blocking
 ```
 {: pre}
@@ -298,7 +298,7 @@ ibmcloud fn action invoke hello --blocking
 List all of the actions that you created or a specific number of actions.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [--skip NUMBER_OF_ACTIONS]
 ```
 {: pre}
@@ -321,7 +321,7 @@ ibmcloud fn action list ACTION_NAME [--limit NUMBER_OF_ACTIONS] [--name-sort] [-
 
 **Example**
 
-```sh
+```
 ibmcloud fn action list
 ```
 {: pre}
@@ -335,7 +335,7 @@ Update an action or the app within an action.
 When you update parameters for a package or action, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
-```sh
+```
 ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--copy] [--docker DOCKER_HUB_USERNAME/IMAGE_NAME] [--kind LANGUAGE] [--logsize LIMIT] [--main ENTRY_METHOD_NAME] [--memory MEMORY_LIMIT] [--native] [--param KEY VALUE] [--param-file FILE] [--sequence ACTION_NAME, ACTION_NAME] [--timeout LIMIT] [--web yes|true|raw|no|false] [--web-secure SECRET]
 ```
 {: pre}
@@ -442,7 +442,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 
 **Example**
 
-```sh
+```
 ibmcloud fn action update hello folder/hello_world.js
 ```
 {: pre}
@@ -462,7 +462,7 @@ To see CLI help for the **`activation`** command, run `ibmcloud fn activation`.
 Get metadata that describes a specific activation.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn activation get [ACTIVATION_ID] [FIELD_FILTER] [--last] [--summary]
 ```
 {: pre}
@@ -484,7 +484,7 @@ ibmcloud fn activation get [ACTIVATION_ID] [FIELD_FILTER] [--last] [--summary]
 
 **Example**
 
-```sh
+```
 ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 ```
 {: pre}
@@ -495,7 +495,7 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 List all of the activation IDs for all of the actions in a package.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since UNIX_EPOCH_TIME] [--skip NUMBER_OF_ACTIVATIONS] [--upto UNIX_EPOCH_TIME]
 ```
 {: pre}
@@ -520,7 +520,7 @@ ibmcloud fn activation list [--full] [--limit NUMBER_OF_ACTIVATIONS] [--since UN
 
 **Example**
 
-```sh
+```
 ibmcloud fn activation list
 ```
 {: pre}
@@ -540,7 +540,7 @@ activations
 Get logs for a specific activation.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn activation logs [ACTIVATION_ID] [--last] [--strip]
 ```
 {: pre}
@@ -559,7 +559,7 @@ ibmcloud fn activation logs [ACTIVATION_ID] [--last] [--strip]
 
 **Example**
 
-```sh
+```
 ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 ```
 {: pre}
@@ -570,7 +570,7 @@ ibmcloud fn activation logs 8694a4501be6486a94a4501be6886a1e --summary
 View a streaming, live list of activations for an action or a namespace. You can press `CTRL+C` to exit the polling.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn activation poll [NAMESPACE] [ACTION_NAME] [--exit SECONDS] [--since-days DAYS] [-since-hours HOURS] [--since-minutes MINUTES] [--since-seconds SECONDS]
 ```
 {: pre}
@@ -601,7 +601,7 @@ ibmcloud fn activation poll [NAMESPACE] [ACTION_NAME] [--exit SECONDS] [--since-
 
 **Example**
 
-```sh
+```
 ibmcloud fn activation poll
 ```
 {: pre}
@@ -612,7 +612,7 @@ ibmcloud fn activation poll
 Get the result from a specific activation.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn activation result [ACTIVATION_ID] [--last] [--strip]
 ```
 {: pre}
@@ -628,7 +628,7 @@ ibmcloud fn activation result [ACTIVATION_ID] [--last] [--strip]
 
 **Example**
 
-```sh
+```
 ibmcloud fn activation result 8694a4501be6486a94a4501be6886a1e
 ```
 {: pre}
@@ -648,7 +648,7 @@ To see CLI help for the **`api`** command, run `ibmcloud fn api`.
 Create an API.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn api create BASE_PATH API_PATH API_VERB ACTION_NAME] [--apiname API_NAME] [--config-file FILE] [--response-type TYPE]
 ```
 {: pre}
@@ -680,7 +680,7 @@ ibmcloud fn api create BASE_PATH API_PATH API_VERB ACTION_NAME] [--apiname API_N
 
 **Example**
 
-```sh
+```
 ibmcloud fn api create /hello /world get hello --response-type json
 ```
 {: pre}
@@ -699,7 +699,7 @@ https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>
 Delete an API.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
 ```
 {: pre}
@@ -729,7 +729,7 @@ ibmcloud fn api delete BASE_PATH API_NAME API_PATH API_VERB
 
 **Example**
 
-```sh
+```
 ibmcloud fn api delete /hello /world get
 ```
 {: pre}
@@ -740,7 +740,7 @@ ibmcloud fn api delete /hello /world get
 Get the metadata for an API.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn api get BASE_PATH API_NAME [--format OUTPUT_TYPE] [--full]
 ```
 {: pre}
@@ -775,7 +775,7 @@ ibmcloud fn api get /hello /world
 List all of the APIs that you created or a specific number of APIs. If no name or base path is specified, all of the APIs are listed.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMBER_OF_APIS] [--name-sort] [--skip NUMBER_OF_APIS]
 ```
 {: pre}
@@ -811,7 +811,7 @@ ibmcloud fn api list BASE_PATH API_NAME API_PATH API_VERB [--full] [--limit NUMB
 
 **Example**
 
-```sh
+```
 ibmcloud fn api list
 ```
 {: pre}
@@ -831,7 +831,7 @@ Use a manifest file to deploy a collection of packages, actions, triggers, and r
 To see CLI help for the **`deploy`** command, run `ibmcloud fn deploy`.
 {: tip}
 
-```sh
+```
 ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE][--deployment FILE] [--manifest FILE] [--namespace NAMESPACE][--param KEY VALUE] [--param-file FILE] [--preview][--project PATH] [--strict] [--verbose]
 ```
 {: pre}
@@ -879,7 +879,7 @@ ibmcloud fn deploy [--apihost HOST] [--auth KEY] [--config FILE][--deployment FI
 
 **Example**
 
-```sh
+```
 ibmcloud fn deploy --manifest folder/manifest.yaml
 ```
 {: pre}
@@ -893,7 +893,7 @@ Use a manifest file to undeploy a collection of packages, actions, triggers, and
 To see CLI help for the `undeploy` command, run `ibmcloud fn undeploy`.
 {: tip}
 
-```sh
+```
 ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment FILE] [--manifest FILE] [--namespace NAMESPACE] [--param KEY VALUE] [--param-file FILE] [--preview] [--project PATH] [--strict] [--verbose]
 ```
 {: pre}
@@ -940,7 +940,7 @@ ibmcloud fn undeploy [--apihost HOST] [--auth KEY] [--config FILE] [--deployment
 
 **Example**
 
-```sh
+```
 ibmcloud fn undeploy --manifest folder/manifest.yaml
 ```
 {: pre}
@@ -957,7 +957,7 @@ Use the **`list`** command to view packages, actions, triggers, and rules in the
 View a grouped list of the packages, actions, triggers, and rules in the namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn list [--name-sort]
 ```
 {: pre}
@@ -970,7 +970,7 @@ ibmcloud fn list [--name-sort]
 
 **Example**
 
-```sh
+```
 ibmcloud fn list
 ```
 {: pre}
@@ -993,7 +993,7 @@ To see CLI help for the **`namespace`** command, run `ibmcloud fn namespace`.
 Create an IAM namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION] 
 ```
 {: pre}
@@ -1011,7 +1011,7 @@ ibmcloud fn namespace create NAMESPACE [--description DESCRIPTION]
 
 **Example**
 
-```sh
+```
 ibmcloud fn namespace create HBCTeamProd --description "HBC Team Prod Environment. See Beth for information about this namespace."
 ```
 {: pre}
@@ -1022,14 +1022,14 @@ ibmcloud fn namespace create HBCTeamProd --description "HBC Team Prod Environmen
 Delete an IAM namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace delete NAMESPACE
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn namespace delete mynamespace
 ```
 {: pre}
@@ -1040,7 +1040,7 @@ ibmcloud fn namespace delete mynamespace
 Get the entities for or the metadata information from a Cloud Foundry or IAM namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace get NAMESPACE [--auth KEY] [--name-sort] [--properties] 
 ```
 {: pre}
@@ -1064,7 +1064,7 @@ ibmcloud fn namespace get NAMESPACE [--auth KEY] [--name-sort] [--properties]
 
 **Example**
 
-```sh
+```
 ibmcloud fn namespace get user@domain.com_dev --properties
 ```
 {: pre}
@@ -1086,7 +1086,7 @@ ID: 58c2e718-8c60-48bc-96de-cf9373fe6709
 List the available Cloud Foundry and IAM namespaces.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESPACES] [--name-sort] [--skip NUMBER_OF_NAMESPACES] 
 ```
 {: pre}
@@ -1115,7 +1115,7 @@ ibmcloud fn namespace list [--auth KEY] [--cf] [--iam] [--limit NUMBER_OF_NAMESP
 
 **Example**
 
-```sh
+```
 ibmcloud fn namespace list
 ```
 {: pre}
@@ -1126,7 +1126,7 @@ ibmcloud fn namespace list
 Target an available IAM or Cloud Foundry namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace target NAMESPACE
 ```
 {: pre}
@@ -1139,7 +1139,7 @@ ibmcloud fn namespace target NAMESPACE
   
 **Example**
 
-```sh
+```
 ibmcloud fn namespace target HBCTeamProd
 ```
 {: pre}
@@ -1151,7 +1151,7 @@ ibmcloud fn namespace target HBCTeamProd
 Change the name or description of an IAM namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCRIPTION]
 ```
 {: pre}
@@ -1171,7 +1171,7 @@ ibmcloud fn namespace update NAMESPACE [NEW_NAMESPACE_NAME] [--description DESCR
 
 **Example**
 
-```sh
+```
 ibmcloud fn namespace update HBCTeamProd HBCTeamStaging
 ```
 {: pre}
@@ -1191,7 +1191,7 @@ To see CLI help for the **`package`** command, run `ibmcloud fn package`.
 Bind parameters to a package. All of the actions within the package inherit those parameters unless otherwise specified.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
@@ -1216,7 +1216,7 @@ ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VA
 
 **Example**
 
-```sh
+```
 ibmcloud fn package bind --param name Bob
 ```
 {: pre}
@@ -1227,7 +1227,7 @@ ibmcloud fn package bind --param name Bob
 Create a package designed to contain one or more actions. To add an action in the package, include the package name with the action name when you create or update the action.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
@@ -1255,7 +1255,7 @@ ibmcloud fn package create PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 **Example**
 
-```sh
+```
 ibmcloud fn package create hellopkg
 ```
 {: pre}
@@ -1273,14 +1273,14 @@ ok: created hellopkg
 You can clean up your namespace by deleting packages that you do not want to use any longer.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package delete PACKAGE_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn package delete hello
 ```
 {: pre}
@@ -1298,7 +1298,7 @@ ok: deleted hello
 Get metadata that describes a specific package.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package get PACKAGE_NAME [--summary]
 ```
 {: pre}
@@ -1314,7 +1314,7 @@ ibmcloud fn package get PACKAGE_NAME [--summary]
 
 **Example**
 
-```sh
+```
 ibmcloud fn package get hello
 ```
 {: pre}
@@ -1325,7 +1325,7 @@ ibmcloud fn package get hello
 List all of the packages that you created or a specific number of packages.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] [--skip NUMBER_OF_PACKAGES]
 ```
 {: pre}
@@ -1347,7 +1347,7 @@ ibmcloud fn package list [NAMESPACE] [--limit NUMBER_OF_PACKAGES] [--name-sort] 
 
 **Example**
 
-```sh
+```
 ibmcloud fn package list
 ```
 {: pre}
@@ -1361,7 +1361,7 @@ Run `ibmcloud fn package list /whisk.system` to view a list of preinstalled pack
 Refresh the package bindings for all of the packages within a specific namespace.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn package refresh /NAMESPACE
 ```
 {: pre}
@@ -1375,7 +1375,7 @@ ibmcloud fn package refresh /NAMESPACE
 
 **Example**
 
-```sh
+```
 ibmcloud fn package refresh /user@domain.com_dev
 ```
 {: pre}
@@ -1389,7 +1389,7 @@ Update a package designed to contain one or more actions. To add an action in th
 When you update parameters for a package or action, you must specify all previously created parameters. Otherwise, the previously created parameters are removed. For packages, any services that were bound to the package are also removed, so after you update other parameters you must [bind services](/docs/openwhisk?topic=openwhisk-services) to your package again.
 {: important}
 
-```sh
+```
 ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
@@ -1418,7 +1418,7 @@ ibmcloud fn package update PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 **Example**
 
-```sh
+```
 ibmcloud fn package create hellopkg
 ```
 {: pre}
@@ -1445,7 +1445,7 @@ To see CLI help for the **`property`** command, run `ibmcloud fn property`.
 View the metadata details for a property from the `wsk` CLI.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
@@ -1485,7 +1485,7 @@ ibmcloud fn property get [--apihost HOST] [--apiversion VERSION] [--auth KEY] [-
 
 **Example**
 
-```sh
+```
 ibmcloud fn property get --auth
 ```
 {: pre}
@@ -1496,7 +1496,7 @@ ibmcloud fn property get --auth
 Set a property. At least one flag is required. After a property is set, it is retained on your workstation at `<home_dir>/.bluemix/plugins/cloud-functions/config.json`. To remove a property, run [`ibmcloud fn property unset --<property>`](#cli_prop_set).
 {: shortdec}
 
-```sh
+```
 ibmcloud fn property set [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
@@ -1519,7 +1519,7 @@ ibmcloud fn property set [--auth KEY] [--cert STRING] [--key STRING] [--namespac
 
 **Example**
 
-```sh
+```
 ibmcloud fn property set --namespace myNamespace
 ```
 {: pre}
@@ -1540,7 +1540,7 @@ Unset a property for the `wsk` CLI. At least one flag is required.
 If properties are retained after running the `property unset` command, you can delete the `config.json` file located at `<home_dir>/.bluemix/plugins/cloud-functions/config.json` to remove all properties.
 {: note}
 
-```sh
+```
 ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] [--cert STRING] [--key STRING] [--namespace NAMESPACE]
 ```
 {: pre}
@@ -1568,7 +1568,7 @@ ibmcloud fn property unset [--apihost HOST] [--apiversion VERSION] [--auth KEY] 
 
 **Example**
 
-```sh
+```
 ibmcloud fn property unset --namespace
 ```
 {: pre}
@@ -1588,14 +1588,14 @@ To see CLI help for the **`rule`** command, run `ibmcloud fn rule`.
 Create a rule to associate a trigger with an action. Before you can create a rule, create a trigger and an action first.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule create myrule mytrigger myaction
 ```
 {: pre}
@@ -1613,7 +1613,7 @@ ok: created myrule
 To clean up your namespace, remove rules you no longer need.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule delete RULE_NAME [--disable]
 ```
 {: pre}
@@ -1629,7 +1629,7 @@ ibmcloud fn rule delete RULE_NAME [--disable]
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule delete myrule
 ```
 {: pre}
@@ -1640,14 +1640,14 @@ ibmcloud fn rule delete myrule
 Change the status of a rule to inactive and stop it from running an action when a trigger is fired.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule disable RULE_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule disable myrule
 ```
 {: pre}
@@ -1658,14 +1658,14 @@ ibmcloud fn rule disable myrule
 Change the status of a rule from inactive to active. When active, an action runs when a trigger is fired.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule enable RULE_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule enable myrule
 ```
 {: pre}
@@ -1676,7 +1676,7 @@ ibmcloud fn rule enable myrule
 Get metadata that describes a specific rule.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule get RULE_NAME [--summary]
 ```
 {: pre}
@@ -1692,7 +1692,7 @@ ibmcloud fn rule get RULE_NAME [--summary]
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule get myrule
 ```
 {: pre}
@@ -1703,7 +1703,7 @@ ibmcloud fn rule get myrule
 List all of the rules that you created or a specific number of rules.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip NUMBER_OF_RULES]
 ```
 {: pre}
@@ -1725,7 +1725,7 @@ ibmcloud fn rule list RULE_NAME [--limit NUMBER_OF_RULES] [--name-sort] [--skip 
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule list
 ```
 {: pre}
@@ -1736,14 +1736,14 @@ ibmcloud fn rule list
 See whether a rule is active or inactive. Run the `ibmcloud fn rule disable` or `ibmcloud fn run enable` commands to change the status.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule status RULE_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule status myrule
 ```
 {: pre}
@@ -1754,14 +1754,14 @@ ibmcloud fn rule status myrule
 To change which triggers are associated with which rules, you can update a rule.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn rule update RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule update myrule mytrigger myaction
 ```
 {: pre}
@@ -1780,7 +1780,7 @@ To see CLI help for the **`sdk`** command, run `ibmcloud fn sdk`.
 Install an SDK.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 ```
 {: pre}
@@ -1796,7 +1796,7 @@ ibmcloud fn sdk install COMPONENT [--limit NUMBER_OF_TRIGGERS]
 
 **Example**
 
-```sh
+```
 ibmcloud fn sdk install docker
 ```
 {: pre}
@@ -1819,7 +1819,7 @@ If you receive the error `Unable to refresh user access token: CloudFoundry API 
 Bind service credentials to an action or package.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INSTANCE] [--keyname SERVICE_KEY]
 ```
 {: pre}
@@ -1842,7 +1842,7 @@ ibmcloud fn service bind SERVICE PACKAGE_or_ACTION_NAME [--instance SERVICE_INST
 
 **Example**
 
-```sh
+```
 ibmcloud fn service bind cloudant hello --instance CLOUDANT_SERVICE
 ```
 {: pre}
@@ -1853,7 +1853,7 @@ ibmcloud fn service bind cloudant hello --instance CLOUDANT_SERVICE
 Unbind service credentials from an action or package.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
 ```
 {: pre}
@@ -1870,7 +1870,7 @@ ibmcloud fn service unbind SERVICE PACKAGE_or_ACTION_NAME
 
 **Example**
 
-```sh
+```
 ibmcloud fn service unbind cloudant hello
 ```
 {: pre}
@@ -1889,7 +1889,7 @@ To see CLI help for the **`trigger`** command, run `ibmcloud fn trigger`.
 Create a trigger.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn trigger create TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--feed ACTION_NAME] [--param KEY VALUE] [--param-file FILE] [--trigger-param KEY VALUE] [--feed-param KEY VALUE]
 ```
 {: pre}
@@ -1923,12 +1923,12 @@ ibmcloud fn trigger create TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 **Examples**
 
-```sh
+```
 ibmcloud fn trigger create mytrigger --param name Bob 
 ```
 {: pre}
 
-```sh
+```
 ibmcloud fn trigger create mytrigger --trigger-param name Bob
 ```
 {: pre}
@@ -1937,21 +1937,21 @@ Starting in functions plug-in CLI version 1.0.38, two new options are available 
 
 Previously, you created and updated a trigger with a parameter on it with the following command: 
 
-```sh
+```
 ibmcloud fn trigger create triggerHelloWorld --param msg “Hello World!” 
 ```
 {: pre}
 
 This command creates a trigger called `triggerHelloWorld` with a parameter of KEY `msg` and VALUE of `Hello World!`. This is very simple and straightforward. However, it becomes a little complicated when you create a trigger that contains a feed, especially when you want to add parameters on both the trigger and the trigger feed. For example, if you want to create a trigger with alarm feed, then you must run a command similar to the following example:
 
-```sh
+```
 ibmcloud fn trigger create triggerCron --feed /whisk.system/alarms/alarm --param cron “0,1,2,3,4,5”
 ```
 {: pre}
 
 In this case, the KEY and VALUE pair that follows `--param` are consumed by feed and are treated as feed parameters. By using the new options, you can differentiate between trigger parameters and feed parameters. The following command creates a trigger called `triggerCron` with cron feed parameters of `0,1,2,3,4,5` and a trigger parameter of KEY `msg` and VALUE of `Hello World!`.
 
-```sh
+```
 ibmcloud fn  trigger create triggerCron --feed /whisk.system/alarms/alarm --feed-param cron “0,1,2,3,4,5” --trigger-param msg “Hello World!”
 ```
 {: pre}
@@ -1965,14 +1965,14 @@ The original `--param` option is not deprecated so you can continue to use it as
 Delete a trigger.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn trigger delete TRIGGER_NAME
 ```
 {: pre}
 
 **Example**
 
-```sh
+```
 ibmcloud fn trigger delete mytrigger
 ```
 {: pre}
@@ -1983,7 +1983,7 @@ ibmcloud fn trigger delete mytrigger
 Test a trigger by firing it, rather than waiting for it to be triggered automatically.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 ```
 {: pre}
@@ -2002,7 +2002,7 @@ ibmcloud fn trigger fire TRIGGER_NAME [--param KEY VALUE] [--param-file FILE]
 
 **Example**
 
-```sh
+```
 ibmcloud fn trigger fire --param name Bob
 ```
 {: pre}
@@ -2013,7 +2013,7 @@ ibmcloud fn trigger fire --param name Bob
 Get metadata that describes a specific trigger.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn trigger get TRIGGER_NAME [--summary]
 ```
 {: pre}
@@ -2029,7 +2029,7 @@ ibmcloud fn trigger get TRIGGER_NAME [--summary]
 
 **Example**
 
-```sh
+```
 ibmcloud fn trigger get mytrigger
 ```
 {: pre}
@@ -2040,7 +2040,7 @@ ibmcloud fn trigger get mytrigger
 List all of the triggers that you created or a specific number of triggers.
 {: shortdec}
 
-```sh
+```
 ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort] [--skip NUMBER_OF_TRIGGERS]
 ```
 {: pre}
@@ -2064,7 +2064,7 @@ ibmcloud fn trigger list TRIGGER_NAME [--limit NUMBER_OF_TRIGGERS] [--name-sort]
 
 **Example**
 
-```sh
+```
 ibmcloud fn trigger list
 ```
 {: pre}
@@ -2078,7 +2078,7 @@ Update a trigger.
 When you update trigger parameters (Note: this is different than trigger feed parameters) that use the `--trigger-parameter` or `--param-file` option, you must specify all previously created parameters. Otherwise, the previously created parameters are removed.  For more information, see [Create trigger](#cli_trigger_create).
 {: important}
 
-```sh
+```
 ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_VALUE] [--annotation-file FILE] [--param KEY VALUE] [--param-file FILE] [--trigger-param KEY VALUE] [--feed-param KEY VALUE]
 ```
 {: pre}
@@ -2110,17 +2110,17 @@ ibmcloud fn trigger update TRIGGER_NAME [--annotation ANNOTATION_KEY ANNOTATION_
 
 **Examples**
 
-```sh
+```
 ibmcloud fn trigger update mytrigger --param name Jim
 ```
 {: pre}
 
-```sh
+```
 ibmcloud fn trigger update mytrigger --trigger-param name Jim
 ```
 {: pre}
 
-```sh
+```
 ibmcloud fn trigger update mytrigger --feed-param cron "0,1,2,3,4"
 ```
 {: pre}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -70,21 +70,21 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
 
 1. Clone the {{site.data.keyword.nlclassifiershort}} package repo.
   
-   ```sh
+   ```
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
   
-   ```sh
+   ```
    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
   
-   ```sh
+   ```
    ibmcloud fn package list
    ```
    {: pre}
@@ -99,14 +99,14 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
 
 4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.
   
-   ```sh
+   ```
    ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
    ```
    {: pre}
 
    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
    
-   ```sh
+   ```
    ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
    ```
    {: pre}
@@ -120,7 +120,7 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
 
 5. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
   
-   ```sh
+   ```
    ibmcloud fn package get natural-language-classifier-v1 parameters
    ```
    {: pre}
@@ -182,14 +182,14 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 
 To use the actions in this package, run commands in the following format.
 
-```sh
+```
 ibmcloud fn action invoke natural-language-classifier-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
 Try out the `list-classifiers` action.
 
-```sh
+```
 ibmcloud fn action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}

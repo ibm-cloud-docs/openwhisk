@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-06-21"
 
 keywords: mobile, sdk, cocoapods, carthage, functions, action, trigger
 
@@ -79,7 +79,7 @@ end
 
 Create a file in your app's project directory and name it `Cartfile`. Put the following line in the file:
 
-```sh
+```
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
 {: pre}
@@ -102,7 +102,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to download example co
 
 To install the starter app example, enter the following command:
 
-```sh
+```
 ibmcloud fn sdk install iOS
 ```
 {: pre}
@@ -111,7 +111,7 @@ This command downloads a compressed file that contains the starter app. The proj
 
 To install the SDK, enter the following command:
 
-```sh
+```
 pod install
 ```
 {: pre}
@@ -123,7 +123,7 @@ To get up and running quickly, create a `WhiskCredentials` object with your {{si
 
 For example, use the following example code to create a credentials object:
 
-```sh
+```
 let credentialsConfiguration = WhiskCredentials(accessKey: "myKey", accessToken: "myToken")
 let whisk = Whisk(credentials: credentialsConfiguration!)
 ```
@@ -131,7 +131,7 @@ let whisk = Whisk(credentials: credentialsConfiguration!)
 
 In previous example, you pass in the `myKey` and `myToken` that you get from {{site.data.keyword.openwhisk_short}}. You can retrieve the key and token with the following CLI command:
 
-```sh
+```
 ibmcloud fn property get --auth
 ```
 {: pre}

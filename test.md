@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: actions, serverless, javascript, node, node.js, functions, testing, memory
 
@@ -73,7 +73,7 @@ ibmcloud fn action invoke --result myAction --param name stranger
 You can pass a file of JSON-formatted parameters.
 {: shortdesc}
 
-```sh
+```
 ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
@@ -94,7 +94,7 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 You can pass JSON-formatted parameters with your invocation.
 {: shortdesc}
 
-```sh
+```
 ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_VALUE", "PARAM_NAME": "PARAM_VALUE"}'
 ```
 {: pre}
@@ -119,7 +119,7 @@ Blocking invocations use a request-response style and wait for the activation re
 
 Run the action by running a blocking invocation.
 
-```sh
+```
 ibmcloud fn action invoke --blocking ACTION_NAME
 ```
 {: pre}
@@ -151,7 +151,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 1. Fire the trigger.
 
-   ```sh
+   ```
    ibmcloud fn trigger fire TRIGGER_NAME --param PARAM_NAME PARAM_VALUE --param PARAM_NAME PARAM_VALUE
    ```
    {: pre}
@@ -167,7 +167,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 2. Verify that the action was invoked by checking the most recent activation record.
 
-   ```sh
+   ```
    ibmcloud fn activation list --limit 1 ACTION_NAME
    ```
    {: pre}
@@ -182,7 +182,7 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 3. Get more information about the activation ID from the previous command output.
 
-   ```sh
+   ```
    ibmcloud fn activation result ACTIVATION_ID
    ```
    {: pre}
@@ -204,7 +204,7 @@ Check how long an activation took to complete by getting the activation log. If 
 
 1. Get the activation ID.
 
-   ```sh
+   ```
    ibmcloud fn activation list --limit 1 ACTION_NAME
    ```
    {: pre}
@@ -219,7 +219,7 @@ Check how long an activation took to complete by getting the activation log. If 
 
 2. Get the log for the activation ID.
 
-   ```sh
+   ```
    ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
    ```
    {: pre}
@@ -241,14 +241,14 @@ Check how long an activation took to complete by getting the activation log. If 
 
 3. Update the action with a timeout in milliseconds.
 
-   ```sh
+   ```
    ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME --timeout VALUE
    ```
    {: pre}
 
    **Example**
    
-   ```sh
+   ```
    ibmcloud fn action update hello hello.js --kind nodejs:10 --timeout 1000
    ```
    {: pre}
@@ -261,21 +261,21 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 1. Create a container locally that runs your Docker image.
 
-   ```sh
+   ```
    docker run IMAGE_NAME
    ```
    {: pre}
 
 2. Get a list of the containers to get a container ID.
 
-   ```sh
+   ```
    docker ps
    ```
    {: pre}
 
 3. Check the statistics of the running container.
 
-   ```sh
+   ```
    docker stats CONTAINER_ID
    ```
    {: pre}
@@ -284,14 +284,14 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 5. After you are done reviewing the information, you can stop the running container.
 
-   ```sh
+   ```
    docker stop CONTAINER_ID
    ```
    {: pre}
 
 6. Remove the container.
 
-   ```sh
+   ```
    docker rm CONTAINER_ID
    ```
    {: pre}

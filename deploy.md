@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-06-21"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -78,7 +78,7 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
 3. Use the **`deploy`** command to deploy the package, action, and API.
 
-    ```sh
+    ```
     ibmcloud fn deploy --manifest hello_world_manifest.yml
     ```
     {: pre}
@@ -87,35 +87,35 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
     1. List the actions by using the following command.
 
-      ```sh
+      ```
       ibmcloud fn action list
       ```
       {: pre}
 
     2. List the packages by using the following command.
 
-      ```sh
+      ```
       ibmcloud fn package list
       ```
       {: pre}
 
     3. List the APIs by using the following command.
 
-      ```sh
+      ```
       ibmcloud fn api list
       ```
       {: pre}
 
 5. Invoke the API.
 
-    ```sh
+    ```
     curl URL-FROM-API-LIST-OUTPUT
     ```
     {: codeblock}
 
 Optional: You can undeploy the same entities by using the `undeploy` command.
 
-```sh
+```
 ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}

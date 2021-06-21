@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: cognitive, serverless, functions, watson, personality insights
 
@@ -73,21 +73,21 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 1. Clone the {{site.data.keyword.personalityinsightsshort}} package repo.
 
-   ```sh
+   ```
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
 
-   ```sh
+   ```
    ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```sh
+   ```
    ibmcloud fn package list
    ```
    {: pre}
@@ -102,14 +102,14 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 4. Bind the credentials from the {{site.data.keyword.personalityinsightsshort}} instance you created to the package.
 
-   ```sh
+   ```
    ibmcloud fn service bind personality_insights personality-insights-v3
    ```
    {: pre}
 
    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
 
-   ```sh
+   ```
    ibmcloud fn service bind personality-insights personality-insights-v3
    ```
    {: pre}
@@ -123,7 +123,7 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 5. Verify that the package is configured with your {{site.data.keyword.personalityinsightsshort}} service instance credentials.
 
-   ```sh
+   ```
    ibmcloud fn package get personality-insights-v3 parameters
    ```
    {: pre}
@@ -187,7 +187,7 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```sh
+```
 ibmcloud fn action invoke personality-insights-v3/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -196,7 +196,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of {{site.data.keyword.personalityinsightsshort}}, 2017-10-13. Try out the `profile` action.
 
-```sh
+```
 ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}

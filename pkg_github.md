@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-06-21"
 
 keywords: github, actions, trigger, event, functions
 
@@ -59,7 +59,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 2. Create a package binding that is configured for your GitHub repository and with your access token.
 
-   ```sh
+   ```
    ibmcloud fn package bind /whisk.system/github <myGit> \
      --param username <myGitUser> \
      --param repository <myGitRepo> \
@@ -69,7 +69,7 @@ In the following example, a trigger is created that fires each time a new commit
 
 3. Create a trigger for the GitHub `push` event type by using your `myGit/webhook` feed.
 
-   ```sh
+   ```
    ibmcloud fn trigger create myGitTrigger --feed myGit/webhook --param events push
    ```
    {: pre}

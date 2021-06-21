@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-05-07"
+lastupdated: "2021-06-21"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -30,6 +30,14 @@ subcollection: openwhisk
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk}}.
 {: shortdesc}
 
+## June 2021
+{: #june21}
+
+| Date | Description |
+| --------- | -------- |
+| 21 June | <ul><li>Added an overview topic to troubleshooting. See [Troubleshooting overview](/docs/openwhisk?topic=openwhisk-troubleshooting).</li></ul>  |
+{: caption="Changes for June 2021" caption-side="top"}
+
 ## May 2021
 {: #may21}
 
@@ -45,7 +53,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | Date | Description |
 | --------- | -------- |
 | 27 April | <ul><li>Added information about deprecating Watson services. For more information, see the individual packages.</li></ul>  |
-| 12 April | <ul><li>Added troubleshooting tip for when your action returns an HTTP 504 Gateway Timeout error. See [API Gateway fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-troubleshooting#ts_api_gateway_504).</li><li>Updates to [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).</li><li> Changes for Functions CLI version 1.0.54. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul>  |
+| 12 April | <ul><li>Added troubleshooting tip for when your action returns an HTTP 504 Gateway Timeout error. See [API Gateway fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-ts_api_gateway_504).</li><li>Updates to [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).</li><li> Changes for Functions CLI version 1.0.54. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul>  |
 {: caption="Changes for April 2021" caption-side="top"}
 
 ## March 2021

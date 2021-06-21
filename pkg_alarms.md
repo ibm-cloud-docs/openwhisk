@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: alarms, serverless, triggers, functions, event, cron
 
@@ -44,7 +44,7 @@ The package includes the following feeds.
 
 The `/whisk.system/alarms/once` feed configures the Alarm service to fire a trigger event one time on a specified date. To create a fire-once alarm, run the following command.
 
-```sh
+```
 ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param date "<date>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param deleteAfterFire "<delete_option>"
 ```
 {: pre}
@@ -82,7 +82,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 
 The following command is an example of creating a trigger that fires once on December 25, 2019, 12:30:00 UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`. After the trigger fires, the trigger and all associated rules are deleted.
 
-```sh
+```
 ibmcloud fn trigger create fireOnce \
   --feed /whisk.system/alarms/once \
   --param date "2019-12-25T12:30:00.000Z" \
@@ -96,7 +96,7 @@ ibmcloud fn trigger create fireOnce \
 
 The `/whisk.system/alarms/interval` feed configures the Alarm service to fire a trigger event on an interval-based schedule. To create an interval-based alarm, run the following command.
 
-```sh
+```
 ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param minutes "<minutes>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
 {: pre}
@@ -138,7 +138,7 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 
 The following example creates a trigger that fires once every 2 minutes. The trigger fires as soon as possible, and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
-```sh
+```
 ibmcloud fn trigger create interval \
   --feed /whisk.system/alarms/interval \
   --param minutes 2 \
@@ -152,7 +152,7 @@ ibmcloud fn trigger create interval \
 
 The `/whisk.system/alarms/alarm` feed configures the Alarm service to fire a trigger event at a specified frequency. To create a time-based alarm, run the following command.
 
-```sh
+```
 ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cron "<cron>" --param trigger_payload "{<key>:<value>,<key>:<value>}" --param startDate "<start_date>" --param stopDate "<stop_date>"
 ```
 {: pre}
@@ -200,7 +200,7 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 The following command is an example of creating a trigger that fires once every 2 minutes. The trigger does not start firing until
 `January 1, 2019, 00:00:00` UTC and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
-```sh
+```
 ibmcloud fn trigger create periodic \
   --feed /whisk.system/alarms/alarm \
   --param cron "*/2 * * * *" \

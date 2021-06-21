@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: actions, serverless, javascript, node, node.js, functions, triggers, rule
 
@@ -49,7 +49,7 @@ Before you begin, create [an action](/docs/openwhisk?topic=openwhisk-actions) an
 
 Create a rule to associate a trigger with an action. Rules must be created directly within a namespace and can't be created inside packages.
 
-```sh
+```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 ```
 {: pre}
@@ -57,7 +57,7 @@ ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_NAME
 
 To disable the rule, you can run the following command.
 
-```sh
+```
 ibmcloud fn rule disable RULE_NAME
 ```
 {: pre}
@@ -69,7 +69,7 @@ You can use rules to associate triggers with action sequences.
 
 Before you begin, create [an action sequence](/docs/openwhisk?topic=openwhisk-sequences) and [a trigger](/docs/openwhisk?topic=openwhisk-triggers).
 
-```sh
+```
 ibmcloud fn rule create RULE_NAME TRIGGER_NAME ACTION_SEQUENCE_NAME
 ```
 {: pre}

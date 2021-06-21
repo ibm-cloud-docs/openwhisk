@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-06-21"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -41,14 +41,14 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
 
 1. Create an action by running the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
   
-  ```sh
+  ```
   ibmcloud fn action create <action_name> <file> --kind <runtime>
   ```
   {: pre}
 
   **Example**
 
-  ```sh
+  ```
   ibmcloud fn action create hello hello.js --kind nodejs:10
   ```
   {: pre}
@@ -62,7 +62,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
   
 2. Verify that the action is in your actions list.
 
-  ```sh
+  ```
   ibmcloud fn action list
   ```
   {: pre}
@@ -82,7 +82,7 @@ Tips:
     - To set a timeout, include `--timeout <value>` with your create command, where the value is in milliseconds.
 - If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
 
-  ```sh
+  ```
   ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
   ```
   {: pre}
@@ -95,7 +95,7 @@ You can combine your app files with Docker images to create actions. For more in
 
 Run the following command.
 
-```sh
+```
 ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag> <app_file>
 ```
 {: pre}
@@ -137,7 +137,7 @@ To create your action from an executable, use the `--native` argument as shortha
 
 **Example**
 
-```sh
+```
 ibmcloud fn action create <action_name> exec.zip --native
 ```
 {: pre}
@@ -171,14 +171,14 @@ You can update your actions from the CLI with the [**`ibmcloud fn action update`
 
 3. Update an action and include the local path to your app or the Docker image.
 
-    ```sh
+    ```
     ibmcloud fn action update <action_name> <app_file> --kind <runtime>
     ```
     {: pre}
 
     **Example**
 
-    ```sh
+    ```
     ibmcloud fn action update hello hello.js --kind nodejs:10
     ```
     {: pre}
@@ -192,7 +192,7 @@ You can update your actions from the CLI with the [**`ibmcloud fn action update`
 
     If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the path to the local app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
 
-      ```sh
+      ```
       ibmcloud fn action update hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
       ```
       {: pre}
@@ -226,14 +226,14 @@ To bind the parameters:
 
 1. Update an action and bind the default parameters to it.
 
-    ```sh
+    ```
     ibmcloud fn action update <action_name> --param <parameter_name> <parameter_value>
     ```
     {: pre}
 
     **Example**
 
-    ```sh
+    ```
     ibmcloud fn action update MyApp --param name World
     ```
     {: pre}
@@ -250,7 +250,7 @@ To bind the parameters:
 
 2. Verify that the parameters were bound to the action.
 
-    ```sh
+    ```
     ibmcloud fn action get MyApp parameters
     ```
     {: pre}
@@ -271,7 +271,7 @@ To bind the parameters:
 
 Optional: To clear the parameters that were previously bound, update the action without including any parameters.
 
-```sh
+```
 ibmcloud fn action update <action_name> <app_file>
 ```
 {: pre}
@@ -279,7 +279,7 @@ ibmcloud fn action update <action_name> <app_file>
 ## Packaging actions
 {: #actions_pkgs}
 
-In {{site.data.keyword.openwhisk}}, you can use packages to bundle together a set of related actions and feeds, and share them with others. Packages also allow parameters to be shared across all entities in the package.
+In {{site.data.keyword.openwhisk_short}}, you can use packages to bundle together a set of related actions and feeds, and share them with others. Packages also allow parameters to be shared across all entities in the package.
 {: shortdesc}
 
 A package can include *actions* and *feeds*.
@@ -288,14 +288,14 @@ A package can include *actions* and *feeds*.
 
 1. Create a package.
 
-  ```sh
+  ```
   ibmcloud fn package create <package_name>
   ```
   {: pre}
 
 2. Get a summary of the package. Notice that the package is empty.
 
-  ```sh
+  ```
   ibmcloud fn package get --summary <package_name>
   ```
   {: pre}
@@ -309,14 +309,14 @@ A package can include *actions* and *feeds*.
 
 4. Create an action and include it in the package. Creating an action in a package requires that you prefix the action name with a package name. Package nesting is not allowed. A package can contain only actions and can't contain another package.
 
-  ```sh
+  ```
   ibmcloud fn action create <package_name>/<action_name> <app_file>
   ```
   {: pre}
 
 5. Get a summary of the package.
 
-  ```sh
+  ```
   ibmcloud fn package get --summary <package_name>
   ```
   {: pre}
@@ -344,14 +344,14 @@ Before you begin, create a package that includes at least one action.
 
 1. Update a package and bind the default parameter to it.
 
-    ```sh
+    ```
     ibmcloud fn package update <package_name> --param <parameter_name> <parameter_value>
     ```
     {: pre}
 
     **Example**
 
-    ```sh
+    ```
     ibmcloud fn package update MyApp --param name World
     ```
     {: pre}
@@ -368,7 +368,7 @@ Before you begin, create a package that includes at least one action.
 
 3. Verify that the parameters were bound to the package.
 
-    ```sh
+    ```
     ibmcloud fn package get MyApp parameters
     ```
     {: pre}
@@ -389,7 +389,7 @@ Before you begin, create a package that includes at least one action.
 
 4. Verify that the parameters were inherited by the package.
 
-    ```sh
+    ```
     ibmcloud fn package get MyApp/MyAction parameters
     ```
     {: pre}
@@ -416,14 +416,14 @@ After the actions and feeds that comprise a package are debugged and tested, the
 
 1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
 
-  ```sh
+  ```
   ibmcloud fn package update <package_name> --shared yes
   ```
   {: pre}
 
 2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
-  ```sh
+  ```
   ibmcloud fn package get <package_name> publish
   ```
   {: pre}
@@ -438,7 +438,7 @@ After the actions and feeds that comprise a package are debugged and tested, the
 
 3. Get a description of the package to provide others with the fully qualified name of the package so that they can bind it or invoke actions in it. The fully qualified name includes the namespace.
 
-  ```sh
+  ```
   ibmcloud fn package get --summary <package_name>
   ```
   {: pre}
@@ -521,7 +521,7 @@ To use these different actions versions in triggers, assign the appropriate vers
 
 **Example**
 
-```sh
+```
 ibmcloud fn rule update myRule myTrigger myAction_1.0.1
 ```
 {: pre}

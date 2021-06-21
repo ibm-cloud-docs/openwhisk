@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: natural language, understanding, watson knowledge studio, functions
 
@@ -69,21 +69,21 @@ To install the {{site.data.keyword.nlushort}} package:
 
 1. Clone the {{site.data.keyword.nlushort}} package repo.
 
-   ```sh
+   ```
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
   
-   ```sh
+   ```
    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-understanding-v1/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
   
-   ```sh
+   ```
    ibmcloud fn package list
    ```
    {: pre}
@@ -98,7 +98,7 @@ To install the {{site.data.keyword.nlushort}} package:
 
 4. Bind the credentials from the {{site.data.keyword.nlushort}} instance you created to the package.
   
-   ```sh
+   ```
    ibmcloud fn service bind natural-language-understanding natural-language-understanding-v1
    ```
    {: pre}
@@ -112,7 +112,7 @@ To install the {{site.data.keyword.nlushort}} package:
 
 5. Verify that the package is configured with your {{site.data.keyword.nlushort}} service instance credentials.
   
-   ```sh
+   ```
    ibmcloud fn package get natural-language-understanding-v1 parameters
    ```
    {: pre}
@@ -174,7 +174,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 
 To use the actions in this package, run commands in the following format:
 
-```sh
+```
 ibmcloud fn action invoke natural-language-understanding-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -183,7 +183,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Natural Language Understanding, 2018-03-16. Try out the `list-models` action.
 
-```sh
+```
 ibmcloud fn action invoke natural-language-understanding-v1/list-models -b -p version 2018-03-16
 ```
 {: pre}

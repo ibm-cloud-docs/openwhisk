@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-13"
+lastupdated: "2021-06-21"
 
 keywords: feeds, functions, webhooks, polling, connections, hook
 
@@ -69,21 +69,21 @@ When you create a trigger from the CLI with the `--feed` parameter, the feed act
 
 For example, create a `mycloudant` binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
 
-```sh
+```
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Or using the trigger feed parameters:
 
-```sh
+```
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes --feed-param dbName myTable
 ```
 {: pre}
 
 Then, invoke the trigger with something equivalent to the following command:
 
-```sh
+```
 ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -450,7 +450,7 @@ When you update parameters for a package, action, or trigger you must specify al
 
 **Updating parameters for all actions in a package**
 
-```sh
+```
 ibmcloud fn package update cloud-object-storage 
 --param bucket <bucket-name> 
 --param endpoint <bucket-endpoint>
@@ -459,7 +459,7 @@ ibmcloud fn package update cloud-object-storage
 
 **Updating parameters to a specific action**
 
-```sh
+```
 ibmcloud fn action update cloud-object-storage/object-write 
 --param bucket <bucket-name> 
 --param endpoint <bucket_endpoint>

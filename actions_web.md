@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-06-21"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -520,7 +520,7 @@ To alter the response of a web action:
       
     * Running the following `wget` command.
     
-      ```sh
+      ```
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
       ```
       {: pre}
@@ -827,7 +827,7 @@ You can test the web action by using one of the following methods.
 
   * Testing the web action by using a `wget` command.
   
-      ```sh
+      ```
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
@@ -865,7 +865,7 @@ To secure your web action with a custom value, update your `hello` web action wi
       
    * Testing the action by using a `wget` command.
    
-      ```sh
+      ```
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
       ```
       {: pre}
@@ -887,7 +887,7 @@ You can get the URL of your web action by running `ibmcloud fn action get hello 
     
   * Testing the web action by using a `wget` command.
   
-      ```sh
+      ```
       wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
       ```
       {: pre}

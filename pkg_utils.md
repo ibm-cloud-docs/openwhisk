@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: actions, serverless, functions, utilities, split, sort, hosturl, date, head, echo, cat, smash
 
@@ -32,7 +32,7 @@ Several utility actions are provided in the `/whisk.system/utils` package for {{
 
 1. List the actions in the `/whisk.system/utils` package.
 
-   ```sh
+   ```
    ibmcloud fn package get --summary /whisk.system/utils
    ```
    {: pre}
@@ -55,14 +55,14 @@ Several utility actions are provided in the `/whisk.system/utils` package for {{
 
 2. Using the `split` and `sort` actions, create an action sequence so that the result of `split` is passed as an argument to `sort`. This action sequence converts some lines of text to an array, and sorts the lines.
 
-   ```sh
+   ```
    ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
    ```
    {: pre}
 
 3. Invoke the action.
 
-   ```sh
+   ```
    ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
    ```
    {: pre}

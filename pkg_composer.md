@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions, combinator, loops, actions
 
@@ -138,7 +138,7 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         
 4.  Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk_short}}.
 
-    ```sh
+    ```
     ibmcloud fn action invoke demo
     ```
     {: pre}
@@ -154,7 +154,7 @@ With Apache OpenWhisk, you can chain functions together in a `sequence`, where t
 {: #sequences-without-composer}
 You can chain together two functions that are named `action1` and `action2` in  {{site.data.keyword.openwhisk_short}}:
 
-```sh
+```
 ibmcloud fn action create --sequence mysequence action1 action2
 ```
 {: pre}

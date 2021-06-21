@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-06-21"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -184,7 +184,7 @@ Set an access policy for a service ID by using the CLI.
 
 Copy the following command. Replace `<namespace_service_ID>` with the name of your {{site.data.keyword.openwhisk_short}} namespace. Replace `<IAM_role1,IAM_role2>` with the IAM roles you want to assign to your namespace. Replace `<other_service_name>` with the name of the {{site.data.keyword.IBM_notm}} service you want {{site.data.keyword.openwhisk_short}} to work with. Replace `<other_service_GUID>` with the GUID of the {{site.data.keyword.IBM_notm}} service instance.
 
-```sh
+```
 ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_name> --service-instance <other_service_GUID>
 ```
 {: pre}

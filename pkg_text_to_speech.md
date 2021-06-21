@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: cognitive, functions, packages, Watson, text to speech
 
@@ -81,21 +81,21 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 
 1. Clone the {{site.data.keyword.texttospeechshort}} package repo.
 
-   ```sh
+   ```
    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
    ```
    {: pre}
 
 2. Deploy the package.
 
-   ```sh
+   ```
    ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
    ```
    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```sh
+   ```
    ibmcloud fn package list
    ```
    {: pre}
@@ -110,14 +110,14 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 
 4. Bind the credentials from the {{site.data.keyword.texttospeechshort}} instance you created to the package.
   
-   ```sh
+   ```
    ibmcloud fn service bind text_to_speech text-to-speech-v1
    ```
    {: pre}
 
    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
   
-   ```sh
+   ```
    ibmcloud fn service bind text-to-speech text-to-speech-v1
    ```
    {: pre}
@@ -131,7 +131,7 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 
 5. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} Service instance credentials.
   
-   ```sh
+   ```
    ibmcloud fn package get text-to-speech-v1 parameters
    ```
    {: pre}
@@ -194,14 +194,14 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```sh
+```
 ibmcloud fn action invoke text-to-speech-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
 Try out the `list-voices` action.
 
-```sh
+```
 ibmcloud fn action invoke text-to-speech-v1/list-voices -b
 ```
 {: pre}

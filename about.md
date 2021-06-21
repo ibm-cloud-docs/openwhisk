@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-06-21"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -48,10 +48,10 @@ Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_
 | Package | Integrations with services and event providers can be added with packages. A [package](/docs/openwhisk?topic=openwhisk-pkg_ov) is a bundle of feeds and actions. An existing catalog of packages offers a quick way to enhance applications with useful capabilities, and to access external services in the ecosystem. Examples of external services that have {{site.data.keyword.openwhisk_short}} packages include {{site.data.keyword.cloudant_short_notm}}, Slack, and GitHub. | 
 {: caption="Table 1. {{site.data.keyword.openwhisk_short}} Terms" caption-side="bottom"}
 
-## What happens behind the scenes in {{site.data.keyword.openwhisk}}?
+## What happens behind the scenes in {{site.data.keyword.openwhisk_short}}?
 {: #about_scenes}
 
-{{site.data.keyword.openwhisk}} is based on OpenWhisk, an open source project that combines components such as NGINX, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
+{{site.data.keyword.openwhisk_short}} is based on OpenWhisk, an open source project that combines components such as NGINX, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
 <img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
 
@@ -114,7 +114,7 @@ After Kafka confirms that the message is received, it responds to the HTTP reque
 ### 7. Invoking the code: Invoker
 {: #about_invoker}
 
-The **Invoker** is the heart of {{site.data.keyword.openwhisk}} because the Invoker implements the action. To run actions in an isolated and safe way, **Docker** is used to set up a self-encapsulated environment (called a *container*) for each action that is invoked. After the container is created, the code is injected and then run with the parameters that were passed to it. When the results are returned, the container is destroyed. Performance optimizations can be done at this stage to reduce maintenance requirements, and make low response times possible.
+The **Invoker** is the heart of {{site.data.keyword.openwhisk_short}} because the Invoker implements the action. To run actions in an isolated and safe way, **Docker** is used to set up a self-encapsulated environment (called a *container*) for each action that is invoked. After the container is created, the code is injected and then run with the parameters that were passed to it. When the results are returned, the container is destroyed. Performance optimizations can be done at this stage to reduce maintenance requirements, and make low response times possible.
 
 In this case, with a *Node.js* based action at hand, the Invoker starts a Node.js container. Then, it injects the code from `myAction`, runs it with no parameters, extracts the result, saves the logs, and destroys the Node.js container.
 

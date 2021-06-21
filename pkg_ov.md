@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-07"
+lastupdated: "2021-06-21"
 
 keywords: packages, installable packages, functions, binding, pre-installed
 
@@ -47,7 +47,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
 1. Get a list of packages in the `/whisk.system` namespace.
 
-   ```sh
+   ```
    ibmcloud fn package list /whisk.system
    ```
    {: pre}
@@ -68,21 +68,21 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
 2. Get a list of entities in a package.
 
-   ```sh
+   ```
    ibmcloud fn package get --summary <package_name>
    ```
    {: pre}
 
    **Example**
 
-   ```sh
+   ```
    ibmcloud fn package get --summary /whisk.system/cloudant
    ```
    {: pre}
 
    **Example output**
 
-   ```sh
+   ```
    package /whisk.system/cloudant: Cloudant database service
      (parameters: *apihost, *bluemixServiceName, dbname, host, iamApiKey, iamUrl, overwrite, password, username)
    action /whisk.system/cloudant/delete-attachment: Delete document attachment from database
@@ -110,7 +110,7 @@ Several packages are registered with {{site.data.keyword.openwhisk_short}} alrea
 
    **Example**
 
-   ```sh
+   ```
    ibmcloud fn action get --summary /whisk.system/cloudant/read
    ```
    {: pre}
@@ -137,7 +137,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 1. Bind to the `/whisk.system/samples` package and set a default `place` parameter value.
 
-   ```sh
+   ```
    ibmcloud fn package bind /whisk.system/samples valhallaSamples --param place Valhalla
    ```
    {: pre}
@@ -151,7 +151,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 2. Get a description of the package binding.
 
-   ```sh
+   ```
    ibmcloud fn package get --summary valhallaSamples
    ```
    {: pre}
@@ -171,7 +171,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 3. Invoke an action in the package binding.
   
-   ```sh
+   ```
    ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin
    ```
    {: pre}
@@ -189,7 +189,7 @@ In the following example, you bind to the `/whisk.system/samples` package.
 
 4. Invoke an action and overwrite the default parameter value.
   
-   ```sh
+   ```
    ibmcloud fn action invoke --blocking --result valhallaSamples/greeting --param name Odin --param place Asgard
    ```
    {: pre}
@@ -220,28 +220,28 @@ To add a package:
 
 1. Clone the package repo.
 
-   ```sh
+   ```
    git clone https://github.com/ORG_NAME/REPOSITORY_NAME
    ```
    {: pre}
 
 2. Navigate to the directory that contains the `manifest.yaml` file.
 
-   ```sh
+   ```
    cd <filepath>/<package_name>
    ```
    {: pre}
 
 3. Deploy the package.
 
-   ```sh
+   ```
    ibmcloud fn deploy -m manifest.yaml
    ```
    {: pre}
 
    Some packages require certain environment variables to enable the package to function properly. If so, include the environment variables with the `deploy` command. For example, you can choose a name for the package and specify it with the PACKAGE_NAME variable.
 
-   ```sh
+   ```
    PACKAGE_NAME=CUSTOM_PACKAGE_NAME VARIABLE_NAME=VARIABLE_VALUE ibmcloud fn deploy -m manifest.yaml
    ```
    {: pre}
@@ -255,21 +255,21 @@ After you create the service instance and bucket, you can install the package by
 
 1. Clone the package repo.
 
-   ```sh
+   ```
    git clone https://github.com/ibm-functions/package-cloud-object-storage.git
    ```
    {: pre}
 
 2. Navigate to the package directory that contains the `manifest.yaml`. In this example, the Node.js runtime version of the {{site.data.keyword.cos_full_notm}} package is used.
 
-   ```sh
+   ```
    cd package-cloud-object-storage/runtimes/nodejs
    ```
    {: pre}
 
 3. Deploy the package, using your bucket as an environment variable.  You can give the package a custom name by using the `PACKAGE_NAME` environment variable.
 
-   ```sh
+   ```
    PACKAGE_NAME=<custom_package_name> BUCKET=<bucket_name> ibmcloud fn deploy
    ```
    {: pre}

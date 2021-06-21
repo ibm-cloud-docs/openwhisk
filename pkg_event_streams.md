@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-06-21"
 
 keywords: event streams, package, messages, events, functions, trigger
 
@@ -56,14 +56,14 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 1. Create a `/whisk.system/messaging` package binding that is configured for your {{site.data.keyword.messagehub}} account. In this example, the package name is `MyEventStreamBind`.
 
-  ```sh
+  ```
   ibmcloud fn package bind /whisk.system/messaging MyEventStreamBind
   ```
   {: pre}
 
 2. Verify that the package binding exists.
 
-  ```sh
+  ```
   ibmcloud fn package list
   ```
   {: pre}
@@ -78,7 +78,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 3. Get the name of the service instance that you want to bind to an action or package.
 
-    ```sh
+    ```
     ibmcloud resource service-instances
     ```
     {: pre}
@@ -93,7 +93,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 4. Get the name of the credentials that are defined for the service instance you got in the previous step.
 
-    ```sh
+    ```
     ibmcloud resource service-keys --instance-name EventStreams-0s
     ```
     {: pre}
@@ -112,7 +112,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 5. Bind the service to the package that you created in the first step. In the example, this package is called `MyEventStreamBind`.
 
-    ```sh
+    ```
     ibmcloud fn service bind messagehub MyEventStreamBind --instance EventStreams-0s --keyname 'Service credentials-1'
     ```
     {: pre}
@@ -126,7 +126,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 6. Verify that the credentials are successfully bound.
 
-    ```sh
+    ```
     ibmcloud fn package get MyEventStreamBind parameters
     ```
     {: pre}
@@ -187,7 +187,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-```sh
+```
 ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
@@ -214,7 +214,7 @@ To create the trigger:
 
 2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespace_ID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
 
-   ```sh
+   ```
    ibmcloud fn trigger create MyMessageHubTrigger -f /<namespace_ID>/<binding>/messageHubFeed -p topic <mytopic>
    ```
    {: pre}
@@ -229,7 +229,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-   ```sh
+   ```
    ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
    [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
    ```
@@ -237,7 +237,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 2. Now you can create a trigger by using your new package that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
 
-   ```sh
+   ```
    ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
    ```
    {: pre}
