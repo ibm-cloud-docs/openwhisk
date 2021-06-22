@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-06-22"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -152,7 +152,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | Date | Description |
 | --------- | -------- |
 | 24 March | <ul><li> Node.js 8 is deprecated. See [Runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li></ul> |
-| 9 March | <ul><li> Fixes for Functions CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=openwhisk-troubleshooting-nodejs).</li></ul> |
+| 9 March | <ul><li> Fixes for Functions CLI version 1.0.38. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Updated trigger parameters for CLI. See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).</li><li>Updated troubleshooting information for Node.js. See [Troubleshooting Node.js issues](/docs/openwhisk?topic=openwhisk-troubleshooting).</li></ul> |
 {: caption="Changes for March 2020" caption-side="top"}
 
 
