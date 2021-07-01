@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-07-01"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -1217,7 +1217,7 @@ ibmcloud fn package bind PACKAGE_NAME [--annotation ANNOTATION_KEY ANNOTATION_VA
 **Example**
 
 ```
-ibmcloud fn package bind --param name Bob
+ibmcloud fn package bind hellopkg --param-file Bob
 ```
 {: pre}
 
