@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-18"
+lastupdated: "2021-07-07"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, endpoints
 
@@ -100,7 +100,7 @@ subcollection: openwhisk
 You cannot connect to a private endpoint from your action.
 
 {: tsCauses}
-The use of private endpoints from within your action code is currently not supported by {{site.data.keyword.openwhisk}}.
+The use of private endpoints from within your action code is not supported by {{site.data.keyword.openwhisk}}.
 
 {: tsResolve}
 With {{site.data.keyword.cloud_notm}} service endpoints, you can connect to {{site.data.keyword.cloud_notm}} services over the {{site.data.keyword.cloud_notm}} private network. However, the only integration that supports private endpoints with {{site.data.keyword.openwhisk}} is {{site.data.keyword.cos_full_notm}}. For more information, see [Object storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage). 
