@@ -226,9 +226,9 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
 {: #pkg_obstorage_next}
 
 After you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
-    * You can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
-    * You can create your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to be executed when the trigger is fired.
-    * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
+* You can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
+* You can create your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to be executed when the trigger is fired.
+* You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
 
 ### Reference for {{site.data.keyword.cos_short}} and {{site.data.keyword.openwhisk_short}}
 {: #pkg_obstorage_ev_ch_ref}

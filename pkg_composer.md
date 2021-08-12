@@ -2,7 +2,7 @@
 
 copyright:
 years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-08-12"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions, combinator, loops, actions
 
@@ -114,7 +114,6 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         ```
         {: pre}
 
-
     *   **Python**
 
         ```python
@@ -131,14 +130,12 @@ You can use the JavaScript or Python Composer libraries to create your compositi
         ```
         {: pre}
 
-
     *   **Python**
 
         ```bash
         pydeploy demo demo.json -w
         ```
         {: pre}
-
 
 4. Execute the composition in the same way you [invoke other actions](/docs/openwhisk?topic=openwhisk-triggers) in {{site.data.keyword.openwhisk_short}}.
 
