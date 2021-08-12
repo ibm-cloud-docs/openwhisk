@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -127,18 +127,18 @@ In this specific case, the Invoker gets the resulting JSON object back from the 
 
 ```json
 {
-   "activationId": "31809ddca6f64cfc9de2937ebd44fbb9",
-   "response": {
-       "statusCode": 0,
-       "result": {
-           "hello": "world"
-       }
-   },
-   "end": 1474459415621,
-   "logs": [
-       "2016-09-21T12:03:35.619234386Z stdout: Hello World"
-   ],
-   "start": 1474459415595,
+    "activationId": "31809ddca6f64cfc9de2937ebd44fbb9",
+    "response": {
+        "statusCode": 0,
+        "result": {
+            "hello": "world"
+        }
+    },
+    "end": 1474459415621,
+    "logs": [
+        "2016-09-21T12:03:35.619234386Z stdout: Hello World"
+    ],
+    "start": 1474459415595,
 }
 ```
 {: codeblock}
@@ -153,3 +153,5 @@ ibmcloud fn activation get 31809ddca6f64cfc9de2937ebd44fbb9
 {: pre}
 
 In summary, you can see how a simple `ibmcloud fn action invoke myAction` command passes through different stages of the {{site.data.keyword.openwhisk_short}} system. The system itself mainly consists of only two custom components: the **Controller** and the **Invoker**. Everything else is already there, developed by many people in the open source community. 
+
+

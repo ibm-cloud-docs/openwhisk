@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: WebSocket, functions, actions, package
 
@@ -48,3 +48,5 @@ The `/whisk.system/websocket/send` action sends a payload to a WebSocket URI. Th
 | --- | --- |
 | `uri` | The URI of the WebSocket server. For example, `ws://mywebsockethost:80`. |
 | `payload` | The message to send to the WebSocket. |
+
+

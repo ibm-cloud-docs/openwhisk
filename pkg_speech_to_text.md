@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: package, cognitive, functions, watson, speech to text
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 {: #pkg_speech_to_text}
 
 The installable {{site.data.keyword.speechtotextfull}} service provides an [API](https://www.ibm.com/watson/developercloud/speech-to-text/api/v1/curl.html){: external} that uses IBM's speech-recognition capabilities to produce transcripts of spoken audio.
-{:shortdesc}
+{: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
 {: deprecated}
@@ -103,67 +103,67 @@ To install the {{site.data.keyword.speechtotextshort}} package:
 
 1. Clone the {{site.data.keyword.speechtotextshort}} package repo.
 
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/speech-to-text-v1/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
     **Example output**
 
-   ```
-   packages
-   /myOrg_mySpace/speech-to-text-v1                        private
-   ```
-   {: screen}
+    ```
+    packages
+    /myOrg_mySpace/speech-to-text-v1                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.speechtotextshort}} instance you created to the package.
 
-   ```
-   ibmcloud fn service bind speech_to_text speech-to-text-v1
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind speech_to_text speech-to-text-v1
+    ```
+    {: pre}
 
-   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
-   
-   ```
-   ibmcloud fn service bind speech-to-text speech-to-text-v1
-   ```
-   {: pre}
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
 
-   **Example output**
+    ```
+    ibmcloud fn service bind speech-to-text speech-to-text-v1
+    ```
+    {: pre}
 
-   ```
-   Credentials 'Credentials-1' from 'speech_to_text' service instance 'Watson Speech to Text' bound to 'speech-to-text-v1'.
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    Credentials 'Credentials-1' from 'speech_to_text' service instance 'Watson Speech to Text' bound to 'speech-to-text-v1'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.speechtotextshort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get speech-to-text-v1 parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get speech-to-text-v1 parameters
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   ok: got package speech-to-text-v1, displaying field parameters
-   [
-      {
+    ```
+    ok: got package speech-to-text-v1, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "speech_to_text": {
@@ -174,10 +174,10 @@ To install the {{site.data.keyword.speechtotextshort}} package:
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
-   ]
-   ```
-   {: screen}
+        }
+    ]
+    ```
+    {: screen}
 
 ## Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #speechtotext_ui}
@@ -200,11 +200,11 @@ Install the {{site.data.keyword.speechtotextshort}} package from the console.
 7. After the package is installed you are redirected to the actions page and can search for your new package, which is named `speech-to-text-v1`.
 
 8. To use the actions in the **speech-to-text-v1** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#speechtotext_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console.
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#speechtotext_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the **speech-to-text-v1** package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -227,3 +227,5 @@ Try out the `list-models` action.
 ibmcloud fn action invoke speech-to-text-v1/list-models -b
 ```
 {: pre}
+
+

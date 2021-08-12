@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -58,18 +58,18 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
 
 3. Create the `cos-access` action:
 
-   1. Name your action `cos-access`.
-   
-   2. Click **Create Package**. Name your package `action-tutorial` and click **Create**.
-   
-   3. Select Node.js 10 for the runtime.
-   
-   4. Click **Create**.
-   
-   5. Paste in the following code example:
-      
-      ```javascript
-      /**
+    1. Name your action `cos-access`.
+
+    2. Click **Create Package**. Name your package `action-tutorial` and click **Create**.
+
+    3. Select Node.js 10 for the runtime.
+
+    4. Click **Create**.
+
+    5. Paste in the following code example:
+
+        ```javascript
+        /**
         *
         * main() will be run when you invoke this action
         *
@@ -78,7 +78,7 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
         * @return The output of this action, which must be a JSON object.
         *
         */
-      function main(params) {
+        function main(params) {
         	return new Promise((resolve, reject) => {
 	            // simulate a COS access by resolving after 10s
 	            setTimeout(() => {
@@ -86,29 +86,29 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
 	            resolve({ cos_message: 'SUCCESS'});
 	            }, 10000);
 	        });
-      }
-      ```
-      {: codeblock}
-      
-   6. Click **Save**. 
-   
-   7. Test your action by clicking **Invoke** and waiting for the following output to display.
-   
-      **Example output**
-      
-      ```
-      Results:
-      {
-         "cos_message": "SUCCESS"
-      }
-      
-      Logs: 
-      [
-         "2020-04-21T01:51:49.464941Z    stdout: fake COS bucket access done. Resolving Promise..."
-      ]
-      ```
-      {: screen}
-      
+        }
+        ```
+        {: codeblock}
+
+    6. Click **Save**. 
+
+    7. Test your action by clicking **Invoke** and waiting for the following output to display.
+
+        **Example output**
+
+        ```
+        Results:
+        {
+            "cos_message": "SUCCESS"
+        }
+
+        Logs: 
+        [
+            "2020-04-21T01:51:49.464941Z    stdout: fake COS bucket access done. Resolving Promise..."
+        ]
+        ```
+        {: screen}
+
 Your `cos-access` action is ready!
 
 ## Create the `db-access` action
@@ -116,21 +116,21 @@ Your `cos-access` action is ready!
 {: step}
 
 The `db-access` action is a Node.js program that simulates code to access {{site.data.keyword.cloudant}} database by setting a timeout that resolves after 5 seconds.
-      
+
 1. From the **Actions** page, create an action called `db-access`.
 
-   1. Name your action `db-access`.
-   
-   2. Select the `action-tutorial` package.
-   
-   3. Select Node.js 10 for the runtime.
-   
-   4. Click **Create**.
-   
-   5. Paste in the following code example:
-      
-      ```javascript
-      /**
+    1. Name your action `db-access`.
+
+    2. Select the `action-tutorial` package.
+
+    3. Select Node.js 10 for the runtime.
+
+    4. Click **Create**.
+
+    5. Paste in the following code example:
+
+        ```javascript
+        /**
         *
         * main() will be run when you invoke this action
         *
@@ -139,37 +139,37 @@ The `db-access` action is a Node.js program that simulates code to access {{site
         * @return The output of this action, which must be a JSON object.
         *
         */
-      function main(params) {
+        function main(params) {
 	      return new Promise((resolve, reject) => {
 	         // simulate a db access by resolving after 5s
 	         setTimeout(() => {
 	             console.log('fake db access done. Resolving Promise...');
 	             resolve({ cloudant_result: 'SUCCESS' });
 	         }, 5000);
-      	});
-      }
-      ```
-      {: codeblock}
-      
-   6. Click **Save**. 
-   
-   7. Test your action by clicking **Invoke** and waiting for the following output to display.
-   
-      **Example output**
-      
-      ```
-      Results:
-      {
-         "cloudant_result": "SUCCESS"
-      }
-      
-      Logs:
-      [
-         "2020-04-21T01:53:36.739565Z    stdout: fake db access done. Resolving Promise..."
-      ]
-      ```
-      {: screen}
-      
+    	});
+        }
+        ```
+        {: codeblock}
+
+    6. Click **Save**. 
+
+    7. Test your action by clicking **Invoke** and waiting for the following output to display.
+
+        **Example output**
+
+        ```
+        Results:
+        {
+            "cloudant_result": "SUCCESS"
+        }
+
+        Logs:
+        [
+            "2020-04-21T01:53:36.739565Z    stdout: fake db access done. Resolving Promise..."
+        ]
+        ```
+        {: screen}
+
 Your `db-access` action is ready!
 
 ## Create the `ow-sdk-action` action
@@ -177,21 +177,21 @@ Your `db-access` action is ready!
 {: step}
 
 The `ow-sdk-action` action is a Node.js program that calls the other two actions: `cos-access` and `db-access`. When invoked, the `ow-sdk-action` action code acts as a custom sequence, first calling `cos-access`, then `db-access`, and finally `cos-access` again. The results of each action are stored in a variable that is called `chained_action_results`, which is then returned at the end. When the action is invoked, follow the code comments to see what is happening. 
-      
+
 1. From the **Actions** page, create a third action called `ow-sdk-action`.
 
-   1. Name your action `ow-sdk-action`.
-   
-   2. Select the `action-tutorial` package.
-   
-   3. Select Node.js 10 for the runtime.
-   
-   4. Click **Create**.
-   
-   5. Paste in the following code example:
-      
-      ```javascript
-      /**
+    1. Name your action `ow-sdk-action`.
+
+    2. Select the `action-tutorial` package.
+
+    3. Select Node.js 10 for the runtime.
+
+    4. Click **Create**.
+
+    5. Paste in the following code example:
+
+        ```javascript
+        /**
         *
         * main() will be run when you invoke this action
         *
@@ -200,19 +200,19 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
         * @return The output of this action, which must be a JSON object.
         *
         */
-      const openwhisk = require('openwhisk');
-      const ow = openwhisk();
+        const openwhisk = require('openwhisk');
+        const ow = openwhisk();
 
-      function main(params) {
+        function main(params) {
           // for demonstration purposes, we keep track of the individual results of each action that we invoke in our 
           // custom sequence and return it in the last step of the sequence as the overall action result.
-    
+
           // Although the following .then() blocks are run asynchronously, the main() function acts as a closure that 
           // makes sure that the chained_action_results variable is accessible for all .then() blocks
           const chained_action_results = [];
-    
+
           console.log('Building custom sequence, using openwhisk node-js SDK...');
-      	return ow.actions.invoke({ 
+        	return ow.actions.invoke({ 
 	          name: 'action-tutorial/cos-access',
 	          blocking: true,
 	          result: true,
@@ -221,7 +221,7 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 	      .then((result) => {
 	          console.log('Result from cos-access ' + JSON.stringify(result));
 	
-      	    // storing result
+    	    // storing result
 	          chained_action_results.push(result);
 	    
 	          console.log('Now invoking db-access...');
@@ -232,13 +232,13 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 	              result: true,
 	              params: {}
 	          });
-      	})
-      	.catch((error) => {
+    	})
+        	.catch((error) => {
 	          console.log('An error occurred! ' + JSON.stringify(error));
 	          // IMPORTANT! Re-throw the error, to avoid following .then() block to be executed!
 	          throw error;
-      	})
-      	.then((result) => {
+    	})
+        	.then((result) => {
 	          console.log('Result from db-access ' + JSON.stringify(result));
 	    
 	          // storing result
@@ -252,12 +252,12 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 	              result: true,
 	              params: {}
 	          });
-	      })
+	    })
 	      .catch((error) => {
 	          console.log('An error occurred! ' + JSON.stringify(error));
 	          // IMPORTANT! Re-throw the error, to avoid following .then() block to be executed!
 	          throw error;
-	      })
+	    })
 	      .then((result) => {
 	          console.log('Result from cos-access ' + JSON.stringify(result));
 	    
@@ -273,30 +273,30 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 	          return {
 	              action_results: chained_action_results
 	          };
-      	})
-      	.catch((error) => {
+    	})
+        	.catch((error) => {
 	          console.log('An error occurred! ' + JSON.stringify(error));
-        
+
               console.log('Custom SEQUENCE with openwhisk-node-js-sdk FAILED');
-        
+
               // This last throw is absolutely important to make the top-most promise, which we initially returned at the 
               // top of the main() function REJECTS with the given error. If we did not throw here, it would still RESOLVE
               // even though the code herein failed.
               throw error;
-	      });
-      }
-      ```
-      {: codeblock}
-      
-   6. Click **Save**. 
-   
-   7. Test your action by clicking **Invoke** and waiting for the following output to display.
-   
-      **Example output**
-      
-      ```
-      Results:
-      {
+	    });
+        }
+        ```
+        {: codeblock}
+
+    6. Click **Save**. 
+
+    7. Test your action by clicking **Invoke** and waiting for the following output to display.
+
+        **Example output**
+
+        ```
+        Results:
+        {
         "action_results": [
           {
             "cos_message": "SUCCESS"
@@ -308,10 +308,10 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
             "cos_message": "SUCCESS"
           }
         ]
-      }
+        }
 
-      Logs:
-      [
+        Logs:
+        [
         "2020-04-17T04:31:20.965176Z    stdout: Building custom sequence, using openwhisk node-js SDK...",
         "2020-04-17T04:31:31.670466Z    stdout: Result from cos-access {\"cos_message\":\"SUCCESS\"}",
         "2020-04-17T04:31:31.670501Z    stdout: Now invoking db-access...",
@@ -319,8 +319,10 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
         "2020-04-17T04:31:36.847883Z    stdout: Now invoking cos-access...",
         "2020-04-17T04:31:47.230424Z    stdout: Result from cos-access {\"cos_message\":\"SUCCESS\"}",
         "2020-04-17T04:31:47.230466Z    stdout: Custom SEQUENCE with openwhisk-node-js-sdk completed."
-      ]
-      ```
-      {: screen}
-      
+        ]
+        ```
+        {: screen}
+
 Great work! You created an action that calls two other actions. From these actions, you can now develop the code to call {{site.data.keyword.cos_full_notm}}, access your {{site.data.keyword.cloudant}} database, and then put the results back into {{site.data.keyword.cos_full_notm}}. You even have the basic building blocks for error handling.
+
+

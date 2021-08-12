@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -69,60 +69,60 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
 
 1. Clone the {{site.data.keyword.languagetranslatorshort}} package repo.
 
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   packages
-   /myOrg_mySpace/language-translator-v3                        private
-   ```
-   {: screen}
+    ```
+    packages
+    /myOrg_mySpace/language-translator-v3                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.languagetranslatorshort}} instance you created to the package.
 
-   ```
-   ibmcloud fn service bind language-translator language-translator-v3
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind language-translator language-translator-v3
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   Credentials 'Credentials-1' from 'language-translator' service instance 'Watson Language Translator' bound to 'language-translator-v3'.
-   ```
-   {: screen}
+    ```
+    Credentials 'Credentials-1' from 'language-translator' service instance 'Watson Language Translator' bound to 'language-translator-v3'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.languagetranslatorshort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get language-translator-v3 parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get language-translator-v3 parameters
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   ok: got package language-translator-v3, displaying field parameters
-   [
-      {
+    ```
+    ok: got package language-translator-v3, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "language-translator": {
@@ -136,10 +136,10 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
             "url": "https://gateway.watsonplatform.net/language-translator/api"
           }
         }
-      }
-   ]
-   ```
-   {: screen}
+        }
+    ]
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #languagetranslator_ui}
@@ -162,11 +162,11 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the conso
 7. After the package has been installed you are redirected to the actions page and can search for your new package, which is named `language-translator-v3`.
 
 8. To use the actions in the `language-translator-v3` package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps [5 and 6 in the CLI instructions](#languagetranslator_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console.
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    * To bind service credentials to all actions in the package, follow steps [5 and 6 in the CLI instructions](#languagetranslator_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the `language-translator-v3` package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -191,3 +191,5 @@ This package's functions use the current version of Language Translator, `2018-0
 ibmcloud fn action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```
 {: pre}
+
+

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: push notifications, functions, webhooks, installable package, pre-installed package, package
 
@@ -75,29 +75,29 @@ To create a package binding, see the following steps:
 
 3. Configure the [Push Notification application](/docs/mobilepush?topic=mobilepush-getting-started).
 
-  Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
+    Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
 
-   ```
-   ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+    ```
+    {: pre}
 
 5. Verify that the package binding exists.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   packages
-   /<namespace_ID>/myPush private binding
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    packages
+    /<namespace_ID>/myPush private binding
+    ```
+    {: screen}
 
 ### Push notification parameters
 {: #pkg_push_params}
@@ -181,15 +181,15 @@ ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result
 
 ```
 {
-  "result": {
-  "pushResponse":
+    "result": {
+    "pushResponse":
     {
-      "messageId":"11111H",
-      "message":{
+        "messageId":"11111H",
+        "message":{
         "alert":"this is my message",
         "url":""
-      },
-      "settings":{
+        },
+        "settings":{
         "apns":{
           "sound":"default"
         },
@@ -199,11 +199,11 @@ ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result
         "target":{
           "deviceIds":["T1","T2"]
         }
-      }
+        }
     }
-  },
-  "status": "success",
-  "success": true
+    },
+    "status": "success",
+    "success": true
 }
 ```
 {: screen}
@@ -237,37 +237,37 @@ To create a trigger that is fired each time a new device registers with the Push
 
 1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
 
-   ```
-   ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+    ```
+    {: pre}
 
 2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
 
-   ```
-   ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
-   ```
-   {: pre}
+    ```
+    ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+    ```
+    {: pre}
 
 3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
 
-   ```
-   ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
-   ```
-   {: pre}
+    ```
+    ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
+    ```
+    {: pre}
 
 4. Check the results by using the `ibmcloud fn activation poll` command.
 
-   ```
-   ibmcloud fn activation poll
-   ```
-   {: pre}
+    ```
+    ibmcloud fn activation poll
+    ```
+    {: pre}
 
 5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/functions/dashboard){: external}.
 
-   **Output**
-  
-   The action sends a push notification.
+    **Output**
+
+    The action sends a push notification.
 
 ## Sending push notifications or creating, updating, and deleting webhooks
 {: #pkg_push_mobile_send}
@@ -305,94 +305,94 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 {: #pkg_push_mobile_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
+    1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
 1. Clone the {{site.data.keyword.mobilepushshort}} package repo.
 
-   ```
-   git clone https://github.com/ibm-functions/package-push-notifications.git
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/ibm-functions/package-push-notifications.git
+    ```
+    {: pre}
 
 2. Navigate to the `runtimes/nodejs` directory.
 
-   ```
-   cd package-push-notifications/runtimes/nodejs
-   ```
-   {: pre}
+    ```
+    cd package-push-notifications/runtimes/nodejs
+    ```
+    {: pre}
 
 3. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m manifest.yaml
+    ```
+    {: pre}
 
 4. Verify that the `push-notifications` package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   packages
-   /myOrg_mySpace/push-notifications private
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    packages
+    /myOrg_mySpace/push-notifications private
+    ```
+    {: screen}
 
 5. Bind the credentials from the {{site.data.keyword.mobilepushshort}} service instance that you created to the package.
 
-   ```
-   ibmcloud fn service bind imfpush push-notifications
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind imfpush push-notifications
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
+    ```
+    {: screen}
 
 6. Verify that the package is configured with your {{site.data.keyword.mobilepushshort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
-   [
-     {
-       "key": "__bx_creds",
-       "value": {
+    **Example output**
+
+    ```
+    ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
+    [
+        {
+        "key": "__bx_creds",
+        "value": {
         "imfpush": {
-           "admin_url": "https://mobile.ng.bluemix.net/imfpushdashboard/?appGuid=12345a-a123-1234-ab12-1ba1234567",
-           "apikey": "abcd1234abcd1234abcd1234",
-           "appGuid": "12341-12345-1234-a1234-1abcd12345",
-           "clientSecret": "1b1234ab-1234-1234-123a-ab12345abcd",
-           "credentials": "Service credentials-1",
-           "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:ibmcloud:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
-           "iam_apikey_name": "auto-generated-apikey-abcd1234abcd1234abcd1234",
-           "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Manager",
-           "iam_serviceid_crn": "crn:v1:ibmcloud:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
-           "instance": "Push Notifications-ab",
-           "plan": "LITE",
-           "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
-         }
-       }
-     }
-   ]
-   ```
-   {: screen}
+            "admin_url": "https://mobile.ng.bluemix.net/imfpushdashboard/?appGuid=12345a-a123-1234-ab12-1ba1234567",
+            "apikey": "abcd1234abcd1234abcd1234",
+            "appGuid": "12341-12345-1234-a1234-1abcd12345",
+            "clientSecret": "1b1234ab-1234-1234-123a-ab12345abcd",
+            "credentials": "Service credentials-1",
+            "iam_apikey_description": "Auto generated apikey during resource-key operation for Instance - crn:v1:ibmcloud:public:imfpush:us-south:a/abcd1234abcd1234:abcd1234-abcd-1234-abcd1234::",
+            "iam_apikey_name": "auto-generated-apikey-abcd1234abcd1234abcd1234",
+            "iam_role_crn": "crn:v1:ibmcloud:public:iam::::serviceRole:Manager",
+            "iam_serviceid_crn": "crn:v1:ibmcloud:public:iam-identity::a/1234abcd1234abcd::serviceid:ServiceId-12345678-1234-12ab-abc1-1234abcd1234abcd",
+            "instance": "Push Notifications-ab",
+            "plan": "LITE",
+            "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
+            }
+        }
+        }
+    ]
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #pkg_push_mobile_ui}
@@ -410,8 +410,8 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 6. After the package is installed, search for the **push-notifications** package on the Actions page.
 
 7. To use the actions in the **push-notifications** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions previously listed.
-  * To bind service credentials to individual actions, complete the following steps in the console. **Note**: You must complete the following steps for each action that you want to use.
+    * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions previously listed.
+    * To bind service credentials to individual actions, complete the following steps in the console. **Note**: You must complete the following steps for each action that you want to use.
     1. Click an action from the **push-notifications** package that you want to use. The details page for that action opens.
     2. In the left navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
@@ -431,17 +431,17 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 
 ```
 {
-  "response": {
-      "result": {
+    "response": {
+        "result": {
           "message": {
               "alert": "let's code something",
               "url": "http://developer.ibm.com"
           },
           "messageId": "fLyql2tx"
-      },
-      "status": "success",
-      "success": true
-  },
+        },
+        "status": "success",
+        "success": true
+    },
 }
 ```
 {: screen}
@@ -460,13 +460,15 @@ ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerN
 
 ```
 {
-  "response": {
+    "response": {
     "result": {
-      "error": {}
+        "error": {}
     },
-  "status": "application error",
-  "success": false
-  },
+    "status": "application error",
+    "success": false
+    },
 }
 ```
 {: screen}
+
+

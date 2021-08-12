@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-18"
+lastupdated: "2021-08-06"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -73,3 +73,5 @@ The following endpoints are available for {{site.data.keyword.openwhisk_short}} 
 | Tokyo | `https://jp-tok.functions.appdomain.cloud` |
 | Sydney | `https://au-syd.functions.appdomain.cloud` |
 {: caption="{{site.data.keyword.openwhisk_short}} endpoints" caption-side="top"}
+
+

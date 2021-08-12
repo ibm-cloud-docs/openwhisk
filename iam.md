@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -44,8 +44,8 @@ Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/ac
 {: #iam_namespace_create}
 In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating new namespaces, you must set the following access policies for those users.
 
-  * The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
-  * The user's **Service role**  must be set to Manager. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
+* The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
+* The user's **Service role**  must be set to Manager. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
 
 ## How do I know which access policies have set for me?
 {: #iam_set_policies_me}
@@ -67,22 +67,22 @@ For more information about how to assign, edit, review, or delete resource acces
 {: tip}
 
 <table>
-  <thead>
+    <thead>
     <tr>
-      <th>Platform role</th>
-      <th>Description</th>
+        <th>Platform role</th>
+        <th>Description</th>
     </tr>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
-      <td>Viewer</td>
-      <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below.</td>
+        <td>Viewer</td>
+        <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below.</td>
     </tr>
     <tr>
-      <td>Administrator</td>
-      <td>Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
+        <td>Administrator</td>
+        <td>Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
 
 </br>
@@ -97,61 +97,61 @@ Permissions build on each other. For example, any operation that the Writer role
 
 To see which roles are required to perform each operation, check out the following table:
 
-  <table><caption>Which roles can perform which operations?</caption>
-  <tr>
-    <th style="width:150px">Action</th>
-    <th style="width:50px">Reader</th>
-    <th style="width:50px">Writer</th>
-    <th style="width:50px">Manager</th>
-  </tr>
-  <tr>
-    <td><code>functions.namespaces.update</code><br>Update a namespace.</td>
-    <td></td>
-    <td></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.namespaces.delete</code><br>Delete a namespace.</td>
-    <td></td>
-    <td></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.namespaces.read</code><br>View the available namespaces.</td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.entities.create</code><br>Create an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
-    <td> </td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.entities.update</code><br>Update an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
-    <td> </td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.entities.delete</code><br>Delete an entity from a Functions namespace, such as a package, action, trigger, or rule.</td>
-    <td> </td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.entities.read</code><br>View the available entities within a namespace, such as package, action, trigger, or rule.</td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
-  <tr>
-    <td><code>functions.entities.activate</code><br>Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule.</td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-    <td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-  </tr>
+<table><caption>Which roles can perform which operations?</caption>
+<tr>
+<th style="width:150px">Action</th>
+<th style="width:50px">Reader</th>
+<th style="width:50px">Writer</th>
+<th style="width:50px">Manager</th>
+</tr>
+<tr>
+<td><code>functions.namespaces.update</code><br>Update a namespace.</td>
+<td></td>
+<td></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.namespaces.delete</code><br>Delete a namespace.</td>
+<td></td>
+<td></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.namespaces.read</code><br>View the available namespaces.</td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.entities.create</code><br>Create an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
+<td> </td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.entities.update</code><br>Update an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
+<td> </td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.entities.delete</code><br>Delete an entity from a Functions namespace, such as a package, action, trigger, or rule.</td>
+<td> </td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.entities.read</code><br>View the available entities within a namespace, such as package, action, trigger, or rule.</td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
+<tr>
+<td><code>functions.entities.activate</code><br>Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule.</td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+</tr>
 </table>
 
 </br>
@@ -172,9 +172,9 @@ You can set an access policy for a service ID by using the IAM console.
 2. In the **Service IDs** list, select your {{site.data.keyword.openwhisk_short}} namespace. 
 3. On the **Manage** page, click **Access policies**, then click **Assign access**.
 4. Next, select an **Access Type**. You can choose from the following options. 
-  * **Assign access within a resource group**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
-  * **Assign access to resources**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
-  * **Assign access to account management services**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
+    * **Assign access within a resource group**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a resource group.
+    * **Assign access to resources**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to a specific resource, like an instance of {{site.data.keyword.cos_full_notm}}.
+    * **Assign access to account management services**: Use this option to grant your {{site.data.keyword.openwhisk_short}} service ID access to account management services such as billing, user management, and more.
 
 ### Setting an access policy for your {{site.data.keyword.openwhisk_short}} service ID through the CLI
 {: #cli-set}
@@ -192,27 +192,27 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
 </br>
 
 <table>
-  <thead>
+    <thead>
     <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>ibmcloud iam service-policy-create</code> command components</th>
-  </thead>
-  <tbody>
+    </thead>
+    <tbody>
     <tr>
-      <td><code>&lt;namespace_service_ID&gt;</code></td>
-      <td>The service ID for the namespace. To see all service IDs, run <code>ibmcloud iam service-ids</code>.</td>
+        <td><code>&lt;namespace_service_ID&gt;</code></td>
+        <td>The service ID for the namespace. To see all service IDs, run <code>ibmcloud iam service-ids</code>.</td>
     </tr>
     <tr>
-      <td>`--roles` <code>&lt;IAM_role&gt;</code></td>
-      <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/account?topic=account-userroles#service_access_roles).</td>
+        <td><code>--roles &lt;IAM_role&gt;</code></td>
+        <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/account?topic=account-userroles#service_access_roles).</td>
     </tr>
     <tr>
-      <td>`--service-name` <code>&lt;other_service_name&gt;</code></td>
-      <td>The name of the other {{site.data.keyword.cloud_notm}} service name.</td>
+        <td><code>--service-name &lt;other_service_name&gt;</code></td>
+        <td>The name of the other {{site.data.keyword.cloud_notm}} service name.</td>
     </tr>
     <tr>
-      <td>`--service-instance` <code>&lt;other_service_GUID&gt;</code></td>
-      <td>The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code>.</td>
+        <td><code>--service-instance &lt;other_service_GUID&gt;</code></td>
+        <td>The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code>.</td>
     </tr>
-  </tbody>
+    </tbody>
 </table>
 
 For more information, see the [**`service-policy-create`**](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
@@ -220,3 +220,5 @@ For more information, see the [**`service-policy-create`**](/docs/account?topic=
 
 **Next steps**
 For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.
+
+

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-13"
+lastupdated: "2021-08-06"
 
 keywords: alerts, notifications, openwhisk, functions, monitor
 
@@ -32,3 +32,5 @@ You can use monitoring to gain operational visibility into the performance and h
 {: shortdesc}
 
 IAM-secured {{site.data.keyword.openwhisk_short}} actions, as well as web actions can be used by the notification channel. For more information about setting up   the {{site.data.keyword.openwhisk_short}} notification channel, see [Configure IBM Cloud Function Channel](https://docs.sysdig.com/en/configure-ibm-cloud-functions-channel.html){: external}.
+
+

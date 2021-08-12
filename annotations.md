@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: annotations, package, parameters, actions, functions, activations
 
@@ -115,30 +115,32 @@ The following example shows these annotations as they might appear in an activat
 
 ```javascript
 "annotations": [
-  {
+    {
     "key": "path",
     "value": "guest/echo"
-  },
-  {
+    },
+    {
     "key": "waitTime",
     "value": 66
-  },
-  {
+    },
+    {
     "key": "kind",
     "value": "nodejs:6"
-  },
-  {
+    },
+    {
     "key": "initTime",
     "value": 50
-  },
-  {
+    },
+    {
     "key": "limits",
     "value": {
-      "logs": 10,
-      "memory": 256,
-      "timeout": 60000
+        "logs": 10,
+        "memory": 256,
+        "timeout": 60000
     }
-  }
+    }
 ]
 ```
 {: codeblock}
+
+

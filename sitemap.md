@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-07-07"
+lastupdated: "2021-08-12"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -29,6 +29,8 @@ subcollection: openwhisk
 
 Find what you are looking for in the compilation of {{site.data.keyword.openwhisk}} topics.
 {: shortdesc}
+
+
 
 
 
@@ -184,6 +186,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Deploying the Periodic Slack Reminder template from the console](/docs/openwhisk?topic=openwhisk-templates#slack-reminder-template-ui)
     * [Deploying the Periodic Slack Reminder template from the CLI](/docs/openwhisk?topic=openwhisk-templates#slack-reminder-template-cli)
     * [Testing the Periodic Slack Reminder template](/docs/openwhisk?topic=openwhisk-templates#periodic-slack-template-test)
+    * [Pausing or stopping your Periodic Slack Reminder trigger](/docs/openwhisk?topic=openwhisk-templates#periodic-slack-stop-trigger)
 
 
 ## Developing actions

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: triggers, serverless, functions, events, actions, feed
 
@@ -47,7 +47,7 @@ The following are examples of triggers.
     {: pre}
 
     **Example output**
-    
+
     ```
     ok: created trigger TRIGGER_NAME
     ```
@@ -61,7 +61,7 @@ The following are examples of triggers.
     {: pre}
 
     **Example output**
-    
+
     ```
     triggers
     /<namespace_ID>/<TRIGGER_NAME>                            private
@@ -99,81 +99,83 @@ This example shows how to use a feed in the Alarms package to fire a trigger onc
     {: pre}
 
     **Example output**
-    
+
     ```
     package /whisk.system/alarms
-     feed   /whisk.system/alarms/alarm
+        feed   /whisk.system/alarms/alarm
     ```
     {: screen}
-    
+
 2. Get a description of the feed in the `/whisk.system/alarms` package to see the parameters that you can use.
 
-  ```
-  ibmcloud fn action get --summary /whisk.system/alarms/alarm
-  ```
-  {: pre}
+    ```
+    ibmcloud fn action get --summary /whisk.system/alarms/alarm
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
-     (params: cron trigger_payload)
-  ```
-  {: screen}
+    **Example output**
 
-  The `/whisk.system/alarms/alarm` feed takes two parameters:
-  - `cron`: A crontab specification of when to fire the trigger.
-  - `trigger_payload`: The payload parameter value to set in each trigger event.
+    ```
+    action /whisk.system/alarms/alarm: Fire trigger when alarm occurs
+        (params: cron trigger_payload)
+    ```
+    {: screen}
+
+    The `/whisk.system/alarms/alarm` feed takes two parameters:
+    - `cron`: A crontab specification of when to fire the trigger.
+    - `trigger_payload`: The payload parameter value to set in each trigger event.
 
 2. Create a trigger that fires every minute.
 
-  ```
-  ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
-  ```
-  {: pre}
+    ```
+    ibmcloud fn trigger create everyOneMinute --feed /whisk.system/alarms/alarm -p cron "* * * * *" -p trigger_payload "{\"name\":\"Mork\", \"place\":\"Ork\"}"
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created trigger feed everyOneMinute
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: created trigger feed everyOneMinute
+    ```
+    {: screen}
 
 3. Create an app. Example `hello.js`:
 
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.name + ' from ' + params.place};
-  }
-  ```
-  {: codeblock}
+    ```javascript
+    function main(params) {
+        return {payload:  'Hello, ' + params.name + ' from ' + params.place};
+    }
+    ```
+    {: codeblock}
 
 4. Create an action.
 
-  ```
-  ibmcloud fn action create hello hello.js
-  ```
-  {: pre}
+    ```
+    ibmcloud fn action create hello hello.js
+    ```
+    {: pre}
 
 5. Create a rule that invokes the `hello` action every time the `everyOneMinute` trigger fires.
 
-  ```
-  ibmcloud fn rule create myRule everyOneMinute hello
-  ```
-  {: pre}
+    ```
+    ibmcloud fn rule create myRule everyOneMinute hello
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created rule myRule
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: created rule myRule
+    ```
+    {: screen}
 
 6. Check that the action is being invoked by polling for activation logs.
 
-  ```
-  ibmcloud fn activation poll
-  ```
-  {: pre}
+    ```
+    ibmcloud fn activation poll
+    ```
+    {: pre}
 
-  You can see that the activations occur every minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+    You can see that the activations occur every minute for the trigger, the rule, and the action. The action receives the parameters `{"name":"Mork", "place":"Ork"}` on every invocation.
+
+

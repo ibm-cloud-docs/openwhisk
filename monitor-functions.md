@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-01"
+lastupdated: "2021-08-06"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, attributes
 
@@ -65,6 +65,7 @@ To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in
 For more information, see [{{site.data.keyword.mon_full_notm}} Getting started tutorial](/docs/monitoring?topic=monitoring-getting-started).
 
 <br />
+
 ## Metrics available by Service Plan
 {: #metrics-by-plan}
 
@@ -255,3 +256,5 @@ The following attributes are available for segmenting one or more attributes as 
 | `ibm_functions_namespace` | `ibm_functions_namespace` | The namespace that contains the action. |
 | `ibm_functions_package` | `ibm_functions_package` | The package that contains the action. |
 {: caption="Table 14: Additional attributes" caption-side="top"}
+
+

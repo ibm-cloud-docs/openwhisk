@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: functions, serverless, watson, cognitive, tone analyzer
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 {: #pkg_tone_analyzer}
 
 The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic analysis to detect emotional and language tones in written text.
-{:shortdesc}
+{: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
 {: deprecated}
@@ -71,67 +71,67 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
 
 1. Clone the {{site.data.keyword.toneanalyzershort}} package repo.
 
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/tone-analyzer-v3/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   packages
-   /myOrg_mySpace/tone-analyzer-v3                        private
-   ```
-   {: screen}
+    ```
+    packages
+    /myOrg_mySpace/tone-analyzer-v3                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.toneanalyzershort}} instance you created to the package.
 
-   ```
-   ibmcloud fn service bind tone_analyzer tone-analyzer-v3
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind tone_analyzer tone-analyzer-v3
+    ```
+    {: pre}
 
-   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
 
-   ```
-   ibmcloud fn service bind tone-analyzer tone-analyzer-v3
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind tone-analyzer tone-analyzer-v3
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
-   ```
-   {: screen}
+    ```
+    Credentials 'Credentials-1' from 'tone_analyzer' service instance 'Watson Tone Analyzer' bound to 'tone-analyzer-v3'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.toneanalyzershort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get tone-analyzer-v3 parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get tone-analyzer-v3 parameters
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   ok: got package tone-analyzer-v3, displaying field parameters
-   [
-      {
+    ```
+    ok: got package tone-analyzer-v3, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "tone_analyzer": {
@@ -142,10 +142,10 @@ To install the {{site.data.keyword.toneanalyzershort}} package:
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
-   ]
-   ```
-   {: screen}
+        }
+    ]
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #toneanalyzer_ui}
@@ -168,12 +168,12 @@ Install the {{site.data.keyword.toneanalyzershort}} package from the console.
 7. After the package is installed you are redirected to the actions page and can search for your new package, which is named **`tone-analyzer-v3`**.
 
 8. To use the actions in the **tone-analyzer-v3** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#toneanalyzer_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console:
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
-  
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#toneanalyzer_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console:
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
+
     1. Click an action from the **tone-analyzer-v3** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
@@ -196,3 +196,5 @@ This package's functions use the current version of Tone Analyzer, 2017-09-21. T
 ibmcloud fn action invoke tone-analyzer-v3/tone -b -p version 2017-09-21 -p text "i hope you're having a wonderful day"
 ```
 {: pre}
+
+

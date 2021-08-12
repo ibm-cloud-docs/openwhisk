@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: cli, functions, high availability, disaster recovery, HIPPA
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 {: #ha_dr}
 
 Learn about the high availability features of the {{site.data.keyword.openwhisk}} and design your resources to meet the availability requirements that your business and customers need.
-{:shortdesc}
+{: shortdesc}
 
 High availability is a core discipline in an IT infrastructure to keep your resources healthy and your app workloads up and running, even after a partial or a full site failure. The main purpose of high availability is to eliminate potential points of failure in an IT infrastructure.
 
@@ -78,3 +78,5 @@ Because Amsterdam does not have any active compute resources for {{site.data.key
 {: #hippa}
 
 {{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it offers only compute services. It does not offer storage options nor management of your data. Ensuring the HIPAA-compliant processing of your data is subject to your storage service's operation and SLAs.
+
+

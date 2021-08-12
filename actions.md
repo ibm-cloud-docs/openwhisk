@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -40,41 +40,41 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
 {: #actions_cli}
 
 1. Create an action by running the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
-  
-  ```
-  ibmcloud fn action create <action_name> <file> --kind <runtime>
-  ```
-  {: pre}
 
-  **Example**
+    ```
+    ibmcloud fn action create <action_name> <file> --kind <runtime>
+    ```
+    {: pre}
 
-  ```
-  ibmcloud fn action create hello hello.js --kind nodejs:10
-  ```
-  {: pre}
+    **Example**
 
-  **Example output**
+    ```
+    ibmcloud fn action create hello hello.js --kind nodejs:10
+    ```
+    {: pre}
 
-  ```
-  ok: created action hello
-  ```
-  {: screen}
-  
+    **Example output**
+
+    ```
+    ok: created action hello
+    ```
+    {: screen}
+
 2. Verify that the action is in your actions list.
 
-  ```
-  ibmcloud fn action list
-  ```
-  {: pre}
+    ```
+    ibmcloud fn action list
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  actions
-  hello       private
-  ```
-  {: screen}
-  
+    ```
+    actions
+    hello       private
+    ```
+    {: screen}
+
 Tips:
 
 - To save on cost, you can set limits.
@@ -82,10 +82,10 @@ Tips:
     - To set a timeout, include `--timeout <value>` with your create command, where the value is in milliseconds.
 - If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the local path to your app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image.
 
-  ```
-  ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
+    ```
+    {: pre}
 
 ### Combining app files and Docker images to create actions
 {: #actions_combine_app}
@@ -104,12 +104,12 @@ ibmcloud fn action create hello --docker <docker_hub_username>/<docker_hub_image
 {: #actions_create_ui}
 
 1. From the [IBM Cloud Functions Create ![External link icon](../icons/launch-glyph.svg "External link icon")](https://cloud.ibm.com/functions/create) page, click **Create Action**.
-  
-  1. Specify a name for your action. Action names must be unique within namespaces.
-  2. Specify a package for your action. [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
-  3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](/docs/openwhisk?topic=openwhisk-prep#prep_docker). You can change the runtime for your action after you create it.
-  4. Click **Create**.
-  
+
+    1. Specify a name for your action. Action names must be unique within namespaces.
+    2. Specify a package for your action. [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov) group actions and feeds together. You can select an existing package or create a new one.
+    3. Specify a runtime for your action. Java, .Net, and Docker actions can be [created from the CLI only](/docs/openwhisk?topic=openwhisk-prep#prep_docker). You can change the runtime for your action after you create it.
+    4. Click **Create**.
+
 2. Paste in your code. Note that code field toggles between Edit and View modes. You can test your code by clicking **Invoke**.
 
 From the Actions page, you can add parameters, change the runtime, create endpoints, and more.
@@ -192,10 +192,11 @@ You can update your actions from the CLI with the [**`ibmcloud fn action update`
 
     If you packaged your code as a Docker image, include `--docker <docker_hub_username>/<docker_hub_image>:<tag>` with your create command instead of the path to the local app and the `--kind` flag. Manage your images well by not using the `latest` tag whenever possible. When the `latest` tag is used, the image with that tag is used, which might not always be the most recently created image. 
 
-      ```
-      ibmcloud fn action update hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
-      ```
-      {: pre}
+    ```
+    ibmcloud fn action update hello --docker <docker_hub_username>/<docker_hub_image>:<tag>
+    ```
+    {: pre}
+
     {: tip}
 
 ### Updating actions from the console
@@ -211,7 +212,7 @@ You can update your actions directly from the **Actions** page.
 3. Edit your code by toggling between Edit and View modes. You can test your code by clicking **Invoke**.
 
 4. Change your runtime by selecting **Runtime** from the navigation menu and selecting your new runtime.
-  
+
 5. When you are finished making changes, save your action.
 
 ## Binding parameters to actions
@@ -288,46 +289,46 @@ A package can include *actions* and *feeds*.
 
 1. Create a package.
 
-  ```
-  ibmcloud fn package create <package_name>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package create <package_name>
+    ```
+    {: pre}
 
 2. Get a summary of the package. Notice that the package is empty.
 
-  ```
-  ibmcloud fn package get --summary <package_name>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package get --summary <package_name>
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  package /<namespace>/<package_name>
-  ```
-  {: screen}
+    ```
+    package /<namespace>/<package_name>
+    ```
+    {: screen}
 
 4. Create an action and include it in the package. Creating an action in a package requires that you prefix the action name with a package name. Package nesting is not allowed. A package can contain only actions and can't contain another package.
 
-  ```
-  ibmcloud fn action create <package_name>/<action_name> <app_file>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn action create <package_name>/<action_name> <app_file>
+    ```
+    {: pre}
 
 5. Get a summary of the package.
 
-  ```
-  ibmcloud fn package get --summary <package_name>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package get --summary <package_name>
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  package /<namespace>/<package_name>
-   action /<namespace>/<package_name>/<action_name>
-  ```
-  {: screen}
+    ```
+    package /<namespace>/<package_name>
+    action /<namespace>/<package_name>/<action_name>
+    ```
+    {: screen}
 
 ## Binding parameters to packages
 {: #actions_pkgs_params}
@@ -416,40 +417,40 @@ After the actions and feeds that comprise a package are debugged and tested, the
 
 1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
 
-  ```
-  ibmcloud fn package update <package_name> --shared yes
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package update <package_name> --shared yes
+    ```
+    {: pre}
 
 2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
-  ```
-  ibmcloud fn package get <package_name> publish
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package get <package_name> publish
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  ok: got package demo, displaying field publish
-  true
-  ```
-  {: screen}
+    ```
+    ok: got package demo, displaying field publish
+    true
+    ```
+    {: screen}
 
 3. Get a description of the package to provide others with the fully qualified name of the package so that they can bind it or invoke actions in it. The fully qualified name includes the namespace.
 
-  ```
-  ibmcloud fn package get --summary <package_name>
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package get --summary <package_name>
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  package /<namespace>/<package_name>
-   action /<namespace>/<package_name>/<action_name>
-  ```
-  {: screen}
+    ```
+    package /<namespace>/<package_name>
+    action /<namespace>/<package_name>/<action_name>
+    ```
+    {: screen}
 
 ## Environment variables for actions
 {: #actions_envvars}
@@ -479,10 +480,10 @@ To view the values for an action, include the display of them in your app code a
 
 ```python
 def main(dict):
-  import os
-  __OW_ACTION_NAME = os.environ.get('__OW_ACTION_NAME')
-  result = {'__OW_ACTION_NAME':__OW_ACTION_NAME}
-  return result
+    import os
+    __OW_ACTION_NAME = os.environ.get('__OW_ACTION_NAME')
+    result = {'__OW_ACTION_NAME':__OW_ACTION_NAME}
+    return result
 
 ```
 {: codeblock}
@@ -525,4 +526,6 @@ To use these different actions versions in triggers, assign the appropriate vers
 ibmcloud fn rule update myRule myTrigger myAction_1.0.1
 ```
 {: pre}
+
+
 

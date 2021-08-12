@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: functions compared, architecture, limitless, functions, openwhisk, actions, redundancy
 
@@ -104,3 +104,5 @@ In traditional architectures, code must be running in each region to be executed
 {: #faas_redundancy}
 
 In traditional architectures, apps must be redundant. With {{site.data.keyword.openwhisk_short}}, processes don't need to be highly available (HA) because serverless apps are stateless and request-event that is driven by design. By eliminating the need for explicitly creating redundancy, the stateless nature of serverless apps can significantly reduce infrastructure costs.
+
+

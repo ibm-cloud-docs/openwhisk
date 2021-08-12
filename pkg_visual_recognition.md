@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: functions, cognitive, visual recognition, Watson, serverless
 
@@ -28,7 +28,7 @@ subcollection: openwhisk
 {: #pkg_visual_recognition}
 
 The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition).
-{:shortdesc}
+{: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
 {: deprecated}
@@ -126,7 +126,7 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
     ```
     ok: got package visual-recognition-v3, displaying field parameters
     [
-      {
+        {
         "key": "__bx_creds",
         "value": {
           "watson-vision-combined": {
@@ -140,7 +140,7 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
             "url": "https://gateway.watsonplatform.net/visual-recognition/api"
           }
         }
-      }
+        }
     ]
     ```
     {: screen}
@@ -166,11 +166,11 @@ Install the {{site.data.keyword.conversationshort}} package from the console.
 7. After the package is installed you are redirected to the actions page and can search for your new package, which is named **visual-recognition-v3**.
 
 8. To use the actions in the **visual-recognition-v3** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#visualrecognition_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console.
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#visualrecognition_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
 
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the **visual-recognition-v3** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -195,3 +195,5 @@ This package's functions use the current version of Visual Recognition, `2018-03
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
 {: pre}
+
+

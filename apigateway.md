@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: serverless, rest api, gateway, web actions, functions, API, HTTP
 
@@ -58,63 +58,63 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
 1. Save the following code as a JavaScript file named `hello.js`.
 
-  ```javascript
-  function main({name:name='Serverless API'}) {
-      return {payload: `Hello, ${name}!`};
-  }
-  ```
-  {: codeblock}
+    ```javascript
+    function main({name:name='Serverless API'}) {
+        return {payload: `Hello, ${name}!`};
+    }
+    ```
+    {: codeblock}
 
 2. Create a web action that is named `hello` by using the file that you created. Be sure to add the flag `--web true` and the `--web-secure <secret>`. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action. For more information about using the `--web-secure` flag, see [Securing your API web action](#api_secure).
 
-  ```bash
-  ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created action hello
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: created action hello
+    ```
+    {: screen}
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
 
-  ```bash
-  ibmcloud fn api create /hello /world get hello --response-type json
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn api create /hello /world get hello --response-type json
+    ```
+    {: pre}
 
-  **Example output**
-  
-  A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
+    **Example output**
 
-  ```
-  ok: created API /hello/world GET for action /_/hello
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
-  ```
-  {: screen}
+    A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
 
-  
+    ```
+    ok: created API /hello/world GET for action /_/hello
+    https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+    ```
+    {: screen}
+
+
 4. Send a test HTTP request to the URL by using the following cURL command.
 
-  ```bash
-  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
-  ```
-  {: pre}
+    ```bash
+    curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
+    ```
+    {: pre}
 
-  **Example output**
-  
-  The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
+    **Example output**
 
-  ```
-  {
-  "payload": "Hello, Jane!"
-  }
-  ```
-  {: screen}
-  
+    The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
+
+    ```
+    {
+    "payload": "Hello, Jane!"
+    }
+    ```
+    {: screen}
+
 ### Creating an API from the console
 {: #api_create_ui}
 
@@ -143,61 +143,61 @@ To return different content types in the body, use full control over the HTTP re
 
 1. Save the following code as `hello.js`.
 
-  ```javascript
-  function main({name:name='Serverless API'}) {
-      return {
+    ```javascript
+    function main({name:name='Serverless API'}) {
+        return {
         body: {payload:`Hello, ${name}!`},
         statusCode:200,
         headers:{ 'Content-Type': 'application/json'}
-      };
-  }
-  ```
-  {: codeblock}
+        };
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code.
 
-  ```bash
-  ibmcloud fn action update hello <filepath>/hello.js --web true --web-secure <secret>
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action update hello <filepath>/hello.js --web true --web-secure <secret>
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: updated action hello
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: updated action hello
+    ```
+    {: screen}
 
 3. Update the API response type by using the `--response-type http` flag.
 
-  ```bash
-  ibmcloud fn api create /hello /world get hello --response-type http
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn api create /hello /world get hello --response-type http
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+    ```
+    {: screen}
 
 4. Call the updated API by using the following cURL command.
 
-  ```bash
-  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
-  ```
-  {: pre}
+    ```bash
+    curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  {
-  "payload": "Hello, Serverless API!"
-  }
-  ```
-  {: screen}
-  
+    **Example output**
+
+    ```
+    {
+    "payload": "Hello, Serverless API!"
+    }
+    ```
+    {: screen}
+
 ## Securing your API web action
 {: #api_secure}
 
@@ -208,66 +208,66 @@ This example uses the same names and code as the example in [Creating your first
 
 1. Save the following code into a JavaScript file named `hello.js`.
 
-  ```javascript
-  function main({name:name='Serverless API'}) {
-      return {payload: `Hello, ${name}!`};
-  }
-  ```
-  {: codeblock}
+    ```javascript
+    function main({name:name='Serverless API'}) {
+        return {payload: `Hello, ${name}!`};
+    }
+    ```
+    {: codeblock}
 
 2. Create a web action that is named `hello` by using the file that you created. Add the `--web true` and `--web-secure <secret>` flags. Replace `<filepath>` with the file path of your `hello.js` file and `<secret>` with a secret value of your own choosing for your action.
 
-  ```bash
-  ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
-  ```
-  {: pre}
-  
-  For example, `ibmcloud fn action create hello myjavascriptfiles/hello.js --web true --web-secure ajcqdres`.
+    ```bash
+    ibmcloud fn action create hello <filepath>/hello.js --web true --web-secure <secret>
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created action hello
-  ```
-  {: screen}
-  
-  If you want to verify that your action is secure, follow the steps in [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).
+    For example, `ibmcloud fn action create hello myjavascriptfiles/hello.js --web true --web-secure ajcqdres`.
+
+    **Example output**
+
+    ```
+    ok: created action hello
+    ```
+    {: screen}
+
+    If you want to verify that your action is secure, follow the steps in [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).
 
 3. Create an API with base path `/hello`, path `/world`, method `get`, and response type `json`.
 
-  ```bash
-  ibmcloud fn api create /hello /world get hello --response-type json
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn api create /hello /world get hello --response-type json
+    ```
+    {: pre}
 
-  **Example output**
-  
-  A new URL is generated, exposing the `hello` action by using a `GET` HTTP method.
+    **Example output**
 
-  ```
-  ok: created API /hello/world GET for action /_/hello
-  https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
-  ```
-  {: screen}
+    A new URL is generated, exposing the `hello` action by using a `GET` HTTP method.
 
-  
+    ```
+    ok: created API /hello/world GET for action /_/hello
+    https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
+    ```
+    {: screen}
+
+
 4. Send a test HTTP request to the URL by using the following cURL command.
 
-  ```bash
-  curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
-  ```
-  {: pre}
+    ```bash
+    curl https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world?name=Jane
+    ```
+    {: pre}
 
-  **Example output**
-  
-  The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter.
+    **Example output**
 
-  ```
-  {
+    The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter.
+
+    ```
+    {
     "payload": "Hello, Jane!"
-  }
-  ```
-  {: screen}
+    }
+    ```
+    {: screen}
 
 ## Modifying the API configuration
 {: #api_modify_config}
@@ -280,3 +280,5 @@ After you create your configuration, you can use the [APIs tab](https://cloud.ib
 * [Socialize and share](/docs/api-management?topic=api-management-manage_apis#share_api_manage_apis) your API with developers both within and outside {{site.data.keyword.cloud_notm}}.
 
 After you are finished updating the configuration, you can download the definition file in JSON format, and then import it again by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and import the API definition file by using the console.
+
+

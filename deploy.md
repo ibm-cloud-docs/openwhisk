@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -42,7 +42,7 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
     ```javascript
     function main() {
-       return {body: 'Hello world'};
+        return {body: 'Hello world'};
     }
     ```
     {: codeblock}
@@ -87,24 +87,24 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
     1. List the actions by using the following command.
 
-      ```
-      ibmcloud fn action list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn action list
+        ```
+        {: pre}
 
     2. List the packages by using the following command.
 
-      ```
-      ibmcloud fn package list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn package list
+        ```
+        {: pre}
 
     3. List the APIs by using the following command.
 
-      ```
-      ibmcloud fn api list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn api list
+        ```
+        {: pre}
 
 5. Invoke the API.
 
@@ -129,3 +129,5 @@ The Functions deployment is based on the OpenWhisk deployment project, which has
 {: manifest_specification}
 
 Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.
+
+

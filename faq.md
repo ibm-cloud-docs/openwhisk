@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: faq, runtimes, actions, memory, monitoring, functions
 
@@ -62,3 +62,5 @@ You can see your logs by using the instructions in [Viewing logs](/docs/openwhis
 {: faq}
 
 You can get insight into the performance of your actions that are deployed with {{site.data.keyword.openwhisk_short}} by using [{{site.data.keyword.monitoringlong}}](/docs/openwhisk?topic=openwhisk-monitor-functions). You can also monitor the health and performance of your actions by using the dashboard to see a graphical summary of your activity.
+
+

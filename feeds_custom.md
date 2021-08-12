@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: feeds, functions, webhooks, polling, connections, hook
 
@@ -139,3 +139,5 @@ The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical 
 The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
+
+

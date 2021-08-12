@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, functions, api, data processing, event processing
 
@@ -88,3 +88,5 @@ A sample application, [Dark vision](https://github.com/IBM-cloud/openwhisk-darkv
 {: #use_cases_events}
 
 {{site.data.keyword.openwhisk_short}} is ideally to be used in combination with Kafka, {{site.data.keyword.messagehub_full}} (Kafka based), and other messaging systems. The event driven nature of those systems requires an event driven runtime to process messages. The runtime can apply business logic to those messages, which is exactly what {{site.data.keyword.openwhisk_short}} provides, with its feeds, triggers, and actions. Kafka and {{site.data.keyword.messagehub}} are often used for high and unpredictable workload volumes, and require that consumers of those messages need to be scalable on a moment's notice. This situation is, once again, ideal for {{site.data.keyword.openwhisk_short}}. {{site.data.keyword.openwhisk_short}} has built-in capability to consume messages as well as publish messages that are provided in the [Event Streams](/docs/openwhisk?topic=openwhisk-pkg_event_streams) package.
+
+

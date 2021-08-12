@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-18"
+lastupdated: "2021-08-06"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration, api gateway
 
@@ -32,3 +32,5 @@ subcollection: openwhisk
 
 If you have problems while you're working with {{site.data.keyword.openwhisk}}, consider these techniques for troubleshooting and getting help. 
 {: shortdesc}
+
+

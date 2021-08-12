@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-14"
+lastupdated: "2021-08-06"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -166,78 +166,78 @@ You can create an IAM-managed namespace with the CLI.
 
 1. Target the resource group where you want to create the namespace. If you haven't created a [resource group](/docs/account?topic=account-rgs) yet, you can target the `default` group.
 
-  ```bash
-  ibmcloud target -g default
-  ```
-  {: pre}
+    ```bash
+    ibmcloud target -g default
+    ```
+    {: pre}
 
 2. Create an IAM-enabled namespace. Optional: Include a description for your namespace by using the `-n` or `--description` flag. If your description is longer than one word, it must be in quotations.
 
-  ```bash
-  ibmcloud fn namespace create <namespace_name> [--description <"description of your namespace">]
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn namespace create <namespace_name> [--description <"description of your namespace">]
+    ```
+    {: pre}
 
-  <table>
+    <table>
     <thead>
-      <tr>
+        <tr>
         <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
-      </tr>
+        </tr>
     </thead>
     <tbody>
-      <tr>
+        <tr>
         <td><code>&lt;namespace_name&gt;</code></td>
         <td>The display name for the IAM-based namespace.</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>-n &lt;description&gt;</code></td>
         <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>--description &lt;description&gt;</code></td>
         <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
-      </tr>
+        </tr>
     </tbody>
-  </table>
+    </table>
 
-  **Example output**:
+    **Example output**:
 
-  ```
-  ok: created namespace myNamespace
-  ```
-  {: screen}
+    ```
+    ok: created namespace myNamespace
+    ```
+    {: screen}
 
 3. Verify that your new namespace is created.
 
-  ```bash
-  ibmcloud fn namespace get <namespace_name_or_id> --properties
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn namespace get <namespace_name_or_id> --properties
+    ```
+    {: pre}
 
-  **Example output**:
+    **Example output**:
 
-  ```
-  Details of namespace: myNamespace
-  Description: short description
-  Resource Plan Id: functions-base-plan
-  Location: jp-tok
-  ID: 05bae599-ead6-4ccb-9ca3-94ce8c8b3e43
-  ```
-  {: screen}
+    ```
+    Details of namespace: myNamespace
+    Description: short description
+    Resource Plan Id: functions-base-plan
+    Location: jp-tok
+    ID: 05bae599-ead6-4ccb-9ca3-94ce8c8b3e43
+    ```
+    {: screen}
 
-  You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
+    You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
 
-  ```bash
-  ibmcloud fn namespace list
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn namespace list
+    ```
+    {: pre}
 
 4. Before you can create entities in the namespace, you must set your CLI context to the namespace by targeting it.
 
-  ```bash
-  ibmcloud fn property set --namespace <namespace_name_or_id>
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn property set --namespace <namespace_name_or_id>
+    ```
+    {: pre}
 
 After you set a property, such as the `--namespace` property, it is retained until you manually unset it. If you want to switch between IAM namespaces or between Cloud Foundry and IAM namespaces, you must unset the namespace property and then reset it. For more information, see [**`ibmcloud fn property set`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_prop_set).
 {: note}
@@ -250,49 +250,49 @@ Create your IAM-managed namespace with the API.
 
 1. Create an IAM-enabled namespace.
 
-  ```bash
-  curl --request POST \
-  --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces' \
-  --header 'accept: application/json' \
-  --header 'authorization: <IAM_token>' \
-  --data '{"description":"string","name":"string","resource_group_id":"string","resource_plan_id":"string"}'
-  ```
-  {: pre}
+    ```bash
+    curl --request POST \
+    --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces' \
+    --header 'accept: application/json' \
+    --header 'authorization: <IAM_token>' \
+    --data '{"description":"string","name":"string","resource_group_id":"string","resource_plan_id":"string"}'
+    ```
+    {: pre}
 
-  <table>
+    <table>
     <thead>
-      <tr>
+        <tr>
         <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
-      </tr>
+        </tr>
     </thead>
     <tbody>
-      <tr>
+        <tr>
         <td><code>&lt;IAM_token&gt;</code></td>
         <td>Your {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) token. To retrieve your IAM token, run <code>ibmcloud iam oauth-tokens</code>.</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>-n &lt;name&gt;</code></td>
         <td>The name of the namespace.</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>-n &lt;resource_group_id&gt;</code></td>
         <td>The ID of the resource group that you want to create the namespace in. To see resource group IDs, run <code>ibmcloud resource groups</code>.</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>-n &lt;resource_plan_id&gt;</code></td>
         <td>The ID of the resource plan, such as functions-base-plan</td>
-      </tr>
-      <tr>
+        </tr>
+        <tr>
         <td><code>-n &lt;description&gt;</code></td>
         <td>Optional: Add a description to the namespace, such as which kind of actions or packages it will contain.</td>
-      </tr>
+        </tr>
     </tbody>
-  </table>
+    </table>
 
-  **Example output**
+    **Example output**
 
-  ```
-  {
+    ```
+    {
     "description": "My new namespace for packages X, Y, and Z.",
     "id": "12345678-1234-abcd-1234-123456789abc",
     "location": "jp-tok",
@@ -300,51 +300,51 @@ Create your IAM-managed namespace with the API.
     "name": "mynamespace",
     "resource_group_id": "1a22bb3c44dd1a22bb3c44dd1a22",
     "resource_plan_id": "functions-base-plan"
-  }
-  ```
-  {: screen}
+    }
+    ```
+    {: screen}
 
 2. Verify that your new namespace is created.
 
-  ```bash
-  curl --request GET \
+    ```bash
+    curl --request GET \
     --url 'https://us-south.functions.cloud.ibm.com/api/servicebroker/api/v1/namespaces/{id} \
     --header 'accept: application/json' \
     --header 'authorization: <IAM_token>'
-  ```
-  {: pre}
+    ```
+    {: pre}
 
-  You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
-  
-  ```bash
-  curl --request GET \
+    You can also list all namespaces, including IAM-based and Cloud Foundry-based namespaces:
+
+    ```bash
+    curl --request GET \
     --url 'https://jp-tok.functions.cloud.ibm.com/api/v1/namespaces?limit=0&offset=0' \
     --header 'accept: application/json' \
     --header 'authorization: <IAM_token>'
-  ```
-  {: pre}
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  {
+    ```
+    {
     "limit": 10,
     "offset": 0,
     "total_Count": 2,
     "namespaces": [
-      {
+        {
         "id": "12345678-1234-abcd-1234-123456789abc",
         "location": "jp-tok"
-      },
-      {
+        },
+        {
         "id": "BobsOrg_dev",
         "classic_type": 1,
         "location": "jp-tok"
-      }
+        }
     ]
-  }
-  ```
-  {: screen}
+    }
+    ```
+    {: screen}
 
 For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API Docs](/apidocs/functions).
 {: tip}
@@ -355,17 +355,17 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 
 * Create a staging namespace.
 
-  ```bash
-  ibmcloud fn namespace create staging
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn namespace create staging
+    ```
+    {: pre}
 
 * Create a production namespace.
 
-  ```bash
-  ibmcloud fn namespace create production
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn namespace create production
+    ```
+    {: pre}
 
 {{site.data.keyword.openwhisk_short}} has restrictions on namespace names. For more information, see the [System details and Limits](/docs/openwhisk?topic=openwhisk-limits) documentation.
 {: tip}
@@ -403,3 +403,5 @@ Not sure how API keys and tokens fit together? Learn more in [the IAM Docs](/doc
 Now that you created a namespace, you can create IAM access policies to help protect it. To get started, check out [Managing access](/docs/openwhisk?topic=openwhisk-iam). 
 
 For more information about how to manage IAM-based namespaces, see the [{{site.data.keyword.openwhisk_short}} REST API reference](/apidocs/functions).
+
+

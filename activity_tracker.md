@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: events, serverless, functions, activity tracker, analyze events
 
@@ -144,3 +144,5 @@ All events that are issued for failed actions display `failure` in the `outcome`
 **Custom views**
 
 For more information about generating custom views by using event fields, see [Creating custom views](/docs/activity-tracker?topic=activity-tracker-views).
+
+

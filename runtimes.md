@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-21"
+lastupdated: "2021-08-12"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -35,47 +35,47 @@ Your apps can be coded and executed in programming languages such as JavaScript 
 
 These runtimes (kinds) are available:
 <table>
-  <tr>
+<caption>Table 1. Supported runtimes</caption>
+    <tr>
     <th>Language</th>
     <th>Kind identifier</th>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Node.js</td>
     <td><code>nodejs:12</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Python</td>
     <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Swift</td>
     <td><code>swift:4.2</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>PHP</td>
     <td><code>php:7.3</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Go</td>
     <td><code>go:1.15</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Ruby</td>
     <td><code>ruby:2.5</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Java</td>
     <td><code>java (JDK 8)</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>.NET Core</td>
     <td><code>dotnet:2.2</code> (default)</td>
-  </tr>
-  <tr>
+    </tr>
+    <tr>
     <td>Other languages are supported by using Docker actions.</td>
-  </tr>
+    </tr>
 </table>
-{: caption="Table 1. Supported runtimes" caption-side="top"}
 
 Runtimes are updated regularly. These updates include security fixes and minor version updates (bug fixes) to the runtime packages. Minor version updates might introduce breaks in compatibility with earlier versions. Runtime updates might impact your actions.
 
@@ -87,24 +87,24 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 
 These runtimes (kinds) are deprecated:
 <ul>
-  <li><code>go:1.11</code> (deprecated)</li>
-  <li><code>nodejs:10</code> (deprecated)</li>
-  <li><code>nodejs:8</code> (deprecated)</li>
+    <li><code>go:1.11</code> (deprecated)</li>
+    <li><code>nodejs:10</code> (deprecated)</li>
+    <li><code>nodejs:8</code> (deprecated)</li>
 </ul>
 
 These runtimes (kinds) are disabled:
 <ul>
-  <li><code>ballerina:0.990</code> (disabled)</li>
-  <li><code>nodejs</code> (disabled)</li>
-  <li><code>nodejs:6</code> (disabled)</li>
-  <li><code>php:7.1</code> (disabled)</li>
-  <li><code>php:7.2</code> (disabled)</li>
-  <li><code>python</code> (disabled)</li>
-  <li><code>python:2</code> (disabled)</li>
-  <li><code>swift</code> (disabled)</li>
-  <li><code>swift:3</code> (disabled)</li>
-  <li><code>swift:3.1.1</code> (disabled)</li>
-  <li><code>swift:4.1</code> (disabled)</li>
+    <li><code>ballerina:0.990</code> (disabled)</li>
+    <li><code>nodejs</code> (disabled)</li>
+    <li><code>nodejs:6</code> (disabled)</li>
+    <li><code>php:7.1</code> (disabled)</li>
+    <li><code>php:7.2</code> (disabled)</li>
+    <li><code>python</code> (disabled)</li>
+    <li><code>python:2</code> (disabled)</li>
+    <li><code>swift</code> (disabled)</li>
+    <li><code>swift:3</code> (disabled)</li>
+    <li><code>swift:3.1.1</code> (disabled)</li>
+    <li><code>swift:4.1</code> (disabled)</li>
 </ul>
 
 For more information about supported and disabled runtimes, see [Available images and runtimes per region](#runtimes_per_region). 
@@ -518,24 +518,27 @@ For more information about the `dotnet:2.2` runtime, see [(Details on GitHub)](h
 
 To view the available runtimes for IBM Cloud Functions in each region. The following links return a JSON response. The `runtimes` section of the response contains the set of available runtimes. The `image` section contains the name of the runtime image on [Docker Hub](https://hub.docker.com/){: external} and the tag that is used.
 
-  - [`us-south`](https://us-south.functions.cloud.ibm.com/){: external}
-  - [`us-east`](https://us-east.functions.cloud.ibm.com/){: external}
-  - [`eu-gb`](https://eu-gb.functions.cloud.ibm.com/){: external}
-  - [`eu-de`](https://eu-de.functions.cloud.ibm.com/){: external}
-  - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
-  - [`au-syd`](https://au-syd.functions.cloud.ibm.com){: external}
+- [`us-south`](https://us-south.functions.cloud.ibm.com/){: external}
+- [`us-east`](https://us-east.functions.cloud.ibm.com/){: external}
+- [`eu-gb`](https://eu-gb.functions.cloud.ibm.com/){: external}
+- [`eu-de`](https://eu-de.functions.cloud.ibm.com/){: external}
+- [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
+- [`au-syd`](https://au-syd.functions.cloud.ibm.com){: external}
 
 The following examples point to the images `ibmfunctions/action-nodejs-v12` and `openwhisk/java8action` on [hub.docker.com](https://hub.docker.com/){: external}.
 The tags can be version numbers such as `1.1.1` or the short form of a Git commit hash, like `a231007`.
 
 Example image fields.
 
-  ```
-  image:   "ibmfunctions/action-nodejs-v12:1.1.1"
-  ```
-  ```
-  image:   "openwhisk/java8action:a231007"
-  ```
+```
+image:   "ibmfunctions/action-nodejs-v12:1.1.1"
+```
+{: codeblock}
+
+```
+image:   "openwhisk/java8action:a231007"
+```
+{: codeblock}
 
 This JSON response shows the supported and the disabled runtimes.
 Disabled runtimes are marked with `deprecated=true`.
@@ -551,3 +554,5 @@ Actions that use a disabled runtime can be only read or deleted.
 Execution of such an action is not possible.
 
 To update the runtime of this action to a supported one, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
+
+

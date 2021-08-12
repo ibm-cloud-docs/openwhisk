@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-12"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions, activations, configuring
 
@@ -55,7 +55,7 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
     {: pre}
 
     **Example output**
-    
+
     ```
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
@@ -65,10 +65,10 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
     ```
     Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
-      2016-02-11T16:46:56.842065025Z stdout: hello bob!
+        2016-02-11T16:46:56.842065025Z stdout: hello bob!
     ```
     {: screen}
-    
+
     You might also see the logs for any actions that are run on your behalf in {{site.data.keyword.openwhisk_short}} in real time.
 
 ## Viewing activation details
@@ -192,7 +192,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 <li><code>statusCode</code>: The status code. If the action resulted in an error, this value is the HTTP error code.</li>
 <li><code>success</code>: The result of whether the action completed successfully.</li>
 <li><code>result</code>: The return value from the activation.</li>
-</ul>For more possible outcomes, see [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec).</td>
+</ul>For more possible outcomes, see <a href="/docs/openwhisk?topic=openwhisk-limits#limits_exec">Action executions</a>.</td>
 </tr>
 <tr>
 <td><code>logs</code></td>
@@ -231,5 +231,7 @@ In order to use the [{{site.data.keyword.la_full_notm}} service](https://cloud.i
 To enable an instance that is receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/log-analysis?topic=log-analysis-config_svc_logs){: external} in the logging service.
 
 {{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.la_short}} service in the same region as the {{site.data.keyword.openwhisk_short}} namespace. Actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a logging instance in `us-south`.
+
+
 
 

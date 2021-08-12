@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-06-18"
+lastupdated: "2021-08-06"
 
 keywords: troubleshooting actions, functions, help, support, node.js, node, javascript
 
@@ -21,13 +21,16 @@ subcollection: openwhisk
 {:app_url: data-hd-keyref="app_url"}
 {:authenticated-content: .authenticated-content}
 {:beta: .beta}
+{:c#: .ph data-hd-programlang='c#'}
 {:c#: data-hd-programlang="c#"}
 {:cli: .ph data-hd-interface='cli'}
 {:codeblock: .codeblock}
+{:curl: #curl .ph data-hd-programlang='curl'}
 {:curl: .ph data-hd-programlang='curl'}
 {:deprecated: .deprecated}
 {:dotnet-standard: .ph data-hd-programlang='dotnet-standard'}
 {:download: .download}
+{:external: .external target="_blank"}
 {:external: target="_blank" .external}
 {:faq: data-hd-content-type='faq'}
 {:fuzzybunny: .ph data-hd-programlang='fuzzybunny'}
@@ -40,20 +43,28 @@ subcollection: openwhisk
 {:hide-in-docs: .hide-in-docs}
 {:important: .important}
 {:ios: data-hd-operatingsystem="ios"}
+{:java: #java .ph data-hd-programlang='java'}
 {:java: .ph data-hd-programlang='java'}
 {:java: data-hd-programlang="java"}
 {:javascript: .ph data-hd-programlang='javascript'}
 {:javascript: data-hd-programlang="javascript"}
+{:middle: .ph data-hd-position='middle'}
+{:navgroup: .navgroup}
 {:new_window: target="_blank"}
+{:node: .ph data-hd-programlang='node'}
 {:note .note}
 {:note: .note}
+{:note:.deprecated}
 {:objectc data-hd-programlang="objectc"}
+{:objectc: .ph data-hd-programlang='Objective C'}
 {:org_name: data-hd-keyref="org_name"}
+{:php: .ph data-hd-programlang='PHP'}
 {:php: data-hd-programlang="php"}
 {:pre: .pre}
 {:preview: .preview}
 {:python: .ph data-hd-programlang='python'}
 {:python: data-hd-programlang="python"}
+{:right: .ph data-hd-position='right'}
 {:route: data-hd-keyref="route"}
 {:row-headers: .row-headers}
 {:ruby: .ph data-hd-programlang='ruby'}
@@ -71,8 +82,10 @@ subcollection: openwhisk
 {:shortdesc: .shortdesc}
 {:space_name: data-hd-keyref="space_name"}
 {:step: data-tutorial-type='step'}
+{:step: data-tutorial-type='step'} 
 {:subsection: outputclass="subsection"}
 {:support: data-reuse='support'}
+{:swift: #swift .ph data-hd-programlang='swift'}
 {:swift: .ph data-hd-programlang='swift'}
 {:swift: data-hd-programlang="swift"}
 {:table: .aria-labeledby="caption"}
@@ -80,6 +93,7 @@ subcollection: openwhisk
 {:terraform: .ph data-hd-interface='terraform'}
 {:tip: .tip}
 {:tooling-url: data-tooling-url-placeholder='tooling-url'}
+{:topicgroup: .topicgroup}
 {:troubleshoot: data-hd-content-type='troubleshoot'}
 {:tsCauses: .tsCauses}
 {:tsResolve: .tsResolve}
@@ -96,14 +110,14 @@ subcollection: openwhisk
 # Node.js action is failing
 {: #ts_action_nodejs_fails}
 
-{: tsSymptoms}
 A Node.js action does not seem to run to completion reliably.
+{: tsSymptoms}
 
-{: tsCauses}
 If your Node.js action involves asynchronous calls to other services, your code might return from the `main()` function prematurely, which causes the action runtime to be stopped before your action is completed.
+{: tsCauses}
 
-{: tsResolve}
 The `main()` function of a Node.js action is a synchronous function, which expects your action to be complete when you return from the `main()` function. In case you are using asynchronous calls, for example, when fetching data from Cloud Object Storage or Cloudant instances, it is unpredictable as to when the `main()` function fully completes its work. To ensure that the action runs to completion, use a *Promise*. A Promise in Node.js is a stand-in for an object. Using a promise allows you to return the object from a synchronous function immediately, but the actual result becomes available at a later point in time, when the promise is fulfilled.
+{: tsResolve}
 
 The {{site.data.keyword.openwhisk}} Node.js runtime container supports promises that are returned from the `main()` function. If you prefer working in a more synchronous fashion, you can also declare your `main()` function as an `async` function, which allows you to wait for asynchronous calls to complete before the function continues. 
 
@@ -162,3 +176,5 @@ async function main() {
 }
 ```
 {: pre}
+
+

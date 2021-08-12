@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: error, error handling, functions, serverless, monitoring, composer
 
@@ -39,3 +39,5 @@ In order to handle errors, choose one of the following options.
 2. Use the built-in integration with the {{site.data.keyword.mon_full_notm}} service to define a subsequent action to be invoked in response to the error. All configuration and execution occurs service-side. For more information, see [{{site.data.keyword.mon_full_notm}}](/docs/monitoring?topic=monitoring-notifications) and [Monitoring {{site.data.keyword.openwhisk_short}} entities with {{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-functions).
 
 3. Handle errors programmatically by including the Composer library within the action implementation. By using the library, you can chain together a sequence of actions or define other types of control-flow logic. When you use this library, all execution of the [error-handling code occurs service-side](/docs/openwhisk?topic=openwhisk-pkg_composer#error-handling) and there are no additional components that you must manage. To articulate the error-handling logic programmatically, import the Composer library, a common practice in the programming language communities. For more information about installing and using the Composer library with {{site.data.keyword.openwhisk_short}}, see [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer).
+
+

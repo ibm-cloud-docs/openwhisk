@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: mobile, sdk, cocoapods, carthage, functions, action, trigger
 
@@ -48,11 +48,11 @@ install! 'cocoapods', :deterministic_uuids => false
 use_frameworks!
 
 target 'MyApp' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
+    pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 
 target 'MyApp WatchKit Extension' do
-     pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
+    pod 'OpenWhisk', :git => 'https://github.com/apache/incubator-openwhisk-client-swift.git', :tag => '0.3.0'
 end
 ```
 {: codeblock}
@@ -65,11 +65,11 @@ This is caused if CocoaPods does not update the Swift version in the Pods projec
 
 ```ruby
 post_install do |installer|
-  installer.pods_project.targets.each do |target|
+    installer.pods_project.targets.each do |target|
     target.build_configurations.each do |config|
-      config.build_settings['SWIFT_VERSION'] = '4.0'
+        config.build_settings['SWIFT_VERSION'] = '4.0'
     end
-  end
+    end
 end
 ```
 {: codeblock}
@@ -286,17 +286,19 @@ whiskButton.invokeAction(parameters: myParams, callback: { reply, error in
 var whiskButtonSelfContained = WhiskButton(frame: CGRectMake(0,0,20,20))
 whiskButtonSelfContained.listenForPressEvents = true
 do {
-   // use qualified name API which requires do/try/catch
-   try whiskButtonSelfContained.setupWhiskAction("mypackage/helloConsole", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
-   whiskButtonSelfContained.actionButtonCallback = { reply, error in
-       if let error = error {
-           print("Oh no, error: \(error)")
-       } else {
-           print("Success: \(reply)")
-       }
-   }
+    // use qualified name API which requires do/try/catch
+    try whiskButtonSelfContained.setupWhiskAction("mypackage/helloConsole", credentials: credentialsConfiguration!, hasResult: false, parameters: nil, urlSession: nil)
+    whiskButtonSelfContained.actionButtonCallback = { reply, error in
+        if let error = error {
+            print("Oh no, error: \(error)")
+        } else {
+            print("Success: \(reply)")
+        }
+    }
 } catch {
-   print("Error setting up button \(error)")
+    print("Error setting up button \(error)")
 }
 ```
 {: codeblock}
+
+

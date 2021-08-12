@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: event streams, package, messages, events, functions, trigger
 
@@ -56,25 +56,25 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
 
 1. Create a `/whisk.system/messaging` package binding that is configured for your {{site.data.keyword.messagehub}} account. In this example, the package name is `MyEventStreamBind`.
 
-  ```
-  ibmcloud fn package bind /whisk.system/messaging MyEventStreamBind
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package bind /whisk.system/messaging MyEventStreamBind
+    ```
+    {: pre}
 
 2. Verify that the package binding exists.
 
-  ```
-  ibmcloud fn package list
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  packages
-  /<namespace_ID>/MyEventStreamBind
-  ```
-  {: screen}
+    ```
+    packages
+    /<namespace_ID>/MyEventStreamBind
+    ```
+    {: screen}
 
 3. Get the name of the service instance that you want to bind to an action or package.
 
@@ -84,7 +84,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
     {: pre}
 
     **Example output**
-    
+
     ```
     Name               Location   State    Type
     EventStreams-0s    us-south   active   service_instance
@@ -106,7 +106,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
     Service credentials-2   active   Sun Jan 27 22:14:58 UTC 2019
     ```
     {: screen}
-    
+
     You can create service keys by using the [`ibmcloud resource service-keys`](/docs/cli?topic=cli-ibmcloud_commands_resource#ibmcloud_resource_service_keys).
     {: tip}
 
@@ -116,9 +116,9 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
     ibmcloud fn service bind messagehub MyEventStreamBind --instance EventStreams-0s --keyname 'Service credentials-1'
     ```
     {: pre}
-    
+
     **Example output**
-    
+
     ```
     Credentials 'Service credentials-1' from 'messagehub' service instance 'EventStreams-0s' bound to 'MyEventStreamBind'.
     ```
@@ -136,7 +136,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
     ```
     ok: got package MyEventStreamBind
     ...
-      "parameters": [
+        "parameters": [
         {
             "key": "bluemixServiceName",
             "value": "messagehub"
@@ -174,7 +174,7 @@ You must have an instance of {{site.data.keyword.messagehub}}. To create an inst
             }
         }
     ]
-    
+
     ```
     {: screen}
 
@@ -214,13 +214,13 @@ To create the trigger:
 
 2. Create a trigger that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic. Replace `<namespace_ID>` with your namespace ID, `<binding>` with your package binding name, and `<mytopic>` with the topic in your {{site.data.keyword.messagehub}} instance that you want the trigger to listen to.
 
-   ```
-   ibmcloud fn trigger create MyMessageHubTrigger -f /<namespace_ID>/<binding>/messageHubFeed -p topic <mytopic>
-   ```
-   {: pre}
-   
-   To find the path to the `messageHubFeed` trigger, run `ibmcloud fn package list | grep <binding>`, where `<binding>` is the name of your package binding.
-   {: tip}
+    ```
+    ibmcloud fn trigger create MyMessageHubTrigger -f /<namespace_ID>/<binding>/messageHubFeed -p topic <mytopic>
+    ```
+    {: pre}
+
+    To find the path to the `messageHubFeed` trigger, run `ibmcloud fn package list | grep <binding>`, where `<binding>` is the name of your package binding.
+    {: tip}
 
 ### Creating a trigger for an {{site.data.keyword.messagehub}} package outside {{site.data.keyword.cloud_notm}}
 {: #eventstreams_trigger_outside}
@@ -229,18 +229,18 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
 1. Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
-   ```
-   ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
-   [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
+    [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
+    ```
+    {: pre}
 
 2. Now you can create a trigger by using your new package that is fired when new messages are posted to your {{site.data.keyword.messagehub}} topic.
 
-   ```
-   ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
-   ```
-   {: pre}
+    ```
+    ibmcloud fn trigger create MyMessageHubTrigger -f myMessageHub/messageHubFeed -p topic mytopic -p isJSONData true
+    ```
+    {: pre}
 
 ### Listening for messages
 {: #eventstreams_listen_messages}
@@ -282,19 +282,19 @@ If a message of `{"title": "Some string", "amount": 5, "isAwesome": true}` is po
 
 ```json
 {
-  "messages": [
+    "messages": [
     {
-      "partition": 0,
-      "key": null,
-      "offset": 421760,
-      "topic": "mytopic",
-      "value": {
+        "partition": 0,
+        "key": null,
+        "offset": 421760,
+        "topic": "mytopic",
+        "value": {
           "amount": 5,
           "isAwesome": true,
           "title": "Some string"
-      }
+        }
     }
-  ]
+    ]
 }
 ```
 {: codeblock}
@@ -303,15 +303,15 @@ However, if the same message content is posted with `isJSONData` set to `false`,
 
 ```json
 {
-  "messages": [
+    "messages": [
     {
-      "partition": 0,
-      "key": null,
-      "offset": 421761,
-      "topic": "mytopic",
-      "value": "{\"title\": \"Some string\", \"amount\": 5, \"isAwesome\": true}"
+        "partition": 0,
+        "key": null,
+        "offset": 421761,
+        "topic": "mytopic",
+        "value": "{\"title\": \"Some string\", \"amount\": 5, \"isAwesome\": true}"
     }
-  ]
+    ]
 }
 ```
 {: codeblock}
@@ -322,15 +322,15 @@ If a `value` of `Some data` is posted with `isBinaryValue` set to `true`, the tr
 
 ```json
 {
-  "messages": [
+    "messages": [
     {
-      "partition": 0,
-      "key": null,
-      "offset": 421760,
-      "topic": "mytopic",
-      "value": "U29tZSBkYXRh"
+        "partition": 0,
+        "key": null,
+        "offset": 421760,
+        "topic": "mytopic",
+        "value": "U29tZSBkYXRh"
     }
-  ]
+    ]
 }
 ```
 {: codeblock}
@@ -339,15 +339,15 @@ If the same message is posted without `isBinaryData` set to `true`, the trigger 
 
 ```json
 {
-  "messages": [
+    "messages": [
     {
-      "partition": 0,
-      "key": null,
-      "offset": 421760,
-      "topic": "mytopic",
-      "value": "Some data"
+        "partition": 0,
+        "key": null,
+        "offset": 421760,
+        "topic": "mytopic",
+        "value": "Some data"
     }
-  ]
+    ]
 }
 ```
 {: codeblock}
@@ -361,8 +361,8 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 
 ```json
 {
-  "messages": [
-      {
+    "messages": [
+        {
         "partition": 0,
         "key": null,
         "offset": 100,
@@ -370,8 +370,8 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
         "value": {
             "amount": 5
         }
-      },
-      {
+        },
+        {
         "partition": 0,
         "key": null,
         "offset": 101,
@@ -379,8 +379,8 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
         "value": {
             "amount": 1
         }
-      },
-      {
+        },
+        {
         "partition": 0,
         "key": null,
         "offset": 102,
@@ -388,8 +388,8 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
         "value": {
             "amount": 999
         }
-      }
-  ]
+        }
+    ]
 }
 ```
 
@@ -398,3 +398,5 @@ Keep in mind when you are coding actions that are fired by your trigger, that th
 
 - [{{site.data.keyword.messagehub}}](https://www.ibm.com/cloud/event-streams){: external}
 - [Apache Kafka](https://kafka.apache.org){: external}
+
+

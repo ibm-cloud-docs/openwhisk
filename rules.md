@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: actions, serverless, javascript, node, node.js, functions, triggers, rule
 
@@ -102,3 +102,5 @@ The three rules establish the following behavior.
 - Images in both tweets are classified.
 - Uploaded images are classified
 - A thumbnail version is generated.
+
+

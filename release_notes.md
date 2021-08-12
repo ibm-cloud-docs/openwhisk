@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-06-22"
+lastupdated: "2021-08-12"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -63,7 +63,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | --------- | -------- |
 | 29 March | <ul><li> Changes for Functions CLI version 1.0.53. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul>  |
 | 25 March | <ul><li>Updated list of supported versions. See [Runtimes](/docs/openwhisk?topic=openwhisk-runtimes).</li><li>Updated the Composer topic. See [Composer](/docs/openwhisk?topic=openwhisk-pkg_composer).</li><li>Added information about adding an IBM {{site.data.keyword.openwhisk_short}} Channel to {{site.data.keyword.mon_full_notm}}. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).</li><li>Added information for versioning your actions. See [Versioning your actions](/docs/openwhisk?topic=openwhisk-actions#actions-version).</li></ul> |
-| 12 March | <ul><li>Added support for `au-syd` (Sydney) region.</li></ul> |
+| 12 March | <ul><li>Added support for <code>au-syd</code> (Sydney) region.</li></ul> |
 {: caption="Changes for March 2021" caption-side="top"}
 
 ## January 2021
@@ -79,7 +79,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 14 December | <ul><li> Added versions to Quickstart template docs. See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated securing web actions to include information about `X-Require-Whisk-Auth`. See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).</li><li>Added tips to monitoring topic. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-functions)</li><li>Updated namespace instances to indicate if the namespace name or the namespace ID is required.</li></ul> |
+| 14 December | <ul><li> Added versions to Quickstart template docs. See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated securing web actions to include information about <code>X-Require-Whisk-Auth</code>. See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).</li><li>Added tips to monitoring topic. See [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-monitor-functions)</li><li>Updated namespace instances to indicate if the namespace name or the namespace ID is required.</li></ul> |
 {: caption="Changes for December 2020" caption-side="top"}
 
 ## October 2020
@@ -95,7 +95,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 22 September | <ul><li>Added support for Node.js 12 runtime. See [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments).</li><li> Added `--memory` to [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) and [`action update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update).</li><li> New troubleshooting information. See [troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting).</li></ul> |
+| 22 September | <ul><li>Added support for Node.js 12 runtime. See [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments).</li><li> Added <code>--memory</code> to [<code>action create</code>](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) and [<code>action update</code>](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update).</li><li> New troubleshooting information. See [troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting).</li></ul> |
 {: caption="Changes for September 2020" caption-side="top"}
 
 ## August 2020
@@ -161,7 +161,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 18 December | <ul><li>New environmental variable: `__OW_TRANSACTION_ID`. For more information, see [Environment variables for actions](/docs/openwhisk?topic=openwhisk-actions#actions_envvars).</li><li>Updated information about securing your web action for an API. See [Securing your API web action](/docs/openwhisk?topic=openwhisk-apigateway#api_secure).</li><li>Updated information for packaging your Python code. See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python).</li></ul> |
+| 18 December | <ul><li>New environmental variable: <code>__OW_TRANSACTION_ID</code>. For more information, see [Environment variables for actions](/docs/openwhisk?topic=openwhisk-actions#actions_envvars).</li><li>Updated information about securing your web action for an API. See [Securing your API web action](/docs/openwhisk?topic=openwhisk-apigateway#api_secure).</li><li>Updated information for packaging your Python code. See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python).</li></ul> |
 | 5 December | <ul><li>Improved documentation for the quick start templates. See [Deploying quick start templates](/docs/openwhisk?topic=openwhisk-templates).</li><li>Updated the API endpoints documentation. See [Regions](/docs/openwhisk?topic=openwhisk-cloudfunctions_regions).</li></ul> |
 {: caption="Changes for December 2019" caption-side="top"}
 
@@ -178,7 +178,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 | Date | Description |
 | --------- | -------- |
-| 31 October | <ul><li>The IBM Cloud Object Storage trigger is now available in the following regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. For more information about this trigger, see [IBM Cloud Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
+| 31 October | <ul><li>The IBM Cloud Object Storage trigger is now available in the following regions: <code>us-east</code>, <code>us-south</code>, <code>eu-gb</code>, <code>eu-de</code>, and <code>jp-tok</code> regions. For more information about this trigger, see [IBM Cloud Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
 | 28 October | <ul><li>Updates for [binding services to entities](/docs/openwhisk?topic=openwhisk-services).</li><li>Updates for [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=openwhisk-test#memory_usage).</li></ul> |
 | 14 October | <ul><li>Fixes for version 1.0.35. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li><li>Added console tasks to [Create actions](/docs/openwhisk?topic=openwhisk-actions).</li></ul> |
 {: caption="Changes for October 2019" caption-side="top"}
@@ -190,5 +190,7 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 | --------- | -------- |
 | 24 September | <ul><li>Fixes for version 1.0.34. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 | 20 September | <ul><li>Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. See [IBM Cloud Object Storage](/docs/openwhisk?topic=openwhisk-pkg_obstorage).</li></ul> |
-| 11 September | <ul><li>>Fixes for version 1.0.33. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
+| 11 September | <ul><li>Fixes for version 1.0.33. See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).</li></ul> |
 {: caption="Changes for September 2019" caption-side="top"}
+
+

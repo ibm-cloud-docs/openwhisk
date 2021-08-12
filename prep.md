@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-17"
+lastupdated: "2021-08-06"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -34,26 +34,26 @@ Each programming language has specific requirements to run, but most have the fo
 - The expected name for the entry point into the code is `main` by default. If your entry point is not `main`, a custom name can be specified when the action is created, so take note of that name.
 - Input parameters into your app and output results from your app must be formatted into a specific structure that can be passed between entities. The structure depends on your code language. For example, with Python apps, the input parameters must be a dictionary and the result of your app must be structured as a dictionary. Because you can also pass parameters in a structured object to your action. In JSON, for example, you might structure your code to expect an input parameter with JSON values from certain fields, like `name` and `place`.
 
-  **JSON input example**
-  
-  ```json
-  {"name": "Dorothy", "place": "Kansas"}
-  ```
-  {: codeblock}
+    **JSON input example**
 
-  **JavaScript example**
-  
-  ```javascript
-  function main(params) {
-      return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
-  }
-  ```
-  {: codeblock}
+    ```json
+    {"name": "Dorothy", "place": "Kansas"}
+    ```
+    {: codeblock}
+
+    **JavaScript example**
+
+    ```javascript
+    function main(params) {
+        return {payload:  'Hello, ' + params.person.name + ' from ' + params.person.place};
+    }
+    ```
+    {: codeblock}
 
 - If your app contains multiple files, they must be combined into one single file to be used in an action. You can either rewrite your code into one file or you can package the files and dependencies into a single archive file. If your runtime is not supported, you can package your app in a Docker image.
 
-  Code compilation is not required, but if possible for your runtime, compiling your code in advance can improve performance.
-  {: tip}
+    Code compilation is not required, but if possible for your runtime, compiling your code in advance can improve performance.
+    {: tip}
 
 ## Preparing JavaScript apps
 {: #prep_js}
@@ -71,22 +71,22 @@ Before you create an action, get your JavaScript code ready. Confirm that your c
 **Example**
 
 ```javascript
-  function main() {
-      return {payload: 'Hello world'};
-  }
+    function main() {
+        return {payload: 'Hello world'};
+    }
 ```
 {: codeblock}
 
 **Example with multiple functions**
 
 ```javascript
-  function main() {
-      return { payload: helper() }
-  }
+    function main() {
+        return { payload: helper() }
+    }
 
-  function helper() {
-      return new Date();
-  }
+    function helper() {
+        return new Date();
+    }
 ```
 {: codeblock}
 
@@ -101,13 +101,13 @@ The JavaScript activation is synchronous when the main function either exits wit
 ```javascript
 // each path results in a synchronous activation
 function main(params) {
-  if (params.payload == 0) {
-     return;
-  } else if (params.payload == 1) {
-     return {payload: 'Hello, World!'};
-  } else if (params.payload == 2) {
-     return {error: 'payload must be 0 or 1'};
-  }
+    if (params.payload == 0) {
+        return;
+    } else if (params.payload == 1) {
+        return {payload: 'Hello, World!'};
+    } else if (params.payload == 2) {
+        return {error: 'payload must be 0 or 1'};
+    }
 }
 ```
 {: codeblock}
@@ -124,11 +124,11 @@ In the following example, you can see how to fulfill a promise by calling the re
 
 ```javascript
 function main(args) {
-     return new Promise(function(resolve, reject) {
-       setTimeout(function() {
-         resolve({ done: true });
-       }, 2000);
-     })
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            resolve({ done: true });
+        }, 2000);
+        })
 }
 ```
 {: codeblock}
@@ -137,11 +137,11 @@ This example shows how to reject a promise by calling the reject function.
 
 ```javascript
 function main(args) {
-     return new Promise(function(resolve, reject) {
-       setTimeout(function() {
-         reject({ done: true });
-       }, 2000);
-     })
+    return new Promise(function(resolve, reject) {
+        setTimeout(function() {
+            reject({ done: true });
+        }, 2000);
+        })
 }
 ```
 {: codeblock}
@@ -150,8 +150,8 @@ In the examples, the following details are executed.
 * The `main` function returns a promise. The promise indicates that the activation isn't completed yet but is expected to in the future.
 * The `setTimeout()` JavaScript function waits for 2 seconds before it calls the promise's callback function, which represents the asynchronous code.
 * The promise's callback accepts the arguments `resolve` and `reject`, which are both functions.
-  * The call to `resolve()` fulfills the promise and indicates that the activation completes normally.
-  * A call to `reject()` can be used to reject the promise and signal that the activation completes abnormally.
+    * The call to `resolve()` fulfills the promise and indicates that the activation completes normally.
+    * A call to `reject()` can be used to reject the promise and signal that the activation completes abnormally.
 
 ### Structuring JavaScript code with synchronous and asynchronous behavior
 {: #prep_js_both}
@@ -161,17 +161,17 @@ An action can be synchronous on some inputs and asynchronous on others, as shown
 
 ```javascript
 function main(params) {
-     if (params.payload) {
+    if (params.payload) {
         // asynchronous activation
         return new Promise(function(resolve, reject) {
           setTimeout(function() {
             resolve({ done: true });
           }, 2000);
         })
-     }  else {
+        }  else {
         // synchronous activation
         return {done: true};
-     }
+        }
 }
 ```
 {: codeblock}
@@ -204,14 +204,14 @@ Next, [create](/docs/openwhisk?topic=openwhisk-actions), and [invoke the action]
 
 ```
 {
-  "copyright": "Eric Houck",
-  "date": "2018-03-28",
-  "explanation": "Does an alignment like this occur only once in a blue moon? ...",
-  "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
-  "media_type": "image",
-  "service_version": "v1",
-  "title": "Blue Moon Tree",
-  "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
+    "copyright": "Eric Houck",
+    "date": "2018-03-28",
+    "explanation": "Does an alignment like this occur only once in a blue moon? ...",
+    "hdurl": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_1799.jpg",
+    "media_type": "image",
+    "service_version": "v1",
+    "title": "Blue Moon Tree",
+    "url": "https://apod.nasa.gov/apod/image/1803/MoonTree_Houck_960.jpg"
 }
 ```
 {: screen}
@@ -225,88 +225,88 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 1. Create a `package.json` file. Add `webpack` as a development dependency.
 
-   ```json
-   {
-     "name": "my-action",
-     "main": "dist/bundle.js",
-     "scripts": {
-       "build": "webpack --config webpack.config.js",
-       "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12"
-      },
-     "dependencies": {
-       "left-pad": "1.1.3"
-     },
-     "devDependencies": {
-         "webpack": "^3.8.1"
-     }
-   }
-   ```
-   {: codeblock}
+    ```json
+    {
+        "name": "my-action",
+        "main": "dist/bundle.js",
+        "scripts": {
+        "build": "webpack --config webpack.config.js",
+        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12"
+        },
+        "dependencies": {
+        "left-pad": "1.1.3"
+        },
+        "devDependencies": {
+            "webpack": "^3.8.1"
+        }
+    }
+    ```
+    {: codeblock}
 
 2. Save the following `webpack` configuration code in a file named `webpack.config.js`.
 
-   ```javascript
-   var path = require('path');
-   module.exports = {
-     entry: './index.js',
-     output: {
-       path: path.resolve(__dirname, 'dist'),
-       filename: 'bundle.js'
-     },
-     target: 'node'
-   };
-   ```
-   {: codeblock}
+    ```javascript
+    var path = require('path');
+    module.exports = {
+        entry: './index.js',
+        output: {
+        path: path.resolve(__dirname, 'dist'),
+        filename: 'bundle.js'
+        },
+        target: 'node'
+    };
+    ```
+    {: codeblock}
 
 3. Prepare your app code. In this example, which you can save as a file that is named `index.js`, the variable `global.main` is set as the main function of the app.
 
-   **Example**
-   
-   ```javascript
-   function myAction(args) {
-       const leftPad = require("left-pad")
-       const lines = args.lines || [];
-       return { padded: lines.map(l => leftPad(l, 30, ".")) }
-   }
+    **Example**
 
-   global.main = myAction;
-   ```
-   {: codeblock}
+    ```javascript
+    function myAction(args) {
+        const leftPad = require("left-pad")
+        const lines = args.lines || [];
+        return { padded: lines.map(l => leftPad(l, 30, ".")) }
+    }
+
+    global.main = myAction;
+    ```
+    {: codeblock}
 
 4. Install all dependencies locally.
 
-   ```bash
-   npm install
-   ```
-   {: pre}
+    ```bash
+    npm install
+    ```
+    {: pre}
 
-      While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
-   {: note}
+    While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
+    {: note}
 
 5. Build the `webpack` bundle.
 
-   ```bash
-   npm run build
-   ```
-   {: pre}
+    ```bash
+    npm run build
+    ```
+    {: pre}
 
-   The file `dist/bundle.js` is created and deploys as the action source code.
+    The file `dist/bundle.js` is created and deploys as the action source code.
 
 6. Create the action by using the `npm` script or the `ibmcloud fn action update` CLI.
 
-   * Run the following `npm` script.
+    * Run the following `npm` script.
 
-     ```bash
-     npm run deploy
-     ```
-     {: pre}
+        ```bash
+        npm run deploy
+        ```
+        {: pre}
 
-   * Or run the following CLI command.
+    * Or run the following CLI command.
 
-     ```bash
-     ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
-     ```
-     {: pre}
+        ```bash
+        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
+        ```
+        {: pre}
 
 The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependencies are not included with the file `bundle.js`.
 {: tip}
@@ -321,40 +321,40 @@ Before you begin, [review the packages that are included with the JavaScript run
 
 1. In the root directory, create a `package.json` file.
 
-   **Example**
+    **Example**
 
-   ```json
-   {
-     "name": "my-action",
-     "main": "my-action.js",
-     "dependencies" : {
-       "left-pad" : "1.1.3"
-      }
-   }
-   ```
-   {: codeblock}
+    ```json
+    {
+        "name": "my-action",
+        "main": "my-action.js",
+        "dependencies" : {
+        "left-pad" : "1.1.3"
+        }
+    }
+    ```
+    {: codeblock}
 
-   This sample assumes the action code in the file `my-action.js`.
+    This sample assumes the action code in the file `my-action.js`.
 
 2. Install all dependencies locally.
 
-   ```bash
-   npm install <dependency>
-   ```
-   {: pre}
+    ```bash
+    npm install <dependency>
+    ```
+    {: pre}
 
-   While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
-   {: note}
+    While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
+    {: note}
 
 3. Create an archive that contains all files, including all dependencies.
 
-   ```bash
-   zip -r action.zip *
-   ```
-   {: pre}
+    ```bash
+    zip -r action.zip *
+    ```
+    {: pre}
 
-   **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the **`zip`** command instead.
-   {: tip}
+    **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `package.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the **`zip`** command instead.
+    {: tip}
 
 ### NPM libraries with native dependencies
 
@@ -365,24 +365,24 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
 
 1. Run the following command to fetch the Node.js modules and compile the native dependencies.
 
-   ```bash
-   docker run --it -v $PWD:/nodejsAction openwhisk/action-nodejs-v12 "npm install"
-   ```
-   {: pre}
+    ```bash
+    docker run --it -v $PWD:/nodejsAction openwhisk/action-nodejs-v12 "npm install"
+    ```
+    {: pre}
 
 2. Create the zipped action code, including the `node_modules` directory.
 
-   ```bash
-   zip -r action.zip *
-   ```
-   {: pre}
+    ```bash
+    zip -r action.zip *
+    ```
+    {: pre}
 
 3. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
 
-   ```bash
-   ibmcloud fn action create my-action action.zip --kind nodejs:12
-   ```
-   {: pre}
+    ```bash
+    ibmcloud fn action create my-action action.zip --kind nodejs:12
+    ```
+    {: pre}
 
 ## How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}
 {: #how_to_package_python}
@@ -507,72 +507,72 @@ Before you begin, [review the packages that are included with the Python runtime
 
 2. Save the following code as a file called `__main__.py` in your `test` directory.
 
-  ```python
-  from helper import helper
-  def main(args):
+    ```python
+    from helper import helper
+    def main(args):
     return helper(args)
-  ```
-  {: codeblock}
+    ```
+    {: codeblock}
 
 3. Save the following code as a file called `helper.py` in your `test` directory. This code accepts a `name` parameter and returns a greeting. If no `name` is  specified, the `name` that is returned is `stranger`.
 
-  ```python
-  def helper(dict):
-      if 'name' in dict:
+    ```python
+    def helper(dict):
+        if 'name' in dict:
           name = dict['name']
-      else:
+        else:
           name = "stranger"
-      greeting = "Hello from helper.py, " + name + "!"
-      return {"greeting": greeting}
-  ```
-  {: codeblock}
+        greeting = "Hello from helper.py, " + name + "!"
+        return {"greeting": greeting}
+    ```
+    {: codeblock}
 
 4. To package your app as a compressed file, `cd` to your `test` directory and run the following command. In this example, the archive is called `stranger.zip`.
 
-  ```bash
-  zip -r stranger.zip __main__.py helper.py
-  ```
-  {: pre}
+    ```bash
+    zip -r stranger.zip __main__.py helper.py
+    ```
+    {: pre}
 
 5. You can use then use the compressed file to create an action called `hello`. Replace `<file_path>` with the file path to your compressed file.
 
-  ```bash
-  ibmcloud fn action create hello <file_path>/test/stranger.zip --kind python:3.7
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action create hello <file_path>/test/stranger.zip --kind python:3.7
+    ```
+    {: pre}
 
 6. Test the action.
 
-  ```bash
-  ibmcloud fn action invoke hello --result
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action invoke hello --result
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  {
+    **Example output**
+
+    ```
+    {
     "greeting": "Hello from helper.py, stranger!"
-  }
-  ```
-  {: screen}
+    }
+    ```
+    {: screen}
 
 7. Test the action again and specify the `name` parameter. Replace the `<your_name>` parameter with your name.
 
-  ```bash
-  ibmcloud fn action invoke hello --result --param name <your_name>
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action invoke hello --result --param name <your_name>
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  {
+    **Example output**
+
+    ```
+    {
     "greeting": "Hello from helper.py, <your_name>!"
-  }
-  ```
-  {: screen}
-  
+    }
+    ```
+    {: screen}
+
 
 ### Packaging Python code with a local virtual environment in a compressed file
 {: #prep_python_local_virtenv}
@@ -606,8 +606,8 @@ To package your app:
 
 2. From the `jokes` directory, create a virtual environment named `virtualenv`.
 
-   The virtual environment must be named `virtualenv`.
-   {: note}
+    The virtual environment must be named `virtualenv`.
+    {: note}
 
     ```bash
     virtualenv virtualenv
@@ -615,7 +615,7 @@ To package your app:
     {: pre}
 
     **Example output**
-    
+
     ```
     Using base prefix '/Library/Frameworks/Python.framework/Versions/3.7'
     New python executable in Desktop/jokes/virtualenv/bin/python3
@@ -647,7 +647,7 @@ To package your app:
     {: codeblock}
 
     **Example output**
-    
+
     ```
     Collecting pyjokes
     Using cached https://files.pythonhosted.org/packages/a0/70/65457d1b197b1a0195a95128632d9a0b59d7d8ced6035c80e8467731dc76/pyjokes-0.5.0-py2.py3-none-any.whl
@@ -655,7 +655,7 @@ To package your app:
     Successfully installed pyjokes-0.5.0
     ```
     {: screen}
-  
+
 6. Stop the `virtualenv` virtual environment.
 
     ```bash
@@ -681,7 +681,7 @@ To package your app:
     {: pre}
 
     **Example output**
-    
+
     ```
     ...
     adding: virtualenv/lib/python3.7/abc.py (deflated 72%)
@@ -700,7 +700,7 @@ To package your app:
     {: pre}
 
     **Example output**
-    
+
     ```
     ok: created action jokes
     ```
@@ -714,7 +714,7 @@ To package your app:
     {: pre}
 
     **Example output**
-    
+
     ```
     {
     "joke": "A QA engineer walks into a bar. Runs into a bar. Crawls into a bar. Dances into a bar. Tiptoes into a bar. Rams a bar. Jumps into a bar."
@@ -762,7 +762,7 @@ Package your app by completing the following steps.
     {: pre}
 
     **Example requirements.txt**
-    
+
     ```
     sklearn
     ```
@@ -776,48 +776,48 @@ Package your app by completing the following steps.
     * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
     * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
 
-   **Example**
-   
-   ```bash
-   docker pull ibmfunctions/action-python-v3.7
-   ```
-   {: pre}
+    **Example**
 
-   **Example output**
-   
-   ```
-   Using default tag: latest
-   latest: Pulling from ibmfunctions/action-python-v3.7
-   ```
-   {: screen}
+    ```bash
+    docker pull ibmfunctions/action-python-v3.7
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    Using default tag: latest
+    latest: Pulling from ibmfunctions/action-python-v3.7
+    ```
+    {: screen}
 
 6. Create a virtual environment and install the additional Python packages.
 
-   The virtual environment directory must be named `virtualenv` in order to create a `virtualenv` folder in the `test` directory.
-   {: note}
+    The virtual environment directory must be named `virtualenv` in order to create a `virtualenv` folder in the `test` directory.
+    {: note}
 
-   ```bash
-   docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
-   ```
-   {: pre}
+    ```bash
+    docker run --rm -v "$PWD:/tmp" ibmfunctions/action-python-v3.7 bash -c "cd /tmp && virtualenv virtualenv && source virtualenv/bin/activate && pip install -r requirements.txt"
+    ```
+    {: pre}
 
-   This command instantiates a container (`docker run`) based on the runtime image selected and mounts the current working directory (`$PWD`) as `/tmp` into the container (`-v "$PWD:/tmp"`). Inside the container, it then changes to the `/tmp` directory `cd /tmp`, creates and activates the `virtualenv` (`virtualenv virtualenv && source virtualenv/bin/activate`), and runs the `pip install` to add the selected packages. The container is deleted when the command completes (`--rm`). The directory structure of the created `virtualenv` and finally, the installed packages can be found in the folder `virtualenv` in your current directory.
+    This command instantiates a container (`docker run`) based on the runtime image selected and mounts the current working directory (`$PWD`) as `/tmp` into the container (`-v "$PWD:/tmp"`). Inside the container, it then changes to the `/tmp` directory `cd /tmp`, creates and activates the `virtualenv` (`virtualenv virtualenv && source virtualenv/bin/activate`), and runs the `pip install` to add the selected packages. The container is deleted when the command completes (`--rm`). The directory structure of the created `virtualenv` and finally, the installed packages can be found in the folder `virtualenv` in your current directory.
 
-   **Example output**
-   
-   ```
-   Using base prefix '/usr/local'
-   New python executable in /tmp/virtualenv/bin/python
-   Installing setuptools, pip, wheel...
-   done
-   Collecting sklearn (from -r requirements.txt (line 1))
-   Downloading https://files.pythonhosted.org/packages/1e/7a/dbb3be0ce9bd5c8b7e3d87328e79063f8b263b2b1bfa4774cb1147bfcd3f/sklearn-0.0.tar.gz
-   Collecting scikit-learn (from sklearn->-r requirements.txt (line 1))
-   Downloading https://files.pythonhosted.org/packages/9f/c5/e5267eb84994e9a92a2c6a6ee768514f255d036f3c8378acfa694e9f2c99/scikit_learn-0.21.3-cp37-cp37m-manylinux1_x86_64.whl (6.7MB)
-   ...
-   ...
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    Using base prefix '/usr/local'
+    New python executable in /tmp/virtualenv/bin/python
+    Installing setuptools, pip, wheel...
+    done
+    Collecting sklearn (from -r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/1e/7a/dbb3be0ce9bd5c8b7e3d87328e79063f8b263b2b1bfa4774cb1147bfcd3f/sklearn-0.0.tar.gz
+    Collecting scikit-learn (from sklearn->-r requirements.txt (line 1))
+    Downloading https://files.pythonhosted.org/packages/9f/c5/e5267eb84994e9a92a2c6a6ee768514f255d036f3c8378acfa694e9f2c99/scikit_learn-0.21.3-cp37-cp37m-manylinux1_x86_64.whl (6.7MB)
+    ...
+    ...
+    ```
+    {: screen}
 
 7. Save the following code as `__main__.py` in your `test` directory. When you create actions with a compressed file, the source file that contains the entry point must be named `__main__.py`.
 
@@ -833,15 +833,16 @@ Package your app by completing the following steps.
 
 8. In order to deploy this code as an action, you must create a compressed file of the `virtualenv` folder and the `__main__.py` file. However, in this case, the resulting compressed file is larger than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions) allowed by {{site.data.keyword.openwhisk_short}}. To reduce the size of the compressed file, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your compressed file.
 
-   In this example, you must also include `joblib` package from the `site-packages` folder since it is a dependency of `sklearn`. However, you do not need to include `sklearn` dependencies that are included in {{site.data.keyword.openwhisk_short}} default images, such as `numpy`.
+    In this example, you must also include `joblib` package from the `site-packages` folder since it is a dependency of `sklearn`. However, you do not need to include `sklearn` dependencies that are included in {{site.data.keyword.openwhisk_short}} default images, such as `numpy`.
 
-   ```bash
-   zip -r sklearn.zip virtualenv/bin/activate_this.py virtualenv/lib/python3.7/site-packages/joblib virtualenv/lib/python3.7/site-packages/sklearn __main__.py
-   ```
-   {: pre}
-   
-   If the archive file that you create with your `virtualenv` and `__main__.py` file is smaller than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions), you can create the action directly without first deleting unnecessary or duplicate packages from the `site-packages` of your `virtualenv` directory.
-   {: tip}
+    ```bash
+    zip -r sklearn.zip virtualenv/bin/activate_this.py virtualenv/lib/python3.7/site-packages/joblib virtualenv/lib/python3.7/site-packages/sklearn __main__.py
+    ```
+    {: pre}
+
+    If the archive file that you create with your `virtualenv` and `__main__.py` file is smaller than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions), you can create the action directly without first deleting unnecessary or duplicate packages from the `site-packages` of your `virtualenv` directory.
+    {: tip}
+
 	
 9. Create an action called `sklearn` by using the `sklearn.zip` file. Make sure to use the `--kind` corresponding to the runtime image used to create the compressed action file. Otherwise, the action fails to execute during invoke.
 
@@ -856,7 +857,7 @@ Package your app by completing the following steps.
     ibmcloud fn action invoke sklearn2 --result
     ```
     {: pre}
-    
+
     **Example output**
 
     ```
@@ -910,11 +911,11 @@ Package the app in a custom Docker image by completing the following steps.
     FROM ibmfunctions/action-python-v3.7
 
     RUN pip install \
-      --upgrade pip \
-      matplotlib \
-      seaborn \
-      pandas \
-      statsmodels
+        --upgrade pip \
+        matplotlib \
+        seaborn \
+        pandas \
+        statsmodels
     ```
     {: codeblock}
 
@@ -926,9 +927,9 @@ Package the app in a custom Docker image by completing the following steps.
     docker build -t <dockerhub_username>/<repo_name>:<tag_name> .
     ```
     {: pre}
-    
+
     You can also run `docker build` commands with this format:
-    
+
     ```bash
     docker build . -t <dockerhub_username>/<repo_name>:<tag_name>
     ```
@@ -936,44 +937,44 @@ Package the app in a custom Docker image by completing the following steps.
 
 7. The image builds and installs the dependencies that you specified in your Dockerfile.
 
-   ```dockerfile
-   Sending build context to Docker daemon  2.048kB
-   Step 1/2 : FROM ibmfunctions/action-python-v3.7
-   ---> b84f64e9df1b
-   Step 2/2 : RUN pip install       --upgrade pip       matplotlib       seaborn       pandas       statsmodels
-   ---> Running in 990eccb27ed0
-   Collecting pip
-     Downloading https://files.pythonhosted.org/packages/62/ca/94d32a6516ed197a491d17d46595ce58a83cbb2fca280414e57cd86b84dc/pip-19.2.1-py2.py3-none-any.whl (1.4MB)
-   Collecting matplotlib
-     Downloading https://files.pythonhosted.org/packages/19/7a/60bd79c5d79559150f8bba866dd7d434f0a170312e4d15e8aefa5faba294/matplotlib-3.1.1-cp37-cp37m-manylinux1_x86_64.whl (13.1MB)
-     ...
-     ...
-   ``` 
-   {: screen}
+    ```dockerfile
+    Sending build context to Docker daemon  2.048kB
+    Step 1/2 : FROM ibmfunctions/action-python-v3.7
+    ---> b84f64e9df1b
+    Step 2/2 : RUN pip install       --upgrade pip       matplotlib       seaborn       pandas       statsmodels
+    ---> Running in 990eccb27ed0
+    Collecting pip
+        Downloading https://files.pythonhosted.org/packages/62/ca/94d32a6516ed197a491d17d46595ce58a83cbb2fca280414e57cd86b84dc/pip-19.2.1-py2.py3-none-any.whl (1.4MB)
+    Collecting matplotlib
+        Downloading https://files.pythonhosted.org/packages/19/7a/60bd79c5d79559150f8bba866dd7d434f0a170312e4d15e8aefa5faba294/matplotlib-3.1.1-cp37-cp37m-manylinux1_x86_64.whl (13.1MB)
+        ...
+        ...
+    ``` 
+    {: screen}
 
 8. Push your image to Docker Hub.
 
-   ```bash
-   docker push <dockerhub_username>/<repo_name>:<tag_name>
-   ```
-   {: pre}
-   
-   Be sure to log in to Docker Hub before you attempt to push your image.
-   {: tip}
+    ```bash
+    docker push <dockerhub_username>/<repo_name>:<tag_name>
+    ```
+    {: pre}
+
+    Be sure to log in to Docker Hub before you attempt to push your image.
+    {: tip}
 
 9. Save the following code as `seaborn.py` in your `functions` directory. This code generates a joint plot in [`seaborn`](https://seaborn.pydata.org/) that uses random data. You can then create a web action with {{site.data.keyword.openwhisk_short}} to return the plot to a {{site.data.keyword.openwhisk_short}} endpoint.
 
-   ```python
-       # import modules
-       import base64
-       import pandas as pd
-       import matplotlib.pyplot as plt
-       import seaborn as sns
-   
-       # optional: set seaborn style
-       sns.set(style="dark") 
-       def main(args):
-      
+    ```python
+        # import modules
+        import base64
+        import pandas as pd
+        import matplotlib.pyplot as plt
+        import seaborn as sns
+
+        # optional: set seaborn style
+        sns.set(style="dark") 
+        def main(args):
+
           # generate a jointplot from random data.
           x, y = np.random.randn(2, 300)
           g = (sns.jointplot(x,y, kind="hex", color="#9b59b6")
@@ -991,63 +992,63 @@ Package the app in a custom Docker image by completing the following steps.
               'isBase64Encoded': 'true',
               'headers': {'Content-Type': 'image/png'}
           }
-       # main(args)
-       # color codes (any hex code)
-       # green - "#4CB391"
-       # red/orange - "#e74c3c"
-       # purple - "#9b59b6"
-       # blue - "#16099d"
-   ```
-   {: codeblock}   
+        # main(args)
+        # color codes (any hex code)
+        # green - "#4CB391"
+        # red/orange - "#e74c3c"
+        # purple - "#9b59b6"
+        # blue - "#16099d"
+    ```
+    {: codeblock}   
 
 10. Create a web action called `seaborn` by using the custom Docker image that you created that contains the required Python dependencies to run a joint plot.
 
-   ```bash
-   ibmcloud fn action create seaborn --docker <dockerhub_username>/<repo_name>:<tag_name> seaborn.py --web true
-   ```
-   {: pre}
+    ```bash
+    ibmcloud fn action create seaborn --docker <dockerhub_username>/<repo_name>:<tag_name> seaborn.py --web true
+    ```
+    {: pre}
 
-   **Example output**
-  
-   ```
-   ok: created action seaborn
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    ok: created action seaborn
+    ```
+    {: screen}
 
 11. Invoke the action to test it. Invoking the action returns the base64 string for the generated joint plot.
 
-   ```bash
-   ibmcloud fn action invoke seaborn --result
-   ```
-   {: pre}
+    ```bash
+    ibmcloud fn action invoke seaborn --result
+    ```
+    {: pre}
 
-   **Example output**
-  
-   ```
-   <base64_string>,
-       "headers": {
-           "Content-Type": "image/png"
-       },
-       "isBase64Encoded": "true",
-       "statusCode": 200
-   }
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    <base64_string>,
+        "headers": {
+            "Content-Type": "image/png"
+        },
+        "isBase64Encoded": "true",
+        "statusCode": 200
+    }
+    ```
+    {: screen}
 
 12. Because this action is a web action, you can use the `action get` command to return the URL.
 
-   ```bash
-   ibmcloud fn action get seaborn --url
-   ```
-   {: pre}
+    ```bash
+    ibmcloud fn action get seaborn --url
+    ```
+    {: pre}
 
-   **Example output**
-  
-   ```
-   ok: got action seaborn
-   https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/default/seaborn
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    ok: got action seaborn
+    https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/default/seaborn
+    ```
+    {: screen}
 
 12. Copy and paste the URL into your browser to see the generated joint plot. Refresh the page to invoke the action and generate a new plot.
 
@@ -1064,7 +1065,6 @@ You can use images from public registries only, such as an image that is publicl
 {: important}
 
 **Before you begin**
-
 - You must have a Docker Hub account. You can set up a free Docker ID and account on [Docker Hub](https://hub.docker.com){: external}.
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){:external}.
 - [Review the requirements for the Docker runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_docker).
@@ -1081,53 +1081,54 @@ You can see a list of `ibmfunctions` Docker base images on [Docker Hub](https://
 
 1. Create a `test` directory on your Desktop and `cd` to it.
 
-  ```bash
-  cd desktop; mkdir test; cd test
-  ```
-  {: pre}
+    ```bash
+    cd desktop; mkdir test; cd test
+    ```
+    {: pre}
+
 2. Create a Dockerfile in your `test` directory and open it in `vim`.
 
-  ```bash
-  touch Dockerfile; vim Dockerfile
-  ```
-  {: pre}
-  
+    ```bash
+    touch Dockerfile; vim Dockerfile
+    ```
+    {: pre}
+
 3. Press the `i` key to edit your Dockerfile.
 4. Specify a {{site.data.keyword.openwhisk_short}} base image with the `FROM` argument in your Dockerfile.
 5. Install any packages and dependencies by specifying them `RUN` argument followed by the installation commands for your dependencies.
 6. Press `ESC`, then `:wq` and `Enter` to save and close your Dockerfile.
 
-  **Example Dockerfile for installing Python dependencies**
-  
-  The following example uses `ibmfunctions/action-python-v3.7` as a base image and installs the Python modules: `matplotlib`, `pandas`, and `statsmodels`.
+    **Example Dockerfile for installing Python dependencies**
+
+    The following example uses `ibmfunctions/action-python-v3.7` as a base image and installs the Python modules: `matplotlib`, `pandas`, and `statsmodels`.
 
     ```docker
     FROM ibmfunctions/action-python-v3.7
 
     RUN pip install \
-      --upgrade pip \
-      matplotlib \
-      pandas \
-      statsmodels
+        --upgrade pip \
+        matplotlib \
+        pandas \
+        statsmodels
     ```
     {: codeblock}
 
 7. Build your custom Docker image.
 
-  ```docker
-  docker build -t <dockerhub_username>/<repo_name>:<tag_name>
-  ```
-  {: codeblock}
+    ```docker
+    docker build -t <dockerhub_username>/<repo_name>:<tag_name>
+    ```
+    {: codeblock}
 
 8. Push your image to Docker Hub.
 
-  ```bash
-  docker push <dockerhub_username>/<repo_name>:<tag_name>
-  ```
-  {: pre}
-  
-  Be sure to log in to Docker Hub before you attempt to push your image.
-  {: tip}
+    ```bash
+    docker push <dockerhub_username>/<repo_name>:<tag_name>
+    ```
+    {: pre}
+
+    Be sure to log in to Docker Hub before you attempt to push your image.
+    {: tip}
 
 ### Deploying an action with a custom Docker image
 {: #prep_deploy_action_custom_docker_image}
@@ -1150,7 +1151,7 @@ To see an example deployment of a custom Docker image with a {{site.data.keyword
 {: #prep_go}
 
 You can create Actions by using Golang.
- 
+
 Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third-party libraries, package them as compressed file and deploy the file. When deploying a compressed file, specify the runtime by using the `kind` parameter (`--kind=go:1.15`)
 {: shortdesc}
 
@@ -1212,67 +1213,67 @@ You can create a simple action in Go by creating a file that contains a Go funct
 
 1. Create the Go file that contains the function. The default entry name is `Main`. You can change this name to any different public function name (`Uppercase first character`) if it is specified by using the `--main` parameter with the `ibmcloud fn action create <action_name> <action_file> --main <function_name>` command; for example, `--main hello` if the function is named `Hello`.
 
-   **`main.go`**
-   
-   ```go
-       package main
+    **`main.go`**
 
-       import "fmt"
+    ```go
+    package main
 
-       // Main is the function implementing the action
-       func Main(params map[string]interface{}) map[string]interface{} {
+    import "fmt"
+
+    // Main is the function implementing the action
+        func Main(params map[string]interface{}) map[string]interface{} {
           // parse the input JSON
-           name, ok := params["name"].(string)
-           if !ok {
-               name = "World"
+            name, ok := params["name"].(string)
+            if !ok {
+                name = "World"
           }
-           msg := make(map[string]interface{})
-           msg["body"] = "Hello " + name + "!"
-           // can optionally log to stdout (or stderr)
-           fmt.Println("hello Go action")
-           // return the output JSON
-           return msg
-       }
-   ```
-   {: codeblock}
+            msg := make(map[string]interface{})
+            msg["body"] = "Hello " + name + "!"
+            // can optionally log to stdout (or stderr)
+            fmt.Println("hello Go action")
+            // return the output JSON
+            return msg
+        }
+    ```
+    {: codeblock}
 
 2. (`optional`) If you want to pre-compile the function to an executable file that is stored in a compressed format first,
 
-   ```bash
-   docker run -i openwhisk/action-golang-v1.15:nightly -compile main <main.go >main-bin.zip
-   ```
-   {: pre}
+    ```bash
+    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <main.go >main-bin.zip
+    ```
+    {: pre}
 
-   `<` and  `>` are bash input output redirects and are part of the command.
-   {: note}
+    `<` and  `>` are bash input output redirects and are part of the command.
+    {: note}
 
-   Specify the generated compressed file (`main-bin.zip`) as the file for the `action create` command.
+    Specify the generated compressed file (`main-bin.zip`) as the file for the `action create` command.
 
 3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.15` runtime. If your action is not called `main`, specify the function name with `--name <your action name>`.
 
-   With the source code (`main.go`),
-   
-   ```bash
-   ibmcloud fn action create simple-action main.go
-   ```
-   {: pre}
+    With the source code (`main.go`),
 
-   With the pre-compiled compressed file (`main-bin.zip`),
+    ```bash
+    ibmcloud fn action create simple-action main.go
+    ```
+    {: pre}
 
-   ```bash
-   ibmcloud fn action create simple-action main-bin.zip
-   ```
-   {: pre}
+    With the pre-compiled compressed file (`main-bin.zip`),
 
-   Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
-   
-   ```bash
-   ibmcloud fn action create simple-action main.go --docker openwhisk/action-golang-v1.15:1ee88f9
-   ```
-   {: pre}
+    ```bash
+    ibmcloud fn action create simple-action main-bin.zip
+    ```
+    {: pre}
 
-   If you pin the action to a fixed runtime, it cannot change or receive security fixes.
-   {: note}
+    Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+
+    ```bash
+    ibmcloud fn action create simple-action main.go --docker openwhisk/action-golang-v1.15:1ee88f9
+    ```
+    {: pre}
+
+    If you pin the action to a fixed runtime, it cannot change or receive security fixes.
+    {: note}
 
 ### Create a Golang action made up of multiple packages
 {: #prep_go_multi_packages}
@@ -1280,128 +1281,128 @@ You can create a simple action in Go by creating a file that contains a Go funct
 You can create an action that includes multiple Go packages. Each package must include a `go.mod` file.
 {: shortdesc}
 
-  ```
-  .
-  ├── go.mod
-  ├── hello
-  │   ├── go.mod
-  │   └── hello.go
-  └── main.go
-  ```
-  {: screen}
+```
+.
+├── go.mod
+├── hello
+│   ├── go.mod
+│   └── hello.go
+└── main.go
+```
+{: screen}
 
 1. Create the following example files as shown in the following examples.
 
-   **`main.go`**
-   
-   ```go
-   package main
+    **`main.go`**
 
-   import (
-       "fmt"
-       "hello"
-   )
+    ```go
+    package main
 
-   func Main(args map[string]interface{}) map[string]interface{} {
-       fmt.Println("Main")
-       return hello.Hello(args)
-   }
-   ```
-   {: codeblock}
+    import (
+        "fmt"
+        "hello"
+    )
 
-   **`go.mod`**
-   
-   ```
-   module action
+    func Main(args map[string]interface{}) map[string]interface{} {
+        fmt.Println("Main")
+        return hello.Hello(args)
+    }
+    ```
+    {: codeblock}
 
-   go 1.15
+    **`go.mod`**
 
-   replace hello => ./hello
+    ```
+    module action
 
-   require hello v0.0.0
+    go 1.15
 
-   ```
-   {: codeblock}
+    replace hello => ./hello
 
-   **`hello/hello.go`**
-   
-   ```go
-   package hello
+    require hello v0.0.0
 
-   import (
-       "fmt"
-   )
+    ```
+    {: codeblock}
 
-   func Hello(args map[string]interface{}) map[string]interface{} {
-       msg := make(map[string]interface{})
-       greetings := "world"
-       name, ok := args["name"].(string)
-       if ok {
-           greetings = name
-       }
-       msg["msg"] = "Hello, " + greetings
-       fmt.Printf("Hello, %s\n", greetings)
-       return msg
-   }
-   ```
-   {: codeblock}
+    **`hello/hello.go`**
 
-   **`hello/go.mod`**
+    ```go
+    package hello
 
-   ```
-   module hello
+    import (
+        "fmt"
+    )
 
-   go 1.15
-   ```
-   {: codeblock}
+    func Hello(args map[string]interface{}) map[string]interface{} {
+        msg := make(map[string]interface{})
+        greetings := "world"
+        name, ok := args["name"].(string)
+        if ok {
+            greetings = name
+        }
+        msg["msg"] = "Hello, " + greetings
+        fmt.Printf("Hello, %s\n", greetings)
+        return msg
+    }
+    ```
+    {: codeblock}
+
+    **`hello/go.mod`**
+
+    ```
+    module hello
+
+    go 1.15
+    ```
+    {: codeblock}
 
 2. Compress the source code files into a compressed file that is called `src.zip`.
 
-   ```bash
-   zip -r src.zip main.go go.mod hello/hello.go hello/go.mod
-   ```
-   {: pre}
+    ```bash
+    zip -r src.zip main.go go.mod hello/hello.go hello/go.mod
+    ```
+    {: pre}
 
-   This command compresses the files `main.go go.mod hello/hello.go hello/go.mod` into `src.zip`. For more information about the `zip` command, use `man zip`.
+    This command compresses the files `main.go go.mod hello/hello.go hello/go.mod` into `src.zip`. For more information about the `zip` command, use `man zip`.
 
 3. (`Optional`) If you want to pre-compile the code, you can compile your compressed source code with the Docker runtime image using `-compile`
 
-   Compile the function to an executable file that is stored in a compressed format and uses the go runtime itself.
+    Compile the function to an executable file that is stored in a compressed format and uses the go runtime itself.
 
-   ```bash
-   docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
-   ```
-   {: pre} 
+    ```bash
+    docker run -i openwhisk/action-golang-v1.15:nightly -compile main <src.zip >main-bin.zip
+    ```
+    {: pre} 
 
-   `<` and `>` are bash input output redirects and are part of the command.
-   {: note}
+    `<` and `>` are bash input output redirects and are part of the command.
+    {: note}
 
 
 4. Create the action. Note that the runtime must be specified as `--kind=go:1.15`.
 
-   **With `src.zip`**
-   
-   ```bash
-   ibmcloud fn action create multiple-packag-action src.zip --kind=go:1.15
-   ```
-    {: pre}
-    
-   **With pre-compiled code (`main-bin.zip`)**
-   
-   ```bash
-   ibmcloud fn action create multiple-packag-action main-bin.zip --kind=go:1.15
-   ```
-   {: pre}
-   
-   Alternatively, if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
-    
-   ```bash
-   ibmcloud fn action create multiple-packag-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
-   ```
-   {: pre}
+    **With `src.zip`**
 
-   If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
-   {: note}
+    ```bash
+    ibmcloud fn action create multiple-packag-action src.zip --kind=go:1.15
+    ```
+    {: pre}
+
+    **With pre-compiled code (`main-bin.zip`)**
+
+    ```bash
+    ibmcloud fn action create multiple-packag-action main-bin.zip --kind=go:1.15
+    ```
+    {: pre}
+
+    Alternatively, if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+
+    ```bash
+    ibmcloud fn action create multiple-packag-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
+    ```
+    {: pre}
+
+    If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
+    {: note}
 
 
 ### Create an action by using external libraries with Go modules
@@ -1414,102 +1415,102 @@ If the action has not been pre-compiled, then the libraries are downloaded at th
 If you pre-compile the action, then the libraries are already packaged into the binary and don't need to be downloaded during the action execution time.
 {: tip}
 
-  ```
-  .
-  ├── go.mod
-  └── main.go
-  ```
-  {: screen}
+```
+.
+├── go.mod
+└── main.go
+```
+{: screen}
 
 1. Create the function.
 
-   **`main.go`**
-   
-   ```go 
-   package main
+    **`main.go`**
 
-   import (
-       "github.com/rs/zerolog"
-       "github.com/rs/zerolog/log"
-   )
+    ```go 
+    package main
 
-   func init() {
-       zerolog.TimeFieldFormat = ""
-   }
+    import (
+        "github.com/rs/zerolog"
+        "github.com/rs/zerolog/log"
+    )
 
-   // Main function for the action
-   func Main(obj map[string]interface{}) map[string]interface{} {
-       name, ok := obj["name"].(string)
-       if !ok {
-           name = "world"
-       }
-       log.Debug().Str("name", name).Msg("Hello")
-       msg := make(map[string]interface{})
-       msg["module-main"] = "Hello, " + name + "!"
-       return msg
-   }
-   ```
-   {: codeblock}
-   
-   **`go.mod`**
+    func init() {
+        zerolog.TimeFieldFormat = ""
+    }
 
-   ```
-   module action
+    // Main function for the action
+    func Main(obj map[string]interface{}) map[string]interface{} {
+        name, ok := obj["name"].(string)
+        if !ok {
+            name = "world"
+        }
+        log.Debug().Str("name", name).Msg("Hello")
+        msg := make(map[string]interface{})
+        msg["module-main"] = "Hello, " + name + "!"
+        return msg
+    }
+    ```
+    {: codeblock}
 
-   go 1.15
+    **`go.mod`**
 
-   require github.com/rs/zerolog v1.19.0
-   ```
-   {: codeblock}
+    ```
+    module action
+
+    go 1.15
+
+    require github.com/rs/zerolog v1.19.0
+    ```
+    {: codeblock}
 
 2. Compress the source code to a compressed file that is called `src.zip`.
 
-   ```bash
-   zip -r src.zip main.go go.mod 
-   ```
-   {: pre}
+    ```bash
+    zip -r src.zip main.go go.mod 
+    ```
+    {: pre}
 
-   This example compresses `main.go` and `go.mod` files to `src.zip`.
+    This example compresses `main.go` and `go.mod` files to `src.zip`.
 
 3. If you want to pre-compile the code, use the compressed source code (`src.zip`) and compile it with the docker runtime image with the `-compile` command.
 
-   1. Compile the function to an executable file that is stored in a compressed format (`main-bin.zip`).
-   
-   ```bash
-   docker run -i openwhisk/action-golang-v1.15:1ee88f9 -compile main <src.zip >main-bin.zip
-   ```
-   {: pre} 
+    1. Compile the function to an executable file that is stored in a compressed format (`main-bin.zip`).
 
-   `<` and `>` are bash input output redirects and are part of the command.
-   {: note}
+    ```bash
+    docker run -i openwhisk/action-golang-v1.15:1ee88f9 -compile main <src.zip >main-bin.zip
+    ```
+    {: pre} 
 
-   2. Specify the compressed file (`main-bin.zip`) as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.15`.
+    `<` and `>` are bash input output redirects and are part of the command.
+    {: note}
+
+    2. Specify the compressed file (`main-bin.zip`) as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.15`.
 
 4. Create the action. The runtime must be specified with `--kind=go:1.15`.
 
-   **With `src.zip`**
-   
-   ```bash
-   ibmcloud fn action create module-action src.zip --kind=go:1.15
-   ```
-   {: pre}
-   
-   **With pre-compiled code (`main-bin.zip`)**
-   
-   ```bash
-   ibmcloud fn action create module-action main-bin.zip --kind=go:1.15
-   ```
-   {: pre}
+    **With `src.zip`**
 
-   Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
-   
-   ```bash
-   ibmcloud fn action create module-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
-   ```
+    ```bash
+    ibmcloud fn action create module-action src.zip --kind=go:1.15
+    ```
     {: pre}
 
-   If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
-   {: note}
+    **With pre-compiled code (`main-bin.zip`)**
+
+    ```bash
+    ibmcloud fn action create module-action main-bin.zip --kind=go:1.15
+    ```
+    {: pre}
+
+    Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
+
+    ```bash
+    ibmcloud fn action create module-action src.zip --docker openwhisk/action-golang-v1.15:1ee88f9
+    ```
+    {: pre}
+
+    If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
+    {: note}
 
 ## Preparing Swift apps
 {: #prep_swift}
@@ -1607,76 +1608,76 @@ Package your app.
 
 1. To compile multiple files and include external dependencies, create the following directory structure.
 
-   ```
-   .
-   ├── Package.swift
-   └── Sources
-       └── main.swift
-   ```
-   {: codeblock}
+    ```
+    .
+    ├── Package.swift
+    └── Sources
+        └── main.swift
+    ```
+    {: codeblock}
 
-   The directory `Sources/` contains a file that is named `main.swift`.
+    The directory `Sources/` contains a file that is named `main.swift`.
 
-   The `Package.swift` must start with a comment that specifies version `4.2` for the Swift tooling:
+    The `Package.swift` must start with a comment that specifies version `4.2` for the Swift tooling:
 
-   ```swift
-   // swift-tools-version:4.2
-   import PackageDescription
+    ```swift
+    // swift-tools-version:4.2
+    import PackageDescription
 
-   let package = Package(
-       name: "Action",
-       products: [
-       .executable(
-           name: "Action",
-           targets:  ["Action"]
-       )
-       ],
-       dependencies: [
-       .package(url: "https://github.com/IBM-Swift/SwiftyRequest.git", .upToNextMajor(from: "1.0.0"))
-       ],
-       targets: [
-       .target(
-           name: "Action",
-           dependencies: ["SwiftyRequest"],
-           path: "."
-       )
-       ]
-   )
-   ```
-   {: codeblock}
+    let package = Package(
+        name: "Action",
+        products: [
+        .executable(
+            name: "Action",
+            targets:  ["Action"]
+        )
+        ],
+        dependencies: [
+        .package(url: "https://github.com/IBM-Swift/SwiftyRequest.git", .upToNextMajor(from: "1.0.0"))
+        ],
+        targets: [
+        .target(
+            name: "Action",
+            dependencies: ["SwiftyRequest"],
+            path: "."
+        )
+        ]
+    )
+    ```
+    {: codeblock}
 
 2. Create an archive with the contents of the directory.
 
-   ```bash
-   zip ../action-src.zip -r *
-   ```
-   {: codeblock}
+    ```bash
+    zip ../action-src.zip -r *
+    ```
+    {: codeblock}
 
 3. Pass the compressed archive to the Docker container over `stdin`. The `stdout` is a new compressed archive with the compiled executable file. The Docker container reads the content of the compressed archive from `stdin` and writes a new archive with the compiled Swift executable file to `stdout`.
 
-  ```bash
-  docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
-  ```
-  {: codeblock}
+    ```bash
+    docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
+    ```
+    {: codeblock}
 
-  In a Linux based system, you can combine the `zip` and `docker run` steps in a single command:
+    In a Linux based system, you can combine the `zip` and `docker run` steps in a single command:
 
-  ```bash
-  zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
-  ```
-  {: codeblock}
+    ```bash
+    zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
+    ```
+    {: codeblock}
 
-   ```bash
-   docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
-   ```
-   {: codeblock}
+    ```bash
+    docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
+    ```
+    {: codeblock}
 
-   In a Linux-based system, you can combine the `zip` and `docker run` steps in a single command:
+    In a Linux-based system, you can combine the `zip` and `docker run` steps in a single command:
 
-   ```bash
-   zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
-   ```
-   {: codeblock}
+    ```bash
+    zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
+    ```
+    {: codeblock}
 
 ## Preparing Ruby apps
 {: #prep_ruby}
@@ -1694,10 +1695,10 @@ When you structure your code, note that the expected name for the entry point fu
 
 ```ruby
     def main(args)
-      name = args["name"] || "stranger"
-      greeting = "Hello #{name}!"
-      puts greeting
-      { "greeting" => greeting }
+        name = args["name"] || "stranger"
+        greeting = "Hello #{name}!"
+        puts greeting
+        { "greeting" => greeting }
     end
 ```
 {: codeblock}
@@ -1805,71 +1806,71 @@ To create a Java action, complete the following steps.
 
 1. Save the following code in a file named `Hello.java`.
 
-   ```java
-   import com.google.gson.JsonObject;
-   public class Hello {
-       public static JsonObject main(JsonObject args) {
-           String name = "stranger";
-           if (args.has("name"))
-               name = args.getAsJsonPrimitive("name").getAsString();
-           JsonObject response = new JsonObject();
-           response.addProperty("greeting", "Hello, " + name + "!");
-           return response;
-       }
-   }
-   ```
-   {: codeblock}
+    ```java
+    import com.google.gson.JsonObject;
+    public class Hello {
+        public static JsonObject main(JsonObject args) {
+            String name = "stranger";
+            if (args.has("name"))
+                name = args.getAsJsonPrimitive("name").getAsString();
+            JsonObject response = new JsonObject();
+            response.addProperty("greeting", "Hello, " + name + "!");
+            return response;
+        }
+    }
+    ```
+    {: codeblock}
 
 2. Download the [`gson-2.8.5.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
 
 3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar`, which is saved in a `test` folder in the `Desktop` directory.
-  
-   ```bash
-   export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
-   ```
-   {: pre}
+
+    ```bash
+    export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+    ```
+    {: pre}
 
 4. Add the `bin` folder of your JDK to your `CLASSPATH`. This example uses `openjdk-8`.
-  
-   ```bash
-   export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
-   ```
-   {: pre}
+
+    ```bash
+    export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+    ```
+    {: pre}
 
 5. Verify the JDK `bin` folder and `gson-2.8.5.jar` are in your `CLASSPATH`.
 
-   ```bash
-   echo $CLASSPATH
-   ```
-   {: pre}
+    ```bash
+    echo $CLASSPATH
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
-   ```
-   {: screen}
+    ```
+    /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+    ```
+    {: screen}
 
 6. Navigate to the folder where your `Hello.java` file is stored. In this example, the `Hello.java` file is saved to the `Desktop/test` folder.
 
-   ```bash
-   cd Desktop/test
-   ```
-   {: pre}
+    ```bash
+    cd Desktop/test
+    ```
+    {: pre}
 
 7. Compile your `Hello.java` file into a class file.
 
-   ```bash
-   javac Hello.java
-   ```
-   {: pre}
+    ```bash
+    javac Hello.java
+    ```
+    {: pre}
 
 8. Compress the class file into a .jar file named `hello.jar`.
 
-   ```bash
-   jar cvf hello.jar Hello.class
-   ```
-   {: pre}
+    ```bash
+    jar cvf hello.jar Hello.class
+    ```
+    {: pre}
 
 **Next steps**
 
@@ -1887,41 +1888,41 @@ The following example uses Gradle to build a Java action that leverages the libr
 
 1. Create a file that is named `build.gradle` and specify the dependencies.
 
-   ```gradle
-   apply plugin: 'java'
+    ```gradle
+    apply plugin: 'java'
 
-   version = '1.0'
+    version = '1.0'
 
-   repositories {
-      mavenCentral()
-   }
+    repositories {
+        mavenCentral()
+    }
 
-   configurations {
-       provided
-       compile.extendsFrom provided
-   }
+    configurations {
+        provided
+        compile.extendsFrom provided
+    }
 
-   dependencies {
+    dependencies {
         provided 'com.google.code.gson:gson:2.6.2'
-       compile 'com.google.zxing:core:3.3.0'
+        compile 'com.google.zxing:core:3.3.0'
         compile 'com.google.zxing:javase:3.3.0'
-   }
+    }
 
     jar {
-       dependsOn configurations.runtime
+        dependsOn configurations.runtime
 
-      from {
-           (configurations.runtime - configurations.provided).collect {
-               it.isDirectory() ? it : zipTree(it)
-           }
-       }
-   }
-   ```
-   {: codeblock}
+    from {
+            (configurations.runtime - configurations.provided).collect {
+                it.isDirectory() ? it : zipTree(it)
+            }
+        }
+    }
+    ```
+    {: codeblock}
 
 2. Run the command **`gradle jar`**, which generates a .jar archive in the directory `build/libs/`.
 
-   For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
+For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
 
 ## Preparing .NET Core apps
 {: #prep_dotnet}
@@ -1958,69 +1959,71 @@ To compile, test, and archive .NET Core projects, you must:
 
 To package your code, run the following commands.
 
-  1. Create a C# project called `Apache.OpenWhisk.Example.Dotnet`.
+1. Create a C# project called `Apache.OpenWhisk.Example.Dotnet`.
 
-     ```bash
-     dotnet new classlib -n Apache.OpenWhisk.Example.Dotnet -lang "C#"
-     ```
-     {: pre}
+    ```bash
+    dotnet new classlib -n Apache.OpenWhisk.Example.Dotnet -lang "C#"
+    ```
+    {: pre}
 
-  2. Navigate to the `Apache.OpenWhisk.Example.Dotnet` directory.
+2. Navigate to the `Apache.OpenWhisk.Example.Dotnet` directory.
 
-     ```bash
-     cd Apache.OpenWhisk.Example.Dotnet
-     ```
-     {: pre}
+    ```bash
+    cd Apache.OpenWhisk.Example.Dotnet
+    ```
+    {: pre}
 
-  3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> package](https://www.nuget.org/packages/Newtonsoft.Json/){: external}.
+3. Install the [<ph class="ignoreSpelling">Newtonsoft.Json NuGet</ph> package](https://www.nuget.org/packages/Newtonsoft.Json/){: external}.
 
-     ```bash
-     dotnet add package Newtonsoft.Json -v 12.0.1
-     ```
-     {: pre}
+    ```bash
+    dotnet add package Newtonsoft.Json -v 12.0.1
+    ```
+    {: pre}
 
-  4. Save the following code in a file named `Hello.cs`.
+4. Save the following code in a file named `Hello.cs`.
 
-     ```csharp
-     using System;
-     using Newtonsoft.Json.Linq;
+    ```csharp
+    using System;
+    using Newtonsoft.Json.Linq;
 
-     namespace Apache.OpenWhisk.Example.Dotnet
-     {
-         public class Hello
-         {
-             public JObject Main(JObject args)
-             {
-                 string name = "stranger";
-                 if (args.ContainsKey("name")) {
-                     name = args["name"].ToString();
-                 }
-                 JObject message = new JObject();
-                 message.Add("greeting", new JValue($"Hello, {name}!"));
-                 return (message);
-             }
-         }
-     }
-     ```
-     {: codeblock}
+    namespace Apache.OpenWhisk.Example.Dotnet
+        {
+            public class Hello
+            {
+                public JObject Main(JObject args)
+                {
+    string name = "stranger";
+    if (args.ContainsKey("name")) {
+    name = args["name"].ToString();
+    }
+    JObject message = new JObject();
+    message.Add("greeting", new JValue($"Hello, {name}!"));
+    return (message);
+                }
+            }
+    }
+    ```
+    {: codeblock}
 
-  5. Compile `Hello.cs` and any other files and output to `out` directory.
+5. Compile `Hello.cs` and any other files and output to `out` directory.
 
-     ```bash
-     dotnet publish -c Release -o out
-     ```
-     {: pre}
+    ```bash
+    dotnet publish -c Release -o out
+    ```
+    {: pre}
 
-  6. Navigate to the `out` directory.
+6. Navigate to the `out` directory.
 
-     ```bash
-     cd out
-     ```
-     {: pre}
+    ```bash
+    cd out
+    ```
+    {: pre}
 
-  7. Compress the published files.
+7. Compress the published files.
 
-     ```bash
-     zip -r -0 ../helloDotNet.zip *
-     ```
-     {: pre}
+    ```bash
+    zip -r -0 ../helloDotNet.zip *
+    ```
+    {: pre}
+
+

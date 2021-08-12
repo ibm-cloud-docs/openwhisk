@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-05-03"
+lastupdated: "2021-08-06"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -34,7 +34,7 @@ With {{site.data.keyword.openwhisk}}, you can use your favorite programming lang
 {: #gs_actions}
 
 With {{site.data.keyword.openwhisk}}, you can create stateless code snippets, called actions, that are set to perform one specific task. To learn more about actions and other Functions terms, see [terminology](/docs/openwhisk?topic=openwhisk-about).
-{:shortdesc}
+{: shortdesc}
 
 Click an option to get started.
 
@@ -68,13 +68,13 @@ To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hell
 
 9. Optional: Click **Change Input** to change the action or try your own.
 
-  a. Paste the following code into the **Change Input** box and change the name value.
-  ```json
-  { "name": "xxxx" }
-  ```
-  {: codeblock}
-  
-  b. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
+    a. Paste the following code into the **Change Input** box and change the name value.
+    ```json
+    { "name": "xxxx" }
+    ```
+    {: codeblock}
+
+    b. Then, click **Invoke** to run the action with your updates. The result is shown in the **Activations** panel. You can repeat this process as many times as you like.
 
 Good work! You created your first action. To clean up this action, click the overflow menu and select **Delete Action**.
 
@@ -92,3 +92,5 @@ So you completed your first template deployment, where do you go from here?
 * Get started with [your own actions](/docs/openwhisk?topic=openwhisk-actions).
 * Learn about organizing actions in [packages](/docs/openwhisk?topic=openwhisk-pkg_ov).
 * Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=openwhisk-apigateway).
+
+

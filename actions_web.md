@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -99,7 +99,7 @@ Web actions support the following features:
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
 | [Activations that use multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
 | [Non-JSON body and raw HTTP entity handling](#actions_web_raw_enable) | A web action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary file, or base64 encoded string otherwise). |
-  
+
 ## Creating a web action
 {: #actions_web_example}
 
@@ -108,100 +108,102 @@ To create a web action:
 
 1. Save the following JavaScript code as `hello.js`.
 
-  ```javascript
-  function main({name}) {
+    ```javascript
+    function main({name}) {
     var msg = 'You did not tell me who you are.';
     if (name) {
-      msg = `Hello, ${name}!`
+        msg = `Hello, ${name}!`
     }
     return {body: `<html><body><h3>${msg}</h3></body></html>`}
-  }
-  ```
-  {: codeblock}
+    }
+    ```
+    {: codeblock}
 
 2. Create the `demo` package. The package name is `default` unless explicitly specified.
-  
-  ```bash
-  ibmcloud fn package create demo
-  ```
-  {: pre}
+
+    ```bash
+    ibmcloud fn package create demo
+    ```
+    {: pre}
 
 3. Create the `hello` action. In this example, the `packageName/actionName` are `demo/hello`. Replace the `<filepath>` variable with the file path of your `hello.js` file and set the `--web` flag to `true`. 
 
-  ```bash
-  ibmcloud fn action create demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action create demo/hello <filepath>/hello.js --web true
+    ```
+    {: pre}
 
 4. Invoke or test the `hello` web action without any parameters. Replace the `<apihost>` and `<namespace_ID>` variables. Example `<apihost>`: `https://us-south.functions.appdomain.cloud`.
 
-  For IAM-enabled namespaces, replace the `<namespace_ID>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name> --properties`. The namespace name is not valid.
-  {: note}
+    For IAM-enabled namespaces, replace the `<namespace_ID>` variable with the namespace ID. To get the ID, run `ibmcloud fn namespace get <namespace_name> --properties`. The namespace name is not valid.
+    {: note}
 
-  a. You can test the web action by either: 
+    a. You can test the web action by either: 
+
     * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser.
-    * Testing the action by using a cURL command.
     
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-      ```
-      {: pre}
+    * Testing the action by using a cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
 
     * Testing the action by using a `wget` command.  
-    
-      ```bash
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-      ```
-      {: pre}
 
-  b. The action code returns the following dictionary.
-  
-      ```bash
-      {body: `<html><body><h3>${msg}</h3></body></html>`}
-      ```
-      {: screen}
-  
-  You can also test the action by returning just the `body` property by using the following command:
-  {: #projecting_fields}
+        ```bash
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
+
+    b. The action code returns the following dictionary.
+
+    ```bash
+    {body: `<html><body><h3>${msg}</h3></body></html>`}
+    ```
+    {: screen}
+
+    You can also test the action by returning just the `body` property by using the following command:
+    {: #projecting_fields}
 
     ```bash
     curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.html/body
     ```
     {: pre}
 
-   **Example output**
+    **Example output**
 
-   Since the `<name>` parameter was not specified, the following message is returned.
-    
-   ```
-   <html><body><h3>You did not tell me who you are.</h3></body></html>
-   ```
-   {: screen}
+    Since the `<name>` parameter was not specified, the following message is returned.
+
+    ```
+    <html><body><h3>You did not tell me who you are.</h3></body></html>
+    ```
+    {: screen}
 
 5. Now try defining the `<name>` parameter. Test the action with a `<name>` parameter by either:
-  
-  * Opening `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane` in your browser.
-  
-  * Testing the action by using a cURL command.
 
-    ```bash
-    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane
-    ```
-    {: pre}
-  
-  * Testing the action by using a `wget` command.
-  
-    ```bash
-    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane
-    ```
-    {: pre}
+    * Opening `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane` in your browser.
 
-  **Example output**
-  
-  ```
-  <html><body><h3>Hello, Jane!</h3></body></html>
-  ```
-  {: screen}
+    * Testing the action by using a cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane
+        ```
+        {: pre}
+
+    * Testing the action by using a `wget` command.
+
+        ```bash
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello?name=Jane
+        ```
+        {: pre}
+
+    **Example output**
+
+    ```
+    <html><body><h3>Hello, Jane!</h3></body></html>
+    ```
+    {: screen}
 
 **Next steps**
 
@@ -253,38 +255,40 @@ This example web action redirects your browser to the [{{site.data.keyword.openw
 
 1. Save the code as `hello.js`.
 
-  ```javascript
-  function main() {
+    ```javascript
+    function main() {
     return {
-      headers: { location: 'https://cloud.ibm.com/openwhisk/' },
-      statusCode: 302
+        headers: { location: 'https://cloud.ibm.com/openwhisk/' },
+        statusCode: 302
     }
-  }
-  ```
-  {: codeblock}
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
-  ```bash
-  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
-
-3. Test the `hello` web action. Replace the `<apihost>` and `<namespace_ID>` variables. You can test the web action by using one of the following methods,
-
-  * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser.
-  * Running the following cURL command.
-  
     ```bash
-    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+    ibmcloud fn action update demo/hello <filepath>/hello.js --web true
     ```
     {: pre}
-  * Running the following `wget` command,
-  
-    ```bash
-    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-    ```
-    {: pre}
+
+3. Test the `hello` web action. Replace the `<apihost>` and `<namespace_ID>` variables. You can test the web action by using one of the following methods.
+
+    * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser.
+
+    * Running the following cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
+
+    * Running the following `wget` command,
+
+        ```bash
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
 
 ### Setting cookies by using a web action
 {: #multiple_cookie}
@@ -300,29 +304,29 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 1. Save the code as `hello.js`.
 
-  ```javascript
-  function main() {
+    ```javascript
+    function main() {
     return {
-      headers: {
+        headers: {
         'Set-Cookie': [
           'UserID=Jane; Max-Age=3600; Version=',
           'SessionID=asdfgh123456; Path = /'
         ],
         'Content-Type': 'text/html'
-      },
-      statusCode: 200,
-      body: '<html><body><h3>hello</h3></body></html>' }
-  }
-  ```
-  {: codeblock}
+        },
+        statusCode: 200,
+        body: '<html><body><h3>hello</h3></body></html>' }
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
-  ```bash
-  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
-  
+    ```bash
+    ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+    ```
+    {: pre}
+
 3. Clear your browser's cookies before you test the action.
 
 4. Test the `hello` web action by opening the URL in your browser. Replace the `<apihost>` and `<namespace_ID>` variables and open `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello`. Example `<apihost>`: `https://us-south.functions.appdomain.cloud`.
@@ -345,38 +349,39 @@ To create a web action that returns an `image/png`:
 
 1. Save the code as `hello.js`. Replace `<base64_encoded_string>` with a base64 encoded string from an image file.
 
-  ```javascript
-  function main() {
-      let png = '<base64_encoded_string>';
-      return { headers: { 'Content-Type': 'image/png' },
+    ```javascript
+    function main() {
+        let png = '<base64_encoded_string>';
+        return { headers: { 'Content-Type': 'image/png' },
               statusCode: 200,
               body: png };
-  }
-  ```
-  {: codeblock}
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
-  ```bash
-  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+    ```
+    {: pre}
 
 3. Test the action in your browser or by using a cURL command. Replace the `<apihost>` and `<namespace_ID>` variables. You can test the web action by either:
 
-  * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser. 
-  * Running the following cURL command.
-  
-    ```bash
-    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-    ```
-    {: pre}
-  * Running the following `wget` command.
-  
-    ```bash
-    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-    ```
-    {: pre}
+    * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser. 
+    * Running the following cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
+
+    * Running the following `wget` command.
+
+        ```bash
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
 
 ### Returning JSON by using a web action
 {: #return_json}
@@ -391,47 +396,47 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 To create a web action that returns `application/json`:
 
 1. Save the code as `hello.js`.
-  
-   ```javascript
-   function main(params) {
-      return {
+
+    ```javascript
+    function main(params) {
+        return {
           statusCode: 200,
           headers: { 'Content-Type': 'application/json' },
           body: params
-      };
-   }
-   ```
-   {: codeblock}
+        };
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version for your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
-  ```bash
-  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+    ```
+    {: pre}
 
 3. Test the action in your browser or by using a cURL command. Replace the `<apihost>` and `<namespace_ID>` variables. You can test the web action by using one of the following methods.
 
-  * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser. 
-  * Running the following cURL command.
-  
-    ```bash
-    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-    ```
-    {: pre}
-    
-  * Running the following `wget` command.
-  
-    ```bash
-    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
-    ```
-    {: pre}
+    * Opening the URL `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello` in your browser. 
+    * Running the following cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
+
+    * Running the following `wget` command.
+
+        ```bash
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello
+        ```
+        {: pre}
 
     **Example output**
 
     ```
     {
-      "__ow_headers": {
+        "__ow_headers": {
         "accept": "*/*",
         "accept-encoding": "gzip",
         "cdn-loop": "cloudflare",
@@ -448,9 +453,9 @@ To create a web action that returns `application/json`:
         "x-global-k8fdic-transaction-id": "11fd03071bd0841d3a00f52354ab880f",
         "x-real-ip": "XXX.XX.XX.XX",
         "x-request-id": "11fd03071bd0841d3a00f52354ab880f"
-      },
-      "__ow_method": "get",
-      "__ow_path": ""
+        },
+        "__ow_method": "get",
+        "__ow_path": ""
     }
     ```
     {: screen}
@@ -493,61 +498,61 @@ To alter the response of a web action:
 
 1. Save the following code as `hello.js`.
 
-  ```javascript
-  function main(params) {
-      return { response: params };
-  }
-  ```
-  {: codeblock}
+    ```javascript
+    function main(params) {
+        return { response: params };
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code. Replace `<filepath>` with the file path of your `hello.js` file.
 
-  ```bash
-  ibmcloud fn action update demo/hello <filepath>/hello.js --web true
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action update demo/hello <filepath>/hello.js --web true
+    ```
+    {: pre}
 
 3. Test the action in your browser or by using a cURL command. Replace the `<apihost>` and `<namespace_ID>` variables.
 
-  a. Return JSON by either:
+    a. Return JSON by either:
+
     * Opening `https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json` in your web browser.
+    
     * Running the following cURL command.
-    
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
-      ```
-      {: pre}
-      
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
+        ```
+        {: pre}
+
     * Running the following `wget` command.
-    
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
-      ```
-      {: pre}
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json
+        ```
+        {: pre}
 
     **Example output**
 
-      ```
-      {
-        "response": {
-          "__ow_method": "get",
-          "__ow_headers": {
-            "accept": "*/*",
-            "connection": "close",
-            "host": "172.17.0.1",
-            "user-agent": "curl/7.43.0"
-          },
-          "__ow_path": ""
-        }
-      }
-      ```
-      {: screen}
+    ```
+    {
+    "response": {
+        "__ow_method": "get",
+        "__ow_headers": {
+        "accept": "*/*",
+        "connection": "close",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
+        },
+        "__ow_path": ""
+    }
+    }
+    ```
+    {: screen}
 
-  b. Test the action by using a query parameter. You can test the action by either:
-  {: #query_test}
+    b. {: #query_test}Test the action by using a query parameter. You can test the action by either:
 
     * Running the following cURL command.
-
         ```bash
         curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
         ```
@@ -560,158 +565,156 @@ To alter the response of a web action:
         ```
         {: pre}
 
-      **Example output**
-      
-      ```
-      {
-        "response": {
-          "name": "Jane",
-          "__ow_method": "get",
-          "__ow_headers": {
-            "accept": "*/*",
-            "connection": "close",
-            "host": "172.17.0.1",
-            "user-agent": "curl/7.43.0"
-          },
-          "__ow_path": ""
-        }
-      }
-      ```
-      {: screen}
+    **Example output**
 
-  c. You can also test the web action by using form data. You can test the web action by using one of the following methods.
-  {: #form_data}
-  
+    ```
+    {
+    "response": {
+        "name": "Jane",
+        "__ow_method": "get",
+        "__ow_headers": {
+        "accept": "*/*",
+        "connection": "close",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
+        },
+        "__ow_path": ""
+    }
+    }
+    ```
+    {: screen}
+
+    c. {: #form_data}You can also test the web action by using form data. You can test the web action by using one of the following methods.
     * Running the following cURL command.
 
         ```bash
         curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -d "name":"Jane"
         ```
         {: pre}
-      
+
     * Running the following `wget` command.
-    
+
         ```
         wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -d "name":"Jane"
         ```
         {: pre}
 
-      **Example output**
+    **Example output**
 
-      ```
-      {
-        "response": {
-          "name": "Jane",
-          "__ow_method": "post",
-          "__ow_headers": {
-            "accept": "*/*",
-            "connection": "close",
-            "content-length": "10",
-            "content-type": "application/x-www-form-urlencoded",
-            "host": "172.17.0.1",
-            "user-agent": "curl/7.43.0"
-          },
-          "__ow_path": ""
-        }
-      }
-      ```
-      {: screen}
+    ```
+    {
+    "response": {
+    "name": "Jane",
+    "__ow_method": "post",
+    "__ow_headers": {
+        "accept": "*/*",
+        "connection": "close",
+        "content-length": "10",
+        "content-type": "application/x-www-form-urlencoded",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
+    },
+    "__ow_path": ""
+    }
+    }
+    ```
+    {: screen}
 
-  d. You can specify a JSON object by running the following command. You can test the web action by using one of the following methods.
-  
-    * Running the following cURL command.
+    d. You can specify a JSON object by running the following command. You can test the web action by using one of the following methods.
     
+    * Running the following cURL command.
+
         ```bash
         curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
         ```
         {: pre}
 
     * Running the following `wget` command.
-    
+
         ```bash
         wget https://<apihost>/api/v1/web/{namespace_ID/demo/hello.json -H 'Content-Type: application/json' -d '{"name":"Jane"}'
         ```
         {: pre}
 
-      **Example output**
+    **Example output**
 
-      ```
-      {
-        "response": {
-          "name": "Jane",
-          "__ow_method": "post",
-          "__ow_headers": {
-            "accept": "*/*",
-            "connection": "close",
-            "content-length": "15",
-            "content-type": "application/json",
-            "host": "172.17.0.1",
-            "user-agent": "curl/7.43.0"
-          },
-          "__ow_path": ""
-        }
-      }
-      ```
-      {: screen}
+    ```
+    {
+    "response": {
+    "name": "Jane",
+    "__ow_method": "post",
+    "__ow_headers": {
+        "accept": "*/*",
+        "connection": "close",
+        "content-length": "15",
+        "content-type": "application/json",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
+    },
+    "__ow_path": ""
+    }
+    }
+    ```
+    {: screen}
 
-  e. You can also return the `name` value as text by either:
-  * Running the following cURL command.
+    e. You can also return the `name` value as text by either:
+    * Running the following cURL command.
 
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.text/response/name?name=Jane
-      ```
-      {: pre}
-      
-  * Running the following `wget` command.
-  
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.text/response/name?name=Jane
-      ```
-      {: pre}
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.text/response/name?name=Jane
+        ```
+        {: pre}
 
-     **Example output**
+    * Running the following `wget` command.
 
-     ```
-     Jane
-     ```
-     {: screen}
+        ```
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.text/response/name?name=Jane
+        ```
+        {: pre}
+
+    **Example output**
+
+    ```
+    Jane
+    ```
+    {: screen}
 
     In standard actions, query parameters, form data, and JSON object body entities are all treated as dictionaries, and their values are directly accessible as action input properties. This behavior is not the case for web actions, which handle HTTP request entities, or when the web action receives an entity that is not a JSON object.
     {: note}
 
-  f. You can set the `Content-Type` by using one of the following methods.
+    f. You can set the `Content-Type` by using one of the following methods.
 
-  * Running the following cURL command.  
-  
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
-      ```
-      {: pre}
-    
-  * Running the following `wget` command.
-  
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
-      ```
-      {: pre}
+    * Running the following cURL command.  
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+        ```
+        {: pre}
+
+    * Running the following `wget` command.
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json -H 'Content-Type: text/plain' -d "Jane"
+        ```
+        {: pre}
 
     **Example output**
 
     ```
     {
-      "response": {
+        "response": {
         "__ow_method": "post",
         "__ow_headers": {
-          "accept": "*/*",
-          "connection": "close",
-          "content-length": "4",
-          "content-type": "text/plain",
-          "host": "172.17.0.1",
-          "user-agent": "curl/7.43.0"
+        "accept": "*/*",
+        "connection": "close",
+        "content-length": "4",
+        "content-type": "text/plain",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
         },
         "__ow_path": "",
         "__ow_body": "Jane"
-      }
+        }
     }
     ```
     {: screen}
@@ -728,9 +731,9 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 You can set the `require-whisk-auth` annotation by either:
 
-  - Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
+- Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
 
-  - Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
+- Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
 ### Creating a secure web action
 {: #actions_web_secure_create}
@@ -740,44 +743,44 @@ Start by creating a web action with the `--web secure` set to `true`.
 
 1. Save the following JavaScript code as `hello.js`.
 
-  ```javascript
-  function main({name}) {
+    ```javascript
+    function main({name}) {
     var msg = 'You did not tell me who you are.';
     if (name) {
-      msg = `Hello, ${name}!`
+        msg = `Hello, ${name}!`
     }
     return {body: `<html><body><h3>${msg}</h3></body></html>`}
-  }
-  ```
-  {: codeblock}
+    }
+    ```
+    {: codeblock}
 
 2. Update your `hello` web action with the new version of your `hello.js` code and set the `--web secure` option to `true`.
-  
-  ```bash
-  ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true
-  ```
-  {: pre}
+
+    ```bash
+    ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --web-secure true
+    ```
+    {: pre}
 
 3. Get the `hello` web action to view the randomly generated `require-whisk-auth` value.
 
-  ```bash
-  ibmcloud fn action get demo/hello
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action get demo/hello
+    ```
+    {: pre}
 
     **Example output**
 
     The `require-whisk-auth` value was set to `7819991076995522`.
     ```
     {
-      "namespace": "<namespace_ID>/demo",
-      "name": "hello",
-      "version": "0.0.34",
-      "exec": {
+        "namespace": "<namespace_ID>/demo",
+        "name": "hello",
+        "version": "0.0.34",
+        "exec": {
           "kind": "nodejs:10",
           "binary": false
-      },
-      "annotations": [
+        },
+        "annotations": [
           {
               "key": "web-export",
               "value": true
@@ -798,14 +801,14 @@ Start by creating a web action with the `--web secure` set to `true`.
               "key": "exec",
               "value": "nodejs:10"
           }
-      ],
-      "limits": {
+        ],
+        "limits": {
           "timeout": 60000,
           "memory": 256,
           "logs": 10,
           "concurrency": 1
-      },
-      "publish": false
+        },
+        "publish": false
     }
     ```
     {: screen}
@@ -818,22 +821,22 @@ Test the `hello` web action and provide the randomly generated `X-Require-Whisk-
 
 You can test the web action by using one of the following methods.
 
-  * Testing the web action by using a cURL command.
-  
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
-      ```
-      {: pre}
+* Testing the web action by using a cURL command.
 
-  * Testing the web action by using a `wget` command.
-  
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
-      ```
-      {: pre}
+    ```bash
+    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+    ```
+    {: pre}
+
+* Testing the web action by using a `wget` command.
+
+    ```
+    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+    ```
+    {: pre}
 
 **Example output**
-    
+
 ```
 {
 "body": "<html><body><h3>Hello, Jane!</h3></body></html>"
@@ -853,23 +856,23 @@ To secure your web action with a custom value, update your `hello` web action wi
     ibmcloud fn action update demo/hello /<filepath>/hello.js --web true --annotation require-whisk-auth <mysecret>
     ```
     {: pre}
-  
+
 2. Test the web action and include your `<my-secret>` value. You can test the web action by using one of the following methods.
 
-   * Testing the web action by using a cURL command.
-   
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
-      ```
-      {: pre}
-      
-   * Testing the action by using a `wget` command.
-   
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
-      ```
-      {: pre}
-      
+    * Testing the web action by using a cURL command.
+
+        ```bash
+        curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+        ```
+        {: pre}
+
+    * Testing the action by using a `wget` command.
+
+        ```
+        wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X GET -H "X-Require-Whisk-Auth: <my-secret>"
+        ```
+        {: pre}
+
 ### Testing to see if your web action is secure
 {: #actions_web_secure_test}
 
@@ -878,19 +881,19 @@ Test the `hello` web action without setting the `X-Require-Whisk-Auth` parameter
 
 You can get the URL of your web action by running `ibmcloud fn action get hello --url`. You can use the URL to test the web action by using one of the following methods.
 
-  * Testing the web action by using a cURL command.
-  
-      ```bash
-      curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
-      ```
-      {: pre}
-    
-  * Testing the web action by using a `wget` command.
-  
-      ```
-      wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
-      ```
-      {: pre}
+* Testing the web action by using a cURL command.
+
+    ```bash
+    curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
+    ```
+    {: pre}
+
+* Testing the web action by using a `wget` command.
+
+    ```
+    wget https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane
+    ```
+    {: pre}
 
 **Example output**
 
@@ -919,20 +922,20 @@ curl https://<apihost>/api/v1/web/<namespace_ID>/demo/hello.json?name=Jane -X PO
 
 ```
 {
-  "response": {
+    "response": {
     "__ow_method": "post",
     "__ow_query": "name=Jane",
     "__ow_body": "eyJuYW1lIjoiSmFuZSJ9",
     "__ow_headers": {
-      "accept": "*/*",
-      "connection": "close",
-      "content-length": "15",
-      "content-type": "application/json",
-      "host": "172.17.0.1",
-      "user-agent": "curl/7.43.0"
+        "accept": "*/*",
+        "connection": "close",
+        "content-length": "15",
+        "content-type": "application/json",
+        "host": "172.17.0.1",
+        "user-agent": "curl/7.43.0"
     },
     "__ow_path": ""
-  }
+    }
 }
 ```
 {: screen}
@@ -957,66 +960,66 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
 
 1. Save the sample code in your preferred language to a file called `decode.<ext>`. Replace `<ext>` with the file extension of the sample code of your preferred language.
 
-  **Node**
+    **Node**
 
-  ```javascript
-  function main(args) {
-      decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
-      return {body: decoded}
-  }
-  ```
-  {: codeblock}
+    ```javascript
+    function main(args) {
+        decoded = new Buffer(args.__ow_body, 'base64').toString('utf-8')
+        return {body: decoded}
+    }
+    ```
+    {: codeblock}
 
-  **Python**
+    **Python**
 
-  ```python
-  def main(args):
-      try:
+    ```python
+    def main(args):
+        try:
           decoded = args['__ow_body'].decode('base64').strip()
           return {"body": decoded}
-      except:
+        except:
           return {"body": "Could not decode body from Base64."}
-  ```
-  {: codeblock}
+    ```
+    {: codeblock}
 
-  **Swift**
+    **Swift**
 
-  ```swift
-  extension String {
-      func base64Decode() -> String? {
+    ```swift
+    extension String {
+        func base64Decode() -> String? {
           guard let data = Data(base64Encoded: self) else {
               return nil
           }
 
           return String(data: data, encoding: .utf8)
-      }
-  }
+        }
+    }
 
-  func main(args: [String:Any]) -> [String:Any] {
-      if let body = args["__ow_body"] as? String {
+    func main(args: [String:Any]) -> [String:Any] {
+        if let body = args["__ow_body"] as? String {
           if let decoded = body.base64Decode() {
               return [ "body" : decoded ]
           }
-      }
+        }
 
-      return ["body": "Could not decode body from Base64."]
-  }
-  ```
-  {: codeblock}
+    return ["body": "Could not decode body from Base64."]
+    }
+    ```
+    {: codeblock}
 
 2. Create a raw HTTP web action with the sample code by running the following command. In this example, the Node function is saved as `decode.js`. Replace the file path with the file path of your `decode` file and update the file extension to match the extension of the sample code you used.
 
-  ```bash
-  ibmcloud fn action create decode <filepath>/decode.js --web raw
-  ```
-  {: pre}
+    ```bash
+    ibmcloud fn action create decode <filepath>/decode.js --web raw
+    ```
+    {: pre}
 
-  **Example output**
-  
-  ```
-  ok: created action decode
-  ```
-  {: screen}
+    **Example output**
+
+    ```
+    ok: created action decode
+    ```
+    {: screen}
 
 3. Test the `decode` action by running the following cURL command. 
 
@@ -1025,11 +1028,11 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
     ```
     {: pre}
 
-  **Example output**
-  
+    **Example output**
+
     ```
     {
-      "body": "Decoded body"
+        "body": "Decoded body"
     }
     ```
     {: screen}
@@ -1055,46 +1058,46 @@ To create custom responses to `OPTIONS` requests:
 
 1. Save the following code to a file `custom-options.js`.
 
-  ```js
-  function main(params) {
+    ```js
+    function main(params) {
     if (params.__ow_method == "options") {
-      return {
+        return {
         headers: {
           'Access-Control-Allow-Methods': 'OPTIONS, GET',
           'Access-Control-Allow-Origin': 'example.com'
         },
         statusCode: 200
-      }
+        }
     }
-  }
-  ```
-  {: codeblock}
+    }
+    ```
+    {: codeblock}
 
 2. Create the web action. Set the `--web-custom-options` to `true`.
 
-   ```bash
-   ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
-   ```
-  {: pre}
+    ```bash
+    ibmcloud fn action create custom-option <filepath>/custom-options.js --web true -a web-custom-options true
+    ```
+    {: pre}
 
 3. Test the action by using the following cURL command.
 
-   ```bash
-   curl https://<apihost>/api/v1/web/<namespace_ID>/default/custom-option.http -kvX OPTIONS
-   ```
-   {: pre}
+    ```bash
+    curl https://<apihost>/api/v1/web/<namespace_ID>/default/custom-option.http -kvX OPTIONS
+    ```
+    {: pre}
 
-  **Example output**
+    **Example output**
 
-  ```
-  < HTTP/1.1 200 OK
-  < Server: nginx/1.11.13
-  < Content-Length: 0
-  < Connection: keep-alive
-  < Access-Control-Allow-Methods: OPTIONS, GET
-  < Access-Control-Allow-Origin: example.com
-  ```
-  {: screen}
+    ```
+    < HTTP/1.1 200 OK
+    < Server: nginx/1.11.13
+    < Content-Length: 0
+    < Connection: keep-alive
+    < Access-Control-Allow-Methods: OPTIONS, GET
+    < Access-Control-Allow-Origin: example.com
+    ```
+    {: screen}
 
 ## Error handling
 {: #actions_web_errors}
@@ -1133,3 +1136,5 @@ To disable a web action from the console,
 
 ## Web action limits
 For more information about request and response limits for web actions, see [System details and limits](/docs/openwhisk?topic=openwhisk-limits#web_action_limits).
+
+

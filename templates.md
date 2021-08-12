@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless, actions
 
@@ -142,65 +142,64 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
     <tr><td><code>CLOUDANT_HOSTNAME</code></td><td><code>&lt;username&gt;.cloudantnosqldb.appdomain.cloud</code></td></tr>
     <tr><td><code>CLOUDANT_USERNAME</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} username</td></tr>
     <tr><td><code>CLOUDANT_PASSWORD</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} password</td></tr>
-    <tr><td><code>CLOUDANT_DATABASE</code></td><td>The name of your {{site.data.keyword.cloudant_short_notm}} database: `cats`.</td></tr>
+    <tr><td><code>CLOUDANT_DATABASE</code></td><td>The name of your {{site.data.keyword.cloudant_short_notm}} database: <code>cats</code>.</td></tr>
     <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
     <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
     </tbody></table>
-    
-    Find this information in the console by navigating to your {{site.data.keyword.cloudant_short_notm}} instance and then selecting Service Credentials. You can also find service credentials by running the **`ibmcloud resource`** command.
-    
-    1. Find the credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
-       
-       ```
-       ibmcloud resource service-keys --instance-name <Cloudant-name>
-       ```
-       {: pre}
-      
-       **Example output**
-      
-       ```
-       Name            State    Created At   
-       Cloudant-cred   active   Fri Nov  1 17:40:13 UTC 2019 
-       ```
-       {: screen}
-    
-    2. Retrieve the details of the service key. Replace `Cloudant-cred` with the credentials that you retrieved in the previous step.
-    
-       ```
-       ibmcloud resource service-key Cloudant-cred
-       ```
-       {: pre}
-      
-       **Example output**
-      
-       ```
-       Name:          Cloudant-cred  
-       ID:            crn:v1:bluemix:public:cloudantnosqldb:us-south:a/6ef045fd2b43266cfe8e6388dd2ec098:397b3dbc-abd3-46cf-a3de-c1d556c8959f:resource-key:a3db5b84-7fe9-4ddb-bf67-e556a278833f   
-       Created At:    Fri Nov  1 17:40:13 UTC 2019   
-       State:         active   
-       Credentials:                                   
-               apikey:                   uYowcbhwgOMzO61AJTHzCsPMmG0lB69pzr6helVlE6JF      
-               host:                     37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud      
-               iam_apikey_description:   Auto-generated for key a3db65f4-7fe9-4ddb-bf67-e588a278753f      
-               iam_apikey_name:          Cloudant-cred    
-               iam_role_crn:             crn:v1:bluemix:public:iam::::serviceRole:Manager      
-               iam_serviceid_crn:        crn:v1:bluemix:public:iam-identity::a/6ef045fd2b43266cfe8e6388dd2ec098::serviceid:ServiceId-132fe428-7a4f-43bf-8c50-b8a169c97988      
-               password:                 e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a      
-               port:                     423      
-               url:                      https://37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix:e2ddc589631a0651af44ee3920f9bab02bdcb68e1908b6314c43f5b0d39c043a@337c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud      
-               username:                 37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix      
 
-       ```
-       {: screen}
-       
-       Run the manifest.yaml file with the service credential information, found in the example output.
-       
-       ```
-       CLOUDANT_HOSTNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud CLOUDANT_USERNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix CLOUDANT_PASSWORD=e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a CLOUDANT_DATABASE=cats PACKAGE_NAME=my-package RULE_NAME=my-rule TRIGGER_NAME=my-trigger ibmcloud fn deploy -m manifest.yaml
-       ```
-       {: pre}
-       
+    Find this information in the console by navigating to your {{site.data.keyword.cloudant_short_notm}} instance and then selecting Service Credentials. You can also find service credentials by running the **`ibmcloud resource`** command.
+
+    1. Find the credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
+
+        ```
+        ibmcloud resource service-keys --instance-name <Cloudant-name>
+        ```
+        {: pre}
+
+        **Example output**
+
+        ```
+        Name            State    Created At   
+        Cloudant-cred   active   Fri Nov  1 17:40:13 UTC 2019 
+        ```
+        {: screen}
+
+    2. Retrieve the details of the service key. Replace `Cloudant-cred` with the credentials that you retrieved in the previous step.
+
+        ```
+        ibmcloud resource service-key Cloudant-cred
+        ```
+        {: pre}
+
+        **Example output**
+
+        ```
+        Name:          Cloudant-cred  
+        ID:            crn:v1:bluemix:public:cloudantnosqldb:us-south:a/6ef045fd2b43266cfe8e6388dd2ec098:397b3dbc-abd3-46cf-a3de-c1d556c8959f:resource-key:a3db5b84-7fe9-4ddb-bf67-e556a278833f   
+        Created At:    Fri Nov  1 17:40:13 UTC 2019   
+        State:         active   
+        Credentials:                                   
+                apikey:                   uYowcbhwgOMzO61AJTHzCsPMmG0lB69pzr6helVlE6JF      
+                host:                     37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud      
+                iam_apikey_description:   Auto-generated for key a3db65f4-7fe9-4ddb-bf67-e588a278753f      
+                iam_apikey_name:          Cloudant-cred    
+                iam_role_crn:             crn:v1:bluemix:public:iam::::serviceRole:Manager      
+                iam_serviceid_crn:        crn:v1:bluemix:public:iam-identity::a/6ef045fd2b43266cfe8e6388dd2ec098::serviceid:ServiceId-132fe428-7a4f-43bf-8c50-b8a169c97988      
+                password:                 e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a      
+                port:                     423      
+                url:                      https://37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix:e2ddc589631a0651af44ee3920f9bab02bdcb68e1908b6314c43f5b0d39c043a@337c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud      
+                username:                 37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix      
+
+        ```
+        {: screen}
+
+        Run the manifest.yaml file with the service credential information, found in the example output.
+
+        ```
+        CLOUDANT_HOSTNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud CLOUDANT_USERNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix CLOUDANT_PASSWORD=e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a CLOUDANT_DATABASE=cats PACKAGE_NAME=my-package RULE_NAME=my-rule TRIGGER_NAME=my-trigger ibmcloud fn deploy -m manifest.yaml
+        ```
+        {: pre}
 
 After the template deploys, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
@@ -222,33 +221,33 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 3. Click **Change input** and enter a valid JSON entry for `name` and `color`, similar to the following example.
 
-   ```json
-   {
-       "name": "Tarball",
-       "color": "Black"
-   }
-   ```
-   {: pre}
+    ```json
+    {
+        "name": "Tarball",
+        "color": "Black"
+    }
+    ```
+    {: codeblock}
 
 4. Click **Apply**.
 
 5. Click **Invoke**.  In the Activation pane, find output similar to the following example.
 
-   ```
-   **Activation ID:**
-   528414375ae544bc8414375ae5d4bcc9
+    ```
+    **Activation ID:**
+    528414375ae544bc8414375ae5d4bcc9
 
-   **Results:**
-   {
-      "change": "A Black cat named Tarball was added"
-   }
+    **Results:**
+    {
+        "change": "A Black cat named Tarball was added"
+    }
 
-   **Logs:**
-   [
-      "2019-11-01T18:14:52.056570Z    stdout: A Black cat named Tarball was added"
-   ]
-   ```
-   {: screen}
+    **Logs:**
+    [
+        "2019-11-01T18:14:52.056570Z    stdout: A Black cat named Tarball was added"
+    ]
+    ```
+    {: screen}
 
 #### 1. Testing the trigger
 {: #cloudant-template_test_trigger}
@@ -258,10 +257,10 @@ While you can test the action, you cannot test the trigger without making an ent
 
 1. From the command line, run the [**`activation poll`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
-   ```
-   ibmcloud fn activation poll
-   ```
-   {: pre}
+    ```
+    ibmcloud fn activation poll
+    ```
+    {: pre}
 
 2. From the [IBM Cloud resource](https://cloud.ibm.com/resources){: external} list, select your {{site.data.keyword.cloudant_short_notm}} instance and click **Launch Cloudant Dashboard**.  Note that you might be prompted for your {{site.data.keyword.cloudant_short_notm}} user name and password. You can find them on the service credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
 
@@ -271,39 +270,39 @@ While you can test the action, you cannot test the trigger without making an ent
 
 5. Enter valid JSON and click **Create Document**.
 
-   ```json
-   {
-       "name": "Tarball",
-       "color": "Black"
-   }
-   ```
-   {: pre}
+    ```json
+    {
+        "name": "Tarball",
+        "color": "Black"
+    }
+    ```
+    {: codeblock}
 
 6. Check the activation poll to see whether the trigger fired.
 
-   ```
-   Activation: 'process-change' (874b327c6d2841ca8b327c6d28d1ca17)
-   [
-       "2019-11-01T18:47:16.966276Z    stdout: A Black cat named Tarball was added"
-   ]
+    ```
+    Activation: 'process-change' (874b327c6d2841ca8b327c6d28d1ca17)
+    [
+        "2019-11-01T18:47:16.966276Z    stdout: A Black cat named Tarball was added"
+    ]
 
-   Activation: 'read' (375f8e39b5c445f39f8e39b5c415f36e)
-   [
-       "2019-11-01T18:47:16.915421Z    stdout: success { _id: '48ef87b2e1905a488606960b8368f835',",
-       "2019-11-01T18:47:16.915453Z    stdout: _rev: '1-39df67b063efa068a7b869e81e017596',",
-       "2019-11-01T18:47:16.915458Z    stdout: name: 'Tarball',",
-       "2019-11-01T18:47:16.915480Z    stdout: color: 'Black' }"
-   ]
+    Activation: 'read' (375f8e39b5c445f39f8e39b5c415f36e)
+    [
+        "2019-11-01T18:47:16.915421Z    stdout: success { _id: '48ef87b2e1905a488606960b8368f835',",
+        "2019-11-01T18:47:16.915453Z    stdout: _rev: '1-39df67b063efa068a7b869e81e017596',",
+        "2019-11-01T18:47:16.915458Z    stdout: name: 'Tarball',",
+        "2019-11-01T18:47:16.915480Z    stdout: color: 'Black' }"
+    ]
 
-   Activation: 'process-change-cloudant-sequence' (68a7083b088f4be9a7083b088f0be9b4)
-   [
-       "375f8e39b5c445f39f8e39b5c415f36e",
-       "874b327c6d2841ca8b327c6d28d1ca17"
-   ]
+    Activation: 'process-change-cloudant-sequence' (68a7083b088f4be9a7083b088f0be9b4)
+    [
+        "375f8e39b5c445f39f8e39b5c415f36e",
+        "874b327c6d2841ca8b327c6d28d1ca17"
+    ]
 
-   Activation: 'cloudant-events-trgr' (fbf92f75057b42a9b92f75057b32a9b7)
-   [
-       "{\"statusCode\":0,\"success\":true,\"activationId\":\"68a7083b088f4be9a7083b088f0be9b4\",\"rule\":\"86ee32b0-8094-4d1e-a612-83dC74cddeb9/cloudant-events-rule-5\",\"action\":\"86ee32b0-8094-4d1e-a612-83dC74cddeb9/cloudant-events/process-change-cloudant-sequence\"}"
+    Activation: 'cloudant-events-trgr' (fbf92f75057b42a9b92f75057b32a9b7)
+    [
+        "{\"statusCode\":0,\"success\":true,\"activationId\":\"68a7083b088f4be9a7083b088f0be9b4\",\"rule\":\"86ee32b0-8094-4d1e-a612-83dC74cddeb9/cloudant-events-rule-5\",\"action\":\"86ee32b0-8094-4d1e-a612-83dC74cddeb9/cloudant-events/process-change-cloudant-sequence\"}"
     ```
     {: screen}
 
@@ -383,64 +382,66 @@ After the template deploys, you can make further edits to the code to customize 
 Test out the **Get HTTP Resource** action by using one of the following methods:
 {: shortdesc}
 
-   * From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
-   
-     You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
+* From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
 
-     ```json
-     {
-        "location": "<new location>"
-     }
-     ```
-     {: pre}
+    You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
 
-     For example,
+    ```json
+    {
+    "location": "<new location>"
+    }
+    ```
+    {: pre}
 
-     ```json
-     {
-        "location": "Paris"
-     }
-     ```
-     {: pre}
+    For example,
 
-   * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
-     You can get the URL for any action by running the **`action get`** command.
+    ```json
+    {
+    "location": "Paris"
+    }
+    ```
+    {: pre}
 
-     ```
-     ibmcloud fn action get <action_name> --url
-     ```
-     {: pre}
-     
-     Add a parameter for location by appending `?location=<city>` to the end of the URL.
-     
-     ```
-     https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
-     ```
-     {: pre}
+* Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
+    You can get the URL for any action by running the **`action get`** command.
 
-   * Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/<package_name>/location?location=<city>`. For example:
+    ```
+    ibmcloud fn action get <action_name> --url
+    ```
+    {: pre}
 
-     ```
-     curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
-     ```
-     {: pre}
-     
-   All of these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
-   
-   **Example output**
-   
-   ```
-   {
-     "body": {
-     "location": "Paris"
-     },
-     "headers": {
-       "Content-Type": "application/json"
-     },
-     "statusCode": 200
-   }
-   ```
-   {: screen}
+
+    Add a parameter for location by appending `?location=<city>` to the end of the URL.
+
+    ```
+    https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
+    ```
+    {: pre}
+
+* Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/<package_name>/location?location=<city>`. For example:
+
+    ```
+    curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
+    ```
+    {: pre}
+
+
+All of these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
+
+**Example output**
+
+```
+{
+    "body": {
+    "location": "Paris"
+    },
+    "headers": {
+    "Content-Type": "application/json"
+    },
+    "statusCode": 200
+}
+```
+{: screen}
 
 ## Deploying the Hello World template
 {: #hello-world-template}
@@ -521,7 +522,7 @@ Invoking the action without any parameters returns the following output.
 
 ```json
 {
-  "greeting": "Hello stranger!"
+    "greeting": "Hello stranger!"
 }
 ```
 {: screen}
@@ -531,21 +532,21 @@ You can change the input parameter by selecting **Change Input** and then enteri
 ```json
 { "name": "xxxx" }
 ```
-{: pre}
+{: codeblock}
 
 For example:
 
 ```json
 { "name": "Carl" }
 ```
-{: pre}
-     
+{: codeblock}
+
 **Example output**
-     
+
 ```
 **Results**:
 {
-  "greeting": "Hello Carl"
+    "greeting": "Hello Carl"
 }
 ```
 {: screen}
@@ -677,8 +678,8 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
     4. Click **Next**.
 
 5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources. Specify the trigger's time interval by using a Pattern or `Cron` expression.
-     * `Pattern` - Select UTC times for weekdays, hours, and minutes.
-     * `Cron` - Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use five or fewer separated by spaces in the format `X X X X X`.
+    * `Pattern` - Select UTC times for weekdays, hours, and minutes.
+    * `Cron` - Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use five or fewer separated by spaces in the format `X X X X X`.
 
 6. Click **Deploy**.
 
@@ -729,9 +730,9 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
     <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
     <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
     </tbody></table>
-    
+
     Depending on your operating system, you might need to add quotation marks around your options. For example, on a mac, the following example deploys correctly:
-    
+
     ```
     SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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" ALARM_CRON="* * * * *" PACKAGE_NAME="slackpackage" RULE_NAME="slackrule" TRIGGER_NAME="slacktrigger" ibmcloud fn deploy -m manifest.yaml
     ```
@@ -745,44 +746,47 @@ After the template deploys, you can make further edits to the code to customize 
 You can test the **Periodic Slack Reminder** template in the following ways.
 {: shortdesc}
 
-   * Your trigger fires as soon as the rule is satisfied, so depending on what value you set for `cron` or `pattern`, your trigger automatically sends a message. For example, if you set `cron` to `* * * * *`, your trigger fires every minute and sends a message to the designated slack channel. 
-   
-   **Example output**
-   
-   ```
-   Your scrum is starting now.  Time to find your team!
-   Your scrum is starting now.  Time to find your team!
-   Your scrum is starting now.  Time to find your team!
-   Your scrum is starting now.  Time to find your team!
-   Your scrum is starting now.  Time to find your team!
-   ```
-   {: screen}
-   
-   * From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
-     You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
+* Your trigger fires as soon as the rule is satisfied, so depending on what value you set for `cron` or `pattern`, your trigger automatically sends a message. For example, if you set `cron` to `* * * * *`, your trigger fires every minute and sends a message to the designated slack channel. 
 
-     ```json
-     { "message": "xxxx" }
-     ```
-     {: pre}
+**Example output**
 
-     For example,
+```
+Your scrum is starting now.  Time to find your team!
+Your scrum is starting now.  Time to find your team!
+Your scrum is starting now.  Time to find your team!
+Your scrum is starting now.  Time to find your team!
+Your scrum is starting now.  Time to find your team!
+```
+{: screen}
 
-     ```json
-     { "message": "Time for a walk" }
-     ```
-     {: pre}
-     
- ### Pausing or stopping your Periodic Slack Reminder trigger
-{: #periodic-slack-stop-trigger
+* From the {{site.data.keyword.openwhisk_short}} [Actions](https://cloud.ibm.com/functions/actions){: external} page, select the action and then click **Invoke**.
+    You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
+
+    ```json
+    { "message": "xxxx" }
+    ```
+    {: pre}
+
+    For example,
+
+    ```json
+    { "message": "Time for a walk" }
+    ```
+    {: pre}
+
+
+### Pausing or stopping your Periodic Slack Reminder trigger
+{: #periodic-slack-stop-trigger}
 
 You can stop the **Periodic Slack Reminder** trigger in the following ways.
 {: shortdesc}
 
-   * From the console, go to the [Triggers ](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Clear the selection for **Enable**.
-   
-   * From the CLI:
-   
-      *  Disable the rule by running the [**`ibmcloud fn rule disable RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [**`ibmcloud fn rule list RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
-   
-     * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.
+* From the console, go to the [Triggers ](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Clear the selection for **Enable**.
+
+* From the CLI:
+
+    *  Disable the rule by running the [**`ibmcloud fn rule disable RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [**`ibmcloud fn rule list RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
+
+    * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.
+
+

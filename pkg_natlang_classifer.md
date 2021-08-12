@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -69,68 +69,68 @@ Install the {{site.data.keyword.nlclassifiershort}} package from the CLI. Be sur
 To install the {{site.data.keyword.nlclassifiershort}} package, run the following command.
 
 1. Clone the {{site.data.keyword.nlclassifiershort}} package repo.
-  
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
-  
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
-   ```
-   {: pre}
+
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
-  
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
 
-   **Example output**
-  
-   ```
-   packages
-   /myOrg_mySpace/natural-language-classifier-v1                        private
-   ```
-   {: screen}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    packages
+    /myOrg_mySpace/natural-language-classifier-v1                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.
-  
-   ```
-   ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
-   ```
-   {: pre}
 
-   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
-   
-   ```
-   ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   Credentials 'Credentials-1' from 'natural_language_classifier' service instance 'Watson Natural Language Classifier' bound to 'natural-language-classifier-v1'.
-   ```
-   {: screen}
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
+
+    ```
+    ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    Credentials 'Credentials-1' from 'natural_language_classifier' service instance 'Watson Natural Language Classifier' bound to 'natural-language-classifier-v1'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
-  
-   ```
-   ibmcloud fn package get natural-language-classifier-v1 parameters
-   ```
-   {: pre}
 
-   **Example output**
-   
-   ```
-   ok: got package natural-language-classifier-v1, displaying field parameters
-   [
-      {
+    ```
+    ibmcloud fn package get natural-language-classifier-v1 parameters
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    ok: got package natural-language-classifier-v1, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "natural_language_classifier": {
@@ -141,10 +141,10 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
+        }
     ]
-   ```
-   {: screen}
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #nlclassifier_ui}
@@ -167,11 +167,11 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 7. After the package is installed, you are redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
 
 8. To use the actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#nlclassifier_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console.
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#nlclassifier_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the **natural-language-classifier-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -193,3 +193,5 @@ Try out the `list-classifiers` action.
 ibmcloud fn action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}
+
+

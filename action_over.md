@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-04-30"
+lastupdated: "2021-08-06"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -55,3 +55,5 @@ A web action is an action that can be invoked without authentication and can be 
 **Can I use APIs to manage my web actions?**
 
 Yes! You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies. For more information, see [Creating serverless REST APIs](/docs/openwhisk?topic=openwhisk-apigateway).
+
+

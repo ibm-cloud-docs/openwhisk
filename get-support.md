@@ -2,7 +2,7 @@
 
 copyright:
   years: 2021
-lastupdated: "2021-05-04"
+lastupdated: "2021-08-06"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions, statelessness, activation, action
 
@@ -38,3 +38,5 @@ If you have problems or questions about {{site.data.keyword.openwhisk}}, you can
 
 When you report an issue, include your activation ID. To get an activation ID, run `ibmcloud fn activation list`.
 {: tip}
+
+

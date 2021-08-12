@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: actions, serverless, functions, utilities, split, sort, hosturl, date, head, echo, cat, smash
 
@@ -32,15 +32,15 @@ Several utility actions are provided in the `/whisk.system/utils` package for {{
 
 1. List the actions in the `/whisk.system/utils` package.
 
-   ```
-   ibmcloud fn package get --summary /whisk.system/utils
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get --summary /whisk.system/utils
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   package /whisk.system/utils: Building blocks that format and assemble data
+    ```
+    package /whisk.system/utils: Building blocks that format and assemble data
     action /whisk.system/utils/smash: Nests all properties under given property
     action /whisk.system/utils/date: Current date and time
     action /whisk.system/utils/hosturl: Returns the URL to activation an action or trigger
@@ -50,35 +50,37 @@ Several utility actions are provided in the `/whisk.system/utils` package for {{
     action /whisk.system/utils/split: Split a string into an array
     action /whisk.system/utils/sort: Sorts an array
     action /whisk.system/utils/echo: Returns the input
-   ```
-   {: screen}
+    ```
+    {: screen}
 
 2. Using the `split` and `sort` actions, create an action sequence so that the result of `split` is passed as an argument to `sort`. This action sequence converts some lines of text to an array, and sorts the lines.
 
-   ```
-   ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
-   ```
-   {: pre}
+    ```
+    ibmcloud fn action create sequenceAction --sequence /whisk.system/utils/split,/whisk.system/utils/sort
+    ```
+    {: pre}
 
 3. Invoke the action.
 
-   ```
-   ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
-   ```
-   {: pre}
-   
-   **Example output**
+    ```
+    ibmcloud fn action invoke --result sequenceAction --param payload "Over-ripe sushi,\nThe Master\nIs full of regret."
+    ```
+    {: pre}
 
-   In the output, the split lines are sorted alphabetically.
-   
-   ```
-   {
-       "length": 3,
-       "lines": [
-           "Is full of regret.",
-           "Over-ripe sushi,",
-           "The Master"
-       ]
-   }
-   ```
-   {: screen}
+    **Example output**
+
+    In the output, the split lines are sorted alphabetically.
+
+    ```
+    {
+        "length": 3,
+        "lines": [
+            "Is full of regret.",
+            "Over-ripe sushi,",
+            "The Master"
+        ]
+    }
+    ```
+    {: screen}
+
+

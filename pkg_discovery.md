@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: functions, cognitive, discovery, CLI, watson
 
@@ -105,28 +105,28 @@ Install the {{site.data.keyword.discoveryshort}} package from the CLI. Be sure t
 To install the {{site.data.keyword.discoveryshort}} package, run the following commands:
 
 1. Clone the {{site.data.keyword.discoveryshort}} package repo.
-  
+
     ```
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
-  
+
     ```
     ibmcloud fn deploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
-  
+
     ```
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
-  
+
     ```
     packages
     /myOrg_mySpace/discovery-v1                        private
@@ -134,7 +134,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
     {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.discoveryshort}} instance you created to the package.
-  
+
     ```
     ibmcloud fn service bind discovery discovery-v1
     ```
@@ -148,7 +148,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.discoveryshort}} service instance credentials.
-  
+
     ```
     ibmcloud fn package get discovery-v1 parameters
     ```
@@ -159,7 +159,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
     ```
     ok: got package discovery-v1, displaying field parameters
     [
-      {
+        {
         "key": "__bx_creds",
         "value": {
           "discovery": {
@@ -170,7 +170,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
+        }
     ]
     ```
     {: screen}
@@ -196,11 +196,11 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 7. After the package is installed, you are redirected to the Actions page and can search for your new package, which is named **discovery-v1**.
 
 8. To use the actions in the `discovery-v1` package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, complete step 4 in the CLI instructions.
-  * To bind service credentials to individual actions, complete the following steps in the console.
+    * To bind service credentials to all actions in the package, complete step 4 in the CLI instructions.
+    * To bind service credentials to individual actions, complete the following steps in the console.
 
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click on an action from the `discovery-v1` package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click on the **Parameters** section.
@@ -224,3 +224,5 @@ This package's functions use the current version of Discovery, `2018-03-05`. Try
 ibmcloud fn action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}
+
+

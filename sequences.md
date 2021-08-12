@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-06"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
@@ -66,3 +66,5 @@ Create a sequence from the CLI with the [**`ibmcloud fn action create`**](/docs/
 ibmcloud fn action create <sequence_name> --sequence <action_1>,<action_2>
 ```
 {: pre}
+
+

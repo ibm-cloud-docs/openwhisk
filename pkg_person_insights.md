@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: cognitive, serverless, functions, watson, personality insights
 
@@ -73,67 +73,67 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
 
 1. Clone the {{site.data.keyword.personalityinsightsshort}} package repo.
 
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/personality-insights-v3/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   packages
-   /myOrg_mySpace/personality-insights-v3                        private
-   ```
-   {: screen}
+    **Example output**
+
+    ```
+    packages
+    /myOrg_mySpace/personality-insights-v3                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.personalityinsightsshort}} instance you created to the package.
 
-   ```
-   ibmcloud fn service bind personality_insights personality-insights-v3
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind personality_insights personality-insights-v3
+    ```
+    {: pre}
 
-   Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
 
-   ```
-   ibmcloud fn service bind personality-insights personality-insights-v3
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind personality-insights personality-insights-v3
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
-   ```
-   {: screen}
+    ```
+    Credentials 'Credentials-1' from 'personality_insights' service instance 'Watson Personality Insights' bound to 'personality-insights-v3'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.personalityinsightsshort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get personality-insights-v3 parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get personality-insights-v3 parameters
+    ```
+    {: pre}
 
-   **Example output**
-   
-   ```
-   ok: got package personality-insights-v3, displaying field parameters
-   [
-      {
+    **Example output**
+
+    ```
+    ok: got package personality-insights-v3, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "personality_insights": {
@@ -144,10 +144,10 @@ To install the {{site.data.keyword.personalityinsightsshort}} package:
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
-   ]
-   ```
-   {: screen}
+        }
+    ]
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #personalityinsights_ui}
@@ -171,11 +171,11 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
 
 8. To use the actions in the `personality-insights-v3` package, you must bind service credentials to the actions.
 
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions.
-  * To bind service credentials to individual actions, complete the following steps in the console.
+    * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions.
+    * To bind service credentials to individual actions, complete the following steps in the console.
 
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the `personality-insights-v3` package that you want to use. The details page for that action opens.
     2. In the navigation, click the **Parameters** section.
@@ -200,3 +200,5 @@ This package's functions use the current version of {{site.data.keyword.personal
 ibmcloud fn action invoke personality-insights-v3/profile -b -p version 2017-10-13 -p text "You can write an excerpt about yourself here, but it will need to be at least 100 words long. This excerpt is just some filler text and probably won't return anything very interesting from the personality insights service. The service uses linguistic analytics to infer individuals' intrinsic personality characteristics, including Big Five, Needs, and Values, from digital communications such as email, text messages, tweets, and forum posts. The service can automatically infer, from potentially noisy social media, portraits of individuals that reflect their personality characteristics. The service can infer consumption preferences based on the results of its analysis and for JSON content that is timestamped, can report temporal behavior."
 ```
 {: pre}
+
+

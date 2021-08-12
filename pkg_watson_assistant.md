@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-06-21"
+lastupdated: "2021-08-12"
 
 keywords: openwhisk, functions, Watson assistant, chatbot, cognitive
 
@@ -110,60 +110,60 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
 
 1. Clone the {{site.data.keyword.conversationshort}} package repo.
 
-   ```
-   git clone https://github.com/watson-developer-cloud/openwhisk-sdk
-   ```
-   {: pre}
+    ```
+    git clone https://github.com/watson-developer-cloud/openwhisk-sdk
+    ```
+    {: pre}
 
 2. Deploy the package.
 
-   ```
-   ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
-   ```
-   {: pre}
+    ```
+    ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
+    ```
+    {: pre}
 
 3. Verify that the package is added to your package list.
 
-   ```
-   ibmcloud fn package list
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   packages
-   /myOrg_mySpace/assistant-v1                        private
-   ```
-   {: screen}
+    ```
+    packages
+    /myOrg_mySpace/assistant-v1                        private
+    ```
+    {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.conversationshort}} instance you created to the package.
 
-   ```
-   ibmcloud fn service bind conversation assistant-v1
-   ```
-   {: pre}
+    ```
+    ibmcloud fn service bind conversation assistant-v1
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   Credentials 'Credentials-1' from 'conversation' service instance 'Watson Assistant (formerly Conversation)-8h' bound to 'assistant-v1'.
-   ```
-   {: screen}
+    ```
+    Credentials 'Credentials-1' from 'conversation' service instance 'Watson Assistant (formerly Conversation)-8h' bound to 'assistant-v1'.
+    ```
+    {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.conversationshort}} service instance credentials.
 
-   ```
-   ibmcloud fn package get assistant-v1 parameters
-   ```
-   {: pre}
+    ```
+    ibmcloud fn package get assistant-v1 parameters
+    ```
+    {: pre}
 
-   **Example output**
+    **Example output**
 
-   ```
-   ok: got package assistant-v1, displaying field parameters
-   [
-      {
+    ```
+    ok: got package assistant-v1, displaying field parameters
+    [
+        {
         "key": "__bx_creds",
         "value": {
           "conversation": {
@@ -174,10 +174,10 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
-   ]
-   ```
-   {: screen}
+        }
+    ]
+    ```
+    {: screen}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #conversation_ui}
@@ -200,11 +200,11 @@ Install the {{site.data.keyword.conversationshort}} package from the console.
 7. After the package is installed you are redirected to the Actions page and can search for your new package, which is named **assistant-v1**.
 
 8. To use the Actions in the **assistant-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#conversation_cli).
-  * To bind service credentials to individual actions, complete the following steps in the console.
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#conversation_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click on an action from the **assistant-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click on the **Parameters** section.
@@ -228,3 +228,5 @@ This package's functions use the current version of Watson Assistant, `2018-07-1
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```
 {: pre}
+
+
