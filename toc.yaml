@@ -1,0 +1,160 @@
+toc:
+  properties:
+    subcollection: openwhisk
+    category: compute
+    audience: service
+    href: /docs/openwhisk
+    path: openwhisk
+    label: Functions
+    version: 2
+    console-page: /functions
+    product-page: https://www.ibm.com/cloud/functions 
+  entries: 
+    - navgroup: 
+      id: learn
+      topics:
+      - getting-started.md
+      - link: 
+        label: What is FaaS (Function-as-a-Service)?
+        href: https://www.ibm.com/cloud/learn/faas
+      - topicgroup:
+        label: About
+        topics:
+          - use_cases.md
+          - about.md
+          - faas.md
+      - topicgroup:
+        label: Tutorials
+        topics:
+          - tutorial_action.md
+          - link: 
+            label: Build a database driven Slackbot
+            href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson
+          - link: 
+            label: Combining serverless and Cloud Foundry for data retrieval and analytics
+            href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics
+          - link: 
+            label: Mobile application with serverless backend
+            href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend
+          - link: 
+            label: Serverless web application and API
+            href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp
+    - navgroup: 
+      id: howto
+      topics:
+        - cli_install.md
+        - namespaces.md
+        - templates.md
+        - topicgroup:
+          label: Developing actions
+          topics:
+            - action_over.md
+            - plan.md
+            - actions.md
+            - actions_web.md
+            - sequences.md
+            - prep.md
+            - apigateway.md
+        - topicgroup:
+          label: Managing triggers and rules
+          topics:
+            - triggers.md
+            - rules.md
+        - test.md
+        - iam.md
+        - topicgroup:
+          label: Integrating serverless apps
+          topics:
+            - services.md
+            - pkg_ov.md
+            - pkg_alarms.md
+            - pkg_cloudant.md
+            - pkg_composer.md
+            - pkg_event_streams.md
+            - pkg_mobile_sdk.md
+            - pkg_obstorage.md
+            - pkg_slack.md
+            - pkg_utils.md
+            - pkg_websocket.md
+            - feeds_custom.md
+            - pkg-monitoralerts.md
+            - topicgroup:
+              label: Watson packages
+              topics:
+              - pkg_visual_recognition.md
+              - pkg_watson_assistant.md
+              - pkg_natlang_classifer.md
+              - pkg_natlang_understanding.md
+              - pkg_tone_analyzer.md
+              - pkg_translator.md
+              - pkg_discovery.md
+              - pkg_person_insights.md
+              - pkg_speech_to_text.md
+              - pkg_text_to_speech.md
+        - topicgroup:
+          label: Setting up an automated tool chain
+          topics:
+            - deploy.md
+        - topicgroup:
+          label: Logging and monitoring events
+          topics:
+            - logs.md
+            - activity_tracker.md
+            - monitor-functions.md
+    - navgroup: 
+      id: reference
+      topics:
+        - annotations.md
+        - runtimes.md
+        - limits.md
+        - error-handling.md
+        - topicgroup:
+          label: CLI reference
+          topics:
+            - /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
+            - cli_changelog.md
+        - regions.md
+        - hadr.md
+        - link: 
+          label: API reference
+          href: https://cloud.ibm.com/apidocs/functions
+        - topicgroup:
+          label: Related links
+          topics:
+            - link: 
+              label: "Discover: IBM Cloud Functions"
+              href: https://www.ibm.com/cloud/functions
+            - link: 
+              label: Pricing
+              href: https://cloud.ibm.com/functions/learn/pricing
+            - link: 
+              label: Apache OpenWhisk
+              href: http://openwhisk.apache.org/
+            - link: 
+              label: Tutorials and samples
+              href: https://github.com/apache/openwhisk-external-resources
+    - navgroup: 
+      id: help
+      topics:
+        - faq.md
+        - topicgroup:
+          label: Troubleshooting
+          topics:
+            - ts_overview.md
+            - topicgroup:
+              label: General troubleshooting
+              topics:
+                - ts_action_fails.md
+                - ts_property.md
+                - ts_limit_reached.md
+                - ts_action_terminated.md
+                - ts_api_gateway_504.md
+                - ts_private_endpoint.md
+            - topicgroup:
+              label: Node.js troubleshooting
+              topics:
+                - ts_action_nodejs_fails.md
+                - memory_usage_ts.md
+        - release_notes.md
+        - get-support.md
+        - sitemap.md
