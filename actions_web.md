@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-12"
+lastupdated: "2021-08-30"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -94,7 +94,7 @@ Web actions support the following features:
 
 | Feature | Description |
 | --- | --- |
-| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg`, or `.text`. For example, an action `<namespace_ID>/demo/hello` is referenced as `<namespace_ID>/demo/hello.json` to receive a `.json` response.<p>For content type `.json`, the full return object is returned, similar to `{resOne: "some text", resTwo: 42}`.</p><p>For `.html`, `.svg`, or `.text`, the content of the property that is called `body` is returned, similar to `.http`. If you want to use one response object for multiple content types, you can add the corresponding properties into the return object and remove the `body` property. The return object is then similar to `{html: "<p>The html response</p>"`, `text: "text response"}`.</p><p>If no content type is specified, the `.http` extension is assumed, and the content of the property that is called `body` is returned, for example, `{body: "the return message"}`.</p> |
+| [Content extensions](#extra_features) | You can specify a content type for your web action response by adding an extension to the action name in the URI. The following content types are supported: `.json`, `.http`, `.html`, `.svg`, or `.text`. For example, an action `<namespace_ID>/demo/hello` is referenced as `<namespace_ID>/demo/hello.json` to receive a `.json` response.<p>For content type `.json`, the full return object is returned, similar to `{resOne: "some text", resTwo: 42}`.</p><p>For `.html`, `.svg`, or `.text`, the content of the property that is called `body` is returned, similar to `.http`. If you want to use one response object for multiple content types, you can add the corresponding properties into the return object and remove the `body` property. The return object is then similar to `{html: "<p>The html response</p>", text: "text response"}`.</p><p>If no content type is specified, the `.http` extension is assumed, and the content of the property that is called `body` is returned, for example, `{body: "the return message"}`.</p> |
 | [Query and body parameters as input](#query_test) | The action receives query parameters as well as parameters in the request body. The precedence order for merging parameters is: package parameters, action parameters, query parameter, and body parameters. Each of these parameters can override any previous values if overlap occurs. As an example, `/demo/hello.http?name=Jane` can pass the argument `{name: "Jane"}` to the action. |
 | [Form data](#form_data) | In addition to the standard `application/json`, web actions can receive URL encoded form data `application/x-www-form-urlencoded data` as input.
 | [Activations that use multiple HTTP verbs](#actions_web_options) | A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`. |
@@ -550,7 +550,7 @@ To alter the response of a web action:
     ```
     {: screen}
 
-    b. {: #query_test}Test the action by using a query parameter. You can test the action by either:
+    b. Test the action by using a query parameter. You can test the action by either:{: #query_test}
 
     * Running the following cURL command.
         ```bash
@@ -584,7 +584,7 @@ To alter the response of a web action:
     ```
     {: screen}
 
-    c. {: #form_data}You can also test the web action by using form data. You can test the web action by using one of the following methods.
+    c. You can also test the web action by using form data. You can test the web action by using one of the following methods.{: #form_data}
     * Running the following cURL command.
 
         ```bash
