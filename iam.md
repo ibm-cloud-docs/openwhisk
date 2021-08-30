@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-08-30"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -202,7 +202,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
     </tr>
     <tr>
         <td><code>--roles &lt;IAM_role&gt;</code></td>
-        <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see [IAM access roles](/docs/account?topic=account-userroles#service_access_roles).</td>
+        <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see <a href="/docs/account?topic=account-userroles#service_access_roles">IAM access roles</a>.</td>
     </tr>
     <tr>
         <td><code>--service-name &lt;other_service_name&gt;</code></td>

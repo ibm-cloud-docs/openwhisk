@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-08-30"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -129,7 +129,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 <dd>The maximum memory limit in MB for your action. The default is 256 MB.
 
 <dt><code>--native</code></dt>
-<dd>You can use the <code>--native</code> argument as shorthand for `--docker openwhisk/dockerskeleton`. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
+<dd>You can use the <code>--native</code> argument as shorthand for <code>--docker openwhisk/dockerskeleton</code>. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
     <ol><li>When you create a Docker image, an executable is created inside the container at <code>/action/exec</code>. Copy the <code>/action/exec</code> file to your local file system and compress it into <code>exec.zip</code>.</li>
         <li>Create a Docker action that receives the executable as initialization data. The <code>--native</code> argument replaces the <code>--docker openwhisk/dockerskeleton</code> argument.</li></ol>
 
@@ -417,7 +417,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
 <dd>The maximum memory limit in MB for your action. The default is 256 MB.
 
 <dt><code>--native</code></dt>
-<dd>You can use the <code>--native</code> argument as shorthand for `--docker openwhisk/dockerskeleton`. By using th argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
+<dd>You can use the <code>--native</code> argument as shorthand for <code>--docker openwhisk/dockerskeleton</code>. By using this argument, you can create and deploy an executable that runs inside the standard Docker action SDK.
     <ol><li>When you create a Docker image, an executable is created inside the container at <code>/action/exec</code>. Copy the <code>/action/exec</code> file to your local file system and compress it into <code>exec.zip</code>.</li>
         <li>Create a Docker action that receives the executable as initialization data. The <code>--native</code> argument replaces the <code>--docker openwhisk/dockerskeleton</code> argument.</li></ol>
 

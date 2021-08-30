@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-08-30"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions, statelessness, activation, action
 
@@ -58,14 +58,14 @@ The following table lists the default limits for actions.
     <tbody>
     <tr>
     <td><code>codeSize</code></td>
-    <td>The maximum code size for an action is 48 MB. You can use [custom Docker images](/docs/openwhisk?topic=openwhisk-prep#prep_docker) as a workaround for large dependencies; however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded, which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
+    <td>The maximum code size for an action is 48 MB. You can use <a href="/docs/openwhisk?topic=openwhisk-prep#prep_docker">custom Docker images</a> as a workaround for large dependencies; however, the maximum code size for your action is still 48 MB. For JavaScript actions, use a tool to concatenate all source code, which includes dependencies, into a single bundled file. This limit is fixed and cannot be changed. Note that binary code is base64 encoded, which increases the size by approximately 33%. In this case, the actual limit is reduced to 36 MB.</td>
     <td>48</td>
     <td>1</td>
     <td>48</td>
     </tr>
     <tr>
     <td><code>concurrent</code></td>
-    <td>The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See [Increasing fixed limits](#limits_fixed) for instructions on how to increase this limit.</td>
+    <td>The number of activations that are either executing or queued for execution for a namespace cannot exceed 1000. This limit value is fixed, but can be increased if a business case can justify higher safety limit values. See <a href="#limits_fixed">Increasing fixed limits</a> for instructions on how to increase this limit.</td>
     <td>1000</td>
     <td>1</td>
     <td>1000*</td>
@@ -93,7 +93,7 @@ The following table lists the default limits for actions.
     </tr>
     <tr>
     <td><code>openulimit</code></td>
-    <td>The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--ulimit nofile=1024:1024` to set the <code>openulimit</code> value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command line reference documentation.</td>
+    <td>The maximum number of open files for an action is 1024 (for both hard and soft limits). This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument <code>--ulimit nofile=1024:1024</code> to set the <code>openulimit</code> value. For more information, see the <a href="https://docs.docker.com/engine/reference/commandline/run/" target="_blank">docker run</a> command line reference documentation.</td>
     <td>1024</td>
     <td>0</td>
     <td>1024</td>
@@ -107,7 +107,7 @@ The following table lists the default limits for actions.
     </tr>
     <tr>
     <td><code>proculimit</code></td>
-    <td>The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument <code>--pids-limit 1024</code> to set the <code>proculimit</code> value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/){: external} command-line reference documentation.</td>
+    <td>The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument <code>--pids-limit 1024</code> to set the <code>proculimit</code> value. For more information, see the <a href="https://docs.docker.com/engine/reference/commandline/run/" target="_blank">docker run</a> command-line reference documentation.</td>
     <td>1024</td>
     <td>0</td>
     <td>1024</td>
@@ -185,7 +185,7 @@ Triggers are subject to a firing rate per minute as documented in the following 
 ## Increasing fixed limits
 {: #limits_fixed}
 
-Limit values that end with a (*) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/functions){: external}.
+Limit values that end with an asterisk (`*`) are fixed, but can be increased if a business case can justify higher safety limit values. If you would like to increase the limit value, contact IBM support by opening a ticket directly from the IBM [{{site.data.keyword.openwhisk_short}} web console](https://cloud.ibm.com/functions){: external}.
 
 1. Select **Support**.
 2. Select **Add Ticket** from the drop-down menu.

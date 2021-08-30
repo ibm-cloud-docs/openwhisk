@@ -1,7 +1,7 @@
 {:navgroup: .navgroup}
 {:topicgroup: .topicgroup}
 
-{: .toc subcollection="openwhisk" category="compute" audience="service" href="/docs/openwhisk?topic=openwhisk-getting-started" console-page="/functions" product-page="https://www.ibm.com/cloud/functions" path="openwhisk"}
+{: .toc subcollection="openwhisk" version="2" category="compute" audience="service" href="/docs/openwhisk?topic=openwhisk-getting-started" console-page="/functions" product-page="https://www.ibm.com/cloud/functions" path="openwhisk"}
 Functions 
 
     {: .navgroup id="learn"}

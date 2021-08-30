@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-12"
+lastupdated: "2021-08-30"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions, activations, configuring
 
@@ -200,7 +200,7 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 </tr>
 <tr>
 <td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](/docs/openwhisk?topic=openwhisk-annotations#annotations_activation).</td>
+<td>Annotations on this action. For a list of possible activation annotations, see the <a href="/docs/openwhisk?topic=openwhisk-annotations#annotations_activation">annotations reference topic</a>.</td>
 </tr>
 <tr>
 <td><code>publish</code></td>

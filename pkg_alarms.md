@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-08-30"
 
 keywords: alarms, serverless, triggers, functions, event, cron
 
@@ -184,7 +184,7 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 <tr>
 <tr>
 <td><code>--param timezone</code></td>
-<td>(Optional) Replace <code>&lt;timezone&gt;</code> with a string that specifies the time zone. The actual time to fire the trigger is modified relative to the specified time zone. If the time zone is invalid, an error is thrown. You can check all of the available time zones at the [Moment Time zone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names){: external}.</td>
+<td>(Optional) Replace <code>&lt;timezone&gt;</code> with a string that specifies the time zone. The actual time to fire the trigger is modified relative to the specified time zone. If the time zone is invalid, an error is thrown. You can check all of the available time zones at the <a href="http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names" target="_blank">Moment Time zone Website</a>.</td>
 </tr>
 <tr>
 <td><code>--param trigger_payload</code></td>
