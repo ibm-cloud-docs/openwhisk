@@ -155,7 +155,7 @@ toc:
               topics:
               - ts_action_nodejs_fails.md
               - memory_usage_ts.md
-      - release_notes.md
-        
-          - get-support.md
-          - sitemap.md
+      
+      - release_notes.md  
+      - get-support.md
+      - sitemap.md
