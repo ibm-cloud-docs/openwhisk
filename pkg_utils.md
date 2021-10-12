@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-10-12"
 
 keywords: actions, serverless, functions, utilities, split, sort, hosturl, date, head, echo, cat, smash
 
@@ -10,19 +10,8 @@ subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:codeblock: .codeblock}
-{:external: target="_blank" .external}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Utilities
 {: #pkg_utils}

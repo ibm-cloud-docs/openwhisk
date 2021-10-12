@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-08-12"
+lastupdated: "2021-10-12"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -10,19 +10,8 @@ subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
-{:external: target="_blank" .external}
+{{site.data.keyword.attribute-definition-list}}
+
 
 # Release notes
 {: #release-notes}

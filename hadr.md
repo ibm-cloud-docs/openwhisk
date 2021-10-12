@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2021
-lastupdated: "2021-08-06"
+lastupdated: "2021-10-12"
 
 keywords: cli, functions, high availability, disaster recovery, HIPPA
 
@@ -10,19 +10,7 @@ subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
-{:external: target="_blank" .external}
+{{site.data.keyword.attribute-definition-list}}
 
 # Understanding high availability and disaster recovery for {{site.data.keyword.openwhisk_short}}
 {: #ha_dr}

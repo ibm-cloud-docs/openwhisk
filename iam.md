@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2021
-lastupdated: "2021-08-30"
+lastupdated: "2021-10-12"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -9,19 +9,7 @@ subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 # Setting access policies
 {: #iam}
@@ -33,6 +21,7 @@ Access to {{site.data.keyword.openwhisk}} service instances for users in your ac
 
 ## How do I set IAM policies so that others can work with my namespace?
 {: #iam_namespace_policies}
+
 In order for others to work with entities in your namespace, you must to set the appropriate [IAM policies in the console](https://cloud.ibm.com/iam/overview) or [with the CLI](#cli-set). 
 
 The minimum Platform level access is Viewer. The minimum Service level access is Reader. For more information about Platform and Service level access roles, see [Platform management roles](#iam_platform_roles) and [Service-specific roles](#service_specific_roles).
@@ -42,6 +31,7 @@ Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/ac
 
 ## How do I set IAM policies so that others can create namespaces in my account?
 {: #iam_namespace_create}
+
 In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating new namespaces, you must set the following access policies for those users.
 
 * The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
@@ -99,58 +89,58 @@ To see which roles are required to perform each operation, check out the followi
 
 <table><caption>Which roles can perform which operations?</caption>
 <tr>
-<th style="width:150px">Action</th>
-<th style="width:50px">Reader</th>
-<th style="width:50px">Writer</th>
-<th style="width:50px">Manager</th>
+<th>Action</th>
+<th>Reader</th>
+<th>Writer</th>
+<th>Manager</th>
 </tr>
 <tr>
 <td><code>functions.namespaces.update</code><br>Update a namespace.</td>
 <td></td>
 <td></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.namespaces.delete</code><br>Delete a namespace.</td>
 <td></td>
 <td></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.namespaces.read</code><br>View the available namespaces.</td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.entities.create</code><br>Create an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
 <td> </td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.entities.update</code><br>Update an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
 <td> </td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.entities.delete</code><br>Delete an entity from a Functions namespace, such as a package, action, trigger, or rule.</td>
-<td> </td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td></td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.entities.read</code><br>View the available entities within a namespace, such as package, action, trigger, or rule.</td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 <tr>
 <td><code>functions.entities.activate</code><br>Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule.</td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
-<td><img src="images/confirm.png" width="32" alt="Feature available" style="width:32px;" /></td>
+<td>Yes</td>
+<td>Yes</td>
+<td>Yes</td>
 </tr>
 </table>
 
