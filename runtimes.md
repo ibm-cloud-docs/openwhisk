@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-12"
+lastupdated: "2021-12-07"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -42,7 +42,7 @@ These runtimes (kinds) are available:
     </tr>
     <tr>
     <td>PHP</td>
-    <td><code>php:7.3</code> (default)</td>
+    <td><code>php:7.4</code> (default)</td>
     </tr>
     <tr>
     <td>Go</td>
@@ -50,7 +50,7 @@ These runtimes (kinds) are available:
     </tr>
     <tr>
     <td>Ruby</td>
-    <td><code>ruby:2.5</code> (default)</td>
+    <td><code>ruby:2.6</code> (default)</td>
     </tr>
     <tr>
     <td>Java</td>
@@ -78,6 +78,8 @@ These runtimes (kinds) are deprecated:
     <li><code>go:1.11</code> (deprecated)</li>
     <li><code>nodejs:10</code> (deprecated)</li>
     <li><code>nodejs:8</code> (deprecated)</li>
+    <li><code>php:7.3</code> (deprecated)</li>
+    <li><code>ruby:2.5</code> (deprecated)</li>
 </ul>
 
 These runtimes (kinds) are disabled:
@@ -433,22 +435,47 @@ If you have an action that is not compiled, and uses the `SwiftyJSON` package, y
 ## PHP runtime
 {: #openwhisk_ref_php}
 
-By default, all PHP actions are executed in a version 7.3 environment.
+By default, all PHP actions are executed in a version 7.4 environment.
 {: note}
+
+For more information about the php:7.4 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-php/blob/master/core/php7.4Action/CHANGELOG.md){: external}..
 
 The following PHP extensions are available in addition to the standard ones:
 
-- `bcmath`
-- `curl`
-- `gd`
-- `intl`
-- `mbstring`
-- `mysqli`
-- `pdo_mysql`
-- `pdo_pgsql`
-- `pdo_sqlite`
-- `soap`
-- `zip`
+Ensure that your action uses only the modules that are mentioned in the following table.<br/>
+While other PHP modules might be part of the runtime, they are included only as indirect dependencies of the other listed modules. These unlisted modules are candidates to be removed as soon as they are not required by the referring modules.
+{: note}
+
+
+| PHP 7.4 Modules |
+|:-----------------|
+| `bcmath` |
+| `curl` |
+| `gd` |
+| `intl` |
+| `mbstring` |
+| `mongodb` |
+| `mysqli` |
+| `pdo_mysql` |
+| `pdo_pgsql` |
+| `pdo_sqlite` |
+| `soap` |
+| `zip` |
+{: caption="Table 1. PHP 7.4 packages" caption-side="top"}
+{: #PHP}
+{: tab-title="PHP 7.4 Modules"}
+{: tab-group="PHP"}
+{: class="simple-tab-table"}
+
+
+## Ruby runtime
+{: #openwhisk_ref_ruby}
+
+By default, all Ruby actions are executed in a version 2.6 environment.
+{: note}
+
+For more information about the Ruby 2.6 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-ruby/blob/master/core/ruby2.6ActionLoop/CHANGELOG.txt){: external}.
+
 
 ## Docker runtime
 {: #openwhisk_ref_docker}
@@ -487,12 +514,6 @@ For more information about writing `go` actions, see [Preparing Go apps](/docs/o
 By default, all Java actions are executed in a version 8 environment.
 
 For more information about the `java:8` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-java/blob/master/core/java8/CHANGELOG.md){: external}.
-
-**Ruby**
-
-By default, all Ruby actions are executed in a version 2.5 environment.
-
-For more information about the `ruby:2.5` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-ruby/blob/master/core/ruby2.5Action/CHANGELOG.md){: external}.
 
 **.NET Core**
 
@@ -542,5 +563,4 @@ Actions that use a disabled runtime can be only read or deleted.
 Execution of such an action is not possible.
 
 To update the runtime of this action to a supported one, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
-
 

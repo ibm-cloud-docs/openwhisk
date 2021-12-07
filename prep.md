@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-12"
+lastupdated: "2021-12-07"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -1700,8 +1700,39 @@ You can package a Ruby app and dependent packages in a compressed file. For exam
 
 Create an archive that contains your source files. The source file that contains the entry point must be named `main.rb`.
 
+**Example**
+
+**`main.rb`**
+
+```ruby
+    require_relative 'helper'
+    def main(args)
+        name = args["name"] || "stranger"
+        greeting = "Hello #{name}!"
+        help = helper(greeting)
+        puts help
+        { "help" => help }
+    end
+```
+{: codeblock}
+
+**`helper.rb`**
+
+```ruby
+    def helper(greeting)
+        puts greeting
+        "#{greeting} I am here to help"
+    end
+```
+{: codeblock}
+
 ```bash
 zip -r helloRuby.zip main.rb helper.rb
+```
+{: pre}
+
+```bash
+ibmcloud fn action create hello-ruby helloRuby.zip --kind=ruby:2.6
 ```
 {: pre}
 
@@ -1751,10 +1782,107 @@ zip -r <archive_name>.zip <file_1>.php <file_2>.php
 
 **Example**
 
+**`main.php`**
+
+```php
+<?php
+    include 'helper.php';
+    function main(array $args) : array
+    {
+        $name = $args["name"] ?? "stranger";
+        $help = help($name);
+        return ["help" => $help];
+    }
+    ?>
+```
+{: codeblock}
+
+**`helper.php`**
+
+```php
+    <?php
+    function help($name) {
+        return "Hello " . $name . " the answer to life the universe and everything is 42";
+    }
+    ?>
+```
+{: codeblock}
+
+
 ```bash
 zip -r helloPHP.zip index.php helper.php
 ```
 {: pre}
+
+```bash
+ibmcloud fn action create packagePHP helloPHP.zip --kind=php:7.4
+```
+{: pre}
+
+### Packaging Composer modules
+{: #prep_php_composer}
+
+You can package extra Composer modules into your action
+{: shortdesc}
+
+Before you begin, [review the packages that are included with the php runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_php) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app. The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
+
+1. In the root directory, create a `index.php` and `composer.json` file.
+
+    **Example**
+    **`index.php`**
+    ```php
+    <?php
+    use Mpociot\ChuckNorrisJokes\JokeFactory;
+
+    function main(array $args) : array
+    {
+        $jokes = new JokeFactory();
+        $joke = $jokes->getRandomJoke();
+        return ["joke" => $joke];
+    }
+    ?>
+    ```
+
+    **`composer.json`**
+    ```json
+    {
+        "require": {
+            "mpociot/chuck-norris-jokes": "^1.0"
+        }
+    }
+
+    ```
+    {: codeblock}
+
+    
+
+2. Install all dependencies locally.
+
+    ```bash
+    composer install
+    ```
+    {: pre}
+
+    While most `php` packages install PHP sources on `composer install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `php install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
+    {: note}
+
+3. Create an archive that contains all files, including all dependencies.
+
+    ```bash
+    zip -r action.zip *
+    ```
+    {: pre}
+
+    **Windows users** Using the Windows Explorer action for creating the compressed file results in an incorrect file structure. {{site.data.keyword.openwhisk_short}} archive actions must have `index.php` and `composer.json` at the root of the archive, but Windows Explorer places it inside a nested folder. Use the **`zip`** command instead.
+    {: tip}
+
+4. Create the Function
+
+    ```bash
+    ibmcloud fn action create chuckJoke action.zip --kind=php:7.4
+    ```
+    {: pre}
 
 ## Preparing Java apps
 {: #prep_java}
