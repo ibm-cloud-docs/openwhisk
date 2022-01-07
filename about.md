@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-04"
+lastupdated: "2021-12-21"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -22,7 +22,7 @@ subcollection: openwhisk
 ## {{site.data.keyword.openwhisk_short}} terminology
 {: #functions-terminology}
 
-Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}. Then, test your knowledge and [take a quiz! ](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}
+Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}. Then, test your knowledge and [take a quiz!](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}
 
 | Term | Description |
 | --------- | ------------------- |
@@ -41,7 +41,7 @@ Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_
 
 {{site.data.keyword.openwhisk_short}} is based on OpenWhisk, an open source project that combines components such as NGINX, Kafka, Docker, and CouchDB to form a serverless event-based programming service.
 
-<img src="images/OpenWhisk_flow_of_processing.png" width="550" alt="The internal flow of processing behind the scenes in OpenWhisk" style="width:550px; border-style: none"/>
+![The internal flow of processing behind the scenes in OpenWhisk.](images/OpenWhisk_flow_of_processing.png){: caption="Figure 1. The internal flow of processing behind the scenes in OpenWhisk" caption-side="bottom"}
 
 ### 1. Entering the system: NGINX
 {: #about_ngnix}

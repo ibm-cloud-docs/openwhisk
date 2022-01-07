@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-12-07"
+  years: 2017, 2022
+lastupdated: "2022-01-04"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -74,7 +74,7 @@ ibmcloud fn action create ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
     </tr>
     <tr>
     <td>Python</td>
-    <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
+    <td><code>python:3.7</code> (default)</td>
     </tr>
     <tr>
     <td>Swift</td>
@@ -362,7 +362,7 @@ ibmcloud fn action update ACTION_NAME APP_FILE [--annotation ANNOTATION_KEY ANNO
     </tr>
     <tr>
     <td>Python</td>
-    <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
+    <td><code>python:3.7</code> (default)</td>
     </tr>
     <tr>
     <td>Swift</td>

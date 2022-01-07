@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-12-07"
+  years: 2017, 2022
+lastupdated: "2022-01-04"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -34,7 +34,7 @@ These runtimes (kinds) are available:
     </tr>
     <tr>
     <td>Python</td>
-    <td><code>python:3.7</code> (default), <code>python:3.6</code></td>
+    <td><code>python:3.7</code> (default)</td>
     </tr>
     <tr>
     <td>Swift</td>
@@ -79,6 +79,7 @@ These runtimes (kinds) are deprecated:
     <li><code>nodejs:10</code> (deprecated)</li>
     <li><code>nodejs:8</code> (deprecated)</li>
     <li><code>php:7.3</code> (deprecated)</li>
+    <li><code>python:3.6</code> (deprecated)</li>
     <li><code>ruby:2.5</code> (deprecated)</li>
 </ul>
 
@@ -323,9 +324,9 @@ By default, all Python actions are executed in a Python version 3.7 environment.
 
 | Kind | Python version | Description | Changelog |
 | --- | --- | --- | --- |
-| &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01.<br/>See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
-| `python:3.6` | [3.6.x](https://github.com/docker-library/python/blob/721671c28aad96ad2c1970e83c2af71ceff15f1b/3.6/jessie/slim/Dockerfile){: external} | Python 3 actions are executed with Python 3.6.x. To use this runtime, specify the CLI parameter `--kind python:3.6` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.6 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/CHANGELOG.md){: external}. |
 | `python:3.7` | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.7.x environment (Debian Stretch based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
+| &nbsp; | 3.6 | Python 3.6 reached `end of support` on 2021/12/23.<br/>See [end of life Python Releases](https://endoflife.date/python){: external}. | &nbsp; |
+| &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01.<br/>See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
 
 
 ### Python packages

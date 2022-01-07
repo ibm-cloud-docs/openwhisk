@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-12"
+lastupdated: "2021-12-20"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -214,7 +214,7 @@ If the [result size limit](/docs/openwhisk?topic=openwhisk-limits) for actions i
 
 The [controller](/docs/openwhisk?topic=openwhisk-about#about_controller) passes any action-specified headers, status code, or body to the HTTP client that terminates the request or response. If the `Content-Type` header is not declared in the action result's `headers`, the body is interpreted as `application/json` for non-string values and `text/html` otherwise. If the `Content-Type` header is defined, the controller determines whether the response is binary data or plain text and decodes the string by using a base64 decoder as needed. If the body isn't decoded correctly, an error is returned to the client.
 
-The owner of the web action owns all of the activations records, and incurs the cost of running the action in the system regardless of how the action was invoked.
+The owner of the web action owns all the activations records, and incurs the cost of running the action in the system regardless of how the action was invoked.
 {: note}
 
 #### Protected parameters
@@ -722,7 +722,7 @@ You can set the `require-whisk-auth` annotation by either:
 
 - Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
 
-- Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed.  When set to any other value, that value is used as the `require-whisk-auth` annotation value.
+- Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed. When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 
 ### Creating a secure web action
 {: #actions_web_secure_create}

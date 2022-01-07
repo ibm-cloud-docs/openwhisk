@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2021
-lastupdated: "2021-10-12"
+lastupdated: "2021-12-13"
 
 keywords: actions, serverless, javascript, node, node.js, functions, testing, memory
 
@@ -31,7 +31,7 @@ Whenever you create or update an action or sequence in the console, test it by u
 ## Testing actions from the CLI
 {: #test-js}
 
-You can test actions by running the [`ibmcloud fn action invoke`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_invoke) command. You can test the action with or without parameters.
+You can test actions by running the [`ibmcloud fn action invoke`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_invoke){: external} command. You can test the action with or without parameters.
 {: shortdesc}
 
 ```bash
