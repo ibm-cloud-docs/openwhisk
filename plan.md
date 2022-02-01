@@ -1,43 +1,29 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: planning, functions, actions, serverless
+keywords: planning, functions, actions, serverless, code, event, deployments, runtimes
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 
 # Planning serverless apps
 {: #plan}
 
-Before you start creating your function, learn about the decisions you must make along the way.
+Before you start creating your {{site.data.keyword.openwhisk}} actions, learn about the decisions you must make along the way.
 {: shortdesc}
 
 ## Review the runtime support
 {: #plan_runtime}
 
-{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=cloud-functions-runtimes#runtimes) to execute code. But, because {{site.data.keyword.openwhisk_short}} is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=cloud-functions-actions#actions-docker) to package your code.
+{{site.data.keyword.openwhisk_short}} provides standard [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes) to execute code. But, because the {{site.data.keyword.openwhisk_short}} service is serverless, you're not limited in the runtimes that you can use. You can create custom runtimes by creating your own [custom Docker image](/docs/openwhisk?topic=openwhisk-prep#prep_docker) to package your code.
 {: shortdesc}
-
-
 
 ## Architect your code
 {: #plan_architect}
@@ -51,24 +37,24 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
 2. Use {{site.data.keyword.cloud_notm}} services instead of frameworks.
 
-    Instead of using frameworks to make capabilities available in your function at runtime, you can {{site.data.keyword.cloud}} services. Many common tasks that frameworks help you to complete are available as services on {{site.data.keyword.cloud}}.
+    Instead of using frameworks to make capabilities available in your function at run time, you can choose {{site.data.keyword.cloud}} services. Many common tasks that frameworks help you to complete are available as services on {{site.data.keyword.cloud}}.
     {: shortdesc}
 
     For example, instead of using a framework for authentication, try {{site.data.keyword.appid_full}}. If you need external file storage, try {{site.data.keyword.cos_full}}.
 
     If the capability that you want to incorporate is not available as a service on {{site.data.keyword.cloud}}, you can always integrate that capability with feeds and APIs too, without the need for frameworks.
 
-3. [Verify that your code meets the system limits.](/docs/openwhisk?topic=cloud-functions-limits#limits_syslimits)
+3. [Verify that your code meets the system limits.](/docs/openwhisk?topic=openwhisk-limits)
 
     Your code must fit within the system limits to run. For example, if your packaged code is larger than 48 MB, you might need to continue breaking it down into smaller pieces or packaging it as a Docker image.
 
-    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies. Then, use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at runtime.
+    Applications that contain many third-party modules, native libraries, or external tools might hit this limit. If you create a .zip or .jar package action that is larger than 48 MB, you must extend the runtime image with dependencies. Then, use a single source file or smaller archive than 48 MB. For example, by building a custom Docker runtime that includes necessary shared libraries, dependencies are not required to be present in the archive file. Private source files can still be bundled in the archive and injected at run time.
 
 4. Determine the parameters that must be injected into your code.
 
     In serverless actions, data is supplied by adding parameters to the actions. Parameters are declared as an argument to the main serverless function. Most commonly, these parameters are credentials for a service, but they might be anything that makes your code reusable with different triggers.
 
-5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=cloud-functions-prep)
+5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=openwhisk-prep)
 
     Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results. It might also need to be packaged into a single file that includes all of its dependencies.
 
@@ -97,8 +83,6 @@ Decide how you want to deploy your functions across environments, such as develo
 
 Because {{site.data.keyword.openwhisk_short}} is a Cloud Foundry-based service, you can manage the deployment of your functions in the Cloud Foundry organizations and spaces that are provided for you in {{site.data.keyword.cloud_notm}}. To organize your functions across these environments, you might choose to create one organization per function. Then, create a space for each environment you need. Instead, you could also have one organization for each environment and create a space per function. No matter how you arrange your organizations and spaces, choose a structure that you can use to effectively manage your function entities.
 
-You can also use [namespaces](/docs/openwhisk?topic=cloud-functions-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.
-
-
+You can also use [namespaces](/docs/openwhisk?topic=openwhisk-namespaces) to isolate resources. Each {{site.data.keyword.cloud_notm}} space contains an Open Whisk namespace by default. You can group entities, such as actions or triggers in a namespace, and then create Identity and Access (IAM) policies to manage user permissions for that group.
 
 

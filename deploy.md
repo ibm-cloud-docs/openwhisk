@@ -1,36 +1,24 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: deploying actions, manifest, manifest file, functions
+keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 
 # Deploying entities with a manifest file
 {: #deploy}
 
-You can use {{site.data.keyword.openwhisk_short}} to describe and deploy all of your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=cloud-functions-pkg_ov), [Actions](/docs/openwhisk?topic=cloud-functions-actions), [Triggers](/docs/openwhisk?topic=cloud-functions-triggers), and [Rules](/docs/openwhisk?topic=cloud-functions-rules) with a single command.
+You can use {{site.data.keyword.openwhisk}} to describe and deploy all of your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov), [Actions](/docs/openwhisk?topic=openwhisk-actions), [Triggers](/docs/openwhisk?topic=openwhisk-triggers), and [Rules](/docs/openwhisk?topic=openwhisk-rules) with a single command.
 
-The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities that are defined in your manifest file.
+The manifest file describes the set of entities you would like to deploy and undeploy as a group. The manifest file contents must adhere to the [OpenWhisk deployment YAML specification](https://github.com/apache/openwhisk-wskdeploy/tree/master/specification#package-specification){: external}. Once defined, you can use your manifest file to deploy or redeploy a group of Functions entities into the same or different Functions namespace. You can use the Functions plug-in commands `ibmcloud fn deploy` and `ibmcloud fn undeploy` to deploy and undeploy the Functions entities that are defined in your manifest file.
 
 ## Creating the Hello World API example
 {: #deploy_helloworld_example}
@@ -42,7 +30,7 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
     ```javascript
     function main() {
-       return {body: 'Hello world'};
+        return {body: 'Hello world'};
     }
     ```
     {: codeblock}
@@ -76,9 +64,9 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
     ```
     {: codeblock}
 
-3. Use the `deploy` command to deploy the package, action, and API.
+3. Use the **`deploy`** command to deploy the package, action, and API.
 
-    ```sh
+    ```
     ibmcloud fn deploy --manifest hello_world_manifest.yml
     ```
     {: pre}
@@ -87,35 +75,35 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
 
     1. List the actions by using the following command.
 
-      ```sh
-      ibmcloud fn action list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn action list
+        ```
+        {: pre}
 
     2. List the packages by using the following command.
 
-      ```sh
-      ibmcloud fn package list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn package list
+        ```
+        {: pre}
 
     3. List the APIs by using the following command.
 
-      ```sh
-      ibmcloud fn api list
-      ```
-      {: pre}
+        ```
+        ibmcloud fn api list
+        ```
+        {: pre}
 
 5. Invoke the API.
 
-    ```sh
+    ```
     curl URL-FROM-API-LIST-OUTPUT
     ```
     {: codeblock}
 
 Optional: You can undeploy the same entities by using the `undeploy` command.
 
-```sh
+```
 ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ```
 {: codeblock}
@@ -123,13 +111,11 @@ ibmcloud fn undeploy --manifest hello_world_manifest.yml
 ## More OpenWhisk deployment examples
 {: more_deploy_examples}
 
-The Functions deployment is based on the OpenWhisk deployment project, which has [multiple deployment manifest examples](https://github.com/apache/incubator-openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} that can be used within Functions.  You can use the `ibmcloud fn deploy` command instead of `wskdeploy`.
+The Functions deployment is based on the OpenWhisk deployment project, which has [multiple deployment manifest examples](https://github.com/apache/openwhisk-wskdeploy/blob/master/docs/programming_guide.md#guided-examples){: external} that can be used within Functions.  You can use the `ibmcloud fn deploy` command instead of `wskdeploy`.
 
 ## Deployment manifest specification
 {: manifest_specification}
 
-Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/incubator-openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.
-
-
+Functions deployment manifests must adhere to the OpenWhisk deployment manifest specification. Refer to the [OpenWhisk deployment manifest specification documentation](https://github.com/apache/openwhisk-wskdeploy/tree/master/specification#openwhisk-packaging-specification){: external} for details.
 
 

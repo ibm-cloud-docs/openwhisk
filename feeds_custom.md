@@ -1,37 +1,23 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: feeds, serverless, functions
+keywords: feeds, functions, webhooks, polling, connections, hook
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
-
+{{site.data.keyword.attribute-definition-list}}
 
 
 # Creating custom event provider feeds
 {: #feeds_custom}
 
-{{site.data.keyword.openwhisk_short}} supports an open API, where any user can expose an event producer service as a feed in a package.
+{{site.data.keyword.openwhisk}} supports an open API, where you can expose an event producer service as a feed in a package.
 {: shortdesc}
-
 
 ## Feed architecture
 {: #feeds_arch}
@@ -39,28 +25,26 @@ subcollection: cloud-functions
 You can create a feed by using one of the three architectural patterns: **Hooks**, **Polling**, and **Connections**.
 
 ### Hooks
+{: #fds_hooks}
 
-With the hooks pattern, a feed is set up by using a [webhook](https://en.wikipedia.org/wiki/Webhook){: external} that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
-
-For example, the [GitHub package](/docs/openwhisk?topic=cloud-functions-pkg_github)  and the [Push Notification package](/docs/openwhisk?topic=cloud-functions-pkg_push_notifications) use a webhook.
-
+With the hooks pattern, a feed is set up by using a webhook that is exposed by another service. In this strategy, a webhook is configured on an external service to POST directly to a URL to fire a trigger. This method is by far the easiest and most attractive option for implementing low-frequency feeds.
 
 ### Polling
+{: #fds_polling}
 
 With the polling pattern, a {{site.data.keyword.openwhisk_short}} action is arranged to poll an endpoint periodically to fetch new data. This pattern is relatively easy to build, but the frequencies of events are limited by the polling interval.
 
 ### Connections
+{: #fds_connections}
 
 With the connections pattern, a separate service maintains a persistent connection to a feed source. The connection-based implementation might interact with a service endpoint by using long polling intervals, or to set up a push notification.
 
-For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=cloud-functions-pkg_cloudant) uses the connections pattern.
-
-
+For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=openwhisk-pkg_cloudant) uses the connections pattern.
 
 ##  Implementing feed actions
 {: #feeds_actions}
 
-The feed action is an action, and accepts the following parameters.
+The feed action accepts the following parameters.
 
 | Parameter | Description |
 | --- | --- |
@@ -70,23 +54,32 @@ The feed action is an action, and accepts the following parameters.
 
 The feed action can also accept any other parameters that it needs to manage the feed. For example, the {{site.data.keyword.cloudant}} changes feed action expects to receive parameters that include `dbname` and `username`.
 
-When the user creates a trigger from the CLI with the `--feed` parameter, the feed action is automatically invoked with the appropriate parameters.
+When you create a trigger from the CLI with the `--feed` parameter, the feed action is automatically invoked with the appropriate parameters.
 
-For example, a user creates a **mycloudant** binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+For example, create a `mycloudant` binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
+
 ```
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
-Then, something equivalent to the following command runs:
+Or using the trigger feed parameters:
+
+```
+ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes --feed-param dbName myTable
+```
+{: pre}
+
+Then, invoke the trigger with something equivalent to the following command:
+
 ```
 ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
 
-The feed action that is named *changes* takes these parameters, and is expected to perform whatever action is necessary to set up a stream of events from {{site.data.keyword.cloudant_short_notm}}. The feed action occurs by using the appropriate configuration, which is directed to the trigger.
+The feed action that is named *changes* takes these parameters and is expected to perform whatever action is necessary to set up a stream of events from {{site.data.keyword.cloudant_short_notm}}. The feed action occurs by using the appropriate configuration, which is directed to the trigger.
 
-For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to a *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
+For the {{site.data.keyword.cloudant_short_notm}} *changes* feed, the action talks directly to an *{{site.data.keyword.cloudant_short_notm}} trigger* service that is implemented with a connection-based architecture.
 
 A similar feed action protocol occurs for `ibmcloud fn trigger delete`, `ibmcloud fn trigger update`, and `ibmcloud fn trigger get`.
 
@@ -101,7 +94,7 @@ When invoked with `CREATE`, the feed action simply installs a webhook for some o
 
 The webhook is directed to send notifications to a URL such as:
 
-`POST /namespaces/{namespace}/triggers/{triggerName}`
+`POST /namespaces/{namespace_ID}/triggers/{triggerName}`
 
 The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire as a result of the event.
 
@@ -116,7 +109,7 @@ To set up a polling-based feed, the feed action takes the following steps when c
 
 1. The feed action sets up a periodic trigger with a specific frequency, by using the `whisk.system/alarms` feed.
 2. The feed developer creates a `pollMyService` action that polls the remote service and returns any new events.
-3. The feed action sets up a *rule* *T -> pollMyService*.
+3. The feed action sets up a *rule* *T -> `pollMyService`*.
 
 This procedure implements a polling-based trigger entirely by using {{site.data.keyword.openwhisk_short}} actions, without any need for a separate service.
 
@@ -135,8 +128,5 @@ The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical 
 The **alarm** feed is implemented with a similar pattern.
 
 The connection-based architecture is the highest performance option, but operations are more labor-intensive than polling and hook architectures.
-
-
-
 
 

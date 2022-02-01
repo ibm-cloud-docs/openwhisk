@@ -1,48 +1,38 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-19"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: machine learning, functions
+keywords: machine learning, functions, national language classifier, watson, classifier
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 
 # {{site.data.keyword.nlclassifiershort}}
 {: #pkg_natlang_classifier}
 
-The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs.
+The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see [{{site.data.keyword.nlclassifiershort}}](/docs/natural-language-classifier?topic=natural-language-classifier-natural-language-classifier).
 {: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.nlclassifiershort}} package contains the following entities. You can find additional details in the {{site.data.keyword.nlclassifiershort}} API reference by clicking the entity name.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`natural-language-classifier-v1`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.nlclassifiershort}} service. |
-| [`classify`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#classify){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `text`,  | Classify a phrase. |
-| [`classify-collection`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#classify-collection){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `collection` | Classify multiple phrases. |
-| [`create-classifier`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#create-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `metadata`, `training_data` | Create a classifier. |
-| [`delete-classifier`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#delete-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Delete a classifier. |
-| [`get-classifier`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#get-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Get information about a classifier. |
-| [`list-classifiers`](https://www.ibm.com/watson/developercloud/natural-language-classifier/api/v1/curl.html?curl#list-classifiers){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List classifiers. |
-
+| [`natural-language-classifier-v1`](https://cloud.ibm.com/apidocs/natural-language-classifier){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.nlclassifiershort}} service. |
+| [`classify`](https://cloud.ibm.com/apidocs/natural-language-classifier#classify-a-phrase){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `text`,  | Classify a phrase. |
+| [`classify-collection`](https://cloud.ibm.com/apidocs/natural-language-classifier#classify-multiple-phrases){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id`, `collection` | Classify multiple phrases. |
+| [`create-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#create-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `metadata`, `training_data` | Create a classifier. |
+| [`delete-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#delete-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Delete a classifier. |
+| [`get-classifier`](https://cloud.ibm.com/apidocs/natural-language-classifier#get-information-about-a-classifier){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `classifier_id` | Get information about a classifier. |
+| [`list-classifiers`](https://cloud.ibm.com/apidocs/natural-language-classifier#list-classifiers){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List classifiers. |
 
 ## Creating a {{site.data.keyword.nlclassifiershort}} service instance
 {: #service_instance_classifier}
@@ -56,36 +46,40 @@ Before you install the package, you must create a {{site.data.keyword.nlclassifi
 ## Installing the {{site.data.keyword.nlclassifiershort}} package
 {: #install_classifier}
 
-After you have a {{site.data.keyword.nlclassifiershort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.nlclassifiershort}} package into your namespace.
+After you have a {{site.data.keyword.nlclassifiershort}} service instance, install the {{site.data.keyword.nlclassifiershort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #nlclassifier_cli}
 
-**Before you begin**
-[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+Install the {{site.data.keyword.nlclassifiershort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install) first.
+{: shortdesc}
 
 To install the {{site.data.keyword.nlclassifiershort}} package, run the following command.
 
 1. Clone the {{site.data.keyword.nlclassifiershort}} package repo.
+
     ```
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
+
     ```
     ibmcloud fn deploy -m openwhisk-sdk/packages/natural-language-classifier-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
+
     ```
     ibmcloud fn package list
     ```
     {: pre}
 
-    **Output**
+    **Example output**
+
     ```
     packages
     /myOrg_mySpace/natural-language-classifier-v1                        private
@@ -93,34 +87,39 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
     {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.nlclassifiershort}} instance you created to the package.
+
     ```
     ibmcloud fn service bind natural_language_classifier natural-language-classifier-v1
     ```
     {: pre}
 
-    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command:
+    Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the command fails, use the following service name for the bind command.
+
     ```
     ibmcloud fn service bind natural-language-classifier natural-language-classifier-v1
     ```
     {: pre}
 
     **Example output**
+
     ```
     Credentials 'Credentials-1' from 'natural_language_classifier' service instance 'Watson Natural Language Classifier' bound to 'natural-language-classifier-v1'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.nlclassifiershort}} service instance credentials.
+
     ```
     ibmcloud fn package get natural-language-classifier-v1 parameters
     ```
     {: pre}
 
     **Example output**
+
     ```
     ok: got package natural-language-classifier-v1, displaying field parameters
     [
-      {
+        {
         "key": "__bx_creds",
         "value": {
           "natural_language_classifier": {
@@ -131,17 +130,20 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
             "username": "00a0aa00-0a0a-12aa-1234-a1a2a3a456a7"
           }
         }
-      }
+        }
     ]
     ```
     {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} UI
+### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #nlclassifier_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+You can install your package from the {{site.data.keyword.openwhisk_short}} console.
+{: shortdesc}
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into. 
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 
@@ -149,16 +151,16 @@ To install the {{site.data.keyword.nlclassifiershort}} package, run the followin
 
 5. Click the **Natural Language Classifier** Package.
 
-5. Click **Install**.
+6. Click **Install**.
 
-6. Once the package is installed you are redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
+7. After the package is installed, you are redirected to the actions page and can search for your new package, which is named **natural-language-classifier-v1**.
 
-7. To use the actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#nlclassifier_cli).
-  * To bind service credentials to individual actions, complete the following steps in the UI. 
-  
-  You must complete the following steps for each action that you want to use.
-  {: note}
+8. To use the actions in the **natural-language-classifier-v1** Package, you must bind service credentials to the actions.
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#nlclassifier_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the **natural-language-classifier-v1** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -175,10 +177,10 @@ ibmcloud fn action invoke natural-language-classifier-v1/<action_name> -b -p <pa
 {: pre}
 
 Try out the `list-classifiers` action.
+
 ```
 ibmcloud fn action invoke natural-language-classifier-v1/list-classifiers -b
 ```
 {: pre}
-
 
 

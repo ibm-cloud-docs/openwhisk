@@ -1,35 +1,23 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-12"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: push notifications, functions, webhooks
+keywords: push notifications, functions, webhooks, installable package, pre-installed package, package
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
-
+{{site.data.keyword.attribute-definition-list}}
 
 # Push Notifications
 {: #pkg_push_notifications}
 
+{{site.data.keyword.openwhisk}} included pre-installed and installable packages for push notifications.
 
-## Packages
+## Packages for push notification
 {: #pkg_push_packages}
 
 | Package | Availability | Description |
@@ -41,11 +29,11 @@ subcollection: cloud-functions
 ## Sending push notifications
 {: #pkg_push_send}
 
-The pre-installed package is not available in the Tokyo region. See the installable [Push Notification](#pkg_push_mobile_send) package for the action `sendMessage` using IAM authentication
-{: tip}
-
-Learn how to create a Push Notification package binding, and send a simple push notification using the `/whisk.system/pushnotifications` package.
+Learn how to create a Push Notification package binding, and send a simple push notification by using the `/whisk.system/pushnotifications` package.
 {: shortdesc}
+
+In the Tokyo and Sydney regions, use the installable [Push Notification](#pkg_push_mobile_send) package instead as the preinstalled package is not available.
+{: tip}
 
 The package includes the following actions and feeds:
 
@@ -54,13 +42,13 @@ The package includes the following actions and feeds:
 | `/whisk.system/pushnotifications` | Package | `appId`, `appSecret`, `admin_url` | Work with the Push Service. |
 | `/whisk.system/pushnotifications/sendMessage` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
 
-
-For information about firing trigger events when there is device activity, see [Mobile push on device events](#pkg_push_mobile).
+For more information about firing trigger events when device activity occurs, see [Mobile push on device events](#pkg_push_mobile).
 
 ### Creating a Push package binding
 {: #pkg_push_create}
 
 To create a Push Notifications package binding, you must specify the following parameters.
+{: shortdesc}
 
 | Parameter | Description |
 | --- | --- |
@@ -73,33 +61,37 @@ To create a package binding, see the following steps:
 
 2. Initialize the Push Notification Service and bind the service to the {{site.data.keyword.cloud_notm}} application.
 
-3. Configure the [Push Notification application](/docs/services/mobilepush?topic=mobile-pushnotification-getting-started).
+3. Configure the [Push Notification application](/docs/mobilepush?topic=mobilepush-getting-started).
 
-  Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
+    Be sure to remember the **App GUID** and the **App Secret** of the {{site.data.keyword.cloud_notm}} app you created.
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
-  ```
-  ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
-  ```
-  {: pre}
 
-5. Verify that the package binding exists:
-  ```
-  ibmcloud fn package list
-  ```
-  {: pre}
+    ```
+    ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
+    ```
+    {: pre}
 
-  **Example output**
-  ```
-  packages
-  /myNamespace/myPush private binding
-  ```
-  {: screen}
+5. Verify that the package binding exists.
+
+    ```
+    ibmcloud fn package list
+    ```
+    {: pre}
+
+    **Example output**
+
+    ```
+    packages
+    /<namespace_ID>/myPush private binding
+    ```
+    {: screen}
 
 ### Push notification parameters
 {: #pkg_push_params}
 
 The `/whisk.system/pushnotifications/sendMessage` action sends push notifications to registered devices. The parameters are as follows.
+{: shortdesc}
 
 | Parameter | Description |
 | --- | --- |
@@ -139,9 +131,9 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `apnsLaunchImage` | The filename of an image file in the app bundle, with or without the filename extension. The image is used as the launch image when users tap the action button or move the action slider. |
 | `pnsTitleLocArgs` | Variable string values to appear in place of the format specifiers in `title-loc-key`. |
 | `apnsLocArgs` | Variable string values to appear in place of the format specifiers in `locKey`. |
-| `apnstitle` | The title of Rich Push notifications (Supported only on iOS 10 and above). |
-| `apnsSubtitle` | The subtitle of the Rich Notifications. (Supported only on iOS 10 and above).
-| `apnsAttachmentUrl` | The link to the iOS notifications media (video, audio, GIF, images - Supported only on iOS 10 and above). |
+| `apnstitle` | The title of Rich Push notifications (Supported only on iOS 10 and higher). |
+| `apnsSubtitle` | The subtitle of the Rich Notifications. (Supported only on iOS 10 and higher).
+| `apnsAttachmentUrl` | The link to the iOS notifications media (video, audio, GIF, images - Supported only on iOS 10 and higher). |
 | `fireFoxTitle` | Specifies the title to be set for the Web Push Notification. |
 | `fireFoxIconUrl` | The URL of the icon to be set for the Web Push Notification. |
 | `fireFoxTimeToLive` | This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline. |
@@ -150,7 +142,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `chromeIconUrl` | The URL of the icon to be set for the Web Push Notification. |
 | `chromeTimeToLive` | This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline. |
 | `chromePayload` | Custom JSON payload that is sent as part of the notification message. |
-| `safariTitle` | Specifies the title to be set for the Safari Push Notifications |
+| `safariTitle` | Specifies the title to be set for the Safari Push Notifications. |
 | `safariUrlArgs` | The URL arguments that need to be used with this notification. These arguments are to be provided in the form of a JSON Array. |
 | `safariAction` | The label of the action button. |
 | `chromeAppExtTitle` | Specifies the title to be set for the Web Push Notification. |
@@ -164,25 +156,28 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 {: #pkg_push_ex}
 
 See the following example to send a push notification from the Push notification package.
+{: shortdesc}
 
-Send a push notification by using the **sendMessage** action in the package binding that you created previously. Be sure to replace `/myNamespace/myPush` with your package name.
+Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/<namespace_ID>/myPush` with your package name.
+
 ```
-ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
+ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 
 **Example output**
+
 ```
 {
-  "result": {
-  "pushResponse":
+    "result": {
+    "pushResponse":
     {
-      "messageId":"11111H",
-      "message":{
+        "messageId":"11111H",
+        "message":{
         "alert":"this is my message",
         "url":""
-      },
-      "settings":{
+        },
+        "settings":{
         "apns":{
           "sound":"default"
         },
@@ -192,11 +187,11 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
         "target":{
           "deviceIds":["T1","T2"]
         }
-      }
+        }
     }
-  },
-  "status": "success",
-  "success": true
+    },
+    "status": "success",
+    "success": true
 }
 ```
 {: screen}
@@ -204,16 +199,17 @@ ibmcloud fn action invoke /myNamespace/myPush/sendMessage --blocking --result -p
 ## Sending push notifications on mobile device events
 {: #pkg_push_mobile}
 
-This pre-installed package is not available in the Tokyo region.
-{: tip}
-
-Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration/unregistration) or (subscription/unsubscription) in a specified application.
+Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration or unregistration) or (subscription or unsubscription) in a specified application.
 {: shortdesc}
 
-### Parameters
+This preinstalled package is not available in the Tokyo region.
+{: tip}
+
+### Parameters for Push Notification on mobile devices
 {: #pkg_push_mobile_params}
 
 The `/whisk.system/pushnotifications/webhook` parameters are as follows:
+{: shortdesc}
 
 | Parameter | Description |
 |--- | --- |
@@ -225,42 +221,46 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 {: #pkg_push_mobile_trigger}
 
 To create a trigger that is fired each time a new device registers with the Push Notifications service application, see the following example:
+{: shortdesc}
 
 1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
-  ```
-  ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
-  ```
-  {: pre}
+
+    ```
+    ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
+    ```
+    {: pre}
 
 2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
-  ```
-  ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
-  ```
-  {: pre}
+
+    ```
+    ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
+    ```
+    {: pre}
 
 3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
-  ```
-  ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
-  ```
-  {: pre}
+
+    ```
+    ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
+    ```
+    {: pre}
 
 4. Check the results by using the `ibmcloud fn activation poll` command.
-  ```
-  ibmcloud fn activation poll
-  ```
-  {: pre}
 
-5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/openwhisk/dashboard){: external}.
+    ```
+    ibmcloud fn activation poll
+    ```
+    {: pre}
 
-  **Output**
-  
-  The action sends a push notification.
+5. Register a device in your {{site.data.keyword.cloud_notm}} application. You can see the `rule`, `trigger`, and `action` are executed in the {{site.data.keyword.openwhisk}} [dashboard](https://cloud.ibm.com/functions/dashboard){: external}.
 
+    **Output**
+
+    The action sends a push notification.
 
 ## Sending push notifications or creating, updating, and deleting webhooks
 {: #pkg_push_mobile_send}
 
-The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. These actions allow you to send a message or create, update, or delete a webhook.
+The installable {{site.data.keyword.mobilepushshort}} package provides a set of actions for interacting with {{site.data.keyword.mobilepushfull}} service instances. By using these actions, you can send a message or create, update, or delete a webhook.
 {: shortdesc}
 
 The {{site.data.keyword.mobilepushshort}} package includes the following actions:
@@ -275,51 +275,58 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 {: #service_instance_push}
 
 Before you install the package, you must create a {{site.data.keyword.mobilepushshort}} instance.
+{: shortdesc}
 
-1. [Create a {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1a).
+1. [Create a {{site.data.keyword.mobilepushshort}} service instance](/docs/mobilepush?topic=mobilepush-push_step_1a).
 
-2. [Create a set of service credentials ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_1#push_step_1) for the Push Notifications service instance.
+2. [Create a set of service credentials](/docs/mobilepush?topic=mobilepush-push_step_1#push_step_1) for the Push Notifications service instance.
 
-3. [Configure the {{site.data.keyword.mobilepushshort}} service instance ](/docs/services/mobilepush?topic=mobile-pushnotification-push_step_2#push_step_2).
+3. [Configure the {{site.data.keyword.mobilepushshort}} service instance](/docs/mobilepush?topic=mobilepush-push_step_2#push_step_2).
 
 ### Installing the {{site.data.keyword.mobilepushshort}} package
 {: #pkg_push_mobile_install}
 
-After you have a {{site.data.keyword.mobilepushshort}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or UI to install the {{site.data.keyword.mobilepushshort}} package into your namespace.
+After you have a {{site.data.keyword.mobilepushshort}} service instance, use either the {{site.data.keyword.openwhisk}} CLI or console to install the {{site.data.keyword.mobilepushshort}} package into your namespace.
+{: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #pkg_push_mobile_cli}
 
 Before you begin:
-  1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+    1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 
 To install the {{site.data.keyword.mobilepushshort}} package:
 
 1. Clone the {{site.data.keyword.mobilepushshort}} package repo.
+
     ```
     git clone https://github.com/ibm-functions/package-push-notifications.git
     ```
     {: pre}
 
 2. Navigate to the `runtimes/nodejs` directory.
+
     ```
     cd package-push-notifications/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the package.
+
     ```
     ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
 4. Verify that the `push-notifications` package is added to your package list.
+
     ```
     ibmcloud fn package list
     ```
     {: pre}
 
-    **Output**
+    **Example output**
+
     ```
     packages
     /myOrg_mySpace/push-notifications private
@@ -327,31 +334,35 @@ To install the {{site.data.keyword.mobilepushshort}} package:
     {: screen}
 
 5. Bind the credentials from the {{site.data.keyword.mobilepushshort}} service instance that you created to the package.
+
     ```
     ibmcloud fn service bind imfpush push-notifications
     ```
     {: pre}
 
     **Example output**
+
     ```
     Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
     ```
     {: screen}
 
 6. Verify that the package is configured with your {{site.data.keyword.mobilepushshort}} service instance credentials.
+
     ```
     ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
     ```
     {: pre}
 
     **Example output**
+
     ```
     ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
     [
-      {
+        {
         "key": "__bx_creds",
         "value": {
-          "imfpush": {
+        "imfpush": {
             "admin_url": "https://mobile.ng.bluemix.net/imfpushdashboard/?appGuid=12345a-a123-1234-ab12-1ba1234567",
             "apikey": "abcd1234abcd1234abcd1234",
             "appGuid": "12341-12345-1234-a1234-1abcd12345",
@@ -364,19 +375,19 @@ To install the {{site.data.keyword.mobilepushshort}} package:
             "instance": "Push Notifications-ab",
             "plan": "LITE",
             "url": "https://imfpush.ng.bluemix.net/imfpush/v1/apps/1234abcd-1234-abcd-1234"
-          }
+            }
         }
-      }
+        }
     ]
     ```
     {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} UI
+### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #pkg_push_mobile_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
 
-2. Using the namespace drop-down menu in the top-right corner, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
+2. Using the namespace drop-down menu, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
 
 3. Click **Install Packages**.
 
@@ -384,38 +395,41 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 5. In the Available Runtimes section, select nodeJS from the drop-down list and then click **Install**.
 
-6. Once the package has been installed you will be redirected to the Actions page and can search for your new package, which is named **push-notifications**.
+6. After the package is installed, search for the **push-notifications** package on the Actions page.
 
 7. To use the actions in the **push-notifications** package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions listed above.
-  * To bind service credentials to individual actions, complete the following steps in the UI. **Note**: You must complete the following steps for each action that you want to use.
+    * To bind service credentials to all actions in the package, follow steps 5 and 6 in the CLI instructions previously listed.
+    * To bind service credentials to individual actions, complete the following steps in the console. **Note**: You must complete the following steps for each action that you want to use.
     1. Click an action from the **push-notifications** package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click the **Parameters** section.
+    2. In the left navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ### Send a push notification
 {: #pkg_push_mobile_sendmsg}
 
-To send a message through the push notification service using the `send-message` action:
+To send a message through the push notification service by using the `send-message` action, use the [ibmcloud fn action invoke] command.
+{: shortdesc}
+
 ```
 ibmcloud fn action invoke push-notifications/send-message --blocking --result --param messageText "Let's code something" --param messageUrl "http://developer.ibm.com"
 ```
 {: pre}
 
 **Example output**
+
 ```
 {
-  "response": {
-      "result": {
+    "response": {
+        "result": {
           "message": {
               "alert": "let's code something",
               "url": "http://developer.ibm.com"
           },
           "messageId": "fLyql2tx"
-      },
-      "status": "success",
-      "success": true
-  },
+        },
+        "status": "success",
+        "success": true
+    },
 }
 ```
 {: screen}
@@ -426,23 +440,23 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `onDeviceRegister` events:
 
 ```
- ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
+ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
 ```
 {: pre}
 
 **Example output**
+
 ```
 {
-  "response": {
+    "response": {
     "result": {
-      "error": {}
+        "error": {}
     },
-  "status": "application error",
-  "success": false
-  },
+    "status": "application error",
+    "success": false
+    },
 }
 ```
 {: screen}
-
 
 

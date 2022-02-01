@@ -1,50 +1,41 @@
 ---
 
 copyright:
-  years: 2017, 2019
-lastupdated: "2019-07-19"
+  years: 2017, 2021
+lastupdated: "2021-10-12"
 
-keywords: functions, cognitive,
+keywords: functions, cognitive, visual recognition, Watson, serverless
 
-subcollection: cloud-functions
+subcollection: openwhisk
 
 ---
 
-{:new_window: target="_blank"}
-{:shortdesc: .shortdesc}
-{:screen: .screen}
-{:pre: .pre}
-{:table: .aria-labeledby="caption"}
-{:external: target="_blank" .external}
-{:codeblock: .codeblock}
-{:tip: .tip}
-{:note: .note}
-{:important: .important}
-{:deprecated: .deprecated}
-{:download: .download}
-{:gif: data-image-type='gif'}
+{{site.data.keyword.attribute-definition-list}}
 
 
 # {{site.data.keyword.visualrecognitionshort}}
 {: #pkg_visual_recognition}
 
-The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs.
-{:shortdesc}
+The installable {{site.data.keyword.visualrecognitionfull}} service uses deep learning algorithms to identify scenes, objects, and faces  in images you upload to the service. You can create and train a custom classifier to identify subjects that suit your needs. For more information about this service, see [{{site.data.keyword.visualrecognitionshort}}](/docs/visual-recognition).
+{: shortdesc}
+
+The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
+{: deprecated}
 
 The {{site.data.keyword.visualrecognitionshort}} package contains the following entities. For more information, see the {{site.data.keyword.visualrecognitionshort}} API reference by clicking the entity name.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`visual-recognition-v3`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.visualrecognitionshort}} service. |
-| [`classify`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#classify){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `images_file`, `accept_language`, `url`, `threshold`, `owners`, `classifier_ids`, `images_file_content_type`  | Classify images. |
+| [`visual-recognition-v3`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.visualrecognitionshort}} service. |
+| [`classify`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#classify-images){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `images_file`, `accept_language`, `url`, `threshold`, `owners`, `classifier_ids`, `images_file_content_type`  | Classify images. |
 | [`detect-faces`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#detect-faces){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `images_file`, `url`, `images_file_content_type`  | Detect faces in images. |
-| [`create-classifier`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#create-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `name`, `classname_positive_examples`, `negative_examples` | Create a classifier. |
-| [`delete-classifier`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#delete-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Delete a classifier. |
-| [`get-classifier`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#get-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Retrieve classifier details. |
-| [`list-classifiers`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#list-classifiers){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `verbose`  | Retrieve a list of classifiers. |
-| [`update-classifier`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#update-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`, `classname_positive_examples`, `negative_examples`  | Update a classifier. |
-| [`get-core-ml-model`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#get-core-ml-model){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Retrieve a Core ML model of a classifier. |
-| [`delete-user-data`](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#delete-user-data){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `customer_id`  | Delete labeled data. |
+| [`create-classifier`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#create-a-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `name`, `classname_positive_examples`, `negative_examples` | Create a classifier. |
+| [`delete-classifier`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#delete-a-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Delete a classifier. |
+| [`get-classifier`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#retrieve-classifier-details){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Retrieve classifier details. |
+| [`list-classifiers`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#retrieve-a-list-of-classifiers){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `verbose`  | Retrieve a list of classifiers. |
+| [`update-classifier`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#update-a-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`, `classname_positive_examples`, `negative_examples`  | Update a classifier. |
+| [`get-core-ml-model`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#retrieve-a-core-ml-model-of-a-classifier){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `classifier_id`  | Retrieve a Core ML model of a classifier. |
+| [`delete-user-data`](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#delete-labeled-data){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,   `customer_id`  | Delete labeled data. |
 
 ## Creating a {{site.data.keyword.visualrecognitionshort}} service instance
 {: #service_instance_recognition}
@@ -58,36 +49,40 @@ Before you install the package, you must create a {{site.data.keyword.visualreco
 ## Installing the {{site.data.keyword.visualrecognitionshort}} package
 {: #install_recognition}
 
-After you have a {{site.data.keyword.visualrecognitionshort}} service instance, use the {{site.data.keyword.openwhisk}} CLI to install the {{site.data.keyword.visualrecognitionshort}} package into your namespace.
+After you have a {{site.data.keyword.visualrecognitionshort}} service instance, install the {{site.data.keyword.visualrecognitionshort}} package into your namespace.
 {: shortdesc}
 
 ### Installing from the {{site.data.keyword.openwhisk_short}} CLI
 {: #visualrecognition_cli}
 
-**Before you begin**
-[Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=cloud-functions-cli_install).
+Install the {{site.data.keyword.visualrecognitionshort}} package from the CLI. Be sure to [install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install) first.
+{: shortdesc}
 
 To install the {{site.data.keyword.visualrecognitionshort}} package:, run the following commands.
 
 1. Clone the {{site.data.keyword.visualrecognitionshort}} package repo.
+
     ```
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
+
     ```
     ibmcloud fn deploy -m openwhisk-sdk/packages/visual-recognition-v3/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
+
     ```
     ibmcloud fn package list
     ```
     {: pre}
 
-    **Output**
+    **Example output**
+
     ```
     packages
     /myOrg_mySpace/visual-recognition-v3                        private
@@ -95,28 +90,32 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
     {: screen}
 
 4. Bind the credentials from the {{site.data.keyword.visualrecognitionshort}} instance you created to the package.
+
     ```
     ibmcloud fn service bind watson-vision-combined visual-recognition-v3
     ```
     {: pre}
 
     **Example output**
+
     ```
     Credentials 'Credentials-1' from 'watson-vision-combined' service instance 'Watson Visual Recognition' bound to 'visual-recognition-v3'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.visualrecognitionshort}} service instance credentials.
+
     ```
     ibmcloud fn package get visual-recognition-v3 parameters
     ```
     {: pre}
 
     **Example output**
+
     ```
     ok: got package visual-recognition-v3, displaying field parameters
     [
-      {
+        {
         "key": "__bx_creds",
         "value": {
           "watson-vision-combined": {
@@ -130,17 +129,20 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
             "url": "https://gateway.watsonplatform.net/visual-recognition/api"
           }
         }
-      }
+        }
     ]
     ```
     {: screen}
 
-### Installing from the {{site.data.keyword.openwhisk_short}} UI
+### Installing from the {{site.data.keyword.visualrecognitionshort}} console
 {: #visualrecognition_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/openwhisk/create){: external}.
+Install the {{site.data.keyword.conversationshort}} package from the console.
+{: shortdesc}
 
-2. By using the **Cloud Foundry Org** and **Cloud Foundry Space** lists, select the namespace that you want to install the package into.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+
+2. Select the namespace that you want to install the package into.
 
 3. Click **Install Packages**.
 
@@ -148,16 +150,16 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 
 5. Click the **Visual Recognition** Package.
 
-5. Click **Install**.
+6. Click **Install**.
 
-6. Once the package is installed you are redirected to the actions page and can search for your new package, which is named **visual-recognition-v3**.
+7. After the package is installed you are redirected to the actions page and can search for your new package, which is named **visual-recognition-v3**.
 
-7. To use the actions in the **visual-recognition-v3** Package, you must bind service credentials to the actions.
-  * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#visualrecognition_cli).
-  * To bind service credentials to individual actions, complete the following steps in the UI.
-   
-  You must complete the following steps for each action that you want to use.
-  {: note}
+8. To use the actions in the **visual-recognition-v3** Package, you must bind service credentials to the actions.
+    * To bind service credentials to all actions in the package, follow steps 4 and 5 in the [CLI instructions](#visualrecognition_cli).
+    * To bind service credentials to individual actions, complete the following steps in the console.
+
+    You must complete the following steps for each action that you want to use.
+    {: note}
 
     1. Click an action from the **visual-recognition-v3** Package that you want to use. The details page for that action opens.
     2. In the left-hand navigation, click the **Parameters** section.
@@ -167,15 +169,17 @@ To install the {{site.data.keyword.visualrecognitionshort}} package:, run the fo
 {: #usage_recognition}
 
 To use the actions in this package, run commands in the following format:
+{: shortdesc}
 
 ```
 ibmcloud fn action invoke visual-recognition-v3/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
-All actions require a version parameter in the format YYYY-MM-DD. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://www.ibm.com/watson/developercloud/visual-recognition/api/v3/curl.html?curl#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/visual-recognition/visual-recognition-v3#versioning){: external}.
 
 This package's functions use the current version of Visual Recognition, `2018-03-19`. Try out the `list-classifiers` action.
+
 ```
 ibmcloud fn action invoke visual-recognition-v3/list-classifiers -b -p version 2018-03-19
 ```
