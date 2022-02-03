@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-08"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -39,13 +39,13 @@ In order to allow other users to manage {{site.data.keyword.openwhisk_short}} na
 
 ## How do I know which access policies have set for me?
 {: #iam_set_policies_me}
+
 You can see which access policies have been set for you in the [{{site.data.keyword.cloud_notm}} catalog](https://cloud.ibm.com/catalog){: external} console.
 
 1. From the console, click **Manage** > **Access (IAM)** > **Users**. Or, navigate to `https://cloud.ibm.com/iam/users`.
 2. Click your name in the user table.
 3. Click the **Access policies** tab to see your access policies.
 
-</br>
 
 ## Platform management roles
 {: #iam_platform_roles}
@@ -56,26 +56,11 @@ The following table details the actions that are mapped to platform management r
 For more information about how to assign, edit, review, or delete resource access policies, see [IAM access](/docs/account?topic=account-userroles){: external}.
 {: tip}
 
-<table>
-    <thead>
-    <tr>
-        <th>Platform role</th>
-        <th>Description</th>
-    </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td>Viewer</td>
-        <td>The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below.</td>
-    </tr>
-    <tr>
-        <td>Administrator</td>
-        <td>Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service.</td>
-    </tr>
-    </tbody>
-</table>
-
-</br>
+| Platform role | Description |
+| -------------- | -------------- |
+| Viewer | The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below. |
+| Administrator | Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service. |
+{: caption="Table 1. Platform roles" caption-side="bottom"}
 
 ## Service-specific roles
 {: #service_specific_roles}
@@ -85,66 +70,20 @@ Service-specific roles determine the scope of an access policy within a specific
 
 Permissions build on each other. For example, any operation that the Writer role is able to perform, the Manager role also can. However, the Manager role has additional permissions. To see the general permissions for each role, check out [Service access roles](/docs/account?topic=account-userroles#service_access_roles){: external}.
 
-To see which roles are required to perform each operation, check out the following table:
+To see which roles are required to perform each operation, check out the following table.
 
-<table><caption>Which roles can perform which operations?</caption>
-<tr>
-<th>Action</th>
-<th>Reader</th>
-<th>Writer</th>
-<th>Manager</th>
-</tr>
-<tr>
-<td><code>functions.namespaces.update</code><br>Update a namespace.</td>
-<td></td>
-<td></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.namespaces.delete</code><br>Delete a namespace.</td>
-<td></td>
-<td></td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.namespaces.read</code><br>View the available namespaces.</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.entities.create</code><br>Create an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
-<td> </td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.entities.update</code><br>Update an entity within a Functions namespace, such as a package, action, trigger, or rule.</td>
-<td> </td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.entities.delete</code><br>Delete an entity from a Functions namespace, such as a package, action, trigger, or rule.</td>
-<td></td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.entities.read</code><br>View the available entities within a namespace, such as package, action, trigger, or rule.</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-<tr>
-<td><code>functions.entities.activate</code><br>Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule.</td>
-<td>Yes</td>
-<td>Yes</td>
-<td>Yes</td>
-</tr>
-</table>
+| Action | Reader | Writer | Manager |
+| -------------- | -------------- | -------------- | -------------- |
+| `functions.namespaces.update` \n Update a namespace. |  |  | Yes |
+| `functions.namespaces.delete` \n Delete a namespace. |   |  | Yes |
+| `functions.namespaces.read` \n View the available namespaces. | Yes | Yes | Yes |
+| `functions.entities.create` \n Create an entity within a Functions namespace, such as a package, action, trigger, or rule. | | Yes | Yes |
+| `functions.entities.update` \n Update an entity within a Functions namespace, such as a package, action, trigger, or rule. | | Yes | Yes |
+| `functions.entities.delete` \n Delete an entity from a Functions namespace, such as a package, action, trigger, or rule. | | Yes | Yes |
+| `functions.entities.read` \n View the available entities within a namespace, such as package, action, trigger, or rule. | Yes | Yes | Yes |
+| `functions.entities.activate` \n Activate an entity within a namespace. Activate entities, for example, by invoking an action, firing a trigger, or enabling or disabling a rule. | Yes | Yes | Yes |
+{: caption="Table 2. Which roles can perform which operations?" caption-side="bottom"}
 
-</br>
 
 ## Setting access policies for a service ID
 {: #service-id-set-policy}
@@ -174,41 +113,23 @@ Set an access policy for a service ID by using the CLI.
 
 Copy the following command. Replace `<namespace_service_ID>` with the name of your {{site.data.keyword.openwhisk_short}} namespace. Replace `<IAM_role1,IAM_role2>` with the IAM roles you want to assign to your namespace. Replace `<other_service_name>` with the name of the {{site.data.keyword.IBM_notm}} service you want {{site.data.keyword.openwhisk_short}} to work with. Replace `<other_service_GUID>` with the GUID of the {{site.data.keyword.IBM_notm}} service instance.
 
-```
+```sh
 ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM_role2> --service-name <other_service_name> --service-instance <other_service_GUID>
 ```
 {: pre}
 
-</br>
-
-<table>
-    <thead>
-    <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>ibmcloud iam service-policy-create</code> command components</th>
-    </thead>
-    <tbody>
-    <tr>
-        <td><code>&lt;namespace_service_ID&gt;</code></td>
-        <td>The service ID for the namespace. To see all service IDs, run <code>ibmcloud iam service-ids</code>.</td>
-    </tr>
-    <tr>
-        <td><code>--roles &lt;IAM_role&gt;</code></td>
-        <td>The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run <code>ibmcloud iam roles --service SERVICE_NAME</code>. For more information, see <a href="/docs/account?topic=account-userroles#service_access_roles">IAM access roles</a>.</td>
-    </tr>
-    <tr>
-        <td><code>--service-name &lt;other_service_name&gt;</code></td>
-        <td>The name of the other {{site.data.keyword.cloud_notm}} service name.</td>
-    </tr>
-    <tr>
-        <td><code>--service-instance &lt;other_service_GUID&gt;</code></td>
-        <td>The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run <code>ibmcloud resource service-instance &lt;other_service_instance_name&gt;</code>.</td>
-    </tr>
-    </tbody>
-</table>
+| Option | Description |
+| -------------- | -------------- |
+| `<namespace_service_ID>` | The service ID for the namespace. To see all service IDs, run `ibmcloud iam service-ids`. |
+| `<IAM_role>` | The type of IAM service access role that the action must have to use the target service. To see the supported roles for the other service, run `ibmcloud iam roles --service SERVICE_NAME`. For more information, see [IAM access roles](/docs/account?topic=account-userroles#service_access_roles). |
+| `--service-name <other_service_name>` | The name of the other {{site.data.keyword.cloud_notm}} service name. |
+| `--service-instance <other_service_GUID>` | The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run `ibmcloud resource service-instance <other_service_instance_name>`. |
+{: caption="Table 1. Understanding the command components" caption-side="bottom"}
 
 For more information, see the [**`service-policy-create`**](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
 {: note}
 
-**Next steps**
-For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.
+Next steps
+:   For more information about managing service credentials, see the [Manage service credentials for serverless applications](https://developer.ibm.com/tutorials/accessing-iam-based-services-from-ibm-cloud-functions/){: external} blog.
 
 

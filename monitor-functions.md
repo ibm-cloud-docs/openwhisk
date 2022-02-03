@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-10-12"
+  years: 2022
+lastupdated: "2022-01-12"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, attributes
 
@@ -52,7 +52,6 @@ To see your {{site.data.keyword.openwhisk_short}} customer metrics dashboards in
 
 For more information, see [{{site.data.keyword.mon_full_notm}} Getting started tutorial](/docs/monitoring?topic=monitoring-getting-started).
 
-<br />
 
 ## Metrics available by Service Plan
 {: #metrics-by-plan}
@@ -61,20 +60,20 @@ All metric names have the prefix `ibm_functions_`.
 
 | Metric Name |
 |-----------|
-| [ibm_functions_activation](#ibm_functions_activation) | 
-| [ibm_functions_concurrent-invocations](#ibm_functions_concurrent-invocations) | 
-| [ibm_functions_concurrent-rate-limit](#ibm_functions_concurrent-rate-limit) | 
-| [ibm_functions_duration](#ibm_functions_duration) | 
-| [ibm_functions_init-time](#ibm_functions_init-time) | 
-| [ibm_functions_status-error-application](#ibm_functions_status-error-application) | 
-| [ibm_functions_status-error-developer](#ibm_functions_status-error-developer) | 
-| [ibm_functions_status-error-internal](#ibm_functions_status-error-internal) | 
-| [ibm_functions_status-success](#ibm_functions_status-success) | 
-| [ibm_functions_timed-rate-limit](#ibm_functions_timed-rate-limit) | 
-| [ibm_functions_wait-time](#ibm_functions_wait-time) | 
+| [`ibm_functions_activation`](#ibm_functions_activation) | 
+| [`ibm_functions_concurrent-invocations`](#ibm_functions_concurrent-invocations) | 
+| [`ibm_functions_concurrent-rate-limit`](#ibm_functions_concurrent-rate-limit) | 
+| [`ibm_functions_duration`](#ibm_functions_duration) | 
+| [`ibm_functions_init-time`](#ibm_functions_init-time) | 
+| [`ibm_functions_status-error-application`](#ibm_functions_status-error-application) | 
+| [`ibm_functions_status-error-developer`](#ibm_functions_status-error-developer) | 
+| [`ibm_functions_status-error-internal`](#ibm_functions_status-error-internal) | 
+| [`ibm_functions_status-success`](#ibm_functions_status-success) | 
+| [`ibm_functions_timed-rate-limit`](#ibm_functions_timed-rate-limit) | 
+| [`ibm_functions_wait-time`](#ibm_functions_wait-time) | 
 {: caption="Table 1: Metrics Available by Plan Names" caption-side="top"}
 
-### ibm_functions_activation
+### `ibm_functions_activation`
 {: #ibm_functions_activation}
 
 The overall number of activations that were triggered on the system.
@@ -87,7 +86,7 @@ The overall number of activations that were triggered on the system.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 2: ibm_functions_activation metric metadata" caption-side="top"}
 
-### ibm_functions_concurrent-invocations
+### `ibm_functions_concurrent-invocations`
 {: #ibm_functions_concurrent-invocations}
 
 The number of concurrent invocations on the system.
@@ -100,7 +99,7 @@ The number of concurrent invocations on the system.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 3: ibm_functions_concurrent-invocations metric metadata" caption-side="top"}
 
-### ibm_functions_concurrent-rate-limit
+### `ibm_functions_concurrent-rate-limit`
 {: #ibm_functions_concurrent-rate-limit}
 
 The sum of activations that were throttled due to exceeding the concurrency rate limit.
@@ -113,7 +112,7 @@ The sum of activations that were throttled due to exceeding the concurrency rate
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 4: ibm_functions_concurrent-rate-limit metric metadata" caption-side="top"}
 
-### ibm_functions_duration
+### `ibm_functions_duration`
 {: #ibm_functions_duration}
 
 The average action duration, billed action execution time in milliseconds.
@@ -126,7 +125,7 @@ The average action duration, billed action execution time in milliseconds.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 5: ibm_functions_duration metric metadata" caption-side="top"}
 
-### ibm_functions_init-time
+### `ibm_functions_init-time`
 {: #ibm_functions_init-time}
 
 The time that is spent to initialize the action container in milliseconds.
@@ -139,7 +138,7 @@ The time that is spent to initialize the action container in milliseconds.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 6: ibm_functions_init-time metric metadata" caption-side="top"}
 
-### ibm_functions_status-error-application
+### `ibm_functions_status-error-application`
 {: #ibm_functions_status-error-application}
 
 The number of unsuccessful activations that are caused by application errors.
@@ -152,7 +151,7 @@ The number of unsuccessful activations that are caused by application errors.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 7: ibm_functions_status-error-application metric metadata" caption-side="top"}
 
-### ibm_functions_status-error-developer
+### `ibm_functions_status-error-developer`
 {: #ibm_functions_status-error-developer}
 
 The number of unsuccessful activations that are caused by the developer.
@@ -165,7 +164,7 @@ The number of unsuccessful activations that are caused by the developer.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 8: ibm_functions_status-error-developer metric metadata" caption-side="top"}
 
-### ibm_functions_status-error-internal
+### `ibm_functions_status-error-internal`
 {: #ibm_functions_status-error-internal}
 
 The number of unsuccessful activations that are caused by {{site.data.keyword.openwhisk_short}} internal errors.
@@ -178,7 +177,7 @@ The number of unsuccessful activations that are caused by {{site.data.keyword.op
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 9: ibm_functions_status-error-internal metric metadata" caption-side="top"}
 
-### ibm_functions_status-success
+### `ibm_functions_status-success`
 {: #ibm_functions_status-success}
 
 The number of successful activations of action code.
@@ -191,7 +190,7 @@ The number of successful activations of action code.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 10: ibm_functions_status-success metric metadata" caption-side="top"}
 
-### ibm_functions_timed-rate-limit
+### `ibm_functions_timed-rate-limit`
 {: #ibm_functions_timed-rate-limit}
 
 The sum of activations that were throttled due to exceeding the per-minute limit.
@@ -204,7 +203,7 @@ The sum of activations that were throttled due to exceeding the per-minute limit
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 11: ibm_functions_timed-rate-limit metric metadata" caption-side="top"}
 
-### ibm_functions_wait-time
+### `ibm_functions_wait-time`
 {: #ibm_functions_wait-time}
 
 The average time that is spent in a queue, waiting for an activation to be scheduled in milliseconds.
@@ -218,12 +217,12 @@ The average time that is spent in a queue, waiting for an activation to be sched
 {: caption="Table 12: ibm_functions_wait-time metric metadata" caption-side="top"}
 
 ## Attributes for segmentation
-{: attributes}
+{: #attributes}
 
 ### Global attributes
-{: global-attributes}
+{: #global-attributes}
 
-The following attributes are available for segmenting all of the metrics previously listed.
+The following attributes are available for segmenting all the metrics previously listed.
 
 | Attribute | Attribute name | Attribute description |
 |-----------|----------------|-----------------------|
@@ -233,7 +232,7 @@ The following attributes are available for segmenting all of the metrics previou
 {: caption="Table 13: Global attributes" caption-side="top"}
 
 ### Additional attributes
-{: additional-attributes}
+{: #additional-attributes}
 
 The following attributes are available for segmenting one or more attributes as described in the previous reference. See the [individual metrics](#metrics-by-plan) for segmentation options.
 

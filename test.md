@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-12-13"
+  years: 2017, 2022
+lastupdated: "2022-01-13"
 
 keywords: actions, serverless, javascript, node, node.js, functions, testing, memory
 
@@ -23,7 +23,7 @@ Test each entity that you create to verify that your serverless app is working o
 
 Whenever you create or update an action or sequence in the console, test it by using the `Invoke` option.
 
-1. From the [Action ](https://cloud.ibm.com/functions/create){: external} menu, select an action or a sequence.
+1. From the [Action](https://cloud.ibm.com/functions/create){: external} menu, select an action or a sequence.
 
 2. Select Invoke. 
 
@@ -39,14 +39,14 @@ ibmcloud fn action invoke --result ACTION_NAME --param PARAMETER VALUE
 ```
 {: pre}
 
-**Hello world example**
+The following invocation runs a `Hello world` example.
 
 ```bash
 ibmcloud fn action invoke --result myAction --param name stranger
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the previous invocation.
 
 ```json
     {
@@ -61,14 +61,14 @@ ibmcloud fn action invoke --result myAction --param name stranger
 You can pass a file of JSON-formatted parameters.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the previous invocation.
 
-```
+```sh
 {
     "payload": "Hello, Dorothy from Kansas"
 }
@@ -82,14 +82,14 @@ ibmcloud fn action invoke --result ACTION_NAME --param-file JSON_FILE
 You can pass JSON-formatted parameters with your invocation.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke --result ACTION_NAME -p person '{"PARAM_NAME": "PARAM_VALUE", "PARAM_NAME": "PARAM_VALUE"}'
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the previous invocation.
 
-```
+```sh
 {
     "payload": "Hello, Dorothy from Kansas"
 }
@@ -107,14 +107,14 @@ Blocking invocations use a request-response style and wait for the activation re
 
 Run the action by running a blocking invocation.
 
-```
+```sh
 ibmcloud fn action invoke --blocking ACTION_NAME
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the previous invocation.
 
-```
+```sh
 ok: invoked hello with id 44794bd6aab74415b4e42a308d880e5b
 
 {
@@ -139,30 +139,30 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 1. Fire the trigger.
 
-    ```
+    ```sh
     ibmcloud fn trigger fire TRIGGER_NAME --param PARAM_NAME PARAM_VALUE --param PARAM_NAME PARAM_VALUE
     ```
     {: pre}
 
     A trigger that isn't associated with a rule has no visible effect when it is fired. Because no rule associated with this trigger, the passed parameters are not used as input by any action.
 
-    **Example output**
+    The following example shows possible output from the previous trigger fire.
 
-    ```
+    ```sh
     ok: triggered TRIGGER_NAME with id fa495d1223a2408b999c3e0ca73b2677
     ```
     {: screen}
 
 2. Verify that the action was invoked by checking the most recent activation record.
 
-    ```
+    ```sh
     ibmcloud fn activation list --limit 1 ACTION_NAME
     ```
     {: pre}
 
-    **Example output**
+    The following example shows possible output from the previous command.
 
-    ```
+    ```sh
     activations
     fa495d1223a2408b999c3e0ca73b2677             ACTION_NAME
     ```
@@ -170,14 +170,14 @@ Triggers can be fired, or activated, by using a dictionary of key-value pairs. S
 
 3. Get more information about the activation ID from the previous command output.
 
-    ```
+    ```sh
     ibmcloud fn activation result ACTIVATION_ID
     ```
     {: pre}
 
-    **Example output**
+    The following example shows possible output from the previous command.
 
-    ```
+    ```sh
     {
         "payload": "Hello, Human from Earth"
     }
@@ -192,14 +192,14 @@ Check how long an activation took to complete by getting the activation log. If 
 
 1. Get the activation ID.
 
-    ```
+    ```sh
     ibmcloud fn activation list --limit 1 ACTION_NAME
     ```
     {: pre}
 
-    **Example output**
+    The following example shows possible output from the previous command.
 
-    ```
+    ```sh
     activations
     b066ca51e68c4d3382df2d8033265db0             ACTION_NAME
     ```
@@ -207,14 +207,14 @@ Check how long an activation took to complete by getting the activation log. If 
 
 2. Get the log for the activation ID.
 
-    ```
+    ```sh
     ibmcloud fn activation get b066ca51e68c4d3382df2d8033265db0
     ```
     {: pre}
 
     The `duration` shows the time in milliseconds. The activation took slightly over 2 seconds to complete.
 
-    ```
+    ```sh
     ok: got activation b066ca51e68c4d3382df2d8033265db0
     {
         ...
@@ -229,14 +229,14 @@ Check how long an activation took to complete by getting the activation log. If 
 
 3. Update the action with a timeout in milliseconds.
 
-    ```
+    ```sh
     ibmcloud fn action update ACTION_NAME APP_FILE --kind RUNTIME --timeout VALUE
     ```
     {: pre}
 
-    **Example**
+    For example, see the following command.
 
-    ```
+    ```sh
     ibmcloud fn action update hello hello.js --kind nodejs:10 --timeout 1000
     ```
     {: pre}
@@ -249,21 +249,21 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 1. Create a container locally that runs your Docker image.
 
-    ```
+    ```sh
     docker run IMAGE_NAME
     ```
     {: pre}
 
 2. Get a list of the containers to get a container ID.
 
-    ```
+    ```sh
     docker ps
     ```
     {: pre}
 
 3. Check the statistics of the running container.
 
-    ```
+    ```sh
     docker stats CONTAINER_ID
     ```
     {: pre}
@@ -272,14 +272,14 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 
 5. After you are done reviewing the information, you can stop the running container.
 
-    ```
+    ```sh
     docker stop CONTAINER_ID
     ```
     {: pre}
 
 6. Remove the container.
 
-    ```
+    ```sh
     docker rm CONTAINER_ID
     ```
     {: pre}
@@ -291,7 +291,7 @@ If your app is packaged in a Docker image, you can use Docker commands to check 
 In the case where an action consumes more memory than requested, the action is terminated and the following log information is displayed:
 {: tsSymptoms}
 
-```
+```sh
 2019-10-22T10:00:50.509Z  stderr: Killed
 2019-10-22T10:00:50.510Z  stderr: The action did not initialize or run as expected. Log data might be missing.
 ```

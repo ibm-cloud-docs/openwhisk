@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-07"
 
 keywords: functions cli, serverless, cli, install, functions plug-in, API, migrating, syntax
 
@@ -25,7 +25,7 @@ subcollection: openwhisk
 Install the latest version of the IBM Cloud CLI.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.com/){: external}.
 
@@ -33,35 +33,35 @@ You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.
 
 2. Log in to the {{site.data.keyword.cloud_notm}} CLI.
 
-    ```
+    ```sh
     ibmcloud login
     ```
     {: pre}
 
 3. If you have more than one account, you are prompted to select which account to use. Follow the prompts or use the `target` command to select your {{site.data.keyword.cloud_notm}} account.
 
-    ```
+    ```sh
     ibmcloud target -c <account_id>
     ```
     {: pre}
 
 4. You must also specify a region. You can use the `target` command to target or change regions.
 
-    ```
+    ```sh
     ibmcloud target -r <region>
     ```
     {: pre}
 
 5. You must specify a resource group. To get a list of your resource groups, run the following command.
 
-    ```
+    ```sh
     ibmcloud resource groups
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Retrieving all resource groups under account <account_name> as email@ibm.com...
     OK
     Name      ID                                 Default Group   State   
@@ -72,14 +72,14 @@ You must create an [{{site.data.keyword.cloud_notm}} account](https://cloud.ibm.
 
 6. Target a resource group by running the following command.
 
-    ```
+    ```sh
     ibmcloud target -g <resource_group>
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Targeted resource group default
     ```
     {: screen}
@@ -101,21 +101,21 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 1. Install the {{site.data.keyword.openwhisk_short}} plug-in.
 
-    ```
+    ```sh
     ibmcloud plugin install cloud-functions
     ```
     {: pre}
 
 2. Verify that the plug-in is installed.
 
-    ```
+    ```sh
     ibmcloud plugin list
     ```
     {: pre}
 
     **Example Output**
 
-    ```
+    ```sh
     Plugin Name          Version
     cloud-functions/wsk/functions/fn      1.0.32
     ```
@@ -123,7 +123,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
 
 3. All {{site.data.keyword.openwhisk_short}} commands begin with **`ibmcloud fn`**. To see everything that you can do with the {{site.data.keyword.openwhisk_short}} plug-in, run **`ibmcloud fn`** with no arguments.
 
-    ```
+    ```sh
     ibmcloud fn
     ```
     {: pre}
@@ -132,6 +132,7 @@ For more information about {{site.data.keyword.openwhisk_short}} commands, see t
 
 ## Next steps for {{site.data.keyword.openwhisk}} CLI
 {: #install_next}
+
 To work with {{site.data.keyword.openwhisk_short}} entities, you must first create or target a namespace. For more information, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
 ## Updating the {{site.data.keyword.openwhisk_short}} CLI plug-in
@@ -142,7 +143,7 @@ You might want to update the CLI periodically to use new features.
 
 1. View your current plug-in list by running `ibmcloud plugin list` command.
 
-    ```
+    ```sh
     ibmcloud plugin list
     ```
     {: pre}
@@ -150,7 +151,7 @@ You might want to update the CLI periodically to use new features.
 
     **Example Output**
 
-    ```
+    ```sh
     Plugin Name                                 Version   Status        
     cloud-functions/wsk/functions/fn            1.0.35    Update Available   
     cloud-object-storage                        1.1.0        
@@ -161,7 +162,7 @@ You might want to update the CLI periodically to use new features.
 
 2. If an update is available, run the **`ibmcloud plugin update`** command.
 
-    ```
+    ```sh
     ibmcloud plugin update cloud-functions
     ```
     {: pre}
@@ -204,21 +205,21 @@ If you need to use the authentication API key for {{site.data.keyword.openwhisk_
 
 * Get the current IAM tokens. You must pass the IAM token in the Authorization header.
 
-    ```
+    ```sh
     ibmcloud iam oauth-tokens
     ```
     {: pre}
 
 * Get the current Cloud Foundry API key by running the following command.
 
-    ```
+    ```sh
     ibmcloud fn property get --auth
     ```
     {: pre}
 
 * Get the current API host by running the following command.
 
-    ```
+    ```sh
     ibmcloud fn property get --apihost
     ```
     {: pre}

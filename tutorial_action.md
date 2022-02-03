@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-10-12"
+  years: 2022
+lastupdated: "2022-01-13"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -29,7 +29,7 @@ Note that this tutorial is a simulation; it does not connect to {{site.data.keyw
 
 The code for the actions also includes some basic error handling code, including explanations. Note that, when you run these actions, you might not ever see the error handling code in this example. However, you might find this code useful if you choose to adapt the code examples.
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
@@ -39,7 +39,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 The `cos-access` action is a Node.js program that simulates code to access {{site.data.keyword.cos_full_notm}} by setting a timeout that resolves after 10 seconds.
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Select **Action**.
 
@@ -83,7 +83,7 @@ The `cos-access` action is a Node.js program that simulates code to access {{sit
 
         **Example output**
 
-        ```
+        ```sh
         Results:
         {
             "cos_message": "SUCCESS"
@@ -144,7 +144,7 @@ The `db-access` action is a Node.js program that simulates code to access {{site
 
         **Example output**
 
-        ```
+        ```sh
         Results:
         {
             "cloudant_result": "SUCCESS"
@@ -281,7 +281,7 @@ The `ow-sdk-action` action is a Node.js program that calls the other two actions
 
         **Example output**
 
-        ```
+        ```sh
         Results:
         {
         "action_results": [

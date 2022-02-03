@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: push notifications, functions, webhooks, installable package, pre-installed package, package
 
@@ -25,6 +25,7 @@ subcollection: openwhisk
 | [`/whisk.system/pushnotifications`](#pkg_push_send) | Pre-installed (Not available in Tokyo) | Send push notification to one or more specified devices. |
 | [`/whisk.system/pushnotifications/webhook`](#pkg_push_mobile) | Pre-installed (Not available in Tokyo) | Send mobile push notifications on device events. |
 | [`/push-notifications`](#pkg_push_mobile_send) | Installable | Interact with {{site.data.keyword.mobilepushfull}} service instances. Send a message, or create, update, or delete a webhook. |
+{: caption="Table 1. Push notification pre-installed package entities" caption-side="bottom"}
 
 ## Sending push notifications
 {: #pkg_push_send}
@@ -41,6 +42,7 @@ The package includes the following actions and feeds:
 | --- | --- | --- | --- |
 | `/whisk.system/pushnotifications` | Package | `appId`, `appSecret`, `admin_url` | Work with the Push Service. |
 | `/whisk.system/pushnotifications/sendMessage` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
+{: caption="Table 2. Push notification installable package entities" caption-side="bottom"}
 
 For more information about firing trigger events when device activity occurs, see [Mobile push on device events](#pkg_push_mobile).
 
@@ -54,6 +56,7 @@ To create a Push Notifications package binding, you must specify the following p
 | --- | --- |
 | `appId` | The {{site.data.keyword.cloud}} **App GUID**. |
 | `appSecret` | The {{site.data.keyword.cloud_notm}} Push Notification service **App Secret**. |
+{: caption="Table 3. Push notification package binding options" caption-side="bottom"}
 
 To create a package binding, see the following steps:
 
@@ -67,21 +70,21 @@ To create a package binding, see the following steps:
 
 4. Create a package binding with the `/whisk.system/pushnotifications`.
 
-    ```
+    ```sh
     ibmcloud fn package bind /whisk.system/pushnotifications myPush -p appId myAppID -p appSecret myAppSecret
     ```
     {: pre}
 
 5. Verify that the package binding exists.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /<namespace_ID>/myPush private binding
     ```
@@ -151,6 +154,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `chromeAppExtIconUrl` | The URL of the icon to be set for the Web Push Notification. |
 | `chromeAppExtTimeToLive` | This parameter specifies how long (in seconds) the message is kept in GCM storage if the device is offline. |
 | `chromeAppExtPayload` | Custom JSON payload that is sent as part of the notification message. |
+{: caption="Table 4. Push notification action parameters" caption-side="bottom"}
 
 ### Example push notification
 {: #pkg_push_ex}
@@ -160,14 +164,14 @@ See the following example to send a push notification from the Push notification
 
 Send a push notification by using the `sendMessage` action in the package binding that you created previously. Be sure to replace `/<namespace_ID>/myPush` with your package name.
 
-```
+```sh
 ibmcloud fn action invoke /<namespace_ID>/myPush/sendMessage --blocking --result -p url https://example.com -p text "this is my message" -p sound soundFileName -p deviceIds "[\"T1\",\"T2\"]"
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the **`action invoke`** command.
 
-```
+```sh
 {
     "result": {
     "pushResponse":
@@ -216,6 +220,7 @@ The `/whisk.system/pushnotifications/webhook` parameters are as follows:
 | `appId` | The {{site.data.keyword.cloud_notm}} app GUID. |
 | `appSecret` | The {{site.data.keyword.cloud_notm}} Push Notification service `appSecret`. |
 | `events` | `onDeviceRegister`, `onDeviceUnregister`, `onDeviceUpdate`, `onSubscribe`, `onUnsubscribe`. You can use the wildcard character "`*`" to be notified for all events. |
+{: caption="Table 5. Push notification webhook parameters" caption-side="bottom"}
 
 ### Firing a trigger event on Push Notifications service activity
 {: #pkg_push_mobile_trigger}
@@ -225,28 +230,28 @@ To create a trigger that is fired each time a new device registers with the Push
 
 1. Create a package binding that is configured for your Push Notifications service by using your `appId` and `appSecret`.
 
-    ```
+    ```sh
     ibmcloud fn package bind /whisk.system/pushnotifications myNewDeviceFeed --param appID myapp --param appSecret myAppSecret --param events onDeviceRegister
     ```
     {: pre}
 
 2. Create a trigger for the Push Notifications service `onDeviceRegister` event type by using your `myPush/webhook` feed.
 
-    ```
+    ```sh
     ibmcloud fn trigger create myPushTrigger --feed myPush/webhook --param events onDeviceRegister
     ```
     {: pre}
 
 3. You can create a rule that sends a message every time a new device is registered. Create a rule by using the previous action and trigger.
 
-    ```
+    ```sh
     ibmcloud fn rule create --enable myRule myPushTrigger sendMessage
     ```
     {: pre}
 
 4. Check the results by using the `ibmcloud fn activation poll` command.
 
-    ```
+    ```sh
     ibmcloud fn activation poll
     ```
     {: pre}
@@ -270,6 +275,7 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 | `/push-notifications` | Package | `apikey`, `appGuid` | Work with a {{site.data.keyword.mobilepushshort}} instance. |
 | `/push-notifications/send-message` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
 | `/push-notifications/webhook` | Action | `events` | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
+{: caption="Table 6. Push notification webhook parameters for installable package" caption-side="bottom"}
 
 ### Creating a {{site.data.keyword.mobilepushshort}} service instance
 {: #service_instance_push}
@@ -295,39 +301,39 @@ After you have a {{site.data.keyword.mobilepushshort}} service instance, use eit
 Before you begin:
     1. [Install the {{site.data.keyword.openwhisk_short}} plug-in for the {{site.data.keyword.cloud_notm}} CLI](/docs/openwhisk?topic=openwhisk-cli_install).
 
-To install the {{site.data.keyword.mobilepushshort}} package:
+To install the {{site.data.keyword.mobilepushshort}} package,
 
 1. Clone the {{site.data.keyword.mobilepushshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/package-push-notifications.git
     ```
     {: pre}
 
 2. Navigate to the `runtimes/nodejs` directory.
 
-    ```
+    ```sh
     cd package-push-notifications/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
 4. Verify that the `push-notifications` package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /myOrg_mySpace/push-notifications private
     ```
@@ -335,28 +341,28 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 
 5. Bind the credentials from the {{site.data.keyword.mobilepushshort}} service instance that you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind imfpush push-notifications
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'imfpush' service instance 'Push-Notifications-r1' bound to 'push-notifications'.
     ```
     {: screen}
 
 6. Verify that the package is configured with your {{site.data.keyword.mobilepushshort}} service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get /myOrg_mySpace/push-notifications parameters
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     ok: got package /myOrg_mySpace/push-notifications, displaying field parameters
     [
         {
@@ -385,7 +391,7 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 ### Installing from the {{site.data.keyword.openwhisk_short}} console
 {: #pkg_push_mobile_ui}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Using the namespace drop-down menu, select the namespace that you want to install the {{site.data.keyword.cos_full_notm}} package into.
 
@@ -410,14 +416,14 @@ To install the {{site.data.keyword.mobilepushshort}} package:
 To send a message through the push notification service by using the `send-message` action, use the [ibmcloud fn action invoke] command.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke push-notifications/send-message --blocking --result --param messageText "Let's code something" --param messageUrl "http://developer.ibm.com"
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the **`action invoke`** command.
 
-```
+```sh
 {
     "response": {
         "result": {
@@ -439,14 +445,14 @@ ibmcloud fn action invoke push-notifications/send-message --blocking --result --
 
 To create a webhook for the {{site.data.keyword.mobilepushshort}} service for `onDeviceRegister` events:
 
-```
+```sh
 ibmcloud fn action invoke push-notifications/webhook --blocking --param triggerName "/myPackage/myTrigger" --param events onDeviceRegister
 ```
 {: pre}
 
-**Example output**
+The following example shows possible output from the **`action invoke`** command.
 
-```
+```sh
 {
     "response": {
     "result": {

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-13"
 
 keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless, actions
 
@@ -26,11 +26,12 @@ The following quickstart templates are available for deployment. You can deploy 
 
 | Name | Description | Supported Runtimes | Source repository |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
-| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Python 3</li></ul> | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
-| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-hello-world){: external}
-| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
-| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | <ul><li>Node.js 10</li><li>Node.js 12</li><li>Swift 4</li><li>Python 3</li><li>PHP 7</li></ul> | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event. | - Node.js 10 \n - Node.js 12 \n - Python 3 | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
+{: caption="Table 1. Templates, descriptions, and supported runtimes available in IBM Cloud Functions" caption-side="bottom"}
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template
 {: #cloudant-template}
@@ -44,7 +45,7 @@ When you deploy this template, you create the following entities:
 * A sequence that uses the `process change` action as well as a preinstalled action for {{site.data.keyword.cloudant_short_notm}} called `read` that reads entries from the {{site.data.keyword.cloudant_short_notm}} database.
 * A user-named trigger that is fired whenever an entry is added to the connected database. This trigger calls the sequence.
 
-**Before you begin**
+Before you begin
 
 You must have an instance of [{{site.data.keyword.cloudant_short_notm}}](https://cloud.ibm.com/catalog/services/cloudant) set up before you deploy this quick start template. When you create your {{site.data.keyword.cloudant_short_notm}} instance, you must select `Use both legacy credentials and IAM` as your available authentication methods. This template does not work with an {{site.data.keyword.cloudant_short_notm}} instance that uses `IAM only`. 
 
@@ -61,11 +62,11 @@ Now that your instance of {{site.data.keyword.cloudant_short_notm}} is provision
 Deploy the {{site.data.keyword.cloudant_short_notm}} Events template from the console.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -94,7 +95,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
@@ -102,52 +103,48 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-cloudant-trigger.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use.  For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-cloudant-trigger/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with the following environment variables.
 
-    ```
+    ```sh
     CLOUDANT_HOSTNAME=<host> CLOUDANT_USERNAME=<username> CLOUDANT_PASSWORD=<password> CLOUDANT_DATABASE=<database> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
-    <table>
-    <caption>Understanding the environment variables</caption>
-    <thead>
-    <th colspan=2>Understanding the environment variables</th>
-    </thead>
-    <tbody>
-    <tr><td><code>CLOUDANT_HOSTNAME</code></td><td><code>&lt;username&gt;.cloudantnosqldb.appdomain.cloud</code></td></tr>
-    <tr><td><code>CLOUDANT_USERNAME</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} username</td></tr>
-    <tr><td><code>CLOUDANT_PASSWORD</code></td><td>Your {{site.data.keyword.cloudant_short_notm}} password</td></tr>
-    <tr><td><code>CLOUDANT_DATABASE</code></td><td>The name of your {{site.data.keyword.cloudant_short_notm}} database: <code>cats</code>.</td></tr>
-    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
-    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
-    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
-    </tbody></table>
+    | Variable | Description |
+    | -------------- | -------------- |
+    | `CLOUDANT_HOSTNAME` | `<username>.cloudantnosqldb.appdomain.cloud` |
+    | `CLOUDANT_USERNAME` | Your {{site.data.keyword.cloudant_short_notm}} username. |
+    | `CLOUDANT_PASSWORD` | Your {{site.data.keyword.cloudant_short_notm}} password. |
+    | `CLOUDANT_DATABAS` | The name of your {{site.data.keyword.cloudant_short_notm}} database: `cats`. |
+    | `PACKAGE_NAME` | A custom name for the package |
+    | `RULE_NAME` | A custom name for the rule. |
+    | `TRIGGER_NAME` | A custom name for the trigger. |
+    {: caption="Table 1. Understanding the environment variables" caption-side="bottom"}
 
     Find this information in the console by navigating to your {{site.data.keyword.cloudant_short_notm}} instance and then selecting Service Credentials. You can also find service credentials by running the **`ibmcloud resource`** command.
 
     1. Find the credentials for your {{site.data.keyword.cloudant_short_notm}} instance.
 
-        ```
+        ```sh
         ibmcloud resource service-keys --instance-name <Cloudant-name>
         ```
         {: pre}
 
         **Example output**
 
-        ```
+        ```sh
         Name            State    Created At   
         Cloudant-cred   active   Fri Nov  1 17:40:13 UTC 2019 
         ```
@@ -155,14 +152,14 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 
     2. Retrieve the details of the service key. Replace `Cloudant-cred` with the credentials that you retrieved in the previous step.
 
-        ```
+        ```sh
         ibmcloud resource service-key Cloudant-cred
         ```
         {: pre}
 
         **Example output**
 
-        ```
+        ```sh
         Name:          Cloudant-cred  
         ID:            crn:v1:bluemix:public:cloudantnosqldb:us-south:a/6ef045fd2b43266cfe8e6388dd2ec098:397b3dbc-abd3-46cf-a3de-c1d556c8959f:resource-key:a3db5b84-7fe9-4ddb-bf67-e556a278833f   
         Created At:    Fri Nov  1 17:40:13 UTC 2019   
@@ -184,7 +181,7 @@ Use the CLI to deploy the {{site.data.keyword.cloudant_short_notm}} Events templ
 
         Run the manifest.yaml file with the service credential information, found in the example output.
 
-        ```
+        ```sh
         CLOUDANT_HOSTNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix.cloudantnosqldb.appdomain.cloud CLOUDANT_USERNAME=37c53a06-5193-23f3-b681-7c8b76ce7qaa-bluemix CLOUDANT_PASSWORD=e2dbc589632a0651ae44ee3920f8cdb02bdcb68e1909b6314c42f5b0d39c043a CLOUDANT_DATABASE=cats PACKAGE_NAME=my-package RULE_NAME=my-rule TRIGGER_NAME=my-trigger ibmcloud fn deploy -m manifest.yaml
         ```
         {: pre}
@@ -203,7 +200,7 @@ Now that you have your {{site.data.keyword.cloudant_short_notm}} database and yo
 Before you make entries in the {{site.data.keyword.cloudant_short_notm}} database, make sure that the `process change` action is working properly. Note that this entry does not update the {{site.data.keyword.cloudant_short_notm}} database, but instead is a method of testing the action itself.
 {: shortdesc}
 
-1. Open the [Actions page ](https://cloud.ibm.com/functions/actions){: external} from the {{site.data.keyword.openwhisk_short}} console.
+1. Open the [Actions page](https://cloud.ibm.com/functions/actions){: external} from the {{site.data.keyword.openwhisk_short}} console.
 
 2. From the {{site.data.keyword.cloudant_short_notm}} events package (called `cloudant-events`, if you accepted the default name), select **Manage Action** from the `process change` action.
 
@@ -221,7 +218,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 
 5. Click **Invoke**.  In the Activation pane, find output similar to the following example.
 
-    ```
+    ```sh
     **Activation ID:**
     528414375ae544bc8414375ae5d4bcc9
 
@@ -245,7 +242,7 @@ While you can test the action, you cannot test the trigger without making an ent
 
 1. From the command line, run the [**`activation poll`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
-    ```
+    ```sh
     ibmcloud fn activation poll
     ```
     {: pre}
@@ -268,7 +265,7 @@ While you can test the action, you cannot test the trigger without making an ent
 
 6. Check the activation poll to see whether the trigger fired.
 
-    ```
+    ```sh
     Activation: 'process-change' (874b327c6d2841ca8b327c6d28d1ca17)
     [
         "2019-11-01T18:47:16.966276Z    stdout: A Black cat named Tarball was added"
@@ -311,11 +308,11 @@ By default, the `get-http-resource` endpoint is publicly available to anyone who
 Use the console to deploy the **Get HTTP Resource** template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -335,7 +332,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the **Get HTTP Resource** template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
@@ -343,21 +340,21 @@ Use the CLI to deploy the **Get HTTP Resource** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-get-external-resource.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-get-external-resource/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with a custom package name as an environment variable.
 
-    ```
+    ```sh
     PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -393,7 +390,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
 * Opening a URL by using the following structure `https://<apihost>/api/v1/web/<namespace_ID>/<package name>/location.html` in your browser.
     You can get the URL for any action by running the **`action get`** command.
 
-    ```
+    ```sh
     ibmcloud fn action get <action_name> --url
     ```
     {: pre}
@@ -401,14 +398,14 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
 
     Add a parameter for location by appending `?location=<city>` to the end of the URL.
 
-    ```
+    ```sh
     https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
     ```
     {: pre}
 
 * Curling the following URL: `https://us-south.functions.cloud.ibm.com/api/v1/web/<namespace_ID>/<package_name>/location?location=<city>`. For example:
 
-    ```
+    ```sh
     curl https://us-south.functions.cloud.ibm.com/api/v1/web/myusername@email.com_myspace/get-http-resource/location?location=Paris
     ```
     {: pre}
@@ -416,9 +413,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
 
 All of these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
 
-**Example output**
-
-```
+```sh
 {
     "body": {
     "location": "Paris"
@@ -445,11 +440,11 @@ When you deploy this template, you create a single action called `helloworld`. T
 You can deploy the **Hello World** template from the console.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -469,7 +464,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the **Hello World** template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
@@ -477,21 +472,21 @@ Use the CLI to deploy the **Hello World** template.
 
 1. Clone the Hello World template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-hello-world.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-hello-world/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template.  You must include a package name to contain your action. Replace `<name>` with a custom name for your package.
 
-    ```
+    ```sh
     PACKAGE_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -515,23 +510,23 @@ Invoking the action without any parameters returns the following output.
 ```
 {: screen}
 
-You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format:
+You can change the input parameter by selecting **Change Input** and then entering valid JSON in the following format.
 
 ```json
 { "name": "xxxx" }
 ```
 {: codeblock}
 
-For example:
+For example,
 
 ```json
 { "name": "Carl" }
 ```
 {: codeblock}
 
-**Example output**
+The following example shows the possible output from the previous invocation change.
 
-```
+```sh
 **Results**:
 {
     "greeting": "Hello Carl"
@@ -557,11 +552,11 @@ When you deploy this template, you create the following entities:
 Deploy the **{{site.data.keyword.messagehub}}** template from the console.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -583,7 +578,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the **{{site.data.keyword.messagehub}} Events** template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
@@ -591,39 +586,35 @@ Use the CLI to deploy the **{{site.data.keyword.messagehub}} Events** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-messagehub-trigger.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-messagehub-trigger/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template by using the following environment variables.
 
-    ```
+    ```sh
     KAFKA_BROKERS=<host> KAFKA_TOPIC=<topic> MESSAGEHUB_USER=<username> MESSAGEHUB_PASS=<password> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
 
-    <table>
-    <caption>Understanding the environment variables</caption>
-    <thead>
-    <th colspan=2>Understanding the environment variables</th>
-    </thead>
-    <tbody>
-    <tr><td><code>KAFKA_BROKERS</code></td><td>Your {{site.data.keyword.messagehub}} admin REST URL</td></tr>
-    <tr><td><code>KAFKA_TOPIC</code></td><td>The topic to subscribe to</td></tr>
-    <tr><td><code>MESSAGEHUB_USER</code></td><td>Your {{site.data.keyword.messagehub}} username</td></tr>
-    <tr><td><code>MESSAGEHUB_PASS</code></td><td>Your {{site.data.keyword.messagehub}} password</td></tr>
-    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
-    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
-    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
-    </tbody></table>
+    | Variable | Description |
+    | -------------- | -------------- |
+    | `KAFKA_BROKERS` | Your {{site.data.keyword.messagehub}} admin REST URL. |
+    | `KAFKA_TOPIC` | The topic to subscribe to. |
+    | `MESSAGEHUB_USER` | Your {{site.data.keyword.messagehub}} username. |
+    | `MESSAGEHUB_PASS` | Your {{site.data.keyword.messagehub}} password. |
+    | `PACKAGE_NAME` | A custom name for the package. |
+    | `RULE_NAME` | A custom name for the rule. |
+    | `TRIGGER_NAME` | A custom name for the trigger. |
+    {: caption="Table 1. Understanding the environment variables" caption-side="bottom"}
 
 After the template deploys, you can make further edits to the code to customize it as needed, or go back and check out the catalog of available templates.
 
@@ -639,7 +630,7 @@ When you deploy this template, you create the following entities:
 * A sequence that uses the `send-message` action as well as a preinstalled action for Slack that is called `post` that posts the message to a Slack channel.
 * A user-named trigger that is fired whenever the time interval is achieved. This trigger calls the sequence.
 
-**Before you begin**
+Before you begin
 
 Set up the required incoming webhooks URL in the Slack API. For more information, see [Incoming Webhooks](https://api.slack.com/incoming-webhooks){: external}.  You need this URL before you deploy the template.
 
@@ -649,11 +640,11 @@ Set up the required incoming webhooks URL in the Slack API. For more information
 Deploy the **Periodic Slack Reminder** template from the console.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Quickstart templates**.
 
@@ -667,7 +658,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 5. Create the Periodic Slack Reminder trigger. Triggers invoke actions when they receive events from event sources. Specify the trigger's time interval by using a Pattern or `Cron` expression.
     * `Pattern` - Select UTC times for weekdays, hours, and minutes.
-    * `Cron` - Specify a cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use five or fewer separated by spaces in the format `X X X X X`.
+    * `Cron` - Specify a cron sequence based on the [UNIX crontab syntax](http://crontab.org){: external}. Use five or fewer separated by spaces in the format `X X X X X`.
 
 6. Click **Deploy**.
 
@@ -679,7 +670,7 @@ After the template deploys, you can make further edits to the code to customize 
 Use the CLI to deploy the **Periodic Slack Reminder** template.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 * Install the [{{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-cli_install) CLI.
 
@@ -687,41 +678,37 @@ Use the CLI to deploy the **Periodic Slack Reminder** template.
 
 1. Clone the template repo.
 
-    ```
+    ```sh
     git clone https://github.com/ibm-functions/template-reminder-slack.git
     ```
     {: pre}
 
 2. Navigate to the directory for the action runtime that you want to use. For example, `nodejs`.
 
-    ```
+    ```sh
     cd template-reminder-slack/runtimes/nodejs
     ```
     {: pre}
 
 3. Deploy the template with the following environment variables.
 
-    ```
+    ```sh
     SLACK_WEBHOOK_URL=<url> ALARM_CRON=<cron> PACKAGE_NAME=<name> RULE_NAME=<name> TRIGGER_NAME=<name> ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
-
-    <table>
-    <caption>Understanding the environment variables</caption>
-    <thead>
-    <th colspan=2>Understanding the environment variables</th>
-    </thead>
-    <tbody>
-    <tr><td><code>SLACK_WEBHOOK_URL</code></td><td>The webhook URL, such as <code>https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX</code></td></tr>
-    <tr><td><code>ALARM_CRON</code></td><td>A cron sequence based on the <a href="http://crontab.org">UNIX crontab syntax</a>. Use 5 or fewer fields in the format <code>X X X X X</code>.</td></tr>
-    <tr><td><code>PACKAGE_NAME</code></td><td>A custom name for the package</td></tr>
-    <tr><td><code>RULE_NAME</code></td><td>A custom name for the rule</td></tr>
-    <tr><td><code>TRIGGER_NAME</code></td><td>A custom name for the trigger</td></tr>
-    </tbody></table>
+    
+    | Variable | Description |
+    | -------------- | -------------- |
+    | `SLACK_WEBHOOK_URL` | The webhook URL, such as `https://hooks.slack.com/TXXXXX/BXXXXX/XXXXXXXXXX`. |
+    | `ALARM_CRON` | A cron sequence based on the [UNIX crontab syntax](http://crontab.org){: external}. Use 5 or fewer fields in the format `X X X X X`. |
+    | `PACKAGE_NAME` | A custom name for the package. |
+    | `RULE_NAME` | A custom name for the rule. |
+    | `TRIGGER_NAME` | A custom name for the trigger. |
+    {: caption="Table 4. Understanding the environment variables" caption-side="bottom"}
 
     Depending on your operating system, you might need to add quotation marks around your options. For example, on a mac, the following example deploys correctly:
 
-    ```
+    ```sh
     SLACK_WEBHOOK_URL="https://hooks.slack.com/services/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" ALARM_CRON="* * * * *" PACKAGE_NAME="slackpackage" RULE_NAME="slackrule" TRIGGER_NAME="slacktrigger" ibmcloud fn deploy -m manifest.yaml
     ```
     {: pre}
@@ -736,9 +723,9 @@ You can test the **Periodic Slack Reminder** template in the following ways.
 
 * Your trigger fires as soon as the rule is satisfied, so depending on what value you set for `cron` or `pattern`, your trigger automatically sends a message. For example, if you set `cron` to `* * * * *`, your trigger fires every minute and sends a message to the designated slack channel. 
 
-**Example output**
+The following example shows possible output from your trigger.
 
-```
+```sh
 Your scrum is starting now.  Time to find your team!
 Your scrum is starting now.  Time to find your team!
 Your scrum is starting now.  Time to find your team!
@@ -769,7 +756,7 @@ Your scrum is starting now.  Time to find your team!
 You can stop the **Periodic Slack Reminder** trigger in the following ways.
 {: shortdesc}
 
-* From the console, go to the [Triggers ](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Clear the selection for **Enable**.
+* From the console, go to the [Triggers](https://cloud.ibm.com/functions/triggers){: external} page and select the  **Periodic Slack Reminder** trigger. Clear the selection for **Enable**.
 
 * From the CLI:
 

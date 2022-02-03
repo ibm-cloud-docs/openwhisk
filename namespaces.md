@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -38,6 +38,7 @@ When you create a namespace, the following components are created:
 | --- | --- | 
 | Service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
 | API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
+{: caption="Table 1. Components of a namespace" caption-side="bottom"}
 
 You can view a list of your service IDs by running the following command.
 
@@ -52,8 +53,6 @@ You can view the API keys that are associated with a service ID by running the f
 ibmcloud iam service-api-keys <ServiceID-12345678-1234-abcd-1234-123456789abc>
 ```
 {: pre}
-
-</br>
 
 Do not delete service IDs or API keys.
 {: tip}
@@ -84,9 +83,9 @@ ibmcloud fn namespace list
 ```
 {: pre}
 
-**Example output**
+The following example shows sample output from the **`ibmcloud fn namespace list`** command.
 
-```
+```sh
 name          type            id                                    description
 dev           CF-based        dev                           
 cfsdocs_prod  CF-based        prod                          
@@ -94,7 +93,6 @@ playground    IAM-based       <id_string>                           IAM playgrou
 ```
 {: screen}
 
-</br>
 
 You can see a list of your IAM-based namespaces in the [{{site.data.keyword.Bluemix_notm}} Console Resource list](https://cloud.ibm.com/resources){: external} or by using the **`resource service-instances`** CLI command. This command lists {{site.data.keyword.openwhisk_short}} namespaces of all regions.
 
@@ -103,9 +101,9 @@ ibmcloud resource service-instances --service-name functions
 ```
 {: pre}
 
-**Example output**
+The following example shows sample output from the **`ibmcloud resource service-instances --service-name functions`** command.
 
-```
+```sh
 Name         Location   State    Type   
 playground   us-south   active   service_instance
 ```
@@ -142,7 +140,7 @@ Create your IAM-based namespace by using the console.
 2. Enter a display name for the namespace and a short description, such as the actions or packages that you plan to create in this namespace.
 3. Choose the resource group where you want to create the namespace and a location to deploy the namespace resource.
 4. Click **Create**.
-5. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard ](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions namespaces**.
+5. To view the service instance for the namespace resource, go to your [{{site.data.keyword.cloud_notm}} dashboard](https://cloud.ibm.com/resources){: external} and find your namespace name in **Functions namespaces**.
 
 You can update the name or description of the namespace from the **Namespace settings** page in the {{site.data.keyword.openwhisk_short}} console.
 
@@ -166,31 +164,14 @@ You can create an IAM-managed namespace with the CLI.
     ```
     {: pre}
 
-    <table>
-    <thead>
-        <tr>
-        <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td><code>&lt;namespace_name&gt;</code></td>
-        <td>The display name for the IAM-based namespace.</td>
-        </tr>
-        <tr>
-        <td><code>-n &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
-        </tr>
-        <tr>
-        <td><code>--description &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations.</td>
-        </tr>
-    </tbody>
-    </table>
+    | `<namespace_name>` | The display name for the IAM-based namespace. |
+    | `-n <description>` | Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations. |
+    | `--description <description>` | Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations. |
+    {: caption="Table 2. Understanding this command's components" caption-side="bottom"}
 
-    **Example output**:
+    The following exmaple shows sample output from the `namespace create` command.
 
-    ```
+    ```sh
     ok: created namespace myNamespace
     ```
     {: screen}
@@ -202,9 +183,9 @@ You can create an IAM-managed namespace with the CLI.
     ```
     {: pre}
 
-    **Example output**:
+    The following exmaple shows sample output from the `namespace get` command.
 
-    ```
+    ```sh
     Details of namespace: myNamespace
     Description: short description
     Resource Plan Id: functions-base-plan
@@ -246,40 +227,17 @@ Create your IAM-managed namespace with the API.
     --data '{"description":"string","name":"string","resource_group_id":"string","resource_plan_id":"string"}'
     ```
     {: pre}
+    
+    | `<IAM_token>` | Your {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) token. To retrieve your IAM token, run `ibmcloud iam oauth-tokens`. |
+    |  `-n <name>` | The name of the namespace. |
+    |  `-n <resource_group_id>` | The ID of the resource group that you want to create the namespace in. To see resource group IDs, run `ibmcloud resource groups`. |
+    |  `-n <resource_plan_id>` | The ID of the resource plan, such as functions-base-plan |
+    |  `-n <description>` | Optional: Add a description to the namespace, such as which kind of actions or packages it will contain. |
+    {: caption="Table 3. Understanding this command components" caption-side="bottom"}
 
-    <table>
-    <thead>
-        <tr>
-        <th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding this command's components</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr>
-        <td><code>&lt;IAM_token&gt;</code></td>
-        <td>Your {{site.data.keyword.cloud_notm}} Identity and Access Management (IAM) token. To retrieve your IAM token, run <code>ibmcloud iam oauth-tokens</code>.</td>
-        </tr>
-        <tr>
-        <td><code>-n &lt;name&gt;</code></td>
-        <td>The name of the namespace.</td>
-        </tr>
-        <tr>
-        <td><code>-n &lt;resource_group_id&gt;</code></td>
-        <td>The ID of the resource group that you want to create the namespace in. To see resource group IDs, run <code>ibmcloud resource groups</code>.</td>
-        </tr>
-        <tr>
-        <td><code>-n &lt;resource_plan_id&gt;</code></td>
-        <td>The ID of the resource plan, such as functions-base-plan</td>
-        </tr>
-        <tr>
-        <td><code>-n &lt;description&gt;</code></td>
-        <td>Optional: Add a description to the namespace, such as which kind of actions or packages it will contain.</td>
-        </tr>
-    </tbody>
-    </table>
+    The following exmaple shows sample output from the previous command.
 
-    **Example output**
-
-    ```
+    ```sh
     {
     "description": "My new namespace for packages X, Y, and Z.",
     "id": "12345678-1234-abcd-1234-123456789abc",
@@ -312,9 +270,9 @@ Create your IAM-managed namespace with the API.
     ```
     {: pre}
 
-    **Example output**
+    The following exmaple shows sample output from the previous command.
 
-    ```
+    ```sh
     {
     "limit": 10,
     "offset": 0,
@@ -337,7 +295,8 @@ Create your IAM-managed namespace with the API.
 For more information about working with HTTP REST, check out the [{{site.data.keyword.openwhisk_short}} API Docs](/apidocs/functions).
 {: tip}
 
-**Optional workflow: Creating namespaces for staging and production deployments**
+### Optional workflow: Creating namespaces for staging and production deployments
+{: #namespaces_create_stage_prod}
 
 You can create IAM-enabled namespaces to handle your pre-production (staging) and production {{site.data.keyword.openwhisk_short}} deployments by creating namespaces for each. Run [`ibmcloud fn namespace create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_create) to create more namespaces under your account such as "staging" and "production":
 

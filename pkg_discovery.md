@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: functions, cognitive, discovery, CLI, watson
 
@@ -26,49 +26,50 @@ The {{site.data.keyword.discoveryshort}} package contains the following entities
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`discovery-v1`](https://cloud.ibm.com/apidocs/discovery){: external} | Package | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.discoveryshort}} service. |
-| [`create-environment`](https://cloud.ibm.com/apidocs/discovery#create-an-environment){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`, `description`, `size` | Create an environment. |
-| [`delete-environment`](https://cloud.ibm.com/apidocs/discovery#delete-environment){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id` | Delete an environment. |
+| [`discovery-v1`](https://cloud.ibm.com/apidocs/discovery){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`  | Work with the {{site.data.keyword.discoveryshort}} service. |
+| [`create-environment`](https://cloud.ibm.com/apidocs/discovery#create-an-environment){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`, `description`, `size` | Create an environment. |
+| [`delete-environment`](https://cloud.ibm.com/apidocs/discovery#delete-environment){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id` | Delete an environment. |
 | [`get-environment`](https://cloud.ibm.com/apidocs/discovery#get-environment-info){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`  | Get information about an environment. |
-| [`list-environments`](https://cloud.ibm.com/apidocs/discovery#list-environments){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`  | List environments. |
+| [`list-environments`](https://cloud.ibm.com/apidocs/discovery#list-environments){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `name`  | List environments. |
 | [`list-fields`](https://cloud.ibm.com/apidocs/discovery#list-fields-across-collections){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_ids` | List fields across collections. |
-| [`update-environment`](https://cloud.ibm.com/apidocs/discovery#update-an-environment){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description` | Update an environment. |
-| [`create-configuration`](https://cloud.ibm.com/apidocs/discovery#create-configuration){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description`, `conversions`, `enrichments`, `normalizations`  | Add a configuration. |
-| [`delete-configuration`](https://cloud.ibm.com/apidocs/discovery#delete-configuration){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id` | Delete a configuration. |
-| [`get-configuration`](https://cloud.ibm.com/apidocs/discovery#get-configuration){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id` | Get configuration details. |
-| [`list-configurations`](https://cloud.ibm.com/apidocs/discovery#list-configurations){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name` | List configurations. |
-| [`update-configuration`](https://cloud.ibm.com/apidocs/discovery#update-configuration){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id`, `name`, `description`, `conversions`, `enrichments`, `normalizations` | Update a configuration. |
+| [`update-environment`](https://cloud.ibm.com/apidocs/discovery#update-an-environment){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description` | Update an environment. |
+| [`create-configuration`](https://cloud.ibm.com/apidocs/discovery#create-configuration){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description`, `conversions`, `enrichments`, `normalizations`  | Add a configuration. |
+| [`delete-configuration`](https://cloud.ibm.com/apidocs/discovery#delete-configuration){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id` | Delete a configuration. |
+| [`get-configuration`](https://cloud.ibm.com/apidocs/discovery#get-configuration){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id` | Get configuration details. |
+| [`list-configurations`](https://cloud.ibm.com/apidocs/discovery#list-configurations){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name` | List configurations. |
+| [`update-configuration`](https://cloud.ibm.com/apidocs/discovery#update-configuration){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration_id`, `name`, `description`, `conversions`, `enrichments`, `normalizations` | Update a configuration. |
 | [`test-configuration-in-environment`](https://cloud.ibm.com/apidocs/discovery#test-configuration-in-environment){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `configuration`,     `step`, `configuration_id`, `file`, `metadata`, `file_content_type` | Test a configuration. |
-| [`create-collection`](https://cloud.ibm.com/apidocs/discovery#create-collection){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description`, `configuration_id`, `language` | Create a collection. |
-| [`delete-collection`](https://cloud.ibm.com/apidocs/discovery#delete-collection){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Delete a collection. |
+| [`create-collection`](https://cloud.ibm.com/apidocs/discovery#create-collection){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name`, `description`, `configuration_id`, `language` | Create a collection. |
+| [`delete-collection`](https://cloud.ibm.com/apidocs/discovery#delete-collection){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Delete a collection. |
 | [`get-collection`](https://cloud.ibm.com/apidocs/discovery#get-collection){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Get collection details. |
-| [`list-collection-fields`](https://cloud.ibm.com/apidocs/discovery#list-collection-fields){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | List collection fields. |
-| [`list-collections`](https://cloud.ibm.com/apidocs/discovery#list-collections){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name` | List collections. |
-| [`update-collection`](https://cloud.ibm.com/apidocs/discovery#update-collection){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `name`, `description`, `configuration_id` | Update a collection. |
-| [`create-expansions`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#create-expansions){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, ``collection_id`, `expansions` | Create or update the expansion list. |
-| [`delete-expansions`](https://cloud.ibm.com/apidocs/discovery#delete-expansions){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Delete the expansion list. |
-| [`list-expansions`](https://cloud.ibm.com/apidocs/discovery#list-expansions){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Get the expansion list. |
+| [`list-collection-fields`](https://cloud.ibm.com/apidocs/discovery#list-collection-fields){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | List collection fields. |
+| [`list-collections`](https://cloud.ibm.com/apidocs/discovery#list-collections){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `name` | List collections. |
+| [`update-collection`](https://cloud.ibm.com/apidocs/discovery#update-collection){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `name`, `description`, `configuration_id` | Update a collection. |
+| [`create-expansions`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#create-expansions){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `expansions` | Create or update the expansion list. |
+| [`delete-expansions`](https://cloud.ibm.com/apidocs/discovery#delete-expansions){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Delete the expansion list. |
+| [`list-expansions`](https://cloud.ibm.com/apidocs/discovery#list-expansions){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Get the expansion list. |
 | [`add-document`](https://cloud.ibm.com/apidocs/discovery#add-document){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `file`, `metadata`, `file_content_type` | Add a document. |
 | [`delete-document`](https://cloud.ibm.com/apidocs/discovery#delete-document){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `document_id` | Delete a document. |
-| [`get-document-status`](https://cloud.ibm.com/apidocs/discovery#get-document-status){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `document_id` | Get document details. |
-| [`update-document`](https://cloud.ibm.com/apidocs/discovery#update-document){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `document_id`, `file`,     `metadata`, `file_content_type` | Update a document. |
-| [`federated-query`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#federated-query){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_ids`, `filter`, `query`,     `natural_language_query`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `deduplicate`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query documents in multiple collections. |
+| [`get-document-status`](https://cloud.ibm.com/apidocs/discovery#get-document-status){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `document_id` | Get document details. |
+| [`update-document`](https://cloud.ibm.com/apidocs/discovery#update-document){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `document_id`, `file`, `metadata`, `file_content_type` | Update a document. |
+| [`federated-query`](https://www.ibm.com/watson/developercloud/discovery/api/v1/curl.html?curl#federated-query){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_ids`, `filter`, `query`, `natural_language_query`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `deduplicate`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query documents in multiple collections. |
 | [`federated-query-notices`](https://cloud.ibm.com/apidocs/discovery#federated-query-notices){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_ids`, `filter`, `query`, `natural_language_query`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query multiple collection system notices. |
-| [`query`](https://cloud.ibm.com/apidocs/discovery#query){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `filter`, `query`, `natural_language_query`, `passages`,     `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `passages_fields`, `passages_count`, `passages_characters`, `deduplicate`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query your collection. |
+| [`query`](https://cloud.ibm.com/apidocs/discovery#query){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `filter`, `query`, `natural_language_query`, `passages`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `passages_fields`, `passages_count`, `passages_characters`, `deduplicate`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query your collection. |
 | [`query-entities`](https://cloud.ibm.com/apidocs/discovery#query-entities){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `feature`, `entity`, `context`, `count`, `evidence_count` | Query a Knowledge Graph entity. |
-| [`query-notices`](https://cloud.ibm.com/apidocs/discovery#query-notices){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `filter`, `query`, `natural_language_query`, `passages`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `passages_fields`, `passages_count`, `passages_characters`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields`  | Query system notices. |
+| [`query-notices`](https://cloud.ibm.com/apidocs/discovery#query-notices){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `filter`, `query`, `natural_language_query`, `passages`, `aggregation`, `count`, `return_fields`, `offset`, `sort`, `highlight`, `passages_fields`, `passages_count`, `passages_characters`, `deduplicate_field`, `similar`, `similar_document_ids`, `similar_fields` | Query system notices. |
 | [`query-relations`](https://cloud.ibm.com/apidocs/discovery#query-relations){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `entities`, `context`, `sort`, `filter`, `count`, `evidence_count` | Query a Knowledge Graph relationship. |
-| [`add-training-data`](https://cloud.ibm.com/apidocs/discovery#add-training-data){: external} | Action |  `username`, `password`,  `iam_access_token`, `iam_apikey, iam_url`,  `headers, headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `natural_language_query`, `filter`, `examples`, | Add a query to training data. |
+| [`add-training-data`](https://cloud.ibm.com/apidocs/discovery#add-training-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey, iam_url`, `headers, headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `natural_language_query`, `filter`, `examples`, | Add a query to training data. |
 | [`create-training-example`](https://cloud.ibm.com/apidocs/discovery#create-training-example){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id`, `document_id`, `cross_reference`, `relevance` | Add an example to training data query. |
 | [`delete-all-training-data`](https://cloud.ibm.com/apidocs/discovery#delete-all-training-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | Delete all training data. |
-| [`delete-training-data`](https://cloud.ibm.com/apidocs/discovery#delete-training-data){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id` | Delete a training data query. |
+| [`delete-training-data`](https://cloud.ibm.com/apidocs/discovery#delete-training-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id` | Delete a training data query. |
 | [`delete-training-example`](https://cloud.ibm.com/apidocs/discovery#delete-training-example){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id`, `example_id` | Delete an example for training data query. |
 | [`get-training-data`](https://cloud.ibm.com/apidocs/discovery#get-training-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id` | Get details about a query. |
-| [`get-training-example`](https://cloud.ibm.com/apidocs/discovery#get-training-example){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id`, `example_id` | Get details for a training data example. |
+| [`get-training-example`](https://cloud.ibm.com/apidocs/discovery#get-training-example){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id`, `example_id` | Get details for a training data example. |
 | [`list-training-data`](https://cloud.ibm.com/apidocs/discovery#list-training-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id` | List training data. |
-| [`list-training-examples`](https://cloud.ibm.com/apidocs/discovery#list-training-examples){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id` | List examples for a training data query. |
+| [`list-training-examples`](https://cloud.ibm.com/apidocs/discovery#list-training-examples){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id` | List examples for a training data query. |
 | [`update-training-example`](https://cloud.ibm.com/apidocs/discovery#update-training-example){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `environment_id`, `collection_id`, `query_id`, `example_id`, `cross_reference`, `relevance` | Change a label or cross reference for an example. |
 | [`delete-user-data`](https://cloud.ibm.com/apidocs/discovery#delete-user-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Delete labeled data. |
+{: caption="Table 1. {{site.data.keyword.discoveryshort}} package entities" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.discoveryshort}} service instance
 {: #service_instance_discovery}
@@ -76,7 +77,7 @@ The {{site.data.keyword.discoveryshort}} package contains the following entities
 Before you install the package, you must create a {{site.data.keyword.discoveryshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.discoveryshort}} service instance ](https://cloud.ibm.com/catalog/services/discovery){: external}.
+1. [Create a {{site.data.keyword.discoveryshort}} service instance](https://cloud.ibm.com/catalog/services/discovery){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.discoveryshort}} package
@@ -95,28 +96,28 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 
 1. Clone the {{site.data.keyword.discoveryshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/discovery-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /myOrg_mySpace/discovery-v1                        private
     ```
@@ -124,28 +125,28 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 
 4. Bind the credentials from the {{site.data.keyword.discoveryshort}} instance you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind discovery discovery-v1
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'discovery' service instance 'Watson Discovery' bound to 'discovery-v1'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.discoveryshort}} service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get discovery-v1 parameters
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     ok: got package discovery-v1, displaying field parameters
     [
         {
@@ -170,7 +171,7 @@ To install the {{site.data.keyword.discoveryshort}} package, run the following c
 You can install your package from the {{site.data.keyword.openwhisk_short}} console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 
@@ -200,7 +201,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
 
 To use the actions in this package, run commands in the following format:
 
-```
+```sh
 ibmcloud fn action invoke discovery-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -209,7 +210,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Discovery, `2018-03-05`. Try out the `list-environments` action.
 
-```
+```sh
 ibmcloud fn action invoke discovery-v1/list-environments -b -p version 2018-03-05
 ```
 {: pre}

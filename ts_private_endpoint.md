@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-02-03"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, endpoints
 

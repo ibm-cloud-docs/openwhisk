@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions, activations, configuring
 
@@ -45,14 +45,14 @@ You can use the {{site.data.keyword.openwhisk_short}} CLI to watch the output of
 
     **Example output**
 
-    ```
+    ```sh
     ok: invoked /whisk.system/samples/helloWorld with id 7331f9b9e2044d85afd219b12c0f1491
     ```
     {: screen}
 
 3. In the polling window, you can see the activation log.
 
-    ```
+    ```sh
     Activation: helloWorld (7331f9b9e2044d85afd219b12c0f1491)
         2016-02-11T16:46:56.842065025Z stdout: hello bob!
     ```
@@ -82,9 +82,9 @@ ibmcloud fn activation get <activation_ID>
 ```
 {: pre}
 
-**Example output**
+See the following example for the **`ibmcloud fn activation get <activation_ID>`** command.
 
-```
+```sh
 ok: got activation c2b36969fbe94562b36969fbe9856215
 {
     "namespace": "<namespace_ID>",
@@ -135,67 +135,19 @@ ok: got activation c2b36969fbe94562b36969fbe9856215
 ```
 {: screen}
 
-</br>
-
-<table>
-<caption>Understanding the <code>activation get</code> command output</caption>
-<thead>
-<th colspan=2><img src="images/idea.png" alt="Idea icon"/> Understanding the <code>activation get</code> command output</th>
-</thead>
-<tbody>
-<tr>
-<td><code>namespace</code></td>
-<td>The namespace ID that this activation is in. This namespace might be different than the namespace that the action is in.</td>
-</tr>
-<tr>
-<td><code>name</code></td>
-<td>The name of the action.</td>
-</tr>
-<tr>
-<td><code>version</code></td>
-<td>The semantic version of the action.</td>
-</tr>
-<tr>
-<td><code>subject</code></td>
-<td>The user account that activated the item.</td>
-</tr>
-<tr>
-<td><code>activationId</code></td>
-<td>ID of this activation record.</td>
-</tr>
-<tr>
-<td><code>start</code></td>
-<td>Time when the activation began.</td>
-</tr>
-<tr>
-<td><code>end</code></td>
-<td>Time when the activation completed.</td>
-</tr>
-<tr>
-<td><code>duration</code></td>
-<td>Time, in milliseconds, that it took for the activation to complete.</td>
-</tr>
-<tr>
-<td><code>response</code></td>
-<td><ul><li><code>status</code>: The exit status of the activation.</li>
-<li><code>statusCode</code>: The status code. If the action resulted in an error, this value is the HTTP error code.</li>
-<li><code>success</code>: The result of whether the action completed successfully.</li>
-<li><code>result</code>: The return value from the activation.</li>
-</ul>For more possible outcomes, see <a href="/docs/openwhisk?topic=openwhisk-limits#limits_exec">Action executions</a>.</td>
-</tr>
-<tr>
-<td><code>logs</code></td>
-<td>Logs for this activation.</td>
-</tr>
-<tr>
-<td><code>annotations</code></td>
-<td>Annotations on this action. For a list of possible activation annotations, see the <a href="/docs/openwhisk?topic=openwhisk-annotations#annotations_activation">annotations reference topic</a>.</td>
-</tr>
-<tr>
-<td><code>publish</code></td>
-<td>The result of whether the action is published.</td>
-</tr>
-</tbody></table>
+| `namespace` | The namespace ID that this activation is in. This namespace might be different than the namespace that the action is in. | 
+| `name` | The name of the action. | 
+| `version` | The semantic version of the action. | 
+| `subject` | The user account that activated the item. | 
+| `activationId` | ID of this activation record. | 
+| `start` | Time when the activation began. | 
+| `end` | Time when the activation completed. | 
+| `duration` | Time, in milliseconds, that it took for the activation to complete. | 
+| `response` |  - `status`: The exit status of the activation. \n - `statusCode`: The status code. If the action resulted in an error, this value is the HTTP error code. \n - `success`: The result of whether the action completed successfully. \n - `result`: The return value from the activation. \n For more possible outcomes, see [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec). | 
+| `logs` | Logs for this activation. | 
+| `annotations` | Annotations on this action. For a list of possible activation annotations, see the [annotations reference topic](/docs/openwhisk?topic=openwhisk-annotations#annotations_activation). | 
+| `publish` | The result of whether the action is published. | 
+{: caption="Table 1. Understanding the command output" caption-side="bottom"}
 
 ## Viewing logs in {{site.data.keyword.la_full_notm}}
 {: #logs_console}

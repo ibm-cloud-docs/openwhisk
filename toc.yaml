@@ -81,16 +81,14 @@ toc:
           - topicgroup:
               label: Watson packages
               topics:
-              - pkg_visual_recognition.md
               - pkg_watson_assistant.md
               - pkg_natlang_classifer.md
               - pkg_natlang_understanding.md
               - pkg_tone_analyzer.md
               - pkg_translator.md
-              - pkg_discovery.md
-              - pkg_person_insights.md
               - pkg_speech_to_text.md
               - pkg_text_to_speech.md
+              - pkg_discovery.md
       - topicgroup:
           label: Setting up an automated tool chain
           topics:

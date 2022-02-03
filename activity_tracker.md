@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-07"
 
 keywords: events, serverless, functions, activity tracker, analyze events
 
@@ -108,30 +108,25 @@ The following activities generate rule events.
 After viewing events that are captured by {{site.data.keyword.at_full_notm}}, you can then analyze the events.
 {: shortdesc}
 
-**Identifying the {{site.data.keyword.openwhisk_short}} namespace that generates the event**.
+Identifying the {{site.data.keyword.openwhisk_short}} namespace that generates the event
+:    To identify the namespace for which the event was generated, look at the `target.id` field. You can use this field to filter events, for example, showing events for only a specific namespace. 
 
-To identify the namespace for which the event was generated, look at the `target.id` field. You can use this field to filter events, for example, showing events for only a specific namespace. 
+:    You can use the CLI to find details about your [namespaces](/docs/openwhisk?topic=openwhisk-namespaces#how_list_namespace).
 
-You can use the CLI to find details about your [namespaces](/docs/openwhisk?topic=openwhisk-namespaces#how_list_namespace).
+Getting the unique ID of a request
+:    Each action that you perform on a {{site.data.keyword.openwhisk_short}} namespace resource has a unique ID.
 
-**Getting the unique ID of a request**
+:    To find the unique ID of a request, look at the `requestData.requestId` value that is set in the `requestData` field.
 
-Each action that you perform on a {{site.data.keyword.openwhisk_short}} namespace resource has a unique ID.
+Getting request details
+:    The `requestData` field contains the name of the namespace entity such as action, package, trigger, or rule for which the event is generated. This field is named according to the entity; for example, the name `requestData.actionName` is used for actions. 
 
-To find the unique ID of a request, look at the `requestData.requestId` value that is set in the `requestData` field.
+:    Additionally, the `initiator.host.agent` field contains information about the user agent that sent the request. If the action was initiated through the CLI, this field starts with `CloudFunctions-Plugin`, if it is initiated through the Cloud Console (UI), the value is `IBM Cloud Functions UI`.   
 
-**Getting request details**
+Getting information for failures
+:    All events that are issued for failed actions display `failure` in the `outcome` field, and in addition provide more details as part of the `reason` field. Note that the `reason.reasonForFailure` field might be especially helpful, as it contains details of the failure. 
 
-The `requestData` field contains the name of the namespace entity such as action, package, trigger, or rule for which the event is generated. This field is named according to the entity; for example, the name `requestData.actionName` is used for actions. 
-
-Additionally, the `initiator.host.agent` field contains information about the user agent that sent the request. If the action was initiated through the CLI, this field starts with `CloudFunctions-Plugin`, if it is initiated through the Cloud Console (UI), the value is `IBM Cloud Functions UI`.   
-
-**Getting information for failures**
-
-All events that are issued for failed actions display `failure` in the `outcome` field, and in addition provide more details as part of the `reason` field. Note that the `reason.reasonForFailure` field might be especially helpful, as it contains details of the failure. 
-
-**Custom views**
-
-For more information about generating custom views by using event fields, see [Creating custom views](/docs/activity-tracker?topic=activity-tracker-views).
+Custom views
+:    For more information about generating custom views by using event fields, see [Creating custom views](/docs/activity-tracker?topic=activity-tracker-views).
 
 

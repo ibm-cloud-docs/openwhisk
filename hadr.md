@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2021
-lastupdated: "2021-10-12"
+  years: 2019, 2022
+lastupdated: "2022-01-07"
 
 keywords: cli, functions, high availability, disaster recovery, HIPPA
 
@@ -20,17 +20,15 @@ Learn about the high availability features of the {{site.data.keyword.openwhisk}
 
 High availability is a core discipline in an IT infrastructure to keep your resources healthy and your app workloads up and running, even after a partial or a full site failure. The main purpose of high availability is to eliminate potential points of failure in an IT infrastructure.
 
-**Regions and service level**
+Regions and service level
+:    All {{site.data.keyword.cloud_notm}} general availability (GA) services have a Service Level Agreement of 99.99% availability. {{site.data.keyword.openwhisk_short}} is a GA service that is offered in six regions: US South, US East, EU Central, Tokyo, UK South, and Sydney. Each location uses different availability zones for redundancy. If all the availability zones in a location fail, the {{site.data.keyword.openwhisk_short}} service for that location becomes unavailable.
 
-All {{site.data.keyword.cloud_notm}} general availability (GA) services have a Service Level Agreement of 99.99% availability. {{site.data.keyword.openwhisk_short}} is a GA service that is offered in six regions: US South, US East, EU Central, Tokyo, UK South, and Sydney. Each location uses different availability zones for redundancy. If all the availability zones in a location fail, the {{site.data.keyword.openwhisk_short}} service for that location becomes unavailable.
+:   {{site.data.keyword.openwhisk_short}} is available only on the public cloud.
 
-{{site.data.keyword.openwhisk_short}} is available only on the public cloud.
+Who is responsible to set up high availability for my resources?
+:   Your global strategy is important, and you are responsible for understanding your configuration, customization, and usage of the service to best leverage the capabilities of {{site.data.keyword.cloud_notm}}. For more information, see the topic [How does {{site.data.keyword.cloud_notm}} ensure zero downtime?](/docs/overview?topic=overview-zero-downtime#zero-downtime){: external}
 
-**Who is responsible to set up high availability for my resources?**
-
-Your global strategy is important, and you are responsible for understanding your configuration, customization, and usage of the service to best leverage the capabilities of {{site.data.keyword.cloud_notm}}. For more information, see the topic [How does {{site.data.keyword.cloud_notm}} ensure zero downtime?](/docs/overview?topic=overview-zero-downtime#zero-downtime){: external}
-
-While {{site.data.keyword.openwhisk_short}} is responsible to ensure that your namespace information is available, backed up, and replicated across multiple regions so that information can be recovered after a failure, {{site.data.keyword.openwhisk_short}} does not set up high availability for any {{site.data.keyword.cloud_notm}} resources that are used by {{site.data.keyword.openwhisk_short}}. Instead, you must understand the high availability options that each resource offering provides to implement the right level of availability for your needs.
+:   While {{site.data.keyword.openwhisk_short}} is responsible to ensure that your namespace information is available, backed up, and replicated across multiple regions so that information can be recovered after a failure, {{site.data.keyword.openwhisk_short}} does not set up high availability for any {{site.data.keyword.cloud_notm}} resources that are used by {{site.data.keyword.openwhisk_short}}. Instead, you must understand the high availability options that each resource offering provides to implement the right level of availability for your needs.
 
 See [ensure zero downtime](/docs/overview?topic=overview-zero-downtime#zero-downtime) to learn more about the high availability and disaster recovery standards in {{site.data.keyword.cloud_notm}}. You can also find information about [Service Level Agreements](/docs/overview?topic=overview-slas).
 

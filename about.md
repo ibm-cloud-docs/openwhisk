@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-12-21"
+  years: 2017, 2022
+lastupdated: "2022-01-07"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -50,7 +50,7 @@ The first entry point into the system is through **NGINX**, an HTTP and reverse 
 
 The OpenWhisk user-facing API is HTTP-based and follows a RESTful design. As a consequence, the command that is sent through the CLI is an HTTP request against the OpenWhisk system. The specific command translates roughly to the following syntax:
 
-```
+```bash
 POST /api/v1/namespaces/<userNamespace>/actions/myAction
 Host: $openwhiskEndpoint
 ```

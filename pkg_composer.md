@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-12-20"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions, combinator, loops, actions
 
@@ -41,7 +41,7 @@ You can use Composer with actions that are written in any language, but you expr
     ```
     {: codeblock}
 
-    **Example output**
+    The following example shows possible output for the Composer commands.
 
     ```sh
     Usage:
@@ -144,6 +144,7 @@ With Apache OpenWhisk, you can chain functions together in a `sequence`, where t
 
 ### Sequences without Composer
 {: #sequences-without-composer}
+
 You can chain together two functions that are named `action1` and `action2` in  {{site.data.keyword.openwhisk_short}}:
 
 ```sh

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: openwhisk, functions, Watson assistant, chatbot, cognitive
 
@@ -71,6 +71,7 @@ The {{site.data.keyword.conversationshort}} package contains the following entit
 | [`list-all-logs`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#list-log-events-in-all-workspaces){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `filter`, `sort`, `page_limit`, `cursor`  | List log events in all workspaces. |
 | [`list-logs`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#list-log-events-in-a-workspace){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `sort`, `filter`, `page_limit`, `cursor`  | List log events in a workspace. |
 | [`delete-user-data`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#delete-labeled-data){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id`  | Delete labeled data. |
+{: caption="Table 1. Watson assistant package entities" caption-side="bottom"}
 
 
 
@@ -80,7 +81,7 @@ The {{site.data.keyword.conversationshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.conversationshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.conversationshort}} service instance ](https://cloud.ibm.com/catalog/services/conversation){: external}.
+1. [Create a {{site.data.keyword.conversationshort}} service instance](https://cloud.ibm.com/catalog/services/conversation){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.conversationshort}} package
@@ -99,28 +100,28 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
 
 1. Clone the {{site.data.keyword.conversationshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/assistant-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /myOrg_mySpace/assistant-v1                        private
     ```
@@ -128,28 +129,28 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
 
 4. Bind the credentials from the {{site.data.keyword.conversationshort}} instance you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind conversation assistant-v1
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'conversation' service instance 'Watson Assistant (formerly Conversation)-8h' bound to 'assistant-v1'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.conversationshort}} service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get assistant-v1 parameters
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     ok: got package assistant-v1, displaying field parameters
     [
         {
@@ -174,7 +175,7 @@ To install the {{site.data.keyword.conversationshort}} package, run the followin
 Install the {{site.data.keyword.conversationshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 
@@ -204,7 +205,7 @@ Install the {{site.data.keyword.conversationshort}} package from the console.
 
 To use the actions in this package, run commands in the following format.
 
-```
+```sh
 ibmcloud fn action invoke assistant-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -213,7 +214,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Watson Assistant, `2018-07-10`. Try out the `list-workspaces` action.
 
-```
+```sh
 ibmcloud fn action invoke assistant-v1/list-workspaces -b -p version 2018-07-10
 ```
 {: pre}

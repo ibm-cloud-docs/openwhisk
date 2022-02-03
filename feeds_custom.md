@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: feeds, functions, webhooks, polling, connections, hook
 
@@ -41,7 +41,7 @@ With the connections pattern, a separate service maintains a persistent connecti
 
 For example, the [{{site.data.keyword.cloudant}} package](/docs/openwhisk?topic=openwhisk-pkg_cloudant) uses the connections pattern.
 
-##  Implementing feed actions
+## Implementing feed actions
 {: #feeds_actions}
 
 The feed action accepts the following parameters.
@@ -51,6 +51,7 @@ The feed action accepts the following parameters.
 | `lifecycleEvent` | `CREATE`, `READ`, `UPDATE`, `DELETE`, `PAUSE`, or `UNPAUSE`. |
 | `triggerName` | The fully qualified name of the trigger, which contains events that are produced from this feed. |
 | `authKey` | The basic authentication credentials of the {{site.data.keyword.openwhisk_short}} user who owns the trigger. |
+{: caption="Table 1. Feed action parameters" caption-side="bottom"}
 
 The feed action can also accept any other parameters that it needs to manage the feed. For example, the {{site.data.keyword.cloudant}} changes feed action expects to receive parameters that include `dbname` and `username`.
 
@@ -58,21 +59,21 @@ When you create a trigger from the CLI with the `--feed` parameter, the feed act
 
 For example, create a `mycloudant` binding for the `cloudant` package with a username and password as bound parameters. When the user issues the following command from the CLI:
 
-```
+```sh
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes -p dbName myTable
 ```
 {: pre}
 
 Or using the trigger feed parameters:
 
-```
+```sh
 ibmcloud fn trigger create my_cloudant_trigger --feed mycloudant/changes --feed-param dbName myTable
 ```
 {: pre}
 
 Then, invoke the trigger with something equivalent to the following command:
 
-```
+```sh
 ibmcloud fn action invoke mycloudant/changes -p lifecycleEvent CREATE -p triggerName T -p authKey <userAuthKey> -p password <password value from mycloudant binding> -p username <username value from mycloudant binding> -p dbName mytype
 ```
 {: pre}
@@ -92,9 +93,7 @@ With this method, you are not required to stand up any persistent service outsid
 
 When invoked with `CREATE`, the feed action simply installs a webhook for some other service, asking the remote service to POST notifications to the appropriate `fireTrigger` URL in {{site.data.keyword.openwhisk_short}}.
 
-The webhook is directed to send notifications to a URL such as:
-
-`POST /namespaces/{namespace_ID}/triggers/{triggerName}`
+The webhook is directed to send notifications to a URL such as, `POST /namespaces/{namespace_ID}/triggers/{triggerName}`
 
 The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire as a result of the event.
 
@@ -123,7 +122,6 @@ Since {{site.data.keyword.openwhisk_short}} actions must be short-running, an ac
 The provider service has a REST API that allows the {{site.data.keyword.openwhisk_short}} **feed action** to control the feed. The provider service acts as a proxy between the event provider and {{site.data.keyword.openwhisk_short}}. When it receives events from the third party, it sends them on to {{site.data.keyword.openwhisk_short}} by firing a trigger.
 
 The {{site.data.keyword.cloudant_short_notm}} **changes** feed is the canonical example as it stands up a `cloudanttrigger` service, which mediates between {{site.data.keyword.cloudant_short_notm}} notifications over a persistent connection, and {{site.data.keyword.openwhisk_short}} triggers.
-
 
 The **alarm** feed is implemented with a similar pattern.
 

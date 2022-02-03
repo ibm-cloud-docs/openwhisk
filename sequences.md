@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
@@ -31,11 +31,11 @@ After you create a sequence, you can use the name of the sequence when you creat
 Create a sequence from the console that uses actions that are available in your namespace or public actions.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entities from the [console](https://cloud.ibm.com/functions){: external}. For more information about namespaces, see [Managing namespaces](/docs/openwhisk?topic=openwhisk-namespaces).
 
-1. Go to the [Create page ](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
+1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
 2. Click **Create Sequence**.
 
@@ -51,7 +51,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 Create a sequence from the CLI with the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action create <sequence_name> --sequence <action_1>,<action_2>
 ```
 {: pre}

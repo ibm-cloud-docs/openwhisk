@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -13,7 +13,7 @@ subcollection: openwhisk
 {{site.data.keyword.attribute-definition-list}}
 
 
-# {{site.data.keyword.languagetranslatorshort}}
+# {{site.data.keyword.languagetranslatorshort}} 
 {: #pkg_translator}
 
 The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language. For more information about this service, see [{{site.data.keyword.languagetranslatorfull}}](/docs/language-translator?topic=language-translator-gettingstarted).
@@ -34,6 +34,7 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 | [`delete-model`](https://cloud.ibm.com/apidocs/language-translator#delete-model){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Delete a model. |
 | [`get-model`](https://cloud.ibm.com/apidocs/language-translator#get-model-details){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Get model details. |
 | [`list-models`](https://cloud.ibm.com/apidocs/language-translator#list-models){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `source`, `target`, `default_models` | List models. |
+{: caption="Table 1. Language translator" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.languagetranslatorshort}} service instance
 {: #service_instance_translator}
@@ -41,7 +42,7 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 Before you install the package, you must create a {{site.data.keyword.languagetranslatorshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.languagetranslatorshort}} service instance ](https://cloud.ibm.com/catalog/services/language_translator){: external}.
+1. [Create a {{site.data.keyword.languagetranslatorshort}} service instance](https://cloud.ibm.com/catalog/services/language_translator){: external}.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.languagetranslatorshort}} package
@@ -58,28 +59,28 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
 
 1. Clone the {{site.data.keyword.languagetranslatorshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/language-translator-v3/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /myOrg_mySpace/language-translator-v3                        private
     ```
@@ -87,28 +88,28 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
 
 4. Bind the credentials from the {{site.data.keyword.languagetranslatorshort}} instance you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind language-translator language-translator-v3
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'language-translator' service instance 'Watson Language Translator' bound to 'language-translator-v3'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.languagetranslatorshort}} service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get language-translator-v3 parameters
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     ok: got package language-translator-v3, displaying field parameters
     [
         {
@@ -136,7 +137,7 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the CLI. 
 Install the {{site.data.keyword.languagetranslatorshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 
@@ -167,7 +168,7 @@ Install the {{site.data.keyword.languagetranslatorshort}} package from the conso
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke language-translator-v3/<action_name> -b -p <param name> <param>
 ```
 {: pre}
@@ -176,7 +177,7 @@ All actions require a version parameter in the format `YYYY-MM-DD`. When the API
 
 This package's functions use the current version of Language Translator, `2018-05-01`. Try out the `identify` action.
 
-```
+```sh
 ibmcloud fn action invoke language-translator-v3/identify -b -p version 2018-05-01 -p text hola
 ```
 {: pre}

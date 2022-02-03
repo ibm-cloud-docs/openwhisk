@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-10-12"
+  years: 2022
+lastupdated: "2022-01-12"
 
 keywords: troubleshooting actions, functions, help, support, node.js, node, javascript
 
@@ -19,7 +19,7 @@ subcollection: openwhisk
 In the case where an action consumes more memory than requested, the action is terminated and the following log information is displayed:
 {: tsSymptoms}
 
-```
+```sh
 2019-10-22T10:00:50.509Z  stderr: Killed
 2019-10-22T10:00:50.510Z  stderr: The action did not initialize or run as expected. Log data might be missing.
 ```

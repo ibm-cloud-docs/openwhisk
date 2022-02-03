@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-07"
 
 keywords: functions compared, architecture, limitless, functions, openwhisk, actions, redundancy
 
@@ -20,13 +20,12 @@ subcollection: openwhisk
 {{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}}'s serverless architecture and cost-effective computing with other architecture models.
 {: shortdesc}
 
-**Why go serverless?**
-
-- No infrastructure management required
-- Minimal maintenance
-- Cost efficient
-- Scales easily
-- Fast!
+Why go serverless?
+:    - No infrastructure management required
+     - Minimal maintenance
+     - Cost efficient
+     - Scales easily
+     - Fast!
 
 
 ## Comparison of OpenWhisk architectures
@@ -49,7 +48,7 @@ The following table compares elements of each architecture from the perspective 
 
 | Topic | (1) FaaS on {{site.data.keyword.openwhisk_short}} | (2) IaaS with OpenWhisk RYO | (3) PaaS | (4) CaaS | (5) IaaS with Java EE |
 | --- | --- | --- | --- | --- | --- |
-|	Application unit	|	Single function (usually small block of code in JavaScript, Swift, or Docker container) - can be less than one Kb, but can be larger. Usually not more than few Kb.	|	Same as column (1)	|	Depends on the runtime used. An EAR or WAR file, or other language-specific application bundle, usually relatively large - Kb or even Mb with many services in a bundle, but can be as small as a single service.	|	Docker container is the unit of deployment.	|	VM with App Server with EAR or WAR file and other dependencies - usually sized at Gb.	|
+|	Application unit	|	Single function (usually small block of code in JavaScript, Swift, or Docker container) - can be less than one Kb, but can be larger. Usually not more than few Kb.	|	Same as column (1)	|	Depends on the runtime used. An EAR or WAR file, or other language-specific application bundle, usually relatively large - Kb or even Mb with many services in a bundle, but can be as small as a single service.	|	Docker container is the unit of deployment.	|	VM with App Server with EAR or WAR file and other dependencies - usually sized at GB.	|
 |	Resource footprint	|	Small. The user does not pay or care about memory, CPU, or other resources. Although the action does have some footprint, the user does not need to worry about it.	|	High. The user must first provision IaaS environment and only then install and configure OpenWhisk on top of it.	|	Small. The user pays for memory and CPU for running apps, but nothing for apps that are not running.	|	Small to Medium	|	High. User has to pay for disk storage, memory, CPUs, and possibly other components when the app is running. When it is stopped, only the storage costs occur.	|
 |	Installation and setup	|	None required	|	Hard. All installation is done by the user.	|	None required	|	Moderate. Hardware, networking, OS, and container management tools provided by CaaS vendor. Images, connectivity, and instances provided by the user.	|	Hard. Hardware, networking, OS, and initial Java EE installation provided by vendor, with additional configuration, clustering, and scaling by user.	|
 |	Provisioning time	|	Milliseconds	|	See columns (4) and (5)	|	Minutes	|	Minutes	|	Hours	|
@@ -68,6 +67,7 @@ The following table compares elements of each architecture from the perspective 
 |	Best type of application	|	Event processing, IoT, Mobile backend, microservices. Definitely not for monolithic applications. See [use cases](/docs/openwhisk?topic=openwhisk-use_cases).	|	Same as column (1), but when user wants to run on non-IBM Cloud or run on premises.	|	Web applications with 24x7 workload load, stateful services that need to keep the connection open for long periods of time. Can be used to run microservices or monolithic applications.	|	Ideal for microservices applications.	|	Traditional enterprise applications that are migrated from on premises to the cloud. Ideal for monolithic applications.	|
 |	Charging granularity and billing	|	[Per blocks of 100 milliseconds](https://cloud.ibm.com/functions/learn/pricing){: external}	|	Depends on implementation - If IaaS or CaaS are used, then similar considerations apply - See columns (4) and (5).	|	Usually charged per hour (rarely per minute) for bundle of resources (CPU + memory + some disk space).	|	Similar to column (3).	|	Similar to column (3).	|
 |	Total cost of ownership	|	Low. For optimal usage, applications are likely to cost an order of magnitude less than alternatives. Because resources are automatically scaled, over provisioning does not occur.	|	Depends. For cloud deployments, it is likely to be more expensive than OpenWhisk FaaS, but on premises deployment can be cheaper than traditional architectures.	|	Relatively low. The user does not need to provision or manage resources, and can focus on application development. Some level of over provisioning compared to serverless	|	Moderate. The user needs to provision and manage containers and application, and could see some level of over provisioning compared to serverless or PaaS.	|	Relatively high. Consider that the migration of legacy applications into the cloud native model could be prohibitively expensive, this option can be a viable and economical choice for those apps.	|
+{: caption="Table 1. Architecture comparison" caption-side="bottom"}
 
 ## Cost considerations for {{site.data.keyword.openwhisk_short}}
 {: #faas_cost}

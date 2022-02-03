@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-10-12"
+  years: 2022
+lastupdated: "2022-01-13"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration, api gateway
 
@@ -21,9 +21,9 @@ You are invoking an action that returns after one min with an `http code 202` an
 When invoking an action, there are two modes possible: blocking or non-blocking. The default for regular action invocations is `non-blocking` and for web actions, it is `blocking`. Blocking invocations use a request-response style and wait for the activation result to be available. The wait period is the lesser of 60 seconds or the action's timeout limit. At the end of the wait period (for example, after 60 sec), all invocations switch to non-blocking and instead of the result, these actions return the activation ID.
 {: tsCauses}
 
-**Example output**
+The following example shows possible output.
 
-```
+```sh
 {
     "activationId": "27eca80056d54f93aca80056d5cf93b9"
 }
@@ -32,9 +32,9 @@ When invoking an action, there are two modes possible: blocking or non-blocking.
 
 If an invocation of a web action reaches the end of wait period, the response shows both the activation ID and the transaction ID as well as an indication that the request is returned, but the action continues to run.
 
-**Example output**
+The following example shows possible output.
 
-```
+```sh
 {
     "activationId": "d13cfd3ce4b14f7cbcfd3ce4b11f7cce",
     "code": "42c15dc7f450df1e9a01104de158d489",

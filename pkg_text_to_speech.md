@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-12"
 
 keywords: cognitive, functions, packages, Watson, text to speech
 
@@ -44,6 +44,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 | [`get-word`](https://cloud.ibm.com/apidocs/text-to-speech#get-a-custom-word){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id`, `word` | Get a custom word. |
 | [`list-words`](https://cloud.ibm.com/apidocs/text-to-speech#list-custom-words){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customization_id` | List custom words. |
 | [`delete-user-data`](https://cloud.ibm.com/apidocs/text-to-speech#delete-labeled-data){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `customer_id` | Delete labeled data. |
+{: caption="Table 1. Text to speech package entities" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.texttospeechshort}} Service instance
 {: #service_instance_texttospeech}
@@ -51,7 +52,7 @@ The {{site.data.keyword.texttospeechshort}} package contains the following entit
 Before you install the package, you must create a {{site.data.keyword.texttospeechshort}} Service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.texttospeechshort}} Service instance ](https://cloud.ibm.com/catalog/services/text_to_speech){: external}.
+1. Create a {{site.data.keyword.texttospeechshort}} Service instance.
 2. When the service instance is created, auto-generated service credentials are also created for you.
 
 ## Installing the {{site.data.keyword.texttospeechshort}} package
@@ -70,28 +71,28 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 
 1. Clone the {{site.data.keyword.texttospeechshort}} package repo.
 
-    ```
+    ```sh
     git clone https://github.com/watson-developer-cloud/openwhisk-sdk
     ```
     {: pre}
 
 2. Deploy the package.
 
-    ```
+    ```sh
     ibmcloud fn deploy -m openwhisk-sdk/packages/text-to-speech-v1/manifest.yaml
     ```
     {: pre}
 
 3. Verify that the package is added to your package list.
 
-    ```
+    ```sh
     ibmcloud fn package list
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     packages
     /myOrg_mySpace/text-to-speech-v1                        private
     ```
@@ -99,35 +100,35 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 
 4. Bind the credentials from the {{site.data.keyword.texttospeechshort}} instance you created to the package.
 
-    ```
+    ```sh
     ibmcloud fn service bind text_to_speech text-to-speech-v1
     ```
     {: pre}
 
     Depending on the region where you created the service instance, the service instance might be named differently because it is an IAM service. If the above command fails, use the following service name for the bind command:
 
-    ```
+    ```sh
     ibmcloud fn service bind text-to-speech text-to-speech-v1
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     Credentials 'Credentials-1' from 'text_to_speech' service instance 'Watson Text to Speech' bound to 'text-to-speech-v1'.
     ```
     {: screen}
 
 5. Verify that the package is configured with your {{site.data.keyword.texttospeechshort}} Service instance credentials.
 
-    ```
+    ```sh
     ibmcloud fn package get text-to-speech-v1 parameters
     ```
     {: pre}
 
     **Example output**
 
-    ```
+    ```sh
     ok: got package text-to-speech-v1, displaying field parameters
     [
         {
@@ -152,7 +153,7 @@ To install the {{site.data.keyword.texttospeechshort}} package, run the followin
 Install the {{site.data.keyword.personalityinsightsshort}} package from the console.
 {: shortdesc}
 
-1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page ](https://cloud.ibm.com/functions/create){: external}.
+1. In the {{site.data.keyword.openwhisk_short}} console, go to the [Create page](https://cloud.ibm.com/functions/create){: external}.
 
 2. Select the namespace that you want to install the package into.
 
@@ -183,14 +184,14 @@ Install the {{site.data.keyword.personalityinsightsshort}} package from the cons
 To use the actions in this package, run commands in the following format:
 {: shortdesc}
 
-```
+```sh
 ibmcloud fn action invoke text-to-speech-v1/<action_name> -b -p <param name> <param>
 ```
 {: pre}
 
 Try out the `list-voices` action.
 
-```
+```sh
 ibmcloud fn action invoke text-to-speech-v1/list-voices -b
 ```
 {: pre}

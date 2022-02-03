@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2021
-lastupdated: "2021-10-12"
+  years: 2017, 2022
+lastupdated: "2022-01-07"
 
 keywords: serverless, rest api, gateway, web actions, functions, API, HTTP
 
@@ -21,11 +21,10 @@ You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions
 
 
 
-**Why use REST APIs with {{site.data.keyword.openwhisk_short}}?**
+Why use REST APIs with {{site.data.keyword.openwhisk_short}}?
+:    You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
 
-You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
-
-For more information about API Management, you can read the [API Management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
+:    For more information about API Management, you can read the [API Management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 ## Creating your first API
 {: #api_create}
@@ -33,7 +32,7 @@ For more information about API Management, you can read the [API Management docu
 You can create APIs by using the CLI or from the console.
 {: shortdesc}
 
-**Before you begin**
+Before you begin
 
 You must have `SpaceDeveloper` permissions in your Cloud Foundry space to create REST APIs. Space permissions can be seen by running `ibmcloud account space-roles <org>`.
 
@@ -63,7 +62,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
     **Example output**
 
-    ```
+    ```bash
     ok: created action hello
     ```
     {: screen}
@@ -79,7 +78,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
     A new URL is generated exposing the `hello` action by using a `GET` HTTP method.
 
-    ```
+    ```bash
     ok: created API /hello/world GET for action /_/hello
     https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
     ```
@@ -97,7 +96,7 @@ Before you begin, install the [{{site.data.keyword.openwhisk_short}} CLI plug-in
 
     The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter. You can pass parameters to the action with simple query parameters or by using the request body. Web actions can publicly invoke an action without using authentication.
 
-    ```
+    ```bash
     {
     "payload": "Hello, Jane!"
     }
@@ -152,7 +151,7 @@ To return different content types in the body, use full control over the HTTP re
 
     **Example output**
 
-    ```
+    ```sh
     ok: updated action hello
     ```
     {: screen}
@@ -166,7 +165,7 @@ To return different content types in the body, use full control over the HTTP re
 
     **Example output**
 
-    ```
+    ```sh
     ok: created API /hello/world GET for action /_/hello https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
     ```
     {: screen}
@@ -180,7 +179,7 @@ To return different content types in the body, use full control over the HTTP re
 
     **Example output**
 
-    ```
+    ```json
     {
     "payload": "Hello, Serverless API!"
     }
@@ -215,7 +214,7 @@ This example uses the same names and code as the example in [Creating your first
 
     **Example output**
 
-    ```
+    ```sh
     ok: created action hello
     ```
     {: screen}
@@ -233,7 +232,7 @@ This example uses the same names and code as the example in [Creating your first
 
     A new URL is generated, exposing the `hello` action by using a `GET` HTTP method.
 
-    ```
+    ```sh
     ok: created API /hello/world GET for action /_/hello
     https://service.us.apiconnect.ibmcloud.com/gws/apigateway/api/<GENERATED_API_ID>/hello/world
     ```
@@ -251,7 +250,7 @@ This example uses the same names and code as the example in [Creating your first
 
     The web action `hello` is invoked and returns a JSON object that includes the parameter `name` in the query parameter.
 
-    ```
+    ```json
     {
     "payload": "Hello, Jane!"
     }

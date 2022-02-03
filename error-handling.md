@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021
-lastupdated: "2021-10-12"
+  years: 2022
+lastupdated: "2022-02-03"
 
 keywords: error, error handling, functions, serverless, monitoring, composer
 

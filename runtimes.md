@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-04"
+lastupdated: "2022-02-03"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -22,48 +22,19 @@ Your apps can be coded and executed in programming languages such as JavaScript 
 {: #runtimes_available}
 
 These runtimes (kinds) are available:
-<table>
-<caption>Table 1. Supported runtimes</caption>
-    <tr>
-    <th>Language</th>
-    <th>Kind identifier</th>
-    </tr>
-    <tr>
-    <td>Node.js</td>
-    <td><code>nodejs:12</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Python</td>
-    <td><code>python:3.7</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Swift</td>
-    <td><code>swift:4.2</code> (default)</td>
-    </tr>
-    <tr>
-    <td>PHP</td>
-    <td><code>php:7.4</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Go</td>
-    <td><code>go:1.15</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Ruby</td>
-    <td><code>ruby:2.6</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Java</td>
-    <td><code>java (JDK 8)</code> (default)</td>
-    </tr>
-    <tr>
-    <td>.NET Core</td>
-    <td><code>dotnet:2.2</code> (default)</td>
-    </tr>
-    <tr>
-    <td>Other languages are supported by using Docker actions.</td>
-    </tr>
-</table>
+| Language | Kind identifier |
+| ---- | -------------- |
+| Node.js | `nodejs:12` (default) |
+| Python | `python:3.9` (default) |
+| Swift | `swift:4.2` (default) |
+| PHP | `php:7.4` (default) |
+| Go | `go:1.17` (default) |
+| Ruby | `ruby:2.6` (default) |
+| Java | `java (JDK 8)` (default) |
+| .NET Core | `dotnet:2.2` (default) |
+{: caption="Table 1. Supported runtimes" caption-side="bottom"}
+
+Other languages are supported by using Docker actions.
 
 Runtimes are updated regularly. These updates include security fixes and minor version updates (bug fixes) to the runtime packages. Minor version updates might introduce breaks in compatibility with earlier versions. Runtime updates might impact your actions.
 
@@ -74,29 +45,27 @@ After a runtime is deprecated, it becomes `disabled`. The timeframe between `dep
 Migrate actions that are running on a `deprecated` or `disabled` runtime to a different runtime version by updating it. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
 These runtimes (kinds) are deprecated:
-<ul>
-    <li><code>go:1.11</code> (deprecated)</li>
-    <li><code>nodejs:10</code> (deprecated)</li>
-    <li><code>nodejs:8</code> (deprecated)</li>
-    <li><code>php:7.3</code> (deprecated)</li>
-    <li><code>python:3.6</code> (deprecated)</li>
-    <li><code>ruby:2.5</code> (deprecated)</li>
-</ul>
+- `go:1.11` (deprecated)
+- `go:1.15` (deprecated)
+- `nodejs:10` (deprecated)
+- `nodejs:8` (deprecated)
+- `php:7.3` (deprecated)
+- `python:3.6` (deprecated)
+- `python:3.7` (deprecated)
+- `ruby:2.5` (deprecated)
 
 These runtimes (kinds) are disabled:
-<ul>
-    <li><code>ballerina:0.990</code> (disabled)</li>
-    <li><code>nodejs</code> (disabled)</li>
-    <li><code>nodejs:6</code> (disabled)</li>
-    <li><code>php:7.1</code> (disabled)</li>
-    <li><code>php:7.2</code> (disabled)</li>
-    <li><code>python</code> (disabled)</li>
-    <li><code>python:2</code> (disabled)</li>
-    <li><code>swift</code> (disabled)</li>
-    <li><code>swift:3</code> (disabled)</li>
-    <li><code>swift:3.1.1</code> (disabled)</li>
-    <li><code>swift:4.1</code> (disabled)</li>
-</ul>
+- `ballerina:0.990` (disabled)
+- `nodejs` (disabled)
+- `nodejs:6` (disabled)
+- `php:7.1` (disabled)
+- `php:7.2` (disabled)
+- `python` (disabled)
+- `python:2` (disabled)
+- `swift` (disabled)
+- `swift:3` (disabled)
+- `swift:3.1.1` (disabled)
+- `swift:4.1` (disabled)
 
 For more information about supported and disabled runtimes, see [Available images and runtimes per region](#runtimes_per_region). 
 
@@ -106,26 +75,28 @@ For more information about supported and disabled runtimes, see [Available image
 By default, all Node.js actions are executed in a version 12 environment.
 {: note}
 
-Node.js version 10 is deprecated and will soon be removed. To continue running your actions, you must update any Node.js version 10 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
+Node.js version 10 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 10 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
 {: deprecated}
 
-Node.js version 8 is deprecated and will soon be removed. To continue running your actions, you must update any Node.js version 8 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
-{: deprecated}
+Node.js version 8 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 8 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
+{: deprecated}         
 
 | Kind | Node.js version | Description | Changelog |
 | --- | --- | --- | --- |
 | `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
 | `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
+{: caption="Table 1. Node.js versions" caption-side="bottom"}
 
 ### Migrating from Node.js 10 to Node.js 12
 {: #migrate_javascript_environments_1012}
 
 | Package | Details |
 | --- | --- | 
-| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v6.x. <br/>Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to `ibm-watson v6.x`, see [MIGRATION-V6.md](https://github.com/watson-developer-cloud/node-sdk/blob/HEAD/MIGRATION-V6.md){: external}. <br/> If migrating is not possible, consider packaging the older version of `ibm-watson` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v6.x.  \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to `ibm-watson v6.x`, see [MIGRATION-V6.md](https://github.com/watson-developer-cloud/node-sdk/blob/HEAD/MIGRATION-V6.md){: external}.  \n  If migrating is not possible, consider packaging the older version of `ibm-watson` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
 | `ibmiotf` | The `ibmiotf` package is renamed to `@wiotp/sdk`.  For more information, see [IBM Watson IoT Platform JavaScript SDK](https://www.npmjs.com/package/@wiotp/sdk){: external}. |
 | `request` | The `request` package is deprecated and therefore not available in this runtime. You can consider `axios`, `bent`, `got`, or `needle` as an alternative. |
+{: caption="Table 2. Migrating details from Node.js 10 to Node.js 12" caption-side="bottom"}
 
 For more information about migrating to `Node.js:12`, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}.
 
@@ -137,9 +108,10 @@ For more information about migrating to `Node.js:12`, see [(Details on GitHub)](
 | --- | --- |
 | `cloudant` | The `cloudant` NPM package is not available in `nodejs:10`. The package is deprecated. You need to use the official NPM package [@cloudant/cloudant](https://www.npmjs.com/package/@cloudant/cloudant){: external} v3.0.0 when you import the Node.js module (that is, `require('@cloudant/cloudant')`) also [v3.x only returns Promises](https://github.com/cloudant/nodejs-cloudant/blob/master/api-migration.md#2x--3x){: external}. |
 | `cradle` | The `cradle`  NPM package is not available in `nodejs:10`. |
-| `watson-developer-cloud` | The `watson-developer-cloud` NPM package available in `nodejs:10` is version 4.x. This version includes support for Promises. A list of the changes that are made is documented. Note that this package is deprecated and is no longer supported. This package will not receive updates and will be removed in the future. Move your action to the `ibm-watson` package.
-| `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former will not receive updates anymore. This package includes support for promises. |
-| `ibmiotf` | The package `ibmiotf` has been renamed by the maintainers to `@wiotp/sdk`. Make sure to update your action code to the new package. See [`@wiotp/sdk`](https://www.npmjs.com/package/@wiotp/sdk){: external} for all changes. The package `ibmiotf` will not receive further updates and will be removed from this runtime in the future. |
+| `watson-developer-cloud` | The `watson-developer-cloud` NPM package available in `nodejs:10` is version 4.x. This version includes support for Promises. A list of the changes that are made is documented. Note that this package is deprecated and is no longer supported. This package does not receive updates and is planned to be removed in the future. Move your action to the `ibm-watson` package.
+| `ibm-watson` | The `ibm-watson` package available in `nodejs:10` is version 4.x. This package is the successor of the `watson-developer-cloud` package. Upgrade your action code to use this new package, since the former does not receive updates. This package includes support for promises. |
+| `ibmiotf` | The package `ibmiotf` has been renamed by the maintainers to `@wiotp/sdk`. Make sure to update your action code to the new package. See [`@wiotp/sdk`](https://www.npmjs.com/package/@wiotp/sdk){: external} for all changes. The package `ibmiotf` does not receive further updates and is planned to be removed from this runtime in the future. |
+{: caption="Table 3. Details for migrating from Node.js 8 to Node.js 10" caption-side="bottom"}
 
 For more information about migrating to `Node.js:10`, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}.
 
@@ -222,7 +194,7 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 | [`validator`](https://www.npmjs.com/package/validator) | A library of string validators and sanitizers. |
 | [`vcap_services`](https://www.npmjs.com/package/vcap_services) | Parse and return service credentials from `VCAP_SERVICES` environment variable that IBM Cloud provides. |
 | [`when`](https://www.npmjs.com/package/when) | `when.js` is a rock solid, battle-tested, and Promises/A+, and when() implementation, including a complete ES6 Promise shim. |
-| [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "CHILL WINSTON! ... I put it in the logs." |
+| [`winston`](https://www.npmjs.com/package/winston) | A multi-transport async logging library for Node.js. "`CHILL WINSTON! ... I put it in the logs.`" |
 | [`ws`](https://www.npmjs.com/package/ws) | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
 | [`xlsx`](https://www.npmjs.com/package/xlsx) | Parser and writer for various spreadsheet formats. |
 | [`xml2js`](https://www.npmjs.com/package/xml2js) | Simple XML to JavaScript object converter. It supports bidirectional conversion. |
@@ -319,22 +291,73 @@ For more information about Node.js 10 packages, see [(Details on GitHub)](https:
 ## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-By default, all Python actions are executed in a Python version 3.7 environment.
+By default, all Python actions are executed in a Python version 3.9 environment.
 {: note}
 
 | Kind | Python version | Description | Changelog |
 | --- | --- | --- | --- |
-| `python:3.7` | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.7.x environment (Debian Stretch based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
-| &nbsp; | 3.6 | Python 3.6 reached `end of support` on 2021/12/23.<br/>See [end of life Python Releases](https://endoflife.date/python){: external}. | &nbsp; |
-| &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01.<br/>See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
+| `python:3.9` | [3.9.x](https://github.com/docker-library/python/blob/6a2c0f48f011aa279a0c9190725fc84a220460bc/3.9/buster/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.9.x environment (Debian Buster based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.9` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.9 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/CHANGELOG.md){: external}. |
+| `python:3.7` | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | Python actions are executed in a Python version 3.7.x environment (Debian Stretch based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
+| &nbsp; | 3.6 | Python 3.6 reached `end of support` on 2021/12/23. \n See [end of life Python Releases](https://endoflife.date/python){: external}. | &nbsp; |
+| &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01. \n See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
+{: caption="Table 4. Python versions" caption-side="bottom"}
 
+### Migrating from Python 3.7 to Python 3.9 
+{: #migrate_python_environments_3.73.9}
+
+| Package | Details |
+| --- | --- | 
+| `ibmcloudant` | The `cloudant` sdk has moved to the new `ibmcloudant` sdk. It includes a number of breaking changes. See [migration guide](https://github.com/cloudant/python-cloudant/blob/master/MIGRATION.md) for more information. |
+| `ibm-watson` | The `watson-developer-cloud` sdk has renamed to the new `ibm-watson` sdk and includes breaking changes. See [pypi ibm-watson](https://pypi.org/project/ibm-watson/) and [github ibm-watson](https://github.com/watson-developer-cloud/python-sdk) for more information. |
+{: caption="Table 2. Migrating details from Python 3.7 to Python 3.9" caption-side="bottom"}
+
+For more information about migrating to `python:3.9`, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/CHANGELOG.md){: external}.
 
 ### Python packages
 {: #python_packages}
 
-Ensure that your action uses only the packages that are mentioned in the following table.<br/>
-While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
+Ensure that your action uses only the packages that are mentioned in the following table. \n While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
 {: note}
+
+| Python 3.9 packages |
+|:-----------------|
+| `beautifulsoup4` |
+| `botocore` |  
+| `cassandra-driver` |
+| `ibmcloudant` |
+| `elasticsearch` |
+| `etcd3` |
+| `flask` |
+| `gevent` |
+| `httplib2` |
+| `ibm-cos-sdk` |
+| `ibm_db` |
+| `ibmcloudsql` |
+| `kafka_python` |
+| `lxml` |
+| `numpy` |
+| `pandas` |
+| `pika` |
+| `Pillow` |
+| `psycopg2` |
+| `PyJWT` |
+| `pymongo` |
+| `python-dateutil` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `scrapy` |
+| `simplejson` |
+| `tornado` |
+| `twisted` |
+| `virtualenv` |
+| `ibm-watson` |
+{: caption="Table 1. Python 3.9 packages" caption-side="top"}
+{: #python-1}
+{: tab-title="Python 3.9 packages"}
+{: tab-group="python"}
+{: class="simple-tab-table"}
 
 | Python 3.7 packages |
 |:-----------------|
@@ -370,8 +393,8 @@ While other Python packages might be part of the runtime, they are included only
 | `twisted` |
 | `virtualenv` |
 | `watson-developer-cloud` |
-{: caption="Table 1. Python 3.7 packages" caption-side="top"}
-{: #python-1}
+{: caption="Table 2. Python 3.7 packages" caption-side="top"}
+{: #python-2}
 {: tab-title="Python 3.7 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
@@ -406,11 +429,13 @@ While other Python packages might be part of the runtime, they are included only
 | `twisted` |
 | `virtualenv` |
 | `watson-developer-cloud` |
-{: caption="Table 2. Python 3.6 packages" caption-side="top"}
-{: #python-2}
+{: caption="Table 3. Python 3.6 packages" caption-side="top"}
+{: #python-3}
 {: tab-title="Python 3.6 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
+
+For more information about Python 3.9 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/requirements.txt){: external}.
 
 For more information about Python 3.7 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/requirements.txt){: external}.
 
@@ -427,9 +452,6 @@ Swift 4.x action runtimes don't embed any packages, follow the instructions for 
 Swift 4.2 actions can use the following packages when you use a single Swift source file:
 - Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
 
-
-**<ph class="ignoreSpelling">SwiftyJSON</ph> with a single source action file**
-
 If you have an action that is not compiled, and uses the `SwiftyJSON` package, you need to pre-compile your action, and specify the version of `SwiftyJSON` you want to use for `swift:4.2` kind action.
 
 
@@ -441,32 +463,24 @@ By default, all PHP actions are executed in a version 7.4 environment.
 
 For more information about the php:7.4 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-php/blob/master/core/php7.4Action/CHANGELOG.md){: external}..
 
-The following PHP extensions are available in addition to the standard ones:
+The following PHP extensions are available in addition to the standard ones.
 
-Ensure that your action uses only the modules that are mentioned in the following table.<br/>
-While other PHP modules might be part of the runtime, they are included only as indirect dependencies of the other listed modules. These unlisted modules are candidates to be removed as soon as they are not required by the referring modules.
+- `bcmath`
+- `curl`
+- `gd`
+- `intl`
+- `mbstring`
+- `mongodb`
+- `mysqli`
+- `pdo_mysql`
+- `pdo_pgsql`
+- `pdo_sqlite`
+- `soap`
+- `zip`
+
+Ensure that your action uses only the modules that are mentioned in the following table. \n While other PHP modules might be part of the runtime, they are included only as indirect dependencies of the other listed modules. These unlisted modules are candidates to be removed as soon as they are not required by the referring modules.
 {: note}
 
-
-| PHP 7.4 Modules |
-|:-----------------|
-| `bcmath` |
-| `curl` |
-| `gd` |
-| `intl` |
-| `mbstring` |
-| `mongodb` |
-| `mysqli` |
-| `pdo_mysql` |
-| `pdo_pgsql` |
-| `pdo_sqlite` |
-| `soap` |
-| `zip` |
-{: caption="Table 1. PHP 7.4 packages" caption-side="top"}
-{: #PHP}
-{: tab-title="PHP 7.4 Modules"}
-{: tab-group="PHP"}
-{: class="simple-tab-table"}
 
 
 ## Ruby runtime
@@ -498,29 +512,25 @@ For more information, see [Creating actions from binaries](/docs/openwhisk?topic
 ## More runtime support
 {: #more_runtime_support}
 
-**Go**
+Go
+:    By default, all Go actions are executed in a version 1.17 environment. Go Version 1.11 and 1.15 are deprecated.
+     When migrating from Go:1.11 to Go:1.17:
+     - Go:1.17 uses [Go Modules](https://golang.org/ref/mod){: external}.
+     - File containing the entry function (e.g `main.go` `Main`) needs be placed in root, no `"main"` directory is supported.
 
-By default, all Go actions are executed in a version 1.15 environment. Go Version 1.11 is deprecated.
+:    For more information about the `go` runtimes, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-go/blob/master/README.md){: external}.
 
-When migrating from Go:1.11 to Go:1.15:
-- Go:1.15 uses [Go Modules](https://golang.org/ref/mod){: external}.
-- File containing the entry function (e.g `main.go` `Main`) needs be placed in root, no `"main"` directory is supported.
+:    For more information about writing `go` actions, see [Preparing Go apps](/docs/openwhisk?topic=openwhisk-prep#prep_go).
 
-For more information about the `go` runtimes, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-go/blob/master/README.md){: external}.
+Java
+:    By default, all Java actions are executed in a version 8 environment.
 
-For more information about writing `go` actions, see [Preparing Go apps](/docs/openwhisk?topic=openwhisk-prep#prep_go).
+:    For more information about the `java:8` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-java/blob/master/core/java8/CHANGELOG.md){: external}.
 
-**Java**
+.NET Core
+:    By default, all .NET Core actions are executed in a version 2.2 environment.
 
-By default, all Java actions are executed in a version 8 environment.
-
-For more information about the `java:8` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-java/blob/master/core/java8/CHANGELOG.md){: external}.
-
-**.NET Core**
-
-By default, all .NET Core actions are executed in a version 2.2 environment.
-
-For more information about the `dotnet:2.2` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-dotnet/blob/master/core/dotnet2.2/CHANGELOG.md){: external}.
+:    For more information about the `dotnet:2.2` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-dotnet/blob/master/core/dotnet2.2/CHANGELOG.md){: external}.
 
 
 ## Available images and runtimes per region
@@ -535,33 +545,25 @@ To view the available runtimes for IBM Cloud Functions in each region. The follo
 - [`jp-tok`](https://jp-tok.functions.cloud.ibm.com/){: external}
 - [`au-syd`](https://au-syd.functions.cloud.ibm.com){: external}
 
-The following examples point to the images `ibmfunctions/action-nodejs-v12` and `openwhisk/java8action` on [hub.docker.com](https://hub.docker.com/){: external}.
-The tags can be version numbers such as `1.1.1` or the short form of a Git commit hash, like `a231007`.
+The following examples point to the images `ibmfunctions/action-nodejs-v12` and `openwhisk/java8action` on [hub.docker.com](https://hub.docker.com/){: external}. The tags can be version numbers such as `1.1.1` or the short form of a Git commit hash, like `a231007`.
 
 Example image fields.
 
-```
+```sh
 image:   "ibmfunctions/action-nodejs-v12:1.1.1"
 ```
 {: codeblock}
 
-```
+```sh
 image:   "openwhisk/java8action:a231007"
 ```
 {: codeblock}
 
-This JSON response shows the supported and the disabled runtimes.
-Disabled runtimes are marked with `deprecated=true`.
-Deprecated runtimes are not shown in this response.
-The deprecated flag that is returned in the response does not correspond to the deprecated runtimes as mentioned in [Available images and runtimes](#runtimes_available).
-Deprecated runtimes are not marked as such in this response
-until the runtime is finally disabled.
-Deprecated runtimes are only marked as such in the console and in this documentation ([Available images and runtimes](#runtimes_available)).
+This JSON response shows the supported and the disabled runtimes. Disabled runtimes are marked with `deprecated=true`. Deprecated runtimes are not shown in this response. The deprecated flag that is returned in the response does not correspond to the deprecated runtimes as mentioned in [Available images and runtimes](#runtimes_available).
 
-When you troubleshoot a failing action (400, bad request) to identify whether a disabled runtime is used,
-check for `deprecated=true` in the query response.
-Actions that use a disabled runtime can be only read or deleted.
-Execution of such an action is not possible.
+Deprecated runtimes are not marked as such in this response until the runtime is finally disabled. Deprecated runtimes are only marked as such in the console and in this documentation ([Available images and runtimes](#runtimes_available)).
+
+When you troubleshoot a failing action (400, bad request) to identify whether a disabled runtime is used, check for `deprecated=true` in the query response. Actions that use a disabled runtime can be only read or deleted. Execution of such an action is not possible.
 
 To update the runtime of this action to a supported one, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
