@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-02-22"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -165,7 +165,7 @@ Verify the trigger was created by running the `trigger get` command.
 ```sh
 ibmcloud fn trigger get cosTrigger
 ```
-{: pre}`
+{: pre}
 
 
 ## Connecting a {{site.data.keyword.openwhisk_short}} action to the trigger
