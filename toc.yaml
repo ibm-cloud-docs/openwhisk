@@ -1,6 +1,7 @@
 toc:
   properties:
     subcollection: openwhisk
+    service-name: functions
     category: compute
     audience: service
     href: /docs/openwhisk
@@ -157,3 +158,4 @@ toc:
       - release_notes.md  
       - get-support.md
       - sitemap.md
+

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-22"
+lastupdated: "2022-03-14"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -294,6 +294,16 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 * [Available features of web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_extra)
 
+    * [Content extensions](/docs/openwhisk?topic=openwhisk-actions_web#extra_features)
+
+    * [Query and body parameters as input](/docs/openwhisk?topic=openwhisk-actions_web#query_test)
+
+    * [Form data](/docs/openwhisk?topic=openwhisk-actions_web#form_data)
+
+    * [Activations that use multiple HTTP verbs](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options)
+
+    * [Non-JSON body and raw HTTP entity handling](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_raw_enable)
+
 * [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_example)
 
     * [Web action JSON properties](/docs/openwhisk?topic=openwhisk-actions_web#web_action_properties)
@@ -306,7 +316,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [Returning JSON by using a web action](/docs/openwhisk?topic=openwhisk-actions_web#return_json)
 
-    * [HTTP Context](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_context)
+    * [HTTP context](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_context)
 
     * [HTTPS Endpoint support](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_endpoint)
 
