@@ -40,6 +40,7 @@ toc:
           - link: 
               label: Serverless web application and API
               href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp
+      - release_notes.md
   - navgroup: 
       id: howto
       topics:
@@ -154,8 +155,7 @@ toc:
               topics:
               - ts_action_nodejs_fails.md
               - memory_usage_ts.md
-      
-      - release_notes.md  
+        
       - get-support.md
       - sitemap.md
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-14"
+lastupdated: "2022-03-16"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -121,6 +121,121 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: external}
 
 [Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: external}
+
+
+## Release notes
+{: #sitemap_release_notes}
+
+
+[Release notes](/docs/openwhisk?topic=openwhisk-release-notes#release-notes)
+
+* [June 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-june21)
+
+    * [21 June 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-21june21)
+
+* [May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-may21)
+
+    * [7 May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-7may21)
+
+    * [1 May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-1may21)
+
+* [April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-april21)
+
+    * [27 April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-7april21)
+
+    * [12 April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-12april21)
+
+* [March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-march21)
+
+    * [29 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29march21)
+
+    * [25 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25march21)
+
+    * [12 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-12march21)
+
+* [January 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-jan21)
+
+    * [29 January 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29jan21)
+
+* [December 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-dec20)
+
+    * [14 December 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-14dec20)
+
+* [October 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-oct20)
+
+    * [29 October 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29oct20)
+
+* [September 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-sept20)
+
+    * [22 September 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-22sept20)
+
+* [August 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-aug20)
+
+    * [25 August 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25aug20)
+
+* [July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-july20)
+
+    * [30 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-30july20)
+
+    * [23 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-23july20)
+
+    * [16 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-16july20)
+
+    * [10 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-10july20)
+
+* [June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-june20)
+
+    * [30 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-30june20)
+
+    * [25 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25june20)
+
+    * [18 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18june20)
+
+    * [15 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-15june20)
+
+    * [8 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-8june20)
+
+* [May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-may20)
+
+    * [22 May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-22may20)
+
+    * [15 May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-15may20)
+
+* [April 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-apr20)
+
+    * [24 April 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24apr20)
+
+* [March 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-mar20)
+
+    * [24 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24mar20)
+
+    * [9 March 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-9mar20)
+
+* [December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-dec19)
+
+    * [18 December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18dec19)
+
+    * [5 December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-5dec19)
+
+* [November 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-nov19)
+
+    * [18 November 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18nov19)
+
+* [October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-oct19)
+
+    * [31 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-31oct19)
+
+    * [28 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-28oct19)
+
+    * [14 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-14oct19)
+
+* [September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-sept19)
+
+    * [24 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24sept19)
+
+    * [20 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-20sept19)
+
+    * [11 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-11sept19)
 
 
 ## Installing the CLI and plug-in
@@ -1260,49 +1375,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Node.js action is failing](/docs/openwhisk?topic=openwhisk-ts_action_nodejs_fails#ts_action_nodejs_fails)
 
 [Memory usage with Node.js runtime actions](/docs/openwhisk?topic=openwhisk-memory_usage_ts#memory_usage_ts)
-
-
-## Release notes
-{: #sitemap_release_notes}
-
-
-[Release notes](/docs/openwhisk?topic=openwhisk-release-notes#release-notes)
-
-* [June 2021](/docs/openwhisk?topic=openwhisk-release-notes#june21)
-
-* [May 2021](/docs/openwhisk?topic=openwhisk-release-notes#may21)
-
-* [April 2021](/docs/openwhisk?topic=openwhisk-release-notes#april21)
-
-* [March 2021](/docs/openwhisk?topic=openwhisk-release-notes#march21)
-
-* [January 2021](/docs/openwhisk?topic=openwhisk-release-notes#jan21)
-
-* [December 2020](/docs/openwhisk?topic=openwhisk-release-notes#dec20)
-
-* [October 2020](/docs/openwhisk?topic=openwhisk-release-notes#oct20)
-
-* [September 2020](/docs/openwhisk?topic=openwhisk-release-notes#sept20)
-
-* [August 2020](/docs/openwhisk?topic=openwhisk-release-notes#august20)
-
-* [July 2020](/docs/openwhisk?topic=openwhisk-release-notes#july20)
-
-* [June 2020](/docs/openwhisk?topic=openwhisk-release-notes#june20)
-
-* [May 2020](/docs/openwhisk?topic=openwhisk-release-notes#may20)
-
-* [April 2020](/docs/openwhisk?topic=openwhisk-release-notes#april20)
-
-* [March 2020](/docs/openwhisk?topic=openwhisk-release-notes#mar20)
-
-* [December 2019](/docs/openwhisk?topic=openwhisk-release-notes#dec19)
-
-* [November 2019](/docs/openwhisk?topic=openwhisk-release-notes#nov19)
-
-* [October 2019](/docs/openwhisk?topic=openwhisk-release-notes#oct19)
-
-* [September 2019](/docs/openwhisk?topic=openwhisk-release-notes#sept19)
 
 
 ## Getting help and support
