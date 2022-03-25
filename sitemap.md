@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-16"
+lastupdated: "2022-03-25"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -123,119 +123,239 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: external}
 
 
-## Release notes
-{: #sitemap_release_notes}
+## Release notes for {{site.data.keyword.openwhisk_short}}
+{: #sitemap_release_notes_for_}
 
 
-[Release notes](/docs/openwhisk?topic=openwhisk-release-notes#release-notes)
+[Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
 
-* [June 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-june21)
+* [June 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun21)
 
-    * [21 June 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-21june21)
+    * [21 June 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun2121)
 
-* [May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-may21)
+        * Overview topic for troubleshooting
 
-    * [7 May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-7may21)
+* [May 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may21)
 
-    * [1 May 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-1may21)
+    * [7 May 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may721)
 
-* [April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-april21)
+        * Deprecated of packages and runtimes.
 
-    * [27 April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-7april21)
+    * [1 May 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may0121)
 
-    * [12 April 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-12april21)
+        * Added information about error handling.
 
-* [March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-march21)
+        * Added information about getting support. 
 
-    * [29 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29march21)
+* [April 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr21)
 
-    * [25 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25march21)
+    * [27 April 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr0721)
 
-    * [12 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-12march21)
+        * Added information about deprecating Watson services.
 
-* [January 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-jan21)
+    * [12 April 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr1221)
 
-    * [29 January 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29jan21)
+        * New troubleshooting tip
 
-* [December 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-dec20)
+        * Updates to action information.
 
-    * [14 December 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-14dec20)
+        * New Functions CLI version 1.0.54. 
 
-* [October 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-oct20)
+* [March 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar21)
 
-    * [29 October 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-29oct20)
+    * [29 March 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-march2921)
 
-* [September 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-sept20)
+        * New Functions CLI version 1.0.53.
 
-    * [22 September 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-22sept20)
+    * [25 March 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar2521)
 
-* [August 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-aug20)
+        * Updated list of supported versions.
 
-    * [25 August 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25aug20)
+        * Updated the Composer topic.
 
-* [July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-july20)
+        * Added information about adding an IBM {{site.data.keyword.openwhisk_short}} Channel to {{site.data.keyword.mon_full_notm}}.
 
-    * [30 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-30july20)
+        * Added information for versioning your actions.
 
-    * [23 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-23july20)
+    * [12 March 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar1221)
 
-    * [16 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-16july20)
+        * Added support for `au-syd` (Sydney) region.
 
-    * [10 July 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-10july20)
+* [January 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jan21)
 
-* [June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-june20)
+    * [29 January 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jan2921)
 
-    * [30 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-30june20)
+        * Added a sitemap.
 
-    * [25 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-25june20)
+        * Updated information about packaging Go source files. 
 
-    * [18 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18june20)
+* [December 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec20)
 
-    * [15 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-15june20)
+    * [14 December 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec1420)
 
-    * [8 June 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-8june20)
+        * Added versions to Quickstart template docs.
 
-* [May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-may20)
+        * Updated securing web actions to include information about `X-Require-Whisk-Auth`.
 
-    * [22 May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-22may20)
+        * Added tips to monitoring topic.
 
-    * [15 May 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-15may20)
+        * Updated namespace instances to indicate if the namespace name or the namespace ID is required.
 
-* [April 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-apr20)
+* [October 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct20)
 
-    * [24 April 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24apr20)
+    * [29 October 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct2920)
 
-* [March 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-mar20)
+        * GO 1.15 is now supported.
 
-    * [24 March 2021](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24mar20)
+* [September 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep20)
 
-    * [9 March 2020](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-9mar20)
+    * [22 September 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep2220)
 
-* [December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-dec19)
+        * Added support for Node.js 12 runtime.
 
-    * [18 December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18dec19)
+        * Added `--memory` to the **`action create`** and **`action update`** commands.
 
-    * [5 December 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-5dec19)
+        * Added troubleshooting information.
 
-* [November 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-nov19)
+* [August 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-aug20)
 
-    * [18 November 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-18nov19)
+    * [25 August 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-aug2520)
 
-* [October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-oct19)
+        * New troubleshooting information.
 
-    * [31 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-31oct19)
+* [July 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jul20)
 
-    * [28 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-28oct19)
+    * [30 July 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jul3020)
 
-    * [14 October 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-14oct19)
+        * Updated information for High availability and disaster recovery.
 
-* [September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-sept19)
+    * [23 July 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jul2320)
 
-    * [24 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-24sept19)
+        * New information for actions that use binary files.
 
-    * [20 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-20sept19)
+    * [16 July 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jul1620)
 
-    * [11 September 2019](/docs/openwhisk?topic=openwhisk-release-notes#openwhisk-11sept19)
+        * New Functions CLI version 1.0.44 release.
+
+    * [10 July 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jul1020)
+
+        * New Functions CLI version 1.0.43.
+
+        * Additional events and information are available for Functions. 
+
+* [June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun20)
+
+    * [30 June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun3020)
+
+        * Updates to documentation for Event streams package.
+
+    * [25 June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun2520)
+
+        * New events are tracked for Functions.
+
+    * [18 June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun1820)
+
+        * Changes for web action endpoints.
+
+    * [15 June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun1520)
+
+        * New Functions CLI version 1.0.41.
+
+    * [8 June 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun820)
+
+        * New Functions CLI version 1.0.40.
+
+        * Monitoring of your {{site.data.keyword.openwhisk_short}} actions is provided through the {{site.data.keyword.mon_full}} service. 
+
+* [May 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may20)
+
+    * [22 May 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may2220)
+
+        * New tutorial for calling an action from another action.
+
+    * [15 May 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-may1520)
+
+        * New High availability topic.
+
+        * Updates for supported runtimes.
+
+* [April 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr20)
+
+    * [24 April 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr2420)
+
+        * New Functions CLI version 1.0.39.
+
+        * New actions overview topic. 
+
+        * Improved access policy information. 
+
+* [March 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar20)
+
+    * [24 March 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar2420)
+
+        * Node.js 8 is deprecated.
+
+    * [9 March 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-mar920)
+
+        * New Functions CLI version 1.0.38.
+
+        * Updated trigger parameters for CLI. 
+
+        * Updated troubleshooting information for Node.js. 
+
+* [December 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec19)
+
+    * [18 December 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec1819)
+
+        * New environmental variable: `__OW_TRANSACTION_ID`.
+
+        * Updated information about securing your web action for an API. 
+
+        * Updated information for packaging your Python code. 
+
+    * [5 December 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec519)
+
+        * Improved documentation for the quick start templates.
+
+        * Updated the API endpoints documentation.
+
+* [November 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-nov19)
+
+    * [18 November 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-nov1819)
+
+        * New Functions CLI version 1.0.36. 
+
+* [October 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct19)
+
+    * [31 October 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct3119)
+
+        * The IBM Cloud Object Storage trigger is now available in the following regions: `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions. 
+
+    * [28 October 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct2819)
+
+        * Updates for binding services to entities.
+
+        * Updates for memory usage.
+
+    * [14 October 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct1419)
+
+        * New Functions CLI version 1.0.35. 
+
+        * Added console tasks to actions. 
+
+* [September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep19)
+
+    * [24 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep2419)
+
+        * New Functions CLI version 1.0.34. 
+
+    * [20 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep2019)
+
+        * Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. 
+
+    * [11 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep1119)
+
+        * New Functions CLI version 1.0.33. 
 
 
 ## Installing the CLI and plug-in
