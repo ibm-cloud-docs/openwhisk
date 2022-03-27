@@ -2,13 +2,13 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-03-25"
+lastupdated: "2022-03-26"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
 subcollection: openwhisk
 
-content-type: release-notes
+content-type: release-note
 
 ---
 
