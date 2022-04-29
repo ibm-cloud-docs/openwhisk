@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-25"
+lastupdated: "2022-04-29"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -215,18 +215,21 @@ Before you begin, [review the packages that are included with the JavaScript run
 
     ```json
     {
-        "name": "my-action",
-        "main": "dist/bundle.js",
-        "scripts": {
-        "build": "webpack --config webpack.config.js",
-        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12"
-        },
-        "dependencies": {
+    "name": "my-action",
+    "main": "dist/bundle.js",
+    "scripts": {
+        "prebuild": "NODE_ENV=development npm install",
+        "build": "webpack --config webpack.config.js ",
+        "deploy": "ibmcloud fn fn action update my-action dist/bundle.js --kind nodejs:16",
+        "clean": "rm -rf node_modules package-lock.json dist"
+    },
+    "dependencies": {
         "left-pad": "1.1.3"
-        },
-        "devDependencies": {
-            "webpack": "^3.8.1"
-        }
+    },
+    "devDependencies": {
+        "webpack": "^5.72.0",
+        "webpack-cli": "^4.9.2"
+    }
     }
     ```
     {: codeblock}
@@ -261,17 +264,22 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: codeblock}
 
-4. Install all dependencies locally.
+4. Install all dependencies locally. 
 
     ```bash
     npm install
     ```
     {: pre}
 
+    ```bash
+    npm run prebuild
+    ```
+    {: pre}
+
     While most `npm` packages install JavaScript sources on `npm install`, some packages also install and compile platform-dependent binary file artifacts. Because this environment is Linux AMD64-based, the `npm install` must be executed on a similar platform. Otherwise the action invocations might not succeed.
     {: note}
 
-5. Build the `webpack` bundle.
+5. Build the `webpack` bundle locally.
 
     ```bash
     npm run build
@@ -279,6 +287,13 @@ Before you begin, [review the packages that are included with the JavaScript run
     {: pre}
 
     The file `dist/bundle.js` is created and deploys as the action source code.
+
+    To avoid compatibility issues, you can use the runtime to build the webpack. Use the following command in the source directory to run steps 4 and 5 inside the container.
+    ```bash
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm run prebuild && npm run build"
+    ```
+    {: pre}
+
 
 6. Create the action by using the `npm` script or the `ibmcloud fn action update` CLI.
 
@@ -289,15 +304,29 @@ Before you begin, [review the packages that are included with the JavaScript run
         ```
         {: pre}
 
-    * Or run the following CLI command.
+    * Or run the following IBM Cloud CLI command.
 
         ```bash
         ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
         ```
         {: pre}
 
-The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependencies are not included with the file `bundle.js`.
-{: tip}
+    The bundle file that is built by `webpack` supports only JavaScript dependencies. Action invocations might fail if the bundle has other dependencies because these dependencies are not included with the file `bundle.js`.
+    {: tip}
+
+7. You can clean up the generated artifacts `package-lock.json`, `node_modules` and `dist` by using one of the following options.
+
+    ```bash
+    npm run clean
+    ```
+    {: pre}
+    
+    or
+    
+    ```bash
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm run clean"
+    ```
+    {: pre}
 
 ### Packaging JavaScript code as NPM files
 {: #prep_js_npm}
@@ -307,10 +336,10 @@ As an alternative to writing all your action code in a single JavaScript source 
 
 Before you begin, [review the packages that are included with the JavaScript runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app. The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 
-1. In the root directory, create a `package.json` file.
+1. In the root directory, create the `package.json` and `my-action.js` file.
 
     **Example**
-
+    `package.json`
     ```json
     {
         "name": "my-action",
@@ -322,7 +351,17 @@ Before you begin, [review the packages that are included with the JavaScript run
     ```
     {: codeblock}
 
-    This sample assumes the action code in the file `my-action.js`.
+    `my-action.js`
+    ```javascript
+    function myAction(args) {
+        const leftPad = require("left-pad")
+        const lines = args.lines || [];
+        return { padded: lines.map(l => leftPad(l, 30, ".")) }
+    }
+
+    exports.main = myAction;
+    ```
+    {: codeblock}
 
 2. Install all dependencies locally.
 
@@ -352,24 +391,17 @@ Node.js libraries can depend on native modules that are compiled during installa
 Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. If your zipped action exceeds this limit, you must create a custom docker image for your action.
 {: note}
 
-1. Run the following command to fetch the Node.js modules and compile the native dependencies.
+1. Run the following command to fetch the Node.js modules, compile the native dependencies and Create the zipped action code, including the `node_modules` directory.
 
     ```bash
-    docker run --it -v $PWD:/nodejsAction openwhisk/action-nodejs-v12 "npm install"
-    ```
-    {: pre}
-
-2. Create the zipped action code, including the `node_modules` directory.
-
-    ```bash
-    zip -r action.zip *
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm install && zip action.zip *"
     ```
     {: pre}
 
 3. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
 
     ```bash
-    ibmcloud fn action create my-action action.zip --kind nodejs:12
+    ibmcloud fn action create my-action action.zip --kind nodejs:16
     ```
     {: pre}
 

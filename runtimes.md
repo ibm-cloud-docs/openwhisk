@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-03"
+lastupdated: "2022-04-29"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -24,7 +24,7 @@ Your apps can be coded and executed in programming languages such as JavaScript 
 These runtimes (kinds) are available:
 | Language | Kind identifier |
 | ---- | -------------- |
-| Node.js | `nodejs:12` (default) |
+| Node.js | `nodejs:16` (default) |
 | Python | `python:3.9` (default) |
 | Swift | `swift:4.2` (default) |
 | PHP | `php:7.4` (default) |
@@ -47,6 +47,7 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 These runtimes (kinds) are deprecated:
 - `go:1.11` (deprecated)
 - `go:1.15` (deprecated)
+- `nodejs:12` (deprecated)
 - `nodejs:10` (deprecated)
 - `nodejs:8` (deprecated)
 - `php:7.3` (deprecated)
@@ -72,8 +73,11 @@ For more information about supported and disabled runtimes, see [Available image
 ## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
-By default, all Node.js actions are executed in a version 12 environment.
+By default, all Node.js actions are executed in a version 16 environment.
 {: note}
+
+Node.js version 12 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 12 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
+{: deprecated}
 
 Node.js version 10 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 10 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
 {: deprecated}
@@ -83,10 +87,24 @@ Node.js version 8 is deprecated and is planned to be removed soon. To continue r
 
 | Kind | Node.js version | Description | Changelog |
 | --- | --- | --- | --- |
-| `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | By default, all Node.js actions are executed in a version 12 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
+| `nodejs:16` | [16.x](https://nodejs.org/docs/latest-v16.x/api/){: external} | By default, all Node.js actions are executed in a version 16 environment. | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs16/CHANGELOG.md){: external}. |
+| `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
 | `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [CHANGELOG.md](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 {: caption="Table 1. Node.js versions" caption-side="bottom"}
+
+### Migrating from Node.js 12 to Node.js 16
+{: #migrate_javascript_environments_1216}
+
+| Package | Details |
+| --- | --- | 
+| `cloudant` | The `@cloudant/cloudant` SDK package in the `nodejs:12` runtime is deprecated and has been replaced with `@ibm-cloud/cloudant` in `nodejs:16`. This is a major change and will cause incompatibilities, which might cause your action to fail. If your action uses `@cloudant/cloudant` consider migrating to `@ibm-cloud/cloudant`. For more information about migrating to `ibm-watson v6.x`, see [Migrating to the cloudant-node-sdk](https://github.com/cloudant/nodejs-cloudant/blob/master/MIGRATION.md){: external}.  \n  If migrating is not possible, consider packaging `@cloudant/cloudant` with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). For more information about the `@ibm-cloud/cloudant` SDK look at the [IBM Clodant Docs](https://cloud.ibm.com/apidocs/cloudant?code=node). |
+| `redis` | The `redis` package in the `nodejs:16` runtime is at version v4.x. \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to `redis v4`, see [v3 to v4 Migration Guide](https://github.com/redis/node-redis/blob/master/docs/v3-to-v4.md){: external}. \n  If migrating is not possible, consider packaging the older version of `redis` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+| `uuid` | The `uuid` package in the `nodejs:16` runtime is at version v8.x. \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to the current version pf `uuid`, see [Upgrading From uuid@3.x](https://www.npmjs.com/package/uuid#upgrading-from-uuid3x){: external}. \n  If migrating is not possible, consider packaging the older version of `redis` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+{: caption="Table 2. Migrating details from Node.js 12 to Node.js 16" caption-side="bottom"}
+
+For more information about migrating to `Node.js:12`, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}.
+
 
 ### Migrating from Node.js 10 to Node.js 12
 {: #migrate_javascript_environments_1012}

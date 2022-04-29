@@ -2,7 +2,8 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-03-26"
+
+lastupdated: "2022-04-29"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -24,6 +25,16 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 For information about changes to the {{site.data.keyword.openwhisk_short}} CLI, see [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 {: tip}
+
+## April 2022
+{: #openwhisk-apr22}
+
+### 29 April 2022
+{: #openwhisk-apr2922}
+{: release-note}
+
+Node.js version 16 is now the default. 
+:   See [JavaScript runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments).
 
 ## June 2021
 {: #openwhisk-jun21}

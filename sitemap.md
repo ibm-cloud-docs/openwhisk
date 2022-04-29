@@ -2,7 +2,8 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-26"
+
+lastupdated: "2022-04-29"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -128,6 +129,12 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
+
+* [April 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr22)
+
+    * [29 April 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr2922)
+
+        * Node.js version 16 is now the default. 
 
 * [June 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-jun21)
 
@@ -1193,6 +1200,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Available images and runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes_available)
 
 * [JavaScript runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments)
+
+    * [Migrating from Node.js 12 to Node.js 16](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_1216)
 
     * [Migrating from Node.js 10 to Node.js 12](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_1012)
 
