@@ -2,8 +2,7 @@
 
 copyright:
   years: 2017, 2022
-
-lastupdated: "2022-04-29"
+lastupdated: "2022-05-18"
 
 keywords: web actions, serverless, functions, sitemap, actions
 

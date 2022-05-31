@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-05-18"
 
 keywords: serverless, rest api, gateway, web actions, functions, API, HTTP
 
@@ -19,12 +19,11 @@ subcollection: openwhisk
 You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=openwhisk-actions_web). 
 {: shortdesc}
 
-
+IBM API Management and IBM Cloud API Gateway services are deprecated. As of 31 August 2022, access to the services will be removed. For more information, see the [deprecation announcement](https://community.ibm.com/community/user/integration/blogs/newton-piccone2/2021/08/31/deprecation-of-the-ibm-cloud-api-gateway-service-e). Existing users can continue to use the services until they are no longer supported on 31 August 2022.
+{: deprecated}
 
 Why use REST APIs with {{site.data.keyword.openwhisk_short}}?
 :    You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies.
-
-:    For more information about API Management, you can read the [API Management documentation](/docs/api-management?topic=api-management-manage_openwhisk_apis).
 
 ## Creating your first API
 {: #api_create}
@@ -257,15 +256,16 @@ This example uses the same names and code as the example in [Creating your first
     ```
     {: screen}
 
+
 ## Modifying the API configuration
 {: #api_modify_config}
 
-After you create your configuration, you can use the [APIs tab](https://cloud.ibm.com/functions/apimanagement){: external} in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
+After you create your configuration, you can use the APIs tab in the {{site.data.keyword.openwhisk_short}} dashboard to modify the configuration in the following ways.
 
-* [Create a {{site.data.keyword.openwhisk_short}} API](/docs/api-management?topic=api-management-manage_openwhisk_apis#manage_openwhisk_apis) that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
-* [Secure your API](/docs/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by applying API security and rate-limiting policies.
-* [Manage traffic](/docs/api-management?topic=api-management-manage_apis#settings_api_manage_apis) by viewing API usage statistics and checking out response logs.
-* [Socialize and share](/docs/api-management?topic=api-management-manage_apis#share_api_manage_apis) your API with developers both within and outside {{site.data.keyword.cloud_notm}}.
+* Create a {{site.data.keyword.openwhisk_short}} API that wraps a set of {{site.data.keyword.openwhisk_short}} actions.
+* Secure your API by applying API security and rate-limiting policies.
+* Manage traffic by viewing API usage statistics and checking out response logs.
+* Socialize and share your API with developers both within and outside {{site.data.keyword.cloud_notm}}.
 
 After you are finished updating the configuration, you can download the definition file in JSON format, and then import it again by using the CLI. Downloading and importing the configuration is useful, for example, for an unattended deployment in a continuous integration and deployment (CICD) pipeline. You can also upload and import the API definition file by using the console.
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-05-18"
 
 keywords: cloudant, event, action, trigger, sequence, functions, database, document, rule
 
@@ -35,7 +35,7 @@ For a full list of the entities that are available in the `/whisk.system/cloudan
 | `/whisk.system/cloudant/write` | Action | `dbname`, `overwrite`, `doc` | Write a document to a database. |
 | `/whisk.system/cloudant/update-document` | Action | `dbname`, `doc` | Update a document in a database. |
 | `/whisk.system/cloudant/changes` | Feed | `dbname`, `iamApiKey`, `iamUrl`, `filter`, `query_params`, `maxTriggers` | Fire trigger events on changes to a database. |
-{: caption="Table 1. Entities that are available in the `/whisk.system/cloudant` package" caption-side="bottom"}
+{: caption="Table 1. Entities that are available in the cloudant package" caption-side="bottom"}
 
 The `includeDoc` parameter is no longer supported for use with `/whisk.system/cloudant/changes` feed. If you created triggers that use this parameter, you must re-create them without the `includeDoc` parameter.
 {: deprecated}
