@@ -2,9 +2,9 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-05-31"
 
-keywords: cli, functions, changelog, updates, fixes
+keywords: cli, functions, changelog, change log, updates, fixes
 
 subcollection: openwhisk
 

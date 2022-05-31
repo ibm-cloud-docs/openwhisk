@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-14"
+lastupdated: "2022-05-31"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -91,7 +91,7 @@ In addition to the standard `application/json`, web actions can receive URL enco
 A web action can be invoked through any of these HTTP methods: `GET`, `POST`, `PUT`, `PATCH`, and `DELETE`, as well as `HEAD` and `OPTIONS`.
 
 ### Non-JSON body and raw HTTP entity handling
-{: #actions_web_raw_enable}
+{: #actions_web_raw_handle}
 
 A web action can accept an HTTP request body other than a JSON object, and can elect to always receive such values as opaque values (plain text when not binary file, or base64 encoded string otherwise).
 
@@ -477,7 +477,7 @@ The `__ow_user` is only present when the web action is [annotated to require aut
 Supported SSL protocols: TLS 1.2, TLS 1.3 ([draft version 18](https://datatracker.ietf.org/doc/html/draft-ietf-tls-tls13-18){: external})
 
 ### Altering the response content of web action
-{: #extra_features}
+{: #action_web_alter_response}
 
 You can alter the response content of a web action to return different content types by using [Content extensions](#actions_web_extra). 
 {: shortdesc}
@@ -542,7 +542,7 @@ To alter the response of a web action:
     ```
     {: screen}
 
-    b. Test the action by using a query parameter. You can test the action by either:{: #query_test}
+    b. Test the action by using a query parameter. You can test the action by either:
 
         * Running the following cURL command.
         
@@ -1032,7 +1032,7 @@ When raw HTTP content is processed, the `__ow_body` content is encoded in Base64
     {: screen}
 
 ## Options requests
-{: #actions_web_options}
+{: #actions_web_requests}
 
 By default, an `OPTIONS` request that is made to a web action results in CORS headers that are automatically added to the response headers. These headers allow all origins and the `OPTIONS`, `GET`, `DELETE`, `POST`, `PUT`, `HEAD`, and `PATCH` HTTP verbs.
 {: shortdesc}

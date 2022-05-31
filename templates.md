@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-13"
+lastupdated: "2022-05-31"
 
-keywords: deploy, deployment templates, templates, example, quickstart, functions, serverless, actions
+keywords: deploy, deployment templates, templates, example, quick start, functions, serverless, actions
 
 subcollection: openwhisk
 
@@ -12,16 +12,16 @@ subcollection: openwhisk
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Deploying quickstart templates
+# Deploying quick start templates
 {: #templates}
 
 {{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other services from {{site.data.keyword.cloud_notm}}. By using these templates, you can understand how {{site.data.keyword.openwhisk}} entities work together and even use these entities as a basis for your own project. 
 {: shortdesc}
 
-## Available quickstart templates
+## Available quick start templates
 {: #available-templates}
 
-The following quickstart templates are available for deployment. You can deploy the templates as is, or you can access the code for each template in its code repository, modify it as you like, and then create your own function.
+The following quick start templates are available for deployment. You can deploy the templates as is, or you can access the code for each template in its code repository, modify it as you like, and then create your own function.
 {: shortdesc}
 
 | Name | Description | Supported Runtimes | Source repository |
@@ -411,7 +411,7 @@ Test out the **Get HTTP Resource** action by using one of the following methods:
     {: pre}
 
 
-All of these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
+All these invocations return the default location `Austin` or else the location parameter that you specified in JSON format.  
 
 ```sh
 {

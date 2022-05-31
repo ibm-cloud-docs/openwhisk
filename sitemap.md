@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-18"
+lastupdated: "2022-05-31"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -426,13 +426,13 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Next steps for namespaces](/docs/openwhisk?topic=openwhisk-namespaces#namespaces_next)
 
 
-## Deploying quickstart templates
-{: #sitemap_deploying_quickstart_templates}
+## Deploying quick start templates
+{: #sitemap_deploying_quick_start_templates}
 
 
-[Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates#templates)
+[Deploying quick start templates](/docs/openwhisk?topic=openwhisk-templates#templates)
 
-* [Available quickstart templates](/docs/openwhisk?topic=openwhisk-templates#available-templates)
+* [Available quick start templates](/docs/openwhisk?topic=openwhisk-templates#available-templates)
 
 * [Deploying the {{site.data.keyword.cloudant_short_notm}} Events template](/docs/openwhisk?topic=openwhisk-templates#cloudant-template)
 
@@ -543,7 +543,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [Activations that use multiple HTTP verbs](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options)
 
-    * [Non-JSON body and raw HTTP entity handling](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_raw_enable)
+    * [Non-JSON body and raw HTTP entity handling](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_raw_handle)
 
 * [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_example)
 
@@ -561,7 +561,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [HTTPS Endpoint support](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_endpoint)
 
-    * [Altering the response content of web action](/docs/openwhisk?topic=openwhisk-actions_web#extra_features)
+    * [Altering the response content of web action](/docs/openwhisk?topic=openwhisk-actions_web#action_web_alter_response)
 
 * [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure)
 
@@ -579,7 +579,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [Decoding binary body content from Base64](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_decode)
 
-* [Options requests](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options)
+* [Options requests](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_requests)
 
 * [Error handling](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_errors)
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-04-29"
+lastupdated: "2022-05-31"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -397,8 +397,8 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
     docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm install && zip action.zip *"
     ```
     {: pre}
-
-3. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
+    
+2. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
 
     ```bash
     ibmcloud fn action create my-action action.zip --kind nodejs:16
