@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-06-09"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -128,6 +128,12 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
+
+* [June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june22)
+
+    * [9 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june922)
+
+        * Added information about packaging Java code. 
 
 * [April 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr22)
 
@@ -682,6 +688,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Packaging Java code](/docs/openwhisk?topic=openwhisk-prep#prep_java_pkg)
 
     * [Packaging Java code with Gradle](/docs/openwhisk?topic=openwhisk-prep#prep_java_gradle)
+
+    * [Packaging Java code by using the Java runtime with Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_docker)
 
 * [Preparing .NET Core apps](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet)
 

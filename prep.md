@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-06-09"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -598,7 +598,7 @@ Before you begin, [review the packages that are included with the Python runtime
 ### Packaging Python code with a local virtual environment in a compressed file
 {: #prep_python_local_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip` ![External link icon](../icons/launch-glyph.svg "External link icon")](https://packaging.python.org/tutorials/installing-packages/). 
+You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip`](https://packaging.python.org/tutorials/installing-packages/){: external}. 
 
 The setup of the local Python environment has a major impact on the compressed action file that is created. Some configurations (for example, non-default installation paths or mixed Python installations) can make the compressed action file fail during execution.
 
@@ -1423,8 +1423,8 @@ You can create an action that includes multiple Go packages. Each package must i
 ### Create an action by using external libraries with Go modules
 {: #prep_go_external_libraries}
 
-You can create an action by using third-party libraries with Go modules. For more information about Go modules, see [Go module doc](https://golang.org/ref/mod).
-{: #shortdesc}
+You can create an action by using third-party libraries with Go modules. For more information about Go modules, see [Go module doc](https://go.dev/ref/mod){: external}.
+{: shortdesc}
 
 If the action has not been pre-compiled, then the libraries are downloaded at the action execution time.
 If you pre-compile the action, then the libraries are already packaged into the binary and don't need to be downloaded during the action execution time.
@@ -2071,6 +2071,108 @@ The following example uses Gradle to build a Java action that leverages the libr
 
 For more information, read the Gradle documentation [Declaring Dependencies](https://docs.gradle.org/current/userguide/declaring_dependencies.html#declaring_dependencies){: external}.
 
+### Packaging Java code by using the Java runtime with Docker
+{: #prep_java_docker}
+
+Package your code with Docker by creating a `.jar` file inside the Java runtime.
+{: shortdesc}
+
+Before you begin, you must have Docker installed locally.
+
+You won´t need Java installed locally as everything is supplied by the Java runtime.
+{: note}
+
+To create a Java action by using Docker, complete the following steps.
+
+1. Create `Hello.java` file
+    ```java
+    import com.google.gson.JsonObject;
+    
+    public class Hello {
+        public static JsonObject main(JsonObject args) {
+            String name = "stranger";
+            if (args.has("name"))
+                name = args.getAsJsonPrimitive("name").getAsString();
+            JsonObject response = new JsonObject();
+            response.addProperty("greeting", "Hello, " + name + "!");
+            return response;
+        }
+    }
+    ```
+    {: pre}
+
+2. Navigate to the folder that contains the `Hello.java` file and run the Docker Java runtime container.
+
+    ```bash
+    docker run --rm -it  --entrypoint "/bin/bash" -v $PWD:/tmp openwhisk/java8action:nightly
+    ```
+    {: pre}
+
+    Use the `nightly` tag for the latest runtime version or a specific tag.
+    {: note}
+
+3. Set up the container.
+
+    1. Navigate to the `/tmp` folder that contains your action code mounted from the host system.
+        ```bash
+        cd /tmp
+        ```
+	{: pre}
+
+    2. Install `curl` to download the dependencies .
+        ```bash
+        apt update && apt install curl -y
+        ```
+	{: pre}
+
+    3. Download the `gson` dependency.
+        ```bash
+        curl -L -o gson-2.8.5.jar https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
+        ```
+	{: pre}
+	
+    4. Export the path and add `gson` to it.
+        ```bash
+        export CLASSPATH=$CLASSPATH:$PWD/gson-2.8.5.jar
+        export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+        ```
+	{: pre}
+	
+4. Compile the code
+
+    1. Compile the Java code to a class
+        ```bash
+        javac Hello.java
+        ```
+	{: pre}
+    
+    2. Package the Java class to a deployable `.jar` file.
+        ```bash
+        jar cvf Hello.jar Hello.class
+        ```
+	{: pre}
+
+5. Exit the runtime container.
+
+    ```bash
+    exit
+    ```
+    {: pre}
+
+6. Create action called `hello-java`.
+
+    ```bash
+    ibmcloud fn action create hello-java Hello.jar --main Hello
+    ```
+    {: pre}
+
+7. Invoke the action 
+
+    ```bash
+    ibmcloud fn action invoke hello-java -b
+    ```
+    {: pre}
+
 ## Preparing .NET Core apps
 {: #prep_dotnet}
 
@@ -2086,6 +2188,7 @@ A .NET Core action is a .NET Core class library with a method that is expected t
 ```vbnet
 Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
 ```
+{: codeblock}
 
 ### Packaging .NET Core code
 {: #prep_dotnet_pkg}

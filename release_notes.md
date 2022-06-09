@@ -2,8 +2,7 @@
 
 copyright:
   years: 2019, 2022
-
-lastupdated: "2022-04-29"
+lastupdated: "2022-06-09"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -25,6 +24,16 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 For information about changes to the {{site.data.keyword.openwhisk_short}} CLI, see [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 {: tip}
+
+## June 2022
+{: #openwhisk-june22}
+
+### 9 June 2022
+{: #openwhisk-june922}
+{: release-note}
+
+Added information about packaging Java code. 
+:   See [Packaging Java code by using the Java runtime with Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_docker).
 
 ## April 2022
 {: #openwhisk-apr22}

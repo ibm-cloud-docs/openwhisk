@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-06-09"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -533,7 +533,7 @@ For more information, see [Creating actions from binaries](/docs/openwhisk?topic
 Go
 :    By default, all Go actions are executed in a version 1.17 environment. Go Version 1.11 and 1.15 are deprecated.
      When migrating from Go:1.11 to Go:1.17:
-     - Go:1.17 uses [Go Modules](https://golang.org/ref/mod){: external}.
+     - Go:1.17 uses [Go Modules](https://go.dev/ref/mod){: external}.
      - File containing the entry function (e.g `main.go` `Main`) needs be placed in root, no `"main"` directory is supported.
 
 :    For more information about the `go` runtimes, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-go/blob/master/README.md){: external}.
