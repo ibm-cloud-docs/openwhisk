@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-09"
+lastupdated: "2022-06-21"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -130,6 +130,10 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
 
 * [June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june22)
+
+    * [21 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june2122)
+
+        * Additional support for the IBM Cloud Object Storage trigger.
 
     * [9 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june922)
 
@@ -690,6 +694,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Packaging Java code with Gradle](/docs/openwhisk?topic=openwhisk-prep#prep_java_gradle)
 
     * [Packaging Java code by using the Java runtime with Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_docker)
+
+    * [Packaging Java code with Maven inside Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_maven_docker)
 
 * [Preparing .NET Core apps](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet)
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-09"
+lastupdated: "2022-06-21"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -27,6 +27,13 @@ For information about changes to the {{site.data.keyword.openwhisk_short}} CLI, 
 
 ## June 2022
 {: #openwhisk-june22}
+
+### 21 June 2022
+{: #openwhisk-june2122}
+{: release-note}
+
+Additional support for the IBM Cloud Object Storage trigger.
+:   You can utilize the new Object Storage functionality for versioning and replication. See [Setting up the IBM Cloud Object Storage trigger](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_ev).
 
 ### 9 June 2022
 {: #openwhisk-june922}

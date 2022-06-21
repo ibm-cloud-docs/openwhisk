@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-22"
+lastupdated: "2022-06-21"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -38,6 +38,9 @@ Review the following table for a list of {{site.data.keyword.openwhisk_short}} p
 ## Setting up the {{site.data.keyword.cos_full_notm}} trigger
 {: #pkg_obstorage_ev}
 
+With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map so that users can have access to the latest street data for their GPS application.
+{: shortdesc}
+
 What is the {{site.data.keyword.cos_full_notm}} trigger?
 :    The {{site.data.keyword.cos_full_notm}} package is a pre-installed {{site.data.keyword.openwhisk_short}} package that you can use to create triggers to listen for changes to objects in a bucket. When a bucket change occurs, the trigger is fired. You can then create actions and rules to process object changes from the bucket. The trigger is available in the `us-east`, `us-south`, `eu-gb`, `eu-de`, and `jp-tok` regions.
 
@@ -52,8 +55,12 @@ How do I use the trigger?
      - You can write your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) in the language of your choice.
      - You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 
-Sample use case
-:    With the {{site.data.keyword.cos_full_notm}} trigger, you can listen for changes to GPS street data stored in an {{site.data.keyword.cos_full_notm}} bucket. Then, when changes occur, you can trigger the automatic regeneration of a GPS map so that users can have access to the latest street data for their GPS application.
+Can I have multiple revisions of objects in my bucket?
+: Yes! Versioning allows you to have more than one version of an object in your bucket. For more information, see [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
+
+Can I use replication with my {{site.data.keyword.cos_full_notm}} trigger? 
+: Yes! With replication, you can define rules for automatically copying bucket objects from a source bucket to one or more destination buckets. For more information, see [Replicating objects](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
+
 
 ### Prerequisites for working with the {{site.data.keyword.cos_full_notm}} trigger
 {: #cos_changes_pre}

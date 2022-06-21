@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-09"
+lastupdated: "2022-06-21"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -598,7 +598,7 @@ Before you begin, [review the packages that are included with the Python runtime
 ### Packaging Python code with a local virtual environment in a compressed file
 {: #prep_python_local_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip`](https://packaging.python.org/tutorials/installing-packages/){: external}. 
+You can package Python dependencies by using a virtual environment, `virtualenv`. With the virtual environment, you can link additional packages that can be installed by using [`pip`](https://packaging.python.org/en/latest/tutorials/installing-packages/){: external}. 
 
 The setup of the local Python environment has a major impact on the compressed action file that is created. Some configurations (for example, non-default installation paths or mixed Python installations) can make the compressed action file fail during execution.
 
@@ -748,7 +748,7 @@ You can use this method to extend the functionality of {{site.data.keyword.openw
 ### Packaging Python code with a Docker virtual environment in an archive
 {: #prep_python_virtenv}
 
-You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip`](https://packaging.python.org/tutorials/installing-packages/){: external}.
+You can package Python dependencies by using a virtual environment, `virtualenv`. By using the virtual environment, you can link more packages that can be installed by using [`pip`](https://packaging.python.org/en/latest/tutorials/installing-packages/){: external}.
 
 This approach is recommended when you want to add additional required python packages. It ensures that the generated compressed action file is compatible with the Python runtime used for later execution of the action.
 {: note}
@@ -1946,7 +1946,7 @@ Package your code by creating a .jar file.
 
 Before you begin
 
-You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.8.5.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
+You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.9.0){: external}.
 
 If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
 {: note}
@@ -1970,12 +1970,12 @@ To create a Java action, complete the following steps.
     ```
     {: codeblock}
 
-2. Download the [`gson-2.8.5.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
+2. Download the [`gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
 
-3. Add the `gson-2.8.5.jar` to your `ClASSPATH`. This example uses `gson-2.8.5.jar`, which is saved in a `test` folder in the `Desktop` directory.
+3. Add the `gson-2.9.0.jar` to your `ClASSPATH`. This example uses `gson-2.9.0.jar`, which is saved in a `test` folder in the `Desktop` directory.
 
     ```bash
-    export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.8.5.jar
+    export CLASSPATH=$CLASSPATH:/Users/Desktop/test/gson-2.9.0.jar
     ```
     {: pre}
 
@@ -1986,7 +1986,7 @@ To create a Java action, complete the following steps.
     ```
     {: pre}
 
-5. Verify the JDK `bin` folder and `gson-2.8.5.jar` are in your `CLASSPATH`.
+5. Verify the JDK `bin` folder and `gson-2.9.0.jar` are in your `CLASSPATH`.
 
     ```bash
     echo $CLASSPATH
@@ -1996,7 +1996,7 @@ To create a Java action, complete the following steps.
     **Example output**
 
     ```sh
-    /Desktop/test/gson-2.8.5.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
+    /Desktop/test/gson-2.9.0.jar:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
     ```
     {: screen}
 
@@ -2050,7 +2050,7 @@ The following example uses Gradle to build a Java action that leverages the libr
     }
 
     dependencies {
-        provided 'com.google.code.gson:gson:2.6.2'
+        provided 'com.google.code.gson:gson:2.9.0'
         compile 'com.google.zxing:core:3.3.0'
         compile 'com.google.zxing:javase:3.3.0'
     }
@@ -2113,7 +2113,7 @@ To create a Java action by using Docker, complete the following steps.
 
 3. Set up the container.
 
-    1. Navigate to the `/tmp` folder that contains your action code mounted from the host system.
+    Navigate to the `/tmp` folder that contains your action code mounted from the host system.
         ```bash
         cd /tmp
         ```
@@ -2127,13 +2127,13 @@ To create a Java action by using Docker, complete the following steps.
 
     3. Download the `gson` dependency.
         ```bash
-        curl -L -o gson-2.8.5.jar https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.8.5.jar
+        curl -L -o gson-2.9.0.jar https://repo1.maven.org/maven2/com/google/code/gson/gson/2.8.5/gson-2.9.0.jar
         ```
 	{: pre}
 	
     4. Export the path and add `gson` to it.
         ```bash
-        export CLASSPATH=$CLASSPATH:$PWD/gson-2.8.5.jar
+        export CLASSPATH=$CLASSPATH:$PWD/gson-2.9.0.jar
         export CLASSPATH=$CLASSPATH:/Library/Java/JavaVirtualMachines/adoptopenjdk-8.jdk/Contents/Home/bin
         ```
 	{: pre}
@@ -2172,6 +2172,100 @@ To create a Java action by using Docker, complete the following steps.
     ibmcloud fn action invoke hello-java -b
     ```
     {: pre}
+
+### Packaging Java code with Maven inside Docker
+{: #prep_java_maven_docker}
+
+1. Create a maven Project
+
+2. Navigate to the folder that contains the maven Project and run the Docker Java runtime container.
+
+    ```bash
+    docker run --rm -it  --entrypoint "/bin/bash" -v $PWD:/tmp openwhisk/java8action:nightly
+    ```
+    {: pre}
+
+    This command run the java runtime container and map the current directory inside the container to `/tmp`
+
+    Use the `nightly` tag for the latest runtime version or a specific tag.
+    {: note}
+
+3. Set up the container.
+
+    Navigate to the `/tmp` folder that contains your action code mounted from the host system.
+    ```bash
+    cd /tmp
+    ```
+    {: pre}
+
+4. Install `curl` and `unzip` to install Maven.
+
+    ```bash
+    apt update && apt install curl unzip -y
+    ```
+    {: pre}
+
+5. Download  `Maven`
+
+    ```bash
+    curl -L -o apache-maven-3.8.5-bin.zip https://dlcdn.apache.org/maven/maven-3/3.8.5/binaries/apache-maven-3.8.5-bin.zip
+    ```
+    {: pre}
+
+6. Extract Maven
+
+    ```bash
+    unzip apache-maven-3.8.5-bin.zip
+    ```
+    {: pre}
+
+7. Add Maven to path
+
+    ```
+    export PATH=$PATH:/apache-maven-3.8.5/bin
+    ```
+    {: pre}
+
+8. Test Maven installation
+
+    ```bash
+    mvn -v
+    ```
+    {: pre}
+	
+9. Package the action code with maven
+
+    ```bash
+    mvn package 
+    ```
+    {: pre}
+
+10. Exit the runtime container.
+
+    ```bash
+    exit
+    ```
+    {: pre}
+
+    At this point the current directory will contiain a `traget` directory containing the action jar file.
+
+11. Create action called .
+
+    ```bash
+    ibmcloud fn action create <actionname> <Jar name>.jar --main <package name and class name seperated by dots>
+    ```
+    {: pre}
+
+    The main name could look something like thes `com.package.example.Hello`.
+    {: note}
+
+7. Invoke the action 
+
+    ```bash
+    ibmcloud fn action invoke <actionname> -b
+    ```
+    {: pre}
+
 
 ## Preparing .NET Core apps
 {: #prep_dotnet}
