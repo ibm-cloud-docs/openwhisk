@@ -2114,6 +2114,7 @@ To create a Java action by using Docker, complete the following steps.
 3. Set up the container.
 
     Navigate to the `/tmp` folder that contains your action code mounted from the host system.
+    
         ```bash
         cd /tmp
         ```
@@ -2221,7 +2222,7 @@ To create a Java action by using Docker, complete the following steps.
 
 7. Add Maven to path
 
-    ```
+    ```sh
     export PATH=$PATH:/apache-maven-3.8.5/bin
     ```
     {: pre}
