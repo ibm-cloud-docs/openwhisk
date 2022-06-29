@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-21"
+lastupdated: "2022-06-29"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -158,8 +158,8 @@ Updated information about packaging Go source files.
 {: #openwhisk-dec1420}
 {: release-note}
 
-Added versions to Quickstart template docs.
-:   See [Deploying quickstart templates](/docs/openwhisk?topic=openwhisk-templates).
+Added versions to Quick start template docs.
+:   See [Deploying quick start templates](/docs/openwhisk?topic=openwhisk-templates).
 
 Updated securing web actions to include information about `X-Require-Whisk-Auth`.
 :   See [Securing web actions](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_secure).

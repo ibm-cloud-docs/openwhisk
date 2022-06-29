@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-18"
+lastupdated: "2022-06-29"
 
 keywords: cloudant, event, action, trigger, sequence, functions, database, document, rule
 
@@ -444,7 +444,7 @@ To create a filter function, you can use an action.
 
 2. Create a design document in the database with the following filter function. Replace `<database_name>` with the name of your database and `<file_path>` with the file path of your `design_doc.json`. Invoke the `write` action to test creating a design document.
 
-The following example shows the command symtax for this example.
+The following example shows the command syntax for this example.
 
 ```bash
 ibmcloud fn action invoke /_/myCloudant/write -p dbname <database_name> -p overwrite true -P <file_path>/design_doc.json

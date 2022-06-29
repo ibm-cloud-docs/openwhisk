@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-21"
+lastupdated: "2022-06-29"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -56,7 +56,7 @@ How do I use the trigger?
      - You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 
 Can I have multiple revisions of objects in my bucket?
-: Yes! Versioning allows you to have more than one version of an object in your bucket. For more information, see [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
+: Yes! Object Storage version support allows you to have more than one version of an object in your bucket. For more information, see [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 
 Can I use replication with my {{site.data.keyword.cos_full_notm}} trigger? 
 : Yes! With replication, you can define rules for automatically copying bucket objects from a source bucket to one or more destination buckets. For more information, see [Replicating objects](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
@@ -69,7 +69,7 @@ Before you begin
 
 You must [create an {{site.data.keyword.cos_full_notm}} service instance](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [create a regional bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets) in one of the supported regions. Note that your bucket must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace.
 
-In order to use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
+To use the {{site.data.keyword.cos_full_notm}} trigger, the following conditions must be met.
 
 * Only [IAM-enabled {{site.data.keyword.openwhisk_short}} namespaces](/docs/openwhisk?topic=openwhisk-namespaces) are supported.
 * Your {{site.data.keyword.cos_full_notm}} bucket must be a regional bucket and must be in the same region as your {{site.data.keyword.openwhisk_short}} namespace. Cross-region and single-site buckets are not supported.
@@ -122,7 +122,7 @@ ibmcloud iam authorization-policies
 The {{site.data.keyword.cos_full_notm}} trigger includes multiple parameters that can be set to filter which bucket change events fire the trigger. For example, you can configure the trigger to fire on all bucket change events. Or, you can filter trigger fires based on the bucket change event type, such as `write`, `delete`, or `all`  events. You can also filter the trigger activations by object `prefix` or `suffix` or both. You can then create actions and rules to process object changes from the bucket. 
 {: shortdesc}
 
-When creating a trigger from the CLI, you can also specify an `endpoint` parameter  When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example:
+When you create a trigger from the CLI, you can also specify an `endpoint` parameter  When not specified, this parameter is set to the schemeless private regional endpoint of your bucket. Example:
 * (Default) Private schemeless endpoint: `s3.private.us-south.cloud-object-storage.appdomain.cloud`. 
 * Endpoint with the `https://` scheme: `https://s3.private.us-south.cloud-object-storage.appdomain.cloud`.
 
@@ -236,7 +236,7 @@ ibmcloud fn rule create cosRule cosTrigger cosChange
 ### 2. Testing the trigger and action
 {: #pkg_obstorage_ev_test}
 
-After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig_ui) and [connect an action to the trigger](#cos_feed_action), you can test that the action is executed as a result of the trigger firing. You can perform this test in either the console or CLI.
+After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig_ui) and [connect an action to the trigger](#cos_feed_action), you can test that the action ran because the trigger fired. You can perform this test in either the console or CLI.
 
 #### Testing with the console
 {: #pkg_obstorage_ev_test_ui}
@@ -581,7 +581,7 @@ After you have updated the package or action to include the `bucket` and `endpoi
 You can use the `object-write` action to write an object to an {{site.data.keyword.cos_full_notm}} bucket. You can use this action from the console or the CLI. 
 {: shortdesc}
 
-In order to write an object, you must specify the `bucket-name`, `object-name`, `body`, and `endpoint`.
+To write an object, you must specify the `bucket-name`, `object-name`, `body`, and `endpoint`.
 
 If you [bound your `bucket` and `endpoint` parameters](#pkg_obstorage_param_bind) to the `cloud-object-storage` package or to the `object-write` action, you do not need to specify them during invocation.
 
@@ -697,7 +697,7 @@ The following package parameters are expected to be bound to the package, and ar
 #### Action parameters for {{site.data.keyword.cos_short}}
 {: #pkg_obstorage_actparams}
 
-The following action parameters are specified when you invoke the individual actions.  Not all of these parameters are supported by every action. Refer to the [Available entities](#pkg_obstorage_actions) table to see which parameters are supported by which action.
+The following action parameters are specified when you invoke the individual actions.  Not all these parameters are supported by every action. Refer to the [Available entities](#pkg_obstorage_actions) table to see which parameters are supported by which action.
 
 | Action parameter | Description |
 | --- | --- |

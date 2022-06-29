@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: push notifications, functions, webhooks, installable package, pre-installed package, package
 
@@ -119,7 +119,7 @@ The `/whisk.system/pushnotifications/sendMessage` action sends push notification
 | `gcmStyleTitle` | Specifies the title of the notification. The title is displayed when the notification is expanded. Title must be specified for all three expandable notifications. |
 | `gcmStyleUrl` | A URL from which the picture has to be obtained for the notification. Must be specified for `picture_notification`. |
 | `gcmStyleText` | The large text that needs to be displayed on expanding a `bigtext_notification`. Must be specified for `bigtext_notification`. |
-| `gcmStyleLines` | An array of strings that is to be displayed in inbox style for `inbox_notification`. Must be specified for `inbox_notification`. |
+| `gcmStyleLines` | An array of strings that is to be displayed in `inbox` style for `inbox_notification`. Must be specified for `inbox_notification`. |
 | `gcmLightsLedArgb` | The color of the led. The hardware does its best approximation. |
 | `gcmLightsLedOnMs` | The number of milliseconds for the LED to be on while it's flashing. The hardware does its best approximation. |
 | `gcmLightsLedOffMs` | The number of milliseconds for the LED to be off while it's flashing. The hardware does its best approximation. |
@@ -203,7 +203,7 @@ The following example shows possible output from the **`action invoke`** command
 ## Sending push notifications on mobile device events
 {: #pkg_push_mobile}
 
-Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device (registration or unregistration) or (subscription or unsubscription) in a specified application.
+Learn how to configure the Push Notification service to fire a trigger when there is device activity such as device register or unregister actions; or subscribe or unsubscribe actions in a specified application.
 {: shortdesc}
 
 This preinstalled package is not available in the Tokyo region.
@@ -274,7 +274,7 @@ The {{site.data.keyword.mobilepushshort}} package includes the following actions
 | --- | --- | --- | --- |
 | `/push-notifications` | Package | `apikey`, `appGuid` | Work with a {{site.data.keyword.mobilepushshort}} instance. |
 | `/push-notifications/send-message` | Action | `text`, `url`, `deviceIds`, `platforms`, `userIds`, `tagNames`, `gcmCollapseKey`, `gcmCategory`, `gcmIcon`, `gcmDelayWhileIdle`, `gcmSync`, `gcmVisibility`, `gcmPayload`, `gcmPriority`, `gcmSound`, `gcmTimeToLive`, `gcmStyleType`, `gcmStyleTitle`, `gcmStyleUrl`, `gcmStyleText`, `gcmStyleLines`, `gcmLightsLedArgb`, `gcmLightsLedOnMs`, `gcmLightsLedOffMs`, `apnsBadge`, `apnsCategory`, `apnsIosActionKey`, `apnsPayload`, `apnsType`, `apnsSound`, `apnsTitleLocKey`, `apnsLocKey`, `apnsLaunchImage`, `apnsTitleLocArgs`, `apnsLocArgs`, `apnstitle`, `apnsSubtitle`, `apnsAttachmentUrl`, `fireFoxTitle`, `fireFoxIconUrl`, `fireFoxTimeToLive`, `fireFoxPayload`, `safariTitle`, `safariUrlArgs`, `safariAction`, `chromeTitle`, `chromeIconUrl`, `chromeTimeToLive`, `chromePayload`, `chromeAppExtTitle`, `chromeAppExtCollapseKey`, `chromeAppExtDelayWhileIdle`, `chromeAppExtIconUrl`, `chromeAppExtTimeToLive`, `chromeAppExtPayload` | Send push notification to one or more specified devices. |
-| `/push-notifications/webhook` | Action | `events` | Fire trigger events on device activities (device registration, unregistration, subscription, or unsubscription) on the Push service. |
+| `/push-notifications/webhook` | Action | `events` | Fire trigger events on device activities (device register, unregister, subscribe, or unsubscribe actions) on the Push service. |
 {: caption="Table 6. Push notification webhook parameters for installable package" caption-side="bottom"}
 
 ### Creating a {{site.data.keyword.mobilepushshort}} service instance
@@ -413,7 +413,7 @@ To install the {{site.data.keyword.mobilepushshort}} package,
 ### Send a push notification
 {: #pkg_push_mobile_sendmsg}
 
-To send a message through the push notification service by using the `send-message` action, use the [ibmcloud fn action invoke] command.
+To send a message through the push notification service by using the `send-message` action, use the [**`ibmcloud fn action invoke`**] command.
 {: shortdesc}
 
 ```sh

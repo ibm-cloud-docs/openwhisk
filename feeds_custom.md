@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: feeds, functions, webhooks, polling, connections, hook
 
@@ -95,7 +95,7 @@ When invoked with `CREATE`, the feed action simply installs a webhook for some o
 
 The webhook is directed to send notifications to a URL such as, `POST /namespaces/{namespace_ID}/triggers/{triggerName}`
 
-The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire as a result of the event.
+The form with the POST request is interpreted as a JSON document that defines parameters on the trigger event. {{site.data.keyword.openwhisk_short}} rules pass these trigger parameters to any actions to fire because of the event.
 
 ## Implementing feeds with polling
 {: #feeds_polling}

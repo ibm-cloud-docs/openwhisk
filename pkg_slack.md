@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: slack package, token-based, api, functions, slack, action, package
 
@@ -71,6 +71,6 @@ The following example shows how to configure Slack, create a package binding, an
 ## Using the Slack token-based API
 {: #pkg_slack_api}
 
-If you prefer, you can choose to use Slack's token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens){: external}. Then, you can use any of the [Slack API methods](https://api.slack.com/methods){: external} as your `url` parameter. For example, to post a message, include a `url` parameter value of [`slack.postMessage`](https://api.slack.com/methods/chat.postMessage){: external}.
+If you prefer, you can choose to use the Slack token-based API, rather than the webhook API. If you so choose, then pass in a `token` parameter that contains your Slack [access token](https://api.slack.com/tokens){: external}. Then, you can use any of the [Slack API methods](https://api.slack.com/methods){: external} as your `url` parameter. For example, to post a message, include a `url` parameter value of [`slack.postMessage`](https://api.slack.com/methods/chat.postMessage){: external}.
 
 

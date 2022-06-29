@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: alarms, serverless, triggers, functions, event, cron
 
@@ -42,7 +42,7 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 | `--feed /whisk.system/alarms/once` | The alarm package file path for the `fireOnce` feed. |
 | `--param date` | Replace `<date>` with the date when you plan to fire the trigger. The trigger fires once at the specified time. The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 `January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/)){: external}. |
 | `--param trigger_payload` | (Optional) Replace `<key>` and `<value>` with the parameters of the trigger when the trigger is fired. |
-| `--param deleteAfterFire` | (Optional) Whether the trigger and any associated rules are deleted after the trigger is fired. Replace `<delete_option>` with one of the following. \n - `false` - (default) No action is taken after the trigger fires. \n - `true` - The trigger is deleted after it fires. \n - `rules` - The trigger and all of its associated rules are deleted after it fires. |
+| `--param deleteAfterFire` | (Optional) Whether the trigger and any associated rules are deleted after the trigger is fired. Replace `<delete_option>` with one of the following. \n - `false` - (default) No action is taken after the trigger fires. \n - `true` - The trigger is deleted after it fires. \n - `rules` - The trigger and all its associated rules are deleted after it fires. |
 {: caption="Table 2. Understanding the trigger create fireOnce command components" caption-side="bottom"}
 
 The following command is an example of creating a trigger that fires once on December 25, 2019, 12:30:00 UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`. After the trigger fires, the trigger and all associated rules are deleted.
@@ -97,8 +97,8 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 
 | `periodic` | The type of alarm trigger you are creating. |
 | `--feed /whisk.system/alarms/alarm` | The alarm package file path for the periodic alarm feed. |
-| `--param cron` | Replace `<cron>` with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the [UNIX crontab syntax](http://crontab.org){: external} and is a sequence of maximum five fields. Fields are separated by spaces in the format `X X X X X`. The following strings are examples that use varying durations of frequency. \n - `\* \* \* \* \*` - The trigger fires at the start of every minute. \n - `0 \* \* \* \*` - The trigger fires at the start of every hour. \n - `0 \*/2 \* \* \*` - The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, ...). \n - `0 9 8 \* \*` - The trigger fires at 9:00:00AM (UTC) on the eighth day of every month. |
-| `--param timezone` | (Optional) Replace `<timezone>` with a string that specifies the time zone. The actual time to fire the trigger is modified relative to the specified time zone. If the time zone is invalid, an error is thrown. You can check all of the available time zones at the [Moment Time zone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names){: external}. |
+| `--param cron` | Replace `<cron>` with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the [UNIX crontab syntax](http://crontab.org){: external} and is a sequence of maximum five fields. Fields are separated by spaces in the format `X X X X X`. The following strings are examples that use varying durations of frequency. \n - `\* \* \* \* \*` - The trigger fires at the start of every minute. \n - `0 \* \* \* \*` - The trigger fires at the start of every hour. \n - `0 \*/2 \* \* \*` - The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, and so on). \n - `0 9 8 \* \*` - The trigger fires at 9:00:00AM (UTC) on the eighth day of every month. |
+| `--param timezone` | (Optional) Replace `<timezone>` with a string that specifies the time zone. The actual time to fire the trigger is modified relative to the specified time zone. If the time zone is invalid, an error is thrown. You can check all the available time zones at the [Moment Time zone Website](http://momentjs.com/timezone/docs/#/data-loading/getting-zone-names){: external}. |
 | `--param trigger_payload` | (Optional) Replace `<key>` and `<value>` with the parameters of the trigger when the trigger is fired. |
 | `--param startDate` | (Optional) Replace `<startDate>` with the date when you plan to fire the first trigger. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/){: external}. |
 | `--param stopDate` | (Optional) Replace `<stopDate>` with the date that you want the trigger to stop running. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/){: external}. |

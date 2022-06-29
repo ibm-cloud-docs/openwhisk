@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-04-29"
+lastupdated: "2022-06-29"
 
 keywords: managing actions, manage, activation, action logs, changing runtime, delete, namespace, cli, rule, trigger, deployment, list, package, property, sdk, service
 
@@ -258,7 +258,7 @@ ibmcloud fn action invoke hello --blocking
 ### `ibmcloud fn action list`
 {: #cli_action_list}
 
-List all of the actions that you created or a specific number of actions.
+List all the actions that you created or a specific number of actions.
 {: shortdec}
 
 ```sh
@@ -430,7 +430,7 @@ ibmcloud fn activation get 8694a4501be6486a94a4501be6886a1e --summary
 ### `ibmcloud fn activation list`
 {: #cli_activation_list}
 
-List all of the activation IDs for all of the actions in a package.
+List all the activation IDs for all the actions in a package.
 {: shortdec}
 
 ```sh
@@ -724,7 +724,7 @@ ibmcloud fn api get /hello /world
 ### `ibmcloud fn api list`
 {: #cli_api_list}
 
-List all of the APIs that you created or a specific number of APIs. If no name or base path is specified, all of the APIs are listed.
+List all the APIs that you created or a specific number of APIs. If no name or base path is specified, all the APIs are listed.
 {: shortdec}
 
 ```sh
@@ -1154,7 +1154,7 @@ To see CLI help for the **`package`** command, run `ibmcloud fn package`.
 ### `ibmcloud fn package bind`
 {: #cli_pkg_bind}
 
-Bind parameters to a package. All of the actions within the package inherit those parameters unless otherwise specified.
+Bind parameters to a package. All the actions within the package inherit those parameters unless otherwise specified.
 {: shortdec}
 
 ```sh
@@ -1298,7 +1298,7 @@ ibmcloud fn package get hello
 ### `ibmcloud fn package list`
 {: #cli_pkg_list}
 
-List all of the packages that you created or a specific number of packages.
+List all the packages that you created or a specific number of packages.
 {: shortdec}
 
 ```sh
@@ -1336,7 +1336,7 @@ Run `ibmcloud fn package list /whisk.system` to view a list of preinstalled pack
 ### `ibmcloud fn package refresh`
 {: #cli_pkg_refresh}
 
-Refresh the package bindings for all of the packages within a specific namespace.
+Refresh the package bindings for all the packages within a specific namespace.
 {: shortdec}
 
 ```sh
@@ -1693,7 +1693,7 @@ ibmcloud fn rule get myrule
 ### `ibmcloud fn rule list`
 {: #cli_rule_list}
 
-List all of the rules that you created or a specific number of rules.
+List all the rules that you created or a specific number of rules.
 {: shortdec}
 
 ```sh
@@ -2045,7 +2045,7 @@ ibmcloud fn trigger get mytrigger
 ### `ibmcloud fn trigger list`
 {: #cli_trigger_list}
 
-List all of the triggers that you created or a specific number of triggers.
+List all the triggers that you created or a specific number of triggers.
 {: shortdec}
 
 ```sh

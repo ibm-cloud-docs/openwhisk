@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-01-13"
+lastupdated: "2022-06-29"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -25,7 +25,7 @@ In this tutorial, learn how to call an action from another action by creating a 
 
 This tutorial uses {{site.data.keyword.openwhisk_short}} to build a custom sequence within another Node.js action to model a typical scenario, such as getting data from {{site.data.keyword.cos_full_notm}}, retrieving related data from {{site.data.keyword.cloudant}} database, and then putting the results back into {{site.data.keyword.cos_full_notm}}. To accomplish this task, first create an {{site.data.keyword.cos_full_notm}} action, then an {{site.data.keyword.cloudant}} database action, and finally a main action that calls both of them.
 
-Note that this tutorial is a simulation; it does not connect to {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}}. This tutorial does, however, run successfully to show you how to call an action from another action. You can use this tutorial as a building block to create something new. Because access to both {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}} is asynchronous, in order to simulate asynchronous code, the actions use a timeout to complete these actions at a later point in time. This simulation is important to verify whether or not the custom sequence action code, which uses the `openwhisk` SDK, is using promises properly.
+Note that this tutorial is a simulation; it does not connect to {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}}. This tutorial does, however, run successfully to show you how to call an action from another action. You can use this tutorial as a building block to create something new. Because access to both {{site.data.keyword.cos_full_notm}} and {{site.data.keyword.cloudant}} is asynchronous, to simulate asynchronous code, the actions use a timeout to complete these actions at a later point in time. This simulation is important to verify whether the custom sequence action code, which uses the `openwhisk` SDK, is using promises properly.
 
 The code for the actions also includes some basic error handling code, including explanations. Note that, when you run these actions, you might not ever see the error handling code in this example. However, you might find this code useful if you choose to adapt the code examples.
 

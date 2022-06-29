@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: mobile, sdk, cocoapods, carthage, functions, action, trigger
 
@@ -65,14 +65,14 @@ end
 ### Install mobile SDK with Carthage
 {: #install-mobile-sdk-carthage}
 
-Create a file in your app's project directory and name it `Cartfile`. Put the following line in the file:
+Create a file in the project directory for your app and name it `Cartfile`. Put the following line in the file:
 
 ```sh
 github "openwhisk/openwhisk-client-swift.git" ~> 0.3.0 # Or latest version
 ```
 {: pre}
 
-From the command line, type `carthage update --platform ios`. Carthage downloads and builds the SDK, creates a directory that is called Carthage in your app's project directory, and puts an `OpenWhisk.framework` file inside Carthage/build/iOS.
+From the command line, type `carthage update --platform ios`. Carthage downloads and builds the SDK, creates a directory that is called Carthage in the project directory for your app, and puts an `OpenWhisk.framework` file inside Carthage/build/iOS.
 
 You must then add `OpenWhisk.framework` file to the embedded frameworks in your Xcode project
 
@@ -141,7 +141,7 @@ To invoke a remote action, you can call `invokeAction` with the action name. Use
 Example
 
 ```swift
-// In this example, we are invoking an action to print a message to the {{site.data.keyword.openwhisk_short}} Console
+// In this example, we are invoking an action to print a message to the IBM Cloud Functions Console
 var params = Dictionary<String, String>()
 params["payload"] = "Hi from mobile"
 do {

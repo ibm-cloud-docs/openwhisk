@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-06-29"
 
 keywords: functions compared, architecture, limitless, functions, openwhisk, actions, redundancy
 
@@ -17,7 +17,7 @@ subcollection: openwhisk
 # Function as a Service architecture
 {: #faas}
 
-{{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}}'s serverless architecture and cost-effective computing with other architecture models.
+{{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}} serverless architecture and cost-effective computing with other architecture models.
 {: shortdesc}
 
 Why go serverless?
@@ -80,7 +80,7 @@ To estimate costs for a serverless application, you can use the [pricing calcula
 ### Limitless capacity
 {: #faas_capacity}
 
-In traditional architectures, each service consumes the amount of capacity that is allocated to them and you are billed for the capacity consumption. {{site.data.keyword.openwhisk_short}}'s serverless architecture reduces the constraint on the granularity of your microservices architecture.
+In traditional architectures, each service consumes the amount of capacity that is allocated to them and you are billed for the capacity consumption. {{site.data.keyword.openwhisk_short}} serverless architecture reduces the constraint on the granularity of your microservices architecture.
 
 When not in use, {{site.data.keyword.openwhisk_short}} costs nothing. Your code runs only when a specific action occurs, such as an HTTP call, database state change, or other type of event that triggers the execution of your code. You get billed by millisecond of execution time rounded up to the nearest 100 MS, not per hour of VM utilization regardless of whether that VM was doing useful work. Because you pay only when events are consumed and not based on the number of environments, you can break down your app into 100, 1000, or even more microservices.
 

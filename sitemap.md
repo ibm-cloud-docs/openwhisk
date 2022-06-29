@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-21"
+lastupdated: "2022-06-29"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -209,7 +209,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [14 December 2020](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec1420)
 
-        * Added versions to Quickstart template docs.
+        * Added versions to Quick start template docs.
 
         * Updated securing web actions to include information about `X-Require-Whisk-Auth`.
 
@@ -1160,25 +1160,25 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [`ibm_functions_activation`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_activation)
 
-    * [`ibm_functions_concurrent-invocations`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent-invocations)
+    * [`ibm_functions_concurrent_invocations`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent_invocations)
 
-    * [`ibm_functions_concurrent-rate-limit`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent-rate-limit)
+    * [`ibm_functions_concurrent_rate_limit`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_concurrent_rate_limit)
 
     * [`ibm_functions_duration`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_duration)
 
-    * [`ibm_functions_init-time`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_init-time)
+    * [`ibm_functions_init_time`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_init_time)
 
-    * [`ibm_functions_status-error-application`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-application)
+    * [`ibm_functions_status_error_application`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status_error_application)
 
-    * [`ibm_functions_status-error-developer`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-developer)
+    * [`ibm_functions_status_error_developer`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status_error_developer)
 
-    * [`ibm_functions_status-error-internal`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-error-internal)
+    * [`ibm_functions_status_error_internal`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status_error_internal)
 
-    * [`ibm_functions_status-success`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status-success)
+    * [`ibm_functions_status_success`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_status_success)
 
-    * [`ibm_functions_timed-rate-limit`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_timed-rate-limit)
+    * [`ibm_functions_timed_rate_limit`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_timed_rate_limit)
 
-    * [`ibm_functions_wait-time`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_wait-time)
+    * [`ibm_functions_wait_time`](/docs/openwhisk?topic=openwhisk-monitor-functions#ibm_functions_wait_time)
 
 * [Attributes for segmentation](/docs/openwhisk?topic=openwhisk-monitor-functions#attributes)
 

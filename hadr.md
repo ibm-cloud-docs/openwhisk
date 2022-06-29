@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-06-29"
 
 keywords: cli, functions, high availability, disaster recovery, HIPPA
 
@@ -58,7 +58,7 @@ The likelihood of a region-wide disaster is low. However, if a disaster happens,
 
 Because Amsterdam does not have any active compute resources for {{site.data.keyword.openwhisk}}, the failover period in the EU Central region might be longer than in other regions.
 
-{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it offers only compute services. It does not back up the data that your workload (actions) processes. In order to store data, you can use separate cloud-based data stores with separate disaster recovery options, which depend on the storage service's SLAs.
+{{site.data.keyword.openwhisk_short}} is a Function-as-a-Service offering, and as such, it offers only compute services. It does not back up the data that your workload (actions) processes. To store data, you can use separate cloud-based data stores with separate disaster recovery options, which depend on the storage service's SLAs.
 
 ## HIPAA
 {: #hippa}

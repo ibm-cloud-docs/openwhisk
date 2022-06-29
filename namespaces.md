@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -36,7 +36,7 @@ When you create a namespace, the following components are created:
 
 | Component | Description |
 | --- | --- | 
-| Service ID | You can use the service ID as a functional ID when you make outbound calls. All of the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
+| Service ID | You can use the service ID as a functional ID when you make outbound calls. All the actions that are created in this namespace can use this service ID for access to other resources. The functional user gets the Reader role by default. Reader access means it can read namespace entities and invoke actions. The Reader role is used by triggers to invoke actions. To control inbound traffic, you might want to grant access to other users such as assigning Reader role to invoke actions. |
 | API key | An API Key for the service ID that can be used to generate IAM tokens. You can use the tokens to authenticate the namespace with other {{site.data.keyword.cloud_notm}} services. The API key is provided to actions as the environment variable `__OW_IAM_NAMESPACE_API_KEY`. |
 {: caption="Table 1. Components of a namespace" caption-side="bottom"}
 
@@ -71,7 +71,7 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 ### What do I do if I have a Cloud Foundry-based namespace?
 {: #cf_namespace}
 
-Your Cloud Foundry-based namespaces still work. However, in order to take advantage of new features, you must create an IAM-enabled namespace.
+Your Cloud Foundry-based namespaces still work. However, to take advantage of new features, you must create an IAM-enabled namespace.
 
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 {: #how_list_namespace}

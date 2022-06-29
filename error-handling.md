@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-02-03"
+  years: 2021, 2022
+lastupdated: "2022-06-29"
 
 keywords: error, error handling, functions, serverless, monitoring, composer
 
@@ -21,7 +21,7 @@ subcollection: openwhisk
 
 In addition, the {{site.data.keyword.openwhisk_short}} service automatically reports errors to the Monitoring service. You can set up the built-in integration for the Monitoring service with the {{site.data.keyword.openwhisk}} service to automatically react to error messages. For more information about setting up an alert through a subsequent action invocation, see [{{site.data.keyword.mon_full_notm}}](/docs/openwhisk?topic=openwhisk-alerts-notify).
 
-In order to handle errors, choose one of the following options.
+To handle errors, choose one of the following options.
 
 1. Handle application errors programmatically within the action implementation itself and handle service errors through the {{site.data.keyword.openwhisk_short}} service API, CLI, SDK, or console by leveraging the automatically set {{site.data.keyword.openwhisk_short}} execution status.
 

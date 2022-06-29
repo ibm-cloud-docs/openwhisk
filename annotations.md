@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-06-29"
 
 keywords: annotations, package, parameters, actions, functions, activations
 
@@ -58,7 +58,7 @@ The following web action annotations must be explicitly set to `true` to enable 
 | `final` | When applied to an action, any action parameters that were previously defined can't be overridden by parameters that are provided during invocation. |
 | `raw-http` | When applied to an action that has the `web-export` annotation, the HTTP request query and body parameters are passed to the action as reserved properties. |
 | `web-custom-options` | Enables a web action to respond to OPTIONS requests with customized headers. Otherwise, a [default CORS response](/docs/openwhisk?topic=openwhisk-actions_web#actions_web_options) applies. |
-| `require-whisk-auth` | The web action can be invoked only by requests that provide appropriate authentication credentials. When set to a boolean value, it controls whether the request's Basic Authentication value is authenticated. A value of `true` authenticates the credentials, and a value of `false` invokes the action without any authentication. When set to an integer or a string, this value must match the request's `X-Require-Whisk-Auth` header value. |
+| `require-whisk-auth` | The web action can be invoked only by requests that provide appropriate authentication credentials. When set to a boolean value, it controls whether the Basic Authentication value of the request is authenticated. A value of `true` authenticates the credentials, and a value of `false` invokes the action without any authentication. When set to an integer or a string, this value must match the request `X-Require-Whisk-Auth` header value. |
 {: caption="Annotations specific to web actions." caption-side="top"}
 
 ## Package annotations

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: logging, monitoring, viewing, logs, query, performance, dashboard, metrics, health, functions, activations, configuring
 
@@ -167,7 +167,7 @@ You can also launch logging from your {{site.data.keyword.openwhisk_short}} dash
 ### Configure {{site.data.keyword.la_full_notm}}
 {: #logs_configure_log}
 
-In order to use the [{{site.data.keyword.la_full_notm}} service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. For more information about additional options, see the [Getting started tutorial](/docs/log-analysis?topic=log-analysis-getting-started){: external}.
+To use the [{{site.data.keyword.la_full_notm}} service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. For more information about additional options, see the [Getting started tutorial](/docs/log-analysis?topic=log-analysis-getting-started){: external}.
 
 To enable an instance that is receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/log-analysis?topic=log-analysis-config_svc_logs){: external} in the logging service.
 

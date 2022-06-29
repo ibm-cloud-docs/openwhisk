@@ -2,7 +2,7 @@
 
 copyright:
   years: 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: troubleshooting actions, functions, help, support, node.js, node, javascript
 
@@ -25,7 +25,7 @@ In the case where an action consumes more memory than requested, the action is t
 ```
 {: screen}
 
-When {{site.data.keyword.openwhisk_short}} runs successive invocations of the same action, the optimizations that are performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected in order to improve run times. 
+When {{site.data.keyword.openwhisk_short}} runs successive invocations of the same action, the optimizations that are performed by {{site.data.keyword.openwhisk_short}} might consume more memory than expected to improve run times. 
 {: tsCauses}
 
 For example, when {{site.data.keyword.openwhisk_short}} runs actions, Linux containers are used for the processes. To speed up the process, new containers are not created each time that your action runs ("cold"), but instead, existing containers that ran your action before ("warm") are reused. So when your action completes, the container "freezes" to pause all processes and then "wakes" when your action is rerun.

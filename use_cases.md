@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-03"
+lastupdated: "2022-06-29"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, functions, api, data processing, event processing
 
@@ -22,7 +22,7 @@ The execution model that is offered by {{site.data.keyword.openwhisk}} supports 
 ## Microservices
 {: #use_cases_microservices}
 
-Despite their benefit, microservice-based solutions remain difficult to build by using mainstream cloud technologies, often requiring control of a complex toolchain, and separate build and operations pipelines. Small and agile teams waste too much time with infrastructural and operational complexities such as fault-tolerance, load balancing, auto-scaling, and logging. These teams want a way to develop streamlined, value-added code with programming languages they already know, love, and that are best suited to solve particular problems.
+Despite their benefit, microservice-based solutions remain difficult to build by using mainstream cloud technologies, often requiring control of a complex toolchain, and separate build and operations pipelines. Small and agile teams waste too much time with infrastructural and operational complexities such as fault-tolerance, load balancing, auto scaling, and logging. These teams want a way to develop streamlined, value-added code with programming languages they already know, love, and that are best suited to solve particular problems.
 
 The modular and inherently scalable nature of {{site.data.keyword.openwhisk_short}} makes it ideal for implementing granular pieces of logic in actions. {{site.data.keyword.openwhisk_short}} actions are independent of each other and can be implemented by using various different languages that are supported by {{site.data.keyword.openwhisk_short}} and access various backend systems. Each action can be independently deployed and managed, is scaled independently of other actions. Interconnectivity between actions is provided by {{site.data.keyword.openwhisk_short}} in the form of rules, sequences, and naming conventions. This type of environment bodes well for microservices based applications.
 

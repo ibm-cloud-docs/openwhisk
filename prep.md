@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-21"
+lastupdated: "2022-06-29"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -288,7 +288,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 
     The file `dist/bundle.js` is created and deploys as the action source code.
 
-    To avoid compatibility issues, you can use the runtime to build the webpack. Use the following command in the source directory to run steps 4 and 5 inside the container.
+    To avoid compatibility issues, you can use the runtime to build the `webpack`. Use the following command in the source directory to run steps 4 and 5 inside the container.
     ```bash
     docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm run prebuild && npm run build"
     ```
@@ -814,7 +814,7 @@ Package your app by completing the following steps.
 
 5. Create a virtual environment and install the additional Python packages.
 
-    The virtual environment directory must be named `virtualenv` in order to create a `virtualenv` folder in the `test` directory.
+    The virtual environment directory must be named `virtualenv` to create a `virtualenv` folder in the `test` directory.
     {: note}
 
     ```bash
@@ -849,9 +849,9 @@ Package your app by completing the following steps.
     ```
     {: codeblock}
 
-7. In order to deploy this code as an action, you must create a compressed file of the `virtualenv` folder and the `__main__.py` file. 
+7. To deploy this code as an action, you must create a compressed file of the `virtualenv` folder and the `__main__.py` file. 
 
-    In some cases, the resulting compressed file is larger than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions) allowed by {{site.data.keyword.openwhisk_short}}. To reduce the size of the compressed file, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your compressed file.
+    Sometimes, the resulting compressed file is larger than the maximum `codeSize` as described in the [Action Limits](/docs/openwhisk?topic=openwhisk-limits#limits_actions) allowed by {{site.data.keyword.openwhisk_short}}. To reduce the size of the compressed file, select only the dependencies that you need, rather than selecting the entire `virtualenv` folder. The packages that you need can be found in the `site-packages` directory within the `virtualenv` folder. Note that you must also include the `activate_this.py` file from the `bin` directory of your `virtualenv` folder in your compressed file.
     {: note}
 
     ```bash
@@ -1941,7 +1941,7 @@ public static com.google.gson.JsonObject main(com.google.gson.JsonObject);
 ### Packaging Java code
 {: #prep_java_pkg}
 
-Package your code by creating a .jar file.
+Package your code by creating a `.jar` file.
 {: shortdesc}
 
 Before you begin
@@ -1970,7 +1970,7 @@ To create a Java action, complete the following steps.
     ```
     {: codeblock}
 
-2. Download the [`gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.8.5){: external}.
+2. Download the [`gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.9.0){: external}.
 
 3. Add the `gson-2.9.0.jar` to your `ClASSPATH`. This example uses `gson-2.9.0.jar`, which is saved in a `test` folder in the `Desktop` directory.
 
@@ -2014,7 +2014,7 @@ To create a Java action, complete the following steps.
     ```
     {: pre}
 
-8. Compress the class file into a .jar file named `hello.jar`.
+8. Compress the class file into a `.jar` file named `hello.jar`.
 
     ```bash
     jar cvf hello.jar Hello.class
@@ -2120,7 +2120,7 @@ To create a Java action by using Docker, complete the following steps.
         ```
 	{: pre}
 
-    2. Install `curl` to download the dependencies .
+    2. Install `curl` to download the dependencies.
         ```bash
         apt update && apt install curl -y
         ```
@@ -2248,7 +2248,7 @@ To create a Java action by using Docker, complete the following steps.
     ```
     {: pre}
 
-    At this point the current directory will contiain a `traget` directory containing the action jar file.
+    At this point, the current directory contains a `traget` directory containing the action `.jar` file.
 
 11. Create action called .
 
@@ -2257,7 +2257,7 @@ To create a Java action by using Docker, complete the following steps.
     ```
     {: pre}
 
-    The main name could look something like thes `com.package.example.Hello`.
+    The main name is something similar to `com.package.example.Hello`.
     {: note}
 
 12. Invoke the action 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-03"
+lastupdated: "2022-06-29"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # Getting started with IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on-demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
 ## Working with actions
@@ -35,7 +35,7 @@ Click an option to get started.
 ## Creating an action in the console
 {: #gs_hello_world}
 
-To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quickstart template.
+To get started with {{site.data.keyword.openwhisk_short}}, try creating the Hello World quick start template.
 
 1. Create an [{{site.data.keyword.cloud_notm}}](https://cloud.ibm.com/registration){: external} account or log in to an existing account.
 

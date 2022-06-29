@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-06-29"
 
 keywords: web actions, serverless, functions, actions, requests, HTTP, error
 
@@ -725,7 +725,7 @@ Create the `demo` package and `hello` web action by completing the steps in [Cre
 
 You can set the `require-whisk-auth` annotation by either:
 
-- Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation request's Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
+- Setting the `require-whisk-auth` annotation to `true`. When the `require-whisk-auth` annotation is set to `true`, the web action authenticates the invocation requests Basic Authorization credentials against the web action owner's whisk auth key. When set to a number or a case-sensitive string, the web action's invocation request must include the `X-Require-Whisk-Auth` header set to this same number or case-sensitive string. Secured web actions return the message `Not Authorized` when credential validation fails.
 
 - Allowing the `require-whisk-auth` annotation to be set automatically by using the `--web-secure` flag. When the `--web-secure` flag is set to `true`, a random number is generated as the `require-whisk-auth` annotation value. When set to `false`, the `require-whisk-auth` annotation is removed. When set to any other value, that value is used as the `require-whisk-auth` annotation value.
 

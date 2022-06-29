@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-01-12"
+  years: 2020, 2022
+lastupdated: "2022-06-29"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, attributes
 
@@ -61,16 +61,16 @@ All metric names have the prefix `ibm_functions_`.
 | Metric Name |
 |-----------|
 | [`ibm_functions_activation`](#ibm_functions_activation) | 
-| [`ibm_functions_concurrent-invocations`](#ibm_functions_concurrent-invocations) | 
-| [`ibm_functions_concurrent-rate-limit`](#ibm_functions_concurrent-rate-limit) | 
+| [`ibm_functions_concurrent_invocations`](#ibm_functions_concurrent_invocations) | 
+| [`ibm_functions_concurrent_rate_limit`](#ibm_functions_concurrent_rate_limit) | 
 | [`ibm_functions_duration`](#ibm_functions_duration) | 
-| [`ibm_functions_init-time`](#ibm_functions_init-time) | 
-| [`ibm_functions_status-error-application`](#ibm_functions_status-error-application) | 
-| [`ibm_functions_status-error-developer`](#ibm_functions_status-error-developer) | 
-| [`ibm_functions_status-error-internal`](#ibm_functions_status-error-internal) | 
-| [`ibm_functions_status-success`](#ibm_functions_status-success) | 
-| [`ibm_functions_timed-rate-limit`](#ibm_functions_timed-rate-limit) | 
-| [`ibm_functions_wait-time`](#ibm_functions_wait-time) | 
+| [`ibm_functions_init_time`](#ibm_functions_init_time) | 
+| [`ibm_functions_status_error_application`](#ibm_functions_status_error_application) | 
+| [`ibm_functions_status_error_developer`](#ibm_functions_status_error_developer) | 
+| [`ibm_functions_status_error_internal`](#ibm_functions_status_error_internal) | 
+| [`ibm_functions_status_success`](#ibm_functions_status_success) | 
+| [`ibm_functions_timed_rate_limit`](#ibm_functions_timed_rate_limit) | 
+| [`ibm_functions_wait_time`](#ibm_functions_wait_time) | 
 {: caption="Table 1: Metrics Available by Plan Names" caption-side="top"}
 
 ### `ibm_functions_activation`
@@ -86,31 +86,31 @@ The overall number of activations that were triggered on the system.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 2: ibm_functions_activation metric metadata" caption-side="top"}
 
-### `ibm_functions_concurrent-invocations`
-{: #ibm_functions_concurrent-invocations}
+### `ibm_functions_concurrent_invocations`
+{: #ibm_functions_concurrent_invocations}
 
 The number of concurrent invocations on the system.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_concurrent-invocations`|
+| `Metric Name` | `ibm_functions_concurrent_invocations`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 3: ibm_functions_concurrent-invocations metric metadata" caption-side="top"}
+{: caption="Table 3: ibm_functions_concurrent_invocations metric metadata" caption-side="top"}
 
-### `ibm_functions_concurrent-rate-limit`
-{: #ibm_functions_concurrent-rate-limit}
+### `ibm_functions_concurrent_rate_limit`
+{: #ibm_functions_concurrent_rate_limit}
 
 The sum of activations that were throttled due to exceeding the concurrency rate limit.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_concurrent-rate-limit`|
+| `Metric Name` | `ibm_functions_concurrent_rate_limit`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 4: ibm_functions_concurrent-rate-limit metric metadata" caption-side="top"}
+{: caption="Table 4: ibm_functions_concurrent_rate_limit metric metadata" caption-side="top"}
 
 ### `ibm_functions_duration`
 {: #ibm_functions_duration}
@@ -125,96 +125,96 @@ The average action duration, billed action execution time in milliseconds.
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
 {: caption="Table 5: ibm_functions_duration metric metadata" caption-side="top"}
 
-### `ibm_functions_init-time`
-{: #ibm_functions_init-time}
+### `ibm_functions_init_time`
+{: #ibm_functions_init_time}
 
 The time that is spent to initialize the action container in milliseconds.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_init-time`|
+| `Metric Name` | `ibm_functions_init_time`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 6: ibm_functions_init-time metric metadata" caption-side="top"}
+{: caption="Table 6: ibm_functions_init_time metric metadata" caption-side="top"}
 
-### `ibm_functions_status-error-application`
-{: #ibm_functions_status-error-application}
+### `ibm_functions_status_error_application`
+{: #ibm_functions_status_error_application}
 
 The number of unsuccessful activations that are caused by application errors.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_status-error-application`|
+| `Metric Name` | `ibm_functions_status_error_application`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 7: ibm_functions_status-error-application metric metadata" caption-side="top"}
+{: caption="Table 7: ibm_functions_status_error_application metric metadata" caption-side="top"}
 
-### `ibm_functions_status-error-developer`
-{: #ibm_functions_status-error-developer}
+### `ibm_functions_status_error_developer`
+{: #ibm_functions_status_error_developer}
 
 The number of unsuccessful activations that are caused by the developer.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_status-error-developer`|
+| `Metric Name` | `ibm_functions_status_error_developer`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 8: ibm_functions_status-error-developer metric metadata" caption-side="top"}
+{: caption="Table 8: ibm_functions_status_error_developer metric metadata" caption-side="top"}
 
-### `ibm_functions_status-error-internal`
-{: #ibm_functions_status-error-internal}
+### `ibm_functions_status_error_internal`
+{: #ibm_functions_status_error_internal}
 
 The number of unsuccessful activations that are caused by {{site.data.keyword.openwhisk_short}} internal errors.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_status-error-internal`|
+| `Metric Name` | `ibm_functions_status_error_internal`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 9: ibm_functions_status-error-internal metric metadata" caption-side="top"}
+{: caption="Table 9: ibm_functions_status_error_internal metric metadata" caption-side="top"}
 
-### `ibm_functions_status-success`
-{: #ibm_functions_status-success}
+### `ibm_functions_status_success`
+{: #ibm_functions_status_success}
 
 The number of successful activations of action code.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_status-success`|
+| `Metric Name` | `ibm_functions_status_success`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 10: ibm_functions_status-success metric metadata" caption-side="top"}
+{: caption="Table 10: ibm_functions_status_success metric metadata" caption-side="top"}
 
-### `ibm_functions_timed-rate-limit`
-{: #ibm_functions_timed-rate-limit}
+### `ibm_functions_timed_rate_limit`
+{: #ibm_functions_timed_rate_limit}
 
 The sum of activations that were throttled due to exceeding the per-minute limit.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_timed-rate-limit`|
+| `Metric Name` | `ibm_functions_timed_rate_limit`|
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 11: ibm_functions_timed-rate-limit metric metadata" caption-side="top"}
+{: caption="Table 11: ibm_functions_timed_rate_limit metric metadata" caption-side="top"}
 
-### `ibm_functions_wait-time`
-{: #ibm_functions_wait-time}
+### `ibm_functions_wait_time`
+{: #ibm_functions_wait_time}
 
 The average time that is spent in a queue, waiting for an activation to be scheduled in milliseconds.
 
 | Metadata | Description |
 |----------|-------------|
-| `Metric Name` | `ibm_functions_wait-time`|
+| `Metric Name` | `ibm_functions_wait_time`|
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 12: ibm_functions_wait-time metric metadata" caption-side="top"}
+{: caption="Table 12: ibm_functions_wait_time metric metadata" caption-side="top"}
 
 ## Attributes for segmentation
 {: #attributes}

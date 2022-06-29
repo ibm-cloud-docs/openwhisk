@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: services, serverless, functions, binding, actions, packages
 
@@ -147,7 +147,7 @@ Before you begin, [create an action](/docs/openwhisk?topic=openwhisk-actions) an
 
     In this example, the credentials for the Cloudant service, along with any other credentials for other service types belong to a parameter named `__bx_creds`. The action code can access the necessary information by getting the `__bx_creds` parameter.
 
-    For example, in `nodejs`, you can use the following code to get the apikey for the Cloudant service in the previous sample.
+    For example, in `nodejs`, you can use the following code to get the API key for the Cloudant service in the previous sample.
 
     ```sh
     function main(params) {

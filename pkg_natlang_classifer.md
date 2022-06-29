@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-03-14"
+lastupdated: "2022-06-29"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -42,7 +42,7 @@ Before you install the package, you must create a {{site.data.keyword.nlclassifi
 {: shortdesc}
 
 1. [Create a {{site.data.keyword.nlclassifiershort}} service instance](https://cloud.ibm.com/catalog/services/natural_language_classifier){: external}.
-2. When the service instance is created, auto-generated service credentials are also created for you.
+2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.nlclassifiershort}} package
 {: #install_classifier}
@@ -164,7 +164,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
     {: note}
 
     1. Click an action from the **natural-language-classifier-v1** Package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click the **Parameters** section.
+    2. In the left navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.nlclassifiershort}} package

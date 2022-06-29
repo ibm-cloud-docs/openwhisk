@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: openwhisk, functions, Watson assistant, chatbot, cognitive
 
@@ -32,7 +32,7 @@ The {{site.data.keyword.conversationshort}} package contains the following entit
 | [`delete-workspace`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#delete-workspace){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`  | Delete a workspace. |
 | [`get-workspace`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#get-information-about-a-workspace){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `export`, `include_audit`  | Get information about a workspace. |
 | [`list-workspaces`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#list-workspaces){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `page_limit`, `include_count`, `sort`, `cursor`, `include_audit`  | List workspaces. |
-| [`update-workspace`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#update-workspace){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `name`, `description`, `language`, `intents`, `entities`, dialog_nodes, counterexamples, `metadata`, `learning_opt_out`, `append`  | Update a workspace. |
+| [`update-workspace`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#update-workspace){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `name`, `description`, `language`, `intents`, `entities`, `dialog_nodes`, `counterexamples`, `metadata`, `learning_opt_out`, `append`  | Update a workspace. |
 | [`create-intent`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#create-intent){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `intent`, `description`, `examples`  | Create an intent. |
 | [`delete-intent`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#delete-intent){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `intent`  | Delete an intent. |
 | [`get-intent`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#get-intent){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `intent`, `export`, `include_audit`  | Get information about an intent. |
@@ -64,7 +64,7 @@ The {{site.data.keyword.conversationshort}} package contains the following entit
 | [`list-synonyms`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#list-entity-value-synonyms){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `entity`, `value`, `page_limit`, `include_count`, `sort`, `cursor`, `include_audit`  | List entity value synonyms. |
 | [`update-synonym`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#update-entity-value-synonym){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `entity`, `value`, `synonym`, `new_synonym`  | Update an entity value synonym. |
 | [`create-dialog-node`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#create-dialog-node){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `description`, `conditions`, `parent`, `previous_sibling`, `output`, `context`, `metadata`, `next_step`, `actions`, `title`, `node_type`, `event_name`, `variable`, `digress_in`, `digress_out`, `digress_out_slots`  | Create a dialog node. |
-| [`delete-dialog-node`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#delete-dialog-node){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, dialog_node  | Delete a dialog node. |
+| [`delete-dialog-node`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#delete-dialog-node){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`  | Delete a dialog node. |
 | [`get-dialog-node`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#get-dialog-node){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `include_audit`  | Get a dialog node. |
 | [`list-dialog-nodes`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#list-dialog-nodes){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `page_limit`, `include_count`, `sort`, `cursor`, `include_audit`  | List dialog nodes. |
 | [`update-dialog-node`](https://cloud.ibm.com/apidocs/assistant/assistant-v1#update-dialog-node){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `workspace_id`, `dialog_node`, `new_dialog_node`, `new_description`, `new_conditions`, `new_parent`, `new_previous_sibling`, `new_output`, `new_context`, `new_metadata`, `new_next_step`, `new_title`, `new_type`, `new_event_name`, `new_variable`, `new_actions`, `new_digress_in`, `new_digress_out`, `new_digress_out_slots`  | Update a dialog node. |
@@ -82,7 +82,7 @@ Before you install the package, you must create a {{site.data.keyword.conversati
 {: shortdesc}
 
 1. [Create a {{site.data.keyword.conversationshort}} service instance](https://cloud.ibm.com/catalog/services/conversation){: external}.
-2. When the service instance is created, auto-generated service credentials are also created for you.
+2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.conversationshort}} package
 {: #install_conversation}
@@ -197,7 +197,7 @@ Install the {{site.data.keyword.conversationshort}} package from the console.
     {: note}
 
     1. Click on an action from the **assistant-v1** Package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click on the **Parameters** section.
+    2. In the left navigation, click on the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.conversationshort}} package

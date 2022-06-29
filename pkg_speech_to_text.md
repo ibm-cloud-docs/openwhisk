@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: package, cognitive, functions, watson, speech to text
 
@@ -74,7 +74,7 @@ Before you install the package, you must create a {{site.data.keyword.speechtote
 {: shortdesc}
 
 1. [Create a {{site.data.keyword.speechtotextshort}} service instance](https://cloud.ibm.com/catalog/services/speech_to_text){: external}.
-2. When the service instance is created, auto-generated service credentials are also created for you.
+2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.speechtotextshort}} package
 {: #install_speechtotext}
@@ -196,7 +196,7 @@ Install the {{site.data.keyword.speechtotextshort}} package from the console.
     {: note}
 
     1. Click an action from the **speech-to-text-v1** package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click the **Parameters** section.
+    2. In the left navigation, click the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.speechtotextshort}} package

@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-08"
+lastupdated: "2022-06-29"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -32,7 +32,7 @@ Want to learn more about IAM key concepts? Check out [the IAM overview](/docs/ac
 ## How do I set IAM policies so that others can create namespaces in my account?
 {: #iam_namespace_create}
 
-In order to allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating new namespaces, you must set the following access policies for those users.
+To allow other users to manage {{site.data.keyword.openwhisk_short}} namespaces, including creating new namespaces, you must set the following access policies for those users.
 
 * The user's **Platform role** must be set to Administrator. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
 * The user's **Service role**  must be set to Manager. This policy applies to all resources of {{site.data.keyword.openwhisk_short}}.
@@ -59,7 +59,7 @@ For more information about how to assign, edit, review, or delete resource acces
 | Platform role | Description |
 | -------------- | -------------- |
 | Viewer | The Viewer role is a required role that allows users to work with namespaces of other accounts. You can also add the appropriate service-specific role for a namespace as described below. |
-| Administrator | Administrators can create namespaces. The Administrator role is required to perform the service ID and apikey lock operations during creation of the service. |
+| Administrator | Administrators can create namespaces. The Administrator role is required to perform the service ID and API key lock operations during creation of the service. |
 {: caption="Table 1. Platform roles" caption-side="bottom"}
 
 ## Service-specific roles
@@ -88,7 +88,7 @@ To see which roles are required to perform each operation, check out the followi
 ## Setting access policies for a service ID
 {: #service-id-set-policy}
 
-When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID so that the apikey of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
+When you create an IAM-based namespace, it is assigned a service ID. You can set an access policy for this ID so that the API key of that service ID can be used to generate an IAM token. Then, use the token in an action code to call other services, such as {{site.data.keyword.cos_full_notm}}.
 {: shortdesc}
 
 ### Setting access policies for a service ID in the console

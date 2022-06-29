@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions, statelessness, activation, action
 
@@ -118,7 +118,7 @@ For convenience, the namespace can be omitted if it is the user's default namesp
 
 You can use this naming scheme when you use the {{site.data.keyword.openwhisk_short}} CLI, among other places.
 
-More precisely, a name must match the following regular expression (expressed with Java metacharacter syntax): `\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`.
+More precisely, a name must match the following regular expression (expressed with Java meta character syntax): `\A([\w]|[\w][\w@ .-]*[\w@.-]+)\z`.
 
 ## Action semantics
 {: #limits_semantics}

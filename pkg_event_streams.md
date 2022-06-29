@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-12"
+lastupdated: "2022-06-29"
 
 keywords: event streams, package, messages, events, functions, trigger
 
@@ -26,7 +26,7 @@ subcollection: openwhisk
 | `/whisk.system/messaging` | Pre-installed package | Publishing and consume messages with the native Kafka API. |
 | `/messaging/messageHubProduce` | Action | Deprecated |
 | `/messaging/messageHubFeed` | Feed | Reacts when messages are posted to an {{site.data.keyword.messagehub}} instance |
-{: caption="Table 2. Pre-installed actions for publishing and consuming messages with {{site.data.keyword.messagehub}}" caption-side="bottom"}
+{: caption="Table 2. Pre-installed actions for publishing and consuming messages with Event Streams" caption-side="bottom"}
 
 The `/messaging/messageHubProduce` action is deprecated. To maintain optimal performance, migrate your usage of the `/messaging/messageHubProduce` action to use a persistent connection when data is produced to {{site.data.keyword.messagehub}}/Kafka. The `/messaging/messageHubProduce` action is not available in Tokyo or Sydney regions.
 {: tip}
@@ -177,7 +177,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 Create a package binding that is configured for your {{site.data.keyword.messagehub}} service.
 
 ```sh
-ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
+ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "[\"kafka01-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka02-prod01.messagehub.services.us-south.bluemix.net:9093\", \"kafka03-prod01.messagehub.services.us-south.bluemix.net:9093\"]" -p user <your Event Streams user> -p password <your Event Streams password> -p kafka_admin_url https://kafka-admin-prod01.messagehub.services.us-south.bluemix.net:443
 ```
 {: pre}
 
@@ -221,7 +221,7 @@ If you want to set up your {{site.data.keyword.messagehub}} outside of {{site.da
 
     ```sh
     ibmcloud fn package bind /whisk.system/messaging myMessageHub -p kafka_brokers_sasl "
-    [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your {{site.data.keyword.messagehub}} user> -p password <your {{site.data.keyword.messagehub}} password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
+    [\"broker-1-9eyy8dkv3rrj0wdn.kafka.svc01.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc02.us-south.eventstreams.cloud.ibm.com:9093\", \"broker-1-9eyy8dkv3rrj0wdn.kafka.svc03.us-south.eventstreams.cloud.ibm.com:9093\"]" -p user <your Event Streams user> -p password <your Event Streams password> -p kafka_admin_url https://9eyy8dkv3rrj0wdn.svc01.us-south.eventstreams.cloud.ibm.com
     ```
     {: pre}
 

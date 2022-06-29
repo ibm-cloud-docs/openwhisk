@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-03"
+lastupdated: "2022-06-29"
 
 keywords: planning, functions, actions, serverless, code, event, deployments, runtimes
 
@@ -56,7 +56,7 @@ You might need to make some tweaks to your existing code for it to run in {{site
 
 5. [Verify that the structural requirements for your code to be used in a function.](/docs/openwhisk?topic=openwhisk-prep)
 
-    Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results. It might also need to be packaged into a single file that includes all of its dependencies.
+    Whether you have an app already or plan to develop a script to use, your code probably needs a few tweaks to make it consumable by {{site.data.keyword.openwhisk}}. The code itself must meet some structural requirements, such as the input parameters and the output results. It might also need to be packaged into a single file that includes all its dependencies.
 
 
 

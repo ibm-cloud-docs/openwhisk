@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-09"
+lastupdated: "2022-06-29"
 
 keywords: functions, cognitive, discovery, CLI, watson
 
@@ -78,7 +78,7 @@ Before you install the package, you must create a {{site.data.keyword.discoverys
 {: shortdesc}
 
 1. [Create a {{site.data.keyword.discoveryshort}} service instance](https://cloud.ibm.com/catalog/services/discovery){: external}.
-2. When the service instance is created, auto-generated service credentials are also created for you.
+2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.discoveryshort}} package
 {: #install_discovery}
@@ -193,7 +193,7 @@ You can install your package from the {{site.data.keyword.openwhisk_short}} cons
     {: note}
 
     1. Click on an action from the `discovery-v1` package that you want to use. The details page for that action opens.
-    2. In the left-hand navigation, click on the **Parameters** section.
+    2. In the left navigation, click on the **Parameters** section.
     3. Enter a new **parameter**. For the key, enter `__bx_creds`. For the value, paste in the service credentials JSON object from the service instance that you created earlier.
 
 ## Using the {{site.data.keyword.discoveryshort}} package
