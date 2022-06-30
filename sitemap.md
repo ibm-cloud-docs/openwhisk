@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-06-30"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -370,6 +370,10 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
         * Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance. 
 
     * [11 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep1119)
+
+        * New Functions CLI version 1.0.33. 
+
+    * [10 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep1019)
 
         * New Functions CLI version 1.0.33. 
 

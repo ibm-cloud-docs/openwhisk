@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-06-30"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -430,4 +430,11 @@ Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance.
 New Functions CLI version 1.0.33. 
 :   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 
+
+### 10 September 2019
+{: #openwhisk-sep1019}
+{: release-note}
+
+New Functions CLI version 1.0.33. 
+:   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 
