@@ -131,6 +131,10 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 * [June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june22)
 
+    * [22 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june2222)
+
+        * Additional support for the IBM Cloud Object Storage trigger.
+
     * [21 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june2122)
 
         * Additional support for the IBM Cloud Object Storage trigger.
@@ -380,7 +384,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [9 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep919)
 
         * New Functions CLI version 1.0.33. 
-
 
 
 ## Installing the CLI and plug-in
