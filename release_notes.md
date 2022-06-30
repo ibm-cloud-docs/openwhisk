@@ -28,13 +28,6 @@ For information about changes to the {{site.data.keyword.openwhisk_short}} CLI, 
 ## June 2022
 {: #openwhisk-june22}
 
-### 22 June 2022
-{: #openwhisk-june2222}
-{: release-note}
-
-Additional support for the IBM Cloud Object Storage trigger.
-:   You can utilize the new Object Storage functionality for versioning and replication. See [Setting up the IBM Cloud Object Storage trigger](/docs/openwhisk?topic=openwhisk-pkg_obstorage#pkg_obstorage_ev).
-
 ### 21 June 2022
 {: #openwhisk-june2122}
 {: release-note}
@@ -436,19 +429,3 @@ Extend your IBM Cloud Functions app with an IBM Cloud Object Storage instance.
 
 New Functions CLI version 1.0.33. 
 :   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
-
-
-### 10 September 2019
-{: #openwhisk-sep1019}
-{: release-note}
-
-New Functions CLI version 1.0.33. 
-:   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
-
-### 9 September 2019
-{: #openwhisk-sep919}
-{: release-note}
-
-New Functions CLI version 1.0.33. 
-:   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
-
