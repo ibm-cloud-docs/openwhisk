@@ -377,6 +377,11 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
         * New Functions CLI version 1.0.33. 
 
+    * [9 September 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-sep919)
+
+        * New Functions CLI version 1.0.33. 
+
+
 
 ## Installing the CLI and plug-in
 {: #sitemap_installing_the_cli_and_plug-in}

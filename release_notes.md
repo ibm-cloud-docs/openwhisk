@@ -438,3 +438,11 @@ New Functions CLI version 1.0.33.
 New Functions CLI version 1.0.33. 
 :   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 
+
+### 9 September 2019
+{: #openwhisk-sep919}
+{: release-note}
+
+New Functions CLI version 1.0.33. 
+:   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
+
