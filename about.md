@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-07-07"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -13,7 +13,7 @@ subcollection: openwhisk
 {{site.data.keyword.attribute-definition-list}}
 
 
-# How {{site.data.keyword.openwhisk_short}} works
+# How {{site.data.keyword.openwhisk_short}} works 
 {: #about}
 
 {{site.data.keyword.openwhisk}} service is an event-driven compute platform, also referred to as Serverless computing, or as Function as a Service (FaaS), that runs code in response to events or direct invocations. 

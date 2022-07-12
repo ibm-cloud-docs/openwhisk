@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-07-07"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -130,10 +130,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
 
 * [June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june22)
-
-    * [22 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june2222)
-
-        * Additional support for the IBM Cloud Object Storage trigger.
 
     * [21 June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june2122)
 

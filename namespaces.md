@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-07-12"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -76,7 +76,7 @@ Your Cloud Foundry-based namespaces still work. However, to take advantage of ne
 ### How do I see a list of my {{site.data.keyword.openwhisk_short}} namespaces?
 {: #how_list_namespace}
 
-You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [**`namespace list`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all of the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
+You can see a list of your {{site.data.keyword.openwhisk_short}} namespaces by running the [**`namespace list`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_namespace_list) command. The command output includes all the namespaces in the currently selected region and also lists whether the namespace is a Cloud Foundry-based or an IAM-based namespace. Note that the `namespace list` command is scoped to the targeted region and resource group that you set. To view your current region and resource group, run `ibmcloud target`. To set your region and resource group to a different choice, run `ibmcloud target -r REGION -g RESOURCE_GROUP`, where `REGION` and `RESOURCE_GROUP` are the new targets.
 
 ```bash
 ibmcloud fn namespace list
@@ -169,7 +169,7 @@ You can create an IAM-managed namespace with the CLI.
     | `--description <description>` | Optional: Add a description to the namespace, such as which kind of actions or packages you plan to create. If your description is longer than one word, it must be in quotations. |
     {: caption="Table 2. Understanding this command's components" caption-side="bottom"}
 
-    The following exmaple shows sample output from the `namespace create` command.
+    The following example shows sample output from the `namespace create` command.
 
     ```sh
     ok: created namespace myNamespace
@@ -183,7 +183,7 @@ You can create an IAM-managed namespace with the CLI.
     ```
     {: pre}
 
-    The following exmaple shows sample output from the `namespace get` command.
+    The following example shows sample output from the `namespace get` command.
 
     ```sh
     Details of namespace: myNamespace
@@ -235,7 +235,7 @@ Create your IAM-managed namespace with the API.
     |  `-n <description>` | Optional: Add a description to the namespace, such as which kind of actions or packages it will contain. |
     {: caption="Table 3. Understanding this command components" caption-side="bottom"}
 
-    The following exmaple shows sample output from the previous command.
+    The following example shows sample output from the previous command.
 
     ```sh
     {
@@ -270,7 +270,7 @@ Create your IAM-managed namespace with the API.
     ```
     {: pre}
 
-    The following exmaple shows sample output from the previous command.
+    The following example shows sample output from the previous command.
 
     ```sh
     {
@@ -335,7 +335,7 @@ ibmcloud fn namespace target playground
 ### Accessing other resources from a namespace
 {: #namespace-access}
 
-Actions typically call other {{site.data.keyword.cloud_notm}} resources and services that require appropriate authentication. If these services are IAM-enabled and accept IAM tokens, you can leverage the namespace's functional ID for outbound communication.
+Actions typically call other {{site.data.keyword.cloud_notm}} resources and services that require appropriate authentication. If these services are IAM-enabled and accept IAM tokens, you can leverage the namespace functional ID for outbound communication.
 {: shortdesc}
 
 As described in [Managing IAM access](/docs/account?topic=account-userroles), for each namespace, a service ID is created that represents the namespace. You can grant access to other services and resources for this service ID by assigning the appropriate roles by using IAM policy management. For more information about creating service IDs to access other IAM-enabled services, see [Creating and working with service IDs](/docs/account?topic=account-serviceids).
