@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-02-03"
+lastupdated: "2022-09-01"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -34,14 +34,11 @@ Yes! You can use actions to call other actions, or you can string actions togeth
 
 **What is a sequence?**
 
-A set of actions can be chained together into a sequence without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like an action, through a REST API or automatically in response to events. For more information about sequences, see [Creating sequences](/docs/openwhisk?topic=openwhisk-sequences).
+A set of actions can be chained together into a sequence without having to write any code. A sequence is a chain of actions, invoked in order, where the output of one action is passed as input to the next action. By creating a sequence, you can combine existing actions together for quick and easy reuse. A sequence can then be invoked just like any other action. For more information about sequences, see [Creating sequences](/docs/openwhisk?topic=openwhisk-sequences).
 
 **What is a web action?**
 
 A web action is an action that can be invoked without authentication and can be used to implement HTTP handlers that respond with headers, status code, and body content of different types. For more information, see [Creating a web action](/docs/openwhisk?topic=openwhisk-actions_web).
 
-**Can I use APIs to manage my web actions?**
-
-Yes! You can use the API Gateway as a proxy to your web actions. API Gateway provides HTTP method routing, client ID and secrets, rate limits, CORS, viewing API usage, viewing response logs, and API sharing policies. For more information, see [Creating serverless REST APIs](/docs/openwhisk?topic=openwhisk-apigateway).
 
 

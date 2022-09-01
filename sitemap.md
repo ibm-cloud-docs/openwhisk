@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-07-07"
+lastupdated: "2022-09-01"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -171,8 +171,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [12 April 2021](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-apr1221)
 
-        * New troubleshooting tip
-
         * Updates to action information.
 
         * New Functions CLI version 1.0.54. 
@@ -325,8 +323,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
         * New environmental variable: `__OW_TRANSACTION_ID`.
 
-        * Updated information about securing your web action for an API. 
-
         * Updated information for packaging your Python code. 
 
     * [5 December 2019](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-dec519)
@@ -395,8 +391,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Command syntax](/docs/openwhisk?topic=openwhisk-cli_install#cli_syntax)
 
     * [API Authentication and Host](/docs/openwhisk?topic=openwhisk-cli_install#cli_api_auth)
-
-    * [API Gateway authentication](/docs/openwhisk?topic=openwhisk-cli_install#cli_apigw_authentication)
 
     * [Migrating deployment scripts](/docs/openwhisk?topic=openwhisk-cli_install#cli_migrating_deploy_scripts)
 
@@ -702,20 +696,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Structuring .NET Core code](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet_struct)
 
     * [Packaging .NET Core code](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet_pkg)
-
-[Creating serverless REST APIs](/docs/openwhisk?topic=openwhisk-apigateway#apigateway)
-
-* [Creating your first API](/docs/openwhisk?topic=openwhisk-apigateway#api_create)
-
-    * [Creating your first API by using the CLI](/docs/openwhisk?topic=openwhisk-apigateway#api_create_cli)
-
-    * [Creating an API from the console](/docs/openwhisk?topic=openwhisk-apigateway#api_create_ui)
-
-* [Using full control over the HTTP response](/docs/openwhisk?topic=openwhisk-apigateway#api_control)
-
-* [Securing your API web action](/docs/openwhisk?topic=openwhisk-apigateway#api_secure)
-
-* [Modifying the API configuration](/docs/openwhisk?topic=openwhisk-apigateway#api_modify_config)
 
 
 ## Managing triggers and rules
@@ -1504,8 +1484,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 [System limits were reached](/docs/openwhisk?topic=openwhisk-ts_limit_reached#ts_limit_reached)
 
 [Action terminates after one minute](/docs/openwhisk?topic=openwhisk-ts_action_terminated#ts_action_terminated)
-
-[{{site.data.keyword.apigw_short}} fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-ts_api_gateway_504#ts_api_gateway_504)
 
 [Can't access private endpoint from action](/docs/openwhisk?topic=openwhisk-ts_private_endpoint#ts_private_endpoint)
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-01"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, functions, api, data processing, event processing
 
@@ -47,7 +47,7 @@ Look at the following sample IoT application that uses {{site.data.keyword.openw
 ## API backend
 {: #use_cases_backend}
 
-Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for actions. The [{{site.data.keyword.openwhisk_short}} feature](/docs/openwhisk?topic=openwhisk-apigateway) can invoke an action with HTTP methods other than POST and without the action's authorization API key through the {{site.data.keyword.openwhisk_short}} API Gateway. This capability is helpful not only for exposing APIs to external consumers, but also for building microservices applications.
+Serverless computing platforms give developers a rapid way to build APIs without servers. {{site.data.keyword.openwhisk_short}} supports automatic generation of REST API for actions. 
 
 Additionally, {{site.data.keyword.openwhisk_short}} actions can be connected to an API Management tool of choice (such as [IBM API Connect](https://www.ibm.com/cloud/api-connect){: external} or other). Similar to other use cases, all considerations for scalability, and other Qualities of Services apply.
 

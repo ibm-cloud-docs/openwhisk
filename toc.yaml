@@ -56,7 +56,6 @@ toc:
           - actions_web.md
           - sequences.md
           - prep.md
-          - apigateway.md
       - topicgroup:
           label: Managing triggers and rules
           topics:
@@ -148,7 +147,6 @@ toc:
               - ts_property.md
               - ts_limit_reached.md
               - ts_action_terminated.md
-              - ts_api_gateway_504.md
               - ts_private_endpoint.md
           - topicgroup:
               label: Node.js troubleshooting

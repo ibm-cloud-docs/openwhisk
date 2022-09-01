@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-01"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # {{site.data.keyword.nlclassifiershort}}
 {: #pkg_natlang_classifier}
 
-The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see [{{site.data.keyword.nlclassifiershort}}](/docs/natural-language-classifier?topic=natural-language-classifier-about).
+The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see {{site.data.keyword.nlclassifiershort}}.
 {: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-01"
 
 keywords: functions, cognitive, discovery, CLI, watson
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # {{site.data.keyword.discoveryshort}}
 {: #pkg_discovery}
 
-The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/discovery?topic=discovery-getting-started).
+The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/discovery?topic=discovery-about).
 {: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.

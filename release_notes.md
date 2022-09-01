@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2022
-lastupdated: "2022-06-30"
+lastupdated: "2022-09-01"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -96,8 +96,7 @@ Added information about deprecating Watson services.
 {: #openwhisk-apr1221}
 {: release-note}
 
-New troubleshooting tip
-:   Added troubleshooting tip for when your action returns an HTTP 504 Gateway Timeout error. See [API Gateway fails with HTTP status code 504](/docs/openwhisk?topic=openwhisk-ts_api_gateway_504).
+
 
 Updates to action information.
 :   Added and updated information for preparing your application code. See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep).
@@ -350,8 +349,7 @@ Updated troubleshooting information for Node.js.
 New environmental variable: `__OW_TRANSACTION_ID`.
 :   See [Environment variables for actions](/docs/openwhisk?topic=openwhisk-actions#actions_envvars).
 
-Updated information about securing your web action for an API. 
-:   See [Securing your API web action](/docs/openwhisk?topic=openwhisk-apigateway#api_secure).
+
 
 Updated information for packaging your Python code. 
 :   See [How do I package my Python app for deployment in Cloud Functions](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python).

@@ -1,10 +1,10 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-01-13"
+  years: 2021, 2022
+lastupdated: "2022-09-01"
 
-keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration, api gateway
+keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration
 
 subcollection: openwhisk
 
@@ -43,7 +43,7 @@ The following example shows possible output.
 ```
 {: codeblock}
 
-With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation) or [REST API](https://cloud.ibm.com/apidocs/functions#getactivations) documentation.
+With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation).
 {: tsResolve}
 
 For more information about blocking actions, see [Testing blocking actions](/docs/openwhisk?topic=openwhisk-test#test-block).
