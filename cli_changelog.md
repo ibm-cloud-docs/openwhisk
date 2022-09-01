@@ -21,7 +21,7 @@ A historical record of versions that show highlights and bug fixes for {{site.da
 
 | Version | Date | Description |
 | --------- | -------- | -------- |
-| 1.0.60 | 09 September 2022	| Removed `fn api` commands. |
+| 1.0.60 | 09 September 2022| Removed `fn api` commands. |
 | 1.0.54 | 09 April 2021 |  - Fixed the token expiration issue by increasing the frequency of refreshing IAM token.  |
 | 1.0.53 | 26 March 2021 |  - Explicitly display namespace names with **`ibmcloud fn list`** command. |
 | 1.0.50 | 12 March 2021 |  - Enabled Sydney(au-syd) region. |
