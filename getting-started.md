@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-15"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -78,6 +78,5 @@ So you completed your first template deployment, where do you go from here?
 * Become familiar with the [terminology](/docs/openwhisk?topic=openwhisk-about).
 * Get started with [your own actions](/docs/openwhisk?topic=openwhisk-actions).
 * Learn about organizing actions in [packages](/docs/openwhisk?topic=openwhisk-pkg_ov).
-* Advanced option - Create a [serverless REST API](/docs/openwhisk?topic=openwhisk-apigateway).
 
 

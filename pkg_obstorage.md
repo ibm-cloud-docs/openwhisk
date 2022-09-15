@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-15"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -33,7 +33,7 @@ Review the following table for a list of {{site.data.keyword.openwhisk_short}} p
 | --- | --- | --- |
 | [{{site.data.keyword.cos_full_notm}} trigger](#pkg_obstorage_ev) | Pre-installed | The {{site.data.keyword.cos_full_notm}} trigger [listens for changes](#pkg_obstorage_ev) to an {{site.data.keyword.cos_full_notm}} bucket. |
 | [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install)| Installable | You can use the installable `cloud-object-storage` package to [read, write, and delete](#pkg_obstorage_install) from an {{site.data.keyword.cos_full_notm}} bucket. |
-{: caption="Table 1. {{site.data.keyword.openwhisk_short}} packages that you can use to work with your {{site.data.keyword.cos_full_notm}} entities" caption-side="bottom"}
+{: caption="Table 1. Cloud functions packages that you can use to work with your Object storage entities" caption-side="bottom"}
 
 ## Setting up the {{site.data.keyword.cos_full_notm}} trigger
 {: #pkg_obstorage_ev}
@@ -299,7 +299,7 @@ The {{site.data.keyword.cos_full_notm}} trigger contains the `/whisk.system/cos`
 | --- | --- | --- |
 | `/whisk.system/cos` | Package | This package contains the `/whisk.system/cos/changes` feed. |
 | `/whisk.system/cos/changes` | Feed | This feed responds to changes to an {{site.data.keyword.cos_full_notm}} bucket and fires a {{site.data.keyword.openwhisk_short}} trigger. When you create a trigger using this feed, you can specify [these parameters](#pkg_obstorage_ev_ch_ref_trig) using the `--param` flag. |
-{: caption="Table 2. /whisk.system/cos package parameters" caption-side="bottom"}
+{: caption="Table 2. cos package parameters" caption-side="bottom"}
 
 #### {{site.data.keyword.cos_full_notm}} trigger parameters
 {: #pkg_obstorage_ev_ch_ref_trig}
@@ -313,7 +313,7 @@ The `/whisk.system/cos/changes` feed supports the following parameters.
 | `prefix` | (Optional). The `prefix` parameter is the prefix of the {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name prefix. |
 | `suffix` | (Optional). The `suffix` parameter is the suffix of your {{site.data.keyword.cos_full_notm}} objects. You can specify this flag when creating your trigger to filter trigger events by object name suffix. |
 | `event_types` | (Optional). The `event_types` is the type of bucket change that fires the trigger. You can specify `write` or `delete` or `all`. The default value is `all`. |
-{: caption="Table 2. /whisk.system/cos/changes package parameters" caption-side="bottom"}
+{: caption="Table 3. cos changes package parameters" caption-side="bottom"}
 
 #### Data structure of an {{site.data.keyword.cos_full_notm}} trigger activation
 {: #pkg_obstorage_ev_data}
@@ -327,7 +327,7 @@ The content of the generated events has the following parameters:
 | `event_type` | The type of event that occurred. |
 | `endpoint` | The {{site.data.keyword.cos_full_notm}} endpoint used to connect to the {{site.data.keyword.cos_full_notm}} bucket. This is the endpoint value specified during trigger creation. |
 | `key` | The name of the changed object. |
-{: caption="Table 2. Generated events parameters" caption-side="bottom"}
+{: caption="Table 4. Generated events parameters" caption-side="bottom"}
 
 
 The following sample is an example JSON response of a trigger activation. You can get details of an activation by running `ibmcloud fn activation get <activation_id>`.
@@ -678,7 +678,7 @@ The {{site.data.keyword.cos_full_notm}} package includes the following entities:
 | `/cloud-object-storage/bucket-cors-get` | Action | `bucket`, `endpoint`, `ibmAuthEndpoint` | Read the CORS configuration of a bucket. |
 | `/cloud-object-storage/bucket-cors-delete` | Action | `bucket`, `endpoint`, `ibmAuthEndpoint` | Delete the CORS configuration of a bucket. |
 | `/cloud-object-storage/client-get-signed-url` | Action | `bucket`, `key`, `operation`, `expires`, `endpoint` | Obtain a signed URL to restrict the Write, Read, and Delete of an object from a bucket. |
-{: caption="Table 2. Object storage package entities" caption-side="bottom"}
+{: caption="Table 5. Object storage package entities" caption-side="bottom"}
 
 To get a full list of the available entities, run `ibmcloud fn package get cloud-object-storage`.
 {: note}
@@ -692,7 +692,7 @@ The following package parameters are expected to be bound to the package, and ar
 | --- | --- |
 | `apikey` | The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
 | `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
-{: caption="Table 2. Package parameters for object storage" caption-side="bottom"}
+{: caption="Table 6. Package parameters for object storage" caption-side="bottom"}
 
 #### Action parameters for {{site.data.keyword.cos_short}}
 {: #pkg_obstorage_actparams}
@@ -708,5 +708,5 @@ The following action parameters are specified when you invoke the individual act
 | `key` | The `key` parameter is the object name. |
 | `operation` | The `operation` parameter is the pre-signed URL's operation to call. |
 | `corsConfig` | The `corsConfig` parameter is a bucket's CORS configuration. |
-{: caption="Table 2. Action parameters for object storage" caption-side="bottom"}
+{: caption="Table 7. Action parameters for object storage" caption-side="bottom"}
 

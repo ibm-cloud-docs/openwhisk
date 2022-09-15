@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-09-15"
 
 keywords: alarms, serverless, triggers, functions, event, cron
 
@@ -38,6 +38,8 @@ ibmcloud fn trigger create fireOnce --feed /whisk.system/alarms/once --param dat
 ```
 {: pre}
 
+| Parameter | Description |
+| --- | ----------------------- |
 | `fireOnce` | The type of alarm trigger you are creating. |
 | `--feed /whisk.system/alarms/once` | The alarm package file path for the `fireOnce` feed. |
 | `--param date` | Replace `<date>` with the date when you plan to fire the trigger. The trigger fires once at the specified time. The `date` parameter supports an integer or string value. The integer value represents the number of milliseconds since 1 `January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/)){: external}. |
@@ -66,13 +68,15 @@ ibmcloud fn trigger create interval --feed /whisk.system/alarms/interval --param
 ```
 {: pre}
 
+| Parameter | Description |
+| --- | ----------------------- |
 | `interval` | The type of alarm trigger you are creating. |
 | `--feed /whisk.system/alarms/interval` | The alarm package file path for the interval feed. |
 | `--param minutes` | Replace `<minutes>` with an integer that represents the length of the interval, in minutes, between trigger fires. |
 | `--param trigger_payload` | (Optional) Replace `<key>` and `<value>` with the parameters of the trigger when the trigger is fired. |
 | `--param startDate` | (Optional) Replace `<startDate>` with the date that you plan for the first trigger to fire. Subsequent fires occur based on the interval length that is specified by the minutes parameter. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/){: external}. |
 | `--param stopDate` | (Optional) Replace `<stopDate>` with the date when you plan for the trigger to stop. Triggers do not fire once this date is reached. This parameter supports an integer or string value. The integer value represents the number of milliseconds since `1 January 1970 00:00:00` UTC and the string value must be in the [ISO 8601 format](https://262.ecma-international.org/5.1/){: external}. |
-{: caption="Table 3. Understanding the `trigger create interval command components" caption-side="bottom"}
+{: caption="Table 3. Understanding the trigger create interval command components" caption-side="bottom"}
 
 The following example creates a trigger that fires once every 2 minutes. The trigger fires as soon as possible, and stops firing `January 31, 2019, 23:59:00` UTC. Each trigger event has the parameters `name=Odin` and `place=Asgard`.
 
@@ -95,6 +99,8 @@ ibmcloud fn trigger create periodic --feed /whisk.system/alarms/alarm --param cr
 ```
 {: pre}
 
+| Parameter | Description |
+| --- | ----------------------- |
 | `periodic` | The type of alarm trigger you are creating. |
 | `--feed /whisk.system/alarms/alarm` | The alarm package file path for the periodic alarm feed. |
 | `--param cron` | Replace `<cron>` with a string that indicates when to fire the trigger in Coordinated Universal Time (UTC). The string is based on the [UNIX crontab syntax](http://crontab.org){: external} and is a sequence of maximum five fields. Fields are separated by spaces in the format `X X X X X`. The following strings are examples that use varying durations of frequency. \n - `\* \* \* \* \*` - The trigger fires at the start of every minute. \n - `0 \* \* \* \*` - The trigger fires at the start of every hour. \n - `0 \*/2 \* \* \*` - The trigger fires every 2 hours (that is, 02:00:00, 04:00:00, and so on). \n - `0 9 8 \* \*` - The trigger fires at 9:00:00AM (UTC) on the eighth day of every month. |

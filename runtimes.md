@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-09"
+lastupdated: "2022-09-14"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -47,10 +47,12 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 These runtimes (kinds) are deprecated:
 - `go:1.11` (deprecated)
 - `go:1.15` (deprecated)
+- `go:1.17` (deprecated)
 - `nodejs:12` (deprecated)
 - `nodejs:10` (deprecated)
 - `nodejs:8` (deprecated)
 - `php:7.3` (deprecated)
+- `php:7.4` (deprecated)
 - `python:3.6` (deprecated)
 - `python:3.7` (deprecated)
 - `ruby:2.5` (deprecated)
@@ -476,10 +478,10 @@ If you have an action that is not compiled, and uses the `SwiftyJSON` package, y
 ## PHP runtime
 {: #openwhisk_ref_php}
 
-By default, all PHP actions are executed in a version 7.4 environment.
+By default, all PHP actions are executed in a version 8.1 environment.
 {: note}
 
-For more information about the php:7.4 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-php/blob/master/core/php7.4Action/CHANGELOG.md){: external}..
+For more information about the php:8.1 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-php/blob/master/core/php8.1Action/CHANGELOG.md){: external}.
 
 The following PHP extensions are available in addition to the standard ones.
 
@@ -531,8 +533,8 @@ For more information, see [Creating actions from binaries](/docs/openwhisk?topic
 {: #more_runtime_support}
 
 Go
-:    By default, all Go actions are executed in a version 1.17 environment. Go Version 1.11 and 1.15 are deprecated.
-     When migrating from Go:1.11 to Go:1.17:
+:    By default, all Go actions are executed in a version 1.19 environment. Go Version 1.11, 1.15 and 1.17 are deprecated.
+     When migrating from Go:1.11 to Go:1.17 and higher:
      - Go:1.17 uses [Go Modules](https://go.dev/ref/mod){: external}.
      - File containing the entry function (e.g `main.go` `Main`) needs be placed in root, no `"main"` directory is supported.
 
@@ -584,4 +586,3 @@ Deprecated runtimes are not marked as such in this response until the runtime is
 When you troubleshoot a failing action (400, bad request) to identify whether a disabled runtime is used, check for `deprecated=true` in the query response. Actions that use a disabled runtime can be only read or deleted. You cannot run such an action.
 
 To update the runtime of this action to a supported one, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
-

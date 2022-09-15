@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-01"
+lastupdated: "2022-09-14"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -1296,16 +1296,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [`ibmcloud fn activation poll`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll)
 
     * [`ibmcloud fn activation result`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_result)
-
-* [API commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api)
-
-    * [`ibmcloud fn api create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_create)
-
-    * [`ibmcloud fn api delete`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_delete)
-
-    * [`ibmcloud fn api get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_get)
-
-    * [`ibmcloud fn api list`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_api_list)
 
 * [Deployment commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_deploy_cmds)
 
