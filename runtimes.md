@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-21"
+lastupdated: "2022-09-22"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -586,3 +586,4 @@ Deprecated runtimes are not marked as such in this response until the runtime is
 When you troubleshoot a failing action (400, bad request) to identify whether a disabled runtime is used, check for `deprecated=true` in the query response. Actions that use a disabled runtime can be only read or deleted. You cannot run such an action.
 
 To update the runtime of this action to a supported one, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
+
