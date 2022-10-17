@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-15"
+lastupdated: "2022-10-13"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -257,16 +257,17 @@ After you [create a trigger to respond to bucket changes](#pkg_obstorage_ev_trig
     ````
     {: pre}
 
-2. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects)3. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.
-3. Stop polling by pressing `ctrl + c`.
-4. You can see the details of an activation by running the `activation get` command.
+2. In your {{site.data.keyword.cos_full_notm}} dashboard, either modify an existing bucket object or create one. To learn how to add an object to your bucket, see [Add some objects to your bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-add-objects).
+3. For each bucket object change, observe new activations for the `cosTrigger` trigger and `cosChange` action.
+4. Stop polling by pressing `ctrl c`.
+5. You can see the details of an activation by running the `activation get` command.
 
     ```sh
-    ibmcloud fn activation get <activation_id>
+    ibmcloud fn activation get ACTIVATION_ID
     ````
     {: pre}
     
-5. If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.
+6. If you are unable to observe new activations, verify that the parameter values are correct by running the `trigger get` command.
 
     ```sh
     ibmcloud fn trigger get cosTrigger
