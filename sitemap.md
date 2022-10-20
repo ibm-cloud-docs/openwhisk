@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-14"
+lastupdated: "2022-10-20"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -616,6 +616,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm)
 
     * [NPM libraries with native dependencies](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm_dependencies)
+
+    * [Using ES6 module in your action](/docs/openwhisk?topic=openwhisk-prep#prep_es6-module)
 
 * [How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-prep#how_to_package_python)
 

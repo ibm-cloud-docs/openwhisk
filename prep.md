@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-14"
+lastupdated: "2022-10-20"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -290,7 +290,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 
     To avoid compatibility issues, you can use the runtime to build the `webpack`. Use the following command in the source directory to run steps 4 and 5 inside the container.
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm run prebuild && npm run build"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm run prebuild && npm run build"
     ```
     {: pre}
 
@@ -324,7 +324,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     or
     
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm run clean"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm run clean"
     ```
     {: pre}
 
@@ -394,7 +394,7 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
 1. Run the following command to fetch the Node.js modules, compile the native dependencies and Create the zipped action code, including the `node_modules` directory.
 
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.0 -c "npm install && zip action.zip *"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm install && zip action.zip -r *"
     ```
     {: pre}
     
@@ -404,6 +404,64 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
     ibmcloud fn action create my-action action.zip --kind nodejs:16
     ```
     {: pre}
+
+### Using ES6 module in your action
+{: #prep_es6-module}
+
+If you want to use new ES6 modules in your Actions you will have to create a wrapper function to import the new modules. This wrapper consists of a global variable for your module you want to import and a function which imports the module as a promise.
+
+To load extra more use promise chaining to load further ES6 modules. Add the variable name (`let module_name`) and the import code to add anothe ES6 module (`.then( () =>   return import('other_module').then( module => module_name = module.<obj_to_load>))`). 
+{: note}
+
+
+1. Create the `my-action.js` file with the following content.
+    
+    ```javascript
+        let uuidv5;
+
+        function main(params) {
+            const MY_NAMESPACE = '1b671a64-40d5-491e-99b0-da01ff1f3341';
+
+            console.log( "uuidv5 =  " + uuidv5)
+
+            const triggerID = uuidv5('Hello, World!', MY_NAMESPACE);
+            console.log("----> uuid module successfully loaded and trigger calculated  = ", triggerID)
+
+            return { message: 'Hello World with id = ' + triggerID };
+        }
+
+
+        function main_wrapper(params) {
+
+            return import('uuid').then(module => uuidv5 = module.v5)
+            //.then( () =>   return import('xxxxx').then( module => global_var_yy = module.<obj_to_load>))
+            .then( () => {
+                return main( params )
+            })
+        }
+    ```
+    {: codeblock}
+
+2. Create the action and set the main action to `main_wrapper`.
+
+    ```bash
+    ibmcloud fn action create my-action my-action.js --main main_wrapper
+    ```
+    {: pre}
+
+    If you are creating a action with the Cloud Functions UI you must rename the `main_wrapper` function to `main` and the `main` function to somethig else, as the entry function in the UI is always `main`.
+    {: note}
+
+    When you create a zipped action, follow the previous guide and specify the entry point with `exports.main = main_wrapper`
+    {: note}
+
+3. Invoke your action.
+
+    ```bash
+    ibmcloud fn action invoke my-action
+    ```
+    {: pre}
+
 
 ## How do I package my Python app for deployment in {{site.data.keyword.openwhisk_short}}
 {: #how_to_package_python}
