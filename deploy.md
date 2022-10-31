@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-06-29"
+lastupdated: "2022-10-31"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -40,8 +40,6 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
     * The action name.
     * The action annotation that indicates it is to be a web action.
     * The action code file name.
-    * The API with a base path of `/hello`.
-    * The endpoint path of `/world`.
 
 2. Create the `hello_world_manifest.yml` file.
 
@@ -53,25 +51,18 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
         actions:
           hello_world:
             function: helloworld.js
-            web-export: true
-        apis:
-          hello-world:
-            hello:
-              world:
-                hello_world:
-                  method: GET
-                  response: http
+            web: true
     ```
     {: codeblock}
 
-3. Use the **`deploy`** command to deploy the package, action, and API.
+3. Use the **`deploy`** command to deploy the package and action.
 
     ```sh
     ibmcloud fn deploy --manifest hello_world_manifest.yml
     ```
     {: pre}
 
-4. You can list the actions, packages, and APIs to confirm that the three expected entities were created successfully.
+4. You can list the actions and  packages to confirm that the expected entities were created successfully.
 
     1. List the actions by using the following command.
 
@@ -87,19 +78,22 @@ This example takes some simple Node.js code `helloworld.js`, creates a web actio
         ```
         {: pre}
 
-    3. List the APIs by using the following command.
+5. Invoke the Web action.
+
+    1. get the action  url 
 
         ```sh
-        ibmcloud fn api list
+        ibmcloud fn action get hello_world_package/hello_world --url
         ```
         {: pre}
 
-5. Invoke the API.
+    2. Invoke the Action using the exposed URL from the previous output
 
-    ```sh
-    curl URL-FROM-API-LIST-OUTPUT
-    ```
-    {: codeblock}
+        ```sh
+        curl <url from previous output> $(ibmcloud fn action get hello_world_package/hello_world --url | grep "https://")
+        ```
+        {: pre}
+
 
 Optional: You can undeploy the same entities by using the `undeploy` command.
 
