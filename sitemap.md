@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-10-20"
+lastupdated: "2022-11-18"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -1209,8 +1209,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Migrating from Python 3.7 to Python 3.9](/docs/openwhisk?topic=openwhisk-runtimes#migrate_python_environments_3.73.9)
 
     * [Python packages](/docs/openwhisk?topic=openwhisk-runtimes#python_packages)
-
-* [Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions)
 
 * [PHP runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_php)
 

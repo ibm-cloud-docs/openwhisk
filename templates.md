@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-05-31"
+lastupdated: "2022-11-18"
 
 keywords: deploy, deployment templates, templates, example, quick start, functions, serverless, actions
 
@@ -26,11 +26,11 @@ The following quick start templates are available for deployment. You can deploy
 
 | Name | Description | Supported Runtimes | Source repository |
 |:-----------------|:-----------------|:-----------------|:-----------------|
-| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
+| [{{site.data.keyword.cloudant_short_notm}} Events](#cloudant-template) | When a document is edited or added in an {{site.data.keyword.cloudantfull}} database, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-cloudant-trigger){: external} |
 | [Get HTTP Resource](#get-http-resource-template) | Invoke a web action by using an HTTP event. | - Node.js 10 \n - Node.js 12 \n - Python 3 | [Code](https://github.com/ibm-functions/template-get-external-resource){: external}
-| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-hello-world){: external}
-| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
-| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | - Node.js 10 \n - Node.js 12 \n - Swift 4 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
+| [Hello World](#hello-world-template) | Create a basic action that accepts a JSON object as a single parameter. | - Node.js 10 \n - Node.js 12 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-hello-world){: external}
+| [{{site.data.keyword.messagehub_full}}](#messagehub-events-template) | When new data is added in an {{site.data.keyword.messagehub_full}} topic, log the change in the console. | - Node.js 10 \n - Node.js 12 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-messagehub-trigger){: external}
+| [Periodic Slack Reminder](#slack-reminder-template) | Use a webhook to Slack based on a periodic trigger. | - Node.js 10 \n - Node.js 12 \n - Python 3 \n - PHP 7 | [Code](https://github.com/ibm-functions/template-reminder-slack){: external}
 {: caption="Table 1. Templates, descriptions, and supported runtimes available in IBM Cloud Functions" caption-side="bottom"}
 
 ## Deploying the {{site.data.keyword.cloudant_short_notm}} Events template

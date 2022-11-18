@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-01-07"
+lastupdated: "2022-11-18"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -138,7 +138,7 @@ For more information about creating actions with Docker images, see [Preparing a
 You can update the code in your app or to migrate to a newer version of a runtime. For example, because Node.js version 8 is in maintenance mode, you might want to switch the runtime to Node.js 10. You can update your actions from the CLI or from the console.
 {: shortdesc}
 
-When you migrate to a new runtime version, you might need to change the code in your app to comply with the new runtime version. In most cases, the runtime versions are compatible.
+When you migrate to a new runtime version, you might need to change the code in your app to comply with the new runtime version. Usually, the runtime versions are compatible.
 {: tip}
 
 When an action is using a disabled runtime, the action can be only read or deleted; no update is possible.
@@ -399,7 +399,7 @@ Before you begin, create a package that includes at least one action.
 ## Sharing packages of actions
 {: #actions_pkgs_share}
 
-After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all of its contents are also private.
+After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all its contents are also private.
 {: shortdesc}
 
 1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.

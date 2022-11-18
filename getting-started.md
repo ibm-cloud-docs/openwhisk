@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-15"
+lastupdated: "2022-11-18"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # Getting started with IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code on demand with HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
+With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code in response to HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
 
 ## Working with actions

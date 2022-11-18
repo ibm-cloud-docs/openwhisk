@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-09-22"
+lastupdated: "2022-11-18"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -26,7 +26,6 @@ These runtimes (kinds) are available:
 | ---- | -------------- |
 | Node.js | `nodejs:16` (default) |
 | Python | `python:3.9` (default) |
-| Swift | `swift:4.2` (default) |
 | PHP | `php:8.1` (default) |
 | Go | `go:1.19` (default) |
 | Ruby | `ruby:2.6` (default) |
@@ -56,6 +55,7 @@ These runtimes (kinds) are deprecated:
 - `python:3.6` (deprecated)
 - `python:3.7` (deprecated)
 - `ruby:2.5` (deprecated)
+- `swift:4.2` (deprecated)
 
 These runtimes (kinds) are disabled:
 - `ballerina:0.990` (disabled)
@@ -460,19 +460,6 @@ For more information about Python 3.9 packages, see [(Details on GitHub)](https:
 For more information about Python 3.7 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/requirements.txt){: external}.
 
 For more information about Python 3.6 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.6/requirements.txt){: external}.
-
-## Swift runtime
-{: #swift-actions}
-
-By default, all Swift actions are executed in a version 4.2 environment.
-{: note}
-
-Swift 4.x action runtimes don't embed any packages, follow the instructions for [packaged Swift actions](/docs/openwhisk?topic=openwhisk-prep#prep_swift42_single) to include dependencies by using a Package.swift.
-
-Swift 4.2 actions can use the following packages when you use a single Swift source file:
-- Watson Developer Cloud SDK version 1.2.0, https://github.com/watson-developer-cloud/swift-sdk
-
-If you have an action that is not compiled, and uses the `SwiftyJSON` package, you need to pre-compile your action, and specify the version of `SwiftyJSON` you want to use for `swift:4.2` kind action.
 
 
 ## PHP runtime
