@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-11-18"
+lastupdated: "2022-12-08"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -44,31 +44,31 @@ After a runtime is deprecated, it becomes `disabled`. The timeframe between `dep
 Migrate actions that are running on a `deprecated` or `disabled` runtime to a different runtime version by updating it. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
 These runtimes (kinds) are deprecated:
-- `go:1.11` (deprecated)
-- `go:1.15` (deprecated)
 - `go:1.17` (deprecated)
 - `nodejs:12` (deprecated)
 - `nodejs:10` (deprecated)
-- `nodejs:8` (deprecated)
-- `php:7.3` (deprecated)
 - `php:7.4` (deprecated)
-- `python:3.6` (deprecated)
 - `python:3.7` (deprecated)
-- `ruby:2.5` (deprecated)
-- `swift:4.2` (deprecated)
 
 These runtimes (kinds) are disabled:
 - `ballerina:0.990` (disabled)
+- `go:1.11` (disabled)
+- `go:1.15` (disabled)
 - `nodejs` (disabled)
 - `nodejs:6` (disabled)
+- `nodejs:8` (disabled)
 - `php:7.1` (disabled)
 - `php:7.2` (disabled)
+- `php:7.3` (disabled)
 - `python` (disabled)
 - `python:2` (disabled)
+- `python:3.6` (disabled)
+- `ruby:2.5` (disabled)
 - `swift` (disabled)
 - `swift:3` (disabled)
 - `swift:3.1.1` (disabled)
 - `swift:4.1` (disabled)
+- `swift:4.2` (disabled)
 
 For more information about supported and disabled runtimes, see [Available images and runtimes per region](#runtimes_per_region). 
 

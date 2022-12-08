@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2022
-lastupdated: "2022-10-20"
+lastupdated: "2022-12-08"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -1658,7 +1658,7 @@ Compile a single source file that doesn't depend on external libraries. Use the 
 Before you begin
 
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- Package your app dependencies with your app.
 
 Package your app by running the following command.
 
@@ -1678,7 +1678,7 @@ Package your Swift 4.2 multi-file projects and dependencies by creating a direct
 Before you begin
 
 - [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- [Review the packages that are included with the Swift runtime](/docs/openwhisk?topic=openwhisk-runtimes#swift-actions) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
+- Package your app dependencies with your app.
 
 Package your app.
 
