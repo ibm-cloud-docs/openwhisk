@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-08"
+  years: 2017, 2023
+lastupdated: "2023-01-12"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -44,7 +44,7 @@ After a runtime is deprecated, it becomes `disabled`. The timeframe between `dep
 Migrate actions that are running on a `deprecated` or `disabled` runtime to a different runtime version by updating it. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
 These runtimes (kinds) are deprecated:
-- `go:1.17` (deprecated)
+- `go:1.17` (deprecated) 
 - `nodejs:12` (deprecated)
 - `nodejs:10` (deprecated)
 - `php:7.4` (deprecated)
