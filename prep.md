@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-12-08"
+  years: 2017, 2023
+lastupdated: "2023-02-09"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -55,7 +55,7 @@ Before you create an action, get your JavaScript code ready. Confirm that your c
 
 - The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 - The input parameters are passed as a JSON object.
-- The result of a successful activation is also a JSON object but is returned differently depending on whether the action is synchronous](#prep_js_sync) or [asynchronous](#prep_js_async).
+- The result of a successful activation is also a JSON object but is returned differently depending on whether the action is [synchronous](#prep_js_sync) or [asynchronous](#prep_js_async).
 
 Example
 
