@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-01-12"
+lastupdated: "2023-02-22"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -163,7 +163,7 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 | [`elasticsearch`](https://www.npmjs.com/package/elasticsearch) | The official low-level `Elasticsearch` client for Node.js.|
 | [`errorhandler`](https://www.npmjs.com/package/errorhandler) | Development-only error handler middleware.|
 | [`etcd3`](https://www.npmjs.com/package/etcd3) | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API.|
-| [`express`](https://www.npmjs.com/package/express) | A Fast, unopinionated, minimalist web framework for node. |
+| [`express`](https://www.npmjs.com/package/express) | A fast, minimalist web framework for node. |
 | [`express-session`](https://www.npmjs.com/package/express-session) | A server-side session data storing module. |
 | [`formidable`](https://www.npmjs.com/package/formidable) | A Node.js module for parsing form data, especially file uploads. |
 | [`glob`](https://www.npmjs.com/package/glob) | Match files by using the patterns that the shell uses, like stars and stuff. |
@@ -270,7 +270,7 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 | [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp){: external} | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
 | [`pg`](https://www.npmjs.com/package/pg){: external} | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
 | [`process`](https://www.npmjs.com/package/process){: external} | `require('process')`; just like any other module. |
-| [`pug`](https://www.npmjs.com/package/pug){: external} | Implements the Pug templating language. |
+| [`pug`](https://www.npmjs.com/package/pug){: external} | Implements the Pug template language. |
 | [`redis`](https://www.npmjs.com/package/redis){: external} | A complete and feature rich Redis client for Node.js. |
 | [`request`](https://www.npmjs.com/package/request){: external} | Make HTTP calls. |
 | [`request-promise`](https://www.npmjs.com/package/request-promise){: external} | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |

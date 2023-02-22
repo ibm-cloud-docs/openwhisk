@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-09"
+lastupdated: "2023-02-22"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -410,7 +410,7 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
 
 If you want to use new ES6 modules in your Actions you will have to create a wrapper function to import the new modules. This wrapper consists of a global variable for your module you want to import and a function which imports the module as a promise.
 
-To load extra more use promise chaining to load further ES6 modules. Add the variable name (`let module_name`) and the import code to add anothe ES6 module (`.then( () =>   return import('other_module').then( module => module_name = module.<obj_to_load>))`). 
+To load extra more use promise chaining to load further ES6 modules. Add the variable name (`let module_name`) and the import code to add another ES6 module (`.then( () =>   return import('other_module').then( module => module_name = module.<obj_to_load>))`). 
 {: note}
 
 
@@ -449,7 +449,7 @@ To load extra more use promise chaining to load further ES6 modules. Add the var
     ```
     {: pre}
 
-    If you are creating a action with the Cloud Functions UI you must rename the `main_wrapper` function to `main` and the `main` function to somethig else, as the entry function in the UI is always `main`.
+    If you are creating a action with the Cloud Functions UI you must rename the `main_wrapper` function to `main` and the `main` function to something else, as the entry function in the UI is always `main`.
     {: note}
 
     When you create a zipped action, follow the previous guide and specify the entry point with `exports.main = main_wrapper`
@@ -1603,7 +1603,7 @@ Swift actions run in a Linux environment. Swift on Linux is still in development
 The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
 {: shortdesc}
 
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [`Codable`](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data types that are [encodable and decodable for compatibility with external representations such as JSON](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
+In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [`Codable`](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data type [encoding and decoding for compatibility with external representations such as JSON](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
 
 Example
 

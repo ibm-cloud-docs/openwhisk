@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-11-18"
+  years: 2017, 2023
+lastupdated: "2023-02-22"
 
 keywords: deploy, deployment templates, templates, example, quick start, functions, serverless, actions
 
@@ -68,7 +68,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
-2. Click **Quickstart templates**.
+2. Click **`Quickstart templates`**.
 
 3. Click **{{site.data.keyword.cloudant_short_notm}} Events**.
 
@@ -314,7 +314,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
-2. Click **Quickstart templates**.
+2. Click **`Quickstart templates`**.
 
 3. Click **Get HTTP Resource**.
 
@@ -446,7 +446,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
-2. Click **Quickstart templates**.
+2. Click **`Quickstart templates`**.
 
 3. Click **Hello World**.
 
@@ -558,7 +558,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
-2. Click **Quickstart templates**.
+2. Click **`Quickstart templates`**.
 
 3. Click **{{site.data.keyword.messagehub}} Events**.
 
@@ -646,7 +646,7 @@ Select a namespace to contain your {{site.data.keyword.openwhisk_short}} entitie
 
 1. Go to the [Create page](https://cloud.ibm.com/functions/create){: external} in the {{site.data.keyword.openwhisk_short}} console.
 
-2. Click **Quickstart templates**.
+2. Click **`Quickstart templates`**.
 
 3. Click **Periodic Slack Reminder**.
 
