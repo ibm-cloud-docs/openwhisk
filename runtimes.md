@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-22"
+lastupdated: "2023-02-23"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -536,8 +536,6 @@ Java
 
 .NET Core
 :    By default, all .NET Core actions are executed in a version 2.2 environment.
-
-:    For more information about the `dotnet:2.2` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-dotnet/blob/master/core/dotnet2.2/CHANGELOG.md){: external}.
 
 
 ## Available images and runtimes per region
