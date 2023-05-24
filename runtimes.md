@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-19"
+lastupdated: "2023-05-24"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -114,7 +114,7 @@ For more information about migrating to `Node.js:12`, see [(Details on GitHub)](
 
 | Package | Details |
 | --- | --- | 
-| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v6.x.  \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to `ibm-watson v6.x`, see [`MIGRATION-V6.md`](https://github.com/watson-developer-cloud/node-sdk/blob/HEAD/MIGRATION-V6.md){: external}.  \n  If you can't migrate, consider packaging the older version of `ibm-watson` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+| `ibm-watson` | The current `ibm-watson` SDK package in the `nodejs:12` runtime is at version v6.x.  \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version.  \n  If you can't migrate, consider packaging the older version of `ibm-watson` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
 | `ibmiotf` | The `ibmiotf` package is renamed to `@wiotp/sdk`.  For more information, see [IBM Watson IoT Platform JavaScript SDK](https://www.npmjs.com/package/@wiotp/sdk){: external}. |
 | `request` | The `request` package is deprecated and therefore not available in this runtime. You can consider `axios`, `bent`, `got`, or `needle` as an alternative. |
 {: caption="Table 2. Migrating details from Node.js 10 to Node.js 12" caption-side="bottom"}
