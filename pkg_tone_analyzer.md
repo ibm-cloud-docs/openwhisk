@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-05-19"
 
 keywords: functions, serverless, watson, cognitive, tone analyzer
 
@@ -22,7 +22,7 @@ The installable {{site.data.keyword.toneanalyzerfull}} service uses linguistic a
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
 {: deprecated}
 
-This service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations. For more information about this service, see [Tone analyzer](/docs/tone-analyzer?topic=tone-analyzer-about).
+This service can analyze tone at both the document and sentence levels. You can use the service to understand how your written communications are perceived and then to improve the tone of your communications. Businesses can use the service to learn the tone of their customers' communications and to respond to each customer, or to understand and improve their customer conversations..
 
 Request logging is disabled for the Tone Analyzer service. The service doesn't log or retain data from requests and responses, regardless of whether the `X-Watson-Learning-Opt-Out` request header is set.
 {: note}
@@ -31,9 +31,9 @@ The {{site.data.keyword.toneanalyzershort}} package contains the following entit
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`tone-analyzer-v3`](https://cloud.ibm.com/apidocs/tone-analyzer){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
-| [`tone`](https://cloud.ibm.com/apidocs/tone-analyzer#analyze-general-tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
-| [`tone-chat`](https://cloud.ibm.com/apidocs/tone-analyzer#analyze-customer-engagement-tone){: external} | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
+| `tone-analyzer-v3` | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.toneanalyzershort}} service. |
+| `tone` | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`,`iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`,    `tone_input`, `content_type`, `sentences`, `tones`, `content_language`, `accept_language` | Analyze general tone. |
+| `tone-chat` | Action |  `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `utterances`, `content_language`, `accept_language` | Analyze customer engagement tone. |
 {: caption="Table 2. Tone analyzer package entities" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.toneanalyzershort}} service instance
@@ -178,7 +178,7 @@ ibmcloud fn action invoke tone-analyzer-v3/<action_name> -b -p <param name> <par
 ```
 {: pre}
 
-All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/tone-analyzer#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released.
 
 This package's functions use the current version of Tone Analyzer, 2017-09-21. Try out the `tone` action.
 

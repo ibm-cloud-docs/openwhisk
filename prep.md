@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-22"
+lastupdated: "2023-05-19"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -493,7 +493,7 @@ Your app uses multiple Python files, but does not require any dependencies or pa
 Example command
 
 ```bash
-ibmcloud fn action create <action_name> <compressed_python_files.zip> --kind python:3.9
+ibmcloud fn action create <action_name> <compressed_python_files.zip> --kind python:3.11
 ```
 {: pre}
 
@@ -509,7 +509,7 @@ If your app requires dependencies that are not included with the base {{site.dat
 Example command
 
 ```bash
-ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip> --kind python:3.9
+ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip> --kind python:3.11
 ```
 {: pre}
 
@@ -527,7 +527,7 @@ Example command
 You can use the compressed file to create an action. Replace `<file_path>` with the file path to your compressed file.
 
 ```bash
-ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip> --kind python:3.9
+ibmcloud fn action create <action_name> <compressed_python_virtualenv.zip> --kind python:3.11
 ```
 {: pre}
 
@@ -616,7 +616,7 @@ Before you begin, [review the packages that are included with the Python runtime
 5. You can use then use the compressed file to create an action called `hello`. Replace `<file_path>` with the file path to your compressed file.
 
     ```bash
-    ibmcloud fn action create hello <file_path>/test/stranger.zip --kind python:3.9
+    ibmcloud fn action create hello <file_path>/test/stranger.zip --kind python:3.11
     ```
     {: pre}
 
@@ -667,7 +667,7 @@ Before you begin
 
 - The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture.
 - [Review the packages that are included with the Python runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments) to see whether a dependency of your app is already included with the runtime. If your dependency is not included, you must package it with your app.
-- Make sure that the locally installed Python version to create the compressed action file (for example, Python 3.9.x) matches the {{site.data.keyword.openwhisk_short}} kind that is chosen to later create the action (`--kind python:3.9`).
+- Make sure that the locally installed Python version to create the compressed action file (for example, Python 3.11.x) matches the {{site.data.keyword.openwhisk_short}} kind that is chosen to later create the action (`--kind python:3.11`).
 - Install the `virtualenv` Python package.
 
     ```bash
@@ -712,7 +712,7 @@ To package your app:
     ```
     {: pre}
 
-4. Ensure the Python version inside the virtual environment matches the version as specified with the `--kind` option when you create the action later on (for example, `python:3.9`). To check the actual version,
+4. Ensure the Python version inside the virtual environment matches the version as specified with the `--kind` option when you create the action later on (for example, `python:3.11`). To check the actual version,
 
     ```bash
     python --version
@@ -773,7 +773,7 @@ To package your app:
 9. Create an action called `jokes` that uses your `jokes.zip` file. You must also specify the entry point as `jokes`. You must also specify the `--kind` flag for the runtime.
 
     ```bash
-    ibmcloud fn action create jokes </path/to/file/>jokes.zip --kind python:3.9 --main joke
+    ibmcloud fn action create jokes </path/to/file/>jokes.zip --kind python:3.11 --main joke
     ```
     {: pre}
 
@@ -851,6 +851,7 @@ Package your app by completing the following steps.
     To keep the `virtualenv` to a minimum size, add only the modules that are not part of the selected runtime environment to the `requirements.txt`. For more information about the packages that are included in Python runtimes, see the Python [runtime reference](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments).
     {: tip}
 
+    * For `python:3.11`, use the Docker image `ibmfunctions/action-python-v3.11`.
     * For `python:3.9`, use the Docker image `ibmfunctions/action-python-v3.9`.
     * For `python:3.7`, use the Docker image `ibmfunctions/action-python-v3.7`.
     * For `python:3.6`, use the Docker image `ibmfunctions/action-python-v3.6`.
@@ -921,7 +922,7 @@ Package your app by completing the following steps.
 8. Create an action called `pyjoke` by using the `pyjoke.zip` file. Make sure to use the `--kind` corresponding to the runtime image used to create the compressed action file. Otherwise, the action fails to execute during invoke.
 
     ```bash
-    ibmcloud fn action create pyjoke <file_path>/pyjoke.zip --kind python:3.9
+    ibmcloud fn action create pyjoke <file_path>/pyjoke.zip --kind python:3.11
     ```
     {: pre}
 
@@ -2004,7 +2005,7 @@ Package your code by creating a `.jar` file.
 
 Before you begin
 
-You must have [JDK 8](http://openjdk.java.net/install/){: external} installed locally. This example uses the [`google-gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.9.0){: external}.
+You must have [JDK 8](http://openjdk.org/install/){: external} installed locally. This example uses the [`google-gson-2.9.0.jar`](https://mvnrepository.com/artifact/com.google.code.gson/gson/2.9.0){: external}.
 
 If you are working with a JDK version other than JDK 8, you must specify `--release 8` when you compile your code with the `javac` command.
 {: note}

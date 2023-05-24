@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-23"
+lastupdated: "2023-05-23"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -40,7 +40,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 ## What is FaaS (Function-as-a-Service)?
-{: #sitemap_what-is-faas-function-as-a-service?}
+{: #sitemap_what-is-faas-function-as-a-service}
 
 [What is FaaS (Function-as-a-Service)?](https://www.ibm.com/cloud/learn/faas){: external}
 
@@ -1206,7 +1206,7 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 * [Python runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_python_environments)
 
-    * [Migrating from Python 3.7 to Python 3.9](/docs/openwhisk?topic=openwhisk-runtimes#migrate_python_environments_3.73.9)
+    * [Migrating from Python 3.7 to Python 3.9, Python 3.11](/docs/openwhisk?topic=openwhisk-runtimes#migrate_python_environments_3.73.9)
 
     * [Python packages](/docs/openwhisk?topic=openwhisk-runtimes#python_packages)
 

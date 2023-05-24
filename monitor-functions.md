@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2020, 2022
-lastupdated: "2022-06-29"
+  years: 2020, 2023
+lastupdated: "2023-05-19"
 
 keywords: monitoring, viewing, performance, dashboard, metrics, health, functions, attributes
 
@@ -71,7 +71,7 @@ All metric names have the prefix `ibm_functions_`.
 | [`ibm_functions_status_success`](#ibm_functions_status_success) | 
 | [`ibm_functions_timed_rate_limit`](#ibm_functions_timed_rate_limit) | 
 | [`ibm_functions_wait_time`](#ibm_functions_wait_time) | 
-{: caption="Table 1: Metrics Available by Plan Names" caption-side="top"}
+{: caption="Table 1: Metrics Available by Plan Names" caption-side="bottom"}
 
 ### `ibm_functions_activation`
 {: #ibm_functions_activation}
@@ -84,7 +84,7 @@ The overall number of activations that were triggered on the system.
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 2: ibm_functions_activation metric metadata" caption-side="top"}
+{: caption="Table 2: Activations metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_concurrent_invocations`
 {: #ibm_functions_concurrent_invocations}
@@ -97,7 +97,7 @@ The number of concurrent invocations on the system.
 | `Metric Type` | `gauge` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 3: ibm_functions_concurrent_invocations metric metadata" caption-side="top"}
+{: caption="Table 3: Concurrent invocations metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_concurrent_rate_limit`
 {: #ibm_functions_concurrent_rate_limit}
@@ -110,7 +110,7 @@ The sum of activations that were throttled due to exceeding the concurrency rate
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 4: ibm_functions_concurrent_rate_limit metric metadata" caption-side="top"}
+{: caption="Table 4: Concurrent rate limit metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_duration`
 {: #ibm_functions_duration}
@@ -123,7 +123,7 @@ The average action duration, billed action execution time in milliseconds.
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 5: ibm_functions_duration metric metadata" caption-side="top"}
+{: caption="Table 5: Duration metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_init_time`
 {: #ibm_functions_init_time}
@@ -136,7 +136,7 @@ The time that is spent to initialize the action container in milliseconds.
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 6: ibm_functions_init_time metric metadata" caption-side="top"}
+{: caption="Table 6: Initial time metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_status_error_application`
 {: #ibm_functions_status_error_application}
@@ -149,7 +149,7 @@ The number of unsuccessful activations that are caused by application errors.
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 7: ibm_functions_status_error_application metric metadata" caption-side="top"}
+{: caption="Table 7: Application errors metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_status_error_developer`
 {: #ibm_functions_status_error_developer}
@@ -162,7 +162,7 @@ The number of unsuccessful activations that are caused by the developer.
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 8: ibm_functions_status_error_developer metric metadata" caption-side="top"}
+{: caption="Table 8: Developer errors metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_status_error_internal`
 {: #ibm_functions_status_error_internal}
@@ -175,7 +175,7 @@ The number of unsuccessful activations that are caused by {{site.data.keyword.op
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 9: ibm_functions_status_error_internal metric metadata" caption-side="top"}
+{: caption="Table 9: Internal errors metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_status_success`
 {: #ibm_functions_status_success}
@@ -188,7 +188,7 @@ The number of successful activations of action code.
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 10: ibm_functions_status_success metric metadata" caption-side="top"}
+{: caption="Table 10: Successful activations metric metadata" caption-side="bottom"}
 
 ### `ibm_functions_timed_rate_limit`
 {: #ibm_functions_timed_rate_limit}
@@ -201,7 +201,7 @@ The sum of activations that were throttled due to exceeding the per-minute limit
 | `Metric Type` | `counter` |
 | `Value Type`  | `none` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 11: ibm_functions_timed_rate_limit metric metadata" caption-side="top"}
+{: caption="Table 11: Activations exceeded time limit metric metadata" capbittinb'tion-side="bottom"}
 
 ### `ibm_functions_wait_time`
 {: #ibm_functions_wait_time}
@@ -214,7 +214,7 @@ The average time that is spent in a queue, waiting for an activation to be sched
 | `Metric Type` | `gauge` |
 | `Value Type`  | `second` |
 | `Segment By` | `Service instance, ibm_functions_namespace, ibm_functions_package, ibm_functions_action` |
-{: caption="Table 12: ibm_functions_wait_time metric metadata" caption-side="top"}
+{: caption="Table 12: Average wait time metric metadata" caption-side="bottom"}
 
 ## Attributes for segmentation
 {: #attributes}
@@ -229,7 +229,7 @@ The following attributes are available for segmenting all the metrics previously
 | `Cloud Type` | `ibm_ctype` | The cloud type, which is always set to `bluemix`. |
 | `Location` | `ibm_location` | The region of the monitored resource. Possible regions include `us-south`, `eu-de`, or `au-syd`. |
 | `Scope` | `ibm_scope` | The scope is the account, organization, or space GUID associated with this metric. |
-{: caption="Table 13: Global attributes" caption-side="top"}
+{: caption="Table 13: Global attributes" caption-side="bottom"}
 
 ### Additional attributes
 {: #additional-attributes}
@@ -242,6 +242,6 @@ The following attributes are available for segmenting one or more attributes as 
 | `ibm_functions_action` | `ibm_functions_action` | The action name. |
 | `ibm_functions_namespace` | `ibm_functions_namespace` | The namespace that contains the action. |
 | `ibm_functions_package` | `ibm_functions_package` | The package that contains the action. |
-{: caption="Table 14: Additional attributes" caption-side="top"}
+{: caption="Table 14: Additional attributes" caption-side="bottom"}
 
 

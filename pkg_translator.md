@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-05-19"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # {{site.data.keyword.languagetranslatorshort}} 
 {: #pkg_translator}
 
-The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language. For more information about this service, see [{{site.data.keyword.languagetranslatorfull}}](/docs/language-translator?topic=language-translator-gettingstarted).
+The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
 {: shortdesc}
 
 The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?topic=watson-using-sdks){: external} to perform Watson related functionality. For more information about which Watson SDK is included in the available runtimes, see the [Functions runtime](/docs/openwhisk?topic=openwhisk-runtimes) documentation.
@@ -26,14 +26,14 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
-| [`language-translator-v3`](https://cloud.ibm.com/apidocs/language-translator){: external} | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.languagetranslatorshort}} service. |
-| [`translate`](https://cloud.ibm.com/apidocs/language-translator#translate){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text`, `model_id`, `source`, `target` | Translate text. |
-| [`identify`](https://cloud.ibm.com/apidocs/language-translator#identify-language){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text` | Identify the language of text. |
-| [`list-identifiable-languages`](https://cloud.ibm.com/apidocs/language-translator#list-identifiable-languages){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List identifiable languages. |
-| [`create-model`](https://cloud.ibm.com/apidocs/language-translator#create-model){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `base_model_id`, `name`, `forced_glossary`, `parallel_corpus` | Create a model. |
-| [`delete-model`](https://cloud.ibm.com/apidocs/language-translator#delete-model){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Delete a model. |
-| [`get-model`](https://cloud.ibm.com/apidocs/language-translator#get-model-details){: external} | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Get model details. |
-| [`list-models`](https://cloud.ibm.com/apidocs/language-translator#list-models){: external} | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `source`, `target`, `default_models` | List models. |
+| `language-translator-v3` | Package | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | Work with the {{site.data.keyword.languagetranslatorshort}} service. |
+| `translate` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`,  `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text`, `model_id`, `source`, `target` | Translate text. |
+| `identify` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `text` | Identify the language of text. |
+| `list-identifiable-languages` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url` | List identifiable languages. |
+| `create-model` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `base_model_id`, `name`, `forced_glossary`, `parallel_corpus` | Create a model. |
+| `delete-model` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Delete a model. |
+| `get-model` | Action | `username`, `password`, `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `model_id` | Get model details. |
+| `list-models` | Action | `username`, `password`,  `iam_access_token`, `iam_apikey`, `iam_url`, `headers`, `headers[X-Watson-Learning-Opt-Out]`, `url`, `source`, `target`, `default_models` | List models. |
 {: caption="Table 1. Language translator" caption-side="bottom"}
 
 ## Creating a {{site.data.keyword.languagetranslatorshort}} service instance
@@ -42,7 +42,7 @@ The {{site.data.keyword.languagetranslatorshort}} package contains the following
 Before you install the package, you must create a {{site.data.keyword.languagetranslatorshort}} service instance and service credentials.
 {: shortdesc}
 
-1. [Create a {{site.data.keyword.languagetranslatorshort}} service instance](https://cloud.ibm.com/catalog/services/language_translator){: external}.
+1. Create a {{site.data.keyword.languagetranslatorshort}} service instance.
 2. When the service instance is created, service credentials are automatically created for you.
 
 ## Installing the {{site.data.keyword.languagetranslatorshort}} package
@@ -173,7 +173,7 @@ ibmcloud fn action invoke language-translator-v3/<action_name> -b -p <param name
 ```
 {: pre}
 
-All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. See more details in the [API reference](https://cloud.ibm.com/apidocs/language-translator#versioning){: external}.
+All actions require a version parameter in the format `YYYY-MM-DD`. When the API is changed in a backwards-incompatible way, a new version date is released. 
 
 This package's functions use the current version of Language Translator, `2018-05-01`. Try out the `identify` action.
 

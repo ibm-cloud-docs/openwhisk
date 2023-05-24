@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-23"
+lastupdated: "2023-05-19"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -25,7 +25,7 @@ These runtimes (kinds) are available:
 | Language | Kind identifier |
 | ---- | -------------- |
 | Node.js | `nodejs:16` (default) |
-| Python | `python:3.9` (default) |
+| Python | `python:3.11` (default) |
 | PHP | `php:8.1` (default) |
 | Go | `go:1.19` (default) |
 | Ruby | `ruby:2.6` (default) |
@@ -49,6 +49,7 @@ These runtimes (kinds) are deprecated:
 - `nodejs:10` (deprecated)
 - `php:7.4` (deprecated)
 - `python:3.7` (deprecated)
+- `python:3.9` (deprecated)
 
 These runtimes (kinds) are disabled:
 - `ballerina:0.990` (disabled)
@@ -316,13 +317,14 @@ By default, all Python actions are executed in a Python version 3.9 environment.
 
 | Kind | Python version | Description | Change log |
 | --- | --- | --- | --- |
-| `python:3.9` | [3.9.x](https://github.com/docker-library/python/blob/6a2c0f48f011aa279a0c9190725fc84a220460bc/3.9/buster/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.9.x environment (Debian Buster based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.9` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.9 standard libraries. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/CHANGELOG.md){: external}. |
-| `python:3.7` | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | Python actions are executed in a Python version 3.7.x environment (Debian Stretch based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
+| `python:3.11` | [3.11.x](https://github.com/docker-library/python/blob/2bcce464bea3a9c7449a2fe217bf4c24e38e0a47/3.11/buster/Dockerfile){: external} | By default, all Python actions are executed in a Python version 3.11.x environment (Debian Buster based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.11` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.11 standard libraries. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-python/blob/master/python3.11/CHANGELOG.md){: external}. |
+| `python:3.9` | [3.9.x](https://github.com/docker-library/python/blob/6a2c0f48f011aa279a0c9190725fc84a220460bc/3.9/buster/Dockerfile){: external} | Python actions are executed in a Python version 3.11.x environment (Debian Buster based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.9` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.9 standard libraries. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/CHANGELOG.md){: external}. |
+| `python:3.7` | [3.7.x](https://github.com/docker-library/python/blob/ab8b829cfefdb460ebc17e570332f0479039e918/3.7/stretch/Dockerfile){: external} | Python actions are executed in a Python version 3.11.x environment (Debian Stretch based) unless you specify the `--kind` flag when you create or update an action. To explicitly use this runtime, specify the CLI parameter `--kind python:3.7` when you create or update an action. The runtime contains SDK packages for IBM Cloud services available for use by Python actions, in addition to the Python 3.7 standard libraries. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-python/blob/master/python3.7/CHANGELOG.md){: external}. |
 | &nbsp; | 3.6 | Python 3.6 reached `end of support` on 2021/12/23. \n See [end of life Python Releases](https://endoflife.date/python){: external}. | &nbsp; |
 | &nbsp; | 2.7 | Python 2.7 reached `end of support` on 2020/01/01. \n See [the Active Python Releases](https://www.python.org/downloads/){: external}. | &nbsp; |
 {: caption="Table 4. Python versions" caption-side="bottom"}
 
-### Migrating from Python 3.7 to Python 3.9 
+### Migrating from Python 3.7 to Python 3.9, Python 3.11
 {: #migrate_python_environments_3.73.9}
 
 | Package | Details |
@@ -338,6 +340,45 @@ For more information about migrating to `python:3.9`, see [(Details on GitHub)](
 
 Ensure that your action uses only the packages that are mentioned in the following table. \n While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
 {: note}
+| Python 3.9 packages |
+|:-----------------|
+| `beautifulsoup4` |
+| `botocore` |  
+| `cassandra-driver` |
+| `ibmcloudant` |
+| `elasticsearch` |
+| `etcd3` |
+| `flask` |
+| `gevent` |
+| `httplib2` |
+| `ibm-cos-sdk` |
+| `ibm_db` |
+| `ibmcloudsql` |
+| `kafka_python` |
+| `lxml` |
+| `numpy` |
+| `pandas` |
+| `pika` |
+| `Pillow` |
+| `psycopg2` |
+| `PyJWT` |
+| `pymongo` |
+| `python-dateutil` |
+| `redis` |
+| `requests` |
+| `scikit-learn` |
+| `scipy` |
+| `scrapy` |
+| `simplejson` |
+| `tornado` |
+| `twisted` |
+| `virtualenv` |
+| `ibm-watson` |
+{: caption="Table 1. Python 3.11 packages" caption-side="top"}
+{: #python-1}
+{: tab-title="Python 3.11 packages"}
+{: tab-group="python"}
+{: class="simple-tab-table"}
 
 | Python 3.9 packages |
 |:-----------------|
@@ -373,8 +414,8 @@ Ensure that your action uses only the packages that are mentioned in the followi
 | `twisted` |
 | `virtualenv` |
 | `ibm-watson` |
-{: caption="Table 1. Python 3.9 packages" caption-side="top"}
-{: #python-1}
+{: caption="Table 2. Python 3.9 packages" caption-side="top"}
+{: #python-2}
 {: tab-title="Python 3.9 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
@@ -413,8 +454,8 @@ Ensure that your action uses only the packages that are mentioned in the followi
 | `twisted` |
 | `virtualenv` |
 | `watson-developer-cloud` |
-{: caption="Table 2. Python 3.7 packages" caption-side="top"}
-{: #python-2}
+{: caption="Table 3. Python 3.7 packages" caption-side="top"}
+{: #python-3}
 {: tab-title="Python 3.7 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
@@ -449,11 +490,13 @@ Ensure that your action uses only the packages that are mentioned in the followi
 | `twisted` |
 | `virtualenv` |
 | `watson-developer-cloud` |
-{: caption="Table 3. Python 3.6 packages" caption-side="top"}
-{: #python-3}
+{: caption="Table 4. Python 3.6 packages" caption-side="top"}
+{: #python-4}
 {: tab-title="Python 3.6 packages"}
 {: tab-group="python"}
 {: class="simple-tab-table"}
+
+For more information about Python 3.11 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.11/requirements.txt){: external}.
 
 For more information about Python 3.9 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-python/blob/master/python3.9/requirements.txt){: external}.
 

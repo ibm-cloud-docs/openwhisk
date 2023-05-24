@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-10-13"
+  years: 2017, 2023
+lastupdated: "2023-05-19"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -59,7 +59,7 @@ Can I have multiple revisions of objects in my bucket?
 : Yes! Object Storage version support allows you to have more than one version of an object in your bucket. For more information, see [Versioning objects](/docs/cloud-object-storage?topic=cloud-object-storage-versioning).
 
 Can I use replication with my {{site.data.keyword.cos_full_notm}} trigger? 
-: Yes! With replication, you can define rules for automatically copying bucket objects from a source bucket to one or more destination buckets. For more information, see [Replicating objects](/docs/cloud-object-storage?topic=cloud-object-storage-replication-overview).
+: Yes! With replication, you can define rules for automatically copying bucket objects from a source bucket to one or more destination buckets. For more information, see [Replicating objects](/docs/cloud-object-storage?topic=cloud-object-storage-replicating-objects).
 
 
 ### Prerequisites for working with the {{site.data.keyword.cos_full_notm}} trigger

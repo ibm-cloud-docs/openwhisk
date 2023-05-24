@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-07-07"
+  years: 2017, 2023
+lastupdated: "2023-05-23"
 
 keywords: platform architecture, openwhisk, couchdb, kafka, functions, terminology, nginx, controller, load balancer, invoker
 
@@ -22,7 +22,7 @@ subcollection: openwhisk
 ## {{site.data.keyword.openwhisk_short}} terminology
 {: #functions-terminology}
 
-Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}. Then, test your knowledge and [take a quiz!](https://ibmcloud-quizzes.mybluemix.net/functions/terms_quiz/quiz.php){: external}
+Learn the basic concepts of the technology behind {{site.data.keyword.openwhisk_short}}. Then, test your knowledge and [take a quiz!](https://quizzes.12dekrh4l1b4.us-south.codeengine.appdomain.cloud/functions/terms_quiz/quiz.php){: external}
 
 | Term | Description |
 | --------- | ------------------- |

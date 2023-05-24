@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-04-21"
 
 keywords: package, cognitive, functions, watson, speech to text
 
@@ -23,7 +23,7 @@ The Watson packages are deprecated. Please use the [Watson SDKs](/docs/watson?to
 
 This service can transcribe speech from various languages and audio formats. It addition to basic transcription, the service can produce detailed information about many aspects of the audio. For most languages, the service supports two sampling rates, broadband and narrowband. It returns all JSON response content in the `UTF-8` character set. For more information about the service, see [{{site.data.keyword.speechtotextshort}}](/docs/speech-to-text?topic=speech-to-text-about).
 
-The {{site.data.keyword.speechtotextshort}} package contains the following entities. You can find more information in the {{site.data.keyword.speechtotextshort}} API reference by clicking the entity name.
+The {{site.data.keyword.speechtotextshort}} package contains the following entities. Click the entity name for more information in the {{site.data.keyword.speechtotextshort}} API reference.
 
 | Entity | Type | Parameters | Description |
 | --- | --- | --- | --- |
