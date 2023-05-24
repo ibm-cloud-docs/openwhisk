@@ -340,6 +340,7 @@ For more information about migrating to `python:3.9`, see [(Details on GitHub)](
 
 Ensure that your action uses only the packages that are mentioned in the following table. \n While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
 {: note}
+
 | Python 3.9 packages |
 |:-----------------|
 | `beautifulsoup4` |
