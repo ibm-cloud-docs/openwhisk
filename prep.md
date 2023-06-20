@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-19"
+lastupdated: "2023-06-20"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -1762,6 +1762,9 @@ Package your app.
 Before you create an action, get your Ruby code ready.
 {: shortdesc}
 
+The Ruby runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
+{: deprecated}
+
 ### Structuring Ruby code
 {: #prep_ruby_struct}
 
@@ -2332,6 +2335,9 @@ To create a Java action by using Docker, complete the following steps.
 
 Before you create an action, get your .NET Core code ready.
 {: shortdesc}
+
+The .NET Core runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
+{: deprecated}
 
 ### Structuring .NET Core code
 {: #prep_dotnet_struct}

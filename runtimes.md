@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-24"
+lastupdated: "2023-06-20"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -28,9 +28,7 @@ These runtimes (kinds) are available:
 | Python | `python:3.11` (default) |
 | PHP | `php:8.1` (default) |
 | Go | `go:1.19` (default) |
-| Ruby | `ruby:2.6` (default) |
 | Java | `java (JDK 8)` (default) |
-| .NET Core | `dotnet:2.2` (default) |
 {: caption="Table 1. Supported runtimes" caption-side="bottom"}
 
 Other languages are supported by using Docker actions.
@@ -50,6 +48,8 @@ These runtimes (kinds) are deprecated:
 - `php:7.4` (deprecated)
 - `python:3.7` (deprecated)
 - `python:3.9` (deprecated)
+- `dotnet:2.2` (deprecated)
+- `ruby:2.6` (deprecated)
 
 These runtimes (kinds) are disabled:
 - `ballerina:0.990` (disabled)
@@ -534,10 +534,13 @@ Ensure that your action uses only the modules that are mentioned in the followin
 
 
 
-## Ruby runtime
+## Ruby runtime (deprecated)
 {: #openwhisk_ref_ruby}
 
-By default, all Ruby actions are executed in a version 2.6 environment.
+The Ruby runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
+{: deprecated}
+
+By default, all Ruby actions are executed in a version 2.6 environment. 
 {: note}
 
 For more information about the Ruby 2.6 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-ruby/blob/master/core/ruby2.6ActionLoop/CHANGELOG.txt){: external}.
@@ -578,8 +581,8 @@ Java
 
 :    For more information about the `java:8` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-java/blob/master/core/java8/CHANGELOG.md){: external}.
 
-.NET Core
-:    By default, all .NET Core actions are executed in a version 2.2 environment.
+.NET Core (deprecated)
+:    The .NET core runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
 
 
 ## Available images and runtimes per region
