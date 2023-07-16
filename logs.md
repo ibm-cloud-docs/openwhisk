@@ -168,10 +168,21 @@ You can also launch logging from your {{site.data.keyword.openwhisk_short}} dash
 {: #logs_configure_log}
 
 To use the [{{site.data.keyword.la_full_notm}} service](https://cloud.ibm.com/observe/logging){: external} to view the logs of your {{site.data.keyword.openwhisk_short}} actions, you need to provision an instance first. For more information about additional options, see the [Getting started tutorial](/docs/log-analysis?topic=log-analysis-getting-started){: external}.
+The method for accessing action logs can vary depending on the context in which you are referring to "action logs." Here are some common scenarios and the corresponding ways to see action logs:
 
+1. **Computer/System Action Logs:** On a computer or server, action logs often refer to records of various system activities, errors, and events. To access these logs, you'll typically need administrative privileges. The steps to view logs can vary based on the operating system you're using (e.g., Windows, macOS, or Linux). Generally, you can find system logs in the "Event Viewer" on Windows, the "Console" app on macOS, and the "/var/log" directory on Linux.
+
+2. **Website/Application Action Logs:** If you're referring to action logs within a website or application you're using, you might need to check with the developers or administrators of that specific service. Many web applications and services have their own logs for tracking user actions and system events. Depending on the platform, there may be a dedicated section or log files available for this purpose.
+
+3. **Cloud Service Action Logs:** For cloud services, like Amazon Web Services (AWS), Google Cloud Platform (GCP), or Microsoft Azure, you can usually access action logs from the respective service's management console or dashboard. These logs provide details about actions taken within the cloud environment, such as resource creation, access events, and security-related activities.
+
+4. **Mobile Device Action Logs:** For mobile devices, accessing action logs typically requires specific developer tools and software. On Android, you can use Android Studio or third-party tools to view logs. On iOS, Xcode or third-party tools are used for log viewing.
+
+In general, accessing and interpreting action logs can be a technical task, and it's essential to have the necessary permissions and knowledge of the tools used for log analysis. If you're looking for specific action logs, it's best to consult the documentation or support resources related to the system, application, or service you are interested in. Additionally, seeking assistance from IT administrators, developers, or support teams can help you access and interpret the logs effectively.
 To enable an instance that is receiving {{site.data.keyword.openwhisk_short}} action logs, you need to configure the [Platform Service Logs](/docs/log-analysis?topic=log-analysis-config_svc_logs){: external} in the logging service.
 
-{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.la_short}} service in the same region as the {{site.data.keyword.openwhisk_short}} namespace. Actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a logging instance in `us-south`.
+{{site.data.keyword.openwhisk_short}} sends the action logs to the {{site.data.keyword.la_short}} service in the same region as the {{site.data.keyword.openwhisk_short}} namespace. Actions logs of a {{site.data.keyword.openwhisk_short}} namespace in `us-south` are sent to a logging instance in `us-south`. More detail here [currentpackages](
+https://currentpackages.com/)
 
 
 
