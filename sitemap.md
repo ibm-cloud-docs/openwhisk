@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-06-20"
+lastupdated: "2023-07-19"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -128,6 +128,12 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
+
+* [July 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-july23)
+
+    * [19 July 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-july1923)
+
+        * Deprecation note for Cloud Foundry namespaces
 
 * [June 2022](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-june22)
 

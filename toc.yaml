@@ -9,7 +9,6 @@ toc:
     product-page: https://www.ibm.com/cloud/functions
     path: openwhisk
     label: Functions
-
   entries:
   - navgroup: 
       id: learn
@@ -110,7 +109,7 @@ toc:
       - topicgroup:
           label: CLI reference
           topics:
-          - /cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
+          - functions-cli.md
           - cli_changelog.md
       - regions.md
       - hadr.md
@@ -153,7 +152,5 @@ toc:
               topics:
               - ts_action_nodejs_fails.md
               - memory_usage_ts.md
-        
       - get-support.md
       - sitemap.md
-

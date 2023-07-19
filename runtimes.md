@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-06-20"
+lastupdated: "2023-07-19"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -537,7 +537,7 @@ Ensure that your action uses only the modules that are mentioned in the followin
 ## Ruby runtime (deprecated)
 {: #openwhisk_ref_ruby}
 
-The Ruby runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
+The Ruby runtime is deprecated. There is no replacement. Instead, you must migrate to a different runtime. 
 {: deprecated}
 
 By default, all Ruby actions are executed in a version 2.6 environment. 
@@ -582,7 +582,7 @@ Java
 :    For more information about the `java:8` runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-java/blob/master/core/java8/CHANGELOG.md){: external}.
 
 .NET Core (deprecated)
-:    The .NET core runtime is deprecated. There is no relacement. Instead, you must migrate to a different runtime. 
+:    The .NET core runtime is deprecated. There is no replacement. Instead, you must migrate to a different runtime. 
 
 
 ## Available images and runtimes per region

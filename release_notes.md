@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2019, 2022
-lastupdated: "2022-09-01"
+  years: 2019, 2023
+lastupdated: "2023-07-19"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -24,6 +24,16 @@ Use the release notes to learn about the latest changes to {{site.data.keyword.o
 
 For information about changes to the {{site.data.keyword.openwhisk_short}} CLI, see [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 {: tip}
+
+## July 2023
+{: #openwhisk-july23}
+
+### 19 July 2023
+{: #openwhisk-july1923}
+{: release-note}
+
+Deprecation note for Cloud Foundry namespaces
+:   As a result of the [Cloud Foundry service deprecation](/docs/cloud-foundry-public?topic=cloud-foundry-public-deprecation), Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
 
 ## June 2022
 {: #openwhisk-june22}
