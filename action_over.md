@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-01"
+  years: 2017, 2023
+lastupdated: "2023-09-18"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -12,7 +12,7 @@ subcollection: openwhisk
 
 {{site.data.keyword.attribute-definition-list}}
 
-# Action overview
+# Action overview 
 {: #actions_over}
 
 Learn more about {{site.data.keyword.openwhisk}} actions, web actions, and sequences.
