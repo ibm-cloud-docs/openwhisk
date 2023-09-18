@@ -109,7 +109,7 @@ toc:
       - topicgroup:
           label: CLI reference
           topics:
-          - functions-cli.md
+          - include: ../cloud-functions-cli-plugin/functions-cli.md
           - cli_changelog.md
       - regions.md
       - hadr.md
