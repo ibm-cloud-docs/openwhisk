@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-10-31"
+  years: 2017, 2023
+lastupdated: "2023-09-18"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -13,7 +13,7 @@ subcollection: openwhisk
 {{site.data.keyword.attribute-definition-list}}
 
 
-# Deploying entities with a manifest file
+# Deploying entities with a manifest file 
 {: #deploy}
 
 You can use {{site.data.keyword.openwhisk}} to describe and deploy all your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov), [Actions](/docs/openwhisk?topic=openwhisk-actions), [Triggers](/docs/openwhisk?topic=openwhisk-triggers), and [Rules](/docs/openwhisk?topic=openwhisk-rules) with a single command.
