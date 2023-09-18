@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-07-31"
+lastupdated: "2023-09-18"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -1201,6 +1201,8 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Available images and runtimes](/docs/openwhisk?topic=openwhisk-runtimes#runtimes_available)
 
 * [JavaScript runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments)
+
+    * [Migrating from Node.js 16 to Node.js 20](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_1620)
 
     * [Migrating from Node.js 12 to Node.js 16](/docs/openwhisk?topic=openwhisk-runtimes#migrate_javascript_environments_1216)
 

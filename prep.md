@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-07-19"
+lastupdated: "2023-09-18"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -220,7 +220,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     "scripts": {
         "prebuild": "NODE_ENV=development npm install",
         "build": "webpack --config webpack.config.js ",
-        "deploy": "ibmcloud fn fn action update my-action dist/bundle.js --kind nodejs:16",
+        "deploy": "ibmcloud fn fn action update my-action dist/bundle.js --kind nodejs:20",
         "clean": "rm -rf node_modules package-lock.json dist"
     },
     "dependencies": {
@@ -290,7 +290,7 @@ Before you begin, [review the packages that are included with the JavaScript run
 
     To avoid compatibility issues, you can use the runtime to build the `webpack`. Use the following command in the source directory to run steps 4 and 5 inside the container.
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm run prebuild && npm run build"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v20:1.0.0 -c "npm run prebuild && npm run build"
     ```
     {: pre}
 
@@ -324,7 +324,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     or
     
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm run clean"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v20:1.0.0 -c "npm run clean"
     ```
     {: pre}
 
@@ -394,14 +394,14 @@ Zipped actions for {{site.data.keyword.openwhisk_short}} are limited to `48MB`. 
 1. Run the following command to fetch the Node.js modules, compile the native dependencies and Create the zipped action code, including the `node_modules` directory.
 
     ```bash
-    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v16:1.0.2 -c "npm install && zip action.zip -r *"
+    docker run --rm -it --entrypoint "/bin/bash" -v $PWD:/nodejsAction ibmfunctions/action-nodejs-v20:1.0.0 -c "npm install && zip action.zip -r *"
     ```
     {: pre}
     
 2. Create the action by using the {{site.data.keyword.openwhisk_short}} CLI.
 
     ```bash
-    ibmcloud fn action create my-action action.zip --kind nodejs:16
+    ibmcloud fn action create my-action action.zip --kind nodejs:20
     ```
     {: pre}
 
@@ -1225,10 +1225,10 @@ To see an example deployment of a custom Docker image with a {{site.data.keyword
 
 You can create Actions by using Golang.
 
-Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third-party libraries, package them as compressed file and deploy the file. When deploying a compressed file, specify the runtime by using the `kind` parameter (`--kind=go:1.19`)
+Use a single file for quick testing or development purposes. For production apps, pre-compile your Go actions into an executable file for better performance. To deploy actions made up of multiple source files and including third-party libraries, package them as compressed file and deploy the file. When deploying a compressed file, specify the runtime by using the `kind` parameter (`--kind=go:1.21`)
 {: shortdesc}
 
-Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image(`docker run -i openwhisk/action-golang-v1.19:nightly ...`). You can package [multiple source files](#prep_go_multi_packages) or [vendor libraries](#prep_go_external_libraries).
+Although you can create a compressed file on any Go platform by cross-compiling with `GOOS=Linux` and `GOARCH=amd64`, use the pre-compilation feature that is embedded in the runtime container image(`docker run -i openwhisk/action-golang-v1.21:nightly ...`). You can package [multiple source files](#prep_go_multi_packages) or [vendor libraries](#prep_go_external_libraries).
 {: tip}
 
 The following steps assume that you are running the commands on a Linux-based distribution on a processor with AMD64-based architecture. You must install the `ibmcloud cli` to run the commands. Note that some examples also require [Docker](https://www.docker.com/){: external}.
@@ -1271,7 +1271,7 @@ Use the following steps to create actions that use Go.
 
 1. Create the function that you want to deploy.
 2. (`optional`) If you have more than one file, package the files as a compressed file, otherwise skip this step (see the following examples)
-3. (`optional`) Compile the `go/zip` file by using the Docker image (`docker run -i openwhisk/action-golang-v1.19:nightly -compile ...`).  This step returns a compressed file that contains the executable file.
+3. (`optional`) Compile the `go/zip` file by using the Docker image (`docker run -i openwhisk/action-golang-v1.21:nightly -compile ...`).  This step returns a compressed file that contains the executable file.
 4. Create the action by using the `ibmcloud cli`.
 
 These steps are used in each of the following examples.
@@ -1311,7 +1311,7 @@ You can create a simple action in Go by creating a file that contains a Go funct
 2. (`optional`) If you want to pre-compile the function to an executable file that is stored in a compressed format first,
 
     ```bash
-    docker run -i openwhisk/action-golang-v1.19:nightly -compile main <main.go >main-bin.zip
+    docker run -i openwhisk/action-golang-v1.21:nightly -compile main <main.go >main-bin.zip
     ```
     {: pre}
 
@@ -1320,7 +1320,7 @@ You can create a simple action in Go by creating a file that contains a Go funct
 
     Specify the generated compressed file (`main-bin.zip`) as the file for the `action create` command.
 
-3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.19` runtime. If your action is not called `main`, specify the function name with `--name <your action name>`.
+3. Create an action by using the {{site.data.keyword.openwhisk_short}} managed `go:1.21` runtime. If your action is not called `main`, specify the function name with `--name <your action name>`.
 
     With the source code (`main.go`),
 
@@ -1339,7 +1339,7 @@ You can create a simple action in Go by creating a file that contains a Go funct
     Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
 
     ```bash
-    ibmcloud fn action create simple-action main.go --docker openwhisk/action-golang-v1.19:nightly
+    ibmcloud fn action create simple-action main.go --docker openwhisk/action-golang-v1.21:nightly
     ```
     {: pre}
 
@@ -1386,7 +1386,7 @@ You can create an action that includes multiple Go packages. Each package must i
     ```sh
     module action
 
-    go 1.19
+    go 1.21
 
     replace hello => ./hello
 
@@ -1444,7 +1444,7 @@ You can create an action that includes multiple Go packages. Each package must i
     Compile the function to an executable file that is stored in a compressed format and uses the go runtime itself.
 
     ```bash
-    docker run -i openwhisk/action-golang-v1.19:nightly -compile main <src.zip >main-bin.zip
+    docker run -i openwhisk/action-golang-v1.21:nightly -compile main <src.zip >main-bin.zip
     ```
     {: pre} 
 
@@ -1452,26 +1452,26 @@ You can create an action that includes multiple Go packages. Each package must i
     {: note}
 
 
-4. Create the action. Note that the runtime must be specified as `--kind=go:1.19`.
+4. Create the action. Note that the runtime must be specified as `--kind=go:1.21`.
 
     **With `src.zip`**
 
     ```bash
-    ibmcloud fn action create multiple-packag-action src.zip --kind=go:1.19
+    ibmcloud fn action create multiple-packag-action src.zip --kind=go:1.21
     ```
     {: pre}
 
     **With pre-compiled code (`main-bin.zip`)**
 
     ```bash
-    ibmcloud fn action create multiple-packag-action main-bin.zip --kind=go:1.19
+    ibmcloud fn action create multiple-packag-action main-bin.zip --kind=go:1.21
     ```
     {: pre}
 
     Alternatively, if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
 
     ```bash
-    ibmcloud fn action create multiple-packag-action src.zip --docker openwhisk/action-golang-v1.19:nightly
+    ibmcloud fn action create multiple-packag-action src.zip --docker openwhisk/action-golang-v1.21:nightly
     ```
     {: pre}
 
@@ -1531,7 +1531,7 @@ If you pre-compile the action, then the libraries are already packaged into the 
     ```sh
     module action
 
-    go 1.19
+    go 1.21
 
     require github.com/rs/zerolog v1.19.0
     ```
@@ -1554,7 +1554,7 @@ If you pre-compile the action, then the libraries are already packaged into the 
     1. Compile the function to an executable file that is stored in a compressed format (`main-bin.zip`).
 
         ```bash
-        docker run -i openwhisk/action-golang-v1.19:nightly -compile main <src.zip >main-bin.zip
+        docker run -i openwhisk/action-golang-v1.21:nightly -compile main <src.zip >main-bin.zip
         ```
         {: pre} 
 
@@ -1563,26 +1563,26 @@ If you pre-compile the action, then the libraries are already packaged into the 
 
     2. Specify the compressed file (`main-bin.zip`) as the file for the `action create` command. The runtime `kind` must be specified when you use a compressed file; for example,  `--kind=go:1.19`.
 
-4. Create the action. The runtime must be specified with `--kind=go:1.19`.
+4. Create the action. The runtime must be specified with `--kind=go:1.21`.
 
     **With `src.zip`**
 
     ```bash
-    ibmcloud fn action create module-action src.zip --kind=go:1.19
+    ibmcloud fn action create module-action src.zip --kind=go:1.21
     ```
     {: pre}
 
     **With pre-compiled code (`main-bin.zip`)**
 
     ```bash
-    ibmcloud fn action create module-action main-bin.zip --kind=go:1.19
+    ibmcloud fn action create module-action main-bin.zip --kind=go:1.21
     ```
     {: pre}
 
     Alternatively if you want to pin the runtime image to a fixed runtime image version, use the `--docker` tag.
 
     ```bash
-    ibmcloud fn action create module-action src.zip --docker openwhisk/action-golang-v1.19:nightly
+    ibmcloud fn action create module-action src.zip --docker openwhisk/action-golang-v1.21:nightly
     ```
     {: pre}
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-07-19"
+lastupdated: "2023-09-18"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -24,10 +24,10 @@ Your apps can be coded and executed in programming languages such as JavaScript 
 These runtimes (kinds) are available:
 | Language | Kind identifier |
 | ---- | -------------- |
-| Node.js | `nodejs:16` (default) |
+| Node.js | `nodejs:20` (default) |
 | Python | `python:3.11` (default) |
 | PHP | `php:8.1` (default) |
-| Go | `go:1.19` (default) |
+| Go | `go:1.21` (default) |
 | Java | `java (JDK 8)` (default) |
 {: caption="Table 1. Supported runtimes" caption-side="bottom"}
 
@@ -43,7 +43,9 @@ Migrate actions that are running on a `deprecated` or `disabled` runtime to a di
 
 These runtimes (kinds) are deprecated:
 - `go:1.17` (deprecated) 
+- `go:1.19` (deprecated) 
 - `nodejs:12` (deprecated)
+- `nodejs:16` (deprecated)
 - `nodejs:10` (deprecated)
 - `php:7.4` (deprecated)
 - `python:3.7` (deprecated)
@@ -90,11 +92,26 @@ Node.js version 8 is deprecated and is planned to be removed soon. To continue r
 
 | Kind | Node.js version | Description | Change log |
 | --- | --- | --- | --- |
-| `nodejs:16` | [16.x](https://nodejs.org/docs/latest-v16.x/api/){: external} | By default, all Node.js actions are executed in a version 16 environment. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs16/CHANGELOG.md){: external}. |
+| `nodejs:20` | [20.x](https://nodejs.org/docs/latest-v20.x/api/){: external} | By default, all Node.js actions are executed in a version 20 environment. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs20/CHANGELOG.md){: external}. |
+| `nodejs:16` | [16.x](https://nodejs.org/docs/latest-v16.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs16/CHANGELOG.md){: external}. |
 | `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
 | `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
 | `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 {: caption="Table 1. Node.js versions" caption-side="bottom"}
+
+### Migrating from Node.js 16 to Node.js 20
+{: #migrate_javascript_environments_1620}
+
+| Package | Details |
+| --- | --- | 
+| `cloudant` | The `@ibm-cloud/cloudant` SDK package in the `nodejs:20` runtime has been upgraded from to `0.5.5` and includs interface changes. For more information about the `@ibm-cloud/cloudant` SDK look at the [IBM Cloudant Docs](https://cloud.ibm.com/apidocs/cloudant?code=node). |
+| `request-promise` | The `request-promise` package has been removed as it is deprecated. If you still require this module, consider packaging `request-promise` with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+| `mongodb` | The `mongodb` package in the `nodejs:20` runtime is at version v5.x. \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to the current version of `mongodb`, see the  [Upgrade Driver Versions for MongoDB](https://www.mongodb.com/docs/drivers/node/current/upgrade/){: external}. \n  If you can't migrate, consider packaging the older version of `mongodb` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
+| `elasticsearch` | The `elasticsearch` SDK package in the `nodejs:16` runtime is deprecated and has been replaced with `@elastic/elasticsearch` in `nodejs:20`. This is a major change and will cause incompatibilities, which might cause your action to fail. If your action uses `elasticsearch` consider migrating to `@elastic/elasticsearch`. For more information about migrating to `@elastic/elasticsearch`, see [Migrating to @elastic/elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/7.17/breaking-changes.html){: external}.  \n  If you can't migrate, consider packaging `@elastic/elasticsearch` with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). For more information about the `@elastic/elasticsearch` SDK look at the [Official Homepage](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html). |
+{: caption="Table 2. Migrating details from Node.js 16 to Node.js 20" caption-side="bottom"}
+
+For more information about migrating to `Node.js:20`, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs20/CHANGELOG.md){: external}.
+
 
 ### Migrating from Node.js 12 to Node.js 16
 {: #migrate_javascript_environments_1216}
