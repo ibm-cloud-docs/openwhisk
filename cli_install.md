@@ -128,7 +128,7 @@ Complete the following steps to install the {{site.data.keyword.openwhisk_short}
     ```
     {: pre}
 
-For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+For more information about {{site.data.keyword.openwhisk_short}} commands, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-functions-cli).
 
 ## Next steps for {{site.data.keyword.openwhisk}} CLI
 {: #install_next}
