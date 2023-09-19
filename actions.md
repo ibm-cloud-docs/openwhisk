@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-11-18"
+  years: 2017, 2023
+lastupdated: "2023-09-19"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -27,7 +27,7 @@ See [Preparing apps for actions](/docs/openwhisk?topic=openwhisk-prep) for detai
 ## Creating actions from the CLI
 {: #actions_cli}
 
-1. Create an action by running the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+1. Create an action by running the [**`ibmcloud fn action create`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_create) command.
 
     ```bash
     ibmcloud fn action create <action_name> <file> --kind <runtime>
@@ -121,7 +121,7 @@ The executable must conform to the following conventions:
 To create your action from an executable, use the `--native` argument as shorthand for `--docker openwhisk/dockerskeleton` when running the `create action` command. 
 
 1. When you create a Docker image, an executable is created inside the container at `/action/exec`. Copy the `/action/exec` file to your local file system.
-2. Create a Docker action that receives the executable as initialization data. Compress your app file and deploy it. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument in the [`action create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command.
+2. Create a Docker action that receives the executable as initialization data. Compress your app file and deploy it. The `--native` argument replaces the `--docker openwhisk/dockerskeleton` argument in the [`action create`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_create) command.
 
 Example
 
@@ -144,13 +144,13 @@ When you migrate to a new runtime version, you might need to change the code in 
 When an action is using a disabled runtime, the action can be only read or deleted; no update is possible.
 In this case, you can view the original action code from the console, copy it, and create a new action with the copied code.
 
-From the CLI, you can get the action code by using the [`ibmcloud fn action get <action name> --save`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_get) command and use the saved action file for `action create` by using the new runtime.
+From the CLI, you can get the action code by using the [`ibmcloud fn action get <action name> --save`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_get) command and use the saved action file for `action create` by using the new runtime.
 {: tip}
 
 ### Updating actions from the CLI
 {: #actions_update_cli}
 
-You can update your actions from the CLI with the [**`ibmcloud fn action update`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) command.
+You can update your actions from the CLI with the [**`ibmcloud fn action update`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_update) command.
 {: shortdesc}
 
 1. Update your app locally.
@@ -351,7 +351,7 @@ Before you begin, create a package that includes at least one action.
     ```
     {: screen}
 
-    If you modify your non-service credential parameters, running an [**`package update`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
+    If you modify your non-service credential parameters, running an [**`package update`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_pkg_update) command with new parameters removes any parameters that currently exist, but are not specified in the `package update` command. For example, if you run `package update -p key1 new-value -p key2 new-value` but omit any other parameters that were set, those parameters no longer exist after the package is updated. Any services that were bound to the package are also removed, so after you update other parameters you must [bind services to your package](/docs/openwhisk?topic=openwhisk-services) again.
     {: tip}
 
 2. Verify that the parameters were bound to the package.
@@ -402,14 +402,14 @@ Before you begin, create a package that includes at least one action.
 After the actions and feeds that comprise a package are debugged and tested, the package can be shared with all {{site.data.keyword.openwhisk_short}} users. Sharing the package makes it possible for the users to bind the package, invoke actions in the package, and author {{site.data.keyword.openwhisk_short}} rules and sequence actions. Actions and feeds within a shared package are _public_. If the package is private, then all its contents are also private.
 {: shortdesc}
 
-1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_update) command to share the package with all users.
+1. Run the [`ibmcloud fn package update`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_pkg_update) command to share the package with all users.
 
     ```bash
     ibmcloud fn package update <package_name> --shared yes
     ```
     {: pre}
 
-2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
+2. Use the [`ibmcloud fn package get`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_pkg_get) command to display the `publish` property of the package to verify that it is now true.
 
     ```bash
     ibmcloud fn package get <package_name> publish
@@ -509,7 +509,7 @@ If you need to fully track and manage changes of your code, typically on larger 
 
 If you do not have a version control system, you can create a naming scheme for your actions to track multiple versions of an action. For example, consider appending a three-part semantic versioning number to the action name, such as `myAction_1.0.1`.
 
-To use these different actions versions in triggers, assign the appropriate version of an action to the trigger by using the  [`ibmcloud fn rule create`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_create) or the [`ibmcloud fn rule update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_update) CLI commands.
+To use these different actions versions in triggers, assign the appropriate version of an action to the trigger by using the  [`ibmcloud fn rule create`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_rule_create) or the [`ibmcloud fn rule update`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_rule_update) CLI commands.
 
 Example
 
