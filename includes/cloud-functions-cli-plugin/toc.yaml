@@ -1,0 +1,14 @@
+
+toc:
+  properties:
+    subcollection: cloud-functions-cli-plugin
+    audience: compute
+    href: /docs/cloud-functions-cli-plugin/cloud-functions-cli-plugin-functions-cli
+    path: cloud-functions-cli-plugin
+    label: Cloud Functions CLI
+    
+  entries: 
+  - navgroup: 
+      id: reference
+      topics:
+      - functions-cli.md

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-02-22"
+lastupdated: "2023-09-19"
 
 keywords: deploy, deployment templates, templates, example, quick start, functions, serverless, actions
 
@@ -240,7 +240,7 @@ Before you make entries in the {{site.data.keyword.cloudant_short_notm}} databas
 While you can test the action, you cannot test the trigger without making an entry to the {{site.data.keyword.cloudant_short_notm}} database. Try that next.
 {: shortdesc}
 
-1. From the command line, run the [**`activation poll`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
+1. From the command line, run the [**`activation poll`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_activation_poll) command to view a streaming, live list of activations for your namespace.  
 
     ```sh
     ibmcloud fn activation poll
@@ -760,8 +760,8 @@ You can stop the **Periodic Slack Reminder** trigger in the following ways.
 
 * From the CLI:
 
-    *  Disable the rule by running the [**`ibmcloud fn rule disable RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [**`ibmcloud fn rule list RULE_NAME`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_rule_list) command.
+    *  Disable the rule by running the [**`ibmcloud fn rule disable RULE_NAME`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_rule_disable) command where `RULE_NAME` is the name of the rule that you created for the **Periodic Slack Reminder** trigger.  You can find rule names in your name space by running the [**`ibmcloud fn rule list RULE_NAME`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_rule_list) command.
 
-    * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger_update) command.
+    * Edit the trigger by running the [`ibmcloud fn trigger update`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_trigger_update) command.
 
 

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-18"
+lastupdated: "2023-09-19"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -566,7 +566,7 @@ For more information about the Ruby 2.6 runtime, see [(Details on GitHub)](https
 ## Docker runtime
 {: #openwhisk_ref_docker}
 
-Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [**`action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) command. When you create an action that uses a Docker image, your app runs in the public Docker image that you specify during action creation.
+Docker actions run a user-supplied executable in a Docker container. You can include any compilation steps or dependencies by modifying your `Dockerfile`. You can specify a Docker image to use with your action code by specifying the `--docker` flag when you run the [**`action create`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_create) command. When you create an action that uses a Docker image, your app runs in the public Docker image that you specify during action creation.
 
 {{site.data.keyword.openwhisk_short}} provides base images on Docker hub. You can use these images as-is when you create actions, or you can use them as a base image when you write your `Dockerfile`. You can see a list of the available runtimes images in the [Available images and runtimes](#runtimes_available) section.
 

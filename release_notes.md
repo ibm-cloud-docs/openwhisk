@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2023
-lastupdated: "2023-07-19"
+lastupdated: "2023-09-19"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -200,7 +200,7 @@ Added support for Node.js 12 runtime.
 :   See [runtimes](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_javascript_environments).
 
 Added `--memory` to the **`action create`** and **`action update`** commands.
-:   See the [**`action create`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_create) and [**`action update`**](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_action_update) commands.
+:   See the [**`action create`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_create) and [**`action update`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_action_update) commands.
 
 Added troubleshooting information.
 :   See [troubleshooting common issues](/docs/openwhisk?topic=openwhisk-troubleshooting).
@@ -344,7 +344,7 @@ New Functions CLI version 1.0.38.
 :   See [CLI version history](/docs/openwhisk?topic=openwhisk-cli_versions).
 
 Updated trigger parameters for CLI. 
-:   See [Trigger commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_trigger).
+:   See [Trigger commands](/docs/openwhisk?topic=openwhisk-functions-cli#cli_trigger).
 
 Updated troubleshooting information for Node.js. 
 :   See [Troubleshooting Node.js issues](/docs/openwhisk?topic=openwhisk-troubleshooting).

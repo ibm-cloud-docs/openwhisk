@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-07-03"
+lastupdated: "2023-09-19"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -521,7 +521,7 @@ To use the `client-get-signed-url` action in the `cloud-object-storage` package,
 #### Binding service credentials in the CLI
 {: #pkg_obstorage_sc_bind_cli}
 
-Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_service).
+Bind the credentials from the {{site.data.keyword.cos_full_notm}} instance you created to the package. You can include the `--keyname` flag to bind specific service credentials. For more information about binding services, see [Service commands](/docs/openwhisk?topic=openwhisk-functions-cli#cli_service).
 
 ```sh
 ibmcloud fn service bind cloud-object-storage cloud-object-storage --keyname <service_key>
@@ -541,7 +541,7 @@ You still need to pass the `bucket` and `endpoint` values during action invocati
 ### Setting default parameters for a package or action
 {: #pkg_obstorage_param_bind}
 
-Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
+Rather than manually passing your `bucket` and `endpoint` with each action invocation, you can use the [`package update`](/docs/openwhisk?topic=openwhisk-functions-cli#cli_pkg_bind) command to bind your bucket and endpoint parameters to a specific action or to the `cloud-object-storage` package. You can find your `<bucket_endpoint>` value on the **Endpoint** tab in the COS console. 
 
 For a list of endpoints, see [Endpoints and storage locations](/docs/cloud-object-storage?topic=cloud-object-storage-endpoints#endpoints).
 
