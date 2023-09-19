@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-07-25"
+  years: 2017, 2023
+lastupdated: "2023-09-19"
 
 keywords: functions cli, serverless, cli, install, functions plug-in, API, migrating, syntax
 
@@ -193,7 +193,7 @@ All the command options and arguments for commands in the Cloud Functions CLI pl
 * The **`wsk ibmcloud login`** command is no longer needed. You can sign in by using **`ibmcloud login`** command.
 * You can manage your APIs by using the **`ibmcloud fn api`** commands.
 
-For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli).
+For more information, see the [{{site.data.keyword.openwhisk_short}} CLI reference](/docs/openwhisk?topic=openwhisk-functions-cli).
 
 ### API Authentication and Host
 {: #cli_api_auth}
