@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2022
-lastupdated: "2022-09-01"
+  years: 2021, 2023
+lastupdated: "2023-09-19"
 
 keywords: troubleshooting actions, functions, help, support, action, troubleshoot, system limits, configuration
 
@@ -43,7 +43,7 @@ The following example shows possible output.
 ```
 {: codeblock}
 
-With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=cloud-functions-cli-plugin-functions-cli#cli_activation).
+With the activation ID, you can poll for the completion of the action and the result. For more information, see [CLI](/docs/openwhisk?topic=openwhisk-functions-cli#cli_activation).
 {: tsResolve}
 
 For more information about blocking actions, see [Testing blocking actions](/docs/openwhisk?topic=openwhisk-test#test-block).
