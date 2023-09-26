@@ -30,15 +30,6 @@ toc:
           - link: 
               label: Build a database driven Slackbot
               href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson            
-          - link: 
-              label: Combining serverless and Cloud Foundry for data retrieval and analytics
-              href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics
-          - link: 
-              label: Mobile application with serverless backend
-              href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend
-          - link: 
-              label: Serverless web application and API
-              href: https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp
       - release_notes.md
   - navgroup: 
       id: howto

@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-09-26"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -115,12 +115,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Create the `ow-sdk-action` action](/docs/openwhisk?topic=openwhisk-tutorial_action#tutorial_action_ow-sdk-action)
 
 [Build a database driven Slackbot](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-slack-chatbot-database-watson#slack-chatbot-database-watson){: external}
-
-[Combining serverless and Cloud Foundry for data retrieval and analytics](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-github-traffic-analytics#serverless-github-traffic-analytics){: external}
-
-[Mobile application with serverless backend](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-mobile-backend#serverless-mobile-backend){: external}
-
-[Serverless web application and API](https://cloud.ibm.com/docs/solution-tutorials?topic=solution-tutorials-serverless-api-webapp#serverless-api-webapp){: external}
 
 
 ## Release notes for {{site.data.keyword.openwhisk_short}}

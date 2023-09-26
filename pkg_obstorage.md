@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-09-26"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -21,7 +21,7 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 Before you begin
 
 * To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). 
-* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev).
 
 ## Packages for {{site.data.keyword.cos_short}}
 {: #obstorage_packages}
@@ -51,7 +51,7 @@ The trigger is fired for each successful bucket change event. Each object change
 
 How do I use the trigger?
 :    After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions to process the object changes. You can use one of the following methods to create actions that are executed when the trigger is fired:
-:    - You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
+:    - You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
      - You can write your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) in the language of your choice.
      - You can use the sample JavaScript code provided in the [Connecting an action to the trigger](#cos_feed_action_connect) section.
 
@@ -179,7 +179,7 @@ ibmcloud fn trigger get cosTrigger
 {: #cos_feed_action_connect}
 
 After you create a trigger that listens for change events, you can connect it to a {{site.data.keyword.openwhisk_short}} action or sequence of actions. You can use one of the following methods to create actions:
-* You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
+* You can create actions by using the sample code provided in the [COS SDK](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs). The SDK includes code samples for Go, Node.js, Java, and Python.
 * You can write your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) in the language of your choice.
 * You can use the sample JavaScript code provided in the following steps.
 
@@ -281,7 +281,7 @@ You can see an example activation in the [Data structure of an Object Storage tr
 {: #pkg_obstorage_next}
 
 After you have created a trigger to respond to bucket events and connected it to an action, you can try creating custom actions and sequences. 
-* You can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
+* You can use the [COS SDK](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs) to perform bucket and object-level tasks. The SDK includes code samples in multiple languages.
 * You can create your own [actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to be executed when the trigger is fired.
 * You can use the actions in the [{{site.data.keyword.cos_full_notm}} package](#pkg_obstorage_install) to [read and write objects to a bucket](#pkg_obstorage_actions) and other tasks. The actions are executed in either Python or Node.js.
 
@@ -397,7 +397,7 @@ Triggers created with `/whisk.system/cos` package have the following limitations
 After you have [created an {{site.data.keyword.cos_full_notm}} service instance](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev#gs-dev-provision) and [created at least one bucket](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage#gs-create-buckets), you can install the {{site.data.keyword.cos_full_notm}} package into your namespace to work with your buckets and objects.
 {: shortdesc}
 
-The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage/libraries?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to respond to the trigger.
+The installable {{site.data.keyword.cos_full_notm}} package deploys a set of pre-built actions that you can use to work with your {{site.data.keyword.cos_full_notm}} buckets and objects. These actions are executed in either Node.js or Python. You can select a runtime when you install the package. If you want to use a different runtime, you can use the [COS SDK](/docs/cloud-object-storage?topic=cloud-object-storage-sdk-gs). You can also [build your own actions](/docs/openwhisk?topic=openwhisk-actions) or [web actions](/docs/openwhisk?topic=openwhisk-actions_web) to respond to the trigger.
 
 For a list of the actions in the `cloud-object-storage` package, see [Available entities](#pkg_obstorage_actions).
 
@@ -457,7 +457,7 @@ You can install the `cloud-object-storage` package from the console or the CLI.
 
 Before you can read or write objects to a bucket, you must provide service-to-service authentication. You can do this by setting an IAM access policy. 
 
-You can create an access policy at either [the service level or the bucket level](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the console or the CLI.
+You can create an access policy at either [the service level or the bucket level](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions). You can do this from either the console or the CLI.
 
 #### Setting an IAM access policy with the console
 {: #pkg_obstorage_rw_auth_ui}
@@ -470,7 +470,7 @@ You can create an access policy at either [the service level or the bucket level
 6. From **Services**, select **Cloud Object Storage**.
 7. From **Service instance**, select your {{site.data.keyword.cos_full_notm}} instance.
 8. To limit access to a specific bucket, enter **bucket** for **Resource type** and enter your **bucket-name** for **Resource ID**.
-9. Review the [IAM roles](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id) and select the appropriate role to assign to your namespace.
+9. Review the [IAM roles](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) and select the appropriate role to assign to your namespace.
 10. After you have selected a role, click **Save**.
 
 
@@ -497,7 +497,7 @@ You still need to pass the bucket name and endpoint during action invocation. Yo
 #### Creating service credentials for accessing your {{site.data.keyword.cos_full_notm}} instance
 {: #pkg_obstorage_sc_cos}
 
-If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/cloud-object-storage/iam?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
+If you plan to use the `client-get-signed-url` action, you must create [service credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials). You can then [bind service credentials](#pkg_obstorage_sc_bind) to the `cloud-object-storage`package.
 
 #### Binding your {{site.data.keyword.cos_full_notm}} service credentials to the package or actions.
 {: #pkg_obstorage_sc_bind}
@@ -692,7 +692,7 @@ The following package parameters are expected to be bound to the package, and ar
 | Package parameter | Description |
 | --- | --- |
 | `apikey` | The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
-| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
+| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
 {: caption="Table 6. Package parameters for object storage" caption-side="bottom"}
 
 #### Action parameters for {{site.data.keyword.cos_short}}
