@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-09-26"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -104,7 +104,7 @@ Node.js version 8 is deprecated and is planned to be removed soon. To continue r
 
 | Package | Details |
 | --- | --- | 
-| `cloudant` | The `@ibm-cloud/cloudant` SDK package in the `nodejs:20` runtime has been upgraded from to `0.5.5` and includs interface changes. For more information about the `@ibm-cloud/cloudant` SDK look at the [IBM Cloudant Docs](https://cloud.ibm.com/apidocs/cloudant?code=node). |
+| `cloudant` | The `@ibm-cloud/cloudant` SDK package in the `nodejs:20` runtime has been upgraded from to `0.5.5` and includes interface changes. For more information about the `@ibm-cloud/cloudant` SDK look at the [IBM Cloudant Docs](https://cloud.ibm.com/apidocs/cloudant?code=node). |
 | `request-promise` | The `request-promise` package has been removed as it is deprecated. If you still require this module, consider packaging `request-promise` with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
 | `mongodb` | The `mongodb` package in the `nodejs:20` runtime is at version v5.x. \n Major version changes can introduce incompatibilities, which might cause your action to fail. If your action uses an earlier version of this package, consider migrating to the current version. For more information about migrating to the current version of `mongodb`, see the  [Upgrade Driver Versions for MongoDB](https://www.mongodb.com/docs/drivers/node/current/upgrade/){: external}. \n  If you can't migrate, consider packaging the older version of `mongodb` package with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). |
 | `elasticsearch` | The `elasticsearch` SDK package in the `nodejs:16` runtime is deprecated and has been replaced with `@elastic/elasticsearch` in `nodejs:20`. This is a major change and will cause incompatibilities, which might cause your action to fail. If your action uses `elasticsearch` consider migrating to `@elastic/elasticsearch`. For more information about migrating to `@elastic/elasticsearch`, see [Migrating to @elastic/elasticsearch](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/7.17/breaking-changes.html){: external}.  \n  If you can't migrate, consider packaging `@elastic/elasticsearch` with your action as described in [Packaging JavaScript code as NPM files](/docs/openwhisk?topic=openwhisk-prep#prep_js_npm). For more information about the `@elastic/elasticsearch` SDK look at the [Official Homepage](https://www.elastic.co/guide/en/elasticsearch/client/javascript-api/current/index.html). |
