@@ -1,7 +1,7 @@
 ---
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-09-26"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -126,7 +126,7 @@ ibmcloud iam service-policy-create <namespace_service_ID> --roles <IAM_role1,IAM
 | `--service-instance <other_service_GUID>` | The GUID of the other service instance that you want the action to have access to. To get the service instance GUID, run `ibmcloud resource service-instance <other_service_instance_name>`. |
 {: caption="Table 1. Understanding the command components" caption-side="bottom"}
 
-For more information, see the [**`service-policy-create`**](/docs/account?topic=cli-ibmcloud_commands_iam) command reference.
+For more information, see the [**`service-policy-create`**](/docs/account?topic=account-ibmcloud_commands_iam#ibmcloud_iam_service_policies) command reference.
 {: note}
 
 Next steps
