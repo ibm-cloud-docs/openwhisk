@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-09-26"
 
 keywords: object storage, bucket, package, functions, object, trigger
 
@@ -21,7 +21,7 @@ You can extend the functionality of your {{site.data.keyword.openwhisk}} app by 
 Before you begin
 
 * To learn about {{site.data.keyword.cos_full_notm}}, see the [Getting started tutorial](/docs/cloud-object-storage?topic=cloud-object-storage-getting-started-cloud-object-storage). 
-* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage/basics?topic=cloud-object-storage-gs-dev#gs-dev-provision).
+* For more information about setting up the {{site.data.keyword.cos_full_notm}} instance, see [Provision an instance {{site.data.keyword.cos_full_notm}}](/docs/cloud-object-storage?topic=cloud-object-storage-gs-dev).
 
 ## Packages for {{site.data.keyword.cos_short}}
 {: #obstorage_packages}
@@ -457,7 +457,7 @@ You can install the `cloud-object-storage` package from the console or the CLI.
 
 Before you can read or write objects to a bucket, you must provide service-to-service authentication. You can do this by setting an IAM access policy. 
 
-You can create an access policy at either [the service level or the bucket level](/docs/cloud-object-storage/iam?topic=cloud-object-storage-iam-bucket-permissions#iam-service-id). You can do this from either the console or the CLI.
+You can create an access policy at either [the service level or the bucket level](/docs/cloud-object-storage?topic=cloud-object-storage-iam-bucket-permissions). You can do this from either the console or the CLI.
 
 #### Setting an IAM access policy with the console
 {: #pkg_obstorage_rw_auth_ui}
@@ -692,7 +692,7 @@ The following package parameters are expected to be bound to the package, and ar
 | Package parameter | Description |
 | --- | --- |
 | `apikey` | The `apikey` parameter is IAM API key for the {{site.data.keyword.cos_full_notm}} instance. |
-| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage/hmac?topic=cloud-object-storage-service-credentials#service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
+| `cos_hmac_keys` | The `cos_hmac_keys` parameter is the {{site.data.keyword.cos_full_notm}} instance HMAC credentials, which include the `access_key_id` and `secret_access_key` values. These credentials are used exclusively by the `client-get-signed-url` action.  Refer to [Using HMAC Credentials](/docs/cloud-object-storage?topic=cloud-object-storage-service-credentials) for instructions on how to generate HMAC credentials for your {{site.data.keyword.cos_full_notm}} instance. |
 {: caption="Table 6. Package parameters for object storage" caption-side="bottom"}
 
 #### Action parameters for {{site.data.keyword.cos_short}}
