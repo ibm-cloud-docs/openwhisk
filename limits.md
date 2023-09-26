@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-09-26"
 
 keywords: limits, details, entities, packages, runtimes, semantics, ordering actions, functions, statelessness, activation, action
 
@@ -39,7 +39,7 @@ The following table lists the default limits for actions.
 | `proculimit` | The maximum number of processes available to the action container is 1024. This limit is fixed and cannot be changed. When an action is invoked, the docker run command uses the argument `--pids-limit 1024` to set the `proculimit` value. For more information, see the [docker run](https://docs.docker.com/engine/reference/commandline/run/) command-line reference documentation. | 1024 | 0 | 1024 |
 | `result` | The maximum output size of an action invocation result in MB. This limit is fixed and cannot be changed. | 5 | 0 | 5 |
 | `sequenceMaxActions` | The maximum number of actions that comprise a sequence. This limit is fixed and cannot be changed. | 50 | 0 | 50 |
-| `timeout` | The timeout limit N is in the range 100 ms to 600000 ms, and is set per action in milliseconds. You can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 60000 |
+| `timeout` | The timeout limit N is in the range 100 ms to 600000 ms, and is set per action in milliseconds. You can change the timeout limit when an action is created. A container that runs longer than N milliseconds is terminated. | 60000 | 100 | 600000 |
 {: caption="Table 1. Default limits for actions" caption-side="bottom"}
 
 ## Web action limits
