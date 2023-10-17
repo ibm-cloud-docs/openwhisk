@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-18"
+lastupdated: "2023-10-17"
 
 keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
 
@@ -220,7 +220,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     "scripts": {
         "prebuild": "NODE_ENV=development npm install",
         "build": "webpack --config webpack.config.js ",
-        "deploy": "ibmcloud fn fn action update my-action dist/bundle.js --kind nodejs:20",
+        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:20",
         "clean": "rm -rf node_modules package-lock.json dist"
     },
     "dependencies": {
@@ -307,7 +307,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     * Or run the following IBM Cloud CLI command.
 
         ```bash
-        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
+        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:20
         ```
         {: pre}
 
