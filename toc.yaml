@@ -9,6 +9,7 @@ toc:
     product-page: https://www.ibm.com/cloud/functions
     path: openwhisk
     label: Functions
+    release-level: deprecated
   entries:
   - navgroup: 
       id: learn
