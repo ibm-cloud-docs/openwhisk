@@ -123,6 +123,12 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
 [Release notes for {{site.data.keyword.openwhisk_short}}](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-relnotes)
 
+* [October 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct23)
+
+    * [26 October 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-oct2623)
+
+        * Deprecation note for {{site.data.keyword.openwhisk}}
+
 * [July 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-july23)
 
     * [19 July 2023](/docs/openwhisk?topic=openwhisk-openwhisk-relnotes#openwhisk-july1923)
