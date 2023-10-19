@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2023-10-19"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -16,8 +16,7 @@ subcollection: openwhisk
 # Getting started with IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 28 2023, you can't create new instances, and access to free instances will be removed. Existing premium plan instances are supported until October 2024. Any instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
-{: deprecated}
+{[deprecated.md]}
 
 With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code in response to HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 {: shortdesc}
