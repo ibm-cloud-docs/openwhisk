@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-06-29"
+  years: 2023
+lastupdated: "2023-10-19"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -19,6 +19,9 @@ completion-time: 10m
 {: #tutorial_action}
 {: toc-content-type="tutorial"}
 {: toc-completion-time="10m"}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 In this tutorial, learn how to call an action from another action by creating a custom sequence in {{site.data.keyword.openwhisk}}. This tutorial uses Node.js 10, but the general principles can be applied to other runtimes. 
 {: shortdesc}
