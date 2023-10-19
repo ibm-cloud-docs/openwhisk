@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-12"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: actions, serverless, functions, utilities, split, sort, hosturl, date, head, echo, cat, smash
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Utilities
 {: #pkg_utils}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 Several utility actions are provided in the `/whisk.system/utils` package for {{site.data.keyword.openwhisk}}. This example creates a sequence with several actions from the `utils` package.
 {: shortdesc}
