@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: event streams, package, messages, events, functions, trigger
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # {{site.data.keyword.messagehub}}
 {: #pkg_event_streams}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.openwhisk}} provides a pre-installed package for publishing and consuming messages with {{site.data.keyword.messagehub}}.
 {: shortdesc}
