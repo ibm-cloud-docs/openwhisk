@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-19"
 
 keywords: deploy, deployment templates, templates, example, quick start, functions, serverless, actions
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Deploying quick start templates
 {: #templates}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.openwhisk}} offers a catalog of templates to help you get started on your next project. Templates are a combination of actions, triggers, sequences. Some templates also incorporate other services from {{site.data.keyword.cloud_notm}}. By using these templates, you can understand how {{site.data.keyword.openwhisk}} entities work together and even use these entities as a basis for your own project. 
 {: shortdesc}
