@@ -2,7 +2,7 @@
 
 copyright:
   years: 2019, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2023-10-19"
 
 keywords: release notes, functions, what's new, 2019, 2020, 2021
 
@@ -18,6 +18,8 @@ content-type: release-note
 # Release notes for {{site.data.keyword.openwhisk_short}}
 {: #openwhisk-relnotes}
 
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 Use the release notes to learn about the latest changes to {{site.data.keyword.openwhisk}} that are grouped by date.
 {: shortdesc}
