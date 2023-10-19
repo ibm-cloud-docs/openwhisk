@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-18"
+lastupdated: "2023-10-19"
 
 keywords: actions, functions, serverless, javascript, node, node.js
 
@@ -15,7 +15,7 @@ subcollection: openwhisk
 # Action overview 
 {: #actions_over}
 
-{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 28 2023, you can't create new instances, and access to free instances will be removed. Existing premium plan instances are supported until October 2024. Any instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
 {: deprecated}
 
 Learn more about {{site.data.keyword.openwhisk}} actions, web actions, and sequences.
