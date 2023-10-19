@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2021, 2022
-lastupdated: "2022-06-29"
+  years: 2021, 2023
+lastupdated: "2023-10-19"
 
 keywords: error, error handling, functions, serverless, monitoring, composer
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Error handing for {{site.data.keyword.openwhisk_short}}
 {: #error-handing-functions}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.openwhisk}} provides error handling through the execution status of each function invocation. Error handling is provided by {{site.data.keyword.openwhisk_short}} for invocations that are exposed through the {{site.data.keyword.openwhisk_short}} API, SDK, CLI, or the console. For more information about the various error types, see  [Action executions](/docs/openwhisk?topic=openwhisk-limits#limits_exec).
 {: shortdesc}
