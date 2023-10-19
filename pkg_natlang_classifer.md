@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-01"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: machine learning, functions, national language classifier, watson, classifier
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # {{site.data.keyword.nlclassifiershort}}
 {: #pkg_natlang_classifier}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The {{site.data.keyword.nlclassifierfull}} uses machine learning algorithms to return the matching predefined classes for short text input. You create and train a classifier to connect predefined classes to example texts so that the service can apply those classes to new inputs. For more information about this service, see {{site.data.keyword.nlclassifiershort}}.
 {: shortdesc}
