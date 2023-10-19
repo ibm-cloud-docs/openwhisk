@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-01-12"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: composer, openwhisk, compositions, sequence, branch, functions, combinator, loops, actions
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Composer
 {: #pkg_composer}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 With Composer, {{site.data.keyword.openwhisk}} supports conductor actions, which extends sequences with more combinators ([JS](https://github.com/ibm-functions/composer/blob/master/docs/COMBINATORS.md){: external}, [Python](https://github.com/ibm-functions/composer-python/blob/master/docs/COMBINATORS.md){: external}) By using Composer, you can create more complex flows that include conditional branching, error handling, retries, and loops.
 
