@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-11-18"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: use cases, microservices, web apps, iot, serverless, cognitive, functions, api, data processing, event processing
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Common use cases
 {: #use_cases}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The execution model that is offered by {{site.data.keyword.openwhisk}} supports various use cases. The following sections include typical examples. For a more detailed discussion of Serverless architecture, example use cases, pros and cons discussion, and implementation best practices, read the excellent [Mike Roberts article on Martin Fowler's blog](https://martinfowler.com/articles/serverless.html){: external}.
 {: shortdesc}
