@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-10-20"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -76,7 +76,7 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 
 Your Cloud Foundry-based namespaces still work. However, to take advantage of new features, you must create an IAM-enabled namespace.
 
-You can target a Cloud Foundry-based namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>`.
+You can target a Cloud Foundry-based namespace or IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or `ibmlcoud fn namespace target <namespace_name_or_ID>`.
 
 As a result of the [Cloud Foundry service deprecation](/docs/cloud-foundry-public?topic=cloud-foundry-public-deprecation), Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
 {: deprecated}
@@ -339,7 +339,6 @@ For example, to target an IAM namespace called `playground`,
 ibmcloud fn namespace target playground
 ```
 {: pre}
-
 
 
 ### Accessing other resources from a namespace
