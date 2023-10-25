@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-20"
+lastupdated: "2023-10-25"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -665,20 +665,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 
     * [Create an action by using external libraries with Go modules](/docs/openwhisk?topic=openwhisk-prep#prep_go_external_libraries)
 
-* [Preparing Swift apps](/docs/openwhisk?topic=openwhisk-prep#prep_swift)
-
-    * [Structuring Swift code](/docs/openwhisk?topic=openwhisk-prep#prep_swift_struc)
-
-    * [Packaging a Swift 4.2 file](/docs/openwhisk?topic=openwhisk-prep#prep_swift42_single)
-
-    * [Packaging Swift 4.2 multi-file projects and dependencies](/docs/openwhisk?topic=openwhisk-prep#prep_swift42_multi)
-
-* [Preparing Ruby apps](/docs/openwhisk?topic=openwhisk-prep#prep_ruby)
-
-    * [Structuring Ruby code](/docs/openwhisk?topic=openwhisk-prep#prep_ruby_struct)
-
-    * [Packaging Ruby code](/docs/openwhisk?topic=openwhisk-prep#prep_ruby_pkg)
-
 * [Preparing PHP apps](/docs/openwhisk?topic=openwhisk-prep#prep_php)
 
     * [Structuring PHP code](/docs/openwhisk?topic=openwhisk-prep#prep_php_struct)
@@ -698,12 +684,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Packaging Java code by using the Java runtime with Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_docker)
 
     * [Packaging Java code with Maven inside Docker](/docs/openwhisk?topic=openwhisk-prep#prep_java_maven_docker)
-
-* [Preparing .NET Core apps](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet)
-
-    * [Structuring .NET Core code](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet_struct)
-
-    * [Packaging .NET Core code](/docs/openwhisk?topic=openwhisk-prep#prep_dotnet_pkg)
 
 
 ## Managing triggers and rules
@@ -1219,8 +1199,6 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
     * [Python packages](/docs/openwhisk?topic=openwhisk-runtimes#python_packages)
 
 * [PHP runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_php)
-
-* [Ruby runtime (deprecated)](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_ruby)
 
 * [Docker runtime](/docs/openwhisk?topic=openwhisk-runtimes#openwhisk_ref_docker)
 

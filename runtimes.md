@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-10-25"
 
 keywords: runtimes, support, functions, javascript, node, node.js, java, swift, go, python, ruby, .net, PHP, docker
 
@@ -45,31 +45,31 @@ After a runtime is deprecated, it becomes `disabled`. The timeframe between `dep
 Migrate actions that are running on a `deprecated` or `disabled` runtime to a different runtime version by updating it. To update the runtime, see [changing action runtime](/docs/openwhisk?topic=openwhisk-actions#actions_update).
 
 These runtimes (kinds) are deprecated:
-- `go:1.17` (deprecated) 
 - `go:1.19` (deprecated) 
 - `nodejs:12` (deprecated)
 - `nodejs:16` (deprecated)
-- `nodejs:10` (deprecated)
-- `php:7.4` (deprecated)
 - `python:3.7` (deprecated)
 - `python:3.9` (deprecated)
-- `dotnet:2.2` (deprecated)
-- `ruby:2.6` (deprecated)
 
 These runtimes (kinds) are disabled:
 - `ballerina:0.990` (disabled)
+- `dotnet:2.2` (disabled)
 - `go:1.11` (disabled)
 - `go:1.15` (disabled)
+- `go:1.17` (disabled)
 - `nodejs` (disabled)
 - `nodejs:6` (disabled)
 - `nodejs:8` (disabled)
+- `nodejs:10` (disabled)
 - `php:7.1` (disabled)
 - `php:7.2` (disabled)
 - `php:7.3` (disabled)
+- `php:7.4` (disabled)
 - `python` (disabled)
 - `python:2` (disabled)
 - `python:3.6` (disabled)
 - `ruby:2.5` (disabled)
+- `ruby:2.6` (disabled)
 - `swift` (disabled)
 - `swift:3` (disabled)
 - `swift:3.1.1` (disabled)
@@ -81,25 +81,22 @@ For more information about supported and disabled runtimes, see [Available image
 ## JavaScript runtimes
 {: #openwhisk_ref_javascript_environments}
 
-By default, all Node.js actions are executed in a version 16 environment.
+By default, all Node.js actions are executed in a version 20 environment.
 {: note}
+
+Node.js version 16 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 12 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
+{: deprecated}
 
 Node.js version 12 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 12 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
 {: deprecated}
-
-Node.js version 10 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 10 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
-{: deprecated}
-
-Node.js version 8 is deprecated and is planned to be removed soon. To continue running your actions, you must update any Node.js version 8 actions to a higher runtime version. For more information, see the [Node.js release schedule](https://github.com/nodejs/Release){: external}.
-{: deprecated}         
 
 | Kind | Node.js version | Description | Change log |
 | --- | --- | --- | --- |
 | `nodejs:20` | [20.x](https://nodejs.org/docs/latest-v20.x/api/){: external} | By default, all Node.js actions are executed in a version 20 environment. | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs20/CHANGELOG.md){: external}. |
 | `nodejs:16` | [16.x](https://nodejs.org/docs/latest-v16.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs16/CHANGELOG.md){: external}. |
 | `nodejs:12` | [12.x](https://nodejs.org/docs/latest-v12.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/CHANGELOG.md){: external}. |
-| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
-| `nodejs:8` | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external} | Deprecated | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
+| `nodejs:10` | [10.x](https://nodejs.org/docs/latest-v10.x/api/){: external} | Disabled   | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/CHANGELOG.md){: external}. |
+| `nodejs:8`  | [8.x](https://nodejs.org/docs/latest-v8.x/api/){: external}   | Disabled   | [`CHANGELOG.md`](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs8/CHANGELOG.md){: external}. |
 {: caption="Table 1. Node.js versions" caption-side="bottom"}
 
 ### Migrating from Node.js 16 to Node.js 20
@@ -159,6 +156,11 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 
 ### Node.js packages
 {: #javascript_packages}
+
+For information about Node.js 20 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs20/package.json){: external}.
+
+For information about Node.js 16 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs16/package.json){: external}.
+
 
 | Node.js 12 packages | Description |
 |:-----------------|:-----------------|
@@ -248,91 +250,18 @@ For more information about migrating to `Node.js:10`, see [(Details on GitHub)](
 {: tab-group="node"}
 {: class="simple-tab-table"}
 
-| Node.js 10 packages | Description |
-|:-----------------|:-----------------|
-| [`@ibm-functions/iam-token-manager`](https://www.npmjs.com/package/@ibm-functions/iam-token-manager) | This package is an IAM access token manager library for Node.js. |
-| [`amqplib`](https://www.npmjs.com/package/amqplib){: external} | A library for making Advanced Message Queuing Protocol 0-9-1 clients for Node.js. |
-| [`apn`](https://www.npmjs.com/package/apn){: external} | A Node.js module for interfacing with the Apple Push Notification service. |
-| [`async`](https://www.npmjs.com/package/async){: external} | Provides functions for working with asynchronous functions. |
-| [`bent`](https://www.npmjs.com/package/bent){: external} | Functional HTTP client for Node.js with `async` and await. |
-| [`bodyparser`](https://www.npmjs.com/package/body-parser){: external} | Parse incoming request bodies in a middleware before your handlers, available under the req.body property. |
-| [`btoa`](https://www.npmjs.com/package/btoa){: external} | A port of the browser's `btoa` function. |
-| [`cassandra-driver`](https://www.npmjs.com/package/cassandra-driver){: external} | DataStax Node.js Driver for Apache Cassandra. |
-| [`@cloudant/cloudant`](https://www.npmjs.com/package/@cloudant/cloudant){: external} | The official Cloudant library for Node.js. |
-| [`commander`](https://www.npmjs.com/package/commander){: external} | The complete solution for Node.js command-line interfaces. |
-| [`composeaddresstranslator`](https://www.npmjs.com/package/composeaddresstranslator){: external} | Address translator from Compose UI or API for Scylla databases. |
-| [`consul`](https://www.npmjs.com/package/consul){: external} | A client for Consul, involving service discovery and configuration. |
-| [`cookie-parser`](https://www.npmjs.com/package/cookie-parser){: external} | Parse Cookie header and populate req.cookies with an object that is keyed by the cookie names. |
-| [`elasticsearch`](https://www.npmjs.com/package/elasticsearch){: external} | The official low-level `Elasticsearch` client for Node.js. |
-| [`errorhandler`](https://www.npmjs.com/package/errorhandler){: external} | Development-only error handler middleware. |
-| [`etcd3`](https://www.npmjs.com/package/etcd3){: external} | A high-quality, production-ready client for the Protocol Buffer-based etcdv3 API. |
-| [`formidable`](https://www.npmjs.com/package/formidable){: external} | A Node.js module for parsing form data, especially file uploads. |
-| [`glob`](https://www.npmjs.com/package/glob){: external} | Match files by using the patterns that the shell uses, like stars and stuff. |
-| [`gm`](https://www.npmjs.com/package/gm){: external} | GraphicsMagick and ImageMagick for Node. |
-| [`ibm-cos-sdk`](https://www.npmjs.com/package/ibm-cos-sdk){: external} | {{site.data.keyword.cos_full}} SDK for Node.js |
-| [`ibm_db`](https://www.npmjs.com/package/ibm_db){: external} | An asynchronous/synchronous interface for Node.js to IBM DB2 and IBM Informix. |
-| [`ibmiotf`](https://www.npmjs.com/package/ibmiotf){: external} | The Node.js client that is used for simplifying the interaction with the IBM Watson Internet of Things Platform. |
-| [`ibm-watson`](https://www.npmjs.com/package/ibm-watson){: external} | Node.js client library to use the Watson APIs. |
-| [`iconv-lite`](https://www.npmjs.com/package/iconv-lite){: external} | Pure JS character encoding conversion. |
-| [`jsdom`](https://www.npmjs.com/package/jsdom){: external} | `jsdom` is a pure-JavaScript implementation of many web standards, notably the Web Hypertext Application Technology Working Group DOM and HTML Standards. |
-| [`jsforce`](https://www.npmjs.com/package/jsforce){: external} | Salesforce API Library for JavaScript applications. |
-| [`jsonwebtoken`](https://www.npmjs.com/package/jsonwebtoken){: external} | An implementation of JSON Web Tokens. |
-| [`lodash`](https://www.npmjs.com/package/lodash){: external} | The `lodash` library is exported as Node.js modules. |
-| [`marked`](https://www.npmjs.com/package/marked){: external} | A full-featured markdown parser and compiler that is written in JavaScript. Built for speed. |
-| [`merge`](https://www.npmjs.com/package/merge){: external} | Merge multiple objects into one, optionally creating a new cloned object.
-| [`moment`](https://www.npmjs.com/package/moment){: external} | A lightweight JavaScript date library for parsing, validating, manipulating, and formatting dates. |
-| [`mongodb`](https://www.npmjs.com/package/mongodb){: external} | The official MongoDB driver for Node.js. |
-| [`mysql`](https://www.npmjs.com/package/mysql){: external} | A Node.js driver for MySQL. |
-| [`mustache`](https://www.npmjs.com/package/mustache){: external} | Mustache.js is an implementation of the mustache template system in JavaScript. |
-| [`nano`](https://www.npmjs.com/package/nano){: external} | Minimalistic CouchDB driver for Node.js. |
-| [`nodemailer`](https://www.npmjs.com/package/nodemailer){: external} | Send emails from Node.js – easy as cake! |
-| [`oauth2-server`](https://www.npmjs.com/package/oauth2-server){: external} | Complete, compliant, and tested module for implementing an OAuth2 Server/Provider with express in Node.js. |
-| [`openwhisk`](https://www.npmjs.com/package/openwhisk){: external} | JavaScript client library for the OpenWhisk platform. Provides a wrapper around the OpenWhisk APIs. |
-| [`path-to-regex`](https://www.npmjs.com/package/path-to-regexp){: external} | Turn a path string such as `/user/:name` into a regular expression, which can then be used to match against URL paths. |
-| [`pg`](https://www.npmjs.com/package/pg){: external} | Non-blocking PostgreSQL client for Node.js. Pure JavaScript and optional native `libpq` bindings. |
-| [`process`](https://www.npmjs.com/package/process){: external} | `require('process')`; just like any other module. |
-| [`pug`](https://www.npmjs.com/package/pug){: external} | Implements the Pug template language. |
-| [`redis`](https://www.npmjs.com/package/redis){: external} | A complete and feature rich Redis client for Node.js. |
-| [`request`](https://www.npmjs.com/package/request){: external} | Make HTTP calls. |
-| [`request-promise`](https://www.npmjs.com/package/request-promise){: external} | The simplified HTTP request client 'request' with Promise support. Powered by Bluebird. |
-| [`rimraf`](https://www.npmjs.com/package/rimraf){: external} | The UNIX command `rm -rf` for node. |
-| [`semver`](https://www.npmjs.com/package/semver){: external} | Semantic Versioning for nodeJS. |
-| [`@sendgrid/mail`](https://www.npmjs.com/package/@sendgrid/mail){: external} | Provides email support via the SendGrid API. |
-| [`serialize-error`](https://www.npmjs.com/package/serialize-error){: external} | Serialize an error into a plain object. |
-| [`serve-favicon`](https://www.npmjs.com/package/serve-favicon){: external} | Node.js middleware for serving a `favicon`.
-| [`socket.io`](https://www.npmjs.com/package/socket.io){: external} | `socket.io` enables real-time bidirectional event-based communication. |
-| [`socket.io-client`](https://www.npmjs.com/package/socket.io-client){: external} | Realtime application framework for `socket.io`. |
-| [`superagent`](https://www.npmjs.com/package/superagent){: external} | `superagent` is a small progressive client-side HTTP request library, and Node.js module with the same API, sporting many high-level HTTP client features. |
-| [`swagger-tools`](https://www.npmjs.com/package/swagger-tools){: external} | Package that provides various tools for integrating and interacting with Swagger. |
-| [`twilio`](https://www.npmjs.com/package/twilio){: external} | A wrapper for the Twilio API, related to voice, video, and messaging. |
-| [`underscore`](https://www.npmjs.com/package/underscore){: external} | Underscore.js is a utility-belt library for JavaScript that supports the usual functional suspects (each, map, reduce, filter, and so on) without extending any core JavaScript objects. |
-| [`url-pattern`](https://www.npmjs.com/package/url-pattern){: external} | Parse URLs for path parameters more easily than from a regex string matcher. |
-| [`uuid`](https://www.npmjs.com/package/uuid){: external} | Simple, fast generation of `RFC4122 UUIDS`. |
-| [`validator`](https://www.npmjs.com/package/validator){: external} | A library of string validators and sanitizers. |
-| [`vcap_services`](https://www.npmjs.com/package/vcap_services){: external} | Parse and return service credentials from VCAP_SERVICES environment variable that IBM Cloud provides. |
-| [`when`](https://www.npmjs.com/package/when){: external} | When.js is a rock solid, battle-tested `Promises/A+` and `when()` implementation, including a complete ES6 Promise shim. |
-| [`winston`](https://www.npmjs.com/package/winston){: external} | A multi-transport `async` logging library for Node.js. "`CHILL WINSTON! ... I put it in the logs.`" |
-| [`ws`](https://www.npmjs.com/package/ws){: external} | `ws` is a simple to use, blazing fast, and thoroughly tested WebSocket client and server implementation. |
-| [`xlsx`](https://www.npmjs.com/package/xlsx){: external} | Parser and writer for various spreadsheet formats. |
-| [`xml2js`](https://www.npmjs.com/package/xml2js){: external} | Simple XML to JavaScript object converter. It supports bidirectional conversion. |
-| [`xmlhttprequest`](https://www.npmjs.com/package/xmlhttprequest){: external} | `node-XMLHttpRequest` is a wrapper for the built-in HTTP client to emulate the browser `XMLHttpRequest` object. |
-| [`yauzl`](https://www.npmjs.com/package/yauzl){: external} | Another extraction library for node. |
-{: caption="Table 2. Node.js 10 packages." caption-side="top"}
-{: #javascript-2}
-{: tab-title="Node.js 10 packages"}
-{: tab-group="node"}
-{: class="simple-tab-table"}
+
 
 
 
 For more information about Node.js 12 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs12/package.json){: external}.
 
-For more information about Node.js 10 packages, see [(Details on GitHub)](https://github.com/ibm-functions/runtime-nodejs/blob/master/nodejs10/package.json){: external}.
+
 
 ## Python runtimes
 {: #openwhisk_ref_python_environments}
 
-By default, all Python actions are executed in a Python version 3.9 environment.
+By default, all Python actions are executed in a Python version 3.11 environment.
 {: note}
 
 | Kind | Python version | Description | Change log |
@@ -361,7 +290,7 @@ For more information about migrating to `python:3.9`, see [(Details on GitHub)](
 Ensure that your action uses only the packages that are mentioned in the following table. \n While other Python packages might be part of the runtime, they are included only as indirect dependencies of the other listed packages. These unlisted packages are candidates to be removed as soon as they are not required by the referring package.
 {: note}
 
-| Python 3.9 packages |
+| Python 3.11 packages |
 |:-----------------|
 | `beautifulsoup4` |
 | `botocore` |  
@@ -554,16 +483,6 @@ Ensure that your action uses only the modules that are mentioned in the followin
 
 
 
-## Ruby runtime (deprecated)
-{: #openwhisk_ref_ruby}
-
-The Ruby runtime is deprecated. There is no replacement. Instead, you must migrate to a different runtime. 
-{: deprecated}
-
-By default, all Ruby actions are executed in a version 2.6 environment. 
-{: note}
-
-For more information about the Ruby 2.6 runtime, see [(Details on GitHub)](https://github.com/apache/openwhisk-runtime-ruby/blob/master/core/ruby2.6ActionLoop/CHANGELOG.txt){: external}.
 
 
 ## Docker runtime
