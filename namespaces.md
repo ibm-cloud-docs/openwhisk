@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-20"
+lastupdated: "2023-10-25"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -331,7 +331,7 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. You can target IAM namespaces or Cloud Foundry namespaces.
 {: shortdesc}
 
-To target a namespace, use the [**`ibmcloud fn namespace target`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_namespace_target) command.
+To target a namespace, use the [**`ibmcloud fn namespace target`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_namespace_target) command or the `ibmcloud fn property set --namespace <namespace_name_or_ID>` command.
 
 For example, to target an IAM namespace called `playground`,
 

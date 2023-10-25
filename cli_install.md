@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-10-25"
 
 keywords: functions cli, serverless, cli, install, functions plug-in, API, migrating, syntax
 
@@ -202,37 +202,9 @@ For more information, see the [{{site.data.keyword.openwhisk_short}} CLI referen
 {: #cli_api_auth}
 
 
+With the Cloud Functions CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with the `ibmcloud login` command. You can target an IAM-enabled namespace or Cloud Foundry-based namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>`. After you log in, all commands begin with `ibmcloud fn`.
+  
 
-
-
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with the **`ibmcloud login`** command. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
-{: shortdesc}
-
-If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
-
-* Get the current IAM tokens. You must pass the IAM token in the Authorization header.
-
-    ```sh
-    ibmcloud iam oauth-tokens
-    ```
-    {: pre}
-
-* Get the current Cloud Foundry API key by running the following command.
-
-    ```sh
-    ibmcloud fn property get --auth
-    ```
-    {: pre}
-
-* Get the current API host by running the following command.
-
-    ```sh
-    ibmcloud fn property get --apihost
-    ```
-    {: pre}
-
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in. The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type `text/plain` instead of `text/html`. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
-{: tip}
 
 
 
