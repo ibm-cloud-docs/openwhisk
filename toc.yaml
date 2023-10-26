@@ -15,6 +15,7 @@ toc:
       id: learn
       topics:
       - getting-started.md
+      - dep-overview.md
       - link: 
           label: What is FaaS (Function-as-a-Service)?
           href: https://www.ibm.com/cloud/learn/faas
