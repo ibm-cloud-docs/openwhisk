@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-25"
 
 keywords: functions cli, serverless, cli, install, functions plug-in, API, migrating, syntax
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Installing the CLI and plug-in
 {: #cli_install}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.openwhisk}} offers a powerful plug-in for the {{site.data.keyword.cloud_notm}} CLI that allows complete management of the {{site.data.keyword.openwhisk_short}} system. You can use the {{site.data.keyword.openwhisk_short}} CLI plug-in to manage your code snippets in actions, create triggers and rules to enable your actions to respond to events, and bundle actions into packages.
 {: shortdesc}
@@ -198,34 +201,12 @@ For more information, see the [{{site.data.keyword.openwhisk_short}} CLI referen
 ### API Authentication and Host
 {: #cli_api_auth}
 
-With the {{site.data.keyword.openwhisk_short}} CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with the **`ibmcloud login`** command. You can target an IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or a Cloud Foundry-based namespace by running `ibmcloud target --cf`. After you log in, all commands begin with `ibmcloud fn`.
-{: shortdesc}
 
-If you need to use the authentication API key for {{site.data.keyword.openwhisk_short}} in an external HTTP client such as cURL or Postman, you can retrieve it with the following commands.
+With the Cloud Functions CLI plug-in, you don't need to explicitly configure the API key and API host. Instead, you can log in with the `ibmcloud login` command. You can target an IAM-enabled namespace or Cloud Foundry-based namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>`. After you log in, all commands begin with `ibmcloud fn`.
+  
 
-* Get the current IAM tokens. You must pass the IAM token in the Authorization header.
 
-    ```sh
-    ibmcloud iam oauth-tokens
-    ```
-    {: pre}
 
-* Get the current Cloud Foundry API key by running the following command.
-
-    ```sh
-    ibmcloud fn property get --auth
-    ```
-    {: pre}
-
-* Get the current API host by running the following command.
-
-    ```sh
-    ibmcloud fn property get --apihost
-    ```
-    {: pre}
-
-The API key is specific per region, organization, and space targeted by the {{site.data.keyword.openwhisk_short}} CLI plug-in. The {{site.data.keyword.openwhisk}} web actions API endpoint changed. To align with other customer services, a new `functions.appdomain.cloud` API endpoint is available for web actions. The API endpoint `functions.cloud.ibm.com` is still active, but now returns response data as content type `text/plain` instead of `text/html`. Other content types are not changing. Migrate your web actions to use the new API endpoint. The previous endpoints are deprecated and will be deactivated at some point.
-{: tip}
 
 ### Migrating deployment scripts
 {: #cli_migrating_deploy_scripts}

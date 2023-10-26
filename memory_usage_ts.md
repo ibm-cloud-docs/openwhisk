@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2022
-lastupdated: "2022-06-29"
+  years: 2023
+lastupdated: "2023-10-19"
 
 keywords: troubleshooting actions, functions, help, support, node.js, node, javascript
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Memory usage with Node.js runtime actions
 {: #memory_usage_ts}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 
 In the case where an action consumes more memory than requested, the action is terminated and the following log information is displayed:

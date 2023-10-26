@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-01"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: functions, cognitive, discovery, CLI, watson
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # {{site.data.keyword.discoveryshort}}
 {: #pkg_discovery}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The installable {{site.data.keyword.discoveryfull}} service is a cognitive search and content analytics engine that you can add to applications to identify patterns, trends, and actionable insights to drive better decision-making. Securely unify structured and unstructured data with pre-enriched content, and use a simplified query language to eliminate the need for manual filtering of results. For more information about this service, see [{{site.data.keyword.discoveryshort}}](/docs/discovery?topic=discovery-about).
 {: shortdesc}

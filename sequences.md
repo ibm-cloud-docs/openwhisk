@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-19"
 
 keywords: actions, functions, serverless, javascript, node, node.js, sequence
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Creating sequences
 {: #sequences}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 You can create a special type of {{site.data.keyword.openwhisk}} action called a sequence, that chains together several actions. The result of one action is passed as an argument to the next action. Sequences can use standard actions or web actions. 
 {: shortdesc}

@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-09-15"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: alarms, serverless, triggers, functions, event, cron
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Alarms 
 {: #pkg_alarms}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The `/whisk.system/alarms` package, available through {{site.data.keyword.openwhisk}}, can be used to fire a trigger or feed at a specified frequency. Alarms are useful for setting up recurring jobs or tasks, such as invoking a system back up every hour.
 {: shortdesc}

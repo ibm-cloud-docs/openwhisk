@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-07-19"
+lastupdated: "2023-10-20"
 
 keywords: functions, ibm cloud functions, cloud functions, getting started, creating actions, actions, OpenWhisk
 
@@ -16,12 +16,17 @@ subcollection: openwhisk
 # Getting started with IBM {{site.data.keyword.openwhisk_short}}
 {: #getting-started}
 
-With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code in response to HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
+
+If you’re an existing {{site.data.keyword.openwhisk}} user, you can continue to use the service until it is no longer supported in October 2024. 
 {: shortdesc}
 
+With {{site.data.keyword.openwhisk}}, you can use your favorite programming language to write lightweight code that runs app logic in a scalable way. You can run code in response to HTTP-based API requests from applications or run code in response to {{site.data.keyword.cloud_notm}} services and third-party events. The Function-as-a-Service (FaaS) programming platform is based on the open source project Apache OpenWhisk.
 
 As a result of the [Cloud Foundry service deprecation](/docs/cloud-foundry-public?topic=cloud-foundry-public-deprecation), Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
 {: deprecated}
+
 
 ## Working with actions
 {: #gs_actions}

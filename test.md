@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-19"
 
 keywords: actions, serverless, javascript, node, node.js, functions, testing, memory
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Testing serverless apps
 {: #test}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 Test each entity that you create to verify that your serverless app is working or to troubleshoot where an issue might be occurring.
 {: shortdesc}

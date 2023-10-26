@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: functions compared, architecture, limitless, functions, openwhisk, actions, redundancy
 
@@ -16,6 +16,9 @@ subcollection: openwhisk
 
 # Function as a Service architecture
 {: #faas}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 {{site.data.keyword.openwhisk}} delivers OpenWhisk in a highly scalable, serverless environment. You can compare {{site.data.keyword.openwhisk_short}} serverless architecture and cost-effective computing with other architecture models.
 {: shortdesc}

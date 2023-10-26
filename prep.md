@@ -2,9 +2,9 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-18"
+lastupdated: "2023-10-25"
 
-keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, swift, ruby, .net core, PHP
+keywords: actions, serverless, javascript, node, node.js, functions, apps, java, python, go, PHP
 
 subcollection: openwhisk
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Preparing apps for actions
 {: #prep}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 Whether you bring an app with you, or you write a script specifically to respond to an event, your code must meet certain requirements before you create an action from it.
 {: shortdesc}
@@ -220,7 +223,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     "scripts": {
         "prebuild": "NODE_ENV=development npm install",
         "build": "webpack --config webpack.config.js ",
-        "deploy": "ibmcloud fn fn action update my-action dist/bundle.js --kind nodejs:20",
+        "deploy": "ibmcloud fn action update my-action dist/bundle.js --kind nodejs:20",
         "clean": "rm -rf node_modules package-lock.json dist"
     },
     "dependencies": {
@@ -307,7 +310,7 @@ Before you begin, [review the packages that are included with the JavaScript run
     * Or run the following IBM Cloud CLI command.
 
         ```bash
-        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:12
+        ibmcloud fn action update my-action dist/bundle.js --kind nodejs:20
         ```
         {: pre}
 
@@ -1589,245 +1592,9 @@ If you pre-compile the action, then the libraries are already packaged into the 
     If you pin the action to a fixed runtime, the runtime cannot change or receive security fixes.
     {: note}
 
-## Preparing Swift apps
-{: #prep_swift}
 
-Swift files must be compiled before an action is run. This delay is known as the cold start delay. To avoid the cold start delay, you can compile your Swift file and then upload it to {{site.data.keyword.openwhisk_short}} in a compressed file. The Docker runtime includes a compiler to help users compile and package Swift 4.2 actions. Subsequent calls to the action are much faster until the container with your action is purged.
-{: shortdesc}
 
-Swift actions run in a Linux environment. Swift on Linux is still in development, and {{site.data.keyword.openwhisk_short}} uses the latest available release. These releases might not be stable. The version of Swift that is used with {{site.data.keyword.openwhisk_short}} might be inconsistent with versions of Swift from stable releases of Xcode on macOS.
-{: important}
 
-### Structuring Swift code
-{: #prep_swift_struc}
-
-The expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created.
-{: shortdesc}
-
-In addition to the main function signature, Swift 4 provides two more signatures that take advantage of the [`Codable`](https://developer.apple.com/documentation/swift/codable){: external} type. You can learn more about data type [encoding and decoding for compatibility with external representations such as JSON](https://developer.apple.com/documentation/foundation/archives_and_serialization/encoding_and_decoding_custom_types){: external}.
-
-Example
-
-```swift
-struct Input: Codable {
-    let name: String?
-}
-struct Output: Codable {
-    let greeting: String
-}
-func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
-    let result = Output(greeting: "Hello \(param.name ?? "stranger")!")
-    print("Log greeting:\(result.greeting)")
-    completion(result, nil)
-}
-```
-{: codeblock}
-
-This example takes an input parameter as `Codable Input` with field `name`, and returns a `Codable output` with a field `greetings`.
-
-#### Handling errors in Swift
-{: #prep_swift_error}
-
-By using the `Codable` completion handler, you can pass an error to indicate a failure in your action. [Error handling in Swift](https://docs.swift.org/swift-book/LanguageGuide/ErrorHandling.html){: external} resembles exception handling in other languages, with the use of the `try`, `catch`, and `throw` keywords.
-{: shortdesc}
-
-The following snippet shows an example of handling an error.
-
-```swift
-enum VendingMachineError: Error {
-    case invalidSelection
-    case insufficientFunds(coinsNeeded: Int)
-    case outOfStock
-}
-func main(param: Input, completion: (Output?, Error?) -> Void) -> Void {
-    // Return real error
-    do{
-        throw VendingMachineError.insufficientFunds(coinsNeeded: 5)
-    } catch {
-        completion(nil, error)
-    }
-}
-```
-{: codeblock}
-
-### Packaging a Swift 4.2 file
-{: #prep_swift42_single}
-
-Compile a single source file that doesn't depend on external libraries. Use the flag `-compile` with the name of the main method.
-{: shortdesc}
-
-Before you begin
-
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- Package your app dependencies with your app.
-
-Package your app by running the following command.
-
-```bash
-docker run -i openwhisk/action-swift-v4.2 -compile main <hello.swift >hello.zip
-```
-{: pre}
-
-The Docker container reads the content of the file from `stdin`, and writes a compressed archive with the compiled Swift executable file to `stdout`.
-
-### Packaging Swift 4.2 multi-file projects and dependencies
-{: #prep_swift42_multi}
-
-Package your Swift 4.2 multi-file projects and dependencies by creating a directory structure, compressing the contents, and then passing the compressed file to Docker.
-{: shortdesc}
-
-Before you begin
-
-- [Install Docker](https://hub.docker.com/search/?offering=community&type=edition){: external}.
-- Package your app dependencies with your app.
-
-Package your app.
-
-1. To compile multiple files and include external dependencies, create the following directory structure.
-
-    ```sh
-    .
-    ├── Package.swift
-    └── Sources
-        └── main.swift
-    ```
-    {: codeblock}
-
-    The directory `Sources/` contains a file that is named `main.swift`.
-
-    The `Package.swift` must start with a comment that specifies version `4.2` for the Swift tooling:
-
-    ```swift
-    // swift-tools-version:4.2
-    import PackageDescription
-
-    let package = Package(
-        name: "Action",
-        products: [
-        .executable(
-            name: "Action",
-            targets:  ["Action"]
-        )
-        ],
-        dependencies: [
-        .package(url: "https://github.com/IBM-Swift/SwiftyRequest.git", .upToNextMajor(from: "1.0.0"))
-        ],
-        targets: [
-        .target(
-            name: "Action",
-            dependencies: ["SwiftyRequest"],
-            path: "."
-        )
-        ]
-    )
-    ```
-    {: codeblock}
-
-2. Create an archive with the contents of the directory.
-
-    ```bash
-    zip ../action-src.zip -r *
-    ```
-    {: codeblock}
-
-3. Pass the compressed archive to the Docker container over `stdin`. The `stdout` is a new compressed archive with the compiled executable file. The Docker container reads the content of the compressed archive from `stdin` and writes a new archive with the compiled Swift executable file to `stdout`.
-
-    ```bash
-    docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
-    ```
-    {: codeblock}
-
-    In a Linux based system, you can combine the `zip` and `docker run` steps in a single command:
-
-    ```bash
-    zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
-    ```
-    {: codeblock}
-
-    ```bash
-    docker run -i openwhisk/action-swift-v4.2 -compile main <action-src.zip >../action-bin.zip
-    ```
-    {: codeblock}
-
-    In a Linux-based system, you can combine the `zip` and `docker run` steps in a single command:
-
-    ```bash
-    zip - -r * | docker run -i openwhisk/action-swift-v4.2 -compile main >../action-bin.zip
-    ```
-    {: codeblock}
-
-## Preparing Ruby apps
-{: #prep_ruby}
-
-Before you create an action, get your Ruby code ready.
-{: shortdesc}
-
-The Ruby runtime is deprecated. There is no replacement. Instead, you must migrate to a different runtime. 
-{: deprecated}
-
-### Structuring Ruby code
-{: #prep_ruby_struct}
-
-When you structure your code, note that the expected name for the entry point function is `main`. If the function in your code is not `main`, take note of the name to specify it when the action is created. Ruby actions always consume a Hash (dictionary-like collection) and return a Hash.
-{: shortdesc}
-
-Example of Ruby code
-
-```ruby
-    def main(args)
-        name = args["name"] || "stranger"
-        greeting = "Hello #{name}!"
-        puts greeting
-        { "greeting" => greeting }
-    end
-```
-{: codeblock}
-
-### Packaging Ruby code
-{: #prep_ruby_pkg}
-
-You can package a Ruby app and dependent packages in a compressed file. For example, you can package an action with a second file called `helper.rb`.
-{: shortdesc}
-
-Create an archive that contains your source files. The source file that contains the entry point must be named `main.rb`.
-
-Example
-
-**`main.rb`**
-
-```ruby
-    require_relative 'helper'
-    def main(args)
-        name = args["name"] || "stranger"
-        greeting = "Hello #{name}!"
-        help = helper(greeting)
-        puts help
-        { "help" => help }
-    end
-```
-{: codeblock}
-
-**`helper.rb`**
-
-```ruby
-    def helper(greeting)
-        puts greeting
-        "#{greeting} I am here to help"
-    end
-```
-{: codeblock}
-
-```bash
-zip -r helloRuby.zip main.rb helper.rb
-```
-{: pre}
-
-```bash
-ibmcloud fn action create hello-ruby helloRuby.zip --kind=ruby:2.6
-```
-{: pre}
-
-The gems `mechanize` and `jwt` are available in addition to the default and bundled gems. You can use arbitrary gems if you also use compression actions to package all the dependencies.
 
 ## Preparing PHP apps
 {: #prep_php}
@@ -2329,109 +2096,5 @@ To create a Java action by using Docker, complete the following steps.
     ```
     {: pre}
 
-
-## Preparing .NET Core apps
-{: #prep_dotnet}
-
-Before you create an action, get your .NET Core code ready.
-{: shortdesc}
-
-The .NET Core runtime is deprecated. There is no replacement. Instead, you must migrate to a different runtime. 
-{: deprecated}
-
-### Structuring .NET Core code
-{: #prep_dotnet_struct}
-
-A .NET Core action is a .NET Core class library with a method that is expected to be named `Main`. If the method in your code is not `Main`, take note of the name to specify it when the action is created in the format: `--main {Assembly}::{Class Full Name}::{Method}`
-{: shortdesc}
-
-```vbnet
-Apache.OpenWhisk.Example.Dotnet::Apache.OpenWhisk.Example.Dotnet.Hello::Main
-```
-{: codeblock}
-
-### Packaging .NET Core code
-{: #prep_dotnet_pkg}
-
-Package your code by first compiling it and then compressing the results.
-{: shortdesc}
-
-Before you begin
-
-To compile, test, and archive .NET Core projects, you must:
-
-- Install the [.NET Core SDK](https://dotnet.microsoft.com/download){: external} locally.
-- Set the `DOTNET_HOME` environment variable to the location where the `dotnet` executable file can be found.
-
-
-
-To package your code, run the following commands.
-
-1. Create a C# project called `Apache.OpenWhisk.Example.Dotnet`.
-
-    ```bash
-    dotnet new classlib -n Apache.OpenWhisk.Example.Dotnet -lang "C#"
-    ```
-    {: pre}
-
-2. Navigate to the `Apache.OpenWhisk.Example.Dotnet` directory.
-
-    ```bash
-    cd Apache.OpenWhisk.Example.Dotnet
-    ```
-    {: pre}
-
-3. Install the [`Newtonsoft.Json NuGet` package](https://www.nuget.org/packages/Newtonsoft.Json/){: external}.
-
-    ```bash
-    dotnet add package Newtonsoft.Json -v 12.0.1
-    ```
-    {: pre}
-
-4. Save the following code in a file named `Hello.cs`.
-
-    ```csharp
-    using System;
-    using Newtonsoft.Json.Linq;
-
-    namespace Apache.OpenWhisk.Example.Dotnet
-        {
-            public class Hello
-            {
-                public JObject Main(JObject args)
-                {
-    string name = "stranger";
-    if (args.ContainsKey("name")) {
-    name = args["name"].ToString();
-    }
-    JObject message = new JObject();
-    message.Add("greeting", new JValue($"Hello, {name}!"));
-    return (message);
-                }
-            }
-    }
-    ```
-    {: codeblock}
-
-5. Compile `Hello.cs` and any other files and output to `out` directory.
-
-    ```bash
-    dotnet publish -c Release -o out
-    ```
-    {: pre}
-
-6. Navigate to the `out` directory.
-
-    ```bash
-    cd out
-    ```
-    {: pre}
-
-7. Compress the published files.
-
-    ```bash
-    zip -r -0 ../helloDotNet.zip *
-    ```
-    {: pre}
 
 

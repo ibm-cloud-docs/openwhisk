@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-19"
 
 keywords: actions, functions, serverless, javascript, node, node.js, packages
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Creating actions
 {: #actions}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 Create an {{site.data.keyword.openwhisk}} action, which is a top-level function that returns a JSON object. You can combine actions into a package to simplify the management of your actions.
 {: shortdesc}

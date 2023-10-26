@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-19"
+lastupdated: "2023-10-25"
 
 keywords: namespaces, iam, cloud foundry, classic namespaces, functions
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Managing namespaces
 {: #namespaces}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 With {{site.data.keyword.openwhisk}}, you can create Identity and Access (IAM) managed namespaces to group entities, such as actions or triggers, together. Then, you can create IAM access policies for the namespace. For an overview of IAM, see the [{{site.data.keyword.openwhisk_short}} IAM-enablement announcement blog](https://www.ibm.com/blog/ibm-cloud-functions-is-now-identity-and-access-management-enabled){: external}.
 {: shortdesc}
@@ -72,6 +75,8 @@ The names of all entities, including actions, triggers, rules, packages, and nam
 {: #cf_namespace}
 
 Your Cloud Foundry-based namespaces still work. However, to take advantage of new features, you must create an IAM-enabled namespace.
+
+You can target a Cloud Foundry-based namespace or IAM-enabled namespace by running `ibmcloud fn property set --namespace <namespace_name_or_ID>` or `ibmlcoud fn namespace target <namespace_name_or_ID>`.
 
 As a result of the [Cloud Foundry service deprecation](/docs/cloud-foundry-public?topic=cloud-foundry-public-deprecation), Cloud Foundry-based namespaces in {{site.data.keyword.openwhisk_short}} are deprecated and will stop working on Oct 31st, 2023. If you are still using Cloud-Foundry-based namespaces, [migrate your namespace to an IAM namespace](/docs/openwhisk?topic=openwhisk-namespaces#create_iam_namespace) to ensure that your Cloud Function workloads continue to run.
 {: deprecated}
@@ -326,7 +331,7 @@ You can create IAM-enabled namespaces to handle your pre-production (staging) an
 Before you can work in {{site.data.keyword.openwhisk_short}}, you must target a namespace. You can target IAM namespaces or Cloud Foundry namespaces.
 {: shortdesc}
 
-To target a namespace, use the [**`ibmcloud fn namespace target`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_namespace_target) command.
+To target a namespace, use the [**`ibmcloud fn namespace target`**](/docs/openwhisk?topic=openwhisk-functions-cli#cli_namespace_target) command or the `ibmcloud fn property set --namespace <namespace_name_or_ID>` command.
 
 For example, to target an IAM namespace called `playground`,
 
@@ -334,6 +339,7 @@ For example, to target an IAM namespace called `playground`,
 ibmcloud fn namespace target playground
 ```
 {: pre}
+
 
 ### Accessing other resources from a namespace
 {: #namespace-access}

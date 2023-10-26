@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-19"
+lastupdated: "2023-10-19"
 
 keywords: github, actions, trigger, event, functions
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # GitHub
 {: #pkg_github}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The `/whisk.system/github` package that is available with {{site.data.keyword.openwhisk}}, offers a convenient way to use the [GitHub APIs](https://docs.github.com/){: external}.
 {: shortdesc}

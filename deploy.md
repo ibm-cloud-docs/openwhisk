@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-09-18"
+lastupdated: "2023-10-19"
 
 keywords: deploying actions, manifest, manifest file, functions, openwhisk, API
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Deploying entities with a manifest file 
 {: #deploy}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 You can use {{site.data.keyword.openwhisk}} to describe and deploy all your namespace entities by using a manifest file that is written in YAML. You can use this file to deploy all your Functions [Packages](/docs/openwhisk?topic=openwhisk-pkg_ov), [Actions](/docs/openwhisk?topic=openwhisk-actions), [Triggers](/docs/openwhisk?topic=openwhisk-triggers), and [Rules](/docs/openwhisk?topic=openwhisk-rules) with a single command.
 

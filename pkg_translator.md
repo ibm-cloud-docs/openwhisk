@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-05-19"
+lastupdated: "2023-10-19"
 
 keywords: watson, translator, cognitive, translating text, language, functions
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # {{site.data.keyword.languagetranslatorshort}} 
 {: #pkg_translator}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 The installable {{site.data.keyword.languagetranslatorfull}} package translates text from one language to another. The service offers multiple IBM provided translation models that you can customize based on your unique terminology and language.
 {: shortdesc}

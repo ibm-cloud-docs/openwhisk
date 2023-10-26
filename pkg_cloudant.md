@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-06-29"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: cloudant, event, action, trigger, sequence, functions, database, document, rule
 
@@ -14,6 +14,9 @@ subcollection: openwhisk
 
 # Cloudant
 {: #pkg_cloudant}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 With the preinstalled `/whisk.system/cloudant` package from {{site.data.keyword.openwhisk}}, you can work with an [{{site.data.keyword.cloudant}}](/docs/Cloudant?topic=Cloudant-getting-started-with-cloudant) database.
 {: shortdesc}

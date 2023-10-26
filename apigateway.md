@@ -1,8 +1,8 @@
 ---
 
 copyright:
-  years: 2017, 2022
-lastupdated: "2022-05-18"
+  years: 2017, 2023
+lastupdated: "2023-10-19"
 
 keywords: serverless, rest api, gateway, web actions, functions, API, HTTP
 
@@ -15,6 +15,9 @@ subcollection: openwhisk
 
 # Creating serverless REST APIs
 {: #apigateway}
+
+{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{: deprecated}
 
 You can use APIs to directly manage {{site.data.keyword.openwhisk}} [web actions](/docs/openwhisk?topic=openwhisk-actions_web). 
 {: shortdesc}
