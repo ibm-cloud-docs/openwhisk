@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-25"
+lastupdated: "2023-10-26"
 
 keywords: web actions, serverless, functions, sitemap, actions
 
@@ -37,6 +37,25 @@ Find what you are looking for in the compilation of {{site.data.keyword.openwhis
 * [Creating an action in the CLI](/docs/openwhisk?topic=openwhisk-getting-started#gs_hello_world_cli)
 
 * [What's next in {{site.data.keyword.openwhisk_short}}?](/docs/openwhisk?topic=openwhisk-getting-started#gs_next_steps)
+
+
+## Deprecation overview
+{: #sitemap_deprecation_overview}
+
+
+[Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview#dep-overview)
+
+* [Which services are included in this change?](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-service)
+
+* [Why are we making this change?](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-why)
+
+* [What are the implications for current users of Functions?](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-current-users)
+
+* [Deprecation schedule](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-schedule)
+
+* [What if I'm still working with the service?](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-schedule)
+
+* [Have questions?](/docs/openwhisk?topic=openwhisk-dep-overview#dep-over-questions)
 
 
 ## What is FaaS (Function-as-a-Service)?
