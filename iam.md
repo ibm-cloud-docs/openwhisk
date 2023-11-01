@@ -1,7 +1,7 @@
 ---
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-11-01"
 
 keywords: access policies, iam, roles, functions, platform roles, service-specific roles, service ID
 
@@ -14,7 +14,7 @@ subcollection: openwhisk
 # Setting access policies
 {: #iam}
 
-{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
 {: deprecated}
 
 Access to {{site.data.keyword.openwhisk}} service instances for users in your account is controlled by IBM Cloud Identity and Access Management (IAM). For {{site.data.keyword.openwhisk_short}}, your {{site.data.keyword.openwhisk_short}} namespace is considered to be your service instance. Every user that accesses {{site.data.keyword.openwhisk_short}} entities in your namespace must be assigned an access policy with an IAM role defined. The policy determines what actions a user can perform within the context of the namespace that you select. The actions are then mapped to IAM user roles. If you created the namespace, then you do not need to set any IAM policies to view or work with your {{site.data.keyword.openwhisk_short}} entities. 

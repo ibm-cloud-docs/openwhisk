@@ -2,7 +2,7 @@
 
 copyright:
   years: 2017, 2023
-lastupdated: "2023-10-19"
+lastupdated: "2023-11-01"
 
 keywords: regions, endpoints, api, cli, plug-in, functions
 
@@ -16,7 +16,7 @@ subcollection: openwhisk
 # Regions
 {: #cloudfunctions_regions}
 
-{{site.data.keyword.openwhisk}} is deprecated. As of 28 December 2023, you can't create new function instances, and access to free instances will be removed. Existing premium plan function instances are supported until October 2024. Any function instances that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
+{{site.data.keyword.openwhisk}} is deprecated. Existing Functions entities such as actions, triggers, or sequences will continue to run, but as of 28 December 2023, you can’t create new Functions entities. Existing Functions entities are supported until October 2024. Any Functions entities that still exist on that date will be deleted. For more information, see [Deprecation overview](/docs/openwhisk?topic=openwhisk-dep-overview).
 {: deprecated}
 
 {{site.data.keyword.openwhisk}} is available in the US South, US East, Germany, United Kingdom, Tokyo, and Sydney {{site.data.keyword.cloud_notm}} regions. You can target a specific region whenever you log in to the {{site.data.keyword.cloud_notm}} CLI or change your current region by using the `-r` flag.
